@@ -11,6 +11,10 @@ setup(name='adhocracy4',
       url='https://liqd.net/en/software/',
       packages=[
           'adhocracy4',
+          'adhocracy4.api',
+          'adhocracy4.models',
+          'adhocracy4.ratings',
+          'adhocracy4.ratings.templatetags',
       ],
       zip_safe=False,  # allow to access using webpack
       install_requires = [
