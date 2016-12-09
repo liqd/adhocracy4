@@ -1,9 +1,8 @@
-var api = require('../../../contrib/static/js/api')
-var config = require('../../../contrib/static/js/config')
+var api = require('../../../static/api')
+var config = require('../../../static/config')
 
 var React = require('react')
 var ReactDOM = require('react-dom')
-var h = require('react-hyperscript')
 var classnames = require('classnames')
 
 var RatingBox = React.createClass({
@@ -120,5 +119,5 @@ var RatingBox = React.createClass({
 module.exports.RatingBox = RatingBox
 
 module.exports.renderRatings = function (mountpoint, props) {
-  ReactDOM.render(h(RatingBox, props), document.getElementById(mountpoint))
+  ReactDOM.render(<RatingBox {...props} />, document.getElementById(mountpoint))
 }
