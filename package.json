@@ -1,0 +1,18 @@
+{
+    "name": "adhocracy4",
+    "version": "0.0.1dev1",
+    "license": "AGPL-3.0+",
+    "author": {
+        "name": "Liquid Democracy e.V.",
+        "email": "info@liqd.de",
+        "url": "https://liqd.net"
+    },
+    "files": [
+        "index.js",
+        "adhocracy4/ratings/static"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:liqd/adhocracy4.git"
+    }
+}
