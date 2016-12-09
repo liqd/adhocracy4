@@ -9,7 +9,7 @@
     },
     "files": [
         "index.js",
-        "adhocracy4/ratings/static"
+        "adhocracy4"
     ],
     "repository": {
         "type": "git",
