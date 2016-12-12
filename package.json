@@ -1,0 +1,11 @@
+{
+  "name": "a4-meinberlin",
+  "repository": "https://github.com/liqd/a4-meinberlin.git",
+  "dependencies": {},
+  "devDependencies": {
+    "husky": "0.11.4"
+  },
+  "scripts": {
+    "precommit": "make lint"
+  }
+}
