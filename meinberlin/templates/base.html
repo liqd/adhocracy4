@@ -1,14 +1,27 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{% block title %}Home{% endblock %}</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
     <meta name="viewport" content="width=device-width" />
 </head>
 <body>
+    <header class="mainHeader">
+        <nav class="mainNav">
+            <a href="/" class="mainNav-item" rel="home">Startseite</a>
+            <a href="/" class="mainNav-logo" rel="home"><img src="{% static 'images/LOGO.png' %}" alt="mein.berlin" /></a>
+            <ul>
+                <li><a class="mainNav-item">Nutzungsbedingungen</a></li>
+                <li><a class="mainNav-item">Impressum</a></li>
+                <li><a class="mainNav-item">Hilfe</a></li>
+            </ul>
+        </nav>
+        <div class="mainHeader-user">user indicator</div>
+    </header>
     <main>
         {% block content %}{% endblock %}
     </main>
