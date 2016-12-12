@@ -1,0 +1,11 @@
+# python
+*.pyc
+
+# setuptools
+/dist
+/*.egg-info
+
+# virtualenv
+/bin
+/lib
+/include
