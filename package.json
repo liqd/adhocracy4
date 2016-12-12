@@ -3,6 +3,7 @@
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {},
   "devDependencies": {
+    "node-sass": "3.10.1",
     "husky": "0.11.4"
   },
   "scripts": {
