@@ -4,7 +4,8 @@
   "dependencies": {},
   "devDependencies": {
     "node-sass": "3.10.1",
-    "husky": "0.11.4"
+    "husky": "0.11.4",
+    "stylelint": "^7.5.0"
   },
   "scripts": {
     "precommit": "make lint"

@@ -1,4 +1,5 @@
 VIRTUAL_ENV ?= .
+NODE_BIN = node_modules/.bin
 SOURCE_DIRS = meinberlin apps
 SCSS_FILES := $(shell find 'meinberlin/assets/scss' -name '*.scss')
 
@@ -9,7 +10,7 @@ install:
 	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
 
 meinberlin/static/style.css: meinberlin/assets/scss/style.scss $(SCSS_FILES)
-	node_modules/.bin/node-sass $< $@
+	$(NODE_BIN)/node-sass $< $@
 
 flake8:
 	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings.*
@@ -17,4 +18,7 @@ flake8:
 isort:
 	$(VIRTUAL_ENV)/bin/isort -rc -c $(SOURCE_DIRS)
 
-lint: flake8 isort
+stylelint:
+	$(NODE_BIN)/stylelint --syntax scss 'meinberlin/assets/scss/**/*.scss'
+
+lint: flake8 isort stylelint
