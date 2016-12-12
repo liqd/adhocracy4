@@ -1,4 +1,1 @@
-git+git://github.com/liqd/adhocracy4.git@c0f8ea3
-Django>=1.8,<1.9
-wagtail==1.6.2
-django-allauth==0.27.0
+-r requirements/dev.txt
