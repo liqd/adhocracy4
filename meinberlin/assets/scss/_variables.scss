@@ -1,0 +1,18 @@
+// subset of bootstrap variables
+
+$brand-primary: #253276;
+$brand-secondary: #cd0055;
+$brand-success: #00af5d;
+$brand-info: #fdd216;
+$brand-warning: #f0ad4e;
+$brand-danger: #c72e51;
+
+$body-bg: #fff;
+$bg-secondary: #f6f6f6;
+$text-color: #222;
+$text-color-inverted: $body-bg;
+
+$link-color: $brand-primary;
+$link-hover-color: darken($link-color, 15%);
+
+$spacer: 1em;

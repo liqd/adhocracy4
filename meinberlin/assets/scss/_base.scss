@@ -1,0 +1,79 @@
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    max-width: 100%;
+}
+
+p,
+address,
+blockquote,
+pre,
+table,
+dl,
+ul,
+ol,
+figure,
+fieldset {
+    margin-top: 0;
+    margin-bottom: $spacer;
+}
+
+html {
+    overflow-y: scroll;
+    background-color: $bg-secondary;
+    box-sizing: border-box;
+    color: $text-color;
+    font-size: 90%;
+    font-family: sans-serif;
+    line-height: 1.4;
+}
+
+body {
+    margin: 2em auto;
+    max-width: 36em;
+    padding: 0 $spacer;
+    background-color: $body-bg;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+    margin-top: 1.5 * $spacer;
+}
+
+a {
+    color: $link-color;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+        color: $link-hover-color;
+    }
+}
+
+a:not([href]) {
+    color: inherit;
+    text-decoration: inherit;
+
+    &:hover,
+    &:focus {
+        color: inherit;
+    }
+}
+
+textarea {
+    resize: vertical;
+}
+
+@media print {
+    html {
+        background: transparent;
+        color: #000;  // Black prints faster:
+    }
+}
