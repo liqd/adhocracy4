@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Error' %}{% endblock %}
+
+{% block content %}
+    <h1>{% block error_status %}{% endblock %}</h1>
+    <p>{% block error_description %}{% endblock %}</p>
+{% endblock %}

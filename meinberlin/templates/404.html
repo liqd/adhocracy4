@@ -1,0 +1,6 @@
+{% extends "base_errors.html" %}
+{% load i18n %}
+
+{% block error_status %}404{% endblock %}
+
+{% block error_description %}{% trans 'This page could not be found.' %}{% endblock %}
