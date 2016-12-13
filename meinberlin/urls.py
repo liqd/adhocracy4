@@ -11,8 +11,8 @@ urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
 
     url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^accounts/', include('allauth.urls')),
     url(r'^documents/', include(wagtaildocs_urls)),
 
+    url(r'', include('allauth.urls')),
     url(r'', include(wagtail_urls)),
 ]
