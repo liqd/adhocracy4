@@ -12,7 +12,12 @@ setup(name='adhocracy4',
       packages=find_packages(),
       zip_safe=False,  # allow to access using webpack
       install_requires = [
+          'bleach'
           'Django >=1.8, <1.9',
           'djangorestframework >= 3.5, <4.0',
+          'django-autoslug',
+          'django-ckeditor',
+          'python-magic',
+          'rules',
       ],
      )
