@@ -54,3 +54,6 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
+
+    def get_short_name(self):
+        return self.username
