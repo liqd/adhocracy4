@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load wagtailcore_tags wagtailuserbar %}
 
 {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}
 
@@ -11,5 +12,6 @@
 {% block content %}
     <h1>{{ self.title }}</h2>
 
-    {{ self.body|safe }}
+    {{ self.body|richtext }}
+    {% wagtailuserbar %}
 {% endblock %}
