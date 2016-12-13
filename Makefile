@@ -14,6 +14,9 @@ meinberlin/static/style.css: meinberlin/assets/scss/style.scss $(SCSS_FILES)
 
 build: meinberlin/static/style.css
 
+server:
+	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8000
+
 flake8:
 	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings.*
 
