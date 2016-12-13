@@ -22,7 +22,7 @@ How to perform a release
     git checkout -b release0.2
 
     # update version number
-    sed -i 's/"version":  "0.1.0"/"version": "0.2.0"/' package.json
+    sed -i 's/"version": "0.1.0"/"version": "0.2.0"/' package.json
     sed -i "s/version='0.1.0'/version='0.2.0'/" setup.py
     sed -i "s/Development/Release 0.2.0/" CHANGES
 
