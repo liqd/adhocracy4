@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}{{ self.title }}{% endblock %}
+{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}
+
+{% block header %}
+    {% if self.search_description %}
+    <meta name="description" content="{{self.search_description}}" />
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     <h1>{{ self.title }}</h2>
