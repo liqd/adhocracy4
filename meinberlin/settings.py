@@ -76,6 +76,8 @@ MIDDLEWARE_CLASSES = (
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 )
 
+SITE_ID = 1
+
 ROOT_URLCONF = 'meinberlin.urls'
 
 LOCALE_PATHS = [os.path.join(PROJECT_DIR, 'locale')]
