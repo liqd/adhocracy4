@@ -1,4 +1,4 @@
-VIRTUAL_ENV ?= .
+VIRTUAL_ENV ?= .env
 NODE_BIN = node_modules/.bin
 SOURCE_DIRS = meinberlin apps
 SCSS_FILES := $(shell find 'meinberlin/assets/scss' -name '*.scss')
