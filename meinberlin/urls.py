@@ -1,5 +1,6 @@
 """meinberlin URL Configuration"""
 
+from allauth import urls as allauth_urls
 from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
@@ -13,6 +14,6 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
-    url(r'', include('allauth.urls')),
+    url(r'', include(allauth_urls)),
     url(r'', include(wagtail_urls)),
 ]
