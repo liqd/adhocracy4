@@ -1,0 +1,77 @@
+label {
+    display: block;
+}
+
+%inputBase {
+    margin: 0 0 0.5em;
+    border: 1px solid $input-border-color;
+    border-radius: 0.2em;
+    padding: 0.3em 0.75em;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input,
+textarea,
+select {
+    @extend %inputBase;
+    display: block;
+    background: $bg-secondary;
+    color: $text-color;
+
+    &:invalid {
+        border-color: $brand-danger;
+        color: $brand-danger;
+    }
+
+    &:disabled {
+        color: $input-border-color;
+        cursor: not-allowed;
+    }
+}
+
+@mixin button-color($color, $color-contrast, $color-focus) {
+    border-color: $color;
+    background: $color;
+    color: $color-contrast;
+
+    &:hover,
+    &:focus {
+        border-color: mix($color, $color-focus, 50%);
+        background: mix($color, $color-focus, 50%);
+        color: $color-contrast;
+    }
+
+    &:active {
+        border-color: $color-focus;
+        background: $color-focus;
+        color: $color-contrast;
+    }
+
+    &:disabled {
+        border-color: mix($color, $color-contrast, 50%);
+        background: mix($color, $color-contrast, 50%);
+        color: mix($color, $color-contrast, 10%);
+        cursor: not-allowed;
+    }
+}
+
+.button,
+button,
+[type="button"],
+[type="submit"] {
+    @extend %inputBase;
+    @include button-color($link-color, $body-bg, $link-hover-color);
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    line-height: 1.8;
+    text-align: center;
+}
+
+.errorlist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: $brand-danger;
+}
