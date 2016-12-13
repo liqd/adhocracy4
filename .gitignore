@@ -1,3 +1,4 @@
+*.mo
 db.sqlite3
 node_modules
 meinberlin/static/style.css
