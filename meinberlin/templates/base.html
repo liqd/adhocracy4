@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load i18n static %}
+{% load i18n static menu %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -17,9 +17,10 @@
             <a href="/" class="mainNav-item" rel="home">{% trans 'Home' %}</a>
             <a href="/" class="mainNav-logo" rel="home"><img src="{% static 'images/LOGO.png' %}" alt="mein.berlin" /></a>
             <ul>
-                <li><a class="mainNav-item">Nutzungsbedingungen</a></li>
-                <li><a class="mainNav-item">Impressum</a></li>
-                <li><a class="mainNav-item">Hilfe</a></li>
+                {% get_menu "topnav" as topnav %}
+                {% for item in topnav %}
+                <li><a class="mainNav-item" href="{{ item.url }}">{{ item.title }}</a></li>
+                {% endfor %}
             </ul>
         </nav>
         <div class="mainHeader-user">user indicator</div>
