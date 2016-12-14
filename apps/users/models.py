@@ -57,3 +57,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     def get_short_name(self):
         return self.username
+
+    def get_full_name(self):
+        full_name = '%s <%s>' % (self.username, self.email)
+        return full_name.strip()
