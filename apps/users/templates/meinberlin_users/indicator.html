@@ -1,0 +1,13 @@
+{% load i18n %}
+
+{% if request.user.is_authenticated %}
+    <span>{{ request.user.username }}</span>
+    <form class="form--inline" action="{% url 'account_logout' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ redirect_field_value }}">
+        <button type="submit" class="button--as-link">{% trans "logout" %}</button>
+    </form>
+{% else %}
+    <a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "login" %}</a>
+    <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "register" %}</a>
+{% endif %}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load i18n static menu %}
+{% load i18n static menu userindicator %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -23,7 +23,9 @@
                 {% endfor %}
             </ul>
         </nav>
-        <div class="mainHeader-user">user indicator</div>
+        <div class="mainHeader-user">
+            {% userindicator %}
+        </div>
     </header>
     <main>
         {% block content %}{% endblock %}
