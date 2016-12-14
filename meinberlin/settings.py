@@ -59,8 +59,8 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
 
-    'apps.cms',
-    'apps.users.apps.UsersConfig',
+    'apps.cms.apps.Config',
+    'apps.users.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (

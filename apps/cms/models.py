@@ -49,4 +49,4 @@ class NavigationMenu(ClusterableModel):
 
 
 class NavigationMenuItem(Orderable, MenuItem):
-    parent = ParentalKey('cms.NavigationMenu', related_name='items')
+    parent = ParentalKey('meinberlin_cms.NavigationMenu', related_name='items')
