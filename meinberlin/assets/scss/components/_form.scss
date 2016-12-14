@@ -69,6 +69,27 @@ button,
     text-align: center;
 }
 
+.button--as-link {
+    background: none;
+    color: $link-color;
+    border: 0;
+    text-decoration: underline;
+    display: inline;
+    padding: 0;
+    line-height: inherit;
+    margin: 0;
+
+    &:hover,
+    &:focus {
+        background: none;
+        color: $link-hover-color;
+    }
+}
+
+.form--inline {
+    display: inline;
+}
+
 .errorlist {
     margin: 0;
     padding: 0;
