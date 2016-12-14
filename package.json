@@ -8,6 +8,6 @@
     "stylelint": "^7.5.0"
   },
   "scripts": {
-    "precommit": "make lint"
+    "precommit": "./scripts/polylint.sh -SF"
   }
 }
