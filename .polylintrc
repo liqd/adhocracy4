@@ -1,0 +1,3 @@
+py	flake8 --exclude */migrations/*,settings.* %s
+py	isort -sl -rc -c %s
+scss	node_modules/.bin/stylelint --syntax scss %s
