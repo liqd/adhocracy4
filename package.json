@@ -3,6 +3,7 @@
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {},
   "devDependencies": {
+    "adhocracy4": "liqd/adhocracy4#master",
     "node-sass": "3.10.1",
     "husky": "0.11.4",
     "stylelint": "^7.5.0"
