@@ -71,6 +71,15 @@ class ModuleFactory(factory.django.DjangoModelFactory):
     project = factory.SubFactory(ProjectFactory)
 
 
+class ItemFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        abstract = True
+
+    module = factory.SubFactory(ModuleFactory)
+    creator = factory.SubFactory(USER_FACTORY)
+
+
 class PhaseFactory(factory.django.DjangoModelFactory):
 
     class Meta:

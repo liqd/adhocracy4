@@ -25,13 +25,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    # adhocracy4 base apps
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.phases.apps.PhasesConfig',
 
+    # adhocrayc4 generic apps
+    'adhocracy4.ratings.apps.RatingsConfig',
+
+    # test apps
     'tests.apps.questions',
 
+    # mandatory third party apps
     'easy_thumbnails',
     'rules.apps.AutodiscoverRulesConfig',
 
@@ -123,6 +129,8 @@ STATIC_URL = '/static/'
 # Adhcoracy 4
 
 A4_ORGANISATIONS_MODEL  = 'a4organisations.Organisation'
+A4_RATEABLES = (('a4test_questions', 'Question'),)
+
 
 # Rich text fields
 

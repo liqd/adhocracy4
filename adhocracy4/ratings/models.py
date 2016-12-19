@@ -16,7 +16,7 @@ class Rating(UserGeneratedContentModel):
     content_type = models.ForeignKey(
         ContentType,
         on_delete=models.CASCADE,
-        limit_choices_to=models_to_limit(settings.RATEABLES)
+        limit_choices_to=models_to_limit(settings.A4_RATEABLES)
     )
     object_pk = models.PositiveIntegerField()
     content_object = GenericForeignKey(
