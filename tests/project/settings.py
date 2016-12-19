@@ -30,6 +30,8 @@ INSTALLED_APPS = (
     'adhocracy4.modules',
     'adhocracy4.phases',
 
+    'tests.apps.questions',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
