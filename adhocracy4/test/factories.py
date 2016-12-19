@@ -13,6 +13,16 @@ class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User
 
+    username = factory.Faker('name')
+    email = factory.Faker('email')
+    password = ( # password = "password"
+       "pbkdf2_sha256$20000$"
+        "qMYSzezfIiw3$w3A0xY/kOgE8yA4m3RDFItXTqWCV3N7v2CLy2fD8gyw="
+    )
+    is_staff = False
+    is_superuser = False
+
+
 USER_FACTORY = getattr(settings, 'A4_USER_FACTORY', UserFactory)
 
 
@@ -68,7 +78,7 @@ class PhaseFactory(factory.django.DjangoModelFactory):
 
     name = factory.Sequence(lambda n: '{}. phase'.format(n))
     description = factory.Faker('text')
-    type = 'blog:020:phase'
+    type = 'a4test_questions:020:ask'
     module = factory.SubFactory(ModuleFactory)
     start_date = parse('2013-01-02 00:00:00 UTC')
     end_date = parse('2013-01-03 00:00:00 UTC')
