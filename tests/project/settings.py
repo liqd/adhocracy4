@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(PROJECT_DIR))
 
 SECRET_KEY = 'not_so_secret_secret_key'
 
@@ -21,16 +22,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-
 # Application definition
 
 INSTALLED_APPS = (
-    'adhocracy4.projects',
-    'adhocracy4.modules',
-    'adhocracy4.phases',
+    'adhocracy4.organisations.apps.OrganisationsConfig',
+    'adhocracy4.projects.apps.ProjectsConfig',
+    'adhocracy4.modules.apps.ModulesConfig',
+    'adhocracy4.phases.apps.PhasesConfig',
 
     'tests.apps.questions',
+
+    'easy_thumbnails',
+    'rules.apps.AutodiscoverRulesConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,7 +59,9 @@ ROOT_URLCONF = 'tests.project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(PROJECT_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +75,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'tests.project.wsgi.application'
+
+# Auth
+# https://docs.djangoproject.com/en/1.8/topics/auth/customizing/
+
+AUTHENTICATION_BACKENDS = (
+    'rules.permissions.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 
 
 # Database
@@ -107,4 +122,35 @@ STATIC_URL = '/static/'
 
 # Adhcoracy 4
 
-A4_ORGANISATIONS_MODEL  = 'adhocracy4.organisations.models.Organisation'
+A4_ORGANISATIONS_MODEL  = 'a4organisations.Organisation'
+
+# Rich text fields
+
+BLEACH_LIST = {
+    'default' : {
+        'tags': ['p','strong','em','u','ol','li','ul','a'],
+        'attributes': {
+            'a': ['href', 'rel'],
+        },
+    },
+    'image-editor': {
+        'tags': ['p','strong','em','u','ol','li','ul','a','img'],
+        'attributes': {
+            'a': ['href', 'rel'],
+            'img': ['src', 'alt', 'style']
+        },
+        'styles': [
+            'float',
+            'margin',
+            'padding',
+            'width',
+            'height',
+            'margin-bottom',
+            'margin-top',
+            'margin-left',
+            'margin-right',
+        ],
+    }
+}
+
+LOGIN_URL = "/accounts/login"
