@@ -6,7 +6,7 @@ from django.core.urlresolvers import resolve
 from easy_thumbnails.files import get_thumbnailer
 
 
-def createThumbnail(imagefield):
+def create_thumbnail(imagefield):
     thumbnailer = get_thumbnailer(imagefield)
     thumbnail = thumbnailer.generate_thumbnail(
         {'size': (800, 400), 'crop': 'smart'})
