@@ -24,10 +24,17 @@ def question_list_view():
         model = question_models.Question
     return DummyView.as_view()
 
+
 @pytest.mark.django_db
 def test_phase_dispatch_mixin_phase(rf, project_detail_view, phase):
     project = phase.module.project
+
     with freeze_time(phase.start_date):
+        request = rf.get('/url')
+        response = project_detail_view(request, slug=project.slug)
+        assert 'questions/question_list.html' in response.template_name
+
+    with freeze_time(phase.end_date):
         request = rf.get('/url')
         response = project_detail_view(request, slug=project.slug)
         assert 'questions/question_list.html' in response.template_name

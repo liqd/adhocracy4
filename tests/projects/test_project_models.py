@@ -49,6 +49,32 @@ def test_one_day_left(phase):
     with freeze_time(phase.end_date - timedelta(days=1)):
         assert project.days_left == 1
 
+
+@pytest.mark.django_db
+def test_has_finished(phase):
+    project = phase.module.project
+    with freeze_time(phase.end_date + timedelta(days=1)):
+        assert project.days_left is None
+        assert project.has_finished is True
+
+
+@pytest.mark.django_db
+def test_str(project):
+    assert str(project) == project.name
+
+
+@pytest.mark.django_db
+def test_feature_projects(project_factory):
+    projects = [ project_factory(is_draft=False) for i in range(10) ]
+    assert list(models.Project.objects.featured()) == list(reversed(projects))[:8]
+
+
+@pytest.mark.django_db
+def test_other_projects(organisation, project_factory):
+    project = project_factory(organisation=organisation)
+    related_project = project_factory(organisation=organisation)
+    assert list(project.other_projects) == [related_project]
+
 @override_settings(ALLOWED_UPLOAD_IMAGES = ('image/jpeg'))
 @pytest.mark.django_db
 def test_image_validation_image_too_small(project_factory, image_factory):
