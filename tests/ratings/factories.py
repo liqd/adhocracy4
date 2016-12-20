@@ -8,6 +8,6 @@ class RatingFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = 'a4ratings.Rating'
 
-    value = factory.Faker('random_digit')
+    value = 1
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     content_object = factory.SubFactory(factories.QuestionFactory)
