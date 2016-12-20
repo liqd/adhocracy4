@@ -3,6 +3,7 @@ from urllib.parse import urlparse
 
 from django.conf import settings
 from django.core.urlresolvers import resolve
+from django.template import Context, Template
 from easy_thumbnails.files import get_thumbnailer
 
 
@@ -27,3 +28,8 @@ def redirect_target(response):
         raise Exception("Response wasn't a redirect")
     location = urlparse(response['location'])
     return resolve(location.path).url_name
+
+
+def render_template(string, context=None):
+    context = Context(context or {})
+    return Template(string).render(context)
