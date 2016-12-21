@@ -29,6 +29,7 @@ USER_FACTORY = getattr(settings, 'A4_USER_FACTORY', UserFactory)
 class OrganisationFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Organisation
+    name = factory.Faker('text', max_nb_chars=120)
 
 ORGANISATION_FACTORY = getattr(settings,
                                'A4_ORGANISATION_FACTORY',
