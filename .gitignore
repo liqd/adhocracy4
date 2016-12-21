@@ -4,11 +4,20 @@
 # setuptools
 /dist
 /*.egg-info
+/share
 
 # virtualenv
 /bin
 /lib
+/lib64
 /include
+/pip-selfcheck.json
 
 # dev
 .idea/
+
+# tests
+/.coverage
+/htmlcov
+/db.sqlite3
+
