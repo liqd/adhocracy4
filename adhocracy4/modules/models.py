@@ -17,6 +17,14 @@ class Module(models.Model):
     def __str__(self):
         return "{} ({})".format(self.project, self.weight)
 
+    @property
+    def settings_instance(self):
+        settingslist = [field for field in self._meta.get_all_field_names()
+                        if field.endswith('_settings')]
+        for setting in settingslist:
+            if hasattr(self, setting):
+                return getattr(self, setting)
+
 
 class Item(base.UserGeneratedContentModel):
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
@@ -28,7 +36,10 @@ class Item(base.UserGeneratedContentModel):
 
 class AbstractSettings(models.Model):
     module = models.OneToOneField(Module, on_delete=models.CASCADE,
-                                  related_name='settings')
+                                  related_name='%(class)s_settings')
 
     class Meta:
         abstract = True
+
+    def widgets(self):
+        return {}
