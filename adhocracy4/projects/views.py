@@ -16,28 +16,6 @@ class ProjectDetailView(rules_views.PermissionRequiredMixin,
     def raise_exception(self):
         return self.request.user.is_authenticated()
 
-    def handle_no_permission(self):
-        """
-        Check if user clould join
-        """
-        user = self.request.user
-        is_member = user.is_authenticated() and self.project.has_member(user)
-
-        if not is_member:
-            return self.handle_no_membership()
-        else:
-            return super().handle_no_permission()
-
-    def handle_no_membership(self):
-        """
-        Handle that an authenticated user is not member of project.
-
-        Override this function to configure the behaviour if a user has no
-        permissions to view the project and is not member of the project.
-        """
-        return super().handle_no_permission()
-
-
     @property
     def project(self):
         """
