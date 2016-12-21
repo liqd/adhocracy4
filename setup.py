@@ -9,7 +9,7 @@ setup(name='adhocracy4',
       author='Liquid Democracy e.V.',
       author_email='info@liqd.de',
       url='https://liqd.net/en/software/',
-      packages=find_packages(exclude=['tests.*']),
+      packages=find_packages(exclude=['tests*']),
       install_requires = [
           'bleach',
           'Django >=1.8, <1.9',
