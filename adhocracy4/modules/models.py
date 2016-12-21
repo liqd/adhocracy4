@@ -17,9 +17,6 @@ class Module(models.Model):
     def __str__(self):
         return "{} ({})".format(self.project, self.weight)
 
-    def phases_passed(self):
-        return self.phase_set.filter(end_date__lte=timezone.now())
-
 
 class Item(base.UserGeneratedContentModel):
     module = models.ForeignKey(Module, on_delete=models.CASCADE)

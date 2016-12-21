@@ -17,11 +17,17 @@ class PhasesQuerySet(models.QuerySet):
         now = timezone.now()
         return self.filter(start_date__lte=now, end_date__gt=now)
 
+    def finished_phases(self):
+        return self.filter(end_date__lte=timezone.now())
+
     def finish_next(self):
+        """
+        All phases that are active and finish within 24 hours.
+        """
         now = timezone.now()
         tomorrow = (now + timedelta(days=1))
-        active = self.filter(start_date__lte=now, end_date__gt=now)
-        return active.filter(end_date__lte=tomorrow)
+        return self.active_phases().filter(end_date__lte=tomorrow)
+
 
 
 class Phase(models.Model):

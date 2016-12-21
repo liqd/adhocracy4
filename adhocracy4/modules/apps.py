@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ModuleConfig(AppConfig):
+class ModulesConfig(AppConfig):
     name = 'adhocracy4.modules'
     label = 'a4modules'
