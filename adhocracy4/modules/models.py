@@ -1,6 +1,5 @@
 from autoslug import AutoSlugField
 from django.db import models
-from django.utils import timezone
 
 from adhocracy4.models import base
 from adhocracy4.projects import models as project_models

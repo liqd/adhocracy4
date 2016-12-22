@@ -65,8 +65,9 @@ def test_str(project):
 
 @pytest.mark.django_db
 def test_feature_projects(project_factory):
-    projects = [ project_factory(is_draft=False) for i in range(10) ]
-    assert list(models.Project.objects.featured()) == list(reversed(projects))[:8]
+    projects = [project_factory(is_draft=False) for i in range(10)]
+    featured = list(models.Project.objects.featured())
+    assert featured == list(reversed(projects))[:8]
 
 
 @pytest.mark.django_db
@@ -75,24 +76,27 @@ def test_other_projects(organisation, project_factory):
     related_project = project_factory(organisation=organisation)
     assert list(project.other_projects) == [related_project]
 
-@override_settings(ALLOWED_UPLOAD_IMAGES = ('image/jpeg'))
+
+@override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
 @pytest.mark.django_db
 def test_image_validation_image_too_small(project_factory, image_factory):
-    project = project_factory(image=image_factory((200,200)))
+    project = project_factory(image=image_factory((200, 200)))
     with pytest.raises(Exception) as e:
         project.full_clean()
     assert 'Image must be at least 600 pixels high' in str(e)
 
-@override_settings(ALLOWED_UPLOAD_IMAGES = ('image/jpeg'))
+
+@override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
 @pytest.mark.django_db
 def test_image_big_enough(project_factory, image_factory):
     project = project_factory(image=image_factory((1400, 1400)))
     assert project.full_clean() is None
 
-@override_settings(ALLOWED_UPLOAD_IMAGES = ('image/jpeg'))
+
+@override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
 @pytest.mark.django_db
 def test_delete_project(project_factory, image_factory):
-    project = project_factory(image=image_factory((1400,1400), 'PNG'))
+    project = project_factory(image=image_factory((1400, 1400), 'PNG'))
     image_path = os.path.join(settings.MEDIA_ROOT, project.image.path)
     thumbnail_path = helpers.create_thumbnail(project.image)
     assert os.path.isfile(thumbnail_path)

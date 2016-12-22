@@ -7,13 +7,16 @@ from django.conf import settings
 image_max_mb = 5
 
 
-def validate_image(image, min_width, min_height, aspect_ratio=None, aspect_marign=0.1):
+def validate_image(image, min_width, min_height,
+                   aspect_ratio=None, aspect_marign=0.1):
     errors = []
 
     imagetype = magic.from_buffer(image.read(), mime=True)
     if imagetype.lower() not in settings.ALLOWED_UPLOAD_IMAGES:
-        _msg = _("Unsupported file format. Supported formats are %s."
-                                          % ", ".join(settings.ALLOWED_UPLOAD_IMAGES))
+        _msg = _(
+            "Unsupported file format. Supported formats are %s."
+            % ", ".join(settings.ALLOWED_UPLOAD_IMAGES)
+        )
         errors.append(ValidationError(_msg))
     image_max_size = image_max_mb * 10**6
     if image.size > image_max_size:
@@ -32,9 +35,12 @@ def validate_image(image, min_width, min_height, aspect_ratio=None, aspect_marig
         actual_ratio = image.height/image.width
 
         if abs(target_ratio - actual_ratio) > aspect_marign:
-            msg = _('Image aspect ratio should be {aspect_width}:{aspect_height}')
-            errors.append(ValidationError(
-                msg.format(aspect_width=aspect_width, aspect_height=aspect_heigth)))
+            msg = _(
+                'Image aspect ratio should be {aspect_width}:{aspect_height}'
+            )
+            errors.append(ValidationError(msg.format(
+                    aspect_width=aspect_width, aspect_height=aspect_heigth
+            )))
 
     if errors:
         raise ValidationError(errors)

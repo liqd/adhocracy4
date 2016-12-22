@@ -5,7 +5,7 @@ import pytest
 from adhocracy4.images.validators import validate_image
 
 
-@override_settings(ALLOWED_UPLOAD_IMAGES = ('image/jpeg'))
+@override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
 def test_min_size_validation(image_factory):
     with pytest.raises(ValidationError):
         image = image_factory((100, 100), 'JPEG')
@@ -19,7 +19,7 @@ def test_min_size_validation(image_factory):
     validate_image(image, 100, 100)
 
 
-@override_settings(ALLOWED_UPLOAD_IMAGES = ('image/jpeg'))
+@override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
 def test_aspect_validation(image_factory):
     square_image = image_factory((100, 109), 'JPEG')
     image = image_factory((100, 120), 'JPEG')

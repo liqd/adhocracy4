@@ -62,7 +62,8 @@ def test_project_mixin(rf, question_list_view, phase):
 
 
 @pytest.mark.django_db
-def test_project_inject_phase_after_finish(rf, phase_factory, question_list_view):
+def test_project_inject_phase_after_finish(rf, phase_factory,
+                                           question_list_view):
     phase = phase_factory(
         start_date=parse('2013-01-01 17:00:00 UTC'),
         end_date=parse('2013-01-01 18:00:00 UTC')

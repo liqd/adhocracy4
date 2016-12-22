@@ -11,4 +11,5 @@ class ModuleAdmin(admin.ModelAdmin):
     ]
     list_filter = ('project', 'project__organisation')
 
+
 admin.site.register(models.Module, ModuleAdmin)

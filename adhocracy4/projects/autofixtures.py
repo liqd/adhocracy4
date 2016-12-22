@@ -17,4 +17,5 @@ class ProjectAutoFixture(AutoFixture):
         'is_draft': generators.ChoicesGenerator(values=[True, False, False]),
     }
 
+
 register(Project, ProjectAutoFixture)

@@ -31,4 +31,5 @@ class PhaseContents():
         return [(identifier, str(phase))
                 for identifier, phase in self._registry.items()]
 
+
 content = PhaseContents()

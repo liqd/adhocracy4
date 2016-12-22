@@ -100,7 +100,8 @@ def test_anonymous_user_can_not_delete_rating(rating, apiclient):
 
 
 @pytest.mark.django_db
-def test_authenticated_user_can_not_delete_rating(rating, another_user, apiclient):
+def test_authenticated_user_can_not_delete_rating(rating, another_user,
+                                                  apiclient):
     url = reverse('ratings-detail', kwargs={'pk': rating.pk})
     apiclient.force_authenticate(user=another_user)
     response = apiclient.delete(url)
@@ -119,7 +120,8 @@ def test_creater_of_rating_can_set_zero(rating_factory, question,  apiclient):
 
 
 @pytest.mark.django_db
-def test_meta_info_of_rating(rating_factory, question,  apiclient, user, another_user):
+def test_meta_info_of_rating(rating_factory, question,  apiclient,
+                             user, another_user):
     ct = ContentType.objects.get_for_model(question)
     pk = question.pk
     url = reverse('ratings-list')

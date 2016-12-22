@@ -7,4 +7,4 @@ def is_initiator(user, subject):
         organisation = subject
     else:
         organisation = subject.organisation
-    return organisation.has_initiator(user) 
+    return organisation.has_initiator(user)

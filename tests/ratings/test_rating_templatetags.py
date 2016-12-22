@@ -7,6 +7,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from tests import helpers
 
+
 def react_ratings_render_for_props(rf, user, question):
     request = rf.get('/')
     request.user = user
@@ -19,7 +20,8 @@ def react_ratings_render_for_props(rf, user, question):
 
     content_type = ContentType.objects.get_for_model(question)
     expected = (
-        r'^<div id=\"ratings_for_{ct}_{pk}\"><\/div><script>window\.opin\.renderRatings\('
+        r'^<div id=\"ratings_for_{ct}_{pk}\"><\/div>'
+        r'<script>window\.opin\.renderRatings\('
         r'\"ratings_for_{ct}_{pk}\", (?P<props>{{.+}})\)<\/script>$'
     ).format(ct=content_type.id, pk=question.id)
 
@@ -63,4 +65,3 @@ def test_react_rating_user(rf, user, question, rating):
         'userRating': rating.value,
         'userRatingId': rating.id,
     }
-

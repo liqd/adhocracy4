@@ -29,7 +29,6 @@ class PhasesQuerySet(models.QuerySet):
         return self.active_phases().filter(end_date__lte=tomorrow)
 
 
-
 class Phase(models.Model):
     name = models.CharField(max_length=80)
     description = models.TextField(max_length=300)

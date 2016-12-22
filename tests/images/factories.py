@@ -3,6 +3,7 @@ from PIL import Image
 
 from django.core.files import base, images
 
+
 class ImageFactory():
     """
     Create a django file object containg an image.

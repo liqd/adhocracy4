@@ -57,7 +57,7 @@ def test_str(rating):
 
 @pytest.mark.django_db
 def test_get_meta_info(rating, user_factory):
-    meta_info  = {
+    meta_info = {
         'positive_ratings_on_same_object': 1,
         'negative_ratings_on_same_object': 0,
         'user_rating_on_same_object_value': None,
@@ -66,7 +66,7 @@ def test_get_meta_info(rating, user_factory):
 
     assert rating.get_meta_info(user_factory()) == meta_info
 
-    own_meta_info  = {
+    own_meta_info = {
         'positive_ratings_on_same_object': 1,
         'negative_ratings_on_same_object': 0,
         'user_rating_on_same_object_value': 1,

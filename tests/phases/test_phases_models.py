@@ -8,7 +8,6 @@ from tests.apps.questions import models as q_models
 from tests.apps.questions import views as q_views
 
 
-
 @pytest.mark.django_db
 def test_manager_active_phases(phase_factory):
 
@@ -77,7 +76,7 @@ def test_manager_finish_next(phase_factory):
         end_date=parse('2013-01-02 17:00:00 UTC')
     )
 
-    phase_after_tomorrow = phase_factory(
+    phase_factory(
         start_date=parse('2013-01-01 17:00:00 UTC'),
         end_date=parse('2013-01-02 17:00:03 UTC')
     )
@@ -134,6 +133,7 @@ def test_is_over_property(phase):
         assert phase.is_over is False
     with freeze_time(phase.end_date):
         assert phase.is_over is True
+
 
 @pytest.mark.django_db
 def test_str(phase):

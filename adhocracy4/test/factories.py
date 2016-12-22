@@ -15,8 +15,8 @@ class UserFactory(factory.django.DjangoModelFactory):
 
     username = factory.Faker('name')
     email = factory.Faker('email')
-    password = ( # password = "password"
-       "pbkdf2_sha256$20000$"
+    password = (  # password = "password"
+        "pbkdf2_sha256$20000$"
         "qMYSzezfIiw3$w3A0xY/kOgE8yA4m3RDFItXTqWCV3N7v2CLy2fD8gyw="
     )
     is_staff = False
@@ -30,6 +30,7 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Organisation
     name = factory.Faker('text', max_nb_chars=120)
+
 
 ORGANISATION_FACTORY = getattr(settings,
                                'A4_ORGANISATION_FACTORY',

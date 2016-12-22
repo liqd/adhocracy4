@@ -7,7 +7,6 @@ from tests.apps.questions import factories as q_factories
 from adhocracy4.test import factories
 
 
-
 @pytest.fixture
 def apiclient():
     return APIClient()
@@ -15,7 +14,7 @@ def apiclient():
 
 @pytest.fixture
 def image_factory():
-    return  img_factories.ImageFactory()
+    return img_factories.ImageFactory()
 
 
 register(factories.UserFactory)

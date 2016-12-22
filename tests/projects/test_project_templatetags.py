@@ -24,7 +24,7 @@ def test_get_class_public(phase):
 
 
 @pytest.mark.django_db
-def test_get_class_public(phase):
+def test_get_class_running_out(phase):
     project = phase.module.project
     template = '{% load project_tags %}{% get_class project as x %}{{x}}'
 
@@ -43,8 +43,6 @@ def test_get_class_finished(phase):
 
 @pytest.mark.parametrize('project__is_public', [False])
 @pytest.mark.django_db
-def test_get_class_finished(project):
+def test_get_class_privat(project):
     template = '{% load project_tags %}{% get_class project as x %}{{x}}'
     assert 'private' == render_template(template, {'project': project})
-
-
