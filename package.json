@@ -12,8 +12,14 @@
         "index.js",
         "adhocracy4"
     ],
+    "devDependencies": {
+        "husky": "0.11.4"
+    }
     "repository": {
         "type": "git",
         "url": "git@github.com:liqd/adhocracy4.git"
+    },
+    "scripts": {
+        "precommit": "make lint"
     }
 }
