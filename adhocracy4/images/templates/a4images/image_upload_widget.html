@@ -1,0 +1,34 @@
+{% load i18n %}
+<div class="row">
+    <div class="upload-wrapper form-control-upload col-sm-9 col-md-8">
+        {{ text_input }}
+        <span class="input-group-btn">
+            {% if has_image_set and not is_required %}
+            <label for="{{ checkbox_id }}" class="btn btn-danger"
+                   title="{% trans 'Remove the picture' %}">
+                <i class="fa fa-trash"></i>
+            </label>
+            {% else %}
+            <label for="{{ name }}" class="btn btn-default" title="{% trans  'Upload a picture' %}">
+                <i class="fa fa-cloud-upload"></i>
+            </label>
+            {% endif  %}
+        </span>
+        {{ file_input }}
+        <div class="alert alert-info" role="alert">
+            {% blocktrans %}
+            Your image will be uploaded/removed once you save your changes
+            at the end of this page.
+            {% endblocktrans %}
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-4">
+        <div class="form-{{ name }}">
+            {{ checkbox_input }}
+            <img class="img-responsive" id="{{ file_id }}"
+                 src="{% if has_image_set %}{{ file_url }}{% endif %}"
+                 data-upload-preview="{{ name }}"
+            >
+        </div>
+    </div>
+</div>

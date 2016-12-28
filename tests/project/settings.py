@@ -34,6 +34,9 @@ INSTALLED_APPS = (
     # adhocrayc4 generic apps
     'adhocracy4.ratings.apps.RatingsConfig',
 
+    # adhocracy4 helper apps
+    'adhocracy4.images.apps.ImagesConfig',
+
     # test apps
     'tests.apps.questions',
 
@@ -126,6 +129,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
 # Adhcoracy 4
 
 A4_ORGANISATIONS_MODEL  = 'a4organisations.Organisation'
@@ -162,3 +169,8 @@ BLEACH_LIST = {
 }
 
 LOGIN_URL = "/accounts/login"
+
+IMAGE_ALIASES = {
+    '*': {'max_size': 5*10**6, 'fileformats': ('image/png', 'image/jpeg', 'image/gif')},
+    'heroimage': {'min_resolution': (1300, 600)},
+}
