@@ -10,6 +10,7 @@ setup(name='adhocracy4',
       author_email='info@liqd.de',
       url='https://liqd.net/en/software/',
       packages=find_packages(exclude=['tests*']),
+      include_package_data=True,
       install_requires = [
           'bleach',
           'Django >=1.8, <1.9',
