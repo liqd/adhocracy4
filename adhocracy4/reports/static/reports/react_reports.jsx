@@ -1,11 +1,11 @@
-var api = require('adhocracy4').api
-var Modal = require('../../../contrib/static/js/Modal')
+let api = require('/adhocracy4/static/api')
+let Modal = require('/adhocracy4/static/Modal')
 
-var $ = require('jquery')
-var React = require('react')
-var django = require('django')
+let $ = require('jquery')
+let React = require('react')
+let django = require('django')
 
-var ReportModal = React.createClass({
+const ReportModal = React.createClass({
   getInitialState: function () {
     return {
       report: '',

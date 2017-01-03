@@ -1,0 +1,19 @@
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+charset = utf-8
+indent_style = space
+
+[*.{py,html,css,scss}]
+indent_size = 4
+
+[*.{js,jsx}]
+indent_size = 2
+
+# isort configruation
+[*.py]
+skip=migrations
+known_first_party=adhocracy4, tests, euth, euth_wagtail
