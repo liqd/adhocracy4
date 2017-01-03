@@ -32,12 +32,12 @@ def test_phase_dispatch_mixin_phase(rf, project_detail_view, phase):
     with freeze_time(phase.start_date):
         request = rf.get('/url')
         response = project_detail_view(request, slug=project.slug)
-        assert 'questions/question_list.html' in response.template_name
+        assert 'a4test_questions/question_list.html' in response.template_name
 
     with freeze_time(phase.end_date):
         request = rf.get('/url')
         response = project_detail_view(request, slug=project.slug)
-        assert 'questions/question_list.html' in response.template_name
+        assert 'a4test_questions/question_list.html' in response.template_name
 
 
 @pytest.mark.django_db

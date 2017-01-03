@@ -35,7 +35,7 @@ INSTALLED_APPS = (
     'adhocracy4.ratings.apps.RatingsConfig',
 
     # test apps
-    'tests.apps.questions',
+    'tests.apps.questions.apps.QuestionsConfig',
 
     # mandatory third party apps
     'easy_thumbnails',
