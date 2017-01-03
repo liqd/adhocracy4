@@ -1,0 +1,5 @@
+include LICENSE
+include README
+recursive-include adhocracy4/images/static *
+recursive-include adhocracy4/images/templates *
+recursive-include adhocracy4/projects/templates *

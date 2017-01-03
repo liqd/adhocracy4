@@ -6,7 +6,6 @@ import ckeditor_uploader.fields
 import django.utils.timezone
 from django.conf import settings
 import autoslug.fields
-import adhocracy4.images.validators
 
 
 class Migration(migrations.Migration):
@@ -30,7 +29,7 @@ class Migration(migrations.Migration):
                 ('result', ckeditor_uploader.fields.RichTextUploadingField(help_text='Here you should explain what the expected outcome of the project will be and how you are planning to use the results. If the project is finished you should add a summary of the results.', blank=True)),
                 ('is_public', models.BooleanField(help_text='Please indicate who should be able to participate in your project. Teasers for your project including title and short description will always be visible to everyone', verbose_name='Access to the project', default=True)),
                 ('is_draft', models.BooleanField(default=True)),
-                ('image', models.ImageField(validators=[adhocracy4.images.validators.validate_hero_image], verbose_name='Header image', blank=True, upload_to='projects/backgrounds', help_text='The image will be shown as a decorative background image. It must be min. 1300px wide and 600px tall. Allowed file formats are .jpg and .png. The file size should be max. 2 MB.')),
+                ('image', models.ImageField(verbose_name='Header image', blank=True, upload_to='projects/backgrounds', help_text='The image will be shown as a decorative background image. It must be min. 1300px wide and 600px tall. Allowed file formats are .jpg and .png. The file size should be max. 2 MB.')),
                 ('moderators', models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='project_moderator')),
                 ('organisation', models.ForeignKey(to=settings.A4_ORGANISATIONS_MODEL)),
                 ('participants', models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='project_participant', blank=True)),

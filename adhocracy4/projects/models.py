@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.models import base
 from adhocracy4 import transforms as html_transforms
-from adhocracy4.images import validators
+from adhocracy4.images import fields
 
 
 class ProjectManager(models.Manager):
@@ -64,15 +64,14 @@ class Project(base.TimeStampedModel):
                     'and short description will always be visible to everyone')
     )
     is_draft = models.BooleanField(default=True)
-    image = models.ImageField(
+    image = fields.ConfiguredImageField(
+        'heroimage',
         verbose_name=_('Header image'),
-        help_text=_('The image will be shown as a decorative '
-                    'background image. It must be min. 1300px wide and '
-                    '600px tall. Allowed file formats are .jpg and .png. '
-                    'The file size should be max. 2 MB.'),
+        help_prefix=_(
+            'The image will be shown as a decorative background image.'
+        ),
         upload_to='projects/backgrounds',
-        blank=True,
-        validators=[validators.validate_hero_image])
+        blank=True)
     participants = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name='project_participant',
