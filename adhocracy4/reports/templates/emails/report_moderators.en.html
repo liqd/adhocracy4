@@ -1,7 +1,9 @@
 {% extends 'email_base.html' %}
+
 {% block subject %}
 A {{ name }} on {{site.name}} has been reported.
 {% endblock %}
+
 {% block content %}
 <h2>A {{ name }} on {{site.name}} has been reported.</h2>
 
@@ -11,10 +13,11 @@ A {{ name }} on {{site.name}} has been reported.
 <p>
     "{{ description }}"
 </p>
+
 {% if admin_url %}
 <p>
   To view and edit this {{ name }} click the following link:
-    <a href="{{admin_url}}" style="margin-top: 20px;" class="button">edit {{ name }}</a>
+    <a href="{{admin_url}}" style="margin-top: 20px;">edit {{ name }}</a>
 </p>
 {% endif %}
 {% endblock %}

@@ -1,7 +1,9 @@
 {% extends 'email_base.html' %}
+
 {% block subject %}
 A {{ name }} you created on {{site.name}} has been reported.
 {% endblock %}
+
 {% block content %}
 <h2>A {{ name }} you created on {{site.name}} has been reported.</h2>
 

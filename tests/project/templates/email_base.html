@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{% block subject %}{% endblock %}</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            min-width: 100% !important;
+        }
+    </style>
+</head>
+<body>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td style="text-align: center; padding-top: 20px">
+            <img width="50%" src="cid:logo" style="width: 15%;" alt="Logo of {{ site.name }}">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {% block content %}{% endblock %}
+        </td>
+    </tr>
+</table>
+</body>
+</html>
