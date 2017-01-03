@@ -4,7 +4,7 @@ from . import apps, models, views
 
 
 class AskPhase(phases.PhaseContent):
-    app = apps.QuestionConfig.label
+    app = apps.QuestionsConfig.label
     phase = 'ask'
     view = views.QuestionList
     weight = 20

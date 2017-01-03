@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'adhocracy4.images.apps.ImagesConfig',
 
     # test apps
-    'tests.apps.questions',
+    'tests.apps.questions.apps.QuestionsConfig',
 
     # mandatory third party apps
     'easy_thumbnails',
