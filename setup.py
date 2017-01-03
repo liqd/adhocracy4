@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='adhocracy4',
       version='0.0.0.dev1',
@@ -9,16 +9,14 @@ setup(name='adhocracy4',
       author='Liquid Democracy e.V.',
       author_email='info@liqd.de',
       url='https://liqd.net/en/software/',
-      packages=[
-          'adhocracy4',
-          'adhocracy4.api',
-          'adhocracy4.models',
-          'adhocracy4.ratings',
-          'adhocracy4.ratings.templatetags',
-      ],
-      zip_safe=False,  # allow to access using webpack
+      packages=find_packages(exclude=['tests*']),
       install_requires = [
+          'bleach',
           'Django >=1.8, <1.9',
           'djangorestframework >= 3.5, <4.0',
+          'django-autoslug',
+          'django-ckeditor',
+          'python-magic',
+          'rules',
       ],
      )

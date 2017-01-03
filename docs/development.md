@@ -20,13 +20,13 @@ your `~/.npmrc` contains as `prefix` some location you can write.
 
 Start development mode:
 
-    cd adhocracy4
-    python setup.py develop
-    npm link
+  cd adhocracy4
+  npm link
 
-    cd ../$PROJECT
-    npm link adhocracy4
-
+  cd ../$PROJECT
+  pip install -e ../adhocracy4/
+  npm link adhocracy4
+   
 Leave development mode:
 
     cd $PROJECT

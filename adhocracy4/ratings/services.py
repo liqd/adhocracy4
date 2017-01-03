@@ -6,4 +6,3 @@ def delete_ratings(contenttype, pk):
         content_type=contenttype, object_pk=pk)
     for rating in ratings:
         rating.delete()
-
