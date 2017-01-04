@@ -136,7 +136,20 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+IMAGE_ALIASES = {
+    '*': {
+        'max_size': 5*10**6,
+        'fileformats': ('image/png', 'image/jpeg', 'image/gif')
+    },
+    'heroimage': {'min_resolution': (1300, 600)},
+    'logo': {'min_resolution': (200, 200), 'aspect_ratio': (1, 1)},
+    'avatar': {'min_resolution': (200, 200)},
+    'idea_image': {'min_resolution': (800, 200)},
+}
+
 
 # Wagtail settings
 

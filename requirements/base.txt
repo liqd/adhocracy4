@@ -6,3 +6,4 @@ django-ckeditor==5.1.1
 django-filter==0.15.3
 easy-thumbnails==2.3
 rules==1.1.1
+html5lib==0.9999999
