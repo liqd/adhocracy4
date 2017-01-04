@@ -128,9 +128,9 @@ STATIC_URL = '/static/'
 
 # Adhcoracy 4
 
-A4_ORGANISATIONS_MODEL  = 'a4organisations.Organisation'
+A4_ORGANISATIONS_MODEL = 'a4organisations.Organisation'
 A4_RATEABLES = (('a4test_questions', 'Question'),)
-
+A4_REPORTABLES = (('a4test_questions', 'Question'),)
 
 # Rich text fields
 

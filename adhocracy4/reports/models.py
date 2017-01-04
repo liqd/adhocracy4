@@ -12,7 +12,7 @@ class Report(base.UserGeneratedContentModel):
     content_type = models.ForeignKey(
         ContentType,
         on_delete=models.CASCADE,
-        limit_choices_to=models_to_limit(settings.REPORTABLES)
+        limit_choices_to=models_to_limit(settings.A4_REPORTABLES)
     )
     object_pk = models.PositiveIntegerField()
     content_object = GenericForeignKey(
