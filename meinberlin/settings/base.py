@@ -244,7 +244,7 @@ BLEACH_LIST = {
 # meinberlin
 
 A4_RATEABLES = (
-    ('meinberlin_ideas', 'ideas'),
+    ('meinberlin_ideas', 'idea'),
 )
 
 # adhocracy4
