@@ -30,6 +30,7 @@ INSTALLED_APPS = (
     'adhocracy4.projects.apps.ProjectsConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.phases.apps.PhasesConfig',
+    'adhocracy4.reports.apps.ReportConfig',
 
     # adhocrayc4 generic apps
     'adhocracy4.ratings.apps.RatingsConfig',
