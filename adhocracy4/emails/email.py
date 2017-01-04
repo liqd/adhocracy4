@@ -48,15 +48,15 @@ class Email:
         return []
 
     @classmethod
-    def send(cls, obj):
-        return cls().dispatch(obj)
+    def send(cls, obj, **kwargs):
+        return cls().dispatch(obj, **kwargs)
 
-    def dispatch(self, obj):
+    def dispatch(self, obj, **kwargs):
         self.object = obj
         languages = [get_language(), self.fallback_language]
         receivers = self.get_receiver_emails()
         context = self.get_context()
-        context.update(obj)
+        context.update(kwargs)
         attachments = self.get_attachments()
         template = self.template_name
 

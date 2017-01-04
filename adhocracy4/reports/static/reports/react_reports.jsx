@@ -1,5 +1,5 @@
-let api = require('/adhocracy4/static/api')
-let Modal = require('/adhocracy4/static/Modal')
+let api = require('../../../static/api')
+let Modal = require('../../../static/Modal')
 
 let $ = require('jquery')
 let React = require('react')
@@ -34,7 +34,7 @@ const ReportModal = React.createClass({
     $('#' + this.props.name).modal('hide')
     this.resetModal()
   },
-  submitReport: function (e) {
+  submitReport: function () {
     api.report.submit({
       description: this.state.report,
       content_type: this.props.contentType,
