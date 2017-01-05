@@ -12,13 +12,15 @@ install:
 meinberlin/static/style.css: meinberlin/assets/scss/style.scss $(SCSS_FILES)
 	$(NODE_BIN)/node-sass $< $@
 
+scss: meinberlin/static/style.css
+
 makemessages:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages
 
 compilemessages: $(PO_FILES)
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
-build: meinberlin/static/style.css compilemessages
+build: scss compilemessages
 
 server:
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8000
