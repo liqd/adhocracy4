@@ -5,10 +5,10 @@ Adhocracy4 is a library to implement online participation software. It
 heavily relies on the Django webframework.
 
 This document describes some important constrains concerning the data model
-used of a software based on adhocracy4. It also shows the available options,
+used of a software based on adhocracy4. It also shows the available options
 to extend the data model.
 
-The adhcoracy4 data model is composed of various django apps. The `a4projects`,
+The adhocracy4 data model is composed of various django apps. The `a4projects`,
 `a4modules` and `a4phases` provide the basic infrastructure to model
 participation processes. In order to write a well adapted participation
 software, additional apps can be created that base on the functionality on the
@@ -17,7 +17,7 @@ core and provide more features.
 participation process model
 ---------------------------
 
-The adhocracy4 process model always replicates the follwoing data model: A set
+The adhocracy4 process model always replicates the following data model: A set
 of organisations on the platform runs each their own participation projects.
 Each project will be structured into a consecutive number of steps (called
 phases). In a phase objects in a data collection (called module) can be
@@ -40,14 +40,14 @@ entity relation model
 ### organisation
 
 -   container of projects
--   can be overriden easily (pluggable)
+-   can be overridden easily (pluggable)
 -   must expose initiators (via `has_initiator` method)
 
 ### projects
 
 -   map a participation project / process in the real world
 -   allow to specify local moderators and participants (user roles)
--   contains containers of particpation content (modules)
+-   contains containers of participation content (modules)
 -   follows automatically a given timeline (phases)
 -   exposes moderators / members (via `has_member` or `has_moderator` method)
 
@@ -58,7 +58,7 @@ entity relation model
 
 ### phases
 
--   a period in which participation is possbile (has start and end date)
+-   a period in which participation is possible (has start and end date)
 -   limits which and how items can be created, or altered
 -   has a phase type set
 
@@ -74,7 +74,7 @@ entity relation model
 user generated content
 ----------------------
 
-In a participation project users are expected to create, update, enahnace or
+In a participation project users are expected to create, update, enhance or
 evaluate content. There are two basic options in Adhocracy4 to model user
 generated content:
 
@@ -82,7 +82,7 @@ generated content:
 -   use generic foreign keys
 
 For both options it is useful to extend `adhocracy4.models.base.UserGeneratedContentModel`.
-This ensures that all usergenerated items have some basic fields.
+This ensures that all user generated items have some basic fields.
 
 All user generated content has a `project` property, which links it to a
 project. This is required for permissions to work. If a user wants to moderate
@@ -91,8 +91,8 @@ comment belongs to.
 
 ### extending item model
 
-Extending the item model (part of `a4modules`) will create a new model, that
-belongs to module and therefore to a specific project. This is usally the best
+Extending the item model (part of `a4modules`) will create a new model that
+belongs to module and therefore to a specific project. This is usually the best
 option if the user should create new content within a project. Examples are
 ideas, documents.
 
@@ -127,7 +127,7 @@ Open questions:
 ### using generic foreign keys
 
 A model can have a generic key, which allows to attach it to every django
-model. This is usually the best option when a user does somehting in realtion
+model. This is usually the best option when a user does something in relation
 to existing user generated content. An example is rating of existing ideas.
 
 Advantages:
@@ -141,7 +141,7 @@ Disadvantages:
     -   usually permissions handled via special permissions of the target item
 -   no relation to a project, but implicit through membership of the target
     item
-    -   list views/apis still require this to be explicit for private projects
+    -   list views/APIs still require this to be explicit for private projects
 -   needs signals to be deleted if target is deleted
 
 Open questions:
