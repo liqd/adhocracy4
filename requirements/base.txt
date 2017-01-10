@@ -2,3 +2,11 @@ git+git://github.com/liqd/adhocracy4.git@master
 Django>=1.8,<1.9
 wagtail==1.7.0
 django-allauth==0.27.0
+django-ckeditor==5.1.1
+django-filter==0.15.3
+easy-thumbnails==2.3
+django-autoslug==1.9.3
+rules==1.1.1
+python-magic==0.4.12
+html5lib==0.9999999
+bleach==1.4.3

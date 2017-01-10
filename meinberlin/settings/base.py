@@ -13,21 +13,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qid$h1o8&wh#p(j)lifis*5-rf@lbiy8%^3l4x%@b$z(tli@ab'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -58,9 +45,21 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'rules.apps.AutodiscoverRulesConfig',
+    'easy_thumbnails',
+    'ckeditor',
+    'ckeditor_uploader',
+
+    'adhocracy4.organisations.apps.OrganisationsConfig',
+    'adhocracy4.projects.apps.ProjectsConfig',
+    'adhocracy4.phases.apps.PhasesConfig',
+    'adhocracy4.modules.apps.ModulesConfig',
+    'adhocracy4.ratings.apps.RatingsConfig',
 
     'apps.cms.apps.Config',
     'apps.users.apps.Config',
+    'apps.projects.apps.Config',
+    'apps.ideas.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -137,7 +136,22 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+IMAGE_ALIASES = {
+    '*': {
+        'max_size': 5*10**6,
+        'fileformats': ('image/png', 'image/jpeg', 'image/gif')
+    },
+    'heroimage': {'min_resolution': (1300, 600)},
+    'logo': {'min_resolution': (200, 200), 'aspect_ratio': (1, 1)},
+    'avatar': {'min_resolution': (200, 200)},
+    'idea_image': {'min_resolution': (800, 200)},
+}
+
+ALLOWED_UPLOAD_IMAGES = ('png', 'jpeg', 'gif')
+
 
 # Wagtail settings
 
@@ -152,6 +166,7 @@ BASE_URL = 'http://localhost:8000'
 AUTH_USER_MODEL = 'meinberlin_users.User'
 
 AUTHENTICATION_BACKENDS = (
+    'rules.permissions.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
@@ -170,3 +185,70 @@ ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# ckeditor
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'width': '100%',
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink']
+        ]
+    },
+    'image-editor': {
+        'width': '100%',
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['Image'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink']
+        ]
+    }
+}
+
+BLEACH_LIST = {
+    'default' : {
+        'tags': ['p','strong','em','u','ol','li','ul','a'],
+        'attributes': {
+            'a': ['href', 'rel'],
+        },
+    },
+    'image-editor': {
+        'tags': ['p','strong','em','u','ol','li','ul','a','img'],
+        'attributes': {
+            'a': ['href', 'rel'],
+            'img': ['src', 'alt', 'style']
+        },
+        'styles': [
+            'float',
+            'margin',
+            'padding',
+            'width',
+            'height',
+            'margin-bottom',
+            'margin-top',
+            'margin-left',
+            'margin-right',
+        ],
+    }
+}
+
+
+# meinberlin
+
+A4_RATEABLES = (
+    ('meinberlin_ideas', 'idea'),
+)
+
+# adhocracy4
+
+A4_ORGANISATIONS_MODEL = 'a4organisations.Organisation'

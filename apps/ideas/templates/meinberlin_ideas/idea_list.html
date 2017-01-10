@@ -1,0 +1,9 @@
+{% extends 'meinberlin_projects/project_detail.html' %}
+
+{% block phase_content %}
+ <div>
+    {% for idea in idea_list %}
+    {% include "meinberlin_ideas/includes/idea_list_tile.html" with idea=idea %}
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,3 +1,10 @@
 -r base.txt
 flake8==2.6.2
+django-debug-toolbar==1.5
+freezegun==0.3.7
 isort==4.2.5
+pytest-django==2.9.1
+pytest-cov==2.2.1
+pytest-factoryboy==1.1.6
+fake-factory==0.6.0
+transifex-client==0.12.2
