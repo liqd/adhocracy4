@@ -1,6 +1,5 @@
 -r base.txt
 flake8==2.6.2
-isort==4.2.5
 django-debug-toolbar==1.5
 freezegun==0.3.7
 isort==4.2.5
