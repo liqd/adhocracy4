@@ -131,10 +131,12 @@ def send_email_with_template(receivers, template, additional_context):
         def get_attachments(self):
             attachments = super().get_attachments()
             filename = finders.find('images/logo.png')
-            f = open(filename, 'rb')
-            logo = MIMEImage(f.read())
-            logo.add_header('Content-ID', '<{}>'.format('logo'))
-            return attachments + [logo]
+            if filename:
+                f = open(filename, 'rb')
+                logo = MIMEImage(f.read())
+                logo.add_header('Content-ID', '<{}>'.format('logo'))
+                return attachments + [logo]
+            return attachments
 
         def get_context(self):
             context = super().get_context()

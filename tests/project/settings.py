@@ -17,6 +17,7 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(PROJECT_DIR))
 
 SECRET_KEY = 'not_so_secret_secret_key'
+SITE_ID = 1
 
 DEBUG = True
 
@@ -47,6 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 )
 
