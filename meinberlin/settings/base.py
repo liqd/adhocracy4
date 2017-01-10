@@ -150,6 +150,8 @@ IMAGE_ALIASES = {
     'idea_image': {'min_resolution': (800, 200)},
 }
 
+ALLOWED_UPLOAD_IMAGES = ('png', 'jpeg', 'gif')
+
 
 # Wagtail settings
 
