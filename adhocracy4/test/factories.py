@@ -23,6 +23,19 @@ class UserFactory(factory.django.DjangoModelFactory):
     is_superuser = False
 
 
+class AdminFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = settings.AUTH_USER_MODEL
+
+    username = factory.Faker('name')
+    password = (  # password = "password"
+        "pbkdf2_sha256$20000$"
+        "qMYSzezfIiw3$w3A0xY/kOgE8yA4m3RDFItXTqWCV3N7v2CLy2fD8gyw="
+    )
+    is_superuser = True
+
+
 USER_FACTORY = getattr(settings, 'A4_USER_FACTORY', UserFactory)
 
 

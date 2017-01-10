@@ -17,6 +17,7 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(os.path.dirname(PROJECT_DIR))
 
 SECRET_KEY = 'not_so_secret_secret_key'
+SITE_ID = 1
 
 DEBUG = True
 
@@ -30,6 +31,7 @@ INSTALLED_APPS = (
     'adhocracy4.projects.apps.ProjectsConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.phases.apps.PhasesConfig',
+    'adhocracy4.reports.apps.ReportConfig',
 
     # adhocrayc4 generic apps
     'adhocracy4.ratings.apps.RatingsConfig',
@@ -49,6 +51,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 )
 
@@ -135,9 +138,9 @@ MEDIA_URL = '/media/'
 
 # Adhcoracy 4
 
-A4_ORGANISATIONS_MODEL  = 'a4organisations.Organisation'
+A4_ORGANISATIONS_MODEL = 'a4organisations.Organisation'
 A4_RATEABLES = (('a4test_questions', 'Question'),)
-
+A4_REPORTABLES = (('a4test_questions', 'Question'),)
 
 # Rich text fields
 
