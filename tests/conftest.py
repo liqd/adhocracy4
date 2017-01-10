@@ -18,6 +18,7 @@ def image_factory():
 
 
 register(factories.UserFactory)
+register(factories.AdminFactory, 'admin')
 register(factories.UserFactory, 'another_user')
 register(factories.UserFactory, 'staff_user', is_staff=True)
 register(factories.OrganisationFactory)
