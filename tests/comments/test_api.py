@@ -22,14 +22,14 @@ def test_authenticated_user_can_not_post_invalid_data(user, apiclient):
 
 
 @pytest.mark.django_db
-def test_authenticated_user_can_post_valid_data(user, fake_project_content,
+def test_authenticated_user_can_post_valid_data(user, question,
                                                 apiclient):
-    contenttype = ContentType.objects.get_for_model(fake_project_content).pk
+    contenttype = ContentType.objects.get_for_model(question).pk
     apiclient.force_authenticate(user=user)
     url = reverse('comments-list')
     data = {
         'comment': 'comment comment',
-        'object_pk': fake_project_content.pk,
+        'object_pk': question.pk,
         'content_type': contenttype
     }
     response = apiclient.post(url, data, format='json')
@@ -47,8 +47,10 @@ def test_authenticated_user_can_edit_own_comment(comment, apiclient):
 
 
 @pytest.mark.django_db
-def test_user_can_not_edit_comment_of_other_user(user2, comment, apiclient):
-    apiclient.force_authenticate(user=user2)
+def test_user_can_not_edit_comment_of_other_user(another_user,
+                                                 comment,
+                                                 apiclient):
+    apiclient.force_authenticate(user=another_user)
     data = {'comment': 'comment comment comment'}
     url = reverse('comments-detail', kwargs={'pk': comment.pk})
     response = apiclient.patch(url, data, format='json')
@@ -65,12 +67,14 @@ def test_anonymous_user_can_not_edit_comment(comment, apiclient):
 
 
 @pytest.mark.django_db
-def test_authenticated_user_can_reply_to_comment(user2, comment, apiclient):
+def test_authenticated_user_can_reply_to_comment(another_user,
+                                                 comment,
+                                                 apiclient):
     comment_contenttype = ContentType.objects.get_for_model(comment).pk
     url = reverse('comments-detail', kwargs={'pk': comment.pk})
     response = apiclient.get(url)
     assert len(response.data['child_comments']) == 0
-    apiclient.force_authenticate(user=user2)
+    apiclient.force_authenticate(user=another_user)
     url = reverse('comments-list')
     data = {
         'comment': 'comment-reply1',
@@ -103,9 +107,11 @@ def test_anonymous_user_can_not_delete_comment(comment, apiclient):
 
 
 @pytest.mark.django_db
-def test_authenticated_user_can_not_delete_comment(comment, user2, apiclient):
+def test_authenticated_user_can_not_delete_comment(comment,
+                                                   another_user,
+                                                   apiclient):
     url = reverse('comments-detail', kwargs={'pk': comment.pk})
-    apiclient.force_authenticate(user=user2)
+    apiclient.force_authenticate(user=another_user)
     response = apiclient.delete(url)
     assert response.status_code == status.HTTP_403_FORBIDDEN
 
@@ -131,7 +137,7 @@ def test_admin_of_comment_can_set_censored_flag(comment, admin, apiclient):
 
 
 @pytest.mark.django_db
-def test_rating_info(comment, rating_factory, user, user2, apiclient):
+def test_rating_info(comment, user, another_user, apiclient):
     ct = ContentType.objects.get_for_model(comment)
     pk = comment.pk
     ratings_url = reverse('ratings-list')
@@ -146,7 +152,7 @@ def test_rating_info(comment, rating_factory, user, user2, apiclient):
     response = apiclient.get(comment_url, format='json')
     assert response.data['ratings']['positive_ratings'] == 1
     assert response.data['ratings']['current_user_rating_value'] == 1
-    apiclient.force_authenticate(user2)
+    apiclient.force_authenticate(another_user)
     response = apiclient.get(comment_url, format='json')
     assert response.data['ratings']['positive_ratings'] == 1
     assert response.data['ratings']['current_user_rating_value'] is None

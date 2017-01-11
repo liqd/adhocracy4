@@ -14,7 +14,7 @@ def delete_content_object_handler(sender, instance, **kwargs):
 
 
 # setup signal handlers for all commentables
-for commentable in settings.COMMENTABLES:
+for commentable in settings.A4_COMMENTABLES:
     post_delete.connect(
         delete_content_object_handler,
         '.'.join(commentable)

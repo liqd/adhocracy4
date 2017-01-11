@@ -32,6 +32,7 @@ INSTALLED_APPS = (
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.reports.apps.ReportConfig',
+    'adhocracy4.comments.apps.CommentConfig',
 
     # adhocrayc4 generic apps
     'adhocracy4.ratings.apps.RatingsConfig',
@@ -141,6 +142,7 @@ MEDIA_URL = '/media/'
 A4_ORGANISATIONS_MODEL = 'a4organisations.Organisation'
 A4_RATEABLES = (('a4test_questions', 'Question'),)
 A4_REPORTABLES = (('a4test_questions', 'Question'),)
+A4_COMMENTABLES = (('a4test_questions', 'Question'),)
 
 # Rich text fields
 

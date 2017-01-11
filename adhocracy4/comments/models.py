@@ -16,7 +16,7 @@ class Comment(base.UserGeneratedContentModel):
     content_type = models.ForeignKey(
         ContentType,
         on_delete=models.CASCADE,
-        limit_choices_to=models_to_limit(settings.COMMENTABLES)
+        limit_choices_to=models_to_limit(settings.A4_COMMENTABLES)
     )
     object_pk = models.PositiveIntegerField()
     content_object = GenericForeignKey(
