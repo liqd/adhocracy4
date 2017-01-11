@@ -137,6 +137,16 @@ def test_admin_of_comment_can_set_censored_flag(comment, admin, apiclient):
 
 
 @pytest.mark.django_db
+def test_admin_of_comment_can_edit(comment, admin, apiclient):
+    url = reverse('comments-detail', kwargs={'pk': comment.pk})
+    data = {'comment': 'comment comment comment'}
+    apiclient.force_authenticate(user=admin)
+    response = apiclient.patch(url, data)
+    assert response.status_code == status.HTTP_200_OK
+    assert response.data['comment'] == 'comment comment comment'
+
+
+@pytest.mark.django_db
 def test_rating_info(comment, user, another_user, apiclient):
     ct = ContentType.objects.get_for_model(comment)
     pk = comment.pk
