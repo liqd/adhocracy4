@@ -36,11 +36,12 @@ class Phase(models.Model):
     module = models.ForeignKey(modules_models.Module, on_delete=models.CASCADE)
     start_date = models.DateTimeField(blank=True, null=True)
     end_date = models.DateTimeField(blank=True, null=True)
+    weight = models.IntegerField(default=0)
 
     objects = PhasesQuerySet.as_manager()
 
     class Meta:
-        ordering = ['type']
+        ordering = ['weight']
 
     def __str__(self):
         return '{} ({})'.format(self.name, self.type)

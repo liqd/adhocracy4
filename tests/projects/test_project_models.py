@@ -129,8 +129,8 @@ def test_image_deleted_after_update(project_factory, image_factory):
 @pytest.mark.django_db
 def test_phases_property(module, phase_factory):
     project = module.project
-    phase1 = phase_factory(module=module, type='fake:30:type')
-    phase2 = phase_factory(module=module, type='fake:20:type')
+    phase1 = phase_factory(module=module, type='fake:30:type', weight=30)
+    phase2 = phase_factory(module=module, type='fake:20:type', weight=20)
 
     assert list(project.phases) == [phase2, phase1]
 
