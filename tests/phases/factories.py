@@ -14,6 +14,7 @@ class PhaseFactory(factory.django.DjangoModelFactory):
     name = factory.Sequence(lambda n: '{}. phase'.format(n))
     description = factory.Faker('text')
     type = 'blog:020:phase'
+    weight = 20
     module = factory.SubFactory(module_factories.ModuleFactory)
     start_date = parse('2013-01-02 00:00:00 UTC')
     end_date = parse('2013-01-03 00:00:00 UTC')
