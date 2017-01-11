@@ -1,8 +1,8 @@
-from django.core.exceptions import ValidationError
-from django.test.utils import override_settings
 import pytest
 
 from adhocracy4.images.validators import validate_image
+
+from django.core.exceptions import ValidationError
 
 
 def test_min_size_validation(image_factory):
@@ -46,4 +46,3 @@ def test_file_size_validation(image_factory):
 
     with pytest.raises(ValidationError):
         validate_image(image, (100, 100), max_size=image.size - 1)
-

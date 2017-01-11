@@ -10,7 +10,6 @@ class ConfiguredImageField(models.ImageField):
     def __init__(self, config_name, *args, **kwargs):
         defaults = {}
         self.config_name = config_name
-        config = self.image_config
 
         if 'help_prefix' in kwargs:
             self.help_prefix = kwargs['help_prefix']
@@ -65,7 +64,7 @@ class ConfiguredImageField(models.ImageField):
         ).format(
             help_prefix=self.help_prefix,
             max_size_mb=int(self.image_config['max_size']/(10**6)),
-            fileformats_str = ', '.join(
+            fileformats_str=', '.join(
                 f.split('/')[1] for f in config['fileformats']
             ),
             **config

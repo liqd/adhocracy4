@@ -3,6 +3,7 @@ from django.utils.safestring import SafeData
 
 from adhocracy4.images import widgets
 
+
 def test_render_empty():
     input = widgets.ImageInputWidget()
     html = input.render('image_name', None)

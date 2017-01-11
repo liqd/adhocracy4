@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 image_max_mb = 5
 
+
 def validate_image(
         image, min_resolution, max_size=image_max_mb*10**6,
         fileformats=('image/png', 'image/jpeg'),
@@ -40,7 +41,7 @@ def validate_image(
                 'Image aspect ratio should be {aspect_width}:{aspect_height}'
             )
             errors.append(ValidationError(msg.format(
-                    aspect_width=aspect_width, aspect_height=aspect_heigth
+                aspect_width=aspect_width, aspect_height=aspect_heigth
             )))
 
     if errors:
