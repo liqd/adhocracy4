@@ -1,6 +1,6 @@
 var CommentList = require('./CommentList')
 var CommentForm = require('./CommentForm')
-var api = require('adhocracy4').api
+var api = require('../../../static/api')
 
 var React = require('react')
 var update = require('react-addons-update')
