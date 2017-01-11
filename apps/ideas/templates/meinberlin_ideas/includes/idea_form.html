@@ -1,0 +1,20 @@
+{% load i18n %}
+<form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    {% csrf_token %}
+    {{ form.media }}
+    <div>
+        <label for="{{ form.name.id_for_label }}">
+            {% trans 'Title of the proposal'%}
+        </label>
+        {{ form.name}}
+        {{ form.name.errors }}
+    </div>
+    <div>
+        <label for="{{ form.description.id_for_label }}">
+            {% trans 'Description'%}
+        </label>
+        {{ form.description}}
+        {{ form.description.errors }}
+    </div>
+    <button>{% trans 'Submit idea'%}</button>
+</form>
