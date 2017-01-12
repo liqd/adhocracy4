@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n react_ratings %}
+{% load i18n react_ratings rules %}
 
 {% block title %}{{idea.name}}{% endblock %}
 {% block content %}
@@ -32,4 +32,11 @@
         {% react_ratings idea %}
     </div>
 </div>
+
+{% has_perm 'meinberlin_ideas.update_idea' request.user idea as update_allowed %}
+{% if update_allowed %}
+    <a href="{% url 'idea-update' slug=idea.slug %}">
+        {% trans 'Edit idea' %}
+    </a>
+{% endif %}
 {% endblock %}

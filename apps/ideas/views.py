@@ -18,20 +18,12 @@ class IdeaDetailView(PermissionRequiredMixin, generic.DetailView):
                                        .annotate_negative_rating_count()
     permission_required = 'meinberlin_ideas.view_idea'
 
-    @property
-    def raise_exception(self):
-        return self.request.user.is_authenticated()
-
 
 class IdeaCreateView(PermissionRequiredMixin, generic.CreateView):
     model = idea_models.Idea
     form_class = forms.IdeaForm
     permission_required = 'meinberlin_ideas.propose_idea'
     template_name = 'meinberlin_ideas/idea_create_form.html'
-
-    @property
-    def raise_exception(self):
-        return self.request.user.is_authenticated()
 
     def dispatch(self, *args, **kwargs):
         mod_slug = self.kwargs[self.slug_url_kwarg]
@@ -52,3 +44,10 @@ class IdeaCreateView(PermissionRequiredMixin, generic.CreateView):
         form.instance.creator = self.request.user
         form.instance.module = self.module
         return super().form_valid(form)
+
+
+class IdeaUpdateView(PermissionRequiredMixin, generic.UpdateView):
+    model = idea_models.Idea
+    form_class = forms.IdeaForm
+    permission_required = 'meinberlin_ideas.update_idea'
+    template_name = 'meinberlin_ideas/idea_update_form.html'
