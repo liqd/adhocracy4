@@ -3,7 +3,7 @@ from datetime import timedelta
 import pytest
 from freezegun import freeze_time
 
-from tests.helpers import render_template
+from adhocracy4.test.helpers import render_template
 
 
 def test_get_days_tag():

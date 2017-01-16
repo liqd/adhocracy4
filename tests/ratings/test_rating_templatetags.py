@@ -5,7 +5,7 @@ import re
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.contenttypes.models import ContentType
 
-from tests import helpers
+from adhocracy4.test import helpers
 
 
 def react_ratings_render_for_props(rf, user, question):
