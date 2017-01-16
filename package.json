@@ -4,6 +4,14 @@
   "dependencies": {
     "adhocracy4": "liqd/adhocracy4#master",
     "node-sass": "3.10.1",
+
+    "classnames": "^2.2.5",
+    "jquery": "2.2.4",
+    "js-cookie": "~2.1.2",
+    "moment": "^2.14.1",
+    "react": "15.1.0",
+    "react-addons-update": "~15.1.0",
+    "react-dom": "15.1.0"
   },
   "devDependencies": {
     "husky": "0.11.4",
