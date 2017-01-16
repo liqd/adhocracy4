@@ -1,3 +1,6 @@
+from django.contrib import messages
+from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _
 from django.views import generic
 from rules.contrib.views import PermissionRequiredMixin
 
@@ -49,5 +52,20 @@ class IdeaCreateView(PermissionRequiredMixin, generic.CreateView):
 class IdeaUpdateView(PermissionRequiredMixin, generic.UpdateView):
     model = idea_models.Idea
     form_class = forms.IdeaForm
-    permission_required = 'meinberlin_ideas.update_idea'
+    permission_required = 'meinberlin_ideas.modify_idea'
     template_name = 'meinberlin_ideas/idea_update_form.html'
+
+
+class IdeaDeleteView(PermissionRequiredMixin, generic.DeleteView):
+    model = idea_models.Idea
+    success_message = _("Your Idea has been deleted")
+    permission_required = 'meinberlin_ideas.modify_idea'
+    template_name = 'meinberlin_ideas/idea_confirm_delete.html'
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(IdeaDeleteView, self).delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse(
+            'project-detail', kwargs={'slug': self.object.project.slug})

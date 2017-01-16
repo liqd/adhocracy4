@@ -28,6 +28,6 @@ rules.add_perm('meinberlin_ideas.rate_idea',
                (is_context_member & phase_allows_rate))
 
 
-rules.add_perm('meinberlin_ideas.update_idea',
+rules.add_perm('meinberlin_ideas.modify_idea',
                is_superuser | is_context_moderator | is_context_initiator |
                (is_context_member & is_owner & phase_allows_modify))

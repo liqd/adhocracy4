@@ -9,4 +9,6 @@ urlpatterns = [
         views.IdeaCreateView.as_view(), name='idea-create'),
     url(r'^(?P<slug>[-\w_]+)/update/$',
         views.IdeaUpdateView.as_view(), name='idea-update'),
+    url(r'^(?P<slug>[-\w_]+)/delete/$',
+        views.IdeaDeleteView.as_view(), name='idea-delete'),
 ]

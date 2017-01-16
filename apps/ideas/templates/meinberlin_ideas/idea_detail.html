@@ -33,10 +33,13 @@
     </div>
 </div>
 
-{% has_perm 'meinberlin_ideas.update_idea' request.user idea as update_allowed %}
+{% has_perm 'meinberlin_ideas.modify_idea' request.user idea as update_allowed %}
 {% if update_allowed %}
     <a href="{% url 'idea-update' slug=idea.slug %}">
         {% trans 'Edit idea' %}
+    </a>
+    <a href="{% url 'idea-delete' slug=idea.slug %}">
+        {% trans 'Delete idea' %}
     </a>
 {% endif %}
 {% endblock %}
