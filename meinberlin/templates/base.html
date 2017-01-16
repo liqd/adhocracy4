@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{% block title %}{% trans 'Home' %}{% endblock %}</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'meinberlin.css' %}" />
+    <script src="{% static 'vendor.js' %}"></script>
+    <script src="{% static 'meinberlin.js' %}"></script>
     <meta name="viewport" content="width=device-width" />
     {% block header %}{% endblock %}
 </head>

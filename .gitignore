@@ -2,7 +2,9 @@
 *__pycache__/
 db.sqlite3
 node_modules
-meinberlin/static/style.css
+meinberlin/static/meinberlin.css
+meinberlin/static/meinberlin.js
+meinberlin/static/vendor.js
 .env/
 .idea/
 
