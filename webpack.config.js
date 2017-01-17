@@ -15,6 +15,7 @@ module.exports = {
       'jquery',
       'js-cookie',
       'moment',
+      'moment/locale/de.js',
       'react',
       'react-addons-update',
       'react-dom'
@@ -66,6 +67,7 @@ module.exports = {
     }
   },
   plugins: [
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
     new ExtractTextPlugin('[name].css')
   ]
