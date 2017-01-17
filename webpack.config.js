@@ -59,11 +59,7 @@ module.exports = {
     autoprefixer({browsers: ['last 3 versions', 'ie >= 10']})
   ],
   resolve: {
-    fallback: path.join(__dirname, 'node_modules'),
     extensions: ['', '.js', '.jsx', '.scss', '.css']
-  },
-  resolveLoader: {
-    fallback: path.join(__dirname, 'node_modules')
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
