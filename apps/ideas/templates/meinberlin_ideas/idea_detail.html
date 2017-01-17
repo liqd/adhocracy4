@@ -3,33 +3,31 @@
 
 {% block title %}{{idea.name}}{% endblock %}
 {% block content %}
-<div>
-    <nav>
-        <ul>
-            <li>
-                <a href="{% url 'project-detail' idea.project.slug %}">
-                    {% trans 'back to project' %}
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
-
-<div>
-    <div class="idea-title">
-        <h1>{{ idea.name }}</h1>
+<div class="idea">
+    <div class="resource-navigation">
+        <nav class="resource-navigation-breadcrumbs">
+            <ul>
+                <li>
+                    <a href="{% url 'project-detail' idea.project.slug %}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to project' %}</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 
-    <div>
-        <p>From: {{ idea.creator.username }}</p>
+    <div class="resource-header">
+        <h1 class="resource-header-title">{{ idea.name }}</h1>
+
+        <div class="resource-header-meta">{{ idea.creator.username }}</div>
+
+        <div class="resource-header-action">
+            {% react_ratings idea %}
+        </div>
     </div>
 
     <div class="idea-description">
-        <p>{{ idea.description |safe }}</p>
-    </div>
-
-    <div class="idea-ratings">
-        {% react_ratings idea %}
+        {{ idea.description | safe }}
     </div>
 </div>
 {% endblock %}
