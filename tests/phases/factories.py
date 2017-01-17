@@ -1,20 +1,6 @@
-import factory
-from dateutil.parser import parse
-
-from euth.phases import models
-
-from ..modules import factories as module_factories
+from adhocracy4.test import factories
 
 
-class PhaseFactory(factory.django.DjangoModelFactory):
+class PhaseFactory(factories.PhaseFactory):
 
-    class Meta:
-        model = models.Phase
-
-    name = factory.Sequence(lambda n: '{}. phase'.format(n))
-    description = factory.Faker('text')
     type = 'blog:020:phase'
-    weight = 20
-    module = factory.SubFactory(module_factories.ModuleFactory)
-    start_date = parse('2013-01-02 00:00:00 UTC')
-    end_date = parse('2013-01-03 00:00:00 UTC')
