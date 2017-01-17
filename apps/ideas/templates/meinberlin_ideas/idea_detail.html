@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n react_ratings %}
+{% load i18n rules react_ratings %}
 
 {% block title %}{{idea.name}}{% endblock %}
 {% block content %}
@@ -14,6 +14,23 @@
                 </li>
             </ul>
         </nav>
+
+        {% has_perm 'euth_ideas.modify_idea' request.user idea as show_dropdown %}
+        {% if show_dropdown %}
+        <div class="resource-navigation-actions dropdown m-right">
+            <button class="dropdown-toggle" title="{% trans 'Actions' %}">
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="">{% trans 'Edit' %}</a>
+                </li>
+                <li>
+                    <a href="">{% trans 'Delete' %}</a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
     </div>
 
     <div class="resource-header">
