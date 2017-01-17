@@ -15,7 +15,6 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
 from adhocracy4.projects import urls as projects_urls
 from adhocracy4.ratings.api import RatingViewSet
-
 from apps.ideas import urls as ideas_urls
 
 js_info_dict = {
