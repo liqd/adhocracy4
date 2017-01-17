@@ -5,7 +5,7 @@ var autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: {
-    meinberlin: [
+    adhocracy4: [
       './meinberlin/assets/scss/style.scss',
       './meinberlin/assets/js/app.js'
     ],
