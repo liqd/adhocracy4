@@ -21,7 +21,7 @@ def react_ratings_render_for_props(rf, user, question):
     content_type = ContentType.objects.get_for_model(question)
     expected = (
         r'^<div id=\"ratings_for_{ct}_{pk}\"><\/div>'
-        r'<script>window\.opin\.renderRatings\('
+        r'<script>window\.adhocracy4\.renderRatings\('
         r'\"ratings_for_{ct}_{pk}\", (?P<props>{{.+}})\)<\/script>$'
     ).format(ct=content_type.id, pk=question.id)
 
