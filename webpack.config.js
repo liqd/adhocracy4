@@ -11,6 +11,7 @@ module.exports = {
     ],
     vendor: [
       'classnames',
+      'font-awesome/scss/font-awesome.scss',
       'jquery',
       'js-cookie',
       'moment',
@@ -43,6 +44,14 @@ module.exports = {
       {
         test: /\.s?css$/,
         loader: ExtractTextPlugin.extract('style?sourceMap', '!css?sourceMap!postcss?sourceMap!sass?sourceMap')
+      },
+      {
+        test: /fonts\/.*\.(svg|woff2?|ttf|eot)(\?.*)?$/,
+        loader: 'file-loader?name=fonts/[name].[ext]'
+      },
+      {
+        test: /\.svg$|\.png$/,
+        loader: 'file-loader?name=images/[name].[ext]'
       }
     ]
   },

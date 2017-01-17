@@ -18,6 +18,7 @@
     "style-loader": "0.13.1",
     "webpack": "1.13.1",
 
+    "font-awesome": "4.6.3",
     "sass-planifolia": "xi/sass-planifolia#0.3.1"
   },
   "devDependencies": {
