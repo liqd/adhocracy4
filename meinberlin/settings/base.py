@@ -59,6 +59,7 @@ INSTALLED_APPS = (
     'apps.cms.apps.Config',
     'apps.users.apps.Config',
     'apps.projects.apps.Config',
+    'apps.organisations.apps.Config',
     'apps.ideas.apps.Config',
 )
 
@@ -251,4 +252,4 @@ A4_RATEABLES = (
 
 # adhocracy4
 
-A4_ORGANISATIONS_MODEL = 'a4organisations.Organisation'
+A4_ORGANISATIONS_MODEL = 'meinberlin_organisations.Organisation'
