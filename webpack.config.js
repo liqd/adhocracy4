@@ -5,7 +5,7 @@ var autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: {
-    adhocracy4: [
+    meinberlin: [
       './meinberlin/assets/scss/style.scss',
       './meinberlin/assets/js/app.js'
     ],
@@ -23,7 +23,7 @@ module.exports = {
   devtool: 'eval',
   output: {
     libraryTarget: 'var',
-    library: '[name]',
+    library: 'adhocracy4',
     path: './meinberlin/static/',
     publicPath: '/static/',
     filename: '[name].js'

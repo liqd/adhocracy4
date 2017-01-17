@@ -2,8 +2,8 @@
 *__pycache__/
 db.sqlite3
 node_modules
-meinberlin/static/adhocracy4.css
-meinberlin/static/adhocracy4.js
+meinberlin/static/meinberlin.css
+meinberlin/static/meinberlin.js
 meinberlin/static/vendor.css
 meinberlin/static/vendor.js
 meinberlin/static/fonts
