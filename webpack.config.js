@@ -32,6 +32,7 @@ module.exports = {
     'django': 'django'
   },
   module: {
+    noParse: /\.min\.js$/,
     loaders: [
       {
         test: /\.jsx?$/,
@@ -59,7 +60,10 @@ module.exports = {
     autoprefixer({browsers: ['last 3 versions', 'ie >= 10']})
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx', '.scss', '.css']
+    extensions: ['', '.js', '.jsx', '.scss', '.css'],
+    alias: {
+      'jquery$': 'jquery/dist/jquery.min.js'
+    }
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
