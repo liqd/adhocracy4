@@ -7,6 +7,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
+from django.views.i18n import javascript_catalog
 from rest_framework import routers
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
@@ -15,6 +16,10 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from adhocracy4.projects import urls as projects_urls
 from adhocracy4.ratings.api import RatingViewSet
 from apps.ideas import urls as ideas_urls
+
+js_info_dict = {
+    'packages': ('adhocracy4.comments',),
+}
 
 router = routers.DefaultRouter()
 router.register(r'ratings', RatingViewSet, base_name='ratings')
@@ -34,5 +39,7 @@ urlpatterns = [
     url(r'^browse/',
         never_cache(login_required(ck_views.browse)), name='ckeditor_browse'),
 
+    url(r'^jsi18n/$', javascript_catalog,
+        js_info_dict, name='javascript-catalog'),
     url(r'', include(wagtail_urls)),
 ]
