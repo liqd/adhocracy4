@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Confirm Idea Deletion' %}{% endblock %}
+{% block content %}
+
+ <h3>
+    {% trans 'Are you sure you want to delete the idea?' %}
+ </h3>
+
+<form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    {% csrf_token %}
+    <button>{% trans 'Yes'%}</button>
+</form>
+<a href="{% url 'idea-detail' idea.slug %}" class="cancel-button">{% trans 'Cancel'%}</a>
+{% endblock %}

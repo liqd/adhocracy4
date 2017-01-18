@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Edit {{idea.name}}{% endblock %}
+{% block content %}
+<div>
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'project-detail' idea.project.slug %}">
+                    {% trans 'back to project' %}
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div>
+    {% trans 'Edit idea'%}
+</div>
+
+{% include "meinberlin_ideas/includes/idea_form.html" with idea=idea %}
+<a href="{% url 'idea-detail' idea.slug %}" class="cancel-button">
+    {% trans 'cancel'%}
+</a>
+{% endblock %}

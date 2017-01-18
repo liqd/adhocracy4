@@ -23,10 +23,10 @@
             </button>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="">{% trans 'Edit' %}</a>
+                    <a href="{% url 'idea-update' slug=idea.slug %}">{% trans 'Edit' %}</a>
                 </li>
                 <li>
-                    <a href="">{% trans 'Delete' %}</a>
+                    <a href="{% url 'idea-delete' slug=idea.slug %}">{% trans 'Delete' %}</a>
                 </li>
             </ul>
         </div>
