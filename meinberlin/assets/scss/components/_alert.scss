@@ -1,0 +1,20 @@
+.messages {
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: block;
+    }
+}
+
+.alert {
+    border-radius: 0.25em;
+    margin: 0 0 $spacer;
+    padding: 1em;
+    background-color: $bg-secondary;
+    border: 1px solid;
+
+    &.success {
+        color: $brand-success;
+    }
+}
