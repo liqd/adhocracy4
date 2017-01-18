@@ -10,7 +10,7 @@
 
 <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
     {% csrf_token %}
-    <button>{% trans 'Yes'%}</button>
+    <input type="submit" value="{% trans 'Yes'%}" />
 </form>
 <a href="{% url 'idea-detail' idea.slug %}" class="cancel-button">{% trans 'Cancel'%}</a>
 {% endblock %}
