@@ -18,9 +18,7 @@
     </ul>
 </nav>
 
-<div>
-    {% trans 'Edit idea'%}
-</div>
+<h1>{% trans 'Edit idea'%}</h1>
 
 {% include "meinberlin_ideas/includes/idea_form.html" with idea=idea %}
 <a href="{% url 'idea-detail' idea.slug %}" class="cancel-button">

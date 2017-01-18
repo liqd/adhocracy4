@@ -13,9 +13,7 @@
     </ul>
 </nav>
 
-<div>
-    {% trans 'Submit a new idea for this project'%}
-</div>
+<h1>{% trans 'Submit a new idea for this project'%}</h1>
 
 {% include "meinberlin_ideas/includes/idea_form.html" with idea=idea %}
 <a href="{% url 'project-detail' project.slug %}" class="cancel-button">{% trans 'cancel'%}</a>

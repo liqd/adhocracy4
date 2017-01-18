@@ -4,9 +4,7 @@
 {% block title %}{% trans 'Confirm Idea Deletion' %}{% endblock %}
 {% block content %}
 
- <h3>
-    {% trans 'Are you sure you want to delete the idea?' %}
- </h3>
+ <h1>{% trans 'Are you sure you want to delete the idea?' %} </h1>
 
 <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
     {% csrf_token %}
