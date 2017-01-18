@@ -5,7 +5,7 @@ var autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: {
-    adhocracy4: [
+    meinberlin: [
       './meinberlin/assets/scss/style.scss',
       './meinberlin/assets/js/app.js'
     ],
@@ -15,6 +15,7 @@ module.exports = {
       'jquery',
       'js-cookie',
       'moment',
+      'moment/locale/de.js',
       'react',
       'react-addons-update',
       'react-dom'
@@ -23,7 +24,7 @@ module.exports = {
   devtool: 'eval',
   output: {
     libraryTarget: 'var',
-    library: '[name]',
+    library: 'adhocracy4',
     path: './meinberlin/static/',
     publicPath: '/static/',
     filename: '[name].js'
@@ -32,6 +33,7 @@ module.exports = {
     'django': 'django'
   },
   module: {
+    noParse: /\.min\.js$/,
     loaders: [
       {
         test: /\.jsx?$/,
@@ -59,13 +61,13 @@ module.exports = {
     autoprefixer({browsers: ['last 3 versions', 'ie >= 10']})
   ],
   resolve: {
-    fallback: path.join(__dirname, 'node_modules'),
-    extensions: ['', '.js', '.jsx', '.scss', '.css']
-  },
-  resolveLoader: {
-    fallback: path.join(__dirname, 'node_modules')
+    extensions: ['', '.js', '.jsx', '.scss', '.css'],
+    alias: {
+      'jquery$': 'jquery/dist/jquery.min.js'
+    }
   },
   plugins: [
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
     new ExtractTextPlugin('[name].css')
   ]
