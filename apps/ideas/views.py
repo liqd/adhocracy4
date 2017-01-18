@@ -2,8 +2,8 @@ from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from django.views import generic
-from rules.contrib.views import PermissionRequiredMixin
 
+from adhocracy4.contrib.views import PermissionRequiredMixin
 from adhocracy4.modules.models import Module
 from adhocracy4.projects import mixins
 
