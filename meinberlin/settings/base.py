@@ -189,7 +189,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # ckeditor
 
-CKEDITOR_JQUERY_URL = 'https://code.jquery.com/jquery-3.1.1.min.js'
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
