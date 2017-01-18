@@ -4,6 +4,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
 from adhocracy4 import transforms
+from adhocracy4.comments import models as comment_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
 
@@ -40,6 +41,9 @@ class Idea(module_models.Item):
     ratings = GenericRelation(rating_models.Rating,
                               related_query_name='idea',
                               object_id_field='object_pk')
+    comments = GenericRelation(comment_models.Comment,
+                               related_query_name='idea',
+                               object_id_field='object_pk')
 
     objects = IdeaQuerySet.as_manager()
 
