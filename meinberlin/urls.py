@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^ideas/', include(ideas_urls)),
     url(r'^projects/', include(projects_urls)),
 
+    url(r'^api/', include(router.urls)),
+
     url(r'^upload/',
         login_required(ck_views.upload), name='ckeditor_upload'),
     url(r'^browse/',
