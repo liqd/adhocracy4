@@ -1,35 +1,50 @@
 {% extends "base.html" %}
-{% load i18n react_ratings %}
+{% load i18n rules react_ratings %}
 
 {% block title %}{{idea.name}}{% endblock %}
 {% block content %}
-<div>
-    <nav>
-        <ul>
-            <li>
-                <a href="{% url 'project-detail' idea.project.slug %}">
-                    {% trans 'back to project' %}
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
+<div class="idea">
+    <div class="resource-navigation">
+        <nav class="resource-navigation-breadcrumbs breadcrumbs">
+            <ul>
+                <li>
+                    <a href="{% url 'project-detail' idea.project.slug %}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to project' %}</a>
+                </li>
+            </ul>
+        </nav>
 
-<div>
-    <div class="idea-title">
-        <h1>{{ idea.name }}</h1>
+        {% has_perm 'euth_ideas.modify_idea' request.user idea as show_dropdown %}
+        {% if show_dropdown %}
+        <div class="resource-navigation-actions dropdown m-right">
+            <button class="dropdown-toggle" title="{% trans 'Actions' %}">
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="">{% trans 'Edit' %}</a>
+                </li>
+                <li>
+                    <a href="">{% trans 'Delete' %}</a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
     </div>
 
-    <div>
-        <p>From: {{ idea.creator.username }}</p>
+    <div class="resource-header">
+        <h1 class="resource-header-title">{{ idea.name }}</h1>
+
+        <div class="resource-header-meta">{{ idea.creator.username }}</div>
+
+        <div class="resource-header-action">
+            {% react_ratings idea %}
+        </div>
     </div>
 
     <div class="idea-description">
-        <p>{{ idea.description |safe }}</p>
-    </div>
-
-    <div class="idea-ratings">
-        {% react_ratings idea %}
+        {{ idea.description | safe }}
     </div>
 </div>
 {% endblock %}

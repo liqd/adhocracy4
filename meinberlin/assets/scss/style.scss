@@ -1,9 +1,16 @@
+@import '~sass-planifolia/sass/clearfix';
+
 @import 'variables';
 
 @import 'base';
+@import 'form';
 
-@import 'components/form';
+@import 'components/breadcrumbs';
+@import 'components/button';
+@import 'components/dropdown';
 @import 'components/header';
+@import 'components/rating';
+@import 'components/resource_header';
 
 main {
     padding: 0 16%;
