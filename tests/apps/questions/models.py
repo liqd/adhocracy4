@@ -3,12 +3,12 @@ from django.db import models
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.models.query import CommentableQuerySet
-from adhocracy4.models.query import RatableQuerySet
+from adhocracy4.models.query import RateableQuerySet
 from adhocracy4.modules.models import Item
 from adhocracy4.ratings.models import Rating
 
 
-class QuestionQuerySet(CommentableQuerySet, RatableQuerySet):
+class QuestionQuerySet(CommentableQuerySet, RateableQuerySet):
     pass
 
 

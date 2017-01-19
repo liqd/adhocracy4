@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class RatableQuerySet(models.QuerySet):
+class RateableQuerySet(models.QuerySet):
 
     def _rate_value_condition(self, value):
         return models.Case(
