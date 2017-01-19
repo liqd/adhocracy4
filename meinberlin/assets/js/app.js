@@ -1,3 +1,4 @@
+var ReactComments = require('adhocracy4').comments
 var ReactRatings = require('adhocracy4').ratings
 var dropdown = require('./dropdown');
 
@@ -5,5 +6,6 @@ var dropdown = require('./dropdown');
 window.jQuery = window.$ = require('jquery');
 
 module.exports = {
+  'renderComment': ReactComments.renderComment,
   'renderRatings': ReactRatings.renderRatings
 }

@@ -13,6 +13,7 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
+from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.projects import urls as projects_urls
 from adhocracy4.ratings.api import RatingViewSet
 from apps.ideas import urls as ideas_urls
@@ -23,6 +24,7 @@ js_info_dict = {
 
 router = routers.DefaultRouter()
 router.register(r'ratings', RatingViewSet, base_name='ratings')
+router.register(r'comments', CommentViewSet, base_name='comments')
 
 
 urlpatterns = [
