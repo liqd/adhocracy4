@@ -5,33 +5,13 @@ from django.db import models
 
 from adhocracy4 import transforms
 from adhocracy4.comments import models as comment_models
+from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
 
 
-class IdeaQuerySet(models.QuerySet):
-
-    def _rate_value_condition(self, value):
-        return models.Case(
-            models.When(ratings__value=value, then=models.F('ratings__id')),
-            output_field=models.IntegerField()
-        )
-
-    def annotate_positive_rating_count(self):
-        return self.annotate(
-            positive_rating_count=models.Count(
-                self._rate_value_condition(1),
-                distinct=True  # needed to combine with other count annotations
-            )
-        )
-
-    def annotate_negative_rating_count(self):
-        return self.annotate(
-            negative_rating_count=models.Count(
-                self._rate_value_condition(-1),
-                distinct=True  # needed to combine with other count annotations
-            )
-        )
+class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
+    pass
 
 
 class Idea(module_models.Item):
