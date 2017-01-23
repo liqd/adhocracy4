@@ -48,7 +48,7 @@ def react_ratings(context, obj):
     }
 
     return mark_safe((
-        '<div id={mountpoint}></div><script>window.opin.renderRatings('
+        '<div id={mountpoint}></div><script>window.adhocracy4.renderRatings('
         '{mountpoint}, {attributes})</script>').format(
             attributes=json.dumps(attributes),
             mountpoint=json.dumps(mountpoint)

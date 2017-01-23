@@ -18,7 +18,7 @@ def react_comment_render_for_props(rf, user, question):
     content_type = ContentType.objects.get_for_model(question)
     expected = (
         r'^<div id=\"comments_for_{ct}_{pk}\"><\/div>'
-        r'<script>window\.opin\.renderComment\('
+        r'<script>window\.adhocracy4\.renderComment\('
         r'\"comments_for_{ct}_{pk}\", (?P<props>{{.+}})\)<\/script>$'
     ).format(ct=content_type.id, pk=question.id)
 
