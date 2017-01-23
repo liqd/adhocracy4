@@ -1,0 +1,28 @@
+.resource-header {
+    padding: 3em 4em 4em;
+    position: relative;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.resource-header-meta,
+.resource-header-action {
+    margin-bottom: 1.5rem;
+}
+
+.resource-header-title {
+    margin-bottom: 1.2rem;
+    font-size: 200%;
+}
+
+.resource-navigation {
+    @include pie-clearfix;
+}
+
+.resource-navigation-breadcrumbs {
+    display: inline-block;
+}
+
+.resource-navigation-actions {
+    float: right;
+}

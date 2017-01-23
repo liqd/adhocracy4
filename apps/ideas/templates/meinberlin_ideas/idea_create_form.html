@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Create a new proposal' %}{% endblock %}
+{% block content %}
+<nav class="breadcrumbs">
+    <ul>
+        <li>
+            <a href="{% url 'project-detail' project.slug %}">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                {% trans 'back to project' %}</a>
+        </li>
+    </ul>
+</nav>
+
+<h1>{% trans 'Submit a new idea for this project'%}</h1>
+
+{% url 'project-detail' project.slug as cancel %}
+{% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=cancel %}
+{% endblock %}

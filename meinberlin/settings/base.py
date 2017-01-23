@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.ratings.apps.RatingsConfig',
+    'adhocracy4.comments.apps.CommentConfig',
 
     'apps.cms.apps.Config',
     'apps.users.apps.Config',
@@ -244,12 +245,14 @@ BLEACH_LIST = {
 }
 
 
-# meinberlin
+# adhocracy4
+
+A4_ORGANISATIONS_MODEL = 'meinberlin_organisations.Organisation'
 
 A4_RATEABLES = (
     ('meinberlin_ideas', 'idea'),
 )
 
-# adhocracy4
-
-A4_ORGANISATIONS_MODEL = 'meinberlin_organisations.Organisation'
+A4_COMMENTABLES = (
+    ('meinberlin_ideas', 'idea'),
+)

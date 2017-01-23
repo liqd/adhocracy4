@@ -1,0 +1,56 @@
+.rating-bar {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+    }
+}
+
+.rating-button {
+    appearance: none;
+    background: none;
+    border: 1px solid currentColor;
+    cursor: pointer;
+    font-weight: normal;
+
+    &.is-read-only {
+        cursor: default;
+        background: none;
+        border: 0;
+    }
+
+    &:first-child {
+        margin-right: 0.2em;
+    }
+}
+
+@mixin rating-button($color) {
+    color: $color;
+
+    &:hover,
+    &:focus {
+        background: $color;
+        border-color: $color;
+        color: $text-color-inverted;
+    }
+
+    &.is-selected {
+        background-color: $color;
+        border-color: $color;
+        color: $text-color-inverted;
+    }
+
+    &.is-read-only {
+        color: $color;
+    }
+}
+
+.rating-up {
+    @include rating-button($brand-success);
+}
+
+.rating-down {
+    @include rating-button($brand-danger);
+}
