@@ -101,9 +101,7 @@ def test_create_view_wrong_phase(client, phase, user):
         assert response.status_code == 302
         client.login(username=user.email, password='password')
         response = client.get(url)
-        # TODO: enbale when permission view is merged
-        # assert response.status_code == 403
-        assert response.status_code == 302
+        assert response.status_code == 403
 
 
 @pytest.mark.django_db
@@ -138,6 +136,4 @@ def test_delete_view_wrong_user(client, phase, idea, user, user2):
         client.login(username=user2.email, password='password')
         url = reverse('idea-delete', kwargs={'slug': idea.slug})
         response = client.post(url)
-        # TODO: enbale when permission view is merged
-        # assert response.status_code == 403
-        assert response.status_code == 302
+        assert response.status_code == 403
