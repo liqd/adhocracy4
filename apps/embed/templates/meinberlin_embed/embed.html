@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
+<html class="embed">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,6 +8,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="{% static 'vendor.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'meinberlin.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'embed.css' %}" />
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'vendor.js' %}"></script>
     <script src="{% static 'meinberlin.js' %}"></script>
@@ -16,6 +17,14 @@
 </head>
 
 <body>
-    embed
+    <header class="embed-header">
+        <a>Login</a>
+    </header>
+    <main class="embed-main">
+        Embed
+    </main>
+    <footer class="embed-footer">
+        <a>Zur Plattform</a>
+    </footer>
 </body>
 </html>
