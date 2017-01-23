@@ -3,29 +3,18 @@
 
 {% block title %}{% trans 'Create a new proposal' %}{% endblock %}
 {% block content %}
-<div>
-    <nav>
-        <ul>
-            <li>
-                <a href="{% url 'project-detail' project.slug %}">
-                    {% trans 'back to project' %}
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
+<nav class="breadcrumbs">
+    <ul>
+        <li>
+            <a href="{% url 'project-detail' project.slug %}">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                {% trans 'back to project' %}</a>
+        </li>
+    </ul>
+</nav>
 
-<div>
-    {% trans 'Submit a new idea for this project'%}
-</div>
+<h1>{% trans 'Submit a new idea for this project'%}</h1>
 
-<div>
-    <h3 class="sans-serif">
-        {{ project.name }}
-    </h3>
-    <p>{{ project.description | truncatechars:128 }}</p>
-</div>
-
-{% include "meinberlin_ideas/includes/idea_form.html" with idea=idea %}
-<a href="{% url 'project-detail' project.slug %}" class="cancel-button">{% trans 'cancel'%}</a>
+{% url 'project-detail' project.slug as cancel %}
+{% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=cancel %}
 {% endblock %}

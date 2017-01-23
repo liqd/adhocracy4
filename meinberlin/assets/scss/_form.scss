@@ -40,3 +40,8 @@ select {
     list-style: none;
     color: $brand-danger;
 }
+
+.django-ckeditor-widget {
+    display: block !important;
+    margin-bottom: $spacer;
+}

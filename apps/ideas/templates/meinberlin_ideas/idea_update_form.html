@@ -3,24 +3,23 @@
 
 {% block title %}Edit {{idea.name}}{% endblock %}
 {% block content %}
-<div>
-    <nav>
-        <ul>
-            <li>
-                <a href="{% url 'project-detail' idea.project.slug %}">
-                    {% trans 'back to project' %}
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
+<nav class="breadcrumbs">
+    <ul>
+        <li>
+            <a href="{% url 'project-detail' idea.project.slug %}">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                {% trans 'back to project' %}</a>
+        </li>
+        <li>
+            <a href="{% url 'idea-detail' idea.slug %}">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                {% trans 'back to idea' %}</a>
+        </li>
+    </ul>
+</nav>
 
-<div>
-    {% trans 'Edit idea'%}
-</div>
+<h1>{% trans 'Edit idea'%}</h1>
 
-{% include "meinberlin_ideas/includes/idea_form.html" with idea=idea %}
-<a href="{% url 'idea-detail' idea.slug %}" class="cancel-button">
-    {% trans 'cancel'%}
-</a>
+{% url 'idea-detail' idea.slug as cancel %}
+{% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=cancel %}
 {% endblock %}
