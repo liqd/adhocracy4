@@ -1,0 +1,8 @@
+language: python
+python:
+  - "3.5"
+cache: pip
+install:
+  - pip install -r requirements/dev.txt
+script:
+  - py.test --cov

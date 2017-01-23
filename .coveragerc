@@ -1,0 +1,6 @@
+[run]
+source =
+    apps
+omit =
+    */migrations/*
+    */autofixtures.py

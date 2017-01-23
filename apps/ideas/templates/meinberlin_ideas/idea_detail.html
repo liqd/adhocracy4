@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n rules react_ratings %}
+{% load i18n rules react_comments react_ratings %}
 
 {% block title %}{{idea.name}}{% endblock %}
 {% block content %}
@@ -46,5 +46,7 @@
     <div class="idea-description">
         {{ idea.description | safe }}
     </div>
+
+    {% react_comments idea %}
 </div>
 {% endblock %}

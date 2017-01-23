@@ -14,6 +14,12 @@ from . import forms
 class IdeaListView(mixins.ProjectMixin, generic.ListView):
     model = idea_models.Idea
 
+    def get_queryset(self):
+        return super().get_queryset().filter(module=self.module) \
+            .annotate_positive_rating_count() \
+            .annotate_negative_rating_count() \
+            .annotate_comment_count()
+
 
 class IdeaDetailView(PermissionRequiredMixin, generic.DetailView):
     model = idea_models.Idea
