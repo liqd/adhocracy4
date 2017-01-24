@@ -6,3 +6,4 @@ install:
   - pip install -r requirements/dev.txt
 script:
   - py.test --cov
+  - ./scripts/polylint.sh -F
