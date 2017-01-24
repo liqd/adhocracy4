@@ -3,6 +3,9 @@ python:
   - "3.5"
 cache: pip
 install:
+  - nvm install 6
+  - npm install --only=dev
   - pip install -r requirements/dev.txt
 script:
   - py.test --cov
+  - ./scripts/polylint.sh -F
