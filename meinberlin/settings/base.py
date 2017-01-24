@@ -60,6 +60,7 @@ INSTALLED_APPS = (
     'apps.cms.apps.Config',
     'apps.users.apps.Config',
     'apps.projects.apps.Config',
+    'apps.organisations.apps.Config',
     'apps.ideas.apps.Config',
 )
 
@@ -246,7 +247,7 @@ BLEACH_LIST = {
 
 # adhocracy4
 
-A4_ORGANISATIONS_MODEL = 'a4organisations.Organisation'
+A4_ORGANISATIONS_MODEL = 'meinberlin_organisations.Organisation'
 
 A4_RATEABLES = (
     ('meinberlin_ideas', 'idea'),
@@ -255,4 +256,3 @@ A4_RATEABLES = (
 A4_COMMENTABLES = (
     ('meinberlin_ideas', 'idea'),
 )
-

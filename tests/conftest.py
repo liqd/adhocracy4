@@ -11,9 +11,9 @@ from . import factories
 register(factories.UserFactory)
 register(factories.UserFactory, 'user2')
 register(factories.AdminFactory, 'admin')
+register(factories.OrganisationFactory)
 register(factories.ContentTypeFactory)
 
-register(a4_factories.OrganisationFactory)
 register(a4_factories.ProjectFactory)
 register(a4_factories.ModuleFactory)
 register(a4_factories.PhaseFactory)
