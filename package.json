@@ -22,6 +22,7 @@
     "sass-planifolia": "xi/sass-planifolia#0.3.1"
   },
   "devDependencies": {
+    "htmlhint": "0.9.13",
     "husky": "0.11.4",
     "stylelint": "^7.5.0"
   },
