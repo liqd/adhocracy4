@@ -1,0 +1,16 @@
+.label {
+    display: inline-block;
+    background: $brand-secondary;
+    color: $text-color-inverted;
+    font-size: 60%;
+    font-weight: normal;
+    line-height: 1.8;
+    border-radius: 0.4em;
+    padding: 0 0.7em;
+    margin-left: 0.2em;
+}
+
+.label-subtle {
+    background: $bg-secondary;
+    color: $text-color;
+}

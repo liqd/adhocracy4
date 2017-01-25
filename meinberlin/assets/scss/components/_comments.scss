@@ -1,0 +1,61 @@
+.black-divider {
+    padding: 1em;
+    margin: 4em 0 2.5em;
+    color: $text-color-inverted;
+    background-color: $text-color;
+}
+
+.comment-box {
+    textarea {
+        width: 100%;
+    }
+
+    .general-form {
+        margin-bottom: $spacer * 2;
+    }
+
+    .nav {
+        margin: 0;
+        padding: 0;
+
+        > li {
+            display: inline-block;
+        }
+    }
+
+    .navbar {
+        @include pie-clearfix;
+    }
+
+    .navbar-nav {
+        float: left;
+    }
+
+    .navbar-right {
+        float: right;
+    }
+}
+
+.comment {
+    margin-bottom: $spacer * 2;
+}
+
+.comment-text {
+    margin: 0.5em 0;
+}
+
+.comment-author {
+    display: inline;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+}
+
+.comment-submission-date {
+    margin-left: 0.2em;
+}
+
+.comment-child-list {
+    margin-left: 1em;
+    margin-top: $spacer * 2;
+}
