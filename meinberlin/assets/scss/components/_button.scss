@@ -35,7 +35,7 @@
 
 .button,
 .submit-button,
-[type="button"],
+input[type="button"],
 [type="submit"] {
     @extend %buttonBase;
     @include button-color($link-color, $body-bg, $link-hover-color);
