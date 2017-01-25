@@ -3,7 +3,7 @@
 set -e -v
 
 if [ -n ${TRAVIS_SSH_SECRET} ]; then
-    SSH_ID_ARG="-i ${HOME}/id_rsa_TRAVIS"
+    SSH_ID_ARG="-i ${HOME}/id_rsa"
     cat <<EOF | openssl enc -d -pass env:TRAVIS_SSH_SECRET -aes256 -a -out ~/id_rsa
 U2FsdGVkX18gFek33yo+rurOcMd0X/k2nI21H2iNR9bkJkV9LDIG4W/hhkZEcQnh
 E+DSRdhrslEtxBAC+3+yQFIXVBCnoWAmZXIsaNZojJRxb/R/BxNXHocFX75IRt3s
