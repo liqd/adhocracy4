@@ -13,7 +13,7 @@ const CommentReplyBar = (props) => {
     childCommentCount = (
       <ul className="nav navbar-nav">
         <li className="entry">
-          <a href="#" onClick={props.showComments}>{pluralizeString(props.childCommentsLength)}</a>
+          <button onClick={props.showComments}>{pluralizeString(props.childCommentsLength)}</button>
         </li>
       </ul>
     )
@@ -24,9 +24,9 @@ const CommentReplyBar = (props) => {
     replyButton = (
       <ul className="nav navbar-nav navbar-right">
         <li className="entry">
-          <a href="#" className="icon fa-reply" onClick={props.showComments} aria-hidden="true">
+          <button className="icon fa-reply" onClick={props.showComments} aria-hidden="true">
             {django.gettext('Answer')}
-          </a>
+          </button>
         </li>
       </ul>
     )

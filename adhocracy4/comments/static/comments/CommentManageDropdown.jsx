@@ -5,12 +5,13 @@ const CommentManageDropdown = (props) => {
   return (
     <ul className="nav navbar-nav">
       <li className="dropdown">
-        <a href="#" className="dropdown-toggle icon fa-ellipsis-h" role="button"
-          aria-haspopup="true" aria-hidden="true" aria-expanded="false" data-toggle="dropdown" />
+        <button className="dropdown-toggle icon fa-ellipsis-h"
+          aria-haspopup="true" aria-hidden="true" aria-expanded="false" data-toggle="dropdown">
+        </button>
         <ul className="dropdown-menu">
           {props.renderModeratorOptions && [
             <li key="1">
-              <a href="#" onClick={props.toggleEdit} aria-hidden="true">{django.gettext('Edit')}</a>
+              <button onClick={props.toggleEdit} aria-hidden="true">{django.gettext('Edit')}</button>
             </li>,
             <li className="divider" key="2" />,
             <li key="3"><a href={`#comment_delete_${props.id}`} data-toggle="modal"
