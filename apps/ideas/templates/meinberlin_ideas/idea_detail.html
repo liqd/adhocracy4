@@ -25,11 +25,11 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-                id="veryuniqueid"
+                id="idea-{{idea.pk}}-actions"
             >
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </button>
-            <ul class="dropdown-menu" aria-labelledby="veryuniqueid">
+            <ul class="dropdown-menu" aria-labelledby="idea-{{idea.pk}}-actions">
                 <li>
                     <a href="{% url 'idea-update' slug=idea.slug %}">{% trans 'Edit' %}</a>
                 </li>
