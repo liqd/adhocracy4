@@ -67,6 +67,10 @@
         border-bottom: 0;
     }
 
+    .dropdown.show & {
+        display: block;
+    }
+
     @media print {
         display: none;
     }
