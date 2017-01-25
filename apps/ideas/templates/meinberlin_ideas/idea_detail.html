@@ -18,10 +18,18 @@
         {% has_perm 'euth_ideas.modify_idea' request.user idea as show_dropdown %}
         {% if show_dropdown %}
         <div class="resource-navigation-actions dropdown m-right">
-            <button class="dropdown-toggle" title="{% trans 'Actions' %}">
+            <button
+                title="{% trans 'Actions' %}"
+                type="button"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                id="idea-{{idea.pk}}-actions"
+            >
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </button>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" aria-labelledby="idea-{{idea.pk}}-actions">
                 <li>
                     <a href="{% url 'idea-update' slug=idea.slug %}">{% trans 'Edit' %}</a>
                 </li>
