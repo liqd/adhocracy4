@@ -5,8 +5,9 @@ const CommentManageDropdown = (props) => {
   return (
     <ul className="nav navbar-nav">
       <li className="dropdown">
-        <button className="dropdown-toggle icon fa-ellipsis-h"
-          aria-haspopup="true" aria-hidden="true" aria-expanded="false" data-toggle="dropdown">
+        <button className="dropdown-toggle" aria-haspopup="true" aria-expanded="false"
+          data-toggle="dropdown">
+          <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
         </button>
         <ul className="dropdown-menu">
           {props.renderModeratorOptions && [

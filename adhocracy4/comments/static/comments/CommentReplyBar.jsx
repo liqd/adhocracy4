@@ -24,7 +24,8 @@ const CommentReplyBar = (props) => {
     replyButton = (
       <ul className="nav navbar-nav navbar-right">
         <li className="entry">
-          <button className="icon fa-reply" onClick={props.showComments} aria-hidden="true">
+          <button onClick={props.showComments}>
+            <i className="fa fa-reply" aria-hidden="true"></i>
             {django.gettext('Answer')}
           </button>
         </li>
