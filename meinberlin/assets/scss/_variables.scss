@@ -11,10 +11,17 @@ $body-bg: #fff;
 $bg-secondary: #f6f6f6;
 $text-color: #222;
 $text-color-inverted: $body-bg;
+$text-color-introvert: lighten($text-color, 15%);
+$text-color-extrovert: darken($text-color, 10%);
 
 $link-color: $brand-primary;
 $link-hover-color: darken($link-color, 15%);
 
-$input-border-color: #ccc;
+$border-color: #ccc;
+$input-border-color: $border-color;
 
 $spacer: 1em;
+
+$font-size-lg:   1.25rem;
+$font-size-sm:   .875rem;
+$font-size-xs:   .75rem;
