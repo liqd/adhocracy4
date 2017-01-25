@@ -24,16 +24,26 @@
     }
 }
 
-.button,
-[type="button"],
-[type="submit"] {
+%buttonBase {
     @extend %inputBase;
-    @include button-color($link-color, $body-bg, $link-hover-color);
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
     line-height: 1.8;
     text-align: center;
+}
+
+.button,
+.submit-button,
+[type="button"],
+[type="submit"] {
+    @extend %buttonBase;
+    @include button-color($link-color, $body-bg, $link-hover-color);
+}
+
+.cancel-button {
+    @extend %buttonBase;
+    @include button-color($body-bg, $text-color, $bg-secondary);
 }
 
 .button--as-link {

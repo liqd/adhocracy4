@@ -5,6 +5,7 @@ var ReactRatings = require('adhocracy4').ratings
 window.jQuery = window.$ = require('jquery');
 
 var dropdown = require('bootstrap/js/src/dropdown.js');
+var modal = require('bootstrap/js/src/modal.js');
 
 module.exports = {
   'renderComment': ReactComments.renderComment,
