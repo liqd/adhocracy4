@@ -42,7 +42,7 @@ VvdAp1ZoolrTs59psnefhnVxTBGXy+ErzQU9cmr5wRXsUN06KPO+xCbGFP+KlhES
 +gj7MHKFuOhnPNezzcXFMYQWjDBO/LtIVzwT9UgwX4nF0PIr9dvEa589snWg74jO
 XLLfeOmGX6d5KL/v6FVBTg==
 EOF
-    chmod 600 ~/id_rsa_TRAVIS
+    chmod 600 ~/id_rsa
 fi
 
 ssh -p 22036 ${SSH_ID_ARG} -oStrictHostKeyChecking=no build@benhabib.liqd.net deploy meinberlin master
