@@ -11,8 +11,6 @@ $body-bg: #fff;
 $bg-secondary: #f6f6f6;
 $text-color: #222;
 $text-color-inverted: $body-bg;
-$text-color-introvert: lighten($text-color, 15%);
-$text-color-extrovert: darken($text-color, 10%);
 
 $link-color: $brand-primary;
 $link-hover-color: darken($link-color, 15%);

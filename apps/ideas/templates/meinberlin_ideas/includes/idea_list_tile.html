@@ -1,14 +1,16 @@
 <div class="listItem">
     <div class="listItem-stats">
-        <span class="rating-up is-read-only">
-            {{ idea.positive_rating_count }}
-            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+        <span class="rating">
+            <span class="rating-up is-read-only" title="Positive Ratings">
+                {{ idea.positive_rating_count }}
+                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+            </span>
+            <span class="rating-down is-read-only" title="Negative Ratings">
+                {{ idea.negative_rating_count }}
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </span>
         </span>
-        <span class="rating-down is-read-only">
-            {{ idea.negative_rating_count }}
-            <i class="fa fa-chevron-down" aria-hidden="true"></i>
-        </span>
-        <span>
+        <span title="Comments">
             {{ idea.comment_count }}
             <i class="fa fa-comment-o" aria-hidden="true"></i>
         </span>
