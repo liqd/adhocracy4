@@ -1,7 +1,29 @@
-<div class="idea-list-tile">
-    <h3>
+<div class="listItem">
+    <div class="listItem-stats">
+        <span class="rating">
+            <span class="rating-up is-read-only" title="Positive Ratings">
+                {{ idea.positive_rating_count }}
+                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+            </span>
+            <span class="rating-down is-read-only" title="Negative Ratings">
+                {{ idea.negative_rating_count }}
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </span>
+        </span>
+        <span title="Comments">
+            {{ idea.comment_count }}
+            <i class="fa fa-comment-o" aria-hidden="true"></i>
+        </span>
+    </div>
+    <h3 class="listItem-title">
         <a href="{% url 'idea-detail' idea.slug %}">
         {{ idea.name }}
         </a>
     </h3>
+    <span class="listItem-author">
+        {{ idea.creator.username }}
+    </span>
+    <span class="listItem-date">
+        {{ idea.created | date }}
+    </span>
 </div>

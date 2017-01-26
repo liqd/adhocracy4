@@ -1,0 +1,31 @@
+.listItem {
+    padding: 1em;
+    display: block;
+    position: relative;
+    margin-bottom: 1em;
+    box-shadow: 0 0 1em $border-color;
+}
+
+.listItem-author,
+.listItem-stats,
+.listItem-title {
+    margin: 0 0 0.8rem;
+}
+
+.listItem-title {
+    font-size: $font-size-lg;
+}
+
+.listItem-author {
+    font-size: $font-size-sm;
+    font-weight: bold;
+}
+
+.listItem-date {
+    font-size: $font-size-xs;
+}
+
+.listItem-stats {
+    font-size: $font-size-sm;
+    float: right;
+}
