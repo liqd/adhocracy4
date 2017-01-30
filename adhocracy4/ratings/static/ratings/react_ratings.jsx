@@ -100,11 +100,11 @@ var RatingBox = React.createClass({
     return (
       <div className="rating">
         <button className={getRatingClasses('up')} onClick={this.ratingUp}>
-          <i className="fa fa-chevron-up" />
+          <i className="fa fa-chevron-up" aria-hidden="true" />
           {this.state.positiveRatings}
         </button>
         <button className={getRatingClasses('down')} onClick={this.ratingDown}>
-          <i className="fa fa-chevron-down" />
+          <i className="fa fa-chevron-down" aria-hidden="true" />
           {this.state.negativeRatings}
         </button>
       </div>
