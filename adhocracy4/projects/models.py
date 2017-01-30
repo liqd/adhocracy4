@@ -79,7 +79,8 @@ class Project(base.TimeStampedModel):
     )
     moderators = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        related_name='project_moderator'
+        related_name='project_moderator',
+        blank=True,
     )
 
     objects = ProjectManager()
