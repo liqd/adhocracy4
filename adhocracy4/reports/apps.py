@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ReportConfig(AppConfig):
+class ReportsConfig(AppConfig):
     name = 'adhocracy4.reports'
     label = 'a4reports'
