@@ -55,7 +55,7 @@ INSTALLED_APPS = (
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.ratings.apps.RatingsConfig',
-    'adhocracy4.comments.apps.CommentConfig',
+    'adhocracy4.comments.apps.CommentsConfig',
 
     'apps.cms.apps.Config',
     'apps.users.apps.Config',
