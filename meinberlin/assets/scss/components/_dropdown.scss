@@ -23,6 +23,15 @@
     cursor: pointer;
 }
 
+.dropdown-toggle-text {
+    background: none;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid $text-color;
+    border-radius: 2px;
+}
+
 .dropdown-menu {
     display: none;
 
