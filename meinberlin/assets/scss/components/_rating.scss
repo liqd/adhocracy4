@@ -31,13 +31,13 @@
     &:focus {
         background: $color;
         border-color: $color;
-        color: $text-color-inverted;
+        color: contrast-color($color);
     }
 
     &.is-selected {
         background-color: $color;
         border-color: $color;
-        color: $text-color-inverted;
+        color: contrast-color($color);
     }
 
     &.is-read-only {

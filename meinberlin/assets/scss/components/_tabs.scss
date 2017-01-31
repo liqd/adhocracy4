@@ -9,6 +9,7 @@
 .tablist {
     overflow: hidden;
     background-color: $bg-secondary;
+    color: contrast-color($bg-secondary);
     margin-bottom: $spacer;
 }
 
@@ -30,7 +31,7 @@
 
     &.active {
         background: $body-bg;
-        color: $text-color;
+        color: contrast-color($body-bg);
         box-shadow: 0 0 1em $shadow;
     }
 }

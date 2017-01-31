@@ -1,19 +1,22 @@
-@mixin button-color($color, $color-contrast, $color-focus) {
+@mixin button-color($color, $color-active) {
+    $color-focus: mix($color, $color-active, 50%);
+    $color-contrast: contrast-color($color);
+
     border-color: $color;
     background: $color;
     color: $color-contrast;
 
     &:hover,
     &:focus {
-        border-color: mix($color, $color-focus, 50%);
-        background: mix($color, $color-focus, 50%);
-        color: $color-contrast;
+        border-color: $color-focus;
+        background: $color-focus;
+        color: contrast-color($color-focus);
     }
 
     &:active {
-        border-color: $color-focus;
-        background: $color-focus;
-        color: $color-contrast;
+        border-color: $color-active;
+        background: $color-active;
+        color: contrast-color($color-active);
     }
 
     &:disabled {
@@ -38,7 +41,7 @@
 input[type="button"],
 [type="submit"] {
     @extend %buttonBase;
-    @include button-color($link-color, $body-bg, $link-hover-color);
+    @include button-color($link-color, $link-hover-color);
 }
 
 .button--huge {
@@ -49,7 +52,7 @@ input[type="button"],
 
 .cancel-button {
     @extend %buttonBase;
-    @include button-color($body-bg, $text-color, $bg-secondary);
+    @include button-color($body-bg, $bg-secondary);
 }
 
 .button--as-link {
