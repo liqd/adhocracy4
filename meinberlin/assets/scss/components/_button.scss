@@ -41,6 +41,12 @@ input[type="button"],
     @include button-color($link-color, $body-bg, $link-hover-color);
 }
 
+.button--huge {
+    font-size: 150%;
+    display: block;
+    line-height: 2.5;
+}
+
 .cancel-button {
     @extend %buttonBase;
     @include button-color($body-bg, $text-color, $bg-secondary);
