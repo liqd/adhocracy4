@@ -36,7 +36,7 @@
     border: 1px solid $text-color;
     border-radius: 2px;
     text-align: left;
-    box-shadow: 0 0 1em rgba(black, 0.175);
+    box-shadow: 0 0 1em $shadow;
 
     li {
         display: block;

@@ -31,6 +31,6 @@
     &.active {
         background: $body-bg;
         color: $text-color;
-        box-shadow: 0 0 1em rgba(black, 0.25);
+        box-shadow: 0 0 1em $shadow;
     }
 }
