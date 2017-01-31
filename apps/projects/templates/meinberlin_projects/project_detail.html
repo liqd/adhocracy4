@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}{{view.project.name}}{% endblock %}
 
@@ -15,7 +16,7 @@
                 role="tab"
                 aria-controls="tabpanel-project-{{ view.project.pk }}-information"
                 aria-expanded="false">
-                Information
+                {% trans 'Information' %}
             </a>
             <a
                 id="#tab-project-{{ view.project.pk }}-participation"
@@ -25,7 +26,7 @@
                 role="tab"
                 aria-controls="tabpanel-project-{{ view.project.pk }}-participation"
                 aria-expanded="true">
-                Participate
+                {% trans 'Participation' %}
             </a>
             <a
                 id="#tab-project-{{ view.project.pk }}-result"
@@ -35,7 +36,7 @@
                 role="tab"
                 aria-controls="tabpanel-project-{{ view.project.pk }}-result"
                 aria-expanded="false">
-                Result
+                {% trans 'Result' %}
             </a>
         </nav>
     </div>
