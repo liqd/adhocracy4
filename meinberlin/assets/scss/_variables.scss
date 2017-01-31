@@ -20,6 +20,7 @@ $border-color: #ccc;
 $input-border-color: $border-color;
 
 $spacer: 1em;
+$padding: 1rem;
 
 $font-size-xxl: 1.95rem;
 $font-size-xl: 1.56rem;
@@ -28,3 +29,5 @@ $font-size-sm: 0.8rem;
 $font-size-xs: 0.64rem;
 
 $breakpoint: 50em;
+
+@include grid-set('gutter', $padding);

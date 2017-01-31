@@ -1,8 +1,8 @@
 .listItem {
-    padding: 1em;
+    padding: $padding;
     display: block;
     position: relative;
-    margin-bottom: 1em;
+    margin-bottom: $spacer;
     box-shadow: 0 0 1em $shadow;
 }
 
