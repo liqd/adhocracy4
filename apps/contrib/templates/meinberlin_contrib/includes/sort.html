@@ -2,7 +2,6 @@
 <div class="dropdown m-right">
     {% trans 'Sort by:' %}
     <button
-            title="{% trans 'Actions' %}"
             type="button"
             class="dropdown-toggle-text"
             data-toggle="dropdown"
@@ -13,7 +12,7 @@
         {{ view.get_current_ordering_name}}
         <i class="fa fa-caret-down" aria-hidden="true"></i>
     </button>
-    <ul class="dropdown-menu" aria-labelledby="idea-{{idea.pk}}-actions">
+    <ul class="dropdown-menu" aria-labelledby="idea-{{idea.pk}}-sorts">
         {% for ordering, ordering_name in view.orderings_supported %}
         <li>
             <a href="?ordering={{ ordering }}">{{ ordering_name }}</a>
