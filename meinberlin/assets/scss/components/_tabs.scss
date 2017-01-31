@@ -5,3 +5,32 @@
         display: block;
     }
 }
+
+.tablist {
+    overflow: hidden;
+    background-color: $bg-secondary;
+    margin-bottom: $spacer;
+}
+
+.tab {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    line-height: 3;
+    text-align: center;
+
+    @media (min-width: $breakpoint) {
+        @include grid-same-width(3);
+    }
+
+    &:hover,
+    &:focus {
+        color: $link-color;
+    }
+
+    &.active {
+        background: $body-bg;
+        color: $text-color;
+        box-shadow: 0 0 1em rgba(black, 0.25);
+    }
+}
