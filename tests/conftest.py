@@ -1,4 +1,5 @@
 import pytest
+from django import test
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
@@ -15,6 +16,11 @@ def apiclient():
 @pytest.fixture
 def image_factory():
     return img_factories.ImageFactory()
+
+
+@pytest.fixture
+def request_factory():
+    return test.RequestFactory()
 
 
 register(factories.UserFactory)
