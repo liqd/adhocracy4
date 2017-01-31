@@ -42,7 +42,7 @@ input[type="button"],
 }
 
 .button--huge {
-    font-size: 150%;
+    font-size: $font-size-lg;
     display: block;
     line-height: 2.5;
 }
