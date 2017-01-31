@@ -59,9 +59,7 @@ class ContentTypeFactory(factory.django.DjangoModelFactory):
 
 
 class ImageFactory():
-    """
-    Create a django file object containg an image.
-    """
+    """Create a django file object containg an image."""
 
     def __call__(self, resolution, image_format='JPEG', name=None):
 
