@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'ckeditor_uploader',
 
+    'adhocracy4.contrib.apps.ContribConfig',
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
     'adhocracy4.phases.apps.PhasesConfig',
