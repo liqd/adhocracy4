@@ -24,7 +24,7 @@ class SortableListView(generic.ListView):
     """Add sorting via request parameter.
 
     Fields:
-        ordering: List containing the signle default ordering string
+        ordering: List containing the single default ordering string
         orderings_supported: List of possible ordering tuples (ordering,
             ordering name)
     """
