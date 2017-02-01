@@ -38,5 +38,8 @@ class SortableListView(generic.ListView):
             self.ordering = [ordering]
         return super().dispatch(*args, **kwargs)
 
-    def get_current_ordering_name(self):
-        return dict(self.orderings_supported)[self.ordering[0]]
+    def get_ordering(self):
+        return self.ordering[0]
+
+    def get_ordering_name(self):
+        return dict(self.orderings_supported)[self.get_ordering()]
