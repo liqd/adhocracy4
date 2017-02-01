@@ -14,6 +14,7 @@ from . import forms
 
 class IdeaListView(mixins.ProjectMixin, SortableListView):
     model = idea_models.Idea
+    paginate_by = 15
     ordering = ['-created']
     orderings_supported = [
         ('-created', _('Most recent')),

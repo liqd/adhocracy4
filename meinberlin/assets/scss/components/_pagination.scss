@@ -1,0 +1,33 @@
+.pagination {
+    @include clearfix;
+    display: inline-block;
+    padding: 0;
+    padding-right: 1px;
+    background-color: $body-bg;
+}
+
+.pagination-item {
+    float: left;
+    display: inline-block;
+
+    a {
+        display: inline-block;
+        min-width: 1.4em + 2 * 0.5em;
+        margin-right: -1px;
+        padding: 0.5em;
+        border: 1px solid $border-color;
+        text-align: center;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            background-color: $bg-secondary;
+        }
+    }
+
+    &.active a {
+        background: $link-color;
+        color: contrast-color($link-color);
+        border-color: $link-color;
+    }
+}
