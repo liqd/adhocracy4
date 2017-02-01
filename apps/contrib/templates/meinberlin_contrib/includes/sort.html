@@ -1,0 +1,22 @@
+{% load i18n %}
+<div class="dropdown m-right">
+    {% trans 'Sort by:' %}
+    <button
+            type="button"
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            id="sorts"
+    >
+        {{ view.get_current_ordering_name}}
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="sorts">
+        {% for ordering, ordering_name in view.orderings_supported %}
+        <li>
+            <a href="?ordering={{ ordering }}">{{ ordering_name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

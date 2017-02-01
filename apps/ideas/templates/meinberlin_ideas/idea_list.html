@@ -8,6 +8,7 @@
         {% trans 'Submit idea' %}
     </a>
 {% endif %}
+{% include "meinberlin_contrib/includes/sort.html" %}
  <div>
     {% for idea in idea_list %}
     {% include "meinberlin_ideas/includes/idea_list_tile.html" with idea=idea %}

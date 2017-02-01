@@ -4,6 +4,7 @@ from django.utils.translation import ugettext as _
 from django.views import generic
 
 from adhocracy4.contrib.views import PermissionRequiredMixin
+from adhocracy4.contrib.views import SortableListView
 from adhocracy4.modules.models import Module
 from adhocracy4.projects import mixins
 
@@ -11,8 +12,14 @@ from . import models as idea_models
 from . import forms
 
 
-class IdeaListView(mixins.ProjectMixin, generic.ListView):
+class IdeaListView(mixins.ProjectMixin, SortableListView):
     model = idea_models.Idea
+    ordering = ['-created']
+    orderings_supported = [
+        ('-created', _('Most recent')),
+        ('-positive_rating_count', _('Most popular')),
+        ('-comment_count', _('Most commented')),
+    ]
 
     def get_queryset(self):
         return super().get_queryset().filter(module=self.module) \

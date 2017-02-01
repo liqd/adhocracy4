@@ -88,6 +88,6 @@ class UniversalPhase(phases.PhaseContent):
     features = {
         'crud': (models.Idea,),
         'comment': (models.Idea,),
-        'rate':  (models.Idea,),
+        'rate': (models.Idea,),
     }
 phases.content.register(UniversalPhase())
