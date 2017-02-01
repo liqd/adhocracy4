@@ -28,10 +28,6 @@ class IdeaListView(mixins.ProjectMixin, SortableListView):
             .annotate_negative_rating_count() \
             .annotate_comment_count()
 
-    # FIXME: remove once https://github.com/liqd/adhocracy4/pull/27 is merged
-    def get_ordering(self):
-        return self.ordering[0]
-
 
 class IdeaDetailView(PermissionRequiredMixin, generic.DetailView):
     model = idea_models.Idea
