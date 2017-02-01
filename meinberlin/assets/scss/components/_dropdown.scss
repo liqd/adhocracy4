@@ -16,11 +16,15 @@
     appearance: none;
     background: none;
     border: 0;
-    font-size: 120%;
     display: inline-block;
-    width: 1.4em;
+    min-width: 1.4em;
     text-align: center;
     cursor: pointer;
+    font-size: inherit;
+
+    i {
+        font-size: 120%;
+    }
 }
 
 .dropdown-menu {
