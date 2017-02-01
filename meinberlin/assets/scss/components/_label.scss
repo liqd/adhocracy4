@@ -1,8 +1,8 @@
 .label {
     display: inline-block;
     background: $brand-secondary;
-    color: $text-color-inverted;
-    font-size: 60%;
+    color: contrast-color($brand-secondary);
+    font-size: $font-size-xs;
     font-weight: normal;
     line-height: 1.8;
     border-radius: 0.4em;
@@ -12,5 +12,5 @@
 
 .label-subtle {
     background: $bg-secondary;
-    color: $text-color;
+    color: contrast-color($bg-secondary);
 }

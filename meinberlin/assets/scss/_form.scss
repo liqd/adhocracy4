@@ -17,7 +17,7 @@ select {
     @extend %inputBase;
     display: block;
     background: $bg-secondary;
-    color: $text-color;
+    color: contrast-color($bg-secondary);
 
     &:invalid {
         border-color: $brand-danger;

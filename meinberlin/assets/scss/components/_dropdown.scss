@@ -23,7 +23,7 @@
     font-size: inherit;
 
     i {
-        font-size: 120%;
+        font-size: $font-size-lg;
     }
 }
 
@@ -36,11 +36,12 @@
     padding: 0;
     margin: 0;
     z-index: 1;
-    background-color: $text-color-inverted;
+    background-color: $body-bg;
+    color: contrast-color($body-bg);
     border: 1px solid $text-color;
     border-radius: 2px;
     text-align: left;
-    box-shadow: 0 0 1em rgba(black, 0.175);
+    box-shadow: 0 0 1em $shadow;
 
     li {
         display: block;
@@ -49,7 +50,7 @@
     a {
         display: block;
         padding: 0.5em;
-        color: $text-color;
+        color: inherit;
         border-bottom: 1px solid $text-color;
         white-space: nowrap;
         text-decoration: none;
@@ -57,8 +58,8 @@
         &:hover,
         &:focus {
             text-decoration: none;
-            color: $brand-secondary;
             background-color: $bg-secondary;
+            color: $brand-secondary;
         }
 
         i {

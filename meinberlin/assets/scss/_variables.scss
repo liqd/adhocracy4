@@ -11,6 +11,7 @@ $body-bg: #fff;
 $bg-secondary: #f6f6f6;
 $text-color: #222;
 $text-color-inverted: $body-bg;
+$shadow: rgba(#000, 0.25);
 
 $link-color: $brand-primary;
 $link-hover-color: darken($link-color, 15%);
@@ -19,9 +20,18 @@ $border-color: #ccc;
 $input-border-color: $border-color;
 
 $spacer: 1em;
+$padding: 1rem;
 
-$font-size-lg:   1.25rem;
-$font-size-sm:   .875rem;
-$font-size-xs:   .75rem;
+$font-family-sans-serif: "Arial", "Helvetica", sans-serif;
+
+$font-size-xxl: 1.95rem;
+$font-size-xl: 1.56rem;
+$font-size-lg: 1.25rem;
+$font-size-sm: 0.8rem;
+$font-size-xs: 0.64rem;
 
 $breakpoint: 50em;
+
+@include grid-set('gutter', $padding);
+$planifolia-contrast-dark-default: $text-color;
+$planifolia-contrast-light-default: $text-color-inverted;

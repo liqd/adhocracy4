@@ -4,7 +4,7 @@
 {% block phase_content %}
 {% has_perm 'meinberlin_ideas.propose_idea' request.user view.module as propose_allowed %}
 {% if propose_allowed %}
-    <a href="{% url 'idea-create' slug=view.module.slug %}">
+    <a href="{% url 'idea-create' slug=view.module.slug %}" class="button button--huge">
         {% trans 'Submit idea' %}
     </a>
 {% endif %}

@@ -1,9 +1,9 @@
 .listItem {
-    padding: 1em;
+    padding: $padding;
     display: block;
     position: relative;
-    margin-bottom: 1em;
-    box-shadow: 0 0 1em $border-color;
+    margin-bottom: $spacer;
+    box-shadow: 0 0 1em $shadow;
 }
 
 .listItem-author,
