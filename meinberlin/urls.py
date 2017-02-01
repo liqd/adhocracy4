@@ -1,4 +1,4 @@
-"""meinberlin URL Configuration"""
+"""meinberlin URL Configuration."""
 
 from allauth import urls as allauth_urls
 from ckeditor_uploader import views as ck_views
