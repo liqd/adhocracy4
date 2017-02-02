@@ -1,0 +1,17 @@
+{% extends 'meinberlin_projects/project_detail.html' %}
+{% load i18n rules %}
+
+{% block phase_content %}
+<div>
+    {% has_perm 'meinberlin_documents.create' request.user view.module as show_create_form %}
+    {% if show_create_form %}
+
+    React Editor
+
+    {% else %}
+
+    {% trans 'Document is beeing created.' %}
+
+    {% endif %}
+</div>
+{% endblock %}

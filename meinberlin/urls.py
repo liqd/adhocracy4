@@ -16,6 +16,8 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.projects import urls as projects_urls
 from adhocracy4.ratings.api import RatingViewSet
+
+from apps.documents import urls as paragraph_urls
 from apps.ideas import urls as ideas_urls
 
 js_info_dict = {
@@ -33,8 +35,10 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^accounts/', include(allauth_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'^ideas/', include(ideas_urls)),
     url(r'^projects/', include(projects_urls)),
+
+    url(r'^ideas/', include(ideas_urls)),
+    url(r'^paragraphs/', include(paragraph_urls)),
 
     url(r'^api/', include(router.urls)),
 
