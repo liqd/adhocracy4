@@ -19,7 +19,9 @@
         <h1 class="paragraph-title">
             {{ paragraph.name }}
         </h1>
-        <p>{{ paragraph.text | safe }}</p>
+        <div class="paragraph-body">
+            {{ paragraph.text | safe }}
+        </div>
     </article>
 
 {% react_comments paragraph %}

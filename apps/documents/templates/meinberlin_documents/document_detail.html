@@ -4,16 +4,14 @@
 {% block phase_content %}
 <div class="document">
     <article>
-        <header>
-            <h1>{{ object.name }}</h1>
-        </header>
+        <h1>{{ object.name }}</h1>
 
         {% for paragraph in object.paragraphs.all %}
 
         <section class="paragraph">
-            <h3 class="paragraph-title">
+            <h2 class="paragraph-title">
                 {{ paragraph.name }}
-            </h3>
+            </h2>
             <div class="paragraph-comments">
                 <a
                     title="{% trans 'Comments for Paragraph' %}"
@@ -23,9 +21,9 @@
                     <i class="fa fa-comment-o" aria-hidden="true"></i>
                 </a>
             </div>
-            <p>
+            <div class="paragraph-body">
                 {{ paragraph.text|safe }}
-            </p>
+            </div>
 
             <a href="{% url 'paragraph-detail' paragraph.pk %}">{% trans 'Comments for Paragraph' %}</a>
         </section>
