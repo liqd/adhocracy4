@@ -1,0 +1,32 @@
+.commenting {
+    margin-bottom: $spacer;
+}
+
+.commenting-content {
+    padding-right: $padding;
+    border-right: 1px solid $brand-primary;
+}
+
+.commenting-actions {
+    text-align: right;
+}
+
+.commenting-title {
+    margin-top: 0;
+    font-size: 100%;
+}
+
+@media (min-width: $breakpoint) {
+    .commenting {
+        @include clearfix;
+    }
+
+    .commenting-content {
+        @include grid-span(9, 0);
+    }
+
+    .commenting-actions {
+        @include grid-span(3, 9);
+        text-align: left;
+    }
+}
