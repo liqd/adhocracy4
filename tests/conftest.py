@@ -18,11 +18,6 @@ def image_factory():
     return img_factories.ImageFactory()
 
 
-@pytest.fixture
-def request_factory():
-    return test.RequestFactory()
-
-
 register(factories.UserFactory)
 register(factories.AdminFactory, 'admin')
 register(factories.UserFactory, 'another_user')
