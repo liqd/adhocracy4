@@ -78,12 +78,18 @@ var ParagraphBox = React.createClass({
     })
   },
   updateParagraphName: function (index, name) {
-    // deliberatly not call setState, because otherwise jkEditor reload/flicker
-    this.state.paragraphs[index].name = name
+    var diff = {}
+    diff[index] = {$merge: {name: name}}
+    this.setState({
+      paragraphs: update(this.state.paragraphs, diff)
+    })
   },
   updateParagraphText: function (index, text) {
-    // deliberatly not call setState, because otherwise jkEditor reload/flicker
-    this.state.paragraphs[index].text = text
+    var diff = {}
+    diff[index] = {$merge: {text: text}}
+    this.setState({
+      paragraphs: update(this.state.paragraphs, diff)
+    })
   },
   submitDocument: function (e) {
     if (e) {
@@ -139,9 +145,6 @@ var ParagraphBox = React.createClass({
           successMessage: django.gettext('Your document has been saved.')
         })
       }.bind(this))
-  },
-  shouldComponentUpdate: function (nextProps, nextState) {
-    return !(nextState.name !== this.state.name)
   },
   getErrors: function (index) {
     return this.state.paragraphsErrors[index]
