@@ -8,24 +8,23 @@
 
         {% for paragraph in object.paragraphs.all %}
 
-        <section class="paragraph">
-            <h2 class="paragraph-title">
-                {{ paragraph.name }}
-            </h2>
-            <div class="paragraph-comments">
+        <section class="commenting">
+            <div class="commenting-content">
+                <h2 class="commenting-title">
+                    {{ paragraph.name }}
+                </h2>
+                {{ paragraph.text|safe }}
+            </div>
+            <div class="commenting-actions">
                 <a
-                    title="{% trans 'Comments for Paragraph' %}"
+                    class="button"
+                    title="{% trans 'Comments for this Paragraph' %}"
                     href="{% url 'paragraph-detail' paragraph.pk %}"
                 >
                     {{ paragraph.comments.all|length }}
                     <i class="fa fa-comment-o" aria-hidden="true"></i>
                 </a>
             </div>
-            <div class="paragraph-body">
-                {{ paragraph.text|safe }}
-            </div>
-
-            <a href="{% url 'paragraph-detail' paragraph.pk %}">{% trans 'Comments for Paragraph' %}</a>
         </section>
 
         {% endfor %}
