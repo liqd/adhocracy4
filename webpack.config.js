@@ -1,7 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
-var path = require('path')
-var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
+var webpack = require('webpack')
+var autoprefixer = require('autoprefixer')
 
 module.exports = {
   entry: {
