@@ -47,10 +47,14 @@ var Paragraph = React.createClass({
     }
   },
   componentWillUpdate: function (nextProps) {
-    this.ckEditorDestroy()
+    if (nextProps.index > this.props.index) {
+      this.ckEditorDestroy()
+    }
   },
   componentDidUpdate: function (prevProps) {
-    this.ckEditorCreate()
+    if (this.props.index > prevProps.index) {
+      this.ckEditorCreate()
+    }
   },
   componentDidMount: function () {
     this.ckEditorCreate()
