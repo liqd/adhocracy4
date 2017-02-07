@@ -3,6 +3,8 @@
 var ReactComments = require('adhocracy4').comments
 var ReactRatings = require('adhocracy4').ratings
 
+var ReactParagraphs = require('../../../apps/documents/assets/ParagraphBox.jsx')
+
 // make jquery available for non-webpack js
 window.jQuery = window.$ = require('jquery')
 
@@ -12,5 +14,6 @@ var tab = require('bootstrap/js/src/tab.js')
 
 module.exports = {
   'renderComment': ReactComments.renderComment,
-  'renderRatings': ReactRatings.renderRatings
+  'renderRatings': ReactRatings.renderRatings,
+  'renderParagraphs': ReactParagraphs.renderParagraphs
 }
