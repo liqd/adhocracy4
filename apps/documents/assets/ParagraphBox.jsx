@@ -4,6 +4,7 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var update = require('react-addons-update')
 var django = require('django')
+var FlipMove = require('react-flip-move')
 
 var ParagraphBox = React.createClass({
   getInitialState: function () {
@@ -155,26 +156,28 @@ var ParagraphBox = React.createClass({
             defaultValue={this.state.name}
             onChange={this.handleDocumentNameChange} />
         </label>
-        {
-          this.state.paragraphs.map(function (paragraph, index) {
-            return (
-              <Paragraph
-                key={paragraph.paragraph_key || paragraph.id}
-                id={paragraph.paragraph_key || paragraph.id}
-                index={index}
-                paragraph={paragraph}
-                errors={this.getErrors(index)}
-                config={this.props.config}
-                deleteParagraph={this.deleteParagraph}
-                moveParagraphUp={index !== 0 ? this.moveParagraphUp : null}
-                moveParagraphDown={index < this.state.paragraphs.length - 1 ? this.moveParagraphDown : null}
-                addParagraphBeforeIndex={this.addParagraphBeforeIndex}
-                updateParagraphName={this.updateParagraphName}
-                updateParagraphText={this.updateParagraphText}
-              />
-            )
-          }.bind(this))
-        }
+        <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
+          {
+            this.state.paragraphs.map(function (paragraph, index) {
+              return (
+                <Paragraph
+                  key={paragraph.paragraph_key || paragraph.id}
+                  id={paragraph.paragraph_key || paragraph.id}
+                  index={index}
+                  paragraph={paragraph}
+                  errors={this.getErrors(index)}
+                  config={this.props.config}
+                  deleteParagraph={this.deleteParagraph}
+                  moveParagraphUp={index !== 0 ? this.moveParagraphUp : null}
+                  moveParagraphDown={index < this.state.paragraphs.length - 1 ? this.moveParagraphDown : null}
+                  addParagraphBeforeIndex={this.addParagraphBeforeIndex}
+                  updateParagraphName={this.updateParagraphName}
+                  updateParagraphText={this.updateParagraphText}
+                />
+              )
+            }.bind(this))
+          }
+        </FlipMove>
         <button
           className="button"
           onClick={this.appendParagraph}

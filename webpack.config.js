@@ -17,7 +17,8 @@ module.exports = {
       'moment/locale/de.js',
       'react',
       'react-addons-update',
-      'react-dom'
+      'react-dom',
+      'react-flip-move'
     ]
   },
   devtool: 'eval',
