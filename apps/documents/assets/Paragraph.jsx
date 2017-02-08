@@ -59,6 +59,7 @@ var Paragraph = React.createClass({
     this.ckEditorCreate()
   },
   render: function () {
+    var ckEditorToolbarsHeight = 60  // measured on example editor
     return (
       <div>
         <button
@@ -93,6 +94,8 @@ var Paragraph = React.createClass({
             data-field-id={'id_paragraphs-' + this.props.id + '-text'}
             style={{display: 'inline-block'}}>
             <textarea
+              // fix height to avoid jumping on ckeditor initalization
+              style={{height: this.props.config.height + ckEditorToolbarsHeight}}
               id={'id_paragraphs-' + this.props.id + '-text'} />
             { this.props.errors && this.props.errors.text ? <ul className="errorlist">
               <li>{this.props.errors.text[0]}</li>
