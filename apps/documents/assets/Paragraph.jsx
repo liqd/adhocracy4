@@ -65,48 +65,50 @@ var Paragraph = React.createClass({
   render: function () {
     var ckEditorToolbarsHeight = 60  // measured on example editor
     return (
-      <div>
+      <section>
         <button
-          className="button"
+          className="button button--full"
           onClick={this.add}
           type="button">
           <i className="fa fa-plus" /> {django.gettext('add a new paragraph')}
         </button>
 
-        <div className="commenting-paragraph">
-          <label
-            htmlFor={'id_paragraphs-' + this.props.id + '-name'}>
-            {django.gettext('Headline:')}
-          </label>
-          <input
-            className="form-control"
-            id={'id_paragraphs-' + this.props.id + '-name'}
-            name={'paragraphs-' + this.props.id + '-name'}
-            type="text"
-            defaultValue={this.props.paragraph.name}
-            onChange={this.handleNameChange} />
-          {this.props.errors && this.props.errors.name ? <ul className="errorlist">
-            <li>{this.props.errors.name[0]}</li>
-          </ul> : null}
+        <div className="commenting">
+          <div className="commenting-content">
+            <label
+              htmlFor={'id_paragraphs-' + this.props.id + '-name'}>
+              {django.gettext('Headline:')}
+            </label>
+            <input
+              className="form-control"
+              id={'id_paragraphs-' + this.props.id + '-name'}
+              name={'paragraphs-' + this.props.id + '-name'}
+              type="text"
+              defaultValue={this.props.paragraph.name}
+              onChange={this.handleNameChange} />
+            {this.props.errors && this.props.errors.name ? <ul className="errorlist">
+              <li>{this.props.errors.name[0]}</li>
+            </ul> : null}
 
-          <label
-            htmlFor={'id_paragraphs-' + this.props.id + '-text'}>
-            {django.gettext('Paragraph:')}
-          </label>
-          <div
-            className="django-ckeditor-widget"
-            data-field-id={'id_paragraphs-' + this.props.id + '-text'}
-            style={{display: 'inline-block'}}>
-            <textarea
-              // fix height to avoid jumping on ckeditor initalization
-              style={{height: this.props.config.height + ckEditorToolbarsHeight}}
-              id={'id_paragraphs-' + this.props.id + '-text'} />
-            { this.props.errors && this.props.errors.text ? <ul className="errorlist">
-              <li>{this.props.errors.text[0]}</li>
-            </ul> : null }
+            <label
+              htmlFor={'id_paragraphs-' + this.props.id + '-text'}>
+              {django.gettext('Paragraph:')}
+            </label>
+            <div
+              className="django-ckeditor-widget"
+              data-field-id={'id_paragraphs-' + this.props.id + '-text'}
+              style={{display: 'inline-block'}}>
+              <textarea
+                // fix height to avoid jumping on ckeditor initalization
+                style={{height: this.props.config.height + ckEditorToolbarsHeight}}
+                id={'id_paragraphs-' + this.props.id + '-text'} />
+              { this.props.errors && this.props.errors.text ? <ul className="errorlist">
+                <li>{this.props.errors.text[0]}</li>
+              </ul> : null }
+            </div>
           </div>
 
-          <div className="action-bar">
+          <div className="commenting-actions buttonGroup">
             <button
               className="button"
               onClick={this.up}
@@ -129,7 +131,7 @@ var Paragraph = React.createClass({
             </button>
           </div>
         </div>
-      </div>
+      </section>
     )
   }
 })

@@ -182,7 +182,7 @@ var ParagraphBox = React.createClass({
           }
         </FlipMove>
         <button
-          className="button"
+          className="button button--full"
           onClick={this.appendParagraph}
           type="button">
           <i className="fa fa-plus" /> {django.gettext('add a new paragraph')}
