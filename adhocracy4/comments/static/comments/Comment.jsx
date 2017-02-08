@@ -151,6 +151,7 @@ var Comment = React.createClass({
               parentIndex={this.props.index}
               handleCommentDelete={this.props.handleCommentDelete}
               handleCommentModify={this.props.handleCommentModify}
+              isReadOnly={this.props.isReadOnly}
             />
             <CommentForm
               subjectType={this.context.comments_contenttype}
