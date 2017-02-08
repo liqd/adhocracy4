@@ -46,6 +46,31 @@ h6 {
     line-height: 1.2;
     margin-bottom: 0.8rem;
     margin-top: 1.5 * $spacer;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: $font-size-xxl;
+}
+
+h2 {
+    font-size: $font-size-xl;
+}
+
+h3 {
+    font-size: $font-size-lg;
+}
+
+h4 {
+    font-size: inherit;
+}
+
+h5 {
+    font-size: $font-size-sm;
+}
+
+h6 {
+    font-size: $font-size-xs;
 }
 
 a {
