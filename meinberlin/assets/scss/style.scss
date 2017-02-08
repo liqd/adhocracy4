@@ -27,6 +27,8 @@
 @import 'components/list_item';
 @import 'components/tabs';
 
-main {
-    padding: 0 16%;
+.l-wrapper {
+    margin: 0 auto;
+    max-width: 50rem;
+    position: relative;
 }
