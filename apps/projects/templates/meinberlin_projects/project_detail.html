@@ -4,6 +4,7 @@
 {% block title %}{{view.project.name}}{% endblock %}
 
 {% block content %}
+<div class="l-wrapper">
     <div class="resource-header">
         <h1 class="resource-header-title">{{ view.project.name }}</h1>
 
@@ -65,4 +66,5 @@
         aria-expanded="false">
         {{ view.project.result | safe }}
     </div>
+</div>
 {% endblock %}

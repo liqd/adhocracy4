@@ -2,7 +2,7 @@
 {% load i18n react_comments react_ratings %}
 
 {% block content %}
-<div>
+<div class="l-wrapper">
     <div class="resource-navigation">
         <nav class="resource-navigation-breadcrumbs breadcrumbs">
             <ul>
@@ -24,7 +24,7 @@
         </div>
     </article>
 
-{% react_comments paragraph %}
+    {% react_comments paragraph %}
 
 </div>
 {% endblock %}
