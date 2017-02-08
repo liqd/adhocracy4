@@ -18,6 +18,7 @@ from adhocracy4.projects import urls as projects_urls
 from adhocracy4.ratings.api import RatingViewSet
 
 from apps.documents import urls as paragraph_urls
+from apps.documents.api import DocumentViewSet
 from apps.ideas import urls as ideas_urls
 
 js_info_dict = {
@@ -27,6 +28,7 @@ js_info_dict = {
 router = routers.DefaultRouter()
 router.register(r'ratings', RatingViewSet, base_name='ratings')
 router.register(r'comments', CommentViewSet, base_name='comments')
+router.register(r'documents', DocumentViewSet, base_name='documents')
 
 
 urlpatterns = [
