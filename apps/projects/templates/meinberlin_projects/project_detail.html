@@ -4,67 +4,75 @@
 {% block title %}{{view.project.name}}{% endblock %}
 
 {% block content %}
+<div class="resource-header">
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            <h1 class="resource-header-title">{{ view.project.name }}</h1>
+        </div>
+    </div>
+</div>
+
 <div class="l-wrapper">
-    <div class="resource-header">
-        <h1 class="resource-header-title">{{ view.project.name }}</h1>
+    <nav class="tablist" role="tablist">
+        <a
+            id="#tab-project-{{ view.project.pk }}-information"
+            class="tab"
+            data-toggle="tab"
+            href="#tabpanel-project-{{ view.project.pk }}-information"
+            role="tab"
+            aria-controls="tabpanel-project-{{ view.project.pk }}-information"
+            aria-expanded="false">
+            {% trans 'Information' %}
+        </a>
+        <a
+            id="#tab-project-{{ view.project.pk }}-participation"
+            class="tab active"
+            data-toggle="tab"
+            href="#tabpanel-project-{{ view.project.pk }}-participation"
+            role="tab"
+            aria-controls="tabpanel-project-{{ view.project.pk }}-participation"
+            aria-expanded="true">
+            {% trans 'Participation' %}
+        </a>
+        <a
+            id="#tab-project-{{ view.project.pk }}-result"
+            class="tab"
+            data-toggle="tab"
+            href="#tabpanel-project-{{ view.project.pk }}-result"
+            role="tab"
+            aria-controls="tabpanel-project-{{ view.project.pk }}-result"
+            aria-expanded="false">
+            {% trans 'Result' %}
+        </a>
+    </nav>
+</div>
 
-        <nav class="tablist" role="tablist">
-            <a
-                id="#tab-project-{{ view.project.pk }}-information"
-                class="tab"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ view.project.pk }}-information"
-                role="tab"
-                aria-controls="tabpanel-project-{{ view.project.pk }}-information"
-                aria-expanded="false">
-                {% trans 'Information' %}
-            </a>
-            <a
-                id="#tab-project-{{ view.project.pk }}-participation"
-                class="tab active"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ view.project.pk }}-participation"
-                role="tab"
-                aria-controls="tabpanel-project-{{ view.project.pk }}-participation"
-                aria-expanded="true">
-                {% trans 'Participation' %}
-            </a>
-            <a
-                id="#tab-project-{{ view.project.pk }}-result"
-                class="tab"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ view.project.pk }}-result"
-                role="tab"
-                aria-controls="tabpanel-project-{{ view.project.pk }}-result"
-                aria-expanded="false">
-                {% trans 'Result' %}
-            </a>
-        </nav>
-    </div>
-
-    <div
-        class="tabpanel"
-        id="tabpanel-project-{{ view.project.pk }}-information"
-        role="tabpanel"
-        aria-labelledby="tab-project-{{ view.project.pk }}-information"
-        aria-expanded="false">
-        {{ view.project.information | safe }}
-    </div>
-    <div
-        class="tabpanel active"
-        id="tabpanel-project-{{ view.project.pk }}-participation"
-        role="tabpanel"
-        aria-labelledby="tab-project-{{ view.project.pk }}-participation"
-        aria-expanded="true">
-        {% block phase_content %}{% endblock %}
-    </div>
-    <div
-        class="tabpanel"
-        id="tabpanel-project-{{ view.project.pk }}-result"
-        role="tabpanel"
-        aria-labelledby="tab-project-{{ view.project.pk }}-result"
-        aria-expanded="false">
-        {{ view.project.result | safe }}
+<div class="l-wrapper">
+    <div class="l-center-8">
+        <div
+            class="tabpanel"
+            id="tabpanel-project-{{ view.project.pk }}-information"
+            role="tabpanel"
+            aria-labelledby="tab-project-{{ view.project.pk }}-information"
+            aria-expanded="false">
+            {{ view.project.information | safe }}
+        </div>
+        <div
+            class="tabpanel active"
+            id="tabpanel-project-{{ view.project.pk }}-participation"
+            role="tabpanel"
+            aria-labelledby="tab-project-{{ view.project.pk }}-participation"
+            aria-expanded="true">
+            {% block phase_content %}{% endblock %}
+        </div>
+        <div
+            class="tabpanel"
+            id="tabpanel-project-{{ view.project.pk }}-result"
+            role="tabpanel"
+            aria-labelledby="tab-project-{{ view.project.pk }}-result"
+            aria-expanded="false">
+            {{ view.project.result | safe }}
+        </div>
     </div>
 </div>
 {% endblock %}

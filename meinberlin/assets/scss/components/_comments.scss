@@ -6,6 +6,8 @@
 }
 
 .comment-box {
+    @extend .l-center-6;
+
     textarea {
         width: 100%;
     }

@@ -3,8 +3,8 @@
 
 {% block title %}{{idea.name}}{% endblock %}
 {% block content %}
-<div class="l-wrapper idea">
-    <div class="resource-navigation">
+<div class="resource-navigation">
+    <div class="l-wrapper">
         <nav class="resource-navigation-breadcrumbs breadcrumbs">
             <ul>
                 <li>
@@ -40,21 +40,31 @@
         </div>
         {% endif %}
     </div>
+</div>
 
-    <div class="resource-header">
-        <h1 class="resource-header-title">{{ idea.name }}</h1>
+<div class="resource-header">
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            <h1 class="resource-header-title">{{ idea.name }}</h1>
 
-        <div class="resource-header-meta">{{ idea.creator.username }}</div>
+            <div class="resource-header-meta">{{ idea.creator.username }}</div>
 
-        <div class="resource-header-action">
-            {% react_ratings idea %}
+            <div class="resource-header-action">
+                {% react_ratings idea %}
+            </div>
         </div>
     </div>
+</div>
 
-    <div class="idea-description">
-        {{ idea.description | safe }}
+<div class="idea-description">
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            {{ idea.description | safe }}
+        </div>
     </div>
+</div>
 
+<div class="l-wrapper">
     {% react_comments idea %}
 </div>
 {% endblock %}
