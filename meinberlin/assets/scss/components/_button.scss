@@ -29,11 +29,14 @@
 
 %buttonBase {
     @extend %inputBase;
+    border-radius: 0.3em;
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-    line-height: 1.8;
     text-align: center;
+    font-weight: bold;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 .button,
