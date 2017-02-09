@@ -1,5 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var webpack = require('webpack')
+var path = require('path')
 var autoprefixer = require('autoprefixer')
 
 module.exports = {
@@ -63,7 +64,12 @@ module.exports = {
     extensions: ['', '.js', '.jsx', '.scss', '.css'],
     alias: {
       'jquery$': 'jquery/dist/jquery.min.js'
-    }
+    },
+    // when using `npm link`, dependencies are resolved against the linked
+    // folder by default. This may result in dependencies being included twice.
+    // Setting `resolve.root` forces webpack to resolve all dependencies
+    // against the local directory.
+    root: path.resolve('./node_modules')
   },
   plugins: [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
