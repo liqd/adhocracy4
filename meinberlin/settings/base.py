@@ -63,6 +63,7 @@ INSTALLED_APPS = (
     'apps.users.apps.Config',
     'apps.projects.apps.Config',
     'apps.organisations.apps.Config',
+    'apps.dashboard.apps.Config',
 
     'apps.ideas.apps.Config',
     'apps.documents.apps.Config',

@@ -1,0 +1,21 @@
+{% extends "meinberlin_dashboard/dashboard_base.html" %}
+{% load i18n %}
+
+{% block dashboard_content %}
+
+<div>
+
+    {% if project_list|length == 0 %}
+
+    {% trans 'No projects created' %}
+
+    {% else %}
+
+    {% for project in project_list %}
+        {% include "meinberlin_dashboard/includes/project_list_tile.html" with project=project %}
+    {% endfor %}
+
+    {% endif %}
+
+</div>
+{% endblock %}
