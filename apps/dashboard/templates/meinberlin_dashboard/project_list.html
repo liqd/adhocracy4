@@ -4,6 +4,10 @@
 {% block dashboard_content %}
 
 <div>
+    <span class="menuLayout-title">{% trans "Projects" %}</span>
+    <a href="{% url 'dashboard-blueprint-list' organisation_slug=view.organisation.slug %}" class="button">
+        {% trans 'New Project' %}
+    </a>
 
     {% if project_list|length == 0 %}
 

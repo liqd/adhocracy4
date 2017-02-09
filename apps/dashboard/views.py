@@ -8,6 +8,7 @@ from adhocracy4.contrib.views import PermissionRequiredMixin
 from adhocracy4.projects import models as project_models
 
 from apps.organisations.models import Organisation
+from . import blueprints
 
 
 class DashboardBaseMixin(mixins.LoginRequiredMixin,
@@ -29,6 +30,9 @@ class DashboardBaseMixin(mixins.LoginRequiredMixin,
         else:
             return None
 
+    def get_permission_object(self):
+        return self.organisation
+
 
 class DashboardProjectListView(DashboardBaseMixin,
                                PermissionRequiredMixin,
@@ -36,15 +40,19 @@ class DashboardProjectListView(DashboardBaseMixin,
     model = project_models.Project
     template_name = 'meinberlin_dashboard/project_list.html'
     permission_required = 'meinberlin_organisations.initiate_project'
-    menu_item = 'project'
 
     def get_queryset(self):
         return self.model.objects.filter(
             organisation=self.organisation
         )
 
-    def get_permission_object(self):
-        return self.organisation
-
     def get_success_url(self):
         return reverse('dashboard-project-list')
+
+
+class DashboardBlueprintListView(DashboardBaseMixin,
+                                 PermissionRequiredMixin,
+                                 generic.TemplateView):
+    template_name = 'meinberlin_dashboard/blueprint_list.html'
+    blueprints = blueprints.blueprints
+    permission_required = 'meinberlin_organisations.initiate_project'
