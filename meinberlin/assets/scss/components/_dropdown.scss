@@ -1,14 +1,14 @@
 .dropdown {
     position: relative;
     text-align: left;
+}
 
-    &.m-right {
-        text-align: right;
+.dropdown--right {
+    text-align: right;
 
-        .dropdown-menu {
-            left: auto;
-            right: 0;
-        }
+    .dropdown-menu {
+        left: auto;
+        right: 0;
     }
 }
 

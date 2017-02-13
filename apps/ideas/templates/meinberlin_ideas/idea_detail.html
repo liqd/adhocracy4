@@ -17,7 +17,7 @@
 
         {% has_perm 'euth_ideas.modify_idea' request.user idea as show_dropdown %}
         {% if show_dropdown %}
-        <div class="resource-navigation-actions dropdown m-right">
+        <div class="resource-navigation-actions dropdown dropdown--right">
             <button
                 title="{% trans 'Actions' %}"
                 type="button"
