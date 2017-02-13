@@ -100,7 +100,9 @@ ul {
 
 @media print {
     html {
+        // stylelint-disable scale-unlimited/declaration-strict-value
         background: transparent;
         color: #000;  // Black prints faster:
+        // stylelint-enable
     }
 }
