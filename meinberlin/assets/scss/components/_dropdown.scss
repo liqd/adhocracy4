@@ -70,8 +70,8 @@
         }
     }
 
-    :last-child a,
-    :last-child button {
+    li:last-child > a,
+    li:last-child > button {
         border-bottom: 0;
     }
 
