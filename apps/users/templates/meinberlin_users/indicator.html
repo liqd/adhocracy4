@@ -1,13 +1,63 @@
 {% load i18n %}
 
-{% if request.user.is_authenticated %}
-    <span>{{ request.user.username }}</span>
-    <form class="form--inline" action="{% url 'account_logout' %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ redirect_field_value }}">
-        <button type="submit" class="button--as-link">{% trans "logout" %}</button>
-    </form>
-{% else %}
-    <a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "login" %}</a>
-    <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "register" %}</a>
-{% endif %}
+<div class="dropdown">
+
+    {% if request.user.is_authenticated %}
+
+    <button
+            type="button"
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            id="user-actions"
+    >
+        {{ request.user.username }}
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="user-settings">
+
+        {% for organisation in request.user.organisations %}
+
+        <li>
+            <a href="{% url 'dashboard-project-list' organisation_slug=organisation.slug %}">
+                "{{ organisation.name }}" {% trans "Dashboard" %}
+            </a>
+        </li>
+
+        {% endfor %}
+
+        <li>
+            <form class="form--inline" action="{% url 'account_logout' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ redirect_field_value }}">
+                <button type="submit" class="button--as-link">{% trans "Logout" %}</button>
+            </form>
+        </li>
+    </ul>
+
+    {% else %}
+
+    <button
+            type="button"
+            class="dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            id="login-register"
+    >
+        {% trans "Login/Register" %}
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="user-settings">
+        <li>
+            <a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a>
+        </li>
+        <li>
+            <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a>
+        </li>
+    </ul>
+
+    {% endif %}
+</div>
+

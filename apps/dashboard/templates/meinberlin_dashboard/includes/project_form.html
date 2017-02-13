@@ -1,0 +1,23 @@
+{% load i18n %}
+
+<form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    {% csrf_token %}
+    {{ form.media }}
+
+
+    {% include 'meinberlin_dashboard/includes/project_form_tablist.html' with form=form view=view %}
+
+    {% include 'meinberlin_dashboard/includes/project_form_tab_info.html' with form=form view=view %}
+
+    {% include 'meinberlin_dashboard/includes/project_form_tab_participate.html' with form=form view=view %}
+
+    {% include 'meinberlin_dashboard/includes/project_form_tab_result.html' with form=form view=view %}
+
+    {% if not project or project.is_draft %}
+        <input type="submit" name="save_draft" value="{% trans 'Save Draft'%}" />
+    {% else %}
+        <input type="submit" name="save_draft" value="{% trans 'Unpublish'%}" />
+    {% endif %}
+    <input type="submit" name="publish" value="{% trans 'Save and Publish'%}" />
+
+</form>
