@@ -1,14 +1,19 @@
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.utils import functional
+from django.utils.translation import ugettext as _
 from django.views import generic
 from rules.compat import access_mixins as mixins
 
 from adhocracy4.contrib.views import PermissionRequiredMixin
+from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 
 from apps.organisations.models import Organisation
+
 from . import blueprints
+from . import forms
 
 
 class DashboardBaseMixin(mixins.LoginRequiredMixin,
@@ -56,3 +61,55 @@ class DashboardBlueprintListView(DashboardBaseMixin,
     template_name = 'meinberlin_dashboard/blueprint_list.html'
     blueprints = blueprints.blueprints
     permission_required = 'meinberlin_organisations.initiate_project'
+
+
+class DashboardProjectCreateView(DashboardBaseMixin,
+                                 PermissionRequiredMixin,
+                                 SuccessMessageMixin,
+                                 blueprints.BlueprintMixin,
+                                 generic.CreateView):
+    model = project_models.Project
+    form_class = forms.ProjectCreateForm
+    template_name = 'meinberlin_dashboard/project_create_form.html'
+    success_message = _('Project succesfully created.')
+    permission_required = 'meinberlin_organisations.initiate_project'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['blueprint'] = self.blueprint
+        kwargs['organisation'] = self.organisation
+        kwargs['creator'] = self.request.user
+        return kwargs
+
+    def get_success_url(self):
+        return reverse(
+            'dashboard-project-list',
+            kwargs={'organisation_slug': self.organisation.slug, })
+
+
+class DashboardProjectUpdateView(DashboardBaseMixin,
+                                 PermissionRequiredMixin,
+                                 SuccessMessageMixin,
+                                 generic.UpdateView):
+    model = project_models.Project
+    form_class = forms.ProjectUpdateForm
+    template_name = 'meinberlin_dashboard/project_update_form.html'
+    success_message = _('Project successfully updated.')
+    permission_required = 'meinberlin_organisations.initiate_project'
+
+    def get_success_url(self):
+        return reverse('dashboard-project-list',
+                       kwargs={
+                           'organisation_slug': self.organisation.slug,
+                       })
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        qs = phase_models.Phase.objects.filter(module__project=self.object)
+        kwargs['phases__queryset'] = qs
+
+        if qs.first().module.settings_instance:
+            settings_instance = qs.first().module.settings_instance
+            kwargs['module_settings__instance'] = settings_instance
+
+        return kwargs

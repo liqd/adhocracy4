@@ -1,6 +1,14 @@
 {% load i18n project_tags %}
 
 <div class="listItem">
+    <div class="listItem-actions">
+        <span>
+            <a href="{% url 'dashboard-project-edit' organisation_slug=view.organisation.slug slug=project.slug %}"
+               class="button">
+                {% trans 'Edit'%}
+            </a>
+        </span>
+    </div>
     <h3 class="listItem-title">
         <a href="{% url 'project-detail' project.slug %}">
         {{ project.name }}

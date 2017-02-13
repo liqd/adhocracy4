@@ -1,0 +1,34 @@
+{% load i18n %}
+
+<nav class="tablist" role="tablist">
+    <a
+            id="#tab-project-create-{{ view.organisation.pk }}-information"
+            class="tab active"
+            data-toggle="tab"
+            href="#tabpanel-project-create-{{ view.organisation.pk }}-information"
+            role="tab"
+            aria-controls="tabpanel-project-create-{{ view.organisation.pk }}-information"
+            aria-expanded="true">
+        {% trans 'Information' %}
+    </a>
+    <a
+            id="#tab-project-create-{{ view.organisation.pk }}-participation"
+            class="tab"
+            data-toggle="tab"
+            href="#tabpanel-project-create-{{ view.organisation.pk }}-participation"
+            role="tab"
+            aria-controls="tabpanel-project-create-{{ view.organisation.pk }}-participation"
+            aria-expanded="false">
+        {% trans 'Participation' %}
+    </a>
+    <a
+            id="#tab-project-create-{{ view.organisation.pk }}-result"
+            class="tab"
+            data-toggle="tab"
+            href="#tabpanel-project-create-{{ view.organisation.pk }}-result"
+            role="tab"
+            aria-controls="tabpanel-project-create-{{ view.organisation.pk }}-result"
+            aria-expanded="false">
+        {% trans 'Result' %}
+    </a>
+</nav>

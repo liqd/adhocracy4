@@ -14,5 +14,9 @@
     </ul>
 
     <div class="tile-footer">
+        <a href="{% url 'dashboard-project-create' organisation_slug=view.organisation.slug blueprint_slug=blueprint_slug %}"
+           class="button">
+            {% trans 'Select'%}
+        </a>
     </div>
 </div>
