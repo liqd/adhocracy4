@@ -1,6 +1,6 @@
 from django.views import generic
-from rules.contrib.views import PermissionRequiredMixin
 
+from adhocracy4.contrib.views import PermissionRequiredMixin
 from adhocracy4.projects import mixins
 
 from . import models
@@ -26,7 +26,3 @@ class DocumentDetailView(generic.DetailView, mixins.ProjectMixin):
 class ParagraphDetailView(PermissionRequiredMixin, generic.DetailView):
     model = models.Paragraph
     permission_required = 'meinberlin_documents.view'
-
-    @property
-    def raise_exception(self):
-        return self.request.user.is_authenticated()
