@@ -24,7 +24,10 @@
             <ul class="dropdown-menu" aria-labelledby="organisation-selection">
                 {% for organisation in view.other_organisations_of_user %}
                 <li>
-                    <a href="{% url 'dashboard-project-list' organisation_slug=organisation.slug %}">
+                    <a
+                        class="dropdown-item"
+                        href="{% url 'dashboard-project-list' organisation_slug=organisation.slug %}"
+                    >
                         {{ organisation.name }}
                     </a>
                 </li>
