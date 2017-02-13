@@ -1,0 +1,27 @@
+{% extends "meinberlin_dashboard/dashboard_base.html" %}
+{% load i18n %}
+
+
+{% block dashboard_content %}
+
+<div class="resource-navigation">
+    <nav class="resource-navigation-breadcrumbs breadcrumbs">
+        <ul>
+            <li>
+                <a href="{% url 'dashboard-project-list' view.organisation.slug %}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    {% trans 'back to dashboard' %}</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div>
+        <h3 class="menuLayout-title">{% trans "New Project" %}</h3>
+        {% for blueprint_slug, blueprint in view.blueprints %}
+            {% include "meinberlin_dashboard/includes/blueprint_list_tile.html" with blueprint=blueprint %}
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

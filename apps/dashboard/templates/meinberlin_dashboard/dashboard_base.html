@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Dashboard" %}{% endblock %}
+
+{% block content %}
+
+<div class="menuLayout">
+
+    <div class="menuLayout-menu">
+        <div class="dropdown">
+            <button
+                    title="{% trans 'Organisations' %}"
+                    type="button"
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    id="organisation-selection"
+            >
+                {{ view.organisation.name }}
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="organisation-selection">
+                {% for organisation in view.other_organisations_of_user %}
+                <li>
+                    <a href="{% url 'dashboard-project-list' organisation_slug=organisation.slug %}">
+                        {{ organisation.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="menuLayout-content">
+        {% block dashboard_content %}{% endblock %}
+    </div>
+
+</div>
+
+{% endblock %}

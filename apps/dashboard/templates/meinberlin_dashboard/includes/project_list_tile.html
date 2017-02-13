@@ -1,0 +1,30 @@
+{% load i18n project_tags %}
+
+<div class="listItem">
+    <div class="listItem-actions">
+        <span>
+            <a href="{% url 'dashboard-project-edit' organisation_slug=view.organisation.slug slug=project.slug %}"
+               class="button">
+                {% trans 'Edit'%}
+            </a>
+        </span>
+    </div>
+    <h3 class="listItem-title">
+        <a href="{% url 'project-detail' project.slug %}">
+        {{ project.name }}
+        </a>
+    </h3>
+    <div class="listItem-status">
+        {% if project.has_finished %}
+            {% trans 'Finished' %}
+        {% elif project.active_phase %}
+            {% with project.active_phase.end_date as phase_end %}
+            {% trans 'Active Phase' %}: {{ project.active_phase.content.name }} ({% trans "ends on" %} {{ phase_end }})
+            {% endwith %}
+        {% else %}
+            {% with project.future_phases.first as next_phase %}
+            {% trans 'Next Phase' %}: {{ next_phase.content.name }} ({% trans "starts on" %} {{ next_phase.start_date }})
+            {% endwith %}
+        {% endif %}
+    </div>
+</div>

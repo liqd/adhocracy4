@@ -1,0 +1,25 @@
+{% extends "meinberlin_dashboard/dashboard_base.html" %}
+{% load i18n %}
+
+{% block dashboard_content %}
+
+<div>
+    <span class="menuLayout-title">{% trans "Projects" %}</span>
+    <a href="{% url 'dashboard-blueprint-list' organisation_slug=view.organisation.slug %}" class="button">
+        {% trans 'New Project' %}
+    </a>
+
+    {% if project_list|length == 0 %}
+
+    {% trans 'No projects created' %}
+
+    {% else %}
+
+    {% for project in project_list %}
+        {% include "meinberlin_dashboard/includes/project_list_tile.html" with project=project %}
+    {% endfor %}
+
+    {% endif %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% load i18n form_tags %}
+
+{% getPhaseName form.type.value as phasename %}
+<h3>{% trans phasename %}</h3>
+
+<div>
+    <label for="{{ form.name.id_for_label }}">
+        {% trans 'Name:'%}
+    </label>
+    {{ form.name }}
+    {{ form.name.errors }}
+</div>
+
+<div>
+    <label for="{{ form.description.id_for_label }}">
+        {% trans 'Description:'%}
+    </label>
+    {{ form.description }}
+    {{ form.description.errors }}
+</div>
+
+<div>
+    <label for="{{ form.start_date.id_for_label }}">
+        {% trans 'Start Date:'%}
+    </label>
+    {{ form.start_date }}
+    {{ form.start_date.errors }}
+</div>
+
+<div>
+    <label for="{{ form.end_date.id_for_label }}">
+        {% trans 'End Date:'%}
+    </label>
+    {{ form.end_date }}
+    {{ form.end_date.errors }}
+</div>
+
+{% for hidden in form.hidden_fields %}
+    {{ hidden }}
+{% endfor %}
+

@@ -1,0 +1,13 @@
+@media (min-width: $breakpoint) {
+    .menuLayout {
+        @include clearfix;
+    }
+
+    .menuLayout-menu {
+        @include grid-span(3, 0);
+    }
+
+    .menuLayout-content {
+        @include grid-span(9, 3);
+    }
+}

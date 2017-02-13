@@ -17,6 +17,7 @@ from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.projects import urls as projects_urls
 from adhocracy4.ratings.api import RatingViewSet
 
+from apps.dashboard import urls as dashboard_urls
 from apps.documents import urls as paragraph_urls
 from apps.documents.api import DocumentViewSet
 from apps.ideas import urls as ideas_urls
@@ -33,6 +34,7 @@ router.register(r'documents', DocumentViewSet, base_name='documents')
 
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
+    url(r'^dashboard/', include(dashboard_urls)),
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^accounts/', include(allauth_urls)),
