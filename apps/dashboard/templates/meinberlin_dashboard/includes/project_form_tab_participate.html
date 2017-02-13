@@ -7,6 +7,7 @@
     aria-labelledby="tab-project-create-{{ view.organisation.pk }}-participation"
     aria-expanded="false">
 
+    {# initialize phases formset #}
     {{ form.phases.management_form }}
 
     {% for field in form.module_settings.visible_fields %}
