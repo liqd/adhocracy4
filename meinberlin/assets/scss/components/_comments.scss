@@ -27,10 +27,18 @@
 
     .navbar {
         @include pie-clearfix;
+
+        > * {
+            display: inline-block;
+        }
     }
 
-    .navbar-nav {
-        float: left;
+    .action-bar {
+        margin-bottom: 0.5em;
+    }
+
+    .dropdown {
+        margin-left: 0.5em;
     }
 
     .navbar-right {
@@ -39,11 +47,12 @@
 }
 
 .comment {
-    margin-bottom: $spacer * 2;
+    margin-top: $spacer * 2;
+    margin-bottom: $spacer * 3;
 }
 
 .comment-text {
-    margin: 0.5em 0;
+    margin: 0.5em 0 0.8em;
 }
 
 .comment-author {
@@ -58,8 +67,13 @@
 }
 
 .comment-child-list {
-    margin-left: 1em;
+    padding-left: 1.5em;
     margin-top: $spacer * 2;
+    border-left: 1px solid $brand-secondary;
+
+    .comment {
+        margin-bottom: $spacer * 2;
+    }
 }
 
 .comments_login {
