@@ -92,26 +92,27 @@ var RatingBox = React.createClass({
     let getRatingClasses = ratingType => {
       let valueForRatingType = ratingType === 'up' ? 1 : -1
       return classnames(`rating-button rating-${ratingType}`, {
-        'is-read-only': this.props.isReadOnly,
         'is-selected': this.state.userRating === valueForRatingType
       })
     }
 
     return (
-      <ul className="ul nav navbar-nav rating-bar">
-        <li className="entry">
-          <button className={getRatingClasses('up')} onClick={this.ratingUp}>
-            <i className="fa fa-chevron-up" />
-            {this.state.positiveRatings}
-          </button>
-        </li>
-        <li className="entry">
-          <button className={getRatingClasses('down')} onClick={this.ratingDown}>
-            <i className="fa fa-chevron-down" />
-            {this.state.negativeRatings}
-          </button>
-        </li>
-      </ul>
+      <div className="rating">
+        <button
+          className={getRatingClasses('up')}
+          disabled={this.props.isReadOnly}
+          onClick={this.ratingUp}>
+          <i className="fa fa-chevron-up" aria-hidden="true" />
+          {this.state.positiveRatings}
+        </button>
+        <button
+          className={getRatingClasses('down')}
+          disabled={this.props.isReadOnly}
+          onClick={this.ratingDown}>
+          <i className="fa fa-chevron-down" aria-hidden="true" />
+          {this.state.negativeRatings}
+        </button>
+      </div>
     )
   }
 })

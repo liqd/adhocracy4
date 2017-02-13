@@ -1,4 +1,5 @@
 import pytest
+from django import test
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
 

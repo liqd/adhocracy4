@@ -1,7 +1,11 @@
-from django.views.generic import list
-
+from adhocracy4.contrib.views import SortableListView
 from . import models
 
 
-class QuestionList(list.ListView):
+class QuestionList(SortableListView):
     model = models.Question
+    ordering = ['-created']
+    orderings_supported = [
+        ('-created', 'Most recent'),
+        ('text', 'Alphabetical'),
+    ]
