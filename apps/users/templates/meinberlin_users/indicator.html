@@ -20,7 +20,7 @@
         {% for organisation in request.user.organisations %}
 
         <li>
-            <a href="{% url 'dashboard-project-list' organisation_slug=organisation.slug %}">
+            <a class="dropdown-item" href="{% url 'dashboard-project-list' organisation_slug=organisation.slug %}">
                 "{{ organisation.name }}" {% trans "Dashboard" %}
             </a>
         </li>
@@ -31,7 +31,7 @@
             <form class="form--inline" action="{% url 'account_logout' %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ redirect_field_value }}">
-                <button type="submit" class="button--as-link">{% trans "Logout" %}</button>
+                <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
             </form>
         </li>
     </ul>
@@ -51,10 +51,10 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="user-settings">
         <li>
-            <a href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a>
+            <a class="dropdown-item" href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a>
         </li>
         <li>
-            <a href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a>
+            <a class="dropdown-item" href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a>
         </li>
     </ul>
 
