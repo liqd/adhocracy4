@@ -15,7 +15,7 @@
     cursor: pointer;
     font-weight: normal;
 
-    &.is-read-only {
+    &:disabled {
         cursor: default;
     }
 
@@ -40,7 +40,7 @@
         color: contrast-color($color);
     }
 
-    &.is-read-only {
+    &:disabled {
         color: $color;
         background: none;
         border: 0;
