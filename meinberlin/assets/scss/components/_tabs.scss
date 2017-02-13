@@ -7,31 +7,33 @@
 }
 
 .tablist {
-    overflow: hidden;
-    background-color: $bg-secondary;
-    color: contrast-color($bg-secondary);
-    margin-bottom: $spacer;
+    border-bottom: 1px solid $border-color;
+    text-align: center;
+    margin-bottom: $spacer * 2;
 }
 
 .tab {
-    display: block;
+    display: inline-block;
+    position: relative;
+    vertical-align: bottom;
+    padding: 0.4em 0.6em;
+    margin-right: 0.5em;
     text-decoration: none;
     color: inherit;
-    line-height: 3;
-    text-align: center;
-
-    @media (min-width: $breakpoint) {
-        @include grid-same-width(3);
-    }
 
     &:hover,
-    &:focus {
+    &:focus,
+    &.active {
         color: $link-color;
     }
 
-    &.active {
-        background: $body-bg;
-        color: contrast-color($body-bg);
-        box-shadow: 0 0 1em $shadow;
+    &.active:after {
+        content: "";
+        position: absolute;
+        height: 1px;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        background-color: $link-color;
     }
 }
