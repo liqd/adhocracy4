@@ -2,7 +2,7 @@
 {% load i18n rules %}
 
 {% block phase_content %}
-<div>
+<div class="l-wrapper">
     {% has_perm 'meinberlin_documents.create' request.user view.module as show_create_form %}
     {% if show_create_form %}
 

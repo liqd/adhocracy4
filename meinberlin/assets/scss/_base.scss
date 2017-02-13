@@ -21,8 +21,8 @@ fieldset {
 
 html {
     overflow-y: scroll;
-    background-color: $bg-secondary;
-    color: contrast-color($bg-secondary);
+    background-color: $body-bg;
+    color: contrast-color($body-bg);
     box-sizing: border-box;
     font-size: 90%;
     font-family: $font-family-base;
@@ -30,11 +30,7 @@ html {
 }
 
 body {
-    margin: 2em auto;
-    max-width: 70em;
-    padding: $spacer;
-    background-color: $body-bg;
-    color: contrast-color($body-bg);
+    margin: 0;
 }
 
 h1,

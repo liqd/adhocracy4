@@ -17,30 +17,34 @@
 </head>
 <body>
     <header class="mainHeader">
-        <nav class="mainNav">
-            <a href="/" class="mainNav-item" rel="home">{% trans 'Home' %}</a>
-            <a href="/" class="mainNav-logo" rel="home"><img src="{% static 'images/LOGO.png' %}" alt="mein.berlin" /></a>
-            <ul>
-                {% get_menu "topnav" as topnav %}
-                {% for item in topnav %}
-                <li><a class="mainNav-item" href="{{ item.url }}">{{ item.title }}</a></li>
-                {% endfor %}
-            </ul>
-        </nav>
-        <div class="mainHeader-user">
-            {% userindicator %}
+        <div class="l-wrapper">
+            <nav class="mainNav">
+                <a href="/" class="mainNav-item" rel="home">{% trans 'Home' %}</a>
+                <a href="/" class="mainNav-logo" rel="home"><img src="{% static 'images/LOGO.png' %}" alt="mein.berlin" /></a>
+                <ul>
+                    {% get_menu "topnav" as topnav %}
+                    {% for item in topnav %}
+                    <li><a class="mainNav-item" href="{{ item.url }}">{{ item.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            <div class="mainHeader-user">
+                {% userindicator %}
+            </div>
         </div>
     </header>
     <main>
 
         {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li class="alert {{ message.tags }}">
-                {{ message }}
-            </li>
-            {% endfor %}
-        </ul>
+        <div class="l-wrapper">
+            <ul class="messages">
+                {% for message in messages %}
+                <li class="alert {{ message.tags }}">
+                    {{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endif %}
 
         {% block content %}{% endblock %}
