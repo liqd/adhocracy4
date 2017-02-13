@@ -27,10 +27,18 @@
 
     .navbar {
         @include pie-clearfix;
+
+        > * {
+            display: inline-block;
+        }
     }
 
-    .navbar-nav {
-        float: left;
+    .action-bar {
+        margin-bottom: 0.5em;
+    }
+
+    .dropdown {
+        margin-left: 0.5em;
     }
 
     .navbar-right {
