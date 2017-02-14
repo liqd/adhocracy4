@@ -13,14 +13,9 @@
 }
 
 .dropdown-toggle {
-    appearance: none;
-    background: none;
-    border: 0;
     display: inline-block;
     min-width: 1.4em;
     text-align: center;
-    cursor: pointer;
-    font-size: inherit;
 
     i {
         font-size: $font-size-lg;

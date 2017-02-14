@@ -152,13 +152,15 @@ var ParagraphBox = React.createClass({
   render: function () {
     return (
       <form onSubmit={this.submitDocument}>
-        <label>
-          {django.gettext('Title:')}
-          <input
-            type="text"
-            defaultValue={this.state.name}
-            onChange={this.handleDocumentNameChange} />
-        </label>
+        <div className="form-group">
+          <label>
+            {django.gettext('Title:')}
+            <input
+              type="text"
+              defaultValue={this.state.name}
+              onChange={this.handleDocumentNameChange} />
+          </label>
+        </div>
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
             this.state.paragraphs.map(function (paragraph, index) {

@@ -11,7 +11,7 @@
         <span>{{ error }}</span>
     {% endfor %}
 
-    <div>
+    <div class="form-group">
         <label for="{{ form.project.name.id_for_label }}">
             {% trans 'Name'%}
         </label>
@@ -19,7 +19,7 @@
         {{ form.project.name.errors }}
     </div>
 
-    <div>
+    <div class="form-group">
         <label for="{{ form.project.description.id_for_label }}">
             {% trans 'Description'%}
         </label>
@@ -27,10 +27,11 @@
         {{ form.project.description.errors }}
     </div>
 
-    <label for="{{ form.project.information.id_for_label }}">
-        {% trans 'Information'%}
-    </label>
-    {{ form.project.information }}
-    {{ form.project.information.errors }}
-
+    <div class="form-group">
+        <label for="{{ form.project.information.id_for_label }}">
+            {% trans 'Information'%}
+        </label>
+        {{ form.project.information }}
+        {{ form.project.information.errors }}
+    </div>
 </div>
