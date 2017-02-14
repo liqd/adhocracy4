@@ -48,14 +48,15 @@
 </div>
 
 <div class="l-wrapper">
-    <div class="l-center-8">
         <div
             class="tabpanel"
             id="tabpanel-project-{{ view.project.pk }}-information"
             role="tabpanel"
             aria-labelledby="tab-project-{{ view.project.pk }}-information"
             aria-expanded="false">
-            {{ view.project.information | safe }}
+            <div class="l-center-8">
+                {{ view.project.information | safe }}
+            </div>
         </div>
         <div
             class="tabpanel active"
@@ -71,8 +72,9 @@
             role="tabpanel"
             aria-labelledby="tab-project-{{ view.project.pk }}-result"
             aria-expanded="false">
-            {{ view.project.result | safe }}
+            <div class="l-center-8">
+                {{ view.project.result | safe }}
+            </div>
         </div>
-    </div>
 </div>
 {% endblock %}
