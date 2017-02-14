@@ -47,9 +47,7 @@ input[type="button"],
 }
 
 .button--huge {
-    font-size: $font-size-lg;
-    display: block;
-    line-height: 2.5;
+    padding: 0.8em 2em;
 }
 
 .cancel-button {
