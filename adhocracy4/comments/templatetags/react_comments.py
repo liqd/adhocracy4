@@ -26,7 +26,6 @@ def react_comments(context, obj):
 
     contenttype = ContentType.objects.get_for_model(obj)
     permission = '{ct.app_label}.comment_{ct.model}'.format(ct=contenttype)
-    print(permission)
     has_comment_permission = user.has_perm(permission, obj)
 
     comments_contenttype = ContentType.objects.get_for_model(Comment)
