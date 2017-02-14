@@ -98,9 +98,23 @@ ul {
     padding-left: 1.5rem;
 }
 
+button {
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    background: none;
+    font-size: inherit;
+    line-height: inherit;
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+}
+
 @media print {
     html {
+        // stylelint-disable scale-unlimited/declaration-strict-value
         background: transparent;
         color: #000;  // Black prints faster:
+        // stylelint-enable
     }
 }

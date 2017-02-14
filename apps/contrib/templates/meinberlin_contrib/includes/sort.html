@@ -15,7 +15,7 @@
     <ul class="dropdown-menu" aria-labelledby="sorts">
         {% for ordering, ordering_name in view.orderings_supported %}
         <li>
-            <a href="?ordering={{ ordering }}">{{ ordering_name }}</a>
+            <a class="dropdown-item" href="?ordering={{ ordering }}">{{ ordering_name }}</a>
         </li>
         {% endfor %}
     </ul>

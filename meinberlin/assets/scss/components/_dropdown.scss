@@ -48,8 +48,10 @@
         display: block;
     }
 
-    a {
+    a,
+    button {
         display: block;
+        width: 100%;
         padding: 0.5em;
         color: inherit;
         border-bottom: 1px solid $text-color;
@@ -69,7 +71,8 @@
         }
     }
 
-    :last-child a {
+    li:last-child > a,
+    li:last-child > button {
         border-bottom: 0;
     }
 

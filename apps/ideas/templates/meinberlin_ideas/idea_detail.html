@@ -31,10 +31,10 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="idea-{{idea.pk}}-actions">
                 <li>
-                    <a href="{% url 'idea-update' slug=idea.slug %}">{% trans 'Edit' %}</a>
+                    <a class="dropdown-item" href="{% url 'idea-update' slug=idea.slug %}">{% trans 'Edit' %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'idea-delete' slug=idea.slug %}">{% trans 'Delete' %}</a>
+                    <a class="dropdown-item" href="{% url 'idea-delete' slug=idea.slug %}">{% trans 'Delete' %}</a>
                 </li>
             </ul>
         </div>
