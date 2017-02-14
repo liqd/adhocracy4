@@ -30,9 +30,9 @@
     "eslint-plugin-promise": "^3.0.0",
     "eslint-plugin-react": "^6.4.1",
     "eslint-plugin-standard": "^2.0.1",
-    "htmlhint": "0.9.13",
-    "husky": "0.11.4",
-    "polylint.sh": "0.0.0",
+    "htmlhint": "^0.9.13",
+    "husky": "^0.11.4",
+    "polylint.sh": "^0.0.0",
     "stylelint": "^7.5.0",
     "stylelint-declaration-strict-value": "^1.0.3"
   },
