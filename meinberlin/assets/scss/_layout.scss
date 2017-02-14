@@ -19,4 +19,8 @@
     .l-center-6 {
         @include grid-width(6);
     }
+
+    .l-tile-2 {
+        @include grid-same-width(2);
+    }
 }
