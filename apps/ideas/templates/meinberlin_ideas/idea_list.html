@@ -1,13 +1,18 @@
 {% extends 'meinberlin_projects/project_detail.html' %}
 {% load i18n rules %}
 
-{% block phase_content %}
+{% block project_action %}
+
 {% has_perm 'meinberlin_ideas.propose_idea' request.user view.module as propose_allowed %}
 {% if propose_allowed %}
     <a href="{% url 'idea-create' slug=view.module.slug %}" class="button button--huge">
         {% trans 'Submit idea' %}
     </a>
 {% endif %}
+
+{% endblock %}
+
+{% block phase_content %}
 
 {% include "meinberlin_contrib/includes/sort.html" %}
 
