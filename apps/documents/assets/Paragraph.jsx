@@ -105,10 +105,10 @@ var Paragraph = React.createClass({
                   // fix height to avoid jumping on ckeditor initalization
                   style={{height: this.props.config.height + ckEditorToolbarsHeight}}
                   id={'id_paragraphs-' + this.props.id + '-text'} />
-                { this.props.errors && this.props.errors.text ? <ul className="errorlist">
-                  <li>{this.props.errors.text[0]}</li>
-                </ul> : null }
               </div>
+              { this.props.errors && this.props.errors.text ? <ul className="errorlist">
+                <li>{this.props.errors.text[0]}</li>
+              </ul> : null }
             </div>
           </div>
 
