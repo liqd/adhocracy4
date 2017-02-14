@@ -120,8 +120,8 @@ var ParagraphBox = React.createClass({
       }.bind(this))
       .fail(function (xhr, status, err) {
         this.setState({
-          nameErrors: xhr.responseJSON.name,
-          paragraphsErrors: xhr.responseJSON.paragraphs
+          nameErrors: xhr.responseJSON.name || [],
+          paragraphsErrors: xhr.responseJSON.paragraphs || []
         })
       }.bind(this))
   },
