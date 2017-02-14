@@ -75,36 +75,40 @@ var Paragraph = React.createClass({
 
         <div className="commenting">
           <div className="commenting-content">
-            <label
-              htmlFor={'id_paragraphs-' + this.props.id + '-name'}>
-              {django.gettext('Headline:')}
-            </label>
-            <input
-              className="form-control"
-              id={'id_paragraphs-' + this.props.id + '-name'}
-              name={'paragraphs-' + this.props.id + '-name'}
-              type="text"
-              defaultValue={this.props.paragraph.name}
-              onChange={this.handleNameChange} />
-            {this.props.errors && this.props.errors.name ? <ul className="errorlist">
-              <li>{this.props.errors.name[0]}</li>
-            </ul> : null}
+            <div className="form-group">
+              <label
+                htmlFor={'id_paragraphs-' + this.props.id + '-name'}>
+                {django.gettext('Headline:')}
+              </label>
+              <input
+                className="form-control"
+                id={'id_paragraphs-' + this.props.id + '-name'}
+                name={'paragraphs-' + this.props.id + '-name'}
+                type="text"
+                defaultValue={this.props.paragraph.name}
+                onChange={this.handleNameChange} />
+              {this.props.errors && this.props.errors.name ? <ul className="errorlist">
+                <li>{this.props.errors.name[0]}</li>
+              </ul> : null}
+            </div>
 
-            <label
-              htmlFor={'id_paragraphs-' + this.props.id + '-text'}>
-              {django.gettext('Paragraph:')}
-            </label>
-            <div
-              className="django-ckeditor-widget"
-              data-field-id={'id_paragraphs-' + this.props.id + '-text'}
-              style={{display: 'inline-block'}}>
-              <textarea
-                // fix height to avoid jumping on ckeditor initalization
-                style={{height: this.props.config.height + ckEditorToolbarsHeight}}
-                id={'id_paragraphs-' + this.props.id + '-text'} />
-              { this.props.errors && this.props.errors.text ? <ul className="errorlist">
-                <li>{this.props.errors.text[0]}</li>
-              </ul> : null }
+            <div className="form-group">
+              <label
+                htmlFor={'id_paragraphs-' + this.props.id + '-text'}>
+                {django.gettext('Paragraph:')}
+              </label>
+              <div
+                className="django-ckeditor-widget"
+                data-field-id={'id_paragraphs-' + this.props.id + '-text'}
+                style={{display: 'inline-block'}}>
+                <textarea
+                  // fix height to avoid jumping on ckeditor initalization
+                  style={{height: this.props.config.height + ckEditorToolbarsHeight}}
+                  id={'id_paragraphs-' + this.props.id + '-text'} />
+                { this.props.errors && this.props.errors.text ? <ul className="errorlist">
+                  <li>{this.props.errors.text[0]}</li>
+                </ul> : null }
+              </div>
             </div>
           </div>
 
