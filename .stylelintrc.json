@@ -20,7 +20,6 @@
     "block-closing-brace-empty-line-before": "never",
     "block-closing-brace-newline-after": "always",
     "block-closing-brace-newline-before": "always-multi-line",
-    "block-no-single-line": true,
     "block-opening-brace-newline-after": "always",
     "block-opening-brace-space-before": "always",
 
@@ -46,15 +45,14 @@
 
     "selector-list-comma-newline-after": "always",
 
-    "rule-nested-empty-line-before": [ "always", {
+    "rule-empty-line-before": [ "always", {
       "except": ["first-nested"]
     }],
-    "rule-non-nested-empty-line-before": "always",
 
     "at-rule-empty-line-before": [ "always", {
       "except": ["first-nested"],
       "ignore": [
-        "blockless-group"
+        "blockless-after-blockless"
       ]
     }],
 

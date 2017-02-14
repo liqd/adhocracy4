@@ -33,7 +33,7 @@
     "htmlhint": "^0.9.13",
     "husky": "^0.11.4",
     "polylint.sh": "^0.0.0",
-    "stylelint": "^7.5.0",
+    "stylelint": "^7.8.0",
     "stylelint-declaration-strict-value": "^1.0.3"
   },
   "scripts": {
