@@ -3,25 +3,25 @@
     $color-contrast: contrast-color($color);
 
     border-color: $color;
-    background: $color;
+    background-color: $color;
     color: $color-contrast;
 
     &:hover,
     &:focus {
         border-color: $color-focus;
-        background: $color-focus;
+        background-color: $color-focus;
         color: contrast-color($color-focus);
     }
 
     &:active {
         border-color: $color-active;
-        background: $color-active;
+        background-color: $color-active;
         color: contrast-color($color-active);
     }
 
     &:disabled {
         border-color: mix($color, $color-contrast, 50%);
-        background: mix($color, $color-contrast, 50%);
+        background-color: mix($color, $color-contrast, 50%);
         color: mix($color, $color-contrast, 10%);
         cursor: not-allowed;
     }

@@ -16,7 +16,7 @@ textarea,
 select {
     @extend %inputBase;
     display: block;
-    background: $bg-secondary;
+    background-color: $bg-secondary;
     color: contrast-color($bg-secondary);
 
     &:invalid {
