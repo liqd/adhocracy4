@@ -160,6 +160,11 @@ var ParagraphBox = React.createClass({
               defaultValue={this.state.name}
               onChange={this.handleDocumentNameChange} />
           </label>
+          {this.state.nameErrors.length ? <ul className="errorlist">
+            {this.state.nameErrors.map(function (msg, index) {
+              return <li key={msg}>{msg}</li>
+            })}
+          </ul> : null}
         </div>
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
