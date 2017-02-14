@@ -11,14 +11,16 @@ const CommentReplyBar = (props) => {
   let childCommentCount
   if (props.childCommentsLength > 0) {
     childCommentCount = (
-      <button type="button" onClick={props.showComments}>{pluralizeString(props.childCommentsLength)}</button>
+      <button className="comment-reply-button" type="button" onClick={props.showComments}>
+        {pluralizeString(props.childCommentsLength)}
+      </button>
     )
   }
 
   let replyButton
   if (props.allowForm) {
     replyButton = (
-      <button type="button" onClick={props.showComments}>
+      <button className="comment-reply-button" type="button" onClick={props.showComments}>
         <i className="fa fa-reply" aria-hidden="true"></i>
         {django.gettext('Answer')}
       </button>
