@@ -3,7 +3,7 @@ label {
 }
 
 %inputBase {
-    margin: 0 0 0.5em;
+    margin: 0 0 $spacer;
     border: 1px solid $input-border-color;
     padding: 0.4em 0.6em;
     line-height: 1.6;
@@ -46,4 +46,14 @@ select {
 .django-ckeditor-widget {
     display: block !important;
     margin-bottom: $spacer;
+}
+
+.form-group {
+    margin: 0 0 $spacer;
+
+    .django-ckeditor-widget,
+    %inputBase {
+        width: 100%;
+        margin: 0;
+    }
 }
