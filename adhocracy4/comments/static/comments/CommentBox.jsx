@@ -62,16 +62,12 @@ let CommentBox = React.createClass({
       comments: this.props.comments
     }
   },
-  componentDidMount: function () {
-    moment.locale(this.props.language)
-  },
   getChildContext: function () {
     return {
       isAuthenticated: this.props.isAuthenticated,
       isModerator: this.props.isModerator,
       comments_contenttype: this.props.comments_contenttype,
-      user_name: this.props.user_name,
-      language: this.props.language
+      user_name: this.props.user_name
     }
   },
   render: function () {
@@ -98,7 +94,6 @@ CommentBox.childContextTypes = {
   isModerator: React.PropTypes.bool,
   comments_contenttype: React.PropTypes.number,
   user_name: React.PropTypes.string,
-  language: React.PropTypes.string
 }
 
 module.exports = CommentBox

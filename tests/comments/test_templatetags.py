@@ -51,7 +51,6 @@ def test_react_rating_anonymous(rf, question, comment):
         'isAuthenticated': False,
         'isModerator': False,
         'isReadOnly': True,
-        'language': 'en-us',
         'user_name': '',
     }
 
@@ -73,6 +72,5 @@ def test_react_rating_user(rf, user, question, comment):
         'isAuthenticated': True,
         'isModerator': False,
         'isReadOnly': False,
-        'language': 'en-us',
         'user_name': user.username,
     }
