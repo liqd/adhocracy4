@@ -36,9 +36,11 @@ select {
 
 .errorlist {
     margin: 0;
-    padding: 0;
+    padding: $padding;
     list-style: none;
-    color: $brand-danger;
+    text-align: right;
+    background-color: $brand-danger;
+    color: contrast-color($brand-danger);
 }
 
 .django-ckeditor-widget {
