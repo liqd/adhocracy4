@@ -40,7 +40,6 @@
 
 .button,
 .submit-button,
-input[type="button"],
 [type="submit"] {
     @extend %buttonBase;
     @include button-color($link-color, $link-hover-color);
