@@ -5,3 +5,25 @@
 .cke_chrome {
     box-sizing: border-box !important;
 }
+
+// used by adhocracy4
+.submit-button {
+    @extend .button;
+}
+
+.cancel-button {
+    @extend .button;
+    @extend .button--light;
+}
+
+// used by allauth (login/register)
+.signup > button[type="submit"],
+.primaryAction {
+    @extend .button;
+    @extend .button--primary;
+}
+
+.secondaryAction {
+    @extend .button;
+    @extend .button--secondary;
+}

@@ -9,8 +9,8 @@
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
-        <input type="submit" value="{% trans 'Yes'%}" />
+        <input type="submit" class="button button--primary" value="{% trans 'Yes'%}" />
     </form>
-    <a href="{% url 'idea-detail' idea.slug %}" class="cancel-button">{% trans 'Cancel'%}</a>
+    <a href="{% url 'idea-detail' idea.slug %}" class="button button--light">{% trans 'Cancel'%}</a>
 </div>
 {% endblock %}
