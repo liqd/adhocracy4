@@ -2,10 +2,11 @@
 
 {% with project.active_phase as active_phase %}
 
+{% with project.phases|length as phase_count %}
+{% if phase_count > 1 %}
 <script src="{% static 'js/popover.js' %}"></script>
 <div class="phaseList">
     <ul>
-        {% with project.phases|length as phase_count %}
         {% for phase in project.phases %}
             {% includeTemplateString "meinberlin_projects/includes/phase_popover.html" phase=phase phase_num=forloop.counter phase_count=phase_count as popover_content %}
             <li>
@@ -22,9 +23,10 @@
                 </button>
             </li>
         {% endfor %}
-        {% endwith %}
     </ul>
 </div>
+{% endif %}
+{% endwith %}
 
 <div class="phaseInfo">
     <div class="l-center-6">
