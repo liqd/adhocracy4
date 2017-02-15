@@ -5,3 +5,13 @@
 .cke_chrome {
     box-sizing: border-box !important;
 }
+
+// used by adhocracy4
+.submit-button {
+    @extend .button;
+}
+
+.cancel-button {
+    @extend .button;
+    @extend .button--light;
+}

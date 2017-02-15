@@ -39,21 +39,19 @@
 }
 
 .button,
-.submit-button,
 [type="submit"] {
     @extend %buttonBase;
     @include button-color($link-color, $link-hover-color);
+}
+
+.button--light {
+    @include button-color($body-bg, $bg-secondary);
 }
 
 .button--huge {
     font-size: $font-size-lg;
     display: block;
     line-height: 2.5;
-}
-
-.cancel-button {
-    @extend %buttonBase;
-    @include button-color($body-bg, $bg-secondary);
 }
 
 .button--as-link {
