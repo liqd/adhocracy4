@@ -1,0 +1,32 @@
+.phaseList {
+    text-align: center;
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        display: inline-block;
+    }
+
+    button {
+        text-decoration: none;
+        font-size: $font-size-sm;
+        font-weight: bold;
+    }
+}
+
+.phaseInfo {
+    text-align: center;
+    margin-bottom: $spacer * 2;
+}
+
+.phaseInfo-title {
+    font-size: $font-size-lg;
+    margin-bottom: $spacer;
+}
+
+.phaseInfo-subtitle {
+    font-size: $font-size-sm;
+}
