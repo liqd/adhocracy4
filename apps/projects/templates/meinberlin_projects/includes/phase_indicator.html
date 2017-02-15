@@ -1,0 +1,43 @@
+{% load contrib_tags i18n %}
+
+{% with project.active_phase as active_phase %}
+
+<div class="phaseList">
+    <ul>
+        {% with project.phases|length as phase_count %}
+        {% for phase in project.phases %}
+            {% includeTemplateString "meinberlin_projects/includes/phase_popover.html" phase=phase phase_num=forloop.counter phase_count=phase_count as popover_content %}
+            <li>
+                <button
+                    title="{% trans phase.name %}"
+                    id="phase-{{ phase.pk }}"
+                    class="button {% if phase == active_phase %} active {% endif %}"
+                    data-toggle="popover"
+                    data-content="{{ popover_content }}"
+                    data-placement="top"
+                    data-html="true"
+                >
+                    {{ phase.name }}
+                </button>
+            </li>
+        {% endfor %}
+        {% endwith %}
+    </ul>
+</div>
+
+<div class="phaseInfo">
+    <div class="l-center-6">
+        <h3 class="phaseInfo-title">
+            {{ active_phase.name }}
+        </h3>
+        <div class="phaseInfo-subtitle">
+            {% trans "von" %} {{ active_phase.start_date }}
+            {% trans "bis" %} {{ active_phase.end_date }}
+        </div>
+        <div class="phaseInfo-description">
+            {{ active_phase.description }}
+        </div>
+    </div>
+</div>
+
+{% endwith %}

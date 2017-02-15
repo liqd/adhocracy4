@@ -1,0 +1,16 @@
+.popover {
+    background: $body-bg;
+    padding: 0.5em;
+    border: 1px solid $border-color;
+    text-align: center;
+}
+
+.popover-title {
+    font-size: $font-size-lg;
+    margin-top: -0.2em;
+}
+
+.popover-subtitle {
+    font-size: $font-size-sm;
+    margin-bottom: $spacer;
+}
