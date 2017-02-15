@@ -47,7 +47,9 @@
         </div>
         {% endif %}
 
-        {% block content %}{% endblock %}
+        {% block super_content %}
+            {% block content %}{% endblock %}
+        {% endblock %}
     </main>
 </body>
 </html>

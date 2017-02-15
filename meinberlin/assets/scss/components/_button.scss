@@ -38,23 +38,25 @@
     padding-right: 1em;
 }
 
-.button,
-.submit-button,
-input[type="button"],
-[type="submit"] {
+.button {
     @extend %buttonBase;
     @include button-color($link-color, $link-hover-color);
 }
 
-.button--huge {
-    font-size: $font-size-lg;
-    display: block;
-    line-height: 2.5;
+.button--light {
+    @include button-color($body-bg, $bg-secondary);
 }
 
-.cancel-button {
-    @extend %buttonBase;
-    @include button-color($body-bg, $bg-secondary);
+.button--primary {
+    @include button-color($brand-primary, darken($brand-primary, 15%));
+}
+
+.button--secondary {
+    @include button-color($brand-secondary, darken($brand-secondary, 15%));
+}
+
+.button--huge {
+    padding: 0.8em 2em;
 }
 
 .button--as-link {

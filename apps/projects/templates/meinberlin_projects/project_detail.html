@@ -8,6 +8,9 @@
     <div class="l-wrapper">
         <div class="l-center-6">
             <h1 class="resource-header-title">{{ view.project.name }}</h1>
+            <div class="resource-header-action">
+                {% block project_action %}{% endblock %}
+            </div>
         </div>
     </div>
 </div>
@@ -48,30 +51,31 @@
 </div>
 
 <div class="l-wrapper">
-    <div class="l-center-8">
-        <div
-            class="tabpanel"
-            id="tabpanel-project-{{ view.project.pk }}-information"
-            role="tabpanel"
-            aria-labelledby="tab-project-{{ view.project.pk }}-information"
-            aria-expanded="false">
+    <div
+        class="tabpanel"
+        id="tabpanel-project-{{ view.project.pk }}-information"
+        role="tabpanel"
+        aria-labelledby="tab-project-{{ view.project.pk }}-information"
+        aria-expanded="false">
+        <div class="l-center-8">
             {{ view.project.information | safe }}
         </div>
-        <div
-            class="tabpanel active"
-            id="tabpanel-project-{{ view.project.pk }}-participation"
-            role="tabpanel"
-            aria-labelledby="tab-project-{{ view.project.pk }}-participation"
-            aria-expanded="true">
-            {% include "meinberlin_projects/includes/phase_indicator.html" with project=view.project %}
-            {% block phase_content %}{% endblock %}
-        </div>
-        <div
-            class="tabpanel"
-            id="tabpanel-project-{{ view.project.pk }}-result"
-            role="tabpanel"
-            aria-labelledby="tab-project-{{ view.project.pk }}-result"
-            aria-expanded="false">
+    </div>
+    <div
+        class="tabpanel active"
+        id="tabpanel-project-{{ view.project.pk }}-participation"
+        role="tabpanel"
+        aria-labelledby="tab-project-{{ view.project.pk }}-participation"
+        aria-expanded="true">
+        {% block phase_content %}{% endblock %}
+    </div>
+    <div
+        class="tabpanel"
+        id="tabpanel-project-{{ view.project.pk }}-result"
+        role="tabpanel"
+        aria-labelledby="tab-project-{{ view.project.pk }}-result"
+        aria-expanded="false">
+        <div class="l-center-8">
             {{ view.project.result | safe }}
         </div>
     </div>

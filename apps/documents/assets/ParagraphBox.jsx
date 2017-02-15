@@ -194,7 +194,7 @@ var ParagraphBox = React.createClass({
             {this.state.successMessage}
           </p> : null
         }
-        <button type="submit">{django.gettext('save')}</button>
+        <button type="submit" className="button button--primary">{django.gettext('save')}</button>
       </form>
     )
   }
