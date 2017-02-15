@@ -1,7 +1,8 @@
-{% load contrib_tags i18n %}
+{% load contrib_tags i18n static %}
 
 {% with project.active_phase as active_phase %}
 
+<script src="{% static 'js/popover.js' %}"></script>
 <div class="phaseList">
     <ul>
         {% with project.phases|length as phase_count %}

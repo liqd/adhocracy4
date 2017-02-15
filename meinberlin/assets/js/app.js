@@ -14,11 +14,6 @@ var modal = require('bootstrap/js/src/modal.js')
 var tab = require('bootstrap/js/src/tab.js')
 var popover = require('bootstrap/js/src/popover.js')
 
-// enable bootstrap popover
-$(function () {
-  $('[data-toggle="popover"]').popover()
-})
-
 module.exports = {
   'renderComment': ReactComments.renderComment,
   'renderRatings': ReactRatings.renderRatings,
