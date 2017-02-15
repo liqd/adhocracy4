@@ -8,6 +8,9 @@
     <div class="l-wrapper">
         <div class="l-center-6">
             <h1 class="resource-header-title">{{ view.project.name }}</h1>
+            <div class="resource-header-action">
+                {% block project_action %}{% endblock %}
+            </div>
         </div>
     </div>
 </div>
