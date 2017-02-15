@@ -15,3 +15,14 @@
     @extend .button;
     @extend .button--light;
 }
+
+// used by allauth (login/register)
+.primaryAction {
+    @extend .button;
+    @extend .button--primary;
+}
+
+.secondaryAction {
+    @extend .button;
+    @extend .button--secondary;
+}
