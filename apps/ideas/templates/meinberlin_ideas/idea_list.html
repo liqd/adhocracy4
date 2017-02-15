@@ -1,22 +1,23 @@
 {% extends 'meinberlin_projects/project_detail.html' %}
 {% load i18n rules %}
 
+{% block project_action %}
+    {% has_perm 'meinberlin_ideas.propose_idea' request.user view.module as propose_allowed %}
+    {% if propose_allowed %}
+        <a href="{% url 'idea-create' slug=view.module.slug %}" class="button button--huge">
+            {% trans 'Submit idea' %}
+        </a>
+    {% endif %}
+{% endblock %}
+
 {% block phase_content %}
-{% has_perm 'meinberlin_ideas.propose_idea' request.user view.module as propose_allowed %}
-{% if propose_allowed %}
-    <a href="{% url 'idea-create' slug=view.module.slug %}" class="button button--huge">
-        {% trans 'Submit idea' %}
-    </a>
-{% endif %}
+    {% include "meinberlin_contrib/includes/sort.html" %}
 
-{% include "meinberlin_contrib/includes/sort.html" %}
+    <div>
+        {% for idea in idea_list %}
+        {% include "meinberlin_ideas/includes/idea_list_tile.html" with idea=idea %}
+        {% endfor %}
+    </div>
 
-<div>
-    {% for idea in idea_list %}
-    {% include "meinberlin_ideas/includes/idea_list_tile.html" with idea=idea %}
-    {% endfor %}
-</div>
-
-{% include "meinberlin_contrib/includes/pagination.html" %}
-
+    {% include "meinberlin_contrib/includes/pagination.html" %}
 {% endblock %}
