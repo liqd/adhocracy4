@@ -1,5 +1,4 @@
 /* eslint no-unused-vars: "off" */
-/* eslint no-undef: "off" */
 
 var ReactComments = require('adhocracy4').comments
 var ReactRatings = require('adhocracy4').ratings
@@ -7,7 +6,7 @@ var ReactRatings = require('adhocracy4').ratings
 var ReactParagraphs = require('../../../apps/documents/assets/ParagraphBox.jsx')
 
 // make jquery available for non-webpack js
-window.jQuery = window.$ = require('jquery')
+var $ = window.jQuery = window.$ = require('jquery')
 window.Tether = require('tether/dist/js/tether.js')
 
 var dropdown = require('bootstrap/js/src/dropdown.js')
