@@ -10,6 +10,11 @@ var modal = require('bootstrap/js/src/modal.js')
 var tab = require('bootstrap/js/src/tab.js')
 var popover = require('bootstrap/js/src/popover.js')
 
+// initialize moment locale
+var moment = require('moment')
+var django = require('django')
+moment.locale(django.languageCode)
+
 // enable bootstrap popover
 $(function () {
   $('[data-toggle="popover"]').popover()
