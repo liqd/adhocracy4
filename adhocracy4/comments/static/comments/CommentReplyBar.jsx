@@ -11,33 +11,30 @@ const CommentReplyBar = (props) => {
   let childCommentCount
   if (props.childCommentsLength > 0) {
     childCommentCount = (
-      <ul className="nav navbar-nav">
-        <li className="entry">
-          <a href="#" onClick={props.showComments}>{pluralizeString(props.childCommentsLength)}</a>
-        </li>
-      </ul>
+      <button className="comment-reply-button" type="button" onClick={props.showComments}>
+        {pluralizeString(props.childCommentsLength)}
+      </button>
     )
   }
 
   let replyButton
   if (props.allowForm) {
     replyButton = (
-      <ul className="nav navbar-nav navbar-right">
-        <li className="entry">
-          <a href="#" className="icon fa-reply" onClick={props.showComments} aria-hidden="true">
-            {django.gettext('Answer')}
-          </a>
-        </li>
-      </ul>
+      <button className="comment-reply-button" type="button" onClick={props.showComments}>
+        <i className="fa fa-reply" aria-hidden="true"></i>
+        {django.gettext('Answer')}
+      </button>
     )
   }
   if (replyButton || childCommentCount) {
     return (
       <div className="action-bar">
-        <nav className="navbar navbar-default navbar-static">
+        <div className="navbar">
           {childCommentCount}
-          {replyButton}
-        </nav>
+          <div className="navbar-right">
+            {replyButton}
+          </div>
+        </div>
       </div>
     )
   } else {
