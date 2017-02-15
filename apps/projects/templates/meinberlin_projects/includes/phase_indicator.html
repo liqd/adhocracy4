@@ -12,7 +12,7 @@
                 <button
                     title="{{ phase.name }}"
                     id="phase-{{ phase.pk }}"
-                    class="button {% if phase == active_phase %} active {% endif %}"
+                    class="phaseList-button {% if phase == active_phase %} is-active{% endif %}"
                     data-toggle="popover"
                     data-content="{{ popover_content }}"
                     data-placement="top"

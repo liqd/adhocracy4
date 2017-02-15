@@ -9,9 +9,25 @@
     li {
         display: inline-block;
     }
+}
 
-    button {
-        font-size: $font-size-sm;
+.phaseList-button {
+    @extend %buttonBase;
+    font-size: $font-size-sm;
+    border-radius: 1.3em;
+
+    background-color: contrast-color($link-color);
+    color: $link-color;
+    border-color: $link-color;
+
+    &:hover,
+    &:focus {
+        color: $link-hover-color;
+        border-color: $link-hover-color;
+    }
+
+    &.is-active {
+        @include button-color($link-color, $link-hover-color);
     }
 }
 
