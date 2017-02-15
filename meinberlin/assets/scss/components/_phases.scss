@@ -1,5 +1,7 @@
 .phaseList {
     text-align: center;
+    text-decoration: line-through;
+    color: $link-color;
 
     ul {
         margin: 0;
@@ -15,6 +17,8 @@
     @extend %buttonBase;
     font-size: $font-size-sm;
     border-radius: 1.3em;
+    margin-bottom: 0;
+    vertical-align: middle;
 
     background-color: contrast-color($link-color);
     color: $link-color;
