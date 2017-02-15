@@ -9,7 +9,7 @@
             {% includeTemplateString "meinberlin_projects/includes/phase_popover.html" phase=phase phase_num=forloop.counter phase_count=phase_count as popover_content %}
             <li>
                 <button
-                    title="{% trans phase.name %}"
+                    title="{{ phase.name }}"
                     id="phase-{{ phase.pk }}"
                     class="button {% if phase == active_phase %} active {% endif %}"
                     data-toggle="popover"
