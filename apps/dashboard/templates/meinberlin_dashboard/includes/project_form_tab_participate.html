@@ -11,7 +11,7 @@
     {{ form.phases.management_form }}
 
     {% for field in form.module_settings.visible_fields %}
-        <div class="form-group {% if field.errors %} has-error{% endif %}">
+        <div class="form-group">
             <label for="{{ field.id_for_label }}">
                 {% trans field.label %}
             </label>
@@ -20,11 +20,7 @@
         </div>
     {% endfor %}
 
-
     {% for phase_form in form.phases %}
-
         {% include 'meinberlin_dashboard/includes/phase_form.html' with form=phase_form view=view %}
-
     {% endfor %}
-
 </div>

@@ -1,6 +1,6 @@
 .label {
     display: inline-block;
-    background: $brand-secondary;
+    background-color: $brand-secondary;
     color: contrast-color($brand-secondary);
     font-size: $font-size-xs;
     font-weight: normal;
@@ -11,6 +11,6 @@
 }
 
 .label-subtle {
-    background: $bg-secondary;
+    background-color: $bg-secondary;
     color: contrast-color($bg-secondary);
 }

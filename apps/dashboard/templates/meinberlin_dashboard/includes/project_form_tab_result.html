@@ -7,11 +7,11 @@
     aria-labelledby="tab-project-create-{{ view.organisation.pk }}-result"
     aria-expanded="false">
 
-    <label for="{{ form.project.result.id_for_label }}">
-        {% trans 'Result'%}
-    </label>
-    {{ form.project.result }}
-    {{ form.project.result.errors }}
-
+    <div class="form-group">
+        <label for="{{ form.project.result.id_for_label }}">
+            {% trans 'Result'%}
+        </label>
+        {{ form.project.result }}
+        {{ form.project.result.errors }}
+    </div>
 </div>
-

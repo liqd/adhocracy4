@@ -1,0 +1,7 @@
+// See https://csswizardry.com/2013/04/shame-css/ about this file
+
+// CKEditor applies `box-sizing: content-box` everywhere. The outer element has
+// a 1px border, so if set to `width: 100%` it will take up an additional 2px.
+.cke_chrome {
+    box-sizing: border-box !important;
+}

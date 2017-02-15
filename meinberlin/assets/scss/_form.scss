@@ -3,7 +3,7 @@ label {
 }
 
 %inputBase {
-    margin: 0 0 0.5em;
+    margin: 0 0 $spacer;
     border: 1px solid $input-border-color;
     padding: 0.4em 0.6em;
     line-height: 1.6;
@@ -16,7 +16,7 @@ textarea,
 select {
     @extend %inputBase;
     display: block;
-    background: $bg-secondary;
+    background-color: $bg-secondary;
     color: contrast-color($bg-secondary);
 
     &:invalid {
@@ -36,12 +36,24 @@ select {
 
 .errorlist {
     margin: 0;
-    padding: 0;
+    padding: $padding;
     list-style: none;
-    color: $brand-danger;
+    text-align: right;
+    background-color: $brand-danger;
+    color: contrast-color($brand-danger);
 }
 
 .django-ckeditor-widget {
     display: block !important;
     margin-bottom: $spacer;
+}
+
+.form-group {
+    margin: 0 0 $spacer;
+
+    .django-ckeditor-widget,
+    %inputBase {
+        width: 100%;
+        margin: 0;
+    }
 }

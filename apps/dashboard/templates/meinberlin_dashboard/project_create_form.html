@@ -2,7 +2,6 @@
 {% load i18n %}
 
 {% block dashboard_content %}
-
     <nav class="resource-navigation-breadcrumbs breadcrumbs">
         <ul>
             <li>
@@ -18,9 +17,7 @@
         </ul>
     </nav>
 
-<h3>{%  trans "Create project based on" %} {{ view.blueprint.title }}</h3>
+    <h3>{% trans "Create project based on" %} {{ view.blueprint.title }}</h3>
 
-{% include 'meinberlin_dashboard/includes/project_form.html' with view=view %}
-
+    {% include 'meinberlin_dashboard/includes/project_form.html' with view=view %}
 {% endblock %}
-
