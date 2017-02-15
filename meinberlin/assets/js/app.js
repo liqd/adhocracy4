@@ -1,4 +1,5 @@
 /* eslint no-unused-vars: "off" */
+/* eslint no-undef: "off" */
 
 var ReactComments = require('adhocracy4').comments
 var ReactRatings = require('adhocracy4').ratings
