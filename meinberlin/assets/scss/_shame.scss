@@ -17,6 +17,7 @@
 }
 
 // used by allauth (login/register)
+.signup > button[type="submit"],
 .primaryAction {
     @extend .button;
     @extend .button--primary;
