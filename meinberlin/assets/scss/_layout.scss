@@ -23,4 +23,18 @@
     .l-tile-2 {
         @include grid-same-width(2);
     }
+
+    @supports (display: flex) {
+        .l-tile-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        // HACK to make this more specific than the grid-same-width selector
+        .l-tile-2.l-tile-2 {
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
 }

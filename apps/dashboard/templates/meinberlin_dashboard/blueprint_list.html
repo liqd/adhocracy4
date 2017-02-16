@@ -18,7 +18,7 @@
 
 <h3 class="menuLayout-title">{% trans "New Project" %}</h3>
 
-<div>
+<div class="l-tile-wrapper">
     {% for blueprint_slug, blueprint in view.blueprints %}
         {% include "meinberlin_dashboard/includes/blueprint_list_tile.html" with blueprint=blueprint %}
     {% endfor %}
