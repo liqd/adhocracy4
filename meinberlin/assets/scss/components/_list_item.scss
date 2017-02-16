@@ -1,4 +1,4 @@
-.listItem {
+.list-item {
     padding: $padding;
     display: block;
     position: relative;
@@ -6,7 +6,7 @@
     margin-bottom: $spacer;
 }
 
-.listItem--squashed {
+.list-item--squashed {
     border-top: 0;
     margin-bottom: 0;
 
@@ -15,27 +15,27 @@
     }
 }
 
-.listItem-author,
-.listItem-stats,
-.listItem-title {
+.list-item__author,
+.list-item__stats,
+.list-item__title {
     margin: 0 0 0.8rem;
 }
 
-.listItem-title {
+.list-item__title {
     font-size: $font-size-lg;
 }
 
-.listItem-author {
+.list-item__author {
     font-size: $font-size-sm;
     font-weight: bold;
 }
 
-.listItem-date {
+.list-item__date {
     font-size: $font-size-xs;
 }
 
-.listItem-actions,
-.listItem-stats {
+.list-item__actions,
+.list-item__stats {
     font-size: $font-size-sm;
     float: right;
 }

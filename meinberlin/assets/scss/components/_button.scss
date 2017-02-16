@@ -27,8 +27,8 @@
     }
 }
 
-%buttonBase {
-    @extend %inputBase;
+%button-base {
+    @extend %input-base;
     border-radius: 0.3em;
     text-decoration: none;
     display: inline-block;
@@ -39,7 +39,7 @@
 }
 
 .button {
-    @extend %buttonBase;
+    @extend %button-base;
     @include button-color($link-color, $link-hover-color);
 }
 
@@ -82,7 +82,7 @@
     margin-bottom: $spacer;
 }
 
-.buttonGroup {
+.button-group {
     > :not(:first-child) {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;

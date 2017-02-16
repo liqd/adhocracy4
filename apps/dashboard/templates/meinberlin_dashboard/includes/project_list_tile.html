@@ -1,7 +1,7 @@
 {% load i18n project_tags %}
 
-<div class="listItem">
-    <div class="listItem-actions">
+<div class="list-item">
+    <div class="list-item__actions">
         <span>
             <a href="{% url 'dashboard-project-edit' organisation_slug=view.organisation.slug slug=project.slug %}"
                class="button">
@@ -9,12 +9,12 @@
             </a>
         </span>
     </div>
-    <h3 class="listItem-title">
+    <h3 class="list-item__title">
         <a href="{% url 'project-detail' project.slug %}">
         {{ project.name }}
         </a>
     </h3>
-    <div class="listItem-status">
+    <div class="list-item__status">
         {% if project.has_finished %}
             {% trans 'Finished' %}
         {% elif project.active_phase %}

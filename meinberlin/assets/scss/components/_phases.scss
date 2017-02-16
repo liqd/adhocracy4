@@ -1,4 +1,4 @@
-.phaseList {
+.phase-list {
     text-align: center;
     text-decoration: line-through;
     color: $link-color;
@@ -13,8 +13,8 @@
     }
 }
 
-.phaseList-button {
-    @extend %buttonBase;
+.phase-list__button {
+    @extend %button-base;
     font-size: $font-size-sm;
     border-radius: 1.3em;
     margin-bottom: 0;
@@ -35,16 +35,16 @@
     }
 }
 
-.phaseInfo {
+.phase-info {
     text-align: center;
     margin-bottom: $spacer * 2;
 }
 
-.phaseInfo-title {
+.phase-info__title {
     font-size: $font-size-lg;
     margin-bottom: $spacer;
 }
 
-.phaseInfo-subtitle {
+.phase-info__subtitle {
     font-size: $font-size-sm;
 }

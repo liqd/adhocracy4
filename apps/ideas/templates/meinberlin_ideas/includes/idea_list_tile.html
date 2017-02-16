@@ -1,5 +1,5 @@
-<div class="listItem listItem--squashed">
-    <div class="listItem-stats">
+<div class="list-item list-item--squashed">
+    <div class="list-item__stats">
         <span class="rating">
             <span class="rating-up is-read-only" title="Positive Ratings">
                 {{ idea.positive_rating_count }}
@@ -15,15 +15,15 @@
             <i class="fa fa-comment-o" aria-hidden="true"></i>
         </span>
     </div>
-    <h3 class="listItem-title">
+    <h3 class="list-item__title">
         <a href="{% url 'idea-detail' idea.slug %}">
         {{ idea.name }}
         </a>
     </h3>
-    <span class="listItem-author">
+    <span class="list-item__author">
         {{ idea.creator.username }}
     </span>
-    <span class="listItem-date">
+    <span class="list-item__date">
         {{ idea.created | date }}
     </span>
 </div>

@@ -1,16 +1,16 @@
-.mainHeader {
+.main-header {
     position: relative;
     background: url('/static/images/bg-amplitude-blue.png') bottom right no-repeat;
     padding-bottom: 68px;
 }
 
-.mainHeader-user {
+.main-header__user {
     position: absolute;
     top: 0;
     right: 0;
 }
 
-.mainNav {
+.main-nav {
     font-size: $font-size-lg;
     line-height: 1;
 
@@ -36,12 +36,12 @@
     }
 }
 
-.mainNav-item,
-.mainNav-logo {
+.main-nav__item,
+.main-nav__logo {
     margin-right: 1em;
 }
 
-.mainNav-logo {
+.main-nav__logo {
     img {
         width: 7em;
         margin-top: -3em;
@@ -49,6 +49,6 @@
     }
 }
 
-.mainNav-item {
+.main-nav__item {
     padding: 0.2em 0.4em;
 }

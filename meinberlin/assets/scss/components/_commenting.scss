@@ -2,16 +2,16 @@
     margin-bottom: $spacer;
 }
 
-.commenting-content {
+.commenting__content {
     padding-right: $padding;
     border-right: 1px solid $brand-primary;
 }
 
-.commenting-actions {
+.commenting__actions {
     text-align: right;
 }
 
-.commenting-title {
+.commenting__title {
     margin-top: 0;
     font-size: 100%;
 }
@@ -21,11 +21,11 @@
         @include clearfix;
     }
 
-    .commenting-content {
+    .commenting__content {
         @include grid-span(9, 0);
     }
 
-    .commenting-actions {
+    .commenting__actions {
         @include grid-span(3, 9);
         text-align: left;
     }

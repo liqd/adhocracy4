@@ -8,13 +8,13 @@
         {% for paragraph in object.paragraphs.all %}
 
         <section class="commenting">
-            <div class="commenting-content">
-                <h2 class="commenting-title">
+            <div class="commenting__content">
+                <h2 class="commenting__title">
                     {{ paragraph.name }}
                 </h2>
                 {{ paragraph.text|safe }}
             </div>
-            <div class="commenting-actions">
+            <div class="commenting__actions">
                 <a
                     class="button"
                     title="{% trans 'Comments for this Paragraph' %}"
