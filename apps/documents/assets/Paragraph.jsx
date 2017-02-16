@@ -88,7 +88,9 @@ var Paragraph = React.createClass({
                 defaultValue={this.props.paragraph.name}
                 onChange={this.handleNameChange} />
               {this.props.errors && this.props.errors.name ? <ul className="errorlist">
-                <li>{this.props.errors.name[0]}</li>
+                {this.props.errors.name.map(function (msg, index) {
+                  return <li key={msg}>{msg}</li>
+                })}
               </ul> : null}
             </div>
 
@@ -106,9 +108,11 @@ var Paragraph = React.createClass({
                   style={{height: this.props.config.height + ckEditorToolbarsHeight}}
                   id={'id_paragraphs-' + this.props.id + '-text'} />
               </div>
-              { this.props.errors && this.props.errors.text ? <ul className="errorlist">
-                <li>{this.props.errors.text[0]}</li>
-              </ul> : null }
+              {this.props.errors && this.props.errors.text ? <ul className="errorlist">
+                {this.props.errors.text.map(function (msg, index) {
+                  return <li key={msg}>{msg}</li>
+                })}
+              </ul> : null}
             </div>
           </div>
 

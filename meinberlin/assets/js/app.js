@@ -15,11 +15,6 @@ var moment = require('moment')
 var django = require('django')
 moment.locale(django.languageCode)
 
-// enable bootstrap popover
-$(function () {
-  $('[data-toggle="popover"]').popover()
-})
-
 // expose react components
 var ReactComments = require('adhocracy4').comments
 var ReactRatings = require('adhocracy4').ratings
