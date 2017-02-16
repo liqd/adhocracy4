@@ -57,3 +57,9 @@ select {
         margin: 0;
     }
 }
+
+.form-hint {
+    font-style: italic;
+    color: $gray-light;
+    font-size: $font-size-sm;
+}

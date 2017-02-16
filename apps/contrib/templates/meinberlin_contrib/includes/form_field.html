@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<div class="form-group">
+    <label for="{{ field.id_for_label }}">
+        {% trans field.label %}
+    </label>
+    <div class="form-hint">
+        {% trans field.help_text %}
+    </div>
+    {{ field }}
+    {{ field.errors }}
+</div>
