@@ -1,5 +1,7 @@
 .phaseList {
     text-align: center;
+    text-decoration: line-through;
+    color: $link-color;
 
     ul {
         margin: 0;
@@ -9,11 +11,27 @@
     li {
         display: inline-block;
     }
+}
 
-    button {
-        text-decoration: none;
-        font-size: $font-size-sm;
-        font-weight: bold;
+.phaseList-button {
+    @extend %buttonBase;
+    font-size: $font-size-sm;
+    border-radius: 1.3em;
+    margin-bottom: 0;
+    vertical-align: middle;
+
+    background-color: contrast-color($link-color);
+    color: $link-color;
+    border-color: $link-color;
+
+    &:hover,
+    &:focus {
+        color: $link-hover-color;
+        border-color: $link-hover-color;
+    }
+
+    &.is-active {
+        @include button-color($link-color, $link-hover-color);
     }
 }
 
