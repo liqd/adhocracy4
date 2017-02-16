@@ -59,23 +59,6 @@
     padding: 0.8em 2em;
 }
 
-.button--as-link {
-    background: none;
-    color: $link-color;
-    border: 0;
-    text-decoration: underline;
-    display: inline;
-    padding: 0;
-    line-height: inherit;
-    margin: 0;
-
-    &:hover,
-    &:focus {
-        background: none;
-        color: $link-hover-color;
-    }
-}
-
 .button--full {
     display: block;
     width: 100%;
