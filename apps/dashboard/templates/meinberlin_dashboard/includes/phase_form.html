@@ -3,37 +3,13 @@
 {% getPhaseName form.type.value as phasename %}
 <h3>{% trans phasename %}</h3>
 
-<div class="form-group">
-    <label for="{{ form.name.id_for_label }}">
-        {% trans 'Name:'%}
-    </label>
-    {{ form.name }}
-    {{ form.name.errors }}
-</div>
+{% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
 
-<div class="form-group">
-    <label for="{{ form.description.id_for_label }}">
-        {% trans 'Description:'%}
-    </label>
-    {{ form.description }}
-    {{ form.description.errors }}
-</div>
+{% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
 
-<div class="form-group">
-    <label for="{{ form.start_date.id_for_label }}">
-        {% trans 'Start Date:'%}
-    </label>
-    {{ form.start_date }}
-    {{ form.start_date.errors }}
-</div>
+{% include 'meinberlin_contrib/includes/form_field.html' with field=form.start_date %}
 
-<div class="form-group">
-    <label for="{{ form.end_date.id_for_label }}">
-        {% trans 'End Date:'%}
-    </label>
-    {{ form.end_date }}
-    {{ form.end_date.errors }}
-</div>
+{% include 'meinberlin_contrib/includes/form_field.html' with field=form.end_date %}
 
 {% for hidden in form.hidden_fields %}
     {{ hidden }}
