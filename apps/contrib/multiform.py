@@ -64,3 +64,8 @@ class MultiModelForm(multiform.MultiModelForm):
             for name, formset in self.forms.items():
                 if issubclass(base_forms[name], formsets.BaseFormSet):
                     self.cleaned_data[name] = [f.cleaned_data for f in formset]
+
+    def get_formset(self, formset_name):
+        for name, formset in self.forms.items():
+            if name == formset_name:
+                return formset
