@@ -56,17 +56,17 @@ class PhaseForm(forms.ModelForm):
 
 class ProjectEditFormBase(multiform.MultiModelForm):
 
-    def project_form(self):
+    def _project_form(self):
         return self.get_formset('project')
 
-    def phases_form(self):
+    def _phases_form(self):
         return self.get_formset('phases')
 
-    def module_settings_form(self):
+    def _module_settings_form(self):
         return self.get_formset('module_settings')
 
     def info_error_count(self):
-        project_form_errors = self.project_form().errors.keys()
+        project_form_errors = self._project_form().errors.keys()
         info_error_count = len(project_form_errors)
         if 'result' in project_form_errors:
             info_error_count = info_error_count - 1
@@ -74,14 +74,14 @@ class ProjectEditFormBase(multiform.MultiModelForm):
 
     def participate_error_count(self):
         module_settings_error_count = 0
-        module_settings = self.module_settings_form()
+        module_settings = self._module_settings_form()
         if module_settings:
             module_settings_error_count = len(module_settings.errors)
-        phases_error_count = self.phases_form().total_error_count()
+        phases_error_count = self._phases_form().total_error_count()
         return module_settings_error_count + phases_error_count
 
     def result_error_count(self):
-        project_form_errors = self.project_form().errors.keys()
+        project_form_errors = self._project_form().errors.keys()
         return 1 if 'result' in project_form_errors else 0
 
 
