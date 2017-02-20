@@ -28,16 +28,16 @@
 {% endif %}
 {% endwith %}
 
-<div class="phaseInfo">
+<div class="phase-info">
     <div class="l-center-6">
-        <h3 class="phaseInfo-title">
+        <h3 class="phase-info__title">
             {{ active_phase.name }}
         </h3>
-        <div class="phaseInfo-subtitle">
+        <div class="phase-info__subtitle">
             {% trans "from" %} {{ active_phase.start_date }}
             {% trans "to" %} {{ active_phase.end_date }}
         </div>
-        <div class="phaseInfo-description">
+        <div class="phase-info__description">
             {{ active_phase.description }}
         </div>
     </div>
