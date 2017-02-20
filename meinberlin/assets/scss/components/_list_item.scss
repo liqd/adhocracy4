@@ -2,8 +2,17 @@
     padding: $padding;
     display: block;
     position: relative;
+    border: 1px solid $border-color;
     margin-bottom: $spacer;
-    box-shadow: 0 0 1em $shadow;
+}
+
+.listItem--squashed {
+    border-top: 0;
+    margin-bottom: 0;
+
+    &:first-child {
+        border-top: 1px solid $border-color;
+    }
 }
 
 .listItem-author,

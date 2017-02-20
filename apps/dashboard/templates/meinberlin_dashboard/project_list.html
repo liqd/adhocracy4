@@ -10,15 +10,13 @@
     </a>
 
     {% if project_list|length == 0 %}
-
-    {% trans 'No projects created' %}
-
+        <div>
+            {% trans 'No projects created' %}
+        </div>
     {% else %}
-
-    {% for project in project_list %}
-        {% include "meinberlin_dashboard/includes/project_list_tile.html" with project=project %}
-    {% endfor %}
-
+        {% for project in project_list %}
+            {% include "meinberlin_dashboard/includes/project_list_tile.html" with project=project %}
+        {% endfor %}
     {% endif %}
 
 </div>
