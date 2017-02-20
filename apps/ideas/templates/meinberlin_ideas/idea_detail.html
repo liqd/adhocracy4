@@ -5,7 +5,7 @@
 {% block content %}
 <div class="resource-navigation">
     <div class="l-wrapper">
-        <nav class="resource-navigation-breadcrumbs breadcrumbs">
+        <nav class="resource-navigation__breadcrumbs breadcrumbs">
             <ul>
                 <li>
                     <a href="{% url 'project-detail' idea.project.slug %}">
@@ -17,7 +17,7 @@
 
         {% has_perm 'euth_ideas.modify_idea' request.user idea as show_dropdown %}
         {% if show_dropdown %}
-        <div class="resource-navigation-actions dropdown dropdown--right">
+        <div class="resource-navigation__actions dropdown dropdown--right">
             <button
                 title="{% trans 'Actions' %}"
                 type="button"

@@ -5,12 +5,12 @@
     text-align: center;
 }
 
-.resource-header-meta,
-.resource-header-action {
+.resource-header__meta,
+.resource-header__action {
     margin-bottom: 1.5rem;
 }
 
-.resource-header-title {
+.resource-header__title {
     margin-bottom: 1.2rem;
     font-size: $font-size-xxl;
 }
@@ -19,10 +19,10 @@
     @include pie-clearfix;
 }
 
-.resource-navigation-breadcrumbs {
+.resource-navigation__breadcrumbs {
     display: inline-block;
 }
 
-.resource-navigation-actions {
+.resource-navigation__actions {
     float: right;
 }

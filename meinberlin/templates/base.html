@@ -16,19 +16,19 @@
     {% block header %}{% endblock %}
 </head>
 <body>
-    <header class="mainHeader">
+    <header class="main-header">
         <div class="l-wrapper">
-            <nav class="mainNav">
-                <a href="/" class="mainNav-item" rel="home">{% trans 'Home' %}</a>
-                <a href="/" class="mainNav-logo" rel="home"><img src="{% static 'images/LOGO.png' %}" alt="mein.berlin" /></a>
+            <nav class="main-nav">
+                <a href="/" class="main-nav__item" rel="home">{% trans 'Home' %}</a>
+                <a href="/" class="main-nav__logo" rel="home"><img src="{% static 'images/LOGO.png' %}" alt="mein.berlin" /></a>
                 <ul>
                     {% get_menu "topnav" as topnav %}
                     {% for item in topnav %}
-                    <li><a class="mainNav-item" href="{{ item.url }}">{{ item.title }}</a></li>
+                    <li><a class="main-nav__item" href="{{ item.url }}">{{ item.title }}</a></li>
                     {% endfor %}
                 </ul>
             </nav>
-            <div class="mainHeader-user">
+            <div class="main-header__user">
                 {% userindicator %}
             </div>
         </div>

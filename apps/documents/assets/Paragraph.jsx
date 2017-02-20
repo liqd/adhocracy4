@@ -74,7 +74,7 @@ var Paragraph = React.createClass({
         </button>
 
         <div className="commenting">
-          <div className="commenting-content">
+          <div className="commenting__content">
             <div className="form-group">
               <label
                 htmlFor={'id_paragraphs-' + this.props.id + '-name'}>
@@ -116,7 +116,7 @@ var Paragraph = React.createClass({
             </div>
           </div>
 
-          <div className="commenting-actions buttonGroup">
+          <div className="commenting__actions button-group">
             <button
               className="button"
               onClick={this.up}

@@ -5,7 +5,7 @@
 {% with project.phases|length as phase_count %}
 {% if phase_count > 1 %}
 <script src="{% static 'js/popover.js' %}"></script>
-<div class="phaseList">
+<div class="phase-list">
     <ul>
         {% for phase in project.phases %}
             {% includeTemplateString "meinberlin_projects/includes/phase_popover.html" phase=phase phase_num=forloop.counter phase_count=phase_count as popover_content %}
@@ -13,7 +13,7 @@
                 <button
                     title="{{ phase.name }}"
                     id="phase-{{ phase.pk }}"
-                    class="phaseList-button {% if phase == active_phase %} is-active{% endif %}"
+                    class="phase-list__button {% if phase == active_phase %} is-active{% endif %}"
                     data-toggle="popover"
                     data-content="{{ popover_content }}"
                     data-placement="top"
@@ -28,16 +28,16 @@
 {% endif %}
 {% endwith %}
 
-<div class="phaseInfo">
+<div class="phase-info">
     <div class="l-center-6">
-        <h3 class="phaseInfo-title">
+        <h3 class="phase-info__title">
             {{ active_phase.name }}
         </h3>
-        <div class="phaseInfo-subtitle">
+        <div class="phase-info__subtitle">
             {% trans "from" %} {{ active_phase.start_date }}
             {% trans "to" %} {{ active_phase.end_date }}
         </div>
-        <div class="phaseInfo-description">
+        <div class="phase-info__description">
             {{ active_phase.description }}
         </div>
     </div>
