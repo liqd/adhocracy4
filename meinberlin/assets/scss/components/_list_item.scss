@@ -4,14 +4,14 @@
     position: relative;
     border: 1px solid $border-color;
     margin-bottom: $spacer;
+}
 
-    &.squashed {
-        border-top: 0;
-        margin-bottom: 0;
+.listItem--squashed {
+    border-top: 0;
+    margin-bottom: 0;
 
-        &:first-child {
-            border-top: 1px solid $border-color;
-        }
+    &:first-child {
+        border-top: 1px solid $border-color;
     }
 }
 
