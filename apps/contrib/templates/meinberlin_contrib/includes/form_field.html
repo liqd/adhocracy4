@@ -4,9 +4,11 @@
     <label for="{{ field.id_for_label }}">
         {% trans field.label %}
     </label>
+    {% if field.help_text %}
     <div class="form-hint">
         {% trans field.help_text %}
     </div>
+    {% endif %}
     {{ field }}
     {{ field.errors }}
 </div>
