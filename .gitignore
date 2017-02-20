@@ -12,3 +12,4 @@ meinberlin/static/fonts
 .cache/
 .coverage
 htmlcov/
+media/
