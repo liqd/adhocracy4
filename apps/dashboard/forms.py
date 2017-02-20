@@ -54,7 +54,38 @@ class PhaseForm(forms.ModelForm):
         }
 
 
-class ProjectCreateForm(multiform.MultiModelForm):
+class ProjectEditFormBase(multiform.MultiModelForm):
+
+    def _project_form(self):
+        return self.get_formset('project')
+
+    def _phases_form(self):
+        return self.get_formset('phases')
+
+    def _module_settings_form(self):
+        return self.get_formset('module_settings')
+
+    def info_error_count(self):
+        project_form_errors = self._project_form().errors.keys()
+        info_error_count = len(project_form_errors)
+        if 'result' in project_form_errors:
+            info_error_count = info_error_count - 1
+        return info_error_count
+
+    def participate_error_count(self):
+        module_settings_error_count = 0
+        module_settings = self._module_settings_form()
+        if module_settings:
+            module_settings_error_count = len(module_settings.errors)
+        phases_error_count = self._phases_form().total_error_count()
+        return module_settings_error_count + phases_error_count
+
+    def result_error_count(self):
+        project_form_errors = self._project_form().errors.keys()
+        return 1 if 'result' in project_form_errors else 0
+
+
+class ProjectCreateForm(ProjectEditFormBase):
 
     def __init__(self, blueprint, organisation, creator, *args, **kwargs):
         kwargs['phases__queryset'] = phase_models.Phase.objects.none()
@@ -119,7 +150,7 @@ class ProjectCreateForm(multiform.MultiModelForm):
                 phase.save()
 
 
-class ProjectUpdateForm(multiform.MultiModelForm):
+class ProjectUpdateForm(ProjectEditFormBase):
 
     def __init__(self, *args, **kwargs):
         self.base_forms = [

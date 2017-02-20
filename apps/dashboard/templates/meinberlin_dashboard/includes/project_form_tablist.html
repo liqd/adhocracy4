@@ -1,5 +1,4 @@
 {% load i18n %}
-
 <nav class="tablist" role="tablist">
     <a
             id="#tab-project-create-{{ view.organisation.pk }}-information"
@@ -10,6 +9,9 @@
             aria-controls="tabpanel-project-create-{{ view.organisation.pk }}-information"
             aria-expanded="true">
         {% trans 'Information' %}
+        {% if form.info_error_count > 0  %}
+            <span class="tab-errorcount">({{ form.info_error_count }})</span>
+        {% endif %}
     </a>
     <a
             id="#tab-project-create-{{ view.organisation.pk }}-participation"
@@ -20,6 +22,9 @@
             aria-controls="tabpanel-project-create-{{ view.organisation.pk }}-participation"
             aria-expanded="false">
         {% trans 'Participation' %}
+        {% if form.participate_error_count > 0  %}
+            <span class="tab-errorcount">({{ form.participate_error_count }})</span>
+        {% endif %}
     </a>
     <a
             id="#tab-project-create-{{ view.organisation.pk }}-result"
@@ -30,5 +35,8 @@
             aria-controls="tabpanel-project-create-{{ view.organisation.pk }}-result"
             aria-expanded="false">
         {% trans 'Result' %}
+        {% if form.result_error_count > 0  %}
+            <span class="tab-errorcount">({{ form.result_error_count }})</span>
+        {% endif %}
     </a>
 </nav>
