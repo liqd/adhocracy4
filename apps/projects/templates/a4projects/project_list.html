@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="l-wrapper">
+        {% include "meinberlin_contrib/includes/sort.html" %}
+
+        <div class="l-tile-wrapper">
+            {% for project in project_list %}
+            {% include "a4projects/includes/project_list_tile.html" with project=project %}
+            {% endfor %}
+        </div>
+
+        {% include "meinberlin_contrib/includes/pagination.html" %}
+    </div>
+{% endblock %}
