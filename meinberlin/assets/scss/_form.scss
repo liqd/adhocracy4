@@ -1,5 +1,6 @@
 label {
     display: block;
+    margin-bottom: 0.2em;
 }
 
 %inputBase {
@@ -62,4 +63,5 @@ select {
     font-style: italic;
     color: $gray-light;
     font-size: $font-size-sm;
+    margin-bottom: 0.4em;
 }
