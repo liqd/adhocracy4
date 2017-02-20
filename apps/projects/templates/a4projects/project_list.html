@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load rules %}
 
 {% block content %}
     <div class="l-wrapper">
@@ -6,7 +7,12 @@
 
         <div class="l-tile-wrapper">
             {% for project in project_list %}
-            {% include "a4projects/includes/project_list_tile.html" with project=project %}
+
+            {% has_perm 'a4projects.view_project' request.user project as show %}
+            {% if show %}
+                {% include "a4projects/includes/project_list_tile.html" with project=project %}
+            {% endif %}
+
             {% endfor %}
         </div>
 
