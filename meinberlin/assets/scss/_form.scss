@@ -1,5 +1,6 @@
 label {
     display: block;
+    margin-bottom: 0.2em;
 }
 
 %inputBase {
@@ -56,4 +57,11 @@ select {
         width: 100%;
         margin: 0;
     }
+}
+
+.form-hint {
+    font-style: italic;
+    color: $gray-light;
+    font-size: $font-size-sm;
+    margin-bottom: 0.4em;
 }

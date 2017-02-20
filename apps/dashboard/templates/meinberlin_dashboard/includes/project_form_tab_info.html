@@ -11,27 +11,9 @@
         <span>{{ error }}</span>
     {% endfor %}
 
-    <div class="form-group">
-        <label for="{{ form.project.name.id_for_label }}">
-            {% trans 'Name'%}
-        </label>
-        {{ form.project.name }}
-        {{ form.project.name.errors }}
-    </div>
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project.name %}
 
-    <div class="form-group">
-        <label for="{{ form.project.description.id_for_label }}">
-            {% trans 'Description'%}
-        </label>
-        {{ form.project.description }}
-        {{ form.project.description.errors }}
-    </div>
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project.description %}
 
-    <div class="form-group">
-        <label for="{{ form.project.information.id_for_label }}">
-            {% trans 'Information'%}
-        </label>
-        {{ form.project.information }}
-        {{ form.project.information.errors }}
-    </div>
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project.information %}
 </div>

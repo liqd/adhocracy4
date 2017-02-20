@@ -7,11 +7,5 @@
     aria-labelledby="tab-project-create-{{ view.organisation.pk }}-result"
     aria-expanded="false">
 
-    <div class="form-group">
-        <label for="{{ form.project.result.id_for_label }}">
-            {% trans 'Result'%}
-        </label>
-        {{ form.project.result }}
-        {{ form.project.result.errors }}
-    </div>
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project.result %}
 </div>
