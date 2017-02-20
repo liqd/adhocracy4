@@ -1,5 +1,15 @@
+{% load i18n project_tags thumbnail %}
+
 <div class="l-tile-4 tile">
+    {% get_days project.days_left as days %}
+    {% if project.has_finished %}
+    <span class="label">{% trans "Finished" %}</span>
+    {% elif days %}
+    <span class="label">{{ days }}</span>
+    {% endif %}
+
     <h3 class="list-item__title">
         <a href="{% url 'project-detail' project.slug %}">{{ project.name }}</a>
     </h3>
+    <p>{{ project.description }}</p>
 </div>
