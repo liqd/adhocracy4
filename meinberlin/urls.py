@@ -2,6 +2,7 @@
 
 from allauth import urls as allauth_urls
 from ckeditor_uploader import views as ck_views
+from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
@@ -55,3 +56,12 @@ urlpatterns = [
         js_info_dict, name='javascript-catalog'),
     url(r'', include(wagtail_urls)),
 ]
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+    # Serve static and media locally
+    urlpatterns += staticfiles_urlpatterns()
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
