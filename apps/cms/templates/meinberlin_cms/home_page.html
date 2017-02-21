@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailuserbar %}
+{% load wagtailcore_tags wagtailuserbar wagtailimages_tags %}
 
 {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}
 
@@ -10,10 +10,15 @@
 {% endblock %}
 
 {% block content %}
+    {% image self.header_image fill-1920x560-c100 as header_image %}
+    {% include 'meinberlin_contrib/includes/header.html' with image=header_image %}
+
     <div class="l-wrapper">
         <h1>{{ self.title }}</h1>
+        {% for project in self.featured_projects %}
+            {% include 'a4projects/includes/project_list_tile.html' with project=project %}
+        {% endfor %}
 
-        {{ self.body|richtext }}
     </div>
 
     {% wagtailuserbar %}

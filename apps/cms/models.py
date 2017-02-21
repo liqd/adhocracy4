@@ -1,21 +1,43 @@
+from adhocracy4.projects.models import Project
 from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
-from wagtail.wagtailadmin.edit_handlers import InlinePanel
-from wagtail.wagtailadmin.edit_handlers import PageChooserPanel
-from wagtail.wagtailcore.fields import RichTextField
+from wagtail.wagtailadmin import edit_handlers
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailcore import fields
+from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.models import Orderable
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailsnippets.models import register_snippet
 
 
+class CallToActionBlock(blocks.StructBlock):
+    body = blocks.RichTextBlock()
+    link = blocks.CharBlock()
+
+
 class HomePage(Page):
-    body = RichTextField(blank=True)
+    body = fields.StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+        ('call_to_action', CallToActionBlock())
+    ])
+
+    header_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full")
+        ImageChooserPanel('header_image'),
+        edit_handlers.StreamFieldPanel('body'),
     ]
+
+    @property
+    def featured_projects(self):
+        return Project.objects.order_by('-created')[:8]
 
 
 class MenuItem(models.Model):
@@ -30,8 +52,8 @@ class MenuItem(models.Model):
         return self.title
 
     panels = [
-        FieldPanel('title'),
-        PageChooserPanel('link_page')
+        edit_handlers.FieldPanel('title'),
+        edit_handlers.PageChooserPanel('link_page')
     ]
 
 
@@ -43,8 +65,8 @@ class NavigationMenu(ClusterableModel):
         return self.title
 
     panels = [
-        FieldPanel('title'),
-        InlinePanel('items')
+        edit_handlers.FieldPanel('title'),
+        edit_handlers.InlinePanel('items')
     ]
 
 
