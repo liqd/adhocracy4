@@ -24,6 +24,10 @@
         @include grid-same-width(2);
     }
 
+    .l-tile-4 {
+        @include grid-same-width(4);
+    }
+
     @supports (display: flex) {
         .l-tile-wrapper {
             display: flex;
@@ -33,6 +37,11 @@
 
         // HACK to make this more specific than the grid-same-width selector
         .l-tile-2.l-tile-2 {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .l-tile-4.l-tile-4 {
             margin-left: 0;
             margin-right: 0;
         }
