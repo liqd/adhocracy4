@@ -69,12 +69,15 @@ class Email:
         html = select_template([
             'emails/{}.{}.html'.format(template, lang) for lang in languages
         ])
-        mail = EmailMultiAlternatives(
-            subject=subject.render(context).strip(),
-            body=plaintext.render(context),
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            to=receivers,
-        )
+
+        for receiver in receivers:
+            mail = EmailMultiAlternatives(
+                subject=subject.render(context).strip(),
+                body=plaintext.render(context),
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=[receiver],
+            )
+
         if len(attachments) > 0:
             mail.mixed_subtype = 'related'
 
