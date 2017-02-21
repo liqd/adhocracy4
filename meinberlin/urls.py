@@ -14,7 +14,6 @@ from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
 from adhocracy4.comments.api import CommentViewSet
-from adhocracy4.projects import urls as a4_projects_urls
 from adhocracy4.ratings.api import RatingViewSet
 
 from apps.dashboard import urls as dashboard_urls
@@ -40,7 +39,6 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^accounts/', include(allauth_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'^projects/', include(a4_projects_urls)),
     url(r'^projects/', include(projects_urls)),
 
     url(r'^ideas/', include(ideas_urls)),
