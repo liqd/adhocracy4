@@ -142,8 +142,7 @@ class ProjectCreateForm(ProjectEditFormBase):
                 module_settings.save()
 
         phases = objects['phases']
-
-        for index, phase in enumerate(phases):
+        for phase in phases:
             phase.module = module
             if commit:
                 phase.save()
@@ -168,26 +167,3 @@ class ProjectUpdateForm(ProjectEditFormBase):
             ))
 
         super().__init__(*args, **kwargs)
-
-    def save(self, commit=True):
-
-        objects = super().save(commit=False)
-        project = objects['project']
-
-        if commit:
-            project.save()
-            if 'module_settings' in objects:
-                objects['module_settings'].save()
-
-        cleaned_data = self._combine('cleaned_data', call=False,
-                                     call_kwargs={'commit': commit})
-        phases = cleaned_data['phases']
-        for phase in phases:
-            phase_object = phase['id']
-            del phase['id']
-            for key in phase:
-                value = phase[key]
-                setattr(phase_object, key, value)
-            if commit:
-                phase_object.save()
-        return objects
