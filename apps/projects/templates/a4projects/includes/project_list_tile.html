@@ -1,6 +1,6 @@
 {% load i18n project_tags thumbnail %}
 
-<div class="l-tile-4 tile">
+<div class="tile">
     {% get_days project.days_left as days %}
     {% if project.has_finished %}
     <span class="label">{% trans "Finished" %}</span>
