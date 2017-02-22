@@ -1,0 +1,73 @@
+// stylelint-disable scale-unlimited/declaration-strict-value
+
+.portal-header {
+    @include pie-clearfix;
+    background-color: #bfd3ff;
+    background-image: linear-gradient(to bottom, #c7d9ff, #b2caff);
+    border-top: 5px solid #2d509a;
+    min-height: 40px;
+    position: relative;
+    font-size: 12px;
+    margin-bottom: 5em;
+
+    .l-wrapper {
+        position: initial;
+    }
+}
+
+.portal-header__red-line {
+    position: absolute;
+    right: 0;
+    top: -5px;
+    background-color: #e6001a;
+    width: 32%;
+    height: 5px;
+}
+
+.portal-header__logo {
+    float: left;
+    padding: 7px 0;
+    max-width: 100px;
+
+    img {
+        vertical-align: bottom;
+    }
+}
+
+.portal-header__nav {
+    margin: 0;
+    padding: 0;
+    float: right;
+    display: none;
+
+    li {
+        display: block;
+        float: left;
+        padding-top: 7px;
+        padding-bottom: 5px;
+    }
+
+    a {
+        display: block;
+        line-height: 19px;
+        padding: 10px;
+        color: #003684;
+        text-decoration: none;
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+}
+
+@media (min-width: $breakpoint) {
+    .portal-header__logo {
+        max-width: 165px;
+    }
+
+    .portal-header__nav {
+        display: block;
+    }
+}
