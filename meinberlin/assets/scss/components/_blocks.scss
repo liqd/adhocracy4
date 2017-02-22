@@ -1,0 +1,12 @@
+.block--cta {
+    padding: 2.8em 0;
+    margin: 2.8em 0;
+
+    background-color: $brand-primary;
+    color: #fff;
+    text-align: center;
+
+    .rich-text > :first-child {
+        margin-top: 0;
+    }
+}

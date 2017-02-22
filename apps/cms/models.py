@@ -14,13 +14,35 @@ from wagtail.wagtailsnippets.models import register_snippet
 class CallToActionBlock(blocks.StructBlock):
     body = blocks.RichTextBlock()
     link = blocks.CharBlock()
+    link_text = blocks.CharBlock(max_length=50, label='Link Text')
+
+    class Meta:
+        template = 'meinberlin_cms/blocks/cta_block.html'
+
+
+class ColumnsBlock(blocks.StructBlock):
+    columns_count = blocks.ChoiceBlock(choices=[
+        (2, 'Two columns'),
+        (3, 'Three columns'),
+        (4, 'Four columns'),
+    ], default=2)
+
+    columns = blocks.ListBlock(
+        blocks.RichTextBlock(label='Column body'),
+    )
+
+    class Meta:
+        template = 'meinberlin_cms/blocks/columns_block.html'
 
 
 class HomePage(Page):
     body = fields.StreamField([
         ('paragraph', blocks.RichTextBlock()),
-        ('call_to_action', CallToActionBlock())
+        ('call_to_action', CallToActionBlock()),
+        ('columns_text', ColumnsBlock()),
     ])
+
+    subtitle = models.CharField(max_length=120)
 
     header_image = models.ForeignKey(
         'wagtailimages.Image',
@@ -31,6 +53,7 @@ class HomePage(Page):
     )
 
     content_panels = Page.content_panels + [
+        edit_handlers.FieldPanel('subtitle'),
         ImageChooserPanel('header_image'),
         edit_handlers.StreamFieldPanel('body'),
     ]

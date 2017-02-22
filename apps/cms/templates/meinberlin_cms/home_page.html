@@ -1,25 +1,42 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailuserbar wagtailimages_tags %}
+{% load wagtailcore_tags wagtailuserbar wagtailimages_tags rules %}
 
-{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}
+{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
+    {{ self.title }}{% endif %}{% endblock %}
 
 {% block header %}
     {% if self.search_description %}
-    <meta name="description" content="{{self.search_description}}" />
+        <meta name="description" content="{{ self.search_description }}"/>
     {% endif %}
 {% endblock %}
 
 {% block content %}
     {% image self.header_image fill-1920x560-c100 as header_image %}
-    {% include 'meinberlin_contrib/includes/header.html' with image=header_image %}
+    {% include 'meinberlin_contrib/includes/header.html' with image=header_image title=self.title subtitle=self.subtitle %}
 
     <div class="l-wrapper">
-        <h1>{{ self.title }}</h1>
-        {% for project in self.featured_projects %}
-            {% include 'a4projects/includes/project_list_tile.html' with project=project %}
-        {% endfor %}
+        <div class="l-tile-wrapper">
+            {% for project in self.featured_projects %}
 
+                {% has_perm 'a4projects.view_project' request.user project as show %}
+                {% if show %}
+                    {% include "a4projects/includes/project_list_tile.html" with project=project %}
+                {% endif %}
+
+            {% endfor %}
+        </div>
     </div>
+
+    {% for block in self.body %}
+        {% if block.block_type == 'call_to_action' %}
+            {{ block }}
+        {% else %}
+        <div class="l-wrapper">
+            {{ block }}
+        </div>
+        {% endif %}
+    {% endfor %}
+
 
     {% wagtailuserbar %}
 {% endblock %}
