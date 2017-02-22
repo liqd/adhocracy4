@@ -1,0 +1,40 @@
+.hero-unit {
+    position: relative;
+    min-height: 25em;
+
+    background: no-repeat center center;
+    background-size: cover;
+
+    &:before {
+        content: ' ';
+        width: 100%;
+        height: 14em;
+
+        position: absolute;
+        bottom: 0;
+
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8));
+    }
+
+    @media screen and (min-width: $breakpoint) {
+        min-height: 41em;
+    }
+}
+
+.hero-unit__wrapper {
+    width: 100%;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.hero-unit__title,
+.hero-unit__subtitle {
+    color: #fff;
+}
+
+.hero-unit__subtitle {
+    margin-top: 0.3em;
+}
