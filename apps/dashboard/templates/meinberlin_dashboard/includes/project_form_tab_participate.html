@@ -12,15 +12,16 @@
         {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
     {% endfor %}
 
-    <h2>{% trans 'Settings' %} </h2>
-    <h3>{% trans 'Categories' %} </h3>
-    {{ form.categories.management_form }}
-    {% for category_form in form.categories %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=category_form.name %}
-        {% for hidden in category_form.hidden_fields %}
-            {{ hidden }}
+    {% if form.show_categories_form %}
+        <h2>{% trans 'Categories' %} </h2>
+        {{ form.categories.management_form }}
+        {% for category_form in form.categories %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=category_form.name %}
+            {% for hidden in category_form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
         {% endfor %}
-    {% endfor %}
+    {% endif %}
 
     <h2>{% trans 'Phases' %} </h2>
     {{ form.phases.management_form }}

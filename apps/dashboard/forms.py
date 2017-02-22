@@ -91,6 +91,18 @@ class ProjectEditFormBase(multiform.MultiModelForm):
         project_form_errors = self._project_form().errors.keys()
         return 1 if 'result' in project_form_errors else 0
 
+    def _show_categories_form(self, phases):
+        """Check if any of the phases has a categorizable item.
+
+        TODO: Move this functionality to a4phases.
+        """
+        for phase in phases:
+            for models in phase.features.values():
+                for model in models:
+                    if category_models.Categorizable.is_categorizable(model):
+                        return True
+        return False
+
 
 class ProjectCreateForm(ProjectEditFormBase):
 
@@ -102,8 +114,6 @@ class ProjectCreateForm(ProjectEditFormBase):
              'weight': index
              } for index, phase in enumerate(blueprint.content)
         ]
-        kwargs['categories__queryset'] = \
-            category_models.Category.objects.none()
 
         self.organisation = organisation
         self.blueprint = blueprint
@@ -116,9 +126,6 @@ class ProjectCreateForm(ProjectEditFormBase):
                 min_num=len(blueprint.content),
                 max_num=len(blueprint.content),
             )),
-            ('categories', modelformset_factory(
-                category_models.Category, CagtegoryForm
-            )),
         ]
 
         module_settings = blueprint.settings_model
@@ -127,6 +134,17 @@ class ProjectCreateForm(ProjectEditFormBase):
                 'module_settings',
                 get_module_settings_form(module_settings),
             ))
+
+        self.show_categories_form = \
+            self._show_categories_form(self.blueprint.content)
+        if self.show_categories_form:
+            kwargs['categories__queryset'] = \
+                category_models.Category.objects.none()
+            self.base_forms.append(
+                ('categories', modelformset_factory(
+                    category_models.Category, CagtegoryForm
+                ))
+            )
 
         return super().__init__(*args, **kwargs)
 
@@ -160,11 +178,12 @@ class ProjectCreateForm(ProjectEditFormBase):
             if commit:
                 phase.save()
 
-        categories = objects['categories']
-        for category in categories:
-            category.module = module
-            if commit:
-                category.save()
+        if self.show_categories_form:
+            categories = objects['categories']
+            for category in categories:
+                category.module = module
+                if commit:
+                    category.save()
 
 
 class ProjectUpdateForm(ProjectEditFormBase):
@@ -174,9 +193,6 @@ class ProjectUpdateForm(ProjectEditFormBase):
             ('project', ProjectForm),
             ('phases', modelformset_factory(
                 phase_models.Phase, PhaseForm, extra=0
-            )),
-            ('categories', modelformset_factory(
-                category_models.Category, CagtegoryForm
             )),
         ]
 
@@ -188,10 +204,21 @@ class ProjectUpdateForm(ProjectEditFormBase):
                 get_module_settings_form(module.settings_instance),
             ))
 
+        phases = [phase.content() for phase in qs]
+        self.show_categories_form = self._show_categories_form(phases)
+        if self.show_categories_form:
+            self.base_forms.append(
+                ('categories', modelformset_factory(
+                    category_models.Category, CagtegoryForm
+                ))
+            )
+        else:
+            del kwargs['categories__queryset']
+
         super().__init__(*args, **kwargs)
 
     def save(self, commit=True):
-        objects = super().save()
+        objects = super().save(commit=False)
         project = objects['project']
 
         if commit:
@@ -202,9 +229,10 @@ class ProjectUpdateForm(ProjectEditFormBase):
             if 'module_settings' in objects:
                 objects['module_settings'].save()
 
-        module = project.module_set.first()
-        categories = objects['categories']
-        for category in categories:
-            category.module = module
-            if commit:
-                category.save()
+        if self.show_categories_form:
+            module = project.module_set.first()
+            categories = objects['categories']
+            for category in categories:
+                category.module = module
+                if commit:
+                    category.save()
