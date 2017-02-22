@@ -6,6 +6,7 @@ from django.utils.translation import ugettext as _
 from django.views import generic
 from rules.compat import access_mixins as mixins
 
+from adhocracy4.categories import models as category_models
 from adhocracy4.contrib.views import PermissionRequiredMixin
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
@@ -111,5 +112,9 @@ class DashboardProjectUpdateView(DashboardBaseMixin,
         if qs.first().module.settings_instance:
             settings_instance = qs.first().module.settings_instance
             kwargs['module_settings__instance'] = settings_instance
+
+        kwargs['categories__queryset'] = \
+            category_models.Category.objects.filter(
+                module__project=self.object)
 
         return kwargs

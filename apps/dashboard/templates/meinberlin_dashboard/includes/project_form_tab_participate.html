@@ -7,14 +7,25 @@
     aria-labelledby="tab-project-create-{{ view.organisation.pk }}-participation"
     aria-expanded="false">
 
-    {# initialize phases formset #}
-    {{ form.phases.management_form }}
 
     {% for field in form.module_settings.visible_fields %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
     {% endfor %}
 
+    <h2>{% trans 'Settings' %} </h2>
+    <h3>{% trans 'Categories' %} </h3>
+    {{ form.categories.management_form }}
+    {% for category_form in form.categories %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=category_form.name %}
+        {% for hidden in category_form.hidden_fields %}
+            {{ hidden }}
+        {% endfor %}
+    {% endfor %}
+
+    <h2>{% trans 'Phases' %} </h2>
+    {{ form.phases.management_form }}
     {% for phase_form in form.phases %}
         {% include 'meinberlin_dashboard/includes/phase_form.html' with form=phase_form view=view %}
     {% endfor %}
+
 </div>

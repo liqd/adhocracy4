@@ -2,6 +2,7 @@ from django import forms
 from django.db.models import loading
 from django.forms import modelformset_factory
 
+from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
@@ -53,6 +54,13 @@ class PhaseForm(forms.ModelForm):
         }
 
 
+class CagtegoryForm(forms.ModelForm):
+
+    class Meta:
+        model = category_models.Category
+        exclude = ('module',)
+
+
 class ProjectEditFormBase(multiform.MultiModelForm):
 
     def _project_form(self):
@@ -94,6 +102,8 @@ class ProjectCreateForm(ProjectEditFormBase):
              'weight': index
              } for index, phase in enumerate(blueprint.content)
         ]
+        kwargs['categories__queryset'] = \
+            category_models.Category.objects.none()
 
         self.organisation = organisation
         self.blueprint = blueprint
@@ -105,6 +115,9 @@ class ProjectCreateForm(ProjectEditFormBase):
                 phase_models.Phase, PhaseForm,
                 min_num=len(blueprint.content),
                 max_num=len(blueprint.content),
+            )),
+            ('categories', modelformset_factory(
+                category_models.Category, CagtegoryForm
             )),
         ]
 
@@ -147,6 +160,12 @@ class ProjectCreateForm(ProjectEditFormBase):
             if commit:
                 phase.save()
 
+        categories = objects['categories']
+        for category in categories:
+            category.module = module
+            if commit:
+                category.save()
+
 
 class ProjectUpdateForm(ProjectEditFormBase):
 
@@ -155,6 +174,9 @@ class ProjectUpdateForm(ProjectEditFormBase):
             ('project', ProjectForm),
             ('phases', modelformset_factory(
                 phase_models.Phase, PhaseForm, extra=0
+            )),
+            ('categories', modelformset_factory(
+                category_models.Category, CagtegoryForm
             )),
         ]
 
@@ -167,3 +189,22 @@ class ProjectUpdateForm(ProjectEditFormBase):
             ))
 
         super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        objects = super().save()
+        project = objects['project']
+
+        if commit:
+            project.save()
+            phases = objects['phases']
+            for phase in phases:
+                phase.save()
+            if 'module_settings' in objects:
+                objects['module_settings'].save()
+
+        module = project.module_set.first()
+        categories = objects['categories']
+        for category in categories:
+            category.module = module
+            if commit:
+                category.save()
