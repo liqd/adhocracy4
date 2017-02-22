@@ -5,7 +5,7 @@
     <div class="l-wrapper">
         {% include "meinberlin_contrib/includes/sort.html" %}
 
-        <div class="l-tile-wrapper">
+        <div class="l-tiles-4">
             {% for project in project_list %}
 
             {% has_perm 'a4projects.view_project' request.user project as show %}
