@@ -1,14 +1,13 @@
-from adhocracy4.projects.models import Project
 from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.wagtailadmin import edit_handlers
+from wagtail.wagtailcore import blocks, fields
+from wagtail.wagtailcore.models import Orderable, Page
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailcore import fields
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailcore.models import Orderable
-from wagtail.wagtailcore.models import Page
 from wagtail.wagtailsnippets.models import register_snippet
+
+from adhocracy4.projects.models import Project
 
 
 class CallToActionBlock(blocks.StructBlock):
