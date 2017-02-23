@@ -28,5 +28,6 @@ class Categorizable(models.Model):
     class Meta:
         abstract = True
 
+    @staticmethod
     def is_categorizable(item_class):
         return issubclass(item_class, Categorizable)
