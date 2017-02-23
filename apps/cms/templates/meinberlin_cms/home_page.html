@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailuserbar wagtailimages_tags rules %}
+{% load wagtailuserbar wagtailimages_tags rules i18n %}
 
 {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
     {{ self.title }}{% endif %}{% endblock %}
@@ -21,7 +21,7 @@
     </div>
 
     <div class="l-wrapper">
-        <h3>Aktuelle Beteiligungsverfahren</h3>
+        <h3>{% trans 'Current participational processes' %}</h3>
         <div class="l-tile-wrapper">
             {% for project in self.featured_projects %}
 

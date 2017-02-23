@@ -38,7 +38,9 @@ class ColumnsBlock(blocks.StructBlock):
 
 class HomePage(Page):
     body = fields.StreamField([
-        ('paragraph', blocks.RichTextBlock()),
+        ('paragraph', blocks.RichTextBlock(
+            template='meinberlin_cms/blocks/richtext_block.html'
+        )),
         ('call_to_action', CallToActionBlock()),
         ('columns_text', ColumnsBlock()),
     ])
