@@ -7,6 +7,10 @@
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
 
+    {% if form.show_categories %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.category %}
+    {% endif %}
+
     <input type="submit" class="button button--primary" value="{% trans 'Save'%}" />
     <a href="{{ cancel }}" class="button button--light">{% trans 'cancel'%}</a>
 </form>

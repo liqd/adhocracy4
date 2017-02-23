@@ -62,6 +62,11 @@ class IdeaCreateView(PermissionRequiredMixin, generic.CreateView):
         form.instance.module = self.module
         return super().form_valid(form)
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['module'] = self.module
+        return kwargs
+
 
 class IdeaUpdateView(PermissionRequiredMixin, generic.UpdateView):
     model = idea_models.Idea
