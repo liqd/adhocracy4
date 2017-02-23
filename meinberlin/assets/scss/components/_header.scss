@@ -1,13 +1,17 @@
 .main-header {
     position: relative;
-    background: url('/static/images/bg-amplitude-blue.png') bottom right no-repeat;
-    padding-bottom: 68px;
 }
 
 .main-header__user {
     position: absolute;
-    top: 0;
+    bottom: 0;
     right: 0;
+}
+
+.main-header__toggle {
+    padding: 0.5em 1.5em;
+    border: solid 1px $border-color;
+    border-radius: 50px;
 }
 
 .main-nav {
@@ -43,12 +47,34 @@
 
 .main-nav__logo {
     img {
-        width: 7em;
-        margin-top: -3em;
-        margin-bottom: -3em;
+        width: 6em;
+        margin-top: -2em;
+        margin-bottom: -2em;
     }
 }
 
 .main-nav__item {
     padding: 0.2em 0.4em;
+}
+
+.dialogue-box {
+    display: flex;
+    margin-top: -10px;
+
+    > div {
+        height: 43px;
+        background-image: url('/static/images/dialoguebox.png');
+        background-repeat: no-repeat;
+    }
+}
+
+.dialogue-box__left,
+.dialogue-box__right {
+    flex-grow: 1;
+    background-position: left center;
+}
+
+.dialogue-box__center {
+    flex: 70rem 0 1;
+    background-position: right -150px center;
 }
