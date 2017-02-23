@@ -49,6 +49,10 @@
 
             <div class="resource-header__meta">{{ idea.creator.username }}</div>
 
+            {% if idea.category %}
+                <div class="resource-header__category">{{ idea.category }}</div>
+            {% endif %}
+
             <div class="resource-header__action">
                 {% react_ratings idea %}
             </div>
