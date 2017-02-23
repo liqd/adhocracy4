@@ -14,7 +14,7 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
 
     def __str__(self):
-        return "{} - {}".format(self.module, self.name)
+        return self.name
 
 
 class Categorizable(models.Model):
