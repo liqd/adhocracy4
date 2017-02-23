@@ -6,7 +6,7 @@
     padding: 2.8em 0;
 
     background-color: $brand-primary;
-    color: $text-color-inverted;
+    color: contrast-color($brand-primary);
     text-align: center;
 
     .rich-text > :first-child {
