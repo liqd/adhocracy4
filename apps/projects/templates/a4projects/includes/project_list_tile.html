@@ -1,15 +1,36 @@
-{% load i18n project_tags thumbnail %}
+{% load i18n project_tags thumbnail static %}
 
 <div class="tile">
-    {% get_days project.days_left as days %}
-    {% if project.has_finished %}
-    <span class="label">{% trans "Finished" %}</span>
-    {% elif days %}
-    <span class="label">{{ days }}</span>
-    {% endif %}
+    <div class="tile__head">
+        <a href="{% url 'project-detail' project.slug %}">
+            <img src="http://placehold.it/285x170" alt="{{ project.name }}">
+            <img src="{% static 'images/LOGO.png' %}" alt="Mein Berlin" class="tile__badge">
+        </a>
+        {% get_days project.days_left as days %}
+        {% if project.has_finished %}
+            <span class="label">{% trans "Finished" %}</span>
+        {% elif days %}
+            <span class="label">{{ days }}</span>
+        {% endif %}
+    </div>
 
-    <h3 class="list-item__title">
-        <a href="{% url 'project-detail' project.slug %}">{{ project.name }}</a>
-    </h3>
-    <p>{{ project.description }}</p>
+    <div class="tile__body">
+        <h3 class="list-item__title">
+            <a href="{% url 'project-detail' project.slug %}">{{ project.name }}</a>
+        </h3>
+        <p class="tile__text">{{ project.description }}</p>
+        {% if project.active_phase %}
+            <p class="tile__hint">
+                {% blocktrans with project.active_phase.end_date|date:'j.m.Y' as date %}
+                    Participation possible until {{ date }}
+                {% endblocktrans %}
+            </p>
+        {% elif project.future_phases %}
+            <p class="tile__hint">
+                {% blocktrans with project.future_phases.0.start_date|date:'j.m.Y' as date %}
+                    Participation starting from {{ date }}
+                {% endblocktrans %}
+            </p>
+        {% endif %}
+    </div>
 </div>
