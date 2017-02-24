@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'adhocracy4.contrib.apps.ContribConfig',
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
+    'adhocracy4.images.apps.ImagesConfig',
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.ratings.apps.RatingsConfig',
