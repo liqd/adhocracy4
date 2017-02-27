@@ -36,6 +36,7 @@ INSTALLED_APPS = (
 
     # adhocrayc4 generic apps
     'adhocracy4.ratings.apps.RatingsConfig',
+    'adhocracy4.categories.apps.CategoriesConfig',
 
     # adhocracy4 helper apps
     'adhocracy4.images.apps.ImagesConfig',
