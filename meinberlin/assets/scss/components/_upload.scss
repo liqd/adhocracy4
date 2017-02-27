@@ -1,0 +1,74 @@
+.upload-wrapper {
+    position: relative;
+    @include clearfix();
+    display: block;
+
+    .form-control-file {
+        cursor: pointer;
+        float: none;
+        left: 0;
+        position: absolute;
+        opacity: 0;
+        top: 0;
+    }
+}
+
+.upload-wrapper__fields {
+    @include grid-span(7, 0);
+    margin-bottom: $padding;
+
+    position: relative;
+}
+
+.upload-wrapper__action {
+    text-align: center;
+
+    @media screen and (min-width: $breakpoint) {
+        width: auto;
+
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 10;
+    }
+
+    .btn {
+        width: 2em;
+        height: 100%;
+        padding: 0;
+        border: 0;
+
+        font-size: 1.5em;
+        line-height: 1.7;
+    }
+
+    .btn-default {
+        background: $brand-success;
+        color: contrast-color($brand-success);
+    }
+
+    .btn-danger {
+        background: $brand-danger;
+        color: contrast-color($brand-danger);
+    }
+}
+
+.upload-wrapper__clear {
+    @include grid-span(5, 7);
+
+    margin-bottom: $padding;
+}
+
+.clear-image {
+    display: none;
+}
+
+.clear-image:checked + img {
+    opacity: 0.2;
+    filter: grayscale(100%);
+}
+
+.upload-wrapper__alert {
+    clear: left;
+}
