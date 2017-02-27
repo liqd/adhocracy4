@@ -14,13 +14,32 @@
 
     {% if form.show_categories_form %}
         <h2>{% trans 'Categories' %} </h2>
-        {{ form.categories.management_form }}
-        {% for category_form in form.categories %}
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=category_form.name %}
-            {% for hidden in category_form.hidden_fields %}
-                {{ hidden }}
+        <div class="js-formset"
+             data-prefix="{{ form.categories.prefix }}"
+             data-initial-id="{{ form.categories.initial_form_count }}">
+            {{ form.categories.management_form }}
+            {% for category_form in form.categories %}
+                <div class="js-form">
+                    {% include 'meinberlin_contrib/includes/inline_form_field.html' with field=category_form.name %}
+                    {{ category_form.DELETE }}
+                    {% for hidden in category_form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                </div>
             {% endfor %}
-        {% endfor %}
+            <div class="js-empty-form">
+                <div class="js-form">
+                    {% include 'meinberlin_contrib/includes/inline_form_field.html' with field=form.categories.empty_form.name %}
+                    {{ form.categories.empty_form.DELETE }}
+                    {% for hidden in form.categories.empty_form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                </div>
+            </div>
+        <button class="button button--primary js-add-form" type="button">
+            <i class="fa fa-plus-square" aria-label="{% trans 'add category' %}"></i>
+        </button>
+        </div>
     {% endif %}
 
     <h2>{% trans 'Phases' %} </h2>

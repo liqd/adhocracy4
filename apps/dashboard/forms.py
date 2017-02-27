@@ -8,6 +8,7 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 
 from apps.contrib import multiform
+from apps.contrib.formset import dynamic_modelformset_factory
 
 
 def get_module_settings_form(settings_instance_or_modelref):
@@ -54,7 +55,7 @@ class PhaseForm(forms.ModelForm):
         }
 
 
-class CagtegoryForm(forms.ModelForm):
+class CategoryForm(forms.ModelForm):
 
     class Meta:
         model = category_models.Category
@@ -141,8 +142,9 @@ class ProjectCreateForm(ProjectEditFormBase):
             kwargs['categories__queryset'] = \
                 category_models.Category.objects.none()
             self.base_forms.append(
-                ('categories', modelformset_factory(
-                    category_models.Category, CagtegoryForm
+                ('categories', dynamic_modelformset_factory(
+                    category_models.Category, CategoryForm,
+                    can_delete=True,
                 ))
             )
 
@@ -208,8 +210,9 @@ class ProjectUpdateForm(ProjectEditFormBase):
         self.show_categories_form = self._show_categories_form(phases)
         if self.show_categories_form:
             self.base_forms.append(
-                ('categories', modelformset_factory(
-                    category_models.Category, CagtegoryForm
+                ('categories', dynamic_modelformset_factory(
+                    category_models.Category, CategoryForm,
+                    can_delete=True,
                 ))
             )
         else:
@@ -236,3 +239,5 @@ class ProjectUpdateForm(ProjectEditFormBase):
                 category.module = module
                 if commit:
                     category.save()
+            for category in self.forms['categories'].deleted_objects:
+                category.delete()
