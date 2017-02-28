@@ -14,6 +14,7 @@ class IdeaForm(forms.ModelForm):
         self.fields['category'] = forms.ModelChoiceField(
             queryset=queryset,
             empty_label=None,
+            required=False,
         )
 
     def show_categories(self):
