@@ -1,4 +1,6 @@
 @mixin grid-tiles($n, $settings: ()) {
+    @include clearfix;
+
     > * {
         @include grid-same-width($n, $settings);
     }
