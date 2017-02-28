@@ -1,6 +1,7 @@
 from django import forms
 from django.db.models import loading
 from django.forms import modelformset_factory
+from django.utils.translation import ugettext as _
 
 from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
@@ -56,6 +57,9 @@ class PhaseForm(forms.ModelForm):
 
 
 class CategoryForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': _('Category')}
+    ))
 
     class Meta:
         model = category_models.Category

@@ -1,0 +1,43 @@
+.formset--inline .formset__form {
+    display: inline-block;
+    width: 9em;
+    margin-right: 0.5em;
+    margin-bottom: 0.7em;
+    border-bottom: 1px solid $border-color;
+    padding-right: 1.5em;
+    position: relative;
+
+    input {
+        border: 0;
+        margin-bottom: 0;
+        background-color: $body-bg;
+    }
+}
+
+.formset__empty {
+    display: none;
+}
+
+.formset__delete {
+    display: none;
+
+    & ~ .formset__delete-label {
+        position: absolute;
+        right: 0.3em;
+        bottom: 0.3em;
+        color: $gray;
+    }
+
+    &:checked ~ * {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+
+    &:checked ~ .formset__delete-label {
+        @include sr-only;
+    }
+}
+
+.formset__add {
+    padding: 0.2em 0.6em;
+}
