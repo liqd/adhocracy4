@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load i18n static menu userindicator %}
+{% load i18n static %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -17,24 +17,7 @@
 </head>
 <body>
     {% include 'portal_header.html' %}
-
-    <header class="main-header">
-        <div class="l-wrapper">
-            <nav class="main-nav">
-                <a href="/" class="main-nav__item" rel="home">{% trans 'Home' %}</a>
-                <a href="/" class="main-nav__logo" rel="home"><img src="{% static 'images/LOGO.png' %}" alt="mein.berlin" /></a>
-                <ul>
-                    {% get_menu "topnav" as topnav %}
-                    {% for item in topnav %}
-                    <li><a class="main-nav__item" href="{{ item.url }}">{{ item.title }}</a></li>
-                    {% endfor %}
-                </ul>
-            </nav>
-            <div class="main-header__user">
-                {% userindicator %}
-            </div>
-        </div>
-    </header>
+    {% include 'header.html' %}
     <main>
 
         {% if messages %}
@@ -52,6 +35,7 @@
         {% block super_content %}
             {% block content %}{% endblock %}
         {% endblock %}
+
     </main>
 </body>
 </html>

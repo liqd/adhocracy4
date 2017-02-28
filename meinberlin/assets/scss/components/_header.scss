@@ -1,13 +1,11 @@
 .main-header {
     position: relative;
-    background: url('/static/images/bg-amplitude-blue.png') bottom right no-repeat;
-    padding-bottom: 68px;
 }
 
 .main-header__user {
     position: absolute;
-    top: 0;
-    right: 0;
+    bottom: -0.5em;
+    right: $padding;
 }
 
 .main-nav {
@@ -24,16 +22,6 @@
     ul {
         display: inline-block;
     }
-
-    a {
-        color: inherit;
-        text-decoration: none;
-
-        &:hover,
-        &:focus {
-            text-decoration: underline;
-        }
-    }
 }
 
 .main-nav__item,
@@ -41,14 +29,47 @@
     margin-right: 1em;
 }
 
+// positioned so that the "mein" from "meinBerlin" is on the baseline
 .main-nav__logo {
+    text-decoration: none;
+
     img {
-        width: 7em;
-        margin-top: -3em;
-        margin-bottom: -3em;
+        width: 6em;
+        margin-top: -2em;
+        margin-bottom: -2.85em;
     }
 }
 
 .main-nav__item {
     padding: 0.2em 0.4em;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+
+.dialogue-box {
+    display: flex;
+
+    > div {
+        height: 43px;
+    }
+}
+
+.dialogue-box__left,
+.dialogue-box__right {
+    flex: 1 0 auto;
+    background-position: left center;
+    background-image: url('/static/images/dialoguebox_border.png');
+    background-repeat: repeat-x;
+}
+
+.dialogue-box__center {
+    flex: 0 1 70rem;
+    background-position: right -150px center;
+    background-image: url('/static/images/dialoguebox.png');
+    background-repeat: no-repeat;
 }
