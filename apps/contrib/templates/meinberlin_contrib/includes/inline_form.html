@@ -1,7 +1,12 @@
 {% load i18n %}
-<div class="formset__form">
+<div class="formset__form{% if form.name.errors %} formset__form--has-error{% endif %}"
+     data-container="body"
+     data-toggle="popover"
+     data-trigger="hover"
+     data-placement="top"
+     data-content="{% for error in form.name.errors %}{{ error }}{% endfor %}">
     {% if can_delete %}
-        <input type="checkbox" name="{{ form.DELETE.name }}" id="{{ form.DELETE.id_for_label }}" class="formset__delete">
+        <input type="checkbox" name="{{ form.DELETE.html_name }}" id="{{ form.DELETE.id_for_label }}" class="formset__delete">
     {% endif %}
     <label for="{{ form.name.id_for_label }}" class="sr-only">
         {{ form.name.label }}

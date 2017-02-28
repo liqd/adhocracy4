@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n static %}
 
 <div
     class="tabpanel"
@@ -39,3 +39,7 @@
     {% endfor %}
 
 </div>
+
+{% block extra_js %}
+    <script src="{% static 'js/popover.js' %}"></script>
+{% endblock %}

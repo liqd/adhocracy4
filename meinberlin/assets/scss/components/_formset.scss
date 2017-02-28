@@ -14,6 +14,11 @@
     }
 }
 
+.formset--inline .formset__form--has-error {
+    border-bottom-color: $brand-danger;
+    border-bottom-width: 5px;
+}
+
 .formset__empty {
     display: none;
 }
