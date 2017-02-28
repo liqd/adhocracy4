@@ -1,0 +1,9 @@
+{% load rules %}
+<div class="block block--projects">
+    <h3>{{ value.title }}</h3>
+    <div class="l-tile-wrapper">
+        {% for project in value.projects %}
+            {% include "a4projects/includes/project_list_tile.html" with project=project %}
+        {% endfor %}
+    </div>
+</div>

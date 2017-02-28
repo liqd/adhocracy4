@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import widgets
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.wagtailadmin import edit_handlers
@@ -10,6 +11,26 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 
 from adhocracy4.projects.models import Project
+
+
+class ProjectSelectionBlock(blocks.ChooserBlock):
+    target_model = Project
+    widget = widgets.Select
+
+    def value_for_form(self, value):
+        if isinstance(value, Project):
+            return value.pk
+        return value
+
+
+class ProjectsWrapperBlock(blocks.StructBlock):
+    title = blocks.CharBlock(max_length=80)
+    projects = blocks.ListBlock(
+        ProjectSelectionBlock(label='Project'),
+    )
+
+    class Meta:
+        template = 'meinberlin_cms/blocks/projects_block.html'
 
 
 class CallToActionBlock(blocks.StructBlock):
@@ -43,6 +64,7 @@ class HomePage(Page):
         )),
         ('call_to_action', CallToActionBlock()),
         ('columns_text', ColumnsBlock()),
+        ('projects', ProjectsWrapperBlock()),
     ])
 
     subtitle = models.CharField(max_length=120)
@@ -60,10 +82,6 @@ class HomePage(Page):
         ImageChooserPanel('header_image'),
         edit_handlers.StreamFieldPanel('body'),
     ]
-
-    @property
-    def featured_projects(self):
-        return Project.objects.order_by('-created')[:8]
 
 
 class MenuItem(models.Model):
