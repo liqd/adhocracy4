@@ -1,8 +1,15 @@
-/* eslint no-unused-vars: "off" */
+/* eslint no-unused-vars: "off", no-new: "off" */
 
 // make jquery available for non-webpack js
 var $ = window.jQuery = window.$ = require('jquery')
 window.Tether = require('tether/dist/js/tether.js')
+
+// social share
+var Shariff = require('shariff')
+var shariffCSS = require('shariff/build/shariff.min.css')
+$(function () {
+  new Shariff($('.shariff'))
+})
 
 // load bootstrap components
 var dropdown = require('bootstrap/js/src/dropdown.js')
