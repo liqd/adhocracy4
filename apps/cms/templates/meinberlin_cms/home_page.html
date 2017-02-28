@@ -20,20 +20,6 @@
         </div>
     </div>
 
-    <div class="l-wrapper">
-        <h3>{% trans 'Current participational processes' %}</h3>
-        <div class="l-tile-wrapper">
-            {% for project in self.featured_projects %}
-
-                {% has_perm 'a4projects.view_project' request.user project as show %}
-                {% if show %}
-                    {% include "a4projects/includes/project_list_tile.html" with project=project %}
-                {% endif %}
-
-            {% endfor %}
-        </div>
-    </div>
-
     {% for block in self.body %}
         {% if block.block_type == 'call_to_action' %}
             {{ block }}
