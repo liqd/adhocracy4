@@ -29,6 +29,7 @@
     margin-right: 1em;
 }
 
+// positioned so that the "mein" from "meinBerlin" is on the baseline
 .main-nav__logo {
     text-decoration: none;
 
@@ -67,7 +68,7 @@
 }
 
 .dialogue-box__center {
-    flex: 70rem 0 1;
+    flex: 0 1 70rem;
     background-position: right -150px center;
     background-image: url('/static/images/dialoguebox.png');
     background-repeat: no-repeat;
