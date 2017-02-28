@@ -39,6 +39,6 @@
     "stylelint-declaration-strict-value": "^1.0.3"
   },
   "scripts": {
-    "precommit": "polylint -SF"
+    "precommit": "source .env/bin/activate && polylint -SF"
   }
 }
