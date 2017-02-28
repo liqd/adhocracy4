@@ -1,0 +1,24 @@
+.main-footer {
+    @include clearfix;
+    padding-top: $spacer * 1.5;
+    padding-bottom: $spacer * 4;
+    margin-top: $spacer * 7;
+
+    font-size: $font-size-sm;
+    text-align: right;
+    background-color: $bg-secondary;
+    color: contrast-color($bg-secondary);
+}
+
+.footer-nav__link {
+    display: inline-block;
+    padding: 0.7em;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+        color: inherit;
+    }
+}
