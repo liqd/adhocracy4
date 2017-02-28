@@ -2,23 +2,25 @@
 
 <div class="tile">
     <div class="tile__head">
-        <a href="{% url 'project-detail' project.slug %}">
+        <a class="tile__image" href="{% url 'project-detail' project.slug %}">
             <img src="http://placehold.it/285x170" alt="">
-            <img src="{% static 'images/LOGO.png' %}" alt="Mein Berlin" class="tile__badge">
         </a>
+        <img src="{% static 'images/LOGO.png' %}" alt="Mein Berlin" class="tile__badge">
         {% get_days project.days_left as days %}
         {% if project.has_finished %}
-            <span class="label">{% trans "Finished" %}</span>
+            <span class="tile__label label">{% trans "Finished" %}</span>
         {% elif days %}
-            <span class="label">{{ days }}</span>
+            <span class="tile__label label">{{ days }}</span>
         {% endif %}
     </div>
 
     <div class="tile__body">
-        <h3 class="list-item__title">
+        <h3 class="tile__title">
             <a href="{% url 'project-detail' project.slug %}">{{ project.name }}</a>
         </h3>
+
         <p class="tile__text">{{ project.description }}</p>
+
         {% if project.active_phase %}
             <p class="tile__hint">
                 {% blocktrans with project.active_phase.end_date|date:'j.m.Y' as date %}
