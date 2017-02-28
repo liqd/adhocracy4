@@ -17,7 +17,9 @@
         vertical-align: bottom;
         width: 100%;
     }
+}
 
+.tile__image--shadowed {
     &:before {
         content: ' ';
         width: 100%;
