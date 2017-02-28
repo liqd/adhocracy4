@@ -4,14 +4,8 @@
 
 .main-header__user {
     position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.main-header__toggle {
-    padding: 0.5em 1.5em;
-    border: solid 1px $border-color;
-    border-radius: 50px;
+    bottom: -0.5em;
+    right: $padding;
 }
 
 .main-nav {
@@ -49,7 +43,7 @@
     img {
         width: 6em;
         margin-top: -2em;
-        margin-bottom: -2em;
+        margin-bottom: -2.85em;
     }
 }
 
@@ -59,22 +53,23 @@
 
 .dialogue-box {
     display: flex;
-    margin-top: -10px;
 
     > div {
         height: 43px;
-        background-image: url('/static/images/dialoguebox.png');
-        background-repeat: no-repeat;
     }
 }
 
 .dialogue-box__left,
 .dialogue-box__right {
-    flex-grow: 1;
+    flex: 1 0 auto;
     background-position: left center;
+    background-image: url('/static/images/dialoguebox_border.png');
+    background-repeat: repeat-x;
 }
 
 .dialogue-box__center {
     flex: 70rem 0 1;
     background-position: right -150px center;
+    background-image: url('/static/images/dialoguebox.png');
+    background-repeat: no-repeat;
 }
