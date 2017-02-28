@@ -2,23 +2,26 @@
 <div class="upload-wrapper form-control-upload">
     <div class="upload-wrapper__fields">
         {{ text_input }}
+        {{ file_input }}
         <span class="upload-wrapper__action">
             {% if has_image_set and not is_required %}
-                <label for="{{ checkbox_id }}" class="btn btn-danger"
-                       title="{% trans 'Remove the picture' %}">
-                <i class="fa fa-trash"></i>
-            </label>
+                <label for="{{ checkbox_id }}"
+                    class="button button--danger"
+                    title="{% trans 'Remove the picture' %}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </label>
             {% else %}
-                <label for="{{ name }}" class="btn btn-default" title="{% trans 'Upload a picture' %}">
-                <i class="fa fa-cloud-upload"></i>
-            </label>
+                <label for="{{ name }}"
+                    class="button"
+                    title="{% trans 'Upload a picture' %}">
+                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                </label>
             {% endif %}
         </span>
-        {{ file_input }}
     </div>
-    <div class="form-{{ name }} upload-wrapper__clear">
+    <div class="form-{{ name }} upload-wrapper__preview">
         {{ checkbox_input }}
-        <img class="img-responsive" id="{{ file_id }}"
+        <img id="{{ file_id }}"
              src="{% if has_image_set %}{{ file_url }}{% endif %}"
              data-upload-preview="{{ name }}"
         >
