@@ -74,6 +74,11 @@ class IdeaUpdateView(PermissionRequiredMixin, generic.UpdateView):
     permission_required = 'meinberlin_ideas.modify_idea'
     template_name = 'meinberlin_ideas/idea_update_form.html'
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['module'] = self.object.module
+        return kwargs
+
 
 class IdeaDeleteView(PermissionRequiredMixin, generic.DeleteView):
     model = idea_models.Idea
