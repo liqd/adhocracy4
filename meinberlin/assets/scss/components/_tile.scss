@@ -14,6 +14,7 @@
 
 .tile__head {
     position: relative;
+    min-height: 6em;
 
     &:before {
         content: ' ';
@@ -37,12 +38,12 @@
 }
 
 .tile__body {
-    flex-grow: 1;
+    flex: 1 0 auto;
     display: flex;
     flex-direction: column;
     padding: $padding;
 }
 
 .tile__text {
-    flex-grow: 1;
+    flex: 1 0 auto;
 }

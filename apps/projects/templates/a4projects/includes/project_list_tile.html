@@ -3,7 +3,7 @@
 <div class="tile">
     <div class="tile__head">
         <a href="{% url 'project-detail' project.slug %}">
-            <img src="http://placehold.it/285x170" alt="{{ project.name }}">
+            <img src="http://placehold.it/285x170" alt="">
             <img src="{% static 'images/LOGO.png' %}" alt="Mein Berlin" class="tile__badge">
         </a>
         {% get_days project.days_left as days %}
