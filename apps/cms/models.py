@@ -83,10 +83,6 @@ class HomePage(Page):
         edit_handlers.StreamFieldPanel('body'),
     ]
 
-    @property
-    def featured_projects(self):
-        return Project.objects.order_by('-created')[:8]
-
 
 class MenuItem(models.Model):
     title = models.CharField(max_length=255)
