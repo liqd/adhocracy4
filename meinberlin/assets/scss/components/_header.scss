@@ -22,16 +22,6 @@
     ul {
         display: inline-block;
     }
-
-    a {
-        color: inherit;
-        text-decoration: none;
-
-        &:hover,
-        &:focus {
-            text-decoration: underline;
-        }
-    }
 }
 
 .main-nav__item,
@@ -40,6 +30,8 @@
 }
 
 .main-nav__logo {
+    text-decoration: none;
+
     img {
         width: 6em;
         margin-top: -2em;
@@ -49,6 +41,13 @@
 
 .main-nav__item {
     padding: 0.2em 0.4em;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
 }
 
 .dialogue-box {
