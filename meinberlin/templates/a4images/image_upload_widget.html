@@ -3,17 +3,17 @@
     <div class="upload-wrapper__fields">
         {{ text_input }}
         <span class="upload-wrapper__action">
-                {% if has_image_set and not is_required %}
-                    <label for="{{ checkbox_id }}" class="btn btn-danger"
-                           title="{% trans 'Remove the picture' %}">
-                    <i class="fa fa-trash"></i>
-                </label>
-                {% else %}
-                    <label for="{{ name }}" class="btn btn-default" title="{% trans 'Upload a picture' %}">
-                    <i class="fa fa-cloud-upload"></i>
-                </label>
-                {% endif %}
-            </span>
+            {% if has_image_set and not is_required %}
+                <label for="{{ checkbox_id }}" class="btn btn-danger"
+                       title="{% trans 'Remove the picture' %}">
+                <i class="fa fa-trash"></i>
+            </label>
+            {% else %}
+                <label for="{{ name }}" class="btn btn-default" title="{% trans 'Upload a picture' %}">
+                <i class="fa fa-cloud-upload"></i>
+            </label>
+            {% endif %}
+        </span>
         {{ file_input }}
     </div>
     <div class="form-{{ name }} upload-wrapper__clear">
