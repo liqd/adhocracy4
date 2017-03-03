@@ -16,9 +16,11 @@
     {% block header %}{% endblock %}
 </head>
 <body>
+    <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
+
     {% include 'portal_header.html' %}
     {% include 'header.html' %}
-    <main>
+    <main id="main">
 
         {% if messages %}
         <div class="l-wrapper">
