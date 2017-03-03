@@ -24,7 +24,13 @@
 }
 
 .formset__delete {
-    display: none;
+    @include sr-only();
+
+    &:focus ~ .formset__delete-label {
+        outline-width: 2px;
+        outline-style: solid;
+        outline-color: Highlight;
+    }
 
     & ~ .formset__delete-label {
         position: absolute;

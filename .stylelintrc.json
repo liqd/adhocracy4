@@ -29,7 +29,7 @@
     "max-nesting-depth": 2,
 
     "scale-unlimited/declaration-strict-value": ["/color/", {
-      "ignoreKeywords": "inherit"
+      "ignoreKeywords": ["inherit", "Highlight"]
     }],
 
     "declaration-empty-line-before": null
