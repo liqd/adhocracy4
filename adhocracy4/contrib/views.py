@@ -53,8 +53,8 @@ class FilteredListView(generic.ListView):
         Use view.filter.form in the template to access the filter form.
 
     Note:
-        Use the filter qs property istead of overriding get_queryset() to
-        prefilter or annotate the besic queryset.
+        Use the filter qs property instead of overriding get_queryset() to
+        prefilter or annotate the basic queryset.
     """
 
     filter_set = None
