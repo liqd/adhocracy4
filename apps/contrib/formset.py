@@ -2,9 +2,6 @@ from django import forms
 
 
 class DynamicModelFormSet(forms.BaseModelFormSet):
-    def get_default_prefix(cls):
-        return 'test'
-
     @property
     def media(self):
         additional_js = forms.Media(js={
