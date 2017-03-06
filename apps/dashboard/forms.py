@@ -1,12 +1,15 @@
 from django import forms
 from django.db.models import loading
 from django.forms import modelformset_factory
+from django.utils.translation import ugettext as _
 
+from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 
 from apps.contrib import multiform
+from apps.contrib.formset import dynamic_modelformset_factory
 
 
 def get_module_settings_form(settings_instance_or_modelref):
@@ -53,6 +56,16 @@ class PhaseForm(forms.ModelForm):
         }
 
 
+class CategoryForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': _('Category')}
+    ))
+
+    class Meta:
+        model = category_models.Category
+        exclude = ('module',)
+
+
 class ProjectEditFormBase(multiform.MultiModelForm):
 
     def _project_form(self):
@@ -60,6 +73,9 @@ class ProjectEditFormBase(multiform.MultiModelForm):
 
     def _phases_form(self):
         return self.get_formset('phases')
+
+    def _categories_form(self):
+        return self.get_formset('categories')
 
     def _module_settings_form(self):
         return self.get_formset('module_settings')
@@ -69,19 +85,39 @@ class ProjectEditFormBase(multiform.MultiModelForm):
         info_error_count = len(project_form_errors)
         if 'result' in project_form_errors:
             info_error_count = info_error_count - 1
+
         return info_error_count
 
     def participate_error_count(self):
-        module_settings_error_count = 0
+        error_count = 0
+
         module_settings = self._module_settings_form()
-        if module_settings:
-            module_settings_error_count = len(module_settings.errors)
-        phases_error_count = self._phases_form().total_error_count()
-        return module_settings_error_count + phases_error_count
+        if module_settings is not None:
+            error_count += len(module_settings.errors)
+
+        categories = self._categories_form()
+        if categories is not None:
+            error_count += categories.total_error_count()
+
+        error_count += self._phases_form().total_error_count()
+
+        return error_count
 
     def result_error_count(self):
         project_form_errors = self._project_form().errors.keys()
         return 1 if 'result' in project_form_errors else 0
+
+    def _show_categories_form(self, phases):
+        """Check if any of the phases has a categorizable item.
+
+        TODO: Move this functionality to a4phases.
+        """
+        for phase in phases:
+            for models in phase.features.values():
+                for model in models:
+                    if category_models.Categorizable.is_categorizable(model):
+                        return True
+        return False
 
 
 class ProjectCreateForm(ProjectEditFormBase):
@@ -115,6 +151,19 @@ class ProjectCreateForm(ProjectEditFormBase):
                 get_module_settings_form(module_settings),
             ))
 
+        self.show_categories_form = \
+            self._show_categories_form(self.blueprint.content)
+        if self.show_categories_form:
+            # no initial categories in are shown in create view
+            kwargs['categories__queryset'] = \
+                category_models.Category.objects.none()
+            self.base_forms.append(
+                ('categories', dynamic_modelformset_factory(
+                    category_models.Category, CategoryForm,
+                    can_delete=True,
+                ))
+            )
+
         return super().__init__(*args, **kwargs)
 
     def save(self, commit=True):
@@ -142,11 +191,17 @@ class ProjectCreateForm(ProjectEditFormBase):
                 module_settings.save()
 
         phases = objects['phases']
-
-        for index, phase in enumerate(phases):
+        for phase in phases:
             phase.module = module
             if commit:
                 phase.save()
+
+        if self.show_categories_form:
+            categories = objects['categories']
+            for category in categories:
+                category.module = module
+                if commit:
+                    category.save()
 
 
 class ProjectUpdateForm(ProjectEditFormBase):
@@ -167,27 +222,38 @@ class ProjectUpdateForm(ProjectEditFormBase):
                 get_module_settings_form(module.settings_instance),
             ))
 
+        phases = [phase.content() for phase in qs]
+        self.show_categories_form = self._show_categories_form(phases)
+        if self.show_categories_form:
+            self.base_forms.append(
+                ('categories', dynamic_modelformset_factory(
+                    category_models.Category, CategoryForm,
+                    can_delete=True,
+                ))
+            )
+        else:
+            del kwargs['categories__queryset']
+
         super().__init__(*args, **kwargs)
 
     def save(self, commit=True):
-
         objects = super().save(commit=False)
         project = objects['project']
 
         if commit:
             project.save()
+            phases = objects['phases']
+            for phase in phases:
+                phase.save()
             if 'module_settings' in objects:
                 objects['module_settings'].save()
 
-        cleaned_data = self._combine('cleaned_data', call=False,
-                                     call_kwargs={'commit': commit})
-        phases = cleaned_data['phases']
-        for phase in phases:
-            phase_object = phase['id']
-            del phase['id']
-            for key in phase:
-                value = phase[key]
-                setattr(phase_object, key, value)
-            if commit:
-                phase_object.save()
-        return objects
+        if self.show_categories_form:
+            module = project.module_set.first()
+            categories = objects['categories']
+            for category in categories:
+                category.module = module
+                if commit:
+                    category.save()
+            for category in self.forms['categories'].deleted_objects:
+                category.delete()

@@ -1,0 +1,23 @@
+{% load i18n %}
+<div class="formset__form{% if form.name.errors %} formset__form--has-error{% endif %}"
+     data-container="body"
+     data-toggle="popover"
+     data-trigger="hover"
+     data-placement="top"
+     data-content="{% for error in form.name.errors %}{{ error }}{% endfor %}">
+    {% if can_delete %}
+        <input type="checkbox" name="{{ form.DELETE.html_name }}" id="{{ form.DELETE.id_for_label }}" class="formset__delete">
+    {% endif %}
+    <label for="{{ form.name.id_for_label }}" class="sr-only">
+        {{ form.name.label }}
+    </label>
+    {{ form.name }}
+    {% if can_delete %}
+        <label for="{{ form.DELETE.id_for_label }}" class="formset__delete-label">
+            <i class="fa fa-trash" aria-label="{% trans 'remove category' %}"></i>
+        </label>
+    {% endif %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+</div>

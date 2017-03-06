@@ -4,6 +4,7 @@
 @import '~sass-planifolia/sass/contrast';
 
 @import 'variables';
+@import 'mixins';
 
 @import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/mixins';
@@ -24,6 +25,7 @@
 @import 'components/comments';
 @import 'components/dropdown';
 @import 'components/footer';
+@import 'components/formset';
 @import 'components/header';
 @import 'components/hero_unit';
 @import 'components/label';

@@ -2,8 +2,6 @@
 
 <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
     {% csrf_token %}
-    {{ form.media }}
-
 
     {% include 'meinberlin_dashboard/includes/project_form_tablist.html' with form=form view=view %}
 
@@ -21,3 +19,10 @@
     <input type="submit" class="button button--primary" name="publish" value="{% trans 'Save and Publish'%}" />
 
 </form>
+
+{% block extra_js %}
+    {{ form.media.js }}
+{% endblock %}
+{% block extra_css %}
+    {{ form.media.css }}
+{% endblock %}

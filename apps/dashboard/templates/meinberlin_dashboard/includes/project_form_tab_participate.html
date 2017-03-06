@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n static %}
 
 <div
     class="tabpanel"
@@ -7,14 +7,39 @@
     aria-labelledby="tab-project-create-{{ view.organisation.pk }}-participation"
     aria-expanded="false">
 
-    {# initialize phases formset #}
-    {{ form.phases.management_form }}
 
     {% for field in form.module_settings.visible_fields %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
     {% endfor %}
 
+    {% if form.show_categories_form %}
+        <h2>{% trans 'Categories' %} </h2>
+        <div class="js-formset formset formset--inline"
+             data-prefix="{{ form.categories.prefix }}"
+             data-initial-id="{{ form.categories.initial_form_count }}">
+            {{ form.categories.management_form }}
+
+            {% for category_form in form.categories %}
+                {% include 'meinberlin_contrib/includes/inline_form.html' with form=category_form can_delete=form.categories.can_delete %}
+            {% endfor %}
+            <div class="js-form-template formset__template">
+                {% include 'meinberlin_contrib/includes/inline_form.html' with form=form.categories.empty_form can_delete=form.categories.can_delete %}
+            </div>
+
+            <button class="button button--primary js-add-form formset__add" type="button">
+                <i class="fa fa-plus" aria-label="{% trans 'add category' %}"></i>
+            </button>
+        </div>
+    {% endif %}
+
+    <h2>{% trans 'Phases' %} </h2>
+    {{ form.phases.management_form }}
     {% for phase_form in form.phases %}
         {% include 'meinberlin_dashboard/includes/phase_form.html' with form=phase_form view=view %}
     {% endfor %}
+
 </div>
+
+{% block extra_js %}
+    <script src="{% static 'js/popover.js' %}"></script>
+{% endblock %}
