@@ -6,7 +6,6 @@ window.Tether = require('tether/dist/js/tether.js')
 
 // social share
 var Shariff = require('shariff')
-var shariffCSS = require('shariff/build/shariff.min.css')
 $(function () {
   new Shariff($('.shariff'))
 })
