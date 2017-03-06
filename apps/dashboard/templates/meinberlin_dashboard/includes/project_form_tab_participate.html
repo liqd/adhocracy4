@@ -22,7 +22,7 @@
             {% for category_form in form.categories %}
                 {% include 'meinberlin_contrib/includes/inline_form.html' with form=category_form can_delete=form.categories.can_delete %}
             {% endfor %}
-            <div class="js-empty-form formset__template">
+            <div class="js-form-template formset__template">
                 {% include 'meinberlin_contrib/includes/inline_form.html' with form=form.categories.empty_form can_delete=form.categories.can_delete %}
             </div>
 
