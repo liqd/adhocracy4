@@ -1,20 +1,35 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailuserbar %}
+{% load wagtailuserbar wagtailimages_tags rules i18n %}
 
-{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}
+{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
+    {{ self.title }}{% endif %}{% endblock %}
 
 {% block header %}
     {% if self.search_description %}
-    <meta name="description" content="{{self.search_description}}" />
+        <meta name="description" content="{{ self.search_description }}"/>
     {% endif %}
 {% endblock %}
 
 {% block content %}
-    <div class="l-wrapper">
-        <h1>{{ self.title }}</h1>
+    {% image self.header_image fill-1920x560-c100 as header_image %}
 
-        {{ self.body|richtext }}
+    <div class="hero-unit" style="background-image: url({{ header_image.url }})">
+        <div class="l-wrapper hero-unit__wrapper">
+            <h1 class="hero-unit__title">{{ self.title }}</h1>
+            <h2 class="hero-unit__subtitle">{{ self.subtitle }}</h2>
+        </div>
     </div>
+
+    {% for block in self.body %}
+        {% if block.block_type == 'call_to_action' %}
+            {{ block }}
+        {% else %}
+        <div class="l-wrapper">
+            {{ block }}
+        </div>
+        {% endif %}
+    {% endfor %}
+
 
     {% wagtailuserbar %}
 {% endblock %}

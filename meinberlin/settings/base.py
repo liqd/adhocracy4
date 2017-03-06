@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'adhocracy4.contrib.apps.ContribConfig',
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
+    'adhocracy4.images.apps.ImagesConfig',
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.ratings.apps.RatingsConfig',
@@ -159,6 +160,16 @@ IMAGE_ALIASES = {
     'logo': {'min_resolution': (200, 200), 'aspect_ratio': (1, 1)},
     'avatar': {'min_resolution': (200, 200)},
     'idea_image': {'min_resolution': (800, 200)},
+}
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'heroimage': {'size': (1500, 500), 'crop': 'smart'},
+        'heroimage_preview': {'size': (880, 220), 'crop': 'smart'},
+        'project_thumbnail': {'size': (520, 330), 'crop': 'smart'},
+        'idea_image': {'size': (800, 0), 'crop': 'scale'},
+        'idea_thumbnail': {'size': (240, 240), 'crop': 'smart'},
+    }
 }
 
 ALLOWED_UPLOAD_IMAGES = ('png', 'jpeg', 'gif')

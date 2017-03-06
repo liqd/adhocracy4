@@ -1,3 +1,23 @@
+@mixin grid-tiles($n, $settings: ()) {
+    @include clearfix;
+
+    > * {
+        @include grid-same-width($n, $settings);
+    }
+
+    @supports (display: grid) {
+        display: grid;
+        grid-column-gap: _grid-get('gutter', $settings);
+        grid-template-columns: repeat($n, 1fr);
+
+        > * {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            width: auto !important;
+        }
+    }
+}
+
 .l-wrapper {
     position: relative;
     max-width: 70rem;
@@ -20,21 +40,23 @@
         @include grid-width(6);
     }
 
-    .l-tile-2 {
+    .l-col-4 {
+        @include grid-same-width(4);
+    }
+
+    .l-col-3 {
+        @include grid-same-width(3);
+    }
+
+    .l-col-2 {
         @include grid-same-width(2);
     }
 
-    @supports (display: flex) {
-        .l-tile-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
+    .l-tiles-2 {
+        @include grid-tiles(2);
+    }
 
-        // HACK to make this more specific than the grid-same-width selector
-        .l-tile-2.l-tile-2 {
-            margin-left: 0;
-            margin-right: 0;
-        }
+    .l-tiles-4 {
+        @include grid-tiles(4);
     }
 }

@@ -45,11 +45,15 @@
 <div class="resource-header">
     <div class="l-wrapper">
         <div class="l-center-6">
-            <h1 class="resource-header-title">{{ idea.name }}</h1>
+            <h1 class="resource-header__title">{{ idea.name }}</h1>
 
-            <div class="resource-header-meta">{{ idea.creator.username }}</div>
+            <div class="resource-header__meta">{{ idea.creator.username }}</div>
 
-            <div class="resource-header-action">
+            {% if idea.category %}
+                <div class="resource-header__category">{{ idea.category }}</div>
+            {% endif %}
+
+            <div class="resource-header__action">
                 {% react_ratings idea %}
             </div>
         </div>

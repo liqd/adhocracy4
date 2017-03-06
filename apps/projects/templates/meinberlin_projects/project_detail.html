@@ -1,10 +1,12 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n thumbnail %}
 
 {% block title %}{{view.project.name}}{% endblock %}
 
 {% block content %}
-<div class="resource-header">
+<div class="resource-header{% if view.project.image %} resource-header--image{% endif %}" style="{% if view.project.image %}
+               background-image: url({{ view.project.image |thumbnail_url:'heroimage' }});
+               {% endif %}">
     <div class="l-wrapper">
         <div class="l-center-6">
             <h1 class="resource-header-title">{{ view.project.name }}</h1>

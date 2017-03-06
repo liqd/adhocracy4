@@ -1,0 +1,53 @@
+.upload-wrapper {
+    position: relative;
+    @include clearfix;
+
+    // in front of text input, but invisible
+    .form-control-file {
+        cursor: pointer;
+        left: 0;
+        position: absolute;
+        opacity: 0;
+        top: 0;
+    }
+}
+
+.upload-wrapper__fields,
+.upload-wrapper__preview {
+    margin-bottom: $padding;
+    position: relative;
+}
+
+// This is actually a label that looks like a button.  It is used to trigger
+// .form-control-file (file input) or .clear-image (checkbox).  Both of these
+// inputs are in the accessibility tree, but the visual representation is very
+// different from the underlying semantics.
+.upload-wrapper__action {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.clear-image {
+    @include sr-only;
+}
+
+.clear-image:checked + img {
+    opacity: 0.2;
+    filter: grayscale(100%);
+}
+
+.upload-wrapper__alert {
+    clear: left;
+}
+
+@media (min-width: $breakpoint) {
+    .upload-wrapper__fields {
+        @include grid-span(5, 0, ('columns': 9));
+    }
+
+    .upload-wrapper__preview {
+        @include grid-span(4, 5, ('columns': 9));
+    }
+}

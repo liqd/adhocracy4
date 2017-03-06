@@ -1,0 +1,13 @@
+{% load menu static %}
+
+<footer class="main-footer">
+    <div class="l-wrapper">
+        <div class="shariff" data-theme="white"></div>
+        <nav class="footer-nav">
+            {% get_menu "footer-nav" as footer_nav %}
+            {% for item in footer_nav %}
+                <a class="footer-nav__link" href="{{ item.url }}">{{ item.title }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+</footer>

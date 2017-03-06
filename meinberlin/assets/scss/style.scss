@@ -10,28 +10,34 @@
 @import '~bootstrap/scss/modal';
 @import '~bootstrap/scss/close';
 @import '~bootstrap/scss/popover';
+@import '~bootstrap/scss/utilities/screenreaders';
 
 @import 'base';
 @import 'layout';
 @import 'form';
 
 @import 'components/alert';
+@import 'components/blocks';
 @import 'components/breadcrumbs';
 @import 'components/button';
 @import 'components/commenting';
 @import 'components/comments';
 @import 'components/dropdown';
+@import 'components/footer';
 @import 'components/formset';
 @import 'components/header';
+@import 'components/hero_unit';
 @import 'components/label';
 @import 'components/list_item';
 @import 'components/menu_layout';
 @import 'components/pagination';
 @import 'components/phases';
 @import 'components/popover';
+@import 'components/portal_header';
 @import 'components/rating';
 @import 'components/resource_header';
 @import 'components/tabs';
 @import 'components/tile';
+@import 'components/upload';
 
 @import 'shame';

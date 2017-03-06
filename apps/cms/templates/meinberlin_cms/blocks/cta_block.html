@@ -1,0 +1,10 @@
+{% load wagtailcore_tags %}
+
+<div class="block block--cta">
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            {{ value.body|richtext }}
+            <a href="{{ value.link }}" class="button button--secondary">{{ value.link_text }}</a>
+        </div>
+    </div>
+</div>

@@ -2,9 +2,28 @@
     padding: 3em 0 4em;
     position: relative;
     margin-bottom: 1em;
+
     text-align: center;
 }
 
+.resource-header--image {
+    min-height: 30em;
+    background-size: cover;
+    color: contrast-color($brand-primary);
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        background-color: rgba($brand-primary, 0.8);
+    }
+}
+
+.resource-header__category,
 .resource-header__meta,
 .resource-header__action {
     margin-bottom: 1.5rem;
@@ -25,4 +44,8 @@
 
 .resource-navigation__actions {
     float: right;
+}
+
+.resource-header__category {
+    font-weight: bold;
 }

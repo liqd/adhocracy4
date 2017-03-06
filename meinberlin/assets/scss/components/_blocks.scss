@@ -1,0 +1,15 @@
+.block {
+    margin-bottom: 2.8em;
+}
+
+.block--cta {
+    padding: 2.8em 0;
+
+    background-color: $brand-primary;
+    color: contrast-color($brand-primary);
+    text-align: center;
+
+    .rich-text > :first-child {
+        margin-top: 0;
+    }
+}
