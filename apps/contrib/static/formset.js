@@ -1,5 +1,8 @@
 /* global $ */
 (function () {
+  // Dynamically add more subforms to a formset.
+  // Removing subforms is not (yet) supported)
+
   var $formsets = $('.js-formset')
   var PLACEHOLDER = /__prefix__/g
   var dynamicFormSets = []
