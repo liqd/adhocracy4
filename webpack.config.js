@@ -19,7 +19,9 @@ module.exports = {
       'react',
       'react-addons-update',
       'react-dom',
-      'react-flip-move'
+      'react-flip-move',
+      'shariff',
+      'shariff/build/shariff.min.css'
     ]
   },
   devtool: 'eval',
