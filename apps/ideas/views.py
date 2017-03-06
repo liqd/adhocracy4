@@ -9,7 +9,6 @@ from adhocracy4.contrib.views import FilteredListView
 from adhocracy4.contrib.views import PermissionRequiredMixin
 from adhocracy4.modules.models import Module
 from adhocracy4.projects import mixins
-from adhocracy4.projects.models import Project
 
 from . import models as idea_models
 from . import forms
@@ -52,10 +51,11 @@ class IdeaListView(mixins.ProjectMixin, FilteredListView):
     filter_set = IdeaFilterSet
 
     def dispatch(self, *args, **kwargs):
-        project_slug = self.kwargs['slug']
-        project = Project.objects.get(slug=project_slug)
-        module = project.active_phase.module
-        self.request.module = module
+        # TODO: Refactor duplicate to ProjectMixin.dispatch()
+        self.project = kwargs['project']
+        self.phase = self.project.active_phase or self.project.past_phases[0]
+        self.module = self.phase.module if self.phase else None
+        self.request.module = self.module
         return super().dispatch(*args, **kwargs)
 
 
