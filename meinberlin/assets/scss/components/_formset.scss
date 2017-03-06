@@ -40,12 +40,11 @@
     }
 
     &:checked ~ * {
-        opacity: 0.3;
-        pointer-events: none;
+        color: $brand-danger;
     }
 
-    &:checked ~ .formset__delete-label {
-        @include sr-only;
+    &:checked + input {
+        text-decoration: line-through;
     }
 }
 
