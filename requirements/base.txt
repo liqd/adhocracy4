@@ -5,7 +5,7 @@ django-autofixture==0.12.1
 django-autoslug==1.9.3
 django-ckeditor==5.1.1
 python-dateutil==2.6.0
-django-filter==0.15.3
+django-filter==1.0.1
 django-widget-tweaks==1.4.1
 djangorestframework==3.5.1
 easy-thumbnails==2.3
