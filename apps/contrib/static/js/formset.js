@@ -1,12 +1,15 @@
 /* global $ */
 (function () {
+  // Dynamically add more subforms to a formset.
+  // Removing subforms is not (yet) supported)
+
   var $formsets = $('.js-formset')
   var PLACEHOLDER = /__prefix__/g
   var dynamicFormSets = []
 
   var DynamicFormSet = function ($formset) {
     this.$formset = $formset
-    this.$emptyForm = this.$formset.find('.js-empty-form')
+    this.$formTemplate = this.$formset.find('.js-form-template')
     this.$formset.find('.js-add-form').on('click', this.addForm.bind(this))
     this.prefix = this.$formset.data('prefix')
     this.$totalInput = this.$formset.find('#id_' + this.prefix + '-TOTAL_FORMS')
@@ -16,12 +19,12 @@
   DynamicFormSet.prototype.addForm = function () {
     this.id += 1
     this.$totalInput.val(this.id + 1)
-    var newForm = getNewForm(this.$emptyForm, this.id)
-    this.$emptyForm.before(newForm)
+    var newForm = getNewForm(this.$formTemplate, this.id)
+    this.$formTemplate.before(newForm)
   }
 
-  function getNewForm ($emptyForm, id) {
-    return $emptyForm.html().replace(PLACEHOLDER, id)
+  function getNewForm ($formTemplate, id) {
+    return $formTemplate.html().replace(PLACEHOLDER, id)
   }
 
   $formsets.each(function (i) {

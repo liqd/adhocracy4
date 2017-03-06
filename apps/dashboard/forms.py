@@ -143,6 +143,7 @@ class ProjectCreateForm(ProjectEditFormBase):
         self.show_categories_form = \
             self._show_categories_form(self.blueprint.content)
         if self.show_categories_form:
+            # no initial categories in are shown in create view
             kwargs['categories__queryset'] = \
                 category_models.Category.objects.none()
             self.base_forms.append(

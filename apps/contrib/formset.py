@@ -5,7 +5,7 @@ class DynamicModelFormSet(forms.BaseModelFormSet):
     @property
     def media(self):
         additional_js = forms.Media(js={
-            'formset.js'
+            'js/formset.js'
         })
         return super().media + additional_js
 
