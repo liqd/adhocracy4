@@ -28,6 +28,9 @@ class Idea(module_models.Item, category_models.Categorizable):
 
     objects = IdeaQuerySet.as_manager()
 
+    class Meta:
+        ordering = ['-created']
+
     def __str__(self):
         return self.name
 
