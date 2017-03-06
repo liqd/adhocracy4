@@ -1,11 +1,12 @@
-{% load i18n %}
+{% load contrib_tags i18n %}
 
 {% if is_paginated %}
 <nav aria-label="{% trans 'Page navigation' %}">
     <ul class="pagination">
         {% for page_number in page_obj.paginator.page_range %}
         <li class="pagination-item{% ifequal page_number page_obj.number %} active{% endifequal %}">
-            <a href="?ordering={{ view.get_ordering }}&page={{ page_number }}">{{ page_number }}</a>
+            {% combinedUrlParameter request.GET page=page_number as url_par %}
+            <a href="{{ url_par }}">{{ page_number }}</a>
         </li>
         {% endfor %}
     </ul>
