@@ -43,7 +43,7 @@
         color: $brand-danger;
     }
 
-    &:checked + input {
+    &:checked ~ input {
         text-decoration: line-through;
     }
 }
