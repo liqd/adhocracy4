@@ -1,10 +1,12 @@
+import django_filters
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from django.views import generic
 
+from adhocracy4.categories import models as category_models
+from adhocracy4.contrib.views import FilteredListView
 from adhocracy4.contrib.views import PermissionRequiredMixin
-from adhocracy4.contrib.views import SortableListView
 from adhocracy4.modules.models import Module
 from adhocracy4.projects import mixins
 
@@ -12,21 +14,49 @@ from . import models as idea_models
 from . import forms
 
 
-class IdeaListView(mixins.ProjectMixin, SortableListView):
-    model = idea_models.Idea
-    paginate_by = 15
-    ordering = ['-created']
-    orderings_supported = [
-        ('-created', _('Most recent')),
-        ('-positive_rating_count', _('Most popular')),
-        ('-comment_count', _('Most commented')),
-    ]
+def category_queryset(request):
+    return category_models.Category.objects.filter(module=request.module)
 
-    def get_queryset(self):
-        return super().get_queryset().filter(module=self.module) \
+
+class IdeaFilterSet(django_filters.FilterSet):
+
+    category = django_filters.ModelChoiceFilter(
+        queryset=category_queryset
+    )
+
+    ordering = django_filters.OrderingFilter(
+        choices=(
+            ('-created', _('Most recent')),
+            ('-positive_rating_count', _('Most popular')),
+            ('-comment_count', _('Most commented')),
+        ),
+        empty_label=None,
+    )
+
+    @property
+    def qs(self):
+        return super().qs.filter(module=self.request.module) \
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()
+
+    class Meta:
+        model = idea_models.Idea
+        fields = ['category']
+
+
+class IdeaListView(mixins.ProjectMixin, FilteredListView):
+    model = idea_models.Idea
+    paginate_by = 15
+    filter_set = IdeaFilterSet
+
+    def dispatch(self, *args, **kwargs):
+        # TODO: Refactor duplicate to ProjectMixin.dispatch()
+        self.project = kwargs['project']
+        self.phase = self.project.active_phase or self.project.past_phases[0]
+        self.module = self.phase.module if self.phase else None
+        self.request.module = self.module
+        return super().dispatch(*args, **kwargs)
 
 
 class IdeaDetailView(PermissionRequiredMixin, generic.DetailView):
