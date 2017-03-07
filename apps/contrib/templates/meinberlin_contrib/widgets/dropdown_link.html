@@ -1,0 +1,14 @@
+<div class="dropdown {% if right %}dropdown--right{% endif %}" {{ attrs }}>
+    <button
+        type="button"
+        class="dropdown-toggle"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        id="{{ id }}"
+    >
+        {{ label }}: {{ value_label }}
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </button>
+    {{ options }}
+</div>
