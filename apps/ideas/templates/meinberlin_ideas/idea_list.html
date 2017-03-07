@@ -18,6 +18,10 @@
             {% for idea in idea_list %}
             {% include "meinberlin_ideas/includes/idea_list_item.html" with idea=idea %}
             {% endfor %}
+
+            {% if idea_list.count == 0 %}
+            {% trans "No matches" %}
+            {% endif %}
         </div>
 
         {% include "meinberlin_contrib/includes/pagination.html" %}
