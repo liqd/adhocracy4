@@ -1,5 +1,15 @@
 {% load i18n %}
-<form action="" method="get">
-    {{ filter.form }}
-    <input type="submit" />
-</form>
+
+<div class="filter-bar">
+    <div class="filter-bar__filters">
+        {% for field in filter.form %}
+            {% if field.name != 'ordering' %}
+                {{ field }}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="filter-bar__ordering">
+        {{ filter.form.ordering }}
+    </div>
+</div>

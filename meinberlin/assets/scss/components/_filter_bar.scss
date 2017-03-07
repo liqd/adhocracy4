@@ -1,0 +1,11 @@
+.filter-bar {
+    @include clearfix;
+}
+
+.filter-bar__filters {
+    float: left;
+}
+
+.filter-bar__ordering {
+    float: right;
+}
