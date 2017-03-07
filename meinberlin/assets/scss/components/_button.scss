@@ -55,6 +55,32 @@
     @include button-color($brand-secondary, darken($brand-secondary, 15%));
 }
 
+.button--select {
+    // make it look like a select element
+    @include button-color($bg-secondary, $body-bg);
+    border: 1px solid $input-border-color;
+    font-weight: normal;
+
+    &:hover,
+    &:focus,
+    &:active {
+        border: 1px solid $input-border-color;
+    }
+
+    @include text-truncate;
+    max-width: 15em;
+
+    // leave space for caret
+    padding-right: 2.2em;
+    position: relative;
+
+    i {
+        position: absolute;
+        top: 0.4em;
+        right: 0.7em;
+    }
+}
+
 .button--huge {
     padding: 0.8em 2em;
 }
