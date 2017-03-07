@@ -1,0 +1,15 @@
+.filter-bar {
+    @include clearfix;
+
+    .dropdown {
+        display: inline-block;
+    }
+}
+
+.filter-bar__filters {
+    float: left;
+}
+
+.filter-bar__ordering {
+    float: right;
+}
