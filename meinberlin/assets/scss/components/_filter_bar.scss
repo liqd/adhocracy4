@@ -1,5 +1,9 @@
 .filter-bar {
     @include clearfix;
+
+    .dropdown {
+        display: inline-block;
+    }
 }
 
 .filter-bar__filters {

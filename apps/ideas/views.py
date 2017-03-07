@@ -9,6 +9,7 @@ from adhocracy4.contrib.views import FilteredListView
 from adhocracy4.contrib.views import PermissionRequiredMixin
 from adhocracy4.modules.models import Module
 from adhocracy4.projects import mixins
+from apps.contrib.widgets import DropdownLinkWidget
 
 from . import models as idea_models
 from . import forms
@@ -18,10 +19,20 @@ def category_queryset(request):
     return category_models.Category.objects.filter(module=request.module)
 
 
+class OrderingWidget(DropdownLinkWidget):
+    label = _('Ordering')
+    right = True
+
+
+class CategoryFilterWidget(DropdownLinkWidget):
+    label = _('Category')
+
+
 class IdeaFilterSet(django_filters.FilterSet):
 
     category = django_filters.ModelChoiceFilter(
-        queryset=category_queryset
+        queryset=category_queryset,
+        widget=CategoryFilterWidget,
     )
 
     ordering = django_filters.OrderingFilter(
@@ -31,6 +42,7 @@ class IdeaFilterSet(django_filters.FilterSet):
             ('-comment_count', _('Most commented')),
         ),
         empty_label=None,
+        widget=OrderingWidget,
     )
 
     @property
