@@ -19,6 +19,7 @@
 }
 
 .l-wrapper {
+    @include clearfix;
     position: relative;
     max-width: 70rem;
     margin: 0 auto;
