@@ -26,8 +26,13 @@ class DropdownLinkWidget(django_filters.widgets.LinkWidget):
         return option_label
 
     def render(self, name, value, attrs=None, choices=()):
+        all_choices = list(chain(self.choices, choices))
+
+        if len(all_choices) <= 1:
+            return ''
+
         if value is None:
-            value = list(chain(self.choices, choices))[0][0]
+            value = all_choices[0][0]
 
         _id = attrs.pop('id')
         final_attrs = flatatt(self.build_attrs(attrs))
