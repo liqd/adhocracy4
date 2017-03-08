@@ -1,11 +1,12 @@
 <div class="dropdown {% if right %}dropdown--right{% endif %}" {{ attrs }}>
     <button
         type="button"
-        class="dropdown-toggle"
+        class="dropdown-toggle button button--select"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
         id="{{ id }}"
+        title="{{ label }}: {{ value_label }}"
     >
         {{ label }}: {{ value_label }}
         <i class="fa fa-caret-down" aria-hidden="true"></i>

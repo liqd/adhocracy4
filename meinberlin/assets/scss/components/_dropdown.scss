@@ -1,6 +1,7 @@
 .dropdown {
     position: relative;
     text-align: left;
+    margin-bottom: $spacer / 2;
 }
 
 .dropdown--right {
@@ -16,9 +17,10 @@
     display: inline-block;
     min-width: 1.4em;
     text-align: center;
+    margin-bottom: 0;
 
     i {
-        font-size: $font-size-lg;
+        font-size: 1.25em;
     }
 }
 

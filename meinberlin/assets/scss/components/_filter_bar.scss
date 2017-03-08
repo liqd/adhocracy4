@@ -1,5 +1,6 @@
 .filter-bar {
     @include clearfix;
+    font-size: $font-size-sm;
 
     .dropdown {
         display: inline-block;
