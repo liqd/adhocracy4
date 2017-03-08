@@ -58,6 +58,11 @@ class IdeaFilterSet(django_filters.FilterSet):
 
 
 class RequestMixin(object):
+    """Add module information needed by filter to request object.
+
+    Depends on attributes set by the ProjectMixin and must come after it in the
+    dispatch order.
+    """
 
     def dispatch(self, *args, **kwargs):
         self.request.module = self.module
