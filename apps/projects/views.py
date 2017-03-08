@@ -2,7 +2,7 @@ import django_filters
 from django.utils.translation import ugettext as _
 
 from adhocracy4.contrib.views import FilteredListView
-from adhocracy4.projects import models
+from adhocracy4.projects import models as project_models
 
 from apps.contrib.widgets import DropdownLinkWidget
 
@@ -23,11 +23,11 @@ class ProjectFilterSet(django_filters.FilterSet):
     )
 
     class Meta:
-        model = models.Project
-        fields = []
+        model = project_models.Project
+        fields = ['organisation']
 
 
 class ProjectListView(FilteredListView):
-    model = models.Project
+    model = project_models.Project
     paginate_by = 16
     filter_set = ProjectFilterSet
