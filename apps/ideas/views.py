@@ -57,18 +57,22 @@ class IdeaFilterSet(django_filters.FilterSet):
         fields = ['category']
 
 
-class IdeaListView(mixins.ProjectMixin, FilteredListView):
+class RequestMixin(object):
+    """Add module information needed by filter to request object.
+
+    Depends on attributes set by the ProjectMixin and must come after it in the
+    dispatch order.
+    """
+
+    def dispatch(self, *args, **kwargs):
+        self.request.module = self.module
+        return super().dispatch(*args, **kwargs)
+
+
+class IdeaListView(mixins.ProjectMixin, RequestMixin, FilteredListView):
     model = idea_models.Idea
     paginate_by = 15
     filter_set = IdeaFilterSet
-
-    def dispatch(self, *args, **kwargs):
-        # TODO: Refactor duplicate to ProjectMixin.dispatch()
-        self.project = kwargs['project']
-        self.phase = self.project.active_phase or self.project.past_phases[0]
-        self.module = self.phase.module if self.phase else None
-        self.request.module = self.module
-        return super().dispatch(*args, **kwargs)
 
 
 class IdeaDetailView(PermissionRequiredMixin, generic.DetailView):
