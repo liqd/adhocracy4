@@ -3,7 +3,7 @@
 
 {% block content %}
     <div class="l-wrapper">
-        {% include "meinberlin_contrib/includes/sort.html" %}
+        {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
         <div class="l-tiles-4">
             {% for project in project_list %}
