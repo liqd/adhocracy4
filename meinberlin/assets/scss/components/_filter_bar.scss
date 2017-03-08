@@ -5,12 +5,31 @@
     .dropdown {
         display: inline-block;
     }
-}
 
-.filter-bar__filters {
-    float: left;
-}
+    @media (min-width: $breakpoint) {
+        .filter-bar__ordering {
+            float: right;
+        }
+    }
 
-.filter-bar__ordering {
-    float: right;
+    @media (max-width: $breakpoint) {
+        > * {
+            @include grid-same-width(2);
+        }
+
+        .dropdown {
+            display: block;
+        }
+
+        .dropdown-toggle {
+            width: 100%;
+            max-width: none;
+        }
+
+        .filter-bar__ordering {
+            // push to the right
+            // NOTE: needs to overwrite grid-tiles
+            @include grid-position(6);
+        }
+    }
 }
