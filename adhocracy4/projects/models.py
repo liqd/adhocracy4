@@ -82,6 +82,11 @@ class Project(base.TimeStampedModel):
         related_name='project_moderator',
         blank=True,
     )
+    is_archived = models.BooleanField(
+        default=False,
+        verbose_name=_('Project is archived'),
+        help_text=_('Set to archive the project'),
+    )
 
     objects = ProjectManager()
 
