@@ -50,6 +50,9 @@ entity relation model
 -   contains containers of participation content (modules)
 -   follows automatically a given timeline (phases)
 -   exposes moderators / members (via `has_member` or `has_moderator` method)
+-   provides an `is_archived` flag, allowing to distinguish projects with
+    finished participation phases that may still be active in other ways from 
+    truly archived projects.
 
 ### modules
 
