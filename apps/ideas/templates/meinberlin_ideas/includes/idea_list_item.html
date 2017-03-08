@@ -27,8 +27,6 @@
         {{ idea.created | date }}
     </span>
     {% if idea.category %}
-        <span class="list-item__category">
-            {{ idea.category }}
-        </span>
+        <span class="category">{{ idea.category }}</span>
     {% endif %}
 </div>
