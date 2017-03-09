@@ -18,6 +18,18 @@ class OrganisationWidget(DropdownLinkWidget):
     label = _('Organisation')
 
 
+class ArchivedWidget(DropdownLinkWidget):
+    label = _('Archived')
+
+    def __init__(self, attrs=None):
+        choices = (
+            ('', _('All')),
+            ('false', _('No')),
+            ('true', _('Yes')),
+        )
+        super().__init__(attrs, choices)
+
+
 class ProjectFilterSet(django_filters.FilterSet):
 
     ordering = django_filters.OrderingFilter(
@@ -33,9 +45,13 @@ class ProjectFilterSet(django_filters.FilterSet):
         widget=OrganisationWidget,
     )
 
+    is_archived = django_filters.BooleanFilter(
+        widget=ArchivedWidget
+    )
+
     class Meta:
         model = project_models.Project
-        fields = ['organisation']
+        fields = ['organisation', 'is_archived']
 
 
 class ProjectListView(FilteredListView):
