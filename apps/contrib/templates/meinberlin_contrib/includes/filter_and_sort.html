@@ -1,13 +1,11 @@
 {% load i18n %}
 
 <div class="filter-bar">
-    <div class="filter-bar__filters">
-        {% for field in filter.form %}
-            {% if field.name != 'ordering' %}
-                {{ field }}
-            {% endif %}
-        {% endfor %}
-    </div>
+    {% for field in filter.form %}
+        {% if field.name != 'ordering' %}
+            {{ field }}
+        {% endif %}
+    {% endfor %}
 
     <div class="filter-bar__ordering">
         {{ filter.form.ordering }}
