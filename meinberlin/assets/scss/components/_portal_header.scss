@@ -13,6 +13,10 @@
     .l-wrapper {
         position: initial;
     }
+
+    @media screen and (max-width: $breakpoint) {
+        margin-bottom: 0;
+    }
 }
 
 .portal-header__red-line {

@@ -7,21 +7,26 @@
             <a href="/" class="main-nav__logo" rel="home">
                 <img src="{% static 'images/LOGO.png' %}" alt="mein.berlin"/>
             </a>
-            <ul>
-                <li>
-                    <a class="main-nav__item" href="{% url 'project-list' %}">{% trans 'Participation processes' %}</a>
-                </li>
-                {% get_menu "topnav" as topnav %}
-                {% for item in topnav %}
-                    <li>
-                        <a class="main-nav__item" href="{{ item.url }}">{{ item.title }}</a>
+            <button class="button button--bordered main-nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
+                <ul class="main-nav__list">
+                    <li class="main-nav__item">
+                        <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Participation processes' %}</a>
                     </li>
-                {% endfor %}
-            </ul>
+                    {% get_menu "topnav" as topnav %}
+                    {% for item in topnav %}
+                        <li class="main-nav__item">
+                            <a class="main-nav__link" href="{{ item.url }}">{{ item.title }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="main-header__user">
+                    {% userindicator %}
+                </div>
+            </div>
         </nav>
-        <div class="main-header__user">
-            {% userindicator %}
-        </div>
     </div>
     <div class="dialogue-box">
         {# Static markup to allow the blue border with the spike from Berlin's CD #}
