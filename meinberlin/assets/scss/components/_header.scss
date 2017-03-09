@@ -11,6 +11,23 @@
     line-height: 1;
 }
 
+// positioned so that the "mein" from "meinBerlin" is on the baseline
+.main-nav__logo {
+    text-decoration: none;
+
+    img {
+        width: 6em;
+        margin-top: -2em;
+        margin-bottom: -2.85em;
+
+        @media screen and (max-width: $breakpoint) {
+            margin: 0;
+            width: 3em;
+            vertical-align: middle;
+        }
+    }
+}
+
 .main-nav__menu-wrapper {
     @media screen and (max-width: $breakpoint) {
         padding: 0.5em $padding 0;
@@ -22,6 +39,12 @@
         z-index: 1;
 
         background-color: $body-bg;
+    }
+
+    @media screen and (min-width: $breakpoint) {
+        &.collapse {
+            display: inline-block;
+        }
     }
 }
 
@@ -37,10 +60,15 @@
 }
 
 .main-nav__item {
-    border-top: 1px solid $border-color;
+    display: inline;
 
-    &:last-child {
-        border-bottom: 1px solid $border-color;
+    @media screen and (max-width: $breakpoint) {
+        display: block;
+        border-top: 1px solid $border-color;
+
+        &:last-child {
+            border-bottom: 1px solid $border-color;
+        }
     }
 }
 
@@ -61,31 +89,18 @@
     }
 }
 
-// positioned so that the "mein" from "meinBerlin" is on the baseline
-.main-nav__logo {
-    text-decoration: none;
-
-    img {
-        width: 6em;
-        margin-top: -2em;
-        margin-bottom: -2.85em;
-
-        @media screen and (max-width: $breakpoint) {
-            margin: 0;
-            width: 3em;
-            vertical-align: middle;
-        }
-    }
-}
-
 .main-nav__toggle {
     float: right;
+
+    @media screen and (min-width: $breakpoint) {
+        display: none;
+    }
 }
 
 .main-header__user {
     @media screen and (min-width: $breakpoint) {
         position: absolute;
-        bottom: -0.5em;
+        bottom: -0.7em;
         right: $padding;
     }
 
