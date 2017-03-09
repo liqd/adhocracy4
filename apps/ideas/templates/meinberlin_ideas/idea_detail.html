@@ -50,7 +50,9 @@
             <div class="resource-header__meta">{{ idea.creator.username }}</div>
 
             {% if idea.category %}
-                <div class="resource-header__category">{{ idea.category }}</div>
+                <div class="resource-header__meta">
+                    <div class="category">{{ idea.category }}</div>
+                </div>
             {% endif %}
 
             <div class="resource-header__action">
