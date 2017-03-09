@@ -8,4 +8,8 @@
     aria-expanded="false">
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project.result %}
+
+    {% if project.has_finished %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project.is_archived %}
+    {% endif %}
 </div>
