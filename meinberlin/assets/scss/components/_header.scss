@@ -7,7 +7,6 @@
 }
 
 .main-nav {
-    font-size: $font-size-lg;
     line-height: 1;
 }
 
@@ -86,6 +85,13 @@
     @media screen and (max-width: $breakpoint) {
         display: block;
         padding: 0.5em 0;
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            background-color: $bg-secondary;
+            color: $brand-secondary;
+        }
     }
 }
 
