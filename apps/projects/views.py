@@ -1,3 +1,4 @@
+from datetime import datetime
 import django_filters
 from django.apps import apps
 from django.conf import settings
@@ -18,6 +19,31 @@ class OrganisationWidget(DropdownLinkWidget):
     label = _('Organisation')
 
 
+class ArchivedWidget(DropdownLinkWidget):
+    label = _('Archived')
+
+    def __init__(self, attrs=None):
+        choices = (
+            ('', _('All')),
+            ('false', _('No')),
+            ('true', _('Yes')),
+        )
+        super().__init__(attrs, choices)
+
+
+class YearWidget(DropdownLinkWidget):
+    label = _('Year')
+
+    def __init__(self, attrs=None):
+        choices = (('', _('Any')),)
+        now = datetime.now().year
+        first_year = project_models.Project.objects.earliest('created').\
+            created.year
+        for year in range(now, first_year - 1, -1):
+            choices += (year, year),
+        super().__init__(attrs, choices)
+
+
 class ProjectFilterSet(django_filters.FilterSet):
 
     ordering = django_filters.OrderingFilter(
@@ -33,9 +59,19 @@ class ProjectFilterSet(django_filters.FilterSet):
         widget=OrganisationWidget,
     )
 
+    is_archived = django_filters.BooleanFilter(
+        widget=ArchivedWidget
+    )
+
+    created = django_filters.NumberFilter(
+        name='created',
+        lookup_expr='year',
+        widget=YearWidget,
+    )
+
     class Meta:
         model = project_models.Project
-        fields = ['organisation']
+        fields = ['organisation', 'is_archived', 'created']
 
 
 class ProjectListView(FilteredListView):
