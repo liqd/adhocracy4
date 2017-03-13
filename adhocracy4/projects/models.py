@@ -87,7 +87,7 @@ class Project(base.TimeStampedModel):
         verbose_name=_('Project is archived'),
         help_text=_('Set to archive the project'),
     )
-    type = models.CharField(
+    typ = models.CharField(
         max_length=120,
         verbose_name=_('Type of the project'),
         blank=True,

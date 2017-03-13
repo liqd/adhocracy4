@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='project',
-            name='type',
+            name='typ',
             field=models.CharField(verbose_name='Type of the project', max_length=120, blank=True),
         ),
     ]
