@@ -12,6 +12,10 @@
     background-color: $bg-secondary;
     text-align: center;
 
+    &:first-child {
+        padding-top: calc(16px + #{$padding * 1.2});
+    }
+
     &.success {
         color: $brand-success;
     }
