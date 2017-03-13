@@ -1,32 +1,13 @@
 .main-header {
     position: relative;
-}
 
-.main-header__user {
-    position: absolute;
-    bottom: -0.5em;
-    right: $padding;
+    @media screen and (max-width: $breakpoint) {
+        padding: 0.5em 0;
+    }
 }
 
 .main-nav {
-    font-size: $font-size-lg;
     line-height: 1;
-
-    ul,
-    li {
-        display: inline;
-        margin: 0;
-        padding: 0;
-    }
-
-    ul {
-        display: inline-block;
-    }
-}
-
-.main-nav__item,
-.main-nav__logo {
-    margin-right: 1em;
 }
 
 // positioned so that the "mein" from "meinBerlin" is on the baseline
@@ -37,10 +18,60 @@
         width: 6em;
         margin-top: -2em;
         margin-bottom: -2.85em;
+
+        @media screen and (max-width: $breakpoint) {
+            margin: 0;
+            width: 3em;
+            vertical-align: middle;
+        }
+    }
+}
+
+.main-nav__menu-wrapper {
+    @media screen and (max-width: $breakpoint) {
+        padding: 0.5em $padding 0;
+        border-bottom: 1px solid $border-color;
+
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 1;
+
+        background-color: $body-bg;
+    }
+
+    @media screen and (min-width: $breakpoint) {
+        &.collapse {
+            display: inline-block;
+        }
+    }
+}
+
+.main-nav__list {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    @media screen and (max-width: $breakpoint) {
+        display: block;
     }
 }
 
 .main-nav__item {
+    display: inline;
+
+    @media screen and (max-width: $breakpoint) {
+        display: block;
+        border-top: 1px solid $border-color;
+
+        &:last-child {
+            border-bottom: 1px solid $border-color;
+        }
+    }
+}
+
+.main-nav__link {
     padding: 0.2em 0.4em;
     color: inherit;
     text-decoration: none;
@@ -49,6 +80,65 @@
     &:focus {
         text-decoration: underline;
         color: inherit;
+    }
+
+    @media screen and (max-width: $breakpoint) {
+        display: block;
+        padding: 0.5em 0;
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            background-color: $bg-secondary;
+            color: $brand-secondary;
+        }
+    }
+}
+
+.main-nav__toggle {
+    float: right;
+
+    @media screen and (min-width: $breakpoint) {
+        display: none;
+    }
+}
+
+.main-header__user {
+    @media screen and (min-width: $breakpoint) {
+        position: absolute;
+        bottom: -0.7em;
+        right: $padding;
+    }
+
+    // overwrite dropdown style on mobile
+    @media screen and (max-width: $breakpoint) {
+        .dropdown {
+            margin-bottom: 0;
+        }
+
+        .dropdown-toggle {
+            display: none;
+        }
+
+        .dropdown-menu {
+            display: block;
+            padding: 0;
+            border: 0;
+
+            box-shadow: none;
+
+            position: static;
+        }
+
+        .dropdown-item {
+            padding-left: 0;
+            padding-right: 0;
+            border-color: $border-color;
+        }
+
+        li:last-child button {
+            border-bottom: 0;
+        }
     }
 }
 
@@ -70,14 +160,21 @@
 
 .dialogue-box__center {
     flex: 0 1 70rem;
-    background-position: right -150px center;
+    background-position: right -250px center;
     background-image: url('/static/images/dialoguebox.png');
     background-repeat: no-repeat;
+
+    @media screen and (min-width: $breakpoint) {
+        background-position: right -150px center;
+    }
 }
 
 .beberlin-logo {
     margin-right: 1em;
+    vertical-align: middle;
 
-    // set type on baseline
-    vertical-align: -0.3em;
+    @media screen and (min-width: $breakpoint) {
+        // set type on baseline
+        vertical-align: -0.3em;
+    }
 }

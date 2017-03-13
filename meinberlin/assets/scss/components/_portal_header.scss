@@ -8,10 +8,13 @@
     min-height: 40px;
     position: relative;
     font-size: 12px;
-    margin-bottom: 5em;
 
     .l-wrapper {
         position: initial;
+    }
+
+    @media screen and (min-width: $breakpoint) {
+        margin-bottom: 5em;
     }
 }
 

@@ -44,6 +44,17 @@
     @include button-color($link-color, $link-hover-color);
 }
 
+.button--bordered {
+    &,
+    &:focus,
+    &:hover,
+    &:active {
+        background: $body-bg;
+        border-color: $border-color;
+        color: contrast-color($body-bg);
+    }
+}
+
 .button--light {
     @include button-color($body-bg, $bg-secondary);
 }
