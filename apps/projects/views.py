@@ -8,6 +8,7 @@ from adhocracy4.contrib.views import FilteredListView
 from adhocracy4.projects import models as project_models
 
 from apps.contrib.widgets import DropdownLinkWidget
+from apps.dashboard import blueprints
 
 
 class OrderingWidget(DropdownLinkWidget):
@@ -44,6 +45,16 @@ class YearWidget(DropdownLinkWidget):
         super().__init__(attrs, choices)
 
 
+class TypeWidget(DropdownLinkWidget):
+    label = _('Project Type')
+
+    def __init__(self, attrs=None):
+        choices = (('', _('Any')),)
+        for blueprintname, blueprint in blueprints.blueprints:
+            choices += (blueprint.title, blueprint.title),
+        super().__init__(attrs, choices)
+
+
 class ProjectFilterSet(django_filters.FilterSet):
 
     ordering = django_filters.OrderingFilter(
@@ -69,9 +80,13 @@ class ProjectFilterSet(django_filters.FilterSet):
         widget=YearWidget,
     )
 
+    typ = django_filters.CharFilter(
+        widget=TypeWidget,
+    )
+
     class Meta:
         model = project_models.Project
-        fields = ['organisation', 'is_archived', 'created']
+        fields = ['organisation', 'is_archived', 'created', 'typ']
 
 
 class ProjectListView(FilteredListView):

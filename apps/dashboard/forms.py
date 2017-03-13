@@ -171,6 +171,7 @@ class ProjectCreateForm(ProjectEditFormBase):
 
         project = objects['project']
         project.organisation = self.organisation
+        project.typ = self.blueprint.title
         if commit:
             project.save()
             project.moderators.add(self.creator)
