@@ -49,6 +49,7 @@ select {
     margin-bottom: $spacer;
 }
 
+.form-check,
 .form-group {
     margin: 0 0 $spacer;
 
@@ -61,6 +62,16 @@ select {
         // though (e.g. django standard forms or react components from
         // adhocracy4 core).
         margin: 0;
+    }
+}
+
+.form-check__label {
+    padding-left: 1.25em;
+
+    input {
+        display: inline;
+        width: auto;
+        margin-left: -1.25em;
     }
 }
 
