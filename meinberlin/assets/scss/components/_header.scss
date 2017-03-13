@@ -160,22 +160,21 @@
 
 .dialogue-box__center {
     flex: 0 1 70rem;
-    background-position: right -150px center;
+    background-position: right -250px center;
     background-image: url('/static/images/dialoguebox.png');
     background-repeat: no-repeat;
 
-    @media screen and (max-width: $breakpoint) {
-        background-position: right -250px center;
+    @media screen and (min-width: $breakpoint) {
+        background-position: right -150px center;
     }
 }
 
 .beberlin-logo {
     margin-right: 1em;
+    vertical-align: middle;
 
-    // set type on baseline
-    vertical-align: -0.3em;
-
-    @media screen and (max-width: $breakpoint) {
-        vertical-align: middle;
+    @media screen and (min-width: $breakpoint) {
+        // set type on baseline
+        vertical-align: -0.3em;
     }
 }
