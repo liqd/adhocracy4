@@ -8,7 +8,8 @@
                 <img src="{% static 'images/LOGO.png' %}" alt="mein.berlin"/>
             </a>
             <button class="button button--bordered main-nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse">
-                <i class="fa fa-bars"></i>
+                <i class="fa fa-bars" aria-hidden="true"></i>
+                {% trans 'Menu' %}
             </button>
             <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
                 <ul class="main-nav__list">
