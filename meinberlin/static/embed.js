@@ -11,21 +11,6 @@ $(document).ready(function () {
 
   var onReady = function () {
     // adhocracy4.onReady($target)
-
-    $main.find('form[action]').submit(function (event) {
-      event.preventDefault()
-      var form = this
-
-      // timeout required for use with CKEditor
-      setTimeout(function () {
-        $.ajax({
-          url: form.action,
-          method: form.method,
-          data: $(form).serialize(),
-          success: loadHtml
-        })
-      })
-    })
   }
 
   $(document).on('click', function (event) {
@@ -41,6 +26,21 @@ $(document).ready(function () {
         success: loadHtml
       })
     }
+  })
+
+  $(document).on('submit', function (event) {
+    event.preventDefault()
+    var form = event.target
+
+    // timeout required for use with CKEditor
+    setTimeout(function () {
+      $.ajax({
+        url: form.action,
+        method: form.method,
+        data: $(form).serialize(),
+        success: loadHtml
+      })
+    })
   })
 
   $.ajax({
