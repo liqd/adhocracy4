@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n rules react_comments react_ratings %}
+{% load i18n module_tags rules react_comments react_ratings %}
 
 {% block title %}{{idea.name}}{% endblock %}
 {% block content %}
@@ -55,9 +55,12 @@
                 </div>
             {% endif %}
 
-            <div class="resource-header__action">
-                {% react_ratings idea %}
-            </div>
+            {% itemHasFeature idea "rate" as is_rating_enabled %}
+            {%  if is_rating_enabled %}}
+                <div class="resource-header__action">
+                    {% react_ratings idea %}
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>
