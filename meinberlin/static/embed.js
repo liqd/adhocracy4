@@ -10,7 +10,7 @@ $(document).ready(function () {
   }
 
   var onReady = function () {
-    // adhocracy4.onReady($target)
+    // adhocracy4.onReady($main)
   }
 
   $(document).on('click', function (event) {
