@@ -35,7 +35,8 @@ class ProjectForm(forms.ModelForm):
 
     class Meta:
         model = project_models.Project
-        fields = ['name', 'description', 'image', 'information', 'result']
+        fields = ['name', 'description', 'image', 'information', 'result',
+                  'is_archived']
 
     def save(self, commit=True):
         self.instance.is_draft = 'save_draft' in self.data
