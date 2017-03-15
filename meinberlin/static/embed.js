@@ -28,7 +28,7 @@ $(document).ready(function () {
     }
   })
 
-  $(document).on('submit', function (event) {
+  $(document).on('submit', 'form[action]', function (event) {
     event.preventDefault()
     var form = event.target
 
