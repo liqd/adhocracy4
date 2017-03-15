@@ -8,11 +8,13 @@
 }
 
 .alert {
-    border-radius: 0.25em;
-    margin: 0 0 $spacer;
-    padding: $padding;
+    padding: $padding * 1.2 0;
     background-color: $bg-secondary;
-    border: 1px solid;
+    text-align: center;
+
+    &:first-child {
+        padding-top: calc(16px + #{$padding * 1.2});
+    }
 
     &.success {
         color: $brand-success;

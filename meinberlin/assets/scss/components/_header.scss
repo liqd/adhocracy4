@@ -178,3 +178,10 @@
         vertical-align: -0.3em;
     }
 }
+
+.messages,
+.hero-unit {
+    &:first-child {
+        margin-top: -35px;
+    }
+}

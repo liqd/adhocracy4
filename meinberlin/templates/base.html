@@ -23,15 +23,15 @@
     <main id="main">
 
         {% if messages %}
-        <div class="l-wrapper">
-            <ul class="messages">
-                {% for message in messages %}
-                <li class="alert {{ message.tags }}">
+        <ul class="messages">
+            {% for message in messages %}
+            <li class="alert {{ message.tags }}">
+                <div class="l-wrapper">
                     {{ message }}
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
         {% endif %}
 
         {% block super_content %}
