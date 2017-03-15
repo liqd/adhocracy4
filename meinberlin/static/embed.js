@@ -32,14 +32,11 @@ $(document).ready(function () {
     event.preventDefault()
     var form = event.target
 
-    // timeout required for use with CKEditor
-    setTimeout(function () {
-      $.ajax({
-        url: form.action,
-        method: form.method,
-        data: $(form).serialize(),
-        success: loadHtml
-      })
+    $.ajax({
+      url: form.action,
+      method: form.method,
+      data: $(form).serialize(),
+      success: loadHtml
     })
   })
 
