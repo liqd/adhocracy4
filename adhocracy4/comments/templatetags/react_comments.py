@@ -31,8 +31,6 @@ def react_comments(context, obj):
     comments_contenttype = ContentType.objects.get_for_model(Comment)
     pk = obj.pk
 
-    language = utils.translation.get_language()
-
     mountpoint = 'comments_for_{contenttype}_{pk}'.format(
         contenttype=contenttype.pk,
         pk=pk
@@ -45,7 +43,6 @@ def react_comments(context, obj):
         'isAuthenticated': is_authenticated,
         'isModerator': is_moderator,
         'user_name': user_name,
-        'language': language,
         'isReadOnly': not has_comment_permission,
     }
 

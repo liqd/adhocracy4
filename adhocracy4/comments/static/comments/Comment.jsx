@@ -10,8 +10,6 @@ var React = require('react')
 var django = require('django')
 var moment = require('moment')
 
-moment.locale(django.languageCode)
-
 var safeHtml = function (text) {
   return { __html: text }
 }
