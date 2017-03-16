@@ -1,6 +1,7 @@
 import json
 import pytest
 import re
+from freezegun import freeze_time
 
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.contenttypes.models import ContentType
@@ -35,42 +36,44 @@ def react_comment_render_for_props(rf, user, question):
 
 @pytest.mark.django_db
 def test_react_rating_anonymous(rf, question, comment):
-    user = AnonymousUser()
-    props = react_comment_render_for_props(rf, user, question)
-    comments_content_type = ContentType.objects.get_for_model(comment)
-    request = rf.get('/')
-    request.user = user
+    with freeze_time('2013-01-02 18:00:00 UTC'):
+        user = AnonymousUser()
+        props = react_comment_render_for_props(rf, user, question)
+        comments_content_type = ContentType.objects.get_for_model(comment)
+        request = rf.get('/')
+        request.user = user
 
-    comments = ThreadSerializer(
-        question.comments.all().order_by('-created'),
-        many=True, context={'request': request}).data
+        comments = ThreadSerializer(
+            question.comments.all().order_by('-created'),
+            many=True, context={'request': request}).data
 
-    assert props == {
-        'comments': comments,
-        'comments_contenttype': comments_content_type.pk,
-        'isAuthenticated': False,
-        'isModerator': False,
-        'isReadOnly': True,
-        'user_name': '',
-    }
+        assert props == {
+            'comments': comments,
+            'comments_contenttype': comments_content_type.pk,
+            'isAuthenticated': False,
+            'isModerator': False,
+            'isReadOnly': True,
+            'user_name': '',
+        }
 
 
 @pytest.mark.django_db
-def test_react_rating_user(rf, user, question, comment):
-    props = react_comment_render_for_props(rf, user, question)
-    comments_content_type = ContentType.objects.get_for_model(comment)
-    request = rf.get('/')
-    request.user = user
+def test_react_rating_user(rf, user, phase, question, comment):
+    with freeze_time('2013-01-02 18:00:00 UTC'):
+        props = react_comment_render_for_props(rf, user, question)
+        comments_content_type = ContentType.objects.get_for_model(comment)
+        request = rf.get('/')
+        request.user = user
 
-    comments = ThreadSerializer(
-        question.comments.all().order_by('-created'),
-        many=True, context={'request': request}).data
+        comments = ThreadSerializer(
+            question.comments.all().order_by('-created'),
+            many=True, context={'request': request}).data
 
-    assert props == {
-        'comments': comments,
-        'comments_contenttype': comments_content_type.pk,
-        'isAuthenticated': True,
-        'isModerator': False,
-        'isReadOnly': False,
-        'user_name': user.username,
-    }
+        assert props == {
+            'comments': comments,
+            'comments_contenttype': comments_content_type.pk,
+            'isAuthenticated': True,
+            'isModerator': False,
+            'isReadOnly': False,
+            'user_name': user.username,
+        }
