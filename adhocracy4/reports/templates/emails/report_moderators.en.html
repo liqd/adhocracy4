@@ -1,23 +1,23 @@
 {% extends 'email_base.html' %}
+{% load reports_tags %}
 
 {% block subject %}
-A {{ name }} on {{site.name}} has been reported.
+A {{ report.content_object | verbose_name }} on {{ site.name }} has been reported.
 {% endblock %}
 
 {% block content %}
-<h2>A {{ name }} on {{site.name}} has been reported.</h2>
+<h2>A {{ report.content_object | verbose_name }} on {{ site.name }} has been reported.</h2>
 
 <p>
-  We have received a report for a {{ name }} on {{site.name}} with the following reason:
+  We have received a report for a {{ report.content_object | verbose_name }} on {{ site.name }} with the following reason:
 </p>
 <p>
-    "{{ description }}"
+    "{{ report.description }}"
 </p>
 
-{% if admin_url %}
 <p>
-  To view and edit this {{ name }} click the following link:
-    <a href="{{admin_url}}" style="margin-top: 20px;">edit {{ name }}</a>
+    To view and edit this {{ report.content_object | verbose_name }} visit your project:
+
+    <a href="{{ email.get_host }}{{ report.project.get_absolte_url }}" style="margin-top: 20px;">Visit project</a>
 </p>
-{% endif %}
 {% endblock %}

@@ -1,12 +1,12 @@
-We have received a report on a {{ name }} on {{site.name}} with the following reason:
+{% load reports_tags %}
+We have received a report on a {{ report.content_object | verbose_name }} on {{site.name}} with the following reason:
 
-{{ description }}
+{{ report.description }}
 
-{% if admin_url%}
-To view and edit this {{ name }} follow this link go to the following url.
 
-{{admin_url}}
-{% endif %}
+To view and edit this {{ report.content_object | verbose_name }} visit your project:
+
+{{ email.get_host }}{{ report.project.get_absolute_url }}
 
 Best wishes
 

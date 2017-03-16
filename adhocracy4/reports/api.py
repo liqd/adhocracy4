@@ -14,5 +14,5 @@ class ReportViewSet(mixins.CreateModelMixin,
 
     def perform_create(self, serializer):
         report = serializer.save(creator=self.request.user)
-        emails.send_email_to_moderators(self.request, report)
-        emails.send_email_to_creator(report)
+        emails.ReportModeratorEmail.send(report)
+        emails.ReportCreatorEmail.send(report)
