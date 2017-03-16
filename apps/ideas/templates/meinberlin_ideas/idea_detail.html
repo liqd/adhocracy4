@@ -55,8 +55,7 @@
                 </div>
             {% endif %}
 
-            {% itemHasFeature idea "rate" as is_rating_enabled %}
-            {%  if is_rating_enabled %}}
+            {% if idea|has_feature:"rate" %}
                 <div class="resource-header__action">
                     {% react_ratings idea %}
                 </div>

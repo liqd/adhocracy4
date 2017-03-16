@@ -3,8 +3,7 @@
 <div class="list-item list-item--squashed">
     <div class="list-item__stats">
         {% spaceless %}
-        {% itemHasFeature idea "rate" as is_rating_enabled %}
-        {%  if is_rating_enabled %}
+        {% if idea|has_feature:"rate" %}}
             <span class="rating">
                 <span class="rating-button rating-up is-read-only" title="Positive Ratings">
                     {{ idea.positive_rating_count }}
