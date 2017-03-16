@@ -7,5 +7,5 @@ from adhocracy4.test.helpers import render_template
 def test_get_class_running_out(question, phase):
     question.module = phase.module
     template = '{% load module_tags %}' \
-               '{% itemHasFeature item "crud" as x %}{{x}}'
+               '{% if item|has_feature:"crud" %}True{% endif %}'
     assert 'True' == render_template(template, {'item': question})
