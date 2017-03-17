@@ -24,6 +24,12 @@ class Module(models.Model):
             if hasattr(self, setting):
                 return getattr(self, setting)
 
+    def has_feature(self, feature, model):
+        for phase in self.phase_set.all():
+            if phase.has_feature(feature, model):
+                return True
+        return False
+
 
 class Item(base.UserGeneratedContentModel):
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
