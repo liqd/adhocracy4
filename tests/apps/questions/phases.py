@@ -10,7 +10,8 @@ class AskPhase(phases.PhaseContent):
     weight = 20
 
     features = {
-         'crud': (models.Question, )
+         'crud': (models.Question, ),
+         'comment': (models.Question, )
     }
 
 
