@@ -1,38 +1,32 @@
 import rules
-from rules.predicates import is_superuser
 
-from adhocracy4.modules.predicates import is_context_initiator
-from adhocracy4.modules.predicates import is_context_member
-from adhocracy4.modules.predicates import is_context_moderator
-from adhocracy4.modules.predicates import is_owner
-from adhocracy4.modules.predicates import is_public_context
-from adhocracy4.phases.predicates import phase_allows_comment
-from adhocracy4.phases.predicates import phase_allows_create
-from adhocracy4.phases.predicates import phase_allows_modify
-from adhocracy4.phases.predicates import phase_allows_rate
+from adhocracy4.modules import predicates as module_predicates
 
-from .models import Idea
+from . import models
 
 
-rules.add_perm('meinberlin_ideas.view_idea',
-               is_superuser | is_context_moderator | is_context_initiator |
-               is_context_member | is_public_context)
+rules.add_perm(
+    'meinberlin_ideas.view_idea',
+    module_predicates.is_allowed_view_item
+)
+
+rules.add_perm(
+    'meinberlin_ideas.propose_idea',
+    module_predicates.is_allowed_create_item(models.Idea)
+)
+
+rules.add_perm(
+    'meinberlin_ideas.rate_idea',
+    module_predicates.is_allowed_rate_item
+)
+
+rules.add_perm(
+    'meinberlin_ideas.comment_idea',
+    module_predicates.is_allowed_comment_item
+)
 
 
-rules.add_perm('meinberlin_ideas.propose_idea',
-               is_superuser | is_context_moderator | is_context_initiator |
-               (is_context_member & phase_allows_create(Idea)))
-
-
-rules.add_perm('meinberlin_ideas.rate_idea',
-               is_superuser | is_context_moderator | is_context_initiator |
-               (is_context_member & phase_allows_rate))
-
-rules.add_perm('meinberlin_ideas.comment_idea',
-               is_superuser | is_context_moderator | is_context_initiator |
-               (is_context_member & phase_allows_comment))
-
-
-rules.add_perm('meinberlin_ideas.modify_idea',
-               is_superuser | is_context_moderator | is_context_initiator |
-               (is_context_member & is_owner & phase_allows_modify))
+rules.add_perm(
+    'meinberlin_ideas.modify_idea',
+    module_predicates.is_allowed_modify_item
+)
