@@ -9,6 +9,8 @@ from adhocracy4.contrib.views import FilteredListView
 from adhocracy4.contrib.views import PermissionRequiredMixin
 from adhocracy4.modules.models import Module
 from adhocracy4.projects import mixins
+
+from apps.contrib.mixins import ChoicesRequestMixin
 from apps.contrib.widgets import DropdownLinkWidget
 
 from . import models as idea_models
@@ -24,6 +26,16 @@ class OrderingWidget(DropdownLinkWidget):
     right = True
 
 
+class IdeaOrdering(ChoicesRequestMixin, django_filters.OrderingFilter):
+
+    def get_choices(self, request):
+        choices = (('-created', _('Most recent')),)
+        if self.parent.request.module.has_feature('rate', idea_models.Idea):
+            choices += ('-positive_rating_count', _('Most popular')),
+        choices += ('-comment_count', _('Most commented')),
+        return choices
+
+
 class CategoryFilterWidget(DropdownLinkWidget):
     label = _('Category')
 
@@ -35,12 +47,7 @@ class IdeaFilterSet(django_filters.FilterSet):
         widget=CategoryFilterWidget,
     )
 
-    ordering = django_filters.OrderingFilter(
-        choices=(
-            ('-created', _('Most recent')),
-            ('-positive_rating_count', _('Most popular')),
-            ('-comment_count', _('Most commented')),
-        ),
+    ordering = IdeaOrdering(
         empty_label=None,
         widget=OrderingWidget,
     )
