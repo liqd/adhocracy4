@@ -1,5 +1,5 @@
 class ChoicesRequestMixin(object):
-    """Dynamic choces mixin.
+    """Dynamic choices mixin.
 
     Add callable functionality to filters that support the ``choices``
     argument. If the ``choices`` is callable, then it **must** accept the
