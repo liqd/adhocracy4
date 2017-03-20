@@ -1,6 +1,6 @@
 import django_filters
 
-from adhocracy4.contrib.views import FilteredListView
+from adhocracy4.views.views import FilteredListView
 
 from . import models
 
