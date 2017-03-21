@@ -18,16 +18,23 @@ $(document).ready(function () {
   $(document).on('click', 'a[href]', function (event) {
     // NOTE: event.target.href is resolved against /embed/
     var url = event.target.getAttribute('href')
+    var $link = $(event.target)
+    var embedTarget = $link.data('embedTarget')
 
-    if (!event.target.target && url && url[0] !== '#') {
+    if (
+      url &&
+      url[0] !== '#' &&
+      !event.target.target &&
+      embedTarget !== 'platform' &&
+      embedTarget !== 'external' &&
+      !$link.is('.rich-text *')
+    ) {
       event.preventDefault()
 
       if (url[0] === '?') {
         url = currentPath + url
       }
 
-      // FIXME: some links should be opened on the platform
-      // FIXME: external links should not be opened in the iframe
       $.ajax({
         url: url,
         success: loadHtml
@@ -36,15 +43,20 @@ $(document).ready(function () {
   })
 
   $(document).on('submit', 'form[action]', function (event) {
-    event.preventDefault()
     var form = event.target
+    var $form = $(form)
+    var embedTarget = $form.data('embedTarget')
 
-    $.ajax({
-      url: form.action,
-      method: form.method,
-      data: $(form).serialize(),
-      success: loadHtml
-    })
+    if (embedTarget !== 'platform' && embedTarget !== 'external') {
+      event.preventDefault()
+
+      $.ajax({
+        url: form.action,
+        method: form.method,
+        data: $form.serialize(),
+        success: loadHtml
+      })
+    }
   })
 
   $.ajax({
