@@ -1,0 +1,11 @@
+class AjaxPathMiddleware(object):
+    """Append request path as a header.
+
+    In an ajax request, redirects are handled implicitly, so it it not possible
+    to know the path of the page where you end up. This middleware adds that
+    information in a header.
+    """
+
+    def process_response(self, request, response):
+        response['x-ajax-path'] = request.path
+        return response
