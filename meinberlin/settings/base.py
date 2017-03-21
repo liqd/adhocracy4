@@ -86,7 +86,7 @@ MIDDLEWARE_CLASSES = (
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 
-    'apps.contrib.middleware.AjaxPathMiddleware',
+    'apps.embed.middleware.AjaxPathMiddleware',
 )
 
 SITE_ID = 1
