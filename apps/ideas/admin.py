@@ -1,10 +1,8 @@
 from django.contrib import admin
 
+from adhocracy4.modules import admin as module_admin
+
 from . import models
 
 
-class IdeaAdmin(admin.ModelAdmin):
-    list_filter = ('module__project', 'module')
-
-
-admin.site.register(models.Idea, IdeaAdmin)
+admin.site.register(models.Idea, module_admin.ItemAdmin)
