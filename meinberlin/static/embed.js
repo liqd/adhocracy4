@@ -1,9 +1,11 @@
 /* global $ */
 $(document).ready(function () {
   var $main = $('main')
+  var currentPath
 
-  var loadHtml = function (html) {
+  var loadHtml = function (html, textStatus, xhr) {
     var $root = $(html).filter('main')
+    currentPath = xhr.getResponseHeader('x-ajax-path')
     $main.empty()
     $main.append($root.children())
     onReady()
@@ -19,9 +21,13 @@ $(document).ready(function () {
 
     if (!event.target.target && url && url[0] !== '#') {
       event.preventDefault()
+
+      if (url[0] === '?') {
+        url = currentPath + url
+      }
+
       // FIXME: some links should be opened on the platform
       // FIXME: external links should not be opened in the iframe
-      // FIXME: relative links should be resolved against currently loaded url
       $.ajax({
         url: url,
         success: loadHtml
