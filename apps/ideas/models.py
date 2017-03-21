@@ -1,6 +1,7 @@
 from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
 from django.contrib.contenttypes.fields import GenericRelation
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from adhocracy4 import transforms
@@ -15,7 +16,7 @@ class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
     pass
 
 
-class Idea(module_models.Item, category_models.Categorizable):
+class AbstractIdea(module_models.Item, category_models.Categorizable):
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(max_length=120)
     description = RichTextField()
@@ -29,6 +30,7 @@ class Idea(module_models.Item, category_models.Categorizable):
     objects = IdeaQuerySet.as_manager()
 
     class Meta:
+        abstract = True
         ordering = ['-created']
 
     def __str__(self):
@@ -37,8 +39,10 @@ class Idea(module_models.Item, category_models.Categorizable):
     def save(self, *args, **kwargs):
         self.description = transforms.clean_html_field(
             self.description)
-        super(Idea, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
+
+
+class Idea(AbstractIdea):
 
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
         return reverse('idea-detail', args=[str(self.slug)])
