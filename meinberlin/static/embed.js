@@ -15,20 +15,27 @@ $(document).ready(function () {
     // adhocracy4.onReady($main)
   }
 
+  var getEmbedTarget = function ($element, url) {
+    var embedTarget = $element.data('embedTarget')
+
+    if (embedTarget) {
+      return embedTarget
+    } else if (!url || url[0] === '#' || $element.attr('target')) {
+      return 'ignore'
+    } else if ($element.is('.rich-text a')) {
+      return 'external'
+    } else {
+      return 'internal'
+    }
+  }
+
   $(document).on('click', 'a[href]', function (event) {
     // NOTE: event.target.href is resolved against /embed/
     var url = event.target.getAttribute('href')
     var $link = $(event.target)
-    var embedTarget = $link.data('embedTarget')
+    var embedTarget = getEmbedTarget($link, url)
 
-    if (
-      url &&
-      url[0] !== '#' &&
-      !event.target.target &&
-      embedTarget !== 'platform' &&
-      embedTarget !== 'external' &&
-      !$link.is('.rich-text *')
-    ) {
+    if (embedTarget === 'internal') {
       event.preventDefault()
 
       if (url[0] === '?') {
@@ -45,9 +52,9 @@ $(document).ready(function () {
   $(document).on('submit', 'form[action]', function (event) {
     var form = event.target
     var $form = $(form)
-    var embedTarget = $form.data('embedTarget')
+    var embedTarget = getEmbedTarget($form, form.method)
 
-    if (embedTarget !== 'platform' && embedTarget !== 'external') {
+    if (embedTarget === 'internal') {
       event.preventDefault()
 
       $.ajax({
