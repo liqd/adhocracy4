@@ -5,6 +5,10 @@ from adhocracy4.phases import admin as phase_admin
 from . import models
 
 
+class ItemAdmin(admin.ModelAdmin):
+    list_filter = ('module__project', 'module')
+
+
 class ModuleAdmin(admin.ModelAdmin):
     inlines = [
         phase_admin.PhaseInline
