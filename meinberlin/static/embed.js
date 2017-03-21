@@ -14,15 +14,16 @@ $(document).ready(function () {
   }
 
   $(document).on('click', function (event) {
-    if (event.target.href && !event.target.target) {
+    // NOTE: event.target.href is resolved against /embed/
+    var url = event.target.getAttribute('href')
+
+    if (!event.target.target && url && url[0] !== '#') {
       event.preventDefault()
-      // FIXME: skip internal links
       // FIXME: some links should be opened on the platform
       // FIXME: external links should not be opened in the iframe
-      // FIXME: jump links should not trigger a request
       // FIXME: relative links should be resolved against currently loaded url
       $.ajax({
-        url: event.target.href,
+        url: url,
         success: loadHtml
       })
     }
