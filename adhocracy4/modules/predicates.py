@@ -51,7 +51,7 @@ def is_allowed_create_item(item_class):
     def _create_item(user, item):
         return (is_project_admin(user, item) |
                 (is_context_member(user, item) &
-                 phase_predicates.phase_allows_create(item_class)))
+                 phase_predicates.phase_allows_create(item_class)(user, item)))
     return _create_item
 
 
