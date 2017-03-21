@@ -1,5 +1,5 @@
 {% extends 'meinberlin_projects/project_detail.html' %}
-{% load i18n react_comments %}
+{% load i18n react_comments wagtailcore_tags %}
 
 {% block phase_content %}
     <article>
@@ -12,7 +12,7 @@
                 <h2 class="commenting__title">
                     {{ paragraph.name }}
                 </h2>
-                {{ paragraph.text|safe }}
+                {{ paragraph.text|richtext }}
             </div>
             <div class="commenting__actions">
                 <a

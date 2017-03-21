@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n react_comments react_ratings %}
+{% load i18n react_comments react_ratings wagtailcore_tags %}
 
 {% block content %}
 <div class="l-wrapper">
@@ -20,7 +20,7 @@
             {{ paragraph.name }}
         </h1>
         <div class="paragraph-body">
-            {{ paragraph.text | safe }}
+            {{ paragraph.text | richtext }}
         </div>
     </article>
 
