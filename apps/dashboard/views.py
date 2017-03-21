@@ -7,9 +7,9 @@ from django.views import generic
 from rules.compat import access_mixins as mixins
 
 from adhocracy4.categories import models as category_models
-from adhocracy4.contrib.views import PermissionRequiredMixin
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
+from adhocracy4.rules import mixins as rules_mixins
 
 from apps.organisations.models import Organisation
 
@@ -41,7 +41,7 @@ class DashboardBaseMixin(mixins.LoginRequiredMixin,
 
 
 class DashboardProjectListView(DashboardBaseMixin,
-                               PermissionRequiredMixin,
+                               rules_mixins.PermissionRequiredMixin,
                                generic.ListView):
     model = project_models.Project
     template_name = 'meinberlin_dashboard/project_list.html'
@@ -57,7 +57,7 @@ class DashboardProjectListView(DashboardBaseMixin,
 
 
 class DashboardBlueprintListView(DashboardBaseMixin,
-                                 PermissionRequiredMixin,
+                                 rules_mixins.PermissionRequiredMixin,
                                  generic.TemplateView):
     template_name = 'meinberlin_dashboard/blueprint_list.html'
     blueprints = blueprints.blueprints
@@ -65,7 +65,7 @@ class DashboardBlueprintListView(DashboardBaseMixin,
 
 
 class DashboardProjectCreateView(DashboardBaseMixin,
-                                 PermissionRequiredMixin,
+                                 rules_mixins.PermissionRequiredMixin,
                                  SuccessMessageMixin,
                                  blueprints.BlueprintMixin,
                                  generic.CreateView):
@@ -89,7 +89,7 @@ class DashboardProjectCreateView(DashboardBaseMixin,
 
 
 class DashboardProjectUpdateView(DashboardBaseMixin,
-                                 PermissionRequiredMixin,
+                                 rules_mixins.PermissionRequiredMixin,
                                  SuccessMessageMixin,
                                  generic.UpdateView):
     model = project_models.Project
