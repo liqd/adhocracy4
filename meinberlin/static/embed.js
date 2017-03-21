@@ -15,7 +15,7 @@ $(document).ready(function () {
     // adhocracy4.onReady($main)
   }
 
-  $(document).on('click', function (event) {
+  $(document).on('click', 'a[href]', function (event) {
     // NOTE: event.target.href is resolved against /embed/
     var url = event.target.getAttribute('href')
 
