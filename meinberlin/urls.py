@@ -17,6 +17,7 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.ratings.api import RatingViewSet
 
+from apps.budgeting import urls as budgeting_urls
 from apps.dashboard import urls as dashboard_urls
 from apps.documents import urls as paragraph_urls
 from apps.documents.api import DocumentViewSet
@@ -46,6 +47,7 @@ urlpatterns = [
 
     url(r'^ideas/', include(ideas_urls)),
     url(r'^paragraphs/', include(paragraph_urls)),
+    url(r'^budgeting/', include(budgeting_urls)),
 
     url(r'^api/', include(router.urls)),
 

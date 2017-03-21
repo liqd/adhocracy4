@@ -50,7 +50,6 @@ INSTALLED_APPS = (
     'ckeditor',
     'ckeditor_uploader',
 
-    'adhocracy4.contrib.apps.ContribConfig',
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
     'adhocracy4.images.apps.ImagesConfig',
@@ -70,6 +69,7 @@ INSTALLED_APPS = (
 
     'apps.ideas.apps.Config',
     'apps.documents.apps.Config',
+    'apps.budgeting.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (

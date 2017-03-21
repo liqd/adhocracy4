@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load i18n rules react_comments react_ratings %}
+
+{% block title %}{{proposal.name}}{% endblock %}
+{% block content %}
+<div class="resource-navigation">
+    <div class="l-wrapper">
+        <nav class="resource-navigation__breadcrumbs breadcrumbs">
+            <ul>
+                <li>
+                    <a href="{% url 'project-detail' proposal.project.slug %}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to project' %}</a>
+                </li>
+            </ul>
+        </nav>
+
+        {% has_perm 'meinberlin_budgeting.modify_proposal' request.user proposal as show_dropdown %}
+        {% if show_dropdown %}
+        <div class="resource-navigation__actions dropdown dropdown--right">
+            <button
+                title="{% trans 'Actions' %}"
+                type="button"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                id="proposal-{{proposal.pk}}-actions"
+            >
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="proposal-{{proposal.pk}}-actions">
+                <li>
+                    <a class="dropdown-item" href="{% url 'proposal-update' slug=proposal.slug %}">{% trans 'Edit' %}</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="{% url 'proposal-delete' slug=proposal.slug %}">{% trans 'Delete' %}</a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="resource-header">
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            <h1 class="resource-header__title">{{ proposal.name }}</h1>
+
+            <div class="resource-header__meta">
+                <div>{{ proposal.budget}}€</div>
+            </div>
+
+            <div class="resource-header__meta">{{ proposal.creator.username }}</div>
+
+            {% if proposal.category %}
+                <div class="resource-header__meta">
+                    <div class="category">{{ proposal.category }}</div>
+                </div>
+            {% endif %}
+
+            <div class="resource-header__action">
+                {% react_ratings proposal %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="proposal-description">
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            {{ proposal.description | safe }}
+        </div>
+    </div>
+</div>
+
+<div class="l-wrapper">
+    {% react_comments proposal %}
+</div>
+{% endblock %}
