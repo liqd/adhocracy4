@@ -51,7 +51,7 @@ class EmailBase:
     def render(self, template_name, context):
         languages = [get_language(), self.fallback_language]
         template = select_template([
-            'emails/{}.{}.email'.format(template_name, lang)
+            '{}.{}.email'.format(template_name, lang)
             for lang in languages
         ])
 
@@ -102,7 +102,7 @@ class EmailBase:
         return mails
 
 
-class Email(mixins.PlatformEmailMixin, mixins.SingleTemplateMixin, EmailBase):
+class Email(mixins.PlatformEmailMixin, EmailBase):
     pass
 
 
