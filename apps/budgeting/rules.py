@@ -6,27 +6,29 @@ from . import models
 
 
 rules.add_perm(
-    'meinberlin_ideas.view_idea',
+    'meinberlin_budgeting.view_proposal',
     module_predicates.is_allowed_view_item
 )
 
+
 rules.add_perm(
-    'meinberlin_ideas.propose_idea',
-    module_predicates.is_allowed_create_item(models.Idea)
+    'meinberlin_budgeting.propose_proposal',
+    module_predicates.is_allowed_create_item(models.Proposal)
 )
 
 rules.add_perm(
-    'meinberlin_ideas.rate_idea',
+    'meinberlin_budgeting.rate_proposal',
     module_predicates.is_allowed_rate_item
 )
 
+
 rules.add_perm(
-    'meinberlin_ideas.comment_idea',
+    'meinberlin_budgeting.comment_proposal',
     module_predicates.is_allowed_comment_item
 )
 
 
 rules.add_perm(
-    'meinberlin_ideas.modify_idea',
+    'meinberlin_budgeting.modify_proposal',
     module_predicates.is_allowed_modify_item
 )
