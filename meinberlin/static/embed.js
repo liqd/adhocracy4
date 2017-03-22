@@ -2,7 +2,7 @@
 $(document).ready(function () {
   var $main = $('main')
   var currentPath
-  var patternsForPopup = /\/accounts\b/g
+  var patternsForPopup = /\/accounts\b/
 
   var loadHtml = function (html, textStatus, xhr) {
     var $root = $(html).filter('main')
