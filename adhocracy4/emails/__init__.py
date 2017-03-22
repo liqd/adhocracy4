@@ -48,23 +48,20 @@ class EmailBase:
     def send(cls, object, *args, **kwargs):
         return cls().dispatch(object, *args, **kwargs)
 
-    def render(self, template, context):
+    def render(self, template_name, context):
         languages = [get_language(), self.fallback_language]
-        subject = select_template([
-            'emails/{}.{}.subject'.format(template, lang) for lang in languages
-        ])
-        plaintext = select_template([
-            'emails/{}.{}.txt'.format(template, lang) for lang in languages
-         ])
-        html = select_template([
-            'emails/{}.{}.html'.format(template, lang) for lang in languages
+        template = select_template([
+            'emails/{}.{}.email'.format(template_name, lang)
+            for lang in languages
         ])
 
-        return (
-            subject.render(context),
-            plaintext.render(context),
-            html.render(context)
-        )
+        parts = []
+        for part_type in ('subject', 'txt', 'html'):
+            context.update({'part_type': part_type})
+            parts.append(template.render(context))
+            context.pop()
+
+        return tuple(parts)
 
     def dispatch(self, object, *args, **kwargs):
         self.object = object
