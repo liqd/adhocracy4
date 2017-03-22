@@ -16,7 +16,7 @@
 
     <h1>{% trans 'Submit a new idea for this project'%}</h1>
 
-    {% url 'project-detail' project.slug as cancel %}
+    {% url 'project-detail' view.project.slug as cancel %}
     {% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=cancel %}
 </div>
 {% endblock %}
