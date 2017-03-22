@@ -1,6 +1,6 @@
 import django_filters
 
-from adhocracy4.contrib.views import FilteredListView
+from adhocracy4.modules import views as module_views
 
 from . import models
 
@@ -12,6 +12,6 @@ class QuestionFilterSet(django_filters.FilterSet):
         fields = ['text']
 
 
-class QuestionList(FilteredListView):
+class QuestionList(module_views.ItemListView):
     model = models.Question
     filter_set = QuestionFilterSet
