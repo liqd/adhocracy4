@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments react_ratings %}
+{% load i18n module_tags rules react_comments react_ratings wagtailcore_tags %}
 
 {% block title %}{{idea.name}}{% endblock %}
 {% block content %}
@@ -67,7 +67,7 @@
 <div class="idea-description">
     <div class="l-wrapper">
         <div class="l-center-6">
-            {{ idea.description | safe }}
+            {{ idea.description | richtext }}
         </div>
     </div>
 </div>
