@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{% load static i18n %}
 <html class="embed">
 <head>
     <meta charset="utf-8" />
@@ -13,6 +13,15 @@
     <script src="{% static 'vendor.js' %}"></script>
     <script src="{% static 'meinberlin.js' %}"></script>
     <script src="{% static 'embed.js' %}"></script>
+    <script type="text/template" id="embed-confirm">
+    <div class="embed-confirm">
+        <p>{% trans 'You need to login first. By clicking "Login" a popup will open so you can sign in safely. Do you want to login now?' %}</p>
+        <div class="embed-confirm__actions">
+            <button class="embed-confirm__cancel js-embed-cancel">{% trans 'Cancel' %}</button>
+            <a href="{% url 'account_login' %}" target="_blank" class="embed-confirm__login js-embed-login">{% trans 'Login' %}</a>
+        </div>
+    </div>
+    </script>
     <meta name="viewport" content="width=device-width" />
     <base target="_top" />
     {% block header %}{% endblock %}

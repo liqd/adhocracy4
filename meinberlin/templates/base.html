@@ -13,6 +13,16 @@
     <script src="{% static 'vendor.js' %}"></script>
     <script src="{% static 'meinberlin.js' %}"></script>
     <meta name="viewport" content="width=device-width" />
+    {% if request.user.is_authenticated %}
+    <script>
+        if (window.opener) {
+            window.opener.postMessage(
+                JSON.stringify({name: "popup-close",}),
+                location.origin
+            )
+        }
+    </script>
+    {% endif %}
     {% block header %}{% endblock %}
 </head>
 <body>
