@@ -3,6 +3,10 @@ $(document).ready(function () {
   var $main = $('main')
   var currentPath
 
+  var headers = {
+    'X-Embed': ''
+  }
+
   var loadHtml = function (html, textStatus, xhr) {
     var $root = $(html).filter('main')
     currentPath = xhr.getResponseHeader('x-ajax-path')
@@ -44,6 +48,7 @@ $(document).ready(function () {
 
       $.ajax({
         url: url,
+        headers: headers,
         success: loadHtml
       })
     }
@@ -60,6 +65,7 @@ $(document).ready(function () {
       $.ajax({
         url: form.action,
         method: form.method,
+        headers: headers,
         data: $form.serialize(),
         success: loadHtml
       })
@@ -68,6 +74,7 @@ $(document).ready(function () {
 
   $.ajax({
     url: 'http://localhost:8000/projects/project/',
+    headers: headers,
     success: loadHtml
   })
 })

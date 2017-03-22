@@ -193,4 +193,4 @@ website so that no additional login is required for participation.
     shell.
 -   The embed shell sends an additional `X-Embed` header with every request.
     Views might react to that by generating HTML that is optimized for
-    embedding.  TODO not implemented yet
+    embedding.
