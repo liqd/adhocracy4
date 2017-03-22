@@ -1,0 +1,29 @@
+{% extends 'meinberlin_projects/project_detail.html' %}
+{% load i18n rules %}
+
+{% block project_action %}
+    {% has_perm 'meinberlin_budgeting.propose_proposal' request.user view.module as propose_allowed %}
+    {% if propose_allowed %}
+        <a href="{% url 'proposal-create' slug=view.module.slug %}" class="button button--huge">
+            {% trans 'Submit proposal' %}
+        </a>
+    {% endif %}
+{% endblock %}
+
+{% block phase_content %}
+    <div class="l-center-8">
+        {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+
+        <div>
+            {% for proposal in proposal_list %}
+            {% include "meinberlin_budgeting/includes/proposal_list_item.html" with proposal=proposal %}
+            {% endfor %}
+
+            {% if proposal_list.count == 0 %}
+            {% trans "Nothing to show" %}
+            {% endif %}
+        </div>
+
+        {% include "meinberlin_contrib/includes/pagination.html" %}
+    </div>
+{% endblock %}

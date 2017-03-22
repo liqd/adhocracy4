@@ -1,16 +1,15 @@
 import rules
-from rules.predicates import is_superuser
 
-from adhocracy4.modules.predicates import is_context_initiator
-from adhocracy4.modules.predicates import is_context_member
-from adhocracy4.modules.predicates import is_context_moderator
-from adhocracy4.modules.predicates import is_public_context
+from adhocracy4.modules import predicates as module_predicates
 
 
-rules.add_perm('meinberlin_documents.view',
-               is_superuser | is_context_moderator | is_context_initiator |
-               is_context_member | is_public_context)
+rules.add_perm(
+    'meinberlin_documents.view',
+    module_predicates.is_allowed_view_item
+)
 
 
-rules.add_perm('meinberlin_documents.create',
-               is_superuser | is_context_moderator | is_context_initiator)
+rules.add_perm(
+    'meinberlin_documents.create',
+    module_predicates.is_project_admin
+)
