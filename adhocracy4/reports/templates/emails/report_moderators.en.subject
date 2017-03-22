@@ -1,1 +1,0 @@
-{% load reports_tags %}A {{ report.content_object | verbose_name }} has been reported on {{ site.name }}

@@ -1,8 +1,0 @@
-{% load reports_tags %}
-Your {{ name }} on {{site.name}} has been reported with the following reason:
-
-{{ description }}
-
-Best wishes
-
-{{site.name}} team
