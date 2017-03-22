@@ -89,7 +89,7 @@ $(document).ready(function () {
 
   PlatformPopup.prototype.askForLogin = function () {
     var template = $('#embed-confirm').html()
-    this.$embedConfirm = $(template).prependTo('.embed-main')
+    this.$embedConfirm = $(template).appendTo('.embed-header')
 
     this.$embedConfirm.on('click', this.handleConfirm.bind(this))
   }

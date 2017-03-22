@@ -1,0 +1,17 @@
+.embed-confirm {
+    padding-bottom: 0.75em;
+    width: 100%;
+
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 2;
+
+    background: $bg-tertiary;
+    text-align: center;
+
+    p {
+        @include grid-width(8);
+        margin: 0.75em auto;
+    }
+}

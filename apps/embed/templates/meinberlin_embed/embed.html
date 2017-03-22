@@ -8,7 +8,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="{% static 'vendor.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'meinberlin.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'embed.css' %}" />
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'vendor.js' %}"></script>
     <script src="{% static 'meinberlin.js' %}"></script>
@@ -17,8 +16,8 @@
     <div class="embed-confirm">
         <p>{% trans 'You need to login first. By clicking "Login" a popup will open so you can sign in safely. Do you want to login now?' %}</p>
         <div class="embed-confirm__actions">
-            <button class="embed-confirm__cancel js-embed-cancel">{% trans 'Cancel' %}</button>
-            <a href="{% url 'account_login' %}" target="_blank" class="embed-confirm__login js-embed-login">{% trans 'Login' %}</a>
+            <button class="embed-confirm__cancel js-embed-cancel button button--light">{% trans 'Cancel' %}</button>
+            <a href="{% url 'account_login' %}" target="_blank" class="embed-confirm__login js-embed-login button button--primary">{% trans 'Login' %}</a>
         </div>
     </div>
     </script>
@@ -29,7 +28,9 @@
 
 <body>
     <header class="embed-header">
-        <a>Login</a>
+        {% if request.user.is_anonymous %}
+            <a href="{% url 'account_login' %}" target="_blank">Login</a>
+        {% endif %}
     </header>
     <main class="embed-main"></main>
     <footer class="embed-footer">
