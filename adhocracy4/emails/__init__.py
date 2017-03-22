@@ -5,12 +5,7 @@ from django.template import Context
 from django.template.loader import select_template
 from django.utils.translation import get_language
 
-from adhocracy4.utils import import_attribute
-
-
-BaseMixin = import_attribute(
-    getattr(settings, 'A4_EMAIL_BASE_MIXIN', 'adhocracy4.emails.mixins.PlatformEmailMixin')
-)
+from . import mixins
 
 
 class EmailBase:
@@ -110,7 +105,7 @@ class EmailBase:
         return mails
 
 
-class Email(BaseMixin, EmailBase):
+class Email(mixins.PlatformEmailMixin, mixins.SingleTemplateMixin, EmailBase):
     pass
 
 
