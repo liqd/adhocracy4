@@ -67,7 +67,7 @@ $(document).ready(function () {
   })
 
   $.ajax({
-    url: 'http://localhost:8000/projects/project/',
+    url: $('body').data('url'),
     success: loadHtml
   })
 })
