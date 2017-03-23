@@ -1,0 +1,17 @@
+{% extends 'email_base.'|add:part_type %}
+{% load reports_tags %}
+
+{% block subject %}Moderation request in {{ report.project }} on {{ site.name }} {% endblock %}
+
+{% block headline %}A user reported content in your project.{% endblock %}
+
+{% block content %}
+{{ report.creator.username }} requested moderation of a {{ report.content_object | verbose_name }} in your project {{ report.project }} on {{ site.name }}. The reason given is "{{ report.description }}".
+{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}
+{% block cta_label %}Visit the {{ report.content_object | verbose_name }}{% endblock %}
+
+{% block reason %}
+This email was sent to {{ receiver.email }}. Your are receiving this email because you are moderator of the project {{ report.project }}.
+{% endblock %}

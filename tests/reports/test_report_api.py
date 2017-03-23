@@ -55,5 +55,5 @@ def test_authenticated_user_can_post_valid_data(user,
     assert response.status_code == status.HTTP_201_CREATED
     assert response.data['description'] == 'This comment sucks'
     assert len(mail.outbox) == 2
-    assert mail.outbox[0].subject.startswith('A question has been reported')
-    assert mail.outbox[1].subject.startswith('A question that you created')
+    assert mail.outbox[0].subject.startswith('Moderation request in')
+    assert mail.outbox[1].subject.startswith('Your question was reported')
