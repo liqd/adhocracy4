@@ -1,5 +1,5 @@
 py:flake8 --exclude */migrations/*,*/settings/* %s
 py:isort -sl -rc -c %s
 scss:node_modules/.bin/stylelint --syntax scss %s
-html:node_modules/.bin/htmlhint -c .htmlhintrc %s
+html:node_modules/.bin/htmlhint -c .htmlhintrc -i **/email*.html %s
 js\\|jsx:node_modules/.bin/eslint -c .eslintrc --ext js,jsx %s
