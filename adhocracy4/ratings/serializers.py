@@ -8,7 +8,7 @@ class RatingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Rating
-        read_only_fields = ('id', 'meta_info')
+        read_only_fields = ('id', 'meta_info', 'content_type', 'object_pk')
         exclude = ('creator', 'modified', 'created')
 
     def get_meta_info(self, obj):
