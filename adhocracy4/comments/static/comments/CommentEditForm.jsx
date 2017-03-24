@@ -15,7 +15,9 @@ var CommentEditForm = React.createClass({
       return
     }
     this.props.onCommentSubmit({
-      comment: comment
+      comment: comment,
+      object_pk: this.props.subjectId,
+      content_type: this.props.subjectType
     })
   },
   render: function () {
