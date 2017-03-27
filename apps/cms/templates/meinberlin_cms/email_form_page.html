@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n wagtailcore_tags %}
+{% load i18n wagtailcore_tags widget_tweaks %}
 
 {% block title %}{{ page.title }}{% endblock %}
 
@@ -13,7 +13,11 @@
                 {{ form.media }}
 
                 {% for field in form %}
-                    {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
+                    {% if field|field_type == 'booleanfield' %}
+                        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=field %}
+                    {% else %}
+                        {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
+                    {% endif %}
                 {% endfor %}
 
                 <input type="submit" class="button button--primary" value="{% trans 'Send'%}" />
