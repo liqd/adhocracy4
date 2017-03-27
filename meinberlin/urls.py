@@ -17,9 +17,11 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.ratings.api import RatingViewSet
 
+from apps.budgeting import urls as budgeting_urls
 from apps.dashboard import urls as dashboard_urls
 from apps.documents import urls as paragraph_urls
 from apps.documents.api import DocumentViewSet
+from apps.embed import urls as embed_urls
 from apps.ideas import urls as ideas_urls
 from apps.projects import urls as projects_urls
 
@@ -36,6 +38,7 @@ router.register(r'documents', DocumentViewSet, base_name='documents')
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
     url(r'^dashboard/', include(dashboard_urls)),
+    url(r'^embed/', include(embed_urls)),
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^accounts/', include(allauth_urls)),
@@ -44,6 +47,7 @@ urlpatterns = [
 
     url(r'^ideas/', include(ideas_urls)),
     url(r'^paragraphs/', include(paragraph_urls)),
+    url(r'^budgeting/', include(budgeting_urls)),
 
     url(r'^api/', include(router.urls)),
 

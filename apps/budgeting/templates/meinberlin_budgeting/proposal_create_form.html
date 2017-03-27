@@ -14,9 +14,9 @@
         </ul>
     </nav>
 
-    <h1>{% trans 'Submit a new idea for this project'%}</h1>
+    <h1>{% trans 'Submit a new proposal for this project'%}</h1>
 
     {% url 'project-detail' view.project.slug as cancel %}
-    {% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=cancel %}
+    {% include "meinberlin_budgeting/includes/proposal_form.html" with proposal=proposal cancel=cancel %}
 </div>
 {% endblock %}

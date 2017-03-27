@@ -2,6 +2,7 @@ from collections import namedtuple
 
 from django.utils.translation import ugettext_lazy as _
 
+from apps.budgeting import phases as budgeting_phases
 from apps.documents import phases as documents_phases
 from apps.ideas import phases as ideas_phases
 
@@ -45,6 +46,17 @@ blueprints = [
          content=[
              documents_phases.CreateDocumentPhase(),
              documents_phases.CommentPhase(),
+         ],
+         image='images/LOGO.png',
+         settings_model=None,
+     )),
+    ('participatory-budgeting',
+     ProjectBlueprint(
+         title=_('Participatory budgeting'),
+         description=_('TODO'),
+         content=[
+             budgeting_phases.RequestPhase(),
+             budgeting_phases.FeedbackPhase(),
          ],
          image='images/LOGO.png',
          settings_model=None,

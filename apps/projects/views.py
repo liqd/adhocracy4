@@ -4,7 +4,7 @@ from django.apps import apps
 from django.conf import settings
 from django.utils.translation import ugettext as _
 
-from adhocracy4.contrib.views import FilteredListView
+from adhocracy4.filters import views as filter_views
 from adhocracy4.projects import models as project_models
 
 from apps.contrib.widgets import DropdownLinkWidget
@@ -89,7 +89,7 @@ class ProjectFilterSet(django_filters.FilterSet):
         fields = ['organisation', 'is_archived', 'created', 'typ']
 
 
-class ProjectListView(FilteredListView):
+class ProjectListView(filter_views.FilteredListView):
     model = project_models.Project
     paginate_by = 16
     filter_set = ProjectFilterSet

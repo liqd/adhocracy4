@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n thumbnail %}
+{% load i18n thumbnail wagtailcore_tags %}
 
 {% block title %}{{view.project.name}}{% endblock %}
 
@@ -60,7 +60,7 @@
         aria-labelledby="tab-project-{{ view.project.pk }}-information"
         aria-expanded="false">
         <div class="l-center-8">
-            {{ view.project.information | safe }}
+            {{ view.project.information | richtext }}
         </div>
     </div>
     <div
@@ -79,7 +79,7 @@
         aria-labelledby="tab-project-{{ view.project.pk }}-result"
         aria-expanded="false">
         <div class="l-center-8">
-            {{ view.project.result | safe }}
+            {{ view.project.result | richtext }}
         </div>
     </div>
 </div>

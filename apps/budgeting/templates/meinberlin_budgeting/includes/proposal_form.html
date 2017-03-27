@@ -1,0 +1,18 @@
+{% load i18n %}
+<form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    {% csrf_token %}
+    {{ form.media }}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.budget %}
+
+    {% if form.show_categories %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.category %}
+    {% endif %}
+
+    <input type="submit" class="button button--primary" value="{% trans 'Save'%}" />
+    <a href="{{ cancel }}" class="button button--light">{% trans 'cancel'%}</a>
+</form>

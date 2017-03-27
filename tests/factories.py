@@ -7,6 +7,8 @@ from django.core.files import base
 from django.core.files import images
 from PIL import Image
 
+from adhocracy4.test import factories
+
 
 class UserFactory(factory.django.DjangoModelFactory):
 
@@ -26,6 +28,10 @@ class AdminFactory(factory.django.DjangoModelFactory):
     username = factory.Faker('name')
     password = make_password('password')
     is_superuser = True
+
+
+class PhaseFactory(factories.PhaseFactory):
+    type = 'meinberlin_ideas:010:issue'
 
 
 class OrganisationFactory(factory.django.DjangoModelFactory):

@@ -50,7 +50,6 @@ INSTALLED_APPS = (
     'ckeditor',
     'ckeditor_uploader',
 
-    'adhocracy4.contrib.apps.ContribConfig',
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
     'adhocracy4.images.apps.ImagesConfig',
@@ -66,9 +65,11 @@ INSTALLED_APPS = (
     'apps.projects.apps.Config',
     'apps.organisations.apps.Config',
     'apps.dashboard.apps.Config',
+    'apps.embed.apps.Config',
 
     'apps.ideas.apps.Config',
     'apps.documents.apps.Config',
+    'apps.budgeting.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -84,6 +85,8 @@ MIDDLEWARE_CLASSES = (
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+
+    'apps.embed.middleware.AjaxPathMiddleware',
 )
 
 SITE_ID = 1
