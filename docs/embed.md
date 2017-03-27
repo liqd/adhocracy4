@@ -62,13 +62,13 @@ restrictions:
     `data-embed-target="ignore"`.
 -   Do not use relative-path URLs:
 
-        // good
-        http://example.com/foo/bar
+        // works
+        https://example.com/foo/bar
         /foo/bar
         ?ordering=created
         #top
 
-        // bad
+        // does not work
         foo/bar
         ./foo/bar
         ../foo/bar
