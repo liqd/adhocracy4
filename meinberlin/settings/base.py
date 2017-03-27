@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'wagtail.contrib.wagtailstyleguide',
 
     'taggit',  # wagtail dependency
+    'widget_tweaks',
     'rest_framework',
     'allauth',
     'allauth.account',
