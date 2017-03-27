@@ -7,10 +7,14 @@ from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore import fields
 from wagtail.wagtailcore.models import Orderable
 from wagtail.wagtailcore.models import Page
+from wagtail.wagtailforms.models import AbstractEmailForm
+from wagtail.wagtailforms.models import AbstractFormField
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 
 from adhocracy4.projects.models import Project
+
+from . import emails
 
 
 class ProjectSelectionBlock(blocks.ChooserBlock):
@@ -116,3 +120,57 @@ class NavigationMenu(ClusterableModel):
 
 class NavigationMenuItem(Orderable, MenuItem):
     parent = ParentalKey('meinberlin_cms.NavigationMenu', related_name='items')
+
+
+class EmailFormField(AbstractFormField):
+    page = ParentalKey('EmailFormPage', related_name='form_fields')
+
+
+class EmailFormPage(AbstractEmailForm):
+    intro = fields.RichTextField(
+        help_text='Introduction text shown above the form'
+    )
+    thank_you = fields.RichTextField(
+        help_text='Text shown after form submission',
+    )
+    email_content = models.CharField(
+        max_length=200,
+        help_text='Email content message',
+    )
+    attach_as = models.CharField(
+        max_length=3,
+        choices=(
+            ('csv', 'CSV Document'),
+        ),
+        default='csv',
+        help_text='Form results are send in this document format',
+    )
+
+    content_panels = AbstractEmailForm.content_panels + [
+        edit_handlers.MultiFieldPanel([
+            edit_handlers.FieldPanel('intro', classname='full'),
+            edit_handlers.FieldPanel('thank_you', classname='full'),
+        ], 'Page'),
+        edit_handlers.MultiFieldPanel([
+            edit_handlers.FieldPanel('to_address'),
+            edit_handlers.FieldPanel('subject'),
+            edit_handlers.FieldPanel('email_content', classname='full'),
+            edit_handlers.FieldPanel('attach_as'),
+        ], 'Email'),
+        edit_handlers.InlinePanel('form_fields', label='Form fields'),
+    ]
+
+    def send_mail(self, form):
+        self.form = form
+        if self.attach_as == 'csv':
+            emails.CsvFormEmail.send(self)
+
+    @property
+    def field_values(self):
+        fields = {}
+        for field in self.form:
+            value = field.value()
+            if isinstance(value, list):
+                value = ', '.join(value)
+            fields[field.label] = value
+        return fields
