@@ -47,7 +47,7 @@ urlpatterns = [
 
     url(r'^ideas/', include(ideas_urls)),
     url(r'^paragraphs/', include(paragraph_urls)),
-    url(r'^budgeting/', include(budgeting_urls)),
+    url(r'^budgeting/', include(budgeting_urls, namespace='budgeting')),
 
     url(r'^api/', include(router.urls)),
 

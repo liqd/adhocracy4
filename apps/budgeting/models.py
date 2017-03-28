@@ -12,4 +12,4 @@ class Proposal(idea_models.AbstractIdea):
     )
 
     def get_absolute_url(self):
-        return reverse('proposal-detail', args=[str(self.slug)])
+        return reverse('budgeting:proposal-detail', args=[str(self.slug)])
