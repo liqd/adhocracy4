@@ -105,15 +105,9 @@ $(document).ready(function () {
   var loginPendingUrl = null
 
   var askForLogin = function (url) {
-    if (!loginPendingUrl) {
-      loginPendingUrl = url
-      $('#embed-confirm').modal('show')
-    }
+    loginPendingUrl = url
+    $('#embed-confirm').modal('show')
   }
-
-  $('#embed-confirm').on('hidden.bs.modal', function () {
-    loginPendingUrl = null
-  })
 
   $(document).on('click', '.js-embed-cancel', function (e) {
     $('#embed-confirm').modal('hide')
