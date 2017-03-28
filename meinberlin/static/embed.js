@@ -14,10 +14,10 @@ $(document).ready(function () {
     var nextPath = xhr.getResponseHeader('x-ajax-path')
 
     if (patternsForPopup.test(nextPath)) {
-      askForLogin(nextPath)
+      $('#embed-confirm').modal('show')
       return false
     }
-    // only update the currentPath if there was no popup opened
+    // only update the currentPath if there was no modal opened
     currentPath = nextPath
 
     $main.empty()
@@ -89,12 +89,6 @@ $(document).ready(function () {
     }
   })
 
-  $.ajax({
-    url: $('body').data('url'),
-    headers: headers,
-    success: loadHtml
-  })
-
   $('.js-embed-logout').on('click', function (e) {
     e.preventDefault()
     $.post(
@@ -104,10 +98,6 @@ $(document).ready(function () {
       }
     )
   })
-
-  var askForLogin = function (url) {
-    $('#embed-confirm').modal('show')
-  }
 
   // The popup will send a message when the user is logged in. Only after
   // this message the Popup will close.
@@ -121,4 +111,10 @@ $(document).ready(function () {
       }
     }
   }, false)
+
+  $.ajax({
+    url: $('body').data('url'),
+    headers: headers,
+    success: loadHtml
+  })
 })
