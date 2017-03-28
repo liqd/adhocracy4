@@ -141,9 +141,10 @@ MEDIA_URL = '/media/'
 # Adhcoracy 4
 
 A4_ORGANISATIONS_MODEL = 'a4organisations.Organisation'
-A4_RATEABLES = (('a4test_questions', 'Question'),)
-A4_REPORTABLES = (('a4test_questions', 'Question'),)
-A4_COMMENTABLES = (('a4test_questions', 'Question'),)
+A4_RATEABLES = (('a4test_questions', 'question'), ('a4comments', 'comment'),)
+A4_REPORTABLES = (('a4test_questions', 'question'),)
+A4_COMMENTABLES = (('a4test_questions', 'question'),
+                   ('a4comments', 'comment'),)
 
 # Rich text fields
 

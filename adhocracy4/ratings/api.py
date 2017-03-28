@@ -29,7 +29,7 @@ class RatingViewSet(mixins.CreateModelMixin,
             creator=self.request.user
         )
 
-    def destroy(self, request, pk=None):
+    def destroy(self, request, content_type, object_pk, pk=None):
         """
         Sets value to zero
         NOTE: Rating is NOT deleted.
