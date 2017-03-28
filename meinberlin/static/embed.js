@@ -13,8 +13,7 @@ $(document).ready(function () {
     var nextPath = xhr.getResponseHeader('x-ajax-path')
 
     if (patternsForPopup.test(nextPath)) {
-      var popup = new PlatformPopup(nextPath, true)
-      PlatformPopup.popups.push(popup)
+      askForLogin(nextPath)
       return false
     }
     // only update the currentPath if there was no popup opened
@@ -90,9 +89,7 @@ $(document).ready(function () {
 
   $('.js-embed-login').on('click', function (e) {
     e.preventDefault()
-
-    var popup = new PlatformPopup(this.getAttribute('href'))
-    PlatformPopup.popups.push(popup)
+    openLoginPopup(this.getAttribute('href'))
   })
 
   $('.js-embed-logout').on('click', function (e) {
@@ -105,58 +102,48 @@ $(document).ready(function () {
     )
   })
 
-  var PlatformPopup = function (url, isAsync) {
-    this.url = url
-    this.isPending = false
-    if (isAsync) {
-      this.askForLogin()
-    } else {
-      this.openLoginPopup()
-    }
-  }
-  PlatformPopup.popups = []
+  var loginPending = false
 
-  PlatformPopup.prototype.askForLogin = function () {
-    if (!this.isPending) {
-      this.isPending = true
+  var askForLogin = function (url) {
+    if (!loginPending) {
+      loginPending = true
       var template = $('#embed-confirm').html()
-      this.$embedConfirm = $(template).appendTo('.embed-header')
+      var $embedConfirm = $(template).appendTo('.embed-header')
 
-      this.$embedConfirm.on('click', this.handleConfirm.bind(this))
+      $embedConfirm.on('click', function (e) {
+        var $target = $(e.target)
+
+        if ($target.is('.js-embed-login')) {
+          e.preventDefault()
+          openLoginPopup(url)
+        }
+
+        $embedConfirm.remove()
+        loginPending = false
+      })
     }
   }
 
-  PlatformPopup.prototype.handleConfirm = function (e) {
-    var $target = $(e.target)
+  var popup = null
 
-    if ($target.is('.js-embed-login')) {
-      e.preventDefault()
-      this.openLoginPopup()
-    }
-
-    this.$embedConfirm.remove()
-    this.isPending = false
-  }
-
-  PlatformPopup.prototype.openLoginPopup = function () {
-    this.popup = window.open(
-      this.url,
+  var openLoginPopup = function (url) {
+    popup = window.open(
+      url,
       'embed_popup',
       'height=650,width=500,location=yes,menubar=no,toolbar=no,status=no'
     )
-    // The popup will send a message when the user is logged in. Only after
-    // this message the Popup will close.
-    window.addEventListener('message', this.handlePopupMessage.bind(this), false)
   }
 
-  PlatformPopup.prototype.handlePopupMessage = function (e) {
+  // The popup will send a message when the user is logged in. Only after
+  // this message the Popup will close.
+  window.addEventListener('message', function (e) {
     if (e.origin === location.origin) {
       var data = JSON.parse(e.data)
 
-      if (data.name === 'popup-close') {
-        this.popup.close()
+      if (data.name === 'popup-close' && popup) {
+        popup.close()
         location.reload()
       }
     }
-  }
+  }, false)
 })
