@@ -180,8 +180,10 @@
 }
 
 .messages,
-.hero-unit {
+.hero-unit,
+.resource-header {
     &:first-child {
         margin-top: -35px;
+        z-index: -1;
     }
 }
