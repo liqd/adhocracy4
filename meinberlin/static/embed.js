@@ -38,6 +38,8 @@ $(document).ready(function () {
       return 'ignore'
     } else if ($element.is('.rich-text a')) {
       return 'external'
+    } else if (patternsForPopup.test(url)) {
+      return 'popup'
     } else {
       return 'internal'
     }

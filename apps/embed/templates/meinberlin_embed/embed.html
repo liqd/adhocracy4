@@ -20,7 +20,7 @@
 <body data-url="{% url 'project-detail' slug %}">
     <header class="embed-header">
         {% if request.user.is_anonymous %}
-            <a href="{% url 'account_login' %}" target="_blank" data-embed-target="popup">Login</a>
+            <a href="{% url 'account_login' %}">Login</a>
         {% else %}
             {% trans 'You are logged in as ' %} {{ request.user.username }}
             <a href="{% url 'account_logout' %}" class="js-embed-logout" target="_blank">Logout</a>
@@ -35,7 +35,7 @@
             <div class="modal-content">
                 <p class="modal-body">{% trans 'You need to login first. By clicking "Login" a popup will open so you can sign in safely. Do you want to login now?' %}</p>
                 <div class="modal-footer">
-                    <a href="{% url 'account_login' %}" target="_blank" data-embed-target="popup" class="embed-confirm__login button button--primary">{% trans 'Login' %}</a>
+                    <a href="{% url 'account_login' %}" class="embed-confirm__login button button--primary">{% trans 'Login' %}</a>
                     <button class="embed-confirm__cancel button button--light" data-toggle="modal" data-target="#embed-confirm">{% trans 'Cancel' %}</button>
                 </div>
             </div>
