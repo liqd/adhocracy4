@@ -10,7 +10,7 @@ class ChoicesRequestMixin(object):
     """
 
     def __init__(self, *args, **kwargs):
-        self.choices = kwargs.get('choices')
+        self.choices = kwargs.pop('choices')
         super().__init__(*args, **kwargs)
 
     def get_request(self):

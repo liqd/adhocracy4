@@ -1,21 +1,21 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments react_ratings wagtailcore_tags %}
+{% load i18n rules react_comments react_ratings %}
 
-{% block title %}{{idea.name}}{% endblock %}
+{% block title %}{{proposal.name}}{% endblock %}
 {% block content %}
 <div class="resource-navigation">
     <div class="l-wrapper">
         <nav class="resource-navigation__breadcrumbs breadcrumbs">
             <ul>
                 <li>
-                    <a href="{% url 'project-detail' idea.project.slug %}">
+                    <a href="{% url 'project-detail' proposal.project.slug %}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                         {% trans 'back to project' %}</a>
                 </li>
             </ul>
         </nav>
 
-        {% has_perm 'meinberlin_ideas.modify_idea' request.user idea as show_dropdown %}
+        {% has_perm 'meinberlin_budgeting.modify_proposal' request.user proposal as show_dropdown %}
         {% if show_dropdown %}
         <div class="resource-navigation__actions dropdown dropdown--right">
             <button
@@ -25,16 +25,16 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-                id="idea-{{idea.pk}}-actions"
+                id="proposal-{{proposal.pk}}-actions"
             >
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </button>
-            <ul class="dropdown-menu" aria-labelledby="idea-{{idea.pk}}-actions">
+            <ul class="dropdown-menu" aria-labelledby="proposal-{{proposal.pk}}-actions">
                 <li>
-                    <a class="dropdown-item" href="{% url 'idea-update' slug=idea.slug %}">{% trans 'Edit' %}</a>
+                    <a class="dropdown-item" href="{% url 'proposal-update' slug=proposal.slug %}">{% trans 'Edit' %}</a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="{% url 'idea-delete' slug=idea.slug %}">{% trans 'Delete' %}</a>
+                    <a class="dropdown-item" href="{% url 'proposal-delete' slug=proposal.slug %}">{% trans 'Delete' %}</a>
                 </li>
             </ul>
         </div>
@@ -45,34 +45,36 @@
 <div class="resource-header">
     <div class="l-wrapper">
         <div class="l-center-6">
-            <h1 class="resource-header__title">{{ idea.name }}</h1>
+            <h1 class="resource-header__title">{{ proposal.name }}</h1>
 
-            <div class="resource-header__meta">{{ idea.creator.username }}</div>
+            <div class="resource-header__meta">
+                <div>{{ proposal.budget}}€</div>
+            </div>
 
-            {% if idea.category %}
+            <div class="resource-header__meta">{{ proposal.creator.username }}</div>
+
+            {% if proposal.category %}
                 <div class="resource-header__meta">
-                    <div class="category">{{ idea.category }}</div>
+                    <div class="category">{{ proposal.category }}</div>
                 </div>
             {% endif %}
 
-            {% if idea|has_feature:"rate" %}
-                <div class="resource-header__action">
-                    {% react_ratings idea %}
-                </div>
-            {% endif %}
+            <div class="resource-header__action">
+                {% react_ratings proposal %}
+            </div>
         </div>
     </div>
 </div>
 
-<div class="idea-description">
+<div class="proposal-description">
     <div class="l-wrapper">
         <div class="l-center-6">
-            {{ idea.description | richtext }}
+            {{ proposal.description | safe }}
         </div>
     </div>
 </div>
 
 <div class="l-wrapper">
-    {% react_comments idea %}
+    {% react_comments proposal %}
 </div>
 {% endblock %}
