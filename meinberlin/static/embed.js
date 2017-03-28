@@ -101,10 +101,6 @@ $(document).ready(function () {
     $('#embed-confirm').modal('show')
   }
 
-  $(document).on('click', '.js-embed-cancel', function (e) {
-    $('#embed-confirm').modal('hide')
-  })
-
   $(document).on('click', '[data-embed-target="popup"]', function (e) {
     e.preventDefault()
     openLoginPopup(this.getAttribute('href'))
