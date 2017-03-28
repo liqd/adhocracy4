@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{% load static i18n %}
 <html class="embed">
 <head>
     <meta charset="utf-8" />
@@ -18,13 +18,13 @@
     {% block header %}{% endblock %}
 </head>
 
-<body>
+<body data-url="{% url 'project-detail' slug %}">
     <header class="embed-header">
         <a>Login</a>
     </header>
     <main class="embed-main"></main>
     <footer class="embed-footer">
-        <a>Zur Plattform</a>
+        <a href="{% url 'project-detail' slug %}" data-embed-target="external">{% trans 'Go to platform' %}</a>
     </footer>
 </body>
 </html>
