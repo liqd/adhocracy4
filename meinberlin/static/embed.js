@@ -81,28 +81,54 @@ $(document).ready(function () {
     success: loadHtml
   })
 
-  var PlatformPopup = function (url) {
+  $('.js-embed-login').on('click', function (e) {
+    e.preventDefault()
+
+    var popup = new PlatformPopup(this.getAttribute('href'))
+    PlatformPopup.popups.push(popup)
+  })
+
+  $('.js-embed-logout').on('click', function (e) {
+    e.preventDefault()
+    $.post(
+      '/accounts/logout/',
+      function () {
+        location.reload()
+      }
+    )
+  })
+
+  var PlatformPopup = function (url, isAsync) {
     this.url = url
-    this.askForLogin()
+    this.isPending = false
+    if (isAsync) {
+      this.askForLogin()
+    } else {
+      this.openLoginPopup()
+    }
   }
   PlatformPopup.popups = []
 
   PlatformPopup.prototype.askForLogin = function () {
-    var template = $('#embed-confirm').html()
-    this.$embedConfirm = $(template).appendTo('.embed-header')
+    if (!this.isPending) {
+      this.isPending = true
+      var template = $('#embed-confirm').html()
+      this.$embedConfirm = $(template).appendTo('.embed-header')
 
-    this.$embedConfirm.on('click', this.handleConfirm.bind(this))
+      this.$embedConfirm.on('click', this.handleConfirm.bind(this))
+    }
   }
 
   PlatformPopup.prototype.handleConfirm = function (e) {
     var $target = $(e.target)
 
-    if ($target.is('.js-embed-cancel')) {
-      this.$embedConfirm.remove()
-    } else if ($target.is('.js-embed-login')) {
+    if ($target.is('.js-embed-login')) {
       e.preventDefault()
       this.openLoginPopup()
     }
+
+    this.$embedConfirm.remove()
+    this.isPending = false
   }
 
   PlatformPopup.prototype.openLoginPopup = function () {

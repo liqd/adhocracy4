@@ -29,7 +29,10 @@
 <body>
     <header class="embed-header">
         {% if request.user.is_anonymous %}
-            <a href="{% url 'account_login' %}" target="_blank">Login</a>
+            <a href="{% url 'account_login' %}" target="_blank" class="js-embed-login">Login</a>
+        {% else %}
+            {% trans 'You are logged in as ' %} {{ request.user.username }}
+            <a href="{% url 'account_logout' %}" class="js-embed-logout" target="_blank">Logout</a>
         {% endif %}
     </header>
     <main class="embed-main"></main>
