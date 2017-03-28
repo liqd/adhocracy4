@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n widget_tweaks %}
 
 <div class="form-group">
     <label for="{{ field.id_for_label }}">
@@ -9,6 +9,8 @@
         {% trans field.help_text %}
     </div>
     {% endif %}
-    {{ field }}
+    <div class="widget widget--{{ field|widget_type }}">
+        {{ field }}
+    </div>
     {{ field.errors }}
 </div>

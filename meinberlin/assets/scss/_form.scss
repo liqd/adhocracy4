@@ -81,3 +81,16 @@ select {
     font-size: $font-size-sm;
     margin-bottom: 0.4em;
 }
+
+.widget--radioselect,
+.widget--checkboxselectmultiple {
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    label {
+        @extend .form-check__label;
+    }
+}
