@@ -18,7 +18,7 @@
                 <a
                     class="button"
                     title="{% trans 'Comments for this Paragraph' %}"
-                    href="{% url 'paragraph-detail' paragraph.pk %}"
+                    href="{% url 'documents:paragraph-detail' paragraph.pk %}"
                 >
                     {{ paragraph.comments.all|length }}
                     <i class="fa fa-comment-o" aria-hidden="true"></i>

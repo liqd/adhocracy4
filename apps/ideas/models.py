@@ -45,4 +45,4 @@ class AbstractIdea(module_models.Item, category_models.Categorizable):
 class Idea(AbstractIdea):
 
     def get_absolute_url(self):
-        return reverse('idea-detail', args=[str(self.slug)])
+        return reverse('ideas:idea-detail', args=[str(self.slug)])

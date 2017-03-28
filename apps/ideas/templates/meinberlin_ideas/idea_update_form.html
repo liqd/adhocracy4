@@ -12,7 +12,7 @@
                     {% trans 'back to project' %}</a>
             </li>
             <li>
-                <a href="{% url 'idea-detail' idea.slug %}">
+                <a href="{% url 'ideas:idea-detail' idea.slug %}">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     {% trans 'back to idea' %}</a>
             </li>
@@ -21,7 +21,7 @@
 
     <h1>{% trans 'Edit idea' %}</h1>
 
-    {% url 'idea-detail' idea.slug as cancel %}
+    {% url 'ideas:idea-detail' idea.slug as cancel %}
     {% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=cancel %}
 </div>
 {% endblock %}
