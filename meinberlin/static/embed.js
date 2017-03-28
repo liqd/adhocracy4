@@ -2,6 +2,7 @@
 $(document).ready(function () {
   var $main = $('main')
   var currentPath
+  var popup
   var patternsForPopup = /\/accounts\b/
 
   var headers = {
@@ -60,6 +61,13 @@ $(document).ready(function () {
         headers: headers,
         success: loadHtml
       })
+    } else if (embedTarget === 'popup') {
+      event.preventDefault()
+      popup = window.open(
+        url,
+        'embed_popup',
+        'height=650,width=500,location=yes,menubar=no,toolbar=no,status=no'
+      )
     }
   })
 
@@ -99,21 +107,6 @@ $(document).ready(function () {
 
   var askForLogin = function (url) {
     $('#embed-confirm').modal('show')
-  }
-
-  $(document).on('click', '[data-embed-target="popup"]', function (e) {
-    e.preventDefault()
-    openLoginPopup(this.getAttribute('href'))
-  })
-
-  var popup = null
-
-  var openLoginPopup = function (url) {
-    popup = window.open(
-      url,
-      'embed_popup',
-      'height=650,width=500,location=yes,menubar=no,toolbar=no,status=no'
-    )
   }
 
   // The popup will send a message when the user is logged in. Only after
