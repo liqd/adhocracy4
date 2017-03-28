@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n wagtailcore_tags widget_tweaks %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block content %}
+    <div class="l-wrapper">
+        <div class="l-center-8">
+            <h1>{{ page.title }}</h1>
+            {{ page.intro|richtext }}
+            <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+                {% csrf_token %}
+                {{ form.media }}
+
+                {% for field in form %}
+                    {% if field|field_type == 'booleanfield' %}
+                        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=field %}
+                    {% else %}
+                        {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
+                    {% endif %}
+                {% endfor %}
+
+                <input type="submit" class="button button--primary" value="{% trans 'Send'%}" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

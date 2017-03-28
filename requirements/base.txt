@@ -4,6 +4,7 @@ wagtail==1.9.0
 django-allauth==0.27.0
 django-ckeditor==5.1.1
 django-filter==1.0.1
+django-widget-tweaks==1.4.1
 easy-thumbnails==2.3
 django-autoslug==1.9.3
 rules==1.1.1

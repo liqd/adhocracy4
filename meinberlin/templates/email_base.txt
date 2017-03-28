@@ -1,0 +1,14 @@
+{% load i18n %}{% block headline %}{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block cta %}{% block cta_label %}{% endblock %}: {% block cta_url %}{% endblock %}{% endblock %}
+
+{% block reason %}{% endblock %}
+
+---
+{% trans 'meinBerlin is a participation platform operated by' %}
+Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
+
+Contact: {{ site.domain }}/contact/
+Terms of use: {{ site.domain }}/terms-of-use/
