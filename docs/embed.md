@@ -48,6 +48,7 @@ attribute. Possible values are:
 -   external: open in top frame
 -   ignore: do not intercept the event (useful if other event handlers are
     registered for this element)
+-   popup: open link in popup (useful for login)
 
 ## Restrictions on the overall application
 

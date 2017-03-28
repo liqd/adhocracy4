@@ -87,11 +87,6 @@ $(document).ready(function () {
     success: loadHtml
   })
 
-  $('.js-embed-login').on('click', function (e) {
-    e.preventDefault()
-    openLoginPopup(this.getAttribute('href'))
-  })
-
   $('.js-embed-logout').on('click', function (e) {
     e.preventDefault()
     $.post(
@@ -102,10 +97,7 @@ $(document).ready(function () {
     )
   })
 
-  var loginPendingUrl = null
-
   var askForLogin = function (url) {
-    loginPendingUrl = url
     $('#embed-confirm').modal('show')
   }
 
@@ -113,9 +105,9 @@ $(document).ready(function () {
     $('#embed-confirm').modal('hide')
   })
 
-  $(document).on('click', '.js-embed-login', function (e) {
+  $(document).on('click', '[data-embed-target="popup"]', function (e) {
     e.preventDefault()
-    openLoginPopup(loginPendingUrl)
+    openLoginPopup(this.getAttribute('href'))
   })
 
   var popup = null
