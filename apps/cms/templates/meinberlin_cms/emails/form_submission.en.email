@@ -3,12 +3,8 @@
 
 {% block subject %}{{ emailformpage.subject }}{% endblock %}
 
-{% block headline %}{{ emailformpage.title }} Submission{% endblock %}
+{% block headline %}{{ emailformpage.title }}{% endblock %}
 
 {% block content %}
     {{ emailformpage.email_content }}
-{% endblock %}
-
-{% block reason %}
- You are configured as the recipient for this form submission.
 {% endblock %}
