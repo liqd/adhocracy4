@@ -107,22 +107,22 @@ $(document).ready(function () {
   var askForLogin = function (url) {
     if (!loginPendingUrl) {
       loginPendingUrl = url
-      var template = $('#embed-confirm').html()
-      $(template).appendTo('.embed-header')
+      $('#embed-confirm').modal('show')
     }
   }
 
-  var hideEmbedConfirm = function () {
-    $('.embed-confirm').remove()
+  $('#embed-confirm').on('hidden.bs.modal', function () {
     loginPendingUrl = null
-  }
+  })
 
-  $(document).on('click', '.embed-confirm', hideEmbedConfirm)
+  $(document).on('click', '.js-embed-cancel', function (e) {
+    $('#embed-confirm').modal('hide')
+  })
 
   $(document).on('click', '.js-embed-login', function (e) {
     e.preventDefault()
     openLoginPopup(loginPendingUrl)
-    hideEmbedConfirm()
+    $('#embed-confirm').modal('hide')
   })
 
   var popup = null

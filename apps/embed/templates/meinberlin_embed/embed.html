@@ -12,15 +12,6 @@
     <script src="{% static 'vendor.js' %}"></script>
     <script src="{% static 'meinberlin.js' %}"></script>
     <script src="{% static 'embed.js' %}"></script>
-    <script type="text/template" id="embed-confirm">
-        <div class="embed-confirm">
-            <p>{% trans 'You need to login first. By clicking "Login" a popup will open so you can sign in safely. Do you want to login now?' %}</p>
-            <div class="embed-confirm__actions">
-                <button class="embed-confirm__cancel js-embed-cancel button button--light">{% trans 'Cancel' %}</button>
-                <a href="{% url 'account_login' %}" target="_blank" class="embed-confirm__login js-embed-login button button--primary">{% trans 'Login' %}</a>
-            </div>
-        </div>
-    </script>
     <meta name="viewport" content="width=device-width" />
     <base target="_top" />
     {% block header %}{% endblock %}
@@ -39,5 +30,16 @@
     <footer class="embed-footer">
         <a href="{% url 'project-detail' slug %}" data-embed-target="external">{% trans 'Go to platform' %}</a>
     </footer>
+    <div id="embed-confirm" class="modal" tabindex="-1" role="dialog" aria-label="{% trans 'Confirm login' %}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <p class="modal-body">{% trans 'You need to login first. By clicking "Login" a popup will open so you can sign in safely. Do you want to login now?' %}</p>
+                <div class="modal-footer">
+                    <button class="embed-confirm__cancel js-embed-cancel button button--light">{% trans 'Cancel' %}</button>
+                    <a href="{% url 'account_login' %}" target="_blank" class="embed-confirm__login js-embed-login button button--primary">{% trans 'Login' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
