@@ -1,4 +1,7 @@
 .resource-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 3em 0 4em;
     position: relative;
     margin-bottom: 1em;
