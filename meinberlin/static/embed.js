@@ -9,7 +9,7 @@ $(document).ready(function () {
     var nextPath = xhr.getResponseHeader('x-ajax-path')
 
     if (patternsForPopup.test(nextPath)) {
-      var popup = new PlatformPopup(nextPath)
+      var popup = new PlatformPopup(nextPath, true)
       PlatformPopup.popups.push(popup)
       return false
     }
