@@ -88,6 +88,10 @@ restrictions:
 
     -   Add the code to `adhocracy4.onReady()`  TODO: not implemented yet
 
+-   When including user generated content in django templates, you must always
+    use wagtail's `richtext` filter instead of `safe`. This is required to
+    automatically assign the embed target "external" to user generated links.
+
 ## Challenges
 
 This is a more or less complete list of the challenges we found while working
