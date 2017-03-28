@@ -15,12 +15,12 @@ way with the participation project's content.
 -   each module only has phases from one app
 -   each phase has an initiator-configurable start and end date
     -   phases are active if start date <= now < end date
-    -   never two phases active in the same project
+    -   only one phase in a project is can be active at any point
     -   optional as long as project is in draft
--   if active is phases:
-    -   provides a view for (all?) module content
-    -   sets permissions for creation/modification of content
--   all phases from an app have a developer defined order
+-   if a phase is active:
+    -   it provides a view for (all?) module content
+    -   it sets permissions for creation/modification of content
+-   all phases from an app have a developer-defined order
     -   eg ideas app => "create ideas" before "rate ideas" before "rate and
         comment ideas"
 -   phases provide an initiator-configurable name and description
@@ -40,7 +40,7 @@ Below are listed the differences of what is currently implemented in a4 and opin
 
 ### Details
 
--   abstract concept phase is split into phase type and phase
+-   abstract concept "phase" is split into "phase type" and "phase"
 -   phase type is inconsistently called phase content or phase identifier sometimes
     -   it's yves' fault
 -   phase type defines:
