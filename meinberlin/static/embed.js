@@ -116,7 +116,6 @@ $(document).ready(function () {
   $(document).on('click', '.js-embed-login', function (e) {
     e.preventDefault()
     openLoginPopup(loginPendingUrl)
-    $('#embed-confirm').modal('hide')
   })
 
   var popup = null
