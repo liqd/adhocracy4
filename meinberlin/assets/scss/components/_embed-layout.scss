@@ -12,12 +12,13 @@ html.embed body {
 
     height: 100vh;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
 }
 
 .embed-header,
 .embed-footer {
-    background: #eee;
+    position: relative;
+    background: $bg-tertiary;
     padding: 1em;
     text-align: right;
 }
