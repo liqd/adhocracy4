@@ -23,7 +23,7 @@
             <a href="{% url 'account_login' %}">{% trans 'Login' %}</a>
         {% else %}
             {% trans 'You are logged in as ' %} {{ request.user.username }}
-            <a href="{% url 'account_logout' %}" class="js-embed-logout" target="_blank">{% 'Logout' %}</a>
+            <a href="{% url 'account_logout' %}" class="js-embed-logout" target="_blank">{% trans 'Logout' %}</a>
         {% endif %}
     </header>
     <main class="embed-main"></main>
