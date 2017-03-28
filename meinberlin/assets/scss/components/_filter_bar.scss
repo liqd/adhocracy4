@@ -20,16 +20,16 @@
             max-width: none;
         }
     }
-}
 
-.filter-bar__ordering {
-    @media (min-width: $breakpoint) {
-        float: right;
-    }
+    .filter-bar__ordering {
+        @media (min-width: $breakpoint) {
+            float: right;
+        }
 
-    @media (max-width: $breakpoint) {
-        // push to the right
-        // NOTE: needs to overwrite grid-tiles
-        @include grid-position(6);
+        @media (max-width: $breakpoint) {
+            // push to the right
+            // NOTE: needs to overwrite grid-tiles
+            @include grid-position(6);
+        }
     }
 }
