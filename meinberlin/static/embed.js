@@ -116,8 +116,8 @@ $(document).ready(function () {
 
   $(document).ajaxError(function (event, jqxhr) {
     var text
-    var $error = $('<p class="embed-status__message embed-status__message--error"></p>')
-    var $close = $('<button class="embed-status__close"><i class="fa fa-times"></i></button>')
+    var $error = $('<p class="embed-status__message embed-status__message--error" role="alert"></p>')
+    var $close = $('<button class="embed-status__close"><i class="fa fa-times" aria-hidden="true"></i></button>')
 
     var removeMessage = function () {
       $error.remove()
@@ -138,6 +138,7 @@ $(document).ready(function () {
     $error.text(text)
     $error.append($close)
     $error.prependTo($('#embed-status'))
+    $close.attr('title', django.gettext('Close'))
 
     $close.on('click', removeMessage)
     setTimeout(removeMessage, 6000)
