@@ -15,7 +15,7 @@ way with the participation project's content.
 -   each module only has phases from one app
 -   each phase has an initiator-configurable start and end date
     -   phases are active if start date <= now < end date
-    -   only one phase in a project is can be active at any point
+    -   only one phase in a project can be active at any point
     -   optional as long as project is in draft
 -   if a phase is active:
     -   it provides a view for (all?) module content
