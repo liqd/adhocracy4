@@ -21,6 +21,11 @@
         background-color: $brand-danger;
         color: contrast-color($brand-danger);
     }
+
+    &.info {
+        background-color: $brand-primary;
+        color: contrast-color($brand-primary);
+    }
 }
 
 .alert__close {

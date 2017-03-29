@@ -9,7 +9,12 @@ $(document).ready(function () {
     'X-Embed': ''
   }
 
-  testCanSetCookie()
+  if (testCanSetCookie() === false) {
+    var text = django.gettext('You have third party cookies disabled. You can still view the content of this project but won\'t be able to login.')
+    var $info = getAlert(text, 'info')
+
+    $info.prependTo($('#embed-status'))
+  }
 
   var loadHtml = function (html, textStatus, xhr) {
     var $root = $(html).filter('main')
