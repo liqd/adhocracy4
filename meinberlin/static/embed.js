@@ -140,6 +140,7 @@ $(document).ready(function () {
     $error.prependTo($('#embed-status'))
     $close.attr('title', django.gettext('Close'))
 
+    $error.on('click', removeMessage)
     $close.on('click', removeMessage)
     setTimeout(removeMessage, 6000)
   })
