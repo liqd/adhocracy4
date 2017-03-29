@@ -12,7 +12,7 @@
                     {% trans 'back to project' %}</a>
             </li>
             <li>
-                <a href="{% url 'proposal-detail' proposal.slug %}">
+                <a href="{% url 'budgeting:proposal-detail' proposal.slug %}">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     {% trans 'back to proposal' %}</a>
             </li>
@@ -21,7 +21,7 @@
 
     <h1>{% trans 'Edit proposal' %}</h1>
 
-    {% url 'proposal-detail' proposal.slug as cancel %}
+    {% url 'budgeting:proposal-detail' proposal.slug as cancel %}
     {% include "meinberlin_budgeting/includes/proposal_form.html" with proposal=proposal cancel=cancel %}
 </div>
 {% endblock %}

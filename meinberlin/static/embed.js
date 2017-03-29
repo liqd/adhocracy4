@@ -2,6 +2,7 @@
 $(document).ready(function () {
   var $main = $('main')
   var currentPath
+  var popup
   var patternsForPopup = /\/accounts\b/
 
   var headers = {
@@ -42,11 +43,10 @@ $(document).ready(function () {
     var nextPath = xhr.getResponseHeader('x-ajax-path')
 
     if (patternsForPopup.test(nextPath)) {
-      var popup = new PlatformPopup(nextPath, true)
-      PlatformPopup.popups.push(popup)
+      $('#embed-confirm').modal('show')
       return false
     }
-    // only update the currentPath if there was no popup opened
+    // only update the currentPath if there was no modal opened
     currentPath = nextPath
 
     $main.empty()
@@ -67,6 +67,8 @@ $(document).ready(function () {
       return 'ignore'
     } else if ($element.is('.rich-text a')) {
       return 'external'
+    } else if (patternsForPopup.test(url)) {
+      return 'popup'
     } else {
       return 'internal'
     }
@@ -90,6 +92,13 @@ $(document).ready(function () {
         headers: headers,
         success: loadHtml
       })
+    } else if (embedTarget === 'popup') {
+      event.preventDefault()
+      popup = window.open(
+        url,
+        'embed_popup',
+        'height=650,width=500,location=yes,menubar=no,toolbar=no,status=no'
+      )
     }
   })
 
@@ -111,19 +120,6 @@ $(document).ready(function () {
     }
   })
 
-  $.ajax({
-    url: $('body').data('url'),
-    headers: headers,
-    success: loadHtml
-  })
-
-  $('.js-embed-login').on('click', function (e) {
-    e.preventDefault()
-
-    var popup = new PlatformPopup(this.getAttribute('href'))
-    PlatformPopup.popups.push(popup)
-  })
-
   $('.js-embed-logout').on('click', function (e) {
     e.preventDefault()
     $.post(
@@ -134,58 +130,22 @@ $(document).ready(function () {
     )
   })
 
-  var PlatformPopup = function (url, isAsync) {
-    this.url = url
-    this.isPending = false
-    if (isAsync) {
-      this.askForLogin()
-    } else {
-      this.openLoginPopup()
-    }
-  }
-  PlatformPopup.popups = []
-
-  PlatformPopup.prototype.askForLogin = function () {
-    if (!this.isPending) {
-      this.isPending = true
-      var template = $('#embed-confirm').html()
-      this.$embedConfirm = $(template).appendTo('.embed-header')
-
-      this.$embedConfirm.on('click', this.handleConfirm.bind(this))
-    }
-  }
-
-  PlatformPopup.prototype.handleConfirm = function (e) {
-    var $target = $(e.target)
-
-    if ($target.is('.js-embed-login')) {
-      e.preventDefault()
-      this.openLoginPopup()
-    }
-
-    this.$embedConfirm.remove()
-    this.isPending = false
-  }
-
-  PlatformPopup.prototype.openLoginPopup = function () {
-    this.popup = window.open(
-      this.url,
-      'embed_popup',
-      'height=650,width=500,location=yes,menubar=no,toolbar=no,status=no'
-    )
-    // The popup will send a message when the user is logged in. Only after
-    // this message the Popup will close.
-    window.addEventListener('message', this.handlePopupMessage.bind(this), false)
-  }
-
-  PlatformPopup.prototype.handlePopupMessage = function (e) {
+  // The popup will send a message when the user is logged in. Only after
+  // this message the Popup will close.
+  window.addEventListener('message', function (e) {
     if (e.origin === location.origin) {
       var data = JSON.parse(e.data)
 
-      if (data.name === 'popup-close') {
-        this.popup.close()
+      if (data.name === 'popup-close' && popup) {
+        popup.close()
         location.reload()
       }
     }
-  }
+  }, false)
+
+  $.ajax({
+    url: $('body').data('url'),
+    headers: headers,
+    success: loadHtml
+  })
 })
