@@ -9,7 +9,12 @@ participation right where they are instead of going to a third party platform.
 
 You can embed any project with the following code:
 
-    <iframe src="http://example.com/embed/projects/{slug}/" />
+    <iframe
+        height="500"
+        style="width: 100%; min-height: 300px; max-height: 100vh"
+        src="http://example.com/projects/{slug}/"
+        frameborder="0">
+    </iframe>
 
 ## Terms
 
