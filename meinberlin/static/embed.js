@@ -127,7 +127,8 @@ $(document).ready(function () {
       case 404:
         text = django.gettext('We couldn\'t find what you were looking for.')
         break
-      case 400:
+      case 401:
+      case 403:
         text = django.gettext('You don\'t have the permission to view this page.')
         break
       default:
