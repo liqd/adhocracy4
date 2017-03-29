@@ -11,6 +11,6 @@
         {% csrf_token %}
         <input type="submit" class="button button--primary" value="{% trans 'Yes'%}" />
     </form>
-    <a href="{% url 'proposal-detail' proposal.slug %}" class="button button--light">{% trans 'Cancel'%}</a>
+    <a href="{% url 'budgeting:proposal-detail' proposal.slug %}" class="button button--light">{% trans 'Cancel'%}</a>
 </div>
 {% endblock %}

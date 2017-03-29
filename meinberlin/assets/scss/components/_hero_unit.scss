@@ -1,8 +1,7 @@
 .hero-unit {
-    min-height: 25em;
+    min-height: $hero-height-mobile;
 
     position: relative;
-    z-index: -1;
 
     background-repeat: no-repeat;
     background-position: center;
@@ -11,7 +10,7 @@
     color: $text-color-inverted;
 
     @media screen and (min-width: $breakpoint) {
-        min-height: 41em;
+        min-height: $hero-height;
     }
 
     &:before {

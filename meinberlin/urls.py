@@ -45,9 +45,9 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^projects/', include(projects_urls)),
 
-    url(r'^ideas/', include(ideas_urls)),
-    url(r'^paragraphs/', include(paragraph_urls)),
-    url(r'^budgeting/', include(budgeting_urls)),
+    url(r'^ideas/', include(ideas_urls, namespace='ideas')),
+    url(r'^paragraphs/', include(paragraph_urls, namespace='documents')),
+    url(r'^budgeting/', include(budgeting_urls, namespace='budgeting')),
 
     url(r'^api/', include(router.urls)),
 

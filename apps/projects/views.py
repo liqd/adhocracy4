@@ -38,8 +38,11 @@ class YearWidget(DropdownLinkWidget):
     def __init__(self, attrs=None):
         choices = (('', _('Any')),)
         now = datetime.now().year
-        first_year = project_models.Project.objects.earliest('created').\
-            created.year
+        try:
+            first_year = project_models.Project.objects.earliest('created').\
+                created.year
+        except project_models.Project.DoesNotExist:
+            first_year = now
         for year in range(now, first_year - 1, -1):
             choices += (year, year),
         super().__init__(attrs, choices)

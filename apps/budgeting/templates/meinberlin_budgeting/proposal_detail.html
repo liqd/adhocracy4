@@ -31,10 +31,10 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="proposal-{{proposal.pk}}-actions">
                 <li>
-                    <a class="dropdown-item" href="{% url 'proposal-update' slug=proposal.slug %}">{% trans 'Edit' %}</a>
+                    <a class="dropdown-item" href="{% url 'budgeting:proposal-update' slug=proposal.slug %}">{% trans 'Edit' %}</a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="{% url 'proposal-delete' slug=proposal.slug %}">{% trans 'Delete' %}</a>
+                    <a class="dropdown-item" href="{% url 'budgeting:proposal-delete' slug=proposal.slug %}">{% trans 'Delete' %}</a>
                 </li>
             </ul>
         </div>
