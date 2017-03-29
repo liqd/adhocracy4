@@ -8,6 +8,8 @@ html.embed {
 html.embed body {
     margin: 0;
     padding: 0;
+    border-left: 3px solid $bg-tertiary;
+    border-right: 3px solid $bg-tertiary;
     max-width: none;
 
     height: 100vh;
@@ -23,11 +25,15 @@ html.embed body {
     text-align: right;
 }
 
+.embed-header .button {
+    margin-left: 0.5em;
+}
+
 .embed-main {
     position: relative;
     flex: 1;
     box-sizing: border-box;
-    padding: 1em;
+    padding-bottom: 1em;
     overflow: auto;
     background: white;
 }
