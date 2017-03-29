@@ -116,8 +116,8 @@ $(document).ready(function () {
 
   $(document).ajaxError(function (event, jqxhr) {
     var text
-    var $error = $('<p class="embed-status__message embed-status__message--error" role="alert"></p>')
-    var $close = $('<button class="embed-status__close"><i class="fa fa-times" aria-hidden="true"></i></button>')
+    var $error = $('<p class="alert danger alert--small" role="alert"></p>')
+    var $close = $('<button class="alert__close"><i class="fa fa-times" aria-hidden="true"></i></button>')
 
     var removeMessage = function () {
       $error.remove()

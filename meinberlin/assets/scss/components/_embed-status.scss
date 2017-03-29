@@ -5,22 +5,3 @@
     right: 0;
     z-index: 1;
 }
-
-.embed-status__message {
-    padding: 0.5em;
-    border-top: 1px solid $body-bg;
-    margin: 0;
-
-    text-align: left;
-    font-weight: bold;
-}
-
-.embed-status__message--error {
-    background-color: $brand-danger;
-    color: contrast-color($brand-danger);
-}
-
-.embed-status__close {
-    float: right;
-    color: contrast-color($brand-danger);
-}
