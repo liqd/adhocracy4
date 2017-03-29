@@ -16,7 +16,7 @@ $(document).ready(function () {
     return regExp.test(document.cookie)
   }
 
-  var getAlert = function (text, state, timeout) {
+  var createAlert = function (text, state, timeout) {
     var $alert = $('<p class="alert ' + state + ' alert--small" role="alert">' + text + '</p>')
     var $close = $('<button class="alert__close"><i class="fa fa-times" aria-hidden="true"></i></button>')
 
@@ -30,7 +30,7 @@ $(document).ready(function () {
     if (typeof timeout === 'number') {
       setTimeout(removeMessage, timeout)
     }
-    return $alert
+    $alert.prependTo($('#embed-status'))
   }
 
   var loadHtml = function (html, textStatus, xhr) {
@@ -153,15 +153,12 @@ $(document).ready(function () {
         break
     }
 
-    var $error = getAlert(text, 'danger', 6000)
-    $error.prependTo($('#embed-status'))
+    createAlert(text, 'danger', 6000)
   })
 
   if (testCanSetCookie() === false) {
     var text = django.gettext('You have third party cookies disabled. You can still view the content of this project but won\'t be able to login.')
-    var $info = getAlert(text, 'info')
-
-    $info.prependTo($('#embed-status'))
+    createAlert(text, 'info')
   }
 
   $.ajax({
