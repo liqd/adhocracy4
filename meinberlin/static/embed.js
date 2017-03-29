@@ -9,6 +9,30 @@ $(document).ready(function () {
     'X-Embed': ''
   }
 
+  var testCanSetCookie = function () {
+    var cookie = 'can-set-cookie=true;'
+    var regExp = new RegExp(cookie)
+    document.cookie = cookie
+    return regExp.test(document.cookie)
+  }
+
+  var createAlert = function (text, state, timeout) {
+    var $alert = $('<p class="alert ' + state + ' alert--small" role="alert">' + text + '</p>')
+    var $close = $('<button class="alert__close"><i class="fa fa-times" aria-hidden="true"></i></button>')
+
+    $alert.append($close)
+    $close.attr('title', django.gettext('Close'))
+
+    var removeMessage = function () {
+      $alert.remove()
+    }
+    $alert.on('click', removeMessage)
+    if (typeof timeout === 'number') {
+      setTimeout(removeMessage, timeout)
+    }
+    $alert.prependTo($('#embed-status'))
+  }
+
   var loadHtml = function (html, textStatus, xhr) {
     var $root = $(html).filter('main')
     var nextPath = xhr.getResponseHeader('x-ajax-path')
@@ -116,13 +140,6 @@ $(document).ready(function () {
 
   $(document).ajaxError(function (event, jqxhr) {
     var text
-    var $error = $('<p class="alert danger alert--small" role="alert"></p>')
-    var $close = $('<button class="alert__close"><i class="fa fa-times" aria-hidden="true"></i></button>')
-
-    var removeMessage = function () {
-      $error.remove()
-    }
-
     switch (jqxhr.status) {
       case 404:
         text = django.gettext('We couldn\'t find what you were looking for.')
@@ -136,14 +153,13 @@ $(document).ready(function () {
         break
     }
 
-    $error.text(text)
-    $error.append($close)
-    $error.prependTo($('#embed-status'))
-    $close.attr('title', django.gettext('Close'))
-
-    $error.on('click', removeMessage)
-    setTimeout(removeMessage, 6000)
+    createAlert(text, 'danger', 6000)
   })
+
+  if (testCanSetCookie() === false) {
+    var text = django.gettext('You have third party cookies disabled. You can still view the content of this project but won\'t be able to login.')
+    createAlert(text, 'info')
+  }
 
   $.ajax({
     url: $('body').data('url'),
