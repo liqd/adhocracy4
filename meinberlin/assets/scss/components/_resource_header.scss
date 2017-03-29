@@ -1,4 +1,7 @@
 .resource-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 3em 0 4em;
     position: relative;
     margin-bottom: 1em;
@@ -7,9 +10,13 @@
 }
 
 .resource-header--image {
-    min-height: 30em;
+    min-height: $hero-height-mobile;
     background-size: cover;
     color: contrast-color($brand-primary);
+
+    @media screen and (min-width: $breakpoint) {
+        min-height: $hero-height-secondary;
+    }
 
     &:before {
         content: "";
