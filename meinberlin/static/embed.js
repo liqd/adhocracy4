@@ -9,6 +9,8 @@ $(document).ready(function () {
     'X-Embed': ''
   }
 
+  testCanSetCookie()
+
   var loadHtml = function (html, textStatus, xhr) {
     var $root = $(html).filter('main')
     var nextPath = xhr.getResponseHeader('x-ajax-path')
@@ -120,3 +122,10 @@ $(document).ready(function () {
     success: loadHtml
   })
 })
+
+function testCanSetCookie () {
+  var cookie = 'can-set-cookie=true;'
+  var regExp = new RegExp(cookie)
+  document.cookie = cookie
+  return regExp.test(document.cookie)
+}
