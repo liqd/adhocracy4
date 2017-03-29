@@ -29,10 +29,10 @@
 <body data-url="{% url 'project-detail' slug %}">
     <header class="embed-header">
         {% if request.user.is_anonymous %}
-            <a href="{% url 'account_login' %}" target="_blank" class="js-embed-login">Login</a>
+            <a href="{% url 'account_login' %}" target="_blank" class="js-embed-login button button--light">Login</a>
         {% else %}
             {% trans 'You are logged in as ' %} {{ request.user.username }}
-            <a href="{% url 'account_logout' %}" class="js-embed-logout" target="_blank">Logout</a>
+            <a href="{% url 'account_logout' %}" class="js-embed-logout button button--light" target="_blank">Logout</a>
         {% endif %}
     </header>
     <main class="embed-main"></main>
