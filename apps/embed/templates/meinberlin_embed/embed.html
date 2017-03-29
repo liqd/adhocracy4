@@ -34,6 +34,7 @@
             {% trans 'You are logged in as ' %} {{ request.user.username }}
             <a href="{% url 'account_logout' %}" class="js-embed-logout" target="_blank">Logout</a>
         {% endif %}
+        <div id="embed-status" class="embed-status"></div>
     </header>
     <main class="embed-main"></main>
     <footer class="embed-footer">
