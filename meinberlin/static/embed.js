@@ -118,13 +118,6 @@ $(document).ready(function () {
 
   $(document).ajaxError(function (event, jqxhr) {
     var text
-    var $error = $('<p class="alert danger alert--small" role="alert"></p>')
-    var $close = $('<button class="alert__close"><i class="fa fa-times" aria-hidden="true"></i></button>')
-
-    var removeMessage = function () {
-      $error.remove()
-    }
-
     switch (jqxhr.status) {
       case 404:
         text = django.gettext('We couldn\'t find what you were looking for.')
@@ -138,14 +131,26 @@ $(document).ready(function () {
         break
     }
 
-    $error.text(text)
-    $error.append($close)
+    var $error = getAlert(text, 'danger', 6000)
     $error.prependTo($('#embed-status'))
+  })
+
+  function getAlert (text, state, timeout) {
+    var $alert = $('<p class="alert ' + state + ' alert--small" role="alert">' + text + '</p>')
+    var $close = $('<button class="alert__close"><i class="fa fa-times" aria-hidden="true"></i></button>')
+
+    $alert.append($close)
     $close.attr('title', django.gettext('Close'))
 
-    $error.on('click', removeMessage)
-    setTimeout(removeMessage, 6000)
-  })
+    var removeMessage = function () {
+      $alert.remove()
+    }
+    $alert.on('click', removeMessage)
+    if (typeof timeout === 'number') {
+      setTimeout(removeMessage, timeout)
+    }
+    return $alert
+  }
 
   $.ajax({
     url: $('body').data('url'),
