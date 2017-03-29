@@ -4,6 +4,7 @@ $(document).ready(function () {
   var currentPath
   var popup
   var patternsForPopup = /\/accounts\b/
+  var $top = $('<div tabindex="-1">')
 
   var headers = {
     'X-Embed': ''
@@ -21,8 +22,12 @@ $(document).ready(function () {
     currentPath = nextPath
 
     $main.empty()
+    $main.append($top)
     $main.append($root.children())
     onReady()
+
+    // jump to top after navigation
+    $top.focus()
   }
 
   var onReady = function () {
