@@ -9,35 +9,6 @@ $(document).ready(function () {
     'X-Embed': ''
   }
 
-  $(document).ajaxError(function (event, jqxhr) {
-    var text
-    var $error = $('<p class="embed-status__message embed-status__message--error"></p>')
-    var $close = $('<button class="embed-status__close"><i class="fa fa-times"></i></button>')
-
-    var removeMessage = function () {
-      $error.remove()
-    }
-
-    switch (jqxhr.status) {
-      case 404:
-        text = django.gettext('We couldn\'t find what you were looking for.')
-        break
-      case 400:
-        text = django.gettext('You don\'t have the permission to view this page.')
-        break
-      default:
-        text = django.gettext('Something went wrong!')
-        break
-    }
-
-    $error.text(text)
-    $error.append($close)
-    $error.prependTo($('#embed-status'))
-
-    $close.on('click', removeMessage)
-    setTimeout(removeMessage, 6000)
-  })
-
   var loadHtml = function (html, textStatus, xhr) {
     var $root = $(html).filter('main')
     var nextPath = xhr.getResponseHeader('x-ajax-path')
@@ -142,6 +113,35 @@ $(document).ready(function () {
       }
     }
   }, false)
+
+  $(document).ajaxError(function (event, jqxhr) {
+    var text
+    var $error = $('<p class="embed-status__message embed-status__message--error"></p>')
+    var $close = $('<button class="embed-status__close"><i class="fa fa-times"></i></button>')
+
+    var removeMessage = function () {
+      $error.remove()
+    }
+
+    switch (jqxhr.status) {
+      case 404:
+        text = django.gettext('We couldn\'t find what you were looking for.')
+        break
+      case 400:
+        text = django.gettext('You don\'t have the permission to view this page.')
+        break
+      default:
+        text = django.gettext('Something went wrong!')
+        break
+    }
+
+    $error.text(text)
+    $error.append($close)
+    $error.prependTo($('#embed-status'))
+
+    $close.on('click', removeMessage)
+    setTimeout(removeMessage, 6000)
+  })
 
   $.ajax({
     url: $('body').data('url'),
