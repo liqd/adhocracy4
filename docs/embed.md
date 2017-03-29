@@ -92,6 +92,11 @@ restrictions:
     use wagtail's `richtext` filter instead of `safe`. This is required to
     automatically assign the embed target "external" to user generated links.
 
+-   The embed shell will only show content if it is returned with a 200 code.
+    Any other code will produce an error alert. This works well with django's
+    default views (e.g. for forms). But you need to be aware when writing your
+    own views.
+
 ## Challenges
 
 This is a more or less complete list of the challenges we found while working

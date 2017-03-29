@@ -8,15 +8,34 @@
 }
 
 .alert {
+    margin: 0;
     padding: $padding * 1.2 0;
     background-color: $bg-secondary;
     text-align: center;
 
-    &:first-child {
-        padding-top: calc(16px + #{$padding * 1.2});
-    }
-
     &.success {
         color: $brand-success;
+    }
+
+    &.danger {
+        background-color: $brand-danger;
+        color: contrast-color($brand-danger);
+    }
+}
+
+.alert__close {
+    float: right;
+    color: inherit;
+}
+
+.alert--small {
+    padding: 0.5em;
+}
+
+.alert--dialog-box {
+    // If this directly follows the dialog box (see header.scss), add 16px
+    // additional padding to the default value (see above).
+    &:first-child {
+        padding-top: calc(16px + #{$padding * 1.2});
     }
 }
