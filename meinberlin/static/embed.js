@@ -9,11 +9,28 @@ $(document).ready(function () {
     'X-Embed': ''
   }
 
-  if (testCanSetCookie() === false) {
-    var text = django.gettext('You have third party cookies disabled. You can still view the content of this project but won\'t be able to login.')
-    var $info = getAlert(text, 'info')
+  var testCanSetCookie = function () {
+    var cookie = 'can-set-cookie=true;'
+    var regExp = new RegExp(cookie)
+    document.cookie = cookie
+    return regExp.test(document.cookie)
+  }
 
-    $info.prependTo($('#embed-status'))
+  var getAlert = function (text, state, timeout) {
+    var $alert = $('<p class="alert ' + state + ' alert--small" role="alert">' + text + '</p>')
+    var $close = $('<button class="alert__close"><i class="fa fa-times" aria-hidden="true"></i></button>')
+
+    $alert.append($close)
+    $close.attr('title', django.gettext('Close'))
+
+    var removeMessage = function () {
+      $alert.remove()
+    }
+    $alert.on('click', removeMessage)
+    if (typeof timeout === 'number') {
+      setTimeout(removeMessage, timeout)
+    }
+    return $alert
   }
 
   var loadHtml = function (html, textStatus, xhr) {
@@ -140,21 +157,11 @@ $(document).ready(function () {
     $error.prependTo($('#embed-status'))
   })
 
-  function getAlert (text, state, timeout) {
-    var $alert = $('<p class="alert ' + state + ' alert--small" role="alert">' + text + '</p>')
-    var $close = $('<button class="alert__close"><i class="fa fa-times" aria-hidden="true"></i></button>')
+  if (testCanSetCookie() === false) {
+    var text = django.gettext('You have third party cookies disabled. You can still view the content of this project but won\'t be able to login.')
+    var $info = getAlert(text, 'info')
 
-    $alert.append($close)
-    $close.attr('title', django.gettext('Close'))
-
-    var removeMessage = function () {
-      $alert.remove()
-    }
-    $alert.on('click', removeMessage)
-    if (typeof timeout === 'number') {
-      setTimeout(removeMessage, timeout)
-    }
-    return $alert
+    $info.prependTo($('#embed-status'))
   }
 
   $.ajax({
@@ -163,10 +170,3 @@ $(document).ready(function () {
     success: loadHtml
   })
 })
-
-function testCanSetCookie () {
-  var cookie = 'can-set-cookie=true;'
-  var regExp = new RegExp(cookie)
-  document.cookie = cookie
-  return regExp.test(document.cookie)
-}
