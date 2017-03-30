@@ -7,6 +7,10 @@
     margin-bottom: 1em;
 
     text-align: center;
+
+    @media (max-width: $breakpoint) {
+        padding: 1.3em 0;
+    }
 }
 
 .resource-header--image {
@@ -14,7 +18,7 @@
     background-size: cover;
     color: contrast-color($brand-primary);
 
-    @media screen and (min-width: $breakpoint) {
+    @media (min-width: $breakpoint) {
         min-height: $hero-height-secondary;
     }
 
@@ -36,8 +40,13 @@
 }
 
 .resource-header__title {
+    margin-top: 0;
     margin-bottom: 1.2rem;
     font-size: $font-size-xxl;
+
+    @media (max-width: $breakpoint) {
+        font-size: $font-size-lg;
+    }
 }
 
 .resource-navigation {
