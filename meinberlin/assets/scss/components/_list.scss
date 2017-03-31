@@ -1,0 +1,10 @@
+.list--highlight {
+    padding-bottom: 2em;
+
+    background-color: $bg-tertiary;
+
+    .filter-bar:first-child {
+        position: relative;
+        top: -0.8em;
+    }
+}
