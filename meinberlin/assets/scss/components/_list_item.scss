@@ -40,6 +40,9 @@
 
 .list-item__actions,
 .list-item__stats {
-    font-size: $font-size-sm;
     float: right;
+}
+
+.list-item__comments {
+    margin-left: 0.7em;
 }
