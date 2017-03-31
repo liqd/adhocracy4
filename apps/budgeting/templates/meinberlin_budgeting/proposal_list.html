@@ -11,19 +11,20 @@
 {% endblock %}
 
 {% block phase_content %}
-    <div class="l-center-8">
-        {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
-        <div>
-            {% for proposal in proposal_list %}
-            {% include "meinberlin_budgeting/includes/proposal_list_item.html" with proposal=proposal %}
-            {% endfor %}
+    <div class="list list--highlight">
+        <div class="l-wrapper">
+            <div class="l-center-8">
+                {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+                {% for proposal in proposal_list %}
+                    {% include "meinberlin_budgeting/includes/proposal_list_item.html" with proposal=proposal %}
+                {% endfor %}
 
-            {% if proposal_list.count == 0 %}
-            {% trans "Nothing to show" %}
-            {% endif %}
+                {% if proposal_list.count == 0 %}
+                    {% trans "Nothing to show" %}
+                {% endif %}
+                {% include "meinberlin_contrib/includes/pagination.html" %}
+            </div>
         </div>
-
-        {% include "meinberlin_contrib/includes/pagination.html" %}
     </div>
 {% endblock %}
