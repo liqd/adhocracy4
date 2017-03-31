@@ -63,15 +63,15 @@
 }
 
 .phase-info {
-    text-align: center;
     margin-bottom: $spacer * 2;
 }
 
 .phase-info__title {
-    font-size: $font-size-lg;
-    margin-bottom: $spacer;
+    font-size: $font-size-xl;
+    margin-bottom: 0.5rem;
 }
 
 .phase-info__subtitle {
-    font-size: $font-size-sm;
+    font-size: $font-size-lg;
+    margin-bottom: 0.5rem;
 }
