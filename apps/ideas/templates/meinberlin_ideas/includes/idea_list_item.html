@@ -26,13 +26,15 @@
         {{ idea.name }}
         </a>
     </h3>
+    {% if idea.category %}
+        <div class="list-item__badges">
+            <span class="category">{{ idea.category }}</span>
+        </div>
+    {% endif %}
     <span class="list-item__author">
         {{ idea.creator.username }}
     </span>
     <span class="list-item__date">
         {{ idea.created | date }}
     </span>
-    {% if idea.category %}
-        <span class="category">{{ idea.category }}</span>
-    {% endif %}
 </div>

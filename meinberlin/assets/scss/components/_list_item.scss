@@ -1,5 +1,5 @@
 .list-item {
-    padding: $padding;
+    padding: 0.7em $padding;
     display: block;
     position: relative;
     border: 1px solid $border-color;
@@ -8,31 +8,34 @@
 }
 
 .list-item--squashed {
-    border-top: 0;
-    margin-bottom: 0;
+    border: 0;
+    margin-bottom: 2px;
 
     &:first-child {
         border-top: 1px solid $border-color;
     }
 }
 
-.list-item__author,
-.list-item__stats,
 .list-item__title {
-    margin: 0 0 0.8rem;
+    margin: 0 0 0.4rem;
+    font-size: $font-size-lg;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+            color: $brand-secondary;
+        }
+    }
 }
 
-.list-item__title {
-    font-size: $font-size-lg;
+.list-item__badges {
+    margin: 0 0 0.4rem;
 }
 
 .list-item__author {
-    font-size: $font-size-sm;
-    font-weight: bold;
-}
-
-.list-item__date {
-    font-size: $font-size-xs;
+    margin-right: 0.3em;
 }
 
 .list-item__actions,
