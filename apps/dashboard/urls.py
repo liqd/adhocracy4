@@ -19,4 +19,10 @@ urlpatterns = [
         views.DashboardProjectUpdateView.as_view(),
         name='dashboard-project-edit'
     ),
+    url(
+        r'^(?P<organisation_slug>[-\w_]+)/projects/'
+        r'(?P<slug>[-\w_]+)/moderators/$',
+        views.DashboardProjectModeratorsView.as_view(),
+        name='dashboard-project-moderators'
+    ),
 ]

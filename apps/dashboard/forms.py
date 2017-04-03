@@ -10,6 +10,7 @@ from adhocracy4.projects import models as project_models
 
 from apps.contrib import multiform
 from apps.contrib.formset import dynamic_modelformset_factory
+from apps.users.fields import UserField
 
 
 def get_module_settings_form(settings_instance_or_modelref):
@@ -259,3 +260,15 @@ class ProjectUpdateForm(ProjectEditFormBase):
                     category.save()
             for category in self.forms['categories'].deleted_objects:
                 category.delete()
+
+
+class AddModeratorForm(forms.ModelForm):
+    user = UserField()
+
+    class Meta:
+        model = project_models.Project
+        fields = ('user',)
+
+    def save(self, commit=True):
+        if commit:
+            self.instance.moderators.add(self.cleaned_data['user'])

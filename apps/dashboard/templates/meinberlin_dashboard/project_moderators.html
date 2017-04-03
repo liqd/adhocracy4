@@ -1,0 +1,10 @@
+{% extends "meinberlin_dashboard/dashboard_base.html" %}
+{% load i18n %}
+
+{% block dashboard_content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" class="button button--primary" value="{% trans 'Submit' %}" />
+    </form>
+{% endblock %}
