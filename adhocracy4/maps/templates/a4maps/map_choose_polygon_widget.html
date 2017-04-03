@@ -1,0 +1,9 @@
+<script type="text/javascript">
+    var baseurl = "{{ map_url }}";
+    var bbox = {{ bbox }};
+    var name = "{{ name }}";
+    var polygon = {% if polygon %} {{ polygon | safe }} {% else %} undefined {% endif %};
+</script>
+
+<div id="map_{{ name }}" style="height: 300px;"></div>
+<input id="id_{{ name }}" type="hidden" name="{{ name }}" rows="10" {% if polygon %}value="{{ polygon }}{% endif %}">
