@@ -123,8 +123,9 @@ class DashboardProjectUpdateView(DashboardBaseMixin,
 class DashboardProjectModeratorsView(DashboardBaseMixin,
                                      rules_mixins.PermissionRequiredMixin,
                                      SuccessMessageMixin,
-                                     generic.FormView):
+                                     generic.UpdateView):
 
+    model = project_models.Project
     form_class = forms.AddModeratorForm
     template_name = 'meinberlin_dashboard/project_moderators.html'
     success_message = _('Moderators successfully updated.')

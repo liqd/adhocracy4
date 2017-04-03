@@ -7,4 +7,21 @@
         {{ form }}
         <input type="submit" class="button button--primary" value="{% trans 'Submit' %}" />
     </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>{% trans 'Name' %}</th>
+                <th>{% trans 'Mark' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for moderator in project.moderators.all %}
+                <tr>
+                    <td><label for="moderator-{{ moderator.pk }}">{{ moderator.username }}</label></td>
+                    <td><input type="checkbox" id="moderator-{{ moderator.pk }}" /></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
