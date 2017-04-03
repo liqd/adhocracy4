@@ -59,6 +59,7 @@ INSTALLED_APPS = (
     'adhocracy4.ratings.apps.RatingsConfig',
     'adhocracy4.comments.apps.CommentsConfig',
     'adhocracy4.categories.apps.CategoriesConfig',
+    'adhocracy4.maps.apps.MapsConfig',
 
     'apps.contrib.apps.Config',
     'apps.cms.apps.Config',
@@ -67,6 +68,7 @@ INSTALLED_APPS = (
     'apps.organisations.apps.Config',
     'apps.dashboard.apps.Config',
     'apps.embed.apps.Config',
+    'apps.mapideas.apps.Config',
 
     'apps.ideas.apps.Config',
     'apps.documents.apps.Config',
@@ -146,6 +148,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'node_modules/leaflet/dist'),
+    os.path.join(BASE_DIR, 'node_modules/leaflet-draw/dist'),
     os.path.join(PROJECT_DIR, 'static'),
 ]
 
@@ -280,3 +284,11 @@ A4_RATEABLES = (
 A4_COMMENTABLES = (
     ('meinberlin_ideas', 'idea'),
 )
+
+BASE_MAP = 'https://{s}.tile.openstreetmap.org/'
+
+MAP_BOUNDING_BOX = ('[[[34.95799531086792,-28.388671875],'
+                    '[71.35706654962706,-28.388671875],'
+                    '[71.35706654962706,50.88867187499999],'
+                    '[34.95799531086792,50.88867187499999],'
+                    '[34.95799531086792,-28.388671875]]]')

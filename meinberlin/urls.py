@@ -23,6 +23,7 @@ from apps.documents import urls as paragraph_urls
 from apps.documents.api import DocumentViewSet
 from apps.embed import urls as embed_urls
 from apps.ideas import urls as ideas_urls
+from apps.mapideas import urls as mapideas_urls
 from apps.projects import urls as projects_urls
 
 js_info_dict = {
@@ -48,6 +49,7 @@ urlpatterns = [
     url(r'^ideas/', include(ideas_urls, namespace='ideas')),
     url(r'^paragraphs/', include(paragraph_urls, namespace='documents')),
     url(r'^budgeting/', include(budgeting_urls, namespace='budgeting')),
+    url(r'^mapideas/', include(mapideas_urls, namespace='mapideas')),
 
     url(r'^api/', include(router.urls)),
 
