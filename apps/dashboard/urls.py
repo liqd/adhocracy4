@@ -3,6 +3,15 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+    url(r'^profile$',
+        views.DashboardProfileView.as_view(),
+        name='dashboard-profile'),
+    url(r'^change_password$',
+        views.ChangePasswordView.as_view(),
+        name='dashboard-password'),
+    url(r'^email/$',
+        views.DashboardEmailView.as_view(),
+        name='dashboard-email'),
     url(
         r'^(?P<organisation_slug>[-\w_]+)/projects/$',
         views.DashboardProjectListView.as_view(),
