@@ -134,12 +134,15 @@ $(document).ready(function () {
   // this message the Popup will close.
   window.addEventListener('message', function (e) {
     if (e.origin === location.origin) {
-      var data = JSON.parse(e.data)
+      // Browser extensions might use onmessage too, so catch any exceptions
+      try {
+        var data = JSON.parse(e.data)
 
-      if (data.name === 'popup-close' && popup) {
-        popup.close()
-        location.reload()
-      }
+        if (data.name === 'popup-close' && popup) {
+          popup.close()
+          location.reload()
+        }
+      } catch (e) {}
     }
   }, false)
 
