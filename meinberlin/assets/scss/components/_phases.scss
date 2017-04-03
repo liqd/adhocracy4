@@ -1,20 +1,47 @@
+
 .phase-list {
     text-align: center;
-    text-decoration: line-through;
     color: $link-color;
 
     ul {
         margin: 0;
         padding: 0;
+        list-style: none;
     }
 
     li {
         display: inline-block;
+        position: relative;
+        margin-right: 5px;
+
+        &:after {
+            content: "";
+            height: 1px;
+            margin: auto;
+
+            position: absolute;
+            left: 100%;
+            right: -15px;
+            top: 0;
+            bottom: 0;
+
+            background-color: $brand-secondary;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &:last-child:after {
+            content: none;
+        }
     }
 }
 
 .phase-list__button {
     @extend %button-base;
+    padding: 0.1em 0.7em;
+    font-weight: normal;
     font-size: $font-size-sm;
     border-radius: 1.3em;
     margin-bottom: 0;
@@ -36,15 +63,15 @@
 }
 
 .phase-info {
-    text-align: center;
     margin-bottom: $spacer * 2;
 }
 
 .phase-info__title {
-    font-size: $font-size-lg;
-    margin-bottom: $spacer;
+    font-size: $font-size-xl;
+    margin-bottom: 0.5rem;
 }
 
 .phase-info__subtitle {
-    font-size: $font-size-sm;
+    font-size: $font-size-lg;
+    margin-bottom: 0.5rem;
 }
