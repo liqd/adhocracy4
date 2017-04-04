@@ -1,9 +1,9 @@
-let React = require('react');
-let django = require('django');
+let React = require('react')
+let django = require('django')
 
 export const Modal = React.createClass({
   render: function () {
-    let dismiss = this.props.dismissOnSubmit ? 'modal' : 'false';
+    let dismiss = this.props.dismissOnSubmit ? 'modal' : 'false'
     return (
       <div className="modal fade" id={this.props.name} tabIndex="-1"
            role="dialog" aria-labelledby="myModalLabel">
@@ -13,7 +13,7 @@ export const Modal = React.createClass({
               <button className="close" aria-label={this.props.abort}
                       data-dismiss="modal"
                       onClick={this.props.closeHandler}>
-                <i className="fa fa-times"/>
+                <i className="fa fa-times" />
               </button>
             </div>
 
@@ -39,7 +39,7 @@ export const Modal = React.createClass({
       </div>
     )
   }
-});
+})
 
 Modal.propTypes = {
   submitHandler: React.PropTypes.func,
