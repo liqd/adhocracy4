@@ -3,10 +3,10 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^profile$',
+    url(r'^profile/$',
         views.DashboardProfileView.as_view(),
         name='dashboard-profile'),
-    url(r'^change_password$',
+    url(r'^change_password/$',
         views.ChangePasswordView.as_view(),
         name='dashboard-password'),
     url(r'^email/$',
