@@ -6,13 +6,12 @@ export const Modal = React.createClass({
     let dismiss = this.props.dismissOnSubmit ? 'modal' : 'false'
     return (
       <div className="modal fade" id={this.props.name} tabIndex="-1"
-           role="dialog" aria-labelledby="myModalLabel">
+        role="dialog" aria-labelledby="myModalLabel">
         <div className="modal-dialog modal-lg" role="document">
           <div className="modal-content">
             <div className="modal-header">
               <button className="close" aria-label={this.props.abort}
-                      data-dismiss="modal"
-                      onClick={this.props.closeHandler}>
+                data-dismiss="modal" onClick={this.props.closeHandler}>
                 <i className="fa fa-times" />
               </button>
             </div>
@@ -26,11 +25,11 @@ export const Modal = React.createClass({
             <div className="modal-footer">
               <div className="row">
                 <button className="submit-button" data-dismiss={dismiss}
-                        onClick={this.props.submitHandler}>{this.props.action}</button>
+                  onClick={this.props.submitHandler}>{this.props.action}</button>
               </div>
               <div className="row">
                 <button className="cancel-button" data-dismiss="modal"
-                        onClick={this.props.closeHandler}>{this.props.abort}</button>
+                  onClick={this.props.closeHandler}>{this.props.abort}</button>
               </div>
             </div>
             }
