@@ -14,7 +14,9 @@
     <div class="list list--highlight">
         <div class="l-wrapper">
             <div class="l-center-8">
-                {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+                <div class="filter-bar__overlap-wrapper">
+                    {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+                </div>
 
                 <div class="list__container">
                     {% for idea in idea_list %}
