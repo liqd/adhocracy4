@@ -73,13 +73,13 @@ window.jQuery(document).ready(function () {
       var marker = L.marker(latlng, {icon: icon}).addTo(map)
       var popupContent = getImage(feature) +
                         '<div class="maps-popups-popup-meta">' +
-                            '<span class="idea-upvotes idea-meta-item">' +
+                            '<span class="map-popup-upvotes">' +
                             feature.properties.positive_rating_count + ' <i class="fa fa-chevron-up" aria-hidden="true"></i>' +
                             '</span>' +
-                            '<span class="idea-downvotes idea-meta-item">' +
+                            '<span class="map-popup-downvotes">' +
                             feature.properties.negative_rating_count + ' <i class="fa fa-chevron-down" aria-hidden="true"></i>' +
                             '</span>' +
-                            '<span class="idea-comments-count idea-meta-item">' +
+                            '<span class="map-popup-comments-count">' +
                             feature.properties.comments_count + ' <i class="fa fa-comment-o" aria-hidden="true"></i>' +
                             '</span>' +
                             '</div>' +

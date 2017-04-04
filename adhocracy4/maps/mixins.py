@@ -35,7 +35,7 @@ class MapItemListMixin(object):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['mapideas_json'] = self.dump_geojson()
+        context['mapitems_json'] = self.dump_geojson()
         context['map_url'] = settings.BASE_MAP
         context['polygon'] = self.module.settings_instance.polygon
         return context

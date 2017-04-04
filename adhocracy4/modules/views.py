@@ -54,7 +54,7 @@ class ItemUpdateView(rules_mixins.PermissionRequiredMixin, generic.UpdateView):
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['module'] = self.object.module
-        if self.object.object.module.settings_instance:
+        if self.object.module.settings_instance:
             kwargs['settings_instance'] = self.object.module.settings_instance
         return kwargs
 
