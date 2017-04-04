@@ -1,10 +1,10 @@
 from django.conf import settings
 
-from rest_framework import filters, mixins, permissions, viewsets
+from rest_framework import filters, mixins, viewsets
 from rest_framework.response import Response
 
 from adhocracy4.api.mixins import ContentTypeMixin
-from adhocracy4.api.permissions import IsCreatorOrReadOnly
+from adhocracy4.api.permissions import ViewSetRulesPermission
 
 from .models import Comment
 from .serializers import ThreadSerializer
@@ -19,8 +19,7 @@ class CommentViewSet(mixins.CreateModelMixin,
 
     queryset = Comment.objects.all().order_by('-created')
     serializer_class = ThreadSerializer
-    permission_classes = (
-        permissions.IsAuthenticatedOrReadOnly, IsCreatorOrReadOnly)
+    permission_classes = (ViewSetRulesPermission,)
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('object_pk', 'content_type')
     content_type_filter = settings.A4_COMMENTABLES
@@ -29,6 +28,18 @@ class CommentViewSet(mixins.CreateModelMixin,
         serializer.save(
             content_object=self.content_object,
             creator=self.request.user
+        )
+
+    def get_permission_object(self):
+        return self.content_object
+
+    @property
+    def rules_method_map(self):
+        return ViewSetRulesPermission.default_rules_method_map._replace(
+            POST='{app_label}.comment_{model}'.format(
+                app_label=self.content_type.app_label,
+                model=self.content_type.model
+            )
         )
 
     def destroy(self, request, *args, **kwargs):

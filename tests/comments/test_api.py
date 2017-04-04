@@ -4,6 +4,8 @@ from django.core.urlresolvers import reverse
 from rest_framework import status
 
 from tests.apps.questions.models import Question
+from tests.apps.questions.phases import AskPhase
+from tests.helpers import active_phase
 
 
 @pytest.mark.django_db
@@ -34,8 +36,10 @@ def test_authenticated_user_can_not_post_invalid_data(user, apiclient,
         kwargs={'content_type': question_ct.pk,
                 'object_pk': question.pk})
     data = {}
-    response = apiclient.post(url, data, format='json')
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    with active_phase(question.module, AskPhase):
+        response = apiclient.post(url, data, format='json')
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
 @pytest.mark.django_db
@@ -47,8 +51,10 @@ def test_authenticated_user_can_post_valid_data(user, question_ct, question,
         kwargs={'content_type': question_ct.pk,
                 'object_pk': question.pk})
     data = {'comment': 'comment comment'}
-    response = apiclient.post(url, data, format='json')
-    assert response.status_code == status.HTTP_201_CREATED
+
+    with active_phase(question.module, AskPhase):
+        response = apiclient.post(url, data, format='json')
+        assert response.status_code == status.HTTP_201_CREATED
 
 
 @pytest.mark.django_db
@@ -62,9 +68,11 @@ def test_authenticated_user_can_edit_own_comment(comment, apiclient):
             'object_pk': comment.object_pk
         })
     data = {'comment': 'comment comment comment'}
-    response = apiclient.patch(url, data, format='json')
-    assert response.status_code == status.HTTP_200_OK
-    assert response.data['comment'] == 'comment comment comment'
+
+    with active_phase(comment.content_object.module, AskPhase):
+        response = apiclient.patch(url, data, format='json')
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data['comment'] == 'comment comment comment'
 
 
 @pytest.mark.django_db
@@ -79,8 +87,10 @@ def test_user_can_not_edit_comment_of_other_user(another_user, comment,
             'object_pk': comment.object_pk
         })
     data = {'comment': 'comment comment comment'}
-    response = apiclient.patch(url, data, format='json')
-    assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    with active_phase(comment.content_object.module, AskPhase):
+        response = apiclient.patch(url, data, format='json')
+        assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
 @pytest.mark.django_db
@@ -94,14 +104,17 @@ def test_anonymous_user_can_not_edit_comment(comment, apiclient):
             'object_pk': comment.object_pk
         })
     data = {'comment': 'comment comment comment'}
-    response = apiclient.patch(url, data, format='json')
-    assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    with active_phase(comment.content_object.module, AskPhase):
+        response = apiclient.patch(url, data, format='json')
+        assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
 @pytest.mark.django_db
 def test_authenticated_user_can_reply_to_comment(another_user, comment,
                                                  apiclient):
     comment_contenttype = ContentType.objects.get_for_model(comment).pk
+
     original_url = reverse(
         'comments-detail',
         kwargs={
@@ -111,20 +124,26 @@ def test_authenticated_user_can_reply_to_comment(another_user, comment,
         })
     response = apiclient.get(original_url)
     assert len(response.data['child_comments']) == 0
+
     apiclient.force_authenticate(user=another_user)
-    url = reverse(
+    reply_url = reverse(
         'comments-list',
         kwargs={'content_type': comment_contenttype,
                 'object_pk': comment.pk})
     data = {
         'comment': 'comment-reply1',
     }
-    response = apiclient.post(url, data, format='json')
+
+    with active_phase(comment.content_object.module, AskPhase):
+        response = apiclient.post(reply_url, data, format='json')
     assert response.status_code == status.HTTP_201_CREATED
+
     data = {
         'comment': 'comment-reply2',
     }
-    response = apiclient.post(url, data, format='json')
+    with active_phase(comment.content_object.module, AskPhase):
+        response = apiclient.post(reply_url, data, format='json')
+
     assert response.status_code == status.HTTP_201_CREATED
     response = apiclient.get(original_url)
     assert len(response.data['child_comments']) == 2
@@ -172,7 +191,10 @@ def test_creater_of_comment_can_set_removed_flag(comment, user, apiclient):
             'object_pk': comment.object_pk
         })
     apiclient.force_authenticate(user=user)
-    response = apiclient.delete(url)
+
+    with active_phase(comment.content_object.module, AskPhase):
+        response = apiclient.delete(url)
+
     assert response.status_code == status.HTTP_200_OK
     assert response.data['is_deleted'] is True
     assert response.data['comment'] == 'deleted by creator'
@@ -219,8 +241,10 @@ def test_rating_info(comment, user, another_user, apiclient):
                                 'object_pk': pk})
     apiclient.force_authenticate(user)
     data = {'value': 1}
-    response = apiclient.post(ratings_url, data, format='json')
-    assert response.status_code == status.HTTP_201_CREATED
+
+    with active_phase(comment.content_object.module, AskPhase):
+        response = apiclient.post(ratings_url, data, format='json')
+        assert response.status_code == status.HTTP_201_CREATED
 
     comment_url = reverse(
         'comments-detail',
@@ -236,8 +260,11 @@ def test_rating_info(comment, user, another_user, apiclient):
     response = apiclient.get(comment_url, format='json')
     assert response.data['ratings']['positive_ratings'] == 1
     assert response.data['ratings']['current_user_rating_value'] is None
+
     data = {'value': -1}
-    apiclient.post(ratings_url, data, format='json')
+    with active_phase(comment.content_object.module, AskPhase):
+        response = apiclient.post(ratings_url, data, format='json')
+        response.status_code == status.HTTP_201_CREATED
     response = apiclient.get(comment_url, format='json')
     assert response.data['ratings']['positive_ratings'] == 1
     assert response.data['ratings']['current_user_rating_value'] == -1
