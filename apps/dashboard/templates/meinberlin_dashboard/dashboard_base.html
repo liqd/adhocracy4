@@ -43,7 +43,7 @@
                 <ul class="dashboard-nav__pages">
                     <li class="dashboard-nav__page">
                         <a href="{% url 'dashboard-project-list' organisation_slug=view.organisation.slug %}"
-                           class="dashboard-nav__page-link {% ifequal url_name 'dashboard-project-list' %}dashboard-nav__page-link--active{% endifequal %}">
+                           class="dashboard-nav__page-link {% ifequal url_name 'dashboard-project-list' %}is-active{% endifequal %}">
                             <i class="fa fa-file-o"></i>
                             {% trans 'Participation processes' %}
                         </a>
