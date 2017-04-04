@@ -10,10 +10,6 @@
 .list-item--squashed {
     border: 0;
     margin-bottom: 2px;
-
-    &:first-child {
-        border-top: 1px solid $border-color;
-    }
 }
 
 .list-item__title {
