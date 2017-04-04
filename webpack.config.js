@@ -74,6 +74,9 @@ module.exports = {
     // against the local directory.
     root: path.resolve('./node_modules')
   },
+  resolveLoader: {
+    root: path.resolve('./node_modules')
+  },
   plugins: [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
