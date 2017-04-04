@@ -30,6 +30,6 @@
     "url": "git@github.com:liqd/adhocracy4.git"
   },
   "scripts": {
-    "precommit": "make lint"
+    "precommit": "make lint-quick"
   }
 }

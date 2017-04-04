@@ -20,5 +20,8 @@ install:
 lint:
 	. $(VIRTUAL_ENV)/bin/activate && node_modules/.bin/polylint
 
+lint-quick:
+	. $(VIRTUAL_ENV)/bin/activate && node_modules/.bin/polylint -SF
+
 test:
 	$(VIRTUAL_ENV)/bin/pytest
