@@ -14,7 +14,10 @@
     <div class="list list--highlight">
         <div class="l-wrapper">
             <div class="l-center-8">
-                {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+                <div class="filter-bar__overlap-wrapper">
+                    {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+                </div>
+
                 {% for proposal in proposal_list %}
                     {% include "meinberlin_budgeting/includes/proposal_list_item.html" with proposal=proposal %}
                 {% endfor %}
