@@ -8,7 +8,7 @@
 <div class="l-wrapper">
     <div class="menu-layout">
 
-        <div class="menu-layout__menu dashboard-nav">
+        <nav class="menu-layout__menu dashboard-nav" aria-label="{% trans 'Dashboard navigation' %}"  >
             <div class="dropdown dashboard-nav__dropdown">
                 {% if view.other_organisations_of_user %}
                     <button
@@ -50,7 +50,7 @@
                     </li>
                 </ul>
             {% endwith %}
-        </div>
+        </nav>
 
         <div class="menu-layout__content">
             {% block dashboard_content %}{% endblock %}
