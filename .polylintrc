@@ -1,1 +1,2 @@
 py:flake8 --exclude */migrations/*,*/settings*,setup.py %s
+js\\|jsx:node_modules/.bin/eslint -c .eslintrc --ext js,jsx %s
