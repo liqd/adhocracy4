@@ -36,5 +36,6 @@
 
 .filter-bar--overlap {
     position: relative;
-    top: -0.8em;
+    $button-height: 2.4em;
+    top: -($button-height / 2);
 }
