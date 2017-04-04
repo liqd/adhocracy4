@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="filter-bar {% if modifier %}filter-bar--{{ modifier }}{% endif %}">
+<div class="filter-bar">
     {% for field in filter.form %}
         {% if field.name != 'ordering' %}
             {{ field }}
