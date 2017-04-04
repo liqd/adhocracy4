@@ -4,7 +4,7 @@
 {% block extra_js %}
     <script type="text/javascript">
         var baseurl = "{{ map_url }}"
-        var point = {{ mapideas_json | safe }}
+        var point = {{ mapitems_json | safe }}
         var polygon = {{ polygon | safe }}
     </script>
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
