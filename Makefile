@@ -18,7 +18,7 @@ install:
 	$(VIRTUAL_ENV)/bin/python3 setup.py development
 
 lint:
-	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings*
+	. $(VIRTUAL_ENV)/bin/activate && node_modules/.bin/polylint
 
 test:
 	$(VIRTUAL_ENV)/bin/pytest
