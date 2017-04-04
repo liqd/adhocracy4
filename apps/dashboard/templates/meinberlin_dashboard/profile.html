@@ -1,0 +1,17 @@
+{% extends "meinberlin_dashboard/base_user.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Your user profile' %}{% endblock %}
+{% block dashboard_content %}
+<h1 class="gray-divider dashboard-title">{% trans 'Your profile' %}</h1>
+
+<div class="general-form">
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post" class="l-col-2">
+        {% csrf_token %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.username %}
+            <button type="submit" class="button button--primary">{% trans 'Save changes'%}</button>
+    </form>
+    {{ form.media }}
+</div>
+{% endblock %}

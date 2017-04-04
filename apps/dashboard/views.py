@@ -135,7 +135,7 @@ class DashboardProfileView(DashboardBaseMixin,
                            generic.UpdateView):
 
     model = User
-    template_name = "euth_dashboard/profile_detail.html"
+    template_name = "meinberlin_dashboard/profile.html"
     form_class = forms.ProfileForm
     success_message = _("Your profile was successfully updated.")
     menu_item = 'profile'
