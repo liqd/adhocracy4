@@ -126,6 +126,9 @@ class DashboardEmailView(DashboardBaseMixin, account_views.EmailView):
     menu_item = 'email'
     template_name = 'meinberlin_dashboard/email.html'
 
+    def get_success_url(self):
+        return self.request.path
+
 
 class DashboardProfileView(DashboardBaseMixin,
                            SuccessMessageMixin,
