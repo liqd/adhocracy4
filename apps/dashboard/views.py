@@ -124,6 +124,7 @@ class DashboardProjectUpdateView(DashboardBaseMixin,
 
 class DashboardEmailView(DashboardBaseMixin, account_views.EmailView):
     menu_item = 'email'
+    template_name = 'meinberlin_dashboard/email.html'
 
 
 class DashboardProfileView(DashboardBaseMixin,
