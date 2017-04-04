@@ -23,3 +23,9 @@ build: webpack compilemessages
 
 server:
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8000
+
+lint:
+	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint
+
+lint-quick:
+	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint -SF
