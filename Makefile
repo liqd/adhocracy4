@@ -7,7 +7,7 @@ PO_FILES := $(shell find . -name '*.po')
 help:
 	@echo mein.berlin development tools
 	@echo
-	@echo It will either use a exisiting virtualenv if it was entered
+	@echo It will either use an exisiting virtualenv if it was entered
 	@echo before or create a new one in the .env subdirectory.
 	@echo
 	@echo usage:
