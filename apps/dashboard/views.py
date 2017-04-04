@@ -150,6 +150,7 @@ class DashboardProfileView(DashboardBaseMixin,
 class ChangePasswordView(DashboardBaseMixin,
                          account_views.PasswordChangeView):
     menu_item = 'password'
+    template_name = 'meinberlin_dashboard/password.html'
 
     def get_success_url(self):
         return reverse('dashboard-password')
