@@ -16,9 +16,11 @@
             <div class="l-center-8">
                 {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
-                {% for idea in idea_list %}
-                    {% include "meinberlin_ideas/includes/idea_list_item.html" with idea=idea %}
-                {% endfor %}
+                <div class="list__container">
+                    {% for idea in idea_list %}
+                        {% include "meinberlin_ideas/includes/idea_list_item.html" with idea=idea %}
+                    {% endfor %}
+                </div>
 
                 {% if idea_list.count == 0 %}
                     {% trans "Nothing to show" %}
