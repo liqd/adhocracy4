@@ -9,7 +9,7 @@
 }
 
 .rating-button {
-    border: 1px solid currentColor;
+    border: 1px solid $border-color;
     font-weight: normal;
     padding: 0 0.4em;
 
@@ -23,8 +23,14 @@
     }
 }
 
+.rating-button--small {
+    padding: 0.3em 0.6em;
+}
+
 @mixin rating-button($color) {
     color: $color;
+    padding: 0.65em 1.2em;
+    border-radius: 0.3em;
 
     &:hover,
     &:focus {
@@ -37,6 +43,10 @@
         background-color: $color;
         border-color: $color;
         color: contrast-color($color);
+    }
+
+    i {
+        margin-right: 0.3em;
     }
 
     &.is-read-only,

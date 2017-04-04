@@ -18,4 +18,8 @@
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project.description %}
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project.information %}
+
+    {% if view.object %}
+        {% include 'meinberlin_embed/includes/project_embed_code.html' with project=view.object %}
+    {% endif %}
 </div>

@@ -1,0 +1,6 @@
+{% load i18n %}
+
+<div class="form-group">
+    <label for="embed-code-{{ project.slug }}">{% trans 'Embed Code' %}</label>
+    <textarea id="embed-code-{{ project.slug }}" readonly><iframe height="500" style="width: 100%; min-height: 300px; max-height: 100vh" src="{{ request.scheme }}://{{ request.get_host }}{% url 'embed-project' project.slug %}" frameborder="0"></iframe></textarea>
+</div>

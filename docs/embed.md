@@ -9,7 +9,12 @@ participation right where they are instead of going to a third party platform.
 
 You can embed any project with the following code:
 
-    <iframe src="http://example.com/embed/projects/{slug}/" />
+    <iframe
+        height="500"
+        style="width: 100%; min-height: 300px; max-height: 100vh"
+        src="http://example.com/projects/{slug}/"
+        frameborder="0">
+    </iframe>
 
 ## Terms
 
@@ -87,6 +92,15 @@ restrictions:
             <script>adhocracy4.renderParagraphs('#paragraphs', …)</script>
 
     -   Add the code to `adhocracy4.onReady()`  TODO: not implemented yet
+
+-   When including user generated content in django templates, you must always
+    use wagtail's `richtext` filter instead of `safe`. This is required to
+    automatically assign the embed target "external" to user generated links.
+
+-   The embed shell will only show content if it is returned with a 200 code.
+    Any other code will produce an error alert. This works well with django's
+    default views (e.g. for forms). But you need to be aware when writing your
+    own views.
 
 ## Challenges
 

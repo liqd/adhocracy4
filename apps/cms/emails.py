@@ -31,7 +31,8 @@ class CsvFormEmail(FormEmail):
         csv = MIMEText(_text=csv_text, _subtype='csv')
         timestamp = timezone.now().strftime("%Y-%m-%d")
         form_title = self.object.title.replace(' ', '_')
-        filename = '{}_{}.csv'.format(timestamp, form_title)
+        submission_pk = self.object.get_submission_class().objects.last().pk
+        filename = '{}_{}_{}.csv'.format(timestamp, form_title, submission_pk)
         csv.add_header(
             'Content-Disposition',
             'attachment; filename="{}"'.format(filename)

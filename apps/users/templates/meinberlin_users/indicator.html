@@ -15,7 +15,7 @@
         {{ request.user.username }}
         <i class="fa fa-caret-down" aria-hidden="true"></i>
     </button>
-    <ul class="dropdown-menu" aria-labelledby="user-settings">
+    <ul class="dropdown-menu" aria-labelledby="user-actions">
 
         {% for organisation in request.user.organisations %}
 
@@ -49,7 +49,7 @@
         {% trans "Login/Register" %}
         <i class="fa fa-caret-down" aria-hidden="true"></i>
     </button>
-    <ul class="dropdown-menu" aria-labelledby="user-settings">
+    <ul class="dropdown-menu" aria-labelledby="login-register">
         <li>
             <a class="dropdown-item" href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a>
         </li>

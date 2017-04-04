@@ -1,12 +1,37 @@
-/* global $ location */
+/* global $ location django */
 $(document).ready(function () {
   var $main = $('main')
   var currentPath
   var popup
   var patternsForPopup = /\/accounts\b/
+  var $top = $('<div tabindex="-1">')
 
   var headers = {
     'X-Embed': ''
+  }
+
+  var testCanSetCookie = function () {
+    var cookie = 'can-set-cookie=true;'
+    var regExp = new RegExp(cookie)
+    document.cookie = cookie
+    return regExp.test(document.cookie)
+  }
+
+  var createAlert = function (text, state, timeout) {
+    var $alert = $('<p class="alert ' + state + ' alert--small" role="alert">' + text + '</p>')
+    var $close = $('<button class="alert__close"><i class="fa fa-times" aria-hidden="true"></i></button>')
+
+    $alert.append($close)
+    $close.attr('title', django.gettext('Close'))
+
+    var removeMessage = function () {
+      $alert.remove()
+    }
+    $alert.on('click', removeMessage)
+    if (typeof timeout === 'number') {
+      setTimeout(removeMessage, timeout)
+    }
+    $alert.prependTo($('#embed-status'))
   }
 
   var loadHtml = function (html, textStatus, xhr) {
@@ -21,8 +46,12 @@ $(document).ready(function () {
     currentPath = nextPath
 
     $main.empty()
+    $main.append($top)
     $main.append($root.children())
     onReady()
+
+    // jump to top after navigation
+    $top.focus()
   }
 
   var onReady = function () {
@@ -105,14 +134,40 @@ $(document).ready(function () {
   // this message the Popup will close.
   window.addEventListener('message', function (e) {
     if (e.origin === location.origin) {
-      var data = JSON.parse(e.data)
+      // Browser extensions might use onmessage too, so catch any exceptions
+      try {
+        var data = JSON.parse(e.data)
 
-      if (data.name === 'popup-close' && popup) {
-        popup.close()
-        location.reload()
-      }
+        if (data.name === 'popup-close' && popup) {
+          popup.close()
+          location.reload()
+        }
+      } catch (e) {}
     }
   }, false)
+
+  $(document).ajaxError(function (event, jqxhr) {
+    var text
+    switch (jqxhr.status) {
+      case 404:
+        text = django.gettext('We couldn\'t find what you were looking for.')
+        break
+      case 401:
+      case 403:
+        text = django.gettext('You don\'t have the permission to view this page.')
+        break
+      default:
+        text = django.gettext('Something went wrong!')
+        break
+    }
+
+    createAlert(text, 'danger', 6000)
+  })
+
+  if (testCanSetCookie() === false) {
+    var text = django.gettext('You have third party cookies disabled. You can still view the content of this project but won\'t be able to login.')
+    createAlert(text, 'info')
+  }
 
   $.ajax({
     url: $('body').data('url'),
