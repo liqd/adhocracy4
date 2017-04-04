@@ -1,7 +1,12 @@
+.menu-layout__menu,
+.menu-layout__content {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
 @media (min-width: $breakpoint) {
     .menu-layout {
         @include clearfix;
-        margin-top: 2em;
     }
 
     .menu-layout__menu {
