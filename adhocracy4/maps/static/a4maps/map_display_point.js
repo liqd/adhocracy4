@@ -1,8 +1,11 @@
 window.jQuery(document).ready(function () {
+  var $ = window.jQuery
   var L = window.L
-  var polygon = window.polygon
-  var point = window.point
-  var baseurl = window.baseurl
+
+$('[data-map="display_point"]').each(function (i, e) {
+  var polygon = JSON.parse(e.getAttribute('data-polygon'))
+  var point = JSON.parse(e.getAttribute('data-point'))
+  var baseurl = e.getAttribute('data-baseurl')
 
   var basemap = baseurl + '{z}/{x}/{y}.png'
   var osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -40,4 +43,5 @@ window.jQuery(document).ready(function () {
       return marker
     }
   })
+})
 })

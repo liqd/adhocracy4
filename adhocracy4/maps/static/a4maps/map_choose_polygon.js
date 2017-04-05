@@ -21,10 +21,13 @@ function getBasePolygon (L, polygon, bbox) {
 window.jQuery(document).ready(function () {
   var $ = window.jQuery
   var L = window.L
-  var name = window.name
-  var polygon = window.polygon
-  var bbox = window.bbox
-  var baseurl = window.baseurl
+
+$('[data-map="choose_polygon"]').each(function (i, e) {
+  var name = e.getAttribute('data-name')
+  var polygon = JSON.parse(e.getAttribute('data-polygon'))
+  var bbox = JSON.parse(e.getAttribute('data-bbox'))
+  var baseurl = e.getAttribute('data-baseurl')
+
   var map = createMap(L, baseurl, name)
   var mapVisible = $('#map_' + name).width() !== 0
 
@@ -96,4 +99,5 @@ window.jQuery(document).ready(function () {
       mapVisible = true
     }
   })
+})
 })

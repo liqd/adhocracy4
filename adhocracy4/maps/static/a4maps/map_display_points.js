@@ -1,9 +1,11 @@
 window.jQuery(document).ready(function () {
   var $ = window.jQuery
   var L = window.L
-  var polygon = window.polygon
-  var point = window.point
-  var baseurl = window.baseurl
+
+$('[data-map="display_points"]').each(function (i, e) {
+  var polygon = JSON.parse(e.getAttribute('data-polygon'))
+  var point = JSON.parse(e.getAttribute('data-point'))
+  var baseurl = e.getAttribute('data-baseurl')
   var initial = 0
 
   var basemap = baseurl + '{z}/{x}/{y}.png'
@@ -98,4 +100,5 @@ window.jQuery(document).ready(function () {
     map.setZoom(map.getZoom() - 1)
     return false
   })
+})
 })

@@ -58,10 +58,13 @@ function isMarkerInsidePolygon (marker, poly) {
 window.jQuery(document).ready(function () {
   var $ = window.jQuery
   var L = window.L
-  var name = window.name
-  var polygon = window.polygon
-  var point = window.point
-  var baseurl = window.baseurl
+
+$('[data-map="choose_point"]').each(function (i, e) {
+  var name = e.getAttribute('data-name')
+  var polygon = JSON.parse(e.getAttribute('data-polygon'))
+  var point = JSON.parse(e.getAttribute('data-point'))
+  var baseurl = e.getAttribute('data-baseurl')
+
   var map = createMap(L, baseurl, name)
 
   var polygonStyle = {
@@ -98,4 +101,5 @@ window.jQuery(document).ready(function () {
       $('#id_' + name).val(JSON.stringify(shape))
     }
   })
+})
 })
