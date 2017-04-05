@@ -37,10 +37,6 @@ class ProjectForm(forms.ModelForm):
         fields = ['name', 'description', 'image', 'information', 'result',
                   'is_archived']
 
-    def save(self, commit=True):
-        self.instance.is_draft = 'save_draft' in self.data
-        return super().save(commit)
-
 
 class PhaseForm(forms.ModelForm):
 
