@@ -16,6 +16,10 @@
     @extend .button--light;
 }
 
+.comment .rating-button {
+    @extend .rating-button--small;
+}
+
 // used by allauth (login/register)
 .signup > button[type="submit"],
 .primaryAction {

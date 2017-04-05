@@ -7,3 +7,9 @@
     outline-color: Highlight;
     // stylelint-enable
 }
+
+@mixin secondary-text {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

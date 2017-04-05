@@ -1,0 +1,49 @@
+.dashboard-nav {
+    background-color: $bg-tertiary;
+}
+
+.dashboard-nav__dropdown {
+    padding: 1.5em;
+    border-bottom: 2px solid $body-bg;
+
+    .dropdown-toggle {
+        width: 100%;
+        text-align: left;
+    }
+
+    i {
+        float: right;
+    }
+}
+
+.dashboard-nav__pages {
+    padding: 1.3em 1.5em 1.5em;
+    margin: 0;
+
+    list-style: none;
+}
+
+.dashboard-nav__page-link {
+    display: block;
+    padding: 0.7em;
+    margin-bottom: 0.3em;
+    border-radius: 0.4em;
+
+    color: $text-color;
+    text-decoration: none;
+
+    i {
+        margin-right: 0.3em;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: mix($body-bg, $bg-tertiary);
+        color: inherit;
+    }
+
+    &:active,
+    &.is-active {
+        background-color: $body-bg;
+    }
+}
