@@ -11,19 +11,28 @@ class MapItemListMixin(object):
 
         for item in super().get_queryset():
 
-            url = ''
+            image_url = ''
+            comment_count = ''
+            positive_rating_count = ''
+            negative_rating_count = ''
 
             if hasattr(item, 'image') and item.image:
                 image = get_thumbnailer(item.image)['map_thumbnail']
-                url = image.url
+                image_url = image.url
+            if hasattr(item, 'comment_count'):
+                comment_count = item.comment_count
+            if hasattr(item, 'positive_rating_count'):
+                positive_rating_count = item.positive_rating_count
+            if hasattr(item, 'negative_rating_count'):
+                negative_rating_count = item.negative_rating_count
 
             properties = {
                 'name': item.name,
                 'slug': item.slug,
-                'image':  url,
-                'comments_count': item.comment_count,
-                'positive_rating_count': item.positive_rating_count,
-                'negative_rating_count': item.negative_rating_count,
+                'image':  image_url,
+                'comments_count': comment_count,
+                'positive_rating_count': positive_rating_count,
+                'negative_rating_count': negative_rating_count,
                 'url': item.get_absolute_url()
             }
             point_dict = item.point
