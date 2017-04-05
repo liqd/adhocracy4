@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 from django.conf import settings
@@ -46,7 +48,7 @@ def test_mapitem_list_mixin(rf, location_list_view, location, module,
     response = location_list_view(request)
     map_url = response.context_data['map_url']
     mapitems_json = response.context_data['mapitems_json']
-    polygon = response.context_data['polygon']
+    polygon = json.loads(response.context_data['polygon'])
     assert map_url == settings.BASE_MAP
     assert mapitems_json == {
         'type': 'FeatureCollection',
