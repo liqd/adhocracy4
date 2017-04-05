@@ -2,7 +2,6 @@ import json
 
 from django import template
 from django.contrib.contenttypes.models import ContentType
-from django.utils.safestring import mark_safe
 
 from ..models import Comment
 from ..serializers import ThreadSerializer
@@ -10,7 +9,7 @@ from ..serializers import ThreadSerializer
 register = template.Library()
 
 
-@register.simple_tag(takes_context=True)
+@register.inclusion_tag('a4comments/react_comments.html', takes_context=True)
 def react_comments(context, obj):
     request = context['request']
 
@@ -46,10 +45,9 @@ def react_comments(context, obj):
         'isReadOnly': not has_comment_permission,
     }
 
-    return mark_safe((
-        '<div id={mountpoint}></div><script>window.adhocracy4.renderComment('
-        '{mountpoint}, {attributes})</script>').format(
-            attributes=json.dumps(attributes),
-            mountpoint=json.dumps(mountpoint)
-    )
-    )
+    context = {
+        'attributes': json.dumps(attributes),
+        'mountpoint': mountpoint
+    }
+
+    return context
