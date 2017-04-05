@@ -1,0 +1,13 @@
+{% extends "meinberlin_dashboard/base_dashboard.html" %}
+{% load i18n %}
+
+{% block dashboard_content %}
+    <h3>{% trans "Edit your organisation information" %}</h3>
+
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+            <button type="submit" class="button button--primary">{% trans 'Save changes'%}</button>
+    </form>
+    {{ form.media }}
+{% endblock %}

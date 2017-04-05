@@ -3,8 +3,10 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(
-        r'^(?P<organisation_slug>[-\w_]+)/projects/$',
+    url(r'^(?P<organisation_slug>[-\w_]+)/$',
+        views.DashboardOrganisationUpdateView.as_view(),
+        name='dashboard-organisation-edit'),
+    url(r'^(?P<organisation_slug>[-\w_]+)/projects/$',
         views.DashboardProjectListView.as_view(),
         name='dashboard-project-list'),
     url(r'^(?P<organisation_slug>[-\w_]+)/blueprints/$',
