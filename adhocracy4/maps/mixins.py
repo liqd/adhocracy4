@@ -1,3 +1,5 @@
+import json
+
 from django.conf import settings
 from easy_thumbnails.files import get_thumbnailer
 
@@ -46,7 +48,7 @@ class MapItemListMixin(object):
         context = super().get_context_data(**kwargs)
         context['mapitems_json'] = self.dump_geojson()
         context['map_url'] = settings.BASE_MAP
-        context['polygon'] = self.module.settings_instance.polygon
+        context['polygon'] = json.dumps(self.module.settings_instance.polygon)
         return context
 
 

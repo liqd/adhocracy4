@@ -1,3 +1,5 @@
+import json
+
 from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.forms.widgets import Widget
@@ -20,9 +22,9 @@ class MapChoosePolygonWidget(Widget):
 
         context = {
             'map_url': settings.BASE_MAP,
-            'bbox': settings.MAP_BOUNDING_BOX,
+            'bbox': json.dumps(settings.MAP_BOUNDING_BOX),
             'name': name,
-            'polygon': value
+            'polygon': json.dumps(value)
         }
 
         return loader.render_to_string(
@@ -49,10 +51,10 @@ class MapChoosePointWidget(Widget):
 
         context = {
             'map_url': settings.BASE_MAP,
-            'bbox': settings.MAP_BOUNDING_BOX,
+            'bbox': json.dumps(settings.MAP_BOUNDING_BOX),
             'name': name,
-            'point': value,
-            'polygon': self.polygon
+            'point': json.dumps(value),
+            'polygon': json.dumps(self.polygon)
         }
 
         return loader.render_to_string(
