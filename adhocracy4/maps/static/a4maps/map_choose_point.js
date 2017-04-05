@@ -59,47 +59,47 @@ window.jQuery(document).ready(function () {
   var $ = window.jQuery
   var L = window.L
 
-$('[data-map="choose_point"]').each(function (i, e) {
-  var name = e.getAttribute('data-name')
-  var polygon = JSON.parse(e.getAttribute('data-polygon'))
-  var point = JSON.parse(e.getAttribute('data-point'))
-  var baseurl = e.getAttribute('data-baseurl')
+  $('[data-map="choose_point"]').each(function (i, e) {
+    var name = e.getAttribute('data-name')
+    var polygon = JSON.parse(e.getAttribute('data-polygon'))
+    var point = JSON.parse(e.getAttribute('data-point'))
+    var baseurl = e.getAttribute('data-baseurl')
 
-  var map = createMap(L, baseurl, e)
+    var map = createMap(L, baseurl, e)
 
-  var polygonStyle = {
-    'color': '#0076ae',
-    'weight': 2,
-    'opacity': 1,
-    'fillOpacity': 0.2
-  }
+    var polygonStyle = {
+      'color': '#0076ae',
+      'weight': 2,
+      'opacity': 1,
+      'fillOpacity': 0.2
+    }
 
-  var basePolygon = L.geoJson(polygon, {style: polygonStyle}).addTo(map)
-  map.fitBounds(basePolygon)
-  map.options.minZoom = map.getZoom()
-  L.control.zoom({
-    position: 'topleft'
-  }).addTo(map)
+    var basePolygon = L.geoJson(polygon, {style: polygonStyle}).addTo(map)
+    map.fitBounds(basePolygon)
+    map.options.minZoom = map.getZoom()
+    L.control.zoom({
+      position: 'topleft'
+    }).addTo(map)
 
-  var marker
+    var marker
 
-  if (point) {
-    L.geoJson(point, {
-      pointToLayer: function (feature, newlatlng) {
-        var oldlatlng = newlatlng
-        marker = createMarker($, L, newlatlng, oldlatlng, basePolygon, map, name)
-        return marker
+    if (point) {
+      L.geoJson(point, {
+        pointToLayer: function (feature, newlatlng) {
+          var oldlatlng = newlatlng
+          marker = createMarker($, L, newlatlng, oldlatlng, basePolygon, map, name)
+          return marker
+        }
+      })
+    }
+
+    basePolygon.on('click', function (event) {
+      if (typeof marker === 'undefined') {
+        var oldlatlng = event.latlng
+        marker = createMarker($, L, event.latlng, oldlatlng, basePolygon, map, name)
+        var shape = marker.toGeoJSON()
+        $('#id_' + name).val(JSON.stringify(shape))
       }
     })
-  }
-
-  basePolygon.on('click', function (event) {
-    if (typeof marker === 'undefined') {
-      var oldlatlng = event.latlng
-      marker = createMarker($, L, event.latlng, oldlatlng, basePolygon, map, name)
-      var shape = marker.toGeoJSON()
-      $('#id_' + name).val(JSON.stringify(shape))
-    }
   })
-})
 })
