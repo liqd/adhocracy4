@@ -2,14 +2,13 @@ import json
 
 from django import template
 from django.contrib.contenttypes.models import ContentType
-from django.utils.safestring import mark_safe
 
 from adhocracy4.ratings import models as rating_models
 
 register = template.Library()
 
 
-@register.simple_tag(takes_context=True)
+@register.inclusion_tag('a4ratings/react_ratings.html', takes_context=True)
 def react_ratings(context, obj):
     request = context['request']
     user = request.user
@@ -47,10 +46,9 @@ def react_ratings(context, obj):
         'style': 'ideas',
     }
 
-    return mark_safe((
-        '<div id={mountpoint}></div><script>window.adhocracy4.renderRatings('
-        '{mountpoint}, {attributes})</script>').format(
-            attributes=json.dumps(attributes),
-            mountpoint=json.dumps(mountpoint)
-        )
-    )
+    context = {
+        'attributes': json.dumps(attributes),
+        'mountpoint': mountpoint
+    }
+
+    return context
