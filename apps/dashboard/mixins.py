@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils import functional
@@ -37,6 +38,10 @@ class DashboardProjectPublishMixin:
     def post(self, request, *args, **kwargs):
         pk = int(request.POST['project_pk'])
         project = get_object_or_404(Project, pk=pk)
+        can_edit = request.user.has_perm('a4projects.edit_project', project)
+
+        if not can_edit:
+            raise PermissionDenied
 
         if 'publish' in request.POST:
             project.is_draft = False
