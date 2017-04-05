@@ -1,6 +1,8 @@
+from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils import functional
+from django.utils.translation import ugettext as _
 from django.views import generic
 from rules.compat import access_mixins as mixins
 
@@ -38,8 +40,10 @@ class DashboardProjectPublishMixin:
 
         if 'publish' in request.POST:
             project.is_draft = False
+            messages.success(request, _('Project successfully published.'))
         elif 'unpublish' in request.POST:
             project.is_draft = True
+            messages.success(request, _('Project successfully unpublished.'))
         project.save()
 
         return redirect('dashboard-project-list',
