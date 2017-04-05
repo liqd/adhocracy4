@@ -33,6 +33,7 @@ INSTALLED_APPS = (
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.reports.apps.ReportsConfig',
     'adhocracy4.comments.apps.CommentsConfig',
+    'adhocracy4.maps.apps.MapsConfig',
 
     # adhocrayc4 generic apps
     'adhocracy4.ratings.apps.RatingsConfig',
@@ -43,6 +44,7 @@ INSTALLED_APPS = (
 
     # test apps
     'tests.apps.questions.apps.QuestionsConfig',
+    'tests.apps.locations.apps.LocationsConfig',
 
     # mandatory third party apps
     'easy_thumbnails',
