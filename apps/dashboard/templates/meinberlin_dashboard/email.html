@@ -12,7 +12,7 @@
         {% csrf_token %}
         {% for emailaddress in user.emailaddress_set.all %}
         <div class="form-check">
-            <label class="form-check__label" for="email_radio_{{forloop.counter}}">
+            <label class="form-check__label">
                 <input id="email_radio_{{forloop.counter}}" type="radio" name="email"
                        {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked" {% endif %}
                        value="{{emailaddress.email}}">
