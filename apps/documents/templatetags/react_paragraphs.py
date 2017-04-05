@@ -1,3 +1,5 @@
+import json
+
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import template
 from rest_framework.renderers import JSONRenderer
@@ -25,7 +27,7 @@ def react_paragraphs(context, doc, module):
     context = {
         'document': document,
         'module': module.pk,
-        'config': config,
+        'config': json.dumps(config),
         'id': _id
     }
 
