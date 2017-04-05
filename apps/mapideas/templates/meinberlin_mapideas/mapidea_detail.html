@@ -2,11 +2,6 @@
 {% load i18n module_tags rules react_comments react_ratings static wagtailcore_tags %}
 
 {% block extra_js %}
-    <script type="text/javascript">
-        var baseurl = "{{ map_url }}"
-        var point = {{ object.point | safe }}
-        var polygon = {{ object.module.settings_instance.polygon | safe }}
-    </script>
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
     <script type="text/javascript" src="{% static 'a4maps/map_display_point.js' %}"></script>
 {% endblock %}
@@ -70,7 +65,13 @@
             {% endif %}
 
             {% if object.point %}
-                <div id="map" style="height: 300px;"></div>
+                <div
+                    style="height: 300px;"
+                    data-map="display_point"
+                    data-baseurl="{{ map_url }}"
+                    data-point="{{ object.point }}"
+                    data-polygon="{{ object.module.settings_instance.polygon }}"
+                ></div>
             {% endif %}
 
             {% if object|has_feature:"rate" %}
