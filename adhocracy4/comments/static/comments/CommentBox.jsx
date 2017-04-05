@@ -4,7 +4,6 @@ var api = require('../../../static/api')
 
 var React = require('react')
 var update = require('react-addons-update')
-var moment = require('moment')
 var django = require('django')
 
 let CommentBox = React.createClass({
@@ -93,7 +92,7 @@ CommentBox.childContextTypes = {
   isAuthenticated: React.PropTypes.bool,
   isModerator: React.PropTypes.bool,
   comments_contenttype: React.PropTypes.number,
-  user_name: React.PropTypes.string,
+  user_name: React.PropTypes.string
 }
 
 module.exports = CommentBox

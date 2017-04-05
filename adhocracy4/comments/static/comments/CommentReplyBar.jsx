@@ -21,7 +21,7 @@ const CommentReplyBar = (props) => {
   if (props.allowForm) {
     replyButton = (
       <button className="comment-reply-button" type="button" onClick={props.showComments}>
-        <i className="fa fa-reply" aria-hidden="true"></i>
+        <i className="fa fa-reply" aria-hidden="true" />
         {django.gettext('Answer')}
       </button>
     )

@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.core import urlresolvers
 
 from adhocracy4 import emails
 
