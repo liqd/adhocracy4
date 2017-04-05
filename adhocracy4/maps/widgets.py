@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.forms.widgets import Widget
 from django.template import loader
-from django.utils.safestring import mark_safe
 
 
 class MapChoosePolygonWidget(Widget):
@@ -26,11 +25,9 @@ class MapChoosePolygonWidget(Widget):
             'polygon': value
         }
 
-        return mark_safe(
-            loader.render_to_string(
-                'a4maps/map_choose_polygon_widget.html',
-                context
-            )
+        return loader.render_to_string(
+            'a4maps/map_choose_polygon_widget.html',
+            context
         )
 
 
@@ -58,9 +55,7 @@ class MapChoosePointWidget(Widget):
             'polygon': self.polygon
         }
 
-        return mark_safe(
-            loader.render_to_string(
-                'a4maps/map_choose_point_widget.html',
-                context
-            )
+        return loader.render_to_string(
+            'a4maps/map_choose_point_widget.html',
+            context
         )
