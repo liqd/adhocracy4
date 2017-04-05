@@ -8,6 +8,18 @@
                 {% trans 'Edit'%}
             </a>
         </span>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="project_pk" value="{{ project.pk }}">
+            <button type="submit" name="{{ project.is_draft|yesno:'publish,unpublish' }}"
+                    class="button button--primary">
+                {% if project.is_draft %}
+                {% trans 'publish' %}
+                {% else %}
+                {% trans 'unpublish' %}
+                {% endif %}
+            </button>
+        </form>
     </div>
     <h3 class="list-item__title">
         <a href="{% url 'project-detail' project.slug %}">

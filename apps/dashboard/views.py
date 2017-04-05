@@ -15,6 +15,7 @@ from . import forms
 
 class DashboardProjectListView(dashboard_mixins.DashboardBaseMixin,
                                rules_mixins.PermissionRequiredMixin,
+                               dashboard_mixins.DashboardProjectPublishMixin,
                                generic.ListView):
     model = project_models.Project
     template_name = 'meinberlin_dashboard/project_list.html'
