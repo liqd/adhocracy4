@@ -3,17 +3,17 @@
         {% spaceless %}
         <span class="rating">
             <span class="rating-button rating-up is-read-only" title="Positive Ratings">
-                {{ proposal.positive_rating_count }}
                 <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                {{ proposal.positive_rating_count }}
             </span>
             <span class="rating-button rating-down is-read-only" title="Negative Ratings">
-                {{ proposal.negative_rating_count }}
                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                {{ proposal.negative_rating_count }}
             </span>
         </span>
-        <span title="Comments">
-            {{ proposal.comment_count }}
+        <span title="Comments" class="list-item__comments">
             <i class="fa fa-comment-o" aria-hidden="true"></i>
+            {{ proposal.comment_count }}
         </span>
         {% endspaceless %}
     </div>
