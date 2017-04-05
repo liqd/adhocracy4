@@ -10,7 +10,7 @@ $('[data-map="display_point"]').each(function (i, e) {
   var basemap = baseurl + '{z}/{x}/{y}.png'
   var osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   var baselayer = L.tileLayer(basemap, {attribution: osmAttrib})
-  var map = new L.Map('map', {scrollWheelZoom: false, zoomControl: false})
+  var map = new L.Map(e, {scrollWheelZoom: false, zoomControl: false})
   baselayer.addTo(map)
 
   var polygonStyle = {

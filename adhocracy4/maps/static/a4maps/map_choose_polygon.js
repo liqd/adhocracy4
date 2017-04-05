@@ -1,8 +1,8 @@
-function createMap (L, baseurl, name) {
+function createMap (L, baseurl, e) {
   var basemap = baseurl + '{z}/{x}/{y}.png'
   var osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   var baselayer = L.tileLayer(basemap, { maxZoom: 18, attribution: osmAttrib })
-  var map = new L.Map('map_' + name, {scrollWheelZoom: false, zoomControl: true, minZoom: 2})
+  var map = new L.Map(e, {scrollWheelZoom: false, zoomControl: true, minZoom: 2})
   baselayer.addTo(map)
   return map
 }
@@ -28,8 +28,8 @@ $('[data-map="choose_polygon"]').each(function (i, e) {
   var bbox = JSON.parse(e.getAttribute('data-bbox'))
   var baseurl = e.getAttribute('data-baseurl')
 
-  var map = createMap(L, baseurl, name)
-  var mapVisible = $('#map_' + name).width() !== 0
+  var map = createMap(L, baseurl, e)
+  var mapVisible = $(e).width() !== 0
 
   var polygonStyle = {
     'color': '#0076ae',
