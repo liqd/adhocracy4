@@ -1,46 +1,19 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404
-from django.utils import functional
 from django.utils.translation import ugettext as _
 from django.views import generic
-from rules.compat import access_mixins as mixins
 
 from adhocracy4.categories import models as category_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 
-from apps.organisations.models import Organisation
-
+from . import mixins as dashboard_mixins
 from . import blueprints
 from . import forms
 
 
-class DashboardBaseMixin(mixins.LoginRequiredMixin,
-                         generic.base.ContextMixin):
-
-    @functional.cached_property
-    def organisation(self):
-        if 'organisation_slug' in self.kwargs:
-            slug = self.kwargs['organisation_slug']
-            return get_object_or_404(Organisation, slug=slug)
-        else:
-            return self.request.user.organisation_set.first()
-
-    @functional.cached_property
-    def other_organisations_of_user(self):
-        user = self.request.user
-        if self.organisation:
-            return user.organisation_set.exclude(pk=self.organisation.pk)
-        else:
-            return None
-
-    def get_permission_object(self):
-        return self.organisation
-
-
-class DashboardProjectListView(DashboardBaseMixin,
+class DashboardProjectListView(dashboard_mixins.DashboardBaseMixin,
                                rules_mixins.PermissionRequiredMixin,
                                generic.ListView):
     model = project_models.Project
@@ -56,7 +29,7 @@ class DashboardProjectListView(DashboardBaseMixin,
         return reverse('dashboard-project-list')
 
 
-class DashboardBlueprintListView(DashboardBaseMixin,
+class DashboardBlueprintListView(dashboard_mixins.DashboardBaseMixin,
                                  rules_mixins.PermissionRequiredMixin,
                                  generic.TemplateView):
     template_name = 'meinberlin_dashboard/blueprint_list.html'
@@ -64,7 +37,7 @@ class DashboardBlueprintListView(DashboardBaseMixin,
     permission_required = 'meinberlin_organisations.initiate_project'
 
 
-class DashboardProjectCreateView(DashboardBaseMixin,
+class DashboardProjectCreateView(dashboard_mixins.DashboardBaseMixin,
                                  rules_mixins.PermissionRequiredMixin,
                                  SuccessMessageMixin,
                                  blueprints.BlueprintMixin,
@@ -88,7 +61,7 @@ class DashboardProjectCreateView(DashboardBaseMixin,
             kwargs={'organisation_slug': self.organisation.slug, })
 
 
-class DashboardProjectUpdateView(DashboardBaseMixin,
+class DashboardProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
                                  rules_mixins.PermissionRequiredMixin,
                                  SuccessMessageMixin,
                                  generic.UpdateView):
