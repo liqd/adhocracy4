@@ -10,6 +10,7 @@ from adhocracy4.projects import models as project_models
 
 from apps.contrib import multiform
 from apps.contrib.formset import dynamic_modelformset_factory
+from apps.organisations.models import Organisation
 from apps.users.models import User
 
 
@@ -260,6 +261,16 @@ class ProjectUpdateForm(ProjectEditFormBase):
                     category.save()
             for category in self.forms['categories'].deleted_objects:
                 category.delete()
+
+
+class OrganisationForm(forms.ModelForm):
+
+    class Meta:
+        model = Organisation
+        fields = ['name']
+        labels = {
+            'name': _('Organisation name')
+        }
 
 
 class ProfileForm(forms.ModelForm):

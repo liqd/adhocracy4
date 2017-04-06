@@ -122,6 +122,25 @@ class DashboardProjectUpdateView(DashboardBaseMixin,
         return kwargs
 
 
+class DashboardOrganisationUpdateView(DashboardBaseMixin,
+                                      rules_mixins.PermissionRequiredMixin,
+                                      SuccessMessageMixin,
+                                      generic.UpdateView):
+
+    model = Organisation
+    form_class = forms.OrganisationForm
+    slug_url_kwarg = 'organisation_slug'
+    template_name = 'meinberlin_dashboard/organisation_form.html'
+    success_message = _('Organisation successfully updated.')
+    permission_required = 'meinberlin_organisations.modify_organisation'
+
+    def get_success_url(self):
+        return reverse('dashboard-organisation-edit',
+                       kwargs={
+                           'organisation_slug': self.organisation.slug,
+                       })
+
+
 class DashboardEmailView(DashboardBaseMixin, account_views.EmailView):
     menu_item = 'email'
     template_name = 'meinberlin_dashboard/email.html'
