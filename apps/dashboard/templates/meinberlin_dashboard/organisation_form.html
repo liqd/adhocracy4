@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block dashboard_content %}
-    <h3>{% trans "Edit your organisation information" %}</h3>
+    <h1>{% trans "Edit your organisation information" %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
