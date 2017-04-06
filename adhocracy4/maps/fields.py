@@ -1,4 +1,3 @@
-from django.core import validators as django_validators
 from django.utils.translation import ugettext_lazy as _
 from jsonfield.fields import JSONField, JSONFormField
 
@@ -6,12 +5,11 @@ from jsonfield.fields import JSONField, JSONFormField
 class GeoJSONFormField(JSONFormField):
 
     def to_python(self, value):
-        empty_featureset = '{"type":"FeatureCollection","features":[]}'
-        if (value not in django_validators.EMPTY_VALUES and not
-                value == empty_featureset):
-            return super().to_python(value)
-        else:
+        featureset = super().to_python(value)
+        empty_featuresets = [{}, {'type': 'FeatureCollection', 'features': []}]
+        if featureset in empty_featuresets:
             return None
+        return featureset
 
 
 class GeoJSONField(JSONField):
