@@ -22,9 +22,9 @@ class MapChoosePolygonWidget(Widget):
 
         context = {
             'map_url': settings.BASE_MAP,
-            'bbox': json.dumps(settings.MAP_BOUNDING_BOX),
+            'bbox': settings.MAP_BOUNDING_BOX,
             'name': name,
-            'polygon': json.dumps(value)
+            'polygon': value
         }
 
         return loader.render_to_string(

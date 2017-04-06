@@ -4,7 +4,7 @@
     data-baseurl="{{ map_url }}"
     data-bbox="{{ bbox }}"
     data-name="{{ name }}"
-    data-polygon="{{ polygon }}"
+    {% if polygon %}data-polygon="{{ polygon }}"{% endif %}
 ></div>
 
 <input id="id_{{ name }}" type="hidden" name="{{ name }}" rows="10" {% if polygon %}value="{{ polygon }}"{% endif %}>
