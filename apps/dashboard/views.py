@@ -1,3 +1,4 @@
+from allauth.account import views as account_views
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
@@ -12,6 +13,7 @@ from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 
 from apps.organisations.models import Organisation
+from apps.users.models import User
 
 from . import blueprints
 from . import forms
@@ -118,3 +120,37 @@ class DashboardProjectUpdateView(DashboardBaseMixin,
                 module__project=self.object)
 
         return kwargs
+
+
+class DashboardEmailView(DashboardBaseMixin, account_views.EmailView):
+    menu_item = 'email'
+    template_name = 'meinberlin_dashboard/email.html'
+
+    def get_success_url(self):
+        return self.request.path
+
+
+class DashboardProfileView(DashboardBaseMixin,
+                           SuccessMessageMixin,
+                           generic.UpdateView):
+
+    model = User
+    template_name = "meinberlin_dashboard/profile.html"
+    form_class = forms.ProfileForm
+    success_message = _("Your profile was successfully updated.")
+    menu_item = 'profile'
+
+    def get_object(self):
+        return get_object_or_404(User, pk=self.request.user.id)
+
+    def get_success_url(self):
+        return self.request.path
+
+
+class ChangePasswordView(DashboardBaseMixin,
+                         account_views.PasswordChangeView):
+    menu_item = 'password'
+    template_name = 'meinberlin_dashboard/password.html'
+
+    def get_success_url(self):
+        return reverse('dashboard-password')
