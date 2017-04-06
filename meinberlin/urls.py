@@ -14,6 +14,7 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
+from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.ratings.api import RatingViewSet
 
@@ -30,10 +31,11 @@ js_info_dict = {
 }
 
 router = routers.DefaultRouter()
-router.register(r'ratings', RatingViewSet, base_name='ratings')
-router.register(r'comments', CommentViewSet, base_name='comments')
 router.register(r'documents', DocumentViewSet, base_name='documents')
 
+ct_router = a4routers.ContentTypeDefaultRouter()
+ct_router.register(r'comments', CommentViewSet, base_name='comments')
+ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
 
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
@@ -49,6 +51,7 @@ urlpatterns = [
     url(r'^paragraphs/', include(paragraph_urls, namespace='documents')),
     url(r'^budgeting/', include(budgeting_urls, namespace='budgeting')),
 
+    url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(router.urls)),
 
     url(r'^upload/',
