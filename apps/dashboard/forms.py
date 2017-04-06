@@ -9,6 +9,7 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from apps.contrib import multiform
 from apps.contrib.formset import dynamic_modelformset_factory
+from apps.users.models import User
 
 
 def get_module_settings_form(settings_instance_or_modelref):
@@ -254,3 +255,10 @@ class ProjectUpdateForm(ProjectEditFormBase):
                     category.save()
             for category in self.forms['categories'].deleted_objects:
                 category.delete()
+
+
+class ProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['username', ]
