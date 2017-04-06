@@ -14,11 +14,11 @@ from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 
 from apps.organisations.models import Organisation
-from apps.projects.views import ProjectFilterSet
 from apps.users.models import User
 
 from . import blueprints
 from . import forms
+from .filtersets import DashboardProjectFilterSet
 
 
 class DashboardBaseMixin(mixins.LoginRequiredMixin,
@@ -49,7 +49,7 @@ class DashboardProjectListView(DashboardBaseMixin,
                                filter_views.FilteredListView):
     model = project_models.Project
     paginate_by = 12
-    filter_set = ProjectFilterSet
+    filter_set = DashboardProjectFilterSet
     template_name = 'meinberlin_dashboard/project_list.html'
     permission_required = 'meinberlin_organisations.initiate_project'
 
