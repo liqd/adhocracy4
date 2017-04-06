@@ -33,4 +33,4 @@ class DashboardProjectFilterSet(django_filters.FilterSet):
 
     class Meta:
         model = Project
-        fields = ['organisation', 'is_archived', 'created', 'typ']
+        fields = ['is_archived', 'created', 'typ']
