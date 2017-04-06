@@ -41,6 +41,8 @@ function isMarkerInsidePolygon (marker, poly) {
   var x = marker.getLatLng().lat
   var y = marker.getLatLng().lng
 
+  // Algorithm comes from:
+  // https://github.com/substack/point-in-polygon/blob/master/index.js
   var inside = false
   for (var i = 0, j = polyPoints.length - 1; i < polyPoints.length; j = i++) {
     var xi = polyPoints[i].lat
