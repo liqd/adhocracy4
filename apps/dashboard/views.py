@@ -1,6 +1,7 @@
 from allauth.account import views as account_views
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
+from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 from django.views import generic
 
@@ -9,8 +10,6 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 
-
-from apps.organisations.models import Organisation
 from apps.users.models import User
 
 from . import mixins as dashboard_mixins
@@ -99,7 +98,7 @@ class DashboardProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
         return kwargs
 
 
-class DashboardEmailView(dashboard_mixins.DashboardBaseMixin, 
+class DashboardEmailView(dashboard_mixins.DashboardBaseMixin,
                          account_views.EmailView):
     menu_item = 'email'
     template_name = 'meinberlin_dashboard/email.html'
