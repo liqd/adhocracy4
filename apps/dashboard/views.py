@@ -99,7 +99,8 @@ class DashboardProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
         return kwargs
 
 
-class DashboardEmailView(DashboardBaseMixin, account_views.EmailView):
+class DashboardEmailView(dashboard_mixins.DashboardBaseMixin, 
+                         account_views.EmailView):
     menu_item = 'email'
     template_name = 'meinberlin_dashboard/email.html'
 
@@ -107,7 +108,7 @@ class DashboardEmailView(DashboardBaseMixin, account_views.EmailView):
         return self.request.path
 
 
-class DashboardProfileView(DashboardBaseMixin,
+class DashboardProfileView(dashboard_mixins.DashboardBaseMixin,
                            SuccessMessageMixin,
                            generic.UpdateView):
 
@@ -124,7 +125,7 @@ class DashboardProfileView(DashboardBaseMixin,
         return self.request.path
 
 
-class ChangePasswordView(DashboardBaseMixin,
+class ChangePasswordView(dashboard_mixins.DashboardBaseMixin,
                          account_views.PasswordChangeView):
     menu_item = 'password'
     template_name = 'meinberlin_dashboard/password.html'
