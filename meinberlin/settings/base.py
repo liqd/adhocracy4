@@ -274,9 +274,13 @@ BLEACH_LIST = {
 A4_ORGANISATIONS_MODEL = 'meinberlin_organisations.Organisation'
 
 A4_RATEABLES = (
+    ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
 )
 
 A4_COMMENTABLES = (
+    ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_documents', 'document'),
+    ('meinberlin_documents', 'paragraph'),
 )
