@@ -78,6 +78,11 @@ a {
     }
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 a:not([href]) {
     color: inherit;
     text-decoration: inherit;
