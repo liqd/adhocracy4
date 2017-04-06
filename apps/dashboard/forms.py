@@ -11,6 +11,7 @@ from adhocracy4.projects import models as project_models
 from apps.contrib import multiform
 from apps.contrib.formset import dynamic_modelformset_factory
 from apps.organisations.models import Organisation
+from apps.users.models import User
 
 
 def get_module_settings_form(settings_instance_or_modelref):
@@ -270,3 +271,10 @@ class OrganisationForm(forms.ModelForm):
         labels = {
             'name': _('Organisation name')
         }
+
+
+class ProfileForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['username', ]
