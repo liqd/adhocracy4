@@ -42,7 +42,7 @@ class MapItemListMixin(object):
             feature_list.append(point_dict)
 
         result['features'] = feature_list
-        return result
+        return json.dumps(result)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -57,4 +57,7 @@ class MapItemDetailMixin(object):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['map_url'] = settings.BASE_MAP
+        context['polygon'] = json.dumps(self.object.module.settings_instance
+                                        .polygon)
+        context['point'] = json.dumps(self.object.point)
         return context
