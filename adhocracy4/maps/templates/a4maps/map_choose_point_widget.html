@@ -4,7 +4,7 @@
     data-baseurl="{{ map_url }}"
     data-bbox="{{ bbox }}"
     data-name="{{ name }}"
-    data-point="{{ point }}"
+    {% if point %}data-point="{{ point }}"{% endif %}
     data-polygon="{{ polygon }}"
 ></div>
 

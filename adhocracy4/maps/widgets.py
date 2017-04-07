@@ -22,7 +22,7 @@ class MapChoosePolygonWidget(Widget):
 
         context = {
             'map_url': settings.BASE_MAP,
-            'bbox': settings.MAP_BOUNDING_BOX,
+            'bbox': json.dumps(settings.MAP_BOUNDING_BOX),
             'name': name,
             'polygon': value
         }
@@ -53,7 +53,9 @@ class MapChoosePointWidget(Widget):
             'map_url': settings.BASE_MAP,
             'bbox': json.dumps(settings.MAP_BOUNDING_BOX),
             'name': name,
-            'point': json.dumps(value),
+            'point': value,
+            # .dumps is required here because we pass it directly instead of
+            # retrieving it from the widget which calls value_from_object.
             'polygon': json.dumps(self.polygon)
         }
 
