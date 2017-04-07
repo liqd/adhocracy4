@@ -54,7 +54,7 @@ class DashboardProjectListView(DashboardBaseMixin,
     permission_required = 'meinberlin_organisations.initiate_project'
 
     def get_queryset(self):
-        return self.filter().qs.filter(
+        return super().get_queryset().filter(
             organisation=self.organisation
         )
 
