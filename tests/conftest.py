@@ -3,6 +3,7 @@ from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
 from tests.images import factories as img_factories
+from tests.apps.locations import factories as location_factories
 from tests.apps.questions import factories as q_factories
 from adhocracy4.test import factories
 
@@ -26,3 +27,4 @@ register(factories.ProjectFactory)
 register(factories.ModuleFactory)
 register(factories.PhaseFactory)
 register(q_factories.QuestionFactory)
+register(location_factories.LocationFactory)

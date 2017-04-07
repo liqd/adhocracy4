@@ -106,3 +106,11 @@ class PhaseFactory(factory.django.DjangoModelFactory):
     module = factory.SubFactory(ModuleFactory)
     start_date = parse('2013-01-02 00:00:00 UTC')
     end_date = parse('2013-01-03 00:00:00 UTC')
+
+
+class SettingsFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        abstract = True
+
+    module = factory.SubFactory(ModuleFactory)
