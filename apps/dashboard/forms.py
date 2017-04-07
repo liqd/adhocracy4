@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ValidationError
 from django.db.models import loading
 from django.forms import modelformset_factory
 from django.utils.translation import ugettext as _
@@ -10,7 +12,8 @@ from adhocracy4.projects import models as project_models
 
 from apps.contrib import multiform
 from apps.contrib.formset import dynamic_modelformset_factory
-from apps.users.fields import UserField
+from apps.users.fields import CommaSeparatedEmailField
+from apps.users.models import User
 
 
 def get_module_settings_form(settings_instance_or_modelref):
@@ -263,12 +266,29 @@ class ProjectUpdateForm(ProjectEditFormBase):
 
 
 class AddModeratorForm(forms.ModelForm):
-    user = UserField()
+    add_moderators = CommaSeparatedEmailField()
 
     class Meta:
         model = project_models.Project
-        fields = ('user',)
+        fields = ('moderators',)
+
+    def clean_add_moderators(self):
+        users = []
+        errors = []
+        for email in self.cleaned_data['add_moderators']:
+            try:
+                user = User.objects.get(email__exact=email)
+                users.append(user)
+            except ObjectDoesNotExist:
+                errors.append(
+                    ValidationError('{} is not registered.'.format(email))
+                )
+
+        if errors:
+            raise ValidationError(errors)
+
+        return users
 
     def save(self, commit=True):
         if commit:
-            self.instance.moderators.add(self.cleaned_data['user'])
+            self.instance.moderators.add(self.cleaned_data['add_moderators'])

@@ -4,7 +4,7 @@
 {% block dashboard_content %}
     <form method="POST">
         {% csrf_token %}
-        {{ form }}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.add_moderators %}
         <input type="submit" class="button button--primary" value="{% trans 'Submit' %}" />
     </form>
 
