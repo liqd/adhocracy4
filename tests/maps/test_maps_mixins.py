@@ -33,7 +33,8 @@ def location_list_view(module):
 
 @override_settings(BASE_MAP='https://{s}.tile.openstreetmap.org/')
 @pytest.mark.django_db
-def test_mapitem_detail_mixin(rf, location_detail_view, location):
+def test_mapitem_detail_mixin(rf, location_detail_view, location, module,
+                            area_settings):
     request = rf.get('/url')
     response = location_detail_view(request, pk=1)
     map_url = response.context_data['map_url']
@@ -50,23 +51,26 @@ def test_mapitem_list_mixin(rf, location_list_view, location, module,
     mapitems_json = response.context_data['mapitems_json']
     polygon = json.loads(response.context_data['polygon'])
     assert map_url == settings.BASE_MAP
-    assert mapitems_json == {
-        'type': 'FeatureCollection',
-        'features': [{
-            'type': 'Feature',
-            'properties':
-                {'name': '',
-                 'slug': 'location',
-                 'image': '',
-                 'comments_count': '',
-                 'positive_rating_count': '',
-                 'negative_rating_count': '',
-                 'url': '/location/1/'
-                 },
-            'geometry': {
-                'type': 'Point',
-                'coordinates': [1.0, 1.0]}
-        }]}
+    assert json.loads(mapitems_json) == {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "properties": {
+                    "name": "",
+                    "comments_count": "",
+                    "url": "/location/1/",
+                    "positive_rating_count": "",
+                    "slug": "location",
+                    "image": "",
+                    "negative_rating_count": ""},
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [1.0, 1.0]
+                }
+            }
+        ]
+    }
     assert polygon == {
         'type': 'FeatureCollection',
         'features': [{
