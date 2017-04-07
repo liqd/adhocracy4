@@ -8,6 +8,7 @@ from django.views import generic
 from rules.compat import access_mixins as mixins
 
 from adhocracy4.categories import models as category_models
+from adhocracy4.filters import views as filter_views
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
@@ -17,6 +18,7 @@ from apps.users.models import User
 
 from . import blueprints
 from . import forms
+from .filtersets import DashboardProjectFilterSet
 
 
 class DashboardBaseMixin(mixins.LoginRequiredMixin,
@@ -44,13 +46,15 @@ class DashboardBaseMixin(mixins.LoginRequiredMixin,
 
 class DashboardProjectListView(DashboardBaseMixin,
                                rules_mixins.PermissionRequiredMixin,
-                               generic.ListView):
+                               filter_views.FilteredListView):
     model = project_models.Project
+    paginate_by = 12
+    filter_set = DashboardProjectFilterSet
     template_name = 'meinberlin_dashboard/project_list.html'
     permission_required = 'meinberlin_organisations.initiate_project'
 
     def get_queryset(self):
-        return self.model.objects.filter(
+        return super().get_queryset().filter(
             organisation=self.organisation
         )
 

@@ -11,6 +11,8 @@
         </a>
     </p>
 
+    {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+
     {% if project_list|length == 0 %}
         <div>
             {% trans 'No projects created' %}
