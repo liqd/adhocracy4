@@ -1,0 +1,11 @@
+<div
+    style="height: 300px;"
+    data-map="choose_point"
+    data-baseurl="{{ map_url }}"
+    data-bbox="{{ bbox }}"
+    data-name="{{ name }}"
+    {% if point %}data-point="{{ point }}"{% endif %}
+    data-polygon="{{ polygon }}"
+></div>
+
+<input id="id_{{ name }}" type="hidden" name="{{ name }}" rows="10" {% if point %}value="{{ point }}"{% endif %}>

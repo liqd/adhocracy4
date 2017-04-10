@@ -19,7 +19,9 @@
     "moment": "^2.14.1",
     "react": "15.1.0",
     "react-addons-update": "~15.1.0",
-    "react-dom": "15.1.0"
+    "react-dom": "15.1.0",
+    "leaflet": "^0.7.7",
+    "leaflet-draw": "^0.4.2"
   },
   "devDependencies": {
     "eslint": "^3.7.1",

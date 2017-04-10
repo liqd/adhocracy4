@@ -11,3 +11,4 @@ djangorestframework==3.5.1
 easy-thumbnails==2.3
 python-magic==0.4.12
 rules==1.1.1
+jsonfield==2.0.1
