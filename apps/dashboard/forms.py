@@ -7,7 +7,6 @@ from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
-
 from apps.contrib import multiform
 from apps.contrib.formset import dynamic_modelformset_factory
 from apps.organisations.models import Organisation
@@ -39,10 +38,6 @@ class ProjectForm(forms.ModelForm):
         model = project_models.Project
         fields = ['name', 'description', 'image', 'information', 'result',
                   'is_archived']
-
-    def save(self, commit=True):
-        self.instance.is_draft = 'save_draft' in self.data
-        return super().save(commit)
 
 
 class PhaseForm(forms.ModelForm):
