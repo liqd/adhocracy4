@@ -1,7 +1,6 @@
-function createMap (L, baseurl, e) {
+function createMap (L, baseurl, attribution, e) {
   var basemap = baseurl + '{z}/{x}/{y}.png'
-  var osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  var baselayer = L.tileLayer(basemap, { maxZoom: 18, attribution: osmAttrib })
+  var baselayer = L.tileLayer(basemap, { maxZoom: 18, attribution: attribution })
   var map = new L.Map(e, {scrollWheelZoom: false, zoomControl: true, minZoom: 2})
   baselayer.addTo(map)
   return map
@@ -27,8 +26,9 @@ window.jQuery(document).ready(function () {
     var polygon = JSON.parse(e.getAttribute('data-polygon'))
     var bbox = JSON.parse(e.getAttribute('data-bbox'))
     var baseurl = e.getAttribute('data-baseurl')
+    var attribution = e.getAttribute('data-attribution')
 
-    var map = createMap(L, baseurl, e)
+    var map = createMap(L, baseurl, attribution, e)
     var mapVisible = $(e).width() !== 0
 
     var polygonStyle = {

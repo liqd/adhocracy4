@@ -22,6 +22,7 @@ class MapChoosePolygonWidget(Widget):
 
         context = {
             'map_url': settings.BASE_MAP,
+            'attribution': settings.MAP_ATTRIBUTION,
             'bbox': json.dumps(settings.MAP_BOUNDING_BOX),
             'name': name,
             'polygon': value
@@ -51,6 +52,7 @@ class MapChoosePointWidget(Widget):
 
         context = {
             'map_url': settings.BASE_MAP,
+            'attribution': settings.MAP_ATTRIBUTION,
             'name': name,
             'point': value,
             # .dumps is required here because we pass it directly instead of
