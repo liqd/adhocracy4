@@ -66,11 +66,13 @@ var Comment = React.createClass({
     if (this.state.edit) {
       comment = (
         <CommentEditForm
+          subjectType={this.props.content_type}
+          subjectId={this.props.object_pk}
           comment={this.props.children}
           rows="5"
           handleCancel={this.toggleEdit}
           onCommentSubmit={newComment => {
-            this.props.handleCommentModify(newComment.comment, this.props.index, this.props.parentIndex)
+            this.props.handleCommentModify(newComment, this.props.index, this.props.parentIndex)
             this.state.edit = false
           }}
         />

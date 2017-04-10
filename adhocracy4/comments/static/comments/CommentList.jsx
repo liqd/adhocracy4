@@ -17,6 +17,7 @@ var CommentList = React.createClass({
               authorIsModerator={comment.is_moderator}
               id={comment.id}
               content_type={comment.content_type}
+              object_pk={comment.object_pk}
               is_deleted={comment.is_deleted}
               index={index}
               parentIndex={this.props.parentIndex}

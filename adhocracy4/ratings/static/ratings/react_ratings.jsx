@@ -22,7 +22,11 @@ var RatingBox = React.createClass({
     }.bind(this))
   },
   handleRatingModify: function (number, id) {
-    api.rating.change({value: number}, id)
+    api.rating.change({
+      object_pk: this.props.objectId,
+      content_type: this.props.contentType,
+      value: number
+    }, id)
       .done(function (data) {
         this.setState({
           positiveRatings: data.meta_info.positive_ratings_on_same_object,

@@ -34,16 +34,14 @@ let CommentBox = React.createClass({
         })
       }.bind(this))
   },
-  handleCommentModify: function (commentText, index, parentIndex) {
+  handleCommentModify: function (modifiedComment, index, parentIndex) {
     var comments = this.state.comments
     var comment = comments[index]
     if (typeof parentIndex !== 'undefined') {
       comment = comments[parentIndex].child_comments[index]
     }
 
-    api.comments.change({
-      comment: commentText, id: comment.id
-    }, comment.id)
+    api.comments.change(modifiedComment, comment.id)
       .done(this.updateStateComment.bind(this, index, parentIndex))
   },
   handleCommentDelete: function (index, parentIndex) {
@@ -53,7 +51,11 @@ let CommentBox = React.createClass({
       comment = comments[parentIndex].child_comments[index]
     }
 
-    api.comments.delete(comment.id)
+    var data = {
+      content_type: comment.content_type,
+      object_pk: comment.object_pk
+    }
+    api.comments.delete(data, comment.id)
       .done(this.updateStateComment.bind(this, index, parentIndex))
   },
   getInitialState: function () {
