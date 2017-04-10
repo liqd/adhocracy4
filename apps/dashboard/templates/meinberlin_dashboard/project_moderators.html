@@ -1,4 +1,4 @@
-{% extends "meinberlin_dashboard/dashboard_base.html" %}
+{% extends "meinberlin_dashboard/base_dashboard.html" %}
 {% load i18n %}
 
 {% block dashboard_content %}
@@ -27,7 +27,7 @@
                         <form method="post">
                             {% csrf_token %}
                             <input type="hidden" name="moderator_pk" value="{{ moderator.pk }}">
-                            <button type="submit" id="remove_{{ moderator.pk }}" value="remove">
+                            <button type="submit" name="submit_action" value="remove_moderator">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </button>
                         </form>

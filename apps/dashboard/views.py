@@ -158,6 +158,7 @@ class ChangePasswordView(dashboard_mixins.DashboardBaseMixin,
 
 
 class DashboardProjectModeratorsView(dashboard_mixins.DashboardBaseMixin,
+                                     dashboard_mixins.DashboardModRemovalMixin,
                                      rules_mixins.PermissionRequiredMixin,
                                      generic.UpdateView):
 
