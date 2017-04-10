@@ -39,7 +39,8 @@ class DashboardProjectPublishMixin:
         if 'submit_action' in request.POST:
             pk = int(request.POST['project_pk'])
             project = get_object_or_404(Project, pk=pk)
-            can_edit = request.user.has_perm('a4projects.edit_project', project)
+            can_edit = request.user.has_perm('a4projects.edit_project',
+                                             project)
 
             if not can_edit:
                 raise PermissionDenied
@@ -49,7 +50,8 @@ class DashboardProjectPublishMixin:
                 messages.success(request, _('Project successfully published.'))
             elif request.POST['submit_action'] == 'unpublish':
                 project.is_draft = True
-                messages.success(request, _('Project successfully unpublished.'))
+                messages.success(request,
+                                 _('Project successfully unpublished.'))
             project.save()
 
         return redirect('dashboard-project-list',
