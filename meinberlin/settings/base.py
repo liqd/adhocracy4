@@ -71,6 +71,7 @@ INSTALLED_APPS = (
     'apps.ideas.apps.Config',
     'apps.documents.apps.Config',
     'apps.budgeting.apps.Config',
+    'apps.moderatorfeedback.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
