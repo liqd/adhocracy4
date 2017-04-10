@@ -51,7 +51,6 @@ class MapChoosePointWidget(Widget):
 
         context = {
             'map_url': settings.BASE_MAP,
-            'bbox': json.dumps(settings.MAP_BOUNDING_BOX),
             'name': name,
             'point': value,
             # .dumps is required here because we pass it directly instead of
