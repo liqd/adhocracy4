@@ -20,29 +20,3 @@ class CommaSeparatedEmailField(Field):
     def to_python(self, value):
         emails_str = value.strip(' ,')
         return re.split(r',\s?', emails_str)
-
-
-"""
-class ProjectInviteForm(forms.Form):
-    def __init__(self, project, *args, **kwargs):
-        self.project = project
-        super().__init__(*args, **kwargs)
-
-    def clean_emails(self):
-        emails_str = self.cleaned_data['emails'].strip(' ,')
-        emails = re.split(r',\s?', emails_str)
-
-        query = {
-            'project': self.project,
-            'email__in': emails,
-        }
-        existing = member_models.Invite.objects.filter(**query)\
-                                               .values_list('email', flat=True)
-        if existing:
-            for address in existing:
-                raise ValidationError(
-                    '{} already invited'.format(address)
-                )
-
-        return emails
-"""
