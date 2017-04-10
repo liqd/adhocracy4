@@ -18,7 +18,7 @@
         <form method="post" class="list-item__action">
             {% csrf_token %}
             <input type="hidden" name="project_pk" value="{{ project.pk }}">
-            <button type="submit" name="{{ project.is_draft|yesno:'publish,unpublish' }}"
+            <button type="submit" name="submit_action" value="{{ project.is_draft|yesno:'publish,unpublish' }}"
                     class="button button--light">
                 <i class="fa fa-flag" aria-hidden="true"></i>
                 {% if project.is_draft %}

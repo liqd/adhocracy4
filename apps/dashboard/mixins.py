@@ -36,20 +36,21 @@ class DashboardBaseMixin(mixins.LoginRequiredMixin,
 
 class DashboardProjectPublishMixin:
     def post(self, request, *args, **kwargs):
-        pk = int(request.POST['project_pk'])
-        project = get_object_or_404(Project, pk=pk)
-        can_edit = request.user.has_perm('a4projects.edit_project', project)
+        if 'submit_action' in request.POST:
+            pk = int(request.POST['project_pk'])
+            project = get_object_or_404(Project, pk=pk)
+            can_edit = request.user.has_perm('a4projects.edit_project', project)
 
-        if not can_edit:
-            raise PermissionDenied
+            if not can_edit:
+                raise PermissionDenied
 
-        if 'publish' in request.POST:
-            project.is_draft = False
-            messages.success(request, _('Project successfully published.'))
-        elif 'unpublish' in request.POST:
-            project.is_draft = True
-            messages.success(request, _('Project successfully unpublished.'))
-        project.save()
+            if request.POST['submit_action'] == 'publish':
+                project.is_draft = False
+                messages.success(request, _('Project successfully published.'))
+            elif request.POST['submit_action'] == 'unpublish':
+                project.is_draft = True
+                messages.success(request, _('Project successfully unpublished.'))
+            project.save()
 
         return redirect('dashboard-project-list',
                         organisation_slug=self.organisation.slug)
