@@ -2,28 +2,22 @@
     float: right;
     display: inline-block;
     padding: 0.4em 0.6em;
-    // paddings unified with category
-    // the following would be closer to the concept
-    // padding: 0.2em 0.4em;
     font-size: $font-size-sm;
     border-radius: 0.3em;
 }
 
 .moderator-feedback--CONSIDERATION {
-    $feedback-color: #ffae00;
-    background-color: $feedback-color;
-    color: contrast-color($feedback-color);
+    background-color: $feedback-color-consideration;
+    color: contrast-color($feedback-color-consideration);
 }
 
 .moderator-feedback--REJECTED {
-    $feedback-color: #dc3818;
-    background-color: $feedback-color;
-    color: contrast-color($feedback-color);
+    background-color: $feedback-color-rejected;
+    color: contrast-color($feedback-color-rejected);
 }
 
 .moderator-feedback--ACCEPTED {
-    $feedback-color: #0a820a;
-    background-color: $feedback-color;
-    color: contrast-color($feedback-color);
+    background-color: $feedback-color-accepted;
+    color: contrast-color($feedback-color-accepted);
 }
 

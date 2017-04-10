@@ -20,16 +20,6 @@ class ModeratorFeedbackField(models.CharField):
         kwargs['blank'] = True
         super(ModeratorFeedbackField, self).__init__(*args, **kwargs)
 
-    def deconstruct(self):
-        name, path, args, kwargs = \
-            super(ModeratorFeedbackField, self).deconstruct()
-        del kwargs['max_length']
-        del kwargs['null']
-        del kwargs['default']
-        del kwargs['blank']
-        # del kwargs["choices"]
-        return name, path, args, kwargs
-
     def check(self, **kwargs):
         errors = super(ModeratorFeedbackField, self).check(**kwargs)
         errors.extend(self._check_choices_attribute(**kwargs))
@@ -45,18 +35,14 @@ class ModeratorFeedbackField(models.CharField):
                 checks.Error(
                     "ModeratorFeedbackField must define a 'choices' "
                     "attribute.",
-                    hint=None,
                     obj=self,
-                    id='fields.E???',  # how to choose the error id?
                 )
             ]
         except ValueError:
             return [
                 checks.Error(
                     "'choices' may not be empty.",
-                    hint=None,
                     obj=self,
-                    id='fields.E???',  # how to choose the error id?
                 )
             ]
         else:
@@ -66,12 +52,12 @@ class ModeratorFeedbackField(models.CharField):
         """
         Add field specific attributes to the enclosing model.
 
-        This method is called in the context of the enclosing
-        model. It is used to set field specific attributes on
-        the model. For example it is used to set the generic
-        model.get_XXX_display methods for the choice fields.
-        In this case it is used to make the moderator feedback
-        context available.
+        This is called in the context of the enclosing model
+        and injects a method to the model which is used
+        to get the moderator feedback context.
+        As for each model at most one ModeratorFeedbackField
+        is allowed an exception will be raised if the method
+        is already injected to the model.
         """
         super(ModeratorFeedbackField, self) \
             .contribute_to_class(cls, name, **kwargs)
