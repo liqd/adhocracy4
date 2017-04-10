@@ -2,13 +2,8 @@
 
 <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 
-<div id="{{ id }}"></div>
+<div id="{{ id }}" data-module="{{ module }}" data-document="{{ document }}" data-config="{{ config }}"></div>
 
 <script>
-    window.adhocracy4.renderParagraphs(
-        '{{id}}',
-        {{ document | safe }},
-        {{ module }},
-        {{ config | safe }}
-    )
+    window.adhocracy4.renderParagraphs('{{id}}')
 </script>

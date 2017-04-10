@@ -17,6 +17,7 @@ textarea,
 select {
     @extend %input-base;
     display: block;
+    max-width: 100%;
     background-color: $bg-secondary;
     color: contrast-color($bg-secondary);
 

@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from apps.budgeting import phases as budgeting_phases
 from apps.documents import phases as documents_phases
 from apps.ideas import phases as ideas_phases
+from apps.mapideas import phases as mapideas_phases
 
 ProjectBlueprint = namedtuple(
     'ProjectBlueprint', [
@@ -24,6 +25,18 @@ blueprints = [
          ],
          image='images/LOGO.png',
          settings_model=None,
+     )),
+    ('map-brainstorming',
+     ProjectBlueprint(
+         title=_('Spatial Brainstorming'),
+         description=_(
+             'Collect location specific ideas for a topic and comment on them.'
+         ),
+         content=[
+             mapideas_phases.CollectPhase(),
+         ],
+         image='images/LOGO.png',
+         settings_model=('a4maps', 'AreaSettings'),
      )),
     ('agenda-setting',
      ProjectBlueprint(
