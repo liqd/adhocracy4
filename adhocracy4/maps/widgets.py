@@ -21,7 +21,7 @@ class MapChoosePolygonWidget(Widget):
     def render(self, name, value, attrs):
 
         context = {
-            'map_url': settings.BASE_MAP,
+            'baseurl': settings.MAP_BASEURL,
             'attribution': settings.MAP_ATTRIBUTION,
             'bbox': json.dumps(settings.MAP_BOUNDING_BOX),
             'name': name,
@@ -51,7 +51,7 @@ class MapChoosePointWidget(Widget):
     def render(self, name, value, attrs):
 
         context = {
-            'map_url': settings.BASE_MAP,
+            'baseurl': settings.MAP_BASEURL,
             'attribution': settings.MAP_ATTRIBUTION,
             'name': name,
             'point': value,
