@@ -34,7 +34,7 @@ def location_list_view(module):
 @override_settings(BASE_MAP='https://{s}.tile.openstreetmap.org/')
 @pytest.mark.django_db
 def test_mapitem_detail_mixin(rf, location_detail_view, location, module,
-                            area_settings):
+                              area_settings):
     request = rf.get('/url')
     response = location_detail_view(request, pk=1)
     baseurl = response.context_data['baseurl']
