@@ -1,7 +1,11 @@
 import json
 
+from django import template
 from django.conf import settings
+from django.utils.html import format_html
 from easy_thumbnails.files import get_thumbnailer
+
+register = template.Library()
 
 
 def get_points(items):
@@ -43,23 +47,41 @@ def get_points(items):
     return json.dumps(result)
 
 
-class MapItemListMixin(object):
+@register.simple_tag()
+def map_display_points(items, polygon):
+    return format_html(
+        (
+            '<div'
+            ' style="height: 300px"'
+            ' data-map="display_points"'
+            ' data-baseurl="{baseurl}"'
+            ' data-attribution="{attribution}"'
+            ' data-points="{points}"'
+            ' data-polygon="{polygon}"'
+            '></div>'
+        ),
+        baseurl=settings.A4_MAP_BASEURL,
+        attribution=settings.A4_MAP_ATTRIBUTION,
+        points=get_points(items),
+        polygon=json.dumps(polygon)
+    )
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        items = super().get_queryset()
-        context['mapitems_json'] = get_points(items)
-        context['baseurl'] = settings.A4_MAP_BASEURL
-        context['polygon'] = json.dumps(self.module.settings_instance.polygon)
-        return context
 
-
-class MapItemDetailMixin(object):
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['baseurl'] = settings.A4_MAP_BASEURL
-        context['polygon'] = json.dumps(self.object.module.settings_instance
-                                        .polygon)
-        context['point'] = json.dumps(self.object.point)
-        return context
+@register.simple_tag()
+def map_display_point(point, polygon):
+    return format_html(
+        (
+            '<div'
+            ' style="height: 300px"'
+            ' data-map="display_point"'
+            ' data-baseurl="{baseurl}"'
+            ' data-attribution="{attribution}"'
+            ' data-point="{point}"'
+            ' data-polygon="{polygon}"'
+            '></div>'
+        ),
+        baseurl=settings.A4_MAP_BASEURL,
+        attribution=settings.A4_MAP_ATTRIBUTION,
+        point=json.dumps(point),
+        polygon=json.dumps(polygon)
+    )
