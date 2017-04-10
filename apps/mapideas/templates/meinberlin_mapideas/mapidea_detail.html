@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments react_ratings static wagtailcore_tags %}
+{% load i18n module_tags rules react_comments react_ratings static wagtailcore_tags maps_tags %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
@@ -65,13 +65,7 @@
             {% endif %}
 
             {% if object.point %}
-                <div
-                    style="height: 300px;"
-                    data-map="display_point"
-                    data-baseurl="{{ map_url }}"
-                    data-point="{{ point }}"
-                    data-polygon="{{ polygon }}"
-                ></div>
+                {% map_display_point object.point object.module.settings_instance.polygon %}
             {% endif %}
 
             {% if object|has_feature:"rate" %}

@@ -1,5 +1,5 @@
 {% extends 'meinberlin_projects/project_detail.html' %}
-{% load i18n rules static %}
+{% load i18n rules static maps_tags %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
@@ -32,13 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div
-                style="height: 300px;"
-                data-map="display_points"
-                data-baseurl="{{ map_url }}"
-                data-point="{{ mapitems_json }}"
-                data-polygon="{{ polygon }}"
-            ></div>
+            {% map_display_points mapidea_list view.module.settings_instance.polygon %}
         </div>
 
         {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
