@@ -53,6 +53,10 @@
 
             <div class="resource-header__meta">{{ proposal.creator.username }}</div>
 
+            <div class="resource-header__meta">
+                {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal %}
+            </div>
+
             {% if proposal.category %}
                 <div class="resource-header__meta">
                     <div class="category">{{ proposal.category }}</div>
