@@ -38,7 +38,7 @@ def test_mapitem_detail_mixin(rf, location_detail_view, location, module,
     request = rf.get('/url')
     response = location_detail_view(request, pk=1)
     baseurl = response.context_data['baseurl']
-    assert baseurl == settings.MAP_BASEURL
+    assert baseurl == settings.A4_MAP_BASEURL
 
 
 @override_settings(BASE_MAP='https://{s}.tile.openstreetmap.org/')
@@ -50,7 +50,7 @@ def test_mapitem_list_mixin(rf, location_list_view, location, module,
     baseurl = response.context_data['baseurl']
     mapitems_json = response.context_data['mapitems_json']
     polygon = json.loads(response.context_data['polygon'])
-    assert baseurl == settings.MAP_BASEURL
+    assert baseurl == settings.A4_MAP_BASEURL
     assert json.loads(mapitems_json) == {
         "type": "FeatureCollection",
         "features": [
