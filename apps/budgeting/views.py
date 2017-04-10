@@ -73,3 +73,10 @@ class ProposalDeleteView(module_views.ItemDeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super(ProposalDeleteView, self).delete(request, *args, **kwargs)
+
+
+class ProposalModerateView(module_views.ItemUpdateView):
+    model = models.Proposal
+    form_class = forms.ProposalModerateForm
+    permission_required = 'meinberlin_budgeting.moderate_proposal'
+    template_name = 'meinberlin_budgeting/proposal_moderate_form.html'

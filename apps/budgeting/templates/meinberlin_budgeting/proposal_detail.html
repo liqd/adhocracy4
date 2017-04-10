@@ -30,6 +30,12 @@
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="proposal-{{proposal.pk}}-actions">
+                {% has_perm 'meinberlin_budgeting.moderate_proposal' request.user proposal as is_moderator %}
+                {% if is_moderator %}
+                <li>
+                    <a class="dropdown-item" href="{% url 'budgeting:proposal-moderate' slug=proposal.slug %}">{% trans 'Moderate' %}</a>
+                </li>
+                {% endif %}
                 <li>
                     <a class="dropdown-item" href="{% url 'budgeting:proposal-update' slug=proposal.slug %}">{% trans 'Edit' %}</a>
                 </li>
