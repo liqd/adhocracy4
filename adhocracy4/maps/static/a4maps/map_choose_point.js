@@ -50,6 +50,14 @@ function isMarkerInsidePolygon (marker, poly) {
     var xj = polyPoints[j].lat
     var yj = polyPoints[j].lng
 
+    //      *
+    //     /
+    // *--/----------->>
+    //   *
+    // Check that
+    //
+    // 1.  yi and yj are on opposite sites of a ray to the right
+    // 2.  the intersection of the ray and the segment is right of x
     var intersect = ((yi > y) !== (yj > y)) &&
         (x < (xj - xi) * (y - yi) / (yj - yi) + xi)
     if (intersect) inside = !inside
