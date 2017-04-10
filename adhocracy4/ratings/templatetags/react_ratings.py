@@ -2,13 +2,14 @@ import json
 
 from django import template
 from django.contrib.contenttypes.models import ContentType
+from django.utils.html import format_html
 
 from adhocracy4.ratings import models as rating_models
 
 register = template.Library()
 
 
-@register.inclusion_tag('a4ratings/react_ratings.html', takes_context=True)
+@register.simple_tag(takes_context=True)
 def react_ratings(context, obj):
     request = context['request']
     user = request.user
@@ -46,9 +47,11 @@ def react_ratings(context, obj):
         'style': 'ideas',
     }
 
-    context = {
-        'attributes': json.dumps(attributes),
-        'mountpoint': mountpoint
-    }
-
-    return context
+    return format_html(
+        (
+            '<div id="{mountpoint}" data-attributes="{attributes}"></div>'
+            "<script>window.adhocracy4.renderRatings('{mountpoint}')</script>"
+        ),
+        attributes=json.dumps(attributes),
+        mountpoint=mountpoint
+    )
