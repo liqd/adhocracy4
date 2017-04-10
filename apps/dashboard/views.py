@@ -81,6 +81,11 @@ class DashboardProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
     success_message = _('Project successfully updated.')
     permission_required = 'meinberlin_organisations.initiate_project'
 
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            organisation=self.organisation
+        )
+
     def get_success_url(self):
         return reverse('dashboard-project-list',
                        kwargs={
