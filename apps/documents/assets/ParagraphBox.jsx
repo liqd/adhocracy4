@@ -205,13 +205,19 @@ var ParagraphBox = React.createClass({
   }
 })
 
-module.exports.renderParagraphs = function (mountpoint, doc, module, config) {
+module.exports.renderParagraphs = function (mountpoint) {
+  let el = document.getElementById(mountpoint)
+
+  let module = el.getAttribute('data-module')
+  let doc = JSON.parse(el.getAttribute('data-document'))
+  let config = JSON.parse(el.getAttribute('data-config'))
+
   ReactDOM.render(<ParagraphBox
     name={doc.name}
     id={doc.id}
     module={module}
     paragraphs={doc.paragraphs}
     config={config} />,
-    document.getElementById(mountpoint)
+    el
   )
 }

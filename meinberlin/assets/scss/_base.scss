@@ -2,7 +2,6 @@
 *:before,
 *:after {
     box-sizing: inherit;
-    max-width: 100%;
 }
 
 p,
@@ -77,6 +76,11 @@ a {
     &:focus {
         color: $link-hover-color;
     }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 a:not([href]) {

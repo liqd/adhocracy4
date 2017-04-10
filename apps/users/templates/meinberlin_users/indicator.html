@@ -16,6 +16,9 @@
         <i class="fa fa-caret-down" aria-hidden="true"></i>
     </button>
     <ul class="dropdown-menu" aria-labelledby="user-actions">
+        <li>
+            <a class="dropdown-item" href="{% url 'dashboard-profile' %}">{% trans "Account Settings" %}</a>
+        </li>
 
         {% for organisation in request.user.organisations %}
 

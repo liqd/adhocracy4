@@ -48,6 +48,14 @@
                             {% trans 'Participation processes' %}
                         </a>
                     </li>
+
+                    <li class="dashboard-nav__page">
+                        <a href="{% url 'dashboard-organisation-edit' organisation_slug=view.organisation.slug %}"
+                           class="dashboard-nav__page-link {% ifequal url_name 'dashboard-organisation-edit' %}is-active{% endifequal %}">
+                            <i class="fa fa-cog"></i>
+                            {% trans 'Settings' %}
+                        </a>
+                    </li>
                 </ul>
             {% endwith %}
         </nav>
