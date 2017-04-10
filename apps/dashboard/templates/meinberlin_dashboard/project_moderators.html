@@ -14,14 +14,24 @@
         <thead>
             <tr>
                 <th>{% trans 'Name' %}</th>
-                <th>{% trans 'Mark' %}</th>
+                <th>{% trans 'E-Mail' %}</th>
+                <th>{% trans 'Remove' %}</th>
             </tr>
         </thead>
         <tbody>
             {% for moderator in project.moderators.all %}
                 <tr>
                     <td><label for="moderator-{{ moderator.pk }}">{{ moderator.username }}</label></td>
-                    <td><input type="checkbox" id="moderator-{{ moderator.pk }}" /></td>
+                    <td><label for="moderator-{{ moderator.pk }}">{{ moderator.email }}</label></td>
+                    <td>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="moderator_pk" value="{{ moderator.pk }}">
+                            <button type="submit" id="remove_{{ moderator.pk }}" value="remove">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
