@@ -285,9 +285,9 @@ A4_COMMENTABLES = (
     ('meinberlin_ideas', 'idea'),
 )
 
-BASE_MAP = 'https://{s}.tile.openstreetmap.org/'
-
-MAP_BOUNDING_BOX = ([[[34.95799531086792, -28.388671875],
+A4_MAP_BASEURL = 'https://{s}.tile.openstreetmap.org/'
+A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+A4_MAP_BOUNDING_BOX = ([[[34.95799531086792, -28.388671875],
                     [71.35706654962706, -28.388671875],
                     [71.35706654962706, 50.88867187499999],
                     [34.95799531086792, 50.88867187499999],
