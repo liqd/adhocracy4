@@ -13,7 +13,7 @@
 }
 
 .list-item__title {
-    margin: 0 0 0.4rem;
+    margin: 0 0 0.5rem;
     font-size: $font-size-lg;
 
     a {
@@ -27,6 +27,14 @@
     }
 }
 
+.list-item__subtitle {
+    margin-bottom: 0.5em;
+
+    @include secondary-text;
+    color: contrast-color($body-bg, lighten($text-color, 25%));
+    font-size: $font-size-sm;
+}
+
 .list-item__badges {
     margin: 0 0 0.4rem;
 }
@@ -35,9 +43,12 @@
     margin-right: 0.3em;
 }
 
-.list-item__actions,
 .list-item__stats {
     float: right;
+}
+
+.list-item__action {
+    display: inline;
 }
 
 .list-item .is-read-only {
