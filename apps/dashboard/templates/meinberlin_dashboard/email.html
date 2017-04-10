@@ -8,7 +8,7 @@
 {% block dashboard_content %}
 <h1>{% trans 'E-mail Addresses' %}</h1>
 <div class="general-form">
-    <form action="{% url 'dashboard-email' %}?next={{ request.path }}" method="post">
+    <form class="multiform" action="{% url 'dashboard-email' %}?next={{ request.path }}" method="post">
         {% csrf_token %}
         {% for emailaddress in user.emailaddress_set.all %}
         <div class="form-check">
@@ -33,7 +33,7 @@
         <button class="button button--secondary" type="submit" name="action_send">{% trans 'Re-send Verification' %}</button>
         <button class="button button--secondary" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
     </form>
-    <form method="post" action="{% url 'dashboard-email' %}">
+    <form class="multiform" method="post" action="{% url 'dashboard-email' %}">
         {% csrf_token %}
         {% if form.non_field_errors %}
         <div class="form-errors">
