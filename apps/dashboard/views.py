@@ -157,7 +157,7 @@ class ChangePasswordView(dashboard_mixins.DashboardBaseMixin,
         return reverse('dashboard-password')
 
 
-class DashboardProjectModeratorsView(DashboardBaseMixin,
+class DashboardProjectModeratorsView(dashboard_mixins.DashboardBaseMixin,
                                      rules_mixins.PermissionRequiredMixin,
                                      generic.UpdateView):
 
