@@ -33,13 +33,3 @@
         }
     }
 }
-
-// NOTE: this can not be a modifier because `top` and `clearfix` need to be on
-// separate elements.
-.filter-bar__overlap-wrapper {
-    position: relative;
-    $button-height: 2.4;
-    $overlap: $button-height / 2 * $font-size-sm;
-    top: -$overlap;
-    margin-bottom: -$overlap;
-}
