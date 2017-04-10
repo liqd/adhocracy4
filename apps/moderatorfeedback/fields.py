@@ -11,7 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class ModeratorFeedbackField(models.CharField):
-    description = _("")
+    description = _("Moderator feedback for items with fixed feedback choices")
 
     def __init__(self, *args, **kwargs):
         kwargs['max_length'] = 254
