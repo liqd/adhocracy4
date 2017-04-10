@@ -26,7 +26,7 @@
     }
 
     .navbar {
-        @include pie-clearfix;
+        @include clearfix;
 
         > * {
             display: inline-block;
