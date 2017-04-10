@@ -1,6 +1,6 @@
 from django import forms
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.exceptions import ValidationError
 from django.db.models import loading
 from django.forms import modelformset_factory
 from django.utils.translation import ugettext as _
@@ -272,23 +272,32 @@ class AddModeratorForm(forms.ModelForm):
         model = project_models.Project
         fields = ('moderators',)
 
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, **kwargs)
+
     def clean_add_moderators(self):
         users = []
-        errors = []
+        missing = []
         for email in self.cleaned_data['add_moderators']:
             try:
                 user = User.objects.get(email__exact=email)
                 users.append(user)
             except ObjectDoesNotExist:
-                errors.append(
-                    ValidationError('{} is not registered.'.format(email))
-                )
+                missing.append(email)
 
-        if errors:
-            raise ValidationError(errors)
+        if missing:
+            messages.error(
+                self.request,
+                _('Following e-mails are not registered: ') + ', '.join(
+                    missing)
+            )
 
         return users
 
     def save(self, commit=True):
         if commit:
-            self.instance.moderators.add(self.cleaned_data['add_moderators'])
+            if self.cleaned_data['add_moderators']:
+                self.instance.moderators.add(
+                    *self.cleaned_data['add_moderators']
+                )

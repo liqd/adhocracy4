@@ -122,13 +122,11 @@ class DashboardProjectUpdateView(DashboardBaseMixin,
 
 class DashboardProjectModeratorsView(DashboardBaseMixin,
                                      rules_mixins.PermissionRequiredMixin,
-                                     SuccessMessageMixin,
                                      generic.UpdateView):
 
     model = project_models.Project
     form_class = forms.AddModeratorForm
     template_name = 'meinberlin_dashboard/project_moderators.html'
-    success_message = _('Moderators successfully updated.')
     permission_required = 'meinberlin_organisations.initiate_project'
 
     def get_permission_object(self):
@@ -136,3 +134,8 @@ class DashboardProjectModeratorsView(DashboardBaseMixin,
 
     def get_success_url(self):
         return self.request.path
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs

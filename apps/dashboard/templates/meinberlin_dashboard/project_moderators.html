@@ -2,6 +2,8 @@
 {% load i18n %}
 
 {% block dashboard_content %}
+    <h1>{{ project.name }}</h1>
+    <h2>{% trans 'Moderators' %}</h2>
     <form method="POST">
         {% csrf_token %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.add_moderators %}
