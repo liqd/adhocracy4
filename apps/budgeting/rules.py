@@ -32,3 +32,9 @@ rules.add_perm(
     'meinberlin_budgeting.modify_proposal',
     module_predicates.is_allowed_modify_item
 )
+
+
+rules.add_perm(
+    'meinberlin_budgeting.moderate_proposal',
+    module_predicates.is_context_moderator
+)

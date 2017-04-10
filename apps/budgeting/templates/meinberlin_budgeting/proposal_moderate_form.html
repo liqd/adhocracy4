@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Moderate {{proposal.name}}{% endblock %}
+{% block content %}
+<div class="l-wrapper">
+    <nav class="breadcrumbs">
+        <ul>
+            <li>
+                <a href="{% url 'project-detail' proposal.project.slug %}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    {% trans 'back to project' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'budgeting:proposal-detail' proposal.slug %}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    {% trans 'back to proposal' %}</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h1>{% trans 'Moderate proposal' %}</h1>
+
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+        {{ form.media }}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.moderator_feedback %}
+
+        <input type="submit" class="button button--primary" value="{% trans 'Save'%}" />
+        <a href="{%  url 'budgeting:proposal-detail' proposal.slug %}" class="button button--light">{% trans 'cancel'%}</a>
+    </form>
+</div>
+{% endblock %}
