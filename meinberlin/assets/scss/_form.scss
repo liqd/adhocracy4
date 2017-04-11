@@ -96,6 +96,8 @@ select {
     }
 }
 
+// TODO: work this out, currently only partially useful
+// see https://github.com/liqd/a4-meinberlin/pull/156#discussion_r110859993
 .form--single-line {
     @include clearfix;
 
