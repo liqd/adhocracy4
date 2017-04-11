@@ -279,6 +279,8 @@ A4_ORGANISATIONS_MODEL = 'meinberlin_organisations.Organisation'
 A4_RATEABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
 )
 
 A4_COMMENTABLES = (
@@ -286,6 +288,8 @@ A4_COMMENTABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_documents', 'document'),
     ('meinberlin_documents', 'paragraph'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
 )
 
 BASE_MAP = 'https://{s}.tile.openstreetmap.org/'
