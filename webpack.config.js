@@ -21,7 +21,11 @@ module.exports = {
       'react-dom',
       'react-flip-move',
       'shariff',
-      'shariff/build/shariff.min.css'
+      'shariff/build/shariff.min.css',
+      'leaflet',
+      'leaflet/dist/leaflet.css',
+      'leaflet-draw',
+      'leaflet-draw/dist/leaflet.draw.css'
     ]
   },
   devtool: 'eval',
