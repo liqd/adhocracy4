@@ -75,6 +75,7 @@ class DashboardModRemovalMixin:
                 messages.success(request, _('Moderator successfully removed.'))
 
             return redirect('dashboard-project-moderators',
-                            organisation_slug=self.organisation.slug)
+                            organisation_slug=self.organisation.slug,
+                            slug=project.slug)
         else:
             return super().post(request, *args, **kwargs)
