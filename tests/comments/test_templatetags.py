@@ -1,3 +1,4 @@
+import html
 import json
 import pytest
 import re
@@ -18,15 +19,16 @@ def react_comment_render_for_props(rf, user, question):
 
     content_type = ContentType.objects.get_for_model(question)
     expected = (
-        r'^<div id=\"comments_for_{ct}_{pk}\"><\/div>'
-        r'<script>window\.adhocracy4\.renderComment\('
-        r'\"comments_for_{ct}_{pk}\", (?P<props>{{.+}})\)<\/script>$'
+        r'^<div id=\"comments_for_{ct}_{pk}\" data-attributes='
+        r'\"(?P<props>{{.+}})\"><\/div>\s*'
+        r'<script>\s*window\.adhocracy4\.renderComment\('
+        r'\'comments_for_{ct}_{pk}\'\)\s*<\/script>$'
     ).format(ct=content_type.id, pk=question.id)
 
     match = re.match(expected, helpers.render_template(template, context))
     assert match
     assert match.group('props')
-    props = json.loads(match.group('props'))
+    props = json.loads(html.unescape(match.group('props')))
     assert props['subjectType'] == content_type.id
     assert props['subjectId'] == question.id
     del props['subjectType']

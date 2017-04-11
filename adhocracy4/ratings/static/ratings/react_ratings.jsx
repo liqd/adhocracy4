@@ -123,6 +123,8 @@ var RatingBox = React.createClass({
 
 module.exports.RatingBox = RatingBox
 
-module.exports.renderRatings = function (mountpoint, props) {
-  ReactDOM.render(<RatingBox {...props} />, document.getElementById(mountpoint))
+module.exports.renderRatings = function (mountpoint) {
+  let el = document.getElementById(mountpoint)
+  let props = JSON.parse(el.getAttribute('data-attributes'))
+  ReactDOM.render(<RatingBox {...props} />, el)
 }

@@ -2,7 +2,7 @@ import json
 
 from django import template
 from django.contrib.contenttypes.models import ContentType
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 
 from adhocracy4.ratings import models as rating_models
 
@@ -47,10 +47,11 @@ def react_ratings(context, obj):
         'style': 'ideas',
     }
 
-    return mark_safe((
-        '<div id={mountpoint}></div><script>window.adhocracy4.renderRatings('
-        '{mountpoint}, {attributes})</script>').format(
-            attributes=json.dumps(attributes),
-            mountpoint=json.dumps(mountpoint)
-        )
+    return format_html(
+        (
+            '<div id="{mountpoint}" data-attributes="{attributes}"></div>'
+            "<script>window.adhocracy4.renderRatings('{mountpoint}')</script>"
+        ),
+        attributes=json.dumps(attributes),
+        mountpoint=mountpoint
     )
