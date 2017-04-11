@@ -279,7 +279,8 @@ class ProfileForm(forms.ModelForm):
 
 
 class AddModeratorForm(forms.ModelForm):
-    add_moderators = CommaSeparatedEmailField()
+    add_moderators = CommaSeparatedEmailField(label=_('Add moderator via '
+                                                      'email'))
 
     class Meta:
         model = project_models.Project

@@ -1,7 +1,7 @@
 import re
 from django.core.validators import RegexValidator
 from django.forms.fields import Field
-from django.forms.widgets import Textarea
+from django.forms.widgets import Input
 
 
 class CommaSeparatedEmailField(Field):
@@ -12,7 +12,7 @@ class CommaSeparatedEmailField(Field):
         #          'commas.')
     )]
 
-    widget = Textarea(attrs={
+    widget = Input(attrs={
         'placeholder': 'jana@beispiel.de, tobias@beispiel.de, '
                        'swetlana@beispiel.de,…'
     })
