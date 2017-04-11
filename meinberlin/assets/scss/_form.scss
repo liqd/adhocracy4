@@ -100,7 +100,9 @@ select {
     @include clearfix;
 
     input[type="submit"] {
-        // compensate for field label
-        margin-top: 1.5em;
+        @media (min-width: $breakpoint) {
+            // compensate for field label
+            margin-top: 1.5em;
+        }
     }
 }
