@@ -14,8 +14,8 @@ class CommaSeparatedEmailField(Field):
     )]
 
     widget = Input(attrs={
-        'placeholder': 'maria@beispiel.de, peter@beispiel.de, '
-                       'nicola@beispiel.de,…'
+        'placeholder': 'maria@example.com, peter@example.com, '
+                       'nicola@example.com,…'
     })
 
     def to_python(self, value):
