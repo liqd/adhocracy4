@@ -20,8 +20,7 @@ def test_item_create_form(rf, phase):
 
 @pytest.mark.django_db
 def test_item_update_form(rf, question):
-    object = question
-    module = object.module
+    module = question.module
     settings_instance = \
         getattr(module, 'settings_instance', None)
 
