@@ -2,14 +2,15 @@ import re
 from django.core.validators import RegexValidator
 from django.forms.fields import Field
 from django.forms.widgets import Input
+from django.utils.translation import ugettext as _
 
 
 class CommaSeparatedEmailField(Field):
     default_validators = [RegexValidator(
         # a list of emails, separated by commas with optional space after
         regex=r'^([^@]+@[^@\s]+\.[^@\s,]+((,\s?)|$))+$',
-        # message=_('Please enter correct e-mail addresses, separated by '
-        #          'commas.')
+        message=_('Please enter correct e-mail addresses, separated by '
+                  'commas.')
     )]
 
     widget = Input(attrs={
