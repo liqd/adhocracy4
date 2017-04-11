@@ -6,8 +6,14 @@
     <h2>{% trans 'Moderators' %}</h2>
     <form method="POST">
         {% csrf_token %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.add_moderators %}
-        <input type="submit" class="button button--primary" value="{% trans 'Submit' %}" />
+        <div class="form--single-line">
+            <div class="l-col-2">
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.add_moderators %}
+            </div>
+            <div class="l-col-2">
+                <input type="submit" class="button button--secondary" value="{% trans 'Add' %}"/>
+            </div>
+        </div>
     </form>
 
     <table>

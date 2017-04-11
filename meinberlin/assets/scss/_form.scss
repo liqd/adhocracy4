@@ -95,3 +95,12 @@ select {
         @extend .form-check__label;
     }
 }
+
+.form--single-line {
+    @include clearfix;
+
+    input[type="submit"] {
+        // compensate for field label
+        margin-top: 1.5em;
+    }
+}
