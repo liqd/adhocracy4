@@ -16,30 +16,32 @@
         </div>
     </form>
 
-    <table>
-        <thead>
-            <tr>
-                <th>{% trans 'Name' %}</th>
-                <th>{% trans 'E-Mail' %}</th>
-                <th><span class="sr-only">{% trans 'Remove' %}</span></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for moderator in project.moderators.all %}
+    {% if project.moderators.count %}
+        <table>
+            <thead>
                 <tr>
-                    <td><label for="moderator-{{ moderator.pk }}">{{ moderator.username }}</label></td>
-                    <td><label for="moderator-{{ moderator.pk }}">{{ moderator.email }}</label></td>
-                    <td class="td--action">
-                        <form method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="moderator_pk" value="{{ moderator.pk }}">
-                            <button type="submit" name="submit_action" value="remove_moderator" aria-label="{% trans 'Remove' %}">
-                                <i class="fa fa-times" aria-hidden="true"></i>
-                            </button>
-                        </form>
-                    </td>
+                    <th>{% trans 'Name' %}</th>
+                    <th>{% trans 'E-Mail' %}</th>
+                    <th><span class="sr-only">{% trans 'Remove' %}</span></th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for moderator in project.moderators.all %}
+                    <tr>
+                        <td><label for="moderator-{{ moderator.pk }}">{{ moderator.username }}</label></td>
+                        <td><label for="moderator-{{ moderator.pk }}">{{ moderator.email }}</label></td>
+                        <td class="td--action">
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="moderator_pk" value="{{ moderator.pk }}">
+                                <button type="submit" name="submit_action" value="remove_moderator" aria-label="{% trans 'Remove' %}">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 {% endblock %}
