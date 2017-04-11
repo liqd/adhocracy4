@@ -149,8 +149,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'node_modules/leaflet/dist'),
-    os.path.join(BASE_DIR, 'node_modules/leaflet-draw/dist'),
     os.path.join(PROJECT_DIR, 'static'),
 ]
 
