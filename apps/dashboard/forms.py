@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import loading
 from django.forms import modelformset_factory
 from django.utils.translation import ugettext as _
+from django.utils.translation import ngettext
 
 from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
@@ -305,6 +306,14 @@ class AddModeratorForm(forms.ModelForm):
                 self.request,
                 _('Following e-mails are not registered: ') + ', '.join(
                     missing)
+            )
+        if users:
+            messages.success(
+                self.request,
+                ngettext(
+                    '{} moderator added.',
+                    '{} moderators added.', len(users)
+                ).format(len(users))
             )
 
         return users
