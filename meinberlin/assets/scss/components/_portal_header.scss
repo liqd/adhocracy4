@@ -1,7 +1,7 @@
 // stylelint-disable scale-unlimited/declaration-strict-value
 
 .portal-header {
-    @include pie-clearfix;
+    @include clearfix;
     background-color: #bfd3ff;
     background-image: linear-gradient(to bottom, #c7d9ff, #b2caff);
     border-top: 5px solid #2d509a;

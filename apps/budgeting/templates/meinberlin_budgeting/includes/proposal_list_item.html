@@ -31,4 +31,6 @@
     {% if proposal.category %}
         <span class="category">{{ proposal.category }}</span>
     {% endif %}
+    {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal %}
+
 </div>
