@@ -4,7 +4,6 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.forms import widgets
 from django.template import loader
 from django.utils.html import conditional_escape
-from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext
 
 
@@ -63,11 +62,9 @@ class ImageInputWidget(widgets.ClearableFileInput):
             'checkbox_id': checkbox_id
         }
 
-        return mark_safe(
-            loader.render_to_string(
-                'a4images/image_upload_widget.html',
-                context
-            )
+        return loader.render_to_string(
+            'a4images/image_upload_widget.html',
+            context
         )
 
     def value_from_datadict(self, data, files, name):
