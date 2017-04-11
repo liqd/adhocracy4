@@ -93,6 +93,12 @@ window.jQuery(document).ready(function () {
       $('#id_' + name).val(JSON.stringify(shape))
     })
 
+    $(document).on('shown.bs.tab', function(event) {
+      // tiles don't load properly when hidden initially (e.g. by tabs)
+      // see https://github.com/tombatossals/angular-leaflet-directive/issues/49
+      map.invalidateSize()
+    })
+
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       if (!mapVisible) {
         map.invalidateSize().fitBounds(getBasePolygon(L, polygon, bbox))
