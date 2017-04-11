@@ -1,0 +1,23 @@
+.moderator-feedback {
+    float: right;
+    display: inline-block;
+    padding: 0.4em 0.6em;
+    font-size: $font-size-sm;
+    border-radius: 0.3em;
+}
+
+.moderator-feedback--CONSIDERATION {
+    background-color: $feedback-color-consideration;
+    color: contrast-color($feedback-color-consideration);
+}
+
+.moderator-feedback--REJECTED {
+    background-color: $feedback-color-rejected;
+    color: contrast-color($feedback-color-rejected);
+}
+
+.moderator-feedback--ACCEPTED {
+    background-color: $feedback-color-accepted;
+    color: contrast-color($feedback-color-accepted);
+}
+

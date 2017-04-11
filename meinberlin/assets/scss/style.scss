@@ -1,5 +1,4 @@
 @import '~sass-planifolia/sass/math';
-@import '~sass-planifolia/sass/clearfix';
 @import '~sass-planifolia/sass/grid';
 @import '~sass-planifolia/sass/contrast';
 
@@ -38,6 +37,8 @@
 @import 'components/list';
 @import 'components/list_item';
 @import 'components/menu_layout';
+@import 'components/moderator_feedback';
+@import 'components/multiform';
 @import 'components/pagination';
 @import 'components/phases';
 @import 'components/popover';

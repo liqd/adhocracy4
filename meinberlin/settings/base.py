@@ -73,6 +73,7 @@ INSTALLED_APPS = (
     'apps.ideas.apps.Config',
     'apps.documents.apps.Config',
     'apps.budgeting.apps.Config',
+    'apps.moderatorfeedback.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -148,8 +149,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'node_modules/leaflet/dist'),
-    os.path.join(BASE_DIR, 'node_modules/leaflet-draw/dist'),
     os.path.join(PROJECT_DIR, 'static'),
 ]
 
@@ -278,17 +277,17 @@ BLEACH_LIST = {
 A4_ORGANISATIONS_MODEL = 'meinberlin_organisations.Organisation'
 
 A4_RATEABLES = (
+    ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
 )
 
 A4_COMMENTABLES = (
+    ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_documents', 'document'),
+    ('meinberlin_documents', 'paragraph'),
 )
 
 A4_MAP_BASEURL = 'https://{s}.tile.openstreetmap.org/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-A4_MAP_BOUNDING_BOX = ([[[34.95799531086792, -28.388671875],
-                    [71.35706654962706, -28.388671875],
-                    [71.35706654962706, 50.88867187499999],
-                    [34.95799531086792, 50.88867187499999],
-                    [34.95799531086792, -28.388671875]]])
+A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])

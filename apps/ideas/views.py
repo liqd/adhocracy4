@@ -26,13 +26,6 @@ class IdeaFilterSet(django_filters.FilterSet):
         choices=get_ordering_choices
     )
 
-    @property
-    def qs(self):
-        return super().qs.filter(module=self.request.module) \
-            .annotate_positive_rating_count() \
-            .annotate_negative_rating_count() \
-            .annotate_comment_count()
-
     class Meta:
         model = models.Idea
         fields = ['category']
@@ -41,6 +34,12 @@ class IdeaFilterSet(django_filters.FilterSet):
 class IdeaListView(module_views.ItemListView):
     model = models.Idea
     filter_set = IdeaFilterSet
+
+    def get_queryset(self):
+        return super().get_queryset().filter(module=self.module) \
+            .annotate_positive_rating_count() \
+            .annotate_negative_rating_count() \
+            .annotate_comment_count()
 
 
 class IdeaDetailView(module_views.ItemDetailView):

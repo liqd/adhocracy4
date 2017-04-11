@@ -71,7 +71,9 @@
     role="tabpanel"
     aria-labelledby="tab-project-{{ view.project.pk }}-participation"
     aria-expanded="true">
-    {% include "meinberlin_projects/includes/phase_indicator.html" with project=view.project %}
+    <div class="l-wrapper">
+        {% include "meinberlin_projects/includes/phase_indicator.html" with project=view.project %}
+    </div>
     {% block phase_content %}{% endblock %}
 </div>
 <div
