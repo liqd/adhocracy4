@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n item_tags %}
 
 {% block title %}Edit {{proposal.name}}{% endblock %}
 {% block content %}
@@ -12,7 +12,8 @@
                     {% trans 'back to project' %}</a>
             </li>
             <li>
-                <a href="{% url 'budgeting:proposal-detail' proposal.slug %}">
+                {% get_item_detail_url object as detail_url %}
+                <a href="{{ detail_url }}">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     {% trans 'back to proposal' %}</a>
             </li>
@@ -21,7 +22,6 @@
 
     <h1>{% trans 'Edit proposal' %}</h1>
 
-    {% url 'budgeting:proposal-detail' proposal.slug as cancel %}
-    {% include "meinberlin_budgeting/includes/proposal_form.html" with proposal=proposal cancel=cancel %}
+    {% include "meinberlin_budgeting/includes/proposal_form.html" with proposal=proposal cancel=detail_url %}
 </div>
 {% endblock %}
