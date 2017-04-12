@@ -39,13 +39,13 @@ def get_item_detail_url(item):
 
 
 @register.assignment_tag
-def get_item_add_url(item):
-    return get_item_url(item, 'add')
+def get_item_create_url(item):
+    return get_item_url(item, 'create')
 
 
 @register.assignment_tag
-def get_item_change_url(item):
-    return get_item_url(item, 'change')
+def get_item_update_url(item):
+    return get_item_url(item, 'update')
 
 
 @register.assignment_tag
@@ -55,7 +55,7 @@ def get_item_delete_url(item):
 
 @register.assignment_tag
 def get_item_url(item, view):
-    url_name = '{app}:{name}_{view}'.format(
+    url_name = '{app}:{name}-{view}'.format(
         app=item._meta.app_label,
         name=item._meta.verbose_name,
         view=view

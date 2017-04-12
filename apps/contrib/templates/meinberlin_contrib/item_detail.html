@@ -33,7 +33,7 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="idea-{{object.pk}}-actions">
                 <li>
-                    {% get_item_change_url object as change_url %}
+                    {% get_item_update_url object as change_url %}
                     <a class="dropdown-item" href="{{ change_url }}">{% trans 'Edit' %}</a>
                 </li>
                 <li>
