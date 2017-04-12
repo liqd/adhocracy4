@@ -1,6 +1,7 @@
 """meinberlin URL Configuration."""
 
 from allauth import urls as allauth_urls
+from allauth.socialaccount import urls as allauth_social_urls
 from ckeditor_uploader import views as ck_views
 from django.conf import settings
 from django.conf.urls import include
@@ -26,6 +27,9 @@ from apps.embed import urls as embed_urls
 from apps.ideas import urls as ideas_urls
 from apps.mapideas import urls as mapideas_urls
 from apps.projects import urls as projects_urls
+from apps.servicekonto import urls as servicekonto_urls
+
+
 
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
@@ -45,6 +49,8 @@ urlpatterns = [
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^accounts/', include(allauth_urls)),
+    url(r'^accounts/social/', include(allauth_social_urls)),
+    url(r'^accounts/servicekonto/', include(servicekonto_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^projects/', include(projects_urls)),
 
@@ -65,6 +71,7 @@ urlpatterns = [
         js_info_dict, name='javascript-catalog'),
     url(r'', include(wagtail_urls)),
 ]
+
 
 if settings.DEBUG:
     from django.conf.urls.static import static

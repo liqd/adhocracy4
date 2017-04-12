@@ -69,11 +69,13 @@ INSTALLED_APPS = (
     'apps.dashboard.apps.Config',
     'apps.embed.apps.Config',
     'apps.moderatorfeedback.apps.Config',
+    'apps.servicekonto.apps.Config'
 
     'apps.ideas.apps.Config',
     'apps.documents.apps.Config',
     'apps.budgeting.apps.Config',
     'apps.mapideas.apps.Config',
+
 )
 
 MIDDLEWARE_CLASSES = (
