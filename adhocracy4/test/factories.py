@@ -62,6 +62,11 @@ class ProjectFactory(factory.django.DjangoModelFactory):
     is_public = True
     is_draft = False
 
+    modules = factory.RelatedFactory(
+        'adhocracy4.test.factories.ModuleFactory',
+        'project'
+    )
+
     @factory.post_generation
     def moderators(self, create, extracted, **kwargs):
         if not extracted:
@@ -84,6 +89,11 @@ class ModuleFactory(factory.django.DjangoModelFactory):
     description = factory.Faker('text')
     weight = random.randint(1, 1000)
     project = factory.SubFactory(ProjectFactory)
+
+    phases = factory.RelatedFactory(
+        'adhocracy4.test.factories.PhaseFactory',
+        'module'
+    )
 
 
 class ItemFactory(factory.django.DjangoModelFactory):
