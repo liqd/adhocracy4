@@ -55,21 +55,21 @@ class MapIdeaDetailView(map_mixins.MapItemDetailMixin,
 class MapIdeaCreateView(module_views.ItemCreateView):
     model = models.MapIdea
     form_class = forms.MapIdeaForm
-    permission_required = 'meinberlin_mapideas.propose_idea'
+    permission_required = 'meinberlin_mapideas.create_idea'
     template_name = 'meinberlin_mapideas/mapidea_create_form.html'
 
 
 class MapIdeaUpdateView(module_views.ItemUpdateView):
     model = models.MapIdea
     form_class = forms.MapIdeaForm
-    permission_required = 'meinberlin_mapideas.modify_idea'
+    permission_required = 'meinberlin_mapideas.change_idea'
     template_name = 'meinberlin_mapideas/mapidea_update_form.html'
 
 
 class MapIdeaDeleteView(module_views.ItemDeleteView):
     model = models.MapIdea
     success_message = _("Your Idea has been deleted")
-    permission_required = 'meinberlin_mapideas.modify_idea'
+    permission_required = 'meinberlin_mapideas.change_idea'
     template_name = 'meinberlin_mapideas/mapidea_confirm_delete.html'
 
     def delete(self, request, *args, **kwargs):
