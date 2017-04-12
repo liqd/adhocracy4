@@ -15,25 +15,12 @@ class ProposalForm(category_forms.CategorizableForm):
 
 class ModeratorFeedbackForm(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):
-        kwargs.pop('user', None)
-        super(ModeratorFeedbackForm, self).__init__(*args, **kwargs)
-
     class Meta:
         model = models.Proposal
         fields = ['moderator_feedback']
 
 
 class ModeratorStatementForm(forms.ModelForm):
-
-    def __init__(self, *args, **kwargs):
-        self.user = kwargs.pop('user')
-        super(ModeratorStatementForm, self).__init__(*args, **kwargs)
-
-    def save(self, *args, **kwargs):
-        if self.instance.pk is None:
-            self.instance.creator = self.user
-        super(ModeratorStatementForm, self).save(*args, **kwargs)
 
     class Meta:
         model = models.ModeratorStatement

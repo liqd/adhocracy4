@@ -84,12 +84,16 @@ class ProposalModerateView(rules_mixins.PermissionRequiredMixin,
     permission_required = 'meinberlin_budgeting.moderate_proposal'
     template_name = 'meinberlin_budgeting/proposal_moderate_form.html'
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['user'] = self.request.user
-        return kwargs
-
     def get_success_url(self):
         return reverse(
             'budgeting:proposal-moderate',
             kwargs={self.slug_url_kwarg: self.kwargs.get(self.slug_url_kwarg)})
+
+    def form_valid(self, multiform):
+        statement_form = multiform.forms['statement']
+
+        if statement_form.instance.pk is None:
+            statement_form.instance.creator = self.request.user
+            statement_form.instance.proposal = self.object
+
+        return super(ProposalModerateView, self).form_valid(multiform)
