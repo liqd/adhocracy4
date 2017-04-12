@@ -1,0 +1,29 @@
+{% load i18n contrib_tags %}
+
+<div class="filter-bar">
+    {% if mode == 'map' %}
+        {% combined_url_parameter request.GET mode='list' as url_par %}
+        <a class="button button--light" href="{{ url_par }}" aria-label="{% trans 'view as list' %}">
+            <i class="fa fa-list" aria-hidden="true"></i>
+            {% trans 'view' %}
+        </a>
+    {% else %}
+        {% combined_url_parameter request.GET mode='map' as url_par %}
+        <a class="button button--light" href="{{ url_par }}" aria-label="{% trans 'view as map' %}">
+            <i class="fa fa-map" aria-hidden="true"></i>
+            {% trans 'view' %}
+        </a>
+    {% endif %}
+
+    {% for field in filter.form %}
+        {% if field.name != 'ordering' %}
+            {{ field }}
+        {% endif %}
+    {% endfor %}
+
+    {% if mode != 'map' %}
+        <div class="filter-bar__ordering">
+            {{ filter.form.ordering }}
+        </div>
+    {% endif %}
+</div>

@@ -42,6 +42,12 @@ class MapIdeaListView(module_views.ItemListView):
     model = models.MapIdea
     filter_set = MapIdeaFilterSet
 
+    def dispatch(self, request, **kwargs):
+        self.mode = request.GET.get('mode', 'map')
+        if self.mode == 'map':
+            self.paginate_by = 0
+        return super().dispatch(request, **kwargs)
+
 
 class MapIdeaDetailView(module_views.ItemDetailView):
     model = models.MapIdea

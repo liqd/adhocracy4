@@ -1,3 +1,21 @@
 [data-map] {
     height: 300px;
 }
+
+.maps-popups-popup-name {
+    @extend .list-item__title;
+}
+
+.map-popup-upvotes i {
+    color: $brand-success;
+}
+
+.map-popup-downvotes i {
+    color: $brand-danger;
+}
+
+.map-popup-upvotes,
+.map-popup-downvotes,
+.map-popup-comments-count {
+    margin-right: 0.5em;
+}

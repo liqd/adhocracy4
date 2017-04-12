@@ -68,12 +68,12 @@ INSTALLED_APPS = (
     'apps.organisations.apps.Config',
     'apps.dashboard.apps.Config',
     'apps.embed.apps.Config',
-    'apps.mapideas.apps.Config',
+    'apps.moderatorfeedback.apps.Config',
 
     'apps.ideas.apps.Config',
     'apps.documents.apps.Config',
     'apps.budgeting.apps.Config',
-    'apps.moderatorfeedback.apps.Config',
+    'apps.mapideas.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -279,6 +279,8 @@ A4_ORGANISATIONS_MODEL = 'meinberlin_organisations.Organisation'
 A4_RATEABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
 )
 
 A4_COMMENTABLES = (
@@ -286,8 +288,10 @@ A4_COMMENTABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_documents', 'document'),
     ('meinberlin_documents', 'paragraph'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
 )
 
-A4_MAP_BASEURL = 'https://{s}.tile.openstreetmap.org/'
+A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])

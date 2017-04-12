@@ -17,6 +17,7 @@
         color: $brand-success;
     }
 
+    &.error,
     &.danger {
         background-color: $brand-danger;
         color: contrast-color($brand-danger);
