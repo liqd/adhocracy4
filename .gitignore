@@ -1,5 +1,6 @@
 *.mo
 *__pycache__/
+test_db.sqlite3
 db.sqlite3*
 node_modules
 meinberlin/settings/local.py
