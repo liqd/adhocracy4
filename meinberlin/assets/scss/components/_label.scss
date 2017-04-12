@@ -13,3 +13,18 @@
     font-size: $font-size-sm;
     border-radius: 0.3em;
 }
+
+.label--CONSIDERATION {
+    background-color: $feedback-color-consideration;
+    color: contrast-color($feedback-color-consideration);
+}
+
+.label--REJECTED {
+    background-color: $feedback-color-rejected;
+    color: contrast-color($feedback-color-rejected);
+}
+
+.label--ACCEPTED {
+    background-color: $feedback-color-accepted;
+    color: contrast-color($feedback-color-accepted);
+}
