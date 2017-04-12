@@ -1,4 +1,5 @@
 {% extends "meinberlin_contrib/item_detail.html" %}
+{% load rules item_tags i18n %}
 
 {% block additional_meta %}
     <div class="resource-header__meta">
@@ -11,10 +12,12 @@
 {% endblock %}
 
 {% block dropdown_items %}
-    {% has_perm 'meinberlin_budgeting.moderate_proposal' request.user proposal as is_moderator %}
+    {% get_item_permission object 'moderate' as moderator_perm %}
+    {% has_perm moderator_perm request.user proposal as is_moderator %}
     {% if is_moderator %}
         <li>
-            <a class="dropdown-item" href="{% url 'budgeting:proposal-moderate' slug=proposal.slug %}">{% trans 'Moderate' %}</a>
+            {% get_item_url object 'moderate' as moderate_url %}
+            <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'Moderate' %}</a>
         </li>
     {% endif %}
 {% endblock %}
