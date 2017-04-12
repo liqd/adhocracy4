@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    text-align: left;
+    padding-bottom: 0.8em;
+}
+
+th,
+td {
+    padding: 0.8em 0;
+    border-bottom: 1px solid $border-color;
+}
+
+.td--action {
+    text-align: right;
+
+    i {
+        font-size: $font-size-lg;
+    }
+}

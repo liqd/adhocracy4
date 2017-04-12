@@ -9,6 +9,7 @@ from rules.compat import access_mixins as mixins
 
 from adhocracy4.projects.models import Project
 from apps.organisations.models import Organisation
+from apps.users.models import User
 
 
 class DashboardBaseMixin(mixins.LoginRequiredMixin,
@@ -56,3 +57,25 @@ class DashboardProjectPublishMixin:
 
         return redirect('dashboard-project-list',
                         organisation_slug=self.organisation.slug)
+
+
+class DashboardModRemovalMixin:
+    def post(self, request, *args, **kwargs):
+        if 'submit_action' in request.POST:
+            pk = int(request.POST['moderator_pk'])
+            user = get_object_or_404(User, pk=pk)
+            project = self.get_object()
+            can_edit = request.user.has_perm('a4projects.edit_project',
+                                             project)
+            if not can_edit:
+                raise PermissionDenied
+
+            if request.POST['submit_action'] == 'remove_moderator':
+                project.moderators.remove(user)
+                messages.success(request, _('Moderator successfully removed.'))
+
+            return redirect('dashboard-project-moderators',
+                            organisation_slug=self.organisation.slug,
+                            slug=project.slug)
+        else:
+            return super().post(request, *args, **kwargs)

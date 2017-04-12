@@ -160,3 +160,25 @@ class ChangePasswordView(dashboard_mixins.DashboardBaseMixin,
 
     def get_success_url(self):
         return reverse('dashboard-password')
+
+
+class DashboardProjectModeratorsView(dashboard_mixins.DashboardBaseMixin,
+                                     dashboard_mixins.DashboardModRemovalMixin,
+                                     rules_mixins.PermissionRequiredMixin,
+                                     generic.UpdateView):
+
+    model = project_models.Project
+    form_class = forms.AddModeratorForm
+    template_name = 'meinberlin_dashboard/project_moderators.html'
+    permission_required = 'meinberlin_organisations.initiate_project'
+
+    def get_permission_object(self):
+        return self.organisation
+
+    def get_success_url(self):
+        return self.request.path
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs

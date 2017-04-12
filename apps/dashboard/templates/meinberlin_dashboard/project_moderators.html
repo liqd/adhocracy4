@@ -1,0 +1,47 @@
+{% extends "meinberlin_dashboard/base_dashboard.html" %}
+{% load i18n %}
+
+{% block dashboard_content %}
+    <h1>{{ project.name }}</h1>
+    <h2>{% trans 'Moderators' %}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form--single-line">
+            <div class="l-col-2">
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.add_moderators %}
+            </div>
+            <div class="l-col-2">
+                <input type="submit" class="button button--secondary" value="{% trans 'Add' %}"/>
+            </div>
+        </div>
+    </form>
+
+    {% if project.moderators.count %}
+        <table>
+            <thead>
+                <tr>
+                    <th>{% trans 'Name' %}</th>
+                    <th>{% trans 'E-Mail' %}</th>
+                    <th><span class="sr-only">{% trans 'Remove' %}</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for moderator in project.moderators.all %}
+                    <tr>
+                        <td><label for="moderator-{{ moderator.pk }}">{{ moderator.username }}</label></td>
+                        <td><label for="moderator-{{ moderator.pk }}">{{ moderator.email }}</label></td>
+                        <td class="td--action">
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="moderator_pk" value="{{ moderator.pk }}">
+                                <button type="submit" name="submit_action" value="remove_moderator" aria-label="{% trans 'Remove' %}">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
