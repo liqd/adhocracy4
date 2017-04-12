@@ -60,6 +60,8 @@
                 </div>
             {% endif %}
 
+            {% block additional_meta %}{% endblock %}
+
             {% if object|has_feature:"rate" %}
                 <div class="resource-header__action">
                     {% react_ratings object %}
