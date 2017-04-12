@@ -14,7 +14,7 @@
 {% block project_action %}
     {% has_perm 'meinberlin_mapideas.propose_idea' request.user view.module as propose_allowed %}
     {% if propose_allowed %}
-        <a href="{% url 'mapideas:idea-create' slug=view.module.slug %}" class="button button--huge">
+        <a href="{% url 'meinberlin_mapideas:mapidea-create' slug=view.module.slug %}" class="button button--huge">
             {% trans 'Submit Idea' %}
         </a>
     {% endif %}

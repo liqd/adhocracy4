@@ -1,4 +1,4 @@
-{% load module_tags %}
+{% load module_tags item_tags %}
 
 <div class="list-item list-item--squashed">
     <div class="list-item__stats">
@@ -22,7 +22,8 @@
         {% endspaceless %}
     </div>
     <h3 class="list-item__title">
-        <a href="{% url 'mapideas:idea-detail' object.slug %}">
+        {% get_item_detail_url object as detail_url %}
+        <a href="{{ detail_url }}">
         {{ object.name }}
         </a>
     </h3>
