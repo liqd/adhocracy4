@@ -36,7 +36,12 @@
 }
 
 .list-item__labels {
+    @include clearfix;
     margin: 0 0 0.4rem;
+}
+
+.list-item__label--moderator-feedback {
+    float: right;
 }
 
 .list-item__author {
