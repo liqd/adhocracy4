@@ -57,7 +57,7 @@ def get_item_delete_url(item):
 def get_item_url(item, view):
     url_name = '{app}:{name}-{view}'.format(
         app=item._meta.app_label,
-        name=item._meta.verbose_name,
+        name=item._meta.model_name,
         view=view
     )
 
