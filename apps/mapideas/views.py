@@ -44,7 +44,7 @@ class MapIdeaListView(map_mixins.MapItemListMixin, module_views.ItemListView):
     filter_set = MapIdeaFilterSet
 
     def dispatch(self, request, **kwargs):
-        self.mode = request.GET.get('mode', 'list')
+        self.mode = request.GET.get('mode', 'map')
         if self.mode == 'map':
             self.paginate_by = 0
         return super().dispatch(request, **kwargs)
