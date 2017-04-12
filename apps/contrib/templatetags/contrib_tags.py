@@ -17,3 +17,31 @@ def combinedUrlParameter(request_query_dict, **kwargs):
         combined_query_dict.setlist(key, [kwargs[key]])
     encoded_parameter = '?' + combined_query_dict.urlencode()
     return encoded_parameter
+
+
+@register.assignment_tag
+def get_item_view_permission(item):
+    return get_item_permission(item, 'view')
+
+
+@register.assignment_tag
+def get_item_add_permission(item):
+    return get_item_permission(item, 'add')
+
+
+@register.assignment_tag
+def get_item_change_permission(item):
+    return get_item_permission(item, 'change')
+
+
+@register.assignment_tag
+def get_item_delete_permission(item):
+    return get_item_permission(item, 'delete')
+
+
+def get_item_permission(item, verb):
+    return '{app}.{verb}_{name}'.format(
+        app=item._meta.app_label,
+        verb=verb,
+        name=item._meta.verbose_name
+    )

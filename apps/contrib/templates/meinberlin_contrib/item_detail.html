@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments react_ratings wagtailcore_tags %}
+{% load i18n module_tags rules react_comments react_ratings wagtailcore_tags contrib_tags%}
 
 {% block title %}{{object.name}}{% endblock %}
 {% block content %}
@@ -15,7 +15,9 @@
             </ul>
         </nav>
 
-        {% has_perm 'meinberlin_ideas.modify_idea' request.user object as show_dropdown %}
+        {% get_item_change_permission object as change_perm %}
+        {% has_perm change_perm request.user object as show_dropdown %}
+
         {% if show_dropdown %}
         <div class="resource-navigation__actions dropdown dropdown--right">
             <button
