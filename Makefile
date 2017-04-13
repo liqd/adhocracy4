@@ -48,3 +48,12 @@ lint:
 
 lint-quick:
 	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint -SF
+
+test:
+	$(VIRTUAL_ENV)/bin/py.test --reuse-db
+
+test-lastfailed:
+	$(VIRTUAL_ENV)/bin/py.test --reuse-db --last-failed
+
+test-clean:
+	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
