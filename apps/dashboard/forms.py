@@ -335,8 +335,7 @@ class ExternalProjectBaseForm(forms.ModelForm):
 
     class Meta:
         model = extproject_models.ExternalProject
-        fields = ['name', 'url', 'description', 'image', 'is_archived'] \
-            + ['start_date', 'end_date']
+        fields = ['name', 'url', 'description', 'image', 'is_archived']
 
 
 class ExternalProjectCreateForm(ExternalProjectBaseForm):
