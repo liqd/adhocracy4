@@ -2,7 +2,7 @@ import json
 
 from django import template
 from django.contrib.contenttypes.models import ContentType
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 
 from ..models import Comment
 from ..serializers import ThreadSerializer
@@ -46,10 +46,11 @@ def react_comments(context, obj):
         'isReadOnly': not has_comment_permission,
     }
 
-    return mark_safe((
-        '<div id={mountpoint}></div><script>window.adhocracy4.renderComment('
-        '{mountpoint}, {attributes})</script>').format(
-            attributes=json.dumps(attributes),
-            mountpoint=json.dumps(mountpoint)
-    )
+    return format_html(
+        (
+            '<div id="{mountpoint}" data-attributes="{attributes}"></div>'
+            "<script>window.adhocracy4.renderComment('{mountpoint}')</script>"
+        ),
+        attributes=json.dumps(attributes),
+        mountpoint=mountpoint
     )

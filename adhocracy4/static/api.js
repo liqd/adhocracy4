@@ -11,21 +11,39 @@ var baseURL = '/api/'
 
 var api = (function () {
   var urls = {
-    comment: baseURL + 'comments/',
-    rating: baseURL + 'ratings/',
     report: baseURL + 'reports/',
     document: baseURL + 'documents/',
     follow: baseURL + 'follows/'
   }
 
+  var generic_urls = {
+    comment: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comments/',
+    rating: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/ratings/'
+  }
+
   function _sendRequest (endpoint, id, options, data, contentType) {
     var $body = $('body')
-    var url = urls[endpoint]
+
     if (typeof id === 'object') {
       // there's no id, switch parameters
       data = options
       options = id
-    } else if (typeof id === 'number' || typeof id === 'string') {
+      id = null;
+    }
+
+    var url;
+    if (urls.hasOwnProperty(endpoint)) {
+      url = urls[endpoint]
+    } else {
+      url = generic_urls[endpoint]
+        .replace('$contentTypeId',  data['content_type'])
+        .replace('$objectPk', data['object_pk'])
+      data = $.extend({}, data)
+      delete data.content_type
+      delete data.object_pk
+    }
+
+    if (typeof id === 'number' || typeof id === 'string') {
       url = url + id + '/'
     }
     var defaultParams = {
@@ -56,13 +74,6 @@ var api = (function () {
 
   return {
     comments: {
-      get: function (data) {
-        return _sendRequest('comment', {
-          cache: false,
-          type: 'GET'
-        }, data)
-      },
-
       add: function (data) {
         return _sendRequest('comment', {
           type: 'POST'
@@ -75,10 +86,10 @@ var api = (function () {
         }, data)
       },
 
-      delete: function (id) {
+      delete: function (data, id) {
         return _sendRequest('comment', id, {
           type: 'DELETE'
-        })
+        }, data)
       }
     },
     rating: {

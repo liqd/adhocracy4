@@ -13,7 +13,8 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         read_only_fields = ('modified', 'created', 'id',
-                            'user_name', 'ratings')
+                            'user_name', 'ratings', 'content_type',
+                            'object_pk')
         exclude = ('creator', 'is_censored', 'is_removed')
 
     def get_user_name(self, obj):

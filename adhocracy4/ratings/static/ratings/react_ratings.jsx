@@ -22,7 +22,11 @@ var RatingBox = React.createClass({
     }.bind(this))
   },
   handleRatingModify: function (number, id) {
-    api.rating.change({value: number}, id)
+    api.rating.change({
+      object_pk: this.props.objectId,
+      content_type: this.props.contentType,
+      value: number
+    }, id)
       .done(function (data) {
         this.setState({
           positiveRatings: data.meta_info.positive_ratings_on_same_object,
@@ -119,6 +123,8 @@ var RatingBox = React.createClass({
 
 module.exports.RatingBox = RatingBox
 
-module.exports.renderRatings = function (mountpoint, props) {
-  ReactDOM.render(<RatingBox {...props} />, document.getElementById(mountpoint))
+module.exports.renderRatings = function (mountpoint) {
+  let el = document.getElementById(mountpoint)
+  let props = JSON.parse(el.getAttribute('data-attributes'))
+  ReactDOM.render(<RatingBox {...props} />, el)
 }
