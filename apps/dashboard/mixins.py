@@ -34,6 +34,9 @@ class DashboardBaseMixin(mixins.LoginRequiredMixin,
     def get_permission_object(self):
         return self.organisation
 
+    def get_success_url(self):
+        return self.request.path
+
 
 class DashboardProjectPublishMixin:
     def post(self, request, *args, **kwargs):
@@ -65,8 +68,10 @@ class DashboardModRemovalMixin:
             pk = int(request.POST['moderator_pk'])
             user = get_object_or_404(User, pk=pk)
             project = self.get_object()
-            can_edit = request.user.has_perm('a4projects.edit_project',
-                                             project)
+            can_edit = request.user.has_perm(
+                'meinberlin_organisations.initiate_project',
+                project
+            )
             if not can_edit:
                 raise PermissionDenied
 
