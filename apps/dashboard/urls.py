@@ -23,11 +23,15 @@ urlpatterns = [
         name='dashboard-blueprint-list'),
     url(r'^(?P<organisation_slug>[-\w_]+)/blueprints/'
         r'(?P<blueprint_slug>[-\w_]+)/$',
-        views.DashboardProjectCreateView.as_view(),
+        views.DashboardProjectCreateViewDispatcher.as_view(),
         name='dashboard-project-create'),
     url(r'^(?P<organisation_slug>[-\w_]+)/projects/(?P<slug>[-\w_]+)/$',
         views.DashboardProjectUpdateView.as_view(),
         name='dashboard-project-edit'),
+    url(r'^(?P<organisation_slug>[-\w_]+)/'
+        r'external_projects/(?P<slug>[-\w_]+)/$',
+        views.DashboardExternalProjectUpdateView.as_view(),
+        name='dashboard-external-project-edit'),
     url(r'^(?P<organisation_slug>[-\w_]+)/projects/'
         r'(?P<slug>[-\w_]+)/moderators/$',
         views.DashboardProjectModeratorsView.as_view(),

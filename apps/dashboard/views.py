@@ -10,7 +10,7 @@ from adhocracy4.filters import views as filter_views
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
-
+from apps.extprojects import models as extproject_models
 from apps.organisations.models import Organisation
 from apps.users.models import User
 
@@ -47,6 +47,23 @@ class DashboardBlueprintListView(dashboard_mixins.DashboardBaseMixin,
     permission_required = 'meinberlin_organisations.initiate_project'
 
 
+class DashboardProjectCreateViewDispatcher(generic.View):
+
+    def __init__(self, **kwargs):
+        super(DashboardProjectCreateViewDispatcher, self).__init__(**kwargs)
+        self._initkwargs = kwargs
+
+    def dispatch(self, request, *args, **kwargs):
+        blueprint_slug = kwargs.get('blueprint_slug', None)
+        if blueprint_slug == 'external-project':
+            view = \
+                DashboardExternalProjectCreateView.as_view(**self._initkwargs)
+        else:
+            view = DashboardProjectCreateView.as_view(**self._initkwargs)
+
+        return view(request, *args, **kwargs)
+
+
 class DashboardProjectCreateView(dashboard_mixins.DashboardBaseMixin,
                                  rules_mixins.PermissionRequiredMixin,
                                  SuccessMessageMixin,
@@ -63,6 +80,33 @@ class DashboardProjectCreateView(dashboard_mixins.DashboardBaseMixin,
         kwargs['blueprint'] = self.blueprint
         kwargs['organisation'] = self.organisation
         kwargs['creator'] = self.request.user
+        return kwargs
+
+    def get_success_url(self):
+        return reverse(
+            'dashboard-project-list',
+            kwargs={'organisation_slug': self.organisation.slug, })
+
+
+class DashboardExternalProjectCreateView(dashboard_mixins.DashboardBaseMixin,
+                                         rules_mixins.PermissionRequiredMixin,
+                                         SuccessMessageMixin,
+                                         generic.CreateView):
+    model = extproject_models.ExternalProject
+    form_class = forms.ExternalProjectCreateForm
+    template_name = 'meinberlin_dashboard/external_project_create_form.html'
+    success_message = _('Project succesfully created.')
+    permission_required = 'meinberlin_organisations.initiate_project'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        from apps.dashboard.blueprints import blueprints
+        self.blueprint = dict(blueprints)['external-project']
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['view'] = self
         return kwargs
 
     def get_success_url(self):
@@ -105,6 +149,33 @@ class DashboardProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
             category_models.Category.objects.filter(
                 module__project=self.object)
 
+        return kwargs
+
+
+class DashboardExternalProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
+                                         rules_mixins.PermissionRequiredMixin,
+                                         SuccessMessageMixin,
+                                         generic.UpdateView):
+    model = extproject_models.ExternalProject
+    form_class = forms.ExternalProjectUpdateForm
+    template_name = 'meinberlin_dashboard/external_project_update_form.html'
+    success_message = _('Project successfully updated.')
+    permission_required = 'meinberlin_organisations.initiate_project'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            organisation=self.organisation
+        )
+
+    def get_success_url(self):
+        return reverse('dashboard-project-list',
+                       kwargs={
+                           'organisation_slug': self.organisation.slug,
+                       })
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['view'] = self
         return kwargs
 
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>projectOwner / external</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="projectOwner-/-external">
+            <path d="M50,25 C50,38.8070912 38.8072642,50 25.0001114,50 C11.1929587,50 0,38.8070912 0,25 C0,11.1929088 11.1929587,0 25.0001114,0 C38.8072642,0 50,11.1929088 50,25" id="Fill-1" fill="#F3F3F3"></path>
+            <text id="share---fontawesome" font-family="FontAwesome" font-size="24" font-weight="normal" fill="#CD0055">
+                <tspan x="13" y="34"></tspan>
+            </text>
+        </g>
+    </g>
+</svg>
