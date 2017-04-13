@@ -35,9 +35,6 @@ class DashboardProjectListView(dashboard_mixins.DashboardBaseMixin,
             organisation=self.organisation
         )
 
-    def get_success_url(self):
-        return reverse('dashboard-project-list')
-
 
 class DashboardBlueprintListView(dashboard_mixins.DashboardBaseMixin,
                                  rules_mixins.PermissionRequiredMixin,
@@ -120,20 +117,11 @@ class DashboardOrganisationUpdateView(dashboard_mixins.DashboardBaseMixin,
     success_message = _('Organisation successfully updated.')
     permission_required = 'meinberlin_organisations.modify_organisation'
 
-    def get_success_url(self):
-        return reverse('dashboard-organisation-edit',
-                       kwargs={
-                           'organisation_slug': self.organisation.slug,
-                       })
-
 
 class DashboardEmailView(dashboard_mixins.DashboardBaseMixin,
                          account_views.EmailView):
     menu_item = 'email'
     template_name = 'meinberlin_dashboard/email.html'
-
-    def get_success_url(self):
-        return self.request.path
 
 
 class DashboardProfileView(dashboard_mixins.DashboardBaseMixin,
@@ -148,9 +136,6 @@ class DashboardProfileView(dashboard_mixins.DashboardBaseMixin,
 
     def get_object(self):
         return get_object_or_404(User, pk=self.request.user.id)
-
-    def get_success_url(self):
-        return self.request.path
 
 
 class ChangePasswordView(dashboard_mixins.DashboardBaseMixin,
@@ -171,12 +156,6 @@ class DashboardProjectModeratorsView(dashboard_mixins.DashboardBaseMixin,
     form_class = forms.AddModeratorForm
     template_name = 'meinberlin_dashboard/project_moderators.html'
     permission_required = 'meinberlin_organisations.initiate_project'
-
-    def get_permission_object(self):
-        return self.organisation
-
-    def get_success_url(self):
-        return self.request.path
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
