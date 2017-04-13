@@ -128,6 +128,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'TEST': {
+            'NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
+        }
     }
 }
 
@@ -293,6 +296,6 @@ A4_COMMENTABLES = (
     ('meinberlin_budgeting', 'proposal'),
 )
 
-BASE_MAP = 'https://{s}.tile.openstreetmap.org/'
+BASE_MAP = 'https://maps.berlinonline.de/tile/bright/'
 
 MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
