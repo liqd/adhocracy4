@@ -13,6 +13,9 @@ class DashboardEmailView(account_views.EmailView):
     template_name = 'meinberlin_account/email.html'
     menu_item = 'email'
 
+    def get_success_url(self):
+        return reverse('account-email')
+
 
 class ProfileUpdateView(SuccessMessageMixin,
                         generic.UpdateView):
@@ -22,6 +25,9 @@ class ProfileUpdateView(SuccessMessageMixin,
     form_class = forms.ProfileForm
     success_message = _("Your profile was successfully updated.")
     menu_item = 'profile'
+
+    def get_success_url(self):
+        return reverse('account-profile')
 
     def get_object(self):
         return get_object_or_404(User, pk=self.request.user.id)
@@ -33,4 +39,4 @@ class ChangePasswordView(account_views.PasswordChangeView):
     menu_item = 'password'
 
     def get_success_url(self):
-        return reverse('profile-password')
+        return reverse('account-password')
