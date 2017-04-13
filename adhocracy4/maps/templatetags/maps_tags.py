@@ -71,7 +71,6 @@ def map_display_point(point, polygon):
     return format_html(
         (
             '<div'
-            ' style="height: 300px"'
             ' data-map="display_point"'
             ' data-baseurl="{baseurl}"'
             ' data-attribution="{attribution}"'
