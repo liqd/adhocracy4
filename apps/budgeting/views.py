@@ -1,6 +1,5 @@
 import django_filters
 from django.contrib import messages
-from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from django.views import generic
 
