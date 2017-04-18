@@ -84,10 +84,10 @@ class RulesPermission(permissions.BasePermission):
         model_cls = self.get_model_cls(request, view)
         perm = self.get_rule(request, model_cls, rules_method_map)
 
-        if not request.user.has_perm(perm, obj):
-            raise PermissionDenied
+        if request.user.has_perm(perm, obj):
+            return True
 
-        return True
+        raise PermissionDenied
 
 
 class ViewSetRulesPermission(RulesPermission):
