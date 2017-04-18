@@ -1,4 +1,4 @@
-var ReportModal = require('../../../reports/static/reports/react_reports')
+var ReportModal = require('../../../reports/static/reports/react_reports').ReportModal
 var RatingBox = require('../../../ratings/static/ratings/react_ratings').RatingBox
 var Modal = require('../../../static/Modal')
 var CommentEditForm = require('./CommentEditForm')
