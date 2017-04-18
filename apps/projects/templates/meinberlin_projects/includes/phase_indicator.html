@@ -8,7 +8,7 @@
 <div class="phase-list">
     <ul>
         {% for phase in project.phases %}
-            {% includeTemplateString "meinberlin_projects/includes/phase_popover.html" phase=phase phase_num=forloop.counter phase_count=phase_count as popover_content %}
+            {% include_template_string "meinberlin_projects/includes/phase_popover.html" phase=phase phase_num=forloop.counter phase_count=phase_count as popover_content %}
             <li>
                 <button
                     title="{{ phase.name }}"

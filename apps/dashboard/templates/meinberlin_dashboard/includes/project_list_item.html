@@ -9,7 +9,7 @@
     </h3>
     <div class="list-item__actions">
         <span class="list-item__action">
-            <a href="{% url 'dashboard-project-edit' organisation_slug=view.organisation.slug slug=project.slug %}"
+            <a href="{% url 'dashboard-project-edit' slug=project.slug %}"
                class="button button--light">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
                 {% trans 'Edit'%}
@@ -28,5 +28,12 @@
                 {% endif %}
             </button>
         </form>
+        <span class="list-item__action">
+            <a href="{% url 'dashboard-project-moderators' slug=project.slug %}"
+               class="button button--light">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                {% trans 'Moderators' %}
+            </a>
+        </span>
     </div>
 </div>

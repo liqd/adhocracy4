@@ -1,7 +1,10 @@
 from django import forms
+from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import loading
 from django.forms import modelformset_factory
 from django.utils.translation import ugettext as _
+from django.utils.translation import ngettext
 
 from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
@@ -10,6 +13,7 @@ from adhocracy4.projects import models as project_models
 from apps.contrib import multiform
 from apps.contrib.formset import dynamic_modelformset_factory
 from apps.organisations.models import Organisation
+from apps.users.fields import CommaSeparatedEmailField
 from apps.users.models import User
 
 
@@ -268,8 +272,48 @@ class OrganisationForm(forms.ModelForm):
         }
 
 
-class ProfileForm(forms.ModelForm):
+class AddModeratorForm(forms.ModelForm):
+    add_moderators = CommaSeparatedEmailField(label=_('Add moderator via '
+                                                      'email'))
 
     class Meta:
-        model = User
-        fields = ['username', ]
+        model = project_models.Project
+        fields = ('moderators',)
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, **kwargs)
+
+    def clean_add_moderators(self):
+        users = []
+        missing = []
+        for email in self.cleaned_data['add_moderators']:
+            try:
+                user = User.objects.get(email__exact=email)
+                users.append(user)
+            except ObjectDoesNotExist:
+                missing.append(email)
+
+        if missing:
+            messages.error(
+                self.request,
+                _('Following e-mails are not registered: ') + ', '.join(
+                    missing)
+            )
+        if users:
+            messages.success(
+                self.request,
+                ngettext(
+                    '{} moderator added.',
+                    '{} moderators added.', len(users)
+                ).format(len(users))
+            )
+
+        return users
+
+    def save(self, commit=True):
+        if commit:
+            if self.cleaned_data['add_moderators']:
+                self.instance.moderators.add(
+                    *self.cleaned_data['add_moderators']
+                )

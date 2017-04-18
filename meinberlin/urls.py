@@ -18,6 +18,7 @@ from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.ratings.api import RatingViewSet
 
+from apps.account import urls as account_urls
 from apps.budgeting import urls as budgeting_urls
 from apps.dashboard import urls as dashboard_urls
 from apps.documents import urls as paragraph_urls
@@ -41,6 +42,7 @@ ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
     url(r'^dashboard/', include(dashboard_urls)),
+    url(r'^account/', include(account_urls)),
     url(r'^embed/', include(embed_urls)),
 
     url(r'^admin/', include(wagtailadmin_urls)),
