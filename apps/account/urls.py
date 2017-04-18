@@ -13,6 +13,6 @@ urlpatterns = [
         views.ChangePasswordView.as_view(),
         name='account-password'),
     url(r'^email/$',
-        views.DashboardEmailView.as_view(),
+        views.AccountEmailView.as_view(),
         name='account-email'),
 ]

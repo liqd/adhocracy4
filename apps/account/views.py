@@ -9,7 +9,7 @@ from apps.users.models import User
 from . import forms
 
 
-class DashboardEmailView(account_views.EmailView):
+class AccountEmailView(account_views.EmailView):
     template_name = 'meinberlin_account/email.html'
     menu_item = 'email'
 
