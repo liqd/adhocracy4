@@ -7,8 +7,9 @@ from django.utils.translation import ugettext as _
 from django.views import generic
 from rules.compat import access_mixins as mixins
 
-from adhocracy4.projects.models import Project
-from apps.organisations.models import Organisation
+from adhocracy4.projects import models as project_models
+from apps.organisations import models as org_models
+from apps.users.models import User
 
 
 class DashboardBaseMixin(mixins.LoginRequiredMixin,
@@ -18,7 +19,11 @@ class DashboardBaseMixin(mixins.LoginRequiredMixin,
     def organisation(self):
         if 'organisation_slug' in self.kwargs:
             slug = self.kwargs['organisation_slug']
-            return get_object_or_404(Organisation, slug=slug)
+            return get_object_or_404(org_models.Organisation, slug=slug)
+        if 'slug' in self.kwargs:
+            slug = self.kwargs['slug']
+            project = get_object_or_404(project_models.Project, slug=slug)
+            return project.organisation
         else:
             return self.request.user.organisation_set.first()
 
@@ -33,12 +38,15 @@ class DashboardBaseMixin(mixins.LoginRequiredMixin,
     def get_permission_object(self):
         return self.organisation
 
+    def get_success_url(self):
+        return self.request.path
+
 
 class DashboardProjectPublishMixin:
     def post(self, request, *args, **kwargs):
         if 'submit_action' in request.POST:
             pk = int(request.POST['project_pk'])
-            project = get_object_or_404(Project, pk=pk)
+            project = get_object_or_404(project_models.Project, pk=pk)
             can_edit = request.user.has_perm('a4projects.edit_project',
                                              project)
 
@@ -56,3 +64,26 @@ class DashboardProjectPublishMixin:
 
         return redirect('dashboard-project-list',
                         organisation_slug=self.organisation.slug)
+
+
+class DashboardModRemovalMixin:
+    def post(self, request, *args, **kwargs):
+        if 'submit_action' in request.POST:
+            pk = int(request.POST['moderator_pk'])
+            user = get_object_or_404(User, pk=pk)
+            project = self.get_object()
+            can_edit = request.user.has_perm(
+                'meinberlin_organisations.initiate_project',
+                project
+            )
+            if not can_edit:
+                raise PermissionDenied
+
+            if request.POST['submit_action'] == 'remove_moderator':
+                project.moderators.remove(user)
+                messages.success(request, _('Moderator successfully removed.'))
+
+            return redirect('dashboard-project-moderators',
+                            slug=project.slug)
+        else:
+            return super().post(request, *args, **kwargs)

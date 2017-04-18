@@ -5,7 +5,7 @@
     <ul class="pagination">
         {% for page_number in page_obj.paginator.page_range %}
         <li class="pagination-item{% ifequal page_number page_obj.number %} active{% endifequal %}">
-            {% combinedUrlParameter request.GET page=page_number as url_par %}
+            {% combined_url_parameter request.GET page=page_number as url_par %}
             <a href="{{ url_par }}">{{ page_number }}</a>
         </li>
         {% endfor %}

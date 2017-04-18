@@ -68,12 +68,13 @@ INSTALLED_APPS = (
     'apps.organisations.apps.Config',
     'apps.dashboard.apps.Config',
     'apps.embed.apps.Config',
-    'apps.mapideas.apps.Config',
+    'apps.moderatorfeedback.apps.Config',
+    'apps.account.apps.Config',
 
     'apps.ideas.apps.Config',
     'apps.documents.apps.Config',
     'apps.budgeting.apps.Config',
-    'apps.moderatorfeedback.apps.Config',
+    'apps.mapideas.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -127,6 +128,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'TEST': {
+            'NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
+        }
     }
 }
 
@@ -279,6 +283,8 @@ A4_ORGANISATIONS_MODEL = 'meinberlin_organisations.Organisation'
 A4_RATEABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
 )
 
 A4_COMMENTABLES = (
@@ -286,8 +292,10 @@ A4_COMMENTABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_documents', 'document'),
     ('meinberlin_documents', 'paragraph'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
 )
 
-BASE_MAP = 'https://{s}.tile.openstreetmap.org/'
+BASE_MAP = 'https://maps.berlinonline.de/tile/bright/'
 
 MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
