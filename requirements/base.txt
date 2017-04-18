@@ -7,7 +7,7 @@ django-filter==1.0.2
 django-widget-tweaks==1.4.1
 easy-thumbnails==2.4.1
 django-autoslug==1.9.3
-rules==1.1.1
+rules==1.2
 python-magic==0.4.12
 html5lib==0.9999999
 bleach==1.4.3
