@@ -94,10 +94,7 @@ window.jQuery(document).ready(function () {
     })
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-      if (!mapVisible) {
-        map.invalidateSize().fitBounds(getBasePolygon(L, polygon, bbox))
-        mapVisible = true
-      }
+      map.invalidateSize().fitBounds(getBasePolygon(L, polygon, bbox))
     })
   })
 })
