@@ -9,15 +9,19 @@ from apps.users.models import User
 from . import forms
 
 
-class AccountEmailView(account_views.EmailView):
+class AccountBaseMixin:
+    def get_success_url(self):
+        return self.request.path
+
+
+class AccountEmailView(AccountBaseMixin,
+                       account_views.EmailView):
     template_name = 'meinberlin_account/email.html'
     menu_item = 'email'
 
-    def get_success_url(self):
-        return reverse('account-email')
 
-
-class ProfileUpdateView(SuccessMessageMixin,
+class ProfileUpdateView(AccountBaseMixin,
+                        SuccessMessageMixin,
                         generic.UpdateView):
 
     model = User
@@ -26,17 +30,12 @@ class ProfileUpdateView(SuccessMessageMixin,
     success_message = _("Your profile was successfully updated.")
     menu_item = 'profile'
 
-    def get_success_url(self):
-        return reverse('account-profile')
-
     def get_object(self):
         return get_object_or_404(User, pk=self.request.user.id)
 
 
-class ChangePasswordView(account_views.PasswordChangeView):
+class ChangePasswordView(AccountBaseMixin,
+                         account_views.PasswordChangeView):
     menu_item = 'password'
     template_name = 'meinberlin_account/password.html'
     menu_item = 'password'
-
-    def get_success_url(self):
-        return reverse('account-password')
