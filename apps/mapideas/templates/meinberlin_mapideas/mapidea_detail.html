@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments react_ratings static wagtailcore_tags %}
+{% load i18n module_tags rules react_comments react_ratings react_reports static wagtailcore_tags %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
@@ -24,8 +24,7 @@
             </ul>
         </nav>
 
-        {% has_perm 'meinberlin_ideas.modify_idea' request.user object as show_dropdown %}
-        {% if show_dropdown %}
+        {% if request.user.is_authenticated %}
         <div class="resource-navigation__actions dropdown dropdown--right">
             <button
                 title="{% trans 'Actions' %}"
@@ -39,11 +38,19 @@
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="idea-{{object.pk}}-actions">
+                {% has_perm 'meinberlin_ideas.modify_idea' request.user object as may_modify %}
+                {% if may_modify %}
                 <li>
                     <a class="dropdown-item" href="{% url 'mapideas:idea-update' slug=object.slug %}">{% trans 'Edit' %}</a>
                 </li>
                 <li>
                     <a class="dropdown-item" href="{% url 'mapideas:idea-delete' slug=object.slug %}">{% trans 'Delete' %}</a>
+                </li>
+                {% endif %}
+
+                <li>
+                    {% trans 'Report' as report_text %}
+                    {% react_reports object text=report_text class='dropdown-item' %}
                 </li>
             </ul>
         </div>

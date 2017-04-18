@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n rules react_comments react_ratings %}
+{% load i18n rules react_comments react_ratings react_reports %}
 
 {% block title %}{{proposal.name}}{% endblock %}
 {% block content %}
@@ -15,8 +15,7 @@
             </ul>
         </nav>
 
-        {% has_perm 'meinberlin_budgeting.modify_proposal' request.user proposal as show_dropdown %}
-        {% if show_dropdown %}
+        {% if request.user.is_authenticated %}
         <div class="resource-navigation__actions dropdown dropdown--right">
             <button
                 title="{% trans 'Actions' %}"
@@ -36,11 +35,20 @@
                     <a class="dropdown-item" href="{% url 'budgeting:proposal-moderate' slug=proposal.slug %}">{% trans 'Moderate' %}</a>
                 </li>
                 {% endif %}
+
+                {% has_perm 'meinberlin_budgeting.modify_proposal' request.user proposal as may_modify %}
+                {% if may_modify %}
                 <li>
                     <a class="dropdown-item" href="{% url 'budgeting:proposal-update' slug=proposal.slug %}">{% trans 'Edit' %}</a>
                 </li>
                 <li>
                     <a class="dropdown-item" href="{% url 'budgeting:proposal-delete' slug=proposal.slug %}">{% trans 'Delete' %}</a>
+                </li>
+                {% endif %}
+
+                <li>
+                    {% trans 'Report' as report_text %}
+                    {% react_reports proposal text=report_text class='dropdown-item' %}
                 </li>
             </ul>
         </div>

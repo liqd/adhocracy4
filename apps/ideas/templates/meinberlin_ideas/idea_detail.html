@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments react_ratings wagtailcore_tags %}
+{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags %}
 
 {% block title %}{{idea.name}}{% endblock %}
 {% block content %}
@@ -15,8 +15,7 @@
             </ul>
         </nav>
 
-        {% has_perm 'meinberlin_ideas.modify_idea' request.user idea as show_dropdown %}
-        {% if show_dropdown %}
+        {% if request.user.is_authenticated %}
         <div class="resource-navigation__actions dropdown dropdown--right">
             <button
                 title="{% trans 'Actions' %}"
@@ -30,11 +29,19 @@
                 <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="idea-{{idea.pk}}-actions">
+                {% has_perm 'meinberlin_ideas.modify_idea' request.user idea as may_modify %}
+                {% if may_modify %}
                 <li>
                     <a class="dropdown-item" href="{% url 'ideas:idea-update' slug=idea.slug %}">{% trans 'Edit' %}</a>
                 </li>
                 <li>
                     <a class="dropdown-item" href="{% url 'ideas:idea-delete' slug=idea.slug %}">{% trans 'Delete' %}</a>
+                </li>
+                {% endif %}
+
+                <li>
+                    {% trans 'Report' as report_text %}
+                    {% react_reports idea text=report_text class='dropdown-item' %}
                 </li>
             </ul>
         </div>
