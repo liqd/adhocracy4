@@ -10,7 +10,7 @@ django-autoslug==1.9.3
 rules==1.2
 python-magic==0.4.13
 html5lib==0.999999999
-bleach==1.4.3
+bleach==2.0.0
 # django multiform (released version 0.1 was too old)
 git+git://github.com/bmispelon/django-multiform.git@0e02f0d5729a80502a290070b474f3e3ac85c926
 jsonfield==2.0.1
