@@ -2,7 +2,7 @@
 flake8==3.3.0
 flake8_docstrings==1.0.3
 django-debug-toolbar==1.7
-freezegun==0.3.7
+freezegun==0.3.8
 isort==4.2.5
 pytest-django==2.9.1
 pytest-cov==2.2.1
