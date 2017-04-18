@@ -1,4 +1,4 @@
 -r base.txt
-gunicorn==19.6
+gunicorn==19.7.1
 whitenoise==3.2
 psycopg2==2.6.1
