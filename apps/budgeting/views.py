@@ -85,9 +85,7 @@ class ProposalModerateView(rules_mixins.PermissionRequiredMixin,
     template_name = 'meinberlin_budgeting/proposal_moderate_form.html'
 
     def get_success_url(self):
-        return reverse(
-            'budgeting:proposal-moderate',
-            kwargs={self.slug_url_kwarg: self.kwargs.get(self.slug_url_kwarg)})
+        return self.request.path
 
     def form_valid(self, multiform):
         statement_form = multiform.forms['statement']
