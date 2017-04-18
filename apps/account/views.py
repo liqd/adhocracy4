@@ -1,6 +1,5 @@
 from allauth.account import views as account_views
 from django.contrib.messages.views import SuccessMessageMixin
-from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 from django.views import generic
