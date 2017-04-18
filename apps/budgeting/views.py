@@ -53,21 +53,21 @@ class ProposalDetailView(module_views.ItemDetailView):
 class ProposalCreateView(module_views.ItemCreateView):
     model = models.Proposal
     form_class = forms.ProposalForm
-    permission_required = 'meinberlin_budgeting.propose_proposal'
+    permission_required = 'meinberlin_budgeting.create_proposal'
     template_name = 'meinberlin_budgeting/proposal_create_form.html'
 
 
 class ProposalUpdateView(module_views.ItemUpdateView):
     model = models.Proposal
     form_class = forms.ProposalForm
-    permission_required = 'meinberlin_budgeting.modify_proposal'
+    permission_required = 'meinberlin_budgeting.change_proposal'
     template_name = 'meinberlin_budgeting/proposal_update_form.html'
 
 
 class ProposalDeleteView(module_views.ItemDeleteView):
     model = models.Proposal
     success_message = _("Your budget request has been deleted")
-    permission_required = 'meinberlin_budgeting.modify_proposal'
+    permission_required = 'meinberlin_budgeting.change_proposal'
     template_name = 'meinberlin_budgeting/proposal_confirm_delete.html'
 
     def delete(self, request, *args, **kwargs):

@@ -50,10 +50,14 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^projects/', include(projects_urls)),
 
-    url(r'^ideas/', include(ideas_urls, namespace='ideas')),
-    url(r'^paragraphs/', include(paragraph_urls, namespace='documents')),
-    url(r'^budgeting/', include(budgeting_urls, namespace='budgeting')),
-    url(r'^mapideas/', include(mapideas_urls, namespace='mapideas')),
+    url(r'^ideas/', include(ideas_urls,
+                            namespace='meinberlin_ideas')),
+    url(r'^paragraphs/', include(paragraph_urls,
+                                 namespace='meinberlin_documents')),
+    url(r'^budgeting/', include(budgeting_urls,
+                                namespace='meinberlin_budgeting')),
+    url(r'^mapideas/', include(mapideas_urls,
+                               namespace='meinberlin_mapideas')),
 
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(router.urls)),

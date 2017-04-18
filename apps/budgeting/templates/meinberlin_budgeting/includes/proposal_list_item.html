@@ -1,3 +1,5 @@
+{% load item_tags %}
+
 <div class="list-item list-item--squashed">
     <div class="list-item__stats">
         {% spaceless %}
@@ -18,7 +20,8 @@
         {% endspaceless %}
     </div>
     <h3 class="list-item__title">
-        <a href="{% url 'budgeting:proposal-detail' proposal.slug %}">
+        {% get_item_detail_url proposal as detail_url %}
+        <a href="{{ detail_url }}">
         {{ proposal.name }}
         </a>
     </h3>

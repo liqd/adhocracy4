@@ -1,5 +1,5 @@
-{% extends "base.html" %}
-{% load i18n module_tags rules react_comments react_ratings static wagtailcore_tags %}
+{% extends "meinberlin_contrib/item_detail.html" %}
+{% load static %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
@@ -10,88 +10,14 @@
     <link type="text/css" href="{% static 'leaflet.css'%}" rel="stylesheet" />
 {% endblock %}
 
-{% block title %}{{object.name}}{% endblock %}
-{% block content %}
-<div class="resource-navigation">
-    <div class="l-wrapper">
-        <nav class="resource-navigation__breadcrumbs breadcrumbs">
-            <ul>
-                <li>
-                    <a href="{% url 'project-detail' object.project.slug %}">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'back to project' %}</a>
-                </li>
-            </ul>
-        </nav>
-
-        {% has_perm 'meinberlin_ideas.modify_idea' request.user object as show_dropdown %}
-        {% if show_dropdown %}
-        <div class="resource-navigation__actions dropdown dropdown--right">
-            <button
-                title="{% trans 'Actions' %}"
-                type="button"
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                id="idea-{{object.pk}}-actions"
-            >
-                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="idea-{{object.pk}}-actions">
-                <li>
-                    <a class="dropdown-item" href="{% url 'mapideas:idea-update' slug=object.slug %}">{% trans 'Edit' %}</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="{% url 'mapideas:idea-delete' slug=object.slug %}">{% trans 'Delete' %}</a>
-                </li>
-            </ul>
-        </div>
-        {% endif %}
-    </div>
-</div>
-
-<div class="resource-header">
-    <div class="l-wrapper">
-        <div class="l-center-6">
-            <h1 class="resource-header__title">{{ object.name }}</h1>
-
-            <div class="resource-header__meta">{{ object.creator.username }}</div>
-
-            {% if object.category %}
-                <div class="resource-header__meta">
-                    <div class="label label--big">{{ object.category }}</div>
-                </div>
-            {% endif %}
-
-            {% if object.point %}
-                <div
-                    style="height: 300px;"
-                    data-map="display_point"
-                    data-baseurl="{{ map_url }}"
-                    data-point="{{ point }}"
-                    data-polygon="{{ polygon }}"
-                ></div>
-            {% endif %}
-
-            {% if object|has_feature:"rate" %}
-                <div class="resource-header__action">
-                    {% react_ratings object %}
-                </div>
-            {% endif %}
-        </div>
-    </div>
-</div>
-
-<div class="idea-description">
-    <div class="l-wrapper">
-        <div class="l-center-6">
-            {{ object.description | richtext }}
-        </div>
-    </div>
-</div>
-
-<div class="l-wrapper">
-    {% react_comments object %}
-</div>
+{% block additional_content %}
+    {% if object.point %}
+        <div
+                style="height: 300px;"
+                data-map="display_point"
+                data-baseurl="{{ map_url }}"
+                data-point="{{ point }}"
+                data-polygon="{{ polygon }}"
+        ></div>
+    {% endif %}
 {% endblock %}
