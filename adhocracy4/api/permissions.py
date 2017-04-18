@@ -38,7 +38,7 @@ class RulesPermission(permissions.BasePermission):
         GET='{app_label}.view_{model_name}',
         OPTIONS='{app_label}.view_{model_name}',
         HEAD='{app_label}.view_{model_name}',
-        POST='{app_label}.create_{model_name}',
+        POST='{app_label}.add_{model_name}',
         PUT='{app_label}.change_{model_name}',
         PATCH='{app_label}.change_{model_name}',
         DELETE='{app_label}.delete_{model_name}',
