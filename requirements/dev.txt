@@ -1,5 +1,5 @@
 -r base.txt
-flake8==2.6.2
+flake8==3.3.0
 flake8_docstrings==1.0.3
 django-debug-toolbar==1.5
 freezegun==0.3.7
