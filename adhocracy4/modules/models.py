@@ -46,5 +46,6 @@ class AbstractSettings(models.Model):
     class Meta:
         abstract = True
 
-    def widgets(self):
+    @staticmethod
+    def widgets():
         return {}
