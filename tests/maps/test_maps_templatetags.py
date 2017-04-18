@@ -130,6 +130,7 @@ def test_map_display_points(area_settings, location_factory):
 
     expected = (
         r'^<div'
+        r' style="height: 300px"'
         r' data-map="display_points"'
         r' data-baseurl="{baseurl}"'
         r' data-attribution="{attribution}"'
@@ -158,6 +159,7 @@ def test_map_display_point(area_settings):
 
     expected = (
         r'^<div'
+        r' style="height: 300px"'
         r' data-map="display_point"'
         r' data-baseurl="{baseurl}"'
         r' data-attribution="{attribution}"'

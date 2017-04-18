@@ -52,6 +52,7 @@ def map_display_points(items, polygon):
     return format_html(
         (
             '<div'
+            ' style="height: 300px"'
             ' data-map="display_points"'
             ' data-baseurl="{baseurl}"'
             ' data-attribution="{attribution}"'
