@@ -1,16 +1,35 @@
 .label {
     display: inline-block;
-    background-color: $brand-secondary;
-    color: contrast-color($brand-secondary);
+    background-color: $bg-tertiary;
+    color: contrast-color($bg-tertiary);
     font-size: $font-size-xs;
     font-weight: normal;
-    line-height: 1.8;
     border-radius: 0.4em;
-    padding: 0 0.7em;
-    margin-left: 0.2em;
+    padding: 0.2em 0.7em;
 }
 
-.label-subtle {
-    background-color: $bg-secondary;
-    color: contrast-color($bg-secondary);
+.label--big {
+    padding: 0.4em 0.6em;
+    font-size: $font-size-sm;
+    border-radius: 0.3em;
+}
+
+.label--secondary {
+    background-color: $brand-secondary;
+    color: contrast-color($brand-secondary);
+}
+
+.label--CONSIDERATION {
+    background-color: $feedback-color-consideration;
+    color: contrast-color($feedback-color-consideration);
+}
+
+.label--REJECTED {
+    background-color: $feedback-color-rejected;
+    color: contrast-color($feedback-color-rejected);
+}
+
+.label--ACCEPTED {
+    background-color: $feedback-color-accepted;
+    color: contrast-color($feedback-color-accepted);
 }

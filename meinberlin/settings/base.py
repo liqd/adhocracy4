@@ -70,6 +70,7 @@ INSTALLED_APPS = (
     'apps.embed.apps.Config',
     'apps.moderatorfeedback.apps.Config',
     'apps.extprojects.apps.Config',
+    'apps.account.apps.Config',
 
     'apps.ideas.apps.Config',
     'apps.documents.apps.Config',
