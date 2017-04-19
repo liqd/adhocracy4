@@ -7,7 +7,8 @@ from .widgets import MapChoosePolygonWidget
 class AreaSettings(module_models.AbstractSettings):
     polygon = MultiPolygonField()
 
-    def widgets(self):
+    @staticmethod
+    def widgets():
         return {
             'polygon': MapChoosePolygonWidget
         }
