@@ -26,10 +26,11 @@
         {% csrf_token %}
         {{ form.media }}
 
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.moderator_feedback %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.feedback.moderator_feedback %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.statement.statement %}
 
-        <input type="submit" class="button button--primary" value="{% trans 'Save'%}" />
-        <a href="{{ detail_url }}" class="button button--light">{% trans 'cancel'%}</a>
+        <input type="submit" class="button button--primary" value="{% trans 'Save' %}" />
+        <a href="{{ detail_url }}" class="button button--light">{% trans 'cancel' %}</a>
     </form>
 </div>
 {% endblock %}

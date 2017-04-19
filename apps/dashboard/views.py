@@ -8,7 +8,7 @@ from adhocracy4.filters import views as filter_views
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
-
+from apps.extprojects import models as extproject_models
 from apps.organisations.models import Organisation
 
 from . import mixins as dashboard_mixins
@@ -68,6 +68,30 @@ class DashboardProjectCreateView(dashboard_mixins.DashboardBaseMixin,
             kwargs={'organisation_slug': self.organisation.slug, })
 
 
+class DashboardExternalProjectCreateView(dashboard_mixins.DashboardBaseMixin,
+                                         rules_mixins.PermissionRequiredMixin,
+                                         SuccessMessageMixin,
+                                         generic.CreateView):
+    model = extproject_models.ExternalProject
+    form_class = forms.ExternalProjectCreateForm
+    template_name = 'meinberlin_dashboard/external_project_create_form.html'
+    success_message = _('Project succesfully created.')
+    permission_required = 'meinberlin_organisations.initiate_project'
+    menu_item = 'project'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['organisation'] = self.organisation
+        kwargs['creator'] = self.request.user
+        kwargs['blueprint'] = dict(blueprints.blueprints)['external-project']
+        return kwargs
+
+    def get_success_url(self):
+        return reverse(
+            'dashboard-project-list',
+            kwargs={'organisation_slug': self.organisation.slug, })
+
+
 class DashboardProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
                                  rules_mixins.PermissionRequiredMixin,
                                  SuccessMessageMixin,
@@ -104,6 +128,29 @@ class DashboardProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
                 module__project=self.object)
 
         return kwargs
+
+
+class DashboardExternalProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
+                                         rules_mixins.PermissionRequiredMixin,
+                                         SuccessMessageMixin,
+                                         generic.UpdateView):
+    model = extproject_models.ExternalProject
+    form_class = forms.ExternalProjectUpdateForm
+    template_name = 'meinberlin_dashboard/external_project_update_form.html'
+    success_message = _('Project successfully updated.')
+    permission_required = 'meinberlin_organisations.initiate_project'
+    menu_item = 'project'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            organisation=self.organisation
+        )
+
+    def get_success_url(self):
+        return reverse('dashboard-project-list',
+                       kwargs={
+                           'organisation_slug': self.organisation.slug,
+                       })
 
 
 class DashboardOrganisationUpdateView(dashboard_mixins.DashboardBaseMixin,

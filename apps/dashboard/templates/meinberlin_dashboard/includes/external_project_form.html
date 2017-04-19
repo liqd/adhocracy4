@@ -1,0 +1,27 @@
+{% load i18n %}
+
+<form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    {% csrf_token %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.url %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.start_date %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.end_date %}
+
+    <input type="submit" class="button button--primary" value="{% trans 'Save' %}" />
+
+</form>
+
+{% block extra_js %}
+    {{ form.media.js }}
+{% endblock %}
+{% block extra_css %}
+    {{ form.media.css }}
+{% endblock %}
