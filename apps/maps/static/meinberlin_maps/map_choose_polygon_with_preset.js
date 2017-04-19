@@ -1,3 +1,5 @@
+/* global django */
+
 function createMap (L, baseurl, attribution, e) {
   var basemap = baseurl + '{z}/{x}/{y}.png'
   var baselayer = L.tileLayer(basemap, { maxZoom: 18, attribution: attribution })
@@ -98,16 +100,22 @@ window.jQuery(document).ready(function () {
 
     $('#select_' + name).on('change', function (event) {
       var geoJson = event.target.value
-      drawnItems.clearLayers()
-      if (geoJson) {
-        var group = L.geoJson(JSON.parse(geoJson), {
-          style: polygonStyle
-        })
-        group.eachLayer(function (layer) {
-          drawnItems.addLayer(layer)
-        })
+
+      var isEmpty = drawnItems.getLayers().length === 0
+      var msg = django.gettext('Do you want to load this preset and delete the all existing polygons?')
+
+      if (isEmpty || window.confirm(msg)) {
+        drawnItems.clearLayers()
+        if (geoJson) {
+          var group = L.geoJson(JSON.parse(geoJson), {
+            style: polygonStyle
+          })
+          group.eachLayer(function (layer) {
+            drawnItems.addLayer(layer)
+          })
+        }
+        $('#id_' + name).val(geoJson)
       }
-      $('#id_' + name).val(geoJson)
     })
   })
 })
