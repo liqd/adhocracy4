@@ -8,5 +8,5 @@ pydocstyle==1.1.1
 pytest-django==2.9.1
 pytest-cov==2.2.1
 pytest-factoryboy==1.1.6
-fake-factory==0.6.0
+Faker==0.7.11
 transifex-client==0.12.2
