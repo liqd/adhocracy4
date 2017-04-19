@@ -43,23 +43,6 @@ class DashboardBlueprintListView(dashboard_mixins.DashboardBaseMixin,
     menu_item = 'project'
 
 
-class DashboardProjectCreateViewDispatcher(generic.View):
-
-    def __init__(self, **kwargs):
-        super(DashboardProjectCreateViewDispatcher, self).__init__(**kwargs)
-        self._initkwargs = kwargs
-
-    def dispatch(self, request, *args, **kwargs):
-        blueprint_slug = kwargs.get('blueprint_slug', None)
-        if blueprint_slug == 'external-project':
-            view = \
-                DashboardExternalProjectCreateView.as_view(**self._initkwargs)
-        else:
-            view = DashboardProjectCreateView.as_view(**self._initkwargs)
-
-        return view(request, *args, **kwargs)
-
-
 class DashboardProjectCreateView(dashboard_mixins.DashboardBaseMixin,
                                  rules_mixins.PermissionRequiredMixin,
                                  SuccessMessageMixin,
@@ -95,9 +78,6 @@ class DashboardExternalProjectCreateView(dashboard_mixins.DashboardBaseMixin,
     success_message = _('Project succesfully created.')
     permission_required = 'meinberlin_organisations.initiate_project'
     menu_item = 'project'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()

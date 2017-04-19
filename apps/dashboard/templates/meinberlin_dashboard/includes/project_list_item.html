@@ -36,6 +36,8 @@
                 {% endif %}
             </button>
         </form>
+
+        {% if not project.externalproject %}
         <span class="list-item__action">
             <a href="{% url 'dashboard-project-moderators' slug=project.slug %}"
                class="button button--light">
@@ -43,5 +45,6 @@
                 {% trans 'Moderators' %}
             </a>
         </span>
+        {% endif %}
     </div>
 </div>

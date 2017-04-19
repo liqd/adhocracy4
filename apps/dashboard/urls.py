@@ -14,11 +14,15 @@ urlpatterns = [
         name='dashboard-blueprint-list'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
         r'(?P<blueprint_slug>[-\w_]+)/$',
-        views.DashboardProjectCreateViewDispatcher.as_view(),
+        views.DashboardProjectCreateView.as_view(),
         name='dashboard-project-create'),
     url(r'^projects/(?P<slug>[-\w_]+)/$',
         views.DashboardProjectUpdateView.as_view(),
         name='dashboard-project-edit'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)'
+        r'/create_external_project/$',
+        views.DashboardExternalProjectCreateView.as_view(),
+        name='dashboard-external-project-create'),
     url(r'^external_projects/(?P<slug>[-\w_]+)/$',
         views.DashboardExternalProjectUpdateView.as_view(),
         name='dashboard-external-project-edit'),
