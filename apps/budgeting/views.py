@@ -1,9 +1,10 @@
 import django_filters
 from django.contrib import messages
 from django.utils.translation import ugettext as _
+from django.views import generic
 
 from adhocracy4.modules import views as module_views
-
+from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import filters
 
 from . import forms
@@ -53,21 +54,21 @@ class ProposalDetailView(module_views.ItemDetailView):
 class ProposalCreateView(module_views.ItemCreateView):
     model = models.Proposal
     form_class = forms.ProposalForm
-    permission_required = 'meinberlin_budgeting.propose_proposal'
+    permission_required = 'meinberlin_budgeting.create_proposal'
     template_name = 'meinberlin_budgeting/proposal_create_form.html'
 
 
 class ProposalUpdateView(module_views.ItemUpdateView):
     model = models.Proposal
     form_class = forms.ProposalForm
-    permission_required = 'meinberlin_budgeting.modify_proposal'
+    permission_required = 'meinberlin_budgeting.change_proposal'
     template_name = 'meinberlin_budgeting/proposal_update_form.html'
 
 
 class ProposalDeleteView(module_views.ItemDeleteView):
     model = models.Proposal
     success_message = _("Your budget request has been deleted")
-    permission_required = 'meinberlin_budgeting.modify_proposal'
+    permission_required = 'meinberlin_budgeting.change_proposal'
     template_name = 'meinberlin_budgeting/proposal_confirm_delete.html'
 
     def delete(self, request, *args, **kwargs):
@@ -75,8 +76,17 @@ class ProposalDeleteView(module_views.ItemDeleteView):
         return super(ProposalDeleteView, self).delete(request, *args, **kwargs)
 
 
-class ProposalModerateView(module_views.ItemUpdateView):
+class ProposalModerateView(rules_mixins.PermissionRequiredMixin,
+                           generic.UpdateView):
     model = models.Proposal
     form_class = forms.ProposalModerateForm
     permission_required = 'meinberlin_budgeting.moderate_proposal'
     template_name = 'meinberlin_budgeting/proposal_moderate_form.html'
+
+    def get_success_url(self):
+        return self.request.path
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['creator'] = self.request.user
+        return kwargs

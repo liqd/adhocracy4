@@ -52,21 +52,21 @@ class IdeaDetailView(module_views.ItemDetailView):
 class IdeaCreateView(module_views.ItemCreateView):
     model = models.Idea
     form_class = forms.IdeaForm
-    permission_required = 'meinberlin_ideas.propose_idea'
+    permission_required = 'meinberlin_ideas.add_idea'
     template_name = 'meinberlin_ideas/idea_create_form.html'
 
 
 class IdeaUpdateView(module_views.ItemUpdateView):
     model = models.Idea
     form_class = forms.IdeaForm
-    permission_required = 'meinberlin_ideas.modify_idea'
+    permission_required = 'meinberlin_ideas.change_idea'
     template_name = 'meinberlin_ideas/idea_update_form.html'
 
 
 class IdeaDeleteView(module_views.ItemDeleteView):
     model = models.Idea
     success_message = _("Your Idea has been deleted")
-    permission_required = 'meinberlin_ideas.modify_idea'
+    permission_required = 'meinberlin_ideas.change_idea'
     template_name = 'meinberlin_ideas/idea_confirm_delete.html'
 
     def delete(self, request, *args, **kwargs):

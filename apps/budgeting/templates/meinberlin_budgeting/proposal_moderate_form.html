@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n item_tags %}
 
 {% block title %}Moderate {{proposal.name}}{% endblock %}
 {% block content %}
@@ -12,7 +12,8 @@
                     {% trans 'back to project' %}</a>
             </li>
             <li>
-                <a href="{% url 'budgeting:proposal-detail' proposal.slug %}">
+                {% get_item_detail_url proposal as detail_url %}
+                <a href="{{ detail_url }}">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     {% trans 'back to proposal' %}</a>
             </li>
@@ -25,10 +26,11 @@
         {% csrf_token %}
         {{ form.media }}
 
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.moderator_feedback %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.feedback.moderator_feedback %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.statement.statement %}
 
-        <input type="submit" class="button button--primary" value="{% trans 'Save'%}" />
-        <a href="{%  url 'budgeting:proposal-detail' proposal.slug %}" class="button button--light">{% trans 'cancel'%}</a>
+        <input type="submit" class="button button--primary" value="{% trans 'Save' %}" />
+        <a href="{{ detail_url }}" class="button button--light">{% trans 'cancel' %}</a>
     </form>
 </div>
 {% endblock %}
