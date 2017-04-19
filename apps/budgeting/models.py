@@ -28,8 +28,9 @@ class Proposal(idea_models.AbstractIdea):
 
 
 class ModeratorStatement(UserGeneratedContentModel):
-    proposal = models.OneToOneField(Proposal,
-                                    primary_key=True,
-                                    related_name="moderator_statement")
+    proposal = models.OneToOneField(
+        Proposal,
+        primary_key=True,
+        related_name="moderator_statement")
 
     statement = RichTextField(blank=True)

@@ -86,11 +86,7 @@ class ProposalModerateView(rules_mixins.PermissionRequiredMixin,
     def get_success_url(self):
         return self.request.path
 
-    def form_valid(self, multiform):
-        statement_form = multiform.forms['statement']
-
-        if statement_form.instance.pk is None:
-            statement_form.instance.creator = self.request.user
-            statement_form.instance.proposal = self.object
-
-        return super(ProposalModerateView, self).form_valid(multiform)
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['creator'] = self.request.user
+        return kwargs

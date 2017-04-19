@@ -33,6 +33,11 @@ class ProposalModerateForm(MultiModelForm):
         ('statement', ModeratorStatementForm),
     ]
 
+    def __init__(self, creator, *args, **kwargs):
+        self.creator = creator
+        self.proposal = kwargs['instance']
+        super(ProposalModerateForm, self).__init__(*args, **kwargs)
+
     def dispatch_init_instance(self, name, instance):
         if name == 'feedback':
             return instance
@@ -47,3 +52,11 @@ class ProposalModerateForm(MultiModelForm):
 
         return super(ProposalModerateForm, self)\
             .dispatch_init_instance(name, instance)
+
+    def save(self, commit=True):
+        statement_form = self.forms['statement']
+        if statement_form.instance.pk is None:
+            statement_form.instance.creator = self.creator
+            statement_form.instance.proposal = self.proposal
+
+        return super(ProposalModerateForm, self).save(commit)
