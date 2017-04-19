@@ -1,3 +1,20 @@
+{% if presets_uncategorized or preset_categories %}
+    <select id="select_{{ name }}">
+        <option value="">---</option>
+        {% for preset in presets_uncategorized %}
+            <option value="{{ preset.polygon }}">{{ preset.name }}</option>
+        {% endfor %}
+
+        {% for category, presets in preset_categories %}
+            <optgroup label="{{ category }}">
+                {% for preset in presets %}
+                    <option value="{{ preset.polygon }}">{{ preset.name }}</option>
+                {% endfor %}
+            </optgroup>
+        {% endfor %}
+    </select>
+{% endif %}
+
 <div
     style="height: 300px;"
     data-map="choose_polygon"
