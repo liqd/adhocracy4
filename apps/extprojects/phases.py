@@ -18,4 +18,5 @@ class ExternalPhase(phases.PhaseContent):
 
     features = {}
 
+
 phases.content.register(ExternalPhase())
