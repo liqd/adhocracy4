@@ -4,6 +4,8 @@ from django.core.urlresolvers import reverse
 from rest_framework import status
 
 from tests.apps.questions.models import Question
+from tests.apps.questions.phases import RatePhase
+from tests.helpers import active_phase
 
 
 @pytest.mark.django_db
@@ -19,7 +21,7 @@ def test_anonymous_user_rating_list(apiclient, question, question_ct):
         kwargs={'content_type': question_ct.pk,
                 'object_pk': question.pk})
     response = apiclient.get(url, format='json')
-    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+    assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
 @pytest.mark.django_db
@@ -31,7 +33,7 @@ def test_authenticated_user_rating_list(apiclient, user, question,
                 'object_pk': question.pk})
     apiclient.force_authenticate(user=user)
     response = apiclient.get(url, format='json')
-    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+    assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
 @pytest.mark.django_db
@@ -41,8 +43,10 @@ def test_anonymous_user_can_not_rating(apiclient, question, question_ct):
         kwargs={'content_type': question_ct.pk,
                 'object_pk': question.pk})
     data = {}
-    response = apiclient.post(url, data, format='json')
-    assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    with active_phase(question.module, RatePhase):
+        response = apiclient.post(url, data, format='json')
+        assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
 @pytest.mark.django_db
@@ -53,8 +57,10 @@ def test_post_invalid_data(user, apiclient, question, question_ct):
         kwargs={'content_type': question_ct.pk,
                 'object_pk': question.pk})
     data = {}
-    response = apiclient.post(url, data, format='json')
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    with active_phase(question.module, RatePhase):
+        response = apiclient.post(url, data, format='json')
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
 @pytest.mark.django_db
@@ -67,17 +73,18 @@ def test_post_valid_data(user, apiclient, question, question_ct):
     data = {
         'value': 1,
     }
-    response = apiclient.post(url, data, format='json')
-    assert response.status_code == status.HTTP_201_CREATED
+
+    with active_phase(question.module, RatePhase):
+        response = apiclient.post(url, data, format='json')
+        assert response.status_code == status.HTTP_201_CREATED
 
 
 @pytest.mark.django_db
-def test_authenticated_user_can_edit_own_rating(rating_factory, question,
-                                                question_ct, apiclient):
-    ct = ContentType.objects.get_for_model(question)
-    rating = rating_factory(object_pk=question.id, content_type=ct)
+def test_authenticated_user_can_edit_own_rating(rating, question_ct,
+                                                apiclient):
+    question = rating.content_object
     apiclient.force_authenticate(user=rating.creator)
-    data = {'value': 1}
+    data = {'value': 0}
     url = reverse(
         'ratings-detail',
         kwargs={
@@ -85,16 +92,17 @@ def test_authenticated_user_can_edit_own_rating(rating_factory, question,
             'content_type': question_ct.pk,
             'object_pk': question.pk
         })
-    response = apiclient.patch(url, data, format='json')
-    assert response.status_code == status.HTTP_200_OK
-    assert response.data['value'] == 1
+
+    with active_phase(question.module, RatePhase):
+        response = apiclient.patch(url, data, format='json')
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data['value'] == 0
 
 
 @pytest.mark.django_db
-def test_authenticated_user_can_rating_higher_1(rating_factory, question,
+def test_authenticated_user_can_rating_higher_1(rating, question,
                                                 question_ct, apiclient):
-    ct = ContentType.objects.get_for_model(question)
-    rating = rating_factory(object_pk=question.id, content_type=ct)
+    question = rating.content_object
     apiclient.force_authenticate(user=rating.creator)
     data = {'value': 10}
     url = reverse(
@@ -104,16 +112,17 @@ def test_authenticated_user_can_rating_higher_1(rating_factory, question,
             'content_type': question_ct.pk,
             'object_pk': question.pk
         })
-    response = apiclient.patch(url, data, format='json')
-    assert response.status_code == status.HTTP_200_OK
-    assert response.data['value'] == 1
+
+    with active_phase(question.module, RatePhase):
+        response = apiclient.patch(url, data, format='json')
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data['value'] == 1
 
 
 @pytest.mark.django_db
-def test_authenticated_user_can_rating_lower_minus1(rating_factory, question,
+def test_authenticated_user_can_rating_lower_minus1(rating, question,
                                                     question_ct, apiclient):
-    ct = ContentType.objects.get_for_model(question)
-    rating = rating_factory(object_pk=question.id, content_type=ct)
+    question = rating.content_object
     apiclient.force_authenticate(user=rating.creator)
     data = {'value': -10}
     url = reverse(
@@ -123,9 +132,11 @@ def test_authenticated_user_can_rating_lower_minus1(rating_factory, question,
             'content_type': question_ct.pk,
             'object_pk': question.pk
         })
-    response = apiclient.patch(url, data, format='json')
-    assert response.status_code == status.HTTP_200_OK
-    assert response.data['value'] == -1
+
+    with active_phase(question.module, RatePhase):
+        response = apiclient.patch(url, data, format='json')
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data['value'] == -1
 
 
 @pytest.mark.django_db
@@ -138,8 +149,10 @@ def test_anonymous_user_can_not_delete_rating(rating, apiclient):
             'content_type': rating.content_type.pk,
             'object_pk': rating.object_pk
         })
-    response = apiclient.delete(url)
-    assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    with active_phase(rating.content_object.module, RatePhase):
+        response = apiclient.delete(url)
+        assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
 @pytest.mark.django_db
@@ -153,14 +166,15 @@ def test_authenticated_user_can_not_delete_rating(rating, another_user,
             'object_pk': rating.object_pk
         })
     apiclient.force_authenticate(user=another_user)
-    response = apiclient.delete(url)
-    assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    with active_phase(rating.content_object.module, RatePhase):
+        response = apiclient.delete(url)
+        assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
 @pytest.mark.django_db
-def test_creater_of_rating_can_set_zero(rating_factory, question, question_ct,
-                                        apiclient):
-    rating = rating_factory(object_pk=question.id, content_type=question_ct)
+def test_creator_of_rating_can_set_zero(rating, question_ct, apiclient):
+    question = rating.content_object
     url = reverse(
         'ratings-detail',
         kwargs={
@@ -169,9 +183,11 @@ def test_creater_of_rating_can_set_zero(rating_factory, question, question_ct,
             'object_pk': rating.object_pk,
         })
     apiclient.force_authenticate(user=rating.creator)
-    response = apiclient.delete(url)
-    assert response.status_code == status.HTTP_200_OK
-    assert response.data['value'] == 0
+
+    with active_phase(question.module, RatePhase):
+        response = apiclient.delete(url)
+        assert response.status_code == status.HTTP_200_OK
+        assert response.data['value'] == 0
 
 
 @pytest.mark.django_db
@@ -183,21 +199,25 @@ def test_meta_info_of_rating(rating_factory, question, question_ct, apiclient,
         kwargs={'content_type': question_ct.pk,
                 'object_pk': question.pk})
     data = {'value': 1}
-    response = apiclient.post(url, data, format='json')
-    rating_id = response.data['id']
-    assert response.status_code == status.HTTP_201_CREATED
-    assert response.data['value'] == 1
-    metadata = response.data['meta_info']
-    assert metadata['positive_ratings_on_same_object'] == 1
-    assert metadata['user_rating_on_same_object_value'] == 1
-    assert metadata['user_rating_on_same_object_id'] == rating_id
+
+    with active_phase(question.module, RatePhase):
+        response = apiclient.post(url, data, format='json')
+        rating_id = response.data['id']
+        assert response.status_code == status.HTTP_201_CREATED
+        assert response.data['value'] == 1
+        metadata = response.data['meta_info']
+        assert metadata['positive_ratings_on_same_object'] == 1
+        assert metadata['user_rating_on_same_object_value'] == 1
+        assert metadata['user_rating_on_same_object_id'] == rating_id
 
     apiclient.force_authenticate(another_user)
-    response = apiclient.post(url, data, format='json')
-    rating_id = response.data['id']
-    assert response.status_code == status.HTTP_201_CREATED
-    assert response.data['value'] == 1
-    metadata = response.data['meta_info']
-    assert metadata['positive_ratings_on_same_object'] == 2
-    assert metadata['user_rating_on_same_object_value'] == 1
-    assert metadata['user_rating_on_same_object_id'] == rating_id
+
+    with active_phase(question.module, RatePhase):
+        response = apiclient.post(url, data, format='json')
+        rating_id = response.data['id']
+        assert response.status_code == status.HTTP_201_CREATED
+        assert response.data['value'] == 1
+        metadata = response.data['meta_info']
+        assert metadata['positive_ratings_on_same_object'] == 2
+        assert metadata['user_rating_on_same_object_value'] == 1
+        assert metadata['user_rating_on_same_object_id'] == rating_id

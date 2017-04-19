@@ -14,5 +14,17 @@ class AskPhase(phases.PhaseContent):
          'comment': (models.Question, )
     }
 
-
 phases.content.register(AskPhase())
+
+
+class RatePhase(phases.PhaseContent):
+    app = apps.QuestionsConfig.label
+    phase = 'ask'
+    view = views.QuestionList
+    weight = 30
+
+    features = {
+         'rate': (models.Question, ),
+    }
+
+phases.content.register(RatePhase())
