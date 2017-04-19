@@ -1,5 +1,5 @@
 {% extends "meinberlin_contrib/item_detail.html" %}
-{% load static %}
+{% load static maps_tags %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
@@ -12,12 +12,6 @@
 
 {% block additional_content %}
     {% if object.point %}
-        <div
-                style="height: 300px;"
-                data-map="display_point"
-                data-baseurl="{{ map_url }}"
-                data-point="{{ point }}"
-                data-polygon="{{ polygon }}"
-        ></div>
+        {% map_display_point object.point object.module.area_settings.polygon %}
     {% endif %}
 {% endblock %}
