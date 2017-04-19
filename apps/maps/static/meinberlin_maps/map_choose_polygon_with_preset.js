@@ -102,7 +102,7 @@ window.jQuery(document).ready(function () {
       var geoJson = event.target.value
 
       var isEmpty = drawnItems.getLayers().length === 0
-      var msg = django.gettext('Do you want to load this preset and delete the all existing polygons?')
+      var msg = django.gettext('Do you want to load this preset and delete all the existing polygons?')
 
       if (isEmpty || window.confirm(msg)) {
         drawnItems.clearLayers()
