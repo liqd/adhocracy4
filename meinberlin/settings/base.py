@@ -57,6 +57,7 @@ INSTALLED_APPS = (
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.ratings.apps.RatingsConfig',
+    'adhocracy4.reports.apps.ReportsConfig',
     'adhocracy4.comments.apps.CommentsConfig',
     'adhocracy4.categories.apps.CategoriesConfig',
     'adhocracy4.maps.apps.MapsConfig',
@@ -294,6 +295,13 @@ A4_COMMENTABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_documents', 'document'),
     ('meinberlin_documents', 'paragraph'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
+)
+
+A4_REPORTABLES = (
+    ('a4comments', 'comment'),
+    ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
 )
