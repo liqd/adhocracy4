@@ -11,7 +11,7 @@ rules.add_perm(
 )
 
 rules.add_perm(
-    'meinberlin_ideas.propose_idea',
+    'meinberlin_ideas.add_idea',
     module_predicates.is_allowed_create_item(models.Idea)
 )
 
@@ -27,6 +27,6 @@ rules.add_perm(
 
 
 rules.add_perm(
-    'meinberlin_ideas.modify_idea',
+    'meinberlin_ideas.change_idea',
     module_predicates.is_allowed_modify_item
 )

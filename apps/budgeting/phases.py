@@ -22,8 +22,6 @@ class RequestPhase(phases.PhaseContent):
         'comment': (models.Proposal,),
     }
 
-phases.content.register(RequestPhase())
-
 
 class FeedbackPhase(phases.PhaseContent):
     app = apps.Config.label
@@ -40,4 +38,7 @@ class FeedbackPhase(phases.PhaseContent):
         'rate': (models.Proposal,),
         'comment': (models.Proposal,)
     }
+
+
+phases.content.register(RequestPhase())
 phases.content.register(FeedbackPhase())

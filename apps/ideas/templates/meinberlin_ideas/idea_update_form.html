@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n item_tags %}
 
 {% block title %}Edit {{idea.name}}{% endblock %}
 {% block content %}
@@ -12,7 +12,8 @@
                     {% trans 'back to project' %}</a>
             </li>
             <li>
-                <a href="{% url 'ideas:idea-detail' idea.slug %}">
+                {% get_item_detail_url idea as detail_url %}
+                <a href="{{ detail_url }}">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     {% trans 'back to idea' %}</a>
             </li>
@@ -21,7 +22,6 @@
 
     <h1>{% trans 'Edit idea' %}</h1>
 
-    {% url 'ideas:idea-detail' idea.slug as cancel %}
-    {% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=cancel %}
+    {% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=detail_url %}
 </div>
 {% endblock %}
