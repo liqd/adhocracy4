@@ -17,6 +17,7 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.ratings.api import RatingViewSet
+from adhocracy4.reports.api import ReportViewSet
 
 from apps.account import urls as account_urls
 from apps.budgeting import urls as budgeting_urls
@@ -34,6 +35,7 @@ js_info_dict = {
 
 router = routers.DefaultRouter()
 router.register(r'documents', DocumentViewSet, base_name='documents')
+router.register(r'reports', ReportViewSet, base_name='reports')
 
 ct_router = a4routers.ContentTypeDefaultRouter()
 ct_router.register(r'comments', CommentViewSet, base_name='comments')

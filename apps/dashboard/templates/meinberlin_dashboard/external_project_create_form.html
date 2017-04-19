@@ -1,10 +1,7 @@
 {% extends "meinberlin_dashboard/base_dashboard.html" %}
 {% load i18n %}
 
-
 {% block dashboard_content %}
-
-<div class="resource-navigation">
     <nav class="resource-navigation__breadcrumbs breadcrumbs">
         <ul>
             <li>
@@ -12,16 +9,15 @@
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     {% trans 'back to dashboard' %}</a>
             </li>
+            <li>
+                <a href="{% url 'dashboard-blueprint-list' organisation_slug=view.organisation.slug %}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    {% trans 'back to blueprints' %}</a>
+            </li>
         </ul>
     </nav>
-</div>
 
-<h3 class="menu-layout__title">{% trans "New Project" %}</h3>
+    <h3>{% trans "Create external project" %}</h3>
 
-<div class="l-tiles-3">
-    {% for blueprint_slug, blueprint in view.blueprints %}
-        {% include "meinberlin_dashboard/includes/blueprint_list_tile.html" with blueprint=blueprint %}
-    {% endfor %}
-</div>
-
+    {% include 'meinberlin_dashboard/includes/external_project_form.html' with view=view %}
 {% endblock %}

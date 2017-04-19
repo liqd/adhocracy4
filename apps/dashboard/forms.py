@@ -12,6 +12,8 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from apps.contrib import multiform
 from apps.contrib.formset import dynamic_modelformset_factory
+from apps.extprojects import models as extproject_models
+from apps.extprojects import phases as extproject_phases
 from apps.maps.widgets import MapChoosePolygonWithPresetWidget
 from apps.organisations.models import Organisation
 from apps.users.fields import CommaSeparatedEmailField
@@ -324,3 +326,71 @@ class AddModeratorForm(forms.ModelForm):
                 self.instance.moderators.add(
                     *self.cleaned_data['add_moderators']
                 )
+
+
+class ExternalProjectBaseForm(forms.ModelForm):
+
+    start_date = forms.DateTimeField(required=False)
+    end_date = forms.DateTimeField(required=False)
+
+    class Meta:
+        model = extproject_models.ExternalProject
+        fields = ['name', 'url', 'description', 'image', 'is_archived']
+
+
+class ExternalProjectCreateForm(ExternalProjectBaseForm):
+
+    def __init__(self, organisation, creator, blueprint, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.organisation = organisation
+        self.creator = creator
+        self.blueprint = blueprint
+
+    def save(self, commit=True):
+        extproject = self.instance
+        extproject.information = _("External project")
+        extproject.result = _("External project")
+        extproject.organisation = self.organisation
+        extproject.typ = self.blueprint.title
+
+        if commit:
+            super().save()
+            extproject.moderators.add(self.creator)
+
+        module = module_models.Module(
+            name=extproject.slug + '_module',
+            weight=1,
+            project=extproject,
+        )
+        if commit:
+            module.save()
+
+        phase_content = extproject_phases.ExternalPhase()
+        phase = phase_models.Phase(
+            name=_("External project phase"),
+            description=_("External project phase"),
+            type=phase_content.identifier,
+            module=module,
+            start_date=self.cleaned_data['start_date'],
+            end_date=self.cleaned_data['end_date']
+        )
+        if commit:
+            phase.save()
+
+
+class ExternalProjectUpdateForm(ExternalProjectBaseForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.initial['start_date'] = self.instance.phase.start_date
+        self.initial['end_date'] = self.instance.phase.end_date
+
+    def save(self, commit=True):
+        project = super().save(commit)
+
+        if commit:
+            phase = project.phase
+            phase.start_date = self.cleaned_data['start_date']
+            phase.end_date = self.cleaned_data['end_date']
+            phase.save()

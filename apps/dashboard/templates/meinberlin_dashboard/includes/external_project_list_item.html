@@ -1,0 +1,32 @@
+{% load i18n project_tags %}
+
+<div class="list-item">
+    <p class="list-item__subtitle">{{ project.typ }}</p>
+    <h3 class="list-item__title">
+        <a href="{{ project.externalproject.url }}">
+        {{ project.name }}
+        </a>
+    </h3>
+    <div class="list-item__actions">
+        <span class="list-item__action">
+            <a href="{% url 'dashboard-project-edit' slug=project.slug %}"
+               class="button button--light">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                {% trans 'Edit'%}
+            </a>
+        </span>
+        <form method="post" class="list-item__action">
+            {% csrf_token %}
+            <input type="hidden" name="project_pk" value="{{ project.pk }}">
+            <button type="submit" name="submit_action" value="{{ project.is_draft|yesno:'publish,unpublish' }}"
+                    class="button button--light">
+                <i class="fa fa-flag" aria-hidden="true"></i>
+                {% if project.is_draft %}
+                {% trans 'Publish' %}
+                {% else %}
+                {% trans 'Unpublish' %}
+                {% endif %}
+            </button>
+        </form>
+    </div>
+</div>
