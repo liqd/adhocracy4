@@ -295,8 +295,6 @@ A4_COMMENTABLES = (
     ('meinberlin_documents', 'paragraph'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
-    ('meinberlin_mapideas', 'mapidea'),
-    ('meinberlin_budgeting', 'proposal'),
 )
 
 A4_REPORTABLES = (
