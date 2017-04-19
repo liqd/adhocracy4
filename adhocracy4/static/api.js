@@ -16,7 +16,7 @@ var api = (function () {
     follow: baseURL + 'follows/'
   }
 
-  var generic_urls = {
+  var genericUrls = {
     comment: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comments/',
     rating: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/ratings/'
   }
@@ -28,15 +28,15 @@ var api = (function () {
       // there's no id, switch parameters
       data = options
       options = id
-      id = null;
+      id = null
     }
 
-    var url;
+    var url
     if (urls.hasOwnProperty(endpoint)) {
       url = urls[endpoint]
     } else {
-      url = generic_urls[endpoint]
-        .replace('$contentTypeId',  data['content_type'])
+      url = genericUrls[endpoint]
+        .replace('$contentTypeId', data['content_type'])
         .replace('$objectPk', data['object_pk'])
       data = $.extend({}, data)
       delete data.content_type
