@@ -8,12 +8,18 @@ from adhocracy4.comments import models as comment_models
 from adhocracy4.models import base
 from adhocracy4.modules import models as module_models
 
+from . import validators
+
 
 class Document(module_models.Item):
     name = models.CharField(max_length=120)
     comments = GenericRelation(comment_models.Comment,
                                related_query_name='document',
                                object_id_field='object_pk')
+
+    def clean(self, *args, **kwargs):
+        validators.single_document_per_module(self.module, self.pk)
+        super().clean(*args, **kwargs)
 
     def __str__(self):
         return "{}_document_{}".format(str(self.module), self.pk)

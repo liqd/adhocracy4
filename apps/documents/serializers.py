@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from . import validators
 from .models import Document
 from .models import Paragraph
 
@@ -21,6 +22,14 @@ class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document
         exclude = ('creator',)
+
+    def validate(self, data):
+        if self.instance:
+            document_pk = self.instance.pk
+        else:
+            document_pk = None
+        validators.single_document_per_module(data['module'], document_pk)
+        return data
 
     def create(self, validated_data):
         paragraphs = validated_data.pop('paragraphs')
