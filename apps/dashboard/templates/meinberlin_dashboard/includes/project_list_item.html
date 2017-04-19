@@ -9,11 +9,19 @@
     </h3>
     <div class="list-item__actions">
         <span class="list-item__action">
-            <a href="{% url 'dashboard-project-edit' slug=project.slug %}"
-               class="button button--light">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-                {% trans 'Edit'%}
-            </a>
+            {% if project.externalproject %}
+                  <a href="{% url 'dashboard-external-project-edit' slug=project.slug %}"
+                   class="button button--light">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    {% trans 'Edit'%}
+                </a>
+            {% else %}
+                <a href="{% url 'dashboard-project-edit' slug=project.slug %}"
+                   class="button button--light">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    {% trans 'Edit'%}
+                </a>
+            {% endif %}
         </span>
         <form method="post" class="list-item__action">
             {% csrf_token %}
@@ -28,6 +36,8 @@
                 {% endif %}
             </button>
         </form>
+
+        {% if not project.externalproject %}
         <span class="list-item__action">
             <a href="{% url 'dashboard-project-moderators' slug=project.slug %}"
                class="button button--light">
@@ -35,5 +45,6 @@
                 {% trans 'Moderators' %}
             </a>
         </span>
+        {% endif %}
     </div>
 </div>
