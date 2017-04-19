@@ -1,9 +1,10 @@
 import django_filters
 from django.contrib import messages
 from django.utils.translation import ugettext as _
+from django.views import generic
 
 from adhocracy4.modules import views as module_views
-
+from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import filters
 
 from . import forms
@@ -75,8 +76,17 @@ class ProposalDeleteView(module_views.ItemDeleteView):
         return super(ProposalDeleteView, self).delete(request, *args, **kwargs)
 
 
-class ProposalModerateView(module_views.ItemUpdateView):
+class ProposalModerateView(rules_mixins.PermissionRequiredMixin,
+                           generic.UpdateView):
     model = models.Proposal
     form_class = forms.ProposalModerateForm
     permission_required = 'meinberlin_budgeting.moderate_proposal'
     template_name = 'meinberlin_budgeting/proposal_moderate_form.html'
+
+    def get_success_url(self):
+        return self.request.path
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['creator'] = self.request.user
+        return kwargs

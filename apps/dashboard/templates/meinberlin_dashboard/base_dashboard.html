@@ -39,7 +39,6 @@
                     {{ view.organisation.name }}
                 {% endif %}
             </div>
-            {% with request.resolver_match.url_name as url_name %}
                 <ul class="dashboard-nav__pages">
                     <li class="dashboard-nav__page">
                         <a href="{% url 'dashboard-project-list' organisation_slug=view.organisation.slug %}"
@@ -57,7 +56,6 @@
                         </a>
                     </li>
                 </ul>
-            {% endwith %}
         </nav>
 
         <div class="menu-layout__content">

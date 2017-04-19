@@ -19,6 +19,13 @@ urlpatterns = [
     url(r'^projects/(?P<slug>[-\w_]+)/$',
         views.DashboardProjectUpdateView.as_view(),
         name='dashboard-project-edit'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)'
+        r'/create_external_project/$',
+        views.DashboardExternalProjectCreateView.as_view(),
+        name='dashboard-external-project-create'),
+    url(r'^external_projects/(?P<slug>[-\w_]+)/$',
+        views.DashboardExternalProjectUpdateView.as_view(),
+        name='dashboard-external-project-edit'),
     url(r'^projects/(?P<slug>[-\w_]+)/moderators/$',
         views.DashboardProjectModeratorsView.as_view(),
         name='dashboard-project-moderators'),
