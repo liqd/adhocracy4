@@ -25,7 +25,7 @@ class MapChoosePolygonWithPresetWidget(Widget):
         ]}
 
     def get_presets(self, category):
-        presets = MapPreset.objects.filter(category=category).all()
+        presets = MapPreset.objects.filter(category=category)
 
         return [{
             'name': preset.name,
