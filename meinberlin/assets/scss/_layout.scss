@@ -58,6 +58,10 @@
         @include grid-tiles(2);
     }
 
+    .l-tiles-3 {
+        @include grid-tiles(3);
+    }
+
     .l-tiles-4 {
         @include grid-tiles(4);
     }

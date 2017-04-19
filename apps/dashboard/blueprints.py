@@ -24,7 +24,7 @@ blueprints = [
          content=[
              ideas_phases.CollectPhase(),
          ],
-         image='images/LOGO.png',
+         image='images/blueprints/brainstorming.svg',
          settings_model=None,
      )),
     ('map-brainstorming',
@@ -36,7 +36,7 @@ blueprints = [
          content=[
              mapideas_phases.CollectPhase(),
          ],
-         image='images/LOGO.png',
+         image='images/blueprints/map-brainstorming.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
     ('agenda-setting',
@@ -51,7 +51,7 @@ blueprints = [
              ideas_phases.CollectPhase(),
              ideas_phases.RatingPhase(),
          ],
-         image='images/LOGO.png',
+         image='images/blueprints/agenda-setting.svg',
          settings_model=None,
      )),
     ('text-review',
@@ -65,7 +65,7 @@ blueprints = [
              documents_phases.CreateDocumentPhase(),
              documents_phases.CommentPhase(),
          ],
-         image='images/LOGO.png',
+         image='images/blueprints/text-review.svg',
          settings_model=None,
      )),
     ('participatory-budgeting',
@@ -80,7 +80,7 @@ blueprints = [
              budgeting_phases.RequestPhase(),
              budgeting_phases.FeedbackPhase(),
          ],
-         image='images/LOGO.png',
+         image='images/blueprints/participatory-budgeting.svg',
          settings_model=None,
      )),
     ('external-project',
@@ -92,7 +92,7 @@ blueprints = [
          content=[
              extprojects_phases.ExternalPhase(),
          ],
-         image='images/external_project.svg',
+         image='images/blueprints/external-project.svg',
          settings_model=None,
      )),
 ]

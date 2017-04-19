@@ -13,7 +13,7 @@ class ExternalPhase(phases.PhaseContent):
     view = views.ExternalProjectRedirectView
 
     name = _('External phase')
-    description = _('External phase')
+    description = _('External phase.')
     module_name = _('external project')
 
     features = {}
