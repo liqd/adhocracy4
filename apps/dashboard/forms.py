@@ -12,6 +12,7 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from apps.contrib import multiform
 from apps.contrib.formset import dynamic_modelformset_factory
+from apps.maps.widgets import MapChoosePolygonWithPresetWidget
 from apps.organisations.models import Organisation
 from apps.users.fields import CommaSeparatedEmailField
 from apps.users.models import User
@@ -26,12 +27,18 @@ def get_module_settings_form(settings_instance_or_modelref):
             settings_instance_or_modelref[1],
         )
 
+    setting_widgets = settings_model.widgets()
+
+    # overwrite MapChoosePolygonWidget
+    if 'polygon' in setting_widgets:
+        setting_widgets['polygon'] = MapChoosePolygonWithPresetWidget
+
     class ModuleSettings(forms.ModelForm):
 
         class Meta:
             model = settings_model
             exclude = ['module']
-            widgets = settings_model().widgets()
+            widgets = setting_widgets
 
     return ModuleSettings
 
