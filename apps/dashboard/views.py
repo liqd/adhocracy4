@@ -99,12 +99,11 @@ class DashboardExternalProjectCreateView(dashboard_mixins.DashboardBaseMixin,
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        from apps.dashboard.blueprints import blueprints
-        self.blueprint = dict(blueprints)['external-project']
-
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['view'] = self
+        kwargs['organisation'] = self.organisation
+        kwargs['creator'] = self.request.user
+        kwargs['blueprint'] = dict(blueprints.blueprints)['external-project']
         return kwargs
 
     def get_success_url(self):
@@ -172,11 +171,6 @@ class DashboardExternalProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
                        kwargs={
                            'organisation_slug': self.organisation.slug,
                        })
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['view'] = self
-        return kwargs
 
 
 class DashboardOrganisationUpdateView(dashboard_mixins.DashboardBaseMixin,

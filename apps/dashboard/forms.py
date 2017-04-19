@@ -333,20 +333,22 @@ class ExternalProjectBaseForm(forms.ModelForm):
 
 class ExternalProjectCreateForm(ExternalProjectBaseForm):
 
-    def __init__(self, view, *args, **kwargs):
+    def __init__(self, organisation, creator, blueprint, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.view = view
+        self.organisation = organisation
+        self.creator = creator
+        self.blueprint = blueprint
 
     def save(self, commit=True):
         extproject = self.instance
         extproject.information = _("External project")
         extproject.result = _("External project")
-        extproject.organisation = self.view.organisation
-        extproject.typ = self.view.blueprint.title
+        extproject.organisation = self.organisation
+        extproject.typ = self.blueprint.title
 
         if commit:
             super().save()
-            extproject.moderators.add(self.view.request.user)
+            extproject.moderators.add(self.creator)
 
         module = module_models.Module(
             name=extproject.slug + '_module',
@@ -371,9 +373,8 @@ class ExternalProjectCreateForm(ExternalProjectBaseForm):
 
 class ExternalProjectUpdateForm(ExternalProjectBaseForm):
 
-    def __init__(self, view, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.view = view
 
         self.initial['start_date'] = self.instance.phase.start_date
         self.initial['end_date'] = self.instance.phase.end_date
