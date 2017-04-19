@@ -27,13 +27,23 @@
                 {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
             </div>
         </div>
-        <div
-            style="height: 300px;"
-            data-map="display_points"
-            data-baseurl="{{ map_url }}"
-            data-point="{{ mapitems_json }}"
-            data-polygon="{{ polygon }}"
-        ></div>
+        <div class="map-list">
+            <div class="map-list__controls">
+                <div class="l-wrapper">
+                    <div class="leaflet-control-zoom leaflet-bar leaflet-control">
+                        <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="Zoom in">+</a>
+                        <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="Zoom out">-</a>
+                    </div>
+                </div>
+            </div>
+            <div
+                style="height: 300px;"
+                data-map="display_points"
+                data-baseurl="{{ map_url }}"
+                data-point="{{ mapitems_json }}"
+                data-polygon="{{ polygon }}"
+            ></div>
+        </div>
     {% else %}
         <div class="list list--highlight">
             <div class="l-wrapper">
