@@ -92,7 +92,7 @@ blueprints = [
          content=[
              extprojects_phases.ExternalPhase(),
          ],
-         image='images/external_project.svg',
+         image='images/blueprints/external-project.svg',
          settings_model=None,
      )),
 ]
