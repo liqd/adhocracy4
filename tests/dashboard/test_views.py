@@ -7,7 +7,6 @@ def test_email_regex(client, project):
     user = project.organisation.initiators.first()
     client.login(username=user.email, password='password')
     url = reverse('dashboard-project-moderators', kwargs={
-        'organisation_slug': project.organisation.slug,
         'slug': project.slug
     })
     response = client.get(url)
@@ -25,7 +24,6 @@ def test_adding_moderator(client, project, user):
     project.moderators.clear()
     client.login(username=initiator.email, password='password')
     url = reverse('dashboard-project-moderators', kwargs={
-        'organisation_slug': project.organisation.slug,
         'slug': project.slug
     })
     response = client.get(url)
@@ -45,7 +43,6 @@ def test_removing_moderator(client, project):
     mod = project.moderators.first()
     client.login(username=initiator.email, password='password')
     url = reverse('dashboard-project-moderators', kwargs={
-        'organisation_slug': project.organisation.slug,
         'slug': project.slug
     })
     response = client.get(url)

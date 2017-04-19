@@ -69,6 +69,7 @@ INSTALLED_APPS = (
     'apps.dashboard.apps.Config',
     'apps.embed.apps.Config',
     'apps.moderatorfeedback.apps.Config',
+    'apps.account.apps.Config',
 
     'apps.ideas.apps.Config',
     'apps.documents.apps.Config',
@@ -127,6 +128,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'TEST': {
+            'NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
+        }
     }
 }
 

@@ -1,3 +1,5 @@
+{% load item_tags %}
+
 <div class="list-item list-item--squashed">
     <div class="list-item__stats">
         {% spaceless %}
@@ -18,19 +20,21 @@
         {% endspaceless %}
     </div>
     <h3 class="list-item__title">
-        <a href="{% url 'budgeting:proposal-detail' proposal.slug %}">
+        {% get_item_detail_url proposal as detail_url %}
+        <a href="{{ detail_url }}">
         {{ proposal.name }}
         </a>
     </h3>
+    <div class="list-item__labels">
+        {% if proposal.category %}
+            <span class="label label--big">{{ proposal.category }}</span>
+        {% endif %}
+        {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal cls='list-item__label--moderator-feedback' %}
+    </div>
     <span class="list-item__author">
         {{ proposal.creator.username }}
     </span>
     <span class="list-item__date">
         {{ proposal.created | date }}
     </span>
-    {% if proposal.category %}
-        <span class="category">{{ proposal.category }}</span>
-    {% endif %}
-    {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal %}
-
 </div>

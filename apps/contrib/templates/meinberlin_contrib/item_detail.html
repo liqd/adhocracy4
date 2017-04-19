@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load i18n module_tags rules react_comments react_ratings wagtailcore_tags item_tags %}
+
+{% block title %}{{object.name}}{% endblock %}
+{% block content %}
+<div class="resource-navigation">
+    <div class="l-wrapper">
+        <nav class="resource-navigation__breadcrumbs breadcrumbs">
+            <ul>
+                <li>
+                    <a href="{% url 'project-detail' object.project.slug %}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to project' %}</a>
+                </li>
+            </ul>
+        </nav>
+
+        {% get_item_change_permission object as change_perm %}
+        {% has_perm change_perm request.user object as show_dropdown %}
+
+        {% if show_dropdown %}
+        <div class="resource-navigation__actions dropdown dropdown--right">
+            <button
+                title="{% trans 'Actions' %}"
+                type="button"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                id="idea-{{object.pk}}-actions"
+            >
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="idea-{{object.pk}}-actions">
+                <li>
+                    {% get_item_update_url object as change_url %}
+                    <a class="dropdown-item" href="{{ change_url }}">{% trans 'Edit' %}</a>
+                </li>
+                <li>
+                    {% get_item_delete_url object as delete_url %}
+                    <a class="dropdown-item" href="{{ delete_url }}">{% trans 'Delete' %}</a>
+                </li>
+                {% block dropdown_items %}{% endblock %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="resource-header">
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            <h1 class="resource-header__title">{{ object.name }}</h1>
+
+            <div class="resource-header__meta">{{ object.creator.username }}</div>
+
+            {% if object.category %}
+                <div class="resource-header__meta">
+                    <div class="label label--big">{{ object.category }}</div>
+                </div>
+            {% endif %}
+
+            {% block additional_meta %}{% endblock %}
+
+            {% if object|has_feature:"rate" %}
+                <div class="resource-header__action">
+                    {% react_ratings object %}
+                </div>
+            {% endif %}
+
+            {% block additional_content %}{% endblock %}
+
+        </div>
+    </div>
+</div>
+
+<div class="idea-description">
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            {{ object.description | richtext }}
+        </div>
+    </div>
+</div>
+
+<div class="l-wrapper">
+    {% react_comments object %}
+</div>
+{% endblock %}

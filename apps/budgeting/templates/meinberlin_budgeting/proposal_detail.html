@@ -1,90 +1,23 @@
-{% extends "base.html" %}
-{% load i18n rules react_comments react_ratings %}
+{% extends "meinberlin_contrib/item_detail.html" %}
+{% load rules item_tags i18n %}
 
-{% block title %}{{proposal.name}}{% endblock %}
-{% block content %}
-<div class="resource-navigation">
-    <div class="l-wrapper">
-        <nav class="resource-navigation__breadcrumbs breadcrumbs">
-            <ul>
-                <li>
-                    <a href="{% url 'project-detail' proposal.project.slug %}">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'back to project' %}</a>
-                </li>
-            </ul>
-        </nav>
-
-        {% has_perm 'meinberlin_budgeting.modify_proposal' request.user proposal as show_dropdown %}
-        {% if show_dropdown %}
-        <div class="resource-navigation__actions dropdown dropdown--right">
-            <button
-                title="{% trans 'Actions' %}"
-                type="button"
-                class="dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                id="proposal-{{proposal.pk}}-actions"
-            >
-                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="proposal-{{proposal.pk}}-actions">
-                {% has_perm 'meinberlin_budgeting.moderate_proposal' request.user proposal as is_moderator %}
-                {% if is_moderator %}
-                <li>
-                    <a class="dropdown-item" href="{% url 'budgeting:proposal-moderate' slug=proposal.slug %}">{% trans 'Moderate' %}</a>
-                </li>
-                {% endif %}
-                <li>
-                    <a class="dropdown-item" href="{% url 'budgeting:proposal-update' slug=proposal.slug %}">{% trans 'Edit' %}</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="{% url 'budgeting:proposal-delete' slug=proposal.slug %}">{% trans 'Delete' %}</a>
-                </li>
-            </ul>
-        </div>
-        {% endif %}
+{% block additional_meta %}
+    <div class="resource-header__meta">
+        <div>{{ proposal.budget }}€</div>
     </div>
-</div>
 
-<div class="resource-header">
-    <div class="l-wrapper">
-        <div class="l-center-6">
-            <h1 class="resource-header__title">{{ proposal.name }}</h1>
-
-            <div class="resource-header__meta">
-                <div>{{ proposal.budget}}€</div>
-            </div>
-
-            <div class="resource-header__meta">{{ proposal.creator.username }}</div>
-
-            <div class="resource-header__meta">
-                {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal %}
-            </div>
-
-            {% if proposal.category %}
-                <div class="resource-header__meta">
-                    <div class="category">{{ proposal.category }}</div>
-                </div>
-            {% endif %}
-
-            <div class="resource-header__action">
-                {% react_ratings proposal %}
-            </div>
-        </div>
+    <div class="resource-header__meta">
+        {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal %}
     </div>
-</div>
+{% endblock %}
 
-<div class="proposal-description">
-    <div class="l-wrapper">
-        <div class="l-center-6">
-            {{ proposal.description | safe }}
-        </div>
-    </div>
-</div>
-
-<div class="l-wrapper">
-    {% react_comments proposal %}
-</div>
+{% block dropdown_items %}
+    {% get_item_permission object 'moderate' as moderator_perm %}
+    {% has_perm moderator_perm request.user proposal as is_moderator %}
+    {% if is_moderator %}
+        <li>
+            {% get_item_url object 'moderate' as moderate_url %}
+            <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'Moderate' %}</a>
+        </li>
+    {% endif %}
 {% endblock %}

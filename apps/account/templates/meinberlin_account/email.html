@@ -1,4 +1,4 @@
-{% extends "meinberlin_dashboard/base_user.html" %}
+{% extends "meinberlin_account/account_dashboard.html" %}
 
 {% load i18n %}
 {% load widget_tweaks %}
@@ -8,7 +8,7 @@
 {% block dashboard_content %}
 <h1>{% trans 'E-mail Addresses' %}</h1>
 
-<form class="multiform" action="{% url 'dashboard-email' %}?next={{ request.path }}" method="post">
+<form class="multiform" action="{% url 'account-email' %}?next={{ request.path }}" method="post">
     {% csrf_token %}
     {% for emailaddress in user.emailaddress_set.all %}
     <div class="form-check">
@@ -34,7 +34,7 @@
     <button class="button button--secondary" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
 </form>
 
-<form class="multiform" method="post" action="{% url 'dashboard-email' %}">
+<form class="multiform" method="post" action="{% url 'account-email' %}">
     {% csrf_token %}
     {% if form.non_field_errors %}
     <div class="form-errors">

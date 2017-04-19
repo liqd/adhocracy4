@@ -19,4 +19,5 @@ class AbstractMapIdea(idea_models.AbstractIdea):
 class MapIdea(AbstractMapIdea):
 
     def get_absolute_url(self):
-        return reverse('mapideas:idea-detail', args=[str(self.slug)])
+        return reverse('meinberlin_mapideas:mapidea-detail',
+                       args=[str(self.slug)])

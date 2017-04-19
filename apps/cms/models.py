@@ -141,6 +141,7 @@ class EmailFormPage(AbstractEmailForm):
         max_length=3,
         choices=(
             ('csv', 'CSV Document'),
+            ('txt', 'Text'),
         ),
         default='csv',
         help_text='Form results are send in this document format',
@@ -164,6 +165,8 @@ class EmailFormPage(AbstractEmailForm):
         self.form = form
         if self.attach_as == 'csv':
             emails.CsvFormEmail.send(self)
+        elif self.attach_as == 'txt':
+            emails.TextFormEmail.send(self)
 
     @property
     def field_values(self):

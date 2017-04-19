@@ -20,9 +20,6 @@ class CreateDocumentPhase(phases.PhaseContent):
     features = {}
 
 
-phases.content.register(CreateDocumentPhase())
-
-
 class CommentPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'comment'
@@ -38,4 +35,5 @@ class CommentPhase(phases.PhaseContent):
     }
 
 
+phases.content.register(CreateDocumentPhase())
 phases.content.register(CommentPhase())

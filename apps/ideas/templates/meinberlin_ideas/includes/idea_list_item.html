@@ -1,4 +1,4 @@
-{% load module_tags %}
+{% load module_tags item_tags %}
 
 <div class="list-item list-item--squashed">
     <div class="list-item__stats">
@@ -22,13 +22,14 @@
         {% endspaceless %}
     </div>
     <h3 class="list-item__title">
-        <a href="{% url 'ideas:idea-detail' idea.slug %}">
+        {% get_item_detail_url idea as detail_url %}
+        <a href="{{ detail_url }}">
         {{ idea.name }}
         </a>
     </h3>
     {% if idea.category %}
-        <div class="list-item__badges">
-            <span class="category">{{ idea.category }}</span>
+        <div class="list-item__labels">
+            <span class="label label--big">{{ idea.category }}</span>
         </div>
     {% endif %}
     <span class="list-item__author">
