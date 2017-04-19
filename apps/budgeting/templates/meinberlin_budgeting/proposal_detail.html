@@ -11,6 +11,29 @@
     </div>
 {% endblock %}
 
+{% block moderator_statement %}
+    {% if  proposal.moderator_statement.statement %}
+        <div class="l-wrapper">
+            <div class="l-center-8">
+                <div class="moderator-statement">
+                    <h2 class="moderator-statement__title">{% trans 'Official Statement' %}</h2>
+                    <div class="moderator-statement__subtitle">
+                        <span class="moderator-statement__organisation">
+                            {{ proposal.module.project.organisation.name }}
+                        </span>
+                        <span class="moderator-statement__date">
+                            {{ proposal.moderator_statement.created | date }}
+                        </span>
+                    </div>
+                    <div class="moderator-statement__statement">
+                        {{ proposal.moderator_statement.statement | safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
 {% block dropdown_items %}
     {% get_item_permission object 'moderate' as moderator_perm %}
     {% has_perm moderator_perm request.user proposal as is_moderator %}
