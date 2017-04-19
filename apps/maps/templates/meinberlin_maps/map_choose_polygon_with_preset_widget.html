@@ -1,18 +1,25 @@
-{% if presets_uncategorized or preset_categories %}
-    <select id="select_{{ name }}">
-        <option value="">---</option>
-        {% for preset in presets_uncategorized %}
-            <option value="{{ preset.polygon }}">{{ preset.name }}</option>
-        {% endfor %}
+{% load i18n %}
 
-        {% for category, presets in preset_categories %}
-            <optgroup label="{{ category }}">
-                {% for preset in presets %}
-                    <option value="{{ preset.polygon }}">{{ preset.name }}</option>
-                {% endfor %}
-            </optgroup>
-        {% endfor %}
-    </select>
+{% if presets_uncategorized or preset_categories %}
+    <p>
+        <div class="form-hint">
+            {% trans 'You can choose a preset for further customization.' %}
+        </div>
+        <select id="select_{{ name }}">
+            <option value="">---</option>
+            {% for preset in presets_uncategorized %}
+                <option value="{{ preset.polygon }}">{{ preset.name }}</option>
+            {% endfor %}
+
+            {% for category, presets in preset_categories %}
+                <optgroup label="{{ category }}">
+                    {% for preset in presets %}
+                        <option value="{{ preset.polygon }}">{{ preset.name }}</option>
+                    {% endfor %}
+                </optgroup>
+            {% endfor %}
+        </select>
+    </p>
 {% endif %}
 
 <div
