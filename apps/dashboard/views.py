@@ -94,6 +94,7 @@ class DashboardExternalProjectCreateView(dashboard_mixins.DashboardBaseMixin,
     template_name = 'meinberlin_dashboard/external_project_create_form.html'
     success_message = _('Project succesfully created.')
     permission_required = 'meinberlin_organisations.initiate_project'
+    menu_item = 'project'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -159,6 +160,7 @@ class DashboardExternalProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
     template_name = 'meinberlin_dashboard/external_project_update_form.html'
     success_message = _('Project successfully updated.')
     permission_required = 'meinberlin_organisations.initiate_project'
+    menu_item = 'project'
 
     def get_queryset(self):
         return super().get_queryset().filter(
