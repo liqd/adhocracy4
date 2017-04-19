@@ -20,7 +20,6 @@ class IssuePhase(phases.PhaseContent):
     features = {
         'crud': (models.MapIdea,),
     }
-phases.content.register(IssuePhase())
 
 
 class CollectPhase(phases.PhaseContent):
@@ -38,8 +37,6 @@ class CollectPhase(phases.PhaseContent):
         'comment': (models.MapIdea,),
     }
 
-phases.content.register(CollectPhase())
-
 
 class RatingPhase(phases.PhaseContent):
     app = apps.Config.label
@@ -54,7 +51,6 @@ class RatingPhase(phases.PhaseContent):
     features = {
         'rate': (models.MapIdea,)
     }
-phases.content.register(RatingPhase())
 
 
 class FeedbackPhase(phases.PhaseContent):
@@ -72,4 +68,9 @@ class FeedbackPhase(phases.PhaseContent):
         'rate': (models.MapIdea,),
         'comment': (models.MapIdea,)
     }
+
+
+phases.content.register(IssuePhase())
+phases.content.register(CollectPhase())
+phases.content.register(RatingPhase())
 phases.content.register(FeedbackPhase())

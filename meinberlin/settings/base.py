@@ -296,6 +296,6 @@ A4_COMMENTABLES = (
     ('meinberlin_budgeting', 'proposal'),
 )
 
-BASE_MAP = 'https://maps.berlinonline.de/tile/bright/'
-
-MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
+A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
+A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])

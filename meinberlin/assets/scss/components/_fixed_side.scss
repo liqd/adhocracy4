@@ -1,0 +1,12 @@
+.fixed-side {
+    position: fixed;
+    right: 0;
+    transform: rotate(90deg);
+    transform-origin: 100% 0;
+    top: 45%;
+    z-index: 1;
+
+    @media (max-width: $breakpoint) {
+        display: none;
+    }
+}
