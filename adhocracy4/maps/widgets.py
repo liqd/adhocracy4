@@ -21,8 +21,9 @@ class MapChoosePolygonWidget(Widget):
     def render(self, name, value, attrs):
 
         context = {
-            'map_url': settings.BASE_MAP,
-            'bbox': json.dumps(settings.MAP_BOUNDING_BOX),
+            'baseurl': settings.A4_MAP_BASEURL,
+            'attribution': settings.A4_MAP_ATTRIBUTION,
+            'bbox': json.dumps(settings.A4_MAP_BOUNDING_BOX),
             'name': name,
             'polygon': value
         }
@@ -50,8 +51,8 @@ class MapChoosePointWidget(Widget):
     def render(self, name, value, attrs):
 
         context = {
-            'map_url': settings.BASE_MAP,
-            'bbox': json.dumps(settings.MAP_BOUNDING_BOX),
+            'baseurl': settings.A4_MAP_BASEURL,
+            'attribution': settings.A4_MAP_ATTRIBUTION,
             'name': name,
             'point': value,
             # .dumps is required here because we pass it directly instead of

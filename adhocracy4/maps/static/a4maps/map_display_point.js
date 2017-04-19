@@ -6,10 +6,10 @@ window.jQuery(document).ready(function () {
     var polygon = JSON.parse(e.getAttribute('data-polygon'))
     var point = JSON.parse(e.getAttribute('data-point'))
     var baseurl = e.getAttribute('data-baseurl')
+    var attribution = e.getAttribute('data-attribution')
 
     var basemap = baseurl + '{z}/{x}/{y}.png'
-    var osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    var baselayer = L.tileLayer(basemap, {attribution: osmAttrib})
+    var baselayer = L.tileLayer(basemap, {attribution: attribution})
     var map = new L.Map(e, {scrollWheelZoom: false, zoomControl: false})
     baselayer.addTo(map)
 

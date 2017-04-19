@@ -4,13 +4,13 @@ window.jQuery(document).ready(function () {
 
   $('[data-map="display_points"]').each(function (i, e) {
     var polygon = JSON.parse(e.getAttribute('data-polygon'))
-    var point = JSON.parse(e.getAttribute('data-point'))
+    var points = JSON.parse(e.getAttribute('data-points'))
     var baseurl = e.getAttribute('data-baseurl')
+    var attribution = e.getAttribute('data-attribution')
     var initial = 0
 
     var basemap = baseurl + '{z}/{x}/{y}.png'
-    var osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    var baselayer = L.tileLayer(basemap, { attribution: osmAttrib })
+    var baselayer = L.tileLayer(basemap, { attribution: attribution })
     var map = new L.Map(e, { scrollWheelZoom: false, zoomControl: false })
     baselayer.addTo(map)
 
@@ -70,7 +70,7 @@ window.jQuery(document).ready(function () {
       popupAnchor: [0, 5]
     })
 
-    L.geoJson(point, {
+    L.geoJson(points, {
       pointToLayer: function (feature, latlng) {
         var marker = L.marker(latlng, {icon: icon}).addTo(map)
         var popupContent = getImage(feature) +

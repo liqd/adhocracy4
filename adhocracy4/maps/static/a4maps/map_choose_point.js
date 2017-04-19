@@ -1,7 +1,6 @@
-function createMap (L, baseurl, e) {
+function createMap (L, baseurl, attribution, e) {
   var basemap = baseurl + '{z}/{x}/{y}.png'
-  var osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  var baselayer = L.tileLayer(basemap, {maxZoom: 18, attribution: osmAttrib})
+  var baselayer = L.tileLayer(basemap, {maxZoom: 18, attribution: attribution})
   var map = new L.Map(e, {scrollWheelZoom: false, zoomControl: false})
   baselayer.addTo(map)
   return map
@@ -50,6 +49,14 @@ function isMarkerInsidePolygon (marker, poly) {
     var xj = polyPoints[j].lat
     var yj = polyPoints[j].lng
 
+    //      *
+    //     /
+    // *--/----------->>
+    //   *
+    // Check that
+    //
+    // 1.  yi and yj are on opposite sites of a ray to the right
+    // 2.  the intersection of the ray and the segment is right of x
     var intersect = ((yi > y) !== (yj > y)) &&
         (x < (xj - xi) * (y - yi) / (yj - yi) + xi)
     if (intersect) inside = !inside
@@ -66,8 +73,9 @@ window.jQuery(document).ready(function () {
     var polygon = JSON.parse(e.getAttribute('data-polygon'))
     var point = JSON.parse(e.getAttribute('data-point'))
     var baseurl = e.getAttribute('data-baseurl')
+    var attribution = e.getAttribute('data-attribution')
 
-    var map = createMap(L, baseurl, e)
+    var map = createMap(L, baseurl, attribution, e)
 
     var polygonStyle = {
       'color': '#0076ae',
