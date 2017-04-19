@@ -29,8 +29,6 @@ def react_reports_render_template(template, rf, question):
         r'</script>$'
     ).format(mountpoint=mountpoint, modal_name=modal_name)
 
-    print(helpers.render_template(template, context))
-    print(expected)
     match = re.match(expected, helpers.render_template(template, context))
     assert match
     assert match.group('props')
