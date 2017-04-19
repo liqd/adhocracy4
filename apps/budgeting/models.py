@@ -21,4 +21,5 @@ class Proposal(idea_models.AbstractIdea):
     )
 
     def get_absolute_url(self):
-        return reverse('budgeting:proposal-detail', args=[str(self.slug)])
+        return reverse('meinberlin_budgeting:proposal-detail',
+                       args=[str(self.slug)])

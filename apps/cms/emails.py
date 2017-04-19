@@ -28,13 +28,24 @@ class CsvFormEmail(FormEmail):
     def get_attachments(self):
         attachments = super().get_attachments()
         csv_text = self._generate_csv()
-        csv = MIMEText(_text=csv_text, _subtype='csv')
+        mime_doc = MIMEText(_text=csv_text, _subtype='csv')
         timestamp = timezone.now().strftime("%Y-%m-%d")
         form_title = self.object.title.replace(' ', '_')
         submission_pk = self.object.get_submission_class().objects.last().pk
         filename = '{}_{}_{}.csv'.format(timestamp, form_title, submission_pk)
-        csv.add_header(
+        mime_doc.add_header(
             'Content-Disposition',
             'attachment; filename="{}"'.format(filename)
         )
-        return attachments + [csv]
+        return attachments + [mime_doc]
+
+
+class TextFormEmail(FormEmail):
+
+    def get_attachments(self):
+        attachments = super().get_attachments()
+        text = ''
+        for field, value in self.object.field_values.items():
+            text += '{}:\n{}\n\n'.format(field, value)
+        mime_doc = MIMEText(_text=text)
+        return attachments + [mime_doc]
