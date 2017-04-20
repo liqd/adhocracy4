@@ -54,13 +54,30 @@ class DashboardProjectPublishMixin:
                 raise PermissionDenied
 
             if request.POST['submit_action'] == 'publish':
-                project.is_draft = False
-                messages.success(request, _('Project successfully published.'))
+                phases = project.phases
+
+                # Assure that every phase has a start and an end date
+                missing_date = False
+                for phase in phases:
+                    missing_date = missing_date \
+                        or not phase.start_date or not phase.end_date
+
+                if missing_date:
+                    messages.error(request,
+                                   _('Project can not be published until'
+                                     ' every Phase it contains has start and'
+                                     ' end dates.'))
+                else:
+                    project.is_draft = False
+                    messages.success(request,
+                                     _('Project successfully published.'))
+                    project.save()
+
             elif request.POST['submit_action'] == 'unpublish':
                 project.is_draft = True
                 messages.success(request,
                                  _('Project successfully unpublished.'))
-            project.save()
+                project.save()
 
         return redirect('dashboard-project-list',
                         organisation_slug=self.organisation.slug)
