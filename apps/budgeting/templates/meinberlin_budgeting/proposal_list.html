@@ -42,7 +42,8 @@
         <div class="list list--highlight">
             <div class="l-wrapper">
                 <div class="l-center-8">
-                    {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+                    {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
+
 
                     {% for proposal in proposal_list %}
                         {% include "meinberlin_budgeting/includes/proposal_list_item.html" with proposal=proposal %}
