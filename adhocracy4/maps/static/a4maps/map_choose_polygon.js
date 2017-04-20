@@ -29,7 +29,6 @@ window.jQuery(document).ready(function () {
     var attribution = e.getAttribute('data-attribution')
 
     var map = createMap(L, baseurl, attribution, e)
-    var mapVisible = $(e).width() !== 0
 
     var polygonStyle = {
       'color': '#0076ae',
