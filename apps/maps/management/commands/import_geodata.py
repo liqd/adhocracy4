@@ -26,20 +26,19 @@ class Command(BaseCommand):
         self._import_regions()
 
     def _import_districts(self):
-        category = self._preset_category('Bezirk')
+        category = self._preset_category('Berlin')
         tmpfile = '/tmp/bezirke.json'
         url = 'http://fbinter.stadt-berlin.de/fb/' \
               'wfs/geometry/senstadt/re_bezirke/'
         self._download_geodata(tmpfile, url, 'fis:re_bezirke')
         data = json.load(open(tmpfile, 'r'))
         for feature in data['features']:
-            name = feature['properties']['spatial_alias']
-            if not map_models.MapPreset.objects.filter(name=name).exists():
-                self._create_map_preset(name, feature, category)
+            district = feature['properties']['spatial_alias']
+            if not map_models.MapPreset.objects.filter(name=district).exists():
+                self._create_map_preset(district, feature, category)
         os.remove(tmpfile)
 
     def _import_regions(self):
-        category = self._preset_category('Bezirksregion')
         url = 'http://fbinter.stadt-berlin.de/fb/' \
               'wfs/geometry/senstadt/re_bezirksregion'
         tmpfile = '/tmp/bezirksregions.json'
@@ -47,17 +46,16 @@ class Command(BaseCommand):
                                'fis:re_bezirksregion')
         data = json.load(open(tmpfile, 'r'))
         for feature in data['features']:
-            name = feature['properties']['BZR_NAME']
-            if not map_models.MapPreset.objects.filter(name=name).exists():
-                self._create_map_preset(name, feature, category)
+            district = feature['properties']['BEZIRK']
+            region = feature['properties']['BZR_NAME']
+            category = self._preset_category(district)
+            if not map_models.MapPreset.objects.filter(name=region).exists():
+                self._create_map_preset(region, feature, category)
         os.remove(tmpfile)
 
     def _preset_category(self, name):
-        try:
-            category = map_models.MapPresetCategory.objects.get(name=name)
-        except map_models.MapPresetCategory.DoesNotExist:
-            category = map_models.MapPresetCategory(name=name)
-            category.save()
+        category, _ = \
+            map_models.MapPresetCategory.objects.get_or_create(name=name)
         return category
 
     def _create_map_preset(self, name, feature, category):
