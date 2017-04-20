@@ -113,6 +113,7 @@ window.jQuery(document).ready(function () {
           group.eachLayer(function (layer) {
             drawnItems.addLayer(layer)
           })
+          map.fitBounds(group)
         }
         $('#id_' + name).val(geoJson)
       }
