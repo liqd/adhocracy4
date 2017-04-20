@@ -78,7 +78,7 @@ class Command(BaseCommand):
 
         src = 'WFS:{}{}'.format(
             url,
-            '.?TYPENAMES=GML2' if self.is_gdal_legacy else ''
+            '?TYPENAMES=GML2' if self.is_gdal_legacy else ''
         )
         try:
             print('Trying to download file from {}'.format(url))
