@@ -81,7 +81,7 @@ blueprints = [
              budgeting_phases.FeedbackPhase(),
          ],
          image='images/blueprints/participatory-budgeting.svg',
-         settings_model=None,
+         settings_model=('a4maps', 'AreaSettings'),
      )),
     ('external-project',
      ProjectBlueprint(

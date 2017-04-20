@@ -5,11 +5,11 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.models.base import UserGeneratedContentModel
 
-from apps.ideas import models as idea_models
+from apps.mapideas import models as mapidea_models
 from apps.moderatorfeedback.fields import ModeratorFeedbackField
 
 
-class Proposal(idea_models.AbstractIdea):
+class Proposal(mapidea_models.AbstractMapIdea):
     budget = models.PositiveIntegerField(
         default=0,
         help_text=_('Required Budget')
