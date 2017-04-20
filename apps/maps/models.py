@@ -18,5 +18,8 @@ class MapPreset(models.Model):
                                  blank=True,
                                  on_delete=models.SET_NULL,)
 
+    class Meta:
+        ordering = ['name']
+
     def __str__(self):
         return self.name
