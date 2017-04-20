@@ -43,6 +43,12 @@ class ProposalListView(module_views.ItemListView):
     model = models.Proposal
     filter_set = ProposalFilterSet
 
+    def dispatch(self, request, **kwargs):
+        self.mode = request.GET.get('mode', 'map')
+        if self.mode == 'map':
+            self.paginate_by = 0
+        return super().dispatch(request, **kwargs)
+
 
 class ProposalDetailView(module_views.ItemDetailView):
     model = models.Proposal

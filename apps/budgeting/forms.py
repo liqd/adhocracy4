@@ -1,16 +1,16 @@
 from django import forms
 from multiform import MultiModelForm
 
-from adhocracy4.categories import forms as category_forms
+from apps.mapideas.forms import MapIdeaForm
 
 from . import models
 
 
-class ProposalForm(category_forms.CategorizableForm):
+class ProposalForm(MapIdeaForm):
 
     class Meta:
         model = models.Proposal
-        fields = ['name', 'description', 'category', 'budget']
+        fields = ['name', 'description', 'category', 'budget', 'point']
 
 
 class ModeratorFeedbackForm(forms.ModelForm):

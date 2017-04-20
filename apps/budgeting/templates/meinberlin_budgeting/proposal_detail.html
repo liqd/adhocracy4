@@ -1,4 +1,4 @@
-{% extends "meinberlin_contrib/item_detail.html" %}
+{% extends "meinberlin_mapideas/mapidea_detail.html" %}
 {% load rules item_tags i18n %}
 
 {% block additional_meta %}
@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block moderator_statement %}
-    {% if  proposal.moderator_statement.statement %}
+    {% if proposal.moderator_statement.statement %}
         <div class="l-wrapper">
             <div class="l-center-8">
                 <div class="moderator-statement">
@@ -44,3 +44,4 @@
         </li>
     {% endif %}
 {% endblock %}
+

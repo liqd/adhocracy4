@@ -9,6 +9,8 @@
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.budget %}
 
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point %}
+
     {% if form.show_categories %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.category %}
     {% endif %}
