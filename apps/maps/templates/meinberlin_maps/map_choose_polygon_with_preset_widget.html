@@ -2,9 +2,9 @@
 
 {% if presets_uncategorized or preset_categories %}
     <p>
-        <div class="form-hint">
+        <span class="form-hint">
             {% trans 'You can choose a preset for further customization.' %}
-        </div>
+        </span>
         <select id="select_{{ name }}">
             <option value="">---</option>
             {% for preset in presets_uncategorized %}
