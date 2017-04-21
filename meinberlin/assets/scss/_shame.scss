@@ -20,6 +20,10 @@
     @extend .rating-button--small;
 }
 
+[data-map] {
+    min-height: 500px;
+}
+
 // used by allauth (login/register)
 .signup > button[type="submit"],
 .primaryAction {
