@@ -20,7 +20,7 @@
     @extend .rating-button--small;
 }
 
-[data-map] {
+.map-list [data-map] {
     min-height: 500px;
 }
 
