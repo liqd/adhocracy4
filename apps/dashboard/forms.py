@@ -11,6 +11,7 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from apps.contrib import multiform
+from apps.contrib import widgets
 from apps.contrib.formset import dynamic_modelformset_factory
 from apps.extprojects import models as extproject_models
 from apps.extprojects import phases as extproject_phases
@@ -54,14 +55,14 @@ class ProjectForm(forms.ModelForm):
 
 
 class PhaseForm(forms.ModelForm):
+    end_date = forms.SplitDateTimeField(widget=widgets.DateTimeInput)
+    start_date = forms.SplitDateTimeField(widget=widgets.DateTimeInput)
 
     class Meta:
         model = phase_models.Phase
         exclude = ('module', )
 
         widgets = {
-            # 'end_date': widgets.DateTimeInput(),
-            # 'start_date': widgets.DateTimeInput(),
             'type': forms.HiddenInput(),
             'weight': forms.HiddenInput()
         }

@@ -1,7 +1,9 @@
 from itertools import chain
 
 import django_filters
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.db.models.fields import BLANK_CHOICE_DASH
+from django.forms import widgets as form_widgets
 from django.forms.widgets import flatatt
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
@@ -50,4 +52,38 @@ class DropdownLinkWidget(django_filters.widgets.LinkWidget):
             'value_label': value_label,
             'label': self.label,
             'right': self.right,
+        })
+
+
+class DateTimeInput(form_widgets.SplitDateTimeWidget):
+    class Media:
+        js = (
+            staticfiles_storage.url('js/picker.js'),
+            staticfiles_storage.url('js/picker.date.js'),
+            staticfiles_storage.url('js/picker.time.js'),
+            staticfiles_storage.url('js/init-picker.js'),
+        )
+        css = {'all': [
+            staticfiles_storage.url('css/classic.css'),
+            staticfiles_storage.url('css/classic.date.css'),
+            staticfiles_storage.url('css/classic.time.css'),
+        ]}
+
+    def render(self, name, value, attrs=None):
+        date_attrs = self.build_attrs(attrs)
+        date_attrs.update({'class': 'datepicker'})
+        time_attrs = self.build_attrs(attrs)
+        time_attrs.update({'class': 'timepicker'})
+
+        return render_to_string('datetime_input.html', {
+            'date': self.widgets[0].render(
+                name + '_date',
+                value,
+                date_attrs
+            ),
+            'time': self.widgets[1].render(
+                name + '_time',
+                value,
+                time_attrs
+            )
         })
