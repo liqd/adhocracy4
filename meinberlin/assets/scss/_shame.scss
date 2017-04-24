@@ -20,6 +20,8 @@
     @extend .rating-button--small;
 }
 
+// maps usually have a height of 300px in their element style, defined in adhocracy4.
+// However, 300px is not enough for the list view so we add a min-height here instead.
 .map-list [data-map] {
     min-height: 500px;
 }
