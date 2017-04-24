@@ -46,13 +46,13 @@ def is_allowed_view_item(user, item):
             is_public_context(user, item))
 
 
-def is_allowed_create_item(item_class):
+def is_allowed_add_item(item_class):
     @rules.predicate
-    def _create_item(user, item):
+    def _add_item(user, item):
         return (is_project_admin(user, item) |
                 (is_context_member(user, item) &
-                 phase_predicates.phase_allows_create(item_class)(user, item)))
-    return _create_item
+                 phase_predicates.phase_allows_add(item_class)(user, item)))
+    return _add_item
 
 
 @rules.predicate
@@ -70,8 +70,8 @@ def is_allowed_comment_item(user, item):
 
 
 @rules.predicate
-def is_allowed_modify_item(user, item):
+def is_allowed_change_item(user, item):
     return (is_project_admin(user, item) |
             (is_context_member(user, item) &
              is_owner(user, item) &
-             phase_predicates.phase_allows_modify(user, item)))
+             phase_predicates.phase_allows_change(user, item)))
