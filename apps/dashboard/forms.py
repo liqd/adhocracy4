@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ValidationError
 from django.db.models import loading
 from django.forms import modelformset_factory
 from django.utils.translation import ugettext as _
@@ -332,6 +333,14 @@ class ExternalProjectBaseForm(forms.ModelForm):
 
     start_date = forms.DateTimeField(required=False)
     end_date = forms.DateTimeField(required=False)
+
+    def clean_end_date(self, *args, **kwargs):
+        start_date = self.cleaned_data['start_date']
+        end_date = self.cleaned_data['end_date']
+        if start_date and end_date and end_date < start_date:
+            raise ValidationError(
+                _('End date can not be smaller than the start date.'))
+        return end_date
 
     class Meta:
         model = extproject_models.ExternalProject
