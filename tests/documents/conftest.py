@@ -1,7 +1,7 @@
 from pytest_factoryboy import register
 
-from tests.documents import factories as document_fatories
+from tests.documents import factories as document_factories
 
 
-register(document_fatories.DocumentFactory)
-register(document_fatories.ParagraphFactory)
+register(document_factories.DocumentFactory)
+register(document_factories.ParagraphFactory)
