@@ -17,7 +17,7 @@ class ProjectManager(models.Manager):
         return self.get(name=name)
 
     def featured(self):
-        return self.filter(is_draft=False).order_by('-created')[:8]
+        return self.filter(is_draft=False, is_archived=False).order_by('-created')[:8]
 
 
 class Project(base.TimeStampedModel):
@@ -128,7 +128,7 @@ class Project(base.TimeStampedModel):
     @functional.cached_property
     def other_projects(self):
         other_projects = self.organisation.project_set\
-            .filter(is_draft=False).exclude(slug=self.slug)
+            .filter(is_draft=False, is_archived=False).exclude(slug=self.slug)
         return other_projects
 
     @functional.cached_property
