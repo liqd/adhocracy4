@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            {% map_display_points mapidea_list view.module.settings_instance.polygon %}
+            {% map_display_points object_list view.module.settings_instance.polygon %}
         </div>
     {% else %}
         <div class="list list--highlight">
@@ -45,12 +45,12 @@
                     {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
 
                     <div class="list__container">
-                        {% for mapidea in mapidea_list %}
-                            {% include "meinberlin_mapideas/includes/mapidea_list_item.html" with object=mapidea %}
+                        {% for object in object_list %}
+                            {% include "meinberlin_mapideas/includes/mapidea_list_item.html" with object=object %}
                         {% endfor %}
                     </div>
 
-                    {% if mapidea_list.count == 0 %}
+                    {% if object_list.count == 0 %}
                         {% trans "Nothing to show" %}
                     {% endif %}
                     {% include "meinberlin_contrib/includes/pagination.html" %}

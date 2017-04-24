@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% load i18n item_tags %}
 
-{% block title %}Moderate {{proposal.name}}{% endblock %}
+{% block title %}Moderate {{ object.name }}{% endblock %}
 {% block content %}
 <div class="l-wrapper">
     <nav class="breadcrumbs">
         <ul>
             <li>
-                <a href="{% url 'project-detail' proposal.project.slug %}">
+                <a href="{% url 'project-detail' object.project.slug %}">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     {% trans 'back to project' %}</a>
             </li>
             <li>
-                {% get_item_detail_url proposal as detail_url %}
+                {% get_item_detail_url object as detail_url %}
                 <a href="{{ detail_url }}">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     {% trans 'back to proposal' %}</a>
