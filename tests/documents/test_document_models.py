@@ -8,6 +8,8 @@ from apps.documents.models import Document
 
 @pytest.mark.django_db
 def test_paragraph_save(paragraph):
+    paragraph.text = '<script>alert("hello");</script>text'
+    paragraph.save()
     assert '<script>' not in paragraph.text
 
 

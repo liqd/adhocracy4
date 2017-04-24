@@ -21,6 +21,6 @@ class ParagraphFactory(factory.django.DjangoModelFactory):
         model = document_models.Paragraph
 
     name = factory.Faker('name')
-    text = '<script>alert("hello");</script>text'
+    text = 'text'
     weight = factory.Faker('random_number')
     document = factory.SubFactory(DocumentFactory)
