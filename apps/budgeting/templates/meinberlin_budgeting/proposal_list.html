@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            {% map_display_points proposal_list view.module.settings_instance.polygon %}
+            {% map_display_points object_list view.module.settings_instance.polygon %}
         </div>
     {% else %}
         <div class="list list--highlight">
@@ -45,11 +45,11 @@
                     {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
 
 
-                    {% for proposal in proposal_list %}
-                        {% include "meinberlin_budgeting/includes/proposal_list_item.html" with proposal=proposal %}
+                    {% for object in object_list %}
+                        {% include "meinberlin_budgeting/includes/proposal_list_item.html" with object=object %}
                     {% endfor %}
 
-                    {% if proposal_list.count == 0 %}
+                    {% if object_list.count == 0 %}
                         {% trans "Nothing to show" %}
                     {% endif %}
                     {% include "meinberlin_contrib/includes/pagination.html" %}

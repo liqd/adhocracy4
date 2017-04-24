@@ -3,39 +3,39 @@
 <div class="list-item list-item--squashed">
     <div class="list-item__stats">
         {% spaceless %}
-        {% if idea|has_feature:"rate" %}
+        {% if object|has_feature:"rate" %}
             <span class="rating">
                 <span class="rating-button rating-up is-read-only" title="Positive Ratings">
                     <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                    {{ idea.positive_rating_count }}
+                    {{ object.positive_rating_count }}
                 </span>
                 <span class="rating-button rating-down is-read-only" title="Negative Ratings">
                     <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    {{ idea.negative_rating_count }}
+                    {{ object.negative_rating_count }}
                 </span>
             </span>
         {% endif %}
         <span title="Comments" class="list-item__comments">
             <i class="fa fa-comment-o" aria-hidden="true"></i>
-            {{ idea.comment_count }}
+            {{ object.comment_count }}
         </span>
         {% endspaceless %}
     </div>
     <h3 class="list-item__title">
-        {% get_item_detail_url idea as detail_url %}
+        {% get_item_detail_url object as detail_url %}
         <a href="{{ detail_url }}">
-        {{ idea.name }}
+        {{ object.name }}
         </a>
     </h3>
-    {% if idea.category %}
+    {% if object.category %}
         <div class="list-item__labels">
-            <span class="label label--big">{{ idea.category }}</span>
+            <span class="label label--big">{{ object.category }}</span>
         </div>
     {% endif %}
     <span class="list-item__author">
-        {{ idea.creator.username }}
+        {{ object.creator.username }}
     </span>
     <span class="list-item__date">
-        {{ idea.created | date }}
+        {{ object.created | date }}
     </span>
 </div>
