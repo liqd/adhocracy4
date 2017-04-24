@@ -59,8 +59,9 @@ class DashboardProjectPublishMixin:
                 # Assure that every phase has a start and an end date
                 missing_date = False
                 for phase in phases:
-                    missing_date = missing_date \
-                        or not phase.start_date or not phase.end_date
+                    if not phase.start_date or not phase.end_date:
+                        missing_date = True
+                        break
 
                 if missing_date:
                     messages.error(request,
