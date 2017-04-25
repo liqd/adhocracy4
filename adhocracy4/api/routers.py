@@ -32,7 +32,7 @@ class ContentTypeDefaultRouter(ContentTypeRouterMixin, routers.DefaultRouter):
 class ModuleRouterMixin(CustomRouterMixin):
 
     prefix_regex = (
-        'modules/(?P<module_slug>[-\w_]+)/{prefix}'
+        'modules/(?P<module_pk>[\d]+)/{prefix}'
     )
 
 

@@ -55,12 +55,12 @@ class ModuleMixin:
     """
 
     def dispatch(self, request, *args, **kwargs):
-        self.module_slug = kwargs.get('module_slug', '')
+        self.module_pk = kwargs.get('module_pk', '')
         return super().dispatch(request, *args, **kwargs)
 
     @property
     def module(self):
         return get_object_or_404(
             module_models.Module,
-            slug=self.module_slug
+            pk=self.module_pk
         )
