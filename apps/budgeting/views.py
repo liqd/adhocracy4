@@ -90,7 +90,7 @@ class ProposalModerateView(rules_mixins.PermissionRequiredMixin,
     template_name = 'meinberlin_budgeting/proposal_moderate_form.html'
 
     def get_success_url(self):
-        return self.request.path
+        return self.get_object().get_absolute_url()
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
