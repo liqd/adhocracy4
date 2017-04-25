@@ -78,6 +78,7 @@ INSTALLED_APPS = (
     'apps.documents.apps.Config',
     'apps.budgeting.apps.Config',
     'apps.mapideas.apps.Config',
+    'apps.topicprio.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -288,6 +289,7 @@ A4_RATEABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_topicprio', 'topic'),
 )
 
 A4_COMMENTABLES = (
@@ -297,6 +299,7 @@ A4_COMMENTABLES = (
     ('meinberlin_documents', 'paragraph'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_topicprio', 'topic'),
 )
 
 A4_REPORTABLES = (
@@ -304,6 +307,7 @@ A4_REPORTABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_topicprio', 'topic'),
 )
 
 A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'

@@ -7,6 +7,7 @@ from apps.documents import phases as documents_phases
 from apps.extprojects import phases as extprojects_phases
 from apps.ideas import phases as ideas_phases
 from apps.mapideas import phases as mapideas_phases
+from apps.topicprio import phases as topicprio_phases
 
 ProjectBlueprint = namedtuple(
     'ProjectBlueprint', [
@@ -91,6 +92,19 @@ blueprints = [
          ),
          content=[
              extprojects_phases.ExternalPhase(),
+         ],
+         image='images/blueprints/external-project.svg',
+         settings_model=None,
+     )),
+    ('topic-prioritization',
+     ProjectBlueprint(
+         title=_('Topic Prioritization'),
+         description=_(
+             'Comment and prioritize topics created by moderators.'
+         ),
+         content=[
+             topicprio_phases.CreatePhase(),
+             topicprio_phases.PrioritizePhase(),
          ],
          image='images/blueprints/external-project.svg',
          settings_model=None,
