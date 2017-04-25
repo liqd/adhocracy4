@@ -1,52 +1,10 @@
 {% extends "base.html" %}
+{% load react_polls %}
 
 {% block content %}
     <div class="l-wrapper">
         <div class="l-center-8">
-            <form>
-                <h2>Getrennte Eltern: Ist das Wechselmodell die beste Lösung für alle?</h2>
-                <div class="poll">
-                    <label class="poll-row">
-                        <input class="poll-row__radio" type="radio" name="poll" />
-                        Ja
-                    </label>
-                    <label class="poll-row">
-                        <input class="poll-row__radio" type="radio" name="poll" />
-                        Nein
-                    </label>
-                    <label class="poll-row">
-                        <input class="poll-row__radio" type="radio" name="poll" />
-                        Vielleicht
-                    </label>
-                </div>
-
-                <button type="submit" class="button button--secondary">Abstimmen</button>
-                <button type="button" class="button button--light">Zwischenergebnisse anzeigen</button>
-            </form>
-
-            <form>
-                <h2>Getrennte Eltern: Ist das Wechselmodell die beste Lösung für alle?</h2>
-                <div class="poll">
-                    <div class="poll-row">
-                        <div class="poll-row__bar" style="width: 28%"></div>
-                        <div class="poll-row__number">28%</div>
-                        <div class="poll-row__label">Ja</div>
-                    </div>
-                    <div class="poll-row">
-                        <div class="poll-row__bar poll-row__bar--highlight" style="width: 50%"></div>
-                        <div class="poll-row__number">50%</div>
-                        <div class="poll-row__label">Nein</div>
-                    </div>
-                    <div class="poll-row">
-                        <div class="poll-row__bar" style="width: 22%"></div>
-                        <div class="poll-row__number">22%</div>
-                        <div class="poll-row__label">Vielleicht… ich weiss nicht so recht… ist das gut? oder doch nicht??!?</div>
-                    </div>
-                </div>
-
-                80123 Stimmen
-                <button type="button" class="button button--light">Zur Abstimmung</button>
-            </form>
+            {% react_polls %}
         </div>
     </div>
 {% endblock %}
