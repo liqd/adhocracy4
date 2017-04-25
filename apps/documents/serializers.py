@@ -21,14 +21,15 @@ class DocumentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Document
-        exclude = ('creator',)
+        exclude = ('creator', 'module',)
 
     def validate(self, data):
         if self.instance:
             document_pk = self.instance.pk
         else:
             document_pk = None
-        validators.single_document_per_module(data['module'], document_pk)
+        module_pk = self._context['module_pk']
+        validators.single_document_per_module(module_pk, document_pk)
         return data
 
     def create(self, validated_data):

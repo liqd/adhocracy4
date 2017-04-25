@@ -18,3 +18,10 @@ class DocumentViewSet(mixins.CreateModelMixin,
 
     def get_permission_object(self):
         return self.module
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context.update({
+            'module_pk': self.module_pk,
+        })
+        return context
