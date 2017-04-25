@@ -37,5 +37,6 @@ class PrioritizePhase(phases.PhaseContent):
         'rate': (models.Topic,),
     }
 
+
 phases.content.register(CreatePhase())
 phases.content.register(PrioritizePhase())
