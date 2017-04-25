@@ -12,11 +12,8 @@ var baseURL = '/api/'
 var api = (function () {
   var urls = {
     report: baseURL + 'reports/',
-    document: baseURL + 'documents/',
-    follow: baseURL + 'follows/'
-  }
-
-  var genericUrls = {
+    document: baseURL + '/modules/$moduleId/documents/',
+    follow: baseURL + 'follows/',
     comment: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comments/',
     rating: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/ratings/'
   }
@@ -31,16 +28,13 @@ var api = (function () {
       id = null
     }
 
-    var url
-    if (urls.hasOwnProperty(endpoint)) {
-      url = urls[endpoint]
-    } else {
-      url = genericUrls[endpoint]
-        .replace('$contentTypeId', data['content_type'])
-        .replace('$objectPk', data['object_pk'])
+    var url = urls[endpoint]
+    if (data.urlReplaces) {
+      url = url.replace(/\$(\w+?)\b/g, (match, group) => {
+        return data.urlReplaces[group]
+      })
       data = $.extend({}, data)
-      delete data.content_type
-      delete data.object_pk
+      delete data.urlReplaces
     }
 
     if (typeof id === 'number' || typeof id === 'string') {

@@ -8,8 +8,10 @@ var classnames = require('classnames')
 var RatingBox = React.createClass({
   handleRatingCreate: function (number) {
     api.rating.add({
-      object_pk: this.props.objectId,
-      content_type: this.props.contentType,
+      urlReplaces: {
+        objectPk: this.props.objectId,
+        contentTypeId: this.props.contentType,
+      },
       value: number
     }).done(function (data) {
       this.setState({
@@ -23,8 +25,10 @@ var RatingBox = React.createClass({
   },
   handleRatingModify: function (number, id) {
     api.rating.change({
-      object_pk: this.props.objectId,
-      content_type: this.props.contentType,
+      urlReplaces: {
+        objectPk: this.props.objectId,
+        contentTypeId: this.props.contentType,
+      },
       value: number
     }, id)
       .done(function (data) {
