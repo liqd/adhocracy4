@@ -27,6 +27,7 @@ from apps.documents.api import DocumentViewSet
 from apps.embed import urls as embed_urls
 from apps.ideas import urls as ideas_urls
 from apps.mapideas import urls as mapideas_urls
+from apps.polls import urls as polls_urls
 from apps.projects import urls as projects_urls
 
 js_info_dict = {
@@ -60,6 +61,7 @@ urlpatterns = [
                                 namespace='meinberlin_budgeting')),
     url(r'^mapideas/', include(mapideas_urls,
                                namespace='meinberlin_mapideas')),
+    url(r'^polls/', include(polls_urls, namespace='meinberlin_polls')),
 
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(router.urls)),
