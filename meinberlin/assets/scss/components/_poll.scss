@@ -1,0 +1,37 @@
+.poll {
+    margin-bottom: $spacer;
+}
+
+.poll-row {
+    position: relative;
+    padding: 0.2em 0.5em;
+    margin-bottom: 0.5em;
+    @include clearfix;
+}
+
+.poll-row__radio,
+.poll-row__number,
+.poll-row__label {
+    display: inline-block;
+    margin: 0;
+    margin-right: 0.2em;
+}
+
+.poll-row__number {
+    min-width: 5em;
+    font-weight: bold;
+}
+
+.poll-row__bar {
+    background-color: $bg-secondary;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 0.3em;
+    z-index: -1;
+}
+
+.poll-row__bar--highlight {
+    background-color: $brand-secondary-tint;
+}
