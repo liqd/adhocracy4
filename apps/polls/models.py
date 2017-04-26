@@ -11,8 +11,14 @@ class Poll(module_models.Item):
 
     def choices_with_vote_count(self):
         return self.choices\
-            .annotate(vote__count=Count('votes'))\
-            .filter(poll=self)
+            .filter(poll=self)\
+            .annotate(vote__count=Count('votes'))
+
+    def user_choices_list(self, user):
+        return self.choices\
+            .filter(poll=self)\
+            .filter(votes__creator=user)\
+            .values_list('id', flat=True)
 
     def __str__(self):
         return self.title

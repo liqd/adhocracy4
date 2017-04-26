@@ -6,13 +6,17 @@ from django.utils.html import format_html
 register = template.Library()
 
 
-@register.simple_tag
-def react_polls(poll):
+@register.simple_tag(takes_context=True)
+def react_polls(context, poll):
+    user = context['request'].user
+    user_choices = poll.user_choices_list(user)
+
     data = {
         'title': poll.title,
         'choices': [{
             'label': choice.label,
             'count': choice.vote_count,
+            'ownChoice': (choice.pk in user_choices)
         } for choice in poll.choices_with_vote_count()]
     }
 

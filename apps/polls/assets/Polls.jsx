@@ -30,6 +30,7 @@ var Poll = React.createClass({
       let value = parseInt(rawValue)
       // TODO: sent to server
       // TODO: show success/error message
+      // TODO: Fix for ownChoice within choice
       this.setState({
         showResult: true,
         ownChoice: value
@@ -72,7 +73,7 @@ var Poll = React.createClass({
         <div className="poll">
           {
             this.state.choices.map((choice, i) => {
-              let checked = this.state.ownChoice === i
+              let checked = choice.ownChoice
               let percent = Math.round(choice.count / total * 100)
               let highlight = choice.count === max
 
