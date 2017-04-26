@@ -3,14 +3,12 @@
 
 
 {% block content %}
-
-    <script>
-        var results = JSON.parse('{{ view.get_result_json|escapejs }}')
-    </script>
-
     <div class="l-wrapper">
         <div class="l-center-8">
-            {% react_polls %}
+
+            {% for object in object_list %}
+                {% react_polls object %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

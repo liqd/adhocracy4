@@ -6,21 +6,9 @@ var Poll = React.createClass({
   getInitialState: function () {
     // FIXME: example data
     return {
-      title: 'Getrennte Eltern: Ist das Wechselmodell die beste Lösung für alle?',
-      choices: [{
-        label: 'Ja',
-        count: 22434,
-        user_vote: false
-      }, {
-        label: 'Nein',
-        count: 40062,
-        user_vote: false
-      }, {
-        label: 'Vielleicht',
-        count: 17627,
-        user_vote: true
-      }],
-      ownVote: null, // to be replaced
+      title: this.props.poll.title,
+      choices: this.props.poll.choices,
+      ownChoice: null,
       active: true,
       showResult: false
     }
@@ -44,13 +32,13 @@ var Poll = React.createClass({
       // TODO: show success/error message
       this.setState({
         showResult: true,
-        ownVote: value
+        ownChoice: value
       })
     }
   },
 
   render: function () {
-    let counts = this.state.choices.map(c => c.count)
+    let counts = this.state.choices.map(o => o.count)
     let total = counts.reduce((sum, c) => sum + c, 0)
     let max = Math.max.apply(null, counts)
 
@@ -84,7 +72,7 @@ var Poll = React.createClass({
         <div className="poll">
           {
             this.state.choices.map((choice, i) => {
-              let checked = this.state.ownVote === i
+              let checked = this.state.ownChoice === i
               let percent = Math.round(choice.count / total * 100)
               let highlight = choice.count === max
 
@@ -122,5 +110,8 @@ var Poll = React.createClass({
 
 module.exports.renderPolls = function (mountpoint) {
   let element = document.getElementById(mountpoint)
-  ReactDOM.render(<Poll />, element)
+
+  let poll = JSON.parse(element.getAttribute('data-poll'))
+
+  ReactDOM.render(<Poll poll={poll} />, element)
 }

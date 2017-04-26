@@ -1,5 +1,5 @@
-from django.db.models import Count
 from django.db import models
+from django.db.models import Count
 
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.modules import models as module_models
