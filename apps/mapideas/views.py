@@ -26,13 +26,6 @@ class MapIdeaFilterSet(django_filters.FilterSet):
         choices=get_ordering_choices
     )
 
-    @property
-    def qs(self):
-        return super().qs.filter(module=self.request.module) \
-            .annotate_positive_rating_count() \
-            .annotate_negative_rating_count() \
-            .annotate_comment_count()
-
     class Meta:
         model = models.MapIdea
         fields = ['category']
@@ -47,6 +40,12 @@ class MapIdeaListView(module_views.ItemListView):
         if self.mode == 'map':
             self.paginate_by = 0
         return super().dispatch(request, **kwargs)
+
+    def get_queryset(self):
+        return super().get_queryset().filter(module=self.module) \
+            .annotate_positive_rating_count() \
+            .annotate_negative_rating_count() \
+            .annotate_comment_count()
 
 
 class MapIdeaDetailView(module_views.ItemDetailView):
