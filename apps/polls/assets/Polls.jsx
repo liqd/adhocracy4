@@ -89,7 +89,7 @@ var Poll = React.createClass({
         </div>
 
         { !this.state.active ? (
-          '' + total + ' ' + django.ngettext(total, 'votes')
+          '' + total + ' ' + django.ngettext('vote', 'votes', total)
         ) : this.state.showResult ? (
           <button type="button" className="button button--light" onClick={this.toggleShowResult}>
             { django.gettext('To poll') }
