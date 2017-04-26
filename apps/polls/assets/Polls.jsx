@@ -6,17 +6,8 @@ var Poll = React.createClass({
   getInitialState: function () {
     // FIXME: example data
     return {
-      title: 'Getrennte Eltern: Ist das Wechselmodell die beste Lösung für alle?',
-      choices: [{
-        label: 'Ja',
-        count: 22434
-      }, {
-        label: 'Nein',
-        count: 40062
-      }, {
-        label: 'Vielleicht',
-        count: 17627
-      }],
+      title: this.props.poll.title,
+      choices: this.props.poll.choices,
       ownChoice: null,
       active: true,
       showResult: false
@@ -119,5 +110,8 @@ var Poll = React.createClass({
 
 module.exports.renderPolls = function (mountpoint) {
   let element = document.getElementById(mountpoint)
-  ReactDOM.render(<Poll />, element)
+
+  let poll = JSON.parse(element.getAttribute('data-poll'))
+
+  ReactDOM.render(<Poll poll={poll} />, element)
 }
