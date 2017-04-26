@@ -7,22 +7,13 @@ register = template.Library()
 
 
 @register.simple_tag
-def react_polls():
-    poll = {
-        'title': (
-            'Getrennte Eltern: Ist das Wechselmodell '
-            'die beste Lösung für alle?'
-        ),
+def react_polls(poll):
+    data = {
+        'title': poll.title,
         'choices': [{
-            'label': 'Ja',
-            'count': 22434
-        }, {
-            'label': 'Nein',
-            'count': 40062
-        }, {
-            'label': 'Vielleicht',
-            'count': 17627
-        }]
+            'label': choice.label,
+            'count': choice.getVoteCount()
+        } for choice in poll.choices]
     }
 
     return format_html(
@@ -30,6 +21,6 @@ def react_polls():
             '<div id="{id}" data-poll="{poll}"></div>'
             '<script>window.adhocracy4.renderPolls("{id}")</script>'
         ),
-        id='TODO',
-        poll=json.dumps(poll)
+        id='poll-' + poll.pk,
+        poll=json.dumps(data)
     )
