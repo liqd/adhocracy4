@@ -20,11 +20,11 @@ msgstr ""
 
 #: adhocracy4/comments/models.py:35
 msgid "Comment"
-msgstr ""
+msgstr "Kommentar"
 
 #: adhocracy4/comments/models.py:36
 msgid "Comments"
-msgstr ""
+msgstr "Kommentare"
 
 #: adhocracy4/comments/serializers.py:25
 msgid "unknown user"
@@ -183,7 +183,7 @@ msgstr ""
 #: adhocracy4/reports/templatetags/react_reports.py:30
 #: apps/contrib/templates/meinberlin_contrib/item_detail.html.py:47
 msgid "Report"
-msgstr ""
+msgstr "Melden"
 
 #: apps/account/templates/meinberlin_account/account_dashboard.html.py:4
 msgid "User Dashboard"
@@ -195,11 +195,11 @@ msgstr ""
 
 #: apps/account/templates/meinberlin_account/account_dashboard.html.py:21
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: apps/account/templates/meinberlin_account/account_dashboard.html.py:28
 msgid "Change password"
-msgstr ""
+msgstr "Passwort ändern"
 
 #: apps/account/templates/meinberlin_account/account_dashboard.html.py:35
 msgid "Email addresses"
@@ -234,7 +234,7 @@ msgstr ""
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:25
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:37
 msgid "Remove"
-msgstr ""
+msgstr "Löschen"
 
 #: apps/account/templates/meinberlin_account/email.html.py:48
 msgid "Add another Email"
@@ -247,7 +247,7 @@ msgstr ""
 #: apps/account/templates/meinberlin_account/password.html.py:5
 #: apps/account/templates/meinberlin_account/password.html.py:40
 msgid "Change Password"
-msgstr ""
+msgstr "Password ändern"
 
 #: apps/account/templates/meinberlin_account/password.html.py:8
 msgid "Change your password"
@@ -260,7 +260,7 @@ msgstr ""
 
 #: apps/account/templates/meinberlin_account/password.html.py:36
 msgid "Repeat password"
-msgstr ""
+msgstr "Passwort"
 
 #: apps/account/templates/meinberlin_account/profile.html.py:5
 msgid "Your user profile"
@@ -268,12 +268,12 @@ msgstr ""
 
 #: apps/account/templates/meinberlin_account/profile.html.py:7
 msgid "Your profile"
-msgstr ""
+msgstr "Dein Profil"
 
 #: apps/account/templates/meinberlin_account/profile.html.py:13
 #: apps/dashboard/templates/meinberlin_dashboard/organisation_form.html.py:10
 msgid "Save changes"
-msgstr ""
+msgstr "Änderungen speichern"
 
 #: apps/account/views.py:29
 msgid "Your profile was successfully updated."
@@ -289,7 +289,7 @@ msgstr ""
 
 #: apps/budgeting/models.py:21
 msgid "Rejected"
-msgstr ""
+msgstr "Abgelehnt"
 
 #: apps/budgeting/models.py:22
 msgid "Accepted"
@@ -323,14 +323,14 @@ msgstr ""
 #: apps/ideas/templates/meinberlin_ideas/includes/idea_form.html.py:14
 #: apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_form.html.py:16
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html.py:19
 #: apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html.py:33
 #: apps/ideas/templates/meinberlin_ideas/includes/idea_form.html.py:15
 #: apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_form.html.py:17
 msgid "cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html.py:4
 msgid "Confirm Proposal Deletion"
@@ -345,14 +345,14 @@ msgstr ""
 #: apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html.py:12
 #: apps/projects/views.py:31
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html.py:15
 #: apps/embed/templates/meinberlin_embed/embed.html.py:43
 #: apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html.py:15
 #: apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html.py:16
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html.py:4
 #: apps/ideas/templates/meinberlin_ideas/idea_create_form.html.py:4
@@ -437,11 +437,11 @@ msgstr ""
 
 #: apps/contrib/filters.py:15 apps/dashboard/forms.py:73
 msgid "Category"
-msgstr ""
+msgstr "Kategorie"
 
 #: apps/contrib/filters.py:29 apps/projects/views.py:16
 msgid "Ordering"
-msgstr ""
+msgstr "Sortierung"
 
 #: apps/contrib/templates/meinberlin_contrib/includes/inline_form.html.py:17
 msgid "remove category"
@@ -473,11 +473,11 @@ msgstr ""
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:16
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:22
 msgid "Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 #: apps/contrib/templates/meinberlin_contrib/item_detail.html.py:42
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: apps/contrib/widgets.py:24 apps/projects/views.py:29
 msgid "All"
@@ -604,7 +604,7 @@ msgstr ""
 
 #: apps/dashboard/templates/meinberlin_dashboard/base_dashboard.html.py:55
 msgid "Settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: apps/dashboard/templates/meinberlin_dashboard/blueprint_list.html.py:13
 #: apps/dashboard/templates/meinberlin_dashboard/external_project_create_form.html.py:10
@@ -640,16 +640,16 @@ msgstr ""
 #: apps/dashboard/templates/meinberlin_dashboard/includes/external_project_list_item.html.py:25
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:33
 msgid "Publish"
-msgstr ""
+msgstr "Veröffentlichen"
 
 #: apps/dashboard/templates/meinberlin_dashboard/includes/external_project_list_item.html.py:27
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:35
 msgid "Unpublish"
-msgstr ""
+msgstr "Depublizieren"
 
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_form_tab_participate.html.py:16
 msgid "Categories"
-msgstr ""
+msgstr "Kategorien"
 
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_form_tab_participate.html.py:30
 msgid "add category"
@@ -697,15 +697,15 @@ msgstr ""
 
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:14
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:23
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:24
 msgid "E-Mail"
-msgstr ""
+msgstr "E-Mail"
 
 #: apps/dashboard/templates/meinberlin_dashboard/project_update_form.html.py:15
 msgid "Edit project"
@@ -962,15 +962,15 @@ msgstr ""
 
 #: apps/projects/views.py:25
 msgid "Archived"
-msgstr ""
+msgstr "Archiviert"
 
 #: apps/projects/views.py:30
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: apps/projects/views.py:37
 msgid "Year"
-msgstr ""
+msgstr "Jahr"
 
 #: apps/projects/views.py:40 apps/projects/views.py:56
 msgid "Any"
@@ -1029,7 +1029,7 @@ msgstr ""
 
 #: apps/users/models.py:41
 msgid "active"
-msgstr ""
+msgstr "aktiv"
 
 #: apps/users/models.py:44
 msgid ""

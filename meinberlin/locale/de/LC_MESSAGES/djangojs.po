@@ -25,12 +25,12 @@ msgstr ""
 #: adhocracy4/comments/static/comments/Comment.jsx:93
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:94
 #: adhocracy4/static/Modal.jsx:50
 msgid "Abort"
-msgstr ""
+msgstr "Abbrechen"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:107
 msgid "Latest edit on"
@@ -52,8 +52,8 @@ msgstr ""
 #: adhocracy4/comments/static/comments/CommentBox.jsx:77
 msgid "comment"
 msgid_plural "comments"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kommentar"
+msgstr[1] "Kommentare"
 
 #: adhocracy4/comments/static/comments/CommentBox.jsx:80
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:28
@@ -68,7 +68,7 @@ msgstr ""
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:32
 msgid "cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:41
 msgid "Please login to comment"
@@ -80,11 +80,11 @@ msgstr ""
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:15
 msgid "Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:23
 msgid "Report"
-msgstr ""
+msgstr "Melden"
 
 #: adhocracy4/comments/static/comments/CommentReplyBar.jsx:5
 #, javascript-format
@@ -112,7 +112,7 @@ msgstr ""
 
 #: apps/documents/assets/Paragraph.jsx:81
 msgid "Headline:"
-msgstr ""
+msgstr "Überschrift:"
 
 #: apps/documents/assets/Paragraph.jsx:100
 msgid "Paragraph:"
@@ -128,11 +128,11 @@ msgstr ""
 
 #: apps/documents/assets/ParagraphBox.jsx:157
 msgid "Title:"
-msgstr ""
+msgstr "Titel:"
 
 #: apps/documents/assets/ParagraphBox.jsx:202
 msgid "save"
-msgstr ""
+msgstr "Speichern"
 
 #: apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:105
 msgid "Do you want to load this preset and delete all the existing polygons?"
@@ -140,7 +140,7 @@ msgstr ""
 
 #: meinberlin/static/embed.js:25
 msgid "Close"
-msgstr ""
+msgstr "Schließen"
 
 #: meinberlin/static/embed.js:153
 msgid "We couldn't find what you were looking for."
