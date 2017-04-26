@@ -73,7 +73,7 @@ INSTALLED_APPS = (
     'apps.extprojects.apps.Config',
     'apps.account.apps.Config',
     'apps.maps.apps.Config',
-    'apps.servicekonto.apps.Config'
+    'apps.servicekonto.apps.Config',
 
     'apps.ideas.apps.Config',
     'apps.documents.apps.Config',
@@ -224,6 +224,10 @@ LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# Service Konto
+SERVICE_KONTO_LOGIN_URL = 'https://skbref.verwalt-berlin.de/skb/FVS/Login/Anmeldung.aspx'
+SERVICE_KONTO_HELP_URL = 'https://skbref.verwalt-berlin.de/skb/FVP/FV/BasisHilfe/HilfeIndex.aspx'
+SERVICE_KONTO_API_URL = 'https://skbref.verwalt-berlin.de/HHGWUserData/HHGWUserData.asmx?wsdl'
 
 # ckeditor
 
