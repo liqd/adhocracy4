@@ -17,7 +17,7 @@ class DocumentCreateView(project_mixins.ProjectMixin, generic.TemplateView):
 
 class DocumentDetailView(project_mixins.ProjectMixin, generic.DetailView):
     model = models.Document
-    permission_required = 'meinberlin_documents.view'
+    permission_required = 'meinberlin_documents.view_document'
 
     def get_object(self):
         return models.Document.objects.filter(module=self.module).first()
@@ -26,4 +26,4 @@ class DocumentDetailView(project_mixins.ProjectMixin, generic.DetailView):
 class ParagraphDetailView(rules_mixins.PermissionRequiredMixin,
                           generic.DetailView):
     model = models.Paragraph
-    permission_required = 'meinberlin_documents.view'
+    permission_required = 'meinberlin_documents.view_document'

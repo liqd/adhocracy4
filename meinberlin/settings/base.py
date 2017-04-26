@@ -78,6 +78,7 @@ INSTALLED_APPS = (
     'apps.documents.apps.Config',
     'apps.budgeting.apps.Config',
     'apps.mapideas.apps.Config',
+    'apps.polls.apps.Config',
     'apps.topicprio.apps.Config',
 )
 

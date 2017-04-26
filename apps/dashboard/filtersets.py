@@ -2,12 +2,17 @@ import django_filters
 from django.utils.translation import ugettext as _
 
 
+from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.projects.models import Project
 
 from apps.projects import views
 
 
-class DashboardProjectFilterSet(django_filters.FilterSet):
+class DashboardProjectFilterSet(DefaultsFilterSet):
+
+    defaults = {
+        'is_archived': 'false'
+    }
 
     ordering = django_filters.OrderingFilter(
         choices=(

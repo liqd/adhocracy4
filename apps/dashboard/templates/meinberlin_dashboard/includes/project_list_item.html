@@ -1,4 +1,4 @@
-{% load i18n project_tags extproject_tags %}
+{% load i18n project_tags extproject_tags dashboard_tags %}
 
 <div class="list-item">
     <p class="list-item__subtitle">{{ project.typ }}</p>
@@ -43,6 +43,16 @@
                class="button button--light">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 {% trans 'Moderators' %}
+            </a>
+        </span>
+        {% endif %}
+
+        {% if project|has_management_view %}
+        <span class="list-item__action">
+            <a href="{% url 'dashboard-project-management' slug=project.slug %}"
+               class="button button--light">
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+                {% trans 'Management' %}
             </a>
         </span>
         {% endif %}

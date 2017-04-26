@@ -96,9 +96,10 @@ var ParagraphBox = React.createClass({
       e.preventDefault()
     }
 
-    var submitData = {}
+    var submitData = {
+      urlReplaces: {moduleId: this.props.module}
+    }
     submitData['name'] = this.state.name
-    submitData['module'] = this.props.module
     this.state.paragraphs.forEach(function (val, index) { val.weight = index })
     submitData['paragraphs'] = this.state.paragraphs
 
