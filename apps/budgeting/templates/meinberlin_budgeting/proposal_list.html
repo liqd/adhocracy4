@@ -1,30 +1,60 @@
 {% extends 'meinberlin_projects/project_detail.html' %}
-{% load i18n rules %}
+{% load i18n rules static maps_tags %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
+    <script type="text/javascript" src="{% static 'a4maps/map_display_points.js' %}"></script>
+    {{ block.super }}
+{% endblock %}
+
+{% block extra_css %}
+    <link type="text/css" href="{% static 'leaflet.css'%}" rel="stylesheet" />
+{% endblock %}
 
 {% block project_action %}
-    {% has_perm 'meinberlin_budgeting.propose_proposal' request.user view.module as propose_allowed %}
+    {% has_perm 'meinberlin_budgeting.create_proposal' request.user view.module as propose_allowed %}
     {% if propose_allowed %}
-        <a href="{% url 'budgeting:proposal-create' slug=view.module.slug %}" class="button button--huge">
+        <a href="{% url 'meinberlin_budgeting:proposal-create' slug=view.module.slug %}" class="button button--huge">
             {% trans 'Submit proposal' %}
         </a>
     {% endif %}
 {% endblock %}
 
 {% block phase_content %}
-    <div class="list list--highlight">
+    {% if view.mode == 'map' %}
         <div class="l-wrapper">
             <div class="l-center-8">
-                {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
-
-                {% for proposal in proposal_list %}
-                    {% include "meinberlin_budgeting/includes/proposal_list_item.html" with proposal=proposal %}
-                {% endfor %}
-
-                {% if proposal_list.count == 0 %}
-                    {% trans "Nothing to show" %}
-                {% endif %}
-                {% include "meinberlin_contrib/includes/pagination.html" %}
+                {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
             </div>
         </div>
-    </div>
+        <div class="map-list">
+            <div class="map-list__controls">
+                <div class="l-wrapper">
+                    <div class="leaflet-control-zoom leaflet-bar leaflet-control">
+                        <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="Zoom in">+</a>
+                        <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="Zoom out">-</a>
+                    </div>
+                </div>
+            </div>
+            {% map_display_points object_list view.module.settings_instance.polygon %}
+        </div>
+    {% else %}
+        <div class="list list--highlight">
+            <div class="l-wrapper">
+                <div class="l-center-8">
+                    {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
+
+
+                    {% for object in object_list %}
+                        {% include "meinberlin_budgeting/includes/proposal_list_item.html" with object=object %}
+                    {% endfor %}
+
+                    {% if object_list.count == 0 %}
+                        {% trans "Nothing to show" %}
+                    {% endif %}
+                    {% include "meinberlin_contrib/includes/pagination.html" %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

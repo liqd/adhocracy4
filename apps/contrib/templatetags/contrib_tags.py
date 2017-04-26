@@ -5,13 +5,13 @@ register = template.Library()
 
 
 @register.assignment_tag
-def includeTemplateString(template, **kwargs):
+def include_template_string(template, **kwargs):
     rendered_template = render_to_string(template, kwargs)
     return str(rendered_template)
 
 
 @register.assignment_tag
-def combinedUrlParameter(request_query_dict, **kwargs):
+def combined_url_parameter(request_query_dict, **kwargs):
     combined_query_dict = request_query_dict.copy()
     for key in kwargs:
         combined_query_dict.setlist(key, [kwargs[key]])

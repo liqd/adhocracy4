@@ -1,36 +1,40 @@
+{% load item_tags %}
+
 <div class="list-item list-item--squashed">
     <div class="list-item__stats">
         {% spaceless %}
         <span class="rating">
             <span class="rating-button rating-up is-read-only" title="Positive Ratings">
                 <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                {{ proposal.positive_rating_count }}
+                {{ object.positive_rating_count }}
             </span>
             <span class="rating-button rating-down is-read-only" title="Negative Ratings">
                 <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                {{ proposal.negative_rating_count }}
+                {{ object.negative_rating_count }}
             </span>
         </span>
         <span title="Comments" class="list-item__comments">
             <i class="fa fa-comment-o" aria-hidden="true"></i>
-            {{ proposal.comment_count }}
+            {{ object.comment_count }}
         </span>
         {% endspaceless %}
     </div>
     <h3 class="list-item__title">
-        <a href="{% url 'budgeting:proposal-detail' proposal.slug %}">
-        {{ proposal.name }}
+        {% get_item_detail_url object as detail_url %}
+        <a href="{{ detail_url }}">
+        {{ object.name }}
         </a>
     </h3>
+    <div class="list-item__labels">
+        {% if object.category %}
+            <span class="label label--big">{{ object.category }}</span>
+        {% endif %}
+        {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=object cls='list-item__label--moderator-feedback' %}
+    </div>
     <span class="list-item__author">
-        {{ proposal.creator.username }}
+        {{ object.creator.username }}
     </span>
     <span class="list-item__date">
-        {{ proposal.created | date }}
+        {{ object.created | date }}
     </span>
-    {% if proposal.category %}
-        <span class="category">{{ proposal.category }}</span>
-    {% endif %}
-    {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal %}
-
 </div>

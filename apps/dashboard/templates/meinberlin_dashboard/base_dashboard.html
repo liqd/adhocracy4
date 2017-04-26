@@ -39,11 +39,10 @@
                     {{ view.organisation.name }}
                 {% endif %}
             </div>
-            {% with request.resolver_match.url_name as url_name %}
                 <ul class="dashboard-nav__pages">
                     <li class="dashboard-nav__page">
                         <a href="{% url 'dashboard-project-list' organisation_slug=view.organisation.slug %}"
-                           class="dashboard-nav__page-link {% ifequal url_name 'dashboard-project-list' %}is-active{% endifequal %}">
+                           class="dashboard-nav__page-link {% ifequal view.menu_item 'project' %}is-active{% endifequal %}">
                             <i class="fa fa-file-o"></i>
                             {% trans 'Participation processes' %}
                         </a>
@@ -51,13 +50,12 @@
 
                     <li class="dashboard-nav__page">
                         <a href="{% url 'dashboard-organisation-edit' organisation_slug=view.organisation.slug %}"
-                           class="dashboard-nav__page-link {% ifequal url_name 'dashboard-organisation-edit' %}is-active{% endifequal %}">
+                           class="dashboard-nav__page-link {% ifequal view.menu_item 'organisation' %}is-active{% endifequal %}">
                             <i class="fa fa-cog"></i>
                             {% trans 'Settings' %}
                         </a>
                     </li>
                 </ul>
-            {% endwith %}
         </nav>
 
         <div class="menu-layout__content">

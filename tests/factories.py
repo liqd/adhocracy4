@@ -76,3 +76,12 @@ class ImageFactory():
         image.save(image_data, image_format)
         image_content = base.ContentFile(image_data.getvalue())
         return images.ImageFile(image_content.file, filename)
+
+
+class CommentFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'a4comments.Comment'
+
+    comment = factory.Faker('text')
+    creator = factory.SubFactory(UserFactory)

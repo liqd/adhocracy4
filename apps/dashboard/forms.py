@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ValidationError
 from django.db.models import loading
 from django.forms import modelformset_factory
 from django.utils.translation import ugettext as _
@@ -12,6 +13,9 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from apps.contrib import multiform
 from apps.contrib.formset import dynamic_modelformset_factory
+from apps.extprojects import models as extproject_models
+from apps.extprojects import phases as extproject_phases
+from apps.maps.widgets import MapChoosePolygonWithPresetWidget
 from apps.organisations.models import Organisation
 from apps.users.fields import CommaSeparatedEmailField
 from apps.users.models import User
@@ -26,12 +30,18 @@ def get_module_settings_form(settings_instance_or_modelref):
             settings_instance_or_modelref[1],
         )
 
+    setting_widgets = settings_model.widgets()
+
+    # overwrite MapChoosePolygonWidget
+    if 'polygon' in setting_widgets:
+        setting_widgets['polygon'] = MapChoosePolygonWithPresetWidget
+
     class ModuleSettings(forms.ModelForm):
 
         class Meta:
             model = settings_model
             exclude = ['module']
-            widgets = settings_model().widgets()
+            widgets = setting_widgets
 
     return ModuleSettings
 
@@ -272,13 +282,6 @@ class OrganisationForm(forms.ModelForm):
         }
 
 
-class ProfileForm(forms.ModelForm):
-
-    class Meta:
-        model = User
-        fields = ['username', ]
-
-
 class AddModeratorForm(forms.ModelForm):
     add_moderators = CommaSeparatedEmailField(label=_('Add moderator via '
                                                       'email'))
@@ -324,3 +327,79 @@ class AddModeratorForm(forms.ModelForm):
                 self.instance.moderators.add(
                     *self.cleaned_data['add_moderators']
                 )
+
+
+class ExternalProjectBaseForm(forms.ModelForm):
+
+    start_date = forms.DateTimeField(required=False)
+    end_date = forms.DateTimeField(required=False)
+
+    def clean_end_date(self, *args, **kwargs):
+        start_date = self.cleaned_data['start_date']
+        end_date = self.cleaned_data['end_date']
+        if start_date and end_date and end_date < start_date:
+            raise ValidationError(
+                _('End date can not be smaller than the start date.'))
+        return end_date
+
+    class Meta:
+        model = extproject_models.ExternalProject
+        fields = ['name', 'url', 'description', 'image', 'is_archived']
+
+
+class ExternalProjectCreateForm(ExternalProjectBaseForm):
+
+    def __init__(self, organisation, creator, blueprint, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.organisation = organisation
+        self.creator = creator
+        self.blueprint = blueprint
+
+    def save(self, commit=True):
+        extproject = self.instance
+        extproject.information = _("External project")
+        extproject.result = _("External project")
+        extproject.organisation = self.organisation
+        extproject.typ = self.blueprint.title
+
+        if commit:
+            super().save()
+            extproject.moderators.add(self.creator)
+
+        module = module_models.Module(
+            name=extproject.slug + '_module',
+            weight=1,
+            project=extproject,
+        )
+        if commit:
+            module.save()
+
+        phase_content = extproject_phases.ExternalPhase()
+        phase = phase_models.Phase(
+            name=_("External project phase"),
+            description=_("External project phase"),
+            type=phase_content.identifier,
+            module=module,
+            start_date=self.cleaned_data['start_date'],
+            end_date=self.cleaned_data['end_date']
+        )
+        if commit:
+            phase.save()
+
+
+class ExternalProjectUpdateForm(ExternalProjectBaseForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.initial['start_date'] = self.instance.phase.start_date
+        self.initial['end_date'] = self.instance.phase.end_date
+
+    def save(self, commit=True):
+        project = super().save(commit)
+
+        if commit:
+            phase = project.phase
+            phase.start_date = self.cleaned_data['start_date']
+            phase.end_date = self.cleaned_data['end_date']
+            phase.save()

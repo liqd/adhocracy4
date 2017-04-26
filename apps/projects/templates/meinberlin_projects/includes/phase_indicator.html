@@ -8,7 +8,7 @@
 <div class="phase-list">
     <ul>
         {% for phase in project.phases %}
-            {% includeTemplateString "meinberlin_projects/includes/phase_popover.html" phase=phase phase_num=forloop.counter phase_count=phase_count as popover_content %}
+            {% include_template_string "meinberlin_projects/includes/phase_popover.html" phase=phase phase_num=forloop.counter phase_count=phase_count as popover_content %}
             <li>
                 <button
                     title="{{ phase.name }}"
@@ -30,16 +30,22 @@
 
 <div class="phase-info">
     <div class="l-center-6">
-        <h3 class="phase-info__title">
-            {{ active_phase.name }}
-        </h3>
-        <div class="phase-info__subtitle">
-            {% trans "from" %} {{ active_phase.start_date }}
-            {% trans "to" %} {{ active_phase.end_date }}
-        </div>
-        <div class="phase-info__description">
-            {{ active_phase.description }}
-        </div>
+        {% if active_phase %}
+            <h3 class="phase-info__title">
+                {{ active_phase.name }}
+            </h3>
+            <div class="phase-info__subtitle">
+                {% trans "from" %} {{ active_phase.start_date }}
+                {% trans "to" %} {{ active_phase.end_date }}
+            </div>
+            <div class="phase-info__description">
+                {{ active_phase.description }}
+            </div>
+        {% else %}
+            <h3 class="phase-info__title">
+                {% trans "Participation is not possible at the moment." %}
+            </h3>
+        {% endif %}
     </div>
 </div>
 

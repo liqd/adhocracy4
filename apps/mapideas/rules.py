@@ -11,7 +11,7 @@ rules.add_perm(
 )
 
 rules.add_perm(
-    'meinberlin_mapideas.propose_idea',
+    'meinberlin_mapideas.create_idea',
     module_predicates.is_allowed_create_item(models.MapIdea)
 )
 
@@ -27,6 +27,6 @@ rules.add_perm(
 
 
 rules.add_perm(
-    'meinberlin_mapideas.modify_idea',
+    'meinberlin_mapideas.change_idea',
     module_predicates.is_allowed_modify_item
 )

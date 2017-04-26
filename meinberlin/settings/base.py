@@ -57,6 +57,7 @@ INSTALLED_APPS = (
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.ratings.apps.RatingsConfig',
+    'adhocracy4.reports.apps.ReportsConfig',
     'adhocracy4.comments.apps.CommentsConfig',
     'adhocracy4.categories.apps.CategoriesConfig',
     'adhocracy4.maps.apps.MapsConfig',
@@ -69,6 +70,9 @@ INSTALLED_APPS = (
     'apps.dashboard.apps.Config',
     'apps.embed.apps.Config',
     'apps.moderatorfeedback.apps.Config',
+    'apps.extprojects.apps.Config',
+    'apps.account.apps.Config',
+    'apps.maps.apps.Config',
     'apps.servicekonto.apps.Config'
 
     'apps.ideas.apps.Config',
@@ -129,6 +133,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'TEST': {
+            'NAME': os.path.join(BASE_DIR, 'test_db.sqlite3'),
+        }
     }
 }
 
@@ -294,6 +301,13 @@ A4_COMMENTABLES = (
     ('meinberlin_budgeting', 'proposal'),
 )
 
-BASE_MAP = 'https://{s}.tile.openstreetmap.org/'
+A4_REPORTABLES = (
+    ('a4comments', 'comment'),
+    ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
+)
 
-MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
+A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
+A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])

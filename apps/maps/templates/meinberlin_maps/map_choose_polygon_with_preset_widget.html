@@ -1,0 +1,35 @@
+{% load i18n %}
+
+{% if presets_uncategorized or preset_categories %}
+    <p>
+        <span class="form-hint">
+            {% trans 'You can choose a preset for further customization.' %}
+        </span>
+        <select id="select_{{ name }}">
+            <option value="">---</option>
+            {% for preset in presets_uncategorized %}
+                <option value="{{ preset.polygon }}">{{ preset.name }}</option>
+            {% endfor %}
+
+            {% for category, presets in preset_categories %}
+                <optgroup label="{{ category }}">
+                    {% for preset in presets %}
+                        <option value="{{ preset.polygon }}">{{ preset.name }}</option>
+                    {% endfor %}
+                </optgroup>
+            {% endfor %}
+        </select>
+    </p>
+{% endif %}
+
+<div
+    style="height: 300px;"
+    data-map="choose_polygon"
+    data-baseurl="{{ baseurl }}"
+    data-attribution="{{ attribution }}"
+    data-bbox="{{ bbox }}"
+    data-name="{{ name }}"
+    {% if polygon %}data-polygon="{{ polygon }}"{% endif %}
+></div>
+
+<input id="id_{{ name }}" type="hidden" name="{{ name }}" rows="10" {% if polygon %}value="{{ polygon }}"{% endif %}>
