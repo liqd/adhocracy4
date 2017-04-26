@@ -12,6 +12,7 @@ class VotingPhase(phases.PhaseContent):
     phase = 'voting'
     weight = 20
     view = views.PollDetailView
+    management_view = views.PollManagementView
 
     name = _('Voting phase')
     description = _('Cast votes and discuss the poll.')
