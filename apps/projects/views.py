@@ -5,6 +5,7 @@ from django.conf import settings
 from django.utils.translation import ugettext as _
 
 from adhocracy4.filters import views as filter_views
+from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.projects import models as project_models
 
 from apps.contrib.widgets import DropdownLinkWidget
@@ -58,7 +59,11 @@ class TypeWidget(DropdownLinkWidget):
         super().__init__(attrs, choices)
 
 
-class ProjectFilterSet(django_filters.FilterSet):
+class ProjectFilterSet(DefaultsFilterSet):
+
+    defaults = {
+        'is_archived': 'false'
+    }
 
     ordering = django_filters.OrderingFilter(
         choices=(
