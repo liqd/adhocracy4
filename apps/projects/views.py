@@ -26,9 +26,9 @@ class ArchivedWidget(DropdownLinkWidget):
 
     def __init__(self, attrs=None):
         choices = (
+            ('', _('All')),
             ('false', _('No')),
             ('true', _('Yes')),
-            ('', _('All')),
         )
         super().__init__(attrs, choices)
 
