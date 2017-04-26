@@ -7,6 +7,8 @@ from apps.documents import phases as documents_phases
 from apps.extprojects import phases as extprojects_phases
 from apps.ideas import phases as ideas_phases
 from apps.mapideas import phases as mapideas_phases
+from apps.polls import phases as poll_phases
+
 
 ProjectBlueprint = namedtuple(
     'ProjectBlueprint', [
@@ -95,10 +97,25 @@ blueprints = [
          image='images/blueprints/external-project.svg',
          settings_model=None,
      )),
+    ('poll',
+     ProjectBlueprint(
+         title=_('Poll'),
+         description=_(
+             'Create a poll with multiple questions and possible answers. '
+             'Anyone can cast votes and comment on the poll.'
+         ),
+         content=[
+             poll_phases.CreatePollPhase(),
+             poll_phases.VotingPhase(),
+             poll_phases.CommentPhase()
+         ],
+         image='images/blueprints/poll.svg',
+         settings_model=None,
+     )),
 ]
 
 
-class BlueprintMixin():
+class BlueprintMixin:
     @property
     def blueprint(self):
         return dict(blueprints)[self.kwargs['blueprint_slug']]

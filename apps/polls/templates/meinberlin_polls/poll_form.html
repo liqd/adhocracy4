@@ -1,0 +1,17 @@
+{% extends 'meinberlin_projects/project_detail.html' %}
+{% load i18n rules %}
+
+{% block phase_content %}
+<div class="l-wrapper">
+    {% has_perm 'meinberlin_polls.create_poll' request.user view.module as show_create_form %}
+    {% if show_create_form %}
+
+        <strong>Missing Form</strong>
+
+    {% else %}
+
+        {% trans 'Poll is being created.' %}
+
+    {% endif %}
+</div>
+{% endblock %}
