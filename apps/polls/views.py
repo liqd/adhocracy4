@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.views import generic
 
 from adhocracy4.projects import mixins as project_mixins
@@ -19,29 +20,23 @@ class PollDetailView(project_mixins.ProjectMixin,
         return models.Poll.objects.filter(module=self.module).first()
 
 
-class ProjectManagementMixin(DashboardBaseMixin):
-    def dispatch(self, *args, **kwargs):
-        # Based on adhocracy4.projects.mixins.ProjectMixin
-        self.project = kwargs['project']
-        # self.organisation = self.project.organisation
-        self.module = self.project.module_set.first()
-        self.request.module = self.module
-
-        for arg in ['success_url', 'menu_item']:
-            if arg in kwargs:
-                value = kwargs.pop(arg)
-                setattr(self, arg, value)
-
-        return super(ProjectManagementMixin, self).dispatch(*args, **kwargs)
-
-
-class PollManagementView(ProjectManagementMixin,
+class PollManagementView(DashboardBaseMixin,
                          rules_mixins.PermissionRequiredMixin,
                          generic.FormView):
     template_name = 'meinberlin_polls/poll_management_form.html'
     form_class = forms.PollForm
     permission_required = 'meinberlin_polls.create_poll'
 
+    # Dashboard related attributes
+    menu_item = 'project'
+
     def get_success_url(self):
-        # TODO: redirect to dashboard list
-        return self.request.path
+        return reverse(
+            'dashboard-project-list',
+            kwargs={'organisation_slug': self.organisation.slug, })
+
+    def dispatch(self, *args, **kwargs):
+        self.project = kwargs['project']
+        self.module = self.project.module_set.first()
+        self.request.module = self.module
+        return super(PollManagementView, self).dispatch(*args, **kwargs)

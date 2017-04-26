@@ -200,11 +200,7 @@ class DashboardProjectManagementView(dashboard_mixins.DashboardBaseMixin,
         management_view = get_management_view(project)
         if management_view:
             view = management_view.as_view()
-            return view(request,
-                        project=project,
-                        success_url=self.get_success_url(),
-                        menu_item=self.menu_item,
-                        *args, **kwargs)
+            return view(request, project=project, *args, **kwargs)
 
         return HttpResponseNotFound()
 
