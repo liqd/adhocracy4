@@ -1,3 +1,4 @@
+import json
 from django.core.urlresolvers import reverse
 from django.views import generic
 
@@ -10,14 +11,31 @@ from . import forms
 from . import models
 
 
-class PollDetailView(project_mixins.ProjectMixin,
-                     rules_mixins.PermissionRequiredMixin,
-                     generic.DetailView):
+class PollListView(project_mixins.ProjectMixin,
+                   rules_mixins.PermissionRequiredMixin,
+                   generic.ListView):
     model = models.Poll
     permission_required = 'meinberlin_polls.view_poll'
 
-    def get_object(self):
-        return models.Poll.objects.filter(module=self.module).first()
+    def get_result_json(self):
+        results = []
+        for poll in self.get_queryset():
+            choices = []
+            for choice in poll.choices_with_vote_count():
+                choices.append({
+                    'label': choice.label,
+                    'count': choice.vote_count,
+                    'user_vote': False,
+                })
+
+            results.append({
+                'title': poll.title,
+                'choices': choices,
+            })
+        return json.dumps(results)
+
+    def get_queryset(self):
+        return models.Poll.objects.filter(module=self.module)
 
 
 class PollManagementView(DashboardBaseMixin,

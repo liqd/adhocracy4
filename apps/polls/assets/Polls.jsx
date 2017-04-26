@@ -7,17 +7,20 @@ var Poll = React.createClass({
     // FIXME: example data
     return {
       title: 'Getrennte Eltern: Ist das Wechselmodell die beste Lösung für alle?',
-      options: [{
+      choices: [{
         label: 'Ja',
-        count: 22434
+        count: 22434,
+        user_vote: false
       }, {
         label: 'Nein',
-        count: 40062
+        count: 40062,
+        user_vote: false
       }, {
         label: 'Vielleicht',
-        count: 17627
+        count: 17627,
+        user_vote: true
       }],
-      ownVote: null,
+      ownVote: null, // to be replaced
       active: true,
       showResult: false
     }
@@ -47,7 +50,7 @@ var Poll = React.createClass({
   },
 
   render: function () {
-    let counts = this.state.options.map(o => o.count)
+    let counts = this.state.choices.map(c => c.count)
     let total = counts.reduce((sum, c) => sum + c, 0)
     let max = Math.max.apply(null, counts)
 
@@ -80,17 +83,17 @@ var Poll = React.createClass({
 
         <div className="poll">
           {
-            this.state.options.map((option, i) => {
+            this.state.choices.map((choice, i) => {
               let checked = this.state.ownVote === i
-              let percent = Math.round(option.count / total * 100)
-              let highlight = option.count === max
+              let percent = Math.round(choice.count / total * 100)
+              let highlight = choice.count === max
 
               if (this.state.showResult || !this.state.active) {
                 return (
                   <div className="poll-row" key={i}>
                     <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')} style={{width: percent + '%'}} />
                     <div className="poll-row__number">{ percent }%</div>
-                    <div className="poll-row__label">{ option.label }</div>
+                    <div className="poll-row__label">{ choice.label }</div>
                     { checked ? <i className="fa fa-check-circle u-secondary" aria-label={django.gettext('Your choice')} /> : '' }
                   </div>
                 )
@@ -103,7 +106,7 @@ var Poll = React.createClass({
                       name="poll"
                       value={i}
                       defaultChecked={checked} />
-                    { option.label }
+                    { choice.label }
                   </label>
                 )
               }
