@@ -21,9 +21,13 @@ module.exports = {
       'react-dom',
       'react-flip-move',
       'shariff',
-      'shariff/build/shariff.min.css',
+      'shariff/build/shariff.min.css'
+    ],
+    leaflet: [
       'leaflet',
-      'leaflet/dist/leaflet.css',
+      'leaflet/dist/leaflet.css'
+    ],
+    'leaflet.draw': [
       'leaflet-draw',
       'leaflet-draw/dist/leaflet.draw.css'
     ]
