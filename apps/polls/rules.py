@@ -6,11 +6,6 @@ from . import models
 
 
 rules.add_perm(
-    'meinberlin_polls.create_poll',
-    module_predicates.is_project_admin
-)
-
-rules.add_perm(
     'meinberlin_polls.view_poll',
     module_predicates.is_public_context
 )
