@@ -2,6 +2,7 @@ import django_filters
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 
+from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.modules import views as module_views
 
 from apps.contrib import filters
@@ -31,15 +32,24 @@ class TopicCreateListView(module_views.ItemListView):
             .annotate_comment_count()
 
 
-class TopicFilterSet(TopicCreateFilterSet):
+class TopicFilterSet(DefaultsFilterSet):
+
+    defaults = {
+        'ordering': '-positive_rating_count'
+    }
+
+    category = filters.CategoryFilter()
 
     ordering = filters.OrderingFilter(
         choices=(
-            ('-created', _('Most recent')),
             ('-positive_rating_count', _('Most popular')),
             ('-comment_count', _('Most commented'))
         )
     )
+
+    class Meta:
+        model = models.Topic
+        fields = ['category']
 
 
 class TopicListView(module_views.ItemListView):
