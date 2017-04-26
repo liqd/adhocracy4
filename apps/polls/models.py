@@ -4,13 +4,8 @@ from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.modules import models as module_models
 
 
-class Poll(models.Model):
+class Poll(module_models.Item):
     title = models.CharField(max_length=255)
-
-    module = models.ForeignKey(
-        module_models.Module,
-        on_delete=models.CASCADE,
-    )
 
 
 class Choice(models.Model):
@@ -23,15 +18,10 @@ class Choice(models.Model):
 
 
 class Vote(UserGeneratedContentModel):
-    poll = models.ForeignKey(
-        'Poll',
-        on_delete=models.CASCADE,
-    )
-
     choice = models.ForeignKey(
         'Choice',
         on_delete=models.CASCADE,
     )
 
     class Meta:
-        unique_together = ('creator', 'poll', 'choice')
+        unique_together = ('creator', 'choice')
