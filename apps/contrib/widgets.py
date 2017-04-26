@@ -77,13 +77,13 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
 
         return render_to_string('datetime_input.html', {
             'date': self.widgets[0].render(
-                name + '_date',
-                value,
+                name + '_0',
+                value.date(),
                 date_attrs
             ),
             'time': self.widgets[1].render(
-                name + '_time',
-                value,
+                name + '_1',
+                value.time(),
                 time_attrs
             )
         })
