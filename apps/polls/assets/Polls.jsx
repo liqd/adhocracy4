@@ -51,6 +51,29 @@ var Poll = React.createClass({
     let total = counts.reduce((sum, c) => sum + c, 0)
     let max = Math.max.apply(null, counts)
 
+    let footer
+    if (!this.state.active) {
+      footer = '' + total + ' ' + django.ngettext('vote', 'votes', total)
+    } else if (this.state.showResult) {
+      footer = (
+        <button type="button" className="button button--light" onClick={this.toggleShowResult}>
+          { django.gettext('To poll') }
+        </button>
+      )
+    } else {
+      footer = (
+        <div>
+          <button type="submit" className="button button--secondary">
+            { django.gettext('Vote') }
+          </button>
+          &nbsp;
+          <button type="button" className="button button--light" onClick={this.toggleShowResult}>
+            { django.gettext('Show preliminary results') }
+          </button>
+        </div>
+      )
+    }
+
     return (
       <form onSubmit={this.vote}>
         <h2>{ this.state.title }</h2>
@@ -88,23 +111,7 @@ var Poll = React.createClass({
           }
         </div>
 
-        { !this.state.active ? (
-          '' + total + ' ' + django.ngettext('vote', 'votes', total)
-        ) : this.state.showResult ? (
-          <button type="button" className="button button--light" onClick={this.toggleShowResult}>
-            { django.gettext('To poll') }
-          </button>
-        ) : (
-          <div>
-            <button type="submit" className="button button--secondary">
-              { django.gettext('Vote') }
-            </button>
-            &nbsp;
-            <button type="button" className="button button--light" onClick={this.toggleShowResult}>
-              { django.gettext('Show preliminary results') }
-            </button>
-          </div>
-        ) }
+        { footer }
       </form>
     )
   }
