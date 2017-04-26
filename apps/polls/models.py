@@ -6,6 +6,10 @@ from adhocracy4.modules import models as module_models
 
 class Poll(module_models.Item):
     title = models.CharField(max_length=255)
+    weight = models.SmallIntegerField()
+
+    def __str__(self):
+        return self.title
 
 
 class Choice(models.Model):
@@ -16,6 +20,9 @@ class Choice(models.Model):
         on_delete=models.CASCADE,
     )
 
+    def __str__(self):
+        return '%s @%s' % (self.label, self.poll)
+
 
 class Vote(UserGeneratedContentModel):
     choice = models.ForeignKey(
@@ -25,3 +32,6 @@ class Vote(UserGeneratedContentModel):
 
     class Meta:
         unique_together = ('creator', 'choice')
+
+    def __str__(self):
+        return '%s: %s' % (self.creator, self.choice)
