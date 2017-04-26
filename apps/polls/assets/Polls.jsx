@@ -17,7 +17,7 @@ var Poll = React.createClass({
         label: 'Vielleicht',
         count: 17627
       }],
-      own: null,
+      ownVote: null,
       active: true,
       showResult: false
     }
@@ -41,7 +41,7 @@ var Poll = React.createClass({
       // TODO: show success/error message
       this.setState({
         showResult: true,
-        own: value
+        ownVote: value
       })
     }
   },
@@ -58,7 +58,7 @@ var Poll = React.createClass({
         <div className="poll">
           {
             this.state.options.map((option, i) => {
-              let checked = this.state.own === i
+              let checked = this.state.ownVote === i
               let percent = Math.round(option.count / total * 100)
               let highlight = option.count === max
 
