@@ -68,7 +68,6 @@ var Poll = React.createClass({
                     <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')} style={{width: percent + '%'}} />
                     <div className="poll-row__number">{ percent }%</div>
                     <div className="poll-row__label">{ option.label }</div>
-                    &nbsp;
                     { checked ? <i className="fa fa-check-circle u-secondary" aria-label={django.gettext('Your choice')} /> : '' }
                   </div>
                 )
@@ -81,7 +80,6 @@ var Poll = React.createClass({
                       name="poll"
                       value={i}
                       defaultChecked={checked} />
-                    &nbsp;
                     { option.label }
                   </label>
                 )
