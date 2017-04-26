@@ -29,12 +29,8 @@ def question_list_view():
 def test_default_filter(rf, question_list_view, phase, question_factory):
     project = phase.module.project
     request = rf.get('/questions')
-    q1 = question_factory()
-    q1.text = 'x'
-    q1.save()
-    q2 = question_factory()
-    q2.text = 'a'
-    q2.save()
+    question_factory(text='x')
+    question_factory(text='a')
     response = question_list_view(request, project=project)
     question_list = response.context_data['question_list']
     assert len(question_list) == 1
@@ -44,12 +40,8 @@ def test_default_filter(rf, question_list_view, phase, question_factory):
 def test_filter_custom(rf, question_list_view, phase, question_factory):
     project = phase.module.project
     request = rf.get('/questions?text=x')
-    q1 = question_factory()
-    q1.text = 'x'
-    q1.save()
-    q2 = question_factory()
-    q2.text = 'y'
-    q2.save()
+    question_factory(text='x')
+    question_factory(text='y')
     response = question_list_view(request, project=project)
     question_list = response.context_data['question_list']
     assert len(question_list) == 1
@@ -59,12 +51,8 @@ def test_filter_custom(rf, question_list_view, phase, question_factory):
 def test_filter_all(rf, question_list_view, phase, question_factory):
     project = phase.module.project
     request = rf.get('/questions?text=')
-    q1 = question_factory()
-    q1.text = 'x'
-    q1.save()
-    q2 = question_factory()
-    q2.text = 'y'
-    q2.save()
+    question_factory(text='x')
+    question_factory(text='y')
     response = question_list_view(request, project=project)
     question_list = response.context_data['question_list']
     assert len(question_list) == 2
