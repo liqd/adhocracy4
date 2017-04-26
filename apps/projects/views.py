@@ -96,3 +96,6 @@ class ProjectListView(filter_views.FilteredListView):
     model = project_models.Project
     paginate_by = 16
     filter_set = ProjectFilterSet
+
+    def get_queryset(self):
+        return super().get_queryset().filter(is_draft=False)
