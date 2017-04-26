@@ -3,6 +3,8 @@ from django.views import generic
 from adhocracy4.projects import mixins as project_mixins
 from adhocracy4.rules import mixins as rules_mixins
 
+from apps.dashboard.mixins import DashboardBaseMixin
+
 from . import forms
 from . import models
 
@@ -17,15 +19,16 @@ class PollDetailView(project_mixins.ProjectMixin,
         return models.Poll.objects.filter(module=self.module).first()
 
 
-class ProjectManagementMixin(generic.base.ContextMixin):
+class ProjectManagementMixin(DashboardBaseMixin):
     def dispatch(self, *args, **kwargs):
         # Based on adhocracy4.projects.mixins.ProjectMixin
         self.project = kwargs['project']
+        # self.organisation = self.project.organisation
         self.module = self.project.module_set.first()
         self.request.module = self.module
 
         for arg in ['success_url', 'menu_item']:
-            if hasattr(kwargs, arg):
+            if arg in kwargs:
                 value = kwargs.pop(arg)
                 setattr(self, arg, value)
 
