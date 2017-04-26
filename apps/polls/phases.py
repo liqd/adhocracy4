@@ -38,5 +38,6 @@ class CommentPhase(phases.PhaseContent):
         'comment': (models.Poll,),
     }
 
+
 phases.content.register(VotingPhase())
 phases.content.register(CommentPhase())
