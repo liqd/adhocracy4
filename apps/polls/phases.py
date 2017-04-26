@@ -7,19 +7,6 @@ from . import models
 from . import views
 
 
-class CreatePollPhase(phases.PhaseContent):
-    app = apps.Config.label
-    phase = 'create'
-    weight = 10
-    view = views.PollCreateView
-
-    name = _('Create poll phase')
-    module_name = _('polls')
-    description = _('Create questions and choices for the poll.')
-
-    features = {}
-
-
 class VotingPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'voting'
@@ -50,6 +37,5 @@ class CommentPhase(phases.PhaseContent):
         'comment': (models.Poll,),
     }
 
-phases.content.register(CreatePollPhase())
 phases.content.register(VotingPhase())
 phases.content.register(CommentPhase())

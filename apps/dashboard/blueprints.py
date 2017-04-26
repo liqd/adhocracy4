@@ -105,7 +105,6 @@ blueprints = [
              'Anyone can cast votes and comment on the poll.'
          ),
          content=[
-             poll_phases.CreatePollPhase(),
              poll_phases.VotingPhase(),
              poll_phases.CommentPhase()
          ],
