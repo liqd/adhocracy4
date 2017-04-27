@@ -58,15 +58,11 @@ class DropdownLinkWidget(django_filters.widgets.LinkWidget):
 class DateTimeInput(form_widgets.SplitDateTimeWidget):
     class Media:
         js = (
-            staticfiles_storage.url('js/picker.js'),
-            staticfiles_storage.url('js/picker.date.js'),
-            staticfiles_storage.url('js/picker.time.js'),
+            staticfiles_storage.url('js/datepicker.min.js'),
             staticfiles_storage.url('js/init-picker.js'),
         )
         css = {'all': [
-            staticfiles_storage.url('css/classic.css'),
-            staticfiles_storage.url('css/classic.date.css'),
-            staticfiles_storage.url('css/classic.time.css'),
+            staticfiles_storage.url('css/datepicker.min.css'),
         ]}
 
     def render(self, name, value, attrs=None):
