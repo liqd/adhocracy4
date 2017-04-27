@@ -116,8 +116,10 @@
         right: $padding;
     }
 
-    // overwrite dropdown style on mobile
-    @media screen and (max-width: $breakpoint) {
+    // min-width and max-width can't have the same breakpoint
+    @media screen and (max-width: $breakpoint - 0.1em) {
+        // overwrite dropdown style on mobile
+
         .dropdown {
             margin-bottom: 0;
         }
