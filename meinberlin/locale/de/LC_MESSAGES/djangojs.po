@@ -20,7 +20,7 @@ msgstr ""
 
 #: adhocracy4/comments/static/comments/Comment.jsx:91
 msgid "Do you really want to delete this comment?"
-msgstr ""
+msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:93
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
@@ -34,7 +34,7 @@ msgstr "Abbrechen"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:107
 msgid "Latest edit on"
-msgstr ""
+msgstr "Letzte Änderung am"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:112
 msgid "Moderator"
@@ -43,11 +43,11 @@ msgstr ""
 #: adhocracy4/comments/static/comments/Comment.jsx:119
 #: adhocracy4/reports/static/reports/react_reports.jsx:21
 msgid "Are you sure you want to report this item?"
-msgstr ""
+msgstr "Sind Sie sicher, dass Sie diesen Beitrag melden möchten?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:161
 msgid "Your reply here"
-msgstr ""
+msgstr "Ihre Antwort hier"
 
 #: adhocracy4/comments/static/comments/CommentBox.jsx:77
 msgid "comment"
@@ -59,12 +59,12 @@ msgstr[1] "Kommentare"
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:28
 #: adhocracy4/comments/static/comments/CommentForm.jsx:32
 msgid "Your comment here"
-msgstr ""
+msgstr "Ihr Kommentar hier"
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:31
 #: adhocracy4/comments/static/comments/CommentForm.jsx:35
 msgid "post"
-msgstr ""
+msgstr "Senden"
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:32
 msgid "cancel"
@@ -72,11 +72,11 @@ msgstr "Abbrechen"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:41
 msgid "Please login to comment"
-msgstr ""
+msgstr "Bitte melden Sie sich zum Kommentieren an."
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:47
 msgid "The currently active phase doesn't allow to comment."
-msgstr ""
+msgstr "Die aktuell laufende Phase erlaubt keine Kommentare."
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:15
 msgid "Edit"
@@ -90,20 +90,20 @@ msgstr "Melden"
 #, javascript-format
 msgid "view %s reply"
 msgid_plural "view %s replies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Antwort sehen"
+msgstr[1] "%s Antworten sehen"
 
 #: adhocracy4/comments/static/comments/CommentReplyBar.jsx:25
 msgid "Answer"
-msgstr ""
+msgstr "Antworten"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:63
 msgid "Your message here"
-msgstr ""
+msgstr "Ihre Nachricht hier"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:75
 msgid "Send Report"
-msgstr ""
+msgstr "Meldung senden"
 
 #: apps/documents/assets/Paragraph.jsx:73
 #: apps/documents/assets/ParagraphBox.jsx:195
