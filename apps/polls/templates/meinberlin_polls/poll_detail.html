@@ -5,9 +5,8 @@
 {% block content %}
     <div class="l-wrapper">
         <div class="l-center-8">
-
-            {% for object in object_list %}
-                {% react_polls object %}
+            {% for question in object.questions.all %}
+                {% react_polls question %}
             {% endfor %}
         </div>
     </div>

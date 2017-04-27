@@ -7,15 +7,15 @@ class ChoiceInline(admin.TabularInline):
     model = models.Choice
 
 
-class PollAdmin(admin.ModelAdmin):
+class QuestionAdmin(admin.ModelAdmin):
     inlines = [
         ChoiceInline
     ]
 
 
 class VoteAdmin(admin.ModelAdmin):
-    list_filter = ('choice__poll',)
+    list_filter = ('choice__question',)
 
 
-admin.site.register(models.Poll, PollAdmin)
+admin.site.register(models.Question, QuestionAdmin)
 admin.site.register(models.Vote, VoteAdmin)

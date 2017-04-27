@@ -2,12 +2,12 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var django = require('django')
 
-var Poll = React.createClass({
+var Question = React.createClass({
   getInitialState: function () {
     // FIXME: example data
     return {
-      title: this.props.poll.title,
-      choices: this.props.poll.choices,
+      label: this.props.question.label,
+      choices: this.props.question.choices,
       ownChoice: null,
       active: true,
       showResult: false
@@ -23,7 +23,7 @@ var Poll = React.createClass({
   vote: function (event) {
     event.preventDefault()
 
-    let rawValue = event.target.poll.value
+    let rawValue = event.target.question.value
     if (!rawValue) {
       // TODO: show error
     } else {
@@ -68,7 +68,7 @@ var Poll = React.createClass({
 
     return (
       <form onSubmit={this.vote}>
-        <h2>{ this.state.title }</h2>
+        <h2>{ this.state.label }</h2>
 
         <div className="poll">
           {
@@ -112,7 +112,7 @@ var Poll = React.createClass({
 module.exports.renderPolls = function (mountpoint) {
   let element = document.getElementById(mountpoint)
 
-  let poll = JSON.parse(element.getAttribute('data-poll'))
+  let question = JSON.parse(element.getAttribute('data-question'))
 
-  ReactDOM.render(<Poll poll={poll} />, element)
+  ReactDOM.render(<Question question={question} />, element)
 }
