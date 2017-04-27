@@ -155,7 +155,7 @@ msgid ""
 "Please indicate who should be able to participate in your project. Teasers "
 "for your project including title and short description will always be "
 "visible to everyone"
-msgstr "Bitte wählen Sie, wer "
+msgstr ""
 
 #: adhocracy4/projects/models.py:69
 msgid "Header image"
