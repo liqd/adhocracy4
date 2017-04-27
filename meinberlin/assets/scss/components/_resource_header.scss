@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 3em 0 4em;
+    padding: 1.3em 0;
     position: relative;
     margin-bottom: 1em;
 
     text-align: center;
 
-    @media (max-width: $breakpoint) {
-        padding: 1.3em 0;
+    @media (min-width: $breakpoint) {
+        padding: 3em 0 4em;
     }
 }
 
@@ -42,10 +42,10 @@
 .resource-header__title {
     margin-top: 0.3rem;
     margin-bottom: 1.2rem;
-    font-size: $font-size-xxl;
+    font-size: $font-size-lg;
 
-    @media (max-width: $breakpoint) {
-        font-size: $font-size-lg;
+    @media (min-width: $breakpoint) {
+        font-size: $font-size-xxl;
     }
 }
 
