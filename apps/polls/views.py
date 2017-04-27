@@ -1,5 +1,3 @@
-import json
-
 from django.core.urlresolvers import reverse
 from django.views import generic
 
@@ -13,33 +11,14 @@ from . import forms
 from . import models
 
 
-class PollListView(project_mixins.ProjectMixin,
-                   rules_mixins.PermissionRequiredMixin,
-                   generic.ListView):
+class PollDetailView(project_mixins.ProjectMixin,
+                     rules_mixins.PermissionRequiredMixin,
+                     generic.DetailView):
     model = models.Poll
     permission_required = 'meinberlin_polls.view_poll'
 
-    def get_result_json(self):
-        results = []
-        for poll in self.get_queryset():
-            choices = []
-            for choice in poll.choices_with_vote_count():
-                choices.append({
-                    'label': choice.label,
-                    'count': choice.vote_count,
-                    'user_vote': False,
-                })
-
-            results.append({
-                'title': poll.title,
-                'choices': choices,
-            })
-        return json.dumps(results)
-
-    def get_queryset(self):
-        return models.Poll.objects\
-            .filter(module=self.module)\
-            .order_by('weight')
+    def get_object(self):
+        return models.Poll.objects.filter(module=self.module).first()
 
 
 class PollManagementView(DashboardBaseMixin,
@@ -62,8 +41,18 @@ class PollManagementView(DashboardBaseMixin,
             'dashboard-project-list',
             kwargs={'organisation_slug': self.organisation.slug, })
 
+    def get_or_create_poll(self):
+        try:
+            obj = models.Poll.objects.get(module=self.module)
+        except models.Poll.DoesNotExist:
+            obj = models.Poll(module=self.module, creator=self.request.user)
+            obj.save()
+        return obj
+
     def dispatch(self, *args, **kwargs):
         self.project = kwargs['project']
         self.module = self.project.module_set.first()
         self.request.module = self.module
+        self.poll = self.get_or_create_poll()
+
         return super(PollManagementView, self).dispatch(*args, **kwargs)
