@@ -7,26 +7,12 @@ from . import models
 from . import views
 
 
-class CreatePhase(phases.PhaseContent):
-    app = apps.Config.label
-    phase = 'create'
-    weight = 10
-    view = views.TopicCreateListView
-
-    name = _('Create phase')
-    description = _('Moderators create topics.')
-    module_name = _('topic prioritization')
-
-    features = {
-        'crud': (models.Topic,),
-    }
-
-
 class PrioritizePhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'prioritize'
     weight = 20
     view = views.TopicListView
+    management_view = views.TopicMgmtView
 
     name = _('Collect phase')
     description = _('Prioritize and comment topics.')
@@ -38,5 +24,4 @@ class PrioritizePhase(phases.PhaseContent):
     }
 
 
-phases.content.register(CreatePhase())
 phases.content.register(PrioritizePhase())

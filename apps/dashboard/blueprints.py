@@ -116,10 +116,9 @@ blueprints = [
      ProjectBlueprint(
          title=_('Topic Prioritization'),
          description=_(
-             'Comment and prioritize topics created by moderators.'
+             'Comment and prioritize topics.'
          ),
          content=[
-             topicprio_phases.CreatePhase(),
              topicprio_phases.PrioritizePhase(),
          ],
          image='images/blueprints/external-project.svg',

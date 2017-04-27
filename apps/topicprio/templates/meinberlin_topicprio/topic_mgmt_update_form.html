@@ -1,0 +1,27 @@
+{% extends 'meinberlin_dashboard/base_dashboard.html' %}
+{% load i18n %}
+
+{% block title %}Edit {{object.name}}{% endblock %}
+{% block dashboard_content %}
+<div class="l-wrapper">
+    <nav class="breadcrumbs">
+        <ul>
+            <li>
+                <a href="{% url 'dashboard-project-management' slug=object.project.slug %}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    {% trans 'back to topic list' %}</a>
+            </li>
+            <li>
+                <a href="{% url 'meinberlin_topicprio:topic-mgmt-detail' object.slug %}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    {% trans 'back to topic' %}</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h1>{% trans 'Edit idea' %}</h1>
+
+    {% url 'meinberlin_topicprio:topic-mgmt-detail' object.slug as cancel %}
+    {% include "meinberlin_topicprio/includes/topic_mgmt_form.html" with cancel=cancel %}
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+<div class="list-item list-item--squashed">
+    <h3 class="list-item__title">
+        <a href="{% url 'meinberlin_topicprio:topic-mgmt-detail' slug=object.slug %}">
+        {{ object.name }}
+        </a>
+    </h3>
+    {% if object.category %}
+        <span class="label label--big">{{ object.category }}</span>
+    {% endif %}
+</div>

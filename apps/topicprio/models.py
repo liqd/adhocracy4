@@ -42,5 +42,5 @@ class Topic(module_models.Item, category_models.Categorizable):
 
     def get_absolute_url(self):
         return reverse(
-            'meinberlin_topicprio:topic-detail',
+            'meinberlin_topicprio:topic-mgmt-detail',
             args=[str(self.slug)])
