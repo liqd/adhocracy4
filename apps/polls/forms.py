@@ -2,31 +2,30 @@ from django import forms
 from django.forms.models import inlineformset_factory
 from nested_formset import BaseNestedModelForm
 
-from adhocracy4.modules import models as module_models
 from apps.contrib.nested_formset import nestedformset_factory
 
 from . import models
 
 
-class PollForm(BaseNestedModelForm):
+class QuestionForm(BaseNestedModelForm):
     class Meta:
-        model = models.Poll
-        fields = ['title', 'weight']
+        model = models.Question
+        fields = ['label', 'weight']
         widgets = {'weight': forms.HiddenInput()}
 
 
 class ChoiceForm(forms.ModelForm):
     class Meta:
         model = models.Choice
-        fields = ['label', 'poll']
+        fields = ['label', 'question']
 
 
-PollCollectionForm = nestedformset_factory(
-    module_models.Module,
+PollForm = nestedformset_factory(
     models.Poll,
-    form=PollForm,
+    models.Question,
+    form=QuestionForm,
     nested_formset=inlineformset_factory(
-        models.Poll,
+        models.Question,
         models.Choice,
         form=ChoiceForm,
     )
