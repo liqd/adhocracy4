@@ -12,7 +12,7 @@ var baseURL = '/api/'
 var api = (function () {
   var urls = {
     report: baseURL + 'reports/',
-    document: baseURL + '/modules/$moduleId/documents/',
+    document: baseURL + 'modules/$moduleId/documents/',
     follow: baseURL + 'follows/',
     comment: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comments/',
     rating: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/ratings/'
