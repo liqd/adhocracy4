@@ -1,7 +1,9 @@
 import json
+
 from django.core.urlresolvers import reverse
 from django.views import generic
 
+from adhocracy4.modules import models as module_models
 from adhocracy4.projects import mixins as project_mixins
 from adhocracy4.rules import mixins as rules_mixins
 
@@ -42,13 +44,18 @@ class PollListView(project_mixins.ProjectMixin,
 
 class PollManagementView(DashboardBaseMixin,
                          rules_mixins.PermissionRequiredMixin,
-                         generic.FormView):
+                         generic.UpdateView):
     template_name = 'meinberlin_polls/poll_management_form.html'
-    form_class = forms.PollForm
+    form_class = forms.PollCollectionForm
     permission_required = 'meinberlin_organisations.initiate_project'
+    model = module_models.Module
 
     # Dashboard related attributes
     menu_item = 'project'
+
+    def get_object(self, **kwargs):
+        # assumes dispatch() has been called
+        return self.module
 
     def get_success_url(self):
         return reverse(
