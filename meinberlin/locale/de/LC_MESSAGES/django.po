@@ -28,7 +28,7 @@ msgstr "Kommentare"
 
 #: adhocracy4/comments/serializers.py:25
 msgid "unknown user"
-msgstr ""
+msgstr "unbekannte*r Nutzer*in"
 
 #: adhocracy4/images/fields.py:60
 #, python-brace-format
@@ -36,17 +36,19 @@ msgid ""
 "{help_prefix} It must be min. {min_resolution[0]} pixel wide and "
 "{min_resolution[1]} pixel tall. Allowed file formats are {fileformats_str}. "
 "The file size should be max. {max_size_mb} MB."
-msgstr ""
+msgstr "{help_prefix} Das Bild muss mindestens {min_resolution[0]} Pixel breit "
+"und {min_resolution[1]} Pixel hoch sein. Erlaubte Dateiformate: {fileformats_str}. "
+"Die maximale Dateigröße beträgt {max_size_mb} MB."
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html.py:8
 #: meinberlin/templates/a4images/image_upload_widget.html.py:10
 msgid "Remove the picture"
-msgstr ""
+msgstr "Bild entfernen"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html.py:12
 #: meinberlin/templates/a4images/image_upload_widget.html.py:16
 msgid "Upload a picture"
-msgstr ""
+msgstr "Bild hochladen"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html.py:19
 msgid ""
@@ -54,35 +56,35 @@ msgid ""
 "            Your image will be uploaded/removed once you save your changes\n"
 "            at the end of this page.\n"
 "            "
-msgstr ""
+msgstr "Ihr Bild wird hochgeladen sobald Sie Ihre Änderungen am Ende der Seite speichern."
 
 #: adhocracy4/images/validators.py:19
 msgid "Unsupported file format. Supported formats are {}."
-msgstr ""
+msgstr "Dieses Dateiformat ist nicht unterstützt. Unterstützt werden: {}."
 
 #: adhocracy4/images/validators.py:25
 #, python-brace-format
 msgid "Image should be at most {max_size} MB"
-msgstr ""
+msgstr "Das Bild darf höchstens {max_size} MB groß sein."
 
 #: adhocracy4/images/validators.py:28
 #, python-brace-format
 msgid "Image must be at least {min_width} pixels wide"
-msgstr ""
+msgstr "Das Bild muss mindestens {min_width} Pixel breit sein."
 
 #: adhocracy4/images/validators.py:31
 #, python-brace-format
 msgid "Image must be at least {min_height} pixels high"
-msgstr ""
+msgstr "Das Bild muss mindestens {min_height} Pixel hoch sein."
 
 #: adhocracy4/images/validators.py:41
 #, python-brace-format
 msgid "Image aspect ratio should be {aspect_width}:{aspect_height}"
-msgstr ""
+msgstr "Das Seitenverhältnis muss {aspect_width}:{aspect_height} entsprechen."
 
 #: adhocracy4/images/widgets.py:26
 msgid "Select a picture from your local folder."
-msgstr ""
+msgstr "Ein Bild aus einem lokalen Ordner auswählen."
 
 #: adhocracy4/maps/fields.py:16
 msgid "Geometry as GeoJSON"
@@ -90,95 +92,101 @@ msgstr ""
 
 #: adhocracy4/maps/fields.py:34
 msgid "Please add a Marker on the map"
-msgstr ""
+msgstr "Bitte setzen Sie einen Punkt auf der Karte."
 
 #: adhocracy4/maps/fields.py:39
 msgid "Please draw a Polygon on the map"
-msgstr ""
+msgstr "Bitte zeichnen Sie einen Bereich auf der Karte ein."
 
 #: adhocracy4/phases/models.py:56
 msgid "End date can not be smallerthan the start date."
-msgstr ""
+msgstr "Das Enddatum kann nicht vor dem Startdatum liegen."
 
 #: adhocracy4/projects/models.py:27
 msgid "Title of your project"
-msgstr ""
+msgstr "Titel Ihres Projekts"
 
 #: adhocracy4/projects/models.py:28
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
-msgstr ""
+msgstr "Der Titel wird in Kacheln und im Kopf der Projektseite angezeigt werden. "
+"Er darf maximal 120 Zeichen lang sein."
 
 #: adhocracy4/projects/models.py:37
 msgid "Short description of your project"
-msgstr ""
+msgstr "Kurzbeschreibung Ihres Projekts"
 
 #: adhocracy4/projects/models.py:38
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
-msgstr ""
+msgstr "Die Kurzbeschreibung wird in Kacheln und im Kopf der Projektseite angezeigt werden. "
+"Es sollte das Ziel des Projekts in maximal 250 Zeichen beschreiben."
 
 #: adhocracy4/projects/models.py:45
 msgid "Description of your project"
-msgstr ""
+msgstr "Beschreibung Ihres Projekts"
 
 #: adhocracy4/projects/models.py:46
 msgid ""
 "This description should tell participants what the goal of the project is, "
 "how the project’s participation will look like. It will be always visible in "
 "the „Info“ tab on your project’s page."
-msgstr ""
+msgstr "Die Beschreibung verdeutlicht Nutzer*innen was das Ziel des Projekts ist "
+"und wie die Beteiligung von statten gehen wird. Sie wird im Info-Tab der Projekt"
+"seite angezeigt werden."
 
 #: adhocracy4/projects/models.py:54
 msgid ""
 "Here you should explain what the expected outcome of the project will be and "
 "how you are planning to use the results. If the project is finished you "
 "should add a summary of the results."
-msgstr ""
+msgstr "Hier sollten Sie erklären, was das erwartete Ergebnis des Projekts ist und "
+"und wie die Ergebnisse weiterverarbeitet werden. Wenn das Projekt abgeschlossen ist, "
+"sollten Sie hier eine Zusammenfassung der Resultate hinzufügen."
 
 #: adhocracy4/projects/models.py:61
 msgid "Access to the project"
-msgstr ""
+msgstr "Zugang zum Projekt"
 
 #: adhocracy4/projects/models.py:62
 msgid ""
 "Please indicate who should be able to participate in your project. Teasers "
 "for your project including title and short description will always be "
 "visible to everyone"
-msgstr ""
+msgstr "Bitte wählen Sie, wer "
 
 #: adhocracy4/projects/models.py:69
 msgid "Header image"
-msgstr ""
+msgstr "Headerbild"
 
 #: adhocracy4/projects/models.py:71
 msgid "The image will be shown as a decorative background image."
-msgstr ""
+msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 
 #: adhocracy4/projects/models.py:87
 msgid "Project is archived"
-msgstr ""
+msgstr "Projekt ist archiviert."
 
 #: adhocracy4/projects/models.py:88
 msgid "Set to archive the project"
-msgstr ""
+msgstr "Setzen, um das Projekt zu archivieren."
 
 #: adhocracy4/projects/models.py:92
 msgid "Type of the project"
-msgstr ""
+msgstr "Typ des Projekt"
 
 #: adhocracy4/projects/templatetags/project_tags.py:12
 #, python-format
 msgid "%(number)d day left"
 msgid_plural "%(number)d days left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "noch %(number)d Tag"
+msgstr[1] "noch %(number)d Tage"
 
 #: adhocracy4/projects/templatetags/project_tags.py:19
 msgid "a few hours left"
-msgstr ""
+msgstr "noch wenige Stunden"
 
 #: adhocracy4/reports/templatetags/react_reports.py:30
 #: apps/contrib/templates/meinberlin_contrib/item_detail.html.py:47
@@ -187,11 +195,11 @@ msgstr "Melden"
 
 #: apps/account/templates/meinberlin_account/account_dashboard.html.py:4
 msgid "User Dashboard"
-msgstr ""
+msgstr "Nutzereinstellungen"
 
 #: apps/account/templates/meinberlin_account/account_dashboard.html.py:11
 msgid "User Dashboard navigation"
-msgstr ""
+msgstr "Navigation der Nutzereinstellungen"
 
 #: apps/account/templates/meinberlin_account/account_dashboard.html.py:21
 msgid "Profile"
@@ -203,32 +211,32 @@ msgstr "Passwort ändern"
 
 #: apps/account/templates/meinberlin_account/account_dashboard.html.py:35
 msgid "Email addresses"
-msgstr ""
+msgstr "E-Mail Adressen"
 
 #: apps/account/templates/meinberlin_account/email.html.py:6
 #: apps/account/templates/meinberlin_account/email.html.py:9
 msgid "E-mail Addresses"
-msgstr ""
+msgstr "E-Mail Adressen"
 
 #: apps/account/templates/meinberlin_account/email.html.py:21
 msgid "Primary"
-msgstr ""
+msgstr "Primär"
 
 #: apps/account/templates/meinberlin_account/email.html.py:24
 msgid "Verified"
-msgstr ""
+msgstr "Verifiziert"
 
 #: apps/account/templates/meinberlin_account/email.html.py:26
 msgid "Unverified"
-msgstr ""
+msgstr "Unverifiziert"
 
 #: apps/account/templates/meinberlin_account/email.html.py:32
 msgid "Make Primary"
-msgstr ""
+msgstr "Als primär setzen"
 
 #: apps/account/templates/meinberlin_account/email.html.py:33
 msgid "Re-send Verification"
-msgstr ""
+msgstr "Verifikationsmail senden"
 
 #: apps/account/templates/meinberlin_account/email.html.py:34
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:25
@@ -238,25 +246,25 @@ msgstr "Löschen"
 
 #: apps/account/templates/meinberlin_account/email.html.py:48
 msgid "Add another Email"
-msgstr ""
+msgstr "E-Mail Adresse hinzufügen"
 
 #: apps/account/templates/meinberlin_account/email.html.py:52
 msgid "Add Email"
-msgstr ""
+msgstr "E-Mail Adresse hinzufügen"
 
 #: apps/account/templates/meinberlin_account/password.html.py:5
 #: apps/account/templates/meinberlin_account/password.html.py:40
 msgid "Change Password"
-msgstr "Password ändern"
+msgstr "Passwort ändern"
 
 #: apps/account/templates/meinberlin_account/password.html.py:8
 msgid "Change your password"
-msgstr ""
+msgstr "Passwort ändern"
 
 #: apps/account/templates/meinberlin_account/password.html.py:24
 #: apps/account/templates/meinberlin_account/password.html.py:30
 msgid "Password"
-msgstr ""
+msgstr "Passwort"
 
 #: apps/account/templates/meinberlin_account/password.html.py:36
 msgid "Repeat password"
@@ -264,7 +272,7 @@ msgstr "Passwort"
 
 #: apps/account/templates/meinberlin_account/profile.html.py:5
 msgid "Your user profile"
-msgstr ""
+msgstr "Ihr Nutzerprofil"
 
 #: apps/account/templates/meinberlin_account/profile.html.py:7
 msgid "Your profile"
