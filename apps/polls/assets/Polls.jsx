@@ -6,18 +6,9 @@ var Poll = React.createClass({
   getInitialState: function () {
     // FIXME: example data
     return {
-      title: 'Getrennte Eltern: Ist das Wechselmodell die beste Lösung für alle?',
-      options: [{
-        label: 'Ja',
-        count: 22434
-      }, {
-        label: 'Nein',
-        count: 40062
-      }, {
-        label: 'Vielleicht',
-        count: 17627
-      }],
-      ownVote: null,
+      title: this.props.poll.title,
+      choices: this.props.poll.choices,
+      ownChoice: null,
       active: true,
       showResult: false
     }
@@ -39,15 +30,16 @@ var Poll = React.createClass({
       let value = parseInt(rawValue)
       // TODO: sent to server
       // TODO: show success/error message
+      // TODO: Fix for ownChoice within choice
       this.setState({
         showResult: true,
-        ownVote: value
+        ownChoice: value
       })
     }
   },
 
   render: function () {
-    let counts = this.state.options.map(o => o.count)
+    let counts = this.state.choices.map(o => o.count)
     let total = counts.reduce((sum, c) => sum + c, 0)
     let max = Math.max.apply(null, counts)
 
@@ -80,17 +72,17 @@ var Poll = React.createClass({
 
         <div className="poll">
           {
-            this.state.options.map((option, i) => {
-              let checked = this.state.ownVote === i
-              let percent = Math.round(option.count / total * 100)
-              let highlight = option.count === max
+            this.state.choices.map((choice, i) => {
+              let checked = choice.ownChoice
+              let percent = Math.round(choice.count / total * 100)
+              let highlight = choice.count === max
 
               if (this.state.showResult || !this.state.active) {
                 return (
                   <div className="poll-row" key={i}>
                     <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')} style={{width: percent + '%'}} />
                     <div className="poll-row__number">{ percent }%</div>
-                    <div className="poll-row__label">{ option.label }</div>
+                    <div className="poll-row__label">{ choice.label }</div>
                     { checked ? <i className="fa fa-check-circle u-secondary" aria-label={django.gettext('Your choice')} /> : '' }
                   </div>
                 )
@@ -103,7 +95,7 @@ var Poll = React.createClass({
                       name="poll"
                       value={i}
                       defaultChecked={checked} />
-                    { option.label }
+                    { choice.label }
                   </label>
                 )
               }
@@ -119,5 +111,8 @@ var Poll = React.createClass({
 
 module.exports.renderPolls = function (mountpoint) {
   let element = document.getElementById(mountpoint)
-  ReactDOM.render(<Poll />, element)
+
+  let poll = JSON.parse(element.getAttribute('data-poll'))
+
+  ReactDOM.render(<Poll poll={poll} />, element)
 }

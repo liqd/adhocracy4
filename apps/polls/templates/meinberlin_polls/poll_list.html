@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 {% load react_polls %}
 
+
 {% block content %}
     <div class="l-wrapper">
         <div class="l-center-8">
-            {% react_polls %}
+
+            {% for object in object_list %}
+                {% react_polls object %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
