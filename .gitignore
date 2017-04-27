@@ -4,6 +4,7 @@ test_db.sqlite3
 db.sqlite3*
 node_modules
 meinberlin/settings/local.py
+meinberlin/static/leaflet*
 meinberlin/static/meinberlin.css
 meinberlin/static/meinberlin.js
 meinberlin/static/vendor.css
