@@ -2,30 +2,29 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-from django.conf import settings
 import django.utils.timezone
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('a4modules', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('a4modules', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
             name='Choice',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('label', models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
             name='Poll',
             fields=[
-                ('item_ptr', models.OneToOneField(to='a4modules.Item', serialize=False, auto_created=True, primary_key=True, parent_link=True)),
-                ('title', models.CharField(max_length=255)),
+                ('item_ptr', models.OneToOneField(primary_key=True, to='a4modules.Item', serialize=False, parent_link=True, auto_created=True)),
             ],
             options={
                 'abstract': False,
@@ -33,19 +32,31 @@ class Migration(migrations.Migration):
             bases=('a4modules.item',),
         ),
         migrations.CreateModel(
+            name='Question',
+            fields=[
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
+                ('label', models.CharField(max_length=255)),
+                ('weight', models.SmallIntegerField()),
+                ('poll', models.ForeignKey(related_name='questions', to='meinberlin_polls.Poll')),
+            ],
+            options={
+                'ordering': ['weight'],
+            },
+        ),
+        migrations.CreateModel(
             name='Vote',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
+                ('id', models.AutoField(primary_key=True, auto_created=True, verbose_name='ID', serialize=False)),
                 ('created', models.DateTimeField(editable=False, default=django.utils.timezone.now)),
-                ('modified', models.DateTimeField(blank=True, editable=False, null=True)),
-                ('choice', models.ForeignKey(to='meinberlin_polls.Choice')),
+                ('modified', models.DateTimeField(null=True, blank=True, editable=False)),
+                ('choice', models.ForeignKey(related_name='votes', to='meinberlin_polls.Choice')),
                 ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.AddField(
             model_name='choice',
-            name='poll',
-            field=models.ForeignKey(to='meinberlin_polls.Poll'),
+            name='question',
+            field=models.ForeignKey(related_name='choices', to='meinberlin_polls.Question'),
         ),
         migrations.AlterUniqueTogether(
             name='vote',

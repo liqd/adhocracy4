@@ -11,7 +11,7 @@ class VotingPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'voting'
     weight = 20
-    view = views.PollListView
+    view = views.PollDetailView
     management_view = views.PollManagementView
 
     name = _('Voting phase')
@@ -28,7 +28,7 @@ class CommentPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'voting'
     weight = 30
-    view = views.PollListView
+    view = views.PollDetailView
 
     name = _('Comment phase')
     description = _('Discuss the poll results.')

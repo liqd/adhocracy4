@@ -7,24 +7,24 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def react_polls(context, poll):
+def react_polls(context, question):
     user = context['request'].user
-    user_choices = poll.user_choices_list(user)
+    user_choices = question.user_choices_list(user)
 
     data = {
-        'title': poll.title,
+        'label': question.label,
         'choices': [{
             'label': choice.label,
             'count': choice.vote_count,
             'ownChoice': (choice.pk in user_choices)
-        } for choice in poll.choices_with_vote_count()]
+        } for choice in question.choices_with_vote_count()]
     }
 
     return format_html(
         (
-            '<div id="{id}" data-poll="{poll}"></div>'
+            '<div id="{id}" data-question="{question}"></div>'
             '<script>window.adhocracy4.renderPolls("{id}")</script>'
         ),
-        id='poll-%s' % (poll.pk,),
-        poll=json.dumps(data)
+        id='question-%s' % (question.pk,),
+        question=json.dumps(data)
     )
