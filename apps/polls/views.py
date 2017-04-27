@@ -6,7 +6,6 @@ from adhocracy4.rules import mixins as rules_mixins
 
 from apps.dashboard.mixins import DashboardBaseMixin
 
-from . import forms
 from . import models
 
 
@@ -22,9 +21,8 @@ class PollDetailView(project_mixins.ProjectMixin,
 
 class PollManagementView(DashboardBaseMixin,
                          rules_mixins.PermissionRequiredMixin,
-                         generic.UpdateView):
+                         generic.DetailView):
     template_name = 'meinberlin_polls/poll_management_form.html'
-    form_class = forms.PollForm
     permission_required = 'meinberlin_organisations.initiate_project'
     model = models.Poll
 

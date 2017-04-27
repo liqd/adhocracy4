@@ -1,5 +1,5 @@
 {% extends 'meinberlin_dashboard/base_dashboard.html' %}
-{% load i18n %}
+{% load i18n react_polls %}
 
 {% block dashboard_content %}
         <nav class="resource-navigation__breadcrumbs breadcrumbs">
@@ -14,67 +14,8 @@
 
     <h3>{% trans "Manage project" %}</h3>
 
-    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
-    {% csrf_token %}
-    {{ form.management_form }}
-
-    {% for poll in form %}
-        <section>
-        {% for hidden in poll.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
-
-        <div class="commenting">
-            <div class="commenting__content">
-                <div class="form-group">
-                    {% include 'meinberlin_contrib/includes/form_field.html' with field=poll.title %}
-
-                    {{ poll.nested.management_form }}
-                    {% for choice in poll.nested %}
-                        {% for hidden in choice.hidden_fields %}
-                            {{ hidden }}
-                        {% endfor %}
-
-                        {% include 'meinberlin_contrib/includes/form_field.html' with field=choice.label %}
-                        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=choice.DELETE %}
-
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="commenting__actions button-group">
-                <button
-                        class="button"
-                        type="button">
-                    <i class="fa fa-chevron-up"></i>
-                </button>
-                <button
-                        class="button"
-                        type="button">
-                    <i class="fa fa-chevron-down"></i>
-                </button>
-                <button
-                        class="button"
-                        type="button">
-                    <i class="fa fa-trash"></i>
-                </button>
-
-                {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=poll.DELETE %}
-            </div>
-        </div>
-        </section>
-
-    {% endfor %}
-
-    <input type="submit" class="button button--primary" value="{% trans 'Save' %}" />
+    {% react_poll_form object %}
 
 </form>
 
-{% endblock %}
-
-{% block extra_js %}
-    {{ form.media.js }}
-{% endblock %}
-{% block extra_css %}
-    {{ form.media.css }}
 {% endblock %}

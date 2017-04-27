@@ -2,6 +2,9 @@ import json
 
 from django import template
 from django.utils.html import format_html
+from rest_framework.renderers import JSONRenderer
+
+from .. import serializers
 
 register = template.Library()
 
@@ -11,6 +14,7 @@ def react_polls(context, question):
     user = context['request'].user
     user_choices = question.user_choices_list(user)
 
+    # TODO: use serializer
     data = {
         'label': question.label,
         'choices': [{
@@ -27,4 +31,19 @@ def react_polls(context, question):
         ),
         id='question-%s' % (question.pk,),
         question=json.dumps(data)
+    )
+
+
+@register.simple_tag
+def react_poll_form(poll):
+    serializer = serializers.PollSerializer(poll)
+    data_poll = JSONRenderer().render(serializer.data)
+
+    return format_html(
+        (
+            '<div id="{id}" data-poll="{poll}"></div>'
+            '<script>window.adhocracy4.renderPollManagement("{id}")</script>'
+        ),
+        id='question-%s' % (poll.pk,),
+        poll=data_poll
     )

@@ -35,5 +35,6 @@ module.exports = {
   'renderRatings': ReactRatings.renderRatings,
   'renderParagraphs': ReactParagraphs.renderParagraphs,
   'renderPolls': ReactPolls.renderPolls,
+  'renderPollManagement': ReactPolls.renderPollManagement,
   'renderReports': ReactReports.renderReports
 }
