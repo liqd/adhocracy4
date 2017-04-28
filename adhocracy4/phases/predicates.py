@@ -9,15 +9,15 @@ def has_feature_active(project, model, feature):
 
 
 @rules.predicate
-def phase_allows_modify(user, item):
+def phase_allows_change(user, item):
     return has_feature_active(item.project, item.__class__, 'crud')
 
 
-def phase_allows_create(item_class):
+def phase_allows_add(item_class):
     @rules.predicate
-    def _create_predicate(user, module):
+    def _add_predicate(user, module):
         return has_feature_active(module.project, item_class, 'crud')
-    return _create_predicate
+    return _add_predicate
 
 
 @rules.predicate
