@@ -32,6 +32,8 @@ makemessages:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs
 	sed -i 's%#: .*/adhocracy4%#: adhocracy4%' meinberlin/locale/*/LC_MESSAGES/django*.po
+	msgen meinberlin/locale/en_GB/LC_MESSAGES/django.po -o meinberlin/locale/en_GB/LC_MESSAGES/django.po
+	msgen meinberlin/locale/en_GB/LC_MESSAGES/djangojs.po -o meinberlin/locale/en_GB/LC_MESSAGES/djangojs.po
 
 compilemessages: $(PO_FILES)
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
