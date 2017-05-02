@@ -1,74 +1,57 @@
 var React = require('react')
 var django = require('django')
-var update = require('react-addons-update')
 var FlipMove = require('react-flip-move')
 var ChoiceForm = require('./ChoiceForm')
 
 let QuestionForm = React.createClass({
   getInitialState: function () {
-    return {
-      choices: this.props.question.choices,
-      choiceErrors: {},
-      maxChoiceKey: 0
-    }
+    return {}
   },
-  handleDelete: function () {
-    this.props.deleteQuestion(this.props.index)
-  },
-  handleMoveUp: function () {
-    this.props.moveQuestionUp(this.props.index)
-  },
-  handleMoveDown: function () {
-    this.props.moveQuestionDown(this.props.index)
-  },
-  handleLabelChange: function (e) {
-    var index = this.props.index
-    var label = e.target.value
-    this.props.updateQuestionLabel(index, label)
-  },
+
+  /*
+  |--------------------------------------------------------------------------
+  | Choice state related handlers
+  |--------------------------------------------------------------------------
+  */
 
   handleUpdateChoiceLabel: function (index, label) {
-    var diff = {}
-    diff[index] = {$merge: {label: label}}
-    this.setState({
-      choices: update(this.state.choices, diff)
-    })
+    this.props.updateChoiceLabel(this.props.index, index, label)
   },
   handleDeleteChoice: function (index) {
-    var newArray = update(this.state.choices, {$splice: [[index, 1]]})
-    this.setState({
-      choices: newArray
-    })
-  },
-
-  getNextChoiceKey: function () {
-    /** Get an artifical key for non-commited questions.
-     *
-     *  Prefix to prevent collisions with real database keys;
-     */
-    var choiceKey = 'local_' + (this.state.maxChoiceKey + 1)
-    this.setState({maxChoiceKey: this.state.maxChoiceKey + 1})
-    return choiceKey
-  },
-
-  getNewChoice: function (label) {
-    var newChoice = {}
-    newChoice['label'] = label
-    newChoice['key'] = this.getNextChoiceKey()
-    return newChoice
+    this.props.deleteChoice(this.props.index, index)
   },
 
   handleAppendChoice: function () {
-    var newChoice = this.getNewChoice('')
-    var newChoices = update(this.state.choices, {$push: [newChoice]})
-    this.setState({
-      choices: newChoices
-    })
+    this.props.appendChoice(this.props.index)
   },
 
   getChoiceErrors: function (key) {
     // Props or State?
-    return this.state.choiceErrors[key]
+    // return this.state.choiceErrors[key]
+  },
+
+  /*
+  |--------------------------------------------------------------------------
+  | Question state related handlers
+  |--------------------------------------------------------------------------
+  */
+
+  handleDelete: function () {
+    this.props.deleteQuestion(this.props.index)
+  },
+
+  handleMoveUp: function () {
+    this.props.moveQuestionUp(this.props.index)
+  },
+
+  handleMoveDown: function () {
+    this.props.moveQuestionDown(this.props.index)
+  },
+
+  handleLabelChange: function (e) {
+    var index = this.props.index
+    var label = e.target.value
+    this.props.updateQuestionLabel(index, label)
   },
 
   render: function () {
@@ -100,7 +83,7 @@ let QuestionForm = React.createClass({
             <div className="form-group">
               <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
                 {
-                  this.state.choices.map(function (choice, index) {
+                  this.props.question.choices.map(function (choice, index) {
                     var key = choice.id || choice.key
                     return (
                       <ChoiceForm

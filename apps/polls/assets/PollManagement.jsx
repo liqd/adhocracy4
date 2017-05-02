@@ -4,43 +4,24 @@ var update = require('react-addons-update')
 var FlipMove = require('react-flip-move')
 var QuestionForm = require('./QuestionForm')
 
+var $ = require('jquery')
+
 let PollManagement = React.createClass({
   getInitialState: function () {
     return {
       questions: this.props.poll.questions,
       questionErrors: {},
       successMessage: '',
-      maxQuestionKey: 0
+      maxQuestionKey: 0,
+      maxChoiceKey: 0
     }
   },
 
-  handleUpdateQuestionLabel: function (index, label) {
-    var diff = {}
-    diff[index] = {$merge: {label: label}}
-    this.setState({
-      questions: update(this.state.questions, diff)
-    })
-  },
-
-  handleMoveQuestionUp: function (index) {
-    var question = this.state.questions[index]
-    var questions = update(this.state.questions, {
-      $splice: [[index, 1], [index - 1, 0, question]]
-    })
-    this.setState({
-      questions: questions
-    })
-  },
-
-  handleMoveQuestionDown: function (index) {
-    var question = this.state.questions[index]
-    var questions = update(this.state.questions, {
-      $splice: [[index, 1], [index + 1, 0, question]]
-    })
-    this.setState({
-      questions: questions
-    })
-  },
+  /*
+  |--------------------------------------------------------------------------
+  | Question state related handlers
+  |--------------------------------------------------------------------------
+  */
 
   getNextQuestionKey: function () {
     /** Get an artifical key for non-commited questions.
@@ -60,18 +41,47 @@ let PollManagement = React.createClass({
     return newQuestion
   },
 
+  handleUpdateQuestionLabel: function (index, label) {
+    var diff = {}
+    diff[index] = {$merge: {label: label}}
+
+    this.setState({
+      questions: update(this.state.questions, diff)
+    })
+  },
+
+  handleMoveQuestionUp: function (index) {
+    var question = this.state.questions[index]
+    var diff = {$splice: [[index, 1], [index - 1, 0, question]]}
+
+    this.setState({
+      questions: update(this.state.questions, diff)
+    })
+  },
+
+  handleMoveQuestionDown: function (index) {
+    var question = this.state.questions[index]
+    var diff = {$splice: [[index, 1], [index + 1, 0, question]]}
+
+    this.setState({
+      questions: update(this.state.questions, diff)
+    })
+  },
+
   handleAppendQuestion: function () {
     var newQuestion = this.getNewQuestion('')
-    var newQuestions = update(this.state.questions, {$push: [newQuestion]})
+    var diff = {$push: [newQuestion]}
+
     this.setState({
-      questions: newQuestions
+      questions: update(this.state.questions, diff)
     })
   },
 
   handleDeleteQuestion: function (index) {
-    var newArray = update(this.state.questions, {$splice: [[index, 1]]})
+    var diff = {$splice: [[index, 1]]}
+
     this.setState({
-      questions: newArray
+      questions: update(this.state.questions, diff)
     })
   },
 
@@ -80,9 +90,125 @@ let PollManagement = React.createClass({
     return this.state.questionErrors[key]
   },
 
+  /*
+  |--------------------------------------------------------------------------
+  | Choice state related handlers
+  |--------------------------------------------------------------------------
+  */
+
+  getNextChoiceKey: function () {
+    /** Get an artifical key for non-commited choices.
+     *
+     *  Prefix to prevent collisions with real database keys;
+     */
+    var choiceKey = 'local_' + (this.state.maxChoiceKey + 1)
+    this.setState({maxChoiceKey: this.state.maxChoiceKey + 1})
+    return choiceKey
+  },
+
+  getNewChoice: function (label) {
+    var newChoice = {}
+    newChoice['label'] = label
+    newChoice['key'] = this.getNextChoiceKey()
+    return newChoice
+  },
+
+  handleUpdateChoiceLabel: function (questionIndex, choiceIndex, label) {
+    var diff = {}
+    diff[questionIndex] = {choices: {}}
+    diff[questionIndex]['choices'][choiceIndex] = {$merge: {label: label}}
+
+    this.setState({
+      questions: update(this.state.questions, diff)
+    })
+  },
+
+  handleAppendChoice: function (questionIndex) {
+    var newChoice = this.getNewChoice('')
+    var diff = {}
+    diff[questionIndex] = {choices: {$push: [newChoice]}}
+
+    this.setState({
+      questions: update(this.state.questions, diff)
+    })
+  },
+
+  handleDeleteChoice: function (questionIndex, choiceIndex) {
+    var diff = {}
+    diff[questionIndex] = {choices: {$splice: [[choiceIndex, 1]]}}
+
+    this.setState({
+      questions: update(this.state.questions, diff)
+    })
+  },
+
+  /*
+  |--------------------------------------------------------------------------
+  | Poll form and submit logic
+  |--------------------------------------------------------------------------
+  */
+
+  handleSubmit: function (e) {
+    e.preventDefault()
+
+    var baseURL = '/api/'
+    var url = baseURL + 'modules/$moduleId/polls/'
+
+    var urlReplaces = {moduleId: this.props.module}
+
+    url = url.replace(/\$(\w+?)\b/g, (match, group) => {
+      return urlReplaces[group]
+    })
+
+    url = url + this.props.poll.id + '/'
+
+    var data = {
+      id: this.props.poll.id,
+      questions: this.state.questions
+    }
+
+    var $body = $('body')
+
+    var params = {
+      url: url,
+      type: 'PUT',
+      contentType: 'application/json; charset=utf-8',
+      dataType: 'json',
+      data: JSON.stringify(data),
+      error: function (xhr, status, err) {
+        console.error(url, status, err.toString())
+      },
+      complete: function () {
+        $body.removeClass('loading')
+      }
+    }
+
+    $body.addClass('loading')
+    var promise = $.ajax(params)
+
+    promise
+      .done(function (data) {
+        this.setState({
+          successMessage: django.gettext('The poll has been updated.')
+        })
+
+        setTimeout(function () {
+          this.setState({
+            successMessage: ''
+          })
+        }.bind(this), 1500)
+      }.bind(this))
+      .fail(function (xhr, status, err) {
+        this.setState({
+          nameErrors: xhr.responseJSON.name || [],
+          paragraphsErrors: xhr.responseJSON.paragraphs || []
+        })
+      }.bind(this))
+  },
+
   render: function () {
     return (
-      <form onSubmit={this.submitDocument}>
+      <form onSubmit={this.handleSubmit}>
         { this.state.successMessage
           ? <p className="alert alert-success ">
             {this.state.successMessage}
@@ -103,6 +229,9 @@ let PollManagement = React.createClass({
                   moveQuestionDown={index < this.state.questions.length - 1 ? this.handleMoveQuestionDown : null}
                   deleteQuestion={this.handleDeleteQuestion}
                   errors={this.getQuestionErrors(key)}
+                  updateChoiceLabel={this.handleUpdateChoiceLabel}
+                  deleteChoice={this.handleDeleteChoice}
+                  appendChoice={this.handleAppendChoice}
                 />
               )
             }.bind(this))

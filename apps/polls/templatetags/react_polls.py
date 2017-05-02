@@ -41,9 +41,10 @@ def react_poll_form(poll):
 
     return format_html(
         (
-            '<div id="{id}" data-poll="{poll}"></div>'
+            '<div id="{id}" data-module="{module}" data-poll="{poll}"></div>'
             '<script>window.adhocracy4.renderPollManagement("{id}")</script>'
         ),
+        module=poll.module.pk,
         id='question-%s' % (poll.pk,),
         poll=data_poll
     )

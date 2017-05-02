@@ -15,6 +15,7 @@ module.exports.renderPollManagement = function (mountpoint) {
   let element = document.getElementById(mountpoint)
 
   let poll = JSON.parse(element.getAttribute('data-poll'))
+  let module = element.getAttribute('data-module')
 
-  ReactDOM.render(<PollManagement poll={poll} />, element)
+  ReactDOM.render(<PollManagement module={module} poll={poll} />, element)
 }
