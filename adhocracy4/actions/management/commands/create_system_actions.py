@@ -6,7 +6,7 @@ from adhocracy4.actions.models import Action
 
 
 class Command(BaseCommand):
-    help = 'Create actions that depend time.'
+    help = 'Create system actions.'
 
     def handle(self, *args, **options):
         self._phase_end_tomorrow()
