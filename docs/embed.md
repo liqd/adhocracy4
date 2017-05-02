@@ -91,7 +91,8 @@ restrictions:
             <div id="paragraphs"></div>
             <script>adhocracy4.renderParagraphs('#paragraphs', …)</script>
 
-    -   Add the code to `adhocracy4.onReady()`  TODO: not implemented yet
+    -   Use the `a4.embed.ready` custom event whereever you use
+        `$(function () {…})` (formerly `$(document).ready()`).
 
 -   For cases where you cannot easily add data attributes to elements (e.g.
     links in user generated content), you can wrap it in a block with class

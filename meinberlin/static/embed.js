@@ -48,14 +48,10 @@ $(document).ready(function () {
     $main.empty()
     $main.append($top)
     $main.append($root.children())
-    onReady()
+    $(document).trigger('a4.embed.ready')
 
     // jump to top after navigation
     $top.focus()
-  }
-
-  var onReady = function () {
-    // adhocracy4.onReady($main)
   }
 
   var getEmbedTarget = function ($element, url) {
