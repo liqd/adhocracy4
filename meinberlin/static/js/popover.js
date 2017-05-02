@@ -1,7 +1,10 @@
 /* global $ */
-$(function () {
+var init = function () {
   $('[data-toggle="popover"]').popover()
-})
+}
+
+$(init)
+$(document).on('a4.embed.ready', init)
 
 $('body').on('click', function (e) {
   $('[data-toggle="popover"]').each(function () {

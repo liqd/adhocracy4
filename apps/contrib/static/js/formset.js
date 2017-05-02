@@ -1,5 +1,5 @@
 /* global $ */
-(function () {
+var init = function () {
   // Dynamically add more subforms to a formset.
   // Removing subforms is not (yet) supported)
 
@@ -36,4 +36,7 @@
       new DynamicFormSet($formsets.eq(i))
     )
   })
-}())
+}
+
+$(init)
+$(document).on('a4.embed.ready', init)
