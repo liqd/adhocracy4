@@ -1,4 +1,5 @@
-(function () {
+/* globals $ datePickerController */
+$(function () {
   var $inputs = $('.datepicker')
 
   $inputs.each(function (i, e) {
@@ -6,4 +7,4 @@
     initObject.formElements[e.id] = '%d.%m.%Y'
     datePickerController.createDatePicker(initObject)
   })
-}())
+})
