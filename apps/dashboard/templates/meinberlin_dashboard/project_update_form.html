@@ -16,3 +16,10 @@
 
     {% include 'meinberlin_dashboard/includes/project_form.html' with view=view %}
 {% endblock %}
+
+{% block extra_js %}
+    {{ form.media.js }}
+{% endblock %}
+{% block extra_css %}
+    {{ form.media.css }}
+{% endblock %}
