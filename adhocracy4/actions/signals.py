@@ -41,6 +41,5 @@ def add_action(sender, instance, created, **kwargs):
     action.save()
 
 
-if hasattr(settings, 'A4_ACTIONABLES'):
-    for app, model in settings.A4_ACTIONABLES:
-        post_save.connect(add_action, apps.get_model(app, model))
+for app, model in settings.A4_ACTIONABLES:
+    post_save.connect(add_action, apps.get_model(app, model))
