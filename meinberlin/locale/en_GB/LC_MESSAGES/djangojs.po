@@ -19,168 +19,145 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:91
-#: adhocracy4/comments/static/comments/Comment.jsx:91
 msgid "Do you really want to delete this comment?"
-msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
+msgstr "Do you really want to delete this comment?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:93
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
 #: adhocracy4/comments/static/comments/Comment.jsx:93
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
 msgid "Delete"
-msgstr "Löschen"
+msgstr "Delete"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:94
-#: adhocracy4/static/Modal.jsx:50
 #: adhocracy4/comments/static/comments/Comment.jsx:94
 #: adhocracy4/static/Modal.jsx:50
 msgid "Abort"
-msgstr "Abbrechen"
+msgstr "Abort"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:107
 #: adhocracy4/comments/static/comments/Comment.jsx:107
 msgid "Latest edit on"
-msgstr "Letzte Änderung am"
+msgstr "Latest edit on"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:112
 #: adhocracy4/comments/static/comments/Comment.jsx:112
 msgid "Moderator"
-msgstr ""
+msgstr "Moderator"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:119
-#: adhocracy4/reports/static/reports/react_reports.jsx:21
 #: adhocracy4/comments/static/comments/Comment.jsx:119
 #: adhocracy4/reports/static/reports/react_reports.jsx:21
 msgid "Are you sure you want to report this item?"
-msgstr "Sind Sie sicher, dass Sie diesen Beitrag melden möchten?"
+msgstr "Are you sure you want to report this item?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:161
 #: adhocracy4/comments/static/comments/Comment.jsx:161
 msgid "Your reply here"
-msgstr "Ihre Antwort hier"
+msgstr "Your reply here"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:77
 #: adhocracy4/comments/static/comments/CommentBox.jsx:77
 msgid "comment"
 msgid_plural "comments"
-msgstr[0] "Kommentar"
-msgstr[1] "Kommentare"
+msgstr[0] "comment"
+msgstr[1] "comments"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:80
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:28
-#: adhocracy4/comments/static/comments/CommentForm.jsx:32
 #: adhocracy4/comments/static/comments/CommentBox.jsx:80
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:28
 #: adhocracy4/comments/static/comments/CommentForm.jsx:32
 msgid "Your comment here"
-msgstr "Ihr Kommentar hier"
+msgstr "Your comment here"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:31
-#: adhocracy4/comments/static/comments/CommentForm.jsx:35
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:31
 #: adhocracy4/comments/static/comments/CommentForm.jsx:35
 msgid "post"
-msgstr "Senden"
+msgstr "post"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:32
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:32
 msgid "cancel"
-msgstr "Abbrechen"
+msgstr "cancel"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:41
 #: adhocracy4/comments/static/comments/CommentForm.jsx:41
 msgid "Please login to comment"
-msgstr "Bitte melden Sie sich zum Kommentieren an."
+msgstr "Please login to comment"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:47
 #: adhocracy4/comments/static/comments/CommentForm.jsx:47
 msgid "The currently active phase doesn't allow to comment."
-msgstr "Die aktuell laufende Phase erlaubt keine Kommentare."
+msgstr "The currently active phase doesn't allow to comment."
 
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:15
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:15
 msgid "Edit"
-msgstr "Bearbeiten"
+msgstr "Edit"
 
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:23
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:23
 msgid "Report"
-msgstr "Melden"
+msgstr "Report"
 
-#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:5
 #: adhocracy4/comments/static/comments/CommentReplyBar.jsx:5
 #, javascript-format
 msgid "view %s reply"
 msgid_plural "view %s replies"
-msgstr[0] "%s Antwort sehen"
-msgstr[1] "%s Antworten sehen"
+msgstr[0] "view %s reply"
+msgstr[1] "view %s replies"
 
-#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:25
 #: adhocracy4/comments/static/comments/CommentReplyBar.jsx:25
 msgid "Answer"
-msgstr "Antworten"
+msgstr "Answer"
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:63
 #: adhocracy4/reports/static/reports/ReportModal.jsx:63
 msgid "Your message here"
-msgstr "Ihre Nachricht hier"
+msgstr "Your message here"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:75
-#: adhocracy4/reports/static/reports/ReportModal.jsx:75
 msgid "Send Report"
-msgstr "Meldung senden"
+msgstr "Send Report"
 
 #: apps/documents/assets/Paragraph.jsx:73
 #: apps/documents/assets/ParagraphBox.jsx:195
 msgid "add a new paragraph"
-msgstr ""
+msgstr "add a new paragraph"
 
 #: apps/documents/assets/Paragraph.jsx:81
 msgid "Headline:"
-msgstr "Überschrift:"
+msgstr "Headline:"
 
 #: apps/documents/assets/Paragraph.jsx:100
 msgid "Paragraph:"
-msgstr ""
+msgstr "Paragraph:"
 
 #: apps/documents/assets/ParagraphBox.jsx:134
 msgid "Your document has been updated."
-msgstr ""
+msgstr "Your document has been updated."
 
 #: apps/documents/assets/ParagraphBox.jsx:145
 msgid "Your document has been saved."
-msgstr ""
+msgstr "Your document has been saved."
 
 #: apps/documents/assets/ParagraphBox.jsx:157
 msgid "Title:"
-msgstr "Titel:"
+msgstr "Title:"
 
 #: apps/documents/assets/ParagraphBox.jsx:202
 msgid "save"
-msgstr "Speichern"
+msgstr "save"
 
 #: apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:105
 msgid "Do you want to load this preset and delete all the existing polygons?"
-msgstr ""
+msgstr "Do you want to load this preset and delete all the existing polygons?"
 
 #: meinberlin/static/embed.js:25
 msgid "Close"
-msgstr "Schließen"
+msgstr "Close"
 
 #: meinberlin/static/embed.js:153
 msgid "We couldn't find what you were looking for."
-msgstr ""
+msgstr "We couldn't find what you were looking for."
 
 #: meinberlin/static/embed.js:157
 msgid "You don't have the permission to view this page."
-msgstr ""
+msgstr "You don't have the permission to view this page."
 
 #: meinberlin/static/embed.js:160
 msgid "Something went wrong!"
-msgstr ""
+msgstr "Something went wrong!"
 
 #: meinberlin/static/embed.js:168
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
 msgstr ""
+"You have third party cookies disabled. You can still view the content of "
+"this project but won't be able to login."
