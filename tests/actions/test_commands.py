@@ -18,7 +18,7 @@ def test_phase_end_later(phase_factory):
     )
 
     with freeze_time('2013-01-01 00:00:00 UTC'):
-        call_command('timed_system_actions')
+        call_command('create_system_actions')
         action_count = Action.objects.all().count()
         assert action_count == 0
 
@@ -37,7 +37,7 @@ def test_phase_end_tomorrow(phase_factory):
     assert action_count == 0
 
     with freeze_time('2013-01-01 17:30:00 UTC'):
-        call_command('timed_system_actions')
+        call_command('create_system_actions')
         action_count = Action.objects.all().count()
         action = Action.objects.last()
         assert action_count == 1
@@ -68,24 +68,24 @@ def test_next_phase_end_tomorrow(phase_factory):
 
     # first phase ends within 24 h
     with freeze_time(phase1.end_date - timedelta(hours=1)):
-        call_command('timed_system_actions')
+        call_command('create_system_actions')
         action_count = Action.objects.all().count()
         assert action_count == 1
 
     # second phase ends within 24 h
     with freeze_time(phase2.end_date - timedelta(hours=1)):
-        call_command('timed_system_actions')
+        call_command('create_system_actions')
         action_count = Action.objects.all().count()
         assert action_count == 2
 
     # second phase ends within 24 h but script has already run
     with freeze_time(phase2.end_date - timedelta(hours=1)):
-        call_command('timed_system_actions')
+        call_command('create_system_actions')
         action_count = Action.objects.all().count()
         assert action_count == 2
 
     # third phase ends within 24 h but script has already run
     with freeze_time(phase3.start_date):
-        call_command('timed_system_actions')
+        call_command('create_system_actions')
         action_count = Action.objects.all().count()
         assert action_count == 3

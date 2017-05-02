@@ -2,28 +2,21 @@ from django.apps import apps
 from django.conf import settings
 from django.db.models.signals import post_save
 
-from adhocracy4.projects.models import Project
-
 from . import verbs
 from .models import Action
-
-
-def _has_project(instance):
-    return hasattr(instance, 'project') \
-           and instance.project.__class__ is Project
 
 
 def _extract_target(instance):
     target = None
     if hasattr(instance, 'content_object'):
         target = instance.content_object
-    elif _has_project(instance):
+    elif hasattr(instance, 'project'):
         target = instance.project
     return target
 
 
 def add_action(sender, instance, created, **kwargs):
-    actor = instance.creator if hasattr(instance,'creator') else None
+    actor = instance.creator if hasattr(instance, 'creator') else None
     target = None
     if created:
         target = _extract_target(instance)
@@ -42,12 +35,12 @@ def add_action(sender, instance, created, **kwargs):
         target=target,
     )
 
-    if _has_project(instance):
+    if hasattr(instance, 'project'):
         action.project = instance.project
 
     action.save()
 
 
-if hasattr(settings,'A4_ACTIONABLES'):
+if hasattr(settings, 'A4_ACTIONABLES'):
     for app, model in settings.A4_ACTIONABLES:
         post_save.connect(add_action, apps.get_model(app, model))
