@@ -1,5 +1,8 @@
 from rest_framework import serializers
 
+from adhocracy4.modules.models import Module
+
+from . import validators
 from .models import Document
 from .models import Paragraph
 
@@ -20,7 +23,18 @@ class DocumentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Document
-        exclude = ('creator',)
+        exclude = ('creator', 'module',)
+
+    def validate(self, data):
+        if self.instance:
+            document_pk = self.instance.pk
+        else:
+            document_pk = None
+        module_pk = self._context['module_pk']
+        module = Module.objects.get(pk=module_pk)
+        validators.single_document_per_module(module, document_pk)
+        data['module'] = module
+        return data
 
     def create(self, validated_data):
         paragraphs = validated_data.pop('paragraphs')

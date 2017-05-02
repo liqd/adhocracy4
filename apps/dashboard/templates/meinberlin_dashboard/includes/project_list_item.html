@@ -1,23 +1,23 @@
-{% load i18n project_tags %}
+{% load i18n project_tags extproject_tags dashboard_tags %}
 
 <div class="list-item">
     <p class="list-item__subtitle">{{ project.typ }}</p>
     <h3 class="list-item__title">
-        <a href="{% url 'project-detail' project.slug %}">
+        <a href="{% extproject_url project 'project-detail' %}" target="{{ project|is_external|yesno:"_blank,_self" }}">
         {{ project.name }}
         </a>
     </h3>
     <div class="list-item__actions">
         <span class="list-item__action">
-            {% if project.externalproject %}
+            {% if project|is_external %}
                   <a href="{% url 'dashboard-external-project-edit' slug=project.slug %}"
-                   class="button button--light">
+                     class="button button--light">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                     {% trans 'Edit'%}
                 </a>
             {% else %}
                 <a href="{% url 'dashboard-project-edit' slug=project.slug %}"
-                   class="button button--light">
+                 class="button button--light">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                     {% trans 'Edit'%}
                 </a>
@@ -37,12 +37,22 @@
             </button>
         </form>
 
-        {% if not project.externalproject %}
+        {% if not project|is_external %}
         <span class="list-item__action">
             <a href="{% url 'dashboard-project-moderators' slug=project.slug %}"
                class="button button--light">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 {% trans 'Moderators' %}
+            </a>
+        </span>
+        {% endif %}
+
+        {% if project|has_management_view %}
+        <span class="list-item__action">
+            <a href="{% url 'dashboard-project-management' slug=project.slug %}"
+               class="button button--light">
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+                {% trans 'Management' %}
             </a>
         </span>
         {% endif %}

@@ -27,13 +27,6 @@ class ProposalFilterSet(django_filters.FilterSet):
         choices=get_ordering_choices
     )
 
-    @property
-    def qs(self):
-        return super().qs.filter(module=self.request.module) \
-            .annotate_positive_rating_count() \
-            .annotate_negative_rating_count() \
-            .annotate_comment_count()
-
     class Meta:
         model = models.Proposal
         fields = ['category']
@@ -48,6 +41,12 @@ class ProposalListView(module_views.ItemListView):
         if self.mode == 'map':
             self.paginate_by = 0
         return super().dispatch(request, **kwargs)
+
+    def get_queryset(self):
+        return super().get_queryset().filter(module=self.module) \
+            .annotate_positive_rating_count() \
+            .annotate_negative_rating_count() \
+            .annotate_comment_count()
 
 
 class ProposalDetailView(module_views.ItemDetailView):
@@ -90,7 +89,7 @@ class ProposalModerateView(rules_mixins.PermissionRequiredMixin,
     template_name = 'meinberlin_budgeting/proposal_moderate_form.html'
 
     def get_success_url(self):
-        return self.request.path
+        return self.get_object().get_absolute_url()
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()

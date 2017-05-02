@@ -11,10 +11,10 @@
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
     {% endblock %}
-    <link rel="stylesheet" type="text/css" href="{% static 'meinberlin.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'vendor.js' %}"></script>
-    <script src="{% static 'meinberlin.js' %}"></script>
+    <script src="{% static 'adhocracy4.js' %}"></script>
     <meta name="viewport" content="width=device-width" />
     {% if request.user.is_authenticated %}
     <script>

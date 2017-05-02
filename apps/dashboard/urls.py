@@ -29,4 +29,7 @@ urlpatterns = [
     url(r'^projects/(?P<slug>[-\w_]+)/moderators/$',
         views.DashboardProjectModeratorsView.as_view(),
         name='dashboard-project-moderators'),
+    url(r'^projects/(?P<slug>[-\w_]+)/management/$',
+        views.DashboardProjectManagementView.as_view(),
+        name='dashboard-project-management'),
 ]
