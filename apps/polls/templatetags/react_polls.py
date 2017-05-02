@@ -21,7 +21,7 @@ def react_polls(context, question):
             'label': choice.label,
             'count': choice.vote_count,
             'ownChoice': (choice.pk in user_choices)
-        } for choice in question.choices.annotate_with_vote_count()]
+        } for choice in question.choices.annotate_vote_count()]
     }
 
     return format_html(
