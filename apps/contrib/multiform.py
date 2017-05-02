@@ -52,7 +52,7 @@ class MultiModelForm(multiform.MultiModelForm):
         return values
 
     def full_clean(self):
-        """Modified full clean that does collect cleaned data from formsets.
+        """Do full clean and collect cleaned data from formsets.
 
         Should be moved to multiforms itself.
         """
