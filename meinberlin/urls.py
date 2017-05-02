@@ -34,8 +34,10 @@ js_info_dict = {
 }
 
 router = routers.DefaultRouter()
-router.register(r'documents', DocumentViewSet, base_name='documents')
 router.register(r'reports', ReportViewSet, base_name='reports')
+
+module_router = a4routers.ModuleDefaultRouter()
+module_router.register(r'documents', DocumentViewSet, base_name='documents')
 
 ct_router = a4routers.ContentTypeDefaultRouter()
 ct_router.register(r'comments', CommentViewSet, base_name='comments')
@@ -62,6 +64,7 @@ urlpatterns = [
                                namespace='meinberlin_mapideas')),
 
     url(r'^api/', include(ct_router.urls)),
+    url(r'^api/', include(module_router.urls)),
     url(r'^api/', include(router.urls)),
 
     url(r'^upload/',
