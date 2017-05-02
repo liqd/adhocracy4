@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models import Count
 
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.modules import models as module_models
@@ -19,14 +18,8 @@ class Question(models.Model):
         related_name='questions'
     )
 
-    def choices_with_vote_count(self):
-        return self.choices\
-            .filter(question=self)\
-            .annotate(vote__count=Count('votes'))
-
     def user_choices_list(self, user):
         return self.choices\
-            .filter(question=self)\
             .filter(votes__creator=user)\
             .values_list('id', flat=True)
 
@@ -35,6 +28,16 @@ class Question(models.Model):
 
     class Meta:
         ordering = ['weight']
+
+
+class ChoiceQuerySet(models.QuerySet):
+
+    def annotate_vote_count(self):
+        return self.annotate(
+            vote_count=models.Count(
+                'votes'
+            )
+        )
 
 
 class Choice(models.Model):
@@ -46,11 +49,7 @@ class Choice(models.Model):
         related_name='choices',
     )
 
-    @property
-    def vote_count(self):
-        if hasattr(self, 'vote__count'):
-            return self.vote__count
-        return self.votes.count()
+    objects = ChoiceQuerySet.as_manager()
 
     def __str__(self):
         return '%s @%s' % (self.label, self.question)
