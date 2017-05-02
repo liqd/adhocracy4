@@ -12,7 +12,7 @@
         <input type="submit" class="button button--primary" value="{% trans 'Yes'%}" />
     </form>
 
-    <a href="{% url 'meinberlin_topicprio:topic-mgmt-detail' object.slug as cancel %}" class="button button--light">
+    <a href="{% url 'dashboard-project-management' object.project.slug %}" class="button button--light">
         {% trans 'Cancel'%}
     </a>
 </div>

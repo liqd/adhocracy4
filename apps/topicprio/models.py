@@ -1,7 +1,6 @@
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.fields import GenericRelation
-from django.core.urlresolvers import reverse
 from django.db import models
 
 from adhocracy4 import transforms
@@ -21,10 +20,10 @@ class Topic(module_models.Item, category_models.Categorizable):
     name = models.CharField(max_length=120)
     description = RichTextUploadingField(config_name='image-editor')
     ratings = GenericRelation(rating_models.Rating,
-                              related_query_name='idea',
+                              related_query_name='topic',
                               object_id_field='object_pk')
     comments = GenericRelation(comment_models.Comment,
-                               related_query_name='idea',
+                               related_query_name='topic',
                                object_id_field='object_pk')
 
     objects = TopicQuerySet.as_manager()
@@ -39,8 +38,3 @@ class Topic(module_models.Item, category_models.Categorizable):
         self.description = transforms.clean_html_field(
             self.description, 'image-editor')
         super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse(
-            'meinberlin_topicprio:topic-mgmt-detail',
-            args=[str(self.slug)])

@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 
 
+from adhocracy4.filters import views as filter_views
 from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.modules import views as module_views
 from adhocracy4.rules import mixins as rules_mixins
@@ -64,7 +65,7 @@ class TopicCreateFilterSet(django_filters.FilterSet):
 
 class TopicMgmtView(DashboardBaseMixin,
                     rules_mixins.PermissionRequiredMixin,
-                    module_views.ItemListView):
+                    filter_views.FilteredListView):
     model = models.Topic
     template_name = 'meinberlin_topicprio/topic_mgmt_list.html'
     filter_set = TopicCreateFilterSet
@@ -102,16 +103,10 @@ class TopicMgmtCreateView(module_views.ItemCreateView):
     def organisation(self):
         return self.project.organisation
 
-
-class TopicMgmtDetailView(module_views.ItemDetailView):
-    model = models.Topic
-    permission_required = 'meinberlin_organisations.initiate_project'
-    template_name = 'meinberlin_topicprio/topic_mgmt_detail.html'
-    menu_item = 'project'
-
-    @property
-    def organisation(self):
-        return self.get_object().project.organisation
+    def get_success_url(self):
+        return reverse(
+            'dashboard-project-management',
+            kwargs={'slug': self.project})
 
 
 class TopicMgmtUpdateView(module_views.ItemUpdateView):
@@ -124,6 +119,11 @@ class TopicMgmtUpdateView(module_views.ItemUpdateView):
     @property
     def organisation(self):
         return self.get_object().project.organisation
+
+    def get_success_url(self):
+        return reverse(
+            'dashboard-project-management',
+            kwargs={'slug': self.get_object().project})
 
 
 class TopicMgmtDeleteView(module_views.ItemDeleteView):
