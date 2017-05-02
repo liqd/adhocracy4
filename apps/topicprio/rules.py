@@ -9,7 +9,7 @@ rules.add_perm(
 )
 
 rules.add_perm(
-    'meinberlin_topicprio.create_topic',
+    'meinberlin_topicprio.add_topic',
     module_predicates.is_project_admin
 )
 
