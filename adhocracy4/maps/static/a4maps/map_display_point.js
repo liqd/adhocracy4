@@ -1,4 +1,4 @@
-window.jQuery(document).ready(function () {
+var init = function () {
   var $ = window.jQuery
   var L = window.L
 
@@ -44,4 +44,7 @@ window.jQuery(document).ready(function () {
       }
     })
   })
-})
+}
+
+window.jQuery(init)
+window.jQuery(document).on('a4.embed.ready', init)

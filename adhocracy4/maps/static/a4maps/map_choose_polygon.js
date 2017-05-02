@@ -17,7 +17,7 @@ function getBasePolygon (L, polygon, bbox) {
   }
 }
 
-window.jQuery(document).ready(function () {
+var init = function () {
   var $ = window.jQuery
   var L = window.L
 
@@ -96,4 +96,7 @@ window.jQuery(document).ready(function () {
       map.invalidateSize().fitBounds(getBasePolygon(L, polygon, bbox))
     })
   })
-})
+}
+
+window.jQuery(init)
+window.jQuery(document).on('a4.embed.ready', init)
