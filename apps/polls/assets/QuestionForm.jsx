@@ -25,11 +25,6 @@ let QuestionForm = React.createClass({
     this.props.appendChoice(this.props.index)
   },
 
-  getChoiceErrors: function (key) {
-    // Props or State?
-    // return this.state.choiceErrors[key]
-  },
-
   /*
   |--------------------------------------------------------------------------
   | Question state related handlers
@@ -71,9 +66,9 @@ let QuestionForm = React.createClass({
                 type="text"
                 defaultValue={this.props.question.label}
                 onChange={this.handleLabelChange} />
-              {this.props.errors && this.props.errors.name
+              {this.props.errors && this.props.errors.label
                 ? <ul className="errorlist">
-                  {this.props.errors.name.map(function (msg, index) {
+                  {this.props.errors.label.map(function (msg, index) {
                     return <li key={msg}>{msg}</li>
                   })}
                 </ul>
@@ -85,6 +80,8 @@ let QuestionForm = React.createClass({
                 {
                   this.props.question.choices.map(function (choice, index) {
                     var key = choice.id || choice.key
+                    var errors = this.props.errors && this.props.errors.choices
+                      ? this.props.errors.choices[index] : {}
                     return (
                       <ChoiceForm
                         key={key}
@@ -92,7 +89,7 @@ let QuestionForm = React.createClass({
                         choice={choice}
                         updateChoiceLabel={this.handleUpdateChoiceLabel}
                         deleteChoice={this.handleDeleteChoice}
-                        errors={this.getChoiceErrors(key)}
+                        errors={errors}
                       />
                     )
                   }.bind(this))

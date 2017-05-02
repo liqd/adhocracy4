@@ -34,9 +34,9 @@ let ChoiceForm = React.createClass({
             <i className="fa fa-trash" />
           </button>
         </div>
-        {this.props.errors && this.props.errors.name
+        {this.props.errors && this.props.errors.label
           ? <ul className="errorlist">
-            {this.props.errors.name.map(function (msg, index) {
+            {this.props.errors.label.map(function (msg, index) {
               return <li key={msg}>{msg}</li>
             })}
           </ul>

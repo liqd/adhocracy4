@@ -10,7 +10,7 @@ let PollManagement = React.createClass({
   getInitialState: function () {
     return {
       questions: this.props.poll.questions,
-      questionErrors: {},
+      errors: [],
       successMessage: '',
       maxQuestionKey: 0,
       maxChoiceKey: 0
@@ -83,11 +83,6 @@ let PollManagement = React.createClass({
     this.setState({
       questions: update(this.state.questions, diff)
     })
-  },
-
-  getQuestionErrors: function (key) {
-    // Props or State?
-    return this.state.questionErrors[key]
   },
 
   /*
@@ -200,8 +195,7 @@ let PollManagement = React.createClass({
       }.bind(this))
       .fail(function (xhr, status, err) {
         this.setState({
-          nameErrors: xhr.responseJSON.name || [],
-          paragraphsErrors: xhr.responseJSON.paragraphs || []
+          errors: xhr.responseJSON.questions || []
         })
       }.bind(this))
   },
@@ -219,6 +213,7 @@ let PollManagement = React.createClass({
           {
             this.state.questions.map(function (question, index) {
               var key = question.id || question.key
+              var errors = this.state.errors && this.state.errors[index] ? this.state.errors[index] : {}
               return (
                 <QuestionForm
                   key={key}
@@ -228,7 +223,7 @@ let PollManagement = React.createClass({
                   moveQuestionUp={index !== 0 ? this.handleMoveQuestionUp : null}
                   moveQuestionDown={index < this.state.questions.length - 1 ? this.handleMoveQuestionDown : null}
                   deleteQuestion={this.handleDeleteQuestion}
-                  errors={this.getQuestionErrors(key)}
+                  errors={errors}
                   updateChoiceLabel={this.handleUpdateChoiceLabel}
                   deleteChoice={this.handleDeleteChoice}
                   appendChoice={this.handleAppendChoice}
