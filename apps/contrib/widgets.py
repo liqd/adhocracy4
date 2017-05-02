@@ -1,3 +1,4 @@
+import datetime
 from itertools import chain
 
 import django_filters
@@ -67,19 +68,33 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
 
     def render(self, name, value, attrs=None):
         date_attrs = self.build_attrs(attrs)
-        date_attrs.update({'class': 'datepicker'})
+        date_attrs.update({
+            'class': 'datepicker',
+            'placeholder': '1.1.2017'
+        })
         time_attrs = self.build_attrs(attrs)
-        time_attrs.update({'class': 'timepicker'})
+        time_attrs.update({
+            'class': 'timepicker',
+            'placeholder': '12:00',
+        })
+
+        if isinstance(value, datetime.datetime):
+            date = value.date()
+            time = value.time()
+        else:
+            # value's just a list in case of an error
+            date = value[0] if value else None
+            time = value[1] if value else None
 
         return render_to_string('datetime_input.html', {
             'date': self.widgets[0].render(
                 name + '_0',
-                value.date(),
+                date,
                 date_attrs
             ),
             'time': self.widgets[1].render(
                 name + '_1',
-                value.time(),
+                time,
                 time_attrs
             )
         })
