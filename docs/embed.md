@@ -86,11 +86,6 @@ restrictions:
 
             $(document).on('click', '.my-special-selector', function () {…})
 
-    -   Trigger the code from a script tag within the page:
-
-            <div id="paragraphs"></div>
-            <script>adhocracy4.renderParagraphs('#paragraphs', …)</script>
-
     -   Use the `a4.embed.ready` custom event whereever you use
         `$(function () {…})` (formerly `$(document).ready()`).
 
