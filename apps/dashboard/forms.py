@@ -55,8 +55,12 @@ class ProjectForm(forms.ModelForm):
 
 
 class PhaseForm(forms.ModelForm):
-    end_date = forms.SplitDateTimeField(widget=widgets.DateTimeInput)
-    start_date = forms.SplitDateTimeField(widget=widgets.DateTimeInput)
+    end_date = forms.SplitDateTimeField(
+        widget=widgets.DateTimeInput(time_format='%H:%M')
+    )
+    start_date = forms.SplitDateTimeField(
+        widget=widgets.DateTimeInput(time_format='%H:%M')
+    )
 
     class Meta:
         model = phase_models.Phase
