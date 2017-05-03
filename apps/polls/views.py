@@ -35,8 +35,18 @@ class PollManagementView(DashboardBaseMixin,
             'dashboard-project-list',
             kwargs={'organisation_slug': self.organisation.slug, })
 
+    def get_or_create_poll(self):
+        try:
+            obj = models.Poll.objects.get(module=self.module)
+        except models.Poll.DoesNotExist:
+            obj = models.Poll(module=self.module, creator=self.request.user)
+            obj.save()
+        return obj
+
     def dispatch(self, *args, **kwargs):
         self.project = kwargs['project']
         self.module = self.project.module_set.first()
         self.request.module = self.module
+        self.poll = self.get_or_create_poll()
+
         return super(PollManagementView, self).dispatch(*args, **kwargs)

@@ -17,5 +17,5 @@ rules.add_perm(
 
 rules.add_perm(
     'meinberlin_polls.cast_vote',
-    module_predicates.is_allowed_create_item(models.Vote)
+    module_predicates.is_allowed_add_item(models.Vote)
 )
