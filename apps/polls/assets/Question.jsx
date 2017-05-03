@@ -3,42 +3,59 @@ var django = require('django')
 
 var Question = React.createClass({
   getInitialState: function () {
-    // FIXME: example data
+    const choices = this.props.question.choices
+    const ownChoice = this.findOwnChoice(choices)
     return {
-      label: this.props.question.label,
-      choices: this.props.question.choices,
-      ownChoice: null,
+      counts: choices.map(o => o.count),
+      ownChoice: ownChoice,
+      selectedChoice: ownChoice,
       active: true,
-      showResult: false
+      showResult: !(ownChoice === null)
     }
+  },
+
+  findOwnChoice: function (choices) {
+    let ownChoice = null
+    choices.forEach(function (choice, i) {
+      if (choice.ownChoice) {
+        ownChoice = i
+      }
+    })
+    return ownChoice
   },
 
   toggleShowResult: function () {
     this.setState({
+      selectedChoice: this.state.ownChoice,
       showResult: !this.state.showResult
     })
   },
 
-  vote: function (event) {
+  handleVote: function (event) {
     event.preventDefault()
 
-    let rawValue = event.target.question.value
-    if (!rawValue) {
-      // TODO: show error
-    } else {
-      let value = parseInt(rawValue)
-      // TODO: sent to server
-      // TODO: show success/error message
-      // TODO: Fix for ownChoice within choice
-      this.setState({
-        showResult: true,
-        ownChoice: value
-      })
-    }
+    let newChoice = this.state.selectedChoice
+
+    let counts = this.state.counts
+    counts[this.state.ownChoice]--
+    counts[newChoice]++
+
+    this.setState({
+      showResult: true,
+      ownChoice: newChoice,
+      selectedChoice: newChoice,
+      counts: counts
+    })
+  },
+
+  handleOnChange: function (event) {
+    this.setState({
+      selectedChoice: event.target.value
+    })
   },
 
   render: function () {
-    let counts = this.state.choices.map(o => o.count)
+    let counts = this.state.counts
     let total = counts.reduce((sum, c) => sum + c, 0)
     let max = Math.max.apply(null, counts)
 
@@ -66,15 +83,17 @@ var Question = React.createClass({
     }
 
     return (
-      <form onSubmit={this.vote}>
-        <h2>{ this.state.label }</h2>
+      <form onSubmit={this.handleVote}>
+        <h2>{ this.props.question.label }</h2>
 
         <div className="poll">
           {
-            this.state.choices.map((choice, i) => {
-              let checked = choice.ownChoice
-              let percent = Math.round(choice.count / total * 100)
-              let highlight = choice.count === max
+            this.props.question.choices.map((choice, i) => {
+              let checked = this.state.selectedChoice === i
+              let chosen = this.state.ownChoice === i
+              let count = this.state.counts[i]
+              let percent = Math.round(count / total * 100)
+              let highlight = count === max
 
               if (this.state.showResult || !this.state.active) {
                 return (
@@ -82,7 +101,7 @@ var Question = React.createClass({
                     <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')} style={{width: percent + '%'}} />
                     <div className="poll-row__number">{ percent }%</div>
                     <div className="poll-row__label">{ choice.label }</div>
-                    { checked ? <i className="fa fa-check-circle u-secondary" aria-label={django.gettext('Your choice')} /> : '' }
+                    { chosen ? <i className="fa fa-check-circle u-secondary" aria-label={django.gettext('Your choice')} /> : '' }
                   </div>
                 )
               } else {
@@ -91,9 +110,11 @@ var Question = React.createClass({
                     <input
                       className="poll-row__radio"
                       type="radio"
-                      name="poll"
+                      name="question"
                       value={i}
-                      defaultChecked={checked} />
+                      checked={checked}
+                      onChange={this.handleOnChange}
+                    />
                     { choice.label }
                   </label>
                 )

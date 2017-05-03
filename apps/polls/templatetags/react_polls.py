@@ -14,7 +14,6 @@ def react_polls(context, question):
     user = context['request'].user
     user_choices = question.user_choices_list(user)
 
-    # TODO: use serializer
     data = {
         'label': question.label,
         'choices': [{
