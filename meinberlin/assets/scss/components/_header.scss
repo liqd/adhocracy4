@@ -201,9 +201,3 @@ $header-overlap: -2.5em;
         margin-top: $header-overlap - $header-margin-bottom;
     }
 }
-
-// compensate for margin-bottom on messages
-.messages + .resource-header,
-.messages + .hero-unit {
-    margin-top: $header-overlap;
-}
