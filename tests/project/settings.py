@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     'adhocracy4.reports.apps.ReportsConfig',
     'adhocracy4.comments.apps.CommentsConfig',
     'adhocracy4.maps.apps.MapsConfig',
+    'adhocracy4.follows.apps.FollowsConfig',
 
     # adhocrayc4 generic apps
     'adhocracy4.ratings.apps.RatingsConfig',
