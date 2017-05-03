@@ -1,10 +1,9 @@
+var api = require('adhocracy4').api
 var React = require('react')
 var django = require('django')
 var update = require('react-addons-update')
 var FlipMove = require('react-flip-move')
 var QuestionForm = require('./QuestionForm')
-
-var $ = require('jquery')
 
 let PollManagement = React.createClass({
   getInitialState: function () {
@@ -146,41 +145,14 @@ let PollManagement = React.createClass({
   handleSubmit: function (e) {
     e.preventDefault()
 
-    var baseURL = '/api/'
-    var url = baseURL + 'modules/$moduleId/polls/'
-
-    var urlReplaces = {moduleId: this.props.module}
-
-    url = url.replace(/\$(\w+?)\b/g, (match, group) => {
-      return urlReplaces[group]
-    })
-
-    url = url + this.props.poll.id + '/'
-
-    var data = {
+    let urlReplaces = {moduleId: this.props.module}
+    let data = {
       id: this.props.poll.id,
-      questions: this.state.questions
+      questions: this.state.questions,
+      urlReplaces: urlReplaces
     }
 
-    var $body = $('body')
-
-    var params = {
-      url: url,
-      type: 'PUT',
-      contentType: 'application/json; charset=utf-8',
-      dataType: 'json',
-      data: JSON.stringify(data),
-      error: function (xhr, status, err) {
-        console.error(url, status, err.toString())
-      },
-      complete: function () {
-        $body.removeClass('loading')
-      }
-    }
-
-    $body.addClass('loading')
-    var promise = $.ajax(params)
-
+    let promise = api.polls.change(data, this.props.poll.id)
     promise
       .done(function (data) {
         this.setState({
