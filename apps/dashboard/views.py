@@ -165,7 +165,7 @@ class DashboardOrganisationUpdateView(dashboard_mixins.DashboardBaseMixin,
     slug_url_kwarg = 'organisation_slug'
     template_name = 'meinberlin_dashboard/organisation_form.html'
     success_message = _('Organisation successfully updated.')
-    permission_required = 'meinberlin_organisations.modify_organisation'
+    permission_required = 'meinberlin_organisations.change_organisation'
     menu_item = 'organisation'
 
 
