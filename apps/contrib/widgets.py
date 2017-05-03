@@ -7,6 +7,7 @@ from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms import widgets as form_widgets
 from django.forms.widgets import flatatt
 from django.template.loader import render_to_string
+from django.utils.timezone import localtime
 from django.utils.translation import ugettext as _
 
 
@@ -79,6 +80,7 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
         })
 
         if isinstance(value, datetime.datetime):
+            value = localtime(value)
             date = value.date()
             time = value.time()
         else:
