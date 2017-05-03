@@ -121,7 +121,7 @@ blueprints = [
          content=[
              topicprio_phases.PrioritizePhase(),
          ],
-         image='images/blueprints/external-project.svg',
+         image='images/blueprints/priorization.svg',
          settings_model=None,
      )),
 ]
