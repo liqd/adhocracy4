@@ -106,7 +106,7 @@ class TopicMgmtCreateView(module_views.ItemCreateView):
     def get_success_url(self):
         return reverse(
             'dashboard-project-management',
-            kwargs={'slug': self.project})
+            kwargs={'slug': self.project.slug})
 
 
 class TopicMgmtUpdateView(module_views.ItemUpdateView):
@@ -123,7 +123,7 @@ class TopicMgmtUpdateView(module_views.ItemUpdateView):
     def get_success_url(self):
         return reverse(
             'dashboard-project-management',
-            kwargs={'slug': self.get_object().project})
+            kwargs={'slug': self.get_object().project.slug})
 
 
 class TopicMgmtDeleteView(module_views.ItemDeleteView):
@@ -144,4 +144,4 @@ class TopicMgmtDeleteView(module_views.ItemDeleteView):
     def get_success_url(self):
         return reverse(
             'dashboard-project-management',
-            kwargs={'slug': self.get_object().project})
+            kwargs={'slug': self.get_object().project.slug})
