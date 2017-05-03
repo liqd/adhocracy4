@@ -1,4 +1,4 @@
-var api = require('adhocracy4').api
+var api = require('../../../static/api')
 var django = require('django')
 var React = require('react')
 
@@ -27,10 +27,11 @@ var FollowButton = React.createClass({
          })
        })
        .fail((response) => {
-         response.status === 404
-         this.setState({
-           followed: false
-         })
+         if (response.status === 404) {
+           this.setState({
+             followed: false
+           })
+         }
        })
   },
   render: function () {
