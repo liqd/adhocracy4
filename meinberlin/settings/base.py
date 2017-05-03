@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'adhocracy4.comments.apps.CommentsConfig',
     'adhocracy4.categories.apps.CategoriesConfig',
     'adhocracy4.maps.apps.MapsConfig',
+    'adhocracy4.follows.apps.FollowsConfig',
 
     'apps.contrib.apps.Config',
     'apps.cms.apps.Config',
@@ -310,6 +311,7 @@ A4_REPORTABLES = (
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
 )
+A4_AUTO_FOLLOWABLES = (('a4comments', 'comment'),)
 
 A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'

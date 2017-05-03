@@ -16,6 +16,7 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentViewSet
+from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 
@@ -35,6 +36,7 @@ js_info_dict = {
 }
 
 router = routers.DefaultRouter()
+router.register(r'follows', FollowViewSet, base_name='follows')
 router.register(r'reports', ReportViewSet, base_name='reports')
 
 module_router = a4routers.ModuleDefaultRouter()
