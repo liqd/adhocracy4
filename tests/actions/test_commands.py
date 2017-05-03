@@ -42,7 +42,7 @@ def test_phase_end_tomorrow(phase_factory):
         action = Action.objects.last()
         assert action_count == 1
         assert action.obj == phase
-        assert action.verb == Verbs.COMPLETE.value
+        assert action.verb == Verbs.SCHEDULE.value
         assert action.project == project
 
 

@@ -18,14 +18,14 @@ class Command(BaseCommand):
             project = phase.module.project
             existing_action = Action.objects.filter(
                 project=project,
-                verb=Verbs.COMPLETE.value,
+                verb=Verbs.SCHEDULE.value,
                 timestamp=phase.end_date,
             )
 
             if not existing_action:
                 Action.objects.create(
                     project=project,
-                    verb=Verbs.COMPLETE.value,
+                    verb=Verbs.SCHEDULE.value,
                     timestamp=phase.end_date,
                     obj=phase,
                 )

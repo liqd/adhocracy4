@@ -7,6 +7,7 @@ class Verbs(enum.Enum):
     ADD = 'add'
     UPDATE = 'update'
     COMPLETE = 'complete'
+    SCHEDULE = 'schedule'
 
 
 def choices():
