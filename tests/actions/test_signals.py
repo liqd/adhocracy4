@@ -1,8 +1,8 @@
 import pytest
 
-from adhocracy4.actions import verbs
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.signals import add_action
+from adhocracy4.actions.verbs import Verbs
 
 
 @pytest.mark.django_db
@@ -12,7 +12,7 @@ def test_project_create(project_factory):
     action = Action.objects.first()
     assert action.actor is None
     assert action.obj == project
-    assert action.verb == verbs.CREATE
+    assert action.verb == Verbs.CREATE.value
     assert action.target is None
 
 
@@ -23,7 +23,7 @@ def test_item_add(question_factory):
     action = Action.objects.last()
     assert action.actor == question.creator
     assert action.obj == question
-    assert action.verb == verbs.ADD
+    assert action.verb == Verbs.ADD.value
     assert action.target == question.project
     assert action.project == question.project
 
@@ -35,7 +35,7 @@ def test_item_update(question_factory):
     action = Action.objects.last()
     assert action.actor == question.creator
     assert action.obj == question
-    assert action.verb == verbs.UPDATE
+    assert action.verb == Verbs.UPDATE.value
     assert action.target is None
     assert action.project == question.project
 
@@ -48,7 +48,7 @@ def test_content_object_create(question_factory, comment_factory):
     action = Action.objects.last()
     assert action.actor == comment.creator
     assert action.obj == comment
-    assert action.verb == verbs.ADD
+    assert action.verb == Verbs.ADD.value
     assert action.target == question
     assert action.project == comment.project
 
@@ -61,6 +61,6 @@ def test_content_object_update(question_factory, comment_factory):
     action = Action.objects.last()
     assert action.actor == comment.creator
     assert action.obj == comment
-    assert action.verb == verbs.UPDATE
+    assert action.verb == Verbs.UPDATE.value
     assert action.target is None
     assert action.project == comment.project

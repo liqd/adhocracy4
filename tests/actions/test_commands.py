@@ -5,8 +5,8 @@ from dateutil.parser import parse
 from django.core.management import call_command
 from freezegun import freeze_time
 
-from adhocracy4.actions import verbs
 from adhocracy4.actions.models import Action
+from adhocracy4.actions.verbs import Verbs
 
 
 @pytest.mark.django_db
@@ -42,7 +42,7 @@ def test_phase_end_tomorrow(phase_factory):
         action = Action.objects.last()
         assert action_count == 1
         assert action.obj == phase
-        assert action.verb == verbs.COMPLETE
+        assert action.verb == Verbs.COMPLETE.value
         assert action.project == project
 
 

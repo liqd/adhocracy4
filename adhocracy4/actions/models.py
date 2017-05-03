@@ -52,7 +52,10 @@ class Action(models.Model):
 
     timestamp = models.DateTimeField(default=timezone.now)
     public = models.BooleanField(default=True, db_index=True)
-    verb = models.CharField(max_length=255, db_index=True, choices=verbs.all())
+    verb = models.CharField(
+        max_length=255,
+        db_index=True,
+        choices=verbs.choices())
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):

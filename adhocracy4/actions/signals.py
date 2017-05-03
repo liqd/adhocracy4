@@ -2,8 +2,8 @@ from django.apps import apps
 from django.conf import settings
 from django.db.models.signals import post_save
 
-from . import verbs
 from .models import Action
+from .verbs import Verbs
 
 
 def _extract_target(instance):
@@ -21,12 +21,12 @@ def add_action(sender, instance, created, **kwargs):
     if created:
         target = _extract_target(instance)
         if target:
-            verb = verbs.ADD
+            verb = Verbs.ADD.value
         else:
-            verb = verbs.CREATE
+            verb = Verbs.CREATE.value
 
     else:
-        verb = verbs.UPDATE
+        verb = Verbs.UPDATE.value
 
     action = Action(
         actor=actor,

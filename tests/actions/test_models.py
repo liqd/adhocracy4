@@ -4,7 +4,7 @@ from freezegun import freeze_time
 from django.utils import timezone
 
 from adhocracy4.actions.models import Action
-from adhocracy4.actions import verbs
+from adhocracy4.actions.verbs import Verbs
 
 
 @pytest.mark.django_db
@@ -15,13 +15,13 @@ def test_action_create(question_factory):
     with freeze_time(now):
         action = Action(
             actor=question.creator,
-            verb=verbs.ADD,
+            verb=Verbs.ADD.value,
             obj=question,
             target=project,
             description='description'
         )
     assert action.actor == question.creator
-    assert action.verb == verbs.ADD
+    assert action.verb == Verbs.ADD.value
     assert action.obj == question
     assert action.target == project
     assert action.timestamp == now
@@ -35,11 +35,11 @@ def test_action_string_full(question_factory):
     project = question.module.project
     action = Action(
         actor=question.creator,
-        verb=verbs.ADD,
+        verb=Verbs.ADD.value,
         obj=question,
         target=project,
     )
-    str_expected = '{} added {} to {}'.format(
+    str_expected = '{} add {} to {}'.format(
         question.creator,
         question,
         project
@@ -52,11 +52,11 @@ def test_action_string_with_target(question_factory):
     question = question_factory()
     project = question.module.project
     action = Action(
-        verb=verbs.ADD,
+        verb=Verbs.ADD.value,
         obj=question,
         target=project,
     )
-    str_expected = 'added {} to {}'.format(
+    str_expected = 'add {} to {}'.format(
         question,
         project
     )
@@ -68,10 +68,10 @@ def test_action_string_with_actor(question_factory):
     question = question_factory()
     action = Action(
         actor=question.creator,
-        verb=verbs.CREATE,
+        verb=Verbs.CREATE.value,
         obj=question,
     )
-    str_expected = '{} created {}'.format(
+    str_expected = '{} create {}'.format(
         question.creator,
         question,
     )
@@ -82,10 +82,10 @@ def test_action_string_with_actor(question_factory):
 def test_action_string_without_actor(question_factory):
     question = question_factory()
     action = Action(
-        verb=verbs.CREATE,
+        verb=Verbs.CREATE.value,
         obj=question,
     )
-    str_expected = 'created {}'.format(
+    str_expected = 'create {}'.format(
         question,
     )
     assert str(action) == str_expected

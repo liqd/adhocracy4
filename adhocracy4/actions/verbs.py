@@ -1,12 +1,14 @@
+import enum
+
+
 # http://activitystrea.ms/registry/verbs/
+class Verbs(enum.Enum):
+    CREATE = 'create'
+    ADD = 'add'
+    UPDATE = 'update'
+    COMPLETE = 'complete'
 
-CREATE = 'created'
-ADD = 'added'
-UPDATE = 'updated'
-COMPLETE = 'completed'
 
-
-def all():
-    items = sorted(globals().items())
-    return [(value, name) for name, value in items
-            if not name.startswith('_') and name != 'all']
+def choices():
+    verbs = list(Verbs)
+    return [(verb.value, verb.name) for verb in verbs]

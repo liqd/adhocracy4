@@ -1,8 +1,8 @@
 from django.core.management.base import BaseCommand
 
 from adhocracy4.phases.models import Phase
-from adhocracy4.actions import verbs
 from adhocracy4.actions.models import Action
+from adhocracy4.actions.verbs import Verbs
 
 
 class Command(BaseCommand):
@@ -18,14 +18,14 @@ class Command(BaseCommand):
             project = phase.module.project
             existing_action = Action.objects.filter(
                 project=project,
-                verb=verbs.COMPLETE,
+                verb=Verbs.COMPLETE.value,
                 timestamp=phase.end_date,
             )
 
             if not existing_action:
                 Action.objects.create(
                     project=project,
-                    verb=verbs.COMPLETE,
+                    verb=Verbs.COMPLETE.value,
                     timestamp=phase.end_date,
                     obj=phase,
                 )
