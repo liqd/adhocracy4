@@ -12,7 +12,7 @@ rules.add_perm(
 
 
 rules.add_perm(
-    'meinberlin_budgeting.create_proposal',
+    'meinberlin_budgeting.add_proposal',
     module_predicates.is_allowed_add_item(models.Proposal)
 )
 

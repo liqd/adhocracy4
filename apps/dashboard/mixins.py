@@ -91,7 +91,7 @@ class DashboardModRemovalMixin:
             user = get_object_or_404(User, pk=pk)
             project = self.get_object()
             can_edit = request.user.has_perm(
-                'meinberlin_organisations.initiate_project',
+                'a4projects.add_project',
                 project
             )
             if not can_edit:
