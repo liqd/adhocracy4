@@ -148,6 +148,7 @@ A4_RATEABLES = (('a4test_questions', 'question'), ('a4comments', 'comment'),)
 A4_REPORTABLES = (('a4test_questions', 'question'),)
 A4_COMMENTABLES = (('a4test_questions', 'question'),
                    ('a4comments', 'comment'),)
+A4_AUTO_FOLLOWABLES = (('a4comments', 'comment'),)
 
 # Rich text fields
 

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db.models.signals import post_save
 
 from . import models
@@ -13,4 +14,5 @@ def autofollow_hook(instance, **kwargs):
             })
 
 
-post_save.connect(autofollow_hook, 'a4comments.Comment')
+for model in settings.A4_AUTO_FOLLOWABLES:
+    post_save.connect(autofollow_hook, model)
