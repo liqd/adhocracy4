@@ -22,11 +22,10 @@
     }
 
     .filter-bar__ordering {
-        @media (min-width: $breakpoint) {
-            float: right;
-        }
+        float: right;
 
         @media (max-width: $breakpoint) {
+            float: none;
             // push to the right
             // NOTE: needs to overwrite grid-tiles
             @include grid-position(6);

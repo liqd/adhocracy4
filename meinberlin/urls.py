@@ -30,6 +30,7 @@ from apps.ideas import urls as ideas_urls
 from apps.mapideas import urls as mapideas_urls
 from apps.projects import urls as projects_urls
 from apps.servicekonto import urls as servicekonto_urls
+from apps.topicprio import urls as topicprio_urls
 
 
 js_info_dict = {
@@ -37,8 +38,10 @@ js_info_dict = {
 }
 
 router = routers.DefaultRouter()
-router.register(r'documents', DocumentViewSet, base_name='documents')
 router.register(r'reports', ReportViewSet, base_name='reports')
+
+module_router = a4routers.ModuleDefaultRouter()
+module_router.register(r'documents', DocumentViewSet, base_name='documents')
 
 ct_router = a4routers.ContentTypeDefaultRouter()
 ct_router.register(r'comments', CommentViewSet, base_name='comments')
@@ -65,8 +68,11 @@ urlpatterns = [
                                 namespace='meinberlin_budgeting')),
     url(r'^mapideas/', include(mapideas_urls,
                                namespace='meinberlin_mapideas')),
+    url(r'^topicprio/', include(topicprio_urls,
+                                namespace='meinberlin_topicprio')),
 
     url(r'^api/', include(ct_router.urls)),
+    url(r'^api/', include(module_router.urls)),
     url(r'^api/', include(router.urls)),
 
     url(r'^upload/',

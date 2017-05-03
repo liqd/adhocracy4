@@ -1,7 +1,9 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
+from django.http.response import HttpResponseNotFound
 from django.utils.translation import ugettext as _
 from django.views import generic
+from django.views.generic.detail import SingleObjectMixin
 
 from adhocracy4.categories import models as category_models
 from adhocracy4.filters import views as filter_views
@@ -182,3 +184,41 @@ class DashboardProjectModeratorsView(dashboard_mixins.DashboardBaseMixin,
         kwargs = super().get_form_kwargs()
         kwargs['request'] = self.request
         return kwargs
+
+
+class DashboardProjectManagementView(dashboard_mixins.DashboardBaseMixin,
+                                     rules_mixins.PermissionRequiredMixin,
+                                     SingleObjectMixin,
+                                     generic.View):
+    model = project_models.Project
+    permission_required = 'meinberlin_organisations.initiate_project'
+    menu_item = 'project'
+
+    def dispatch(self, request, *args, **kwargs):
+        project = self.get_object()
+
+        management_view = get_management_view(project)
+        if management_view:
+            view = management_view.as_view()
+            return view(request, project=project, *args, **kwargs)
+
+        return HttpResponseNotFound()
+
+    def get_success_url(self):
+        return reverse(
+            'dashboard-project-list',
+            kwargs={'organisation_slug': self.organisation.slug, })
+
+
+def get_management_view(project):
+    """
+    Test if any phase has a management_view set.
+
+    Note, that the first management_view found is used.
+    """
+    for phase in project.phases:
+        content = phase.content()
+        if hasattr(content, 'management_view'):
+            return getattr(content, 'management_view')
+
+        return None

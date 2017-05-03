@@ -5,7 +5,7 @@ var autoprefixer = require('autoprefixer')
 
 module.exports = {
   entry: {
-    meinberlin: [
+    adhocracy4: [
       './meinberlin/assets/scss/style.scss',
       './meinberlin/assets/js/app.js'
     ],
@@ -21,9 +21,13 @@ module.exports = {
       'react-dom',
       'react-flip-move',
       'shariff',
-      'shariff/build/shariff.min.css',
+      'shariff/build/shariff.min.css'
+    ],
+    leaflet: [
       'leaflet',
-      'leaflet/dist/leaflet.css',
+      'leaflet/dist/leaflet.css'
+    ],
+    'leaflet.draw': [
       'leaflet-draw',
       'leaflet-draw/dist/leaflet.draw.css'
     ]
@@ -31,7 +35,7 @@ module.exports = {
   devtool: 'eval',
   output: {
     libraryTarget: 'var',
-    library: 'adhocracy4',
+    library: '[name]',
     path: './meinberlin/static/',
     publicPath: '/static/',
     filename: '[name].js'
