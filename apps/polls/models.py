@@ -3,6 +3,8 @@ from django.db import models
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.modules import models as module_models
 
+from . import validators
+
 
 class Poll(module_models.Item):
     pass
@@ -62,8 +64,11 @@ class Vote(UserGeneratedContentModel):
         related_name='votes'
     )
 
-    class Meta:
-        unique_together = ('creator', 'choice')
+    def validate_unique(self, exclude=None):
+        super(Vote, self).validate_unique(exclude)
+        validators.single_vote_per_user(self.creator,
+                                        self.choice.question,
+                                        self.pk)
 
     def __str__(self):
         return '%s: %s' % (self.creator, self.choice)

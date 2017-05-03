@@ -1,19 +1,8 @@
+from django.core.exceptions import NON_FIELD_ERRORS
 from django.core.exceptions import ValidationError
-
 from django.utils.translation import ugettext as _
 
-
-def single_poll_per_module(module, pk=None):
-    from .models import Poll
-    siblings = Poll.objects.filter(module=module)
-
-    if pk:
-        siblings = siblings.exclude(pk=pk)
-
-    if len(siblings) != 0:
-        raise ValidationError(
-            _('Document for that module already exists')
-        )
+from . import models
 
 
 def single_item_per_module(module, model, pk=None):
@@ -29,3 +18,18 @@ def single_item_per_module(module, model, pk=None):
             }
         )
 
+
+def single_vote_per_user(user, question, pk=None):
+    qs = models.Vote.objects\
+        .filter(choice__question=question)\
+        .filter(creator=user)
+
+    if pk:
+        qs = qs.exclude(pk=pk)
+
+    if len(qs) > 0:
+        raise ValidationError({
+            NON_FIELD_ERRORS: [
+                _('Only one vote per question is allowed per user.'),
+            ]
+        })
