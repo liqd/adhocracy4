@@ -27,7 +27,7 @@ class DashboardProjectListView(dashboard_mixins.DashboardBaseMixin,
     paginate_by = 12
     filter_set = DashboardProjectFilterSet
     template_name = 'meinberlin_dashboard/project_list.html'
-    permission_required = 'meinberlin_organisations.initiate_project'
+    permission_required = 'a4projects.add_project'
     menu_item = 'project'
 
     def get_queryset(self):
@@ -41,7 +41,7 @@ class DashboardBlueprintListView(dashboard_mixins.DashboardBaseMixin,
                                  generic.TemplateView):
     template_name = 'meinberlin_dashboard/blueprint_list.html'
     blueprints = blueprints.blueprints
-    permission_required = 'meinberlin_organisations.initiate_project'
+    permission_required = 'a4projects.add_project'
     menu_item = 'project'
 
 
@@ -54,7 +54,7 @@ class DashboardProjectCreateView(dashboard_mixins.DashboardBaseMixin,
     form_class = forms.ProjectCreateForm
     template_name = 'meinberlin_dashboard/project_create_form.html'
     success_message = _('Project succesfully created.')
-    permission_required = 'meinberlin_organisations.initiate_project'
+    permission_required = 'a4projects.add_project'
     menu_item = 'project'
 
     def get_form_kwargs(self):
@@ -78,7 +78,7 @@ class DashboardExternalProjectCreateView(dashboard_mixins.DashboardBaseMixin,
     form_class = forms.ExternalProjectCreateForm
     template_name = 'meinberlin_dashboard/external_project_create_form.html'
     success_message = _('Project succesfully created.')
-    permission_required = 'meinberlin_organisations.initiate_project'
+    permission_required = 'a4projects.add_project'
     menu_item = 'project'
 
     def get_form_kwargs(self):
@@ -102,7 +102,7 @@ class DashboardProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
     form_class = forms.ProjectUpdateForm
     template_name = 'meinberlin_dashboard/project_update_form.html'
     success_message = _('Project successfully updated.')
-    permission_required = 'meinberlin_organisations.initiate_project'
+    permission_required = 'a4projects.add_project'
     menu_item = 'project'
 
     def get_queryset(self):
@@ -140,7 +140,7 @@ class DashboardExternalProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
     form_class = forms.ExternalProjectUpdateForm
     template_name = 'meinberlin_dashboard/external_project_update_form.html'
     success_message = _('Project successfully updated.')
-    permission_required = 'meinberlin_organisations.initiate_project'
+    permission_required = 'a4projects.add_project'
     menu_item = 'project'
 
     def get_queryset(self):
@@ -165,7 +165,7 @@ class DashboardOrganisationUpdateView(dashboard_mixins.DashboardBaseMixin,
     slug_url_kwarg = 'organisation_slug'
     template_name = 'meinberlin_dashboard/organisation_form.html'
     success_message = _('Organisation successfully updated.')
-    permission_required = 'meinberlin_organisations.modify_organisation'
+    permission_required = 'meinberlin_organisations.change_organisation'
     menu_item = 'organisation'
 
 
@@ -177,7 +177,7 @@ class DashboardProjectModeratorsView(dashboard_mixins.DashboardBaseMixin,
     model = project_models.Project
     form_class = forms.AddModeratorForm
     template_name = 'meinberlin_dashboard/project_moderators.html'
-    permission_required = 'meinberlin_organisations.initiate_project'
+    permission_required = 'a4projects.add_project'
     menu_item = 'project'
 
     def get_form_kwargs(self):
@@ -191,7 +191,7 @@ class DashboardProjectManagementView(dashboard_mixins.DashboardBaseMixin,
                                      SingleObjectMixin,
                                      generic.View):
     model = project_models.Project
-    permission_required = 'meinberlin_organisations.initiate_project'
+    permission_required = 'a4projects.add_project'
     menu_item = 'project'
 
     def dispatch(self, request, *args, **kwargs):

@@ -21,8 +21,9 @@ html.embed body {
 .embed-footer {
     position: relative;
     background: $bg-tertiary;
-    padding: 1em;
+    padding: 5px 0;
     text-align: right;
+    font-size: $font-size-sm;
 }
 
 .embed-header .button {
@@ -45,4 +46,9 @@ html.embed body {
 
 .embed-footer__logo {
     float: left;
+}
+
+.embed-footer__platform-link {
+    padding: 0.4em 0;
+    display: inline-block;
 }

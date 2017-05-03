@@ -23,8 +23,8 @@ class PollManagementView(DashboardBaseMixin,
                          rules_mixins.PermissionRequiredMixin,
                          generic.DetailView):
     template_name = 'meinberlin_polls/poll_management_form.html'
-    permission_required = 'meinberlin_organisations.initiate_project'
     model = models.Poll
+    permission_required = 'a4projects.add_project'
 
     # Dashboard related attributes
     menu_item = 'project'
