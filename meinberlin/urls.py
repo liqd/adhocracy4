@@ -28,6 +28,7 @@ from apps.embed import urls as embed_urls
 from apps.ideas import urls as ideas_urls
 from apps.mapideas import urls as mapideas_urls
 from apps.projects import urls as projects_urls
+from apps.topicprio import urls as topicprio_urls
 
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
@@ -62,6 +63,8 @@ urlpatterns = [
                                 namespace='meinberlin_budgeting')),
     url(r'^mapideas/', include(mapideas_urls,
                                namespace='meinberlin_mapideas')),
+    url(r'^topicprio/', include(topicprio_urls,
+                                namespace='meinberlin_topicprio')),
 
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),
