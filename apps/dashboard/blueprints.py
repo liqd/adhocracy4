@@ -9,6 +9,7 @@ from apps.ideas import phases as ideas_phases
 from apps.mapideas import phases as mapideas_phases
 from apps.polls import phases as poll_phases
 
+from apps.topicprio import phases as topicprio_phases
 
 ProjectBlueprint = namedtuple(
     'ProjectBlueprint', [
@@ -109,6 +110,18 @@ blueprints = [
              poll_phases.CommentPhase()
          ],
          image='images/blueprints/poll.svg',
+         settings_model=None,
+     )),
+    ('topic-prioritization',
+     ProjectBlueprint(
+         title=_('Topic Prioritization'),
+         description=_(
+             'Comment and prioritize topics.'
+         ),
+         content=[
+             topicprio_phases.PrioritizePhase(),
+         ],
+         image='images/blueprints/priorization.svg',
          settings_model=None,
      )),
 ]
