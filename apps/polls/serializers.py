@@ -1,7 +1,5 @@
 from rest_framework import serializers
 
-from adhocracy4.modules.models import Module
-
 from . import models
 from . import validators
 
@@ -81,9 +79,10 @@ class VoteSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         pk = self.instance.pk if self.instance else None
-        module_pk = self._context['module_pk']
+        validators.single_vote_per_user(data['creator'], data['choice'], pk)
 
-        question = data['choice'].question
-        validators.single_vote_per_user(data['creator'], question, pk)
-        validators.item_belongs_to_module(module_pk, question.poll)
+        question_pk = self._context.get('question_pk', None)
+        if question_pk:
+            validators.choice_belongs_to_question(data['choice'], question_pk)
+
         return data

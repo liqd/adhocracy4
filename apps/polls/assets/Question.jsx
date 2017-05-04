@@ -49,11 +49,10 @@ var Question = React.createClass({
     let newChoice = this.state.selectedChoice
 
     let submitData = {
-      urlReplaces: {moduleId: this.props.module},
       choice: this.props.question.choices[newChoice].id
     }
 
-    return api.poll.vote(submitData)
+    return api.poll.vote(submitData, this.props.question.id)
       .done(function (data) {
         let newChoice = this.findIndexForChoiceId(data.choice)
 

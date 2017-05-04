@@ -15,6 +15,7 @@ def react_polls(context, question):
     user_choices = question.user_choices_list(user)
 
     data = {
+        'id': question.id,
         'label': question.label,
         'choices': [{
             'id': choice.id,
@@ -26,8 +27,7 @@ def react_polls(context, question):
 
     return format_html(
         (
-            '<div id="{id}" data-module="{module}"'
-            ' data-question="{question}"></div>'
+            '<div id="{id}" data-question="{question}"></div>'
             '<script>window.adhocracy4.renderPolls("{id}")</script>'
         ),
         module=question.poll.module.pk,
