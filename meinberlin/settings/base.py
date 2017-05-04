@@ -301,6 +301,7 @@ A4_COMMENTABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_polls', 'poll'),
 )
 
 A4_REPORTABLES = (
