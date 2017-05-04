@@ -47,24 +47,27 @@ class PollSerializer(serializers.ModelSerializer):
                     'weight': weight
                 })
 
-            # Delete removed choices from the database
-            choice_ids = [choice['id']
-                          for choice in question['choices']
-                          if 'id' in choice]
-            question_instance.choices.exclude(id__in=choice_ids).delete()
-
-            # Update (or create) this questions choices
-            for choice in question['choices']:
-                choice_id = choice.get('id')
-                choice_instance, _ = models.Choice.objects.update_or_create(
-                    id=choice_id,
-                    defaults={
-                        'question': question_instance,
-                        'label': choice['label']
-                    }
-                )
+            self._update_choices(question, question_instance)
 
         return instance
+
+    def _update_choices(self, question, question_instance):
+        # Delete removed choices from the database
+        choice_ids = [choice['id']
+                      for choice in question['choices']
+                      if 'id' in choice]
+        question_instance.choices.exclude(id__in=choice_ids).delete()
+
+        # Update (or create) this questions choices
+        for choice in question['choices']:
+            choice_id = choice.get('id')
+            choice_instance, _ = models.Choice.objects.update_or_create(
+                id=choice_id,
+                defaults={
+                    'question': question_instance,
+                    'label': choice['label']
+                }
+            )
 
 
 class VoteSerializer(serializers.ModelSerializer):
