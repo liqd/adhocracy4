@@ -22,12 +22,18 @@ class PollViewSet(mixins.UpdateModelMixin,
         return poll.module
 
 
+class VoteViewSetRulesPermission(ViewSetRulesPermission):
+    """Ensures the permission object is returned on update."""
+
+    non_object_actions = ['list', 'create', 'update']
+
+
 class VoteViewSet(AllowPUTAsCreateMixin,
                   mixins.UpdateModelMixin,
                   viewsets.GenericViewSet):
     queryset = Vote.objects.all()
     serializer_class = VoteSerializer
-    permission_classes = (ViewSetRulesPermission,)
+    permission_classes = (VoteViewSetRulesPermission,)
 
     def dispatch(self, request, *args, **kwargs):
         self.question_pk = int(kwargs['pk'])
