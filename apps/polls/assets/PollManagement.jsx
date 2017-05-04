@@ -146,7 +146,7 @@ let PollManagement = React.createClass({
     e.preventDefault()
 
     let data = {
-      questions: this.state.questions,
+      questions: this.state.questions
     }
 
     let promise = api.poll.change(data, this.props.poll.id)
