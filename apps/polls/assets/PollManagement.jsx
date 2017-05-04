@@ -206,7 +206,7 @@ let PollManagement = React.createClass({
           className="button button--full"
           onClick={this.handleAppendQuestion}
           type="button">
-          <i className="fa fa-plus" /> {django.gettext('add a new quesion')}
+          <i className="fa fa-plus" /> {django.gettext('add a new question')}
         </button>
 
         { this.state.successMessage
