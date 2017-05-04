@@ -1,4 +1,4 @@
-$header-margin-bottom: 2em;
+$header-margin-bottom: 25px;
 
 .main-header {
     position: relative;
@@ -192,7 +192,7 @@ $header-margin-bottom: 2em;
 
 // compensate for generic margin-bottom on header and move those elements
 // underneath the "dialograhmen"
-$header-overlap: -2.5em;
+$header-overlap: -35px;
 
 .messages,
 .hero-unit,
