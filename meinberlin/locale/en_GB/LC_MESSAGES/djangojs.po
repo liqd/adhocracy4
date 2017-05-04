@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-02 09:24+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:91
+msgid "Do you really want to delete this comment?"
+msgstr "Do you really want to delete this comment?"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:93
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
+msgid "Delete"
+msgstr "Delete"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:94
+#: adhocracy4/static/Modal.jsx:50
+msgid "Abort"
+msgstr "Abort"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:107
+msgid "Latest edit on"
+msgstr "Latest edit on"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:112
+msgid "Moderator"
+msgstr "Moderator"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:119
+#: adhocracy4/reports/static/reports/react_reports.jsx:21
+msgid "Are you sure you want to report this item?"
+msgstr "Are you sure you want to report this item?"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:161
+msgid "Your reply here"
+msgstr "Your reply here"
+
+#: adhocracy4/comments/static/comments/CommentBox.jsx:77
+msgid "comment"
+msgid_plural "comments"
+msgstr[0] "comment"
+msgstr[1] "comments"
+
+#: adhocracy4/comments/static/comments/CommentBox.jsx:80
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:28
+#: adhocracy4/comments/static/comments/CommentForm.jsx:32
+msgid "Your comment here"
+msgstr "Your comment here"
+
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:31
+#: adhocracy4/comments/static/comments/CommentForm.jsx:35
+msgid "post"
+msgstr "post"
+
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:32
+msgid "cancel"
+msgstr "cancel"
+
+#: adhocracy4/comments/static/comments/CommentForm.jsx:41
+msgid "Please login to comment"
+msgstr "Please login to comment"
+
+#: adhocracy4/comments/static/comments/CommentForm.jsx:47
+msgid "The currently active phase doesn't allow to comment."
+msgstr "The currently active phase doesn't allow to comment."
+
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:15
+msgid "Edit"
+msgstr "Edit"
+
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:23
+msgid "Report"
+msgstr "Report"
+
+#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:5
+#, javascript-format
+msgid "view %s reply"
+msgid_plural "view %s replies"
+msgstr[0] "view %s reply"
+msgstr[1] "view %s replies"
+
+#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:25
+msgid "Answer"
+msgstr "Answer"
+
+#: adhocracy4/reports/static/reports/ReportModal.jsx:63
+msgid "Your message here"
+msgstr "Your message here"
+
+#: adhocracy4/reports/static/reports/ReportModal.jsx:75
+msgid "Send Report"
+msgstr "Send Report"
+
+#: apps/documents/assets/Paragraph.jsx:73
+#: apps/documents/assets/ParagraphBox.jsx:195
+msgid "add a new paragraph"
+msgstr "add a new paragraph"
+
+#: apps/documents/assets/Paragraph.jsx:81
+msgid "Headline:"
+msgstr "Headline:"
+
+#: apps/documents/assets/Paragraph.jsx:100
+msgid "Paragraph:"
+msgstr "Paragraph:"
+
+#: apps/documents/assets/ParagraphBox.jsx:134
+msgid "Your document has been updated."
+msgstr "Your document has been updated."
+
+#: apps/documents/assets/ParagraphBox.jsx:145
+msgid "Your document has been saved."
+msgstr "Your document has been saved."
+
+#: apps/documents/assets/ParagraphBox.jsx:157
+msgid "Title:"
+msgstr "Title:"
+
+#: apps/documents/assets/ParagraphBox.jsx:202
+msgid "save"
+msgstr "save"
+
+#: apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:105
+msgid "Do you want to load this preset and delete all the existing polygons?"
+msgstr "Do you want to load this preset and delete all the existing polygons?"
+
+#: meinberlin/static/embed.js:25
+msgid "Close"
+msgstr "Close"
+
+#: meinberlin/static/embed.js:153
+msgid "We couldn't find what you were looking for."
+msgstr "We couldn't find what you were looking for."
+
+#: meinberlin/static/embed.js:157
+msgid "You don't have the permission to view this page."
+msgstr "You don't have the permission to view this page."
+
+#: meinberlin/static/embed.js:160
+msgid "Something went wrong!"
+msgstr "Something went wrong!"
+
+#: meinberlin/static/embed.js:168
+msgid ""
+"You have third party cookies disabled. You can still view the content of "
+"this project but won't be able to login."
+msgstr ""
+"You have third party cookies disabled. You can still view the content of "
+"this project but won't be able to login."
