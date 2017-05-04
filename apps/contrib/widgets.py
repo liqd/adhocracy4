@@ -76,7 +76,7 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
         time_attrs = self.build_attrs(attrs)
         time_attrs.update({
             'class': 'timepicker',
-            'placeholder': '12:00',
+            'placeholder': '00:00',
         })
 
         if isinstance(value, datetime.datetime):
