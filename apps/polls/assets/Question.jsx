@@ -1,3 +1,4 @@
+var api = require('adhocracy4').api
 var React = require('react')
 var django = require('django')
 
@@ -10,7 +11,8 @@ var Question = React.createClass({
       ownChoice: ownChoice,
       selectedChoice: ownChoice,
       active: true,
-      showResult: !(ownChoice === null)
+      showResult: !(ownChoice === null),
+      successMessage: ''
     }
   },
 
@@ -24,6 +26,16 @@ var Question = React.createClass({
     return ownChoice
   },
 
+  findIndexForChoiceId: function (id) {
+    let index = null
+    this.props.question.choices.forEach(function (choice, i) {
+      if (choice.id === id) {
+        index = i
+      }
+    })
+    return index
+  },
+
   toggleShowResult: function () {
     this.setState({
       selectedChoice: this.state.ownChoice,
@@ -31,26 +43,52 @@ var Question = React.createClass({
     })
   },
 
-  handleVote: function (event) {
+  handleSubmit: function (event) {
     event.preventDefault()
 
     let newChoice = this.state.selectedChoice
 
-    let counts = this.state.counts
-    counts[this.state.ownChoice]--
-    counts[newChoice]++
+    let submitData = {
+      urlReplaces: {moduleId: this.props.module},
+      choice: this.props.question.choices[newChoice].id
+    }
 
-    this.setState({
-      showResult: true,
-      ownChoice: newChoice,
-      selectedChoice: newChoice,
-      counts: counts
-    })
+    return api.poll.vote(submitData)
+      .done(function (data) {
+        let newChoice = this.findIndexForChoiceId(data.choice)
+
+        let counts = this.state.counts
+        counts[newChoice]++
+
+        if (this.state.ownChoice !== null) {
+          counts[this.state.ownChoice]--
+        }
+
+        this.setState({
+          showResult: true,
+          ownChoice: newChoice,
+          selectedChoice: newChoice,
+          counts: counts,
+          successMessage: django.gettext('Vote counted')
+        })
+
+        setTimeout(function () {
+          this.setState({
+            successMessage: ''
+          })
+        }.bind(this), 1500)
+      }.bind(this))
+      .fail(function (xhr, status, err) {
+        // TODO: error handling
+        this.setState({
+
+        })
+      }.bind(this))
   },
 
   handleOnChange: function (event) {
     this.setState({
-      selectedChoice: event.target.value
+      selectedChoice: parseInt(event.target.value)
     })
   },
 
@@ -83,7 +121,7 @@ var Question = React.createClass({
     }
 
     return (
-      <form onSubmit={this.handleVote}>
+      <form onSubmit={this.handleSubmit}>
         <h2>{ this.props.question.label }</h2>
 
         <div className="poll">

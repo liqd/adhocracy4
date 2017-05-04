@@ -28,6 +28,7 @@ from apps.embed import urls as embed_urls
 from apps.ideas import urls as ideas_urls
 from apps.mapideas import urls as mapideas_urls
 from apps.polls.api import PollViewSet
+from apps.polls.api import VoteViewSet
 from apps.projects import urls as projects_urls
 from apps.topicprio import urls as topicprio_urls
 
@@ -41,6 +42,7 @@ router.register(r'reports', ReportViewSet, base_name='reports')
 module_router = a4routers.ModuleDefaultRouter()
 module_router.register(r'documents', DocumentViewSet, base_name='documents')
 module_router.register(r'polls', PollViewSet, base_name='polls')
+module_router.register(r'pollvotes', VoteViewSet, base_name='pollvotes')
 
 ct_router = a4routers.ContentTypeDefaultRouter()
 ct_router.register(r'comments', CommentViewSet, base_name='comments')

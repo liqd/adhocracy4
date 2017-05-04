@@ -37,6 +37,7 @@ class PollSerializer(serializers.ModelSerializer):
         module = Module.objects.get(pk=module_pk)
 
         validators.single_item_per_module(module, models.Poll, pk)
+
         data['module'] = module
         return data
 
@@ -77,3 +78,23 @@ class PollSerializer(serializers.ModelSerializer):
                 )
 
         return instance
+
+
+class VoteSerializer(serializers.ModelSerializer):
+
+    creator = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+
+    class Meta:
+        model = models.Vote
+        fields = ['choice', 'creator']
+
+    def validate(self, data):
+        pk = self.instance.pk if self.instance else None
+        module_pk = self._context['module_pk']
+
+        question = data['choice'].question
+        validators.single_vote_per_user(data['creator'], question, pk)
+        validators.item_belongs_to_module(module_pk, question.poll)
+        return data
