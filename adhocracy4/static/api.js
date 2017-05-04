@@ -13,6 +13,8 @@ var api = (function () {
   var urls = {
     report: baseURL + 'reports/',
     document: baseURL + 'modules/$moduleId/documents/',
+    poll: baseURL + 'polls/',
+    pollvote: baseURL + 'pollvotes/',
     follow: baseURL + 'follows/',
     comment: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comments/',
     rating: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/ratings/'
@@ -125,6 +127,18 @@ var api = (function () {
       },
       change: function (data, slug) {
         return _sendRequest('follow', slug, {
+          type: 'PUT'
+        }, data)
+      }
+    },
+    poll: {
+      change: function (data, id) {
+        return _sendRequest('poll', id, {
+          type: 'PUT'
+        }, data)
+      },
+      vote: function (data, questionId) {
+        return _sendRequest('pollvote', questionId, {
           type: 'PUT'
         }, data)
       }
