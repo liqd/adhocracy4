@@ -52,8 +52,10 @@ let CommentBox = React.createClass({
     }
 
     var data = {
-      content_type: comment.content_type,
-      object_pk: comment.object_pk
+      urlReplaces: {
+        contentTypeId: comment.content_type,
+        objectPk: comment.object_pk
+      }
     }
     api.comments.delete(data, comment.id)
       .done(this.updateStateComment.bind(this, index, parentIndex))
