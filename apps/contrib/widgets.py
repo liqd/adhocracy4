@@ -86,7 +86,7 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
         else:
             # value's just a list in case of an error
             date = value[0] if value else None
-            time = value[1] if value else None
+            time = value[1] if value else '00:00'
 
         return render_to_string('datetime_input.html', {
             'date': self.widgets[0].render(
