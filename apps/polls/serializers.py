@@ -30,17 +30,6 @@ class PollSerializer(serializers.ModelSerializer):
         model = models.Poll
         fields = ('id', 'questions')
 
-    def validate(self, data):
-        pk = self.instance.pk if self.instance else None
-
-        module_pk = self._context['module_pk']
-        module = Module.objects.get(pk=module_pk)
-
-        validators.single_item_per_module(module, models.Poll, pk)
-
-        data['module'] = module
-        return data
-
     def update(self, instance, data):
         # Delete removed questions from the database
         instance.questions.exclude(

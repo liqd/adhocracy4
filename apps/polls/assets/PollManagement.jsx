@@ -145,14 +145,11 @@ let PollManagement = React.createClass({
   handleSubmit: function (e) {
     e.preventDefault()
 
-    let urlReplaces = {moduleId: this.props.module}
     let data = {
-      id: this.props.poll.id,
       questions: this.state.questions,
-      urlReplaces: urlReplaces
     }
 
-    let promise = api.polls.change(data, this.props.poll.id)
+    let promise = api.poll.change(data, this.props.poll.id)
     promise
       .done(function (data) {
         this.setState({

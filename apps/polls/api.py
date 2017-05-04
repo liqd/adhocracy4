@@ -14,26 +14,14 @@ from .serializers import VoteSerializer
 
 
 class PollViewSet(mixins.UpdateModelMixin,
-                  ModuleMixin,
                   viewsets.GenericViewSet):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
     permission_classes = (ViewSetRulesPermission,)
 
-    def get_object(self):
-        # Ensure the poll belongs to the module defined in the url
-        return Poll.objects.get(module=self.module,
-                                pk=self.module_pk)
-
     def get_permission_object(self):
-        return self.module
-
-    def get_serializer_context(self):
-        context = super().get_serializer_context()
-        context.update({
-            'module_pk': self.module_pk,
-        })
-        return context
+        poll = self.get_object()
+        return poll.module
 
 
 class VoteViewSet(mixins.CreateModelMixin,

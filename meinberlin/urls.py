@@ -38,10 +38,11 @@ js_info_dict = {
 
 router = routers.DefaultRouter()
 router.register(r'reports', ReportViewSet, base_name='reports')
+router.register(r'polls', PollViewSet, base_name='polls')
+
 
 module_router = a4routers.ModuleDefaultRouter()
 module_router.register(r'documents', DocumentViewSet, base_name='documents')
-module_router.register(r'polls', PollViewSet, base_name='polls')
 module_router.register(r'pollvotes', VoteViewSet, base_name='pollvotes')
 
 ct_router = a4routers.ContentTypeDefaultRouter()
