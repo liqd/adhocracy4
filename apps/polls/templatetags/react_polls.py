@@ -17,6 +17,7 @@ def react_polls(context, question):
     data = {
         'label': question.label,
         'choices': [{
+            'id': choice.id,
             'label': choice.label,
             'count': choice.vote_count,
             'ownChoice': (choice.pk in user_choices)
@@ -25,9 +26,11 @@ def react_polls(context, question):
 
     return format_html(
         (
-            '<div id="{id}" data-question="{question}"></div>'
+            '<div id="{id}" data-module="{module}"'
+            ' data-question="{question}"></div>'
             '<script>window.adhocracy4.renderPolls("{id}")</script>'
         ),
+        module=question.poll.module.pk,
         id='question-%s' % (question.pk,),
         question=json.dumps(data)
     )
