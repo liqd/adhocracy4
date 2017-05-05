@@ -3,8 +3,9 @@
 <div class="tile">
     <div class="tile__head">
         <a tabindex="-1" class="tile__image tile__image--shadowed"
+           {% if project.image %}style="background-image: url({{ project.image|thumbnail_url:'project_thumbnail' }})"{% endif %}
            href="{% extproject_url project 'project-detail' %}" target="{{ project|is_external|yesno:"_blank,_self" }}">
-            <img src="http://placehold.it/285x170" alt="">
+            <span class="sr-only">{{ project.name }}</span>
         </a>
         {% if project|is_external %}
             <img src="{% static 'images/external_project.svg' %}" alt="{% trans 'External project' %}" class="tile__badge">
