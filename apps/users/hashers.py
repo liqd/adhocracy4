@@ -6,7 +6,10 @@ from django.utils.encoding import force_bytes
 
 
 class A2PasswordHasher(SHA1PasswordHasher):
-    """SHA1 based Adhocracy2 password hashes."""
+    """SHA1 based Adhocracy2 password hashes.
+
+    Same as SHA1 hash but password and salt are switched.
+    """
 
     algorithm = "a2"
 
