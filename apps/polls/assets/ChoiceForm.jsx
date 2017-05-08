@@ -28,7 +28,7 @@ let ChoiceForm = React.createClass({
           onChange={this.handleLabelChange} />
         <div className="button-group">
           <button
-            className="button"
+            className="button button--light"
             onClick={this.handleDelete}
             type="button">
             <i className="fa fa-trash" />
