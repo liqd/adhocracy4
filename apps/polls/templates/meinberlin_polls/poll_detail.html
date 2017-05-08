@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load react_polls %}
+{% load react_polls react_comments %}
 
 
 {% block content %}
@@ -9,5 +9,7 @@
                 {% react_polls question %}
             {% endfor %}
         </div>
+
+        {% react_comments object %}
     </div>
 {% endblock %}

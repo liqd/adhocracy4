@@ -1,5 +1,7 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
+from adhocracy4.comments import models as comment_models
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.modules import models as module_models
 
@@ -7,7 +9,9 @@ from . import validators
 
 
 class Poll(module_models.Item):
-    pass
+    comments = GenericRelation(comment_models.Comment,
+                               related_query_name='poll',
+                               object_id_field='object_pk')
 
 
 class Question(models.Model):
