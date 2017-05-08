@@ -1,6 +1,9 @@
+$header-margin-bottom: 25px;
+
 .main-header {
     position: relative;
     z-index: 1;
+    margin-bottom: $header-margin-bottom;
 }
 
 .main-nav {
@@ -187,10 +190,14 @@
     }
 }
 
+// compensate for generic margin-bottom on header and move those elements
+// underneath the "dialograhmen"
+$header-overlap: -35px;
+
 .messages,
 .hero-unit,
 .resource-header {
     &:first-child {
-        margin-top: -35px;
+        margin-top: $header-overlap - $header-margin-bottom;
     }
 }
