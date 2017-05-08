@@ -2,15 +2,7 @@
 {% load i18n %}
 
 {% block dashboard_content %}
-    <nav class="resource-navigation__breadcrumbs breadcrumbs">
-        <ul>
-            <li>
-                <a href="{% url 'dashboard-project-list' view.organisation.slug %}">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    {% trans 'back to dashboard' %}</a>
-            </li>
-        </ul>
-    </nav>
+    {% include 'meinberlin_dashboard/includes/project_update_breadcrumbs.html' %}
 
     <h3>{% trans "Edit project" %}</h3>
 

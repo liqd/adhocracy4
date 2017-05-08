@@ -57,7 +57,7 @@ class DashboardProjectBaseMixin(DashboardBaseMixin,
             kwargs={'organisation_slug': self.organisation.slug, })
 
 
-class DashboardProjectCreateMixin(DashboardBaseMixin,
+class DashboardProjectCreateMixin(DashboardProjectBaseMixin,
                                   SuccessMessageMixin,
                                   generic.CreateView):
     success_message = _('Project succesfully created.')
@@ -70,7 +70,7 @@ class DashboardProjectCreateMixin(DashboardBaseMixin,
         return kwargs
 
 
-class DashboardProjectUpdateMixin(DashboardBaseMixin,
+class DashboardProjectUpdateMixin(DashboardProjectBaseMixin,
                                   SuccessMessageMixin,
                                   generic.UpdateView):
     success_message = _('Project successfully updated.')

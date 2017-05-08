@@ -1,4 +1,5 @@
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseNotFound
 from django.utils.translation import ugettext as _
@@ -11,6 +12,7 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 
+from apps.bplan import models as bplan_models
 from apps.extprojects import models as extproject_models
 from apps.organisations.models import Organisation
 
@@ -61,6 +63,61 @@ class DashboardExternalProjectCreateView(mixins.DashboardProjectCreateMixin):
     blueprint = dict(blueprints.blueprints)['external-project']
 
 
+class DashboardBplanProjectCreateView(mixins.DashboardProjectCreateMixin):
+    model = bplan_models.Bplan
+    form_class = forms.BplanProjectCreateForm
+    template_name = 'meinberlin_dashboard/bplan_project_create_form.html'
+
+    blueprint = dict(blueprints.blueprints)['bplan']
+
+
+class DashboardProjectCreateViewDispatcher(generic.View):
+    mappings = {
+        'external-project': DashboardExternalProjectCreateView,
+        'bplan': DashboardBplanProjectCreateView
+    }
+
+    def dispatch(self, request, *args, **kwargs):
+        blueprint_slug = kwargs.get('blueprint_slug', None)
+        if blueprint_slug in self.mappings:
+            view = self.mappings[blueprint_slug].as_view()
+        else:
+            view = DashboardProjectCreateView.as_view()
+
+        return view(request, *args, **kwargs)
+
+
+class DashboardProjectUpdateViewDispatcher(mixins.DashboardBaseMixin,
+                                           SingleObjectMixin,
+                                           generic.View):
+    model = project_models.Project
+
+    def dispatch(self, request, *args, **kwargs):
+        project = self.get_object()
+
+        if self.get_bplan_or_none(project):
+            # Attention: every bplan project is also an external project
+            view = DashboardBplanProjectUpdateView.as_view()
+        elif self.get_external_or_none(project):
+            view = DashboardExternalProjectUpdateView.as_view()
+        else:
+            view = DashboardProjectUpdateView.as_view()
+        return view(request, *args, **kwargs)
+
+    @staticmethod
+    def get_external_or_none(project):
+        try:
+            return project.externalproject
+        except ObjectDoesNotExist:
+            return None
+
+    @staticmethod
+    def get_bplan_or_none(project):
+        try:
+            return project.externalproject.bplan
+        except (ObjectDoesNotExist, AttributeError):
+            return None
+
 
 class DashboardProjectUpdateView(mixins.DashboardProjectUpdateMixin):
     model = project_models.Project
@@ -89,6 +146,16 @@ class DashboardExternalProjectUpdateView(mixins.DashboardProjectUpdateMixin):
     template_name = 'meinberlin_dashboard/external_project_update_form.html'
 
 
+class DashboardBplanProjectUpdateView(mixins.DashboardProjectUpdateMixin):
+    model = bplan_models.Bplan
+    form_class = forms.BplanProjectUpdateForm
+    template_name = 'meinberlin_dashboard/bplan_project_update_form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardBplanProjectUpdateView, self)\
+            .get_context_data(**kwargs)
+        context['display_embed_code'] = True
+        return context
 
 
 class DashboardOrganisationUpdateView(mixins.DashboardBaseMixin,
