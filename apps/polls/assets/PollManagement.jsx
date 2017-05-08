@@ -33,11 +33,11 @@ let PollManagement = React.createClass({
   },
 
   getNewQuestion: function (label) {
-    var newQuestion = {}
-    newQuestion['label'] = label
-    newQuestion['key'] = this.getNextQuestionKey()
-    newQuestion['choices'] = []
-    return newQuestion
+    return {
+      label: label,
+      key: this.getNextQuestionKey(),
+      choices: []
+    }
   },
 
   handleUpdateQuestionLabel: function (index, label) {
@@ -101,10 +101,10 @@ let PollManagement = React.createClass({
   },
 
   getNewChoice: function (label) {
-    var newChoice = {}
-    newChoice['label'] = label
-    newChoice['key'] = this.getNextChoiceKey()
-    return newChoice
+    return {
+      label: label,
+      key: this.getNextChoiceKey()
+    }
   },
 
   handleUpdateChoiceLabel: function (questionIndex, choiceIndex, label) {
@@ -149,20 +149,21 @@ let PollManagement = React.createClass({
       questions: this.state.questions
     }
 
-    let promise = api.poll.change(data, this.props.poll.id)
-    promise
+    api.poll.change(data, this.props.poll.id)
       .done(function (data) {
         this.setState({
           successMessage: django.gettext('The poll has been updated.')
         })
 
         setTimeout(function () {
+          // TODO: reset errors
           this.setState({
             successMessage: ''
           })
         }.bind(this), 1500)
       }.bind(this))
       .fail(function (xhr, status, err) {
+        // TODO: re-set state only if errors occured
         this.setState({
           errors: xhr.responseJSON.questions || []
         })

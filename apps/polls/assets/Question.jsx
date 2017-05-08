@@ -52,7 +52,7 @@ var Question = React.createClass({
       choice: this.props.question.choices[newChoice].id
     }
 
-    return api.poll.vote(submitData, this.props.question.id)
+    api.poll.vote(submitData, this.props.question.id)
       .done(function (data) {
         let newChoice = this.findIndexForChoiceId(data.choice)
 

@@ -20,7 +20,6 @@ let ChoiceForm = React.createClass({
           {django.gettext('Choice:')}
         </label>
         <input
-          className="form-control"
           id={'id_choices-' + this.props.key + '-name'}
           name={'choices-' + this.props.key + '-name'}
           type="text"

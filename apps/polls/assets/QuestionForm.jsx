@@ -4,10 +4,6 @@ var FlipMove = require('react-flip-move')
 var ChoiceForm = require('./ChoiceForm')
 
 let QuestionForm = React.createClass({
-  getInitialState: function () {
-    return {}
-  },
-
   /*
   |--------------------------------------------------------------------------
   | Choice state related handlers
@@ -60,7 +56,6 @@ let QuestionForm = React.createClass({
                 {django.gettext('Question:')}
               </label>
               <input
-                className="form-control"
                 id={'id_questions-' + this.props.key + '-name'}
                 name={'questions-' + this.props.key + '-name'}
                 type="text"
