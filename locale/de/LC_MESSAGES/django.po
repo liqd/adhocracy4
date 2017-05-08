@@ -65,6 +65,7 @@ msgid ""
 "            at the end of this page.\n"
 "            "
 msgstr ""
+"\n"
 "Ihr Bild wird hochgeladen sobald Sie Ihre Änderungen am Ende der Seite "
 "speichern."
 
