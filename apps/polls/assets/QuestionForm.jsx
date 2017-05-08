@@ -64,33 +64,31 @@ let QuestionForm = React.createClass({
               <ErrorList errors={this.props.errors} />
             </div>
 
-            <div className="form-group">
-              <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
-                {
-                  this.props.question.choices.map((choice, index) => {
-                    var key = choice.id || choice.key
-                    var errors = this.props.errors && this.props.errors.choices
-                      ? this.props.errors.choices[index] : {}
-                    return (
-                      <ChoiceForm
-                        key={key}
-                        index={index}
-                        choice={choice}
-                        updateChoiceLabel={this.handleUpdateChoiceLabel}
-                        deleteChoice={this.handleDeleteChoice}
-                        errors={errors}
-                      />
-                    )
-                  })
-                }
-              </FlipMove>
-              <button
-                className="button button--light"
-                onClick={this.handleAppendChoice}
-                type="button">
-                <i className="fa fa-plus" /> {django.gettext('add a new choice')}
-              </button>
-            </div>
+            <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
+              {
+                this.props.question.choices.map((choice, index) => {
+                  var key = choice.id || choice.key
+                  var errors = this.props.errors && this.props.errors.choices
+                    ? this.props.errors.choices[index] : {}
+                  return (
+                    <ChoiceForm
+                      key={key}
+                      index={index}
+                      choice={choice}
+                      updateChoiceLabel={this.handleUpdateChoiceLabel}
+                      deleteChoice={this.handleDeleteChoice}
+                      errors={errors}
+                    />
+                  )
+                })
+              }
+            </FlipMove>
+            <button
+              className="button button--light"
+              onClick={this.handleAppendChoice}
+              type="button">
+              <i className="fa fa-plus" /> {django.gettext('add a new choice')}
+            </button>
           </div>
 
           <div className="commenting__actions button-group">

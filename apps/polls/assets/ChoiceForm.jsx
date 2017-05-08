@@ -15,7 +15,7 @@ let ChoiceForm = React.createClass({
 
   render: function () {
     return (
-      <div>
+      <div className="form-group">
         <label
           htmlFor={'id_choices-' + this.props.key + '-name'}>
           {django.gettext('Choice:')}
