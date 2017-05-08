@@ -85,7 +85,7 @@ let QuestionForm = React.createClass({
                 }
               </FlipMove>
               <button
-                className="button button--full"
+                className="button"
                 onClick={this.handleAppendChoice}
                 type="button">
                 <i className="fa fa-plus" /> {django.gettext('add a new choice')}
