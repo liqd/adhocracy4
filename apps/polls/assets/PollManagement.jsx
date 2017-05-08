@@ -10,10 +10,18 @@ let PollManagement = React.createClass({
     return {
       questions: this.props.poll.questions,
       errors: [],
-      successMessage: '',
-      maxQuestionKey: 0,
-      maxChoiceKey: 0
+      successMessage: ''
     }
+  },
+
+  maxLocalKey: 0,
+  getNextLocalKey: function () {
+    /** Get an artificial key for non-committed items.
+     *
+     *  The key is prefixed to prevent collisions with real database keys.
+     */
+    this.maxLocalKey++
+    return 'local_' + this.maxLocalKey
   },
 
   /*
@@ -22,20 +30,10 @@ let PollManagement = React.createClass({
   |--------------------------------------------------------------------------
   */
 
-  getNextQuestionKey: function () {
-    /** Get an artifical key for non-commited questions.
-     *
-     *  Prefix to prevent collisions with real database keys;
-     */
-    var questionKey = 'local_' + (this.state.maxQuestionKey + 1)
-    this.setState({maxQuestionKey: this.state.maxQuestionKey + 1})
-    return questionKey
-  },
-
   getNewQuestion: function (label) {
     return {
       label: label,
-      key: this.getNextQuestionKey(),
+      key: this.getNextLocalKey(),
       choices: []
     }
   },
@@ -90,20 +88,10 @@ let PollManagement = React.createClass({
   |--------------------------------------------------------------------------
   */
 
-  getNextChoiceKey: function () {
-    /** Get an artifical key for non-commited choices.
-     *
-     *  Prefix to prevent collisions with real database keys;
-     */
-    var choiceKey = 'local_' + (this.state.maxChoiceKey + 1)
-    this.setState({maxChoiceKey: this.state.maxChoiceKey + 1})
-    return choiceKey
-  },
-
   getNewChoice: function (label) {
     return {
       label: label,
-      key: this.getNextChoiceKey()
+      key: this.getNextLocalKey()
     }
   },
 
