@@ -53,15 +53,3 @@
     @include secondary-text;
     margin-bottom: 0.9em;
 }
-
-.resource-navigation {
-    @include clearfix;
-}
-
-.resource-navigation__breadcrumbs {
-    display: inline-block;
-}
-
-.resource-navigation__actions {
-    float: right;
-}
