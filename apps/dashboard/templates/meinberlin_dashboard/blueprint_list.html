@@ -4,17 +4,15 @@
 
 {% block dashboard_content %}
 
-<div class="resource-navigation">
-    <nav class="resource-navigation__breadcrumbs breadcrumbs">
-        <ul>
-            <li>
-                <a href="{% url 'dashboard-project-list' view.organisation.slug %}">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    {% trans 'back to dashboard' %}</a>
-            </li>
-        </ul>
-    </nav>
-</div>
+<nav class="breadcrumbs">
+    <ul>
+        <li>
+            <a href="{% url 'dashboard-project-list' view.organisation.slug %}">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                {% trans 'back to dashboard' %}</a>
+        </li>
+    </ul>
+</nav>
 
 <h3 class="menu-layout__title">{% trans "New Project" %}</h3>
 

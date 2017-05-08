@@ -3,17 +3,15 @@
 
 {% block content %}
 <div class="l-wrapper">
-    <div class="resource-navigation">
-        <nav class="resource-navigation__breadcrumbs breadcrumbs">
-            <ul>
-                <li>
-                    <a href="{% url 'project-detail' paragraph.document.module.project.slug %}">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'back to document' %}</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    <nav class="breadcrumbs">
+        <ul>
+            <li>
+                <a href="{% url 'project-detail' paragraph.document.module.project.slug %}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    {% trans 'back to document' %}</a>
+            </li>
+        </ul>
+    </nav>
 
     <article class="paragraph">
         <h1 class="paragraph-title">
