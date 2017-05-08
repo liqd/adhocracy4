@@ -142,7 +142,7 @@ var Question = React.createClass({
               let checked = this.state.selectedChoice === i
               let chosen = this.state.ownChoice === i
               let count = this.state.counts[i]
-              let percent = Math.round(count / total * 100)
+              let percent = total === 0 ? 0 : Math.round(count / total * 100)
               let highlight = count === max
 
               if (this.state.showResult || !this.state.active) {
