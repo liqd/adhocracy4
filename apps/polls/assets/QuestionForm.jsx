@@ -56,10 +56,9 @@ let QuestionForm = React.createClass({
                 htmlFor={'id_questions-' + this.props.key + '-name'}>
                 {django.gettext('Question:')}
               </label>
-              <input
+              <textarea
                 id={'id_questions-' + this.props.key + '-name'}
                 name={'questions-' + this.props.key + '-name'}
-                type="text"
                 defaultValue={this.props.question.label}
                 onChange={this.handleLabelChange} />
               <ErrorList errors={this.props.errors} />
