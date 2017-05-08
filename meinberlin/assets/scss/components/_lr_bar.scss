@@ -7,8 +7,11 @@
 
 .lr-bar__left {
     display: inline-block;
+    margin: 0;
+    margin-right: $padding;
 }
 
 .lr-bar__right {
     float: right;
+    margin: 0;
 }
