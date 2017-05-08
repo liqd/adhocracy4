@@ -6,7 +6,6 @@ from adhocracy4.rules import mixins as rules_mixins
 
 from apps.dashboard.mixins import DashboardBaseMixin
 
-from . import forms
 from . import models
 
 
@@ -22,18 +21,16 @@ class PollDetailView(project_mixins.ProjectMixin,
 
 class PollManagementView(DashboardBaseMixin,
                          rules_mixins.PermissionRequiredMixin,
-                         generic.FormView):
+                         generic.DetailView):
     template_name = 'meinberlin_polls/poll_management_form.html'
-    form_class = forms.PollForm
+    model = models.Poll
     permission_required = 'a4projects.add_project'
 
     # Dashboard related attributes
     menu_item = 'project'
 
-    def get_success_url(self):
-        return reverse(
-            'dashboard-project-list',
-            kwargs={'organisation_slug': self.organisation.slug, })
+    def get_object(self):
+        return self.get_or_create_poll()
 
     def get_or_create_poll(self):
         try:
@@ -42,6 +39,11 @@ class PollManagementView(DashboardBaseMixin,
             obj = models.Poll(module=self.module, creator=self.request.user)
             obj.save()
         return obj
+
+    def get_success_url(self):
+        return reverse(
+            'dashboard-project-list',
+            kwargs={'organisation_slug': self.organisation.slug, })
 
     def dispatch(self, *args, **kwargs):
         self.project = kwargs['project']

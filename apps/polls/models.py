@@ -1,10 +1,11 @@
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
-from django.db.models import Count
 
 from adhocracy4.comments import models as comment_models
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.modules import models as module_models
+
+from . import validators
 
 
 class Poll(module_models.Item):
@@ -23,14 +24,8 @@ class Question(models.Model):
         related_name='questions'
     )
 
-    def choices_with_vote_count(self):
-        return self.choices\
-            .filter(question=self)\
-            .annotate(vote__count=Count('votes'))
-
     def user_choices_list(self, user):
         return self.choices\
-            .filter(question=self)\
             .filter(votes__creator=user)\
             .values_list('id', flat=True)
 
@@ -39,6 +34,16 @@ class Question(models.Model):
 
     class Meta:
         ordering = ['weight']
+
+
+class ChoiceQuerySet(models.QuerySet):
+
+    def annotate_vote_count(self):
+        return self.annotate(
+            vote_count=models.Count(
+                'votes'
+            )
+        )
 
 
 class Choice(models.Model):
@@ -50,11 +55,7 @@ class Choice(models.Model):
         related_name='choices',
     )
 
-    @property
-    def vote_count(self):
-        if hasattr(self, 'vote__count'):
-            return self.vote__count
-        return self.votes.count()
+    objects = ChoiceQuerySet.as_manager()
 
     def __str__(self):
         return '%s @%s' % (self.label, self.question)
@@ -67,8 +68,20 @@ class Vote(UserGeneratedContentModel):
         related_name='votes'
     )
 
-    class Meta:
-        unique_together = ('creator', 'choice')
+    def validate_unique(self, exclude=None):
+        super(Vote, self).validate_unique(exclude)
+        validators.single_vote_per_user(self.creator,
+                                        self.choice.question,
+                                        self.pk)
+
+    # Make Vote instances behave like items for rule checking
+    @property
+    def module(self):
+        self.choice.question.poll.module
+
+    @property
+    def project(self):
+        return self.module.project
 
     def __str__(self):
         return '%s: %s' % (self.creator, self.choice)
