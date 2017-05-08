@@ -53,7 +53,7 @@ var Question = React.createClass({
     }
 
     api.poll.vote(submitData, this.props.question.id)
-      .done(function (data) {
+      .done((data) => {
         let newChoice = this.findIndexForChoiceId(data.choice)
 
         let counts = this.state.counts
@@ -71,18 +71,18 @@ var Question = React.createClass({
           successMessage: django.gettext('Vote counted')
         })
 
-        setTimeout(function () {
+        setTimeout(() => {
           this.setState({
             successMessage: ''
           })
-        }.bind(this), 1500)
-      }.bind(this))
-      .fail(function (xhr, status, err) {
+        }, 1500)
+      })
+      .fail((xhr, status, err) => {
         // TODO: error handling
         this.setState({
 
         })
-      }.bind(this))
+      })
   },
 
   handleOnChange: function (event) {

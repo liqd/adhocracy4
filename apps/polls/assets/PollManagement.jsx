@@ -138,24 +138,24 @@ let PollManagement = React.createClass({
     }
 
     api.poll.change(data, this.props.poll.id)
-      .done(function (data) {
+      .done((data) => {
         this.setState({
           successMessage: django.gettext('The poll has been updated.')
         })
 
-        setTimeout(function () {
+        setTimeout(() => {
           // TODO: reset errors
           this.setState({
             successMessage: ''
           })
-        }.bind(this), 1500)
-      }.bind(this))
-      .fail(function (xhr, status, err) {
+        }, 1500)
+      })
+      .fail((xhr, status, err) => {
         // TODO: re-set state only if errors occured
         this.setState({
           errors: xhr.responseJSON.questions || []
         })
-      }.bind(this))
+      })
   },
 
   render: function () {
@@ -169,7 +169,7 @@ let PollManagement = React.createClass({
 
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
-            this.state.questions.map(function (question, index) {
+            this.state.questions.map((question, index) => {
               var key = question.id || question.key
               var errors = this.state.errors && this.state.errors[index] ? this.state.errors[index] : {}
               return (
@@ -187,7 +187,7 @@ let PollManagement = React.createClass({
                   appendChoice={this.handleAppendChoice}
                 />
               )
-            }.bind(this))
+            })
           }
         </FlipMove>
 

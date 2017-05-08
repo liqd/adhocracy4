@@ -73,7 +73,7 @@ let QuestionForm = React.createClass({
             <div className="form-group">
               <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
                 {
-                  this.props.question.choices.map(function (choice, index) {
+                  this.props.question.choices.map((choice, index) => {
                     var key = choice.id || choice.key
                     var errors = this.props.errors && this.props.errors.choices
                       ? this.props.errors.choices[index] : {}
@@ -87,7 +87,7 @@ let QuestionForm = React.createClass({
                         errors={errors}
                       />
                     )
-                  }.bind(this))
+                  })
                 }
               </FlipMove>
               <button
