@@ -2,13 +2,13 @@ from collections import namedtuple
 
 from django.utils.translation import ugettext_lazy as _
 
+from apps.bplan import phases as bplan_phases
 from apps.budgeting import phases as budgeting_phases
 from apps.documents import phases as documents_phases
 from apps.extprojects import phases as extprojects_phases
 from apps.ideas import phases as ideas_phases
 from apps.mapideas import phases as mapideas_phases
 from apps.polls import phases as poll_phases
-
 from apps.topicprio import phases as topicprio_phases
 
 ProjectBlueprint = namedtuple(
@@ -121,6 +121,17 @@ blueprints = [
              topicprio_phases.PrioritizePhase(),
          ],
          image='images/blueprints/priorization.svg',
+         settings_model=None,
+     )),
+    ('bplan',
+     ProjectBlueprint(
+         title=_('Development Plan'),
+         description=_('Create a statement formular for development plans'
+                       ' to be embedded on external sites.'),
+         content=[
+             bplan_phases.StatementPhase(),
+         ],
+         image='images/blueprints/bplan.svg',
          settings_model=None,
      )),
 ]
