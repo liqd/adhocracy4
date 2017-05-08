@@ -19,7 +19,7 @@ def single_item_per_module(module, model, pk=None):
 
 
 def single_vote_per_user(user, choice, pk=None):
-    from .models import Vote
+    from .models import Vote  # avoid circular import
     qs = Vote.objects\
         .filter(choice__question=choice.question)\
         .filter(creator=user)
