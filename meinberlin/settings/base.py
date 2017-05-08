@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'apps.mapideas.apps.Config',
     'apps.polls.apps.Config',
     'apps.topicprio.apps.Config',
+    'apps.bplan.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
