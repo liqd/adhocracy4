@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     'adhocracy4.reports.apps.ReportsConfig',
     'adhocracy4.comments.apps.CommentsConfig',
     'adhocracy4.maps.apps.MapsConfig',
+    'adhocracy4.actions.apps.ActionsConfig',
     'adhocracy4.follows.apps.FollowsConfig',
 
     # adhocrayc4 generic apps
@@ -148,6 +149,7 @@ A4_RATEABLES = (('a4test_questions', 'question'), ('a4comments', 'comment'),)
 A4_REPORTABLES = (('a4test_questions', 'question'),)
 A4_COMMENTABLES = (('a4test_questions', 'question'),
                    ('a4comments', 'comment'),)
+A4_ACTIONABLES = ()
 A4_AUTO_FOLLOWABLES = (('a4comments', 'comment'),)
 
 # Rich text fields
