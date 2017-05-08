@@ -11,10 +11,15 @@
             </li>
         </ul>
     </nav>
-    <div>
-        <a href="{% url 'meinberlin_topicprio:topic-mgmt-create' slug=view.module.slug %}" class="button">
-            {% trans 'Add Topic' %}
-        </a>
+    <div class="lr-bar lr-bar--with-margin">
+        <h1 class="lr-bar__left">
+            {% trans 'Topics' %}
+        </h1>
+        <div class="lr-bar__right">
+            <a href="{% url 'meinberlin_topicprio:topic-mgmt-create' slug=view.module.slug %}" class="button">
+                {% trans 'Add Topic' %}
+            </a>
+        </div>
     </div>
     <div class="list list--highlight">
         <div class="l-center-8">
