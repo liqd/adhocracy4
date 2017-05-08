@@ -27,6 +27,10 @@ module.exports = {
       'leaflet',
       'leaflet/dist/leaflet.css'
     ],
+    datepicker: [
+      './meinberlin/assets/js/init-picker.js',
+      'datepicker/css/datepicker.min.css'
+    ],
     'leaflet.draw': [
       'leaflet-draw',
       'leaflet-draw/dist/leaflet.draw.css'

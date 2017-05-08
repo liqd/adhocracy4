@@ -1,9 +1,11 @@
-/* globals $ datePickerController */
+const $ = require('jquery')
+const datePickerController = require('datepicker')
+
 $(function () {
-  var $inputs = $('.datepicker')
+  let $inputs = $('.datepicker')
 
   $inputs.each(function (i, e) {
-    var initObject = {formElements: {}}
+    let initObject = {formElements: {}}
     initObject.formElements[e.id] = '%d.%m.%Y'
     datePickerController.createDatePicker(initObject)
   })
