@@ -11,7 +11,7 @@
 
 .tile__image {
     display: block;
-    height: 11.8em;
+    min-height: 11.8em;
 
     background-size: cover;
     background-color: $brand-primary;
