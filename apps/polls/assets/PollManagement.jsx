@@ -4,13 +4,14 @@ var django = require('django')
 var update = require('react-addons-update')
 var FlipMove = require('react-flip-move')
 var QuestionForm = require('./QuestionForm')
+var Alert = require('../../contrib/static/js/Alert')
 
 let PollManagement = React.createClass({
   getInitialState: function () {
     return {
       questions: this.props.poll.questions,
       errors: [],
-      successMessage: ''
+      alert: null
     }
   },
 
@@ -130,6 +131,12 @@ let PollManagement = React.createClass({
   |--------------------------------------------------------------------------
   */
 
+  handleFormChange: function () {
+    this.setState({
+      alert: null
+    })
+  },
+
   handleSubmit: function (e) {
     e.preventDefault()
 
@@ -140,32 +147,33 @@ let PollManagement = React.createClass({
     api.poll.change(data, this.props.poll.id)
       .done((data) => {
         this.setState({
-          successMessage: django.gettext('The poll has been updated.')
+          alert: {
+            type: 'success',
+            message: django.gettext('The poll has been updated.')
+          },
+          errors: []
         })
-
-        setTimeout(() => {
-          // TODO: reset errors
-          this.setState({
-            successMessage: ''
-          })
-        }, 1500)
       })
       .fail((xhr, status, err) => {
-        // TODO: re-set state only if errors occured
+        let errors = []
+        if (xhr.responseJSON && 'questions' in xhr.responseJSON) {
+          errors = xhr.responseJSON.questions
+        }
+
         this.setState({
-          errors: xhr.responseJSON.questions || []
+          alert: {
+            type: 'danger',
+            message: django.gettext('The poll could not be updated.')
+          },
+          errors: errors
         })
       })
   },
 
   render: function () {
     return (
-      <form onSubmit={this.handleSubmit}>
-        { this.state.successMessage
-          ? <p className="alert alert-success ">
-            {this.state.successMessage}
-          </p> : null
-        }
+      <form onSubmit={this.handleSubmit} onChange={this.handleFormChange}>
+        <Alert {...this.state.alert} />
 
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
@@ -198,11 +206,7 @@ let PollManagement = React.createClass({
           <i className="fa fa-plus" /> {django.gettext('add a new question')}
         </button>
 
-        { this.state.successMessage
-          ? <p className="alert alert-success ">
-            {this.state.successMessage}
-          </p> : null
-        }
+        <Alert {...this.state.alert} />
 
         <button type="submit" className="button button--primary">{django.gettext('save')}</button>
       </form>

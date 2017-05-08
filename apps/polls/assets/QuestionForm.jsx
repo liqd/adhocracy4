@@ -2,6 +2,7 @@ var React = require('react')
 var django = require('django')
 var FlipMove = require('react-flip-move')
 var ChoiceForm = require('./ChoiceForm')
+var ErrorList = require('../../contrib/static/js/ErrorList')
 
 let QuestionForm = React.createClass({
   /*
@@ -61,13 +62,7 @@ let QuestionForm = React.createClass({
                 type="text"
                 defaultValue={this.props.question.label}
                 onChange={this.handleLabelChange} />
-              {this.props.errors && this.props.errors.label
-                ? <ul className="errorlist">
-                  {this.props.errors.label.map(function (msg, index) {
-                    return <li key={msg}>{msg}</li>
-                  })}
-                </ul>
-                : null}
+              <ErrorList errors={this.props.errors} />
             </div>
 
             <div className="form-group">

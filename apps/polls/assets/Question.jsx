@@ -1,6 +1,7 @@
 var api = require('adhocracy4').api
 var React = require('react')
 var django = require('django')
+var Alert = require('../../contrib/static/js/Alert')
 
 var Question = React.createClass({
   getInitialState: function () {
@@ -12,8 +13,21 @@ var Question = React.createClass({
       selectedChoice: ownChoice,
       active: true,
       showResult: !(ownChoice === null),
-      successMessage: ''
+      alert: null
     }
+  },
+
+  setStateWithAlert: function (state, alert, timeout) {
+    state['alert'] = alert
+    this.setState(state, () => {
+      if (timeout) {
+        setTimeout(() => {
+          this.setState({
+            alert: null
+          })
+        }, timeout)
+      }
+    })
   },
 
   findOwnChoice: function (choices) {
@@ -63,25 +77,24 @@ var Question = React.createClass({
           counts[this.state.ownChoice]--
         }
 
-        this.setState({
+        this.setStateWithAlert({
           showResult: true,
           ownChoice: newChoice,
           selectedChoice: newChoice,
-          counts: counts,
-          successMessage: django.gettext('Vote counted')
-        })
-
-        setTimeout(() => {
-          this.setState({
-            successMessage: ''
-          })
+          counts: counts
+        }, {
+          type: 'success',
+          message: django.gettext('Vote counted')
         }, 1500)
       })
       .fail((xhr, status, err) => {
-        // TODO: error handling
-        this.setState({
-
-        })
+        this.setStateWithAlert({
+          showResult: false,
+          selectedChoice: newChoice
+        }, {
+          type: 'danger',
+          message: django.gettext('Vote has not been counted due to a server error.')
+        }, 1500)
       })
   },
 
@@ -160,6 +173,7 @@ var Question = React.createClass({
           }
         </div>
 
+        <Alert {...this.state.alert} />
         { footer }
       </form>
     )

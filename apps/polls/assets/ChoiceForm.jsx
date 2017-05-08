@@ -1,5 +1,6 @@
 var React = require('react')
 var django = require('django')
+var ErrorList = require('../../contrib/static/js/ErrorList')
 
 let ChoiceForm = React.createClass({
   handleLabelChange: function (e) {
@@ -33,13 +34,7 @@ let ChoiceForm = React.createClass({
             <i className="fa fa-trash" />
           </button>
         </div>
-        {this.props.errors && this.props.errors.label
-          ? <ul className="errorlist">
-            {this.props.errors.label.map(function (msg, index) {
-              return <li key={msg}>{msg}</li>
-            })}
-          </ul>
-          : null}
+        <ErrorList errors={this.props.errors} />
       </div>
     )
   }
