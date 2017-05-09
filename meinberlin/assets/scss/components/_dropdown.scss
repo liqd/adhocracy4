@@ -18,6 +18,12 @@
     min-width: 1.4em;
     text-align: center;
 
+    // the current dropdown-toggle should be above the dropdown-menu shadow
+    .dropdown.show & {
+        position: relative;
+        z-index: 2;
+    }
+
     i {
         font-size: 1.25em;
     }
