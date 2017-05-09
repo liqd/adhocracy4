@@ -7,7 +7,7 @@
 }
 
 .tablist {
-    border-bottom: 1px solid $border-color;
+    border-bottom: 2px solid $border-color;
     text-align: center;
     margin-bottom: $spacer * 2;
 }
@@ -30,10 +30,10 @@
     &.active:after {
         content: "";
         position: absolute;
-        height: 1px;
+        height: 2px;
         left: 0;
         right: 0;
-        bottom: -1px;
+        bottom: -2px;
         background-color: $link-color;
     }
 }
