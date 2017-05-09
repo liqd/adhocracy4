@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AnonymousUser
 from django.db import models
 
 from adhocracy4.models.base import TimeStampedModel
@@ -15,6 +16,14 @@ class AnonymousItem(TimeStampedModel):
     @property
     def project(self):
         return self.module.project
+
+    @property
+    def creator(self):
+        return AnonymousUser()
+
+    @creator.setter
+    def creator(self, value):
+        pass
 
     class Meta:
         abstract = True
