@@ -1,6 +1,7 @@
+from django.apps import apps
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from django.db.models.loading import get_model
+
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 
@@ -81,6 +82,6 @@ class OrganisationMixin:
     @property
     def organisation(self):
         return get_object_or_404(
-            get_model(settings.A4_ORGANISATIONS_MODEL),
+            apps.get_model(settings.A4_ORGANISATIONS_MODEL),
             pk=self.organisation_pk
         )
