@@ -58,7 +58,7 @@ class MapIdeaDetailView(module_views.ItemDetailView):
 class MapIdeaCreateView(module_views.ItemCreateView):
     model = models.MapIdea
     form_class = forms.MapIdeaForm
-    permission_required = 'meinberlin_mapideas.create_idea'
+    permission_required = 'meinberlin_mapideas.add_idea'
     template_name = 'meinberlin_mapideas/mapidea_create_form.html'
 
 

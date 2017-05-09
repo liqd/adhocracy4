@@ -79,6 +79,8 @@ INSTALLED_APPS = (
     'apps.budgeting.apps.Config',
     'apps.mapideas.apps.Config',
     'apps.polls.apps.Config',
+    'apps.topicprio.apps.Config',
+    'apps.bplan.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -102,7 +104,7 @@ SITE_ID = 1
 
 ROOT_URLCONF = 'meinberlin.urls'
 
-LOCALE_PATHS = [os.path.join(PROJECT_DIR, 'locale')]
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
 TEMPLATES = [
     {
@@ -223,6 +225,11 @@ LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'apps.users.hashers.A2PasswordHasher',
+]
+
 
 # ckeditor
 
@@ -289,6 +296,7 @@ A4_RATEABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_topicprio', 'topic'),
 )
 
 A4_COMMENTABLES = (
@@ -298,6 +306,8 @@ A4_COMMENTABLES = (
     ('meinberlin_documents', 'paragraph'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_polls', 'poll'),
 )
 
 A4_REPORTABLES = (
@@ -305,6 +315,7 @@ A4_REPORTABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_topicprio', 'topic'),
 )
 
 A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'

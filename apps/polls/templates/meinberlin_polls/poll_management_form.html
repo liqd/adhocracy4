@@ -1,8 +1,8 @@
 {% extends 'meinberlin_dashboard/base_dashboard.html' %}
-{% load i18n %}
+{% load i18n react_polls %}
 
 {% block dashboard_content %}
-        <nav class="resource-navigation__breadcrumbs breadcrumbs">
+    <nav class="breadcrumbs">
         <ul>
             <li>
                 <a href="{% url 'dashboard-project-list' view.organisation.slug %}">
@@ -14,5 +14,6 @@
 
     <h3>{% trans "Manage project" %}</h3>
 
-    MISSING FORM
+    {% react_poll_form object %}
+
 {% endblock %}

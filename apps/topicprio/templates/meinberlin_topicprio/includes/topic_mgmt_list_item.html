@@ -1,0 +1,20 @@
+{% load i18n %}
+
+<div class="list-item list-item--squashed">
+    <div class="lr-bar">
+        <div class="lr-bar__left">
+            <h3 class="list-item__title">
+                <a href="{% url 'meinberlin_topicprio:topic-mgmt-update' slug=object.slug %}">
+                {{ object.name }}
+                </a>
+            </h3>
+        </div>
+        <div class="lr-bar__right">
+            <a href="{% url 'meinberlin_topicprio:topic-mgmt-delete' slug=object.slug %}"
+               class="button button--light">
+                <i class="fa fa-remove" aria-hidden="true"></i>
+                {% trans 'Delete'%}
+            </a>
+        </div>
+    </div>
+</div>
