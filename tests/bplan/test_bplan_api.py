@@ -69,3 +69,18 @@ def test_initiator_update_bplan(apiclient, bplan):
     assert response.status_code == status.HTTP_200_OK
     bplan = bplan_models.Bplan.objects.first()
     assert bplan.is_archived is True
+
+
+@pytest.mark.django_db
+def test_non_initiator_cannot_update_bplan(apiclient, bplan, user2):
+    url = reverse(
+        'bplan-detail',
+        kwargs={
+            'organisation_pk': bplan.organisation.pk,
+            'pk': bplan.pk
+        }
+    )
+    data = {}
+    apiclient.force_authenticate(user=user2)
+    response = apiclient.put(url, data, format='json')
+    assert response.status_code == status.HTTP_403_FORBIDDEN
