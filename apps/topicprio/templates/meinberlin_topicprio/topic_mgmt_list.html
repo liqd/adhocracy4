@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block dashboard_content %}
-    <nav class="resource-navigation__breadcrumbs breadcrumbs">
+    <nav class="breadcrumbs">
         <ul>
             <li>
                 <a href="{% url 'dashboard-project-list' view.organisation.slug %}">
@@ -11,29 +11,30 @@
             </li>
         </ul>
     </nav>
-    <div>
-        <a href="{% url 'meinberlin_topicprio:topic-mgmt-create' slug=view.module.slug %}" class="button">
-            {% trans 'Add Topic' %}
-        </a>
+    <div class="lr-bar lr-bar--with-margin">
+        <h1 class="lr-bar__left">
+            {% trans 'Topics' %}
+        </h1>
+        <div class="lr-bar__right">
+            <a href="{% url 'meinberlin_topicprio:topic-mgmt-create' slug=view.module.slug %}" class="button">
+                {% trans 'Add Topic' %}
+            </a>
+        </div>
     </div>
     <div class="list list--highlight">
-        <div class="l-wrapper">
-            <div class="l-center-8">
+        <div class="l-center-8">
+            {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
-
-                {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
-
-                <div class="list__container">
-                    {% for object in object_list %}
-                        {% include "meinberlin_topicprio/includes/topic_mgmt_list_item.html" with object=object %}
-                    {% endfor %}
-                </div>
-
-                {% if object_list.count == 0 %}
-                    {% trans "Nothing to show" %}
-                {% endif %}
-                {% include "meinberlin_contrib/includes/pagination.html" %}
+            <div class="list__container">
+                {% for object in object_list %}
+                    {% include "meinberlin_topicprio/includes/topic_mgmt_list_item.html" with object=object %}
+                {% endfor %}
             </div>
+
+            {% if object_list.count == 0 %}
+                {% trans "Nothing to show" %}
+            {% endif %}
+            {% include "meinberlin_contrib/includes/pagination.html" %}
         </div>
     </div>
 {% endblock %}

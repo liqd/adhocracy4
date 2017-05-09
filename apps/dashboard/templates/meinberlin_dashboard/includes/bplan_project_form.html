@@ -1,0 +1,10 @@
+{% extends "meinberlin_dashboard/includes/external_project_form.html" %}
+
+{% block extra_fields %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.office_worker_email %}
+
+    {% if view.object %}
+        {% include 'meinberlin_embed/includes/project_embed_code.html' with project=view.object %}
+    {% endif %}
+{% endblock %}
+

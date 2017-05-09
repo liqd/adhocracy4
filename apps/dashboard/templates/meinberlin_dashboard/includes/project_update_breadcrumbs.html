@@ -1,0 +1,10 @@
+{% load i18n %}
+<nav class="breadcrumbs">
+    <ul>
+        <li>
+            <a href="{% url 'dashboard-project-list' view.organisation.slug %}">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                {% trans 'back to dashboard' %}</a>
+        </li>
+    </ul>
+</nav>

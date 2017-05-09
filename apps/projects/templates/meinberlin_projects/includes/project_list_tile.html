@@ -3,8 +3,9 @@
 <div class="tile">
     <div class="tile__head">
         <a tabindex="-1" class="tile__image tile__image--shadowed"
+           aria-labelledby="project-title-{{ project.pk }}"
+           {% if project.image %}style="background-image: url({{ project.image|thumbnail_url:'project_thumbnail' }})"{% endif %}
            href="{% extproject_url project 'project-detail' %}" target="{{ project|is_external|yesno:"_blank,_self" }}">
-            <img src="http://placehold.it/285x170" alt="">
         </a>
         {% if project|is_external %}
             <img src="{% static 'images/external_project.svg' %}" alt="{% trans 'External project' %}" class="tile__badge">
@@ -21,7 +22,7 @@
     </div>
 
     <div class="tile__body">
-        <h3 class="tile__title">
+        <h3 class="tile__title" id="project-title-{{ project.pk }}">
             <a href="{% extproject_url project 'project-detail' %}" target="{{ project|is_external|yesno:"_blank,_self" }}">{{ project.name }}</a>
         </h3>
 

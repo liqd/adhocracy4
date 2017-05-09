@@ -23,10 +23,11 @@
 @import 'components/button';
 @import 'components/commenting';
 @import 'components/comments';
-@import 'components/dashboard-nav';
+@import 'components/dashboard_nav';
+@import 'components/datepicker';
 @import 'components/dropdown';
-@import "components/embed-layout";
-@import 'components/embed-status';
+@import "components/embed_layout";
+@import 'components/embed_status';
 @import 'components/filter_bar';
 @import 'components/fixed_side';
 @import 'components/footer';
@@ -36,6 +37,7 @@
 @import 'components/label';
 @import 'components/list';
 @import 'components/list_item';
+@import 'components/lr_bar';
 @import 'components/map';
 @import 'components/menu_layout';
 @import 'components/multiform';

@@ -7,8 +7,12 @@ rules.add_perm(
     is_initiator
 )
 
-
 rules.add_perm(
     'meinberlin_bplan.change_bplan',
     is_initiator
+)
+
+rules.add_perm(
+    'meinberlin_bplan.add_statement',
+    rules.always_allow
 )

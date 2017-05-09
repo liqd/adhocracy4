@@ -4,12 +4,16 @@
 {% block dashboard_content %}
 
 <div>
-    <p>
-        <span class="menu-layout__title">{% trans "Projects" %}</span>
-        <a href="{% url 'dashboard-blueprint-list' organisation_slug=view.organisation.slug %}" class="button">
-            {% trans 'New Project' %}
-        </a>
-    </p>
+    <div class="lr-bar lr-bar--with-margin">
+        <h1 class="lr-bar__left">
+            {% trans 'Projects' %}
+        </h1>
+        <div class="lr-bar__right">
+            <a href="{% url 'dashboard-blueprint-list' organisation_slug=view.organisation.slug %}" class="button">
+                {% trans 'New Project' %}
+            </a>
+        </div>
+    </div>
 
     {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 

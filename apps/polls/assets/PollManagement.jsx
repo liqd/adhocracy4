@@ -199,12 +199,14 @@ let PollManagement = React.createClass({
           }
         </FlipMove>
 
-        <button
-          className="button button--full"
-          onClick={this.handleAppendQuestion}
-          type="button">
-          <i className="fa fa-plus" /> {django.gettext('add a new question')}
-        </button>
+        <p>
+          <button
+            className="button button--light"
+            onClick={this.handleAppendQuestion}
+            type="button">
+            <i className="fa fa-plus" /> {django.gettext('add a new question')}
+          </button>
+        </p>
 
         <Alert {...this.state.alert} />
 

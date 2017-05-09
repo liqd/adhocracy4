@@ -3,9 +3,9 @@
 
 {% block title %}{{object.name}}{% endblock %}
 {% block content %}
-<div class="resource-navigation">
+<div class="lr-bar">
     <div class="l-wrapper">
-        <nav class="resource-navigation__breadcrumbs breadcrumbs">
+        <nav class="lr-bar__left breadcrumbs">
             <ul>
                 <li>
                     <a href="{% url 'project-detail' object.project.slug %}">
@@ -19,7 +19,7 @@
         {% has_perm change_perm request.user object as user_may_change %}
 
         {% if request.user.is_authenticated %}
-        <div class="resource-navigation__actions dropdown dropdown--right">
+        <div class="lr-bar__right dropdown dropdown--right">
             <button
                 title="{% trans 'Actions' %}"
                 type="button"
@@ -29,7 +29,7 @@
                 aria-expanded="false"
                 id="idea-{{object.pk}}-actions"
             >
-                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
             </button>
             <ul class="dropdown-menu" aria-labelledby="idea-{{object.pk}}-actions">
                 {% if user_may_change %}
