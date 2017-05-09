@@ -20,6 +20,7 @@ from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 
 from apps.account import urls as account_urls
+from apps.bplan.api import BplanViewSet
 from apps.budgeting import urls as budgeting_urls
 from apps.dashboard import urls as dashboard_urls
 from apps.documents import urls as paragraph_urls
@@ -43,6 +44,9 @@ router.register(r'pollvotes', VoteViewSet, base_name='pollvotes')
 
 module_router = a4routers.ModuleDefaultRouter()
 module_router.register(r'documents', DocumentViewSet, base_name='documents')
+
+orga_router = a4routers.OrganisationDefaultRouter()
+orga_router.register(r'bplan', BplanViewSet, base_name='bplan')
 
 ct_router = a4routers.ContentTypeDefaultRouter()
 ct_router.register(r'comments', CommentViewSet, base_name='comments')
@@ -72,6 +76,7 @@ urlpatterns = [
 
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),
+    url(r'^api/', include(orga_router.urls)),
     url(r'^api/', include(router.urls)),
 
     url(r'^upload/',
