@@ -25,7 +25,7 @@ class Question(models.Model):
     )
 
     def user_choices_list(self, user):
-        if user.pk is None:
+        if not user.is_authenticated():
             return []
 
         return self.choices\
