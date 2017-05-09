@@ -13,6 +13,7 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 
 from apps.bplan import models as bplan_models
+from apps.bplan import phases as bplan_phases
 from apps.contrib import multiform
 from apps.contrib.formset import dynamic_modelformset_factory
 from apps.extprojects import models as extproject_models
@@ -358,39 +359,31 @@ class ExternalProjectCreateForm(ExternalProjectBaseForm):
         self.blueprint = blueprint
 
     def save(self, commit=True):
-        extproject = self.instance
-        extproject.information = _("External projects require no information.")
-        extproject.organisation = self.organisation
-        extproject.typ = self.blueprint.title
-        extproject = super().save(commit)
+        project = self.instance
+        project.information = _('External projects require no information.')
+        project.organisation = self.organisation
+        project.typ = self.blueprint.title
+        project = super().save(commit)
 
-        ExternalProjectCreateForm.save_external_project(
-            extproject, self.creator,
-            self.cleaned_data['start_date'],
-            self.cleaned_data['end_date'],
-            commit)
-
-    @staticmethod
-    def save_external_project(extproject, creator, start_date, end_date,
-                              commit=True):
-        extproject.moderators.add(creator)
+        if commit:
+            project.moderators.add(self.creator)
 
         module = module_models.Module(
-            name=extproject.slug + '_module',
+            name=project.slug + '_module',
             weight=1,
-            project=extproject,
+            project=project,
         )
         if commit:
             module.save()
 
         phase_content = extproject_phases.ExternalPhase()
         phase = phase_models.Phase(
-            name=_("External project phase"),
-            description=_("External project phase"),
+            name=_('External project phase'),
+            description=_('External project phase'),
             type=phase_content.identifier,
             module=module,
-            start_date=start_date,
-            end_date=end_date
+            start_date=self.cleaned_data['start_date'],
+            end_date=self.cleaned_data['end_date']
         )
         if commit:
             phase.save()
@@ -432,16 +425,33 @@ class BplanProjectCreateForm(BplanProjectBaseForm):
 
     def save(self, commit=True):
         project = self.instance
-        project.information = _("Bplan projects require no information.")
+        project.information = _('Bplan projects require no information.')
         project.organisation = self.organisation
         project.typ = self.blueprint.title
         project = super().save(commit)
 
-        ExternalProjectCreateForm.save_external_project(
-            project, self.creator,
-            self.cleaned_data['start_date'],
-            self.cleaned_data['end_date'],
-            commit)
+        if commit:
+            project.moderators.add(self.creator)
+
+        module = module_models.Module(
+            name=project.slug + '_module',
+            weight=1,
+            project=project,
+        )
+        if commit:
+            module.save()
+
+        phase_content = bplan_phases.StatementPhase()
+        phase = phase_models.Phase(
+            name=_('Bplan statement phase'),
+            description=_('Bplan statement phase'),
+            type=phase_content.identifier,
+            module=module,
+            start_date=self.cleaned_data['start_date'],
+            end_date=self.cleaned_data['end_date']
+        )
+        if commit:
+            phase.save()
 
 
 class BplanProjectUpdateForm(BplanProjectBaseForm):
