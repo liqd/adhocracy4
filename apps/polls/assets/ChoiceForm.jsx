@@ -17,12 +17,13 @@ let ChoiceForm = React.createClass({
     return (
       <div className="form-group">
         <label
-          htmlFor={'id_choices-' + this.props.key + '-name'}>
-          {django.gettext('Choice:')}
+          className="sr-only"
+          htmlFor={'id_choices-' + this.props.index + '-name'}>
+          {django.gettext('Choice') + ` #${this.props.index}:`}
         </label>
         <input
-          id={'id_choices-' + this.props.key + '-name'}
-          name={'choices-' + this.props.key + '-name'}
+          id={'id_choices-' + this.props.index + '-name'}
+          name={'choices-' + this.props.index + '-name'}
           type="text"
           defaultValue={this.props.choice.label}
           onChange={this.handleLabelChange} />
