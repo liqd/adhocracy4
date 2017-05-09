@@ -116,7 +116,7 @@ $header-margin-bottom: 25px;
 .main-header__user {
     @media screen and (min-width: $breakpoint) {
         position: absolute;
-        bottom: -0.7em;
+        bottom: -1em;
         right: $padding;
     }
 
