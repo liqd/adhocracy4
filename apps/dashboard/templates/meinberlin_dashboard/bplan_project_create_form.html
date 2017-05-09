@@ -1,0 +1,9 @@
+{% extends "meinberlin_dashboard/project_create_form.html" %}
+{% load i18n %}
+
+{% block dashboard_content %}
+    {% include 'meinberlin_dashboard/includes/project_create_breadcrumbs.html' %}
+
+    <h3>{% trans "Create development plan project" %}</h3>
+    {% include 'meinberlin_dashboard/includes/bplan_project_form.html' with view=view %}
+{% endblock %}

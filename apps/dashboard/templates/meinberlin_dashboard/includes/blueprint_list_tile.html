@@ -15,15 +15,10 @@
                 {% endfor %}
             </ul>
         </div>
-        {% if blueprint_slug == 'external-project' %}
-            <a href="{% url 'dashboard-external-project-create' organisation_slug=view.organisation.slug %}" class="button">
-                {% trans 'Select'%}
-            </a>
-        {% else %}
-            <a href="{% url 'dashboard-project-create' organisation_slug=view.organisation.slug blueprint_slug=blueprint_slug %}"
-               class="button">
-                {% trans 'Select'%}
-            </a>
-        {% endif %}
+
+        <a href="{% url 'dashboard-project-create' organisation_slug=view.organisation.slug blueprint_slug=blueprint_slug %}"
+           class="button">
+            {% trans 'Select'%}
+        </a>
     </div>
 </div>
