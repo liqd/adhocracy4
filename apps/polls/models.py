@@ -25,6 +25,9 @@ class Question(models.Model):
     )
 
     def user_choices_list(self, user):
+        if not user.is_authenticated():
+            return []
+
         return self.choices\
             .filter(votes__creator=user)\
             .values_list('id', flat=True)

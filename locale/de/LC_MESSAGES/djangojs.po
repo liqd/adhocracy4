@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-02 09:24+0000\n"
+"POT-Creation-Date: 2017-05-08 14:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,41 +59,41 @@ msgstr "Sind Sie sicher, dass Sie diesen Beitrag melden möchten?"
 msgid "Your reply here"
 msgstr "Ihre Antwort hier"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:77
-#: adhocracy4/comments/static/comments/CommentBox.jsx:77
+#: adhocracy4/comments/static/comments/CommentBox.jsx:79
+#: adhocracy4/comments/static/comments/CommentBox.jsx:79
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "Kommentar"
 msgstr[1] "Kommentare"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:80
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:28
-#: adhocracy4/comments/static/comments/CommentForm.jsx:32
-#: adhocracy4/comments/static/comments/CommentBox.jsx:80
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:28
-#: adhocracy4/comments/static/comments/CommentForm.jsx:32
+#: adhocracy4/comments/static/comments/CommentBox.jsx:82
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:30
+#: adhocracy4/comments/static/comments/CommentForm.jsx:34
+#: adhocracy4/comments/static/comments/CommentBox.jsx:82
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:30
+#: adhocracy4/comments/static/comments/CommentForm.jsx:34
 msgid "Your comment here"
 msgstr "Ihr Kommentar hier"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:31
-#: adhocracy4/comments/static/comments/CommentForm.jsx:35
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:31
-#: adhocracy4/comments/static/comments/CommentForm.jsx:35
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
+#: adhocracy4/comments/static/comments/CommentForm.jsx:37
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
+#: adhocracy4/comments/static/comments/CommentForm.jsx:37
 msgid "post"
 msgstr "Senden"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:32
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:32
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:34
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:34
 msgid "cancel"
 msgstr "Abbrechen"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:41
-#: adhocracy4/comments/static/comments/CommentForm.jsx:41
+#: adhocracy4/comments/static/comments/CommentForm.jsx:43
+#: adhocracy4/comments/static/comments/CommentForm.jsx:43
 msgid "Please login to comment"
 msgstr "Bitte melden Sie sich zum Kommentieren an."
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:47
-#: adhocracy4/comments/static/comments/CommentForm.jsx:47
+#: adhocracy4/comments/static/comments/CommentForm.jsx:49
+#: adhocracy4/comments/static/comments/CommentForm.jsx:49
 msgid "The currently active phase doesn't allow to comment."
 msgstr "Die aktuell laufende Phase erlaubt keine Kommentare."
 
@@ -120,6 +120,16 @@ msgstr[1] "%s Antworten sehen"
 msgid "Answer"
 msgstr "Antworten"
 
+#: adhocracy4/follows/static/follows/FollowButton.jsx:42
+#: adhocracy4/follows/static/follows/FollowButton.jsx:42
+msgid "Unfollow"
+msgstr ""
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:42
+#: adhocracy4/follows/static/follows/FollowButton.jsx:42
+msgid "Follow"
+msgstr ""
+
 #: adhocracy4/reports/static/reports/ReportModal.jsx:63
 #: adhocracy4/reports/static/reports/ReportModal.jsx:63
 msgid "Your message here"
@@ -131,7 +141,7 @@ msgid "Send Report"
 msgstr "Meldung senden"
 
 #: apps/documents/assets/Paragraph.jsx:73
-#: apps/documents/assets/ParagraphBox.jsx:195
+#: apps/documents/assets/ParagraphBox.jsx:196
 msgid "add a new paragraph"
 msgstr ""
 
@@ -143,24 +153,79 @@ msgstr "Überschrift:"
 msgid "Paragraph:"
 msgstr ""
 
-#: apps/documents/assets/ParagraphBox.jsx:134
+#: apps/documents/assets/ParagraphBox.jsx:135
 msgid "Your document has been updated."
 msgstr ""
 
-#: apps/documents/assets/ParagraphBox.jsx:145
+#: apps/documents/assets/ParagraphBox.jsx:146
 msgid "Your document has been saved."
 msgstr ""
 
-#: apps/documents/assets/ParagraphBox.jsx:157
+#: apps/documents/assets/ParagraphBox.jsx:158
 msgid "Title:"
 msgstr "Titel:"
 
-#: apps/documents/assets/ParagraphBox.jsx:202
+#: apps/documents/assets/ParagraphBox.jsx:203
+#: apps/polls/assets/PollManagement.jsx:211
 msgid "save"
 msgstr "Speichern"
 
 #: apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:105
 msgid "Do you want to load this preset and delete all the existing polygons?"
+msgstr ""
+
+#: apps/polls/assets/ChoiceForm.jsx:21
+msgid "Choice:"
+msgstr ""
+
+#: apps/polls/assets/PollManagement.jsx:152
+msgid "The poll has been updated."
+msgstr ""
+
+#: apps/polls/assets/PollManagement.jsx:166
+msgid "The poll could not be updated."
+msgstr ""
+
+#: apps/polls/assets/PollManagement.jsx:206
+msgid "add a new question"
+msgstr ""
+
+#: apps/polls/assets/Question.jsx:87
+msgid "Vote counted"
+msgstr ""
+
+#: apps/polls/assets/Question.jsx:96
+msgid "Vote has not been counted due to a server error."
+msgstr ""
+
+#: apps/polls/assets/Question.jsx:114
+msgid "vote"
+msgid_plural "votes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: apps/polls/assets/Question.jsx:118
+msgid "To poll"
+msgstr ""
+
+#: apps/polls/assets/Question.jsx:125
+msgid "Vote"
+msgstr ""
+
+#: apps/polls/assets/Question.jsx:129
+msgid "Show preliminary results"
+msgstr ""
+
+#: apps/polls/assets/Question.jsx:154
+msgid "Your choice"
+msgstr ""
+
+#: apps/polls/assets/QuestionForm.jsx:57
+msgid "Question:"
+msgstr ""
+
+#: apps/polls/assets/QuestionForm.jsx:92
+msgid "add a new choice"
 msgstr ""
 
 #: meinberlin/static/embed.js:25

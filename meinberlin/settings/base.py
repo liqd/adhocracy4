@@ -104,7 +104,7 @@ SITE_ID = 1
 
 ROOT_URLCONF = 'meinberlin.urls'
 
-LOCALE_PATHS = [os.path.join(PROJECT_DIR, 'locale')]
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
 TEMPLATES = [
     {
@@ -224,6 +224,11 @@ ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'apps.users.hashers.A2PasswordHasher',
+]
 
 
 # ckeditor

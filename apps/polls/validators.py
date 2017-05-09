@@ -2,8 +2,6 @@ from django.core.exceptions import NON_FIELD_ERRORS
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
-from . import models
-
 
 def single_item_per_module(module, model, pk=None):
     siblings = model.objects.filter(module=module)
@@ -21,7 +19,8 @@ def single_item_per_module(module, model, pk=None):
 
 
 def single_vote_per_user(user, choice, pk=None):
-    qs = models.Vote.objects\
+    from .models import Vote  # avoid circular import
+    qs = Vote.objects\
         .filter(choice__question=choice.question)\
         .filter(creator=user)
 
