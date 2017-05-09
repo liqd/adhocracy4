@@ -167,3 +167,7 @@ class Project(base.TimeStampedModel):
     @property
     def has_finished(self):
         return not self.active_phase and self.future_phases.count() == 0
+
+    @property
+    def is_archivable(self):
+        return not self.is_archived and self.has_finished
