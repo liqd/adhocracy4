@@ -16,7 +16,7 @@
 
     <h1>{% trans 'Edit topic' %}</h1>
 
-    {% url 'dashboard-project-management' view.project.slug as cancel %}
+    {% url 'dashboard-project-management' object.project.slug as cancel %}
     {% include "meinberlin_topicprio/includes/topic_mgmt_form.html" with cancel=cancel %}
 </div>
 {% endblock %}

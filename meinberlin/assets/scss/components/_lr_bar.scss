@@ -1,0 +1,26 @@
+// generic component for having right-aligned and left-aligned content on a
+// single line.
+
+.lr-bar {
+    @include clearfix;
+}
+
+.lr-bar__left {
+    display: inline-block;
+    margin: 0;
+    margin-right: $padding;
+}
+
+.lr-bar__right {
+    float: right;
+    margin: 0;
+}
+
+.lr-bar--with-margin {
+    margin-top: 1.5 * $spacer;
+    margin-bottom: 0.8rem;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
