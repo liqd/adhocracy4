@@ -15,7 +15,7 @@
                         <button
                                 title="{% trans 'Organisations' %}"
                                 type="button"
-                                class="dropdown-toggle"
+                                class="dashboard-nav__item dashboard-nav__item--interactive dropdown-toggle"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false"
@@ -37,14 +37,14 @@
                             {% endfor %}
                         </ul>
                     {% else %}
-                        {{ view.organisation.name }}
+                        <div class="dashboard-nav__item">{{ view.organisation.name }}</div>
                     {% endif %}
                 </div>
             </div>
             <ul class="dashboard-nav__pages">
                 <li class="dashboard-nav__page">
                     <a href="{% url 'dashboard-project-list' organisation_slug=view.organisation.slug %}"
-                       class="dashboard-nav__page-link {% ifequal view.menu_item 'project' %}is-active{% endifequal %}">
+                       class="dashboard-nav__item dashboard-nav__item--interactive {% ifequal view.menu_item 'project' %}is-active{% endifequal %}">
                         <i class="fa fa-file-o"></i>
                         {% trans 'Participation processes' %}
                     </a>
@@ -52,7 +52,7 @@
 
                 <li class="dashboard-nav__page">
                     <a href="{% url 'dashboard-organisation-edit' organisation_slug=view.organisation.slug %}"
-                       class="dashboard-nav__page-link {% ifequal view.menu_item 'organisation' %}is-active{% endifequal %}">
+                       class="dashboard-nav__item dashboard-nav__item--interactive {% ifequal view.menu_item 'organisation' %}is-active{% endifequal %}">
                         <i class="fa fa-cog"></i>
                         {% trans 'Settings' %}
                     </a>
