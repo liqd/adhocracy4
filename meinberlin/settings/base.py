@@ -225,6 +225,11 @@ LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'apps.users.hashers.A2PasswordHasher',
+]
+
 
 # ckeditor
 
