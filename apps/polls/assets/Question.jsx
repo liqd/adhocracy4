@@ -118,7 +118,7 @@ var Question = React.createClass({
         <div>
           { totalString }
           &nbsp;
-          <button type="button" className="button button--light" onClick={this.toggleShowResult}>
+          <button type="button" className="link" onClick={this.toggleShowResult}>
             { django.gettext('To poll') }
           </button>
         </div>
@@ -130,7 +130,7 @@ var Question = React.createClass({
             { django.gettext('Vote') }
           </button>
           &nbsp;
-          <button type="button" className="button button--light" onClick={this.toggleShowResult}>
+          <button type="button" className="link" onClick={this.toggleShowResult}>
             { django.gettext('Show preliminary results') }
           </button>
         </div>
