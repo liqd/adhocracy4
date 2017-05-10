@@ -110,13 +110,18 @@ var Question = React.createClass({
     let max = Math.max.apply(null, counts)
 
     let footer
+    let totalString = '' + total + ' ' + django.ngettext('vote', 'votes', total)
     if (!this.state.active) {
-      footer = '' + total + ' ' + django.ngettext('vote', 'votes', total)
+      footer = totalString
     } else if (this.state.showResult) {
       footer = (
-        <button type="button" className="button button--light" onClick={this.toggleShowResult}>
-          { django.gettext('To poll') }
-        </button>
+        <div>
+          { totalString }
+          &nbsp;
+          <button type="button" className="button button--light" onClick={this.toggleShowResult}>
+            { django.gettext('To poll') }
+          </button>
+        </div>
       )
     } else {
       footer = (
