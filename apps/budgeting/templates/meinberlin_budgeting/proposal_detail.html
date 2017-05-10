@@ -2,13 +2,8 @@
 {% load rules item_tags i18n %}
 
 {% block additional_labels %}
-    <div class="resource-header__meta">
-        <div>{{ proposal.budget }}€</div>
-    </div>
-
-    <div class="resource-header__meta">
-        {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal %}
-    </div>
+    <div class="label label--big">{{ proposal.budget }}€</div>
+    {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal %}
 {% endblock %}
 
 {% block moderator_statement %}

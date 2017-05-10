@@ -15,36 +15,39 @@
             </ul>
         </nav>
 
-        <div class="resource-header">
-            <h1 class="resource-header__title">{{ object.name }}</h1>
+        <div class="item">
+            <h1 class="item__title">{{ object.name }}</h1>
 
-            <div class="resource-header__labels">
+            <div class="item__labels">
                 {% if object.category %}
                     <div class="label label--big">{{ object.category }}</div>
                 {% endif %}
                 {% block additional_labels %}{% endblock %}
             </div>
 
-            <div class="idea-description">
+            <div class="item__content">
                 {{ object.description | richtext }}
+
+                {% block additional_content %}{% endblock %}
             </div>
 
-            {% block additional_content %}{% endblock %}
-
-            <div class="resource-header__meta">
-                {{ object.creator.username }}
+            <div class="item__meta">
+                <strong>{{ object.creator.username }}</strong>
+                {{ object.created|date }}
             </div>
 
-            <div class="resource-header__actions">
+            <div class="item__actions lr-bar">
                 {% if object|has_feature:"rate" %}
-                    {% react_ratings object %}
+                    <div class="lr-bar__left">
+                        {% react_ratings object %}
+                    </div>
                 {% endif %}
 
                 {% get_item_change_permission object as change_perm %}
                 {% has_perm change_perm request.user object as user_may_change %}
 
                 {% if request.user.is_authenticated %}
-                    <div class="dropdown dropdown--right">
+                    <div class="dropdown lr-bar__right">
                         <button
                                 title="{% trans 'Actions' %}"
                                 type="button"
