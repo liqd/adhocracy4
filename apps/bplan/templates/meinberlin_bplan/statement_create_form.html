@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Submit a development plan statement' %}{% endblock %}
+{% block content %}
+<div class="l-wrapper">
+    <h1>{% trans 'Submit a development plan statement' %}</h1>
+
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+        {{ form.media }}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.street_number %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.postal_code_city %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.statement %}
+
+        <input type="submit" class="button button--primary" value="{% trans 'Submit' %}" />
+    </form>
+
+
+</div>
+{% endblock %}

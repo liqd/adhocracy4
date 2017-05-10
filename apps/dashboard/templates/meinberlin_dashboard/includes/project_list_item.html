@@ -9,19 +9,11 @@
     </h3>
     <div class="list-item__actions">
         <span class="list-item__action">
-            {% if project|is_external %}
-                  <a href="{% url 'dashboard-external-project-edit' slug=project.slug %}"
-                     class="button button--light">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                    {% trans 'Edit'%}
-                </a>
-            {% else %}
-                <a href="{% url 'dashboard-project-edit' slug=project.slug %}"
-                 class="button button--light">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                    {% trans 'Edit'%}
-                </a>
-            {% endif %}
+            <a href="{% url 'dashboard-project-edit' slug=project.slug %}"
+             class="button button--light">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                {% trans 'Edit'%}
+            </a>
         </span>
         <form method="post" class="list-item__action">
             {% csrf_token %}

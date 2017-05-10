@@ -30,7 +30,7 @@
         bottom: 0;
         left: 0;
 
-        background-color: rgba($brand-primary, 0.8);
+        background-color: rgba(#000, 0.5);
     }
 }
 
@@ -52,16 +52,4 @@
 .resource-header__type {
     @include secondary-text;
     margin-bottom: 0.9em;
-}
-
-.resource-navigation {
-    @include clearfix;
-}
-
-.resource-navigation__breadcrumbs {
-    display: inline-block;
-}
-
-.resource-navigation__actions {
-    float: right;
 }

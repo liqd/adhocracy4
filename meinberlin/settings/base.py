@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'ckeditor',
     'ckeditor_uploader',
+    'capture_tag',
 
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
@@ -81,6 +82,7 @@ INSTALLED_APPS = (
     'apps.mapideas.apps.Config',
     'apps.polls.apps.Config',
     'apps.topicprio.apps.Config',
+    'apps.bplan.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -104,7 +106,7 @@ SITE_ID = 1
 
 ROOT_URLCONF = 'meinberlin.urls'
 
-LOCALE_PATHS = [os.path.join(PROJECT_DIR, 'locale')]
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
 TEMPLATES = [
     {
@@ -146,7 +148,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Berlin'
 
 USE_I18N = True
 
@@ -225,6 +227,11 @@ LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'apps.users.hashers.A2PasswordHasher',
+]
+
 
 # ckeditor
 
@@ -302,6 +309,7 @@ A4_COMMENTABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_polls', 'poll'),
 )
 
 A4_REPORTABLES = (

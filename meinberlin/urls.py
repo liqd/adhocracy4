@@ -21,6 +21,7 @@ from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 
 from apps.account import urls as account_urls
+from apps.bplan import urls as bplan_urls
 from apps.budgeting import urls as budgeting_urls
 from apps.dashboard import urls as dashboard_urls
 from apps.documents import urls as paragraph_urls
@@ -28,6 +29,8 @@ from apps.documents.api import DocumentViewSet
 from apps.embed import urls as embed_urls
 from apps.ideas import urls as ideas_urls
 from apps.mapideas import urls as mapideas_urls
+from apps.polls.api import PollViewSet
+from apps.polls.api import VoteViewSet
 from apps.projects import urls as projects_urls
 from apps.topicprio import urls as topicprio_urls
 
@@ -38,6 +41,8 @@ js_info_dict = {
 router = routers.DefaultRouter()
 router.register(r'follows', FollowViewSet, base_name='follows')
 router.register(r'reports', ReportViewSet, base_name='reports')
+router.register(r'polls', PollViewSet, base_name='polls')
+router.register(r'pollvotes', VoteViewSet, base_name='pollvotes')
 
 module_router = a4routers.ModuleDefaultRouter()
 module_router.register(r'documents', DocumentViewSet, base_name='documents')
@@ -67,6 +72,8 @@ urlpatterns = [
                                namespace='meinberlin_mapideas')),
     url(r'^topicprio/', include(topicprio_urls,
                                 namespace='meinberlin_topicprio')),
+    url(r'^bplan/', include(bplan_urls,
+                            namespace='meinberlin_bplan')),
 
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),

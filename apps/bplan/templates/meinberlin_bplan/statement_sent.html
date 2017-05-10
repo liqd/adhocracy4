@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Statement sent' %}{% endblock %}
+{% block content %}
+<div class="l-wrapper">
+    <h1>{% trans 'Statement sent' %}</h1>
+
+    <p>
+        {% trans 'Thanks! Your statement has been sent! An answer will be send to your email address.' %}
+    </p>
+
+</div>
+{% endblock %}

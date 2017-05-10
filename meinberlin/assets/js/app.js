@@ -29,13 +29,14 @@ var ReactReports = require('adhocracy4').reports
 var ReactFollows = require('adhocracy4').follows
 
 var ReactParagraphs = require('../../../apps/documents/assets/ParagraphBox.jsx')
-var ReactPolls = require('../../../apps/polls/assets/Polls.jsx')
+var ReactPolls = require('../../../apps/polls/assets/react_polls.jsx')
 
 module.exports = {
   'renderComment': ReactComments.renderComment,
   'renderRatings': ReactRatings.renderRatings,
   'renderParagraphs': ReactParagraphs.renderParagraphs,
   'renderPolls': ReactPolls.renderPolls,
+  'renderPollManagement': ReactPolls.renderPollManagement,
   'renderReports': ReactReports.renderReports,
   'renderFollow': ReactFollows.renderFollow
 }

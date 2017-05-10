@@ -4,7 +4,7 @@
 {% block title %}{% trans 'Create a new proposal' %}{% endblock %}
 {% block content %}
 <div class="l-wrapper">
-    <nav class="breadcrumbs">
+    <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
         <ul>
             <li>
                 <a href="{% url 'project-detail' view.project.slug %}">
