@@ -324,10 +324,17 @@ A4_REPORTABLES = (
 
 A4_ACTIONABLES = (
     ('a4comments', 'comment'),
+    ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
 )
 
 A4_AUTO_FOLLOWABLES = (
     ('a4comments', 'comment'),
+    ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_polls', 'vote'),  # TODO: really?
 )
 
 A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
