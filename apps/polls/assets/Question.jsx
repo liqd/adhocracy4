@@ -104,6 +104,25 @@ var Question = React.createClass({
     })
   },
 
+  getVoteButton: function () {
+    if (authenticated) {
+      return (
+        <button type="submit" className="button button--secondary">
+          { django.gettext('Vote') }
+        </button>
+      )
+    } else {
+      let loginUrl = '/accounts/login/?next=' +
+        encodeURIComponent(window.location.pathname)
+
+      return (
+        <a href={loginUrl} className="button button--secondary">
+          { django.gettext('Vote') }
+        </a>
+      )
+    }
+  },
+
   render: function () {
     let counts = this.state.counts
     let total = counts.reduce((sum, c) => sum + c, 0)
@@ -121,9 +140,7 @@ var Question = React.createClass({
     } else {
       footer = (
         <div>
-          <button type="submit" className="button button--secondary">
-            { django.gettext('Vote') }
-          </button>
+          {this.getVoteButton()}
           &nbsp;
           <button type="button" className="button button--light" onClick={this.toggleShowResult}>
             { django.gettext('Show preliminary results') }
