@@ -184,8 +184,6 @@ let PollManagement = React.createClass({
   render: function () {
     return (
       <form onSubmit={this.handleSubmit} onChange={this.removeAlert}>
-        <Alert onClick={this.removeAlert} {...this.state.alert} />
-
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
             this.state.questions.map((question, index) => {
