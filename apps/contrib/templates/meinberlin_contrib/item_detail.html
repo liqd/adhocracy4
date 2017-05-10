@@ -5,53 +5,15 @@
 {% block content %}
 <div class="l-wrapper">
     <div class="l-center-6">
-        <div class="lr-bar">
-            <nav class="lr-bar__left breadcrumbs">
-                <ul>
-                    <li>
-                        <a href="{% url 'project-detail' object.project.slug %}">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                            {% trans 'back to project' %}</a>
-                    </li>
-                </ul>
-            </nav>
-
-            {% get_item_change_permission object as change_perm %}
-            {% has_perm change_perm request.user object as user_may_change %}
-
-            {% if request.user.is_authenticated %}
-                <div class="lr-bar__right dropdown dropdown--right">
-                    <button
-                            title="{% trans 'Actions' %}"
-                            type="button"
-                            class="dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            id="idea-{{ object.pk }}-actions"
-                    >
-                        <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="idea-{{ object.pk }}-actions">
-                        {% if user_may_change %}
-                            <li>
-                                {% get_item_update_url object as change_url %}
-                                <a class="dropdown-item" href="{{ change_url }}">{% trans 'Edit' %}</a>
-                            </li>
-                            <li>
-                                {% get_item_delete_url object as delete_url %}
-                                <a class="dropdown-item" href="{{ delete_url }}">{% trans 'Delete' %}</a>
-                            </li>
-                        {% endif %}
-                        {% block dropdown_items %}{% endblock %}
-                        <li>
-                            {% trans 'Report' as report_text %}
-                            {% react_reports object text=report_text class='dropdown-item' %}
-                        </li>
-                    </ul>
-                </div>
-            {% endif %}
-        </div>
+        <nav class="breadcrumbs">
+            <ul>
+                <li>
+                    <a href="{% url 'project-detail' object.project.slug %}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to project' %}</a>
+                </li>
+            </ul>
+        </nav>
 
         <div class="resource-header">
             <h1 class="resource-header__title">{{ object.name }}</h1>
@@ -66,17 +28,53 @@
 
             {% block additional_meta %}{% endblock %}
 
-            {% if object|has_feature:"rate" %}
-                <div class="resource-header__action">
+            <div class="idea-description">
+                {{ object.description | richtext }}
+            </div>
+
+            <div class="resource-header__actions">
+                {% if object|has_feature:"rate" %}
                     {% react_ratings object %}
-                </div>
-            {% endif %}
+                {% endif %}
+
+                {% get_item_change_permission object as change_perm %}
+                {% has_perm change_perm request.user object as user_may_change %}
+
+                {% if request.user.is_authenticated %}
+                    <div class="dropdown dropdown--right">
+                        <button
+                                title="{% trans 'Actions' %}"
+                                type="button"
+                                class="dropdown-toggle"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                id="idea-{{ object.pk }}-actions"
+                        >
+                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="idea-{{ object.pk }}-actions">
+                            {% if user_may_change %}
+                                <li>
+                                    {% get_item_update_url object as change_url %}
+                                    <a class="dropdown-item" href="{{ change_url }}">{% trans 'Edit' %}</a>
+                                </li>
+                                <li>
+                                    {% get_item_delete_url object as delete_url %}
+                                    <a class="dropdown-item" href="{{ delete_url }}">{% trans 'Delete' %}</a>
+                                </li>
+                            {% endif %}
+                            {% block dropdown_items %}{% endblock %}
+                            <li>
+                                {% trans 'Report' as report_text %}
+                                {% react_reports object text=report_text class='dropdown-item' %}
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
 
             {% block additional_content %}{% endblock %}
-        </div>
-
-        <div class="idea-description">
-            {{ object.description | richtext }}
         </div>
     </div>
 
