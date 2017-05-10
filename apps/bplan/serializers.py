@@ -27,7 +27,6 @@ PROJECT_IMAGE_DIR = 'projects/backgrounds/'
 class BplanSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
     typ = serializers.HiddenField(default='Bplan')
-    is_draft = serializers.HiddenField(default=False)
 
     # make write_only for consistency  reasons
     start_date = serializers.DateTimeField(write_only=True)
@@ -37,15 +36,14 @@ class BplanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bplan
         fields = (
-            'id', 'name', 'description', 'is_archived', 'url',
-            'office_worker_email', 'typ', 'is_draft', 'start_date',
-            'end_date', 'image_url'
+            'id', 'name', 'description', 'url', 'office_worker_email', 'typ',
+            'is_draft', 'start_date', 'end_date', 'image_url'
         )
         extra_kwargs = {
             # write_only for constency reasons
+            'is_draft': {'default': False, 'write_only': True},
             'name': {'write_only': True},
             'description': {'write_only': True},
-            'is_archived': {'write_only': True},
             'url': {'write_only': True},
             'office_worker_email': {'write_only': True}
         }

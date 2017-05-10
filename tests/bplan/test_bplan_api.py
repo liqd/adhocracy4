@@ -34,7 +34,6 @@ def test_initiator_add_bplan(apiclient, organisation):
         "description": "desc",
         "url": "https://bplan.net",
         "office_worker_email": "test@liqd.de",
-        "is_archived": "false",
         "start_date": "2013-01-01 18:00",
         "end_date": "2021-01-01 18:00",
     }
@@ -73,7 +72,7 @@ def test_initiator_update_bplan(apiclient, bplan):
         "description": "desc",
         "url": "https://bplan.net",
         "office_worker_email": "test@liqd.de",
-        "is_archived": "true",
+        "is_draft": "true",
         "start_date": "2013-01-01 18:00",
         "end_date": "2021-01-01 18:00",
     }
@@ -82,13 +81,13 @@ def test_initiator_update_bplan(apiclient, bplan):
     response = apiclient.put(url, data, format='json')
     assert response.status_code == status.HTTP_200_OK
     bplan = bplan_models.Bplan.objects.first()
-    assert bplan.is_archived is True
+    assert bplan.is_draft is True
 
 
 @pytest.mark.django_db
-def test_initiator_update_bplan_field(apiclient, bplan):
-    bplan = bplan_models.Bplan.objects.first()
-    assert bplan.is_archived is False
+def test_initiator_update_bplan_field(apiclient, bplan_factory):
+    bplan  = bplan_factory(is_draft=False)
+    assert bplan.is_draft is False
     url = reverse(
         'bplan-detail',
         kwargs={
@@ -97,14 +96,14 @@ def test_initiator_update_bplan_field(apiclient, bplan):
         }
     )
     data = {
-        "is_archived": "true",
+        "is_draft": "true",
     }
     user = bplan.organisation.initiators.first()
     apiclient.force_authenticate(user=user)
     response = apiclient.patch(url, data, format='json')
     assert response.status_code == status.HTTP_200_OK
     bplan = bplan_models.Bplan.objects.first()
-    assert bplan.is_archived is True
+    assert bplan.is_draft is True
 
 
 @pytest.mark.django_db
