@@ -10,7 +10,8 @@
                 <li>
                     <a href="{% url 'project-detail' object.project.slug %}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'back to project' %}</a>
+                        {{ object.project.name }}
+                    </a>
                 </li>
             </ul>
         </nav>
