@@ -1,5 +1,12 @@
 .poll {
+    padding: 1.5em;
     margin-bottom: $spacer;
+
+    background-color: $body-bg;
+
+    h2 {
+        margin-top: 0;
+    }
 }
 
 .poll-row {

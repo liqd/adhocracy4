@@ -138,10 +138,10 @@ var Question = React.createClass({
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="poll">
         <h2>{ this.props.question.label }</h2>
 
-        <div className="poll">
+        <div className="poll__form">
           {
             this.props.question.choices.map((choice, i) => {
               let checked = this.state.selectedChoice === i
