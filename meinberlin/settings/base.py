@@ -62,6 +62,8 @@ INSTALLED_APPS = (
     'adhocracy4.comments.apps.CommentsConfig',
     'adhocracy4.categories.apps.CategoriesConfig',
     'adhocracy4.maps.apps.MapsConfig',
+    'adhocracy4.actions.apps.ActionsConfig',
+    'adhocracy4.follows.apps.FollowsConfig',
 
     'apps.contrib.apps.Config',
     'apps.cms.apps.Config',
@@ -317,6 +319,14 @@ A4_REPORTABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+)
+
+A4_ACTIONABLES = (
+    ('a4comments', 'comment'),
+)
+
+A4_AUTO_FOLLOWABLES = (
+    ('a4comments', 'comment'),
 )
 
 A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
