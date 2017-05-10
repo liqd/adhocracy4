@@ -42,3 +42,19 @@ class ModuleSimpleRouter(ModuleRouterMixin, routers.SimpleRouter):
 
 class ModuleDefaultRouter(ModuleRouterMixin, routers.DefaultRouter):
     pass
+
+
+class OrganisationRouterMixin(CustomRouterMixin):
+
+    prefix_regex = (
+        'organisations/(?P<organisation_pk>[\d]+)/{prefix}'
+    )
+
+
+class OrganisationSimpleRouter(OrganisationRouterMixin, routers.SimpleRouter):
+    pass
+
+
+class OrganisationDefaultRouter(OrganisationRouterMixin,
+                                routers.DefaultRouter):
+    pass

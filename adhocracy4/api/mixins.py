@@ -1,4 +1,7 @@
+from django.apps import apps
+from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
+
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from rest_framework import status
@@ -66,6 +69,25 @@ class ModuleMixin:
         return get_object_or_404(
             module_models.Module,
             pk=self.module_pk
+        )
+
+
+
+class OrganisationMixin:
+    """
+    Should be used in combination with OrganisationRouter to fetch the
+    organisation.
+    """
+
+    def dispatch(self, request, *args, **kwargs):
+        self.organisation_pk = kwargs.get('organisation_pk', '')
+        return super().dispatch(request, *args, **kwargs)
+
+    @property
+    def organisation(self):
+        return get_object_or_404(
+            apps.get_model(settings.A4_ORGANISATIONS_MODEL),
+            pk=self.organisation_pk
         )
 
 
