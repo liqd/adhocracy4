@@ -84,3 +84,23 @@ def test_non_initiator_cannot_update_bplan(apiclient, bplan, user2):
     apiclient.force_authenticate(user=user2)
     response = apiclient.put(url, data, format='json')
     assert response.status_code == status.HTTP_403_FORBIDDEN
+
+
+@pytest.mark.django_db
+def test_add_bplan_returns_embed_code(apiclient, organisation):
+    url = reverse('bplan-list', kwargs={'organisation_pk': organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "url": "https://bplan.net",
+        "office_worker_email": "test@liqd.de",
+    }
+    user = organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, data, format='json')
+    assert response.status_code == status.HTTP_201_CREATED
+    assert response.data['embed_code'] == \
+        '<iframe height="500" style="width: 100%; min-height: 300px; ' \
+        'max-height: 100vh" ' \
+        'src="https://example.com/embed/projects/bplan-1/" ' \
+        'frameborder="0"></iframe>'
