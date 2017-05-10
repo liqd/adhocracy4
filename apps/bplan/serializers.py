@@ -37,11 +37,11 @@ class BplanSerializer(serializers.ModelSerializer):
         return dict
 
     def _response_embed_code(self, bplan):
-        url = self._get_absoulute_url(bplan)
+        url = self._get_absolute_url(bplan)
         embed = BPLAN_EMBED.format(url)
         return embed
 
-    def _get_absoulute_url(self, bplan):
+    def _get_absolute_url(self, bplan):
         site_url = Site.objects.get_current().domain
         embed_url = reverse('embed-project', kwargs={'slug': bplan.slug, })
         url = 'https://{}{}'.format(site_url, embed_url)
