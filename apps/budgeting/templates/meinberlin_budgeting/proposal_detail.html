@@ -13,14 +13,14 @@
                 <div class="moderator-statement">
                     <h2 class="moderator-statement__title">{% trans 'Official Statement' %}</h2>
                     <div class="moderator-statement__subtitle">
-                        <span class="moderator-statement__organisation">
+                        <strong class="moderator-statement__organisation">
                             {{ proposal.module.project.organisation.name }}
-                        </span>
+                        </strong>
                         <span class="moderator-statement__date">
                             {{ proposal.moderator_statement.created | date }}
                         </span>
                     </div>
-                    <div class="moderator-statement__statement">
+                    <div class="moderator-statement__body">
                         {{ proposal.moderator_statement.statement | safe }}
                     </div>
                 </div>
