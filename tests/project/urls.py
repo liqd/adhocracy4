@@ -5,11 +5,13 @@ from rest_framework import routers
 
 from adhocracy4.api import routers as a4routers
 from adhocracy4.projects import urls as prj_urls
+from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 from adhocracy4.comments.api import CommentViewSet
 
 router = routers.DefaultRouter()
+router.register(r'follows', FollowViewSet, base_name='follows')
 router.register(r'reports', ReportViewSet, base_name='reports')
 
 ct_router = a4routers.ContentTypeDefaultRouter()
