@@ -35,7 +35,10 @@ let PollManagement = React.createClass({
     return {
       label: label,
       key: this.getNextLocalKey(),
-      choices: []
+      choices: [
+        this.getNewChoice(),
+        this.getNewChoice()
+      ]
     }
   },
 
