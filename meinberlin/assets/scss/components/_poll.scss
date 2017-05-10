@@ -9,6 +9,14 @@
     }
 }
 
+.poll__actions > :last-child {
+    margin-left: 1em;
+}
+
+.poll__rows {
+    margin-bottom: 1em;
+}
+
 .poll-row {
     position: relative;
     padding: 0.2em 0.5em;

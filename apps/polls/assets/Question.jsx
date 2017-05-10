@@ -115,7 +115,7 @@ var Question = React.createClass({
       footer = totalString
     } else if (this.state.showResult) {
       footer = (
-        <div>
+        <div className="poll__actions">
           { totalString }
           &nbsp;
           <button type="button" className="link" onClick={this.toggleShowResult}>
@@ -125,7 +125,7 @@ var Question = React.createClass({
       )
     } else {
       footer = (
-        <div>
+        <div className="poll__actions">
           <button type="submit" className="button button--secondary">
             { django.gettext('Vote') }
           </button>
@@ -141,7 +141,7 @@ var Question = React.createClass({
       <form onSubmit={this.handleSubmit} className="poll">
         <h2>{ this.props.question.label }</h2>
 
-        <div className="poll__form">
+        <div className="poll__rows">
           {
             this.props.question.choices.map((choice, i) => {
               let checked = this.state.selectedChoice === i
