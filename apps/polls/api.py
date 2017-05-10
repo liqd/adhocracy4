@@ -1,9 +1,12 @@
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from rest_framework import mixins
+from rest_framework import status
 from rest_framework import viewsets
+from rest_framework.request import clone_request
+from rest_framework.response import Response
 
 from adhocracy4.api.permissions import ViewSetRulesPermission
-from apps.contrib.api.mixins import AllowPUTAsCreateMixin
 from .models import Poll
 from .models import Question
 from .models import Vote
@@ -28,9 +31,7 @@ class VoteViewSetRulesPermission(ViewSetRulesPermission):
     non_object_actions = ['list', 'create', 'update']
 
 
-class VoteViewSet(AllowPUTAsCreateMixin,
-                  mixins.UpdateModelMixin,
-                  viewsets.GenericViewSet):
+class VoteViewSet(viewsets.GenericViewSet):
     queryset = Vote.objects.all()
     serializer_class = VoteSerializer
     permission_classes = (VoteViewSetRulesPermission,)
@@ -62,3 +63,41 @@ class VoteViewSet(AllowPUTAsCreateMixin,
             'question_pk': self.question_pk,
         })
         return context
+
+    def update(self, request, *args, **kwargs):
+        # Based on the a4-opin AllowPUTAsCreateMixin.
+        #
+        # Since this view has a mismatch between its pk (which is
+        # related to questions) and its serializer (which is related to votes)
+        # the AllowPUTAsCreateMixin won't work correctly, as it sets the pk
+        # on the serializer object which obviously results in faulty database
+        # operations.
+        partial = kwargs.pop('partial', False)
+
+        instance = self.get_object_or_none()
+        serializer = self.get_serializer(instance,
+                                         data=request.data,
+                                         partial=partial)
+        serializer.is_valid(raise_exception=True)
+
+        if instance is None:
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        serializer.save()
+        return Response(serializer.data)
+
+    def get_object_or_none(self):
+        try:
+            return self.get_object()
+        except Http404:
+            if self.request.method == 'PUT':
+                # For PUT-as-create operation, we need to ensure that we have
+                # relevant permissions, as if this was a POST request.  This
+                # will either raise a PermissionDenied exception, or simply
+                # return None.
+                self.check_permissions(clone_request(self.request, 'POST'))
+            else:
+                # PATCH requests where the object does not exist should still
+                # return a 404 response.
+                raise
