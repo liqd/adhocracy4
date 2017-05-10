@@ -29,7 +29,7 @@ class BplanSerializer(serializers.ModelSerializer):
     typ = serializers.HiddenField(default='Bplan')
     is_draft = serializers.HiddenField(default=False)
 
-    # write_only as not part of the model
+    # make write_only for consistency  reasons
     start_date = serializers.DateTimeField(write_only=True)
     end_date = serializers.DateTimeField(write_only=True)
     image_url = serializers.URLField(required=False, write_only=True)
@@ -41,6 +41,14 @@ class BplanSerializer(serializers.ModelSerializer):
             'office_worker_email', 'typ', 'is_draft', 'start_date',
             'end_date', 'image_url'
         )
+        extra_kwargs = {
+            # write_only for constency reasons
+            'name': {'write_only': True},
+            'description': {'write_only': True},
+            'is_archived': {'write_only': True},
+            'url': {'write_only': True},
+            'office_worker_email': {'write_only': True}
+        }
 
     def create(self, validated_data):
         orga_pk = self._context.get('organisation_pk', None)

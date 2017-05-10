@@ -101,7 +101,7 @@ def test_non_initiator_cannot_update_bplan(apiclient, bplan, user2):
 
 
 @pytest.mark.django_db
-def test_add_bplan_returns_embed_code(apiclient, organisation):
+def test_add_bplan_response(apiclient, organisation):
     url = reverse('bplan-list', kwargs={'organisation_pk': organisation.pk})
     data = {
         "name": "bplan-1",
@@ -115,8 +115,12 @@ def test_add_bplan_returns_embed_code(apiclient, organisation):
     apiclient.force_authenticate(user=user)
     response = apiclient.post(url, data, format='json')
     assert response.status_code == status.HTTP_201_CREATED
-    assert response.data['embed_code'] == \
+    embed_code = \
         '<iframe height="500" style="width: 100%; min-height: 300px; ' \
         'max-height: 100vh" ' \
         'src="https://example.com/embed/projects/bplan-1/" ' \
         'frameborder="0"></iframe>'
+    assert response.data == {
+        'id': 1,
+        'embed_code': embed_code
+    }
