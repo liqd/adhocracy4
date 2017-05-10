@@ -6,11 +6,7 @@
 {% block headline %}Neue Stellungnahme zum Bebauungsplan {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
 
 {% block content %}
-
-
 Es wurde eine neue Stellungnahme für den Bebauungsplan {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }} abgegeben.
-
-
 
 Name
 {{ statement.name }}
@@ -28,9 +24,7 @@ E-Mail-Adresse
 Stellungnahme
 
 {{ statement.statement }}
-
 {% endblock %}
-
 
 {% block cta_label %}Bebauungsplan "{{ project.name }}"{% endblock %}
 {% block cta_url %}{{ project.externalproject.url }}{% endblock %}
