@@ -1,8 +1,8 @@
 {% extends "meinberlin_mapideas/mapidea_detail.html" %}
-{% load rules item_tags i18n %}
+{% load rules item_tags i18n humanize %}
 
 {% block additional_labels %}
-    <div class="label label--big">{{ proposal.budget }}€</div>
+    <div class="label label--big">{{ proposal.budget|intcomma }}€</div>
     {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal %}
 {% endblock %}
 
