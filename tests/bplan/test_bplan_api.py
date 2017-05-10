@@ -1,6 +1,10 @@
 import pytest
+from dateutil.parser import parse
 from django.core.urlresolvers import reverse
 from rest_framework import status
+
+from adhocracy4.modules import models as module_models
+from adhocracy4.phases import models as phase_models
 
 from apps.bplan import models as bplan_models
 
@@ -31,6 +35,8 @@ def test_initiator_add_bplan(apiclient, organisation):
         "url": "https://bplan.net",
         "office_worker_email": "test@liqd.de",
         "is_archived": "false",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
     }
     user = organisation.initiators.first()
     apiclient.force_authenticate(user=user)
@@ -45,6 +51,12 @@ def test_initiator_add_bplan(apiclient, organisation):
     assert bplan.is_draft is False
     assert bplan.information == ''
     assert bplan.result == ''
+    module = module_models.Module.objects.get(project=bplan)
+    assert module is not None
+    phase = phase_models.Phase.objects.get(module=module)
+    assert phase is not None
+    assert phase.start_date == parse("2013-01-01 17:00:00 UTC")
+    assert phase.end_date == parse("2021-01-01 17:00:00 UTC")
 
 
 @pytest.mark.django_db
@@ -62,6 +74,8 @@ def test_initiator_update_bplan(apiclient, bplan):
         "url": "https://bplan.net",
         "office_worker_email": "test@liqd.de",
         "is_archived": "true",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
     }
     user = bplan.organisation.initiators.first()
     apiclient.force_authenticate(user=user)
@@ -94,6 +108,8 @@ def test_add_bplan_returns_embed_code(apiclient, organisation):
         "description": "desc",
         "url": "https://bplan.net",
         "office_worker_email": "test@liqd.de",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
     }
     user = organisation.initiators.first()
     apiclient.force_authenticate(user=user)
