@@ -52,7 +52,15 @@
       <tr>
           <td style="text-align: center; padding-top:20px;">
               <h2>{% block headline %}{% endblock %}</h2>
-              <p>{% block content %}{% endblock %}</p>
+          </td>
+      </tr>
+      <tr>
+          <td>
+            {% block content_html %}
+                {% load capture_tags %}
+                {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
+                {{ content|linebreaks }}
+            {% endblock %}
           </td>
       </tr>
       {% block cta %}
