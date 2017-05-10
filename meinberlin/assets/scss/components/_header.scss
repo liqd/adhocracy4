@@ -13,6 +13,7 @@ $header-margin-bottom: 25px;
 // positioned so that the "mein" from "meinBerlin" is on the baseline
 .main-nav__logo {
     text-decoration: none;
+    margin-right: 1em;
 
     img {
         margin: 0;
@@ -115,7 +116,7 @@ $header-margin-bottom: 25px;
 .main-header__user {
     @media screen and (min-width: $breakpoint) {
         position: absolute;
-        bottom: -0.7em;
+        bottom: -1em;
         right: $padding;
     }
 
@@ -181,7 +182,7 @@ $header-margin-bottom: 25px;
 }
 
 .beberlin-logo {
-    margin-right: 1em;
+    margin-right: 1.5em;
     vertical-align: middle;
 
     @media screen and (min-width: $breakpoint) {

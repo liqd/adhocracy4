@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'ckeditor',
     'ckeditor_uploader',
+    'capture_tag',
 
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
@@ -147,7 +148,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Berlin'
 
 USE_I18N = True
 

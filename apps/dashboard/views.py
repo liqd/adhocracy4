@@ -1,4 +1,5 @@
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseNotFound
 from django.utils.translation import ugettext as _
@@ -10,18 +11,20 @@ from adhocracy4.filters import views as filter_views
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
+
+from apps.bplan import models as bplan_models
 from apps.extprojects import models as extproject_models
 from apps.organisations.models import Organisation
 
-from . import mixins as dashboard_mixins
 from . import blueprints
 from . import forms
+from . import mixins
 from .filtersets import DashboardProjectFilterSet
 
 
-class DashboardProjectListView(dashboard_mixins.DashboardBaseMixin,
+class DashboardProjectListView(mixins.DashboardBaseMixin,
                                rules_mixins.PermissionRequiredMixin,
-                               dashboard_mixins.DashboardProjectPublishMixin,
+                               mixins.DashboardProjectPublishMixin,
                                filter_views.FilteredListView):
     model = project_models.Project
     paginate_by = 12
@@ -36,7 +39,7 @@ class DashboardProjectListView(dashboard_mixins.DashboardBaseMixin,
         )
 
 
-class DashboardBlueprintListView(dashboard_mixins.DashboardBaseMixin,
+class DashboardBlueprintListView(mixins.DashboardBaseMixin,
                                  rules_mixins.PermissionRequiredMixin,
                                  generic.TemplateView):
     template_name = 'meinberlin_dashboard/blueprint_list.html'
@@ -45,76 +48,81 @@ class DashboardBlueprintListView(dashboard_mixins.DashboardBaseMixin,
     menu_item = 'project'
 
 
-class DashboardProjectCreateView(dashboard_mixins.DashboardBaseMixin,
-                                 rules_mixins.PermissionRequiredMixin,
-                                 SuccessMessageMixin,
-                                 blueprints.BlueprintMixin,
-                                 generic.CreateView):
+class DashboardProjectCreateView(mixins.DashboardProjectCreateMixin,
+                                 blueprints.BlueprintMixin):
     model = project_models.Project
     form_class = forms.ProjectCreateForm
     template_name = 'meinberlin_dashboard/project_create_form.html'
-    success_message = _('Project succesfully created.')
-    permission_required = 'a4projects.add_project'
-    menu_item = 'project'
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['blueprint'] = self.blueprint
-        kwargs['organisation'] = self.organisation
-        kwargs['creator'] = self.request.user
-        return kwargs
-
-    def get_success_url(self):
-        return reverse(
-            'dashboard-project-list',
-            kwargs={'organisation_slug': self.organisation.slug, })
 
 
-class DashboardExternalProjectCreateView(dashboard_mixins.DashboardBaseMixin,
-                                         rules_mixins.PermissionRequiredMixin,
-                                         SuccessMessageMixin,
-                                         generic.CreateView):
+class DashboardExternalProjectCreateView(mixins.DashboardProjectCreateMixin):
     model = extproject_models.ExternalProject
     form_class = forms.ExternalProjectCreateForm
     template_name = 'meinberlin_dashboard/external_project_create_form.html'
-    success_message = _('Project succesfully created.')
-    permission_required = 'a4projects.add_project'
-    menu_item = 'project'
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['organisation'] = self.organisation
-        kwargs['creator'] = self.request.user
-        kwargs['blueprint'] = dict(blueprints.blueprints)['external-project']
-        return kwargs
-
-    def get_success_url(self):
-        return reverse(
-            'dashboard-project-list',
-            kwargs={'organisation_slug': self.organisation.slug, })
+    blueprint = dict(blueprints.blueprints)['external-project']
 
 
-class DashboardProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
-                                 rules_mixins.PermissionRequiredMixin,
-                                 SuccessMessageMixin,
-                                 generic.UpdateView):
+class DashboardBplanProjectCreateView(mixins.DashboardProjectCreateMixin):
+    model = bplan_models.Bplan
+    form_class = forms.BplanProjectCreateForm
+    template_name = 'meinberlin_dashboard/bplan_project_create_form.html'
+
+    blueprint = dict(blueprints.blueprints)['bplan']
+
+
+class DashboardProjectCreateViewDispatcher(generic.View):
+    mappings = {
+        'external-project': DashboardExternalProjectCreateView,
+        'bplan': DashboardBplanProjectCreateView
+    }
+
+    def dispatch(self, request, *args, **kwargs):
+        blueprint_slug = kwargs.get('blueprint_slug', None)
+        if blueprint_slug in self.mappings:
+            view = self.mappings[blueprint_slug].as_view()
+        else:
+            view = DashboardProjectCreateView.as_view()
+
+        return view(request, *args, **kwargs)
+
+
+class DashboardProjectUpdateViewDispatcher(mixins.DashboardBaseMixin,
+                                           SingleObjectMixin,
+                                           generic.View):
+    model = project_models.Project
+
+    def dispatch(self, request, *args, **kwargs):
+        project = self.get_object()
+
+        if self.get_bplan_or_none(project):
+            # Attention: every bplan project is also an external project
+            view = DashboardBplanProjectUpdateView.as_view()
+        elif self.get_external_or_none(project):
+            view = DashboardExternalProjectUpdateView.as_view()
+        else:
+            view = DashboardProjectUpdateView.as_view()
+        return view(request, *args, **kwargs)
+
+    @staticmethod
+    def get_external_or_none(project):
+        try:
+            return project.externalproject
+        except ObjectDoesNotExist:
+            return None
+
+    @staticmethod
+    def get_bplan_or_none(project):
+        try:
+            return project.externalproject.bplan
+        except (ObjectDoesNotExist, AttributeError):
+            return None
+
+
+class DashboardProjectUpdateView(mixins.DashboardProjectUpdateMixin):
     model = project_models.Project
     form_class = forms.ProjectUpdateForm
     template_name = 'meinberlin_dashboard/project_update_form.html'
-    success_message = _('Project successfully updated.')
-    permission_required = 'a4projects.add_project'
-    menu_item = 'project'
-
-    def get_queryset(self):
-        return super().get_queryset().filter(
-            organisation=self.organisation
-        )
-
-    def get_success_url(self):
-        return reverse('dashboard-project-list',
-                       kwargs={
-                           'organisation_slug': self.organisation.slug,
-                       })
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -132,30 +140,25 @@ class DashboardProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
         return kwargs
 
 
-class DashboardExternalProjectUpdateView(dashboard_mixins.DashboardBaseMixin,
-                                         rules_mixins.PermissionRequiredMixin,
-                                         SuccessMessageMixin,
-                                         generic.UpdateView):
+class DashboardExternalProjectUpdateView(mixins.DashboardProjectUpdateMixin):
     model = extproject_models.ExternalProject
     form_class = forms.ExternalProjectUpdateForm
     template_name = 'meinberlin_dashboard/external_project_update_form.html'
-    success_message = _('Project successfully updated.')
-    permission_required = 'a4projects.add_project'
-    menu_item = 'project'
-
-    def get_queryset(self):
-        return super().get_queryset().filter(
-            organisation=self.organisation
-        )
-
-    def get_success_url(self):
-        return reverse('dashboard-project-list',
-                       kwargs={
-                           'organisation_slug': self.organisation.slug,
-                       })
 
 
-class DashboardOrganisationUpdateView(dashboard_mixins.DashboardBaseMixin,
+class DashboardBplanProjectUpdateView(mixins.DashboardProjectUpdateMixin):
+    model = bplan_models.Bplan
+    form_class = forms.BplanProjectUpdateForm
+    template_name = 'meinberlin_dashboard/bplan_project_update_form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardBplanProjectUpdateView, self)\
+            .get_context_data(**kwargs)
+        context['display_embed_code'] = True
+        return context
+
+
+class DashboardOrganisationUpdateView(mixins.DashboardBaseMixin,
                                       rules_mixins.PermissionRequiredMixin,
                                       SuccessMessageMixin,
                                       generic.UpdateView):
@@ -169,8 +172,8 @@ class DashboardOrganisationUpdateView(dashboard_mixins.DashboardBaseMixin,
     menu_item = 'organisation'
 
 
-class DashboardProjectModeratorsView(dashboard_mixins.DashboardBaseMixin,
-                                     dashboard_mixins.DashboardModRemovalMixin,
+class DashboardProjectModeratorsView(mixins.DashboardBaseMixin,
+                                     mixins.DashboardModRemovalMixin,
                                      rules_mixins.PermissionRequiredMixin,
                                      generic.UpdateView):
 
@@ -186,7 +189,7 @@ class DashboardProjectModeratorsView(dashboard_mixins.DashboardBaseMixin,
         return kwargs
 
 
-class DashboardProjectManagementView(dashboard_mixins.DashboardBaseMixin,
+class DashboardProjectManagementView(mixins.DashboardBaseMixin,
                                      rules_mixins.PermissionRequiredMixin,
                                      SingleObjectMixin,
                                      generic.View):

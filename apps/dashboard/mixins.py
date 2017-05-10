@@ -1,5 +1,7 @@
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils import functional
@@ -8,6 +10,8 @@ from django.views import generic
 from rules.compat import access_mixins as mixins
 
 from adhocracy4.projects import models as project_models
+from adhocracy4.rules import mixins as rules_mixins
+
 from apps.organisations import models as org_models
 from apps.users.models import User
 
@@ -40,6 +44,41 @@ class DashboardBaseMixin(mixins.LoginRequiredMixin,
 
     def get_success_url(self):
         return self.request.path
+
+
+class DashboardProjectBaseMixin(DashboardBaseMixin,
+                                rules_mixins.PermissionRequiredMixin):
+    permission_required = 'a4projects.add_project'
+    menu_item = 'project'
+
+    def get_success_url(self):
+        return reverse(
+            'dashboard-project-list',
+            kwargs={'organisation_slug': self.organisation.slug, })
+
+
+class DashboardProjectCreateMixin(DashboardProjectBaseMixin,
+                                  SuccessMessageMixin,
+                                  generic.CreateView):
+    success_message = _('Project succesfully created.')
+
+    def get_form_kwargs(self):
+        kwargs = super(DashboardProjectCreateMixin, self).get_form_kwargs()
+        kwargs['blueprint'] = self.blueprint
+        kwargs['organisation'] = self.organisation
+        kwargs['creator'] = self.request.user
+        return kwargs
+
+
+class DashboardProjectUpdateMixin(DashboardProjectBaseMixin,
+                                  SuccessMessageMixin,
+                                  generic.UpdateView):
+    success_message = _('Project successfully updated.')
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            organisation=self.organisation
+        )
 
 
 class DashboardProjectPublishMixin:

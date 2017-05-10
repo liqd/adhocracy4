@@ -8,8 +8,16 @@ var Alert = require('../../contrib/static/js/Alert')
 
 let PollManagement = React.createClass({
   getInitialState: function () {
+    var questions = this.props.poll.questions
+
+    if (questions.length === 0) {
+      questions = [
+        this.getNewQuestion('')
+      ]
+    }
+
     return {
-      questions: this.props.poll.questions,
+      questions: questions,
       errors: [],
       alert: null
     }
@@ -35,7 +43,10 @@ let PollManagement = React.createClass({
     return {
       label: label,
       key: this.getNextLocalKey(),
-      choices: []
+      choices: [
+        this.getNewChoice(),
+        this.getNewChoice()
+      ]
     }
   },
 
