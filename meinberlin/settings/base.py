@@ -84,6 +84,7 @@ INSTALLED_APPS = (
     'apps.polls.apps.Config',
     'apps.topicprio.apps.Config',
     'apps.bplan.apps.Config',
+    'apps.notifications.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
