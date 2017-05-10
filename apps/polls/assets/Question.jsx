@@ -105,7 +105,7 @@ var Question = React.createClass({
   },
 
   getVoteButton: function () {
-    if (authenticated) {
+    if (this.props.question.authenticated) {
       return (
         <button type="submit" className="button button--secondary">
           { django.gettext('Vote') }
