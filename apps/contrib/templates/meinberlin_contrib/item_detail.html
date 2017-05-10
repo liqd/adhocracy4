@@ -18,18 +18,21 @@
         <div class="resource-header">
             <h1 class="resource-header__title">{{ object.name }}</h1>
 
-            <div class="resource-header__meta">{{ object.creator.username }}</div>
-
-            {% if object.category %}
-                <div class="resource-header__meta">
+            <div class="resource-header__labels">
+                {% if object.category %}
                     <div class="label label--big">{{ object.category }}</div>
-                </div>
-            {% endif %}
-
-            {% block additional_meta %}{% endblock %}
+                {% endif %}
+                {% block additional_labels %}{% endblock %}
+            </div>
 
             <div class="idea-description">
                 {{ object.description | richtext }}
+            </div>
+
+            {% block additional_content %}{% endblock %}
+
+            <div class="resource-header__meta">
+                {{ object.creator.username }}
             </div>
 
             <div class="resource-header__actions">
@@ -73,8 +76,6 @@
                     </div>
                 {% endif %}
             </div>
-
-            {% block additional_content %}{% endblock %}
         </div>
     </div>
 
