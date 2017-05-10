@@ -86,6 +86,28 @@ def test_initiator_update_bplan(apiclient, bplan):
 
 
 @pytest.mark.django_db
+def test_initiator_update_bplan_field(apiclient, bplan):
+    bplan = bplan_models.Bplan.objects.first()
+    assert bplan.is_archived is False
+    url = reverse(
+        'bplan-detail',
+        kwargs={
+            'organisation_pk': bplan.organisation.pk,
+            'pk': bplan.pk
+        }
+    )
+    data = {
+        "is_archived": "true",
+    }
+    user = bplan.organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.patch(url, data, format='json')
+    assert response.status_code == status.HTTP_200_OK
+    bplan = bplan_models.Bplan.objects.first()
+    assert bplan.is_archived is True
+
+
+@pytest.mark.django_db
 def test_non_initiator_cannot_update_bplan(apiclient, bplan, user2):
     url = reverse(
         'bplan-detail',
