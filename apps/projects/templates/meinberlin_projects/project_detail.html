@@ -4,14 +4,14 @@
 {% block title %}{{view.project.name}}{% endblock %}
 
 {% block content %}
-<div class="resource-header{% if view.project.image %} resource-header--image{% endif %}" style="{% if view.project.image %}
+<div class="project-header{% if view.project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
                background-image: url({{ view.project.image |thumbnail_url:'heroimage' }});
                {% endif %}">
     <div class="l-wrapper">
         <div class="l-center-6">
-            <div class="resource-header__type">{{ view.project.typ }}</div>
-            <h1 class="resource-header__title">{{ view.project.name }}</h1>
-            <div class="resource-header__action">
+            <div class="project-header__type">{{ view.project.typ }}</div>
+            <h1 class="project-header__title">{{ view.project.name }}</h1>
+            <div class="project-header__action">
                 {% block project_action %}{% endblock %}
             </div>
         </div>
