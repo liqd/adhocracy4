@@ -87,6 +87,12 @@ var Question = React.createClass({
       })
   },
 
+  removeAlert: function () {
+    this.setState({
+      alert: null
+    })
+  },
+
   handleOnChange: function (event) {
     this.setState({
       selectedChoice: parseInt(event.target.value)
@@ -167,7 +173,7 @@ var Question = React.createClass({
           }
         </div>
 
-        <Alert {...this.state.alert} />
+        <Alert onClick={this.removeAlert} {...this.state.alert} />
         { footer }
       </form>
     )
