@@ -5,7 +5,7 @@
 {% block headline %}Only a few hours left to participate in {{ action.project.name }}{% endblock %}
 
 {% block content %}
-The current participation phase of the project “{{ action.project.name }}” by <i>{{ action.project.organisation.name }}</i> will be over at <i>{{ project.active.phase.end_date }}</i>. If you want to participate, visit the project page soon.
+The current participation phase of the project “{{ action.project.name }}” by <i>{{ action.project.organisation.name }}</i> will be over at <i>{{ action.project.active_phase.end_date|date:'d.m.Y' }}</i>. If you want to participate, visit the project page soon.
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endblock %}
