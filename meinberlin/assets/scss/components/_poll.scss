@@ -39,13 +39,14 @@
 }
 
 .poll-row__bar {
-    background-color: $bg-secondary;
+    background-color: $bg-tertiary;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     border-radius: 0.3em;
     z-index: -1;
+    min-width: 0.4em;
 }
 
 .poll-row__bar--highlight {

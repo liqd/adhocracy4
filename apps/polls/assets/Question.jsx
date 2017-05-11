@@ -104,6 +104,28 @@ var Question = React.createClass({
     })
   },
 
+  getVoteButton: function () {
+    if (this.props.question.authenticated) {
+      return (
+        <button
+          type="submit"
+          className="button button--secondary"
+          disabled={this.state.selectedChoice === this.state.ownChoice}>
+          { django.gettext('Vote') }
+        </button>
+      )
+    } else {
+      let loginUrl = '/accounts/login/?next=' +
+        encodeURIComponent(window.location.pathname)
+
+      return (
+        <a href={loginUrl} className="button button--secondary">
+          { django.gettext('Vote') }
+        </a>
+      )
+    }
+  },
+
   render: function () {
     let counts = this.state.counts
     let total = counts.reduce((sum, c) => sum + c, 0)
@@ -126,9 +148,7 @@ var Question = React.createClass({
     } else {
       footer = (
         <div className="poll__actions">
-          <button type="submit" className="button button--secondary">
-            { django.gettext('Vote') }
-          </button>
+          {this.getVoteButton()}
           &nbsp;
           <button type="button" className="link" onClick={this.toggleShowResult}>
             { django.gettext('Show preliminary results') }
@@ -148,7 +168,7 @@ var Question = React.createClass({
               let chosen = this.state.ownChoice === i
               let count = this.state.counts[i]
               let percent = total === 0 ? 0 : Math.round(count / total * 100)
-              let highlight = count === max
+              let highlight = count === max && max > 0
 
               if (this.state.showResult || !this.state.active) {
                 return (

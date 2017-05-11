@@ -22,7 +22,8 @@ def react_polls(context, question):
             'label': choice.label,
             'count': choice.vote_count,
             'ownChoice': (choice.pk in user_choices)
-        } for choice in question.choices.annotate_vote_count()]
+        } for choice in question.choices.annotate_vote_count()],
+        'authenticated': user.is_authenticated()
     }
 
     return format_html(
