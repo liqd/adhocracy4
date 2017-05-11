@@ -146,11 +146,11 @@ var Question = React.createClass({
       footer = totalString
     } else if (this.state.showResult) {
       footer = (
-        <div>
+        <div className="poll__actions">
           { totalString }
           &nbsp;
           {!this.props.question.hasFinished &&
-            <button type="button" className="button button--light" onClick={this.toggleShowResult}>
+            <button type="button" className="link" onClick={this.toggleShowResult}>
               { django.gettext('To poll') }
             </button>
           }
@@ -158,10 +158,10 @@ var Question = React.createClass({
       )
     } else {
       footer = (
-        <div>
+        <div className="poll__actions">
           {this.getVoteButton()}
           &nbsp;
-          <button type="button" className="button button--light" onClick={this.toggleShowResult}>
+          <button type="button" className="link" onClick={this.toggleShowResult}>
             { django.gettext('Show preliminary results') }
           </button>
         </div>
@@ -169,25 +169,25 @@ var Question = React.createClass({
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="poll">
         <h2>{ this.props.question.label }</h2>
 
-        <div className="poll">
+        <div className="poll__rows">
           {
             this.props.question.choices.map((choice, i) => {
               let checked = this.state.selectedChoice === i
               let chosen = this.state.ownChoice === i
               let count = this.state.counts[i]
               let percent = total === 0 ? 0 : Math.round(count / total * 100)
-              let highlight = count === max
+              let highlight = count === max && max > 0
 
               if (this.state.showResult || !this.state.active) {
                 return (
                   <div className="poll-row" key={i}>
-                    <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')} style={{width: percent + '%'}} />
                     <div className="poll-row__number">{ percent }%</div>
                     <div className="poll-row__label">{ choice.label }</div>
                     { chosen ? <i className="fa fa-check-circle u-secondary" aria-label={django.gettext('Your choice')} /> : '' }
+                    <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')} style={{width: percent + '%'}} />
                   </div>
                 )
               } else {

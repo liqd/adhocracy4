@@ -26,6 +26,7 @@ moment.locale(django.languageCode)
 var ReactComments = require('adhocracy4').comments
 var ReactRatings = require('adhocracy4').ratings
 var ReactReports = require('adhocracy4').reports
+var ReactFollows = require('adhocracy4').follows
 
 var ReactParagraphs = require('../../../apps/documents/assets/ParagraphBox.jsx')
 var ReactPolls = require('../../../apps/polls/assets/react_polls.jsx')
@@ -36,5 +37,6 @@ module.exports = {
   'renderParagraphs': ReactParagraphs.renderParagraphs,
   'renderPolls': ReactPolls.renderPolls,
   'renderPollManagement': ReactPolls.renderPollManagement,
-  'renderReports': ReactReports.renderReports
+  'renderReports': ReactReports.renderReports,
+  'renderFollow': ReactFollows.renderFollow
 }

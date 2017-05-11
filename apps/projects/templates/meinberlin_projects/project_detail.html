@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n thumbnail wagtailcore_tags %}
+{% load i18n react_follows thumbnail wagtailcore_tags %}
 
 {% block title %}{{view.project.name}}{% endblock %}
 
@@ -13,6 +13,9 @@
             <h1 class="resource-header__title">{{ view.project.name }}</h1>
             <div class="resource-header__action">
                 {% block project_action %}{% endblock %}
+                {% if request.user.is_authenticated %}
+                    {% react_follows view.project %}
+                {% endif %}
             </div>
         </div>
     </div>
