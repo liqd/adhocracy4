@@ -86,7 +86,7 @@ def test_initiator_update_bplan(apiclient, bplan):
 
 @pytest.mark.django_db
 def test_initiator_update_bplan_field(apiclient, bplan_factory):
-    bplan  = bplan_factory(is_draft=False)
+    bplan = bplan_factory(is_draft=False)
     assert bplan.is_draft is False
     url = reverse(
         'bplan-detail',
