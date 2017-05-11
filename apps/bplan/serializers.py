@@ -105,7 +105,11 @@ class BplanSerializer(serializers.ModelSerializer):
 
     def _download_image_from_url(self, url):
         parsed_url = urlparse(url)
-        file_path = PROJECT_IMAGE_DIR + os.path.basename(parsed_url.path)
-        file_name = settings.MEDIA_ROOT + '/' + file_path
+        file_path = os.path.join(PROJECT_IMAGE_DIR,
+                                 os.path.basename(parsed_url.path))
+        file_name = os.path.join(settings.MEDIA_ROOT, file_path)
+        file_dir = os.path.dirname(file_name)
+        os.makedirs(file_dir, exist_ok=True)
+
         request.urlretrieve(url, file_name)
         return file_path
