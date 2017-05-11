@@ -1,0 +1,17 @@
+{% extends "base_errors.html" %}
+{% load i18n rules item_tags %}
+
+{% block error_status %}404{% endblock %}
+
+{% block error_description %}
+    {% trans 'Participation is not possible at the moment.' %}
+
+    {% has_perm 'meinberlin_polls.change_poll' request.user view.module as may_change %}
+    {% if may_change %}
+        <br><br>
+        <a href="{% url 'dashboard-project-management' slug=view.project.slug %}">
+            {% trans 'Setup the poll by adding questions and answers in the dashboard.' %}
+        </a>
+    {% endif %}
+
+{% endblock %}
