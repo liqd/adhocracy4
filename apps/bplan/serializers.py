@@ -1,16 +1,18 @@
 import os
-
 from urllib import request
 from urllib.parse import urlparse
 
 from django.apps import apps
 from django.conf import settings
 from django.contrib.sites.models import Site
+from django.core.exceptions import ValidationError
+from django.core.files.images import ImageFile
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 
 from rest_framework import serializers
 
+from adhocracy4.images.validators import validate_image
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 
@@ -59,12 +61,8 @@ class BplanSerializer(serializers.ModelSerializer):
 
         image_url = validated_data.pop('image_url', None)
         if image_url:
-            try:
-                validated_data['image'] = \
-                    self._download_image_from_url(image_url)
-            except:
-                raise serializers.ValidationError(
-                    'Failed to download image {}'.format(image_url))
+            validated_data['image'] = \
+                self._download_image_from_url(image_url)
 
         bplan = super().create(validated_data)
         self._create_module_and_phase(bplan, start_date, end_date)
@@ -104,12 +102,35 @@ class BplanSerializer(serializers.ModelSerializer):
         return url
 
     def _download_image_from_url(self, url):
-        parsed_url = urlparse(url)
-        file_path = os.path.join(PROJECT_IMAGE_DIR,
-                                 os.path.basename(parsed_url.path))
-        file_name = os.path.join(settings.MEDIA_ROOT, file_path)
-        file_dir = os.path.dirname(file_name)
-        os.makedirs(file_dir, exist_ok=True)
+        try:
+            parsed_url = urlparse(url)
+            file_path = os.path.join(PROJECT_IMAGE_DIR,
+                                     os.path.basename(parsed_url.path))
+            file_name = os.path.join(settings.MEDIA_ROOT, file_path)
+            file_dir = os.path.dirname(file_name)
+            os.makedirs(file_dir, exist_ok=True)
 
-        request.urlretrieve(url, file_name)
+            request.urlretrieve(url, file_name)
+        except:
+            self._remove_image_if_exists(file_name)
+            raise serializers.ValidationError(
+                'Failed to download image {}'.format(url))
+        self._validate_image(file_name)
         return file_path
+
+    def _validate_image(self, file_name):
+        image_file = open(file_name, "rb")
+        image = ImageFile(image_file, file_name)
+        config = settings.IMAGE_ALIASES.get('*', {})
+        config.update(settings.IMAGE_ALIASES['heroimage'])
+        try:
+            validate_image(image, **config)
+        except ValidationError as e:
+            self._remove_image_if_exists(file_name)
+            raise serializers.ValidationError(e)
+
+    def _remove_image_if_exists(self, file_name):
+        try:
+            os.remove(file_name)
+        except:
+            pass
