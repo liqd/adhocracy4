@@ -13,10 +13,10 @@ register = template.Library()
 def react_polls(context, question):
     user = context['request'].user
     user_choices = question.user_choices_list(user)
-
     data = {
         'id': question.id,
         'label': question.label,
+        'hasFinished': question.poll.project.has_finished,
         'choices': [{
             'id': choice.id,
             'label': choice.label,

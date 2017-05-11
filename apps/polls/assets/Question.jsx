@@ -6,13 +6,14 @@ var Alert = require('../../contrib/static/js/Alert')
 var Question = React.createClass({
   getInitialState: function () {
     const choices = this.props.question.choices
+    const hasFinished = this.props.question.hasFinished
     const ownChoice = this.findOwnChoice(choices)
     return {
       counts: choices.map(o => o.count),
       ownChoice: ownChoice,
       selectedChoice: ownChoice,
       active: true,
-      showResult: !(ownChoice === null),
+      showResult: !(ownChoice === null) || hasFinished,
       alert: null
     }
   },
@@ -60,6 +61,10 @@ var Question = React.createClass({
   handleSubmit: function (event) {
     event.preventDefault()
 
+    if (this.props.question.hasFinished) {
+      return false
+    }
+
     let newChoice = this.state.selectedChoice
 
     let submitData = {
@@ -105,6 +110,10 @@ var Question = React.createClass({
   },
 
   getVoteButton: function () {
+    if (this.props.question.hasFinished) {
+      return null
+    }
+
     if (this.props.question.authenticated) {
       return (
         <button
@@ -140,9 +149,11 @@ var Question = React.createClass({
         <div>
           { totalString }
           &nbsp;
-          <button type="button" className="button button--light" onClick={this.toggleShowResult}>
-            { django.gettext('To poll') }
-          </button>
+          {!this.props.question.hasFinished &&
+            <button type="button" className="button button--light" onClick={this.toggleShowResult}>
+              { django.gettext('To poll') }
+            </button>
+          }
         </div>
       )
     } else {
