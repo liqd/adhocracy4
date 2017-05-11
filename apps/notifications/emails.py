@@ -6,6 +6,9 @@ User = auth.get_user_model()
 
 
 def _exclude_actor(receivers, actor):
+    if not actor:
+        return receivers
+
     if hasattr(receivers, 'exclude'):
         return receivers.exclude(id=actor.id)
 
@@ -25,11 +28,10 @@ def _exclude_moderators(receivers, action):
 
 
 def _exclude_notifications_disabled(receivers):
-    # if hasattr(receivers, 'filter'):
-    #     return receivers.filter(get_notifications=True)
-    #
-    # return [user for user in receivers if user.get_notifications]
-    return receivers
+    if hasattr(receivers, 'filter'):
+        return receivers.filter(get_notifications=True)
+
+    return [user for user in receivers if user.get_notifications]
 
 
 class NotifyCreatorEmail(emails.Email):
@@ -82,4 +84,8 @@ class NotifyFollowersOnNewItemCreated(emails.Email):
         receivers = _exclude_notifications_disabled(receivers)
         receivers = _exclude_actor(receivers, action.actor)
         receivers = _exclude_moderators(receivers, action)
+
+        if hasattr(action.target, 'creator'):
+            receivers = _exclude_actor(receivers, action.target.creator)
+
         return receivers
