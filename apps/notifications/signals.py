@@ -65,3 +65,21 @@ def autofollow_organisation_initiators(instance, action, pk_set, reverse,
                         'enabled': True
                     }
                 )
+
+
+@receiver(signals.post_save)
+def autofollow_organisation_initiators_new_projects(sender, instance, created,
+                                                    **kwargs):
+    if issubclass(sender, Project):
+        # we have to check if the senders inherits from Project to catch
+        # signals from external projects and bplans
+        project = instance
+        if created:
+            for user in project.organisation.initiators.all():
+                Follow.objects.update_or_create(
+                    project=project,
+                    creator=user,
+                    defaults={
+                        'enabled': True
+                    }
+                )
