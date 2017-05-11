@@ -19,6 +19,7 @@
 
 .poll-row {
     position: relative;
+    z-index: 1;
     padding: 0.2em 0.5em;
     margin-bottom: 0.5em;
     @include clearfix;
