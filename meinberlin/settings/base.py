@@ -321,6 +321,7 @@ A4_REPORTABLES = (
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
 )
+A4_AUTO_FOLLOWABLES = (('a4comments', 'comment'),)
 
 A4_ACTIONABLES = (
     ('a4comments', 'comment'),
