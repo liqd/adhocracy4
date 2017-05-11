@@ -5,9 +5,31 @@ from adhocracy4 import emails
 User = auth.get_user_model()
 
 
-def _filter_actor_disabled(receivers, actor):
-    # TODO: filter if actor has disabled notfications
+def _exclude_actor(receivers, actor):
+    if hasattr(receivers, 'exclude'):
+        return receivers.exclude(id=actor.id)
+
     return [receiver for receiver in receivers if not receiver == actor]
+
+
+def _exclude_moderators(receivers, action):
+    if hasattr(action, 'project'):
+        moderator_ids = action.project.moderators.values_list('id', flat=True)
+
+        if hasattr(receivers, 'exclude'):
+            return receivers.exclude(id__in=moderator_ids)
+
+        return [user for user in receivers if user.id not in moderator_ids]
+
+    return receivers
+
+
+def _exclude_notifications_disabled(receivers):
+    # if hasattr(receivers, 'filter'):
+    #     return receivers.filter(get_notifications=True)
+    #
+    # return [user for user in receivers if user.get_notifications]
+    return receivers
 
 
 class NotifyCreatorEmail(emails.Email):
@@ -16,8 +38,11 @@ class NotifyCreatorEmail(emails.Email):
     def get_receivers(self):
         action = self.object
         if hasattr(action.target, 'creator'):
-            return _filter_actor_disabled([action.target.creator],
-                                          action.actor)
+            receivers = [action.target.creator]
+            receivers = _exclude_notifications_disabled(receivers)
+            receivers = _exclude_actor(receivers, action.actor)
+            receivers = _exclude_moderators(receivers, action)
+            return receivers
         return []
 
 
@@ -26,7 +51,9 @@ class NotifyModeratorsEmail(emails.ModeratorNotification):
 
     def get_receivers(self):
         action = self.object
-        return _filter_actor_disabled(super().get_receivers(), action.actor)
+        receivers = _exclude_actor(super().get_receivers(), action.actor)
+        receivers = _exclude_notifications_disabled(receivers)
+        return receivers
 
 
 class NotifyFollowersOnPhaseIsOverSoonEmail(emails.Email):
@@ -35,11 +62,12 @@ class NotifyFollowersOnPhaseIsOverSoonEmail(emails.Email):
 
     def get_receivers(self):
         action = self.object
-        return User.objects.filter(
+        receivers = User.objects.filter(
             follow__project=action.project,
             follow__enabled=True,
-            # get_notifications=True
         )
+        receivers = _exclude_notifications_disabled(receivers)
+        return receivers
 
 
 class NotifyFollowersOnNewItemCreated(emails.Email):
@@ -47,11 +75,11 @@ class NotifyFollowersOnNewItemCreated(emails.Email):
 
     def get_receivers(self):
         action = self.object
-        moderator_ids = action.project.moderators.values_list('id', flat=True)
-        return User.objects.filter(
+        receivers = User.objects.filter(
             follow__project=action.project,
             follow__enabled=True,
-            # get_notifications=True,
-        ).exclude(
-            id__in=moderator_ids
         )
+        receivers = _exclude_notifications_disabled(receivers)
+        receivers = _exclude_actor(receivers, action.actor)
+        receivers = _exclude_moderators(receivers, action)
+        return receivers

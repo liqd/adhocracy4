@@ -18,14 +18,6 @@ def send_notifications(instance, created, **kwargs):
     if verb == Verbs.CREATE or verb == Verbs.ADD:
         emails.NotifyCreatorEmail.send(action)
 
-        # Try to get the project
-        # if action.project:
-        #     project = action.project
-        # elif action.target:
-        #     project = getattr('project', action.target, None)
-        # else:
-        #     project = None
-
         if action.project:
             emails.NotifyModeratorsEmail.send(action)
             emails.NotifyFollowersOnNewItemCreated.send(action)
