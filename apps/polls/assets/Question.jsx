@@ -181,16 +181,16 @@ var Question = React.createClass({
                 )
               } else {
                 return (
-                  <label className="poll-row" key={i}>
+                  <label className="poll-row radio" key={i}>
                     <input
-                      className="poll-row__radio"
+                      className="poll-row__radio radio__input"
                       type="radio"
                       name="question"
                       value={i}
                       checked={checked}
                       onChange={this.handleOnChange}
                     />
-                    { choice.label }
+                    <span className="radio__text">{ choice.label }</span>
                   </label>
                 )
               }
