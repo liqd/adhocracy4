@@ -2,7 +2,7 @@
 
 mein.berlin provides an extern REST API to create and manage BPLAN projects.
 
-## Rerequisites
+## Prerequisites
 
 To use this API you need to have received the *username* and *password* for the
 API user and the *id* of your organisation.
@@ -26,7 +26,7 @@ project:
 
 API endpoint for POST requests:
 
-    https://mein.berlin.de/api/oganisations/<organisation-id>/bplan/
+    https://mein.berlin.de/api/organisations/<organisation-id>/bplan/
 
 The response will contain the following fields:
 
@@ -44,7 +44,7 @@ Example:
         "end_date": "2018-01-01 00:00",
         "image_url": "http://berlin.de/bplan-123.jpg",
     }
-    res = POST(https://mein.berlin.de/api/oganisations/5/bplan/, data)
+    res = POST(https://mein.berlin.de/api/organisations/5/bplan/, data)
     print(res)
     {
         "id":36,
@@ -66,11 +66,11 @@ the *id* of the BPLAN from the create response.
 
 API endpoint for PATCH:
 
-    https://mein.berlin.de/api/oganisations/<organisation-id>/bplan/<bplan-id>/
+    https://mein.berlin.de/api/organisations/<organisation-id>/bplan/<bplan-id>/
 
 Example:
 
     data = {
         "end_date": "2019-01-01 00:00",
     }
-    res = PATCH(https://mein.berlin.de/api/oganisations/5/bplan/36/, data)
+    res = PATCH(https://mein.berlin.de/api/organisations/5/bplan/36/, data)
