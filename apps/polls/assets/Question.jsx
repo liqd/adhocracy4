@@ -168,7 +168,7 @@ var Question = React.createClass({
               let chosen = this.state.ownChoice === i
               let count = this.state.counts[i]
               let percent = total === 0 ? 0 : Math.round(count / total * 100)
-              let highlight = count === max
+              let highlight = count === max && max > 0
 
               if (this.state.showResult || !this.state.active) {
                 return (
