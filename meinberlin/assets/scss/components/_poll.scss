@@ -1,9 +1,25 @@
 .poll {
+    padding: 1.5em;
     margin-bottom: $spacer;
+
+    background-color: $body-bg;
+
+    h2 {
+        margin-top: 0;
+    }
+}
+
+.poll__actions > :last-child {
+    margin-left: 1em;
+}
+
+.poll__rows {
+    margin-bottom: 1em;
 }
 
 .poll-row {
     position: relative;
+    z-index: 1;
     padding: 0.2em 0.5em;
     margin-bottom: 0.5em;
     @include clearfix;
