@@ -15,7 +15,7 @@ let ChoiceForm = React.createClass({
 
   render: function () {
     return (
-      <div className="form-group">
+      <div className="form-group input-action input-action--center input-action--spaced">
         <label
           className="sr-only"
           htmlFor={'id_choices-' + this.props.index + '-name'}>
@@ -25,16 +25,15 @@ let ChoiceForm = React.createClass({
           id={'id_choices-' + this.props.index + '-name'}
           name={'choices-' + this.props.index + '-name'}
           type="text"
+          className="input-action__input"
           defaultValue={this.props.choice.label}
           onChange={this.handleLabelChange} />
-        <div className="button-group">
-          <button
-            className="button button--light"
-            onClick={this.handleDelete}
-            type="button">
-            <i className="fa fa-trash" />
-          </button>
-        </div>
+        <button
+          className="input-action__action"
+          onClick={this.handleDelete}
+          type="button">
+          <i className="fa fa-times" />
+        </button>
         <ErrorList errors={this.props.errors} />
       </div>
     )
