@@ -6,6 +6,9 @@
 $checkbox-size: 20px;
 
 .radio__text {
+    display: block;
+    padding-left: $checkbox-size + 7px;
+
     position: relative;
 
     &:before,
@@ -14,16 +17,16 @@ $checkbox-size: 20px;
     }
 
     &:before {
-        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+
         width: $checkbox-size;
         height: $checkbox-size;
-        margin-right: 0.5em;
 
         background-color: $bg-secondary;
         border: 1px solid $border-color;
         border-radius: $checkbox-size / 2;
-
-        vertical-align: top;
     }
 
     &:after {
@@ -46,6 +49,7 @@ $checkbox-size: 20px;
 
     position: absolute;
     left: 0;
+    top: 0;
 
     background-color: $brand-secondary;
     border-radius: $checkbox-size / 2;
