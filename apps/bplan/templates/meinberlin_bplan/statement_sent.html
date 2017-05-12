@@ -2,13 +2,15 @@
 {% load i18n %}
 
 {% block title %}{% trans 'Statement sent' %}{% endblock %}
+
 {% block content %}
 <div class="l-wrapper">
-    <h1>{% trans 'Statement sent' %}</h1>
+    <div class="l-center-6">
+        <h1>{% trans 'Statement sent' %}</h1>
 
-    <p>
-        {% trans 'Thanks! Your statement has been sent! An answer will be send to your email address.' %}
-    </p>
-
+        <p>
+            {% trans 'Thanks! Your statement has been sent! An answer will be send to your email address.' %}
+        </p>
+    </div>
 </div>
 {% endblock %}
