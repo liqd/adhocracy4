@@ -2,9 +2,18 @@
     background-color: $bg-tertiary;
 }
 
+.dashboard-nav__pages,
 .dashboard-nav__dropdown {
-    padding: 1.5em;
+    padding: 1em;
+}
+
+.dashboard-nav__dropdown {
     border-bottom: 2px solid $body-bg;
+
+    .dropdown,
+    .dropdown-toggle {
+        margin: 0;
+    }
 
     .dropdown-toggle {
         width: 100%;
@@ -17,13 +26,12 @@
 }
 
 .dashboard-nav__pages {
-    padding: 1.3em 1.5em 1.5em;
     margin: 0;
 
     list-style: none;
 }
 
-.dashboard-nav__page-link {
+.dashboard-nav__item {
     display: block;
     padding: 0.7em;
     margin-bottom: 0.3em;
@@ -35,7 +43,9 @@
     i {
         margin-right: 0.3em;
     }
+}
 
+.dashboard-nav__item--interactive {
     &:hover,
     &:focus {
         background-color: mix($body-bg, $bg-tertiary);

@@ -53,7 +53,8 @@ class Paragraph(base.TimeStampedModel):
 
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
-        return reverse('documents:paragraph-detail', args=[str(self.pk)])
+        return reverse('meinberlin_documents:paragraph-detail',
+                       args=[str(self.pk)])
 
     @cached_property
     def creator(self):

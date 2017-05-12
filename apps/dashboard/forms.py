@@ -339,8 +339,14 @@ class AddModeratorForm(forms.ModelForm):
 
 class ExternalProjectBaseForm(forms.ModelForm):
 
-    start_date = forms.DateTimeField(required=False)
-    end_date = forms.DateTimeField(required=False)
+    start_date = forms.SplitDateTimeField(
+        required=False,
+        widget=widgets.DateTimeInput(time_format='%H:%M')
+    )
+    end_date = forms.SplitDateTimeField(
+        required=False,
+        widget=widgets.DateTimeInput(time_format='%H:%M')
+    )
 
     def clean_end_date(self, *args, **kwargs):
         start_date = self.cleaned_data['start_date']

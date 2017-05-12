@@ -6,13 +6,14 @@ var Alert = require('../../contrib/static/js/Alert')
 var Question = React.createClass({
   getInitialState: function () {
     const choices = this.props.question.choices
+    const hasFinished = this.props.question.hasFinished
     const ownChoice = this.findOwnChoice(choices)
     return {
       counts: choices.map(o => o.count),
       ownChoice: ownChoice,
       selectedChoice: ownChoice,
       active: true,
-      showResult: !(ownChoice === null),
+      showResult: !(ownChoice === null) || hasFinished,
       alert: null
     }
   },
@@ -60,6 +61,10 @@ var Question = React.createClass({
   handleSubmit: function (event) {
     event.preventDefault()
 
+    if (this.props.question.hasFinished) {
+      return false
+    }
+
     let newChoice = this.state.selectedChoice
 
     let submitData = {
@@ -104,6 +109,32 @@ var Question = React.createClass({
     })
   },
 
+  getVoteButton: function () {
+    if (this.props.question.hasFinished) {
+      return null
+    }
+
+    if (this.props.question.authenticated) {
+      return (
+        <button
+          type="submit"
+          className="button button--secondary"
+          disabled={this.state.selectedChoice === this.state.ownChoice}>
+          { django.gettext('Vote') }
+        </button>
+      )
+    } else {
+      let loginUrl = '/accounts/login/?next=' +
+        encodeURIComponent(window.location.pathname)
+
+      return (
+        <a href={loginUrl} className="button button--secondary">
+          { django.gettext('Vote') }
+        </a>
+      )
+    }
+  },
+
   render: function () {
     let counts = this.state.counts
     let total = counts.reduce((sum, c) => sum + c, 0)
@@ -115,22 +146,22 @@ var Question = React.createClass({
       footer = totalString
     } else if (this.state.showResult) {
       footer = (
-        <div>
+        <div className="poll__actions">
           { totalString }
           &nbsp;
-          <button type="button" className="button button--light" onClick={this.toggleShowResult}>
-            { django.gettext('To poll') }
-          </button>
+          {!this.props.question.hasFinished &&
+            <button type="button" className="link" onClick={this.toggleShowResult}>
+              { django.gettext('To poll') }
+            </button>
+          }
         </div>
       )
     } else {
       footer = (
-        <div>
-          <button type="submit" className="button button--secondary">
-            { django.gettext('Vote') }
-          </button>
+        <div className="poll__actions">
+          {this.getVoteButton()}
           &nbsp;
-          <button type="button" className="button button--light" onClick={this.toggleShowResult}>
+          <button type="button" className="link" onClick={this.toggleShowResult}>
             { django.gettext('Show preliminary results') }
           </button>
         </div>
@@ -138,39 +169,39 @@ var Question = React.createClass({
     }
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="poll">
         <h2>{ this.props.question.label }</h2>
 
-        <div className="poll">
+        <div className="poll__rows">
           {
             this.props.question.choices.map((choice, i) => {
               let checked = this.state.selectedChoice === i
               let chosen = this.state.ownChoice === i
               let count = this.state.counts[i]
               let percent = total === 0 ? 0 : Math.round(count / total * 100)
-              let highlight = count === max
+              let highlight = count === max && max > 0
 
               if (this.state.showResult || !this.state.active) {
                 return (
                   <div className="poll-row" key={i}>
-                    <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')} style={{width: percent + '%'}} />
                     <div className="poll-row__number">{ percent }%</div>
                     <div className="poll-row__label">{ choice.label }</div>
                     { chosen ? <i className="fa fa-check-circle u-secondary" aria-label={django.gettext('Your choice')} /> : '' }
+                    <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')} style={{width: percent + '%'}} />
                   </div>
                 )
               } else {
                 return (
-                  <label className="poll-row" key={i}>
+                  <label className="poll-row radio" key={i}>
                     <input
-                      className="poll-row__radio"
+                      className="poll-row__radio radio__input"
                       type="radio"
                       name="question"
                       value={i}
                       checked={checked}
                       onChange={this.handleOnChange}
                     />
-                    { choice.label }
+                    <span className="radio__text">{ choice.label }</span>
                   </label>
                 )
               }

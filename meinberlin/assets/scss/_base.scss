@@ -67,7 +67,8 @@ h6 {
     font-size: $font-size-xs;
 }
 
-a {
+a,
+.link {
     color: $link-color;
     text-decoration: underline;
 
