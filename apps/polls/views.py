@@ -1,9 +1,11 @@
 from django.core.urlresolvers import reverse
+from django.http import Http404
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render_to_response
 from django.views import generic
 
 from adhocracy4.projects import mixins as project_mixins
 from adhocracy4.rules import mixins as rules_mixins
-
 from apps.dashboard.mixins import DashboardBaseMixin
 
 from . import models
@@ -15,8 +17,26 @@ class PollDetailView(project_mixins.ProjectMixin,
     model = models.Poll
     permission_required = 'meinberlin_polls.view_poll'
 
+    def get(self, request, *args, **kwargs):
+        try:
+            self.object = self.get_object()
+            context = self.get_context_data(object=self.object)
+            return self.render_to_response(context)
+
+        except Http404:
+            self.object = None
+            context = self.get_context_data(object=None, request=self.request,)
+            return render_to_response(
+                'meinberlin_polls/poll_404.html',
+                context=context,
+                status=404
+            )
+
     def get_object(self):
-        return models.Poll.objects.filter(module=self.module).first()
+        return get_object_or_404(models.Poll, module=self.module)
+
+    def get_permission_object(self):
+        return self.module
 
 
 class PollManagementView(DashboardBaseMixin,
