@@ -18,19 +18,6 @@ var Question = React.createClass({
     }
   },
 
-  setStateWithAlert: function (state, alert, timeout) {
-    state['alert'] = alert
-    this.setState(state, () => {
-      if (timeout) {
-        setTimeout(() => {
-          this.setState({
-            alert: null
-          })
-        }, timeout)
-      }
-    })
-  },
-
   findOwnChoice: function (choices) {
     let ownChoice = null
     choices.forEach(function (choice, i) {
@@ -82,25 +69,33 @@ var Question = React.createClass({
           counts[this.state.ownChoice]--
         }
 
-        this.setStateWithAlert({
+        this.setState({
           showResult: true,
           ownChoice: newChoice,
           selectedChoice: newChoice,
-          counts: counts
-        }, {
-          type: 'success',
-          message: django.gettext('Vote counted')
-        }, 1500)
+          counts: counts,
+          alert: {
+            type: 'success',
+            message: django.gettext('Vote counted')
+          }
+        })
       })
       .fail((xhr, status, err) => {
-        this.setStateWithAlert({
+        this.setState({
           showResult: false,
-          selectedChoice: newChoice
-        }, {
-          type: 'danger',
-          message: django.gettext('Vote has not been counted due to a server error.')
-        }, 1500)
+          selectedChoice: newChoice,
+          alert: {
+            type: 'danger',
+            message: django.gettext('Vote has not been counted due to a server error.')
+          }
+        })
       })
+  },
+
+  removeAlert: function () {
+    this.setState({
+      alert: null
+    })
   },
 
   handleOnChange: function (event) {
@@ -209,7 +204,7 @@ var Question = React.createClass({
           }
         </div>
 
-        <Alert {...this.state.alert} />
+        <Alert onClick={this.removeAlert} {...this.state.alert} />
         { footer }
       </form>
     )

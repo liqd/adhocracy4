@@ -142,7 +142,7 @@ let PollManagement = React.createClass({
   |--------------------------------------------------------------------------
   */
 
-  handleFormChange: function () {
+  removeAlert: function () {
     this.setState({
       alert: null
     })
@@ -183,9 +183,7 @@ let PollManagement = React.createClass({
 
   render: function () {
     return (
-      <form onSubmit={this.handleSubmit} onChange={this.handleFormChange}>
-        <Alert {...this.state.alert} />
-
+      <form onSubmit={this.handleSubmit} onChange={this.removeAlert}>
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
             this.state.questions.map((question, index) => {
@@ -219,7 +217,7 @@ let PollManagement = React.createClass({
           </button>
         </p>
 
-        <Alert {...this.state.alert} />
+        <Alert onClick={this.removeAlert} {...this.state.alert} />
 
         <button type="submit" className="button button--primary">{django.gettext('save')}</button>
       </form>
