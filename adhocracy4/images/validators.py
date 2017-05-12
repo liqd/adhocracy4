@@ -1,4 +1,5 @@
 import magic
+import math
 
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
@@ -22,8 +23,9 @@ def validate_image(
         )
         errors.append(ValidationError(msg))
     if image.size > max_size:
+        max_size_mb = math.floor(max_size/10**6)
         msg = _('Image should be at most {max_size} MB')
-        errors.append(ValidationError(msg.format(max_size=max_size)))
+        errors.append(ValidationError(msg.format(max_size=max_size_mb)))
     if image.width < min_width:
         msg = _('Image must be at least {min_width} pixels wide')
         errors.append(ValidationError(msg.format(min_width=min_width)))
