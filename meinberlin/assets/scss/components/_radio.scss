@@ -3,6 +3,8 @@
     @include sr-only;
 }
 
+// use pixels here because otherwise the icon in the :after
+// could not have a smaller fontsize
 $checkbox-size: 20px;
 
 .radio__text {
