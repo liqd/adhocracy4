@@ -1,6 +1,5 @@
-/* global django */
-
 var React = require('react')
+var django = require('django')
 
 const Alert = ({type, message, onClick}) => {
   if (type) {
