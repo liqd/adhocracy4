@@ -49,7 +49,7 @@ $messages-margin-bottom: 25px;
 }
 
 // compensate for margin-bottom on messages
-.resource-header,
+.project-header,
 .hero-unit {
     .messages + & {
         margin-top: -$messages-margin-bottom;

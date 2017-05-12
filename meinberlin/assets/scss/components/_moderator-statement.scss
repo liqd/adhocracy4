@@ -1,0 +1,24 @@
+.moderator-statement {
+    // this block needs a bigger margin than the previous element can provide
+    margin-top: 2em;
+    padding: 0.6em;
+    background-color: $bg-secondary;
+}
+
+.moderator-statement__title {
+    margin-top: 0;
+}
+
+.moderator-statement__subtitle {
+    margin-bottom: 0.5em;
+}
+
+.moderator-statement__organisation {
+    margin-right: 0.7em;
+}
+
+.moderator-statement__body {
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
