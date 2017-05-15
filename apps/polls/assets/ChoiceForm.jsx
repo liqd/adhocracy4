@@ -31,7 +31,7 @@ let ChoiceForm = React.createClass({
         <button
           className="input-action__action"
           onClick={this.handleDelete}
-          ariaLabel={django.gettext('remove')}
+          aria-label={django.gettext('remove')}
           type="button">
           <i className="fa fa-times" />
         </button>
