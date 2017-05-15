@@ -1,5 +1,5 @@
 /* global $ */
-(function () {
+$(function () {
   // Dynamically add more subforms to a formset.
   // Removing subforms is not (yet) supported)
 
@@ -36,4 +36,4 @@
       new DynamicFormSet($formsets.eq(i))
     )
   })
-}())
+})
