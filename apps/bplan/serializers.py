@@ -111,11 +111,14 @@ class BplanSerializer(serializers.ModelSerializer):
             os.makedirs(file_dir, exist_ok=True)
 
             request.urlretrieve(url, file_name)
+            self._validate_image(file_name)
+        except ValidationError as e:
+            self._remove_image_if_exists(file_name)
+            raise serializers.ValidationError(e)
         except:
             self._remove_image_if_exists(file_name)
             raise serializers.ValidationError(
                 'Failed to download image {}'.format(url))
-        self._validate_image(file_name)
         return file_path
 
     def _validate_image(self, file_name):
@@ -123,11 +126,7 @@ class BplanSerializer(serializers.ModelSerializer):
         image = ImageFile(image_file, file_name)
         config = settings.IMAGE_ALIASES.get('*', {})
         config.update(settings.IMAGE_ALIASES['heroimage'])
-        try:
-            validate_image(image, **config)
-        except ValidationError as e:
-            self._remove_image_if_exists(file_name)
-            raise serializers.ValidationError(e)
+        validate_image(image, **config)
 
     def _remove_image_if_exists(self, file_name):
         try:
