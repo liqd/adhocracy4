@@ -1,11 +1,14 @@
 var $ = require('jquery')
 var cookie = require('js-cookie')
 
-$(function () {
+var init = function () {
   $.ajaxSetup({
     headers: { 'X-CSRFToken': cookie.get('csrftoken') }
   })
-})
+}
+
+$(init)
+$(document).on('a4.embed.ready', init)
 
 var baseURL = '/api/'
 
