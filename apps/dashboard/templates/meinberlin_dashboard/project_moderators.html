@@ -1,16 +1,27 @@
 {% extends "meinberlin_dashboard/base_dashboard.html" %}
-{% load i18n %}
+{% load i18n widget_tweaks %}
 
 {% block dashboard_content %}
     <h1>{{ project.name }}</h1>
     <h2>{% trans 'Moderators' %}</h2>
     <form method="POST">
         {% csrf_token %}
-        <div class="input-action input-action--spaced">
-            <div class="input-action__input">
-                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.add_moderators %}
+        <div class="form-group">
+            <label for="{{ form.add_moderators.id_for_label }}">
+                {% trans form.add_moderators.label %}
+            </label>
+            {% if form.add_moderators.help_text %}
+            <div class="form-hint">
+                {% trans form.add_moderators.help_text %}
             </div>
-            <input type="submit" class="button button--secondary input-action__action" value="{% trans 'Add' %}"/>
+            {% endif %}
+            <div class="button-group input-action">
+                <div class="input-action__input widget widget--{{ form.add_moderators|widget_type }}">
+                    {{ form.add_moderators }}
+                </div>
+                <input type="submit" class="button button--secondary input-action__action" value="{% trans 'Add' %}"/>
+            </div>
+            {{ form.add_moderators.errors }}
         </div>
     </form>
 
