@@ -87,7 +87,11 @@
     aria-expanded="false">
     <div class="l-wrapper">
         <div class="l-center-8">
-            {{ view.project.result | richtext }}
+            {% if view.project.result %}
+                {{ view.project.result | richtext }}
+            {% else %}
+                {% trans 'No results yet.' %}
+            {% endif %}
         </div>
     </div>
 </div>
