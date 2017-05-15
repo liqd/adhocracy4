@@ -59,7 +59,7 @@ class ProposalDetailView(module_views.ItemDetailView):
 class ProposalCreateView(module_views.ItemCreateView):
     model = models.Proposal
     form_class = forms.ProposalForm
-    permission_required = 'meinberlin_budgeting.create_proposal'
+    permission_required = 'meinberlin_budgeting.add_proposal'
     template_name = 'meinberlin_budgeting/proposal_create_form.html'
 
 

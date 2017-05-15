@@ -1,5 +1,7 @@
+$messages-margin-bottom: 25px;
+
 .messages {
-    margin: 0;
+    margin: 0 0 $messages-margin-bottom;
     padding: 0;
 
     li {
@@ -43,5 +45,13 @@
     // additional padding to the default value (see above).
     &:first-child {
         padding-top: calc(16px + #{$padding * 1.2});
+    }
+}
+
+// compensate for margin-bottom on messages
+.project-header,
+.hero-unit {
+    .messages + & {
+        margin-top: -$messages-margin-bottom;
     }
 }

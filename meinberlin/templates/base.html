@@ -8,6 +8,9 @@
     <title>{% block title %}{% trans 'Home' %}{% endblock %}</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="{% static 'vendor.css' %}" />
+    {% block extra_css %}
+        {# Override this in templates to add extra stylesheets #}
+    {% endblock %}
     <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
     <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'vendor.js' %}"></script>
@@ -25,10 +28,6 @@
     </script>
     {% endif %}
     {% block header %}{% endblock %}
-
-    {% block extra_css %}
-        {# Override this in templates to add extra stylesheets #}
-    {% endblock %}
 
     {% block extra_js %}
         {# Override this in templates to add extra javascript #}
@@ -60,7 +59,7 @@
     </main>
 
     <aside class="fixed-side">
-        <a href="/feedback/" class="button button--secondary">{% trans 'Feedback' %}</a>
+        <a href="/feedback/" class="button button--secondary button--attached-top">{% trans 'Feedback' %}</a>
     </aside>
 
     {% include 'footer.html' %}

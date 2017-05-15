@@ -1,14 +1,9 @@
 {% extends "meinberlin_mapideas/mapidea_detail.html" %}
-{% load rules item_tags i18n %}
+{% load rules item_tags i18n humanize %}
 
-{% block additional_meta %}
-    <div class="resource-header__meta">
-        <div>{{ proposal.budget }}€</div>
-    </div>
-
-    <div class="resource-header__meta">
-        {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal %}
-    </div>
+{% block additional_labels %}
+    <div class="label label--big">{{ proposal.budget|intcomma }}€</div>
+    {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal %}
 {% endblock %}
 
 {% block moderator_statement %}
@@ -18,14 +13,14 @@
                 <div class="moderator-statement">
                     <h2 class="moderator-statement__title">{% trans 'Official Statement' %}</h2>
                     <div class="moderator-statement__subtitle">
-                        <span class="moderator-statement__organisation">
+                        <strong class="moderator-statement__organisation">
                             {{ proposal.module.project.organisation.name }}
-                        </span>
+                        </strong>
                         <span class="moderator-statement__date">
                             {{ proposal.moderator_statement.created | date }}
                         </span>
                     </div>
-                    <div class="moderator-statement__statement">
+                    <div class="moderator-statement__body">
                         {{ proposal.moderator_statement.statement | safe }}
                     </div>
                 </div>

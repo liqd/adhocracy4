@@ -1,0 +1,80 @@
+.date-picker-control:link,
+.date-picker-control:visited {
+    padding: 0.5em 0.4em;
+    border: 1px solid $border-color;
+
+    background: $bg-secondary;
+}
+// stylelint-disable selector-max-specificity
+// need to override the default styling
+.date-picker-control {
+    &:focus,
+    &:hover {
+        span:first-child:before {
+            content: '\f073';
+        }
+    }
+}
+// stylelint-enable
+
+.date-picker-control span:first-child {
+    &:before {
+        content: '\f133';
+        font-family: 'FontAwesome';
+        font-size: $font-size-lg;
+    }
+}
+
+.date-picker {
+    font-family: $font-family-sans-serif;
+
+    // overwrite gradient
+    table,
+    td {
+        background: $body-bg;
+    }
+
+    .date-picker-unused {
+        background: $bg-secondary;
+    }
+
+    .date-picker-highlight {
+        color: $text-color;
+    }
+
+    .prev-but,
+    .next-but {
+        font-size: 0;
+
+        &:before {
+            font-family: 'FontAwesome';
+            font-size: $font-size-lg;
+            vertical-align: bottom;
+        }
+    }
+
+    .prev-but:before {
+        content: '\f104';
+    }
+
+    .prev-year:before {
+        content: '\f100';
+    }
+
+    .next-but:before {
+        content: '\f105';
+    }
+
+    .next-year:before {
+        content: '\f101';
+    }
+
+    .date-picker-hover {
+        border: none;
+
+        background: $brand-secondary;
+        color: contrast-color($brand-secondary);
+        box-shadow: none;
+        text-shadow: none;
+    }
+}
