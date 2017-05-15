@@ -7,11 +7,12 @@ window.Tether = require('tether/dist/js/tether.js')
 // social share
 var Shariff = require('shariff')
 
-var init = function () {
+;(function (init) {
+  $(init)
+  $(document).on('a4.embed.ready', init)
+})(function () {
   new Shariff($('.shariff'))
-}
-$(init)
-$(document).on('a4.embed.ready', init)
+})
 
 // load bootstrap components
 var dropdown = require('bootstrap/js/src/dropdown.js')

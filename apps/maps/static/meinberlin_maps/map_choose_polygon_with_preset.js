@@ -19,7 +19,10 @@ function getBasePolygon (L, polygon, bbox) {
   }
 }
 
-var init = function () {
+(function (init) {
+  $(init)
+  $(document).on('a4.embed.ready', init)
+})(function () {
   var $ = window.jQuery
   var L = window.L
 
@@ -119,7 +122,4 @@ var init = function () {
       }
     })
   })
-}
-
-$(init)
-$(document).on('a4.embed.ready', init)
+})
