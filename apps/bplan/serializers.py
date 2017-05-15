@@ -85,6 +85,28 @@ class BplanSerializer(serializers.ModelSerializer):
             end_date=end_date
         )
 
+    def update(self, instance, validated_data):
+        start_date = validated_data.pop('start_date', None)
+        end_date = validated_data.pop('end_date', None)
+        if start_date or end_date:
+            self._update_phase(instance, start_date, end_date)
+
+        image_url = validated_data.pop('image_url', None)
+        if image_url:
+            validated_data['image'] = \
+                self._download_image_from_url(image_url)
+
+        return super().update(instance, validated_data)
+
+    def _update_phase(self, bplan, start_date, end_date):
+        module = module_models.Module.objects.get(project=bplan)
+        phase = phase_models.Phase.objects.get(module=module)
+        if start_date:
+            phase.start_date = start_date
+        if end_date:
+            phase.end_date = end_date
+        phase.save()
+
     def to_representation(self, instance):
         dict = super().to_representation(instance)
         dict['embed_code'] = self._response_embed_code(instance)
