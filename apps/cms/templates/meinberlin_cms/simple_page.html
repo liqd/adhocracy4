@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <div class="l-wrapper">
+        <div class="l-center-8">
+            <h1>{{ self.title }}</h1>
+
+            {{ self.body|richtext }}
+        </div>
+    </div>
+{% endblock %}
