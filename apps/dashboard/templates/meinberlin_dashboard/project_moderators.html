@@ -2,6 +2,8 @@
 {% load i18n %}
 
 {% block dashboard_content %}
+    {% include 'meinberlin_dashboard/includes/project_update_breadcrumbs.html' %}
+
     <h1>{{ project.name }}</h1>
     <h2>{% trans 'Moderators' %}</h2>
     <form method="POST">
