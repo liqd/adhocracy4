@@ -104,30 +104,12 @@ select {
     display: flex;
 }
 
-// combines an input and an action
 .input-action {
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-}
-
-// this needs more specificity than rules in form.scss
-.input-action--spaced .input-action__action {
-    margin-left: 1em;
-}
-
-.input-action--center {
-    align-items: center;
 }
 
 .input-action__input {
     flex: 1;
-
-    // make the elements be neatly aligned at the bottom
-    > :last-child,
-    & {
-        margin-bottom: 0;
-    }
 }
 
 .input-action__action {
