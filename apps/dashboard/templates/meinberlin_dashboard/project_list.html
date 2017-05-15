@@ -25,6 +25,8 @@
         {% for project in project_list %}
             {% include "meinberlin_dashboard/includes/project_list_item.html" with project=project %}
         {% endfor %}
+
+        {% include "meinberlin_contrib/includes/pagination.html" %}
     {% endif %}
 
 </div>
