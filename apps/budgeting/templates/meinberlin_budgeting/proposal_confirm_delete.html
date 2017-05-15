@@ -5,13 +5,15 @@
 {% block content %}
 
 <div class="l-wrapper">
-    <h1>{% trans 'Are you sure you want to delete the proposal?' %} </h1>
+    <div class="l-center-6">
+        <h1>{% trans 'Are you sure you want to delete the proposal?' %} </h1>
 
-    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
-        {% csrf_token %}
-        <input type="submit" class="button button--primary" value="{% trans 'Yes'%}" />
-    </form>
-    {% get_item_detail_url object as detail_url %}
-    <a href="{{ detail_url }}" class="button button--light">{% trans 'Cancel'%}</a>
+        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="button button--primary" value="{% trans 'Yes'%}" />
+        </form>
+        {% get_item_detail_url object as detail_url %}
+        <a href="{{ detail_url }}" class="button button--light">{% trans 'Cancel'%}</a>
+    </div>
 </div>
 {% endblock %}
