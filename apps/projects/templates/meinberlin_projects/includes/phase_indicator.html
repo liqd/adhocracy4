@@ -35,8 +35,8 @@
                 {{ active_phase.name }}
             </h3>
             <div class="phase-info__subtitle">
-                {% trans "from" %} {{ active_phase.start_date }}
-                {% trans "to" %} {{ active_phase.end_date }}
+                {{ active_phase.start_date }}
+                &mdash; {{ active_phase.end_date }}
             </div>
             <div class="phase-info__description">
                 {{ active_phase.description }}
