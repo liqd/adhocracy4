@@ -5,7 +5,9 @@
 
 {% block content %}
 <div class="l-wrapper">
-    <h1>{% block error_status %}{% endblock %}</h1>
-    <p>{% block error_description %}{% endblock %}</p>
+    <div class="l-center-6">
+        <h1>{% block error_status %}{% endblock %}</h1>
+        {% block error_description %}{% endblock %}
+    </div>
 </div>
 {% endblock %}
