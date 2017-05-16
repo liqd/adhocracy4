@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-08 14:41+0000\n"
+"POT-Creation-Date: 2017-05-16 15:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,17 +140,21 @@ msgstr "Ihre Nachricht hier"
 msgid "Send Report"
 msgstr "Meldung senden"
 
+#: apps/contrib/static/js/Alert.jsx:10 meinberlin/static/embed.js:25
+msgid "Close"
+msgstr "Schließen"
+
 #: apps/documents/assets/Paragraph.jsx:73
 #: apps/documents/assets/ParagraphBox.jsx:196
-msgid "add a new paragraph"
+msgid "Add a new paragraph"
 msgstr ""
 
 #: apps/documents/assets/Paragraph.jsx:81
-msgid "Headline:"
-msgstr "Überschrift:"
+msgid "Headline"
+msgstr ""
 
 #: apps/documents/assets/Paragraph.jsx:100
-msgid "Paragraph:"
+msgid "Paragraph"
 msgstr ""
 
 #: apps/documents/assets/ParagraphBox.jsx:135
@@ -162,75 +166,71 @@ msgid "Your document has been saved."
 msgstr ""
 
 #: apps/documents/assets/ParagraphBox.jsx:158
-msgid "Title:"
-msgstr "Titel:"
+msgid "Title"
+msgstr ""
 
 #: apps/documents/assets/ParagraphBox.jsx:203
-#: apps/polls/assets/PollManagement.jsx:211
-msgid "save"
-msgstr "Speichern"
+#: apps/polls/assets/PollManagement.jsx:222
+msgid "Save"
+msgstr ""
 
 #: apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:105
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr ""
 
-#: apps/polls/assets/ChoiceForm.jsx:21
-msgid "Choice:"
+#: apps/polls/assets/ChoiceForm.jsx:22
+msgid "Choice"
 msgstr ""
 
-#: apps/polls/assets/PollManagement.jsx:152
+#: apps/polls/assets/PollManagement.jsx:163
 msgid "The poll has been updated."
 msgstr ""
 
-#: apps/polls/assets/PollManagement.jsx:166
+#: apps/polls/assets/PollManagement.jsx:177
 msgid "The poll could not be updated."
 msgstr ""
 
-#: apps/polls/assets/PollManagement.jsx:206
-msgid "add a new question"
+#: apps/polls/assets/PollManagement.jsx:216
+msgid "Add a new question"
 msgstr ""
 
-#: apps/polls/assets/Question.jsx:87
+#: apps/polls/assets/Question.jsx:79
 msgid "Vote counted"
 msgstr ""
 
-#: apps/polls/assets/Question.jsx:96
+#: apps/polls/assets/Question.jsx:89
 msgid "Vote has not been counted due to a server error."
 msgstr ""
 
-#: apps/polls/assets/Question.jsx:114
+#: apps/polls/assets/Question.jsx:118 apps/polls/assets/Question.jsx:127
+msgid "Vote"
+msgstr ""
+
+#: apps/polls/assets/Question.jsx:139
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: apps/polls/assets/Question.jsx:118
+#: apps/polls/assets/Question.jsx:149
 msgid "To poll"
 msgstr ""
 
-#: apps/polls/assets/Question.jsx:125
-msgid "Vote"
-msgstr ""
-
-#: apps/polls/assets/Question.jsx:129
+#: apps/polls/assets/Question.jsx:160
 msgid "Show preliminary results"
 msgstr ""
 
-#: apps/polls/assets/Question.jsx:154
+#: apps/polls/assets/Question.jsx:184
 msgid "Your choice"
 msgstr ""
 
-#: apps/polls/assets/QuestionForm.jsx:57
-msgid "Question:"
+#: apps/polls/assets/QuestionForm.jsx:56
+msgid "Question"
 msgstr ""
 
-#: apps/polls/assets/QuestionForm.jsx:92
-msgid "add a new choice"
+#: apps/polls/assets/QuestionForm.jsx:89
+msgid "Add a new choice"
 msgstr ""
-
-#: meinberlin/static/embed.js:25
-msgid "Close"
-msgstr "Schließen"
 
 #: meinberlin/static/embed.js:153
 msgid "We couldn't find what you were looking for."
