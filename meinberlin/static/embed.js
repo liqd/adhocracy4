@@ -34,8 +34,21 @@ $(document).ready(function () {
     $alert.prependTo($('#embed-status'))
   }
 
+  var extractScripts = function ($root, selector, attr) {
+    var $existingValues = $('head').find(selector).map((i, e) => $(e).attr(attr))
+
+    $root.find(selector).each(function (i, script) {
+      var $script = $(script)
+      if ($existingValues.filter((i, v) => v === $script.attr(attr)).length) {
+        $script.remove()
+      } else {
+        $('head').append($script)
+      }
+    })
+  }
+
   var loadHtml = function (html, textStatus, xhr) {
-    var $root = $(html).filter('main')
+    var $root = $('<div>').html(html)
     var nextPath = xhr.getResponseHeader('x-ajax-path')
 
     if (patternsForPopup.test(nextPath)) {
@@ -45,17 +58,16 @@ $(document).ready(function () {
     // only update the currentPath if there was no modal opened
     currentPath = nextPath
 
+    extractScripts($root, 'script[src]', 'src')
+    extractScripts($root, 'link[rel="stylesheet"]', 'href')
+
     $main.empty()
     $main.append($top)
-    $main.append($root.children())
-    onReady()
+    $main.append($root.find('main').children())
+    $(document).trigger('a4.embed.ready')
 
     // jump to top after navigation
     $top.focus()
-  }
-
-  var onReady = function () {
-    // adhocracy4.onReady($main)
   }
 
   var getEmbedTarget = function ($element, url) {
