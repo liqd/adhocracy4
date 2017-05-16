@@ -1,4 +1,5 @@
-import os
+import datetime
+import posixpath
 from urllib import request
 from urllib.parse import urlparse
 
@@ -15,6 +16,7 @@ from rest_framework import serializers
 from adhocracy4.images.validators import validate_image
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
+from adhocracy4.projects import models as project_models
 
 from .models import Bplan
 from .phases import StatementPhase
@@ -22,8 +24,6 @@ from .phases import StatementPhase
 
 BPLAN_EMBED = '<iframe height="500" style="width: 100%; min-height: 300px; ' \
               'max-height: 100vh" src="{}" frameborder="0"></iframe>'
-
-PROJECT_IMAGE_DIR = 'projects/backgrounds/'
 
 
 class BplanSerializer(serializers.ModelSerializer):
@@ -124,34 +124,44 @@ class BplanSerializer(serializers.ModelSerializer):
         return url
 
     def _download_image_from_url(self, url):
+        parsed_url = urlparse(url)
+        file_name = self._generate_image_filename(
+            posixpath.basename(parsed_url.path))
         try:
-            parsed_url = urlparse(url)
-            file_path = os.path.join(PROJECT_IMAGE_DIR,
-                                     os.path.basename(parsed_url.path))
-            file_name = os.path.join(settings.MEDIA_ROOT, file_path)
-            file_dir = os.path.dirname(file_name)
-            os.makedirs(file_dir, exist_ok=True)
-
-            request.urlretrieve(url, file_name)
-            self._validate_image(file_name)
-        except ValidationError as e:
-            self._remove_image_if_exists(file_name)
-            raise serializers.ValidationError(e)
-        except:
-            self._remove_image_if_exists(file_name)
+            with request.urlopen(url) as f:
+                file_name = self._image_storage.save(file_name, f)
+        except Exception as e:
+            self._image_storage.delete(file_name)
             raise serializers.ValidationError(
                 'Failed to download image {}'.format(url))
-        return file_path
+
+        try:
+            self._validate_image(file_name)
+        except ValidationError:
+            self._image_storage.delete(file_name)
+            raise
+
+        return file_name
 
     def _validate_image(self, file_name):
-        image_file = open(file_name, "rb")
+        image_file = self._image_storage.open(file_name, 'rb')
         image = ImageFile(image_file, file_name)
         config = settings.IMAGE_ALIASES.get('*', {})
         config.update(settings.IMAGE_ALIASES['heroimage'])
         validate_image(image, **config)
 
-    def _remove_image_if_exists(self, file_name):
-        try:
-            os.remove(file_name)
-        except:
-            pass
+    @property
+    def _image_storage(self):
+        return project_models.Project._meta.get_field('image').storage
+
+    @property
+    def _image_upload_to(self):
+        return project_models.Project._meta.get_field('image').upload_to
+
+    def _generate_image_filename(self, filename):
+        if callable(self._image_upload_to):
+            raise Exception(_('Callable upload_to fields are not supported'))
+
+        dirname = datetime.datetime.now().strftime(self._image_upload_to)
+        filename = posixpath.join(dirname, filename)
+        return self._image_storage.get_available_name(filename)
