@@ -1,9 +1,12 @@
-{% load rules %}
+{% load rules i18n %}
 <div class="block block--projects">
     <h3>{{ value.title }}</h3>
     <div class="l-tiles-4">
         {% for project in value.projects %}
             {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
         {% endfor %}
+    </div>
+    <div class="block__actions">
+        <a href="{% url 'project-list' %}" class="button">{% trans 'Show all projects' %}</a>
     </div>
 </div>
