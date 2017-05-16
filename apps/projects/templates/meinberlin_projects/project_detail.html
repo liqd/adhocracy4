@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n react_follows thumbnail wagtailcore_tags %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags %}
 
 {% block title %}{{view.project.name}}{% endblock %}
 
@@ -15,6 +15,10 @@
                 {% block project_action %}{% endblock %}
                 {% if request.user.is_authenticated %}
                     {% react_follows view.project %}
+                {% endif %}
+                {% has_perm 'meinberlin_projects.add_project' request.user view.project as user_may_change %}
+                {% if user_may_change %}
+                    <a href="{% url 'dashboard-project-edit' view.project.slug %}" class="button button--light">{% trans 'Edit' %}</a>
                 {% endif %}
             </div>
         </div>
