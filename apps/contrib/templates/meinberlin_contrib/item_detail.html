@@ -48,7 +48,7 @@
                 {% has_perm change_perm request.user object as user_may_change %}
 
                 {% if request.user.is_authenticated %}
-                    <div class="dropdown lr-bar__right">
+                    <div class="dropdown dropdown--right lr-bar__right">
                         <button
                                 title="{% trans 'Actions' %}"
                                 type="button"
