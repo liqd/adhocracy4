@@ -213,13 +213,13 @@ let PollManagement = React.createClass({
             className="button button--light"
             onClick={this.handleAppendQuestion}
             type="button">
-            <i className="fa fa-plus" /> {django.gettext('add a new question')}
+            <i className="fa fa-plus" /> {django.gettext('Add a new question')}
           </button>
         </p>
 
         <Alert onClick={this.removeAlert} {...this.state.alert} />
 
-        <button type="submit" className="button button--primary">{django.gettext('save')}</button>
+        <button type="submit" className="button button--primary">{django.gettext('Save')}</button>
       </form>
     )
   }

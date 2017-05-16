@@ -1,21 +1,21 @@
-{% load module_tags item_tags %}
+{% load i18n module_tags item_tags %}
 
 <div class="list-item list-item--squashed">
     <div class="list-item__stats">
         {% spaceless %}
         {% if object|has_feature:"rate" %}
             <span class="rating">
-                <span class="rating-button rating-up is-read-only" title="Positive Ratings">
+                <span class="rating-button rating-up is-read-only" title="{% trans 'Positive Ratings' %}">
                     <i class="fa fa-chevron-up" aria-hidden="true"></i>
                     {{ object.positive_rating_count }}
                 </span>
-                <span class="rating-button rating-down is-read-only" title="Negative Ratings">
+                <span class="rating-button rating-down is-read-only" title="{% trans 'Negative Ratings' %}">
                     <i class="fa fa-chevron-down" aria-hidden="true"></i>
                     {{ object.negative_rating_count }}
                 </span>
             </span>
         {% endif %}
-        <span title="Comments" class="list-item__comments">
+        <span title="{% trans 'Comments' %}" class="list-item__comments">
             <i class="fa fa-comment-o" aria-hidden="true"></i>
             {{ object.comment_count }}
         </span>

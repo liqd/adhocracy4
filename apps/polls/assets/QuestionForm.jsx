@@ -53,7 +53,7 @@ let QuestionForm = React.createClass({
           <div className="form-group">
             <label
               htmlFor={'id_questions-' + this.props.key + '-name'}>
-              {django.gettext('Question:')}
+              {django.gettext('Question')}
             </label>
             <textarea
               id={'id_questions-' + this.props.key + '-name'}
@@ -86,7 +86,7 @@ let QuestionForm = React.createClass({
             className="button button--light"
             onClick={this.handleAppendChoice}
             type="button">
-            <i className="fa fa-plus" /> {django.gettext('add a new choice')}
+            <i className="fa fa-plus" /> {django.gettext('Add a new choice')}
           </button>
         </div>
 

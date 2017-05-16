@@ -14,7 +14,7 @@
     {{ form.name }}
     {% if can_delete %}
         <label for="{{ form.DELETE.id_for_label }}" class="formset__delete-label">
-            <i class="fa fa-trash" aria-label="{% trans 'remove category' %}"></i>
+            <i class="fa fa-trash" aria-label="{% trans 'Remove category' %}"></i>
         </label>
     {% endif %}
     {% for hidden in form.hidden_fields %}

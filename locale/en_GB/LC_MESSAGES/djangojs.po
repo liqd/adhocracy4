@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-08 14:41+0000\n"
+"POT-Creation-Date: 2017-05-16 15:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,18 +113,22 @@ msgstr "Your message here"
 msgid "Send Report"
 msgstr "Send Report"
 
+#: apps/contrib/static/js/Alert.jsx:10 meinberlin/static/embed.js:25
+msgid "Close"
+msgstr "Close"
+
 #: apps/documents/assets/Paragraph.jsx:73
 #: apps/documents/assets/ParagraphBox.jsx:196
-msgid "add a new paragraph"
-msgstr "add a new paragraph"
+msgid "Add a new paragraph"
+msgstr "Add a new paragraph"
 
 #: apps/documents/assets/Paragraph.jsx:81
-msgid "Headline:"
-msgstr "Headline:"
+msgid "Headline"
+msgstr "Headline"
 
 #: apps/documents/assets/Paragraph.jsx:100
-msgid "Paragraph:"
-msgstr "Paragraph:"
+msgid "Paragraph"
+msgstr "Paragraph"
 
 #: apps/documents/assets/ParagraphBox.jsx:135
 msgid "Your document has been updated."
@@ -135,75 +139,71 @@ msgid "Your document has been saved."
 msgstr "Your document has been saved."
 
 #: apps/documents/assets/ParagraphBox.jsx:158
-msgid "Title:"
-msgstr "Title:"
+msgid "Title"
+msgstr "Title"
 
 #: apps/documents/assets/ParagraphBox.jsx:203
-#: apps/polls/assets/PollManagement.jsx:211
-msgid "save"
-msgstr "save"
+#: apps/polls/assets/PollManagement.jsx:222
+msgid "Save"
+msgstr "Save"
 
 #: apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:105
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
-#: apps/polls/assets/ChoiceForm.jsx:21
-msgid "Choice:"
-msgstr "Choice:"
+#: apps/polls/assets/ChoiceForm.jsx:22
+msgid "Choice"
+msgstr "Choice"
 
-#: apps/polls/assets/PollManagement.jsx:152
+#: apps/polls/assets/PollManagement.jsx:163
 msgid "The poll has been updated."
 msgstr "The poll has been updated."
 
-#: apps/polls/assets/PollManagement.jsx:166
+#: apps/polls/assets/PollManagement.jsx:177
 msgid "The poll could not be updated."
 msgstr "The poll could not be updated."
 
-#: apps/polls/assets/PollManagement.jsx:206
-msgid "add a new question"
-msgstr "add a new question"
+#: apps/polls/assets/PollManagement.jsx:216
+msgid "Add a new question"
+msgstr "Add a new question"
 
-#: apps/polls/assets/Question.jsx:87
+#: apps/polls/assets/Question.jsx:79
 msgid "Vote counted"
 msgstr "Vote counted"
 
-#: apps/polls/assets/Question.jsx:96
+#: apps/polls/assets/Question.jsx:89
 msgid "Vote has not been counted due to a server error."
 msgstr "Vote has not been counted due to a server error."
 
-#: apps/polls/assets/Question.jsx:114
+#: apps/polls/assets/Question.jsx:118 apps/polls/assets/Question.jsx:127
+msgid "Vote"
+msgstr "Vote"
+
+#: apps/polls/assets/Question.jsx:139
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "vote"
 msgstr[1] "votes"
 
-#: apps/polls/assets/Question.jsx:118
+#: apps/polls/assets/Question.jsx:149
 msgid "To poll"
 msgstr "To poll"
 
-#: apps/polls/assets/Question.jsx:125
-msgid "Vote"
-msgstr "Vote"
-
-#: apps/polls/assets/Question.jsx:129
+#: apps/polls/assets/Question.jsx:160
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
-#: apps/polls/assets/Question.jsx:154
+#: apps/polls/assets/Question.jsx:184
 msgid "Your choice"
 msgstr "Your choice"
 
-#: apps/polls/assets/QuestionForm.jsx:57
-msgid "Question:"
-msgstr "Question:"
+#: apps/polls/assets/QuestionForm.jsx:56
+msgid "Question"
+msgstr "Question"
 
-#: apps/polls/assets/QuestionForm.jsx:92
-msgid "add a new choice"
-msgstr "add a new choice"
-
-#: meinberlin/static/embed.js:25
-msgid "Close"
-msgstr "Close"
+#: apps/polls/assets/QuestionForm.jsx:89
+msgid "Add a new choice"
+msgstr "Add a new choice"
 
 #: meinberlin/static/embed.js:153
 msgid "We couldn't find what you were looking for."

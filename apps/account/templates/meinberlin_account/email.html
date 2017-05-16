@@ -3,10 +3,10 @@
 {% load i18n %}
 {% load widget_tweaks %}
 
-{% block title %}{% trans 'E-mail Addresses' %}{% endblock %}
+{% block title %}{% trans 'Email Addresses' %}{% endblock %}
 
 {% block dashboard_content %}
-<h1>{% trans 'E-mail Addresses' %}</h1>
+<h1>{% trans 'Email Addresses' %}</h1>
 
 <form class="multiform" action="{% url 'account-email' %}?next={{ request.path }}" method="post">
     {% csrf_token %}
