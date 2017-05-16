@@ -17,6 +17,17 @@ from adhocracy4.projects.models import Project
 from . import emails
 
 
+class SimplePage(Page):
+    body = fields.RichTextField(blank=True)
+
+    content_panels = [
+        edit_handlers.FieldPanel('title'),
+        edit_handlers.FieldPanel('body'),
+    ]
+
+    subpage_types = []
+
+
 class ProjectSelectionBlock(blocks.ChooserBlock):
     target_model = Project
     widget = widgets.Select
