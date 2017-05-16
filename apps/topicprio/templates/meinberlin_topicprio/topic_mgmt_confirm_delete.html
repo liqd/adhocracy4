@@ -5,17 +5,15 @@
 
 {% block dashboard_content %}
 <div class="l-wrapper">
-    <div class="l-center-6">
-        <h1>{% trans 'Are you sure you want to delete the topic?' %} </h1>
+    <h1>{% trans 'Are you sure you want to delete the topic?' %} </h1>
 
-        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
-            {% csrf_token %}
-            <input type="submit" class="button button--primary" value="{% trans 'Yes'%}" />
-        </form>
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+        <input type="submit" class="button button--primary" value="{% trans 'Yes'%}" />
+    </form>
 
-        <a href="{% url 'dashboard-project-management' object.project.slug %}" class="button button--light">
-            {% trans 'Cancel'%}
-        </a>
-    </div>
+    <a href="{% url 'dashboard-project-management' object.project.slug %}" class="button button--light">
+        {% trans 'Cancel'%}
+    </a>
 </div>
 {% endblock %}
