@@ -155,7 +155,7 @@ var ParagraphBox = React.createClass({
       <form onSubmit={this.submitDocument}>
         <div className="form-group">
           <label>
-            {django.gettext('Title:')}
+            {django.gettext('Title')}
             <input
               type="text"
               defaultValue={this.state.name}

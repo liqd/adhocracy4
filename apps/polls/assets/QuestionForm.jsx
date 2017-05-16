@@ -53,7 +53,7 @@ let QuestionForm = React.createClass({
           <div className="form-group">
             <label
               htmlFor={'id_questions-' + this.props.key + '-name'}>
-              {django.gettext('Question:')}
+              {django.gettext('Question')}
             </label>
             <textarea
               id={'id_questions-' + this.props.key + '-name'}

@@ -19,7 +19,7 @@ let ChoiceForm = React.createClass({
         <label
           className="sr-only"
           htmlFor={'id_choices-' + this.props.index + '-name'}>
-          {django.gettext('Choice') + ` #${this.props.index}:`}
+          {django.gettext('Choice') + ` #${this.props.index}`}
         </label>
         <input
           id={'id_choices-' + this.props.index + '-name'}
