@@ -86,7 +86,7 @@ let QuestionForm = React.createClass({
             className="button button--light"
             onClick={this.handleAppendChoice}
             type="button">
-            <i className="fa fa-plus" /> {django.gettext('add a new choice')}
+            <i className="fa fa-plus" /> {django.gettext('Add a new choice')}
           </button>
         </div>
 

@@ -24,7 +24,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     )
 
     email = models.EmailField(
-        _('email address'),
+        _('Email address'),
         unique=True,
         error_messages={
             'unique': _('A user with that email address already exists.')}
