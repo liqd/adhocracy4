@@ -315,7 +315,7 @@ class AddModeratorForm(forms.ModelForm):
         if missing:
             messages.error(
                 self.request,
-                _('Following e-mails are not registered: ') + ', '.join(
+                _('Following emails are not registered: ') + ', '.join(
                     missing)
             )
         if users:
