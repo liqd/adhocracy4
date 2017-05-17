@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Create a new proposal' %}{% endblock %}
+{% block content %}
+<div class="l-wrapper">
+    <div class="l-center-6">
+        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+            <ul>
+                <li>
+                    <a href="{% url 'project-detail' view.project.slug %}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to project' %}</a>
+                </li>
+            </ul>
+        </nav>
+
+        <h1>{% trans 'Submit a new proposal for this project'%}</h1>
+
+        {% url 'project-detail' view.project.slug as cancel %}
+        {% include "meinberlin_kiezkasse/includes/proposal_form.html" with proposal=proposal cancel=cancel %}
+    </div>
+</div>
+{% endblock %}

@@ -29,6 +29,7 @@ from apps.documents import urls as paragraph_urls
 from apps.documents.api import DocumentViewSet
 from apps.embed import urls as embed_urls
 from apps.ideas import urls as ideas_urls
+from apps.kiezkasse import urls as kiezkasse_urls
 from apps.mapideas import urls as mapideas_urls
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
@@ -68,6 +69,8 @@ urlpatterns = [
 
     url(r'^ideas/', include(ideas_urls,
                             namespace='meinberlin_ideas')),
+    url(r'^kiezkasse/', include(kiezkasse_urls,
+                                namespace='meinberlin_kiezkasse')),
     url(r'^mapideas/', include(mapideas_urls,
                                namespace='meinberlin_mapideas')),
     url(r'^paragraphs/', include(paragraph_urls,
