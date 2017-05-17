@@ -18,4 +18,4 @@ class MapIdeaForm(category_forms.CategorizableForm):
 
     class Meta:
         model = models.MapIdea
-        fields = ['name', 'description', 'category', 'point']
+        fields = ['name', 'description', 'category', 'point', 'point_label']
