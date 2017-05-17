@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load i18n react_comments react_ratings wagtailcore_tags %}
 
+{% block title %}{{ paragraph.name }} &mdash; {{ paragraph.document.project.name }} &mdash; {{ block.super }}{% endblock %}
+
 {% block content %}
 <div class="l-wrapper">
     <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
