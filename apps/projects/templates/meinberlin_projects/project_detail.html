@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n rules react_follows thumbnail wagtailcore_tags %}
 
-{% block title %}{{view.project.name}}{% endblock %}
+{% block title %}{{view.project.name}} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="project-header{% if view.project.image %} project-header--image{% endif %}" style="{% if view.project.image %}

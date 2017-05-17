@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Dashboard" %}{% endblock %}
+{% block title %}{% trans "Dashboard" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 

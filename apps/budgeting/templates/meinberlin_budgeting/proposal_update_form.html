@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n item_tags %}
 
-{% block title %}Edit {{proposal.name}}{% endblock %}
+{% block title %}Edit {{proposal.name}} &mdash; {{ block.super }}{% endblock %}
 {% block content %}
 <div class="l-wrapper">
     <div class="l-center-6">

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Create a new proposal' %}{% endblock %}
+{% block title %}{% trans 'Create a new proposal' %} &mdash; {{ block.super }}{% endblock %}
 {% block content %}
 <div class="l-wrapper">
     <div class="l-center-6">

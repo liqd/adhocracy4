@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n wagtailcore_tags widget_tweaks %}
 
-{% block title %}{{ page.title }}{% endblock %}
+{% block title %}{{ page.title }} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
     <div class="l-wrapper">
