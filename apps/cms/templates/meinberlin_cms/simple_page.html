@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
 
+{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
+    {{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
+
+{% block header %}
+    {% if self.search_description %}
+        <meta name="description" content="{{ self.search_description }}"/>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <div class="l-wrapper">
         <div class="l-center-8">
