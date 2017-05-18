@@ -1,4 +1,4 @@
-{% load i18n item_tags %}
+{% load i18n item_tags moderatorfeedback_tags %}
 
 <div class="list-item list-item--squashed">
     <div class="list-item__stats">
@@ -33,7 +33,11 @@
             <span class="label label--big"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ object.point_label }}</span>
         {% endif %}
 
-        {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=object cls='list-item__label--moderator-feedback' %}
+        {% if object.moderator_feedback %}
+            <span class="label label--big label--{{object.moderator_feedback|classify }} list-item__label--moderator-feedback">
+                {{ object.get_moderator_feedback_display }}
+            </span>
+        {% endif %}
     </div>
     <span class="list-item__author">
         {{ object.creator.username }}
