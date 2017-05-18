@@ -12,4 +12,5 @@ class ProposalForm(MapIdeaForm):
         fields = ['name', 'description', 'category', 'budget', 'point',
                   'point_label']
 
+
 ProposalModerateForm = item_moderate_form_factory(models.Proposal)
