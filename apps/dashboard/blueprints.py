@@ -46,7 +46,7 @@ blueprints = [
      ProjectBlueprint(
          title=_('Spatial Idea Collection'),
          description=_(
-             'Collect location specific ideas that can be rate and commented.'
+             'Collect location specific ideas that can be rated and commented.'
          ),
          content=[
              mapideas_phases.CollectPhase(),
