@@ -5,7 +5,6 @@
     {{ block.super }}
     <span class="label label--big">{{ proposal.budget|intcomma }}€</span>
 
-
     {% if proposal.moderator_feedback %}
         <span class="label label--big label--{{proposal.moderator_feedback|classify }}">
             {{ proposal.get_moderator_feedback_display }}

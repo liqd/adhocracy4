@@ -32,3 +32,8 @@ rules.add_perm(
     'meinberlin_kiezkasse.change_proposal',
     module_predicates.is_allowed_change_item
 )
+
+rules.add_perm(
+    'meinberlin_kiezkasse.moderate_proposal',
+    module_predicates.is_context_moderator
+)

@@ -11,4 +11,6 @@ urlpatterns = [
         views.ProposalUpdateView.as_view(), name='proposal-update'),
     url(r'^(?P<slug>[-\w_]+)/delete/$',
         views.ProposalDeleteView.as_view(), name='proposal-delete'),
+    url(r'^(?P<slug>[-\w_]+)/moderate/$',
+        views.ProposalModerateView.as_view(), name='proposal-moderate'),
 ]
