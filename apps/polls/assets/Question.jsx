@@ -181,7 +181,7 @@ var Question = React.createClass({
                   <div className="poll-row" key={i}>
                     <div className="poll-row__number">{ percent }%</div>
                     <div className="poll-row__label">{ choice.label }</div>
-                    { chosen ? <i className="fa fa-check-circle u-secondary" aria-label={django.gettext('Your choice')} /> : '' }
+                    { chosen ? <i className="fa fa-check-circle u-primary" aria-label={django.gettext('Your choice')} /> : '' }
                     <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')} style={{width: percent + '%'}} />
                   </div>
                 )
