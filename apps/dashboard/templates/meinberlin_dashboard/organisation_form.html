@@ -1,6 +1,8 @@
 {% extends "meinberlin_dashboard/base_dashboard.html" %}
 {% load i18n %}
 
+{% block title %}{% trans "Settings" %} &mdash; {{ block.super }}{% endblock%}
+
 {% block dashboard_content %}
     <h1>{% trans "Edit your organisation information" %}</h1>
 

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Statement sent' %}{% endblock %}
+{% block title %}{% trans 'Statement sent' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="l-wrapper">

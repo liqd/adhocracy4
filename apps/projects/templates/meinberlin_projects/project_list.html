@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-{% load rules %}
+{% load rules i18n %}
+
+{% block title %}{% trans 'Projects' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
     <div class="l-wrapper">

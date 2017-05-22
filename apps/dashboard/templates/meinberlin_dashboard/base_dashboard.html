@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Dashboard" %}{% endblock %}
+{% block title %}"{{ view.organisation.name }}" {% trans "Dashboard" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 
@@ -46,7 +46,7 @@
                     <a href="{% url 'dashboard-project-list' organisation_slug=view.organisation.slug %}"
                        class="dashboard-nav__item dashboard-nav__item--interactive {% ifequal view.menu_item 'project' %}is-active{% endifequal %}">
                         <i class="fa fa-file-o"></i>
-                        {% trans 'Participation processes' %}
+                        {% trans 'Participation projects' %}
                     </a>
                 </li>
 

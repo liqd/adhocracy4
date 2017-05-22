@@ -1,7 +1,7 @@
 {% extends 'meinberlin_dashboard/base_dashboard.html' %}
 {% load i18n %}
 
-{% block title %}{% trans 'Create a new topic' %}{% endblock %}
+{% block title %}{% trans 'Create a new topic' %} &mdash; {{ block.super }}{% endblock %}
 {% block dashboard_content %}
 <div class="l-wrapper">
     <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">

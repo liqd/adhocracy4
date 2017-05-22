@@ -1,6 +1,8 @@
 {% extends "meinberlin_dashboard/base_dashboard.html" %}
 {% load i18n %}
 
+{% block title %}{% trans "Edit project" %} &mdash; {{ block.super }}{% endblock%}
+
 {% block dashboard_content %}
     {% include 'meinberlin_dashboard/includes/project_update_breadcrumbs.html' %}
 
