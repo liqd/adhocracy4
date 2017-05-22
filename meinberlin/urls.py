@@ -59,13 +59,17 @@ ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
     url(r'^dashboard/', include(dashboard_urls)),
-    url(r'^account/', include(account_urls)),
     url(r'^embed/', include(embed_urls)),
 
     url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^accounts/', include(allauth_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^projects/', include(projects_urls)),
+
+    url(r'^accounts/', include(account_urls)),
+    url(r'^accounts/', include(allauth_urls)),
+    url(r'^accounts/', include(account_urls)),
+    # url(r'^accounts/', include(allauth_urls)),
+
 
     url(r'^ideas/', include(ideas_urls,
                             namespace='meinberlin_ideas')),
