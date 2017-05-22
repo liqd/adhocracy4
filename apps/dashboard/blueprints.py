@@ -7,6 +7,7 @@ from apps.budgeting import phases as budgeting_phases
 from apps.documents import phases as documents_phases
 from apps.extprojects import phases as extprojects_phases
 from apps.ideas import phases as ideas_phases
+from apps.kiezkasse import phases as kiezkasse_phases
 from apps.mapideas import phases as mapideas_phases
 from apps.polls import phases as poll_phases
 from apps.topicprio import phases as topicprio_phases
@@ -146,6 +147,21 @@ blueprints = [
          ],
          image='images/blueprints/bplan.svg',
          settings_model=None,
+     )),
+    ('kiezkasse',
+     ProjectBlueprint(
+         title=_('Kiezkasse'),
+         description=_(
+             'With kiezkasse it’s possible to make proposals '
+             'with budget specifications and locate them. Afterwards anyone '
+             'can comment and rate on different proposals.'
+         ),
+         content=[
+             kiezkasse_phases.RequestPhase(),
+             kiezkasse_phases.FeedbackPhase(),
+         ],
+         image='images/blueprints/participatory-budgeting.svg',
+         settings_model=('a4maps', 'AreaSettings'),
      )),
 ]
 

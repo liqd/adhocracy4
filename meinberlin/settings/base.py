@@ -84,6 +84,7 @@ INSTALLED_APPS = (
     'apps.documents.apps.Config',
     'apps.extprojects.apps.Config',
     'apps.ideas.apps.Config',
+    'apps.kiezkasse.apps.Config',
     'apps.mapideas.apps.Config',
     'apps.polls.apps.Config',
     'apps.topicprio.apps.Config',
@@ -303,6 +304,7 @@ A4_RATEABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_kiezkasse', 'proposal'),
 )
 
 A4_COMMENTABLES = (
@@ -314,6 +316,7 @@ A4_COMMENTABLES = (
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
     ('meinberlin_polls', 'poll'),
+    ('meinberlin_kiezkasse', 'proposal'),
 )
 
 A4_REPORTABLES = (
@@ -322,6 +325,7 @@ A4_REPORTABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_kiezkasse', 'proposal'),
 )
 A4_AUTO_FOLLOWABLES = (('a4comments', 'comment'),)
 
@@ -330,6 +334,7 @@ A4_ACTIONABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_kiezkasse', 'proposal'),
 )
 
 A4_AUTO_FOLLOWABLES = (
@@ -337,6 +342,7 @@ A4_AUTO_FOLLOWABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_kiezkasse', 'proposal'),
     ('meinberlin_polls', 'vote'),  # TODO: really?
 )
 

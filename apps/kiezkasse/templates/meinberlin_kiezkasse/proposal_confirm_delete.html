@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n item_tags %}
+
+{% block title %}{% trans 'Confirm Proposal Deletion' %}{% endblock %}
+
+{% block content %}
+<div class="l-wrapper">
+    <div class="l-center-6">
+        <h1>{% trans 'Are you sure you want to delete the proposal?' %} </h1>
+
+        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="button button--primary" value="{% trans 'Yes'%}" />
+
+            {% get_item_detail_url object as detail_url %}
+            <a href="{{ detail_url }}" class="button button--light">{% trans 'Cancel'%}</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
