@@ -1,0 +1,13 @@
+{% extends 'email_base.'|add:part_type %}
+{% load i18n %}
+
+{% block subject %}{% blocktrans with site_name=site.name %}Please confirm your registration on {{ site_name }}{% endblocktrans %}{% endblock %}
+
+{% block headline %}{% blocktrans with site_name=site.name %}Your registration on {{ site_name }}{% endblocktrans %}{% endblock %}
+
+{% block content %}{% blocktrans with site_name=site.name username=receiver.username %}Your email address has been used to register on <i>{{ site_name }}</i> with the username “{{ username }}”. Please click on the link below to confirm your email address and activate your account.{% endblocktrans %}{% endblock %}
+
+{% block cta_url %}{{ activate_url }}{% endblock %}
+{% block cta_label %}{% trans 'Confirm your email address' %}{% endblock %}
+
+{% block reason %}{% blocktrans with receiver_email=receiver.email %}This email was sent to {{ receiver_email }}.{% endblocktrans %} {% blocktrans %}If you think this email was sent to you by mistake, you can ignore it. We will not send you any further emails. If you have any further questions, please contact us via {{ contact_email }}{% endblocktrans %}{% endblock %}
