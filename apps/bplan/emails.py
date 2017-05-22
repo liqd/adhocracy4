@@ -3,7 +3,6 @@ from adhocracy4.emails import Email
 
 class OfficeWorkerNotification(Email):
     template_name = 'meinberlin_bplan/emails/office_worker_notification'
-    fallback_language = 'de'
 
     @property
     def office_worker_email(self):
