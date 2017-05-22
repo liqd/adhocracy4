@@ -113,7 +113,7 @@ var Question = React.createClass({
       return (
         <button
           type="submit"
-          className="button button--secondary"
+          className="button button--primary"
           disabled={this.state.selectedChoice === this.state.ownChoice}>
           { django.gettext('Vote') }
         </button>
@@ -123,7 +123,7 @@ var Question = React.createClass({
         encodeURIComponent(window.location.pathname)
 
       return (
-        <a href={loginUrl} className="button button--secondary">
+        <a href={loginUrl} className="button button--primary">
           { django.gettext('Vote') }
         </a>
       )
