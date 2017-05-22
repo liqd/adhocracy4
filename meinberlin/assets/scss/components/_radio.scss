@@ -41,7 +41,7 @@ $checkbox-size: 20px;
 .radio__input:checked + .radio__text:after {
     content: '\f00c';
     font-family: 'FontAwesome';
-    color: contrast-color($brand-secondary);
+    color: contrast-color($brand-primary);
     text-align: center;
     font-size: $font-size-sm;
 
@@ -53,7 +53,7 @@ $checkbox-size: 20px;
     left: 0;
     top: 0;
 
-    background-color: $brand-secondary;
+    background-color: $brand-primary;
     border-radius: $checkbox-size / 2;
 
     transform: scale(1);

@@ -15,9 +15,9 @@
 
         {% get_days project.days_left as days %}
         {% if project.has_finished %}
-            <span class="tile__label label label--secondary">{% trans "Finished" %}</span>
+            <span class="tile__label label label--primary">{% trans "Finished" %}</span>
         {% elif days %}
-            <span class="tile__label label label--secondary">{{ days }}</span>
+            <span class="tile__label label label--primary">{{ days }}</span>
         {% endif %}
     </div>
 

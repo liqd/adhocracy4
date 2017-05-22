@@ -1,8 +1,8 @@
 // subset of bootstrap variables
 
-$brand-primary: #253276;
-$brand-secondary: #cd0055;
-$brand-secondary-tint: #f5ccdd;
+$brand-primary: #cd0055;
+$brand-primary-tint: #f5ccdd;
+$brand-secondary: #253276;
 $brand-success: #0a820a;
 $brand-info: #fdd216;
 $brand-warning: #f0ad4e;
@@ -15,7 +15,7 @@ $text-color: #333;
 $text-color-inverted: $body-bg;
 $shadow: rgba(#000, 0.25);
 
-$link-color: $brand-secondary;
+$link-color: $brand-primary;
 $link-hover-color: darken($link-color, 15%);
 
 $border-color: #ccc;

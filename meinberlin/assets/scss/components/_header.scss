@@ -89,7 +89,7 @@ $header-margin-bottom: 25px;
     &:focus {
         text-decoration: none;
         background-color: $bg-secondary;
-        color: $brand-secondary;
+        color: $brand-primary;
     }
 
     @media screen and (min-width: $breakpoint) {
