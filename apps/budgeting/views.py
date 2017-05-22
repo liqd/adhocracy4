@@ -93,5 +93,6 @@ class ProposalModerateView(rules_mixins.PermissionRequiredMixin,
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
+        kwargs['item'] = self.object
         kwargs['creator'] = self.request.user
         return kwargs

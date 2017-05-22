@@ -1,10 +1,16 @@
 {% extends "meinberlin_mapideas/mapidea_detail.html" %}
-{% load rules item_tags i18n humanize %}
+{% load rules item_tags moderatorfeedback_tags i18n humanize %}
 
 {% block additional_labels %}
     {{ block.super }}
     <span class="label label--big">{{ proposal.budget|intcomma }}€</span>
-    {% include 'meinberlin_moderatorfeedback/includes/moderatorfeedback.html' with item=proposal %}
+
+
+    {% if proposal.moderator_feedback %}
+        <span class="label label--big label--{{proposal.moderator_feedback|classify }}">
+            {{ proposal.get_moderator_feedback_display }}
+        </span>
+    {% endif %}
 {% endblock %}
 
 {% block moderator_statement %}

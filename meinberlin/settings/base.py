@@ -71,21 +71,22 @@ INSTALLED_APPS = (
     'apps.users.apps.Config',
     'apps.projects.apps.Config',
     'apps.organisations.apps.Config',
-    'apps.dashboard.apps.Config',
     'apps.embed.apps.Config',
     'apps.moderatorfeedback.apps.Config',
-    'apps.extprojects.apps.Config',
-    'apps.account.apps.Config',
     'apps.maps.apps.Config',
+    'apps.notifications.apps.Config',
 
-    'apps.ideas.apps.Config',
-    'apps.documents.apps.Config',
+    'apps.account.apps.Config',
+    'apps.dashboard.apps.Config',
+
+    'apps.bplan.apps.Config',
     'apps.budgeting.apps.Config',
+    'apps.documents.apps.Config',
+    'apps.extprojects.apps.Config',
+    'apps.ideas.apps.Config',
     'apps.mapideas.apps.Config',
     'apps.polls.apps.Config',
     'apps.topicprio.apps.Config',
-    'apps.bplan.apps.Config',
-    'apps.notifications.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (

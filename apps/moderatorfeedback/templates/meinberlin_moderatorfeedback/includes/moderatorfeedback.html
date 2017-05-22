@@ -1,7 +1,0 @@
-{% with item.get_moderator_feedback as moderator_feedback %}
-    {% if moderator_feedback.value %}
-        <span class="label label--big label--{{ moderator_feedback.value_class }} {{ cls }}">
-            {{ moderator_feedback.display }}
-        </span>
-    {% endif %}
-{% endwith %}

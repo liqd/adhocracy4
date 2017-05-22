@@ -21,18 +21,20 @@ let ChoiceForm = React.createClass({
           htmlFor={'id_choices-' + this.props.index + '-name'}>
           {django.gettext('Choice') + ` #${this.props.index}`}
         </label>
-        <input
-          id={'id_choices-' + this.props.index + '-name'}
-          name={'choices-' + this.props.index + '-name'}
-          type="text"
-          defaultValue={this.props.choice.label}
-          onChange={this.handleLabelChange} />
-        <div className="button-group">
+        <div className="button-group input-action">
+          <input
+            id={'id_choices-' + this.props.index + '-name'}
+            name={'choices-' + this.props.index + '-name'}
+            type="text"
+            className="input-action__input"
+            defaultValue={this.props.choice.label}
+            onChange={this.handleLabelChange} />
           <button
-            className="button button--light"
+            className="input-action__action button button--light"
             onClick={this.handleDelete}
+            aria-label={django.gettext('remove')}
             type="button">
-            <i className="fa fa-trash" />
+            <i className="fa fa-times" />
           </button>
         </div>
         <ErrorList errors={this.props.errors} />

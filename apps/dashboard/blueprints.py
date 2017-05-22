@@ -42,6 +42,19 @@ blueprints = [
          image='images/blueprints/map-brainstorming.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
+    ('map-idea-collection',
+     ProjectBlueprint(
+         title=_('Spatial Idea Collection'),
+         description=_(
+             'Collect location specific ideas that can be rated and commented.'
+         ),
+         content=[
+             mapideas_phases.CollectPhase(),
+             mapideas_phases.RatingPhase()
+         ],
+         image='images/blueprints/map-brainstorming.svg',
+         settings_model=('a4maps', 'AreaSettings'),
+     )),
     ('agenda-setting',
      ProjectBlueprint(
          title=_('Agenda Setting'),
