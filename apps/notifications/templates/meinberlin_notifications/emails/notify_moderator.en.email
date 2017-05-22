@@ -1,20 +1,14 @@
 {% extends 'email_base.'|add:part_type %}
-{% load verbose_name %}
+{% load verbose_name i18n %}
 
-{% block subject %}
-A {{ action.obj | verbose_name }} was added to the project {{ action.project.name }}{% endblock %}
+{% block subject %}{% blocktrans with action_item_type=action.obj|verbose_name project_name=action.project.name %}A {{ action_item_type }} was added to the project {{ project_name }}{% endblocktrans %}{% endblock %}
 
-{% block headline %}
-{{ action.actor.username }} created a {{ action.obj | verbose_name }} on the project {{ action.project.name }}
-{% endblock  %}
+{% block headline %}{% blocktrans with action_item_type=action.obj|verbose_name project_name=action.project.name actor_name=action.actor.username %}{{ actor_name }} created a {{ action_item_type }} on the project {{ project_name }}{% endblocktrans %}{% endblock  %}
 
-{% block content %}
-On the project {{ action.project.name }} a {{ action.obj | verbose_name }} was added by {{ action.actor.username }}. Checkout what happend on the project {{ action.project.name }} on {{ site.name }} by clicking the {% if part_type == 'txt' %}link{% else %}button{% endif %} below.
-{% endblock %}
+{% block content %}{% blocktrans with action_item_type=action.obj|verbose_name actor_name=action.actor.username project_name=action.project.name organisation_name=action.project.organisation.name %}On the project {{ project_name }} a {{ action_item_type }} was added by {{ actor_name }}.{% endblocktrans %}
+{% blocktrans %}Checkout what happend on the project by clicking the link below.{% endblocktrans %}{% endblock %}
 
-{% block cta_url %}{% if action.target.get_absolute_url %}{{ email.get_host }}{{ action.target.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
-{% block cta_label %}{% if action.target.get_absolute_url %}Check your {{ action.target | verbose_name }}{% else %}Visit the project{% endif %}{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endblock %}
+{% block cta_label %}{% trans 'Visit the project' %}{% endblock %}
 
-{% block reason %}
-This email was sent to {{ receiver.email }}. This email was sent to you because you are a moderator in the project. If you don’t want to receive these notifications anymore, you can disable notifications completely in your account settings.
-{% endblock %}
+{% block reason %}{% blocktrans with receiver_email=receiver.email %}This email was sent to {{ receiver_email }}.{% endblocktrans %}{% blocktrans %} This email was sent to you because you are a moderator in the project. If you don’t want to receive these notifications anymore, you can disable notifications completely in your account settings.{% endblocktrans %}{% endblock %}
