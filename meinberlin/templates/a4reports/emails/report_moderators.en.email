@@ -1,0 +1,13 @@
+{% extends 'email_base.'|add:part_type %}
+{% load reports_tags i18n %}
+
+{% block subject %}{% blocktrans with project_name=report.project site_name=site.name %}Moderation request in {{ project_name }} on {{ site_name }}{% endblocktrans %}{% endblock %}
+
+{% block headline %}{% blocktrans %}A user reported content in your project.{% endblocktrans %}{% endblock %}
+
+{% block content %}{% blocktrans with item_type=report.content_object|verbose_name site_name=site.name project_name=report.project   reporter_name=report.creator.username report_reason=report.description %}{{ report_name }} requested moderation of a {{ item_type }} in your project {{ project_name }} on {{ site_name }}. The reason given is "{{ report_reason }}".{% endblocktrans %}{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}
+{% block cta_label %}{% blocktrans with item_type=report.content_object|verbose_name %}Visit the {{ item_type }}{% endblocktrans %}{% endblock %}
+
+{% block reason %}{% blocktrans with receiver_email=receiver.email project_name=report.project project_name=report.project %}This email was sent to {{ receiver_email }}. Your are receiving this email because you are moderator of the project {{ project_name}}.{% endblocktrans %}{% endblock %}
