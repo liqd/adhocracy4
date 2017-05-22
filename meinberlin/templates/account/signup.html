@@ -1,13 +1,13 @@
 {% extends "account/base.html" %}
 {% load i18n %}
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block head_title %}{% trans "Register" %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans "Sign Up" %}</h1>
+    <h1>{% trans "Register" %}</h1>
 
     <p>{% blocktrans %}Already have an account? Then please
-        <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+        <a href="{{ login_url }}">login</a>.{% endblocktrans %}</p>
 
     <form id="signup_form" method="post" action="{% url 'account_signup' %}">
         {{ form.non_field_errors }}
@@ -18,6 +18,6 @@
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
         {% endif %}
-        <button class="button button--primary" type="submit">{% trans "Sign Up" %}</button>
+        <button class="button button--primary" type="submit">{% trans "Register" %}</button>
     </form>
 {% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-16 15:20+0200\n"
+"POT-Creation-Date: 2017-05-22 13:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,12 +174,16 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:105
+#: apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:108
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr ""
 
 #: apps/polls/assets/ChoiceForm.jsx:22
 msgid "Choice"
+msgstr ""
+
+#: apps/polls/assets/ChoiceForm.jsx:35
+msgid "remove"
 msgstr ""
 
 #: apps/polls/assets/PollManagement.jsx:163
@@ -232,19 +236,19 @@ msgstr ""
 msgid "Add a new choice"
 msgstr ""
 
-#: meinberlin/static/embed.js:153
+#: meinberlin/static/embed.js:165
 msgid "We couldn't find what you were looking for."
 msgstr ""
 
-#: meinberlin/static/embed.js:157
+#: meinberlin/static/embed.js:169
 msgid "You don't have the permission to view this page."
 msgstr ""
 
-#: meinberlin/static/embed.js:160
+#: meinberlin/static/embed.js:172
 msgid "Something went wrong!"
 msgstr ""
 
-#: meinberlin/static/embed.js:168
+#: meinberlin/static/embed.js:180
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
