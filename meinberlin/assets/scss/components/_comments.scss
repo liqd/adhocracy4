@@ -39,6 +39,14 @@
         margin-left: 0.5em;
     }
 
+    .dropdown-toggle {
+        @extend %button-base;
+        @extend .button--light;
+        @extend .button--small;
+        vertical-align: baseline;
+        line-height: inherit;
+    }
+
     .navbar-right {
         float: right;
     }
