@@ -8,11 +8,12 @@
 
 // used by adhocracy4
 .submit-button {
-    @extend .button;
+    @extend %button-base;
+    @extend .button--primary;
 }
 
 .cancel-button {
-    @extend .button;
+    @extend %button-base;
     @extend .button--light;
 }
 
@@ -23,7 +24,7 @@
 // used by adhocracy4 for the follow button, long-term we'd like
 // our own classes.
 .btngroup .btn {
-    @extend .button;
+    @extend %button-base;
     @extend .button--light;
 
     &:first-child {
@@ -46,11 +47,11 @@
 // used by allauth (login/register)
 .signup > button[type="submit"],
 .primaryAction {
-    @extend .button;
+    @extend %button-base;
     @extend .button--primary;
 }
 
 .secondaryAction {
-    @extend .button;
+    @extend %button-base;
     @extend .button--secondary;
 }
