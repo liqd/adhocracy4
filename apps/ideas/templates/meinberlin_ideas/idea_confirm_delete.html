@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n item_tags %}
 
-{% block title %}{% trans 'Confirm Idea Deletion' %}{% endblock %}
+{% block title %}{% trans 'Confirm Idea Deletion' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="l-wrapper">

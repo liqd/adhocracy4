@@ -18,7 +18,7 @@
                 {% endif %}
             </a>
         </span>
-        <form method="post" class="list-item__action">
+        <form method="post" class="list-item__action" role="presentation">
             {% csrf_token %}
             <input type="hidden" name="project_pk" value="{{ project.pk }}">
             <button type="submit" name="submit_action" value="{{ project.is_draft|yesno:'publish,unpublish' }}"

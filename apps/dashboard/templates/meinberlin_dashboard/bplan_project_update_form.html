@@ -1,6 +1,8 @@
 {% extends "meinberlin_dashboard/project_update_form.html" %}
 {% load i18n %}
 
+{% block title %}{% trans "Edit development plan project" %} &mdash; {{ block.super }}{% endblock%}
+
 {% block dashboard_content %}
     {% include 'meinberlin_dashboard/includes/project_update_breadcrumbs.html' %}
 

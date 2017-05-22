@@ -104,15 +104,14 @@ select {
     display: flex;
 }
 
-// TODO: work this out, currently only partially useful
-// see https://github.com/liqd/a4-meinberlin/pull/156#discussion_r110859993
-.form--single-line {
-    @include clearfix;
+.input-action {
+    display: flex;
+}
 
-    input[type="submit"] {
-        @media (min-width: $breakpoint) {
-            // compensate for field label
-            margin-top: 1.5em;
-        }
-    }
+.input-action__input {
+    flex: 1;
+}
+
+.input-action__action {
+    flex: 0;
 }

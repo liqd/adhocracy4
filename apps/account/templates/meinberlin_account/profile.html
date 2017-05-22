@@ -2,7 +2,7 @@
 
 {% load i18n %}
 
-{% block title %}{% trans 'Your user profile' %}{% endblock %}
+{% block title %}{% trans 'Your user profile' %} &mdash; {{ block.super }}{% endblock %}
 {% block dashboard_content %}
 <h1 class="gray-divider dashboard-title">{% trans 'Your profile' %}</h1>
 

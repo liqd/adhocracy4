@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load widget_tweaks %}
 
-{% block title %}{% trans 'Email Addresses' %}{% endblock %}
+{% block title %}{% trans 'Email Addresses' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
 <h1>{% trans 'Email Addresses' %}</h1>
