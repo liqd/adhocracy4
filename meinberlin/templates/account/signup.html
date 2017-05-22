@@ -1,0 +1,23 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+    <h1>{% trans "Sign Up" %}</h1>
+
+    <p>{% blocktrans %}Already have an account? Then please
+        <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+    <form id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {{ form.non_field_errors }}
+        {% csrf_token %}
+        {% for field in form %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
+        {% endfor %}
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <button class="button button--primary" type="submit">{% trans "Sign Up" %}</button>
+    </form>
+{% endblock %}
