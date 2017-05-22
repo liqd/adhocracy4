@@ -14,9 +14,9 @@
     border-radius: 0.3em;
 }
 
-.label--secondary {
-    background-color: $brand-secondary;
-    color: contrast-color($brand-secondary);
+.label--primary {
+    background-color: $brand-primary;
+    color: contrast-color($brand-primary);
 }
 
 .label--CONSIDERATION {
