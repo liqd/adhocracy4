@@ -10,6 +10,7 @@
         <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
     <form id="signup_form" method="post" action="{% url 'account_signup' %}">
+        {{ form.non_field_errors }}
         {% csrf_token %}
         {% for field in form %}
             {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}

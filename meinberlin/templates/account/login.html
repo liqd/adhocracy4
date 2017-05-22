@@ -25,6 +25,7 @@
         <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
     {% endif %}
     <form method="POST" action="{% url 'account_login' %}">
+        {{ form.non_field_errors }}
         {% csrf_token %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.login %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password %}
