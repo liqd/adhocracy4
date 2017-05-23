@@ -5,7 +5,7 @@
 
 {% block headline %}{% blocktrans with project_name=action.project.name %}Only a few hours left to participate in {{ project_name }}{% endblocktrans %}{% endblock %}
 
-{% block content %}{% blocktrans with project_name=action.project.name organisation_name=action.project.organisation.name phase_end_date=action.project.active_phase.end_date|date:'d.m.Y' %}The current participation phase of the project “{{ project_name }}” by <i>{{ organisation_name }}</i> will be over at <i>{{ phase_end_date }}</i>. If you want to participate, visit the project page soon.{% endblocktrans %}{% endblock %}
+{% block content %}{% blocktrans with project_name=action.project.name organisation_name=action.project.organisation.name phase_end_date=action.project.active_phase.end_date|date:'d.m.Y' %}The current participation phase of the project "{{ project_name }}" by "{{ organisation_name }}" will be over at {{ phase_end_date }}. If you want to participate, visit the project page soon.{% endblocktrans %}{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endblock %}
 {% block cta_label %}{% trans 'Visit the project' %}{% endblock %}

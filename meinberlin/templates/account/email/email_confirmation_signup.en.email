@@ -5,7 +5,7 @@
 
 {% block headline %}{% blocktrans with site_name=site.name %}Your registration on {{ site_name }}{% endblocktrans %}{% endblock %}
 
-{% block content %}{% blocktrans with site_name=site.name username=receiver.username %}Your email address has been used to register on <i>{{ site_name }}</i> with the username “{{ username }}”. Please click on the link below to confirm your email address and activate your account.{% endblocktrans %}{% endblock %}
+{% block content %}{% blocktrans with site_name=site.name username=receiver.username %}Your email address has been used to register on "{{ site_name }}" with the username "{{ username }}". Please click on the link below to confirm your email address and activate your account.{% endblocktrans %}{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}{% trans 'Confirm your email address' %}{% endblock %}

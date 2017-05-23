@@ -21,7 +21,6 @@ Es wurde eine neue Stellungnahme für den Bebauungsplan {{ project_name }} von {
 {% trans 'Email addresse' %}
 {{ submitter_email }}
 
-
 {% trans 'Statement' %}
 
 {{ statement }}

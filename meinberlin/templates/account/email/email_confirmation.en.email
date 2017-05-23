@@ -5,7 +5,7 @@
 
 {% block headline %}{% blocktrans with site_name=site.name %}Your email address on {{ site_name }}{% endblocktrans %}{% endblock %}
 
-{% block content %}{% blocktrans with site_name=site.name username=receiver.username %}Your email address has been added to the username “{{ username }}” on <i>{{ site_name }}</i>. Please click the link below to confirm your email address.{% endblocktrans %}{% endblock %}
+{% block content %}{% blocktrans with site_name=site.name username=receiver.username %}Your email address has been added to the username "{{ username }}" on "{{ site_name }}". Please click the link below to confirm your email address.{% endblocktrans %}{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}{% trans 'Confirm your email address' %}{% endblock %}

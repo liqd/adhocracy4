@@ -20,7 +20,6 @@
 {% trans 'Email addresse' %}
 {{ submitter_email }}
 
-
 {% trans 'Statement' %}
 
 {{ statement }}
