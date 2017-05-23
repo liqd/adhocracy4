@@ -481,7 +481,7 @@ msgstr "Ja"
 #: apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html.py:4
 #: apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html.py:4
 msgid "Create a new proposal"
-msgstr "Erstellen eines neuen Vorschlags"
+msgstr "Anlegen eines neuen Vorschlags"
 
 #: apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html.py:8
 #: apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html.py:8
@@ -522,7 +522,7 @@ msgstr "Zurück zum Projekt"
 #: apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html.py:18
 #: apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html.py:18
 msgid "Submit a new proposal for this project"
-msgstr "Einen neuen Vorschlag für dieses Projekt erstellen"
+msgstr "Einen neuen Vorschlag für dieses Projekt anlegen"
 
 #: apps/budgeting/templates/meinberlin_budgeting/proposal_detail.html.py:20
 #: apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_detail.html.py:20
@@ -753,7 +753,7 @@ msgstr "Themenpriorisierung"
 
 #: apps/dashboard/blueprints.py:132
 msgid "Comment and prioritize topics."
-msgstr "Bei der Themenpriorisierung erstellen Sie die Themen, welche dann von den "
+msgstr "Bei der Themenpriorisierung legen Sie die Themen an, welche dann von den "
 "Nutzern bewertet und kommentiert werden können."
 
 #: apps/dashboard/blueprints.py:142
@@ -764,7 +764,7 @@ msgstr "Bebauungsplan"
 msgid ""
 "Create a statement formular for development plans to be embedded on external "
 "sites."
-msgstr "Erstellen Sie ein Formular zur Stellungnahme zu den Bebauungsplänen. Dieses"
+msgstr "Legen Sie ein Formular zur Stellungnahme zu den Bebauungsplänen an. Dieses"
 "Formular wird dann auf externen Seiten eingebunden."
 
 #: apps/dashboard/blueprints.py:153
@@ -962,7 +962,7 @@ msgstr "Organisationsinformationen bearbeiten"
 #: apps/dashboard/templates/meinberlin_dashboard/project_create_form.html.py:4
 #: apps/dashboard/templates/meinberlin_dashboard/project_create_form.html.py:9
 msgid "Create project based on"
-msgstr "Projekt erstellen basierend auf"
+msgstr "Projekt anlegen basierend auf"
 
 #: apps/dashboard/templates/meinberlin_dashboard/project_list.html.py:4
 #: apps/dashboard/templates/meinberlin_dashboard/project_list.html.py:11
@@ -997,7 +997,7 @@ msgstr "Organisation erfolgreich aktualisiert"
 
 #: apps/documents/phases.py:16
 msgid "Create document phase"
-msgstr "Dokument-Erstellen Phase"
+msgstr "Dokument-Anlegen Phase"
 
 #: apps/documents/phases.py:17 apps/documents/phases.py:30
 msgid "commenting text"
