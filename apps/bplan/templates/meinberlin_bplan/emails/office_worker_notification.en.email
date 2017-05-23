@@ -1,32 +1,30 @@
 {% extends 'email_base.'|add:part_type %}
-{% load wagtailcore_tags i18n %}
+{% load wagtailcore_tags %}
 
-{% block subject %}{% blocktrans with project_name=project.name project_start_date=project.active_phase.start_date|date:'d.m.Y' project_end_date=project.active_phase.end_date|date:'d.m.Y' %}Neue Stellungnahme zum Bebauungsplan {{ project_name }} von {{ project_start_date }} - {{ project_end_date }}{% endblocktrans %}{% endblock %}
+{% block subject %}Neue Stellungnahme zum Bebauungsplan {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
 
-{% block headline %}{% blocktrans with project_name=project.name project_start_date=project.active_phase.start_date|date:'d.m.Y' project_end_date=project.active_phase.end_date|date:'d.m.Y' %}Neue Stellungnahme zum Bebauungsplan {{ project_name }} von {{ project_start_date }} - {{ project_end_date }}{% endblocktrans %}{% endblock %}
+{% block headline %}Neue Stellungnahme zum Bebauungsplan {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
 
 {% block content %}
-{% blocktrans with project_name=project.name project_start_date=project.active_phase.start_date|date:'d.m.Y' project_end_date=project.active_phase.end_date|date:'d.m.Y' %}
-Es wurde eine neue Stellungnahme für den Bebauungsplan {{ project_name }} von {{ project_start_date }} - {{ project_end_date }} abgegeben.{% endblocktrans %}
+Es wurde eine neue Stellungnahme für den Bebauungsplan {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }} abgegeben.
 
-{% trans 'Name' %}
-{{ submitter_name }}
+Name
+{{ statement.name }}
 
-{% trans 'Street' %}, {% trans 'House number' %}
-{{ submitter_street_number }}
+Straße, Hausnummer
+{{ statement.street_number }}
 
-{% trans 'Zipcode' %}, {% trans 'City' %}
-{{ submitter_postal_code_city }}
+PLZ, Ort
+{{ statement.postal_code_city }}
 
-{% trans 'Email addresse' %}
-{{ submitter_email }}
+E-Mail-Adresse
+{{ statement.email }}
 
-{% trans 'Statement' %}
+Stellungnahme
 
-{{ statement }}
+{{ statement.statement }}
 
 {% endblock %}
 
-
-{% block cta_label %}{% trans 'Bebauungsplan' %} "{{ project_name }}"{% endblock %}
+{% block cta_label %}Bebauungsplan "{{ project.name }}"{% endblock %}
 {% block cta_url %}{{ project.externalproject.url }}{% endblock %}
