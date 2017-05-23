@@ -27,11 +27,13 @@
         {{ object.name }}
         </a>
     </h3>
-    {% if object.category %}
-        <div class="list-item__labels">
-            <span class="label label--big">{{ object.category }}</span>
-        </div>
-    {% endif %}
+    <div class="list-item__labels">
+        {% if object.category %}
+            <div class="list-item__labels">
+                <span class="label label--big">{{ object.category }}</span>
+            </div>
+        {% endif %}
+    </div>
     <span class="list-item__author">
         {{ object.creator.username }}
     </span>
