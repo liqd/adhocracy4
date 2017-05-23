@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-22 13:51+0200\n"
+"POT-Creation-Date: 2017-05-23 15:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,66 +255,14 @@ msgid "Profile"
 msgstr "Profil"
 
 #: apps/account/templates/meinberlin_account/account_dashboard.html.py:30
-#: apps/account/templates/meinberlin_account/password.html.py:5
-#: apps/account/templates/meinberlin_account/password.html.py:40
+#: meinberlin/templates/account/password_change.html.py:5
+#: meinberlin/templates/account/password_change.html.py:40
 msgid "Change password"
 msgstr "Passwort ändern"
 
 #: apps/account/templates/meinberlin_account/account_dashboard.html.py:37
 msgid "Email addresses"
 msgstr "E-Mail Adressen"
-
-#: apps/account/templates/meinberlin_account/email.html.py:6
-#: apps/account/templates/meinberlin_account/email.html.py:9
-msgid "Email Addresses"
-msgstr ""
-
-#: apps/account/templates/meinberlin_account/email.html.py:21
-msgid "Primary"
-msgstr "Primär"
-
-#: apps/account/templates/meinberlin_account/email.html.py:24
-msgid "Verified"
-msgstr "Verifiziert"
-
-#: apps/account/templates/meinberlin_account/email.html.py:26
-msgid "Unverified"
-msgstr "Unverifiziert"
-
-#: apps/account/templates/meinberlin_account/email.html.py:32
-msgid "Make Primary"
-msgstr "Als primär setzen"
-
-#: apps/account/templates/meinberlin_account/email.html.py:33
-msgid "Re-send Verification"
-msgstr "Verifikationsmail senden"
-
-#: apps/account/templates/meinberlin_account/email.html.py:34
-#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:38
-#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:50
-msgid "Remove"
-msgstr "Löschen"
-
-#: apps/account/templates/meinberlin_account/email.html.py:48
-msgid "Add another Email"
-msgstr "E-Mail Adresse hinzufügen"
-
-#: apps/account/templates/meinberlin_account/email.html.py:52
-msgid "Add Email"
-msgstr "E-Mail Adresse hinzufügen"
-
-#: apps/account/templates/meinberlin_account/password.html.py:8
-msgid "Change your password"
-msgstr "Passwort ändern"
-
-#: apps/account/templates/meinberlin_account/password.html.py:24
-#: apps/account/templates/meinberlin_account/password.html.py:30
-msgid "Password"
-msgstr "Passwort"
-
-#: apps/account/templates/meinberlin_account/password.html.py:36
-msgid "Repeat password"
-msgstr "Passwort"
 
 #: apps/account/templates/meinberlin_account/profile.html.py:5
 msgid "Your user profile"
@@ -329,7 +277,7 @@ msgstr "Dein Profil"
 msgid "Save changes"
 msgstr "Änderungen speichern"
 
-#: apps/account/views.py:29
+#: apps/account/views.py:23
 msgid "Your profile was successfully updated."
 msgstr ""
 
@@ -584,15 +532,13 @@ msgstr ""
 msgid "Most recent"
 msgstr ""
 
-#: apps/budgeting/views.py:17 apps/ideas/views.py:16
-#: apps/kiezkasse/views.py:17 apps/mapideas/views.py:16
-#: apps/topicprio/views.py:29
+#: apps/budgeting/views.py:17 apps/ideas/views.py:16 apps/kiezkasse/views.py:17
+#: apps/mapideas/views.py:16 apps/topicprio/views.py:29
 msgid "Most popular"
 msgstr ""
 
-#: apps/budgeting/views.py:18 apps/ideas/views.py:17
-#: apps/kiezkasse/views.py:18 apps/mapideas/views.py:17
-#: apps/topicprio/views.py:30
+#: apps/budgeting/views.py:18 apps/ideas/views.py:17 apps/kiezkasse/views.py:18
+#: apps/mapideas/views.py:17 apps/topicprio/views.py:30
 msgid "Most commented"
 msgstr ""
 
@@ -976,6 +922,12 @@ msgstr "Name"
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:37
 msgid "Email"
 msgstr ""
+
+#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:38
+#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:50
+#: meinberlin/templates/account/email.html.py:34
+msgid "Remove"
+msgstr "Löschen"
 
 #: apps/dashboard/templates/meinberlin_dashboard/project_update_form.html.py:4
 #: apps/dashboard/templates/meinberlin_dashboard/project_update_form.html.py:9
@@ -1468,6 +1420,39 @@ msgid ""
 "this page."
 msgstr ""
 
+#: meinberlin/templates/account/email.html.py:6
+#: meinberlin/templates/account/email.html.py:9
+msgid "Email Addresses"
+msgstr ""
+
+#: meinberlin/templates/account/email.html.py:21
+msgid "Primary"
+msgstr "Primär"
+
+#: meinberlin/templates/account/email.html.py:24
+msgid "Verified"
+msgstr "Verifiziert"
+
+#: meinberlin/templates/account/email.html.py:26
+msgid "Unverified"
+msgstr "Unverifiziert"
+
+#: meinberlin/templates/account/email.html.py:32
+msgid "Make Primary"
+msgstr "Als primär setzen"
+
+#: meinberlin/templates/account/email.html.py:33
+msgid "Re-send Verification"
+msgstr "Verifikationsmail senden"
+
+#: meinberlin/templates/account/email.html.py:48
+msgid "Add another Email"
+msgstr "E-Mail Adresse hinzufügen"
+
+#: meinberlin/templates/account/email.html.py:52
+msgid "Add Email"
+msgstr "E-Mail Adresse hinzufügen"
+
 #: meinberlin/templates/account/email_confirm.html.py:4
 #: meinberlin/templates/account/email_confirm.html.py:7
 msgid "Confirm E-mail Address"
@@ -1527,6 +1512,19 @@ msgstr ""
 #: meinberlin/templates/account/logout.html.py:8
 msgid "Are you sure you want to sign out?"
 msgstr ""
+
+#: meinberlin/templates/account/password_change.html.py:8
+msgid "Change your password"
+msgstr "Passwort ändern"
+
+#: meinberlin/templates/account/password_change.html.py:24
+#: meinberlin/templates/account/password_change.html.py:30
+msgid "Password"
+msgstr "Passwort"
+
+#: meinberlin/templates/account/password_change.html.py:36
+msgid "Repeat password"
+msgstr "Passwort"
 
 #: meinberlin/templates/account/password_reset.html.py:4
 #: meinberlin/templates/account/password_reset.html.py:7
@@ -1598,6 +1596,16 @@ msgstr "Fehler"
 #: meinberlin/templates/email_base.html.py:79
 #: meinberlin/templates/email_base.txt.py:10
 msgid "meinBerlin is a participation platform operated by"
+msgstr ""
+
+#: meinberlin/templates/email_base.html.py:87
+#: meinberlin/templates/email_base.txt.py:13
+msgid "Contact"
+msgstr ""
+
+#: meinberlin/templates/email_base.html.py:88
+#: meinberlin/templates/email_base.txt.py:14
+msgid "Terms of use"
 msgstr ""
 
 #: meinberlin/templates/header.html.py:12
