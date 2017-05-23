@@ -267,7 +267,7 @@ msgstr "E-Mail Adressen"
 #: apps/account/templates/meinberlin_account/email.html.py:6
 #: apps/account/templates/meinberlin_account/email.html.py:9
 msgid "Email Addresses"
-msgstr ""
+msgstr "E-Mail Adressen"
 
 #: apps/account/templates/meinberlin_account/email.html.py:21
 msgid "Primary"
@@ -339,7 +339,7 @@ msgstr "Ihr Name"
 
 #: apps/bplan/models.py:38 apps/users/models.py:27
 msgid "Email address"
-msgstr "E-Mail Addresse"
+msgstr "E-Mail Adresse"
 
 #: apps/bplan/models.py:40
 msgid "Statement"
@@ -786,11 +786,11 @@ msgstr "Organisationsname"
 
 #: apps/dashboard/forms.py:294
 msgid "Add moderator via email"
-msgstr "Moderator via E-Mail Addresse hinzufügen"
+msgstr "Moderator via E-Mail Adresse hinzufügen"
 
 #: apps/dashboard/forms.py:318
 msgid "Following emails are not registered: "
-msgstr "Folgende E-Mail Addressen sind nicht registriert: "
+msgstr "Folgende E-Mail Adressen sind nicht registriert: "
 
 #: apps/dashboard/forms.py:325
 msgid "{} moderator added."
@@ -1201,7 +1201,7 @@ msgstr "Bezeichnung des markierten Ortes"
 msgid ""
 "The label of the ideas location. This could be an address or the name of a "
 "landmark."
-msgstr "Dies kann sowohl eine Addresse als auch eine Ortsbezeichnung sein."
+msgstr "Dies kann sowohl eine Adresse als auch eine Ortsbezeichnung sein."
 
 #: apps/mapideas/phases.py:17
 msgid "Create new ideas located on a map."
