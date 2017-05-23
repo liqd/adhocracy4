@@ -115,3 +115,19 @@ select {
 .input-addon__addon {
     flex: 0;
 }
+
+.addon {
+    @extend %input-base;
+    background-color: $body-bg;
+    color: contrast-color($body-bg);
+
+    &:first-child {
+        border-top-left-radius: 0.3em;
+        border-bottom-left-radius: 0.3em;
+    }
+
+    &:last-child {
+        border-top-right-radius: 0.3em;
+        border-bottom-right-radius: 0.3em;
+    }
+}
