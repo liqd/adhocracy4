@@ -18,6 +18,9 @@
 // stylelint-enable
 
 .date-picker-control span:first-child {
+    width: auto;
+    height: auto;
+
     &:before {
         content: '\f133';
         font-family: 'FontAwesome';
