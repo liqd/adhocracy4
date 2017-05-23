@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-22 13:51+0200\n"
+"POT-Creation-Date: 2017-05-23 09:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -311,6 +311,8 @@ msgid "Email address"
 msgstr "Email address"
 
 #: apps/bplan/models.py:40
+#: apps/bplan/templates/meinberlin_bplan/emails/office_worker_notification.en.email.py:25
+#: apps/bplan/templates/meinberlin_bplan/emails/submitter_confirmation.en.email.py:24
 msgid "Statement"
 msgstr "Statement"
 
@@ -338,6 +340,87 @@ msgstr "bplan"
 #: apps/dashboard/forms.py:457 apps/dashboard/forms.py:458
 msgid "Bplan statement phase"
 msgstr "Bplan statement phase"
+
+#: apps/bplan/templates/meinberlin_bplan/emails/office_worker_notification.en.email.py:4
+#: apps/bplan/templates/meinberlin_bplan/emails/office_worker_notification.en.email.py:6
+#, python-format
+msgid ""
+"Neue Stellungnahme zum Bebauungsplan %(project_name)s von "
+"%(project_start_date)s - %(project_end_date)s"
+msgstr ""
+"Neue Stellungnahme zum Bebauungsplan %(project_name)s von "
+"%(project_start_date)s - %(project_end_date)s"
+
+#: apps/bplan/templates/meinberlin_bplan/emails/office_worker_notification.en.email.py:9
+#, python-format
+msgid ""
+"\n"
+"Es wurde eine neue Stellungnahme für den Bebauungsplan %(project_name)s von "
+"%(project_start_date)s - %(project_end_date)s abgegeben."
+msgstr ""
+"\n"
+"Es wurde eine neue Stellungnahme für den Bebauungsplan %(project_name)s von "
+"%(project_start_date)s - %(project_end_date)s abgegeben."
+
+#: apps/bplan/templates/meinberlin_bplan/emails/office_worker_notification.en.email.py:12
+#: apps/bplan/templates/meinberlin_bplan/emails/submitter_confirmation.en.email.py:11
+#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:36
+msgid "Name"
+msgstr "Name"
+
+#: apps/bplan/templates/meinberlin_bplan/emails/office_worker_notification.en.email.py:15
+#: apps/bplan/templates/meinberlin_bplan/emails/submitter_confirmation.en.email.py:14
+msgid "Street"
+msgstr "Street"
+
+#: apps/bplan/templates/meinberlin_bplan/emails/office_worker_notification.en.email.py:15
+#: apps/bplan/templates/meinberlin_bplan/emails/submitter_confirmation.en.email.py:14
+msgid "House number"
+msgstr "House number"
+
+#: apps/bplan/templates/meinberlin_bplan/emails/office_worker_notification.en.email.py:18
+#: apps/bplan/templates/meinberlin_bplan/emails/submitter_confirmation.en.email.py:17
+msgid "Zipcode"
+msgstr "Zipcode"
+
+#: apps/bplan/templates/meinberlin_bplan/emails/office_worker_notification.en.email.py:18
+#: apps/bplan/templates/meinberlin_bplan/emails/submitter_confirmation.en.email.py:17
+msgid "City"
+msgstr "City"
+
+#: apps/bplan/templates/meinberlin_bplan/emails/office_worker_notification.en.email.py:21
+#: apps/bplan/templates/meinberlin_bplan/emails/submitter_confirmation.en.email.py:20
+msgid "Email addresse"
+msgstr "Email addresse"
+
+#: apps/bplan/templates/meinberlin_bplan/emails/office_worker_notification.en.email.py:32
+#: apps/bplan/templates/meinberlin_bplan/emails/submitter_confirmation.en.email.py:31
+msgid "Bebauungsplan"
+msgstr "Bebauungsplan"
+
+#: apps/bplan/templates/meinberlin_bplan/emails/submitter_confirmation.en.email.py:4
+#: apps/bplan/templates/meinberlin_bplan/emails/submitter_confirmation.en.email.py:6
+#, python-format
+msgid ""
+"Ihre Stellungnahme zum Bebauungsplan %(project_name)s von "
+"%(project_start_date)s - %(project_end_date)s"
+msgstr ""
+"Ihre Stellungnahme zum Bebauungsplan %(project_name)s von "
+"%(project_start_date)s - %(project_end_date)s"
+
+#: apps/bplan/templates/meinberlin_bplan/emails/submitter_confirmation.en.email.py:9
+msgid ""
+"Vielen Dank für Ihre Stellungnahme. Sie geht in die Abwägung der "
+"öffentlichen und privaten Belange ein. Haben Sie sich an einer öffentlichen "
+"Auslegung beteiligt, werden Sie zudem nach Festsetzung des Bebauungsplans "
+"von der verantwortlichen Stelle schriftlich (per E-Mail oder postalisch) "
+"über das Ergebnis informiert, sofern Sie Ihre Adresse angegeben haben."
+msgstr ""
+"Vielen Dank für Ihre Stellungnahme. Sie geht in die Abwägung der "
+"öffentlichen und privaten Belange ein. Haben Sie sich an einer öffentlichen "
+"Auslegung beteiligt, werden Sie zudem nach Festsetzung des Bebauungsplans "
+"von der verantwortlichen Stelle schriftlich (per E-Mail oder postalisch) "
+"über das Ergebnis informiert, sofern Sie Ihre Adresse angegeben haben."
 
 #: apps/bplan/templates/meinberlin_bplan/statement_create_form.html.py:4
 #: apps/bplan/templates/meinberlin_bplan/statement_create_form.html.py:9
@@ -555,15 +638,13 @@ msgstr "Edit proposal"
 msgid "Most recent"
 msgstr "Most recent"
 
-#: apps/budgeting/views.py:17 apps/ideas/views.py:16
-#: apps/kiezkasse/views.py:17 apps/mapideas/views.py:16
-#: apps/topicprio/views.py:29
+#: apps/budgeting/views.py:17 apps/ideas/views.py:16 apps/kiezkasse/views.py:17
+#: apps/mapideas/views.py:16 apps/topicprio/views.py:29
 msgid "Most popular"
 msgstr "Most popular"
 
-#: apps/budgeting/views.py:18 apps/ideas/views.py:17
-#: apps/kiezkasse/views.py:18 apps/mapideas/views.py:17
-#: apps/topicprio/views.py:30
+#: apps/budgeting/views.py:18 apps/ideas/views.py:17 apps/kiezkasse/views.py:18
+#: apps/mapideas/views.py:17 apps/topicprio/views.py:30
 msgid "Most commented"
 msgstr "Most commented"
 
@@ -956,10 +1037,6 @@ msgstr "No projects created"
 msgid "Add"
 msgstr "Add"
 
-#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:36
-msgid "Name"
-msgstr "Name"
-
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:37
 msgid "Email"
 msgstr "Email"
@@ -1213,6 +1290,153 @@ msgstr "Rejected"
 #: apps/moderatorfeedback/models.py:12
 msgid "Accepted"
 msgstr "Accepted"
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_creator.en.email.py:4
+#, python-format
+msgid "A %(action_item_type)s was added to your %(target_item_type)s"
+msgstr "A %(action_item_type)s was added to your %(target_item_type)s"
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_creator.en.email.py:6
+#, python-format
+msgid ""
+"%(actor_name)s created a %(action_item_type)s on your %(target_item_type)s"
+msgstr ""
+"%(actor_name)s created a %(action_item_type)s on your %(target_item_type)s"
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_creator.en.email.py:9
+#, python-format
+msgid ""
+"On your %(target_item_type)s \"%(target_item_title)s\" a "
+"%(action_item_type)s was added by %(actor_name)s."
+msgstr ""
+"On your %(target_item_type)s \"%(target_item_title)s\" a "
+"%(action_item_type)s was added by %(actor_name)s."
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_creator.en.email.py:10
+#, python-format
+msgid ""
+"Checkout what happend on your %(target_item_type)s by clicking the link "
+"below."
+msgstr ""
+"Checkout what happend on your %(target_item_type)s by clicking the link "
+"below."
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_creator.en.email.py:11
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_moderator.en.email.py:9
+msgid "Checkout what happend on the project by clicking the link below."
+msgstr "Checkout what happend on the project by clicking the link below."
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_creator.en.email.py:15
+#, python-format
+msgid "Check your %(target_item_type)s"
+msgstr "Check your %(target_item_type)s"
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_creator.en.email.py:15
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_followers_new_item.en.email.py:12
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_followers_over_soon.en.email.py:11
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_moderator.en.email.py:12
+msgid "Visit the project"
+msgstr "Visit the project"
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_creator.en.email.py:17
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_followers_new_item.en.email.py:14
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_followers_over_soon.en.email.py:13
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_moderator.en.email.py:14
+#: meinberlin/templates/account/email/email_confirmation.en.email.py:13
+#: meinberlin/templates/account/email/email_confirmation_signup.en.email.py:13
+#: meinberlin/templates/account/email/password_reset_key.en.email.py:13
+#, python-format
+msgid "This email was sent to %(receiver_email)s."
+msgstr "This email was sent to %(receiver_email)s."
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_creator.en.email.py:17
+msgid ""
+"This email was sent to you because you created content in a project. If you "
+"don’t want to receive these notifications anymore, you can unfollow the "
+"project on the project page or disable notifications completely in your "
+"account settings."
+msgstr ""
+"This email was sent to you because you created content in a project. If you "
+"don’t want to receive these notifications anymore, you can unfollow the "
+"project on the project page or disable notifications completely in your "
+"account settings."
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_followers_new_item.en.email.py:4
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_followers_new_item.en.email.py:7
+#, python-format
+msgid "A new %(action_item_type)s was added to %(project_name)s"
+msgstr "A new %(action_item_type)s was added to %(project_name)s"
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_followers_new_item.en.email.py:9
+#, python-format
+msgid ""
+"A new %(action_item_type)s was added to the project %(project_name)s by "
+"%(organisation_name)s"
+msgstr ""
+"A new %(action_item_type)s was added to the project %(project_name)s by "
+"%(organisation_name)s"
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_followers_new_item.en.email.py:14
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_followers_over_soon.en.email.py:13
+msgid ""
+"This email was sent to you because you follow a project. If you don’t want "
+"to receive these notifications anymore, you can unfollow the project on the "
+"project page or disable notifications completely in your account settings."
+msgstr ""
+"This email was sent to you because you follow a project. If you don’t want "
+"to receive these notifications anymore, you can unfollow the project on the "
+"project page or disable notifications completely in your account settings."
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_followers_over_soon.en.email.py:4
+msgid "Participation in a project you follow will be over soon"
+msgstr "Participation in a project you follow will be over soon"
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_followers_over_soon.en.email.py:6
+#, python-format
+msgid "Only a few hours left to participate in %(project_name)s"
+msgstr "Only a few hours left to participate in %(project_name)s"
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_followers_over_soon.en.email.py:8
+#, python-format
+msgid ""
+"The current participation phase of the project “%(project_name)s” by <i>"
+"%(organisation_name)s</i> will be over at <i>%(phase_end_date)s</i>. If you "
+"want to participate, visit the project page soon."
+msgstr ""
+"The current participation phase of the project “%(project_name)s” by <i>"
+"%(organisation_name)s</i> will be over at <i>%(phase_end_date)s</i>. If you "
+"want to participate, visit the project page soon."
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_moderator.en.email.py:4
+#, python-format
+msgid "A %(action_item_type)s was added to the project %(project_name)s"
+msgstr "A %(action_item_type)s was added to the project %(project_name)s"
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_moderator.en.email.py:6
+#, python-format
+msgid ""
+"%(actor_name)s created a %(action_item_type)s on the project %(project_name)s"
+msgstr ""
+"%(actor_name)s created a %(action_item_type)s on the project %(project_name)s"
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_moderator.en.email.py:8
+#, python-format
+msgid ""
+"On the project %(project_name)s a %(action_item_type)s was added by "
+"%(actor_name)s."
+msgstr ""
+"On the project %(project_name)s a %(action_item_type)s was added by "
+"%(actor_name)s."
+
+#: apps/notifications/templates/meinberlin_notifications/emails/notify_moderator.en.email.py:14
+msgid ""
+"This email was sent to you because you are a moderator in the project. If "
+"you don’t want to receive these notifications anymore, you can disable "
+"notifications completely in your account settings."
+msgstr ""
+"This email was sent to you because you are a moderator in the project. If "
+"you don’t want to receive these notifications anymore, you can disable "
+"notifications completely in your account settings."
 
 #: apps/polls/phases.py:17
 msgid "Voting phase"
@@ -1482,6 +1706,160 @@ msgstr ""
 "Your image will be uploaded/removed once you save your changes at the end of "
 "this page."
 
+#: meinberlin/templates/a4reports/emails/report_creator.en.email.py:4
+#, python-format
+msgid "Your %(item_type)s was reported on %(site_name)s"
+msgstr "Your %(item_type)s was reported on %(site_name)s"
+
+#: meinberlin/templates/a4reports/emails/report_creator.en.email.py:6
+#, python-format
+msgid "An other user reported your %(item_type)s"
+msgstr "An other user reported your %(item_type)s"
+
+#: meinberlin/templates/a4reports/emails/report_creator.en.email.py:8
+#, python-format
+msgid ""
+"Some one requested moderation of your %(item_type)s in the project "
+"%(project_name)s on %(site_name)s. The reason given is \"%(report_reason)s\"."
+msgstr ""
+"Some one requested moderation of your %(item_type)s in the project "
+"%(project_name)s on %(site_name)s. The reason given is \"%(report_reason)s\"."
+
+#: meinberlin/templates/a4reports/emails/report_creator.en.email.py:11
+#: meinberlin/templates/a4reports/emails/report_moderators.en.email.py:11
+#, python-format
+msgid "Visit the %(item_type)s"
+msgstr "Visit the %(item_type)s"
+
+#: meinberlin/templates/a4reports/emails/report_creator.en.email.py:13
+#, python-format
+msgid ""
+"This email was sent to %(receiver_email)s. Your are receiving because you "
+"created content in the project %(project_name)s."
+msgstr ""
+"This email was sent to %(receiver_email)s. Your are receiving because you "
+"created content in the project %(project_name)s."
+
+#: meinberlin/templates/a4reports/emails/report_moderators.en.email.py:4
+#, python-format
+msgid "Moderation request in %(project_name)s on %(site_name)s"
+msgstr "Moderation request in %(project_name)s on %(site_name)s"
+
+#: meinberlin/templates/a4reports/emails/report_moderators.en.email.py:6
+msgid "A user reported content in your project."
+msgstr "A user reported content in your project."
+
+#: meinberlin/templates/a4reports/emails/report_moderators.en.email.py:8
+#, python-format
+msgid ""
+"%(report_name)s requested moderation of a %(item_type)s in your project "
+"%(project_name)s on %(site_name)s. The reason given is \"%(report_reason)s\"."
+msgstr ""
+"%(report_name)s requested moderation of a %(item_type)s in your project "
+"%(project_name)s on %(site_name)s. The reason given is \"%(report_reason)s\"."
+
+#: meinberlin/templates/a4reports/emails/report_moderators.en.email.py:13
+#, python-format
+msgid ""
+"This email was sent to %(receiver_email)s. Your are receiving this email "
+"because you are moderator of the project %(project_name)s."
+msgstr ""
+"This email was sent to %(receiver_email)s. Your are receiving this email "
+"because you are moderator of the project %(project_name)s."
+
+#: meinberlin/templates/account/email/email_confirmation.en.email.py:4
+#, python-format
+msgid "Please confirm your email address on %(site_name)s"
+msgstr "Please confirm your email address on %(site_name)s"
+
+#: meinberlin/templates/account/email/email_confirmation.en.email.py:6
+#, python-format
+msgid "Your email address on %(site_name)s"
+msgstr "Your email address on %(site_name)s"
+
+#: meinberlin/templates/account/email/email_confirmation.en.email.py:8
+#, python-format
+msgid ""
+"Your email address has been added to the username “%(username)s” on <i>"
+"%(site_name)s</i>. Please click the link below to confirm your email address."
+msgstr ""
+"Your email address has been added to the username “%(username)s” on <i>"
+"%(site_name)s</i>. Please click the link below to confirm your email address."
+
+#: meinberlin/templates/account/email/email_confirmation.en.email.py:11
+#: meinberlin/templates/account/email/email_confirmation_signup.en.email.py:11
+msgid "Confirm your email address"
+msgstr "Confirm your email address"
+
+#: meinberlin/templates/account/email/email_confirmation.en.email.py:13
+#: meinberlin/templates/account/email/email_confirmation_signup.en.email.py:13
+#, python-format
+msgid ""
+"If you think this email was sent to you by mistake, you can ignore it. We "
+"will not send you any further emails. If you have any further questions, "
+"please contact us via %(contact_email)s"
+msgstr ""
+"If you think this email was sent to you by mistake, you can ignore it. We "
+"will not send you any further emails. If you have any further questions, "
+"please contact us via %(contact_email)s"
+
+#: meinberlin/templates/account/email/email_confirmation_signup.en.email.py:4
+#, python-format
+msgid "Please confirm your registration on %(site_name)s"
+msgstr "Please confirm your registration on %(site_name)s"
+
+#: meinberlin/templates/account/email/email_confirmation_signup.en.email.py:6
+#, python-format
+msgid "Your registration on %(site_name)s"
+msgstr "Your registration on %(site_name)s"
+
+#: meinberlin/templates/account/email/email_confirmation_signup.en.email.py:8
+#, python-format
+msgid ""
+"Your email address has been used to register on <i>%(site_name)s</i> with "
+"the username “%(username)s”. Please click on the link below to confirm your "
+"email address and activate your account."
+msgstr ""
+"Your email address has been used to register on <i>%(site_name)s</i> with "
+"the username “%(username)s”. Please click on the link below to confirm your "
+"email address and activate your account."
+
+#: meinberlin/templates/account/email/password_reset_key.en.email.py:4
+#, python-format
+msgid "Reset password request for %(site_name)s"
+msgstr "Reset password request for %(site_name)s"
+
+#: meinberlin/templates/account/email/password_reset_key.en.email.py:6
+#, python-format
+msgid "Password reset for your account %(username)s"
+msgstr "Password reset for your account %(username)s"
+
+#: meinberlin/templates/account/email/password_reset_key.en.email.py:8
+#, python-format
+msgid ""
+"You have requested a password reset for your account on <i>%(site_name)s</"
+"i>. Please click the link below to set your new password."
+msgstr ""
+"You have requested a password reset for your account on <i>%(site_name)s</"
+"i>. Please click the link below to set your new password."
+
+#: meinberlin/templates/account/email/password_reset_key.en.email.py:11
+msgid "Reset password"
+msgstr "Reset password"
+
+#: meinberlin/templates/account/email/password_reset_key.en.email.py:13
+#, python-format
+msgid ""
+"You receive this email because you have an account on %(site_name)s. If you "
+"haven't requested a password reset, someone else might have done it on your "
+"behalf. In that case you can safely ignore this email, we won't change your "
+"password of modify your account."
+msgstr ""
+"You receive this email because you have an account on %(site_name)s. If you "
+"haven't requested a password reset, someone else might have done it on your "
+"behalf. In that case you can safely ignore this email, we won't change your "
+"password of modify your account."
+
 #: meinberlin/templates/account/email_confirm.html.py:4
 #: meinberlin/templates/account/email_confirm.html.py:7
 msgid "Confirm E-mail Address"
@@ -1633,6 +2011,16 @@ msgstr "Error"
 #: meinberlin/templates/email_base.txt.py:10
 msgid "meinBerlin is a participation platform operated by"
 msgstr "meinBerlin is a participation platform operated by"
+
+#: meinberlin/templates/email_base.html.py:87
+#: meinberlin/templates/email_base.txt.py:13
+msgid "Contact"
+msgstr "Contact"
+
+#: meinberlin/templates/email_base.html.py:88
+#: meinberlin/templates/email_base.txt.py:14
+msgid "Terms of use"
+msgstr "Terms of use"
 
 #: meinberlin/templates/header.html.py:12
 msgid "Menu"
