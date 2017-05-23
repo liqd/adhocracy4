@@ -2,6 +2,7 @@
 .date-picker-control:visited {
     padding: 0.5em 0.4em;
     border: 1px solid $border-color;
+    min-width: inherit;
 
     background: $bg-secondary;
 }
@@ -18,6 +19,12 @@
 // stylelint-enable
 
 .date-picker-control span:first-child {
+    width: auto;
+    height: auto;
+
+    // HACK to remove &nbsp;
+    font-size: 0;
+
     &:before {
         content: '\f133';
         font-family: 'FontAwesome';
