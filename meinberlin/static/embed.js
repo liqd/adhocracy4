@@ -6,6 +6,11 @@ $(document).ready(function () {
   var patternsForPopup = /\/accounts\b/
   var $top = $('<div tabindex="-1">')
 
+  // FIXME: use consistent wording (URL/href/path)
+  window.adhocracy4.getCurrentHref = function () {
+    return currentPath
+  }
+
   var headers = {
     'X-Embed': ''
   }
@@ -70,6 +75,24 @@ $(document).ready(function () {
     $top.focus()
   }
 
+  var onAjaxError = function (jqxhr) {
+    var text
+    switch (jqxhr.status) {
+      case 404:
+        text = django.gettext('We couldn\'t find what you were looking for.')
+        break
+      case 401:
+      case 403:
+        text = django.gettext('You don\'t have the permission to view this page.')
+        break
+      default:
+        text = django.gettext('Something went wrong!')
+        break
+    }
+
+    createAlert(text, 'danger', 6000)
+  }
+
   var getEmbedTarget = function ($element, url) {
     var embedTarget = $element.data('embedTarget')
 
@@ -102,7 +125,8 @@ $(document).ready(function () {
       $.ajax({
         url: url,
         headers: headers,
-        success: loadHtml
+        success: loadHtml,
+        error: onAjaxError
       })
     } else if (embedTarget === 'popup') {
       event.preventDefault()
@@ -127,7 +151,8 @@ $(document).ready(function () {
         method: form.method,
         headers: headers,
         data: $form.serialize(),
-        success: loadHtml
+        success: loadHtml,
+        error: onAjaxError
       })
     }
   })
@@ -158,24 +183,6 @@ $(document).ready(function () {
     }
   }, false)
 
-  $(document).ajaxError(function (event, jqxhr) {
-    var text
-    switch (jqxhr.status) {
-      case 404:
-        text = django.gettext('We couldn\'t find what you were looking for.')
-        break
-      case 401:
-      case 403:
-        text = django.gettext('You don\'t have the permission to view this page.')
-        break
-      default:
-        text = django.gettext('Something went wrong!')
-        break
-    }
-
-    createAlert(text, 'danger', 6000)
-  })
-
   if (testCanSetCookie() === false) {
     var text = django.gettext('You have third party cookies disabled. You can still view the content of this project but won\'t be able to login.')
     createAlert(text, 'info')
@@ -184,6 +191,7 @@ $(document).ready(function () {
   $.ajax({
     url: $('body').data('url'),
     headers: headers,
-    success: loadHtml
+    success: loadHtml,
+    error: onAjaxError
   })
 })

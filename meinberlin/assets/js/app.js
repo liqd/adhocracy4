@@ -1,4 +1,5 @@
 /* eslint no-unused-vars: "off", no-new: "off" */
+/* global location */
 
 // make jquery available for non-webpack js
 var $ = window.jQuery = window.$ = require('jquery')
@@ -35,6 +36,11 @@ var ReactFollows = require('adhocracy4').follows
 var ReactParagraphs = require('../../../apps/documents/assets/ParagraphBox.jsx')
 var ReactPolls = require('../../../apps/polls/assets/react_polls.jsx')
 
+// This function is overwritten with custom behavior in embed.js.
+var getCurrentHref = function () {
+  return location.href
+}
+
 module.exports = {
   'renderComment': ReactComments.renderComment,
   'renderRatings': ReactRatings.renderRatings,
@@ -42,5 +48,6 @@ module.exports = {
   'renderPolls': ReactPolls.renderPolls,
   'renderPollManagement': ReactPolls.renderPollManagement,
   'renderReports': ReactReports.renderReports,
-  'renderFollow': ReactFollows.renderFollow
+  'renderFollow': ReactFollows.renderFollow,
+  'getCurrentHref': getCurrentHref
 }
