@@ -18,8 +18,7 @@ class AbstractMapIdea(idea_models.AbstractIdea):
         default='',
         max_length=255,
         verbose_name=_('Label of the ideas location'),
-        help_text=_('The label of the ideas location. '
-                    'This could be an address or the name of a landmark.'),
+        help_text=_('This could be an address or the name of a landmark.'),
     )
 
     class Meta:
