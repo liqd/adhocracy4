@@ -745,7 +745,8 @@ msgstr "Umfrage"
 msgid ""
 "Create a poll with multiple questions and possible answers. Anyone can cast "
 "votes and comment on the poll."
-msgstr ""
+msgstr "Bei einer Umfrage können Sie mehrere Fragen und deren Antwortmöglichkeiten "
+"anlegen. Nutzer können ihre Stimme dann abgeben und die Umfrage kommentieren."
 
 #: apps/dashboard/blueprints.py:130
 msgid "Topic Prioritization"
@@ -776,7 +777,8 @@ msgid ""
 "With kiezkasse it’s possible to make proposals with budget specifications "
 "and locate them. Afterwards anyone can comment and rate on different "
 "proposals."
-msgstr ""
+msgstr "Innerhalb einer Kiezkasse erstellen die Nutzer verortete Vorschläge und "
+"geben für diese ein Budget an. Anschließend können diese bewertet und kommentiert werden."
 
 #: apps/dashboard/forms.py:289
 msgid "Organisation name"
