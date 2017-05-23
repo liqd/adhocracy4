@@ -55,20 +55,18 @@ class DashboardProjectCreateView(mixins.DashboardProjectCreateMixin,
     template_name = 'meinberlin_dashboard/project_create_form.html'
 
 
-class DashboardExternalProjectCreateView(mixins.DashboardProjectCreateMixin):
+class DashboardExternalProjectCreateView(mixins.DashboardProjectCreateMixin,
+                                         blueprints.BlueprintMixin):
     model = extproject_models.ExternalProject
     form_class = forms.ExternalProjectCreateForm
     template_name = 'meinberlin_dashboard/external_project_create_form.html'
 
-    blueprint = dict(blueprints.blueprints)['external-project']
 
-
-class DashboardBplanProjectCreateView(mixins.DashboardProjectCreateMixin):
+class DashboardBplanProjectCreateView(mixins.DashboardProjectCreateMixin,
+                                      blueprints.BlueprintMixin):
     model = bplan_models.Bplan
     form_class = forms.BplanProjectCreateForm
     template_name = 'meinberlin_dashboard/bplan_project_create_form.html'
-
-    blueprint = dict(blueprints.blueprints)['bplan']
 
 
 class DashboardProjectCreateViewDispatcher(generic.View):

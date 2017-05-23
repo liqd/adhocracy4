@@ -65,6 +65,7 @@ class DashboardProjectCreateMixin(DashboardProjectBaseMixin,
     def get_form_kwargs(self):
         kwargs = super(DashboardProjectCreateMixin, self).get_form_kwargs()
         kwargs['blueprint'] = self.blueprint
+        kwargs['blueprint_key'] = self.blueprint_key
         kwargs['organisation'] = self.organisation
         kwargs['creator'] = self.request.user
         return kwargs

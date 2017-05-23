@@ -142,7 +142,8 @@ class ProjectEditFormBase(multiform.MultiModelForm):
 
 class ProjectCreateForm(ProjectEditFormBase):
 
-    def __init__(self, blueprint, organisation, creator, *args, **kwargs):
+    def __init__(self, blueprint, blueprint_key, organisation, creator,
+                 *args, **kwargs):
         kwargs['phases__queryset'] = phase_models.Phase.objects.none()
         kwargs['phases__initial'] = [
             {'phase_content': phase,
@@ -153,6 +154,7 @@ class ProjectCreateForm(ProjectEditFormBase):
 
         self.organisation = organisation
         self.blueprint = blueprint
+        self.blueprint_key = blueprint_key
         self.creator = creator
 
         self.base_forms = [
@@ -191,7 +193,7 @@ class ProjectCreateForm(ProjectEditFormBase):
 
         project = objects['project']
         project.organisation = self.organisation
-        project.typ = self.blueprint.title
+        project.typ = self.blueprint_key
         if commit:
             project.save()
             project.moderators.add(self.creator)
@@ -363,17 +365,19 @@ class ExternalProjectBaseForm(forms.ModelForm):
 
 class ExternalProjectCreateForm(ExternalProjectBaseForm):
 
-    def __init__(self, organisation, creator, blueprint, *args, **kwargs):
+    def __init__(self, organisation, creator, blueprint, blueprint_key,
+                 *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.organisation = organisation
         self.creator = creator
         self.blueprint = blueprint
+        self.blueprint_key = blueprint_key
 
     def save(self, commit=True):
         project = self.instance
         project.information = _('External projects require no information.')
         project.organisation = self.organisation
-        project.typ = self.blueprint.title
+        project.typ = self.blueprint_key
         project = super().save(commit)
 
         if commit:
@@ -428,17 +432,19 @@ class BplanProjectBaseForm(ExternalProjectBaseForm):
 
 class BplanProjectCreateForm(BplanProjectBaseForm):
 
-    def __init__(self, organisation, creator, blueprint, *args, **kwargs):
+    def __init__(self, organisation, creator, blueprint, blueprint_key,
+                 *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.organisation = organisation
         self.creator = creator
         self.blueprint = blueprint
+        self.blueprint_key = blueprint_key
 
     def save(self, commit=True):
         project = self.instance
         project.information = _('Bplan projects require no information.')
         project.organisation = self.organisation
-        project.typ = self.blueprint.title
+        project.typ = self.blueprint_key
         project = super().save(commit)
 
         if commit:
