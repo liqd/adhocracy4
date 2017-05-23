@@ -339,11 +339,11 @@ msgstr "Ihr Name"
 
 #: apps/bplan/models.py:38 apps/users/models.py:27
 msgid "Email address"
-msgstr "E-Mail Adresse"
+msgstr "E-Mail Addresse"
 
 #: apps/bplan/models.py:40
 msgid "Statement"
-msgstr ""
+msgstr "Stellungnahme"
 
 #: apps/bplan/models.py:43
 msgid "Street, House number"
@@ -355,11 +355,11 @@ msgstr "Postleitzahl, Stadt"
 
 #: apps/bplan/phases.py:15
 msgid "Statement phase"
-msgstr ""
+msgstr "Stellungsnahmephase"
 
 #: apps/bplan/phases.py:16
 msgid "Send statement to the office workers per mail."
-msgstr ""
+msgstr "Stellungnahme per E-Mail an Mitarbeiter senden "
 
 #: apps/bplan/phases.py:17
 msgid "bplan"
@@ -368,12 +368,12 @@ msgstr "Bebauungsplan"
 #: apps/bplan/serializers.py:82 apps/bplan/serializers.py:83
 #: apps/dashboard/forms.py:457 apps/dashboard/forms.py:458
 msgid "Bplan statement phase"
-msgstr ""
+msgstr "Bebauungsplan Stellungnahmephase"
 
 #: apps/bplan/templates/meinberlin_bplan/statement_create_form.html.py:4
 #: apps/bplan/templates/meinberlin_bplan/statement_create_form.html.py:9
 msgid "Submit a development plan statement"
-msgstr ""
+msgstr "Stellungnahme zum Bebauungsplan einreichen"
 
 #: apps/bplan/templates/meinberlin_bplan/statement_create_form.html.py:25
 msgid "Submit"
@@ -382,13 +382,13 @@ msgstr "Senden"
 #: apps/bplan/templates/meinberlin_bplan/statement_sent.html.py:4
 #: apps/bplan/templates/meinberlin_bplan/statement_sent.html.py:9
 msgid "Statement sent"
-msgstr ""
+msgstr "Stellungnahme gesendet"
 
 #: apps/bplan/templates/meinberlin_bplan/statement_sent.html.py:12
 msgid ""
 "Thanks! Your statement has been sent! An answer will be send to your email "
 "address."
-msgstr ""
+msgstr "Danke! Ihre Stellungnahme wurde versandt! Eine Antwort erhalten Sie per E-Mail."
 
 #: apps/budgeting/models.py:12 apps/kiezkasse/models.py:12
 msgid "Required Budget"
@@ -396,11 +396,11 @@ msgstr "Notwendiges Budget"
 
 #: apps/budgeting/phases.py:16 apps/kiezkasse/phases.py:16
 msgid "Request phase"
-msgstr ""
+msgstr "Vorschlagsphase "
 
 #: apps/budgeting/phases.py:17 apps/kiezkasse/phases.py:17
 msgid "Request budgeting."
-msgstr ""
+msgstr "Nutzer können Vorschläge mit Budgetangabe machen"
 
 #: apps/budgeting/phases.py:18 apps/budgeting/phases.py:35
 msgid "participatory budgeting"
@@ -409,7 +409,7 @@ msgstr "Bürgerhaushalt"
 #: apps/budgeting/phases.py:32 apps/ideas/phases.py:62
 #: apps/kiezkasse/phases.py:32 apps/mapideas/phases.py:62
 msgid "Feedback phase"
-msgstr ""
+msgstr "Feedback Phase"
 
 #: apps/budgeting/phases.py:33 apps/kiezkasse/phases.py:33
 msgid "Get feedback for budgeting requests through rates and comments."
@@ -1344,91 +1344,93 @@ msgstr "Alle"
 
 #: apps/projects/views.py:53
 msgid "Project Type"
-msgstr ""
+msgstr "Projekttyp"
 
 #: apps/topicprio/phases.py:17
 msgid "Prioritize phase"
-msgstr ""
+msgstr "Phasen priorisieren"
 
 #: apps/topicprio/phases.py:18
 msgid "Prioritize and comment topics."
-msgstr ""
+msgstr "Themen priorisieren und kommentieren"
 
 #: apps/topicprio/phases.py:19
 msgid "topic prioritization"
-msgstr ""
+msgstr "Priorisierung von Themen"
 
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_confirm_delete.html.py:4
 msgid "Confirm Topic Deletion"
-msgstr ""
+msgstr "Bestätigen der Themalöschung"
 
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_confirm_delete.html.py:8
 msgid "Are you sure you want to delete the topic?"
-msgstr ""
+msgstr "Sind Sie sicher, dass Sie das Thema löschen möchten?"
 
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_create_form.html.py:4
 msgid "Create a new topic"
-msgstr ""
+msgstr "Neues Thema erstellen"
 
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_create_form.html.py:12
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_update_form.html.py:12
 msgid "back to topic list"
-msgstr ""
+msgstr "Zurück zur Themenliste"
 
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_create_form.html.py:17
 msgid "Add a new topic"
-msgstr ""
+msgstr "Neues Thema hinzufügen"
 
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_list.html.py:16
 msgid "Topics"
-msgstr ""
+msgstr "Themen"
 
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_list.html.py:20
 msgid "Add Topic"
-msgstr ""
+msgstr "Thema hinzufügen"
 
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_update_form.html.py:17
 msgid "Edit topic"
-msgstr ""
+msgstr "Thema bearbeiten"
 
 #: apps/topicprio/views.py:131
 msgid "The topic has been deleted"
-msgstr ""
+msgstr "Das Thema wurde gelöscht."
 
 #: apps/users/__init__.py:5
 msgid ""
 "Enter a valid username. This value may contain only letters, digits, spaces "
 "and @/./+/-/_ characters. It must start with a digit or a letter."
 msgstr ""
+"Bitte geben Sie einen gültigen Benutzernamen ein. Dieser darf nur Buchstaben, Zahlen, "
+"Leerzeichen und nur @/./+/-/_ Zeichen erhalten. Der Benutzername muss mit einem "
+"Buchstaben oder einer Zahl anfangen."
 
 #: apps/users/admin.py:11
 msgid "Permissions"
-msgstr ""
+msgstr "Rechte"
 
 #: apps/users/admin.py:12
 msgid "Important dates"
-msgstr ""
+msgstr "Wichtige Daten"
 
 #: apps/users/fields.py:12
 msgid "Please enter correct email addresses, separated by commas."
-msgstr ""
+msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
 
 #: apps/users/models.py:13
 msgid "username"
-msgstr ""
+msgstr "Benutzername"
 
 #: apps/users/models.py:17
-msgid ""
-"Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
-msgstr ""
+msgid "Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
+msgstr "Erforderlich. Max. 60 Zeichen. Buchstaben, Zahlen, Leerzeichen und nur @/./+/-/_ "
 
 #: apps/users/models.py:23
 msgid "A user with that username already exists."
-msgstr ""
+msgstr "Der Benutzer mit diesem Benutzernamen existiert bereits."
 
 #: apps/users/models.py:30
 msgid "A user with that email address already exists."
-msgstr ""
+msgstr "Der Benutzer mit dieser Emailadresse existiert bereits."
 
 #: apps/users/models.py:34
 msgid "staff status"
@@ -1436,7 +1438,7 @@ msgstr ""
 
 #: apps/users/models.py:37
 msgid "Designates whether the user can log into this admin site."
-msgstr ""
+msgstr "Bitte bestätigen Sie, dass der Nutzer auf dieser Seite als Admin agieren kann."
 
 #: apps/users/models.py:41
 msgid "active"
@@ -1447,20 +1449,24 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
+"Bitte setzen Sie einen Hacken, um den Nutzer aktiv zu schalten. Nehmen Sie den Hacken "
+"raus, um den Nutzer inaktiv zu schalten."
 
 #: apps/users/models.py:54
 msgid "Send me email notifications"
-msgstr ""
+msgstr "Bitte senden Sie mir E-Mail Benachrichtigungen"
 
 #: apps/users/models.py:57
 msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
 msgstr ""
+"Bitte setzen Sie einen Hacken, falls Sie Benachrichtigungen per E-Mail erhalten möchten.  "
+"Nehmen Sie den Hacken raus, falls Sie keine Benachrichtigungen per Email erhalten möchten."
 
 #: apps/users/templates/meinberlin_users/indicator.html.py:20
 msgid "Account Settings"
-msgstr ""
+msgstr "Benutzerkonto Einstellungen"
 
 #: apps/users/templates/meinberlin_users/indicator.html.py:52
 #: apps/users/templates/meinberlin_users/indicator.html.py:60
@@ -1468,7 +1474,7 @@ msgstr ""
 #: meinberlin/templates/account/signup.html.py:7
 #: meinberlin/templates/account/signup.html.py:21
 msgid "Register"
-msgstr ""
+msgstr "Registrieren"
 
 #: meinberlin/templates/404.html.py:7
 msgid "This page could not be found."
@@ -1483,11 +1489,13 @@ msgid ""
 "Your image will be uploaded/removed once you save your changes at the end of "
 "this page."
 msgstr ""
+"Ihr Bild wird hochgeladen bzw. entfernt, sobald Sie Ihre Änderungen  am Ende gespeichert "
+"haben."
 
 #: meinberlin/templates/account/email_confirm.html.py:4
 #: meinberlin/templates/account/email_confirm.html.py:7
 msgid "Confirm E-mail Address"
-msgstr ""
+msgstr "Bitte bestätigen Sie Ihre E-Mail-Adresse."
 
 #: meinberlin/templates/account/email_confirm.html.py:11
 #, python-format
@@ -1495,11 +1503,12 @@ msgid ""
 "Please\n"
 "            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an\n"
 "            e-mail address for user %(user_display)s."
-msgstr ""
+msgstr "Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> eine "
+"E-Mail Adresse des Nutzers %(user_display)s ist."
 
 #: meinberlin/templates/account/email_confirm.html.py:17
 msgid "Confirm"
-msgstr ""
+msgstr "Bestätigen"
 
 #: meinberlin/templates/account/email_confirm.html.py:21
 #, python-format
@@ -1509,6 +1518,8 @@ msgid ""
 "confirmation\n"
 "                request</a>."
 msgstr ""
+"Der Link zur E-Mail-Bestätigung ist abgelaufen oder ist ungültig. Bitte fordern Sie eine "
+"neue Bestätigungsemail an."
 
 #: meinberlin/templates/account/login.html.py:11
 #, python-format
@@ -1521,56 +1532,59 @@ msgstr ""
 
 #: meinberlin/templates/account/login.html.py:20
 msgid "or"
-msgstr ""
+msgstr "oder"
 
 #: meinberlin/templates/account/login.html.py:25
 #, python-format
 msgid ""
 "If you have not created an account yet, then please <a href=\"%(signup_url)s"
 "\">register</a> first."
-msgstr ""
+msgstr "Wenn Sie noch kein Benutzerkonto haben, <a href=\"%(signup_url)s"
+"\">registrieren</a> sich Sie bitte zuerst."
 
 #: meinberlin/templates/account/login.html.py:39
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Passwort vergessen?"
 
 #: meinberlin/templates/account/logout.html.py:4
 #: meinberlin/templates/account/logout.html.py:7
 #: meinberlin/templates/account/logout.html.py:15
 msgid "Sign Out"
-msgstr ""
+msgstr "Abmelden"
 
 #: meinberlin/templates/account/logout.html.py:8
 msgid "Are you sure you want to sign out?"
-msgstr ""
+msgstr "Sind Sie sicher, dass Sie sich abmelden möchten?"
 
 #: meinberlin/templates/account/password_reset.html.py:4
 #: meinberlin/templates/account/password_reset.html.py:7
 msgid "Password Reset"
-msgstr ""
+msgstr "Passwort zurücksetzen"
 
 #: meinberlin/templates/account/password_reset.html.py:12
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll send you "
 "an e-mail allowing you to reset it."
 msgstr ""
+"Passwort vergessen?  Tragen Sie Ihre E-mail Adresse ein und Sie bekommen eine Email mit "
+"der Sie das Passwort zurücksetzen können."
 
 #: meinberlin/templates/account/password_reset.html.py:18
 msgid "Reset My Password"
-msgstr ""
+msgstr "Mein Passwort zurücksetzen"
 
 #: meinberlin/templates/account/password_reset.html.py:20
 msgid "Please contact us if you have any trouble resetting your password."
-msgstr ""
+msgstr "Bitte kontaktieren Sie uns, falls es Probleme mit der Passwortzurücksetzung gibt."
 
 #: meinberlin/templates/account/password_reset_from_key.html.py:4
 #: meinberlin/templates/account/password_reset_from_key.html.py:7
 msgid "Change Password"
-msgstr ""
+msgstr "Passwort ändern"
 
 #: meinberlin/templates/account/password_reset_from_key.html.py:7
 msgid "Bad Token"
-msgstr ""
+msgstr "Falscher Schlüssel"
 
 #: meinberlin/templates/account/password_reset_from_key.html.py:11
 #, python-format
@@ -1579,33 +1593,36 @@ msgid ""
 "used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
 "a>."
 msgstr ""
+"Der Link zur Passwortzurücksetzung ist nicht mehr gültig, vermutlich weil dieser schon "
+"einmal genutzt wurde. Bitte fordern setzen Sie Ihr Passwort erneut zurück."
 
 #: meinberlin/templates/account/password_reset_from_key.html.py:20
 msgid "change password"
-msgstr ""
+msgstr "Passwort ändern"
 
 #: meinberlin/templates/account/password_reset_from_key.html.py:23
 msgid "Your password is now changed."
-msgstr ""
+msgstr "Ihr Passwort wurde geändert."
 
 #: meinberlin/templates/account/signup.html.py:9
 #, python-format
 msgid ""
 "Already have an account? Then please\n"
 "        <a href=\"%(login_url)s\">login</a>."
-msgstr ""
+msgstr "Haben Sie schon ein Benutzerkonto? Dann <a href=\"%(login_url)s\">"
+"melden Sie sich bitte an</a>."
 
 #: meinberlin/templates/base.html.py:8
 msgid "meinBerlin"
-msgstr ""
+msgstr "meinBerlin"
 
 #: meinberlin/templates/base.html.py:37
 msgid "Skip to content "
-msgstr ""
+msgstr "Zum Inhalt springen"
 
 #: meinberlin/templates/base.html.py:62
 msgid "Feedback"
-msgstr ""
+msgstr "Feedback"
 
 #: meinberlin/templates/base_errors.html.py:4
 msgid "Error"
@@ -1614,15 +1631,15 @@ msgstr "Fehler"
 #: meinberlin/templates/email_base.html.py:79
 #: meinberlin/templates/email_base.txt.py:10
 msgid "meinBerlin is a participation platform operated by"
-msgstr ""
+msgstr "meinBerlin ist die Plattform für Beteiligung, betrieben durch"
 
 #: meinberlin/templates/header.html.py:12
 msgid "Menu"
-msgstr ""
+msgstr "Menü"
 
 #: meinberlin/templates/portal_header.html.py:10
 msgid "Portal Navigation"
-msgstr ""
+msgstr "Navigation des Portals berlin.de"
 
 #~ msgid "Home"
 #~ msgstr "Startseite"
