@@ -8,12 +8,9 @@ class PagedFilterSet(django_filters.FilterSet):
 
     def __init__(self, data, *args, **kwargs):
         if self.page_kwarg in data:
-            try:
-                data.pop(self.page_kwarg)
-            except AttributeError:
-                # Create a mutable copy
-                data = data.copy()
-                data.pop(self.page_kwarg)
+            # Create a mutable copy
+            data = data.copy()
+            del data[self.page_kwarg]
         return super().__init__(data=data, *args, **kwargs)
 
 
