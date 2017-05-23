@@ -120,7 +120,7 @@ var Question = React.createClass({
       )
     } else {
       let loginUrl = '/accounts/login/?next=' +
-        encodeURIComponent(window.location.pathname)
+        encodeURIComponent(window.adhocracy4.getCurrentHref())
 
       return (
         <a href={loginUrl} className="button button--primary">
