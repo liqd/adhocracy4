@@ -1,7 +1,7 @@
-import django_filters
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 
+from adhocracy4.filters import filters as a4_filters
 from adhocracy4.modules import views as module_views
 
 from apps.contrib import filters
@@ -18,8 +18,7 @@ def get_ordering_choices(request):
     return choices
 
 
-class MapIdeaFilterSet(django_filters.FilterSet):
-
+class MapIdeaFilterSet(a4_filters.PagedFilterSet):
     category = filters.CategoryFilter()
 
     ordering = filters.OrderingFilter(
