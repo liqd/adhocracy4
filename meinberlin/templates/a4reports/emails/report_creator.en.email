@@ -1,13 +1,13 @@
 {% extends 'email_base.'|add:part_type %}
-{% load reports_tags i18n %}
+{% load reports_tags %}
 
-{% block subject %}{% blocktrans with item_type=report.content_object|verbose_name site_name=site.name %}Your {{ item_type }} was reported on {{ site_name }}{% endblocktrans %}{% endblock %}
+{% block subject %}Your {{ report.content_object|verbose_name }} was reported on {{ site.name }}{% endblock %}
 
-{% block headline %}{% blocktrans with item_type=report.content_object|verbose_name %}An other user reported your {{ item_type }}{% endblocktrans %}{% endblock %}
+{% block headline %}Another user reported your {{ report.content_object|verbose_name }}{% endblock %}
 
-{% block content %}{% blocktrans with item_type=report.content_object|verbose_name site_name=site.name project_name=report.project report_reason=report.description %}Some one requested moderation of your {{ item_type }} in the project {{ project_name }} on {{ site_name }}. The reason given is "{{ report_reason }}".{% endblocktrans %}{% endblock %}
+{% block content %}Someone requested moderation of your {{ report.content_object|verbose_name }} in the project {{ report.project }} on {{ site.name }}. The reason given is "{{ report.description }}".{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}
-{% block cta_label %}{% blocktrans with item_type=report.content_object|verbose_name %}Visit the {{ item_type }}{% endblocktrans %}{% endblock %}
+{% block cta_label %}Visit the {{ report.content_object|verbose_name }}{% endblock %}
 
-{% block reason %}{% blocktrans with receiver_email=receiver.email project_name=report.project %}This email was sent to {{ receiver_email }}. Your are receiving because you created content in the project {{ project_name }}.{% endblocktrans %}{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. Your are receiving because you created content in the project {{ report.project }}.{% endblock %}
