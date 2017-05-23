@@ -14,8 +14,8 @@ class Proposal(mapidea_models.AbstractMapIdea, Moderateable):
 
     creator_contribution = models.BooleanField(
         default=False,
-        verbose_name=_('Own contribution to the project'),
-        help_text=_('I want to contribute to the project myself.')
+        verbose_name=_('Own contribution to the proposal'),
+        help_text=_('I want to contribute to the proposal myself.')
     )
 
     def get_absolute_url(self):
