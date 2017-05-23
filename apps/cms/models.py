@@ -1,5 +1,6 @@
+from django import forms
 from django.db import models
-from django.forms import widgets
+from django.utils.functional import cached_property
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.wagtailadmin import edit_handlers
@@ -30,7 +31,18 @@ class SimplePage(Page):
 
 class ProjectSelectionBlock(blocks.ChooserBlock):
     target_model = Project
-    widget = widgets.Select
+    widget = forms.widgets.Select
+
+    @cached_property
+    def field(self):
+        return forms.ModelChoiceField(
+            queryset=self.target_model.objects.filter(
+                is_draft=False,
+                is_archived=False,
+                is_public=True),
+            widget=self.widget,
+            required=self._required,
+            help_text=self._help_text)
 
     def value_for_form(self, value):
         if isinstance(value, Project):
