@@ -7,6 +7,7 @@ from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms import widgets as form_widgets
 from django.forms.widgets import flatatt
 from django.template.loader import render_to_string
+from django.utils import formats
 from django.utils.timezone import localtime
 from django.utils.translation import ugettext as _
 
@@ -70,7 +71,7 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
         date_attrs = self.build_attrs(attrs)
         date_attrs.update({
             'class': 'datepicker',
-            'placeholder': '1.1.2017'
+            'placeholder': formats.localize_input(datetime.date.today())
         })
         time_attrs = self.build_attrs(attrs)
         time_attrs.update({
