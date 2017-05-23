@@ -339,7 +339,7 @@ msgstr "Ihr Name"
 
 #: apps/bplan/models.py:38 apps/users/models.py:27
 msgid "Email address"
-msgstr "E-Mail Addresse"
+msgstr "E-Mail Adresse"
 
 #: apps/bplan/models.py:40
 msgid "Statement"
