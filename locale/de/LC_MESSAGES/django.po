@@ -1294,7 +1294,7 @@ msgid ""
 "            from %(start)s<br>\n"
 "            to %(end)s\n"
 "        "
-msgstr "Von %(start)s <br>bis %(end)s"
+msgstr "\nVon %(start)s <br>bis %(end)s"
 
 #: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:18
 msgid "Finished"
@@ -1306,7 +1306,7 @@ msgid ""
 "\n"
 "                    Participation possible until %(date)s\n"
 "                "
-msgstr "Beteiligung möglich bis zum %(date)s"
+msgstr "\nBeteiligung möglich bis zum %(date)s"
 
 #: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:39
 #, python-format
@@ -1314,7 +1314,7 @@ msgid ""
 "\n"
 "                    Participation starting from %(date)s\n"
 "                "
-msgstr "Beteiligung fängt ab dem %(date)s an"
+msgstr "\nBeteiligung fängt ab dem %(date)s an"
 
 #: apps/projects/templates/meinberlin_projects/project_detail.html.py:97
 msgid "No results yet."
