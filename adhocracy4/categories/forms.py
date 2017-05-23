@@ -1,14 +1,14 @@
 from django import forms
 
+from adhocracy4.modules import forms as module_forms
 from adhocracy4.categories import models as category_models
 
 
-class CategorizableForm(forms.ModelForm):
+class CategorizableForm(module_forms.ItemForm):
 
     def __init__(self, *args, **kwargs):
-        module = kwargs.pop('module')
         super().__init__(*args, **kwargs)
-        queryset = category_models.Category.objects.filter(module=module)
+        queryset = category_models.Category.objects.filter(module=self.module)
         self.fields['category'] = forms.ModelChoiceField(
             queryset=queryset,
             empty_label=None,
