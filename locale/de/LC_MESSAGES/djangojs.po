@@ -123,12 +123,12 @@ msgstr "Antworten"
 #: adhocracy4/follows/static/follows/FollowButton.jsx:42
 #: adhocracy4/follows/static/follows/FollowButton.jsx:42
 msgid "Unfollow"
-msgstr ""
+msgstr "Entfolgen"
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:42
 #: adhocracy4/follows/static/follows/FollowButton.jsx:42
 msgid "Follow"
-msgstr ""
+msgstr "Folgen"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:63
 #: adhocracy4/reports/static/reports/ReportModal.jsx:63
@@ -147,109 +147,110 @@ msgstr "Schließen"
 #: apps/documents/assets/Paragraph.jsx:73
 #: apps/documents/assets/ParagraphBox.jsx:196
 msgid "Add a new paragraph"
-msgstr ""
+msgstr "Neuer Absatz"
 
 #: apps/documents/assets/Paragraph.jsx:81
 msgid "Headline"
-msgstr ""
+msgstr "Überschrift"
 
 #: apps/documents/assets/Paragraph.jsx:100
 msgid "Paragraph"
-msgstr ""
+msgstr "Absatz"
 
 #: apps/documents/assets/ParagraphBox.jsx:135
 msgid "Your document has been updated."
-msgstr ""
+msgstr "Ihr Dokument wurde aktualisiert."
 
 #: apps/documents/assets/ParagraphBox.jsx:146
 msgid "Your document has been saved."
-msgstr ""
+msgstr "Ihr Dokument wurde gespeichert."
 
 #: apps/documents/assets/ParagraphBox.jsx:158
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: apps/documents/assets/ParagraphBox.jsx:203
 #: apps/polls/assets/PollManagement.jsx:222
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:108
 msgid "Do you want to load this preset and delete all the existing polygons?"
-msgstr ""
+msgstr "Möchten Sie diesen Bereich auswählen und alle vorher ausgewählten entfernen?"
 
 #: apps/polls/assets/ChoiceForm.jsx:22
 msgid "Choice"
-msgstr ""
+msgstr "Auswahl"
 
 #: apps/polls/assets/ChoiceForm.jsx:35
 msgid "remove"
-msgstr ""
+msgstr "entfernen"
 
 #: apps/polls/assets/PollManagement.jsx:163
 msgid "The poll has been updated."
-msgstr ""
+msgstr "Die Umfrage wurde aktualisiert."
 
 #: apps/polls/assets/PollManagement.jsx:177
 msgid "The poll could not be updated."
-msgstr ""
+msgstr "Die Umfrage konnte nicht aktualisiert werden."
 
 #: apps/polls/assets/PollManagement.jsx:216
 msgid "Add a new question"
-msgstr ""
+msgstr "Neue Frage"
 
 #: apps/polls/assets/Question.jsx:79
 msgid "Vote counted"
-msgstr ""
+msgstr "Ihre Stimme wurde gezählt."
 
 #: apps/polls/assets/Question.jsx:89
 msgid "Vote has not been counted due to a server error."
-msgstr ""
+msgstr "Ihre Stimme konnte aufgrund eines Serverfehlers nicht gezählt werden."
 
 #: apps/polls/assets/Question.jsx:118 apps/polls/assets/Question.jsx:127
 msgid "Vote"
-msgstr ""
+msgstr "Stimme abgeben"
 
 #: apps/polls/assets/Question.jsx:139
 msgid "vote"
 msgid_plural "votes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Stimme"
+msgstr[1] "Stimmen"
 
 #: apps/polls/assets/Question.jsx:149
 msgid "To poll"
-msgstr ""
+msgstr "Zur Umfrage"
 
 #: apps/polls/assets/Question.jsx:160
 msgid "Show preliminary results"
-msgstr ""
+msgstr "Vorläufiges Ergebnis zeigen"
 
 #: apps/polls/assets/Question.jsx:184
 msgid "Your choice"
-msgstr ""
+msgstr "Ihre Wahl"
 
 #: apps/polls/assets/QuestionForm.jsx:56
 msgid "Question"
-msgstr ""
+msgstr "Frage"
 
 #: apps/polls/assets/QuestionForm.jsx:89
 msgid "Add a new choice"
-msgstr ""
+msgstr "Neue Antwort"
 
 #: meinberlin/static/embed.js:165
 msgid "We couldn't find what you were looking for."
-msgstr ""
+msgstr "Wir konnten diese Seite nicht finden."
 
 #: meinberlin/static/embed.js:169
 msgid "You don't have the permission to view this page."
-msgstr ""
+msgstr "Sie haben nicht die nötigen Rechte."
 
 #: meinberlin/static/embed.js:172
 msgid "Something went wrong!"
-msgstr ""
+msgstr "Etwas ging schief!"
 
 #: meinberlin/static/embed.js:180
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
-msgstr ""
+msgstr "Sie haben Third Party Cookies deaktiviert. Sie können Sich trotzdem "
+"dieses Projekt anschauen, werden aber nicht in der Lage dazu sein, sich anzumelden."
