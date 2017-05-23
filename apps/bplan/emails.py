@@ -20,7 +20,6 @@ class OfficeWorkerNotification(Email):
 
 class SubmitterConfirmation(Email):
     template_name = 'meinberlin_bplan/emails/submitter_confirmation'
-    fallback_language = 'de'
 
     def get_receivers(self):
         return [self.object.email]
