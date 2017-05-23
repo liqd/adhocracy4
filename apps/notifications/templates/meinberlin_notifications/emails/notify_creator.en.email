@@ -1,17 +1,13 @@
 {% extends 'email_base.'|add:part_type %}
-{% load verbose_name i18n %}
+{% load verbose_name %}
 
-{% block subject %}{% blocktrans with action_item_type=action.obj|verbose_name target_item_type=action.target|verbose_name %}A {{ action_item_type }} was added to your {{ target_item_type }}{% endblocktrans %}{% endblock %}
+{% block subject %}A {{ action.obj | verbose_name }} was added to your {{ action.target | verbose_name }}{% endblock %}
 
-{% block headline %}{% blocktrans with action_item_type=action.obj|verbose_name target_item_type=action.target|verbose_name actor_name=action.actor.username %}{{ actor_name}} created a {{ action_item_type }} on your {{ target_item_type }}{% endblocktrans %}{% endblock  %}
+{% block headline %}{{ action.actor.username }} created a {{ action.obj | verbose_name }} on your {{ action.target | verbose_name }}{% endblock  %}
 
-{% block content %}
-    {% blocktrans with action_item_type=action.obj|verbose_name target_item_type=action.target|verbose_name actor_name=action.actor.username target_item_title=action.target.title %}On your {{ target_item_type }} "{{ target_item_title }}" a {{ action_item_type }} was added by {{ actor_name }}.{% endblocktrans %}
-    {% if action.target.get_absolute_url %}{% blocktrans with target_item_type=action.target|verbose_name %}Checkout what happend on your {{ target_item_type }} by clicking the link below.{% endblocktrans %}
-    {% else %}{% blocktrans %}Checkout what happend on the project by clicking the link below.{% endblocktrans %}{% endif %}
-{% endblock %}
+{% block content %}On your {{ action.target | verbose_name }}{% if action.target.title %} "{{ action.target.title }}"{% endif %} a {{ action.obj | verbose_name }} was added by {{ action.actor.username }}. Checkout what happend on{% if action.target.get_absolute_url %} your {{ action.target | verbose_name }}{% else %} the project "{{ action.project.name }}"{% endif %} on {{ site.name }} by clicking the {% if part_type == 'txt' %}link{% else %}button{% endif %} below.{% endblock %}
 
 {% block cta_url %}{% if action.target.get_absolute_url %}{{ email.get_host }}{{ action.target.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
-{% block cta_label %}{% if action.target.get_absolute_url %}{% blocktrans with target_item_type=action.target|verbose_name %}Check your {{target_item_type }}{% endblocktrans %}{% else %}{% trans 'Visit the project' %}{% endif %}{% endblock %}
+{% block cta_label %}{% if action.target.get_absolute_url %}Check your {{ action.target | verbose_name }}{% else %}Visit the project{% endif %}{% endblock %}
 
-{% block reason %}{% blocktrans with receiver_email=receiver.email %}This email was sent to {{ receiver_email }}.{% endblocktrans %} {% blocktrans %}This email was sent to you because you created content in a project. If you don’t want to receive these notifications anymore, you can unfollow the project on the project page or disable notifications completely in your account settings.{% endblocktrans %}{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you created content in a project. If you don’t want to receive these notifications anymore, you can unfollow the project on the project page or disable notifications completely in your account settings.{% endblock %}

@@ -1,13 +1,13 @@
 {% extends 'email_base.'|add:part_type %}
-{% load i18n %}
 
-{% block subject %}{% blocktrans %}Participation in a project you follow will be over soon{% endblocktrans %}{% endblock %}
+{% block subject %}Participation in a project you follow will be over soon{% endblock %}
 
-{% block headline %}{% blocktrans with project_name=action.project.name %}Only a few hours left to participate in {{ project_name }}{% endblocktrans %}{% endblock %}
+{% block headline %}Only a few hours left to participate in {{ action.project.name }}{% endblock %}
 
-{% block content %}{% blocktrans with project_name=action.project.name organisation_name=action.project.organisation.name phase_end_date=action.project.active_phase.end_date|date:'d.m.Y' %}The current participation phase of the project "{{ project_name }}" by "{{ organisation_name }}" will be over at {{ phase_end_date }}. If you want to participate, visit the project page soon.{% endblocktrans %}{% endblock %}
+{% block content %}The current participation phase of the project "{{ action.project.name }}" by "{{ action.project.organisation.name }}" will be over at {{ action.project.active_phase.end_date|date:'d.m.Y' }}. If you want to participate, visit the project page soon.
+{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endblock %}
-{% block cta_label %}{% trans 'Visit the project' %}{% endblock %}
+{% block cta_label %}Visit the project{% endblock %}
 
-{% block reason %}{% blocktrans with receiver_email=receiver.email %}This email was sent to {{ receiver_email }}.{% endblocktrans %} {% blocktrans %}This email was sent to you because you follow a project. If you don’t want to receive these notifications anymore, you can unfollow the project on the project page or disable notifications completely in your account settings.{% endblocktrans %}{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you follow a project. If you don’t want to receive these notifications anymore, you can unfollow the project on the project page or disable notifications completely in your account settings.{% endblock %}
