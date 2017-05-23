@@ -465,7 +465,7 @@ msgstr "Bestätigung der Vorschlagslöschung"
 #: apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html.py:9
 #: apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html.py:9
 msgid "Are you sure you want to delete the proposal?"
-msgstr "Sind Sie sicher, dass Sie diesen Vorschlag löschen wollen?"
+msgstr "Sind Sie sicher, dass Sie diesen Vorschlag löschen möchten?"
 
 #: apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html.py:13
 #: apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html.py:13
