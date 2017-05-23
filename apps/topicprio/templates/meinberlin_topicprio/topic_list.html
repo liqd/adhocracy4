@@ -2,10 +2,16 @@
 {% load i18n module_tags rules static maps_tags %}
 
 {% block phase_content %}
-    <div class="list list--highlight">
+    <div class="filter-bar__top-overlap">
         <div class="l-wrapper">
             <div class="l-center-8">
                 {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+            </div>
+        </div>
+    </div>
+    <div class="list list--highlight">
+        <div class="l-wrapper">
+            <div class="l-center-8">
 
                 <div class="list__container">
                     {% for object in object_list %}
