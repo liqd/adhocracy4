@@ -62,7 +62,7 @@ select {
         // not have a margin on inputs at all. We do not control all HTML
         // though (e.g. django standard forms or react components from
         // adhocracy4 core).
-        margin: 0;
+        margin-bottom: 0;
     }
 }
 
