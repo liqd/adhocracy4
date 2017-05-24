@@ -10,6 +10,7 @@
                 {{ object.username }}
             </h1>
 
+            <h2>{% trans 'User participation' %}</h2>
             <div class="l-tiles-2">
                 {% for project in view.get_participated_projects %}
                     {% has_perm 'a4projects.view_project' request.user project as show %}
@@ -17,7 +18,7 @@
                         {% include 'meinberlin_projects/includes/project_list_tile.html' with project=project %}
                     {% endif %}
                 {% empty %}
-                    <p>{% blocktrans with username=object.username %}{{ username }} does not follow any projects.{% endblocktrans %}</p>
+                    <p>{% blocktrans with username=object.username %}{{ username }} did not participate in any projects.{% endblocktrans %}</p>
                 {% endfor %}
             </div>
         </div>
