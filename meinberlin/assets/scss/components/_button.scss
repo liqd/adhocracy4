@@ -65,7 +65,7 @@
 }
 
 .button--link {
-    border: none;
+    border-color: transparent;
     background-color: transparent;
 
     color: $link-color;
@@ -75,6 +75,7 @@
     &:hover,
     &:focus {
         color: $link-hover-color;
+        border-color: transparent;
         background-color: transparent;
     }
 
