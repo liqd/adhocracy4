@@ -9,7 +9,6 @@
             <h1 class="herounit-title">
                 {{ object.username }}
             </h1>
-            <p>{% blocktrans with date=object.date_joined %}Joined on {{ date }}{% endblocktrans %}</p>
 
             <div class="l-tiles-2">
                 {% for project in view.get_participated_projects %}
