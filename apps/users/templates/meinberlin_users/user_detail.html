@@ -10,7 +10,7 @@
                 {{ object.username }}
             </h1>
 
-            <h2>{% trans 'User participation' %}</h2>
+            <h2>{% blocktrans with username=object.username %}Projects {{username}} participated in{% endblocktrans %}</h2>
             <div class="l-tiles-2">
                 {% for project in view.get_participated_projects %}
                     {% has_perm 'a4projects.view_project' request.user project as show %}
