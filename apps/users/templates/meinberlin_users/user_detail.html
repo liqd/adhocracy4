@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load rules i18n %}
 
 {% block title %}{{ object.username }} &mdash; {{ block.super }}{% endblock %}
 
@@ -10,6 +10,17 @@
                 {{ object.username }}
             </h1>
             <p>{% blocktrans with date=object.date_joined %}Joined on {{ date }}{% endblocktrans %}</p>
+
+            <div class="l-tiles-2">
+                {% for project in view.get_participated_projects %}
+                    {% has_perm 'a4projects.view_project' request.user project as show %}
+                    {% if show %}
+                        {% include 'meinberlin_projects/includes/project_list_tile.html' with project=project %}
+                    {% endif %}
+                {% empty %}
+                    <p>{% blocktrans with username=object.username %}{{ username }} does not follow any projects.{% endblocktrans %}</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
