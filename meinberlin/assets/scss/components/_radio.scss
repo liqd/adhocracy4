@@ -59,3 +59,7 @@ $checkbox-size: 20px;
     transform: scale(1);
     opacity: 1;
 }
+
+.radio__input:focus + .radio__text:before {
+    @include fake-focus-shadow;
+}
