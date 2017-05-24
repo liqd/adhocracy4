@@ -137,9 +137,9 @@ class BplanSerializer(serializers.ModelSerializer):
 
         try:
             self._validate_image(file_name)
-        except ValidationError:
+        except ValidationError as e:
             self._image_storage.delete(file_name)
-            raise
+            raise serializers.ValidationError(e)
 
         return file_name
 
