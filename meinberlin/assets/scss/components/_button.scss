@@ -64,6 +64,30 @@
     @include button-color($brand-secondary, darken($brand-secondary, 15%));
 }
 
+.button--link {
+    // horizontal paddings would make the button look off on mobile
+    padding-left: 0;
+    padding-right: 0;
+    border-color: transparent;
+    background-color: transparent;
+
+    color: $link-color;
+    text-decoration: underline;
+    font-weight: normal;
+
+    &:hover,
+    &:focus {
+        color: $link-hover-color;
+        border-color: transparent;
+        background-color: transparent;
+    }
+
+    &:disabled {
+        color: $text-color;
+        cursor: not-allowed;
+    }
+}
+
 .button--select {
     @include text-truncate;
     max-width: 15em;

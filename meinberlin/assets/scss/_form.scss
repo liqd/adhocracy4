@@ -66,6 +66,10 @@ select {
     }
 }
 
+.form-group--narrow {
+    @include grid-width(9);
+}
+
 .form-check__label {
     padding-left: 1.25em;
 

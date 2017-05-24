@@ -1,7 +1,7 @@
-{% load i18n project_tags %}
+{% load i18n project_tags dashboard_tags %}
 
 <div class="list-item">
-    <p class="list-item__subtitle">{{ project.typ }}</p>
+    <p class="list-item__subtitle">{{ project.typ|get_blueprint_title }}</p>
     <h3 class="list-item__title">
         <a href="{{ project.externalproject.url }}">
         {{ project.name }}

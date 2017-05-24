@@ -15,7 +15,7 @@ let ChoiceForm = React.createClass({
 
   render: function () {
     return (
-      <div className="form-group">
+      <div className="form-group form-group--narrow">
         <label
           className="sr-only"
           htmlFor={'id_choices-' + this.props.index + '-name'}>
@@ -32,9 +32,10 @@ let ChoiceForm = React.createClass({
           <button
             className="input-action__action button button--light"
             onClick={this.handleDelete}
-            aria-label={django.gettext('remove')}
+            title={django.gettext('remove')}
             type="button">
-            <i className="fa fa-times" />
+            <i className="fa fa-times"
+              aria-label={django.gettext('remove')} />
           </button>
         </div>
         <ErrorList errors={this.props.errors} />

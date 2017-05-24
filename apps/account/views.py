@@ -9,6 +9,7 @@ from . import forms
 
 
 class AccountView(RedirectView):
+    permanent = False
     pattern_name = 'account_profile'
     # Placeholder View to be replaced if we want to use a custom account
     # dashboard function overview.

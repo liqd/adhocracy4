@@ -10,7 +10,13 @@
 }
 
 .poll__actions > :last-child {
-    margin-left: 1em;
+    margin-top: 0.5em;
+    display: block;
+
+    @media (min-width: $breakpoint) {
+        display: inline-block;
+        margin: 0 0 0 1em;
+    }
 }
 
 .poll__rows {
@@ -34,6 +40,7 @@
 }
 
 .poll-row__number {
+    padding-left: 0.5em;
     min-width: 5em;
     font-weight: bold;
 }

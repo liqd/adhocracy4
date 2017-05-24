@@ -169,4 +169,8 @@ blueprints = [
 class BlueprintMixin:
     @property
     def blueprint(self):
-        return dict(blueprints)[self.kwargs['blueprint_slug']]
+        return dict(blueprints)[self.blueprint_key]
+
+    @property
+    def blueprint_key(self):
+        return self.kwargs['blueprint_slug']
