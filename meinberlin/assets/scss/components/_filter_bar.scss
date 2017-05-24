@@ -32,3 +32,9 @@
         }
     }
 }
+
+.filter-bar__top-overlap {
+    position: relative;
+    z-index: 1;
+    bottom: -1.3em;
+}

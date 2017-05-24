@@ -7,13 +7,19 @@
     border-right: 1px solid $brand-primary;
 }
 
+.commenting__content--border {
+    padding: $padding;
+    border: 1px solid $border-color;
+    border-radius: ($padding / 2);
+}
+
 .commenting__actions {
     text-align: right;
 }
 
 .commenting__title {
     margin-top: 0;
-    font-size: 100%;
+    font-size: $font-size-lg;
 }
 
 @media (min-width: $breakpoint) {

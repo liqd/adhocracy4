@@ -15,6 +15,8 @@
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.end_date %}
 
+    {% block extra_fields %}{% endblock %}
+
     {% if object.has_finished %}
         {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.is_archived %}
     {% endif %}
@@ -22,10 +24,3 @@
     <input type="submit" class="button button--primary" value="{% trans 'Save' %}" />
 
 </form>
-
-{% block extra_js %}
-    {{ form.media.js }}
-{% endblock %}
-{% block extra_css %}
-    {{ form.media.css }}
-{% endblock %}

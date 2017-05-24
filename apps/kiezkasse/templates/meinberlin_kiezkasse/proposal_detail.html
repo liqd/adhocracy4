@@ -1,0 +1,47 @@
+{% extends "meinberlin_mapideas/mapidea_detail.html" %}
+{% load rules item_tags moderatorfeedback_tags i18n humanize %}
+
+{% block additional_labels %}
+    {{ block.super }}
+    <span class="label label--big">{{ proposal.budget|intcomma }}€</span>
+
+    {% if proposal.moderator_feedback %}
+        <span class="label label--big label--{{proposal.moderator_feedback|classify }}">
+            {{ proposal.get_moderator_feedback_display }}
+        </span>
+    {% endif %}
+{% endblock %}
+
+{% block moderator_statement %}
+    {% if proposal.moderator_statement.statement %}
+        <div class="l-wrapper">
+            <div class="l-center-8">
+                <div class="moderator-statement">
+                    <h2 class="moderator-statement__title">{% trans 'Official Statement' %}</h2>
+                    <div class="moderator-statement__subtitle">
+                        <strong class="moderator-statement__organisation">
+                            {{ proposal.module.project.organisation.name }}
+                        </strong>
+                        <span class="moderator-statement__date">
+                            {{ proposal.moderator_statement.created | date }}
+                        </span>
+                    </div>
+                    <div class="moderator-statement__body">
+                        {{ proposal.moderator_statement.statement | safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block dropdown_items %}
+    {% get_item_permission object 'moderate' as moderator_perm %}
+    {% has_perm moderator_perm request.user proposal as is_moderator %}
+    {% if is_moderator %}
+        <li>
+            {% get_item_url object 'moderate' as moderate_url %}
+            <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'Moderate' %}</a>
+        </li>
+    {% endif %}
+{% endblock %}

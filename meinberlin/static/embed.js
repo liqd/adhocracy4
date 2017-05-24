@@ -6,6 +6,11 @@ $(document).ready(function () {
   var patternsForPopup = /\/accounts\b/
   var $top = $('<div tabindex="-1">')
 
+  // FIXME: use consistent wording (URL/href/path)
+  window.adhocracy4.getCurrentHref = function () {
+    return currentPath
+  }
+
   var headers = {
     'X-Embed': ''
   }
@@ -34,8 +39,21 @@ $(document).ready(function () {
     $alert.prependTo($('#embed-status'))
   }
 
+  var extractScripts = function ($root, selector, attr) {
+    var $existingValues = $('head').find(selector).map((i, e) => $(e).attr(attr))
+
+    $root.find(selector).each(function (i, script) {
+      var $script = $(script)
+      if ($existingValues.filter((i, v) => v === $script.attr(attr)).length) {
+        $script.remove()
+      } else {
+        $('head').append($script)
+      }
+    })
+  }
+
   var loadHtml = function (html, textStatus, xhr) {
-    var $root = $(html).filter('main')
+    var $root = $('<div>').html(html)
     var nextPath = xhr.getResponseHeader('x-ajax-path')
 
     if (patternsForPopup.test(nextPath)) {
@@ -45,17 +63,34 @@ $(document).ready(function () {
     // only update the currentPath if there was no modal opened
     currentPath = nextPath
 
+    extractScripts($root, 'script[src]', 'src')
+    extractScripts($root, 'link[rel="stylesheet"]', 'href')
+
     $main.empty()
     $main.append($top)
-    $main.append($root.children())
-    onReady()
+    $main.append($root.find('main').children())
+    $(document).trigger('a4.embed.ready')
 
     // jump to top after navigation
     $top.focus()
   }
 
-  var onReady = function () {
-    // adhocracy4.onReady($main)
+  var onAjaxError = function (jqxhr) {
+    var text
+    switch (jqxhr.status) {
+      case 404:
+        text = django.gettext('We couldn\'t find what you were looking for.')
+        break
+      case 401:
+      case 403:
+        text = django.gettext('You don\'t have the permission to view this page.')
+        break
+      default:
+        text = django.gettext('Something went wrong!')
+        break
+    }
+
+    createAlert(text, 'danger', 6000)
   }
 
   var getEmbedTarget = function ($element, url) {
@@ -90,7 +125,8 @@ $(document).ready(function () {
       $.ajax({
         url: url,
         headers: headers,
-        success: loadHtml
+        success: loadHtml,
+        error: onAjaxError
       })
     } else if (embedTarget === 'popup') {
       event.preventDefault()
@@ -115,7 +151,8 @@ $(document).ready(function () {
         method: form.method,
         headers: headers,
         data: $form.serialize(),
-        success: loadHtml
+        success: loadHtml,
+        error: onAjaxError
       })
     }
   })
@@ -146,24 +183,6 @@ $(document).ready(function () {
     }
   }, false)
 
-  $(document).ajaxError(function (event, jqxhr) {
-    var text
-    switch (jqxhr.status) {
-      case 404:
-        text = django.gettext('We couldn\'t find what you were looking for.')
-        break
-      case 401:
-      case 403:
-        text = django.gettext('You don\'t have the permission to view this page.')
-        break
-      default:
-        text = django.gettext('Something went wrong!')
-        break
-    }
-
-    createAlert(text, 'danger', 6000)
-  })
-
   if (testCanSetCookie() === false) {
     var text = django.gettext('You have third party cookies disabled. You can still view the content of this project but won\'t be able to login.')
     createAlert(text, 'info')
@@ -172,6 +191,7 @@ $(document).ready(function () {
   $.ajax({
     url: $('body').data('url'),
     headers: headers,
-    success: loadHtml
+    success: loadHtml,
+    error: onAjaxError
   })
 })

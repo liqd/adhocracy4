@@ -1,6 +1,9 @@
+$header-margin-bottom: 25px;
+
 .main-header {
     position: relative;
     z-index: 1;
+    margin-bottom: $header-margin-bottom;
 }
 
 .main-nav {
@@ -10,6 +13,7 @@
 // positioned so that the "mein" from "meinBerlin" is on the baseline
 .main-nav__logo {
     text-decoration: none;
+    margin-right: 1em;
 
     img {
         margin: 0;
@@ -85,7 +89,7 @@
     &:focus {
         text-decoration: none;
         background-color: $bg-secondary;
-        color: $brand-secondary;
+        color: $brand-primary;
     }
 
     @media screen and (min-width: $breakpoint) {
@@ -112,7 +116,7 @@
 .main-header__user {
     @media screen and (min-width: $breakpoint) {
         position: absolute;
-        bottom: -0.7em;
+        bottom: -1em;
         right: $padding;
     }
 
@@ -178,7 +182,7 @@
 }
 
 .beberlin-logo {
-    margin-right: 1em;
+    margin-right: 1.5em;
     vertical-align: middle;
 
     @media screen and (min-width: $breakpoint) {
@@ -187,10 +191,14 @@
     }
 }
 
+// compensate for generic margin-bottom on header and move those elements
+// underneath the "dialograhmen"
+$header-overlap: -35px;
+
 .messages,
 .hero-unit,
-.resource-header {
+.project-header {
     &:first-child {
-        margin-top: -35px;
+        margin-top: $header-overlap - $header-margin-bottom;
     }
 }

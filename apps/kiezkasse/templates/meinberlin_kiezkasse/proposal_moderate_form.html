@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n item_tags %}
+
+{% block title %}{% blocktrans with name=object.name %}Moderate {{ name }}{% endblocktrans %}{% endblock %}
+{% block content %}
+<div class="l-wrapper">
+    <div class="l-center-6">
+        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+            <ul>
+                <li>
+                    <a href="{% url 'project-detail' object.project.slug %}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to project' %}</a>
+                </li>
+                <li>
+                    {% get_item_detail_url object as detail_url %}
+                    <a href="{{ detail_url }}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to proposal' %}</a>
+                </li>
+            </ul>
+        </nav>
+
+        <h1>{% trans 'Moderate proposal' %}</h1>
+        {% include "meinberlin_moderatorfeedback/includes/item_moderate_form.html" with cancel=detail_url %}
+    </div>
+</div>
+{% endblock %}

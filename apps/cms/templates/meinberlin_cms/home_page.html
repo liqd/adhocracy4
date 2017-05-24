@@ -2,7 +2,7 @@
 {% load wagtailuserbar wagtailimages_tags rules i18n %}
 
 {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
-    {{ self.title }}{% endif %}{% endblock %}
+    {{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
 
 {% block header %}
     {% if self.search_description %}

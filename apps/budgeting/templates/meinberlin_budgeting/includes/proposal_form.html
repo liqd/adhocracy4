@@ -11,10 +11,12 @@
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point %}
 
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point_label %}
+
     {% if form.show_categories %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.category %}
     {% endif %}
 
     <input type="submit" class="button button--primary" value="{% trans 'Save'%}" />
-    <a href="{{ cancel }}" class="button button--light">{% trans 'cancel'%}</a>
+    <a href="{{ cancel }}" class="button button--light">{% trans 'Cancel'%}</a>
 </form>

@@ -3,4 +3,6 @@
 
 {% block error_status %}500{% endblock %}
 
-{% block error_description %}{% trans 'Internal server error.' %}{% endblock %}
+{% block error_description %}
+    <p>{% trans 'Internal server error.' %}</p>
+{% endblock %}

@@ -27,6 +27,10 @@ module.exports = {
       'leaflet',
       'leaflet/dist/leaflet.css'
     ],
+    datepicker: [
+      './meinberlin/assets/js/init-picker.js',
+      'datepicker/css/datepicker.min.css'
+    ],
     'leaflet.draw': [
       'leaflet-draw',
       'leaflet-draw/dist/leaflet.draw.css'
@@ -34,9 +38,9 @@ module.exports = {
   },
   devtool: 'eval',
   output: {
-    libraryTarget: 'var',
+    libraryTarget: 'this',
     library: '[name]',
-    path: './meinberlin/static/',
+    path: path.resolve('./meinberlin/static/'),
     publicPath: '/static/',
     filename: '[name].js'
   },

@@ -1,29 +1,24 @@
 {% load i18n project_tags extproject_tags dashboard_tags %}
 
 <div class="list-item">
-    <p class="list-item__subtitle">{{ project.typ }}</p>
+    <p class="list-item__subtitle">{{ project.typ|get_blueprint_title }}</p>
     <h3 class="list-item__title">
-        <a href="{% extproject_url project 'project-detail' %}" target="{{ project|is_external|yesno:"_blank,_self" }}">
         {{ project.name }}
-        </a>
     </h3>
     <div class="list-item__actions">
         <span class="list-item__action">
-            {% if project|is_external %}
-                  <a href="{% url 'dashboard-external-project-edit' slug=project.slug %}"
-                     class="button button--light">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                    {% trans 'Edit'%}
-                </a>
-            {% else %}
-                <a href="{% url 'dashboard-project-edit' slug=project.slug %}"
-                 class="button button--light">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                    {% trans 'Edit'%}
-                </a>
-            {% endif %}
+            <a href="{% extproject_url project 'project-detail' %}"
+               target="{{ project|is_external|yesno:"_blank,_self" }}"
+               class="button button--light">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                {% if project.is_draft %}
+                {% trans 'Preview' %}
+                {% else %}
+                {% trans 'View' %}
+                {% endif %}
+            </a>
         </span>
-        <form method="post" class="list-item__action">
+        <form method="post" class="list-item__action" role="presentation">
             {% csrf_token %}
             <input type="hidden" name="project_pk" value="{{ project.pk }}">
             <button type="submit" name="submit_action" value="{{ project.is_draft|yesno:'publish,unpublish' }}"
@@ -36,6 +31,23 @@
                 {% endif %}
             </button>
         </form>
+        <span class="list-item__action">
+            <a href="{% url 'dashboard-project-edit' slug=project.slug %}"
+             class="button button--light">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+                {% trans 'Edit'%}
+            </a>
+        </span>
+
+        {% if project|has_management_view %}
+        <span class="list-item__action">
+            <a href="{% url 'dashboard-project-management' slug=project.slug %}"
+               class="button button--light">
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+                {% trans 'Contents' %}
+            </a>
+        </span>
+        {% endif %}
 
         {% if not project|is_external %}
         <span class="list-item__action">
@@ -43,16 +55,6 @@
                class="button button--light">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 {% trans 'Moderators' %}
-            </a>
-        </span>
-        {% endif %}
-
-        {% if project|has_management_view %}
-        <span class="list-item__action">
-            <a href="{% url 'dashboard-project-management' slug=project.slug %}"
-               class="button button--light">
-                <i class="fa fa-cogs" aria-hidden="true"></i>
-                {% trans 'Management' %}
             </a>
         </span>
         {% endif %}

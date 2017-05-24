@@ -1,11 +1,9 @@
-import django_filters
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 
-
+from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
-from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.modules import views as module_views
 from adhocracy4.rules import mixins as rules_mixins
 
@@ -16,7 +14,7 @@ from . import forms
 from . import models
 
 
-class TopicFilterSet(DefaultsFilterSet):
+class TopicFilterSet(a4_filters.DefaultsFilterSet):
 
     defaults = {
         'ordering': '-positive_rating_count'
@@ -54,7 +52,7 @@ class TopicDetailView(module_views.ItemDetailView):
     permission_required = 'meinberlin_topicprio.view_topic'
 
 
-class TopicCreateFilterSet(django_filters.FilterSet):
+class TopicCreateFilterSet(a4_filters.PagedFilterSet):
 
     category = filters.CategoryFilter()
 
@@ -69,7 +67,7 @@ class TopicMgmtView(DashboardBaseMixin,
     model = models.Topic
     template_name = 'meinberlin_topicprio/topic_mgmt_list.html'
     filter_set = TopicCreateFilterSet
-    permission_required = 'meinberlin_organisations.initiate_project'
+    permission_required = 'a4projects.add_project'
 
     # Dashboard related attributes
     menu_item = 'project'
@@ -95,7 +93,7 @@ class TopicMgmtView(DashboardBaseMixin,
 class TopicMgmtCreateView(module_views.ItemCreateView):
     model = models.Topic
     form_class = forms.TopicForm
-    permission_required = 'meinberlin_organisations.initiate_project'
+    permission_required = 'a4projects.add_project'
     template_name = 'meinberlin_topicprio/topic_mgmt_create_form.html'
     menu_item = 'project'
 
@@ -112,7 +110,7 @@ class TopicMgmtCreateView(module_views.ItemCreateView):
 class TopicMgmtUpdateView(module_views.ItemUpdateView):
     model = models.Topic
     form_class = forms.TopicForm
-    permission_required = 'meinberlin_organisations.initiate_project'
+    permission_required = 'a4projects.add_project'
     template_name = 'meinberlin_topicprio/topic_mgmt_update_form.html'
     menu_item = 'project'
 
@@ -129,7 +127,7 @@ class TopicMgmtUpdateView(module_views.ItemUpdateView):
 class TopicMgmtDeleteView(module_views.ItemDeleteView):
     model = models.Topic
     success_message = _("The topic has been deleted")
-    permission_required = 'meinberlin_organisations.initiate_project'
+    permission_required = 'a4projects.add_project'
     template_name = 'meinberlin_topicprio/topic_mgmt_confirm_delete.html'
     menu_item = 'project'
 

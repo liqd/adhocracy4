@@ -1,8 +1,8 @@
-import django_filters
 from django.contrib import messages
 from django.utils.translation import ugettext as _
 from django.views import generic
 
+from adhocracy4.filters import filters as a4_filters
 from adhocracy4.modules import views as module_views
 from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import filters
@@ -19,8 +19,7 @@ def get_ordering_choices(request):
     return choices
 
 
-class ProposalFilterSet(django_filters.FilterSet):
-
+class ProposalFilterSet(a4_filters.PagedFilterSet):
     category = filters.CategoryFilter()
 
     ordering = filters.OrderingFilter(
@@ -59,7 +58,7 @@ class ProposalDetailView(module_views.ItemDetailView):
 class ProposalCreateView(module_views.ItemCreateView):
     model = models.Proposal
     form_class = forms.ProposalForm
-    permission_required = 'meinberlin_budgeting.create_proposal'
+    permission_required = 'meinberlin_budgeting.add_proposal'
     template_name = 'meinberlin_budgeting/proposal_create_form.html'
 
 
@@ -93,5 +92,6 @@ class ProposalModerateView(rules_mixins.PermissionRequiredMixin,
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
+        kwargs['item'] = self.object
         kwargs['creator'] = self.request.user
         return kwargs

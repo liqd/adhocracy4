@@ -31,7 +31,6 @@
             font-weight: bold;
             line-height: 40px;
             margin: 0 auto;
-            text-transform: uppercase;
             color: #fff;
             background-color: #253276;
             border-color: #253276;
@@ -43,43 +42,51 @@
     </style>
   </head>
   <body>
-    <table class="content" width="100%" border="0" cellpadding="0" cellspacing="0">
+    <table class="content" width="100%" border="0" cellpadding="0" cellspacing="0" style="text-align: center;">
       <tr class="header">
-        <td style="text-align: center; padding-top: 20px;">
+        <td style="padding-top: 20px;">
           <img width="15%" src="cid:logo" style="width: 15%;" alt="MeinBerlin" >
         </td>
       </tr>
       <tr>
-          <td style="text-align: center; padding-top:20px;">
+          <td style="padding-top:20px;">
               <h2>{% block headline %}{% endblock %}</h2>
-              <p>{% block content %}{% endblock %}</p>
+          </td>
+      </tr>
+      <tr>
+          <td>
+            {% block content_html %}
+                {% load capture_tags %}
+                {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
+                {{ content|linebreaks }}
+            {% endblock %}
           </td>
       </tr>
       {% block cta %}
       <tr>
-          <td style="text-align: center; padding-top:20px;">
+          <td style="padding-top: 20px;">
               <a href="{% block cta_url %}{% endblock %}" class="button">
                  {% block cta_label %}{% endblock %}
               </a>
           </td>
       </tr>
       {% endblock %}
-      <tr style="text-align: center;">
-          <td style="padding-top:20px;">
-              {% block reason %}{% endblock %}
-          </td>
-      </tr>
       <tr class="footer">
-          <td style="padding-top: 60px;">
+          <td style="padding-top: 20px;">
               <hr />
-              {% trans 'meinBerlin is a participation platform operated by' %}<br />
-              Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin<br />
+              {% block reason %}{% endblock %}
+              <p>
+                  {% trans 'meinBerlin is a participation platform operated by' %}<br />
+                  Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
+              </p>
           </td>
       </tr>
       <tr>
           <td class="footer" style="padding-top: 10px; padding-bottom: 10px;">
-              <a href="{{ email.get_host }}/contact">Contact</a><br />
-              <a href="{{ email.get_host }}/terms-of-use">Terms of use</a>
+              <p>
+                  <a href="{{ email.get_host }}/contact">Contact</a><br />
+                  <a href="{{ email.get_host }}/terms-of-use">Terms of use</a>
+              </p>
           </td>
       </tr>
     </table>

@@ -20,20 +20,25 @@
     @extend .rating-button--small;
 }
 
+// used by adhocracy4 for the follow button, long-term we'd like
+// our own classes.
+.btngroup .btn {
+    @extend .button;
+    @extend .button--light;
+
+    &:first-child {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    &:last-child {
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+    }
+}
+
 // maps usually have a height of 300px in their element style, defined in adhocracy4.
 // However, 300px is not enough for the list view so we add a min-height here instead.
 .map-list [data-map] {
     min-height: 500px;
-}
-
-// used by allauth (login/register)
-.signup > button[type="submit"],
-.primaryAction {
-    @extend .button;
-    @extend .button--primary;
-}
-
-.secondaryAction {
-    @extend .button;
-    @extend .button--secondary;
 }

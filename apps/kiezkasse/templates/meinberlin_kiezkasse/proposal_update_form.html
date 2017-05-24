@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n item_tags %}
+
+{% block title %}Edit {{proposal.name}}{% endblock %}
+{% block content %}
+<div class="l-wrapper">
+    <div class="l-center-6">
+        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+            <ul>
+                <li>
+                    <a href="{% url 'project-detail' proposal.project.slug %}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to project' %}</a>
+                </li>
+                <li>
+                    {% get_item_detail_url object as detail_url %}
+                    <a href="{{ detail_url }}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'back to proposal' %}</a>
+                </li>
+            </ul>
+        </nav>
+
+        <h1>{% trans 'Edit proposal' %}</h1>
+
+        {% include "meinberlin_kiezkasse/includes/proposal_form.html" with proposal=proposal cancel=detail_url %}
+    </div>
+</div>
+{% endblock %}

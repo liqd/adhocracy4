@@ -1,4 +1,5 @@
 {# curl http://www.berlin.de/politik-verwaltung-buerger/ | grep -A 30 'NAVIGATION BEGIN: portal' #}
+{% load i18n %}
 <div class="portal-header">
     <div class="l-wrapper">
         <div class="portal-header__red-line"></div>
@@ -6,7 +7,7 @@
             <img src="//www.berlin.de/i9f/images/berlin_de.png" alt="Zur Homepage von Berlin.de" />
         </a>
 
-        <nav aria-label="Portal Navigation">
+        <nav aria-label="{% trans 'Portal Navigation' %}">
             <ul class="portal-header__nav">
                 <li><a href="http://www.berlin.de/politik-verwaltung-buerger/">Politik, Verwaltung, Bürger</a></li>
                 <li><a href="http://www.berlin.de/kultur-und-tickets/">Kultur &#38; Ausgehen</a></li>

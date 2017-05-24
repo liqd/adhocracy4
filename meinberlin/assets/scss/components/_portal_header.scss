@@ -31,10 +31,11 @@
 .portal-header__logo {
     float: left;
     padding: 7px 0;
-    max-width: 100px;
 
     img {
         vertical-align: bottom;
+        width: 100px;
+        height: 27px;
     }
 }
 
@@ -67,8 +68,9 @@
 }
 
 @media (min-width: $breakpoint) {
-    .portal-header__logo {
-        max-width: 165px;
+    .portal-header__logo img {
+        width: 161px;
+        height: 44px;
     }
 
     .portal-header__nav {

@@ -6,7 +6,7 @@
 
     <button
             type="button"
-            class="dropdown-toggle dropdown-toggle--bordered"
+            class="dropdown-toggle button button--light"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
@@ -31,7 +31,7 @@
         {% endfor %}
 
         <li>
-            <form class="form--inline" action="{% url 'account_logout' %}" method="post">
+            <form class="form--inline" action="{% url 'account_logout' %}" method="post" aria-label="{% trans 'Logout' %}">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ redirect_field_value }}">
                 <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
@@ -43,13 +43,13 @@
 
     <button
             type="button"
-            class="dropdown-toggle dropdown-toggle--bordered"
+            class="dropdown-toggle button button--light"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
             id="login-register"
     >
-        {% trans "Login/Register" %}
+        {% trans "Login" %}/{% trans "Register" %}
         <i class="fa fa-caret-down" aria-hidden="true"></i>
     </button>
     <ul class="dropdown-menu" aria-labelledby="login-register">

@@ -17,6 +17,9 @@ class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
 
 
 class AbstractIdea(module_models.Item, category_models.Categorizable):
+    item_ptr = models.OneToOneField(to=module_models.Item,
+                                    parent_link=True,
+                                    related_name='%(app_label)s_%(class)s')
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(max_length=120)
     description = RichTextField()

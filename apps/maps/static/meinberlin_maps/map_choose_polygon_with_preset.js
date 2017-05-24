@@ -1,4 +1,4 @@
-/* global django */
+/* global django $ */
 
 function createMap (L, baseurl, attribution, e) {
   var basemap = baseurl + '{z}/{x}/{y}.png'
@@ -19,7 +19,10 @@ function getBasePolygon (L, polygon, bbox) {
   }
 }
 
-window.jQuery(document).ready(function () {
+(function (init) {
+  $(init)
+  $(document).on('a4.embed.ready', init)
+})(function () {
   var $ = window.jQuery
   var L = window.L
 

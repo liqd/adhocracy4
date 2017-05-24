@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "User Dashboard" %}{% endblock %}
+{% block title %}{% trans "User Dashboard" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 
@@ -10,27 +10,29 @@
 
         <nav class="menu-layout__menu dashboard-nav" aria-label="{% trans 'User Dashboard navigation' %}">
             <div class="dropdown dashboard-nav__dropdown">
-                {{ request.user.username }}
+                <div class="dashboard-nav__item">
+                    {{ request.user.username }}
+                </div>
             </div>
             {% with request.resolver_match.url_name as url_name %}
                 <ul class="dashboard-nav__pages">
                     <li class="dashboard-nav__page">
-                        <a href="{% url 'account-profile' %}"
-                           class="dashboard-nav__page-link {% ifequal view.menu_item 'profile' %}is-active{% endifequal %}">
+                        <a href="{% url 'account_profile' %}"
+                           class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_profile" %}is-active{% endif %}">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             {% trans 'Profile' %}
                         </a>
                     </li>
                     <li class="dashboard-nav__page">
-                        <a href="{% url 'account-password' %}"
-                           class="dashboard-nav__page-link {% ifequal view.menu_item 'password' %}is-active{% endifequal %}">
+                        <a href="{% url 'account_change_password' %}"
+                           class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_change_password" %}is-active{% endif %}">
                             <i class="fa fa-lock" aria-hidden="true"></i>
                             {% trans 'Change password' %}
                         </a>
                     </li>
                     <li class="dashboard-nav__page">
-                        <a href="{% url 'account-email' %}"
-                           class="dashboard-nav__page-link {% ifequal view.menu_item 'email' %}is-active{% endifequal %}">
+                        <a href="{% url 'account_email' %}"
+                           class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_email" %}is-active{% endif %}">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                             {% trans 'Email addresses' %}
                         </a>

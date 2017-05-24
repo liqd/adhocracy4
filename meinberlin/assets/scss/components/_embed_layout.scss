@@ -1,0 +1,55 @@
+html.embed {
+    margin: 0;
+    padding: 0;
+    background: white;
+    overflow: auto;
+}
+
+html.embed body {
+    margin: 0;
+    padding: 0;
+    border-left: 5px solid $bg-tertiary;
+    border-right: 5px solid $bg-tertiary;
+    max-width: none;
+
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.embed-header,
+.embed-footer {
+    position: relative;
+    background: $bg-tertiary;
+    padding: 5px 0;
+    text-align: right;
+    font-size: $font-size-sm;
+}
+
+.embed-header .button {
+    margin-left: 0.5em;
+}
+
+.embed-main {
+    position: relative;
+    flex: 1;
+    box-sizing: border-box;
+    padding-bottom: 1em;
+    overflow: auto;
+    overflow-y: scroll;
+    background: white;
+}
+
+.embed-footer a {
+    text-decoration: underline;
+    color: contrast-color($bg-tertiary);
+}
+
+.embed-footer__logo {
+    float: left;
+}
+
+.embed-footer__platform-link {
+    padding: 0.4em 0;
+    display: inline-block;
+}

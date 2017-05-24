@@ -1,18 +1,25 @@
 {% extends "base.html" %}
-{% load i18n thumbnail wagtailcore_tags %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags dashboard_tags %}
 
-{% block title %}{{view.project.name}}{% endblock %}
+{% block title %}{{view.project.name}} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-<div class="resource-header{% if view.project.image %} resource-header--image{% endif %}" style="{% if view.project.image %}
+<div class="project-header{% if view.project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
                background-image: url({{ view.project.image |thumbnail_url:'heroimage' }});
                {% endif %}">
     <div class="l-wrapper">
         <div class="l-center-6">
-            <div class="resource-header__type">{{ view.project.typ }}</div>
-            <h1 class="resource-header__title">{{ view.project.name }}</h1>
-            <div class="resource-header__action">
+            <div class="project-header__type">{{ view.project.typ|get_blueprint_title }}</div>
+            <h1 class="project-header__title">{{ view.project.name }}</h1>
+            <div class="project-header__action">
                 {% block project_action %}{% endblock %}
+                {% if request.user.is_authenticated %}
+                    {% react_follows view.project %}
+                {% endif %}
+                {% has_perm 'meinberlin_projects.add_project' request.user view.project as user_may_change %}
+                {% if user_may_change %}
+                    <a href="{% url 'dashboard-project-edit' view.project.slug %}" class="button button--light">{% trans 'Edit' %}</a>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -84,7 +91,11 @@
     aria-expanded="false">
     <div class="l-wrapper">
         <div class="l-center-8">
-            {{ view.project.result | richtext }}
+            {% if view.project.result %}
+                {{ view.project.result | richtext }}
+            {% else %}
+                {% trans 'No results yet.' %}
+            {% endif %}
         </div>
     </div>
 </div>

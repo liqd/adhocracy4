@@ -10,6 +10,12 @@
     <link type="text/css" href="{% static 'leaflet.css'%}" rel="stylesheet" />
 {% endblock %}
 
+{% block additional_labels %}
+    {% if object.point_label %}
+        <span class="label label--big"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ object.point_label }}</span>
+    {% endif %}
+{% endblock %}
+
 {% block additional_content %}
     {% if object.point %}
         {% map_display_point object.point object.module.areasettings_settings.polygon %}

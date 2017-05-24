@@ -1,9 +1,16 @@
 import rules
 
+from rules.predicates import is_superuser
+
 from adhocracy4.modules import predicates as module_predicates
 
 from . import models
 
+
+rules.add_perm(
+    'meinberlin_polls.change_poll',
+    is_superuser | module_predicates.is_context_initiator
+)
 
 rules.add_perm(
     'meinberlin_polls.view_poll',
@@ -16,6 +23,11 @@ rules.add_perm(
 )
 
 rules.add_perm(
-    'meinberlin_polls.cast_vote',
+    'meinberlin_polls.add_vote',
+    module_predicates.is_allowed_add_item(models.Vote)
+)
+
+rules.add_perm(
+    'meinberlin_polls.change_vote',
     module_predicates.is_allowed_add_item(models.Vote)
 )

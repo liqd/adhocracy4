@@ -1,18 +1,31 @@
 {% extends "meinberlin_dashboard/base_dashboard.html" %}
-{% load i18n %}
+{% load i18n widget_tweaks %}
+
+{% block title %}{% trans 'Moderators' %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_content %}
+    {% include 'meinberlin_dashboard/includes/project_update_breadcrumbs.html' %}
+
     <h1>{{ project.name }}</h1>
     <h2>{% trans 'Moderators' %}</h2>
     <form method="POST">
         {% csrf_token %}
-        <div class="form--single-line">
-            <div class="l-col-2">
-                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.add_moderators %}
+        <div class="form-group">
+            <label for="{{ form.add_moderators.id_for_label }}">
+                {% trans form.add_moderators.label %}
+            </label>
+            {% if form.add_moderators.help_text %}
+            <div class="form-hint">
+                {% trans form.add_moderators.help_text %}
             </div>
-            <div class="l-col-2">
-                <input type="submit" class="button button--secondary" value="{% trans 'Add' %}"/>
+            {% endif %}
+            <div class="button-group input-action">
+                <div class="input-action__input widget widget--{{ form.add_moderators|widget_type }}">
+                    {{ form.add_moderators }}
+                </div>
+                <input type="submit" class="button button--primary input-action__action" value="{% trans 'Add' %}"/>
             </div>
+            {{ form.add_moderators.errors }}
         </div>
     </form>
 
@@ -21,7 +34,7 @@
             <thead>
                 <tr>
                     <th>{% trans 'Name' %}</th>
-                    <th>{% trans 'E-Mail' %}</th>
+                    <th>{% trans 'Email' %}</th>
                     <th><span class="sr-only">{% trans 'Remove' %}</span></th>
                 </tr>
             </thead>

@@ -9,7 +9,7 @@ class CommaSeparatedEmailField(Field):
     default_validators = [RegexValidator(
         # a list of emails, separated by commas with optional space after
         regex=r'^([^@]+@[^@\s]+\.[^@\s,]+((,\s?)|$))+$',
-        message=_('Please enter correct e-mail addresses, separated by '
+        message=_('Please enter correct email addresses, separated by '
                   'commas.')
     )]
 

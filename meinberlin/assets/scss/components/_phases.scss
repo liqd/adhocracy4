@@ -25,7 +25,7 @@
             top: 0;
             bottom: 0;
 
-            background-color: $brand-secondary;
+            background-color: $brand-primary;
         }
 
         &:last-child {
@@ -72,6 +72,5 @@
 }
 
 .phase-info__subtitle {
-    font-size: $font-size-lg;
     margin-bottom: 0.5rem;
 }

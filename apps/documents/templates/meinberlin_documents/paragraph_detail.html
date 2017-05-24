@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% load i18n react_comments react_ratings wagtailcore_tags %}
 
+{% block title %}{{ paragraph.name }} &mdash; {{ paragraph.document.project.name }} &mdash; {{ block.super }}{% endblock %}
+
 {% block content %}
 <div class="l-wrapper">
-    <div class="resource-navigation">
-        <nav class="resource-navigation__breadcrumbs breadcrumbs">
+    <div class="l-center-6">
+        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
             <ul>
                 <li>
                     <a href="{% url 'project-detail' paragraph.document.module.project.slug %}">
@@ -13,18 +15,19 @@
                 </li>
             </ul>
         </nav>
+
+        <article class="item-detail">
+            <h1 class="item-detail__title">
+                {{ paragraph.name }}
+            </h1>
+            <div class="item-detail__content">
+                {{ paragraph.text | richtext }}
+            </div>
+        </article>
     </div>
 
-    <article class="paragraph">
-        <h1 class="paragraph-title">
-            {{ paragraph.name }}
-        </h1>
-        <div class="paragraph-body">
-            {{ paragraph.text | richtext }}
-        </div>
-    </article>
-
-    {% react_comments paragraph %}
-
+    <div class="l-center-6">
+        {% react_comments paragraph %}
+    </div>
 </div>
 {% endblock %}

@@ -14,25 +14,27 @@
 {% block project_action %}
     {% has_perm 'meinberlin_mapideas.create_idea' request.user view.module as propose_allowed %}
     {% if propose_allowed %}
-        <a href="{% url 'meinberlin_mapideas:mapidea-create' slug=view.module.slug %}" class="button button--huge">
+        <a href="{% url 'meinberlin_mapideas:mapidea-create' slug=view.module.slug %}" class="button">
             {% trans 'Submit Idea' %}
         </a>
     {% endif %}
 {% endblock %}
 
 {% block phase_content %}
-    {% if view.mode == 'map' %}
+    <div class="filter-bar__top-overlap">
         <div class="l-wrapper">
             <div class="l-center-8">
                 {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
             </div>
         </div>
+    </div>
+    {% if view.mode == 'map' %}
         <div class="map-list">
             <div class="map-list__controls">
                 <div class="l-wrapper">
                     <div class="leaflet-control-zoom leaflet-bar leaflet-control">
-                        <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="Zoom in">+</a>
-                        <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="Zoom out">-</a>
+                        <a class="leaflet-control-zoom-in" id="zoom-in" href="#" title="{% trans 'Zoom in' %}">+</a>
+                        <a class="leaflet-control-zoom-out leaflet-disabled" id="zoom-out" href="#" title="{% trans 'Zoom out' %}">-</a>
                     </div>
                 </div>
             </div>
@@ -42,7 +44,6 @@
         <div class="list list--highlight">
             <div class="l-wrapper">
                 <div class="l-center-8">
-                    {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
 
                     <div class="list__container">
                         {% for object in object_list %}

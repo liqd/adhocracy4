@@ -1,10 +1,12 @@
 {% load i18n %}
 <div>
     <div class="popover__subtitle">
-        {% trans "Phase" %} {{  phase_num }} {% trans "of" %} {{ phase_count }}
+        {% blocktrans %}Phase {{ phase_num }} of {{ phase_count }}{% endblocktrans %}
     </div>
     <div class="popover__text">
-        {% trans "from" %} {{  phase.start_date }}<br>
-        {% trans "to" %} {{  phase.end_date }}
+        {% blocktrans with start=phase.start_date end=phase.end_date %}
+            from {{ start }}<br>
+            to {{ end }}
+        {% endblocktrans%}
     </div>
 </div>

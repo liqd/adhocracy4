@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Statement sent' %} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="l-wrapper">
+    <div class="l-center-6">
+        <h1>{% trans 'Statement sent' %}</h1>
+
+        <p>
+            {% trans 'Thanks! Your statement has been sent! An answer will be send to your email address.' %}
+        </p>
+    </div>
+</div>
+{% endblock %}

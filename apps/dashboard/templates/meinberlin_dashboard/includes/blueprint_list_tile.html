@@ -1,9 +1,7 @@
 {% load i18n static %}
 
 <div class="tile">
-    <div class="tile__image">
-        <img src="{% static blueprint.image %}" alt="">
-    </div>
+    <div class="tile__image tile__image--contained" style="background-image: url({% static blueprint.image %})"></div>
     <div class="tile__body">
         <h3 class="tile__title">{{ blueprint.title }}</h3>
         <div class="tile__text">
@@ -15,15 +13,10 @@
                 {% endfor %}
             </ul>
         </div>
-        {% if blueprint_slug == 'external-project' %}
-            <a href="{% url 'dashboard-external-project-create' organisation_slug=view.organisation.slug %}" class="button">
-                {% trans 'Select'%}
-            </a>
-        {% else %}
-            <a href="{% url 'dashboard-project-create' organisation_slug=view.organisation.slug blueprint_slug=blueprint_slug %}"
-               class="button">
-                {% trans 'Select'%}
-            </a>
-        {% endif %}
+
+        <a href="{% url 'dashboard-project-create' organisation_slug=view.organisation.slug blueprint_slug=blueprint_slug %}"
+           class="button">
+            {% trans 'Select'%}
+        </a>
     </div>
 </div>

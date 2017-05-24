@@ -5,11 +5,15 @@
 .block--cta {
     padding: 2.8em 0;
 
-    background-color: $brand-primary;
-    color: contrast-color($brand-primary);
+    background-color: $brand-secondary;
+    color: contrast-color($brand-secondary);
     text-align: center;
 
     .rich-text > :first-child {
         margin-top: 0;
     }
+}
+
+.block__actions {
+    text-align: center;
 }

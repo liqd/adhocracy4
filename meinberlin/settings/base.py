@@ -26,6 +26,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
@@ -50,6 +51,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'ckeditor',
     'ckeditor_uploader',
+    'capture_tag',
 
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
@@ -61,23 +63,29 @@ INSTALLED_APPS = (
     'adhocracy4.comments.apps.CommentsConfig',
     'adhocracy4.categories.apps.CategoriesConfig',
     'adhocracy4.maps.apps.MapsConfig',
+    'adhocracy4.actions.apps.ActionsConfig',
+    'adhocracy4.follows.apps.FollowsConfig',
 
     'apps.contrib.apps.Config',
     'apps.cms.apps.Config',
     'apps.users.apps.Config',
     'apps.projects.apps.Config',
     'apps.organisations.apps.Config',
-    'apps.dashboard.apps.Config',
     'apps.embed.apps.Config',
     'apps.moderatorfeedback.apps.Config',
-    'apps.extprojects.apps.Config',
-    'apps.account.apps.Config',
     'apps.maps.apps.Config',
+    'apps.notifications.apps.Config',
     'apps.servicekonto.apps.Config',
 
-    'apps.ideas.apps.Config',
-    'apps.documents.apps.Config',
+    'apps.account.apps.Config',
+    'apps.dashboard.apps.Config',
+
+    'apps.bplan.apps.Config',
     'apps.budgeting.apps.Config',
+    'apps.documents.apps.Config',
+    'apps.extprojects.apps.Config',
+    'apps.ideas.apps.Config',
+    'apps.kiezkasse.apps.Config',
     'apps.mapideas.apps.Config',
     'apps.polls.apps.Config',
     'apps.topicprio.apps.Config',
@@ -104,7 +112,7 @@ SITE_ID = 1
 
 ROOT_URLCONF = 'meinberlin.urls'
 
-LOCALE_PATHS = [os.path.join(PROJECT_DIR, 'locale')]
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
 TEMPLATES = [
     {
@@ -146,7 +154,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Berlin'
 
 USE_I18N = True
 
@@ -221,9 +229,15 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 
+LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = '/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'apps.users.hashers.A2PasswordHasher',
+]
 
 # Service Konto
 SERVICE_KONTO_LOGIN_URL = 'https://skbref.verwalt-berlin.de/skb/FVS/Login/Anmeldung.aspx'
@@ -296,6 +310,7 @@ A4_RATEABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_kiezkasse', 'proposal'),
 )
 
 A4_COMMENTABLES = (
@@ -306,6 +321,8 @@ A4_COMMENTABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_polls', 'poll'),
+    ('meinberlin_kiezkasse', 'proposal'),
 )
 
 A4_REPORTABLES = (
@@ -314,6 +331,25 @@ A4_REPORTABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_kiezkasse', 'proposal'),
+)
+A4_AUTO_FOLLOWABLES = (('a4comments', 'comment'),)
+
+A4_ACTIONABLES = (
+    ('a4comments', 'comment'),
+    ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_kiezkasse', 'proposal'),
+)
+
+A4_AUTO_FOLLOWABLES = (
+    ('a4comments', 'comment'),
+    ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_kiezkasse', 'proposal'),
+    ('meinberlin_polls', 'vote'),  # TODO: really?
 )
 
 A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'

@@ -155,7 +155,7 @@ var ParagraphBox = React.createClass({
       <form onSubmit={this.submitDocument}>
         <div className="form-group">
           <label>
-            {django.gettext('Title:')}
+            {django.gettext('Title')}
             <input
               type="text"
               defaultValue={this.state.name}
@@ -193,14 +193,14 @@ var ParagraphBox = React.createClass({
           className="button button--full"
           onClick={this.appendParagraph}
           type="button">
-          <i className="fa fa-plus" /> {django.gettext('add a new paragraph')}
+          <i className="fa fa-plus" /> {django.gettext('Add a new paragraph')}
         </button>
         { this.state.successMessage
           ? <p className="alert alert-success ">
             {this.state.successMessage}
           </p> : null
         }
-        <button type="submit" className="button button--primary">{django.gettext('save')}</button>
+        <button type="submit" className="button button--primary">{django.gettext('Save')}</button>
       </form>
     )
   }

@@ -1,0 +1,24 @@
+{% load i18n %}
+<form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+    {% csrf_token %}
+    {{ form.media }}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.budget %}
+
+    {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.creator_contribution %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point_label %}
+
+    {% if form.show_categories %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.category %}
+    {% endif %}
+
+    <input type="submit" class="button button--primary" value="{% trans 'Save'%}" />
+    <a href="{{ cancel }}" class="button button--light">{% trans 'Cancel'%}</a>
+</form>

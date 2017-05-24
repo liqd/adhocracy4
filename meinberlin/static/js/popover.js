@@ -1,5 +1,8 @@
 /* global $ */
-$(function () {
+(function (init) {
+  $(init)
+  $(document).on('a4.embed.ready', init)
+})(function () {
   $('[data-toggle="popover"]').popover()
 })
 

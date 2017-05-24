@@ -70,7 +70,7 @@ var Paragraph = React.createClass({
           className="button button--full"
           onClick={this.add}
           type="button">
-          <i className="fa fa-plus" /> {django.gettext('add a new paragraph')}
+          <i className="fa fa-plus" /> {django.gettext('Add a new paragraph')}
         </button>
 
         <div className="commenting">
@@ -78,7 +78,7 @@ var Paragraph = React.createClass({
             <div className="form-group">
               <label
                 htmlFor={'id_paragraphs-' + this.props.id + '-name'}>
-                {django.gettext('Headline:')}
+                {django.gettext('Headline')}
               </label>
               <input
                 className="form-control"
@@ -97,7 +97,7 @@ var Paragraph = React.createClass({
             <div className="form-group">
               <label
                 htmlFor={'id_paragraphs-' + this.props.id + '-text'}>
-                {django.gettext('Paragraph:')}
+                {django.gettext('Paragraph')}
               </label>
               <div
                 className="django-ckeditor-widget"

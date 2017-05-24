@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('last_login', models.DateTimeField(verbose_name='last login', null=True, blank=True)),
                 ('is_superuser', models.BooleanField(help_text='Designates that this user has all permissions without explicitly assigning them.', verbose_name='superuser status', default=False)),
                 ('username', models.CharField(help_text='Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only.', validators=[django.core.validators.RegexValidator('^[\\w]+[ \\w.@+-]*$', 'Enter a valid username. This value may contain only letters, digits, spaces and @/./+/-/_ characters. It must start with a digit or a letter.', 'invalid')], verbose_name='username', error_messages={'unique': 'A user with that username already exists.'}, max_length=60, unique=True)),
-                ('email', models.EmailField(verbose_name='email address', error_messages={'unique': 'A user with that email address already exists.'}, max_length=254, unique=True)),
+                ('email', models.EmailField(verbose_name='Email address', error_messages={'unique': 'A user with that email address already exists.'}, max_length=254, unique=True)),
                 ('is_staff', models.BooleanField(help_text='Designates whether the user can log into this admin site.', verbose_name='staff status', default=False)),
                 ('is_active', models.BooleanField(help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active', default=True)),
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now, editable=False)),

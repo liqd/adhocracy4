@@ -1,70 +1,72 @@
 {% extends "base.html" %}
-{% load i18n rules react_comments react_ratings react_reports wagtailcore_tags item_tags %}
+{% load i18n rules react_comments module_tags react_ratings react_reports wagtailcore_tags item_tags %}
 
-{% block title %}{{object.name}}{% endblock %}
+{% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
 {% block content %}
-    <div class="resource-navigation">
-        <div class="l-wrapper">
-            <nav class="resource-navigation__breadcrumbs breadcrumbs">
-                <ul>
-                    <li>
-                        <a href="{% url 'project-detail' object.project.slug %}">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                            {% trans 'back to project' %}</a>
-                    </li>
-                </ul>
-            </nav>
+<div class="l-wrapper">
+    <div class="l-center-6">
+        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+            <ul>
+                <li>
+                    <a href="{% url 'project-detail' object.project.slug %}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {{ object.project.name }}
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-            {% if request.user.is_authenticated %}
-                <div class="resource-navigation__actions dropdown dropdown--right">
-                    <button
-                            title="{% trans 'Actions' %}"
-                            type="button"
-                            class="dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            id="topic-{{object.pk}}-actions"
-                    >
-                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="topic-{{object.pk}}-actions">
-                        <li>
-                            {% trans 'Report' as report_text %}
-                            {% react_reports object text=report_text class='dropdown-item' %}
-                        </li>
-                    </ul>
-                </div>
-            {% endif %}
-        </div>
-    </div>
+        <div class="item-detail">
+            <h1 class="item-detail__title">{{ object.name }}</h1>
 
-    <div class="resource-header">
-        <div class="l-wrapper">
-            <div class="l-center-6">
-                <h1 class="resource-header__title">{{ object.name }}</h1>
-
+            <div class="item-detail__labels">
                 {% if object.category %}
-                    <div class="resource-header__meta">
-                        <div class="label label--big">{{ object.category }}</div>
+                    <div class="label label--big">{{ object.category }}</div>
+                {% endif %}
+                {% block additional_labels %}{% endblock %}
+            </div>
+
+            <div class="item-detail__content">
+                {{ object.description | richtext }}
+
+                {% block additional_content %}{% endblock %}
+            </div>
+
+            <div class="item-detail__meta">
+                <strong class="item-detail__creator">{{ object.creator.username }}</strong>
+                {{ object.created|date }}
+            </div>
+
+            <div class="item-detail__actions lr-bar">
+                {% if object|has_feature:"rate" %}
+                    <div class="lr-bar__left">
+                        {% react_ratings object %}
                     </div>
                 {% endif %}
-
-                <div class="resource-header__action">
-                    {% react_ratings object %}
-                </div>
-
+                {% if request.user.is_authenticated %}
+                    <div class="lr-bar__right dropdown dropdown--right">
+                        <button
+                                title="{% trans 'Actions' %}"
+                                type="button"
+                                class="dropdown-toggle"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                id="topic-{{object.pk}}-actions"
+                        >
+                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="topic-{{object.pk}}-actions">
+                            <li>
+                                {% trans 'Report' as report_text %}
+                                {% react_reports object text=report_text class='dropdown-item' %}
+                            </li>
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
+            {% react_comments object %}
         </div>
     </div>
-
-    <div class="l-wrapper">
-        <div class="l-center-6">
-            {{ object.description | richtext }}
-        </div>
-    </div>
-
-    <div class="l-wrapper">
-        {% react_comments object %}
-    </div>
+</div>
 {% endblock %}
