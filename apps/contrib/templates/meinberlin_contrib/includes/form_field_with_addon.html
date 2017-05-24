@@ -11,11 +11,11 @@
     {% endif %}
     <div class="widget widget--{{ field|widget_type }} input-addon">
         {% if before %}
-            <span class="input-addon__addon addon">{{ before }}</span>
+            <span class="input-addon__before addon">{{ before }}</span>
         {% endif %}
         {{ field|add_class:'input-addon__input' }}
         {% if after %}
-            <span class="input-addon__addon addon">{{ after }}</span>
+            <span class="input-addon__after addon">{{ after }}</span>
         {% endif %}
     </div>
     {{ field.errors }}
