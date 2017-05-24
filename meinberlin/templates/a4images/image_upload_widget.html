@@ -8,13 +8,13 @@
                 <label for="{{ checkbox_id }}"
                     class="button button--danger"
                     title="{% trans 'Remove the picture' %}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <i class="fa fa-trash" aria-label="{% trans 'Remove the picture' %}"></i>
                 </label>
             {% else %}
                 <label for="{{ name }}"
                     class="button"
                     title="{% trans 'Upload a picture' %}">
-                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                    <i class="fa fa-cloud-upload" aria-label="{% trans 'Upload a picture' %}"></i>
                 </label>
             {% endif %}
         </span>
