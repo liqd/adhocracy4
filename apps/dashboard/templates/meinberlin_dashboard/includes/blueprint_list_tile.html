@@ -9,7 +9,7 @@
 
             <ul>
                 {% for phase_content in blueprint.content %}
-                    <li><strong>Phase {{ forloop.counter }}</strong>: {{ phase_content.description }}</li>
+                    <li><strong>{% trans 'Phase' %} {{ forloop.counter }}</strong>: {{ phase_content.description }}</li>
                 {% endfor %}
             </ul>
         </div>
