@@ -49,6 +49,12 @@ class ProjectSelectionBlock(blocks.ChooserBlock):
             return value.pk
         return value
 
+    def value_from_form(self, value):
+        # if project became unavailable (unpublished), selection will become an
+        # empty string and cause a server error on save, so we give a fallback
+        value = value or None
+        return super().value_from_form(value)
+
 
 class ProjectsWrapperBlock(blocks.StructBlock):
     title = blocks.CharBlock(max_length=80)
