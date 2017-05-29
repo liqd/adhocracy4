@@ -47,8 +47,8 @@
                             <form method="post">
                                 {% csrf_token %}
                                 <input type="hidden" name="moderator_pk" value="{{ moderator.pk }}">
-                                <button type="submit" name="submit_action" value="remove_moderator" aria-label="{% trans 'Remove' %}">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                <button type="submit" name="submit_action" value="remove_moderator" title="{% trans 'Remove' %}">
+                                    <i class="fa fa-times" aria-label="{% trans 'Remove' %}"></i>
                                 </button>
                             </form>
                         </td>

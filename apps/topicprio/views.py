@@ -1,11 +1,9 @@
-import django_filters
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 
-
+from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
-from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.modules import views as module_views
 from adhocracy4.rules import mixins as rules_mixins
 
@@ -16,7 +14,7 @@ from . import forms
 from . import models
 
 
-class TopicFilterSet(DefaultsFilterSet):
+class TopicFilterSet(a4_filters.DefaultsFilterSet):
 
     defaults = {
         'ordering': '-positive_rating_count'
@@ -54,7 +52,7 @@ class TopicDetailView(module_views.ItemDetailView):
     permission_required = 'meinberlin_topicprio.view_topic'
 
 
-class TopicCreateFilterSet(django_filters.FilterSet):
+class TopicCreateFilterSet(a4_filters.PagedFilterSet):
 
     category = filters.CategoryFilter()
 

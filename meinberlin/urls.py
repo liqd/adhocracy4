@@ -35,6 +35,7 @@ from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
 from apps.projects import urls as projects_urls
 from apps.topicprio import urls as topicprio_urls
+from apps.users import urls as users_urls
 
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
@@ -61,6 +62,7 @@ urlpatterns = [
     url(r'^dashboard/', include(dashboard_urls)),
     url(r'^account/', include(account_urls)),
     url(r'^embed/', include(embed_urls)),
+    url(r'^profile/', include(users_urls)),
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^accounts/', include(allauth_urls)),

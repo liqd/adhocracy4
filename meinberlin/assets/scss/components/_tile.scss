@@ -14,7 +14,13 @@
     min-height: 11.8em;
 
     background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
     background-color: $brand-secondary;
+}
+
+.tile__image--contained {
+    background-size: contain;
 }
 
 .tile__image--shadowed {

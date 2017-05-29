@@ -59,7 +59,9 @@ def test_initiator_add_bplan(apiclient, organisation):
 
 
 @pytest.mark.django_db
-def test_initiator_update_bplan(apiclient, bplan):
+def test_initiator_update_bplan(apiclient, bplan, phase):
+    phase.module.project = bplan
+    phase.module.save()
     url = reverse(
         'bplan-detail',
         kwargs={
@@ -85,8 +87,10 @@ def test_initiator_update_bplan(apiclient, bplan):
 
 
 @pytest.mark.django_db
-def test_initiator_update_bplan_field(apiclient, bplan_factory):
+def test_initiator_update_bplan_field(apiclient, bplan_factory, phase):
     bplan = bplan_factory(is_draft=False)
+    phase.module.project = bplan
+    phase.module.save()
     assert bplan.is_draft is False
     url = reverse(
         'bplan-detail',
@@ -104,6 +108,32 @@ def test_initiator_update_bplan_field(apiclient, bplan_factory):
     assert response.status_code == status.HTTP_200_OK
     bplan = bplan_models.Bplan.objects.first()
     assert bplan.is_draft is True
+
+
+@pytest.mark.django_db
+def test_initiator_update_bplan_phase(apiclient, bplan_factory, phase):
+    bplan = bplan_factory(is_draft=False)
+    phase.module.project = bplan
+    phase.module.save()
+    assert bplan.is_draft is False
+    url = reverse(
+        'bplan-detail',
+        kwargs={
+            'organisation_pk': bplan.organisation.pk,
+            'pk': bplan.pk
+        }
+    )
+    data = {
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
+    }
+    user = bplan.organisation.initiators.first()
+    apiclient.force_authenticate(user=user)
+    response = apiclient.patch(url, data, format='json')
+    assert response.status_code == status.HTTP_200_OK
+    phase = phase_models.Phase.objects.get(module=phase.module)
+    assert phase.start_date == parse("2013-01-01 17:00:00 UTC")
+    assert phase.end_date == parse("2021-01-01 17:00:00 UTC")
 
 
 @pytest.mark.django_db
