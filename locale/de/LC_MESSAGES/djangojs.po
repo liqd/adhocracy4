@@ -176,7 +176,7 @@ msgstr "Speichern"
 
 #: apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:108
 msgid "Do you want to load this preset and delete all the existing polygons?"
-msgstr "Möchten Sie diesen Bereich auswählen und alle vorher ausgewählten entfernen?"
+msgstr "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten entfernen?"
 
 #: apps/polls/assets/ChoiceForm.jsx:22
 msgid "Choice"
@@ -242,7 +242,7 @@ msgstr "Wir konnten diese Seite nicht finden."
 
 #: meinberlin/static/embed.js:169
 msgid "You don't have the permission to view this page."
-msgstr "Sie haben nicht die nötigen Rechte."
+msgstr "Sie haben nicht die nötigen Rechte, um diese Seite anzuschauen."
 
 #: meinberlin/static/embed.js:172
 msgid "Something went wrong!"
@@ -252,5 +252,5 @@ msgstr "Etwas ging schief!"
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
-msgstr "Sie haben Third Party Cookies deaktiviert. Sie können Sich trotzdem "
-"dieses Projekt anschauen, werden aber nicht in der Lage dazu sein, sich anzumelden."
+msgstr "Sie haben Third Party Cookies deaktiviert. Sie können sich dieses "
+"Projekt zwar anschauen, werden sich aber nicht anmelden können."
