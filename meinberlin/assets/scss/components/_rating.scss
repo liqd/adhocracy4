@@ -23,10 +23,6 @@
     }
 }
 
-.rating-button--small {
-    padding: 0.3em 0.6em;
-}
-
 @mixin rating-button($color) {
     color: $color;
     padding: 0.65em 1.2em;

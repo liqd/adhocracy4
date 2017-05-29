@@ -19,11 +19,11 @@
                 {% trans form.add_moderators.help_text %}
             </div>
             {% endif %}
-            <div class="button-group input-action">
-                <div class="input-action__input widget widget--{{ form.add_moderators|widget_type }}">
+            <div class="button-group input-addon">
+                <div class="input-addon__input widget widget--{{ form.add_moderators|widget_type }}">
                     {{ form.add_moderators }}
                 </div>
-                <input type="submit" class="button button--primary input-action__action" value="{% trans 'Add' %}"/>
+                <input type="submit" class="button button--primary input-addon__after" value="{% trans 'Add' %}"/>
             </div>
             {{ form.add_moderators.errors }}
         </div>
@@ -47,8 +47,8 @@
                             <form method="post">
                                 {% csrf_token %}
                                 <input type="hidden" name="moderator_pk" value="{{ moderator.pk }}">
-                                <button type="submit" name="submit_action" value="remove_moderator" aria-label="{% trans 'Remove' %}">
-                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                <button type="submit" name="submit_action" value="remove_moderator" title="{% trans 'Remove' %}">
+                                    <i class="fa fa-times" aria-label="{% trans 'Remove' %}"></i>
                                 </button>
                             </form>
                         </td>

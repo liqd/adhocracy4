@@ -21,12 +21,14 @@
 {% endblock %}
 
 {% block phase_content %}
-    {% if view.mode == 'map' %}
+    <div class="filter-bar__top-overlap">
         <div class="l-wrapper">
             <div class="l-center-8">
                 {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
             </div>
         </div>
+    </div>
+    {% if view.mode == 'map' %}
         <div class="map-list">
             <div class="map-list__controls">
                 <div class="l-wrapper">
@@ -42,7 +44,6 @@
         <div class="list list--highlight">
             <div class="l-wrapper">
                 <div class="l-center-8">
-                    {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
 
                     <div class="list__container">
                         {% for object in object_list %}

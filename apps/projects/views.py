@@ -54,8 +54,8 @@ class TypeWidget(DropdownLinkWidget):
 
     def __init__(self, attrs=None):
         choices = (('', _('Any')),)
-        for blueprintname, blueprint in blueprints.blueprints:
-            choices += (blueprint.title, blueprint.title),
+        for blueprint_key, blueprint in blueprints.blueprints:
+            choices += (blueprint_key, blueprint.title),
         super().__init__(attrs, choices)
 
 

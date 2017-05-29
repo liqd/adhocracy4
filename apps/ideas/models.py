@@ -3,6 +3,7 @@ from ckeditor.fields import RichTextField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
 from adhocracy4.categories import models as category_models
@@ -21,8 +22,8 @@ class AbstractIdea(module_models.Item, category_models.Categorizable):
                                     parent_link=True,
                                     related_name='%(app_label)s_%(class)s')
     slug = AutoSlugField(populate_from='name', unique=True)
-    name = models.CharField(max_length=120)
-    description = RichTextField()
+    name = models.CharField(max_length=120, verbose_name=_('Name'))
+    description = RichTextField(verbose_name=_('Description'))
     ratings = GenericRelation(rating_models.Rating,
                               related_query_name='idea',
                               object_id_field='object_pk')

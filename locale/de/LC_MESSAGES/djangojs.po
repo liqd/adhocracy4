@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-22 13:51+0200\n"
+"POT-Creation-Date: 2017-05-29 13:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr "Letzte Änderung am"
 #: adhocracy4/comments/static/comments/Comment.jsx:112
 #: adhocracy4/comments/static/comments/Comment.jsx:112
 msgid "Moderator"
-msgstr ""
+msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:119
 #: adhocracy4/reports/static/reports/react_reports.jsx:21
@@ -123,12 +123,12 @@ msgstr "Antworten"
 #: adhocracy4/follows/static/follows/FollowButton.jsx:42
 #: adhocracy4/follows/static/follows/FollowButton.jsx:42
 msgid "Unfollow"
-msgstr ""
+msgstr "Entfolgen"
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:42
 #: adhocracy4/follows/static/follows/FollowButton.jsx:42
 msgid "Follow"
-msgstr ""
+msgstr "Folgen"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:63
 #: adhocracy4/reports/static/reports/ReportModal.jsx:63
@@ -140,116 +140,121 @@ msgstr "Ihre Nachricht hier"
 msgid "Send Report"
 msgstr "Meldung senden"
 
-#: apps/contrib/static/js/Alert.jsx:10 meinberlin/static/embed.js:25
+#: apps/contrib/static/js/Alert.jsx:10 apps/contrib/static/js/Alert.jsx:11
+#: meinberlin/static/embed.js:30 meinberlin/static/embed.js:31
 msgid "Close"
 msgstr "Schließen"
 
 #: apps/documents/assets/Paragraph.jsx:73
 #: apps/documents/assets/ParagraphBox.jsx:196
 msgid "Add a new paragraph"
-msgstr ""
+msgstr "Neuer Absatz"
 
 #: apps/documents/assets/Paragraph.jsx:81
 msgid "Headline"
-msgstr ""
+msgstr "Überschrift"
 
 #: apps/documents/assets/Paragraph.jsx:100
 msgid "Paragraph"
-msgstr ""
+msgstr "Absatz"
 
 #: apps/documents/assets/ParagraphBox.jsx:135
 msgid "Your document has been updated."
-msgstr ""
+msgstr "Ihr Dokument wurde aktualisiert."
 
 #: apps/documents/assets/ParagraphBox.jsx:146
 msgid "Your document has been saved."
-msgstr ""
+msgstr "Ihr Dokument wurde gespeichert."
 
 #: apps/documents/assets/ParagraphBox.jsx:158
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: apps/documents/assets/ParagraphBox.jsx:203
 #: apps/polls/assets/PollManagement.jsx:222
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:108
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr ""
+"Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
+"entfernen?"
 
 #: apps/polls/assets/ChoiceForm.jsx:22
 msgid "Choice"
-msgstr ""
+msgstr "Auswahl"
 
-#: apps/polls/assets/ChoiceForm.jsx:35
+#: apps/polls/assets/ChoiceForm.jsx:35 apps/polls/assets/ChoiceForm.jsx:38
 msgid "remove"
-msgstr ""
+msgstr "entfernen"
 
 #: apps/polls/assets/PollManagement.jsx:163
 msgid "The poll has been updated."
-msgstr ""
+msgstr "Die Umfrage wurde aktualisiert."
 
 #: apps/polls/assets/PollManagement.jsx:177
 msgid "The poll could not be updated."
-msgstr ""
+msgstr "Die Umfrage konnte nicht aktualisiert werden."
 
 #: apps/polls/assets/PollManagement.jsx:216
 msgid "Add a new question"
-msgstr ""
+msgstr "Neue Frage"
 
 #: apps/polls/assets/Question.jsx:79
 msgid "Vote counted"
-msgstr ""
+msgstr "Ihre Stimme wurde gezählt."
 
 #: apps/polls/assets/Question.jsx:89
 msgid "Vote has not been counted due to a server error."
-msgstr ""
+msgstr "Ihre Stimme konnte aufgrund eines Serverfehlers nicht gezählt werden."
 
 #: apps/polls/assets/Question.jsx:118 apps/polls/assets/Question.jsx:127
 msgid "Vote"
-msgstr ""
+msgstr "Stimme abgeben"
 
 #: apps/polls/assets/Question.jsx:139
 msgid "vote"
 msgid_plural "votes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Stimme"
+msgstr[1] "Stimmen"
 
 #: apps/polls/assets/Question.jsx:149
 msgid "To poll"
-msgstr ""
+msgstr "Zur Umfrage"
 
 #: apps/polls/assets/Question.jsx:160
 msgid "Show preliminary results"
-msgstr ""
+msgstr "Vorläufiges Ergebnis zeigen"
 
 #: apps/polls/assets/Question.jsx:184
 msgid "Your choice"
-msgstr ""
+msgstr "Ihre Wahl"
 
 #: apps/polls/assets/QuestionForm.jsx:56
 msgid "Question"
-msgstr ""
+msgstr "Frage"
 
 #: apps/polls/assets/QuestionForm.jsx:89
 msgid "Add a new choice"
-msgstr ""
+msgstr "Neue Antwort"
 
-#: meinberlin/static/embed.js:165
+#: meinberlin/static/embed.js:83
 msgid "We couldn't find what you were looking for."
-msgstr ""
+msgstr "Wir konnten diese Seite nicht finden."
 
-#: meinberlin/static/embed.js:169
+#: meinberlin/static/embed.js:87
 msgid "You don't have the permission to view this page."
-msgstr ""
+msgstr "Sie haben nicht die nötigen Rechte, um diese Seite anzuschauen."
 
-#: meinberlin/static/embed.js:172
+#: meinberlin/static/embed.js:90
 msgid "Something went wrong!"
-msgstr ""
+msgstr "Etwas ging schief!"
 
-#: meinberlin/static/embed.js:180
+#: meinberlin/static/embed.js:188
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
 msgstr ""
+"Sie haben Third Party Cookies deaktiviert. Sie können sich dieses Projekt "
+"zwar anschauen, werden sich aber nicht anmelden können."
