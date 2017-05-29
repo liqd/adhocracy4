@@ -1,6 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Die Beteiligungsphase für ein Project auf {{ site.name }} endet bald{% endblock %}
+{% block subject %}Die Beteiligungsphase für ein Projekt auf {{ site.name }} endet bald{% endblock %}
 
 {% block headline %}Es bleiben nur noch wenige Stunden zur Beteiligung an "{{ action.project.name }}"{% endblock %}
 

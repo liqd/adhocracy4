@@ -6,7 +6,7 @@
 
 {% block headline %}Ein Benutzer möchte einen Beitrag in Ihrem Projekt als unangebracht melden.{% endblock %}
 
-{% block content %}{{ report.creator.username }} möchte einen Beitrag in Ihrem Projekt melden. Der Grund dafür könnte Spam sein. Es wurde folgende Begrüdungung angegeben:
+{% block content %}{{ report.creator.username }} möchte einen Beitrag in Ihrem Projekt melden. Der Grund dafür könnte Spam sein. Es wurde folgende Begründung angegeben:
 
 {{ report.description }}
 {% endblock %}

@@ -26,5 +26,5 @@ Ihre Stellungnahme
 
 {% endblock %}
 
-{% block cta_label %}Zum "{{ project.name }}"{% endblock %}
+{% block cta_label %}Bebauungsplan anzeigen{% endblock %}
 {% block cta_url %}{{ project.externalproject.url }}{% endblock %}
