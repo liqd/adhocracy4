@@ -1,4 +1,4 @@
-from adhocracy4.emails import Email
+from apps.contrib.emails import Email
 
 
 class OfficeWorkerNotification(Email):

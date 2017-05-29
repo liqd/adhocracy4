@@ -1,6 +1,6 @@
 from django.contrib import auth
 
-from adhocracy4 import emails
+from apps.contrib.emails import Email
 
 User = auth.get_user_model()
 
@@ -34,7 +34,7 @@ def _exclude_notifications_disabled(receivers):
     return [user for user in receivers if user.get_notifications]
 
 
-class NotifyCreatorEmail(emails.Email):
+class NotifyCreatorEmail(Email):
     template_name = 'meinberlin_notifications/emails/notify_creator'
 
     def get_receivers(self):
@@ -48,7 +48,7 @@ class NotifyCreatorEmail(emails.Email):
         return []
 
 
-class NotifyModeratorsEmail(emails.ModeratorNotification):
+class NotifyModeratorsEmail(Email):
     template_name = 'meinberlin_notifications/emails/notify_moderator'
 
     def get_receivers(self):
@@ -58,7 +58,7 @@ class NotifyModeratorsEmail(emails.ModeratorNotification):
         return receivers
 
 
-class NotifyFollowersOnPhaseIsOverSoonEmail(emails.Email):
+class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
     template_name = 'meinberlin_notifications/emails' \
                     '/notify_followers_over_soon'
 
@@ -72,7 +72,7 @@ class NotifyFollowersOnPhaseIsOverSoonEmail(emails.Email):
         return receivers
 
 
-class NotifyFollowersOnNewItemCreated(emails.Email):
+class NotifyFollowersOnNewItemCreated(Email):
     template_name = 'meinberlin_notifications/emails/notify_followers_new_item'
 
     def get_receivers(self):

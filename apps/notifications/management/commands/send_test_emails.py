@@ -7,11 +7,12 @@ from django.core.management.base import CommandError
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
 from adhocracy4.comments.models import Comment
-from adhocracy4.emails import Email
 from adhocracy4.reports import emails as reports_emails
 from adhocracy4.reports.models import Report
+
 from apps.bplan import emails as bplan_emails
 from apps.bplan.models import Statement
+from apps.contrib.emails import Email
 from apps.ideas.models import Idea
 from apps.notifications import emails as notification_emails
 
