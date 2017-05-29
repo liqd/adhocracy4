@@ -1,0 +1,22 @@
+{% load i18n widget_tweaks %}
+
+<div class="form-group">
+    <label for="{{ field.id_for_label }}">
+        {% trans field.label %}
+    </label>
+    {% if field.help_text %}
+    <div class="form-hint">
+        {% trans field.help_text %}
+    </div>
+    {% endif %}
+    <div class="widget widget--{{ field|widget_type }} input-addon">
+        {% if before %}
+            <span class="input-addon__before addon">{{ before }}</span>
+        {% endif %}
+        {{ field|add_class:'input-addon__input' }}
+        {% if after %}
+            <span class="input-addon__after addon">{{ after }}</span>
+        {% endif %}
+    </div>
+    {{ field.errors }}
+</div>
