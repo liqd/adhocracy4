@@ -1061,6 +1061,10 @@ msgstr "External phase."
 msgid "external project"
 msgstr "external project"
 
+#: apps/ideas/models.py:26
+msgid "Description"
+msgstr "Description"
+
 #: apps/ideas/phases.py:16 apps/mapideas/phases.py:16
 msgid "Issue phase"
 msgstr "Issue phase"
