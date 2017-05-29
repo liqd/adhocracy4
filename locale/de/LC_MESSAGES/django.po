@@ -1519,8 +1519,8 @@ msgid ""
 "confirmation\n"
 "                request</a>."
 msgstr ""
-"Der Link zur E-Mail-Bestätigung ist abgelaufen oder ist ungültig. Bitte fordern Sie eine "
-"neue Bestätigungsemail an."
+"Der Link zur E-Mail-Bestätigung ist abgelaufen oder ist ungültig. Bitte "
+"<a href=\"%(email_url)s\">fordern Sie eine neue Bestätigungsemail an</a>."
 
 #: meinberlin/templates/account/login.html.py:11
 #, python-format
