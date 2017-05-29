@@ -5,10 +5,10 @@ from email.mime.text import MIMEText
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 
-from adhocracy4 import emails as a4_emails
+from apps.contrib.emails import Email
 
 
-class FormEmail(a4_emails.Email):
+class FormEmail(Email):
     template_name = 'meinberlin_cms/emails/form_submission'
 
     def get_receivers(self):

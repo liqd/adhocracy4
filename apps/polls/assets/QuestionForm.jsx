@@ -95,21 +95,27 @@ let QuestionForm = React.createClass({
             className="button button--light"
             onClick={this.handleMoveUp}
             disabled={!this.props.moveQuestionUp}
+            title={django.gettext('Move up')}
             type="button">
-            <i className="fa fa-chevron-up" />
+            <i className="fa fa-chevron-up"
+              aria-label={django.gettext('Move up')} />
           </button>
           <button
             className="button button--light"
             onClick={this.handleMoveDown}
             disabled={!this.props.moveQuestionDown}
+            title={django.gettext('Move down')}
             type="button">
-            <i className="fa fa-chevron-down" />
+            <i className="fa fa-chevron-down"
+              aria-label={django.gettext('Move down')} />
           </button>
           <button
             className="button button--light"
             onClick={this.handleDelete}
+            title={django.gettext('Delete')}
             type="button">
-            <i className="fa fa-trash" />
+            <i className="fa fa-trash"
+              aria-label={django.gettext('Delete')} />
           </button>
         </div>
       </section>

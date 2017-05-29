@@ -1,9 +1,8 @@
-from adhocracy4.emails import Email
+from apps.contrib.emails import Email
 
 
 class OfficeWorkerNotification(Email):
     template_name = 'meinberlin_bplan/emails/office_worker_notification'
-    fallback_language = 'de'
 
     @property
     def office_worker_email(self):
@@ -21,7 +20,6 @@ class OfficeWorkerNotification(Email):
 
 class SubmitterConfirmation(Email):
     template_name = 'meinberlin_bplan/emails/submitter_confirmation'
-    fallback_language = 'de'
 
     def get_receivers(self):
         return [self.object.email]

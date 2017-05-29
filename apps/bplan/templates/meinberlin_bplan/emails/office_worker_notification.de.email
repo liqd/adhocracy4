@@ -1,12 +1,12 @@
 {% extends 'email_base.'|add:part_type %}
 {% load wagtailcore_tags %}
 
-{% block subject %}Neue Stellungnahme zum Bebauungsplan {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
+{% block subject %}Neue Stellungnahme zum {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
 
-{% block headline %}Neue Stellungnahme zum Bebauungsplan {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
+{% block headline %}Neue Stellungnahme zum {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
 
 {% block content %}
-Es wurde eine neue Stellungnahme für den Bebauungsplan {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }} abgegeben.
+Es wurde eine neue Stellungnahme für den {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }} abgegeben.
 
 Name
 {{ statement.name }}
@@ -20,11 +20,11 @@ PLZ, Ort
 E-Mail-Adresse
 {{ statement.email }}
 
-
 Stellungnahme
 
 {{ statement.statement }}
+
 {% endblock %}
 
-{% block cta_label %}Bebauungsplan "{{ project.name }}"{% endblock %}
+{% block cta_label %}Bebauungsplan anzeigen{% endblock %}
 {% block cta_url %}{{ project.externalproject.url }}{% endblock %}

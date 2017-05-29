@@ -22,7 +22,7 @@
                                 href="{% url 'meinberlin_documents:paragraph-detail' paragraph.pk %}"
                         >
                             {{ paragraph.comments.all|length }}
-                            <i class="fa fa-comment-o" aria-hidden="true"></i>
+                            <i class="fa fa-comment-o" aria-label="{% trans 'Comments' %}"></i>
                         </a>
                     </div>
                 </section>

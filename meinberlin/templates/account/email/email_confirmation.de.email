@@ -1,0 +1,13 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}Bitte bestätigen Sie ihre E-Mail Adresse auf {{ site.name }}{% endblock %}
+
+{% block headline %}Ihre E-Mail Adresse auf {{ site.name }}{% endblock %}
+
+{% block content %}
+Ihre E-Mail Adresse wurde zum Benutzernamen "{{ receiver.username }}" auf {{ site.name }} hinzugefügt. Bitte bestätigen Sie die E-Mail Adresse.{% endblock %}
+
+{% block cta_url %}{{ activate_url }}{% endblock %}
+{% block cta_label %}Bestätigen Sie Ihre E-Mail Adresse{% endblock %}
+
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Wenn Sie keine neue E-Mail Adresse angelegt haben können Sie diese E-Mail ignorieren. Wir werden Ihnen keine weiteren E-Mail senden. Falls Sie weitere Fragen haben, wenden Sie sich bitte an uns unter {{ contact_email }}{% endblock %}
