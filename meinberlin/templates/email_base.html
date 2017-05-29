@@ -5,16 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{% block subject %}{% endblock %}</title>
   </head>
-  <body style="margin: 0; padding: 0; min-width: 100% !important;">
+  <body style="margin: 0; padding: 0; min-width: 100% !important; background: #fff;">
     <table width="100%" border="0" cellpadding="0" cellspacing="0"
-           style="width: 100%; max-width: 500px; margin: auto; text-align: center;">
-      <tr style="background: #fff;">
-        <td style="padding-top: 20px;">
+           style="width: 100%; max-width: 500px; margin: auto;">
+      <tr>
+        <td style="padding-top: 20px; text-align: center;">
           <img width="15%" src="cid:logo" style="width: 15%;" alt="MeinBerlin" >
         </td>
       </tr>
       <tr>
-          <td style="padding-top: 20px;">
+          <td style="padding-top: 20px; text-align: center;">
               <h2>{% block headline %}{% endblock %}</h2>
           </td>
       </tr>
@@ -29,7 +29,7 @@
       </tr>
       {% block cta %}
       <tr>
-          <td style="padding-top: 20px;">
+          <td style="padding-top: 20px; text-align: center;">
               <a href="{% block cta_url %}{% endblock %}"
                  style="padding: 0 20px; font-weight: bold; line-height: 40px; margin: 0 auto; color: #fff;
                         background-color: #253276; border-color: #253276; display: inline-block; text-align: center;
@@ -39,8 +39,8 @@
           </td>
       </tr>
       {% endblock %}
-      <tr style="color: #818181; font-size: small;">
-          <td style="padding-top: 20px;">
+      <tr>
+          <td style="color: #818181; font-size: small; padding-top: 20px;  text-align: center;">
               <hr />
               {% block reason %}{% endblock %}
               <p>
@@ -49,8 +49,8 @@
               </p>
           </td>
       </tr>
-      <tr style="color: #818181; font-size: small;">
-          <td style="padding-top: 10px; padding-bottom: 10px;">
+      <tr>
+          <td style="color: #818181; font-size: small; padding-top: 10px; padding-bottom: 10px;  text-align: center;">
               <p>
                   <a href="{{ email.get_host }}/contact">{% trans 'Contact' %}</a><br />
                   <a href="{{ email.get_host }}/terms-of-use">{% trans 'Terms of use' %}</a>
