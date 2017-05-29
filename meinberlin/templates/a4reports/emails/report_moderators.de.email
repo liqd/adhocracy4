@@ -4,9 +4,9 @@
 
 {% block subject %}Moderationsanfrage im Projekt {{ report.project }} auf {{ site.name }}{% endblock %}
 
-{% block headline %}Ein Benutzer möchte einen Beitrag in Ihrem Projekt als unangebracht melden.{% endblock %}
+{% block headline %}Ein Benutzer hat einen Beitrag in Ihrem Projekt als unangebracht gemeldet{% endblock %}
 
-{% block content %}{{ report.creator.username }} möchte einen Beitrag in Ihrem Projekt melden. Der Grund dafür könnte Spam sein. Es wurde folgende Begründung angegeben:
+{% block content %}{{ report.creator.username }} hat einen Beitrag in Ihrem Projekt gemeldet. Der Grund dafür könnte Spam sein. Es wurde folgende Begründung angegeben:
 
 {{ report.description }}
 {% endblock %}

@@ -3,7 +3,7 @@
 
 {% block subject %}Ihr Beitrag auf {{ site.name }} wurde als unangebracht gemeldet.{% endblock %}
 
-{% block headline %}Ein Benutzer hat Ihren Beitrag als unangebracht gemeldet.{% endblock %}
+{% block headline %}Ein Benutzer hat Ihren Beitrag als unangebracht gemeldet{% endblock %}
 
 {% block content %}Ihr Beitrag im  Projekt {{ report.project }} auf {{ site.name }} wurde als unangebracht gemeldet und wird von einem Moderator geprüft. Es wurde folgende Begründung angegeben:
 
