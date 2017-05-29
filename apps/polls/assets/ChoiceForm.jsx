@@ -30,7 +30,7 @@ let ChoiceForm = React.createClass({
             defaultValue={this.props.choice.label}
             onChange={this.handleLabelChange} />
           <button
-            className="input-addon__addon button button--light"
+            className="input-addon__after button button--light"
             onClick={this.handleDelete}
             aria-label={django.gettext('remove')}
             type="button">
