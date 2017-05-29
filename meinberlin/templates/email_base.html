@@ -9,12 +9,12 @@
     <table width="100%" border="0" cellpadding="0" cellspacing="0"
            style="width: 100%; max-width: 500px; margin: auto;">
       <tr>
-        <td style="padding-top: 20px; text-align: center;">
+        <td style="padding-top: 20px; text-align: center;" align="center">
           <img width="15%" src="cid:logo" style="width: 15%;" alt="MeinBerlin" >
         </td>
       </tr>
       <tr>
-          <td style="padding-top: 20px; text-align: center;">
+          <td style="padding-top: 20px;">
               <h2>{% block headline %}{% endblock %}</h2>
           </td>
       </tr>
@@ -29,10 +29,10 @@
       </tr>
       {% block cta %}
       <tr>
-          <td style="padding-top: 20px; text-align: center;">
+          <td style="padding-top: 20px;">
               <a href="{% block cta_url %}{% endblock %}"
                  style="padding: 0 20px; font-weight: bold; line-height: 40px; margin: 0 auto; color: #fff;
-                        background-color: #253276; border-color: #253276; display: inline-block; text-align: center;
+                        background-color: #253276; border-color: #253276; display: inline-block;
                         vertical-align: middle; text-decoration: none;">
                  {% block cta_label %}{% endblock %}
               </a>
@@ -40,7 +40,7 @@
       </tr>
       {% endblock %}
       <tr>
-          <td style="color: #818181; font-size: small; padding-top: 20px;  text-align: center;">
+          <td style="color: #818181; font-size: small; padding-top: 20px;">
               <hr />
               {% block reason %}{% endblock %}
               <p>
@@ -50,7 +50,7 @@
           </td>
       </tr>
       <tr>
-          <td style="color: #818181; font-size: small; padding-top: 10px; padding-bottom: 10px;  text-align: center;">
+          <td style="color: #818181; font-size: small; padding-top: 10px; padding-bottom: 10px;">
               <p>
                   <a href="{{ email.get_host }}/contact">{% trans 'Contact' %}</a><br />
                   <a href="{{ email.get_host }}/terms-of-use">{% trans 'Terms of use' %}</a>
