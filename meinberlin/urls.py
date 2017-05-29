@@ -38,7 +38,6 @@ from apps.projects import urls as projects_urls
 from apps.servicekonto import urls as servicekonto_urls
 from apps.topicprio import urls as topicprio_urls
 
-
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
 }
@@ -68,7 +67,7 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^accounts/', include(allauth_urls)),
     url(r'^accounts/social/', include(allauth_social_urls)),
-    url(r'^accounts/servicekonto/', include(servicekonto_urls)),
+    url(r'^accounts/social/', include(servicekonto_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^projects/', include(projects_urls)),
 
@@ -101,7 +100,6 @@ urlpatterns = [
         js_info_dict, name='javascript-catalog'),
     url(r'', include(wagtail_urls)),
 ]
-
 
 if settings.DEBUG:
     from django.conf.urls.static import static
