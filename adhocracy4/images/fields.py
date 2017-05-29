@@ -1,8 +1,17 @@
 from django.db import models
 from django.conf import settings
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
+from django.utils.functional import lazy
 
 from . import forms, validators
+
+
+# FIXME: backportet from django 1.11. remove this after update
+def _format_lazy(format_string, *args, **kwargs):
+    return format_string.format(*args, **kwargs)
+
+
+format_lazy = lazy(_format_lazy, str)
 
 
 class ConfiguredImageField(models.ImageField):
@@ -56,12 +65,13 @@ class ConfiguredImageField(models.ImageField):
     def _help_text(self):
         config = self.image_config
 
-        help_text = _(
-            '{help_prefix} It must be min. {min_resolution[0]} pixel wide and '
-            '{min_resolution[1]} pixel tall. Allowed file formats are '
-            '{fileformats_str}. The file size should be max. '
-            '{max_size_mb} MB.'
-        ).format(
+        help_text = format_lazy(
+            _(
+                '{help_prefix} It must be min. {min_resolution[0]} pixel wide and '
+                '{min_resolution[1]} pixel tall. Allowed file formats are '
+                '{fileformats_str}. The file size should be max. '
+                '{max_size_mb} MB.'
+            ),
             help_prefix=self.help_prefix,
             max_size_mb=int(self.image_config['max_size']/(10**6)),
             fileformats_str=', '.join(
