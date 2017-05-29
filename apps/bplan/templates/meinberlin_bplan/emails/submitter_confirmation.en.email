@@ -1,0 +1,1 @@
+{% extends 'meinberlin_bplan/emails/submitter_confirmation.de.email' %}

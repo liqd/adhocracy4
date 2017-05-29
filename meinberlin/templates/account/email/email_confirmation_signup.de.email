@@ -1,0 +1,12 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}Bitte bestätigen Sie ihre Registrierung auf {{ site.name }}{% endblock %}
+
+{% block headline %}Ihre Registrierung auf {{ site.name }}{% endblock %}
+
+{% block content %}Ihre E-Mail Adresse mit dem Benutzernamen "{{ receiver.username }}" wurde zur Registrierung auf "{{ site.name }}" genutzt. Bitte bestätigen Sie Ihre E-Mail Adresse, um Ihr Benutzerkonto zu aktivieren.{% endblock %}
+
+{% block cta_url %}{{ activate_url }}{% endblock %}
+{% block cta_label %}Bestätigen Sie Ihre E-Mail Adresse{% endblock %}
+
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Wenn Sie sich nicht registriert haben können Sie diese E-Mail ignorieren. Wir werden Ihnen keine weiteren E-Mail senden. Falls Sie weitere Fragen haben, wenden Sie sich bitte an uns unter {{ contact_email }}{% endblock %}

@@ -1,0 +1,2 @@
+{# Hack to ensure german mails are sent regardless of the current users browser language setting #}
+{% extends 'a4reports/emails/report_moderators.de.email' %}

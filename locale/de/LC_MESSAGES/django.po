@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-29 13:16+0200\n"
+"POT-Creation-Date: 2017-05-29 14:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -559,15 +559,13 @@ msgstr "Vorschlag editieren"
 msgid "Most recent"
 msgstr "am aktuellsten"
 
-#: apps/budgeting/views.py:17 apps/ideas/views.py:16
-#: apps/kiezkasse/views.py:17 apps/mapideas/views.py:16
-#: apps/topicprio/views.py:27
+#: apps/budgeting/views.py:17 apps/ideas/views.py:16 apps/kiezkasse/views.py:17
+#: apps/mapideas/views.py:16 apps/topicprio/views.py:27
 msgid "Most popular"
 msgstr "am beliebtesten"
 
-#: apps/budgeting/views.py:18 apps/ideas/views.py:17
-#: apps/kiezkasse/views.py:18 apps/mapideas/views.py:17
-#: apps/topicprio/views.py:28
+#: apps/budgeting/views.py:18 apps/ideas/views.py:17 apps/kiezkasse/views.py:18
+#: apps/mapideas/views.py:17 apps/topicprio/views.py:28
 msgid "Most commented"
 msgstr "meist kommentiert"
 
@@ -1717,10 +1715,20 @@ msgstr "Feedback"
 msgid "Error"
 msgstr "Fehler"
 
-#: meinberlin/templates/email_base.html.py:79
+#: meinberlin/templates/email_base.html.py:47
 #: meinberlin/templates/email_base.txt.py:10
 msgid "meinBerlin is a participation platform operated by"
 msgstr "meinBerlin ist die Plattform für Beteiligung, betrieben durch"
+
+#: meinberlin/templates/email_base.html.py:55
+#: meinberlin/templates/email_base.txt.py:13
+msgid "Contact"
+msgstr "Kontakt"
+
+#: meinberlin/templates/email_base.html.py:56
+#: meinberlin/templates/email_base.txt.py:14
+msgid "Terms of use"
+msgstr "Nutzungsbedingungen"
 
 #: meinberlin/templates/header.html.py:12
 msgid "Menu"
