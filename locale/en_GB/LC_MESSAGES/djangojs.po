@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-22 13:51+0200\n"
+"POT-Creation-Date: 2017-05-29 13:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,7 +113,8 @@ msgstr "Your message here"
 msgid "Send Report"
 msgstr "Send Report"
 
-#: apps/contrib/static/js/Alert.jsx:10 meinberlin/static/embed.js:25
+#: apps/contrib/static/js/Alert.jsx:10 apps/contrib/static/js/Alert.jsx:11
+#: meinberlin/static/embed.js:30 meinberlin/static/embed.js:31
 msgid "Close"
 msgstr "Close"
 
@@ -155,7 +156,7 @@ msgstr "Do you want to load this preset and delete all the existing polygons?"
 msgid "Choice"
 msgstr "Choice"
 
-#: apps/polls/assets/ChoiceForm.jsx:35
+#: apps/polls/assets/ChoiceForm.jsx:35 apps/polls/assets/ChoiceForm.jsx:38
 msgid "remove"
 msgstr "remove"
 
@@ -209,19 +210,19 @@ msgstr "Question"
 msgid "Add a new choice"
 msgstr "Add a new choice"
 
-#: meinberlin/static/embed.js:165
+#: meinberlin/static/embed.js:83
 msgid "We couldn't find what you were looking for."
 msgstr "We couldn't find what you were looking for."
 
-#: meinberlin/static/embed.js:169
+#: meinberlin/static/embed.js:87
 msgid "You don't have the permission to view this page."
 msgstr "You don't have the permission to view this page."
 
-#: meinberlin/static/embed.js:172
+#: meinberlin/static/embed.js:90
 msgid "Something went wrong!"
 msgstr "Something went wrong!"
 
-#: meinberlin/static/embed.js:180
+#: meinberlin/static/embed.js:188
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
