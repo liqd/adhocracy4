@@ -360,7 +360,7 @@ msgstr "Beteiligungsphase"
 
 #: apps/bplan/phases.py:16
 msgid "Send statement to the office workers per mail."
-msgstr "Stellungnahme per E-Mail an Verwaltung senden "
+msgstr "Stellungnahme per E-Mail an Verwaltung senden."
 
 #: apps/bplan/phases.py:17
 msgid "bplan"
