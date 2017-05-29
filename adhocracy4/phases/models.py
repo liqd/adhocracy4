@@ -30,12 +30,15 @@ class PhasesQuerySet(models.QuerySet):
 
 
 class Phase(models.Model):
-    name = models.CharField(max_length=80)
-    description = models.TextField(max_length=300)
+    name = models.CharField(max_length=80, verbose_name=_('Name'))
+    description = models.TextField(max_length=300,
+                                   verbose_name=_('Description'))
     type = models.CharField(max_length=128, validators=[validate_content])
     module = models.ForeignKey(modules_models.Module, on_delete=models.CASCADE)
-    start_date = models.DateTimeField(blank=True, null=True)
-    end_date = models.DateTimeField(blank=True, null=True)
+    start_date = models.DateTimeField(blank=True, null=True,
+                                      verbose_name=_('Start date'))
+    end_date = models.DateTimeField(blank=True, null=True,
+                                    verbose_name=_('End date'))
     weight = models.IntegerField(default=0)
 
     objects = PhasesQuerySet.as_manager()

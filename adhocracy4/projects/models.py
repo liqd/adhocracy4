@@ -51,6 +51,7 @@ class Project(base.TimeStampedModel):
     result = RichTextUploadingField(
         blank=True,
         config_name='image-editor',
+        verbose_name=_('Results of your project'),
         help_text=_('Here you should explain what the expected outcome of the '
                     'project will be and how you are planning to use the '
                     'results. If the project is finished you should add a '
