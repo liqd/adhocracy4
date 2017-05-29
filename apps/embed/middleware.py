@@ -1,3 +1,6 @@
+from django.utils.http import urlquote
+
+
 class AjaxPathMiddleware(object):
     """Append request path as a header.
 
@@ -7,5 +10,5 @@ class AjaxPathMiddleware(object):
     """
 
     def process_response(self, request, response):
-        response['x-ajax-path'] = request.path
+        response['x-ajax-path'] = urlquote(request.path)
         return response
