@@ -228,6 +228,7 @@ ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 10
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
+ACCOUNT_SIGNUP_FORM_CLASS = 'apps.users.forms.TermsSignupForm'
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_URL = 'account_login'
@@ -237,6 +238,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',  # a3
     'apps.users.hashers.A2PasswordHasher',
 ]
 

@@ -3,11 +3,11 @@
 <div class="form-check">
     <label class="form-check__label">
         {{ field }}
-        {% trans field.label %}
+        {{ field.label }}
     </label>
     {% if field.help_text %}
     <div class="form-hint">
-        {% trans field.help_text %}
+        {{ field.help_text }}
     </div>
     {% endif %}
     {{ field.errors }}

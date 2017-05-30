@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.filters import filters as a4_filters
@@ -71,7 +71,7 @@ class ProposalUpdateView(module_views.ItemUpdateView):
 
 class ProposalDeleteView(module_views.ItemDeleteView):
     model = models.Proposal
-    success_message = _("Your budget request has been deleted")
+    success_message = _('Your budget request has been deleted')
     permission_required = 'meinberlin_budgeting.change_proposal'
     template_name = 'meinberlin_budgeting/proposal_confirm_delete.html'
 

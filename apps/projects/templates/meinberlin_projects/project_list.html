@@ -14,7 +14,8 @@
             {% if show %}
                 {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
             {% endif %}
-
+            {% empty %}
+                <p>{% trans 'We could not find any projects.' %}</p>
             {% endfor %}
         </div>
 

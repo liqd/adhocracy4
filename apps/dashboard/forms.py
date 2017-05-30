@@ -4,8 +4,8 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
 from django.forms import modelformset_factory
-from django.utils.translation import ugettext as _
-from django.utils.translation import ngettext
+from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ungettext
 
 from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
@@ -325,7 +325,7 @@ class AddModeratorForm(forms.ModelForm):
         if users:
             messages.success(
                 self.request,
-                ngettext(
+                ungettext(
                     '{} moderator added.',
                     '{} moderators added.', len(users)
                 ).format(len(users))

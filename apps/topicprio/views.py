@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
@@ -126,7 +126,7 @@ class TopicMgmtUpdateView(module_views.ItemUpdateView):
 
 class TopicMgmtDeleteView(module_views.ItemDeleteView):
     model = models.Topic
-    success_message = _("The topic has been deleted")
+    success_message = _('The topic has been deleted')
     permission_required = 'a4projects.add_project'
     template_name = 'meinberlin_topicprio/topic_mgmt_confirm_delete.html'
     menu_item = 'project'
