@@ -5,16 +5,20 @@
 
 {% block content %}
 <div class="l-wrapper">
-    <h1>{% trans 'Login via Service-Konto' %}</h1>
-    {% blocktrans %}
-        <p>To login via Service-Konto on meinBerlin you will be redirected to the Service-Konto.</p>
-        <p>There you have to login with your credentials first, then navigate to
-        <strong>Dienste nach Zielgruppen</strong>, choose <strong>mein.Berlin</strong> and finally
-            click on <strong>weiter</strong> to return to the meinBerlin platform.</p>
-    {% endblocktrans %}
+    <div class="l-center-6">
+        <h1>{% trans 'Login via Service-Konto' %}</h1>
+        {% blocktrans %}
+            <p>To sign in via Service-Konto on meinBerlin you will be redirected to the Service-Konto.</p>
+            <p>
+                There you have to sign in with your credentials first, then navigate to
+                <strong>Dienste nach Zielgruppen</strong>, choose <strong>mein.Berlin</strong> and finally
+                click on <strong>weiter</strong> to return to the meinBerlin platform.
+            </p>
+        {% endblocktrans %}
 
-    <a class="button button--primary" href="{{ login_redirect_url }}">
-        {% trans 'Service-Konto Login' %}
-    </a>
+        <a class="button button--primary" href="{{ login_redirect_url }}">
+            {% trans 'Service-Konto Login' %}
+        </a>
+    </div>
 </div>
 {% endblock %}
