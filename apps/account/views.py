@@ -1,6 +1,6 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import get_object_or_404
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 from django.views.generic.base import RedirectView
 
@@ -19,9 +19,9 @@ class ProfileUpdateView(SuccessMessageMixin,
                         generic.UpdateView):
 
     model = User
-    template_name = "meinberlin_account/profile.html"
+    template_name = 'meinberlin_account/profile.html'
     form_class = forms.ProfileForm
-    success_message = _("Your profile was successfully updated.")
+    success_message = _('Your profile was successfully updated.')
 
     def get_object(self):
         return get_object_or_404(User, pk=self.request.user.id)
