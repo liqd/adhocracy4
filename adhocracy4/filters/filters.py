@@ -1,9 +1,9 @@
 import django_filters
-from django.http import QueryDict
 
 
 class PagedFilterSet(django_filters.FilterSet):
     """Removes page parameters from the query when applying filters."""
+
     page_kwarg = 'page'
 
     def __init__(self, data, *args, **kwargs):
@@ -26,7 +26,11 @@ class DefaultsFilterSet(PagedFilterSet):
     defaults = None
 
     def __init__(self, query_data, *args, **kwargs):
-        data = QueryDict(mutable=True)
-        data.update(self.defaults)
-        data.update(query_data)
+        data = query_data.copy()
+
+        # Set the defaults if they are not manually set yet
+        for key, value in self.defaults.items():
+            if key not in data:
+                data[key] = value
+
         super().__init__(data, *args, **kwargs)
