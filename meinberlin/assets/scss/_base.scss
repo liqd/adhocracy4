@@ -80,6 +80,10 @@ a {
 img {
     max-width: 100%;
     height: auto;
+
+    .rich-text & {
+        height: auto !important;
+    }
 }
 
 a:not([href]) {
