@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.modules import views as module_views
@@ -64,7 +64,7 @@ class IdeaUpdateView(module_views.ItemUpdateView):
 
 class IdeaDeleteView(module_views.ItemDeleteView):
     model = models.Idea
-    success_message = _("Your Idea has been deleted")
+    success_message = _('Your Idea has been deleted')
     permission_required = 'meinberlin_ideas.change_idea'
     template_name = 'meinberlin_ideas/idea_confirm_delete.html'
 
