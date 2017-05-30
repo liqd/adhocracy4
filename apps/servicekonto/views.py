@@ -72,8 +72,15 @@ def _complete_login(request, token):
 
     provider = providers.registry.by_id(ServiceKontoProvider.id, request)
     login = provider.sociallogin_from_response(request, user_data)
-    login.state = SocialLogin.unstash_state(request)
+    login.state = _unstash_state(request)
     return login
+
+
+def _unstash_state(request):
+    """Return the state if it exists."""
+    if 'socialaccount_state' in request.session:
+        return SocialLogin.unstash_state(request)
+    return {}
 
 
 def _get_service_konto_user_data_xml(request, token):
