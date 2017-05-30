@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-29 14:30+0200\n"
+"POT-Creation-Date: 2017-05-30 12:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgstr "Comments"
 msgid "unknown user"
 msgstr "unknown user"
 
-#: adhocracy4/images/fields.py:60
+#: adhocracy4/images/fields.py:70
 #, python-brace-format
 msgid ""
 "{help_prefix} It must be min. {min_resolution[0]} pixel wide and "
@@ -116,7 +116,25 @@ msgstr "Please add a Marker on the map"
 msgid "Please draw a Polygon on the map"
 msgstr "Please draw a Polygon on the map"
 
-#: adhocracy4/phases/models.py:56
+#: adhocracy4/phases/models.py:33
+#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:36
+#: apps/ideas/models.py:25
+msgid "Name"
+msgstr "Name"
+
+#: adhocracy4/phases/models.py:35 apps/ideas/models.py:26
+msgid "Description"
+msgstr "Description"
+
+#: adhocracy4/phases/models.py:39
+msgid "Start date"
+msgstr "Start date"
+
+#: adhocracy4/phases/models.py:41
+msgid "End date"
+msgstr "End date"
+
+#: adhocracy4/phases/models.py:59
 msgid "End date can not be smallerthan the start date."
 msgstr "End date can not be smallerthan the start date."
 
@@ -159,6 +177,10 @@ msgstr ""
 "the „Info“ tab on your project’s page."
 
 #: adhocracy4/projects/models.py:54
+msgid "Results of your project"
+msgstr "Results of your project"
+
+#: adhocracy4/projects/models.py:55
 msgid ""
 "Here you should explain what the expected outcome of the project will be and "
 "how you are planning to use the results. If the project is finished you "
@@ -168,11 +190,11 @@ msgstr ""
 "how you are planning to use the results. If the project is finished you "
 "should add a summary of the results."
 
-#: adhocracy4/projects/models.py:61
+#: adhocracy4/projects/models.py:62
 msgid "Access to the project"
 msgstr "Access to the project"
 
-#: adhocracy4/projects/models.py:62
+#: adhocracy4/projects/models.py:63
 msgid ""
 "Please indicate who should be able to participate in your project. Teasers "
 "for your project including title and short description will always be "
@@ -182,23 +204,23 @@ msgstr ""
 "for your project including title and short description will always be "
 "visible to everyone"
 
-#: adhocracy4/projects/models.py:69
+#: adhocracy4/projects/models.py:70
 msgid "Header image"
 msgstr "Header image"
 
-#: adhocracy4/projects/models.py:71
+#: adhocracy4/projects/models.py:72
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
-#: adhocracy4/projects/models.py:87
+#: adhocracy4/projects/models.py:88
 msgid "Project is archived"
 msgstr "Project is archived"
 
-#: adhocracy4/projects/models.py:88
+#: adhocracy4/projects/models.py:89
 msgid "Set to archive the project"
 msgstr "Set to archive the project"
 
-#: adhocracy4/projects/models.py:92
+#: adhocracy4/projects/models.py:93
 msgid "Type of the project"
 msgstr "Type of the project"
 
@@ -525,13 +547,15 @@ msgstr "Edit proposal"
 msgid "Most recent"
 msgstr "Most recent"
 
-#: apps/budgeting/views.py:17 apps/ideas/views.py:16 apps/kiezkasse/views.py:17
-#: apps/mapideas/views.py:16 apps/topicprio/views.py:27
+#: apps/budgeting/views.py:17 apps/ideas/views.py:16
+#: apps/kiezkasse/views.py:17 apps/mapideas/views.py:16
+#: apps/topicprio/views.py:27
 msgid "Most popular"
 msgstr "Most popular"
 
-#: apps/budgeting/views.py:18 apps/ideas/views.py:17 apps/kiezkasse/views.py:18
-#: apps/mapideas/views.py:17 apps/topicprio/views.py:28
+#: apps/budgeting/views.py:18 apps/ideas/views.py:17
+#: apps/kiezkasse/views.py:18 apps/mapideas/views.py:17
+#: apps/topicprio/views.py:28
 msgid "Most commented"
 msgstr "Most commented"
 
@@ -923,18 +947,14 @@ msgstr "Create project based on"
 msgid "Projects"
 msgstr "Projects"
 
-#: apps/dashboard/templates/meinberlin_dashboard/project_list.html.py:24
-msgid "No projects created"
-msgstr "No projects created"
+#: apps/dashboard/templates/meinberlin_dashboard/project_list.html.py:25
+#: apps/projects/templates/meinberlin_projects/project_list.html.py:18
+msgid "We could not find any projects."
+msgstr "We could not find any projects."
 
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:26
 msgid "Add"
 msgstr "Add"
-
-#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:36
-#: apps/ideas/models.py:25
-msgid "Name"
-msgstr "Name"
 
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:37
 msgid "Email"
@@ -1043,10 +1063,6 @@ msgstr "External phase."
 #: apps/extprojects/phases.py:17
 msgid "external project"
 msgstr "external project"
-
-#: apps/ideas/models.py:26
-msgid "Description"
-msgstr "Description"
 
 #: apps/ideas/phases.py:16 apps/mapideas/phases.py:16
 msgid "Issue phase"
@@ -1387,6 +1403,15 @@ msgstr "Important dates"
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Please enter correct email addresses, separated by commas."
 
+#: apps/users/forms.py:10 meinberlin/templates/email_base.html.py:56
+#: meinberlin/templates/email_base.txt.py:14
+msgid "Terms of use"
+msgstr "Terms of use"
+
+#: apps/users/forms.py:11
+msgid "Please accept the terms of use."
+msgstr "Please accept the terms of use."
+
 #: apps/users/models.py:13
 msgid "username"
 msgstr "username"
@@ -1445,7 +1470,7 @@ msgstr "Account Settings"
 #: apps/users/templates/meinberlin_users/indicator.html.py:60
 #: meinberlin/templates/account/signup.html.py:4
 #: meinberlin/templates/account/signup.html.py:7
-#: meinberlin/templates/account/signup.html.py:21
+#: meinberlin/templates/account/signup.html.py:32
 msgid "Register"
 msgstr "Register"
 
@@ -1652,6 +1677,19 @@ msgstr ""
 "Already have an account? Then please\n"
 "        <a href=\"%(login_url)s\">login</a>."
 
+#: meinberlin/templates/account/signup.html.py:23
+#, python-format
+msgid ""
+"\n"
+"                I accept the <a href=\"%(terms_of_use_url)s\" target=\"_blank"
+"\">terms of use</a>.\n"
+"                "
+msgstr ""
+"\n"
+"                I accept the <a href=\"%(terms_of_use_url)s\" target=\"_blank"
+"\">terms of use</a>.\n"
+"                "
+
 #: meinberlin/templates/base.html.py:8
 msgid "meinBerlin"
 msgstr "meinBerlin"
@@ -1678,11 +1716,6 @@ msgstr "meinBerlin is a participation platform operated by"
 msgid "Contact"
 msgstr "Contact"
 
-#: meinberlin/templates/email_base.html.py:56
-#: meinberlin/templates/email_base.txt.py:14
-msgid "Terms of use"
-msgstr "Terms of use"
-
 #: meinberlin/templates/header.html.py:12
 msgid "Menu"
 msgstr "Menu"
@@ -1690,3 +1723,17 @@ msgstr "Menu"
 #: meinberlin/templates/portal_header.html.py:10
 msgid "Portal Navigation"
 msgstr "Portal Navigation"
+
+#~ msgid ""
+#~ "\n"
+#~ "                I accept the <a href=\"%(terms_of_use_url)s\" target="
+#~ "\"blank\">terms of use</a>.\n"
+#~ "                "
+#~ msgstr ""
+#~ "\n"
+#~ "                I accept the <a href=\"%(terms_of_use_url)s\" target="
+#~ "\"blank\">terms of use</a>.\n"
+#~ "                "
+
+#~ msgid "No projects created"
+#~ msgstr "No projects created"
