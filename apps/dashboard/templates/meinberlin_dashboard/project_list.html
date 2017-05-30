@@ -19,17 +19,13 @@
 
     {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
-    {% if project_list|length == 0 %}
-        <div>
-            {% trans 'No projects created' %}
-        </div>
-    {% else %}
-        {% for project in project_list %}
-            {% include "meinberlin_dashboard/includes/project_list_item.html" with project=project %}
-        {% endfor %}
+    {% for project in project_list %}
+        {% include "meinberlin_dashboard/includes/project_list_item.html" with project=project %}
+    {% empty %}
+        <p>{% trans 'We could not find any projects.' %}</p>
+    {% endfor %}
 
-        {% include "meinberlin_contrib/includes/pagination.html" %}
-    {% endif %}
+    {% include "meinberlin_contrib/includes/pagination.html" %}
 
 </div>
 {% endblock %}
