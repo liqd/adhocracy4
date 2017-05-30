@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static i18n %}
+{% load static i18n extproject_tags %}
 <html class="embed">
 <head>
     <meta charset="utf-8" />
@@ -17,13 +17,15 @@
     {% block header %}{% endblock %}
 </head>
 
-<body data-url="{% url 'project-detail' slug %}">
+<body data-url="{% url 'project-detail' object.slug %}">
     <header class="embed-header">
-        {% if request.user.is_anonymous %}
-            <a href="{% url 'account_login' %}" class="button button--light">{% trans 'Login' %}</a>
-        {% else %}
-            {% trans 'You are logged in as ' %} {{ request.user.username }}
-            <a href="{% url 'account_logout' %}" class="js-embed-logout button button--light" target="_blank">{% trans 'Logout' %}</a>
+        {% if not object|is_external %}
+            {% if request.user.is_anonymous %}
+                <a href="{% url 'account_login' %}" class="button button--light">{% trans 'Login' %}</a>
+            {% else %}
+                {% trans 'You are logged in as ' %} {{ request.user.username }}
+                <a href="{% url 'account_logout' %}" class="js-embed-logout button button--light" target="_blank">{% trans 'Logout' %}</a>
+            {% endif %}
         {% endif %}
         <div id="embed-status" class="embed-status"></div>
     </header>
@@ -32,7 +34,9 @@
         <a href="/" target="_blank">
             <img src="{% static 'images/logo_horizontal.svg' %}" alt="mein.berlin" class="embed-footer__logo">
         </a>
-        <a href="{% url 'project-detail' slug %}" data-embed-target="external">{% trans 'Go to platform' %}</a>
+        {% if not object|is_external %}
+            <a href="{% url 'project-detail' object.slug %}" data-embed-target="external">{% trans 'Go to platform' %}</a>
+        {% endif %}
     </footer>
     <div id="embed-confirm" class="modal" tabindex="-1" role="dialog" aria-label="{% trans 'Confirm login' %}" aria-hidden="true">
         <div class="modal-dialog">
