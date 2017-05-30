@@ -7,7 +7,9 @@ from allauth.socialaccount.helpers import render_authentication_error
 from allauth.socialaccount.models import SocialLogin
 from allauth.socialaccount.providers.base import AuthError
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 from .provider import ServiceKontoProvider
@@ -22,6 +24,19 @@ class ServiceKontoApiError(Exception):
 
 
 def login(request):
+    login_redirect_url = reverse('servicekonto_login_redirect')
+    if request.GET:
+        login_redirect_url = login_redirect_url + '?' + request.GET.urlencode()
+
+    return render(
+        request,
+        'meinberlin_servicekonto/login.html',
+        context={
+            'login_redirect_url': login_redirect_url
+        })
+
+
+def login_redirect(request):
     SocialLogin.stash_state(request)
     return HttpResponseRedirect(settings.SERVICE_KONTO_LOGIN_URL)
 
@@ -34,7 +49,7 @@ def callback(request):
             request, ServiceKontoProvider.id, error=AuthError.UNKNOWN)
 
     try:
-        login = complete_login(request, token)
+        login = _complete_login(request, token)
     except ServiceKontoApiError as e:
         return render_authentication_error(
             request, ServiceKontoProvider.id,
@@ -51,7 +66,7 @@ def callback(request):
     return ret
 
 
-def complete_login(request, token):
+def _complete_login(request, token):
     user_data_xml = _get_service_konto_user_data_xml(request, token)
     user_data = _parse_user_data_xml(user_data_xml)
 
