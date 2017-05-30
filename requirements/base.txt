@@ -15,3 +15,4 @@ bleach==2.0.0
 git+git://github.com/bmispelon/django-multiform.git@0e02f0d5729a80502a290070b474f3e3ac85c926
 jsonfield==2.0.1
 django-capture-tag==1.0
+bcrypt==3.1.3
