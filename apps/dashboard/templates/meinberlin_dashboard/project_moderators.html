@@ -12,11 +12,11 @@
         {% csrf_token %}
         <div class="form-group">
             <label for="{{ form.add_moderators.id_for_label }}">
-                {% trans form.add_moderators.label %}
+                {{ form.add_moderators.label }}
             </label>
             {% if form.add_moderators.help_text %}
             <div class="form-hint">
-                {% trans form.add_moderators.help_text %}
+                {{ form.add_moderators.help_text }}
             </div>
             {% endif %}
             <div class="button-group input-addon">

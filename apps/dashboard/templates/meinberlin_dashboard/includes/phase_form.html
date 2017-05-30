@@ -1,7 +1,7 @@
-{% load i18n form_tags %}
+{% load form_tags %}
 
 {% get_phase_name form.type.value as phasename %}
-<h3>{% trans phasename %}</h3>
+<h3>{{ phasename }}</h3>
 
 {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
 
