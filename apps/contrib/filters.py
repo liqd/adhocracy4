@@ -1,5 +1,5 @@
 import django_filters
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy
 
 from adhocracy4.categories import models as category_models
 
@@ -12,7 +12,7 @@ def category_queryset(request):
 
 
 class CategoryFilterWidget(widgets.DropdownLinkWidget):
-    label = _('Category')
+    label = ugettext_lazy('Category')
 
 
 class CategoryFilter(django_filters.ModelChoiceFilter):
@@ -26,7 +26,7 @@ class CategoryFilter(django_filters.ModelChoiceFilter):
 
 
 class OrderingWidget(widgets.DropdownLinkWidget):
-    label = _('Ordering')
+    label = ugettext_lazy('Ordering')
     right = True
 
 

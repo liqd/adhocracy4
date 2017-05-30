@@ -3,6 +3,7 @@ import django_filters
 from django.apps import apps
 from django.conf import settings
 from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy
 
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters.filters import DefaultsFilterSet
@@ -13,16 +14,16 @@ from apps.dashboard import blueprints
 
 
 class OrderingWidget(DropdownLinkWidget):
-    label = _('Ordering')
+    label = ugettext_lazy('Ordering')
     right = True
 
 
 class OrganisationWidget(DropdownLinkWidget):
-    label = _('Organisation')
+    label = ugettext_lazy('Organisation')
 
 
 class ArchivedWidget(DropdownLinkWidget):
-    label = _('Archived')
+    label = ugettext_lazy('Archived')
 
     def __init__(self, attrs=None):
         choices = (
@@ -34,7 +35,7 @@ class ArchivedWidget(DropdownLinkWidget):
 
 
 class YearWidget(DropdownLinkWidget):
-    label = _('Year')
+    label = ugettext_lazy('Year')
 
     def __init__(self, attrs=None):
         choices = (('', _('Any')),)
@@ -50,7 +51,7 @@ class YearWidget(DropdownLinkWidget):
 
 
 class TypeWidget(DropdownLinkWidget):
-    label = _('Project Type')
+    label = ugettext_lazy('Project Type')
 
     def __init__(self, attrs=None):
         choices = (('', _('Any')),)
