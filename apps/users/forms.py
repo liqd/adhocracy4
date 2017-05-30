@@ -7,7 +7,9 @@ User = get_user_model()
 
 
 class TermsSignupForm(auth_forms.UserCreationForm):
-    terms_of_use = forms.BooleanField(label=_('Terms of use'))
+    terms_of_use = forms.BooleanField(label=_('Terms of use'), error_messages={
+        'required': _('Please accept the terms of use.')
+    })
 
     def signup(self, request, user):
         user.signup(
