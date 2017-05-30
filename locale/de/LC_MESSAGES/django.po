@@ -187,7 +187,7 @@ msgid ""
 "teaser. It should briefly state the goal of the project in max. 250 chars."
 msgstr ""
 "Die Kurzbeschreibung wird in Kacheln und im Kopf der Projektseite angezeigt "
-"werden. Es sollte das Ziel des Projekts in maximal 250 Zeichen beschreiben."
+"werden. Sie sollte das Ziel des Projekts in maximal 250 Zeichen beschreiben."
 
 #: adhocracy4/projects/models.py:45
 #: adhocracy4/projects/models.py:45
