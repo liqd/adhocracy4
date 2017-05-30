@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 12:08+0200\n"
+"POT-Creation-Date: 2017-05-30 16:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -351,22 +351,13 @@ msgstr "Required Budget"
 msgid "Request phase"
 msgstr "Request phase"
 
-#: apps/budgeting/phases.py:17 apps/kiezkasse/phases.py:17
-msgid "Request budgeting."
-msgstr "Request budgeting."
+#: apps/budgeting/phases.py:17
+msgid "Request budgeting and get feedback through rates and comments."
+msgstr "Request budgeting and get feedback through rates and comments."
 
-#: apps/budgeting/phases.py:18 apps/budgeting/phases.py:35
+#: apps/budgeting/phases.py:19
 msgid "participatory budgeting"
 msgstr "participatory budgeting"
-
-#: apps/budgeting/phases.py:32 apps/ideas/phases.py:62
-#: apps/kiezkasse/phases.py:32 apps/mapideas/phases.py:62
-msgid "Feedback phase"
-msgstr "Feedback phase"
-
-#: apps/budgeting/phases.py:33 apps/kiezkasse/phases.py:33
-msgid "Get feedback for budgeting requests through rates and comments."
-msgstr "Get feedback for budgeting requests through rates and comments."
 
 #: apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html.py:20
 #: apps/dashboard/templates/meinberlin_dashboard/includes/external_project_form.html.py:24
@@ -547,15 +538,13 @@ msgstr "Edit proposal"
 msgid "Most recent"
 msgstr "Most recent"
 
-#: apps/budgeting/views.py:17 apps/ideas/views.py:16
-#: apps/kiezkasse/views.py:17 apps/mapideas/views.py:16
-#: apps/topicprio/views.py:27
+#: apps/budgeting/views.py:17 apps/ideas/views.py:16 apps/kiezkasse/views.py:17
+#: apps/mapideas/views.py:16 apps/topicprio/views.py:27
 msgid "Most popular"
 msgstr "Most popular"
 
-#: apps/budgeting/views.py:18 apps/ideas/views.py:17
-#: apps/kiezkasse/views.py:18 apps/mapideas/views.py:17
-#: apps/topicprio/views.py:28
+#: apps/budgeting/views.py:18 apps/ideas/views.py:17 apps/kiezkasse/views.py:18
+#: apps/mapideas/views.py:17 apps/topicprio/views.py:28
 msgid "Most commented"
 msgstr "Most commented"
 
@@ -688,27 +677,27 @@ msgstr "Participatory budgeting"
 #: apps/dashboard/blueprints.py:92
 msgid ""
 "With participatory-budgeting it’s possible to make proposals with budget "
-"specifications and locate them. Afterwards anyone can comment and rate on "
-"different proposals."
+"specifications and locate them. Anyone can comment and rate on different "
+"proposals."
 msgstr ""
 "With participatory-budgeting it’s possible to make proposals with budget "
-"specifications and locate them. Afterwards anyone can comment and rate on "
-"different proposals."
+"specifications and locate them. Anyone can comment and rate on different "
+"proposals."
 
-#: apps/dashboard/blueprints.py:105
+#: apps/dashboard/blueprints.py:104
 #: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:11
 msgid "External project"
 msgstr "External project"
 
-#: apps/dashboard/blueprints.py:107
+#: apps/dashboard/blueprints.py:106
 msgid "External projects are handled on a different platform."
 msgstr "External projects are handled on a different platform."
 
-#: apps/dashboard/blueprints.py:117
+#: apps/dashboard/blueprints.py:116
 msgid "Poll"
 msgstr "Poll"
 
-#: apps/dashboard/blueprints.py:119
+#: apps/dashboard/blueprints.py:118
 msgid ""
 "Create a poll with multiple questions and possible answers. Anyone can cast "
 "votes and comment on the poll."
@@ -716,19 +705,19 @@ msgstr ""
 "Create a poll with multiple questions and possible answers. Anyone can cast "
 "votes and comment on the poll."
 
-#: apps/dashboard/blueprints.py:130
+#: apps/dashboard/blueprints.py:129
 msgid "Topic Prioritization"
 msgstr "Topic Prioritization"
 
-#: apps/dashboard/blueprints.py:132
+#: apps/dashboard/blueprints.py:131
 msgid "Comment and prioritize topics."
 msgstr "Comment and prioritize topics."
 
-#: apps/dashboard/blueprints.py:142
+#: apps/dashboard/blueprints.py:141
 msgid "Development Plan"
 msgstr "Development Plan"
 
-#: apps/dashboard/blueprints.py:143
+#: apps/dashboard/blueprints.py:142
 msgid ""
 "Create a statement formular for development plans to be embedded on external "
 "sites."
@@ -736,11 +725,11 @@ msgstr ""
 "Create a statement formular for development plans to be embedded on external "
 "sites."
 
-#: apps/dashboard/blueprints.py:153
+#: apps/dashboard/blueprints.py:152
 msgid "Kiezkasse"
 msgstr "Kiezkasse"
 
-#: apps/dashboard/blueprints.py:155
+#: apps/dashboard/blueprints.py:154
 msgid ""
 "With kiezkasse it’s possible to make proposals with budget specifications "
 "and locate them. Afterwards anyone can comment and rate on different "
@@ -1095,6 +1084,11 @@ msgstr "Rating phase"
 msgid "Get quantative feeback by rating the collected ideas."
 msgstr "Get quantative feeback by rating the collected ideas."
 
+#: apps/ideas/phases.py:62 apps/kiezkasse/phases.py:32
+#: apps/mapideas/phases.py:62
+msgid "Feedback phase"
+msgstr "Feedback phase"
+
 #: apps/ideas/phases.py:63 apps/mapideas/phases.py:63
 msgid "Get feedback for collected ideas through rates and comments."
 msgstr "Get feedback for collected ideas through rates and comments."
@@ -1148,9 +1142,17 @@ msgstr "Own contribution to the proposal"
 msgid "I want to contribute to the proposal myself."
 msgstr "I want to contribute to the proposal myself."
 
+#: apps/kiezkasse/phases.py:17
+msgid "Request budgeting."
+msgstr "Request budgeting."
+
 #: apps/kiezkasse/phases.py:18 apps/kiezkasse/phases.py:35
 msgid "kiezkasse"
 msgstr "kiezkasse"
+
+#: apps/kiezkasse/phases.py:33
+msgid "Get feedback for budgeting requests through rates and comments."
+msgstr "Get feedback for budgeting requests through rates and comments."
 
 #: apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html.py:4
 #, python-format
@@ -1723,17 +1725,3 @@ msgstr "Menu"
 #: meinberlin/templates/portal_header.html.py:10
 msgid "Portal Navigation"
 msgstr "Portal Navigation"
-
-#~ msgid ""
-#~ "\n"
-#~ "                I accept the <a href=\"%(terms_of_use_url)s\" target="
-#~ "\"blank\">terms of use</a>.\n"
-#~ "                "
-#~ msgstr ""
-#~ "\n"
-#~ "                I accept the <a href=\"%(terms_of_use_url)s\" target="
-#~ "\"blank\">terms of use</a>.\n"
-#~ "                "
-
-#~ msgid "No projects created"
-#~ msgstr "No projects created"
