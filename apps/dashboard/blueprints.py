@@ -53,7 +53,7 @@ blueprints = [
              mapideas_phases.CollectPhase(),
              mapideas_phases.RatingPhase()
          ],
-         image='images/blueprints/map-brainstorming.svg',
+         image='images/blueprints/map-idea-collection.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
     ('agenda-setting',
@@ -160,7 +160,7 @@ blueprints = [
              kiezkasse_phases.RequestPhase(),
              kiezkasse_phases.FeedbackPhase(),
          ],
-         image='images/blueprints/participatory-budgeting.svg',
+         image='images/blueprints/kiezkasse.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
 ]
