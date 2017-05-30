@@ -1,5 +1,5 @@
 import django_filters
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import models as category_models
 
