@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-29 13:16+0200\n"
+"POT-Creation-Date: 2017-05-30 12:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,6 +24,10 @@ msgstr "Do you really want to delete this comment?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:93
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
+#: apps/documents/assets/Paragraph.jsx:141
+#: apps/documents/assets/Paragraph.jsx:144
+#: apps/polls/assets/QuestionForm.jsx:115
+#: apps/polls/assets/QuestionForm.jsx:118
 msgid "Delete"
 msgstr "Delete"
 
@@ -130,6 +134,20 @@ msgstr "Headline"
 #: apps/documents/assets/Paragraph.jsx:100
 msgid "Paragraph"
 msgstr "Paragraph"
+
+#: apps/documents/assets/Paragraph.jsx:124
+#: apps/documents/assets/Paragraph.jsx:127
+#: apps/polls/assets/QuestionForm.jsx:98
+#: apps/polls/assets/QuestionForm.jsx:101
+msgid "Move up"
+msgstr "Move up"
+
+#: apps/documents/assets/Paragraph.jsx:133
+#: apps/documents/assets/Paragraph.jsx:136
+#: apps/polls/assets/QuestionForm.jsx:107
+#: apps/polls/assets/QuestionForm.jsx:110
+msgid "Move down"
+msgstr "Move down"
 
 #: apps/documents/assets/ParagraphBox.jsx:135
 msgid "Your document has been updated."
