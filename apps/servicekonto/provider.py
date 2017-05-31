@@ -15,7 +15,7 @@ class ServiceKontoAccount(ProviderAccount):
 
 class ServiceKontoProvider(Provider):
     id = 'servicekonto'
-    name = 'ServiceKonto'
+    name = 'Service-Konto'
     account_class = ServiceKontoAccount
 
     def get_login_url(self, request, **kwargs):
