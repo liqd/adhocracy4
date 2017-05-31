@@ -16,12 +16,12 @@ rules.add_perm(
 )
 
 rules.add_perm(
-    'meinberlin_mapideas.rate_idea',
+    'meinberlin_mapideas.rate_mapidea',
     module_predicates.is_allowed_rate_item
 )
 
 rules.add_perm(
-    'meinberlin_mapideas.comment_idea',
+    'meinberlin_mapideas.comment_mapidea',
     module_predicates.is_allowed_comment_item
 )
 

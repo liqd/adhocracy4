@@ -19,3 +19,14 @@ rules.add_perm(
     'meinberlin_documents.change_document',
     module_predicates.is_project_admin
 )
+
+
+rules.add_perm(
+    'meinberlin_documents.comment_paragraph',
+    module_predicates.is_allowed_comment_item
+)
+
+rules.add_perm(
+    'meinberlin_documents.comment_document',
+    module_predicates.is_allowed_comment_item
+)
