@@ -22,7 +22,9 @@
 
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.statement %}
 
-            <input type="submit" class="button button--primary" value="{% trans 'Submit' %}" />
+            <div class="u-spacer-bottom">
+                <input type="submit" class="button button--primary" value="{% trans 'Submit' %}" />
+            </div>
         </form>
     </div>
 </div>

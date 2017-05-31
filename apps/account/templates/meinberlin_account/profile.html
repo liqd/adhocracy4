@@ -13,7 +13,9 @@
 
         {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
 
-        <button type="submit" class="button button--primary">{% trans 'Save changes'%}</button>
+        <div class="u-spacer-bottom">
+            <button type="submit" class="button button--primary">{% trans 'Save changes'%}</button>
+        </div>
     </form>
     {{ form.media }}
 </div>
