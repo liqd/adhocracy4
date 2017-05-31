@@ -1319,7 +1319,7 @@ msgstr "Die Auswahl muss zu der richtigen Frage gehören."
 
 #: apps/projects/templates/meinberlin_projects/includes/phase_indicator.html.py:45
 msgid "Participation is not possible at the moment."
-msgstr "Die Beteiligung ist aktuell noch nicht möglich."
+msgstr "Die Beteiligung ist aktuell nicht möglich."
 
 #: apps/projects/templates/meinberlin_projects/includes/phase_popover.html.py:4
 #, python-format
