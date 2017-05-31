@@ -75,7 +75,8 @@ class ProjectFilterSet(DefaultsFilterSet):
     )
 
     organisation = django_filters.ModelChoiceFilter(
-        queryset=apps.get_model(settings.A4_ORGANISATIONS_MODEL).objects.all(),
+        queryset=apps.get_model(settings.A4_ORGANISATIONS_MODEL).objects
+                     .order_by('name'),
         widget=OrganisationWidget,
     )
 
