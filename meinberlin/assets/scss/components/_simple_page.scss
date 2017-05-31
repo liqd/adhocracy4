@@ -1,13 +1,14 @@
 .richtext-image {
+    display: block;
     margin-bottom: $spacer;
+    margin-left: auto;
+    margin-right: auto;
 
     &.left {
-        float: left;
-        margin-right: $padding;
+        margin-left: 0;
     }
 
     &.right {
-        float: right;
-        margin-left: $padding;
+        margin-right: 0;
     }
 }
