@@ -54,7 +54,8 @@ class TypeWidget(DropdownLinkWidget):
 
     def __init__(self, attrs=None):
         choices = (('', _('Any')),)
-        for blueprint_key, blueprint in blueprints.blueprints:
+        sorted_blueprints = sorted(blueprints.blueprints, key=lambda a: a[1])
+        for blueprint_key, blueprint in sorted_blueprints:
             choices += (blueprint_key, blueprint.title),
         super().__init__(attrs, choices)
 
