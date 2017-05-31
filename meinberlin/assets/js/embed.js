@@ -180,7 +180,8 @@ $(document).ready(function () {
           popup.close()
           location.reload()
         }
-      } catch (e) {}
+      } catch (e) {
+      }
     }
   }, false)
 
