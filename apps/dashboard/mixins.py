@@ -87,7 +87,7 @@ class DashboardProjectPublishMixin:
         if 'submit_action' in request.POST:
             pk = int(request.POST['project_pk'])
             project = get_object_or_404(project_models.Project, pk=pk)
-            can_edit = request.user.has_perm('a4projects.edit_project',
+            can_edit = request.user.has_perm('a4projects.change_project',
                                              project)
 
             if not can_edit:

@@ -16,6 +16,7 @@ media/
 /meinberlin/static/adhocracy4.*
 /meinberlin/static/vendor.*
 /meinberlin/static/datepicker.*
+/meinberlin/static/embed.js
 /meinberlin/static/fonts/
 /meinberlin/static/images/layers-2x.png
 /meinberlin/static/images/layers.png

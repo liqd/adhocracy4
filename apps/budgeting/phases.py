@@ -14,31 +14,15 @@ class RequestPhase(phases.PhaseContent):
     view = views.ProposalListView
 
     name = _('Request phase')
-    description = _('Request budgeting.')
+    description = _('Request budgeting and get feedback through rates and '
+                    'comments.')
     module_name = _('participatory budgeting')
 
     features = {
         'crud': (models.Proposal,),
         'comment': (models.Proposal,),
-    }
-
-
-class FeedbackPhase(phases.PhaseContent):
-    app = apps.Config.label
-    phase = 'feedback'
-    weight = 40
-    view = views.ProposalListView
-
-    name = _('Feedback phase')
-    description = _('Get feedback for budgeting requests through rates and '
-                    'comments.')
-    module_name = _('participatory budgeting')
-
-    features = {
         'rate': (models.Proposal,),
-        'comment': (models.Proposal,)
     }
 
 
 phases.content.register(RequestPhase())
-phases.content.register(FeedbackPhase())

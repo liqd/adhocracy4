@@ -3,7 +3,7 @@
 
 {% block phase_content %}
 <div class="l-wrapper">
-    {% has_perm 'meinberlin_documents.create' request.user view.module as show_create_form %}
+    {% has_perm 'meinberlin_documents.change_document' request.user view.module as show_create_form %}
     {% if show_create_form %}
 
     {% react_paragraphs view.document view.module %}

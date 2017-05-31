@@ -8,7 +8,7 @@
 
             {% for paragraph in object.paragraphs.all %}
 
-                <section class="commenting">
+                <section class="commenting" id="paragraph-{{ object.pk }}-{{ paragraph.pk }}">
                     <div class="commenting__content">
                         <h2 class="commenting__title">
                             {{ paragraph.name }}
