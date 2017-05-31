@@ -34,6 +34,9 @@ module.exports = {
     'leaflet.draw': [
       'leaflet-draw',
       'leaflet-draw/dist/leaflet.draw.css'
+    ],
+    embed: [
+      './meinberlin/assets/js/embed.js'
     ]
   },
   devtool: 'eval',
