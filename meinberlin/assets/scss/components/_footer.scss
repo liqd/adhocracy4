@@ -1,3 +1,11 @@
+html {
+    background-color: $bg-secondary;
+}
+
+body {
+    background-color: $body-bg;
+}
+
 .main-footer {
     @include clearfix;
     padding-top: $spacer * 1.5;
