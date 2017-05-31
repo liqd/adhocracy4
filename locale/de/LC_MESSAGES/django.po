@@ -1643,7 +1643,7 @@ msgid ""
 "\">register</a> first."
 msgstr ""
 "Wenn Sie noch kein Benutzerkonto haben, <a href=\"%(signup_url)s"
-"\">registrieren</a> sich Sie bitte zuerst."
+"\">registrieren</a> Sie sich bitte zuerst."
 
 #: meinberlin/templates/account/login.html.py:39
 msgid "Forgot Password?"
