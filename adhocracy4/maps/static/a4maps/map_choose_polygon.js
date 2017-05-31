@@ -95,6 +95,20 @@ var init = function () {
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       map.invalidateSize().fitBounds(getBasePolygon(L, polygon, bbox))
     })
+
+    $('#select_' + name).on('change', function (event) {
+      var geoJson = event.target.value
+      drawnItems.clearLayers()
+      if (geoJson) {
+        var group = L.geoJson(JSON.parse(geoJson), {
+          style: polygonStyle
+        })
+        group.eachLayer(function (layer) {
+          drawnItems.addLayer(layer)
+        })
+      }
+      $('#id_' + name).val(geoJson)
+    })
   })
 }
 
