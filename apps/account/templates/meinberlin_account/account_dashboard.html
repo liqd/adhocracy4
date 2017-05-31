@@ -37,6 +37,13 @@
                             {% trans 'Email addresses' %}
                         </a>
                     </li>
+                    <li class="dashboard-nav__page">
+                        <a href="{% url 'socialaccount_connections' %}"
+                           class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "socialaccount_connections" %}is-active{% endif %}">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            {% trans 'Account Connections' %}
+                        </a>
+                    </li>
                 </ul>
             {% endwith %}
         </nav>

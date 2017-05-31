@@ -7,7 +7,10 @@ from django.utils.http import urlencode
 
 
 class ServiceKontoAccount(ProviderAccount):
-    pass
+    def to_str(self):
+        return '%s %s (%s)' % (self.account.extra_data['firstname'],
+                               self.account.extra_data['lastname'],
+                               self.account.extra_data['email'])
 
 
 class ServiceKontoProvider(Provider):
