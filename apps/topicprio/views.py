@@ -93,7 +93,7 @@ class TopicMgmtView(DashboardBaseMixin,
 class TopicMgmtCreateView(module_views.ItemCreateView):
     model = models.Topic
     form_class = forms.TopicForm
-    permission_required = 'a4projects.add_project'
+    permission_required = 'meinberlin_topicprio.add_topic'
     template_name = 'meinberlin_topicprio/topic_mgmt_create_form.html'
     menu_item = 'project'
 
@@ -110,7 +110,7 @@ class TopicMgmtCreateView(module_views.ItemCreateView):
 class TopicMgmtUpdateView(module_views.ItemUpdateView):
     model = models.Topic
     form_class = forms.TopicForm
-    permission_required = 'a4projects.add_project'
+    permission_required = 'meinberlin_topicprio.change_topic'
     template_name = 'meinberlin_topicprio/topic_mgmt_update_form.html'
     menu_item = 'project'
 
@@ -127,7 +127,7 @@ class TopicMgmtUpdateView(module_views.ItemUpdateView):
 class TopicMgmtDeleteView(module_views.ItemDeleteView):
     model = models.Topic
     success_message = _('The topic has been deleted')
-    permission_required = 'a4projects.add_project'
+    permission_required = 'meinberlin_topicprio.change_topic'
     template_name = 'meinberlin_topicprio/topic_mgmt_confirm_delete.html'
     menu_item = 'project'
 
