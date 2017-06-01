@@ -100,11 +100,7 @@ def _parse_user_data_xml(xml: str) -> dict:
     if hhgw is None:
         raise ValueError('Invalid data received.')
 
-    user_data = dict()
-    required_attributes = ['USERID', 'FIRSTNAME', 'LASTNAME', 'EMAIL']
-    for attribute in required_attributes:
-        user_data[attribute.lower()] = hhgw.get(attribute)
-
+    user_data = {key.lower(): value for key, value in hhgw.attrib.items()}
     if not _is_user_data_valid(user_data):
         raise ValueError('Invalid user data received.')
     return user_data
