@@ -6,7 +6,7 @@
 {% block content %}
 <div class="l-wrapper">
     <div class="l-center-8">
-        <h1>{% trans 'Submit a development plan statement' %}</h1>
+        <h2>{% trans 'Submit a development plan statement' %}</h2>
 
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
