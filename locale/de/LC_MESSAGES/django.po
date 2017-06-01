@@ -362,7 +362,7 @@ msgstr ""
 #: apps/bplan/templates/meinberlin_bplan/statement_create_form.html.py:4
 #: apps/bplan/templates/meinberlin_bplan/statement_create_form.html.py:9
 msgid "Submit a development plan statement"
-msgstr "Stellungnahme zum Bebauungsplan einreichen"
+msgstr "Meine Stellungnahme zum Bebauungsplan"
 
 #: apps/bplan/templates/meinberlin_bplan/statement_create_form.html.py:25
 msgid "Submit"
