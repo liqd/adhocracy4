@@ -29,9 +29,11 @@
     </div>
     {% endfor %}
 
-    <button class="button button--primary" type="submit" name="action_primary">{% trans 'Make Primary' %}</button>
-    <button class="button button--secondary" type="submit" name="action_send">{% trans 'Re-send Verification' %}</button>
-    <button class="button button--secondary" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+    <div class="u-spacer-bottom">
+        <button class="button button--primary" type="submit" name="action_primary">{% trans 'Make Primary' %}</button>
+        <button class="button button--secondary" type="submit" name="action_send">{% trans 'Re-send Verification' %}</button>
+        <button class="button button--secondary" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+    </div>
 </form>
 
 <form class="multiform" method="post" action="{% url 'account_email' %}">
@@ -49,6 +51,8 @@
         {{ form.email.errors }}
         {{ form.email|add_class:"form-control" }}
     </div>
-    <input class="button button--primary" name="action_add" type="submit" value="{% trans 'Add Email' %}"/>
+    <div class="u-spacer-bottom">
+        <input class="button button--primary" name="action_add" type="submit" value="{% trans 'Add Email' %}"/>
+    </div>
 </form>
 {% endblock %}
