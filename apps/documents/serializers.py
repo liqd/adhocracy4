@@ -23,6 +23,7 @@ class ChapterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chapter
         exclude = ('creator', 'module',)
+        extra_kwargs = {'weight': {'required': False}}
 
     def validate(self, data):
         module_pk = self._context['module_pk']

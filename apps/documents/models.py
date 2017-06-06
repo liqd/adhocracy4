@@ -14,7 +14,10 @@ class Chapter(module_models.Item):
     comments = GenericRelation(comment_models.Comment,
                                related_query_name='chapter',
                                object_id_field='object_pk')
-    # weight = models.PositiveIntegerField()
+    weight = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ('weight',)
 
     def __str__(self):
         return "{}_chapter_{}".format(str(self.module), self.pk)
