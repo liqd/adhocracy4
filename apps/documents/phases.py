@@ -23,7 +23,7 @@ class CreateDocumentPhase(phases.PhaseContent):
 class CommentPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'comment'
-    view = views.DocumentDetailView
+    view = views.ChapterDetailView
     weight = 40
 
     name = _('Comment phase')
@@ -31,7 +31,7 @@ class CommentPhase(phases.PhaseContent):
     description = _('Collect comments for the text.')
 
     features = {
-        'comment': (models.Paragraph, models.Document),
+        'comment': (models.Paragraph, models.Chapter),
     }
 
 

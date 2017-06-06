@@ -8,22 +8,18 @@ from adhocracy4.comments import models as comment_models
 from adhocracy4.models import base
 from adhocracy4.modules import models as module_models
 
-from . import validators
 
-
-class Document(module_models.Item):
+class Chapter(module_models.Item):
     name = models.CharField(max_length=120)
     comments = GenericRelation(comment_models.Comment,
-                               related_query_name='document',
+                               related_query_name='chapter',
                                object_id_field='object_pk')
-
-    def clean(self, *args, **kwargs):
-        validators.single_document_per_module(self.module, self.pk)
-        super().clean(*args, **kwargs)
+    # weight = models.PositiveIntegerField()
 
     def __str__(self):
-        return "{}_document_{}".format(str(self.module), self.pk)
+        return "{}_chapter_{}".format(str(self.module), self.pk)
 
+    # FIXME: adapt absolute url!
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
         return reverse('project-detail', args=[str(self.project.slug)])
@@ -33,9 +29,9 @@ class Paragraph(base.TimeStampedModel):
     name = models.CharField(max_length=120, blank=True)
     text = RichTextField()
     weight = models.PositiveIntegerField()
-    document = models.ForeignKey(Document,
-                                 on_delete=models.CASCADE,
-                                 related_name='paragraphs')
+    chapter = models.ForeignKey(Chapter,
+                                on_delete=models.CASCADE,
+                                related_name='paragraphs')
     comments = GenericRelation(comment_models.Comment,
                                related_query_name='paragraph',
                                object_id_field='object_pk')
@@ -44,7 +40,7 @@ class Paragraph(base.TimeStampedModel):
         ordering = ('weight',)
 
     def __str__(self):
-        return "{}_paragraph_{}".format(str(self.document), self.weight)
+        return "{}_paragraph_{}".format(str(self.chapter), self.weight)
 
     def save(self, *args, **kwargs):
         self.text = transforms.clean_html_field(
@@ -58,8 +54,8 @@ class Paragraph(base.TimeStampedModel):
 
     @cached_property
     def creator(self):
-        return self.document.creator
+        return self.chapter.creator
 
     @cached_property
     def project(self):
-        return self.document.project
+        return self.chapter.project

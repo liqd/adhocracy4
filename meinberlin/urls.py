@@ -26,7 +26,7 @@ from apps.bplan.api import BplanViewSet
 from apps.budgeting import urls as budgeting_urls
 from apps.dashboard import urls as dashboard_urls
 from apps.documents import urls as paragraph_urls
-from apps.documents.api import DocumentViewSet
+from apps.documents.api import ChapterViewSet
 from apps.embed import urls as embed_urls
 from apps.ideas import urls as ideas_urls
 from apps.kiezkasse import urls as kiezkasse_urls
@@ -48,7 +48,7 @@ router.register(r'polls', PollViewSet, base_name='polls')
 router.register(r'pollvotes', VoteViewSet, base_name='pollvotes')
 
 module_router = a4routers.ModuleDefaultRouter()
-module_router.register(r'documents', DocumentViewSet, base_name='documents')
+module_router.register(r'documents', ChapterViewSet, base_name='chapters')
 
 orga_router = a4routers.OrganisationDefaultRouter()
 orga_router.register(r'bplan', BplanViewSet, base_name='bplan')

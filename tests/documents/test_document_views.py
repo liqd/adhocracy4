@@ -17,7 +17,7 @@ def test_paragraph_detail_view(client, paragraph):
 
 @pytest.mark.django_db
 def test_paragraph_private_detail_view(client, paragraph_factory, user):
-    paragraph = paragraph_factory(document__module__project__is_public=False)
+    paragraph = paragraph_factory(chapter__module__project__is_public=False)
 
     url = reverse(
         'meinberlin_documents:paragraph-detail',

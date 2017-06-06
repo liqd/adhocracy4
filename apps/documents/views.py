@@ -7,23 +7,23 @@ from . import models
 
 
 class DocumentCreateView(project_mixins.ProjectMixin, generic.TemplateView):
-    template_name = 'meinberlin_documents/document_form.html'
-    permission_required = 'meinberlin_documents.view'
+    template_name = 'meinberlin_documents/chapter_form.html'
+    permission_required = 'meinberlin_documents.change_chapter'
 
     @property
-    def document(self):
-        return models.Document.objects.filter(module=self.module).first()
+    def chapter(self):
+        return models.Chapter.objects.filter(module=self.module).first()
 
 
-class DocumentDetailView(project_mixins.ProjectMixin, generic.DetailView):
-    model = models.Document
-    permission_required = 'meinberlin_documents.view_document'
+class ChapterDetailView(project_mixins.ProjectMixin, generic.DetailView):
+    model = models.Chapter
+    permission_required = 'meinberlin_documents.view_chapter'
 
     def get_object(self):
-        return models.Document.objects.filter(module=self.module).first()
+        return models.Chapter.objects.filter(module=self.module).first()
 
 
 class ParagraphDetailView(rules_mixins.PermissionRequiredMixin,
                           generic.DetailView):
     model = models.Paragraph
-    permission_required = 'meinberlin_documents.view_document'
+    permission_required = 'meinberlin_documents.view_chapter'

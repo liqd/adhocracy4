@@ -5,10 +5,10 @@ from adhocracy4.test import factories
 from apps.documents import models as document_models
 
 
-class DocumentFactory(factory.django.DjangoModelFactory):
+class ChapterFactory(factory.django.DjangoModelFactory):
 
     class Meta:
-        model = document_models.Document
+        model = document_models.Chapter
 
     name = factory.Faker('name')
     creator = factory.SubFactory(UserFactory)
@@ -23,4 +23,4 @@ class ParagraphFactory(factory.django.DjangoModelFactory):
     name = factory.Faker('name')
     text = 'text'
     weight = factory.Faker('random_number')
-    document = factory.SubFactory(DocumentFactory)
+    chapter = factory.SubFactory(ChapterFactory)
