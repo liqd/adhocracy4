@@ -1,0 +1,27 @@
+{% extends 'meinberlin_dashboard/base_dashboard.html' %}
+{% load i18n %}
+
+{% block dashboard_content %}
+    <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+        <ul>
+            <li>
+                <a href="{% url 'dashboard-project-list' view.organisation.slug %}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    {% trans 'back to dashboard' %}</a>
+            </li>
+        </ul>
+    </nav>
+
+    <h3>{% trans "Manage project contents" %}</h3>
+
+    <ol>
+    {% for object in object_list %}
+        <li>
+            <a href="{% url 'meinberlin_documents:chapter-management' object.pk %}">
+                {{ object.name }}
+            </a>
+        </li>
+    {% endfor %}
+    </ol>
+
+{% endblock %}

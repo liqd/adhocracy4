@@ -11,21 +11,21 @@ register = template.Library()
 
 @register.inclusion_tag('meinberlin_documents/react_paragraphs.html',
                         takes_context=True)
-def react_paragraphs(context, doc, module):
+def react_paragraphs(context, chapter, module):
 
-    serializer = ChapterSerializer(doc)
-    chapter = JSONRenderer().render(serializer.data)
+    serializer = ChapterSerializer(chapter)
+    chapter_json = JSONRenderer().render(serializer.data)
     widget = CKEditorUploadingWidget(config_name='image-editor')
     widget._set_config()
     config = widget.config
 
-    if doc is None:
+    if chapter is None:
         _id = None
     else:
-        _id = 'paragraphs-' + str(doc.pk)
+        _id = 'paragraphs-' + str(chapter.pk)
 
     context = {
-        'chapter': chapter,
+        'chapter': chapter_json,
         'module': module.pk,
         'config': json.dumps(config),
         'id': _id

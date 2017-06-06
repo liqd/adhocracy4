@@ -25,7 +25,8 @@ from apps.bplan import urls as bplan_urls
 from apps.bplan.api import BplanViewSet
 from apps.budgeting import urls as budgeting_urls
 from apps.dashboard import urls as dashboard_urls
-from apps.documents import urls as paragraph_urls
+from apps.documents import urls as documents_urls
+from apps.documents import urls_compatibility as paragraph_urls
 from apps.documents.api import ChapterViewSet
 from apps.embed import urls as embed_urls
 from apps.ideas import urls as ideas_urls
@@ -75,8 +76,9 @@ urlpatterns = [
                                 namespace='meinberlin_kiezkasse')),
     url(r'^mapideas/', include(mapideas_urls,
                                namespace='meinberlin_mapideas')),
-    url(r'^paragraphs/', include(paragraph_urls,
-                                 namespace='meinberlin_documents')),
+    url(r'^paragraphs/', include(paragraph_urls)),
+    url(r'^text/', include(documents_urls,
+                           namespace='meinberlin_documents')),
     url(r'^bplan/', include(bplan_urls,
                             namespace='meinberlin_bplan')),
     url(r'^budgeting/', include(budgeting_urls,

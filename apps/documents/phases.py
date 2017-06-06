@@ -10,7 +10,8 @@ from . import views
 class CommentPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'comment'
-    view = views.ChapterDetailView
+    view = views.DocumentDetailView
+    management_view = views.DocumentManagementView
     weight = 40
 
     name = _('Comment phase')
