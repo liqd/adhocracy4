@@ -7,19 +7,6 @@ from . import models
 from . import views
 
 
-class CreateDocumentPhase(phases.PhaseContent):
-    app = apps.Config.label
-    phase = 'create_document'
-    view = views.DocumentCreateView
-    weight = 30
-
-    name = _('Create document phase')
-    module_name = _('commenting text')
-    description = _('Create text for the project.')
-
-    features = {}
-
-
 class CommentPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'comment'
@@ -35,5 +22,4 @@ class CommentPhase(phases.PhaseContent):
     }
 
 
-phases.content.register(CreateDocumentPhase())
 phases.content.register(CommentPhase())
