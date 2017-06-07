@@ -13,34 +13,37 @@
     {% endfor %}
     </ol>
 
-    <div class="l-wrapper">
-        <article>
-            <h1>{{ object.name }}</h1>
+    <article class="list list--highlight">
+        <div class="l-wrapper">
+            <div class="l-center-8">
+            <h1 class="chapter-title">{{ object.name }}</h1>
 
             {% for paragraph in object.paragraphs.all %}
 
-                <section class="commenting" id="paragraph-{{ object.pk }}-{{ paragraph.pk }}">
-                    <div class="commenting__content">
-                        <h2 class="commenting__title">
+                <section class="paragraph" id="paragraph-{{ object.pk }}-{{ paragraph.pk }}">
+                    <div class="paragraph__content">
+                        <h2 class="paragraph__title">
                             {{ paragraph.name }}
                         </h2>
                         {{ paragraph.text|richtext }}
                     </div>
-                    <div class="commenting__actions">
+                    <div class="paragraph__actions">
                         <a
                                 class="button"
-                                title="{% trans 'Comments for this Paragraph' %}"
                                 href="{% url 'meinberlin_documents:paragraph-detail' paragraph.pk %}"
                         >
-                            {{ paragraph.comments.all|length }}
-                            <i class="fa fa-comment-o" aria-label="{% trans 'Comments' %}"></i>
+                            <i class="fa fa-comment-o" aria-hidden="true"></i>
+                            {% blocktrans count count=paragraph.comments.all|length %}{{ count }} Comment{% plural %}{{ count }} Comments{% endblocktrans %}
                         </a>
                     </div>
                 </section>
 
             {% endfor %}
-        </article>
+            </div>
+        </div>
+    </article>
 
+    <div class="l-wrapper">
         <div class="l-center-6">
             {% react_comments object %}
         </div>

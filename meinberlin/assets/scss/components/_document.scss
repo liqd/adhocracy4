@@ -1,0 +1,23 @@
+.paragraph {
+    margin-bottom: $spacer / 2;
+}
+
+.chapter-title,
+.paragraph__content,
+.paragraph__actions {
+    background-color: $body-bg;
+    padding: $padding;
+}
+
+.paragraph__content {
+    margin-bottom: 1px;
+}
+
+.chapter-title,
+.paragraph__title {
+    margin-top: 0;
+}
+
+.paragraph__actions {
+    text-align: right;
+}
