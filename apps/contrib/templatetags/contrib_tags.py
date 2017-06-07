@@ -17,3 +17,14 @@ def combined_url_parameter(request_query_dict, **kwargs):
         combined_query_dict.setlist(key, [kwargs[key]])
     encoded_parameter = '?' + combined_query_dict.urlencode()
     return encoded_parameter
+
+
+@register.assignment_tag
+def filter_has_perm(perm, user, objects):
+    """Filter a list of objects based on user permissions."""
+    if not hasattr(user, 'has_perm'):
+        # If the swapped user model does not support permissions, all objects
+        # will be returned. This is taken from rules.templatetags.has_perm.
+        return objects
+    else:
+        return (obj for obj in objects if user.has_perm(perm, obj))
