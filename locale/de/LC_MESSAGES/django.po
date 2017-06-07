@@ -1738,10 +1738,12 @@ msgid ""
 "\n"
 "                I accept the <a href=\"%(terms_of_use_url)s\" target=\"_blank"
 "\">terms of use</a>.\n"
+"                "
 msgstr ""
 "\n"
 "  Ich akzeptiere die <a href=\"%(terms_of_use_url)s\" target=\"_blank"
 "\">Nutzungsbedingungen</a>.\n"
+"                "
 
 #: meinberlin/templates/base.html.py:8
 msgid "meinBerlin"
