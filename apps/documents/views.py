@@ -1,4 +1,3 @@
-from django.core.urlresolvers import reverse
 from django.views import generic
 
 from adhocracy4.modules import views as module_views
@@ -26,13 +25,8 @@ class DocumentManagementView(DashboardBaseMixin,
 
         return super(DocumentManagementView, self).dispatch(*args, **kwargs)
 
-    def get_success_url(self):
-        return reverse(
-            'dashboard-project-list',
-            kwargs={'organisation_slug': self.organisation.slug, })
-
     def get_queryset(self):
-        return super().get_queryset().filter(module=self.module)
+        return models.Chapter.objects.filter(module=self.module)
 
 
 class ChapterManagementView(module_views.ItemDetailView):
