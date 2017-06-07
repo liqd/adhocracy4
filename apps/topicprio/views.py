@@ -6,7 +6,6 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.modules import views as module_views
 from adhocracy4.rules import mixins as rules_mixins
-
 from apps.contrib import filters
 from apps.dashboard.mixins import DashboardBaseMixin
 
