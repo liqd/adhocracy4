@@ -17,4 +17,4 @@ indent_style = tab
 # isort configuration
 [*.py]
 skip=migrations
-known_first_party=adhocracy4, meinberlin, apps
+known_first_party=adhocracy4, meinberlin, apps, tests
