@@ -36,7 +36,11 @@
 .filter-bar__top-overlap {
     position: relative;
     z-index: 1;
-    bottom: -1.3em;
+    bottom: -1em;
+
+    .dropdown {
+        margin-bottom: 0;
+    }
 }
 
 .filter-bar__bottom-overlap {
