@@ -16,29 +16,29 @@
     <article class="list list--highlight">
         <div class="l-wrapper">
             <div class="l-center-8">
-            <h1 class="chapter-title">{{ object.name }}</h1>
+                <h1 class="chapter-title">{{ object.name }}</h1>
 
-            {% for paragraph in object.paragraphs.all %}
+                {% for paragraph in object.paragraphs.all %}
 
-                <section class="paragraph" id="paragraph-{{ object.pk }}-{{ paragraph.pk }}">
-                    <div class="paragraph__content">
-                        <h2 class="paragraph__title">
-                            {{ paragraph.name }}
-                        </h2>
-                        {{ paragraph.text|richtext }}
-                    </div>
-                    <div class="paragraph__actions">
-                        <a
-                                class="button"
-                                href="{% url 'meinberlin_documents:paragraph-detail' paragraph.pk %}"
-                        >
-                            <i class="fa fa-comment-o" aria-hidden="true"></i>
-                            {% blocktrans count count=paragraph.comments.all|length %}{{ count }} Comment{% plural %}{{ count }} Comments{% endblocktrans %}
-                        </a>
-                    </div>
-                </section>
+                    <section class="paragraph" id="paragraph-{{ object.pk }}-{{ paragraph.pk }}">
+                        <div class="paragraph__content">
+                            <h2 class="paragraph__title">
+                                {{ paragraph.name }}
+                            </h2>
+                            {{ paragraph.text|richtext }}
+                        </div>
+                        <div class="paragraph__actions">
+                            <a
+                                    class="button"
+                                    href="{% url 'meinberlin_documents:paragraph-detail' paragraph.pk %}"
+                            >
+                                <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                {% blocktrans count count=paragraph.comments.all|length %}{{ count }} Comment{% plural %}{{ count }} Comments{% endblocktrans %}
+                            </a>
+                        </div>
+                    </section>
 
-            {% endfor %}
+                {% endfor %}
             </div>
         </div>
     </article>
