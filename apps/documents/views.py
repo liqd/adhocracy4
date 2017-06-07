@@ -1,7 +1,6 @@
 from django.views import generic
 
 from adhocracy4.modules import views as module_views
-from adhocracy4.projects import mixins as project_mixins
 from adhocracy4.rules import mixins as rules_mixins
 from apps.dashboard.mixins import DashboardBaseMixin
 
@@ -47,7 +46,8 @@ class ChapterManagementView(module_views.ItemDetailView):
         return self.get_object().project.organisation
 
 
-class ChapterDetailView(generic.DetailView):
+class ChapterDetailView(rules_mixins.PermissionRequiredMixin,
+                        generic.DetailView):
     model = models.Chapter
     permission_required = 'meinberlin_documents.view_chapter'
 
@@ -57,10 +57,15 @@ class ChapterDetailView(generic.DetailView):
         return context
 
     def dispatch(self, *args, **kwargs):
-        self.project = self.get_object().project
-        self.phase = self.project.active_phase or self.project.past_phases[0]
-        self.module = self.phase.module if self.phase else None
+        chapter = self.get_object()
+
+        # Simulate ProjectMixin behaviour
+        self.project = chapter.project
+        self.phase = self.project.active_phase \
+            or self.project.past_phases.first()
+        self.module = chapter.module
         self.request.module = self.module
+
         return super(ChapterDetailView, self).dispatch(*args, **kwargs)
 
     @property
@@ -68,7 +73,7 @@ class ChapterDetailView(generic.DetailView):
         return models.Chapter.objects.filter(module=self.module)
 
 
-class DocumentDetailView(project_mixins.ProjectMixin, ChapterDetailView):
+class DocumentDetailView(ChapterDetailView):
     def get_object(self):
         return models.Chapter.objects.filter(module=self.module).first()
 
@@ -76,4 +81,4 @@ class DocumentDetailView(project_mixins.ProjectMixin, ChapterDetailView):
 class ParagraphDetailView(rules_mixins.PermissionRequiredMixin,
                           generic.DetailView):
     model = models.Paragraph
-    permission_required = 'meinberlin_documents.view_chapter'
+    permission_required = 'meinberlin_documents.view_paragraph'
