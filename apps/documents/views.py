@@ -1,3 +1,4 @@
+from django.utils.functional import cached_property
 from django.views import generic
 
 from adhocracy4.modules import views as module_views
@@ -71,6 +72,20 @@ class ChapterDetailView(rules_mixins.PermissionRequiredMixin,
     @property
     def chapter_list(self):
         return models.Chapter.objects.filter(module=self.module)
+
+    @cached_property
+    def prev(self):
+        return self.chapter_list\
+            .filter(weight__lt=self.object.weight)\
+            .order_by('-weight')\
+            .first()
+
+    @cached_property
+    def next(self):
+        return self.chapter_list\
+            .filter(weight__gt=self.object.weight)\
+            .order_by('weight')\
+            .first()
 
 
 class DocumentDetailView(ChapterDetailView):

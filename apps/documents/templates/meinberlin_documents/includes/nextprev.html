@@ -1,0 +1,31 @@
+{% load i18n %}
+
+<div class="l-wrapper">
+    <div class="l-center-8">
+        <div class="filter-bar">
+            {% if view.prev %}
+                <a href="{% url 'meinberlin_documents:chapter-detail' view.prev.pk %}" class="button button--light">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    {% trans "Previous Chapter" %}
+                </a>
+            {% else %}
+                <span class="button button--light is-disabled">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    {% trans "Previous Chapter" %}
+                </span>
+            {% endif %}
+
+            {% if view.next %}
+                <a href="{% url 'meinberlin_documents:chapter-detail' view.next.pk %}" class="button button--light filter-bar__ordering">
+                    {% trans "Next Chapter" %}
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </a>
+            {% else %}
+                <span class="button button--light is-disabled filter-bar__ordering">
+                    {% trans "Next Chapter" %}
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </span>
+            {% endif %}
+        </div>
+    </div>
+</div>

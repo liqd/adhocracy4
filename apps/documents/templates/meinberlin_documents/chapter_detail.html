@@ -3,6 +3,12 @@
 
 {% block phase_content %}
 
+    {% if chapter_list|length > 1 %}
+        <div class="filter-bar__top-overlap">
+            {% include 'meinberlin_documents/includes/nextprev.html' %}
+        </div>
+    {% endif %}
+
     <article class="module-content">
         <div class="l-wrapper">
             <div class="l-center-8">
@@ -46,6 +52,13 @@
             </div>
         </div>
     </article>
+
+    {% if chapter_list|length > 1 %}
+        <div class="filter-bar__bottom-overlap">
+            {% include 'meinberlin_documents/includes/nextprev.html' %}
+        </div>
+    {% endif %}
+
 
     <div class="l-wrapper">
         <div class="l-center-6">
