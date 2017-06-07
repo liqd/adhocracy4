@@ -4,7 +4,7 @@
 {% block phase_content %}
 
     {% if chapter_list|length > 1 %}
-        <div class="filter-bar__top-overlap">
+        <div class="control-bar__top-overlap">
             {% include 'meinberlin_documents/includes/nextprev.html' %}
         </div>
     {% endif %}
@@ -54,7 +54,7 @@
     </article>
 
     {% if chapter_list|length > 1 %}
-        <div class="filter-bar__bottom-overlap">
+        <div class="control-bar__bottom-overlap">
             {% include 'meinberlin_documents/includes/nextprev.html' %}
         </div>
     {% endif %}

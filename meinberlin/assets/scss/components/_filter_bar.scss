@@ -1,4 +1,4 @@
-.filter-bar {
+.control-bar {
     @include clearfix;
     font-size: $font-size-sm;
 
@@ -21,7 +21,7 @@
         }
     }
 
-    .filter-bar__ordering {
+    .control-bar__right {
         float: right;
 
         @media (max-width: $breakpoint) {
@@ -33,7 +33,7 @@
     }
 }
 
-.filter-bar__top-overlap {
+.control-bar__top-overlap {
     position: relative;
     z-index: 1;
     bottom: -1em;
@@ -43,7 +43,7 @@
     }
 }
 
-.filter-bar__bottom-overlap {
+.control-bar__bottom-overlap {
     position: relative;
     z-index: 1;
     top: -1em;
