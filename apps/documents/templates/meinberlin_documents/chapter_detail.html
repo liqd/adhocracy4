@@ -3,19 +3,23 @@
 
 {% block phase_content %}
 
-    <ol>
-    {% for chapter in chapter_list %}
-        <li>
-            <a href="{% url 'meinberlin_documents:chapter-detail' chapter.pk %}">
-                {{ chapter.name }}
-            </a>
-        </li>
-    {% endfor %}
-    </ol>
-
     <article class="list list--highlight">
         <div class="l-wrapper">
             <div class="l-center-8">
+                {% if chapter_list|length > 1 %}
+                    <nav class="doc-toc" aria-label="{% trans 'Table of Contents' %}">
+                        <ol>
+                            {% for chapter in chapter_list %}
+                                <li>
+                                    <a href="{% url 'meinberlin_documents:chapter-detail' chapter.pk %}" {% if chapter.pk == object.pk %}class="active"{% endif %}>
+                                        {{ chapter.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ol>
+                    </nav>
+                {% endif %}
+
                 <h1 class="chapter-title">{{ object.name }}</h1>
 
                 {% for paragraph in object.paragraphs.all %}
