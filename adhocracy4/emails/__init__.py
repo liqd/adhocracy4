@@ -44,12 +44,15 @@ class EmailBase:
     def get_attachments(self):
         return []
 
+    def get_languages(self, receiver):
+        return [get_language(), self.fallback_language]
+
     @classmethod
     def send(cls, object, *args, **kwargs):
         return cls().dispatch(object, *args, **kwargs)
 
     def render(self, template_name, context):
-        languages = [get_language(), self.fallback_language]
+        languages = self.get_languages(context['receiver'])
         template = select_template([
             '{}.{}.email'.format(template_name, lang)
             for lang in languages
