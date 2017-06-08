@@ -112,22 +112,12 @@ class ExternalNotification(Email):
     def get_receivers(self):
         return [getattr(self.object, self.email_attr_name)]
 
-    def get_context(self):
-        context = super().get_context()
-        context['receiver'] = getattr(self.object, self.email_attr_name)
-        return context
-
 
 class UserNotification(Email):
     user_attr_name = 'creator'
 
     def get_receivers(self):
         return [getattr(self.object, self.user_attr_name)]
-
-    def get_context(self):
-        context = super().get_context()
-        context['receiver'] = getattr(self.object, self.user_attr_name)
-        return context
 
 
 class ModeratorNotification(Email):
