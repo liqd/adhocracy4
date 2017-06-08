@@ -9,7 +9,7 @@ from apps.documents import models as document_models
 def test_anonymous_user_can_not_retrieve_chapter_list(apiclient, module):
     url = reverse('chapters-list', kwargs={'module_pk': module.pk})
     response = apiclient.get(url, format='json')
-    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+    assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
 @pytest.mark.django_db
@@ -20,7 +20,7 @@ def test_anonymous_user_can_not_retrieve_chapter_detail(
         kwargs={'module_pk': module.pk, 'pk': chapter.pk}
     )
     response = apiclient.get(url, format='json')
-    assert response.status_code == status.HTTP_405_METHOD_NOT_ALLOWED
+    assert response.status_code == status.HTTP_403_FORBIDDEN
 
 
 @pytest.mark.django_db
