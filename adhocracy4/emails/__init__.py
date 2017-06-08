@@ -3,7 +3,7 @@ from django.contrib.sites import models as site_models
 from django.core.mail.message import EmailMultiAlternatives
 from django.template import Context
 from django.template.loader import select_template
-from django.utils.translation import get_language
+from django.utils import translation
 
 from . import mixins
 
@@ -45,7 +45,7 @@ class EmailBase:
         return []
 
     def get_languages(self, receiver):
-        return [get_language(), self.fallback_language]
+        return [translation.get_language(), self.fallback_language]
 
     @classmethod
     def send(cls, object, *args, **kwargs):
@@ -58,11 +58,15 @@ class EmailBase:
             for lang in languages
         ])
 
-        parts = []
-        for part_type in ('subject', 'txt', 'html'):
-            context.update({'part_type': part_type})
-            parts.append(template.render(context))
-            context.pop()
+        # Get the actually chosen language from the template name
+        language = template.template.name.split('.', 2)[-2]
+
+        with translation.override(language):
+            parts = []
+            for part_type in ('subject', 'txt', 'html'):
+                context.update({'part_type': part_type})
+                parts.append(template.render(context))
+                context.pop()
 
         return tuple(parts)
 
