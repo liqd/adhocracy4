@@ -127,15 +127,17 @@ def test_image_deleted_after_update(project_factory, image_factory):
 
 
 @pytest.mark.django_db
+@pytest.mark.parametrize('module__phases', [None])
 def test_phases_property(module, phase_factory):
     project = module.project
-    phase1 = phase_factory(module=module, type='fake:30:type', weight=30)
-    phase2 = phase_factory(module=module, type='fake:20:type', weight=20)
+    phase1 = phase_factory(module=module, type='a4test_questions:40:fake', weight=40)
+    phase2 = phase_factory(module=module, type='a4test_questions:30:fake', weight=30)
 
     assert list(project.phases) == [phase2, phase1]
 
 
 @pytest.mark.django_db
+@pytest.mark.parametrize('module__phases', [None])
 def test_future_phases_property(module, phase_factory):
     project = module.project
     phase1 = phase_factory(
@@ -170,6 +172,7 @@ def test_future_phases_property(module, phase_factory):
 
 
 @pytest.mark.django_db
+@pytest.mark.parametrize('module__phases', [None])
 def test_past_phases_property(module, phase_factory):
     project = module.project
     phase_factory(
