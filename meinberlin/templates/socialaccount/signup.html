@@ -1,3 +1,4 @@
+{% extends "socialaccount/base.html" %}
 {% comment %}
 By default, if the email address is already registered with an existing account, the user will be prompted to enter
 another email address, for which a new account will be created. The new account will be linked to the social account.
@@ -6,8 +7,6 @@ to the existing account and connect the social account from the account settings
 Attention: Providers that won't pass the users email address won't work with this page, as in that case it would be
 mandatory for users to provide an email address to be able to create a new, valid account.
 {% endcomment %}
-
-{% extends "socialaccount/base.html" %}
 
 {% load i18n %}
 
