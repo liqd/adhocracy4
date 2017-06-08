@@ -79,6 +79,7 @@ INSTALLED_APPS = (
     'apps.account.apps.Config',
     'apps.dashboard.apps.Config',
 
+    'apps.activities.apps.Config',
     'apps.bplan.apps.Config',
     'apps.budgeting.apps.Config',
     'apps.documents.apps.Config',
@@ -330,7 +331,6 @@ A4_REPORTABLES = (
     ('meinberlin_topicprio', 'topic'),
     ('meinberlin_kiezkasse', 'proposal'),
 )
-A4_AUTO_FOLLOWABLES = (('a4comments', 'comment'),)
 
 A4_ACTIONABLES = (
     ('a4comments', 'comment'),

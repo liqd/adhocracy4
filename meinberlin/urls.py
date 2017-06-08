@@ -69,6 +69,8 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^projects/', include(projects_urls)),
 
+    url(r'^activities/', include('apps.activities.urls')),
+
     url(r'^ideas/', include(ideas_urls,
                             namespace='meinberlin_ideas')),
     url(r'^kiezkasse/', include(kiezkasse_urls,
