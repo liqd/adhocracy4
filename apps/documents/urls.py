@@ -13,9 +13,8 @@ urlpatterns = [
         views.ParagraphDetailView.as_view(),
         name='paragraph-detail'
     ),
-    # url(r'^chapters/(?P<pk>\d+)/$'
     url(
-        r'^manage/chapter/(?P<pk>\d+)/$',
+        r'^manage/chapters/(?P<pk>\d+)/$',
         views.ChapterManagementView.as_view(),
         name='chapter-management'
     ),
