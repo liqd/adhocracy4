@@ -23,7 +23,7 @@
                         {% elif activity.type == 'phase' and activity.verb == 'schedule' %}
                             {% trans "Participation will be over soon" %}
                         {% else %}
-                            {% trans "No such actions yet" %}
+                            {{ activity }}
                         {% endif %}
                     </div>
                     <div class="activity__line">
