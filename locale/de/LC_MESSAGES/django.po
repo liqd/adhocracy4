@@ -318,6 +318,25 @@ msgstr "Änderungen speichern"
 msgid "Your profile was successfully updated."
 msgstr "Ihr Profil wurde erfolgreich aktualisiert."
 
+#: apps/activities/templates/meinberlin_activities/activity_list.html.py:18
+#, python-format
+msgid "<a href=\"%(url)s\">%(name)s</a> commented:"
+msgstr "<a href=\"%(url)s\">%(name)s</a> hat kommentiert:"
+
+#: apps/activities/templates/meinberlin_activities/activity_list.html.py:22
+#, python-format
+msgid "<a href=\"%(url)s\">%(name)s</a> added a new item"
+msgstr "<a href=\"%(url)s\">%(name)s</a> hat einen neuen Beitrag erstellt"
+
+#: apps/activities/templates/meinberlin_activities/activity_list.html.py:24
+msgid "Participation will be over soon"
+msgstr "Die Partizipation endet bald"
+
+#: apps/activities/templates/meinberlin_activities/activity_list.html.py:31
+#, python-format
+msgid "on <a href=\"%(url)s\">%(name)s</a>"
+msgstr "in <a href=\"%(url)s\">%(name)s</a>"
+
 #: apps/bplan/models.py:36
 msgid "Your Name"
 msgstr "Ihr Name"
