@@ -7,7 +7,7 @@
 <div class="l-wrapper">
     <div class="l-center-6">
         <h1>{% trans 'Activity Stream' %}</h1>
-        {% for activity in object_list|slice:":100" %}
+        {% for activity in object_list|slice:":10" %}
             <div>
                 <div>{{ activity.timestamp|date:'d.m.Y' }}</div>
             {% if activity.type == 'comment' %}
