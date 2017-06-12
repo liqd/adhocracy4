@@ -10,18 +10,19 @@
 
         {% for activity in object_list|slice:":10" %}
             <div>
-                <div>{{ activity.timestamp|date:'d.m.Y' }}</div>
-
                 {% if activity.type == 'comment' %}
                     <p><a href="{% url 'profile' activity.actor.username %}">{{ activity.actor.username }}</a> commented: {{ activity.obj.comment|truncatechars_html:50 }}</p>
                     <p>on <a href="{% url 'project-detail' activity.project.slug %}">{{ activity.project.name }}</a></p>
+                    <div>{{ activity.timestamp|date:'d.m.Y' }}</div>
                 {% elif activity.type == 'item' %}
                     <p><a href="{% url 'profile' activity.actor.username %}">{{ activity.actor.username }}</a> added a new item</p></p>
                     <p>on <a href="{% url 'project-detail' activity.project.slug %}">{{ activity.project.name }}</a></p>
+                    <div>{{ activity.timestamp|date:'d.m.Y' }}</div>
                 {% elif activity.type == 'phase' %}
                     {% if activity.verb == 'schedule' %}
                         <p>Participation will be over soon</p>
                         <p>on <a href="{% url 'project-detail' activity.project.slug %}">{{ activity.project.name }}</a></p>
+                        <div>{{ activity.timestamp|date:'d.m.Y' }}</div>
                     {% endif %}
                 {% elif activity.type == 'project' %}
                     No such actions yet
