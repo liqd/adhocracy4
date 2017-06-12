@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n activity_tags %}
 
 {% block title %}{% trans 'Activity Stream' %} &mdash; {{ block.super }}{% endblock %}
 
@@ -9,48 +9,27 @@
         <h1>{% trans 'Activity Stream' %}</h1>
 
         {% for activity in object_list|slice:":10" %}
+            {% get_activity_icon activity as icon %}
             <div class="activity">
-                {% if activity.type == 'comment' %}
-                    <i class="fa fa-comment activity__icon" aria-hidden="true"></i>
-                    <div class="activity__main">
-                        <div class="activity__line">
+                <i class="fa fa-{{ icon }} activity__icon" aria-hidden="true"></i>
+                <div class="activity__main">
+                    <div class="activity__line">
+                        {% if activity.type == 'comment' %}
                             <a href="{% url 'profile' activity.actor.username %}">{{ activity.actor.username }}</a>
                             commented: {{ activity.obj.comment|truncatechars_html:50 }}
-                        </div>
-                        <div class="activity__line">
-                            on <a href="{% url 'project-detail' activity.project.slug %}">{{ activity.project.name }}</a>
-                        </div>
-                        <div class="activity__date">{{ activity.timestamp|date:'d.m.Y' }}</div>
-                    </div>
-                {% elif activity.type == 'item' %}
-                    <i class="fa fa-lightbulb-o activity__icon" aria-hidden="true"></i>
-                    <div class="activity__main">
-                        <div class="activity__line">
+                        {% elif activity.type == 'item' %}
                             <a href="{% url 'profile' activity.actor.username %}">{{ activity.actor.username }}</a> added a new item
-                        </div>
-                        <div class="activity__line">
-                            on <a href="{% url 'project-detail' activity.project.slug %}">{{ activity.project.name }}</a>
-                        </div>
-                        <div class="activity__date">{{ activity.timestamp|date:'d.m.Y' }}</div>
+                        {% elif activity.type == 'phase' and activity.verb == 'schedule' %}
+                            Participation will be over soon
+                        {% else %}
+                            No such actions yet
+                        {% endif %}
                     </div>
-                {% elif activity.type == 'phase' %}
-                    {% if activity.verb == 'schedule' %}
-                        <i class="fa fa-clock-o activity__icon" aria-hidden="true"></i>
-                        <div class="activity__main">
-                            <div class="activity__line">
-                                <p>Participation will be over soon</p>
-                            </div>
-                            <div class="activity__line">
-                                on <a href="{% url 'project-detail' activity.project.slug %}">{{ activity.project.name }}</a>
-                            </div>
-                            <div class="activity__date">{{ activity.timestamp|date:'d.m.Y' }}</div>
-                        </div>
-                    {% endif %}
-                {% elif activity.type == 'project' %}
-                    No such actions yet
-                {% elif activity.type == 'rating' %}
-                    No such actions yet
-                {% endif %}
+                    <div class="activity__line">
+                        on <a href="{% url 'project-detail' activity.project.slug %}">{{ activity.project.name }}</a>
+                    </div>
+                    <div class="activity__date">{{ activity.timestamp|date:'d.m.Y' }}</div>
+                </div>
             </div>
         {% endfor %}
     </div>
