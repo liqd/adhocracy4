@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n activity_tags %}
+{% load i18n %}
 
 {% block title %}{% trans 'Activity Stream' %} &mdash; {{ block.super }}{% endblock %}
 
@@ -9,9 +9,8 @@
         <h1>{% trans 'Activity Stream' %}</h1>
 
         {% for activity in object_list|slice:":10" %}
-            {% get_activity_icon activity as icon %}
             <div class="activity">
-                <i class="fa fa-{{ icon }} activity__icon" aria-hidden="true"></i>
+                <i class="fa fa-{{ activity.icon }} activity__icon" aria-hidden="true"></i>
                 <div class="activity__main">
                     <div class="activity__line">
                         {% if activity.type == 'comment' %}

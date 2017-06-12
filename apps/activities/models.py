@@ -43,3 +43,14 @@ class Activity(Action):
     @cached_property
     def type(self):
         return get_activity_type(self.obj_content_type)
+
+    @cached_property
+    def icon(self):
+        if self.type == 'comment':
+            return 'comment'
+        elif self.type == 'item':
+            return 'lightbulb-o'
+        elif self.type == 'phase' and self.verb == 'schedule':
+            return 'clock-o'
+        else:
+            return 'star'
