@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse_lazy
 from django.views import generic
 from django.views.generic import TemplateView
+
 from adhocracy4.rules import mixins as rules_mixins
 
 from . import forms

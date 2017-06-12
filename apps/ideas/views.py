@@ -3,7 +3,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.modules import views as module_views
-
 from apps.contrib import filters
 
 from . import forms

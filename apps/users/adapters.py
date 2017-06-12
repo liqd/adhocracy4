@@ -4,7 +4,6 @@ from allauth.account.adapter import DefaultAccountAdapter
 from django.conf import settings
 
 from apps.contrib.emails import Email
-
 from apps.users import USERNAME_INVALID_MESSAGE
 from apps.users import USERNAME_REGEX
 

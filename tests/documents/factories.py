@@ -1,8 +1,8 @@
 import factory
-from tests.factories import UserFactory
 
 from adhocracy4.test import factories
 from apps.documents import models as document_models
+from tests.factories import UserFactory
 
 
 class DocumentFactory(factory.django.DjangoModelFactory):
