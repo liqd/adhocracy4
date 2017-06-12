@@ -18,3 +18,4 @@ indent_style = tab
 [*.py]
 skip=migrations
 known_first_party=adhocracy4, meinberlin, apps, tests
+force_single_line = true
