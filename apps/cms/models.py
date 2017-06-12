@@ -16,6 +16,7 @@ from wagtail.wagtailsnippets.models import register_snippet
 from adhocracy4.projects.models import Project
 
 from . import emails
+from apps.activities.blocks import PlatformActivityBlock
 
 
 class SimplePage(Page):
@@ -98,6 +99,7 @@ class HomePage(Page):
         ('call_to_action', CallToActionBlock()),
         ('columns_text', ColumnsBlock()),
         ('projects', ProjectsWrapperBlock()),
+        ('activities', PlatformActivityBlock()),
     ])
 
     subtitle = models.CharField(max_length=120)
