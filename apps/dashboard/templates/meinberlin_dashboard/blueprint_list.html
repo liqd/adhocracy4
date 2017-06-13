@@ -17,10 +17,10 @@
 
 <h1 class="menu-layout__title">{% trans "New Project" %}</h1>
 
-<div class="l-tiles-3">
+<ul class="l-tiles-3">
     {% for blueprint_slug, blueprint in view.blueprints %}
         {% include "meinberlin_dashboard/includes/blueprint_list_tile.html" with blueprint=blueprint %}
     {% endfor %}
-</div>
+</ul>
 
 {% endblock %}
