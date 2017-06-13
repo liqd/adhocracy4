@@ -17,7 +17,7 @@
     {% block header %}{% endblock %}
 </head>
 
-<body data-url="{% url 'project-detail' object.slug %}">
+<body data-url="{{ object.get_absolute_url }}">
     <header class="embed-header">
         {% if not object|is_external %}
             {% if request.user.is_anonymous %}
@@ -35,7 +35,7 @@
             <img src="{% static 'images/logo_horizontal.svg' %}" alt="mein.berlin" class="embed-footer__logo">
         </a>
         {% if not object|is_external %}
-            <a href="{% url 'project-detail' object.slug %}" data-embed-target="external">{% trans 'Go to platform' %}</a>
+            <a href="{{ object.get_absolute_url }}" data-embed-target="external">{% trans 'Go to platform' %}</a>
         {% endif %}
     </footer>
     <div id="embed-confirm" class="modal" tabindex="-1" role="dialog" aria-label="{% trans 'Confirm login' %}" aria-hidden="true">

@@ -17,7 +17,7 @@
                         <ol>
                             {% for chapter in chapter_list %}
                                 <li>
-                                    <a href="{% url 'meinberlin_documents:chapter-detail' chapter.pk %}" {% if chapter.pk == object.pk %}class="active"{% endif %}>
+                                    <a href="{{ chapter.get_absolute_url }}" {% if chapter.pk == object.pk %}class="active"{% endif %}>
                                         {{ chapter.name }}
                                     </a>
                                 </li>
@@ -40,7 +40,7 @@
                         <div class="paragraph__actions">
                             <a
                                     class="button"
-                                    href="{% url 'meinberlin_documents:paragraph-detail' paragraph.pk %}"
+                                    href="{{ paragraph.get_absolute_url }}"
                             >
                                 <i class="fa fa-comment-o" aria-hidden="true"></i>
                                 {% blocktrans count count=paragraph.comments.all|length %}{{ count }} Comment{% plural %}{{ count }} Comments{% endblocktrans %}

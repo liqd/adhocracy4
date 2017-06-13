@@ -25,8 +25,7 @@
                     {% endif %}
                 </div>
                 <div class="action__line">
-                    {% url 'project-detail' action.project.slug as project_url%}
-                    {% blocktrans with url=project_url name=action.project.name %}on <a href="{{ url }}">{{ name }}</a>{% endblocktrans %}
+                    {% blocktrans with url=action.project.get_absolute_url name=action.project.name %}on <a href="{{ url }}">{{ name }}</a>{% endblocktrans %}
                 </div>
                 <div class="action__date">{{ action.timestamp|date:'d.m.Y' }}</div>
             </div>
