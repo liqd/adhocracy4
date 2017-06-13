@@ -1,10 +1,8 @@
 import django_filters
 from django.utils.translation import ugettext_lazy as _
 
-
 from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.projects.models import Project
-
 from apps.projects import views
 
 

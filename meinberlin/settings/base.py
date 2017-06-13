@@ -79,7 +79,7 @@ INSTALLED_APPS = (
     'apps.account.apps.Config',
     'apps.dashboard.apps.Config',
 
-    'apps.activities.apps.Config',
+    'apps.actions.apps.Config',
     'apps.bplan.apps.Config',
     'apps.budgeting.apps.Config',
     'apps.documents.apps.Config',
@@ -314,7 +314,7 @@ A4_RATEABLES = (
 A4_COMMENTABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
-    ('meinberlin_documents', 'document'),
+    ('meinberlin_documents', 'chapter'),
     ('meinberlin_documents', 'paragraph'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
@@ -348,6 +348,29 @@ A4_AUTO_FOLLOWABLES = (
     ('meinberlin_kiezkasse', 'proposal'),
     ('meinberlin_polls', 'vote'),  # TODO: really?
 )
+
+ACTION_TYPES = {
+    'project': [
+        ('a4projects', 'project'),
+        ('meinberlin_bplan', 'bplan'),
+        ('meinberlin_externalproject', 'externalproject'),
+    ],
+    'phase': [
+        ('a4phases', 'phase'),
+    ],
+    'comment': [
+        ('a4comments', 'comment'),
+    ],
+    'rating': [
+        ('a4ratings', 'rating'),
+    ],
+    'item': [
+        ('meinberlin_budgeting', 'proposal'),
+        ('meinberlin_ideas', 'idea'),
+        ('meinberlin_kiezkasse', 'proposal'),
+        ('meinberlin_mapideas', 'mapidea'),
+    ]
+}
 
 A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'

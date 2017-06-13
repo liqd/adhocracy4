@@ -4,8 +4,8 @@ from . import models
 
 
 class ParagraphAdmin(admin.ModelAdmin):
-    list_filter = ('document',)
+    list_filter = ('chapter',)
 
 
-admin.site.register(models.Document)
+admin.site.register(models.Chapter)
 admin.site.register(models.Paragraph, ParagraphAdmin)
