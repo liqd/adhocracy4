@@ -2,6 +2,7 @@ from django.utils.functional import cached_property
 from django.views import generic
 
 from adhocracy4.modules import views as module_views
+from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 from apps.dashboard.mixins import DashboardBaseMixin
 
@@ -88,7 +89,7 @@ class ChapterDetailView(rules_mixins.PermissionRequiredMixin,
             .first()
 
 
-class DocumentDetailView(ChapterDetailView):
+class DocumentDetailView(ProjectMixin, ChapterDetailView):
     def get_object(self):
         return models.Chapter.objects.filter(module=self.module).first()
 
