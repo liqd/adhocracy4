@@ -11,7 +11,6 @@ from rules.compat import access_mixins as mixins
 
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
-
 from apps.organisations import models as org_models
 from apps.users.models import User
 

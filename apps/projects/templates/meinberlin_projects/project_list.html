@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load rules i18n %}
+{% load contrib_tags i18n %}
 
 {% block title %}{% trans 'Projects' %} &mdash; {{ block.super }}{% endblock %}
 
@@ -8,12 +8,10 @@
         {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
         <div class="l-tiles-4">
-            {% for project in project_list %}
+            {% filter_has_perm 'a4projects.view_project' request.user project_list as filtered_projects  %}
 
-            {% has_perm 'a4projects.view_project' request.user project as show %}
-            {% if show %}
+            {% for project in filtered_projects %}
                 {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
-            {% endif %}
             {% empty %}
                 <p>{% trans 'We could not find any projects.' %}</p>
             {% endfor %}

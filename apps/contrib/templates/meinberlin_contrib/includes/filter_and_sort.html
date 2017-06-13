@@ -1,13 +1,13 @@
 {% load i18n %}
 
-<div class="filter-bar">
+<div class="control-bar">
     {% for field in filter.form %}
         {% if field.name != 'ordering' %}
             {{ field }}
         {% endif %}
     {% endfor %}
 
-    <div class="filter-bar__ordering">
+    <div class="control-bar__right">
         {{ filter.form.ordering }}
     </div>
 </div>

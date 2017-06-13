@@ -2,8 +2,7 @@ from rest_framework import serializers
 
 from adhocracy4.modules.models import Module
 
-from . import validators
-from .models import Document
+from .models import Chapter
 from .models import Paragraph
 
 
@@ -18,33 +17,29 @@ class ParagraphSerializer(serializers.Serializer):
     text = serializers.CharField()
 
 
-class DocumentSerializer(serializers.ModelSerializer):
+class ChapterSerializer(serializers.ModelSerializer):
     paragraphs = ParagraphSerializer(many=True, partial=True)
 
     class Meta:
-        model = Document
+        model = Chapter
         exclude = ('creator', 'module',)
+        extra_kwargs = {'weight': {'required': False}}
 
     def validate(self, data):
-        if self.instance:
-            document_pk = self.instance.pk
-        else:
-            document_pk = None
         module_pk = self._context['module_pk']
         module = Module.objects.get(pk=module_pk)
-        validators.single_document_per_module(module, document_pk)
         data['module'] = module
         return data
 
     def create(self, validated_data):
         paragraphs = validated_data.pop('paragraphs')
         user = self.context['request'].user
-        document = Document.objects.create(creator=user, **validated_data)
+        chapter = Chapter.objects.create(creator=user, **validated_data)
 
         for paragraph in paragraphs:
-            Paragraph.objects.create(document=document, **paragraph)
+            Paragraph.objects.create(chapter=chapter, **paragraph)
 
-        return document
+        return chapter
 
     def update(self, instance, validated_data):
         instance.name = validated_data['name']
@@ -55,7 +50,7 @@ class DocumentSerializer(serializers.ModelSerializer):
         instance.paragraphs.exclude(id__in=paragraph_ids).delete()
 
         for paragraph in paragraphs:
-            paragraph['document'] = instance
+            paragraph['chapter'] = instance
             if 'id' in paragraph:
                 instance.paragraphs.filter(id=paragraph['id'])\
                                    .update(**paragraph)

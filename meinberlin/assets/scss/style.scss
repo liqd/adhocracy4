@@ -17,6 +17,7 @@
 @import 'layout';
 @import 'form';
 
+@import 'components/action';
 @import 'components/alert';
 @import 'components/blocks';
 @import 'components/breadcrumbs';
@@ -25,6 +26,7 @@
 @import 'components/comments';
 @import 'components/dashboard_nav';
 @import 'components/datepicker';
+@import 'components/document';
 @import 'components/dropdown';
 @import "components/embed_layout";
 @import 'components/embed_status';
@@ -36,21 +38,21 @@
 @import 'components/hero_unit';
 @import 'components/item_detail';
 @import 'components/label';
-@import 'components/list';
 @import 'components/list_item';
 @import 'components/lr_bar';
 @import 'components/map';
 @import 'components/menu_layout';
 @import 'components/moderator_statement';
+@import 'components/module';
 @import 'components/multiform';
 @import 'components/pagination';
 @import 'components/phases';
 @import 'components/poll';
 @import 'components/popover';
 @import 'components/portal_header';
+@import 'components/project_header';
 @import 'components/radio';
 @import 'components/rating';
-@import 'components/project_header';
 @import 'components/simple_page';
 @import 'components/table';
 @import 'components/tabs';

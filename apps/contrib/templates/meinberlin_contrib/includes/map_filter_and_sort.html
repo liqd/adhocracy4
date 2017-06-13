@@ -1,6 +1,6 @@
 {% load i18n contrib_tags %}
 
-<div class="filter-bar">
+<div class="control-bar">
     {% if mode == 'map' %}
         {% combined_url_parameter request.GET mode='list' as url_par %}
         <a class="button button--light" href="{{ url_par }}" aria-label="{% trans 'View as list' %}">
@@ -22,7 +22,7 @@
     {% endfor %}
 
     {% if mode != 'map' %}
-        <div class="filter-bar__ordering">
+        <div class="control-bar__right">
             {{ filter.form.ordering }}
         </div>
     {% endif %}

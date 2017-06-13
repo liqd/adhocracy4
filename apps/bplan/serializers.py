@@ -10,7 +10,6 @@ from django.core.exceptions import ValidationError
 from django.core.files.images import ImageFile
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
-
 from rest_framework import serializers
 
 from adhocracy4.images.validators import validate_image
@@ -20,7 +19,6 @@ from adhocracy4.projects import models as project_models
 
 from .models import Bplan
 from .phases import StatementPhase
-
 
 BPLAN_EMBED = '<iframe height="500" style="width: 100%; min-height: 300px; ' \
               'max-height: 100vh" src="{}" frameborder="0"></iframe>'

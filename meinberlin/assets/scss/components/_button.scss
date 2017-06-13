@@ -19,10 +19,15 @@
         color: contrast-color($color-active);
     }
 
+    &.is-disabled,
     &:disabled {
-        border-color: mix($color, $color-contrast, 50%);
-        background-color: mix($color, $color-contrast, 50%);
-        color: mix($color, $color-contrast, 10%);
+        $is-light: luma($color) > luma($color-contrast);
+        $weight-bg: if($is-light, 95%, 50%);
+        $weight-fg: if($is-light, 60%, 10%);
+
+        border-color: mix($color, $color-contrast, $weight-bg);
+        background-color: mix($color, $color-contrast, $weight-bg);
+        color: mix($color, $color-contrast, $weight-fg);
         cursor: not-allowed;
     }
 }
@@ -51,7 +56,9 @@
     &,
     &:focus,
     &:hover,
-    &:active {
+    &:active,
+    &:disabled,
+    &.is-disabled {
         border-color: $border-color;
     }
 }
@@ -82,6 +89,7 @@
         background-color: transparent;
     }
 
+    &.is-disabled,
     &:disabled {
         color: $text-color;
         cursor: not-allowed;

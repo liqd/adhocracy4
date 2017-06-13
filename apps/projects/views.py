@@ -1,4 +1,5 @@
 from datetime import datetime
+
 import django_filters
 from django.apps import apps
 from django.conf import settings
@@ -7,7 +8,6 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.projects import models as project_models
-
 from apps.contrib.widgets import DropdownLinkWidget
 from apps.dashboard import blueprints
 
@@ -54,7 +54,8 @@ class TypeWidget(DropdownLinkWidget):
 
     def __init__(self, attrs=None):
         choices = (('', _('Any')),)
-        for blueprint_key, blueprint in blueprints.blueprints:
+        sorted_blueprints = sorted(blueprints.blueprints, key=lambda a: a[1])
+        for blueprint_key, blueprint in sorted_blueprints:
             choices += (blueprint_key, blueprint.title),
         super().__init__(attrs, choices)
 
@@ -74,7 +75,8 @@ class ProjectFilterSet(DefaultsFilterSet):
     )
 
     organisation = django_filters.ModelChoiceFilter(
-        queryset=apps.get_model(settings.A4_ORGANISATIONS_MODEL).objects.all(),
+        queryset=apps.get_model(settings.A4_ORGANISATIONS_MODEL).objects
+                     .order_by('name'),
         widget=OrganisationWidget,
     )
 

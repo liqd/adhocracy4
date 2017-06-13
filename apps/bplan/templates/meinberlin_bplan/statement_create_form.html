@@ -6,7 +6,7 @@
 {% block content %}
 <div class="l-wrapper">
     <div class="l-center-8">
-        <h1>{% trans 'Submit a development plan statement' %}</h1>
+        <h2>{% trans 'Submit a development plan statement' %}</h2>
 
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
@@ -22,7 +22,9 @@
 
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.statement %}
 
-            <input type="submit" class="button button--primary" value="{% trans 'Submit' %}" />
+            <div class="u-spacer-bottom">
+                <input type="submit" class="button button--primary" value="{% trans 'Submit' %}" />
+            </div>
         </form>
     </div>
 </div>

@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block phase_content %}
-    <div class="filter-bar__top-overlap">
+    <div class="control-bar__top-overlap">
         <div class="l-wrapper">
             <div class="l-center-8">
                 {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
@@ -41,7 +41,7 @@
             {% map_display_points object_list view.module.settings_instance.polygon %}
         </div>
     {% else %}
-        <div class="list list--highlight">
+        <div class="module-content">
             <div class="l-wrapper">
                 <div class="l-center-8">
 
