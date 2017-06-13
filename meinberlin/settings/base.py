@@ -75,7 +75,6 @@ INSTALLED_APPS = (
     'apps.moderatorfeedback.apps.Config',
     'apps.maps.apps.Config',
     'apps.notifications.apps.Config',
-    'apps.servicekonto.apps.Config',
 
     'apps.account.apps.Config',
     'apps.dashboard.apps.Config',
