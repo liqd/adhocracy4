@@ -7,19 +7,19 @@
     font-size: $font-size * 100%;
 }
 
-.activity {
+.action {
     @include clearfix;
     border-bottom: 1px solid $border-color;
     padding: 0.5em 0;
 }
 
-.activity__line {
+.action__line {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.activity__icon {
+.action__icon {
     @include multi-line-icon(2);
     background-color: $bg-secondary;
     color: $brand-primary;
@@ -29,12 +29,12 @@
 }
 
 @media (min-width: $breakpoint) {
-    .activity {
+    .action {
         padding-right: 8em;
         position: relative;
     }
 
-    .activity__date {
+    .action__date {
         position: absolute;
         top: 0.5em;  // padding
         right: 0;

@@ -4,10 +4,10 @@
     <h3>{{ self.heading }}</h3>
 
     {% for action in actions %}
-        <div class="activity">
-            <i class="fa fa-{{ action.icon }} activity__icon" aria-hidden="true"></i>
-            <div class="activity__main">
-                <div class="activity__line">
+        <div class="action">
+            <i class="fa fa-{{ action.icon }} action__icon" aria-hidden="true"></i>
+            <div class="action__main">
+                <div class="action__line">
                     {% if action.type == 'comment' and action.verb == 'add' %}
                         {% url 'profile' action.actor.username as actor_url %}
                         {% blocktrans with url=actor_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> commented:{% endblocktrans%}
@@ -28,11 +28,11 @@
                         {{ action }}
                     {% endif %}
                 </div>
-                <div class="activity__line">
+                <div class="action__line">
                     {% url 'project-detail' action.project.slug as project_url%}
                     {% blocktrans with url=project_url name=action.project.name %}on <a href="{{ url }}">{{ name }}</a>{% endblocktrans %}
                 </div>
-                <div class="activity__date">{{ action.timestamp|date:'d.m.Y' }}</div>
+                <div class="action__date">{{ action.timestamp|date:'d.m.Y' }}</div>
             </div>
         </div>
     {% endfor %}
