@@ -3,7 +3,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.maps import fields as map_fields
-
 from apps.ideas import models as idea_models
 
 

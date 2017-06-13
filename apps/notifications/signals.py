@@ -6,6 +6,7 @@ from adhocracy4.actions.verbs import Verbs
 from adhocracy4.follows.models import Follow
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
+
 from . import emails
 
 

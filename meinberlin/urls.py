@@ -19,7 +19,6 @@ from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
-
 from apps.account import urls as account_urls
 from apps.bplan import urls as bplan_urls
 from apps.bplan.api import BplanViewSet
