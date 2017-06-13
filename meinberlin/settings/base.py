@@ -79,7 +79,7 @@ INSTALLED_APPS = (
     'apps.account.apps.Config',
     'apps.dashboard.apps.Config',
 
-    'apps.activities.apps.Config',
+    'apps.actions.apps.Config',
     'apps.bplan.apps.Config',
     'apps.budgeting.apps.Config',
     'apps.documents.apps.Config',

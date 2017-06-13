@@ -15,5 +15,5 @@ class PlatformActivityBlock(blocks.StructBlock):
         return context
 
     class Meta:
-        template = 'meinberlin_activities/blocks/platform_activity_block.html'
+        template = 'meinberlin_actions/blocks/platform_activity_block.html'
         icon = 'time'

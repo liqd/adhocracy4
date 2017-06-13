@@ -15,8 +15,9 @@ from wagtail.wagtailsnippets.models import register_snippet
 
 from adhocracy4.projects.models import Project
 
+from apps.actions.blocks import PlatformActivityBlock
+
 from . import emails
-from apps.activities.blocks import PlatformActivityBlock
 
 
 class SimplePage(Page):
