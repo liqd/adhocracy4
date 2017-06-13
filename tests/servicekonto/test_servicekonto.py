@@ -1,9 +1,9 @@
 from urllib.parse import urlparse
 
 import pytest
-
 from allauth.socialaccount.models import SocialAccount
 from allauth.socialaccount.models import SocialLogin
+from allauth.socialaccount.providers.base import AuthError
 from allauth.socialaccount.providers.base import AuthProcess
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
@@ -11,6 +11,7 @@ from django.core.urlresolvers import reverse
 from django.test import RequestFactory
 
 from apps.servicekonto.provider import ServiceKontoProvider
+from apps.servicekonto.views import ServiceKontoApiError
 
 User = get_user_model()
 
@@ -133,6 +134,9 @@ def test_login(monkeypatch, client, social_account):
     response_url = urlparse(response.url)
     assert response_url.path == '/login_session_successful'
 
+    user.refresh_from_db()
+    assert user.last_login is not None
+
 
 @pytest.mark.django_db
 def test_login_without_session(monkeypatch, client, social_account, settings):
@@ -152,6 +156,9 @@ def test_login_without_session(monkeypatch, client, social_account, settings):
     response_url = urlparse(response.url)
     assert response_url.path == '/login_successful'
 
+    user.refresh_from_db()
+    assert user.last_login is not None
+
 
 @pytest.mark.django_db
 def test_create_account_on_login(monkeypatch, client, settings):
@@ -168,7 +175,7 @@ def test_create_account_on_login(monkeypatch, client, settings):
     assert response_url.path == '/login_successful'
 
     user = User.objects.get(email=service_konto.hhgw['email'])
-    assert user.pk
+    assert user.last_login is not None
 
     emails = user.emailaddress_set
     assert emails.count() == 1
@@ -199,7 +206,8 @@ def test_create_account_on_login_with_existing_username(monkeypatch,
     assert response_url.path == '/login_successful'
 
     user = User.objects.get(email=service_konto.hhgw['email'])
-    assert user.pk
+    assert user.last_login is not None
+    assert user.username != 'first_last'
 
 
 @pytest.mark.django_db
@@ -225,25 +233,32 @@ def test_skip_create_if_exists(monkeypatch, client, user_factory, settings):
         )
 
 
-# @pytest.mark.django_db
-# def test_invalid_token(monkeypatch, client):
-#     def auth_denied(request, token):
-#         raise views.ServiceKontoApiError(error=AuthError.DENIED)
-#
-#     monkeypatch.setattr(
-#         'apps.servicekonto.views._get_service_konto_user_data_xml',
-#         auth_denied
-#     )
-#
-#     response = client.get(reverse('servicekonto_callback'),
-#                           {'Token': ''})
-#     assert response.status_code == 500
-#
-#
-#
-# @pytest.mark.django_db
-# def test_invalid_response(monkeypatch, client):
-#     _mock_servicekonto_response(monkeypatch, '<invalid>xml response')
-#     response = client.get(reverse('servicekonto_callback'),
-#                           {'Token': ''})
-#     assert response.status_code == 500
+@pytest.mark.django_db
+def test_invalid_token(monkeypatch, client, user):
+    def auth_denied(request, token):
+        raise ServiceKontoApiError(error=AuthError.DENIED)
+
+    monkeypatch.setattr(
+        'apps.servicekonto.views._get_service_konto_user_data_xml',
+        auth_denied
+    )
+
+    response = client.get(reverse('servicekonto_callback'),
+                          {'Token': 'invalidtoken'})
+
+    # unfortunately allauth returns a 200 (OK) status code in case of an
+    # AuthError instead of a 4xx or 5xx
+    # assert response.status_code == 400
+    assert 'auth_error' in response.context
+
+
+@pytest.mark.django_db
+def test_invalid_response(monkeypatch, client):
+    _mock_servicekonto_response(monkeypatch, '<invalid>xml response')
+    response = client.get(reverse('servicekonto_callback'),
+                          {'Token': '1234567'})
+
+    # unfortunately allauth returns a 200 (OK) status code in case of an
+    # AuthError instead of a 4xx or 5xx
+    # assert response.status_code == 400
+    assert 'auth_error' in response.context
