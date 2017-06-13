@@ -229,6 +229,7 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_SIGNUP_FORM_CLASS = 'apps.users.forms.TermsSignupForm'
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = '/'
@@ -241,6 +242,10 @@ PASSWORD_HASHERS = [
     'apps.users.hashers.A2PasswordHasher',
 ]
 
+# Service Konto
+SERVICE_KONTO_LOGIN_URL = 'https://skbref.verwalt-berlin.de/skb/FVS/Login/Anmeldung.aspx'
+SERVICE_KONTO_HELP_URL = 'https://skbref.verwalt-berlin.de/skb/FVP/FV/BasisHilfe/HilfeIndex.aspx'
+SERVICE_KONTO_API_URL = 'https://skbref.verwalt-berlin.de/HHGWUserData/HHGWUserData.asmx?wsdl'
 
 # ckeditor
 

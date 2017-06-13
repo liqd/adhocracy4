@@ -24,3 +24,8 @@ try:
     from .local import *
 except ImportError:
     pass
+
+try:
+    INSTALLED_APPS += ADDITIONAL_APPS
+except NameError:
+    pass

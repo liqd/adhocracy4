@@ -1,6 +1,7 @@
 """meinberlin URL Configuration."""
 
 from allauth import urls as allauth_urls
+from allauth.socialaccount import urls as allauth_social_urls
 from ckeditor_uploader import views as ck_views
 from django.conf import settings
 from django.conf.urls import include
@@ -65,6 +66,7 @@ urlpatterns = [
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^accounts/', include(allauth_urls)),
+    url(r'^accounts/social/', include(allauth_social_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^projects/', include(projects_urls)),
 
