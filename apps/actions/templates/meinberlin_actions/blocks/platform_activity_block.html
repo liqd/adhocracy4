@@ -11,17 +11,17 @@
                     {% if action.type == 'comment' and action.verb == 'add' %}
                         {% url 'profile' action.actor.username as actor_url %}
                         {% blocktrans with url=actor_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> commented:{% endblocktrans%}
-                        {{ action.obj.comment|truncatechars_html:50 }}
+                        <a href="{{ action.obj.get_absolute_url }}">{{ action.obj.comment|truncatechars_html:10 }}</a>
                     {% elif action.type == 'comment' and action.verb == 'update' %}
                         {% url 'profile' action.actor.username as actor_url %}
                         {% blocktrans with url=actor_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> updated comment:{% endblocktrans%}
-                        {{ action.obj.comment|truncatechars_html:50 }}
+                        <a href="{{ action.obj.get_absolute_url }}">{{ action.obj.comment|truncatechars_html:10 }}</a>
                     {% elif action.type == 'item' and action.verb == 'add' %}
                         {% url 'profile' action.actor.username as actor_url %}
-                        {% blocktrans with url=actor_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> added a new item{% endblocktrans%}
+                        {% blocktrans with url=actor_url name=action.actor.username item_url=action.obj.get_absolute_url %}<a href="{{ url }}">{{ name }}</a> added a new <a href="{{ item_url }}">item</a>{% endblocktrans%}
                     {% elif action.type == 'item' and action.verb == 'update' %}
                         {% url 'profile' action.actor.username as actor_url %}
-                        {% blocktrans with url=actor_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> updated an item{% endblocktrans%}
+                        {% blocktrans with url=actor_url name=action.actor.username item_url=action.obj.get_absolute_url %}<a href="{{ url }}">{{ name }}</a> updated an <a href="{{ item_url }}">item</a>{% endblocktrans%}
                     {% elif action.type == 'phase' and action.verb == 'schedule' %}
                         {% trans "Participation will be over soon" %}
                     {% else %}

@@ -338,13 +338,20 @@ msgstr "<a href=\"%(url)s\">%(name)s</a> hat einen Kommentar verändert"
 
 #: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:21
 #, python-format
-msgid "<a href=\"%(url)s\">%(name)s</a> added a new item"
-msgstr "<a href=\"%(url)s\">%(name)s</a> hat einen neuen Beitrag erstellt"
+msgid ""
+"<a href=\"%(url)s\">%(name)s</a> added a new <a href=\"%(item_url)s\">item</"
+"a>"
+msgstr ""
+"<a href=\"%(url)s\">%(name)s</a> hat einen neuen <a href=\"%(item_url)s"
+"\">Beitrag</a> erstellt"
 
 #: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:24
 #, python-format
-msgid "<a href=\"%(url)s\">%(name)s</a> updated an item"
-msgstr "<a href=\"%(url)s\">%(name)s</a> hat einen Beitrag verändert"
+msgid ""
+"<a href=\"%(url)s\">%(name)s</a> updated an <a href=\"%(item_url)s\">item</a>"
+msgstr ""
+"<a href=\"%(url)s\">%(name)s</a> hat einen <a href=\"%(item_url)s\">Beitrag</"
+"a> aktualisiert"
 
 #: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:26
 msgid "Participation will be over soon"
