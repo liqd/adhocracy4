@@ -1,7 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from wagtail.wagtailcore import blocks
 
-from .models import Activity
+from .models import Action
 
 
 class PlatformActivityBlock(blocks.StructBlock):
@@ -11,9 +11,9 @@ class PlatformActivityBlock(blocks.StructBlock):
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context=parent_context)
         block = context['self']
-        context['activities'] = Activity.objects.all()[:block['count']]
+        context['actions'] = Action.objects.all()[:block['count']]
         return context
 
     class Meta:
-        template = 'meinberlin_actions/blocks/platform_activity_block.html'
+        template = 'meinberlin_actions/blocks/platform_action_block.html'
         icon = 'time'

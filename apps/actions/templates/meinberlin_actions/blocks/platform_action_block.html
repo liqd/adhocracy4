@@ -1,0 +1,39 @@
+{% load i18n %}
+
+<div class="block l-center-6">
+    <h3>{{ self.heading }}</h3>
+
+    {% for action in actions %}
+        <div class="activity">
+            <i class="fa fa-{{ action.icon }} activity__icon" aria-hidden="true"></i>
+            <div class="activity__main">
+                <div class="activity__line">
+                    {% if action.type == 'comment' and action.verb == 'add' %}
+                        {% url 'profile' action.actor.username as actor_url %}
+                        {% blocktrans with url=actor_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> commented:{% endblocktrans%}
+                        {{ action.obj.comment|truncatechars_html:50 }}
+                    {% elif action.type == 'comment' and action.verb == 'update' %}
+                        {% url 'profile' action.actor.username as actor_url %}
+                        {% blocktrans with url=actor_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> updated comment:{% endblocktrans%}
+                        {{ action.obj.comment|truncatechars_html:50 }}
+                    {% elif action.type == 'item' and action.verb == 'add' %}
+                        {% url 'profile' action.actor.username as actor_url %}
+                        {% blocktrans with url=actor_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> added a new item{% endblocktrans%}
+                    {% elif action.type == 'item' and action.verb == 'update' %}
+                        {% url 'profile' action.actor.username as actor_url %}
+                        {% blocktrans with url=actor_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> updated an item{% endblocktrans%}
+                    {% elif action.type == 'phase' and action.verb == 'schedule' %}
+                        {% trans "Participation will be over soon" %}
+                    {% else %}
+                        {{ action }}
+                    {% endif %}
+                </div>
+                <div class="activity__line">
+                    {% url 'project-detail' action.project.slug as project_url%}
+                    {% blocktrans with url=project_url name=action.project.name %}on <a href="{{ url }}">{{ name }}</a>{% endblocktrans %}
+                </div>
+                <div class="activity__date">{{ action.timestamp|date:'d.m.Y' }}</div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
