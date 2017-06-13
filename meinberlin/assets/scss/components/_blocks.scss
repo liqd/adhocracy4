@@ -1,4 +1,5 @@
 .block {
+    @include clearfix;
     margin-bottom: 2.8em;
 }
 

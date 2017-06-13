@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 16:11+0200\n"
+"POT-Creation-Date: 2017-06-13 11:36+0200\n"
 "PO-Revision-Date: 2017-05-30 12:04+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -317,6 +317,43 @@ msgstr "Änderungen speichern"
 #: apps/account/views.py:24
 msgid "Your profile was successfully updated."
 msgstr "Ihr Profil wurde erfolgreich aktualisiert."
+
+#: apps/actions/blocks.py:8
+msgid "Heading"
+msgstr ""
+
+#: apps/actions/blocks.py:9
+msgid "Count"
+msgstr ""
+
+#: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:13
+#, python-format
+msgid "<a href=\"%(url)s\">%(name)s</a> commented:"
+msgstr "<a href=\"%(url)s\">%(name)s</a> hat kommentiert:"
+
+#: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:17
+#, python-format
+msgid "<a href=\"%(url)s\">%(name)s</a> updated comment:"
+msgstr "<a href=\"%(url)s\">%(name)s</a> hat einen Kommentar verändert"
+
+#: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:21
+#, python-format
+msgid "<a href=\"%(url)s\">%(name)s</a> added a new item"
+msgstr "<a href=\"%(url)s\">%(name)s</a> hat einen neuen Beitrag erstellt"
+
+#: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:24
+#, python-format
+msgid "<a href=\"%(url)s\">%(name)s</a> updated an item"
+msgstr "<a href=\"%(url)s\">%(name)s</a> hat einen Beitrag verändert"
+
+#: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:26
+msgid "Participation will be over soon"
+msgstr "Die Partizipation endet bald"
+
+#: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:33
+#, python-format
+msgid "on <a href=\"%(url)s\">%(name)s</a>"
+msgstr "in <a href=\"%(url)s\">%(name)s</a>"
 
 #: apps/bplan/models.py:36
 msgid "Your Name"
