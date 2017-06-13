@@ -1,6 +1,6 @@
 from xml.etree import ElementTree
-import zeep
 
+import zeep
 from allauth.socialaccount import providers
 from allauth.socialaccount.helpers import complete_social_login
 from allauth.socialaccount.helpers import render_authentication_error
@@ -18,8 +18,7 @@ SERVICE_KONTO_GET_USER_DATA_SUCCESS = 1
 
 
 class ServiceKontoApiError(Exception):
-    def __init__(self, exception=None, error=AuthError.UNKNOWN):
-        self.exception = exception
+    def __init__(self, error=AuthError.UNKNOWN):
         self.error = error
 
 
@@ -53,7 +52,7 @@ def callback(request):
     except ServiceKontoApiError as e:
         return render_authentication_error(
             request, ServiceKontoProvider.id,
-            exception=e.exception, error=e.error)
+            exception=e.__cause__, error=e.error)
     except ValueError as e:
         return render_authentication_error(
             request, ServiceKontoProvider.id,
@@ -94,7 +93,10 @@ def _get_service_konto_user_data_xml(request, token):
 
 
 def _parse_user_data_xml(xml: str) -> dict:
-    root = ElementTree.fromstring(xml)
+    try:
+        root = ElementTree.fromstring(xml)
+    except ElementTree.ParseError as e:
+        raise ValueError('Invalid XML received') from e
 
     hhgw = root.find('./HHGW')
     if hhgw is None:
