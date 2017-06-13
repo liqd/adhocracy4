@@ -7,6 +7,7 @@ from rest_framework.request import clone_request
 from rest_framework.response import Response
 
 from adhocracy4.api.permissions import ViewSetRulesPermission
+
 from .models import Poll
 from .models import Question
 from .models import Vote

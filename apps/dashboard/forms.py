@@ -11,7 +11,6 @@ from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
-
 from apps.bplan import models as bplan_models
 from apps.bplan import phases as bplan_phases
 from apps.contrib import multiform

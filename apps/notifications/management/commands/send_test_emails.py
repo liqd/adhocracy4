@@ -9,7 +9,6 @@ from adhocracy4.actions.verbs import Verbs
 from adhocracy4.comments.models import Comment
 from adhocracy4.reports import emails as reports_emails
 from adhocracy4.reports.models import Report
-
 from apps.bplan import emails as bplan_emails
 from apps.bplan.models import Statement
 from apps.contrib.emails import Email

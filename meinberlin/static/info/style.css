@@ -1,0 +1,270 @@
+body {
+  max-width: 70em;
+  margin: 0 auto;
+}
+
+.l-wrapper {
+  max-width: 52em;
+  padding: 2em;
+  margin: 0 auto;
+  position: relative;
+}
+
+.l-wrapper:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+
+#header .l-wrapper {
+  max-width: 70em;
+  box-sizing: border-box;
+}
+
+#footer .l-wrapper {
+  padding-top: 1em;
+}
+
+.l-center {
+  text-align: center;
+}
+
+@media (min-width: 45em) {
+  .l-center {
+    float: left;
+    margin-right: -100%;
+    width: 65.66667%;
+    margin-left: 17.16667%;
+    clear: left;
+  }
+  .l-same-2 {
+    float: left;
+    margin-right: -100%;
+    width: 48.5%;
+  }
+  .l-same-2:nth-child(2n+1) {
+    margin-left: 0%;
+    clear: both;
+  }
+  .l-same-2:nth-child(2n+2) {
+    margin-left: 51.5%;
+    clear: none;
+  }
+  .l-same-3 {
+    float: left;
+    margin-right: -100%;
+    width: 31.33333%;
+  }
+  .l-same-3:nth-child(3n+1) {
+    margin-left: 0%;
+    clear: both;
+  }
+  .l-same-3:nth-child(3n+2) {
+    margin-left: 34.33333%;
+    clear: none;
+  }
+  .l-same-3:nth-child(3n+3) {
+    margin-left: 68.66667%;
+    clear: none;
+  }
+}
+
+html {
+  color: #222;
+  font-family: Arial, sans-serif;
+  line-height: 1.4;
+}
+
+a {
+  color: #253276;
+}
+
+h1, h2, #hero h1, h3, #outro h2, #outro #hero h1, #hero #outro h1, h4, h5, h6 {
+  font-weight: inherit;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 200%;
+}
+
+h2, #hero h1 {
+  font-size: 150%;
+}
+
+h3, #outro h2, #outro #hero h1, #hero #outro h1 {
+  font-size: 125.5%;
+}
+
+#features h2, #features #hero h1, #hero #features h1,
+#examples h2,
+#examples #hero h1, #hero
+#examples h1,
+#processes h2,
+#processes #hero h1, #hero
+#processes h1 {
+  text-align: center;
+  margin-bottom: 1.4em;
+}
+
+html {
+  background: #e4e4e4;
+}
+
+body {
+  background: #fff;
+}
+
+#intro .l-wrapper {
+  border-bottom: 1px solid #e4e4e4;
+}
+
+#footer {
+  border-top: 1px solid #e4e4e4;
+}
+
+#contact, #examples, #hero {
+  background-color: #cd0055;
+  color: #fff;
+}
+
+#contact a, #examples a, #hero a {
+  color: inherit;
+}
+
+#examples {
+  background-color: #253276;
+}
+
+#hero {
+  font-weight: bold;
+  background-image: url("images/heroimage.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+  height: 40em;
+  max-height: calc(100vh - 5.5em);
+  display: flex;
+  align-items: center;
+}
+
+button {
+  text-align: center;
+  border: 0;
+  cursor: pointer;
+  background: #253276;
+  color: #fff;
+  padding: 0 1em;
+  border-radius: 1em;
+  line-height: 2;
+  font-weight: bold;
+}
+
+button:hover, button:focus {
+  background: #2b3a89;
+}
+
+#header {
+  position: fixed;
+  background: #fff;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  line-height: 1.5;
+  box-shadow: 0 0 0.8em rgba(34, 34, 34, 0.1);
+}
+
+body {
+  padding-top: 5.5em;
+}
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+  margin-left: 3em;
+  font-size: 80%;
+}
+
+nav a:hover, nav a:focus {
+  text-decoration: underline;
+}
+
+nav a:first-child {
+  margin-left: 0;
+}
+
+.logo {
+  width: 7em;
+  position: absolute;
+  bottom: -2em;
+}
+
+.jumpNav {
+  text-align: right;
+  margin-left: 5em;
+}
+
+.example {
+  margin-bottom: 5em;
+}
+
+.example h3, .example #outro h2, #outro .example h2, .example #outro #hero h1, #outro #hero .example h1, .example #hero #outro h1, #hero #outro .example h1 {
+  margin-top: 0;
+}
+
+.example:last-child {
+  margin-bottom: 0;
+}
+
+.example-image {
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+@media (min-width: 45em) {
+  .example:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+  .example-image,
+  .example-body {
+    float: left;
+    margin-right: -100%;
+  }
+  .example-image {
+    width: 31.33333%;
+  }
+  .example-body {
+    width: 48.5%;
+  }
+  .example:nth-child(2n) .example-image {
+    margin-left: 60.08333%;
+  }
+  .example:nth-child(2n) .example-body {
+    margin-left: 8.58333%;
+  }
+  .example:nth-child(2n+1) .example-image {
+    margin-left: 8.58333%;
+  }
+  .example:nth-child(2n+1) .example-body {
+    margin-left: 42.91667%;
+  }
+}
+
+.feature {
+  font-size: 80%;
+  text-align: center;
+  margin-bottom: 4em;
+}
+
+.feature-icon {
+  height: 6em;
+}
+
+@media (min-width: 45em) {
+  .feature {
+    margin-bottom: 2em;
+  }
+}
+
