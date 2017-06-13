@@ -80,3 +80,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         self.email = email
         if commit:
             self.save()
+
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('profile', args=[str(self.username)])

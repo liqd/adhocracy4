@@ -38,3 +38,8 @@ class Topic(module_models.Item, category_models.Categorizable):
         self.description = transforms.clean_html_field(
             self.description, 'image-editor')
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('meinberlin_topicprio:topic-detail',
+                       args=[str(self.slug)])

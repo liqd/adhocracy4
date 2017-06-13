@@ -1,4 +1,3 @@
-from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -27,5 +26,6 @@ class AbstractMapIdea(idea_models.AbstractIdea):
 class MapIdea(AbstractMapIdea):
 
     def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
         return reverse('meinberlin_mapideas:mapidea-detail',
                        args=[str(self.slug)])

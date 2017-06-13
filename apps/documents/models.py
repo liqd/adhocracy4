@@ -22,10 +22,10 @@ class Chapter(module_models.Item):
     def __str__(self):
         return "{}_chapter_{}".format(str(self.module), self.pk)
 
-    # FIXME: adapt absolute url!
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
-        return reverse('project-detail', args=[str(self.project.slug)])
+        return reverse('meinberlin_documents:chapter-detail',
+                       args=[str(self.pk)])
 
     @cached_property
     def prev(self):
