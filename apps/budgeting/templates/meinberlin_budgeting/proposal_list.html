@@ -44,14 +44,16 @@
         <div class="module-content">
             <div class="l-wrapper">
                 <div class="l-center-8">
-
-                    {% for object in object_list %}
-                        {% include "meinberlin_budgeting/includes/proposal_list_item.html" with object=object %}
-                    {% endfor %}
-
-                    {% if object_list.count == 0 %}
+                    {% if object_list.count > 0 %}
+                        <ul class="u-list-reset">
+                            {% for object in object_list %}
+                                {% include "meinberlin_budgeting/includes/proposal_list_item.html" with object=object %}
+                            {% endfor %}
+                        </ul>
+                    {% else %}
                         {% trans "Nothing to show" %}
                     {% endif %}
+
                     {% include "meinberlin_contrib/includes/pagination.html" %}
                 </div>
             </div>
