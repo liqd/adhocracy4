@@ -3,7 +3,6 @@ from django.utils.functional import cached_property
 
 from adhocracy4.actions.models import Action as A4Action
 
-
 _ACTION_TYPES = {ct: at
                  for at, cts in settings.ACTION_TYPES.items()
                  for ct in cts}
