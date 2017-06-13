@@ -34,7 +34,6 @@ from apps.mapideas import urls as mapideas_urls
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
 from apps.projects import urls as projects_urls
-from apps.servicekonto import urls as servicekonto_urls
 from apps.topicprio import urls as topicprio_urls
 from apps.users import urls as users_urls
 
@@ -68,7 +67,6 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^accounts/', include(allauth_urls)),
     url(r'^accounts/social/', include(allauth_social_urls)),
-    url(r'^accounts/social/', include(servicekonto_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^projects/', include(projects_urls)),
 
