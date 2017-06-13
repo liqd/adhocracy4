@@ -1,9 +1,7 @@
 import pytest
 from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import ValidationError
 
 from adhocracy4.comments import models as comments_models
-from apps.documents.models import Document
 
 
 @pytest.mark.django_db
@@ -14,27 +12,16 @@ def test_paragraph_save(paragraph):
 
 
 @pytest.mark.django_db
-def test_document_clean(document):
-    another_document = Document(
-        module=document.module,
-        creator=document.creator
-    )
-
-    with pytest.raises(ValidationError):
-        another_document.clean()
-
-
-@pytest.mark.django_db
 def test_paragraph_knows_project(paragraph):
-    assert paragraph.project == paragraph.document.project
+    assert paragraph.project == paragraph.chapter.project
 
 
 @pytest.mark.django_db
-def test_document_paragraphs_sorted(document, paragraph_factory):
-    paragraph_factory(document=document, weight=2)
-    paragraph2 = paragraph_factory(document=document, weight=1)
+def test_chapter_paragraphs_sorted(chapter, paragraph_factory):
+    paragraph_factory(chapter=chapter, weight=2)
+    paragraph2 = paragraph_factory(chapter=chapter, weight=1)
 
-    assert document.paragraphs.first() == paragraph2
+    assert chapter.paragraphs.first() == paragraph2
 
 
 @pytest.mark.django_db
@@ -46,19 +33,19 @@ def test_paragraphs_comments(paragraph, comment_factory):
 
 
 @pytest.mark.django_db
-def test_delete_document(document, comment_factory):
+def test_delete_chapter(chapter, comment_factory):
     for i in range(5):
-        comment_factory(content_object=document)
+        comment_factory(content_object=chapter)
 
-    def comments_for_document(document):
+    def comments_for_chapter(chapter):
         return comments_models.Comment.objects.filter(
-            object_pk=document.pk,
-            content_type=ContentType.objects.get_for_model(document)
+            object_pk=chapter.pk,
+            content_type=ContentType.objects.get_for_model(chapter)
         )
 
-    assert len(comments_for_document(document)) == 5
-    document.delete()
-    assert len(comments_for_document(document)) == 0
+    assert len(comments_for_chapter(chapter)) == 5
+    chapter.delete()
+    assert len(comments_for_chapter(chapter)) == 0
 
 
 @pytest.mark.django_db

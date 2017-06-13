@@ -76,10 +76,9 @@ blueprints = [
          title=_('Text Review'),
          description=_(
              'In the text-review it’s possible to structure draft texts '
-             'co-operativly and rate and comment on them.'
+             'that can be commented.'
          ),
          content=[
-             documents_phases.CreateDocumentPhase(),
              documents_phases.CommentPhase(),
          ],
          image='images/blueprints/text-review.svg',

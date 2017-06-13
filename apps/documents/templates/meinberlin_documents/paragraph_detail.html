@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n react_comments react_ratings wagtailcore_tags %}
 
-{% block title %}{{ paragraph.name }} &mdash; {{ paragraph.document.project.name }} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{{ paragraph.name }} &mdash; {{ paragraph.chapter.project.name }} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="l-wrapper">
@@ -9,9 +9,9 @@
         <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
             <ul>
                 <li>
-                    <a href="{% url 'project-detail' paragraph.document.module.project.slug %}">
+                    <a href="{% url 'project-detail' paragraph.chapter.module.project.slug %}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'back to document' %}</a>
+                        {% trans 'back to chapter' %}</a>
                 </li>
             </ul>
         </nav>

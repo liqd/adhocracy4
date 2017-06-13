@@ -2,6 +2,17 @@
 {% load i18n react_comments wagtailcore_tags %}
 
 {% block phase_content %}
+
+    <ol>
+    {% for chapter in chapter_list %}
+        <li>
+            <a href="{% url 'meinberlin_documents:chapter-detail' chapter.pk %}">
+                {{ chapter.name }}
+            </a>
+        </li>
+    {% endfor %}
+    </ol>
+
     <div class="l-wrapper">
         <article>
             <h1>{{ object.name }}</h1>
