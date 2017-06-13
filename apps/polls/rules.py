@@ -1,11 +1,9 @@
 import rules
-
 from rules.predicates import is_superuser
 
 from adhocracy4.modules import predicates as module_predicates
 
 from . import models
-
 
 rules.add_perm(
     'meinberlin_polls.change_poll',

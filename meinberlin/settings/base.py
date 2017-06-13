@@ -314,7 +314,7 @@ A4_RATEABLES = (
 A4_COMMENTABLES = (
     ('a4comments', 'comment'),
     ('meinberlin_ideas', 'idea'),
-    ('meinberlin_documents', 'document'),
+    ('meinberlin_documents', 'chapter'),
     ('meinberlin_documents', 'paragraph'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),

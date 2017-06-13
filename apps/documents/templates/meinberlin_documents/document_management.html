@@ -1,5 +1,5 @@
 {% extends 'meinberlin_dashboard/base_dashboard.html' %}
-{% load i18n react_polls %}
+{% load i18n %}
 
 {% block dashboard_content %}
     <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
@@ -12,8 +12,18 @@
         </ul>
     </nav>
 
-    <h1>{% trans "Manage project contents" %}</h1>
+    <h3>{% trans "Manage project contents" %}</h3>
+    <p>Please <a href="{% url 'admin:meinberlin_documents_chapter_add' %}">create new Chapters</a> from the django admin.</p>
 
-    {% react_poll_form object %}
+
+    <ol>
+    {% for object in object_list %}
+        <li>
+            <a href="{% url 'meinberlin_documents:chapter-management' object.pk %}">
+                {{ object.name }}
+            </a>
+        </li>
+    {% endfor %}
+    </ol>
 
 {% endblock %}

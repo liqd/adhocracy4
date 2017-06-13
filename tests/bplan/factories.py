@@ -1,8 +1,7 @@
 import factory
 
-from tests.factories import OrganisationFactory
-
 from apps.bplan import models as bplan_models
+from tests.factories import OrganisationFactory
 
 
 class BplanFactory(factory.django.DjangoModelFactory):

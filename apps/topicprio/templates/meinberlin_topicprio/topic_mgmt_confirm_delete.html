@@ -5,7 +5,7 @@
 
 {% block dashboard_content %}
 <div class="l-wrapper">
-    <h1>{% trans 'Are you sure you want to delete the topic?' %} </h1>
+    <h1>{% trans 'Are you sure you want to delete the topic?' %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}

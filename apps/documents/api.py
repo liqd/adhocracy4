@@ -4,16 +4,16 @@ from rest_framework import viewsets
 from adhocracy4.api.mixins import ModuleMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
 
-from .models import Document
-from .serializers import DocumentSerializer
+from .models import Chapter
+from .serializers import ChapterSerializer
 
 
-class DocumentViewSet(mixins.CreateModelMixin,
-                      mixins.UpdateModelMixin,
-                      ModuleMixin,
-                      viewsets.GenericViewSet):
-    queryset = Document.objects.all()
-    serializer_class = DocumentSerializer
+class ChapterViewSet(mixins.CreateModelMixin,
+                     mixins.UpdateModelMixin,
+                     ModuleMixin,
+                     viewsets.GenericViewSet):
+    queryset = Chapter.objects.all()
+    serializer_class = ChapterSerializer
     permission_classes = (ViewSetRulesPermission,)
 
     def get_permission_object(self):

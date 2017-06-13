@@ -210,14 +210,14 @@ module.exports.renderParagraphs = function (mountpoint) {
   let el = document.getElementById(mountpoint)
 
   let module = el.getAttribute('data-module')
-  let doc = JSON.parse(el.getAttribute('data-document'))
+  let chapter = JSON.parse(el.getAttribute('data-chapter'))
   let config = JSON.parse(el.getAttribute('data-config'))
 
   ReactDOM.render(<ParagraphBox
-    name={doc.name}
-    id={doc.id}
+    name={chapter.name}
+    id={chapter.id}
     module={module}
-    paragraphs={doc.paragraphs}
+    paragraphs={chapter.paragraphs}
     config={config} />,
     el
   )
