@@ -3,8 +3,8 @@
 <div class="l-wrapper">
     <div class="l-center-8">
         <div class="control-bar">
-            {% if view.prev %}
-                <a href="{% url 'meinberlin_documents:chapter-detail' view.prev.pk %}" class="button button--light">
+            {% if object.prev %}
+                <a href="{% url 'meinberlin_documents:chapter-detail' object.prev.pk %}" class="button button--light">
                     <i class="fa fa-chevron-left" aria-hidden="true"></i>
                     {% trans "Previous Chapter" %}
                 </a>
@@ -15,8 +15,8 @@
                 </span>
             {% endif %}
 
-            {% if view.next %}
-                <a href="{% url 'meinberlin_documents:chapter-detail' view.next.pk %}" class="button button--light control-bar__right">
+            {% if object.next %}
+                <a href="{% url 'meinberlin_documents:chapter-detail' object.next.pk %}" class="button button--light control-bar__right">
                     {% trans "Next Chapter" %}
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
