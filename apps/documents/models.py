@@ -27,6 +27,22 @@ class Chapter(module_models.Item):
         from django.core.urlresolvers import reverse
         return reverse('project-detail', args=[str(self.project.slug)])
 
+    @cached_property
+    def prev(self):
+        return Chapter.objects\
+            .filter(module=self.module)\
+            .filter(weight__lt=self.weight)\
+            .order_by('-weight')\
+            .first()
+
+    @cached_property
+    def next(self):
+        return Chapter.objects\
+            .filter(module=self.module)\
+            .filter(weight__gt=self.weight)\
+            .order_by('weight')\
+            .first()
+
 
 class Paragraph(base.TimeStampedModel):
     name = models.CharField(max_length=120, blank=True)

@@ -1,0 +1,46 @@
+.paragraph {
+    margin-bottom: $spacer / 2;
+}
+
+.doc-toc,
+.chapter-title,
+.paragraph__content,
+.paragraph__actions {
+    background-color: $body-bg;
+    padding: $padding;
+}
+
+.paragraph__content {
+    margin-bottom: 1px;
+}
+
+.chapter-title,
+.paragraph__title {
+    margin-top: 0;
+}
+
+.paragraph__actions {
+    text-align: right;
+}
+
+.doc-toc {
+    margin-bottom: 2 * $spacer;
+    font-size: $font-size-lg;
+    border: 1px solid $border-color;
+    border-radius: 0.3em;
+
+    ol {
+        margin-bottom: 0;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+
+        &.active,
+        &:hover,
+        &:focus {
+            color: $link-color;
+        }
+    }
+}
