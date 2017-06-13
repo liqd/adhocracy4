@@ -9,19 +9,15 @@
             <div class="action__main">
                 <div class="action__line">
                     {% if action.type == 'comment' and action.verb == 'add' %}
-                        {% url 'profile' action.actor.username as actor_url %}
-                        {% blocktrans with url=actor_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> commented:{% endblocktrans%}
+                        {% blocktrans with url=action.actor.get_absolute_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> commented:{% endblocktrans%}
                         <a href="{{ action.obj.get_absolute_url }}">{{ action.obj.comment|truncatechars_html:20 }}</a>
                     {% elif action.type == 'comment' and action.verb == 'update' %}
-                        {% url 'profile' action.actor.username as actor_url %}
-                        {% blocktrans with url=actor_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> updated comment:{% endblocktrans%}
+                        {% blocktrans with url=action.actor.get_absolute_url name=action.actor.username %}<a href="{{ url }}">{{ name }}</a> updated comment:{% endblocktrans%}
                         <a href="{{ action.obj.get_absolute_url }}">{{ action.obj.comment|truncatechars_html:20 }}</a>
                     {% elif action.type == 'item' and action.verb == 'add' %}
-                        {% url 'profile' action.actor.username as actor_url %}
-                        {% blocktrans with url=actor_url name=action.actor.username item_url=action.obj.get_absolute_url %}<a href="{{ url }}">{{ name }}</a> added a new <a href="{{ item_url }}">item</a>{% endblocktrans%}
+                        {% blocktrans with url=action.actor.get_absolute_url name=action.actor.username item_url=action.obj.get_absolute_url %}<a href="{{ url }}">{{ name }}</a> added a new <a href="{{ item_url }}">item</a>{% endblocktrans%}
                     {% elif action.type == 'item' and action.verb == 'update' %}
-                        {% url 'profile' action.actor.username as actor_url %}
-                        {% blocktrans with url=actor_url name=action.actor.username item_url=action.obj.get_absolute_url %}<a href="{{ url }}">{{ name }}</a> updated an <a href="{{ item_url }}">item</a>{% endblocktrans%}
+                        {% blocktrans with url=action.actor.get_absolute_url name=action.actor.username item_url=action.obj.get_absolute_url %}<a href="{{ url }}">{{ name }}</a> updated an <a href="{{ item_url }}">item</a>{% endblocktrans%}
                     {% elif action.type == 'phase' and action.verb == 'schedule' %}
                         {% trans "Participation will be over soon" %}
                     {% else %}
