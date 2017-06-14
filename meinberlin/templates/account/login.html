@@ -6,24 +6,8 @@
 {% block content %}
     <h1>{% trans "Login" %}</h1>
 
-    {% get_providers as socialaccount_providers %}
-    {% if socialaccount_providers %}
-        <p>{% blocktrans with site.name as site_name %}Please sign in with one
-        of your existing third party accounts. Or, <a href="{{ signup_url }}">register</a>
-        for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+    <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktrans %}</p>
 
-        <div class="socialaccount_ballot">
-            <ul class="socialaccount_providers">
-                {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-            </ul>
-
-            <div class="login-or">{% trans 'or' %}</div>
-        </div>
-
-        {% include "socialaccount/snippets/login_extra.html" %}
-    {% else %}
-        <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktrans %}</p>
-    {% endif %}
     <form method="POST" action="{% url 'account_login' %}">
         {{ form.non_field_errors }}
         {% csrf_token %}
@@ -37,6 +21,7 @@
 
         <div class="u-spacer-bottom">
             <button class="button button--primary" type="submit">{% trans "Login" %}</button>
+            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
             <a class="button button--secondary" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
         </div>
     </form>
