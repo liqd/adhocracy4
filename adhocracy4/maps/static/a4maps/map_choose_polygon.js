@@ -43,13 +43,13 @@ var init = function () {
         style: polygonStyle
       })
       if (drawnItems.getLayers().length > 0) {
-        map.fitBounds(drawnItems)
+        map.fitBounds(drawnItems.getBounds())
       } else {
-        map.fitBounds(getBasePolygon(L, polygon, bbox))
+        map.fitBounds(getBasePolygon(L, polygon, bbox).getBounds())
       }
     } else {
       drawnItems = L.featureGroup()
-      map.fitBounds(getBasePolygon(L, polygon, bbox))
+      map.fitBounds(getBasePolygon(L, polygon, bbox).getBounds())
     }
     drawnItems.addTo(map)
 
@@ -93,7 +93,7 @@ var init = function () {
     })
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-      map.invalidateSize().fitBounds(getBasePolygon(L, polygon, bbox))
+      map.invalidateSize().fitBounds(getBasePolygon(L, polygon, bbox).getBounds())
     })
   })
 }
