@@ -21,7 +21,8 @@
                     {% elif action.type == 'project' and action.verb == 'start' %}
                         {% trans "New participation started" %}
                     {% elif action.type == 'phase' and action.verb == 'schedule' %}
-                        {% trans "Participation will be over soon" %}
+                        {% trans "Participation phase will end soon:" %}
+                        {{ action.obj.name }}
                     {% else %}
                         {{ action }}
                     {% endif %}
