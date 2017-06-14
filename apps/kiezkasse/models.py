@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -18,6 +19,5 @@ class Proposal(mapidea_models.AbstractMapIdea, Moderateable):
     )
 
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
         return reverse('meinberlin_kiezkasse:proposal-detail',
                        args=[str(self.slug)])

@@ -1,5 +1,6 @@
 from ckeditor.fields import RichTextField
 from django.contrib.contenttypes.fields import GenericRelation
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import cached_property
 
@@ -23,7 +24,6 @@ class Chapter(module_models.Item):
         return "{}_chapter_{}".format(str(self.module), self.pk)
 
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
         return reverse('meinberlin_documents:chapter-detail',
                        args=[str(self.pk)])
 
@@ -67,7 +67,6 @@ class Paragraph(base.TimeStampedModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
         return reverse('meinberlin_documents:paragraph-detail',
                        args=[str(self.pk)])
 

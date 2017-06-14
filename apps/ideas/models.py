@@ -1,6 +1,7 @@
 from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
 from django.contrib.contenttypes.fields import GenericRelation
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -48,5 +49,4 @@ class AbstractIdea(module_models.Item, category_models.Categorizable):
 class Idea(AbstractIdea):
 
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
         return reverse('meinberlin_ideas:idea-detail', args=[str(self.slug)])
