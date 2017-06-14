@@ -89,3 +89,125 @@ def test_next_phase_end_tomorrow(phase_factory):
         call_command('create_system_actions')
         action_count = Action.objects.all().count()
         assert action_count == 3
+
+
+@pytest.mark.django_db
+def test_phase_reschedule(phase_factory):
+
+    phase = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-03 18:00:00 UTC')
+    )
+
+    # first phase ends within 24 h
+    with freeze_time(phase.end_date - timedelta(hours=1)):
+        call_command('create_system_actions')
+        action_count = Action.objects.all().count()
+        assert action_count == 1
+
+    # first phases end date has been moved forward
+    # and a new action will be created
+    phase.end_date = phase.end_date + timedelta(days=1)
+    phase.save()
+    with freeze_time(phase.end_date - timedelta(hours=1)):
+        call_command('create_system_actions')
+        action_count = Action.objects.all().count()
+        assert action_count == 2
+
+
+@pytest.mark.django_db
+def test_project_starts_later(phase_factory):
+
+    phase = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-02 18:00:00 UTC')
+    )
+
+    with freeze_time(phase.start_date - timedelta(days=1)):
+        call_command('create_system_actions')
+        action_count = Action.objects.all().count()
+        assert action_count == 0
+
+
+@pytest.mark.django_db
+def test_project_start_hour(phase_factory):
+
+    phase = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC')
+    )
+
+    phase2 = phase_factory(
+        module=phase.module,
+        start_date=parse('2014-01-01 17:00:00 UTC'),
+        end_date=parse('2014-01-01 18:00:00 UTC')
+    )
+
+    project = phase.module.project
+
+    action_count = Action.objects.all().count()
+    assert action_count == 0
+
+    with freeze_time(phase.start_date - timedelta(minutes=30)):
+        call_command('create_system_actions')
+        action_count = Action.objects.all().count()
+        action = Action.objects.last()
+        assert action_count == 1
+        assert action.obj == project
+        assert action.verb == Verbs.START.value
+        assert action.project == project
+
+    # second phase starts within an hour,
+    # but that may not trigger a project start action
+    with freeze_time(phase2.start_date - timedelta(minutes=30)):
+        call_command('create_system_actions')
+        action_count = Action.objects.all().count()
+        action = Action.objects.last()
+        assert action_count == 1
+
+
+@pytest.mark.django_db
+def test_project_start_single_action(phase_factory):
+
+    phase = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC')
+    )
+
+    action_count = Action.objects.all().count()
+    assert action_count == 0
+
+    with freeze_time(phase.start_date - timedelta(minutes=30)):
+        call_command('create_system_actions')
+        action_count = Action.objects.all().count()
+        assert action_count == 1
+
+    # first phase starts within an hour but script has already run
+    with freeze_time(phase.start_date - timedelta(minutes=30)):
+        call_command('create_system_actions')
+        action_count = Action.objects.all().count()
+        assert action_count == 1
+
+
+@pytest.mark.django_db
+def test_project_start_reschedule(phase_factory):
+
+    phase = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC')
+    )
+
+    # first phase starts within an hour
+    with freeze_time(phase.start_date - timedelta(minutes=30)):
+        call_command('create_system_actions')
+        action_count = Action.objects.all().count()
+        assert action_count == 1
+
+    # first phases start date has been moved forward
+    # and a new action will be created
+    phase.start_date = phase.start_date + timedelta(days=1)
+    phase.save()
+    with freeze_time(phase.start_date - timedelta(minutes=30)):
+        call_command('create_system_actions')
+        action_count = Action.objects.all().count()
+        assert action_count == 2
