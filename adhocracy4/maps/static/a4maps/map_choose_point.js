@@ -35,19 +35,36 @@ function createMarker ($, L, newlatln, oldlatln, basePolygon, map, name) {
   return marker
 }
 
+function * getLines (array) {
+  if (array.length) {
+    if ('lat' in array[0]) {
+      for (let i = 0, j = array.length - 1; i < array.length; j = i++) {
+        yield [array[i], array[j]]
+      }
+    } else {
+      for (let a of array) {
+        for (let line of getLines(a)) {
+          yield line
+        }
+      }
+    }
+  }
+}
+
 function isMarkerInsidePolygon (marker, poly) {
-  var polyPoints = poly.getLatLngs()
   var x = marker.getLatLng().lat
   var y = marker.getLatLng().lng
 
   // Algorithm comes from:
   // https://github.com/substack/point-in-polygon/blob/master/index.js
   var inside = false
-  for (var i = 0, j = polyPoints.length - 1; i < polyPoints.length; j = i++) {
-    var xi = polyPoints[i].lat
-    var yi = polyPoints[i].lng
-    var xj = polyPoints[j].lat
-    var yj = polyPoints[j].lng
+
+  // FIXME: getLatLngs does not return holes. Maybe use toGetJson instead?
+  for (let line of getLines(poly.getLatLngs())) {
+    var xi = line[0].lat
+    var yi = line[0].lng
+    var xj = line[1].lat
+    var yj = line[1].lng
 
     //      *
     //     /
