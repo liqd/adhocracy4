@@ -1,5 +1,6 @@
 from autoslug import AutoSlugField
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 
 
@@ -16,3 +17,10 @@ class Organisation(models.Model):
 
     def has_initiator(self, user):
         return user in self.initiators.all()
+
+    def get_absolute_url(self):
+        from django.utils.http import urlencode
+        return '%s?%s' % (
+            reverse('project-list'),
+            urlencode({'organisation': self.pk})
+        )

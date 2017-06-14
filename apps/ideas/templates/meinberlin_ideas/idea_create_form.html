@@ -8,7 +8,7 @@
         <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
             <ul>
                 <li>
-                    <a href="{% url 'project-detail' view.project.slug %}">
+                    <a href="{{ view.project.get_absolute_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                         {% trans 'back to project' %}</a>
                 </li>
@@ -17,8 +17,7 @@
 
         <h1>{% trans 'Submit a new idea for this project'%}</h1>
 
-        {% url 'project-detail' view.project.slug as cancel %}
-        {% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=cancel %}
+        {% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=view.project.get_absolute_url %}
     </div>
 </div>
 {% endblock %}

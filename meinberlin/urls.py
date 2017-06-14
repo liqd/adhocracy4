@@ -1,7 +1,5 @@
 """meinberlin URL Configuration."""
 
-from allauth import urls as allauth_urls
-from allauth.socialaccount import urls as allauth_social_urls
 from ckeditor_uploader import views as ck_views
 from django.conf import settings
 from django.conf.urls import include
@@ -11,31 +9,16 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 from django.views.i18n import javascript_catalog
 from rest_framework import routers
-from wagtail.wagtailadmin import urls as wagtailadmin_urls
-from wagtail.wagtailcore import urls as wagtail_urls
-from wagtail.wagtaildocs import urls as wagtaildocs_urls
 
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
-from apps.account import urls as account_urls
-from apps.bplan import urls as bplan_urls
 from apps.bplan.api import BplanViewSet
-from apps.budgeting import urls as budgeting_urls
-from apps.dashboard import urls as dashboard_urls
-from apps.documents import urls as documents_urls
 from apps.documents.api import ChapterViewSet
-from apps.embed import urls as embed_urls
-from apps.ideas import urls as ideas_urls
-from apps.kiezkasse import urls as kiezkasse_urls
-from apps.mapideas import urls as mapideas_urls
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
-from apps.projects import urls as projects_urls
-from apps.topicprio import urls as topicprio_urls
-from apps.users import urls as users_urls
 
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
@@ -59,30 +42,30 @@ ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
 
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
-    url(r'^dashboard/', include(dashboard_urls)),
-    url(r'^account/', include(account_urls)),
-    url(r'^embed/', include(embed_urls)),
-    url(r'^profile/', include(users_urls)),
+    url(r'^dashboard/', include('apps.dashboard.urls')),
+    url(r'^account/', include('apps.account.urls')),
+    url(r'^embed/', include('apps.embed.urls')),
+    url(r'^profile/', include('apps.users.urls')),
 
-    url(r'^admin/', include(wagtailadmin_urls)),
-    url(r'^accounts/', include(allauth_urls)),
-    url(r'^accounts/social/', include(allauth_social_urls)),
-    url(r'^documents/', include(wagtaildocs_urls)),
-    url(r'^projects/', include(projects_urls)),
+    url(r'^admin/', include('wagtail.wagtailadmin.urls')),
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/social/', include('allauth.socialaccount.urls')),
+    url(r'^documents/', include('wagtail.wagtaildocs.urls')),
+    url(r'^projects/', include('apps.projects.urls')),
 
-    url(r'^ideas/', include(ideas_urls,
+    url(r'^ideas/', include('apps.ideas.urls',
                             namespace='meinberlin_ideas')),
-    url(r'^kiezkasse/', include(kiezkasse_urls,
+    url(r'^kiezkasse/', include('apps.kiezkasse.urls',
                                 namespace='meinberlin_kiezkasse')),
-    url(r'^mapideas/', include(mapideas_urls,
+    url(r'^mapideas/', include('apps.mapideas.urls',
                                namespace='meinberlin_mapideas')),
-    url(r'^text/', include(documents_urls,
+    url(r'^text/', include('apps.documents.urls',
                            namespace='meinberlin_documents')),
-    url(r'^bplan/', include(bplan_urls,
+    url(r'^bplan/', include('apps.bplan.urls',
                             namespace='meinberlin_bplan')),
-    url(r'^budgeting/', include(budgeting_urls,
+    url(r'^budgeting/', include('apps.budgeting.urls',
                                 namespace='meinberlin_budgeting')),
-    url(r'^topicprio/', include(topicprio_urls,
+    url(r'^topicprio/', include('apps.topicprio.urls',
                                 namespace='meinberlin_topicprio')),
 
     url(r'^api/', include(ct_router.urls)),
@@ -97,7 +80,7 @@ urlpatterns = [
 
     url(r'^jsi18n/$', javascript_catalog,
         js_info_dict, name='javascript-catalog'),
-    url(r'', include(wagtail_urls)),
+    url(r'', include('wagtail.wagtailcore.urls')),
 ]
 
 if settings.DEBUG:

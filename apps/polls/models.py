@@ -13,6 +13,9 @@ class Poll(module_models.Item):
                                related_query_name='poll',
                                object_id_field='object_pk')
 
+    def get_absolute_url(self):
+        return self.project.get_absolute_url()
+
 
 class Question(models.Model):
     label = models.CharField(max_length=255)
@@ -31,6 +34,9 @@ class Question(models.Model):
         return self.choices\
             .filter(votes__creator=user)\
             .values_list('id', flat=True)
+
+    def get_absolute_url(self):
+        return self.poll.get_absolute_url()
 
     def __str__(self):
         return self.label
@@ -60,11 +66,14 @@ class Choice(models.Model):
 
     objects = ChoiceQuerySet.as_manager()
 
-    class Meta:
-        ordering = ['id']
+    def get_absolute_url(self):
+        return self.question.poll.get_absolute_url()
 
     def __str__(self):
         return '%s @%s' % (self.label, self.question)
+
+    class Meta:
+        ordering = ['id']
 
 
 class Vote(UserGeneratedContentModel):
@@ -88,6 +97,9 @@ class Vote(UserGeneratedContentModel):
     @property
     def project(self):
         return self.module.project
+
+    def get_absolute_url(self):
+        return self.choice.question.poll.get_absolute_url()
 
     def __str__(self):
         return '%s: %s' % (self.creator, self.choice)
