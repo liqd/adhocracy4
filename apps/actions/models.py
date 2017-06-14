@@ -29,7 +29,13 @@ class Action(A4Action):
             return 'comment'
         elif self.type == 'item':
             return 'lightbulb-o'
-        elif self.type == 'phase' and self.verb == 'schedule':
+        elif self.verb == 'add':
+            return 'plus'
+        elif self.verb == 'update':
+            return 'pencil'
+        elif self.verb == 'start':
+            return 'flag'
+        elif self.verb == 'schedule':
             return 'clock-o'
         else:
             return 'star'
