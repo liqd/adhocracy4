@@ -8,6 +8,9 @@ from freezegun import freeze_time
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
 
+SCHEDULE = Verbs.SCHEDULE.value
+START = Verbs.START.value
+
 
 @pytest.mark.django_db
 def test_phase_end_later(phase_factory):
@@ -19,7 +22,7 @@ def test_phase_end_later(phase_factory):
 
     with freeze_time('2013-01-01 00:00:00 UTC'):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
+        action_count = Action.objects.filter(verb=SCHEDULE).count()
         assert action_count == 0
 
 
@@ -33,16 +36,16 @@ def test_phase_end_tomorrow(phase_factory):
 
     project = phase.module.project
 
-    action_count = Action.objects.all().count()
+    action_count = Action.objects.filter(verb=SCHEDULE).count()
     assert action_count == 0
 
     with freeze_time('2013-01-01 17:30:00 UTC'):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
-        action = Action.objects.last()
+        action_count = Action.objects.filter(verb=SCHEDULE).count()
+        action = Action.objects.filter(verb=SCHEDULE).last()
         assert action_count == 1
         assert action.obj == phase
-        assert action.verb == Verbs.SCHEDULE.value
+        assert action.verb == SCHEDULE
         assert action.project == project
 
 
@@ -69,25 +72,25 @@ def test_next_phase_end_tomorrow(phase_factory):
     # first phase ends within 24 h
     with freeze_time(phase1.end_date - timedelta(hours=1)):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
+        action_count = Action.objects.filter(verb=SCHEDULE).count()
         assert action_count == 1
 
     # second phase ends within 24 h
     with freeze_time(phase2.end_date - timedelta(hours=1)):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
+        action_count = Action.objects.filter(verb=SCHEDULE).count()
         assert action_count == 2
 
     # second phase ends within 24 h but script has already run
     with freeze_time(phase2.end_date - timedelta(hours=1)):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
+        action_count = Action.objects.filter(verb=SCHEDULE).count()
         assert action_count == 2
 
     # third phase ends within 24 h but script has already run
     with freeze_time(phase3.start_date):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
+        action_count = Action.objects.filter(verb=SCHEDULE).count()
         assert action_count == 3
 
 
@@ -102,7 +105,7 @@ def test_phase_reschedule(phase_factory):
     # first phase ends within 24 h
     with freeze_time(phase.end_date - timedelta(hours=1)):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
+        action_count = Action.objects.filter(verb=SCHEDULE).count()
         assert action_count == 1
 
     # first phases end date has been moved forward
@@ -111,12 +114,12 @@ def test_phase_reschedule(phase_factory):
     phase.save()
     with freeze_time(phase.end_date - timedelta(hours=1)):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
+        action_count = Action.objects.filter(verb=SCHEDULE).count()
         assert action_count == 2
 
 
 @pytest.mark.django_db
-def test_project_starts_later(phase_factory):
+def test_project_starts_later_or_earlier(phase_factory):
 
     phase = phase_factory(
         start_date=parse('2013-01-01 17:00:00 UTC'),
@@ -125,7 +128,12 @@ def test_project_starts_later(phase_factory):
 
     with freeze_time(phase.start_date - timedelta(days=1)):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
+        action_count = Action.objects.filter(verb=START).count()
+        assert action_count == 0
+
+    with freeze_time(phase.start_date + timedelta(days=1)):
+        call_command('create_system_actions')
+        action_count = Action.objects.filter(verb=START).count()
         assert action_count == 0
 
 
@@ -145,24 +153,24 @@ def test_project_start_hour(phase_factory):
 
     project = phase.module.project
 
-    action_count = Action.objects.all().count()
+    action_count = Action.objects.filter(verb=START).count()
     assert action_count == 0
 
-    with freeze_time(phase.start_date - timedelta(minutes=30)):
+    with freeze_time(phase.start_date + timedelta(minutes=30)):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
-        action = Action.objects.last()
+        action_count = Action.objects.filter(verb=START).count()
+        action = Action.objects.filter(verb=START).last()
         assert action_count == 1
         assert action.obj == project
-        assert action.verb == Verbs.START.value
+        assert action.verb == START
         assert action.project == project
 
-    # second phase starts within an hour,
+    # second phase starts within the last hour,
     # but that may not trigger a project start action
-    with freeze_time(phase2.start_date - timedelta(minutes=30)):
+    with freeze_time(phase2.start_date + timedelta(minutes=30)):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
-        action = Action.objects.last()
+        action_count = Action.objects.filter(verb=START).count()
+        action = Action.objects.filter(verb=START).last()
         assert action_count == 1
 
 
@@ -174,18 +182,18 @@ def test_project_start_single_action(phase_factory):
         end_date=parse('2013-01-01 18:00:00 UTC')
     )
 
-    action_count = Action.objects.all().count()
+    action_count = Action.objects.filter(verb=START).count()
     assert action_count == 0
 
-    with freeze_time(phase.start_date - timedelta(minutes=30)):
+    with freeze_time(phase.start_date + timedelta(minutes=30)):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
+        action_count = Action.objects.filter(verb=START).count()
         assert action_count == 1
 
-    # first phase starts within an hour but script has already run
-    with freeze_time(phase.start_date - timedelta(minutes=30)):
+    # first phase starts within the last hour but script has already run
+    with freeze_time(phase.start_date + timedelta(minutes=45)):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
+        action_count = Action.objects.filter(verb=START).count()
         assert action_count == 1
 
 
@@ -198,16 +206,16 @@ def test_project_start_reschedule(phase_factory):
     )
 
     # first phase starts within an hour
-    with freeze_time(phase.start_date - timedelta(minutes=30)):
+    with freeze_time(phase.start_date + timedelta(minutes=30)):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
+        action_count = Action.objects.filter(verb=START).count()
         assert action_count == 1
 
     # first phases start date has been moved forward
     # and a new action will be created
     phase.start_date = phase.start_date + timedelta(days=1)
     phase.save()
-    with freeze_time(phase.start_date - timedelta(minutes=30)):
+    with freeze_time(phase.start_date + timedelta(minutes=30)):
         call_command('create_system_actions')
-        action_count = Action.objects.all().count()
+        action_count = Action.objects.filter(verb=START).count()
         assert action_count == 2

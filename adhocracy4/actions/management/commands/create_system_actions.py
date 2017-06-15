@@ -28,9 +28,8 @@ class Command(BaseCommand):
                 obj_object_id=phase.id
             ).first()
 
-            # The existing action may be from the past, as it could be possible
-            # that someone modified the phases end date. In that case a new end
-            # of phase schedule action is created
+            # If the phases end has been modified and moved more than 24 hours
+            # ahead, a new phase schedule action is created
             if not existing_action \
                 or (existing_action.timestamp + timedelta(hours=24)) \
                     < phase.end_date:
@@ -44,11 +43,10 @@ class Command(BaseCommand):
     def _project_start_last_hour(self):
         project_ct = ContentType.objects.get_for_model(Project)
 
-        phases = Phase.objects.start_next(hours=1)
+        phases = Phase.objects.start_last(hours=1)
         for phase in phases:
-            project = phase.module.project
-            first_phase = project.phases.first()
-            if phase == first_phase:
+            if phase.is_first_of_project():
+                project = phase.module.project
                 existing_action = Action.objects.filter(
                     project=project,
                     verb=Verbs.START.value,
@@ -56,12 +54,10 @@ class Command(BaseCommand):
                     obj_object_id=project.id
                 ).first()
 
-                # The existing action may be from the past, as it could be
-                # possible that someone modified the phases start date.
-                # In that case a new project start action ist created
+                # If the first phases start has been modified and moved ahead
+                # of the previous action, a new project start action is created
                 if not existing_action \
-                    or (existing_action.timestamp + timedelta(hours=1)) \
-                        < phase.start_date:
+                        or existing_action.timestamp < phase.start_date:
 
                     Action.objects.create(
                         project=project,
