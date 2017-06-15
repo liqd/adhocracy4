@@ -20,13 +20,21 @@ class PhasesQuerySet(models.QuerySet):
     def finished_phases(self):
         return self.filter(end_date__lte=timezone.now())
 
-    def finish_next(self):
+    def finish_next(self, hours=24):
         """
-        All phases that are active and finish within 24 hours.
+        All phases that are active and finish within the given time.
         """
         now = timezone.now()
-        tomorrow = (now + timedelta(days=1))
-        return self.active_phases().filter(end_date__lte=tomorrow)
+        last_end_date = (now + timedelta(hours=hours))
+        return self.active_phases().filter(end_date__lte=last_end_date)
+
+    def start_last(self, hours=1):
+        """
+        All phases that have started within the given time.
+        """
+        now = timezone.now()
+        first_start_date = (now - timedelta(hours=hours))
+        return self.filter(start_date__gt=first_start_date, start_date__lt=now)
 
 
 class Phase(models.Model):
@@ -71,3 +79,7 @@ class Phase(models.Model):
 
     def has_feature(self, feature, model):
         return content[self.type].has_feature(feature, model)
+
+    def is_first_of_project(self):
+        """Test if this is the first phase of the project."""
+        return self == self.module.project.phases.first()
