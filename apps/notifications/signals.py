@@ -1,30 +1,30 @@
 from django.db.models import signals
 from django.dispatch import receiver
 
-from adhocracy4.actions.models import Action
+from adhocracy4.actions.models import Action as A4Action
 from adhocracy4.actions.verbs import Verbs
 from adhocracy4.follows.models import Follow
-from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
+from apps.actions.models import Action
 
 from . import emails
 
 
-@receiver(signals.post_save, sender=Action)
+@receiver(signals.post_save, sender=A4Action)
 def send_notifications(instance, created, **kwargs):
-    action = instance
+    action = Action.from_parent(instance)
     verb = Verbs(action.verb)
 
-    if verb == Verbs.CREATE or verb == Verbs.ADD:
+    if action.type in ('item', 'comment') \
+            and verb in (Verbs.CREATE, Verbs.ADD):
         emails.NotifyCreatorEmail.send(action)
 
         if action.project:
             emails.NotifyModeratorsEmail.send(action)
             emails.NotifyFollowersOnNewItemCreated.send(action)
 
-    elif verb == Verbs.SCHEDULE:
-        if isinstance(action.obj, Phase):
-            emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
+    elif action.type == 'phase' and verb == Verbs.SCHEDULE:
+        emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
 
 
 @receiver(signals.m2m_changed, sender=Project.moderators.through)
