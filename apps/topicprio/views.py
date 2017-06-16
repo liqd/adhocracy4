@@ -14,13 +14,10 @@ from . import models
 
 
 class TopicFilterSet(a4_filters.DefaultsFilterSet):
-
     defaults = {
         'ordering': '-positive_rating_count'
     }
-
     category = filters.CategoryFilter()
-
     ordering = filters.OrderingFilter(
         choices=(
             ('-positive_rating_count', _('Most popular')),

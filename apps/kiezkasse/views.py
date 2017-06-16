@@ -20,9 +20,10 @@ def get_ordering_choices(request):
 
 
 class ProposalFilterSet(django_filters.FilterSet):
-
+    defaults = {
+        'ordering': '-created'
+    }
     category = filters.CategoryFilter()
-
     ordering = filters.OrderingFilter(
         choices=get_ordering_choices
     )
