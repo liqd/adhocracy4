@@ -28,6 +28,7 @@ class AnonymousItem(TimeStampedModel):
 
     class Meta:
         abstract = True
+        ordering = ['-created']
 
 
 class Statement(AnonymousItem):
@@ -43,3 +44,6 @@ class Statement(AnonymousItem):
                                      verbose_name=_('Street, House number'))
     postal_code_city = models.CharField(max_length=255,
                                         verbose_name=_('Postal code, City'))
+
+    class Meta:
+        ordering = ['-created']

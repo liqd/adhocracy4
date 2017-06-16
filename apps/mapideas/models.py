@@ -22,6 +22,7 @@ class AbstractMapIdea(idea_models.AbstractIdea):
 
     class Meta:
         abstract = True
+        ordering = ['-created']
 
 
 class MapIdea(AbstractMapIdea):
