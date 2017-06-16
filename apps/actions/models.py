@@ -39,3 +39,10 @@ class Action(A4Action):
             return 'clock-o'
         else:
             return 'star'
+
+    @staticmethod
+    def proxy_of(action):
+        """Cast an A4Action object to the proxied Action."""
+        assert action.__class__ == A4Action
+        action.__class__ = Action
+        return action
