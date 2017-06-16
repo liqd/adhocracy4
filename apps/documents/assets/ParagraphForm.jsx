@@ -1,74 +1,75 @@
 var React = require('react')
 var django = require('django')
+var ErrorList = require('../../contrib/static/js/ErrorList')
 
-var ckGet = function (id) {
+const ckGet = function (id) {
   return window.CKEDITOR.instances[id]
 }
 
-var ckReplace = function (id, config) {
+const ckReplace = function (id, config) {
   return window.CKEDITOR.replace(id, config)
 }
 
-var Paragraph = React.createClass({
-  add: function () {
-    this.props.addParagraphBeforeIndex(this.props.index)
-  },
-  delete: function () {
-    this.props.deleteParagraph(this.props.index)
-  },
-  up: function () {
-    this.props.moveParagraphUp(this.props.index)
-  },
-  down: function () {
-    this.props.moveParagraphDown(this.props.index)
-  },
+const Paragraph = React.createClass({
+
   handleNameChange: function (e) {
-    var index = this.props.index
-    var text = e.target.value
-    this.props.updateParagraphName(index, text)
+    const name = e.target.value
+    this.props.onNameChange(name)
   },
+
+  handleTextChange: function (text) {
+    this.props.onTextChange(text)
+  },
+
+  ckId: function () {
+    return 'id_paragraphs-' + this.props.id + '-text'
+  },
+
   ckEditorDestroy: function () {
-    var id = 'id_paragraphs-' + this.props.id + '-text'
-    var editor = ckGet(id)
+    const editor = ckGet(this.ckId())
     if (editor) {
       editor.destroy()
     }
   },
+
   ckEditorCreate: function () {
-    var id = 'id_paragraphs-' + this.props.id + '-text'
-    if (!ckGet(id)) {
-      var editor = ckReplace(id, this.props.config)
+    if (!ckGet(this.ckId())) {
+      var editor = ckReplace(this.ckId(), this.props.config)
       editor.on('change', function (e) {
         var text = e.editor.getData()
-        var index = this.props.index
-        this.props.updateParagraphText(index, text)
+        this.handleTextChange(text)
       }.bind(this))
       editor.setData(this.props.paragraph.text)
     }
   },
+
   componentWillUpdate: function (nextProps) {
     if (nextProps.index > this.props.index) {
-      this.ckEditorDestroy()
+      this.ckEditorDestroy() // why is this needed?
     }
   },
+
   componentDidUpdate: function (prevProps) {
     if (this.props.index > prevProps.index) {
-      this.ckEditorCreate()
+      this.ckEditorCreate() // why is this needed?
     }
   },
+
   componentDidMount: function () {
     this.ckEditorCreate()
   },
+
   componentWillUnmount: function () {
-    this.ckEditorCreate()
+    this.ckEditorDestroy()
   },
+
   render: function () {
     var ckEditorToolbarsHeight = 60  // measured on example editor
     return (
       <section>
         <button
           className="button button--full"
-          onClick={this.add}
+          onClick={this.props.onParagraphAddBefore}
           type="button">
           <i className="fa fa-plus" /> {django.gettext('Add a new paragraph')}
         </button>
@@ -85,13 +86,9 @@ var Paragraph = React.createClass({
                 id={'id_paragraphs-' + this.props.id + '-name'}
                 name={'paragraphs-' + this.props.id + '-name'}
                 type="text"
-                defaultValue={this.props.paragraph.name}
+                value={this.props.paragraph.name}
                 onChange={this.handleNameChange} />
-              {this.props.errors && this.props.errors.name ? <ul className="errorlist">
-                {this.props.errors.name.map(function (msg, index) {
-                  return <li key={msg}>{msg}</li>
-                })}
-              </ul> : null}
+              <ErrorList errors={this.props.errors.name} />
             </div>
 
             <div className="form-group">
@@ -108,19 +105,15 @@ var Paragraph = React.createClass({
                   style={{height: this.props.config.height + ckEditorToolbarsHeight}}
                   id={'id_paragraphs-' + this.props.id + '-text'} />
               </div>
-              {this.props.errors && this.props.errors.text ? <ul className="errorlist">
-                {this.props.errors.text.map(function (msg, index) {
-                  return <li key={msg}>{msg}</li>
-                })}
-              </ul> : null}
+              <ErrorList errors={this.props.errors.text} />
             </div>
           </div>
 
           <div className="commenting__actions button-group">
             <button
               className="button"
-              onClick={this.up}
-              disabled={!this.props.moveParagraphUp}
+              onClick={this.props.onMoveUp}
+              disabled={!this.props.onMoveUp}
               title={django.gettext('Move up')}
               type="button">
               <i className="fa fa-chevron-up"
@@ -128,8 +121,8 @@ var Paragraph = React.createClass({
             </button>
             <button
               className="button"
-              onClick={this.down}
-              disabled={!this.props.moveParagraphDown}
+              onClick={this.props.onMoveDown}
+              disabled={!this.props.onMoveDown}
               title={django.gettext('Move down')}
               type="button">
               <i className="fa fa-chevron-down"
@@ -137,7 +130,7 @@ var Paragraph = React.createClass({
             </button>
             <button
               className="button"
-              onClick={this.delete}
+              onClick={this.props.onDelete}
               title={django.gettext('Delete')}
               type="button">
               <i className="fa fa-trash"
