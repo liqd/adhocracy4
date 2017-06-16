@@ -1,32 +1,40 @@
-{% load contrib_tags i18n static %}
+{% load contrib_tags i18n offlineevent_tags static %}
 
 {% with project.active_phase as active_phase %}
 
-{% with project.phases|length as phase_count %}
-{% if phase_count > 1 %}
+{% phases_and_offlineevents_sorted project as phases_and_events %}
+{% with phases_and_events|length as phase_event_count %}
+{% if phase_event_count > 1 %}
 <script src="{% static 'js/popover.js' %}"></script>
 <div class="phase-list">
     <ul>
-        {% for phase in project.phases %}
-            {% include_template_string "meinberlin_projects/includes/phase_popover.html" phase=phase phase_num=forloop.counter phase_count=phase_count as popover_content %}
-            <li>
-                <button
-                    id="phase-{{ phase.pk }}"
-                    class="phase-list__button {% if phase == active_phase %} is-active{% endif %}"
-                    data-toggle="popover"
-                    data-content="{{ popover_content }}"
-                    data-placement="top"
-                    data-html="true"
-                >
-                    {{ phase.name }}
-                </button>
-            </li>
+        {% for obj in phases_and_events %}
+            {% if obj|is_phase %}
+                <li>
+                    <a
+                            href="{% url 'project-detail' project.slug %}"
+                        class="phase-list__button {% if obj == active_phase %} is-active{% endif %}"
+                    >
+                        {{ obj.name }}
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a
+                        href="{% url 'meinberlin_offineevents:offlineevent-detail' obj.slug %}"
+                        class="phase-list__button"
+                    >
+                        {{ obj.name }}
+                    </a>
+                </li>
+            {% endif %}
         {% endfor %}
     </ul>
 </div>
 {% endif %}
 {% endwith %}
 
+{% if not object|is_offlineevent %}
 <div class="phase-info">
     <div class="l-center-6">
         {% if active_phase %}
@@ -47,5 +55,6 @@
         {% endif %}
     </div>
 </div>
+{% endif %}
 
 {% endwith %}
