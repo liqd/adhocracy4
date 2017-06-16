@@ -1,9 +1,7 @@
 from django import template
 
 from adhocracy4.phases.models import Phase
-
 from apps.offlineevents.models import OfflineEvent
-
 
 register = template.Library()
 
