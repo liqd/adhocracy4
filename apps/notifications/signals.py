@@ -12,7 +12,7 @@ from . import emails
 
 @receiver(signals.post_save, sender=A4Action)
 def send_notifications(instance, created, **kwargs):
-    action = Action.from_parent(instance)
+    action = Action.proxy_of(instance)
     verb = Verbs(action.verb)
 
     if action.type in ('item', 'comment') \

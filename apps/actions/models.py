@@ -41,7 +41,7 @@ class Action(A4Action):
             return 'star'
 
     @staticmethod
-    def from_parent(action):
+    def proxy_of(action):
         """Cast an A4Action object to the proxied Action."""
         assert action.__class__ == A4Action
         action.__class__ = Action
