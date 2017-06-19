@@ -15,7 +15,7 @@ const ChapterForm = React.createClass({
       <section>
         <div className="form-group">
           <label>
-            {django.gettext('Title')}
+            {django.gettext('Chapter title')}
             <input
               type="text"
               value={this.props.chapter.name}

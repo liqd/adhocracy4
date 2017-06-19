@@ -280,7 +280,7 @@ const DocumentManagement = React.createClass({
     return (
       <form onSubmit={this.handleSubmit} onChange={this.removeAlert}>
 
-        <h4>{django.gettext('Contents')}</h4>
+        <h2>{django.gettext('Contents')}</h2>
         <ChapterList
           chapters={this.state.chapters}
           onMoveUp={this.handleChapterMoveUp}
@@ -290,7 +290,7 @@ const DocumentManagement = React.createClass({
           onClick={this.handleChapterEdit}
         />
 
-        <h4>{django.gettext('Edit chapter')}</h4>
+        <h2>{django.gettext('Edit chapter')}</h2>
         <ChapterForm
           onChapterNameChange={(name) => { this.handleChapterNameChange(chapterIndex, name) }}
           onParagraphNameChange={(paragraphIndex, name) => { this.handleParagraphNameChange(chapterIndex, paragraphIndex, name) }}
