@@ -49,7 +49,7 @@ let QuestionForm = React.createClass({
   render: function () {
     return (
       <section className="commenting">
-        <div className="commenting__content">
+        <div className="commenting__content commenting__content--border">
           <div className="form-group">
             <label
               htmlFor={'id_questions-' + this.props.key + '-name'}>
