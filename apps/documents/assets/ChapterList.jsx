@@ -21,7 +21,7 @@ const ChapterList = React.createClass({
 
         <p>
           <button
-            className="button button--light"
+            className="button button--light button--small"
             onClick={this.props.onChapterAppend}
             type="button">
             <i className="fa fa-plus" /> {django.gettext('Add a new chapter')}

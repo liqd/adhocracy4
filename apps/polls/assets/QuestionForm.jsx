@@ -83,7 +83,7 @@ let QuestionForm = React.createClass({
             }
           </FlipMove>
           <button
-            className="button button--light"
+            className="button button--light button--small"
             onClick={this.handleAppendChoice}
             type="button">
             <i className="fa fa-plus" /> {django.gettext('Add a new choice')}
@@ -92,7 +92,7 @@ let QuestionForm = React.createClass({
 
         <div className="commenting__actions button-group">
           <button
-            className="button button--light"
+            className="button button--light button--small"
             onClick={this.handleMoveUp}
             disabled={!this.props.moveQuestionUp}
             title={django.gettext('Move up')}
@@ -101,7 +101,7 @@ let QuestionForm = React.createClass({
               aria-label={django.gettext('Move up')} />
           </button>
           <button
-            className="button button--light"
+            className="button button--light button--small"
             onClick={this.handleMoveDown}
             disabled={!this.props.moveQuestionDown}
             title={django.gettext('Move down')}
@@ -110,7 +110,7 @@ let QuestionForm = React.createClass({
               aria-label={django.gettext('Move down')} />
           </button>
           <button
-            className="button button--light"
+            className="button button--light button--small"
             onClick={this.handleDelete}
             title={django.gettext('Delete')}
             type="button">

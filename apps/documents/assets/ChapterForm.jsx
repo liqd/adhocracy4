@@ -48,7 +48,7 @@ const ChapterForm = React.createClass({
         }
 
         <button
-          className="button button--light"
+          className="button button--light button--small"
           onClick={this.props.onParagraphAppend}
           type="button">
           <i className="fa fa-plus" /> {django.gettext('Add a new paragraph')}
