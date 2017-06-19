@@ -16,13 +16,14 @@ from . import models
 class TopicFilterSet(a4_filters.DefaultsFilterSet):
 
     defaults = {
-        'ordering': '-positive_rating_count'
+        'ordering': 'name'
     }
 
     category = filters.CategoryFilter()
 
     ordering = filters.OrderingFilter(
         choices=(
+            ('name', _('Alphabetical')),
             ('-positive_rating_count', _('Most popular')),
             ('-comment_count', _('Most commented'))
         )
@@ -51,9 +52,19 @@ class TopicDetailView(module_views.ItemDetailView):
     permission_required = 'meinberlin_topicprio.view_topic'
 
 
-class TopicCreateFilterSet(a4_filters.PagedFilterSet):
+class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
+
+    defaults = {
+        'ordering': 'name'
+    }
 
     category = filters.CategoryFilter()
+
+    ordering = filters.OrderingFilter(
+        choices=(
+            ('name', _('Alphabetical')),
+        )
+    )
 
     class Meta:
         model = models.Topic
