@@ -6,18 +6,20 @@ const ChapterList = React.createClass({
   render: function () {
     return (
       <nav aria-label={django.gettext('Chapter navigation')}>
-        {
-          this.props.chapters.map((chapter, index, arr) =>
-            <ChapterListItem
-              key={chapter.id || chapter.key}
-              name={chapter.name}
-              onMoveUp={index !== 0 ? () => { this.props.onMoveUp(index) } : null}
-              onMoveDown={index < arr.length - 1 ? () => { this.props.onMoveDown(index) } : null}
-              onDelete={() => { this.props.onDelete(index) }}
-              onClick={() => { this.props.onClick(index) }}
-              />
-          )
-        }
+        <ol className="u-list-reset">
+          {
+            this.props.chapters.map((chapter, index, arr) =>
+              <ChapterListItem
+                key={chapter.id || chapter.key}
+                name={chapter.name}
+                onMoveUp={index !== 0 ? () => { this.props.onMoveUp(index) } : null}
+                onMoveDown={index < arr.length - 1 ? () => { this.props.onMoveDown(index) } : null}
+                onDelete={() => { this.props.onDelete(index) }}
+                onClick={() => { this.props.onClick(index) }}
+                />
+            )
+          }
+        </ol>
 
         <p>
           <button

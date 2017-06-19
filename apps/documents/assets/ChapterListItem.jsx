@@ -40,7 +40,7 @@ var django = require('django')
 const ChapterListItem = React.createClass({
   render: function () {
     return (
-      <div className="commenting commenting--toc">
+      <li className="commenting commenting--toc">
         <div className="commenting__content">
           <button className="commenting--toc__button" type="button" onClick={this.props.onClick}>
             {this.props.name}
@@ -75,7 +75,7 @@ const ChapterListItem = React.createClass({
               aria-label={django.gettext('Delete')} />
           </button>
         </div>
-      </div>
+      </li>
     )
   }
 })
