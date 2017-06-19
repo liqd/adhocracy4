@@ -12,7 +12,7 @@ const ChapterForm = React.createClass({
 
   render: function () {
     return (
-      <section>
+      <section className="commenting-form">
         <div className="commenting">
           <div className="form-group commenting__content">
             <label>
@@ -48,7 +48,7 @@ const ChapterForm = React.createClass({
         }
 
         <button
-          className="button button--full"
+          className="button button--light"
           onClick={this.props.onParagraphAppend}
           type="button">
           <i className="fa fa-plus" /> {django.gettext('Add a new paragraph')}

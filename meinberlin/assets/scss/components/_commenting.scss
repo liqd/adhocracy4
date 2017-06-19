@@ -17,6 +17,10 @@
     font-size: $font-size-lg;
 }
 
+.commenting-form {
+    margin-bottom: 2 * $spacer;
+}
+
 @media (min-width: $breakpoint) {
     .commenting {
         @include clearfix;
