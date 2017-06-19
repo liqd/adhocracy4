@@ -68,7 +68,7 @@ const Paragraph = React.createClass({
     return (
       <section>
         <div className="commenting">
-          <div className="commenting__content commenting__content--border">
+          <div className="commenting__content">
             <div className="form-group">
               <label
                 htmlFor={'id_paragraphs-' + this.props.id + '-name'}>

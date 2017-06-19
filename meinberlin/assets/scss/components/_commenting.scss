@@ -3,11 +3,6 @@
 }
 
 .commenting__content {
-    padding-right: $padding;
-    border-right: 1px solid $brand-primary;
-}
-
-.commenting__content--border {
     padding: $padding;
     border: 1px solid $border-color;
     border-radius: ($padding / 2);
