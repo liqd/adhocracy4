@@ -1,4 +1,4 @@
-// var api = require('adhocracy4').api
+var api = require('adhocracy4').api
 var React = require('react')
 var django = require('django')
 var update = require('react-addons-update')
@@ -220,6 +220,58 @@ const DocumentManagement = React.createClass({
     this.setState({
       chapters: update(this.state.chapters, diff)
     })
+  },
+
+  removeAlert: function () {
+    this.setState({
+      alert: null
+    })
+  },
+
+  handleSubmit: function (e) {
+    if (e) {
+      e.preventDefault()
+    }
+
+    const chapters = this.state.chapters.map(function (chapter, index) {
+      chapter.weight = index
+      chapter.paragraphs = chapter.paragraphs.map(function (paragraph, index) {
+        paragraph.weight = index
+        return paragraph
+      })
+      return chapter
+    })
+
+    const submitData = {
+      urlReplaces: {moduleId: this.props.module},
+      chapters: chapters
+    }
+
+    api.document.add(submitData)
+      .done((data) => {
+        this.setState({
+          alert: {
+            type: 'success',
+            message: django.gettext('The document has been updated.')
+          },
+          errors: [],
+          chapters: data.chapters
+        })
+      })
+      .fail((xhr, status, err) => {
+        let errors = []
+        if (xhr.responseJSON && 'chapters' in xhr.responseJSON) {
+          errors = xhr.responseJSON.chapters
+        }
+
+        this.setState({
+          alert: {
+            type: 'danger',
+            message: django.gettext('The document could not be updated.')
+          },
+          errors: errors
+        })
+      })
   },
 
   render: function () {
