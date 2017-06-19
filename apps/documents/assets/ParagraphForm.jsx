@@ -67,13 +67,6 @@ const Paragraph = React.createClass({
     var ckEditorToolbarsHeight = 60  // measured on example editor
     return (
       <section>
-        <button
-          className="button button--full"
-          onClick={this.props.onParagraphAddBefore}
-          type="button">
-          <i className="fa fa-plus" /> {django.gettext('Add a new paragraph')}
-        </button>
-
         <div className="commenting">
           <div className="commenting__content">
             <div className="form-group">
