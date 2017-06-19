@@ -68,7 +68,7 @@ const Paragraph = React.createClass({
     return (
       <section>
         <div className="commenting">
-          <div className="commenting__content">
+          <div className="commenting__content commenting__content--border">
             <div className="form-group">
               <label
                 htmlFor={'id_paragraphs-' + this.props.id + '-name'}>
@@ -104,7 +104,7 @@ const Paragraph = React.createClass({
 
           <div className="commenting__actions button-group">
             <button
-              className="button"
+              className="button button--light"
               onClick={this.props.onMoveUp}
               disabled={!this.props.onMoveUp}
               title={django.gettext('Move up')}
@@ -113,7 +113,7 @@ const Paragraph = React.createClass({
                 aria-label={django.gettext('Move up')} />
             </button>
             <button
-              className="button"
+              className="button button--light"
               onClick={this.props.onMoveDown}
               disabled={!this.props.onMoveDown}
               title={django.gettext('Move down')}
@@ -122,7 +122,7 @@ const Paragraph = React.createClass({
                 aria-label={django.gettext('Move down')} />
             </button>
             <button
-              className="button"
+              className="button button--light"
               onClick={this.props.onDelete}
               title={django.gettext('Delete')}
               type="button">
