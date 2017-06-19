@@ -40,8 +40,12 @@ var django = require('django')
 const ChapterListItem = React.createClass({
   render: function () {
     return (
-      <div>
-        <h5 onClick={this.props.onClick}>{this.props.name}</h5>
+      <div className="commenting commenting--toc">
+        <div className="commenting__content">
+          <button className="commenting--toc__button" type="button" onClick={this.props.onClick}>
+            {this.props.name}
+          </button>
+        </div>
 
         <div className="commenting__actions button-group">
           <button

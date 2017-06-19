@@ -5,7 +5,7 @@ var ChapterListItem = require('./ChapterListItem')
 const ChapterList = React.createClass({
   render: function () {
     return (
-      <section>
+      <nav aria-label={django.gettext('Chapter navigation')}>
         {
           this.props.chapters.map((chapter, index, arr) =>
             <ChapterListItem
@@ -27,7 +27,7 @@ const ChapterList = React.createClass({
             <i className="fa fa-plus" /> {django.gettext('Add a new chapter')}
           </button>
         </p>
-      </section>
+      </nav>
     )
   }
 })
