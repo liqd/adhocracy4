@@ -13,15 +13,17 @@ const ChapterForm = React.createClass({
   render: function () {
     return (
       <section>
-        <div className="form-group">
-          <label>
-            {django.gettext('Chapter title')}
-            <input
-              type="text"
-              value={this.props.chapter.name}
-              onChange={this.handleChapterNameChange} />
-          </label>
-          <ErrorList errors={{}} />
+        <div className="commenting">
+          <div className="form-group commenting__content">
+            <label>
+              {django.gettext('Chapter title')}
+              <input
+                type="text"
+                value={this.props.chapter.name}
+                onChange={this.handleChapterNameChange} />
+            </label>
+            <ErrorList errors={{}} />
+          </div>
         </div>
 
         {
