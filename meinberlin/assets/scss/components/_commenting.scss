@@ -9,29 +9,10 @@
     border-radius: ($padding / 2);
 }
 
-.commenting--toc {
-    padding: $padding / 2;
-    margin-bottom: $spacer / 2;
-    border: 1px solid $border-color;
-    border-radius: ($padding / 2);
-}
-
 .commenting--toc__button {
-    // Calculate padding to align to commenting action buttons
-    $target-height: (2.2rem / $font-size-lg);
-    $line-height: 1.2;
-    $padding: (($target-height - $line-height) / 2 * 1em);
-
     display: block;
     width: 100%;
-    font-size: $font-size-lg;
-    line-height: $line-height;
-    padding: $padding 0;
-
-    &:hover,
-    &:focus {
-        color: $link-color;
-    }
+    text-align: left;
 }
 
 .commenting__actions {
