@@ -144,19 +144,6 @@ const DocumentManagement = React.createClass({
     })
   },
 
-  handleParagraphAddBefore: function (chapterIndex, paragraphIndex) {
-    const newParagraph = this.getNewParagraph('', '')
-    const diff = {}
-    diff[chapterIndex] = {
-      paragraphs: {
-        $splice: [[paragraphIndex, 0, newParagraph]]
-      }
-    }
-    this.setState({
-      chapters: update(this.state.chapters, diff)
-    })
-  },
-
   handleParagraphMoveUp: function (chapterIndex, paragraphIndex) {
     const value = this.state.chapters[chapterIndex].paragraphs[paragraphIndex]
     const diff = {}
@@ -288,7 +275,6 @@ const DocumentManagement = React.createClass({
           onParagraphNameChange={(paragraphIndex, name) => { this.handleParagraphNameChange(chapterIndex, paragraphIndex, name) }}
           onParagraphTextChange={(paragraphIndex, text) => { this.handleParagraphTextChange(chapterIndex, paragraphIndex, text) }}
           onParagraphAppend={(paragraphIndex) => { this.handleParagraphAppend(chapterIndex, paragraphIndex) }}
-          onParagraphAddBefore={(paragraphIndex) => { this.handleParagraphAddBefore(chapterIndex, paragraphIndex) }}
           onParagraphMoveUp={(paragraphIndex) => { this.handleParagraphMoveUp(chapterIndex, paragraphIndex) }}
           onParagraphMoveDown={(paragraphIndex) => { this.handleParagraphMoveDown(chapterIndex, paragraphIndex) }}
           onParagraphDelete={(paragraphIndex) => { this.handleParagraphDelete(chapterIndex, paragraphIndex) }}
