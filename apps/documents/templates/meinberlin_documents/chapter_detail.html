@@ -21,6 +21,7 @@
                             aria-expanded="{{ object.prev|yesno:'false,true' }}"
                             aria-controls="doc-toc__content">
                             <h2 class="doc-toc__title">{% trans 'Table of Contents' %}</h2>
+                            <i class="fa fa-chevron-up" aria-hidden="true"></i>
                         </button>
                         <div class="doc-toc__content collapse {% if not object.prev %}show{% endif %}" id="doc-toc__content">
                             <ol>

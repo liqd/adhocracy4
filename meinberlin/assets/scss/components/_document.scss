@@ -33,7 +33,20 @@
 
 .doc-toc__toggle {
     display: block;
+    position: relative;
     width: 100%;
+    padding-right: 2em;
+
+    i {
+        transition: transform 0.3s;
+        position: absolute;
+        top: 0.7em;
+        right: $padding;
+    }
+
+    &.collapsed i {
+        transform: rotate(-180deg);
+    }
 }
 
 .doc-toc__title {
