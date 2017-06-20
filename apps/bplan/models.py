@@ -28,7 +28,6 @@ class AnonymousItem(TimeStampedModel):
 
     class Meta:
         abstract = True
-        ordering = ['-created']
 
 
 class Statement(AnonymousItem):

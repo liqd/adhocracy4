@@ -35,7 +35,6 @@ class AbstractIdea(module_models.Item, category_models.Categorizable):
 
     class Meta:
         abstract = True
-        ordering = ['-created']
 
     def __str__(self):
         return self.name
@@ -50,3 +49,6 @@ class Idea(AbstractIdea):
 
     def get_absolute_url(self):
         return reverse('meinberlin_ideas:idea-detail', args=[str(self.slug)])
+
+    class Meta:
+        ordering = ['-created']

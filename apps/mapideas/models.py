@@ -22,7 +22,6 @@ class AbstractMapIdea(idea_models.AbstractIdea):
 
     class Meta:
         abstract = True
-        ordering = ['-created']
 
 
 class MapIdea(AbstractMapIdea):
@@ -30,3 +29,6 @@ class MapIdea(AbstractMapIdea):
     def get_absolute_url(self):
         return reverse('meinberlin_mapideas:mapidea-detail',
                        args=[str(self.slug)])
+
+    class Meta:
+        ordering = ['-created']
