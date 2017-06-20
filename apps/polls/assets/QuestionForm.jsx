@@ -60,7 +60,7 @@ let QuestionForm = React.createClass({
               name={'questions-' + this.props.key + '-name'}
               defaultValue={this.props.question.label}
               onChange={this.handleLabelChange} />
-            <ErrorList errors={this.props.errors} />
+            <ErrorList errors={this.props.errors} field="label" />
           </div>
 
           <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
