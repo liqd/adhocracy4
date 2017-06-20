@@ -45,13 +45,13 @@ const Paragraph = React.createClass({
 
   componentWillUpdate: function (nextProps) {
     if (nextProps.index > this.props.index) {
-      this.ckEditorDestroy() // why is this needed?
+      this.ckEditorDestroy()
     }
   },
 
   componentDidUpdate: function (prevProps) {
     if (this.props.index > prevProps.index) {
-      this.ckEditorCreate() // why is this needed?
+      this.ckEditorCreate()
     }
   },
 
