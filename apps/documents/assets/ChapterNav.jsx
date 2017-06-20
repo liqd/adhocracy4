@@ -1,16 +1,16 @@
 var React = require('react')
 var django = require('django')
-var ChapterListItem = require('./ChapterListItem')
+var ChapterNavItem = require('./ChapterNavItem')
 var FlipMove = require('react-flip-move')
 
-const ChapterList = (props) => {
+const ChapterNav = (props) => {
   return (
     <nav aria-label={django.gettext('Chapter navigation')}>
       <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)" typeName="ol" className="u-list-reset">
         {
           props.chapters.map((chapter, index, arr) =>
             <li key={chapter.id || chapter.key}>
-              <ChapterListItem
+              <ChapterNavItem
                 name={chapter.name}
                 onMoveUp={index !== 0 ? () => { props.onMoveUp(index) } : null}
                 onMoveDown={index < arr.length - 1 ? () => { props.onMoveDown(index) } : null}
@@ -35,4 +35,4 @@ const ChapterList = (props) => {
   )
 }
 
-module.exports = ChapterList
+module.exports = ChapterNav

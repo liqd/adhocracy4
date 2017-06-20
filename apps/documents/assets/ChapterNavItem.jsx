@@ -11,7 +11,7 @@ function getErrorCount (props) {
   }
 }
 
-const ChapterListItem = (props) => {
+const ChapterNavItem = (props) => {
   return (
     <div className="commenting">
       <button className="commenting__content commenting--toc__button button button--light button--small" type="button" onClick={props.onClick}>
@@ -51,4 +51,4 @@ const ChapterListItem = (props) => {
   )
 }
 
-module.exports = ChapterListItem
+module.exports = ChapterNavItem

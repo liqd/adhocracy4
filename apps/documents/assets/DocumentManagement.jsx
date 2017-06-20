@@ -2,7 +2,7 @@ var api = require('adhocracy4').api
 var React = require('react')
 var django = require('django')
 var update = require('react-addons-update')
-var ChapterList = require('./ChapterList')
+var ChapterNav = require('./ChapterNav')
 var ChapterForm = require('./ChapterForm')
 var Alert = require('../../contrib/static/js/Alert')
 
@@ -259,7 +259,7 @@ const DocumentManagement = React.createClass({
       <form onSubmit={this.handleSubmit} onChange={this.removeAlert}>
 
         <h2>{django.gettext('Contents')}</h2>
-        <ChapterList
+        <ChapterNav
           chapters={this.state.chapters}
           onMoveUp={this.handleChapterMoveUp}
           onMoveDown={this.handleChapterMoveDown}
