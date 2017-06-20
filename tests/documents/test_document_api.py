@@ -95,12 +95,12 @@ def test_chapters_are_correctly_sorted(apiclient, module):
     data = {
         'chapters': [
             {
-                'name': 'chapter 2',
-                'weight': 1,
+                'name': 'chapter 1',
+                'weight': 1000,
                 'paragraphs': []
             },
             {
-                'name': 'chapter 1',
+                'name': 'chapter 2',
                 'weight': 0,
                 'paragraphs': []
             }
@@ -147,9 +147,9 @@ def test_paragraphs_are_correctly_sorted(apiclient, module):
     response = apiclient.post(url, data, format='json')
     assert response.status_code == status.HTTP_201_CREATED
     chapter = response.data['chapters'][0]
-    assert chapter['paragraphs'][0]['name'] == 'paragraph 3'
+    assert chapter['paragraphs'][0]['name'] == 'paragraph 1'
     assert chapter['paragraphs'][1]['name'] == 'paragraph 2'
-    assert chapter['paragraphs'][2]['name'] == 'paragraph 1'
+    assert chapter['paragraphs'][2]['name'] == 'paragraph 3'
 
 
 @pytest.mark.django_db

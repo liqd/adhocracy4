@@ -20,7 +20,7 @@ class DocumentViewSet(ModuleMixin,
     def get_serializer_context(self):
         context = super().get_serializer_context()
         context.update({
-            'module_pk': self.module_pk,
+            'module_pk': int(self.module_pk),
         })
         return context
 
