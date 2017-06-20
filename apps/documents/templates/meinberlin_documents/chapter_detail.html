@@ -14,8 +14,15 @@
             <div class="l-center-8">
                 {% if chapter_list|length > 1 %}
                     <nav class="doc-toc" aria-label="{% trans 'Table of Contents' %}">
-                        <h2 class="doc-toc__title">{% trans 'Table of Contents' %}</h2>
-                        <div class="doc-toc__content">
+                        <button
+                            class="doc-toc__toggle"
+                            data-toggle="collapse"
+                            data-target="#doc-toc__content"
+                            aria-expanded="falce"
+                            aria-controls="doc-toc__content">
+                            <h2 class="doc-toc__title">{% trans 'Table of Contents' %}</h2>
+                        </button>
+                        <div class="doc-toc__content collapse" id="doc-toc__content">
                             <ol>
                                 {% for chapter in chapter_list %}
                                     <li>

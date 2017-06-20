@@ -31,6 +31,11 @@
     border-radius: 0.3em;
 }
 
+.doc-toc__toggle {
+    display: block;
+    width: 100%;
+}
+
 .doc-toc__title {
     margin: 0;
     padding: ($padding / 2) $padding;
