@@ -16,6 +16,7 @@ const ChapterList = React.createClass({
                 onMoveDown={index < arr.length - 1 ? () => { this.props.onMoveDown(index) } : null}
                 onDelete={() => { this.props.onDelete(index) }}
                 onClick={() => { this.props.onClick(index) }}
+                errors={this.props.errors ? this.props.errors[index] : {}}
                 />
             )
           }

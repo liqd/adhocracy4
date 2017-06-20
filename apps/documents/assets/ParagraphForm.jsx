@@ -81,7 +81,7 @@ const Paragraph = React.createClass({
                 type="text"
                 value={this.props.paragraph.name}
                 onChange={this.handleNameChange} />
-              <ErrorList errors={this.props.errors.name} />
+              <ErrorList errors={this.props.errors} field="name" />
             </div>
 
             <div className="form-group">
@@ -98,7 +98,7 @@ const Paragraph = React.createClass({
                   style={{height: this.props.config.height + ckEditorToolbarsHeight}}
                   id={'id_paragraphs-' + this.props.id + '-text'} />
               </div>
-              <ErrorList errors={this.props.errors.text} />
+              <ErrorList errors={this.props.errors} field="text" />
             </div>
           </div>
 

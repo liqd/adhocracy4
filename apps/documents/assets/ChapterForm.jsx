@@ -22,7 +22,7 @@ const ChapterForm = React.createClass({
                 value={this.props.chapter.name}
                 onChange={this.handleChapterNameChange} />
             </label>
-            <ErrorList errors={{}} />
+            <ErrorList errors={this.props.errors} field="name" />
           </div>
         </div>
 
@@ -34,7 +34,6 @@ const ChapterForm = React.createClass({
                 key={paragraph.id || paragraph.key}
                 index={index} // why is this needed for ck?
                 paragraph={paragraph}
-                errors={{}}
                 config={this.props.config}
                 onDelete={() => { this.props.onParagraphDelete(index) }}
                 onMoveUp={index !== 0 ? () => { this.props.onParagraphMoveUp(index) } : null}
@@ -42,6 +41,7 @@ const ChapterForm = React.createClass({
                 onParagraphAddBefore={() => { this.props.onParagraphAddBefore(index) }}
                 onNameChange={(name) => { this.props.onParagraphNameChange(index, name) }}
                 onTextChange={(text) => { this.props.onParagraphTextChange(index, text) }}
+                errors={this.props.errors && this.props.errors.paragraphs ? this.props.errors.paragraphs[index] : {}}
               />
             )
           }.bind(this))

@@ -38,11 +38,22 @@ var django = require('django')
 // )}
 
 const ChapterListItem = React.createClass({
+  getErrorCount: function () {
+    if (this.props.errors && Object.keys(this.props.errors).length > 0) {
+      let errorCount = Object.keys(this.props.errors).length
+      if (this.props.errors['paragraphs']) {
+        errorCount = errorCount - 1 + Object.keys(this.props.errors['paragraphs']).length
+      }
+      return <span className="errorcount"> ({errorCount})</span>
+    }
+  },
+
   render: function () {
     return (
       <li className="commenting">
         <button className="commenting__content commenting--toc__button button button--light button--small" type="button" onClick={this.props.onClick}>
           {this.props.name}
+          {this.getErrorCount()}
         </button>
 
         <div className="commenting__actions button-group">

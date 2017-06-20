@@ -266,6 +266,7 @@ const DocumentManagement = React.createClass({
 
   render: function () {
     const chapterIndex = this.state.editChapterIndex
+    const chapterErrors = this.state.errors && this.state.errors[chapterIndex] ? this.state.errors[chapterIndex] : {}
 
     return (
       <form onSubmit={this.handleSubmit} onChange={this.removeAlert}>
@@ -278,6 +279,7 @@ const DocumentManagement = React.createClass({
           onDelete={this.handleChapterDelete}
           onChapterAppend={this.handleChapterAppend}
           onClick={this.handleChapterEdit}
+          errors={this.state.errors}
         />
 
         <h2>{django.gettext('Edit chapter')}</h2>
@@ -292,6 +294,7 @@ const DocumentManagement = React.createClass({
           onParagraphDelete={(paragraphIndex) => { this.handleParagraphDelete(chapterIndex, paragraphIndex) }}
           config={this.props.config}
           chapter={this.state.chapters[chapterIndex]}
+          errors={chapterErrors}
         />
 
         <Alert onClick={this.removeAlert} {...this.state.alert} />
