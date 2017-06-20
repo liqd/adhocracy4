@@ -17,10 +17,6 @@ const Paragraph = React.createClass({
     this.props.onNameChange(name)
   },
 
-  handleTextChange: function (text) {
-    this.props.onTextChange(text)
-  },
-
   ckId: function () {
     return 'id_paragraphs-' + this.props.id + '-text'
   },
@@ -37,7 +33,7 @@ const Paragraph = React.createClass({
       var editor = ckReplace(this.ckId(), this.props.config)
       editor.on('change', function (e) {
         var text = e.editor.getData()
-        this.handleTextChange(text)
+        this.props.onTextChange(text)
       }.bind(this))
       editor.setData(this.props.paragraph.text)
     }
