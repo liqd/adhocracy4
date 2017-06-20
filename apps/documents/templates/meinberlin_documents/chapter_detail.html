@@ -17,7 +17,7 @@
                         <ol>
                             {% for chapter in chapter_list %}
                                 <li>
-                                    <a href="{{ chapter.get_absolute_url }}" {% if chapter.pk == object.pk %}class="active"{% endif %}>
+                                    <a href="{{ chapter.get_absolute_url }}" class="doc-toc__link {% if chapter.pk == object.pk %}active{% endif %}">
                                         {{ chapter.name }}
                                     </a>
                                 </li>

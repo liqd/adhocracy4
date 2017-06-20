@@ -32,15 +32,15 @@
     ol {
         margin-bottom: 0;
     }
+}
 
-    a {
-        color: inherit;
-        text-decoration: none;
+.doc-toc__link {
+    color: inherit;
+    text-decoration: none;
 
-        &.active,
-        &:hover,
-        &:focus {
-            color: $link-color;
-        }
+    &.active,
+    &:hover,
+    &:focus {
+        color: $link-color;
     }
 }
