@@ -13,7 +13,7 @@ function getErrorCount (props) {
 
 const ChapterListItem = (props) => {
   return (
-    <li className="commenting">
+    <div className="commenting">
       <button className="commenting__content commenting--toc__button button button--light button--small" type="button" onClick={props.onClick}>
         {props.name}
         {getErrorCount(props)}
@@ -47,7 +47,7 @@ const ChapterListItem = (props) => {
             aria-label={django.gettext('Delete')} />
         </button>
       </div>
-    </li>
+    </div>
   )
 }
 

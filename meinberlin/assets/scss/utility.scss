@@ -13,4 +13,8 @@
 .u-list-reset {
     list-style: none;
     padding: 0;
+
+    > li {
+        display: block;
+    }
 }
