@@ -43,7 +43,6 @@ const DocumentManagement = React.createClass({
     return {
       name: name,
       key: this.getNextLocalKey(),
-      weight: 0,
       paragraphs: []
     }
   },
@@ -233,18 +232,9 @@ const DocumentManagement = React.createClass({
       e.preventDefault()
     }
 
-    const chapters = this.state.chapters.map(function (chapter, index) {
-      chapter.weight = index
-      chapter.paragraphs = chapter.paragraphs.map(function (paragraph, index) {
-        paragraph.weight = index
-        return paragraph
-      })
-      return chapter
-    })
-
     const submitData = {
       urlReplaces: {moduleId: this.props.module},
-      chapters: chapters
+      chapters: this.state.chapters
     }
 
     api.document.add(submitData)
