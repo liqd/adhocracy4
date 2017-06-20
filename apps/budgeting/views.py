@@ -19,7 +19,7 @@ def get_ordering_choices(request):
     return choices
 
 
-class ProposalFilterSet(a4_filters.PagedFilterSet):
+class ProposalFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {
         'ordering': '-created'
     }

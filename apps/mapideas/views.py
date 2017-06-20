@@ -17,7 +17,7 @@ def get_ordering_choices(request):
     return choices
 
 
-class MapIdeaFilterSet(a4_filters.PagedFilterSet):
+class MapIdeaFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {
         'ordering': '-created'
     }
