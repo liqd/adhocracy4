@@ -27,4 +27,4 @@ def filter_has_perm(perm, user, objects):
         # will be returned. This is taken from rules.templatetags.has_perm.
         return objects
     else:
-        return (obj for obj in objects if user.has_perm(perm, obj))
+        return [obj for obj in objects if user.has_perm(perm, obj)]
