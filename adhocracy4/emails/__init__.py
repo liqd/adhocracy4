@@ -5,6 +5,7 @@ from django.template import Context
 from django.template.loader import select_template
 from django.utils import translation
 
+from . import tasks
 from . import mixins
 
 
@@ -50,6 +51,16 @@ class EmailBase:
     @classmethod
     def send(cls, object, *args, **kwargs):
         return cls().dispatch(object, *args, **kwargs)
+
+    @classmethod
+    def send_async(cls, app_label, model_name, object_id, *args, **kwargs):
+        """"Send email asynchronously.
+        NOTE: args and kwargs must be JSON serializable.
+        """
+        tasks.send_async(
+            cls.__module__, cls.__name__, app_label, model_name, object_id,
+            args, kwargs)
+        return []
 
     def render(self, template_name, context):
         languages = self.get_languages(context['receiver'])
