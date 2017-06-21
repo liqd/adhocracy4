@@ -213,12 +213,13 @@ module.exports.renderParagraphs = function (mountpoint) {
   let chapter = JSON.parse(el.getAttribute('data-chapter'))
   let config = JSON.parse(el.getAttribute('data-config'))
 
-  ReactDOM.render(<ParagraphBox
-    name={chapter.name}
-    id={chapter.id}
-    module={module}
-    paragraphs={chapter.paragraphs}
-    config={config} />,
+  ReactDOM.render(
+    <ParagraphBox
+      name={chapter.name}
+      id={chapter.id}
+      module={module}
+      paragraphs={chapter.paragraphs}
+      config={config} />,
     el
   )
 }
