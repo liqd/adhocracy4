@@ -1,10 +1,10 @@
 var React = require('react')
 
-const ErrorList = ({errors}) => {
-  if (errors && errors.label) {
+const ErrorList = ({errors, field}) => {
+  if (errors && errors[field]) {
     return (
       <ul className="errorlist">
-        {errors.label.map(function (msg, index) {
+        {errors[field].map(function (msg, index) {
           return <li key={msg}>{msg}</li>
         })}
       </ul>

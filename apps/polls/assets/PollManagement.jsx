@@ -210,7 +210,7 @@ let PollManagement = React.createClass({
 
         <p>
           <button
-            className="button button--light"
+            className="button button--light button--small"
             onClick={this.handleAppendQuestion}
             type="button">
             <i className="fa fa-plus" /> {django.gettext('Add a new question')}

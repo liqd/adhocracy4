@@ -8,10 +8,9 @@ from apps.dashboard.mixins import DashboardBaseMixin
 from . import models
 
 
-class DocumentManagementView(DashboardBaseMixin,
-                             rules_mixins.PermissionRequiredMixin,
-                             generic.ListView):
-    model = models.Chapter
+class DocumentManagementView(generic.TemplateView,
+                             DashboardBaseMixin,
+                             rules_mixins.PermissionRequiredMixin):
     template_name = 'meinberlin_documents/document_management.html'
     permission_required = 'a4projects.add_project'
 
@@ -25,8 +24,11 @@ class DocumentManagementView(DashboardBaseMixin,
 
         return super(DocumentManagementView, self).dispatch(*args, **kwargs)
 
-    def get_queryset(self):
-        return models.Chapter.objects.filter(module=self.module)
+    def get_context_data(self, **kwargs):
+        context = super(DocumentManagementView, self)\
+            .get_context_data(**kwargs)
+        context['module'] = self.module
+        return context
 
 
 class ChapterManagementView(module_views.ItemDetailView):

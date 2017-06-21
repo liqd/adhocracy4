@@ -16,7 +16,7 @@ from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 from apps.bplan.api import BplanViewSet
-from apps.documents.api import ChapterViewSet
+from apps.documents.api import DocumentViewSet
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
 
@@ -31,7 +31,8 @@ router.register(r'polls', PollViewSet, base_name='polls')
 router.register(r'pollvotes', VoteViewSet, base_name='pollvotes')
 
 module_router = a4routers.ModuleDefaultRouter()
-module_router.register(r'documents', ChapterViewSet, base_name='chapters')
+# FIXME: rename to 'chapters'
+module_router.register(r'documents', DocumentViewSet, base_name='chapters')
 
 orga_router = a4routers.OrganisationDefaultRouter()
 orga_router.register(r'bplan', BplanViewSet, base_name='bplan')

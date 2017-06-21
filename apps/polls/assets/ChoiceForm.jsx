@@ -38,7 +38,7 @@ let ChoiceForm = React.createClass({
               aria-label={django.gettext('remove')} />
           </button>
         </div>
-        <ErrorList errors={this.props.errors} />
+        <ErrorList errors={this.props.errors} field="label" />
       </div>
     )
   }
