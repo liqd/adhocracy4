@@ -1047,7 +1047,7 @@ msgstr "E-Mail"
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:51
 #: meinberlin/templates/account/email.html.py:34
 msgid "Remove"
-msgstr "Löschen"
+msgstr "Entfernen"
 
 #: apps/dashboard/templates/meinberlin_dashboard/project_update_form.html.py:4
 #: apps/dashboard/templates/meinberlin_dashboard/project_update_form.html.py:9
