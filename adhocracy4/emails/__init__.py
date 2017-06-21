@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites import models as site_models
 from django.core.mail.message import EmailMultiAlternatives
 from django.template import Context
@@ -50,16 +51,14 @@ class EmailBase:
 
     @classmethod
     def send(cls, object, *args, **kwargs):
-        return cls().dispatch(object, *args, **kwargs)
-
-    @classmethod
-    def send_async(cls, app_label, model_name, object_pk, *args, **kwargs):
         """Send email asynchronously.
 
         NOTE: args and kwargs must be JSON serializable.
         """
+        ct = ContentType.objects.get_for_model(object)
         tasks.send_async(
-            cls.__module__, cls.__name__, app_label, model_name, object_pk,
+            cls.__module__, cls.__name__,
+            ct.app_label, ct.model, object.pk,
             args, kwargs)
         return []
 
