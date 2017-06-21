@@ -53,12 +53,13 @@ class EmailBase:
         return cls().dispatch(object, *args, **kwargs)
 
     @classmethod
-    def send_async(cls, app_label, model_name, object_id, *args, **kwargs):
-        """"Send email asynchronously.
+    def send_async(cls, app_label, model_name, object_pk, *args, **kwargs):
+        """Send email asynchronously.
+
         NOTE: args and kwargs must be JSON serializable.
         """
         tasks.send_async(
-            cls.__module__, cls.__name__, app_label, model_name, object_id,
+            cls.__module__, cls.__name__, app_label, model_name, object_pk,
             args, kwargs)
         return []
 
