@@ -20,8 +20,8 @@ let CommentForm = React.createClass({
       comment: comment,
       urlReplaces: {
         objectPk: this.props.subjectId,
-        contentTypeId: this.props.subjectType,
-      },
+        contentTypeId: this.props.subjectType
+      }
     }, this.props.parentIndex)
     this.setState({comment: ''})
   },
