@@ -21,9 +21,9 @@ class Command(makemessages.Command):
         return super().handle(*args, **options)
 
     def find_files(self, root):
-        a4js_paths = super().find_files(
-            path.join(settings.BASE_DIR, 'node_modules', 'adhocracy4')
-        )
+        a4js_paths = super().find_files(path.join(
+            settings.BASE_DIR, 'node_modules', 'adhocracy4', 'adhocracy4'
+        ))
         a4_paths = super().find_files(get_module_dir('adhocracy4'))
         apps_paths = super().find_files(path.relpath(get_module_dir('apps')))
         meinberlin_paths = super().find_files(

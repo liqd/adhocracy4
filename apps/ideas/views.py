@@ -17,9 +17,11 @@ def get_ordering_choices(request):
     return choices
 
 
-class IdeaFilterSet(a4_filters.PagedFilterSet):
+class IdeaFilterSet(a4_filters.DefaultsFilterSet):
+    defaults = {
+        'ordering': '-created'
+    }
     category = filters.CategoryFilter()
-
     ordering = filters.OrderingFilter(
         choices=get_ordering_choices
     )

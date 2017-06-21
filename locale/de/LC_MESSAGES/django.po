@@ -1047,7 +1047,7 @@ msgstr "E-Mail"
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:51
 #: meinberlin/templates/account/email.html.py:34
 msgid "Remove"
-msgstr "Löschen"
+msgstr "Entfernen"
 
 #: apps/dashboard/templates/meinberlin_dashboard/project_update_form.html.py:4
 #: apps/dashboard/templates/meinberlin_dashboard/project_update_form.html.py:9
@@ -1304,15 +1304,15 @@ msgstr ""
 
 #: apps/moderatorfeedback/models.py:10
 msgid "Under consideration"
-msgstr "in Bearbeitung"
+msgstr "wird geprüft"
 
 #: apps/moderatorfeedback/models.py:11
 msgid "Rejected"
-msgstr "Abgelehnt"
+msgstr "nicht umgesetzt"
 
 #: apps/moderatorfeedback/models.py:12
 msgid "Accepted"
-msgstr "Akzeptiert"
+msgstr "wird umgesetzt"
 
 #: apps/polls/phases.py:17
 msgid "Voting phase"

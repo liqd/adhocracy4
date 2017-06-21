@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.db import models
 from django.utils.functional import cached_property
 
 from adhocracy4.actions.models import Action as A4Action
@@ -14,10 +15,20 @@ def get_action_type(content_type):
     return _ACTION_TYPES.get(content_type, 'unknown')
 
 
+class ActionQuerySet(models.QuerySet):
+    def public(self):
+        return self.filter(
+            (models.Q(project__is_draft=False) &
+             models.Q(project__is_public=True)) |
+            models.Q(project__isnull=True))
+
+
 class Action(A4Action):
     class Meta:
         proxy = True
         ordering = ('-timestamp',)
+
+    objects = ActionQuerySet.as_manager()
 
     @cached_property
     def type(self):
@@ -39,3 +50,10 @@ class Action(A4Action):
             return 'clock-o'
         else:
             return 'star'
+
+    @staticmethod
+    def proxy_of(action):
+        """Cast an A4Action object to the proxied Action."""
+        assert action.__class__ == A4Action
+        action.__class__ = Action
+        return action
