@@ -1,8 +1,8 @@
-import django_filters
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
+from adhocracy4.filters import filters as a4_filters
 from adhocracy4.modules import views as module_views
 from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import filters
@@ -19,10 +19,11 @@ def get_ordering_choices(request):
     return choices
 
 
-class ProposalFilterSet(django_filters.FilterSet):
-
+class ProposalFilterSet(a4_filters.DefaultsFilterSet):
+    defaults = {
+        'ordering': '-created'
+    }
     category = filters.CategoryFilter()
-
     ordering = filters.OrderingFilter(
         choices=get_ordering_choices
     )

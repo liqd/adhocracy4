@@ -14,13 +14,10 @@ from . import models
 
 
 class TopicFilterSet(a4_filters.DefaultsFilterSet):
-
     defaults = {
         'ordering': 'name'
     }
-
     category = filters.CategoryFilter()
-
     ordering = filters.OrderingFilter(
         choices=(
             ('name', _('Alphabetical')),
