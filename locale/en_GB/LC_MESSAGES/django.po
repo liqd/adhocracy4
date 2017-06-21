@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-21 15:48+0200\n"
+"POT-Creation-Date: 2017-06-21 16:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1808,14 +1808,14 @@ msgstr "Portal Navigation"
 
 #: meinberlin/templates/socialaccount/authentication_error.html.py:5
 #: meinberlin/templates/socialaccount/authentication_error.html.py:8
-msgid "Social Network Login Failure"
-msgstr "Social Network Login Failure"
+msgid "Service-Konto Login Failure"
+msgstr "Service-Konto Login Failure"
 
 #: meinberlin/templates/socialaccount/authentication_error.html.py:10
 msgid ""
-"An error occurred while attempting to login via your social network account."
+"An error occurred while attempting to login via your Service-Konto account."
 msgstr ""
-"An error occurred while attempting to login via your social network account."
+"An error occurred while attempting to login via your Service-Konto account."
 
 #: meinberlin/templates/socialaccount/connections.html.py:12
 msgid "Your account is connected to the following services:"
@@ -1833,13 +1833,11 @@ msgstr "Login Cancelled"
 #: meinberlin/templates/socialaccount/login_cancelled.html.py:13
 #, python-format
 msgid ""
-"You decided to cancel logging in to our site using one of your existing "
-"accounts. If this was a mistake, please proceed to <a href=\"%(login_url)s"
-"\">sign in</a>."
+"You decided to cancel logging in to our site using the Service-Konto. If "
+"this was a mistake, please proceed to <a href=\"%(login_url)s\">sign in</a>."
 msgstr ""
-"You decided to cancel logging in to our site using one of your existing "
-"accounts. If this was a mistake, please proceed to <a href=\"%(login_url)s"
-"\">sign in</a>."
+"You decided to cancel logging in to our site using the Service-Konto. If "
+"this was a mistake, please proceed to <a href=\"%(login_url)s\">sign in</a>."
 
 #: meinberlin/templates/socialaccount/signup.html.py:13
 #: meinberlin/templates/socialaccount/signup.html.py:16
@@ -1867,63 +1865,3 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
-
-#~ msgid "<a href=\"%(url)s\">%(name)s</a> commented:"
-#~ msgstr "<a href=\"%(url)s\">%(name)s</a> commented:"
-
-#~ msgid "<a href=\"%(url)s\">%(name)s</a> updated comment:"
-#~ msgstr "<a href=\"%(url)s\">%(name)s</a> updated comment:"
-
-#~ msgid "<a href=\"%(url)s\">%(name)s</a> added a new item"
-#~ msgstr "<a href=\"%(url)s\">%(name)s</a> added a new item"
-
-#~ msgid "<a href=\"%(url)s\">%(name)s</a> updated an item"
-#~ msgstr "<a href=\"%(url)s\">%(name)s</a> updated an item"
-
-#~ msgid "Participation will be over soon"
-#~ msgstr "Participation will be over soon"
-
-#~ msgid ""
-#~ "In the text-review it’s possible to structure draft texts co-operativly "
-#~ "and rate and comment on them."
-#~ msgstr ""
-#~ "In the text-review it’s possible to structure draft texts co-operativly "
-#~ "and rate and comment on them."
-
-#~ msgid "Create document phase"
-#~ msgstr "Create document phase"
-
-#~ msgid "Create text for the project."
-#~ msgstr "Create text for the project."
-
-#~ msgid "Comments for this Paragraph"
-#~ msgstr "Comments for this Paragraph"
-
-#~ msgid "Document is being created."
-#~ msgstr "Document is being created."
-
-#~ msgid "back to document"
-#~ msgstr "back to document"
-
-#~ msgid "Document for that module already exists"
-#~ msgstr "Document for that module already exists"
-
-#~ msgid "Projects %(username)s participated in"
-#~ msgstr "Projects %(username)s participated in"
-
-#~ msgid "%(username)s did not participate in any projects."
-#~ msgstr "%(username)s did not participate in any projects."
-
-#~ msgid ""
-#~ "Please sign in with one\n"
-#~ "        of your existing third party accounts. Or, <a href="
-#~ "\"%(signup_url)s\">register</a>\n"
-#~ "        for a %(site_name)s account and sign in below:"
-#~ msgstr ""
-#~ "Please sign in with one\n"
-#~ "        of your existing third party accounts. Or, <a href="
-#~ "\"%(signup_url)s\">register</a>\n"
-#~ "        for a %(site_name)s account and sign in below:"
-
-#~ msgid "or"
-#~ msgstr "or"

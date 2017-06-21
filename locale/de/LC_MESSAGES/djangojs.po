@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-30 12:08+0200\n"
+"POT-Creation-Date: 2017-06-21 16:47+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,8 +27,10 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
 #: adhocracy4/comments/static/comments/Comment.jsx:93
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
-#: apps/documents/assets/Paragraph.jsx:141
-#: apps/documents/assets/Paragraph.jsx:144
+#: apps/documents/assets/ChapterNavItem.jsx:44
+#: apps/documents/assets/ChapterNavItem.jsx:47
+#: apps/documents/assets/ParagraphForm.jsx:123
+#: apps/documents/assets/ParagraphForm.jsx:126
 #: apps/polls/assets/QuestionForm.jsx:115
 #: apps/polls/assets/QuestionForm.jsx:118
 msgid "Delete"
@@ -145,53 +147,79 @@ msgid "Send Report"
 msgstr "Meldung senden"
 
 #: apps/contrib/static/js/Alert.jsx:10 apps/contrib/static/js/Alert.jsx:11
-#: meinberlin/static/embed.js:30 meinberlin/static/embed.js:31
+#: meinberlin/assets/js/embed.js:30 meinberlin/assets/js/embed.js:31
 msgid "Close"
 msgstr "Schließen"
 
-#: apps/documents/assets/Paragraph.jsx:73
-#: apps/documents/assets/ParagraphBox.jsx:196
+#: apps/documents/assets/ChapterForm.jsx:18
+msgid "Chapter title"
+msgstr "Kapitelüberschrift"
+
+#: apps/documents/assets/ChapterForm.jsx:55
 msgid "Add a new paragraph"
 msgstr "Neuer Absatz"
 
-#: apps/documents/assets/Paragraph.jsx:81
-msgid "Headline"
-msgstr "Überschrift"
+#: apps/documents/assets/ChapterNav.jsx:8
+msgid "Chapter navigation"
+msgstr "Kapitelnavigation"
 
-#: apps/documents/assets/Paragraph.jsx:100
-msgid "Paragraph"
-msgstr "Absatz"
+#: apps/documents/assets/ChapterNav.jsx:31
+msgid "Add a new chapter"
+msgstr "Neues Kapitel hinzufügen"
 
-#: apps/documents/assets/Paragraph.jsx:124
-#: apps/documents/assets/Paragraph.jsx:127
-#: apps/polls/assets/QuestionForm.jsx:98
-#: apps/polls/assets/QuestionForm.jsx:101
+#: apps/documents/assets/ChapterNavItem.jsx:27
+#: apps/documents/assets/ChapterNavItem.jsx:30
+#: apps/documents/assets/ParagraphForm.jsx:106
+#: apps/documents/assets/ParagraphForm.jsx:109
+#: apps/polls/assets/QuestionForm.jsx:98 apps/polls/assets/QuestionForm.jsx:101
 msgid "Move up"
 msgstr "nach oben"
 
-#: apps/documents/assets/Paragraph.jsx:133
-#: apps/documents/assets/Paragraph.jsx:136
+#: apps/documents/assets/ChapterNavItem.jsx:36
+#: apps/documents/assets/ChapterNavItem.jsx:39
+#: apps/documents/assets/ParagraphForm.jsx:115
+#: apps/documents/assets/ParagraphForm.jsx:118
 #: apps/polls/assets/QuestionForm.jsx:107
 #: apps/polls/assets/QuestionForm.jsx:110
 msgid "Move down"
 msgstr "nach unten"
 
-#: apps/documents/assets/ParagraphBox.jsx:135
-msgid "Your document has been updated."
-msgstr "Ihr Dokument wurde aktualisiert."
+#: apps/documents/assets/DocumentManagement.jsx:14
+msgid "first chapter"
+msgstr "Erstes Kapitel"
 
-#: apps/documents/assets/ParagraphBox.jsx:146
-msgid "Your document has been saved."
-msgstr "Ihr Dokument wurde gespeichert."
+#: apps/documents/assets/DocumentManagement.jsx:95
+msgid "new chapter"
+msgstr "Neues Kapitel"
 
-#: apps/documents/assets/ParagraphBox.jsx:158
-msgid "Title"
-msgstr "Titel"
+#: apps/documents/assets/DocumentManagement.jsx:232
+msgid "The document has been updated."
+msgstr "Das Dokument wurde geändert."
 
-#: apps/documents/assets/ParagraphBox.jsx:203
+#: apps/documents/assets/DocumentManagement.jsx:247
+msgid "The document could not be updated."
+msgstr "Das Dokument konnte nicht geändert werden."
+
+#: apps/documents/assets/DocumentManagement.jsx:261
+msgid "Contents"
+msgstr "Inhaltsverzeichnis"
+
+#: apps/documents/assets/DocumentManagement.jsx:272
+msgid "Edit chapter"
+msgstr "Kapitel bearbeiten"
+
+#: apps/documents/assets/DocumentManagement.jsx:288
 #: apps/polls/assets/PollManagement.jsx:222
 msgid "Save"
 msgstr "Speichern"
+
+#: apps/documents/assets/ParagraphForm.jsx:71
+msgid "Headline"
+msgstr "Überschrift"
+
+#: apps/documents/assets/ParagraphForm.jsx:86
+msgid "Paragraph"
+msgstr "Absatz"
 
 #: apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:108
 msgid "Do you want to load this preset and delete all the existing polygons?"
@@ -257,22 +285,31 @@ msgstr "Frage"
 msgid "Add a new choice"
 msgstr "Neue Antwort"
 
-#: meinberlin/static/embed.js:83
+#: meinberlin/assets/js/embed.js:83
 msgid "We couldn't find what you were looking for."
 msgstr "Wir konnten diese Seite nicht finden."
 
-#: meinberlin/static/embed.js:87
+#: meinberlin/assets/js/embed.js:87
 msgid "You don't have the permission to view this page."
 msgstr "Sie haben nicht die nötigen Rechte, um diese Seite anzuschauen."
 
-#: meinberlin/static/embed.js:90
+#: meinberlin/assets/js/embed.js:90
 msgid "Something went wrong!"
 msgstr "Etwas ging schief!"
 
-#: meinberlin/static/embed.js:188
+#: meinberlin/assets/js/embed.js:189
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
 msgstr ""
 "Sie haben Third Party Cookies deaktiviert. Sie können sich dieses Projekt "
 "zwar anschauen, werden sich aber nicht anmelden können."
+
+#~ msgid "Your document has been updated."
+#~ msgstr "Ihr Dokument wurde aktualisiert."
+
+#~ msgid "Your document has been saved."
+#~ msgstr "Ihr Dokument wurde gespeichert."
+
+#~ msgid "Title"
+#~ msgstr "Titel"
