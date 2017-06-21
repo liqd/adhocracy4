@@ -7,7 +7,7 @@ from django.db.models.signals import post_delete, post_save
 from .models import Action
 from .verbs import Verbs
 
-
+# Actions resulting from the create_system_actions management call
 SYSTEM_ACTIONABLES = (
     ('a4phases', 'Phase'),
     ('a4projects', 'Project')
