@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.functional import cached_property
 
 from adhocracy4.actions.models import Action as A4Action
+from adhocracy4.actions.verbs import Verbs
 
 _ACTION_TYPES = {ct: at
                  for at, cts in settings.ACTION_TYPES.items()
@@ -22,6 +23,9 @@ class ActionQuerySet(models.QuerySet):
              models.Q(project__is_public=True)) |
             models.Q(project__isnull=True))
 
+    def exclude_updates(self):
+        return self.exclude(verb=Verbs.UPDATE.value)
+
 
 class Action(A4Action):
     class Meta:
@@ -40,13 +44,13 @@ class Action(A4Action):
             return 'comment'
         elif self.type == 'item':
             return 'lightbulb-o'
-        elif self.verb == 'add':
+        elif self.verb == Verbs.ADD.value:
             return 'plus'
-        elif self.verb == 'update':
+        elif self.verb == Verbs.UPDATE.value:
             return 'pencil'
-        elif self.verb == 'start':
+        elif self.verb == Verbs.START.value:
             return 'flag'
-        elif self.verb == 'schedule':
+        elif self.verb == Verbs.SCHEDULE.value:
             return 'clock-o'
         else:
             return 'star'
