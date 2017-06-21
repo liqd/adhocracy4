@@ -53,7 +53,8 @@ class NotifyModeratorsEmail(Email):
 
     def get_receivers(self):
         action = self.object
-        receivers = _exclude_actor(super().get_receivers(), action.actor)
+        receivers = action.project.moderators.all()
+        receivers = _exclude_actor(receivers, action.actor)
         receivers = _exclude_notifications_disabled(receivers)
         return receivers
 
