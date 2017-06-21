@@ -8,7 +8,7 @@
 
     <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktrans %}</p>
 
-    <form method="POST" action="{% url 'account_login' %}">
+    <form method="POST" action="{% url 'account_login' %}" class="u-spacer-bottom-double">
         {{ form.non_field_errors }}
         {% csrf_token %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.login %}
@@ -21,8 +21,12 @@
 
         <div class="u-spacer-bottom">
             <button class="button button--primary" type="submit">{% trans "Login" %}</button>
-            {% include "socialaccount/snippets/provider_list.html" with process="login" %}
             <a class="button button--secondary" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
         </div>
     </form>
+
+    <p class="u-spacer-bottom-half">
+        {% trans 'Or use your Service-Konto:' %}
+    </p>
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
 {% endblock %}

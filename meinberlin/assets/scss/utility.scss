@@ -10,6 +10,14 @@
     margin-bottom: $spacer;
 }
 
+.u-spacer-bottom-half {
+    margin-bottom: ($spacer / 2);
+}
+
+.u-spacer-bottom-double {
+    margin-bottom: ($spacer * 2);
+}
+
 .u-list-reset {
     list-style: none;
     margin: 0;
