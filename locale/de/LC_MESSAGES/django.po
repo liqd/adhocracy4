@@ -1304,15 +1304,15 @@ msgstr ""
 
 #: apps/moderatorfeedback/models.py:10
 msgid "Under consideration"
-msgstr "in Bearbeitung"
+msgstr "wird geprüft"
 
 #: apps/moderatorfeedback/models.py:11
 msgid "Rejected"
-msgstr "Abgelehnt"
+msgstr "nicht umgesetzt"
 
 #: apps/moderatorfeedback/models.py:12
 msgid "Accepted"
-msgstr "Akzeptiert"
+msgstr "wird umgesetzt"
 
 #: apps/polls/phases.py:17
 msgid "Voting phase"
