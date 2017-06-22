@@ -151,12 +151,11 @@ blueprints = [
          title=_('Kiezkasse'),
          description=_(
              'With kiezkasse it’s possible to make proposals '
-             'with budget specifications and locate them. Afterwards anyone '
-             'can comment and rate on different proposals.'
+             'with budget specifications and locate them that can be '
+             'commented and rated.'
          ),
          content=[
-             kiezkasse_phases.RequestPhase(),
-             kiezkasse_phases.FeedbackPhase(),
+             kiezkasse_phases.RequestFeedbackPhase(),
          ],
          image='images/blueprints/kiezkasse.svg',
          settings_model=('a4maps', 'AreaSettings'),
