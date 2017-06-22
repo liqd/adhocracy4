@@ -748,7 +748,7 @@ msgid ""
 "proposals."
 msgstr ""
 "Mit dem Bürgerhaushalt ist es den Teilnehmern möglich, Vorschläge mit einem "
-"Budget zu versehen und sie auf einer Karte zu verordnen. Diese Vorschläge "
+"Budget zu versehen und sie auf einer Karte zu verorten. Diese Vorschläge "
 "können bewertet und kommentiert werden."
 
 #: apps/dashboard/blueprints.py:103
