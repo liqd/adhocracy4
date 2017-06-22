@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-21 16:46+0200\n"
+"POT-Creation-Date: 2017-06-22 10:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -411,7 +411,7 @@ msgstr "Required Budget"
 msgid "Request phase"
 msgstr "Request phase"
 
-#: apps/budgeting/phases.py:17
+#: apps/budgeting/phases.py:17 apps/kiezkasse/phases.py:50
 msgid "Request budgeting and get feedback through rates and comments."
 msgstr "Request budgeting and get feedback through rates and comments."
 
@@ -793,12 +793,10 @@ msgstr "Kiezkasse"
 #: apps/dashboard/blueprints.py:153
 msgid ""
 "With kiezkasse it’s possible to make proposals with budget specifications "
-"and locate them. Afterwards anyone can comment and rate on different "
-"proposals."
+"and locate them. The proposals can be commented and rated."
 msgstr ""
 "With kiezkasse it’s possible to make proposals with budget specifications "
-"and locate them. Afterwards anyone can comment and rate on different "
-"proposals."
+"and locate them. The proposals can be commented and rated."
 
 #: apps/dashboard/forms.py:292
 msgid "Organisation name"
@@ -1217,12 +1215,17 @@ msgid "Request budgeting."
 msgstr "Request budgeting."
 
 #: apps/kiezkasse/phases.py:18 apps/kiezkasse/phases.py:35
+#: apps/kiezkasse/phases.py:52
 msgid "kiezkasse"
 msgstr "kiezkasse"
 
 #: apps/kiezkasse/phases.py:33
 msgid "Get feedback for budgeting requests through rates and comments."
 msgstr "Get feedback for budgeting requests through rates and comments."
+
+#: apps/kiezkasse/phases.py:49
+msgid "Request and feedback phase"
+msgstr "Request and feedback phase"
 
 #: apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html.py:4
 #, python-format
