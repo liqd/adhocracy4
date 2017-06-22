@@ -40,5 +40,24 @@ class FeedbackPhase(phases.PhaseContent):
     }
 
 
+class RequestFeedbackPhase(phases.PhaseContent):
+    app = apps.Config.label
+    phase = 'request_feedback'
+    weight = 10
+    view = views.ProposalListView
+
+    name = _('Request and feedback phase')
+    description = _('Get feedback for budgeting requests through rates and '
+                    'comments.')
+    module_name = _('kiezkasse')
+
+    features = {
+        'crud': (models.Proposal,),
+        'rate': (models.Proposal,),
+        'comment': (models.Proposal,)
+    }
+
+
 phases.content.register(RequestPhase())
 phases.content.register(FeedbackPhase())
+phases.content.register(RequestFeedbackPhase())
