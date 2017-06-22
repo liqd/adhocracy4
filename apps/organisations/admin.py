@@ -4,7 +4,6 @@ from . import models
 
 
 class OrganisationAdmin(admin.ModelAdmin):
-    filter_horizontal = ('initiators',)
-
+    raw_id_fields = ('initiators', )
 
 admin.site.register(models.Organisation, OrganisationAdmin)
