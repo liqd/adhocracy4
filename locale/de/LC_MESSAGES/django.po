@@ -301,8 +301,7 @@ msgid ""
 "<a href=\"%(url)s\">%(name)s</a> added a new <a href=\"%(comment_url)s"
 "\">comment</a>"
 msgstr ""
-"<a href=\"%(url)s\">%(name)s</a> hat einen neuen <a href=\"%(comment_url)s"
-"\">Kommentar</a> erstellt"
+"<a href=\"%(url)s\">%(name)s</a> hat einen neuen <a href=\"%(comment_url)s\">Kommentar</a> erstellt"
 
 #: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:14
 #, python-format
@@ -310,8 +309,7 @@ msgid ""
 "<a href=\"%(url)s\">%(name)s</a> updated a <a href=\"%(comment_url)s"
 "\">comment</a>"
 msgstr ""
-"<a href=\"%(url)s\">%(name)s</a> hat den <a href=\"%(comment_url)s"
-"\">Kommentar</a> aktualisiert"
+"<a href=\"%(url)s\">%(name)s</a> hat einen <a href=\"%(comment_url)s\">Kommentar</a> aktualisiert"
 
 #: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:16
 #, python-format
@@ -319,16 +317,14 @@ msgid ""
 "<a href=\"%(url)s\">%(name)s</a> added a new <a href=\"%(item_url)s\">item</"
 "a>"
 msgstr ""
-"<a href=\"%(url)s\">%(name)s</a> hat einen neuen <a href=\"%(item_url)s"
-"\">Beitrag</a> erstellt"
+"<a href=\"%(url)s\">%(name)s</a> hat einen neuen <a href=\"%(item_url)s\">Beitrag</a> erstellt"
 
 #: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:18
 #, python-format
 msgid ""
 "<a href=\"%(url)s\">%(name)s</a> updated an <a href=\"%(item_url)s\">item</a>"
 msgstr ""
-"<a href=\"%(url)s\">%(name)s</a> hat einen <a href=\"%(item_url)s\">Beitrag</"
-"a> aktualisiert"
+"<a href=\"%(url)s\">%(name)s</a> hat einen <a href=\"%(item_url)s\">Beitrag</a> aktualisiert"
 
 #: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:20
 msgid "New participation started"
@@ -1825,18 +1821,17 @@ msgstr "Navigation des Portals berlin.de"
 #: meinberlin/templates/socialaccount/authentication_error.html.py:5
 #: meinberlin/templates/socialaccount/authentication_error.html.py:8
 msgid "Service-Konto Login Failure"
-msgstr "Service-Konto Login Fehler"
+msgstr "Fehler bei der Anmeldung am Service-Konto"
 
 #: meinberlin/templates/socialaccount/authentication_error.html.py:10
 msgid ""
 "An error occurred while attempting to login via your Service-Konto account."
 msgstr ""
-"Es ist ein Fehler aufgetreten beim Versuch sich mit Ihren Service-Konto "
-"Benutzerkonto einzuloggen."
+"Beim Versuch sich mit Ihrem Service-Konto anzumelden ist ein Fehler aufgetreten."
 
 #: meinberlin/templates/socialaccount/connections.html.py:12
 msgid "Your account is connected to the following services:"
-msgstr "Ihr Benutzerkonto ist verbunden mit folgenden Diensten:"
+msgstr "Ihr Benutzerkonto ist mit folgenden Diensten verbunden:"
 
 #: meinberlin/templates/socialaccount/connections.html.py:35
 msgid "You can connect your account to the following services:"
@@ -1845,7 +1840,7 @@ msgstr "Sie können Ihr Benutzerkonto mit folgenden Diensten verbinden:"
 #: meinberlin/templates/socialaccount/login_cancelled.html.py:5
 #: meinberlin/templates/socialaccount/login_cancelled.html.py:9
 msgid "Login Cancelled"
-msgstr "Login abgebrochen"
+msgstr "Anmeldung abgebrochen"
 
 #: meinberlin/templates/socialaccount/login_cancelled.html.py:13
 #, python-format
@@ -1853,8 +1848,8 @@ msgid ""
 "You decided to cancel logging in to our site using the Service-Konto. If "
 "this was a mistake, please proceed to <a href=\"%(login_url)s\">sign in</a>."
 msgstr ""
-"Sie haben einen Login mit Service-Konto abgebrochen. Wenn es ein Versehen "
-"war, können Sie sich <a href=\"%(login_url)s\">hier einloggen</a>."
+"Sie haben die Anmeldung am Service-Konto abgebrochen. Wenn das ein Versehen war, "
+"können Sie den <a href=\"%(login_url)s\">Anmeldevorgang wiederholen</a>."
 
 #: meinberlin/templates/socialaccount/signup.html.py:13
 #: meinberlin/templates/socialaccount/signup.html.py:16
@@ -1870,7 +1865,7 @@ msgid ""
 msgstr ""
 "Sie haben versucht sich mit Ihrem %(provider_name)s Benutzerkonto auf "
 "%(site_name)s anzumelden. Die vom %(provider_name)s übergebene Email-Adresse "
-"wird von einem vorhandenen Benutzerkonto verwendet."
+"wird jedoch bereits von einem vorhandenen Benutzerkonto verwendet."
 
 #: meinberlin/templates/socialaccount/signup.html.py:21
 #, python-format

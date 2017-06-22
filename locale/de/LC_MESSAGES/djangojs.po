@@ -194,11 +194,11 @@ msgstr "Neues Kapitel"
 
 #: apps/documents/assets/DocumentManagement.jsx:232
 msgid "The document has been updated."
-msgstr "Das Dokument wurde geändert."
+msgstr "Das Dokument wurde aktualisiert."
 
 #: apps/documents/assets/DocumentManagement.jsx:247
 msgid "The document could not be updated."
-msgstr "Das Dokument konnte nicht geändert werden."
+msgstr "Das Dokument konnte nicht aktualisiert werden."
 
 #: apps/documents/assets/DocumentManagement.jsx:261
 msgid "Contents"
