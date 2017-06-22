@@ -47,7 +47,7 @@ class RequestFeedbackPhase(phases.PhaseContent):
     view = views.ProposalListView
 
     name = _('Request and feedback phase')
-    description = _('Get feedback for budgeting requests through rates and '
+    description = _('Request budgeting and get feedback through rates and '
                     'comments.')
     module_name = _('kiezkasse')
 
