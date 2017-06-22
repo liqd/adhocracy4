@@ -151,8 +151,8 @@ blueprints = [
          title=_('Kiezkasse'),
          description=_(
              'With kiezkasse it’s possible to make proposals '
-             'with budget specifications and locate them that can be '
-             'commented and rated.'
+             'with budget specifications and locate them. '
+             'The proposals can be commented and rated.'
          ),
          content=[
              kiezkasse_phases.RequestFeedbackPhase(),

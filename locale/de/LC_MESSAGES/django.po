@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-21 16:46+0200\n"
+"POT-Creation-Date: 2017-06-22 10:01+0200\n"
 "PO-Revision-Date: 2017-05-30 12:04+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -408,9 +408,9 @@ msgstr "Notwendiges Budget"
 
 #: apps/budgeting/phases.py:16 apps/kiezkasse/phases.py:16
 msgid "Request phase"
-msgstr "Vorschlagsphase "
+msgstr "Vorschlagsphase"
 
-#: apps/budgeting/phases.py:17
+#: apps/budgeting/phases.py:17 apps/kiezkasse/phases.py:50
 msgid "Request budgeting and get feedback through rates and comments."
 msgstr ""
 "Nutzer können Vorschläge mit Budgetangabe machen und erhalten durch "
@@ -803,12 +803,12 @@ msgstr "Kiezkasse"
 #: apps/dashboard/blueprints.py:153
 msgid ""
 "With kiezkasse it’s possible to make proposals with budget specifications "
-"and locate them. Afterwards anyone can comment and rate on different "
-"proposals."
+"and locate them. The proposals can be commented and rated."
 msgstr ""
-"Innerhalb einer Kiezkasse erstellen die Nutzer verortete Vorschläge und "
-"geben für diese ein Budget an. Anschließend können diese bewertet und "
-"kommentiert werden."
+"Mit der Kiezkasse ist es den Teilnehmern möglich, Vorschläge mit einem "
+"Budget zu versehen und sie auf einer Karte zu verorten. Diese Vorschläge "
+"können bewertet und kommentiert werden."
+
 
 #: apps/dashboard/forms.py:292
 msgid "Organisation name"
@@ -1230,6 +1230,7 @@ msgid "Request budgeting."
 msgstr "Nutzer können Vorschläge mit Budgetangabe machen"
 
 #: apps/kiezkasse/phases.py:18 apps/kiezkasse/phases.py:35
+#: apps/kiezkasse/phases.py:52
 msgid "kiezkasse"
 msgstr "Kiezkasse"
 
@@ -1237,6 +1238,10 @@ msgstr "Kiezkasse"
 msgid "Get feedback for budgeting requests through rates and comments."
 msgstr ""
 "Erhalten Sie durch Bewertungen und Kommentare Rückmeldung zu den Vorschlägen."
+
+#: apps/kiezkasse/phases.py:49
+msgid "Request and feedback phase"
+msgstr "Vorschlags- und Rückmeldungsphase"
 
 #: apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html.py:4
 #, python-format
