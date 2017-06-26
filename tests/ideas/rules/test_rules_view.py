@@ -2,28 +2,24 @@ from datetime import timedelta
 
 import pytest
 import rules
-from django.contrib.auth.models import AnonymousUser
 from freezegun import freeze_time
 
 from apps.ideas import phases
+from tests.helpers import setup_phase
+from tests.helpers import setup_users
 
 perm_name = 'meinberlin_ideas.view_idea'
 
 
-@pytest.mark.django_db
-def test_rules_pre_phase(phase_factory, idea_factory, user):
+def test_perm_exists():
     assert rules.perm_exists(perm_name)
 
-    phase_content = phases.CollectPhase()
-    phase = phase_factory(phase_content=phase_content)
-    module = phase.module
-    project = phase.module.project
-    item = idea_factory(module=module)
-    # TODO: what to do with the other phases that are not used?
 
-    anonymous = AnonymousUser()
-    moderator = project.moderators.first()
-    initiator = project.organisation.initiators.first()
+@pytest.mark.django_db
+def test_rules_pre_phase(phase_factory, idea_factory, user):
+    phase, _, project, item = setup_phase(phase_factory, idea_factory,
+                                          phases.CollectPhase)
+    anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_public
     with freeze_time(phase.start_date - timedelta(days=1)):
@@ -35,18 +31,9 @@ def test_rules_pre_phase(phase_factory, idea_factory, user):
 
 @pytest.mark.django_db
 def test_rules_public(phase_factory, idea_factory, user):
-    assert rules.perm_exists(perm_name)
-
-    phase_content = phases.CollectPhase()
-    phase = phase_factory(phase_content=phase_content)
-    module = phase.module
-    project = phase.module.project
-    item = idea_factory(module=module)
-    # TODO: what to do with the other phases that are not used?
-
-    anonymous = AnonymousUser()
-    moderator = project.moderators.first()
-    initiator = project.organisation.initiators.first()
+    phase, _, project, item = setup_phase(phase_factory, idea_factory,
+                                          phases.CollectPhase)
+    anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_public
     with freeze_time(phase.start_date + timedelta(seconds=1)):
@@ -58,19 +45,10 @@ def test_rules_public(phase_factory, idea_factory, user):
 
 @pytest.mark.django_db
 def test_rules_private(phase_factory, idea_factory, user, user2):
-    assert rules.perm_exists(perm_name)
-
-    phase_content = phases.CollectPhase()
-    phase = phase_factory(phase_content=phase_content,
-                          module__project__is_public=False)
-    module = phase.module
-    project = phase.module.project
-    item = idea_factory(module=module)
-    # TODO: what to do with the other phases that are not used?
-
-    anonymous = AnonymousUser()
-    moderator = project.moderators.first()
-    initiator = project.organisation.initiators.first()
+    phase, _, project, item = setup_phase(phase_factory, idea_factory,
+                                          phases.CollectPhase,
+                                          module__project__is_public=False)
+    anonymous, moderator, initiator = setup_users(project)
     participant = user2
     project.participants.add(participant)
 
@@ -85,19 +63,10 @@ def test_rules_private(phase_factory, idea_factory, user, user2):
 
 @pytest.mark.django_db
 def test_rules_draft(phase_factory, idea_factory, user):
-    assert rules.perm_exists(perm_name)
-
-    phase_content = phases.CollectPhase()
-    phase = phase_factory(phase_content=phase_content,
-                          module__project__is_draft=True)
-    module = phase.module
-    project = phase.module.project
-    item = idea_factory(module=module)
-    # TODO: what to do with the other phases that are not used?
-
-    # anonymous = AnonymousUser()
-    moderator = project.moderators.first()
-    initiator = project.organisation.initiators.first()
+    phase, _, project, item = setup_phase(phase_factory, idea_factory,
+                                          phases.CollectPhase,
+                                          module__project__is_draft=True)
+    anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_draft
     with freeze_time(phase.start_date + timedelta(seconds=1)):
@@ -110,19 +79,10 @@ def test_rules_draft(phase_factory, idea_factory, user):
 
 @pytest.mark.django_db
 def test_rules_archived(phase_factory, idea_factory, user):
-    assert rules.perm_exists(perm_name)
-
-    phase_content = phases.CollectPhase()
-    phase = phase_factory(phase_content=phase_content,
-                          module__project__is_archived=True)
-    module = phase.module
-    project = phase.module.project
-    item = idea_factory(module=module)
-    # TODO: what to do with the other phases that are not used?
-
-    anonymous = AnonymousUser()
-    moderator = project.moderators.first()
-    initiator = project.organisation.initiators.first()
+    phase, _, project, item = setup_phase(phase_factory, idea_factory,
+                                          phases.CollectPhase,
+                                          module__project__is_archived=True)
+    anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_archived
     with freeze_time(phase.end_date + timedelta(seconds=1)):
