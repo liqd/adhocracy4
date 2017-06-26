@@ -1,5 +1,5 @@
 from pytest_factoryboy import register
 
-from tests.ideas import factories as ideas_fatories
+from tests.ideas import factories as ideas_factories
 
-register(ideas_fatories.IdeaFactory)
+register(ideas_factories.IdeaFactory)
