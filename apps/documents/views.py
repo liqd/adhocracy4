@@ -3,7 +3,6 @@ from django.views import generic
 from adhocracy4.projects.views import ProjectContextDispatcher
 from adhocracy4.rules import mixins as rules_mixins
 from apps.dashboard.mixins import DashboardBaseMixin
-from apps.ideas import views as idea_views
 
 from . import models
 
@@ -29,24 +28,6 @@ class DocumentManagementView(generic.TemplateView,
             .get_context_data(**kwargs)
         context['module'] = self.module
         return context
-
-
-class ChapterManagementView(idea_views.AbstractIdeaDetailView):
-    model = models.Chapter
-    template_name = 'meinberlin_documents/chapter_form.html'
-    permission_required = 'meinberlin_documents.change_chapter'
-
-    @property
-    def module(self):
-        return self.get_object().module
-
-    @property
-    def project(self):
-        return self.get_object().project
-
-    @property
-    def organisation(self):
-        return self.get_object().project.organisation
 
 
 class ChapterDetailView(rules_mixins.PermissionRequiredMixin,
