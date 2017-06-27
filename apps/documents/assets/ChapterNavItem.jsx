@@ -1,5 +1,6 @@
 var React = require('react')
 var django = require('django')
+var classNames = require('classnames')
 
 function getErrorCount (props) {
   if (props.errors && Object.keys(props.errors).length > 0) {
@@ -16,7 +17,7 @@ const ChapterNavItem = (props) => {
     <div className="commenting">
       <button
         type="button"
-        className={`commenting__content commenting--toc__button button button--light button--small ${props.active ? 'active' : ''}`}
+        className={classNames('commenting__content', 'commenting--toc__button', 'button button--light', 'button--small', {'active': props.active})}
         onClick={props.onClick}>
         {props.name}
         {getErrorCount(props)}
