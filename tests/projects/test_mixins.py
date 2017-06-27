@@ -5,17 +5,7 @@ from django.views.generic import ListView, View
 from freezegun import freeze_time
 from tests.apps.questions import models as question_models
 
-from adhocracy4.projects import mixins, models
-
-
-@pytest.fixture
-def project_detail_view():
-    class FakeProjectDetailView(mixins.PhaseDispatcher, View):
-        model = models.Project
-
-        def get(self, request, *args, **kwargs):
-            return HttpResponse('project_detail')
-    return FakeProjectDetailView.as_view()
+from adhocracy4.projects import mixins, models, views
 
 
 @pytest.fixture
@@ -25,25 +15,37 @@ def question_list_view():
     return DummyView.as_view()
 
 
+def project_detail_view_factory(_project):
+    class FakeProjectDetailView(views.PhaseDispatcher, View):
+        model = models.Project
+        project = _project
+
+        def get(self, request, *args, **kwargs):
+            return HttpResponse('project_detail')
+    return FakeProjectDetailView.as_view()
+
+
 @pytest.mark.django_db
-def test_phase_dispatch_mixin_phase(rf, project_detail_view, phase):
+def test_phase_dispatch_mixin_phase(rf, phase):
     project = phase.module.project
+    view = project_detail_view_factory(project)
 
     with freeze_time(phase.start_date):
         request = rf.get('/url')
-        response = project_detail_view(request, slug=project.slug)
+        response = view(request)
         assert 'a4test_questions/question_list.html' in response.template_name
 
     with freeze_time(phase.end_date):
         request = rf.get('/url')
-        response = project_detail_view(request, slug=project.slug)
+        response = view(request)
         assert 'a4test_questions/question_list.html' in response.template_name
 
 
 @pytest.mark.django_db
-def test_phase_dispatch_mixin_default(rf, project_detail_view, project):
+def test_phase_dispatch_mixin_default(rf, project):
+    view = project_detail_view_factory(project)
     request = rf.get('/url')
-    response = project_detail_view(request, slug=project.slug)
+    response = view(request)
     assert response.content == b'project_detail'
 
 
