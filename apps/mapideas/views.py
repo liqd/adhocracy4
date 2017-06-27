@@ -2,8 +2,8 @@ from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters import filters as a4_filters
-from adhocracy4.modules import views as module_views
 from apps.contrib import filters
+from apps.ideas import views as idea_views
 
 from . import forms
 from . import models
@@ -31,7 +31,7 @@ class MapIdeaFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class MapIdeaListView(module_views.AbstractIdeaListView):
+class MapIdeaListView(idea_views.AbstractIdeaListView):
     model = models.MapIdea
     filter_set = MapIdeaFilterSet
 
@@ -49,28 +49,28 @@ class MapIdeaListView(module_views.AbstractIdeaListView):
             .annotate_comment_count()
 
 
-class MapIdeaDetailView(module_views.AbstractIdeaDetailView):
+class MapIdeaDetailView(idea_views.AbstractIdeaDetailView):
     model = models.MapIdea
     queryset = models.MapIdea.objects.annotate_positive_rating_count()\
         .annotate_negative_rating_count()
     permission_required = 'meinberlin_mapideas.view_idea'
 
 
-class MapIdeaCreateView(module_views.AbstractIdeaCreateView):
+class MapIdeaCreateView(idea_views.AbstractIdeaCreateView):
     model = models.MapIdea
     form_class = forms.MapIdeaForm
     permission_required = 'meinberlin_mapideas.add_idea'
     template_name = 'meinberlin_mapideas/mapidea_create_form.html'
 
 
-class MapIdeaUpdateView(module_views.AbstractIdeaUpdateView):
+class MapIdeaUpdateView(idea_views.AbstractIdeaUpdateView):
     model = models.MapIdea
     form_class = forms.MapIdeaForm
     permission_required = 'meinberlin_mapideas.change_idea'
     template_name = 'meinberlin_mapideas/mapidea_update_form.html'
 
 
-class MapIdeaDeleteView(module_views.AbstractIdeaDeleteView):
+class MapIdeaDeleteView(idea_views.AbstractIdeaDeleteView):
     model = models.MapIdea
     success_message = _('Your Idea has been deleted')
     permission_required = 'meinberlin_mapideas.change_idea'

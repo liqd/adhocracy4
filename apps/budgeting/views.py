@@ -3,9 +3,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.filters import filters as a4_filters
-from adhocracy4.modules import views as module_views
 from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import filters
+from apps.ideas import views as idea_views
 
 from . import forms
 from . import models
@@ -33,7 +33,7 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class ProposalListView(module_views.AbstractIdeaListView):
+class ProposalListView(idea_views.AbstractIdeaListView):
     model = models.Proposal
     filter_set = ProposalFilterSet
 
@@ -51,28 +51,28 @@ class ProposalListView(module_views.AbstractIdeaListView):
             .annotate_comment_count()
 
 
-class ProposalDetailView(module_views.AbstractIdeaDetailView):
+class ProposalDetailView(idea_views.AbstractIdeaDetailView):
     model = models.Proposal
     queryset = models.Proposal.objects.annotate_positive_rating_count()\
         .annotate_negative_rating_count()
     permission_required = 'meinberlin_budgeting.view_proposal'
 
 
-class ProposalCreateView(module_views.AbstractIdeaCreateView):
+class ProposalCreateView(idea_views.AbstractIdeaCreateView):
     model = models.Proposal
     form_class = forms.ProposalForm
     permission_required = 'meinberlin_budgeting.add_proposal'
     template_name = 'meinberlin_budgeting/proposal_create_form.html'
 
 
-class ProposalUpdateView(module_views.AbstractIdeaUpdateView):
+class ProposalUpdateView(idea_views.AbstractIdeaUpdateView):
     model = models.Proposal
     form_class = forms.ProposalForm
     permission_required = 'meinberlin_budgeting.change_proposal'
     template_name = 'meinberlin_budgeting/proposal_update_form.html'
 
 
-class ProposalDeleteView(module_views.AbstractIdeaDeleteView):
+class ProposalDeleteView(idea_views.AbstractIdeaDeleteView):
     model = models.Proposal
     success_message = _('Your budget request has been deleted')
     permission_required = 'meinberlin_budgeting.change_proposal'

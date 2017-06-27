@@ -4,10 +4,10 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
-from adhocracy4.modules import views as module_views
 from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import filters
 from apps.dashboard.mixins import DashboardBaseMixin
+from apps.ideas import views as idea_views
 
 from . import forms
 from . import models
@@ -31,7 +31,7 @@ class TopicFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class TopicListView(module_views.AbstractIdeaListView):
+class TopicListView(idea_views.AbstractIdeaListView):
     model = models.Topic
     filter_set = TopicFilterSet
 
@@ -43,7 +43,7 @@ class TopicListView(module_views.AbstractIdeaListView):
             .annotate_comment_count()
 
 
-class TopicDetailView(module_views.AbstractIdeaDetailView):
+class TopicDetailView(idea_views.AbstractIdeaDetailView):
     model = models.Topic
     queryset = models.Topic.objects.annotate_positive_rating_count()\
         .annotate_negative_rating_count()
@@ -99,7 +99,7 @@ class TopicMgmtView(DashboardBaseMixin,
             .annotate_comment_count()
 
 
-class TopicMgmtCreateView(module_views.AbstractIdeaCreateView):
+class TopicMgmtCreateView(idea_views.AbstractIdeaCreateView):
     model = models.Topic
     form_class = forms.TopicForm
     permission_required = 'meinberlin_topicprio.add_topic'
@@ -116,7 +116,7 @@ class TopicMgmtCreateView(module_views.AbstractIdeaCreateView):
             kwargs={'slug': self.project.slug})
 
 
-class TopicMgmtUpdateView(module_views.AbstractIdeaUpdateView):
+class TopicMgmtUpdateView(idea_views.AbstractIdeaUpdateView):
     model = models.Topic
     form_class = forms.TopicForm
     permission_required = 'meinberlin_topicprio.change_topic'
@@ -133,7 +133,7 @@ class TopicMgmtUpdateView(module_views.AbstractIdeaUpdateView):
             kwargs={'slug': self.get_object().project.slug})
 
 
-class TopicMgmtDeleteView(module_views.AbstractIdeaDeleteView):
+class TopicMgmtDeleteView(idea_views.AbstractIdeaDeleteView):
     model = models.Topic
     success_message = _('The topic has been deleted')
     permission_required = 'meinberlin_topicprio.change_topic'
