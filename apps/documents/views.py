@@ -40,8 +40,7 @@ class ChapterDetailView(project_views.ProjectContextDispatcher,
         return models.Chapter.objects.filter(module=self.project.active_module)
 
 
-class DocumentDetailView(project_views.ProjectContextDispatcher,
-                         ChapterDetailView):
+class DocumentDetailView(ChapterDetailView):
 
     def get_object(self):
         return models.Chapter.objects\
