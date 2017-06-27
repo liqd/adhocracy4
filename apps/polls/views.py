@@ -33,10 +33,11 @@ class PollDetailView(project_mixins.ProjectMixin,
             )
 
     def get_object(self):
-        return get_object_or_404(models.Poll, module=self.module)
+        return get_object_or_404(models.Poll,
+                                 module=self.project.active_module)
 
     def get_permission_object(self):
-        return self.module
+        return self.project.active_module
 
 
 class PollManagementView(DashboardBaseMixin,

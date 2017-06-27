@@ -12,5 +12,5 @@ class ExternalProjectRedirectView(project_mixins.ProjectMixin,
 
     def get_redirect_url(self, *args, **kwargs):
         extproject = get_object_or_404(models.ExternalProject,
-                                       module=self.module)
+                                       module=self.project.active_module)
         return extproject.url

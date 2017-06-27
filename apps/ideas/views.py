@@ -36,7 +36,8 @@ class IdeaListView(module_views.ItemListView):
     filter_set = IdeaFilterSet
 
     def get_queryset(self):
-        return super().get_queryset().filter(module=self.module) \
+        return super().get_queryset()\
+            .filter(module=self.project.active_module) \
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()

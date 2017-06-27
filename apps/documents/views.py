@@ -78,7 +78,9 @@ class ChapterDetailView(rules_mixins.PermissionRequiredMixin,
 
 class DocumentDetailView(ProjectContextDispatcher, ChapterDetailView):
     def get_object(self):
-        return models.Chapter.objects.filter(module=self.module).first()
+        return models.Chapter.objects\
+            .filter(module=self.project.active_module)\
+            .first()
 
 
 class ParagraphDetailView(rules_mixins.PermissionRequiredMixin,
