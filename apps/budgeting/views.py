@@ -33,7 +33,7 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class ProposalListView(module_views.ItemListView):
+class ProposalListView(module_views.AbstractIdeaListView):
     model = models.Proposal
     filter_set = ProposalFilterSet
 
@@ -51,28 +51,28 @@ class ProposalListView(module_views.ItemListView):
             .annotate_comment_count()
 
 
-class ProposalDetailView(module_views.ItemDetailView):
+class ProposalDetailView(module_views.AbstractIdeaDetailView):
     model = models.Proposal
     queryset = models.Proposal.objects.annotate_positive_rating_count()\
         .annotate_negative_rating_count()
     permission_required = 'meinberlin_budgeting.view_proposal'
 
 
-class ProposalCreateView(module_views.ItemCreateView):
+class ProposalCreateView(module_views.AbstractIdeaCreateView):
     model = models.Proposal
     form_class = forms.ProposalForm
     permission_required = 'meinberlin_budgeting.add_proposal'
     template_name = 'meinberlin_budgeting/proposal_create_form.html'
 
 
-class ProposalUpdateView(module_views.ItemUpdateView):
+class ProposalUpdateView(module_views.AbstractIdeaUpdateView):
     model = models.Proposal
     form_class = forms.ProposalForm
     permission_required = 'meinberlin_budgeting.change_proposal'
     template_name = 'meinberlin_budgeting/proposal_update_form.html'
 
 
-class ProposalDeleteView(module_views.ItemDeleteView):
+class ProposalDeleteView(module_views.AbstractIdeaDeleteView):
     model = models.Proposal
     success_message = _('Your budget request has been deleted')
     permission_required = 'meinberlin_budgeting.change_proposal'

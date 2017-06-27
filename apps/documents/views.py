@@ -31,7 +31,7 @@ class DocumentManagementView(generic.TemplateView,
         return context
 
 
-class ChapterManagementView(module_views.ItemDetailView):
+class ChapterManagementView(module_views.AbstractIdeaDetailView):
     model = models.Chapter
     template_name = 'meinberlin_documents/chapter_form.html'
     permission_required = 'meinberlin_documents.change_chapter'

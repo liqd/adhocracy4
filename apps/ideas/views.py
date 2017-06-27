@@ -31,7 +31,7 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class IdeaListView(module_views.ItemListView):
+class IdeaListView(module_views.AbstractIdeaListView):
     model = models.Idea
     filter_set = IdeaFilterSet
 
@@ -43,28 +43,28 @@ class IdeaListView(module_views.ItemListView):
             .annotate_comment_count()
 
 
-class IdeaDetailView(module_views.ItemDetailView):
+class IdeaDetailView(module_views.AbstractIdeaDetailView):
     model = models.Idea
     queryset = models.Idea.objects.annotate_positive_rating_count()\
         .annotate_negative_rating_count()
     permission_required = 'meinberlin_ideas.view_idea'
 
 
-class IdeaCreateView(module_views.ItemCreateView):
+class IdeaCreateView(module_views.AbstractIdeaCreateView):
     model = models.Idea
     form_class = forms.IdeaForm
     permission_required = 'meinberlin_ideas.add_idea'
     template_name = 'meinberlin_ideas/idea_create_form.html'
 
 
-class IdeaUpdateView(module_views.ItemUpdateView):
+class IdeaUpdateView(module_views.AbstractIdeaUpdateView):
     model = models.Idea
     form_class = forms.IdeaForm
     permission_required = 'meinberlin_ideas.change_idea'
     template_name = 'meinberlin_ideas/idea_update_form.html'
 
 
-class IdeaDeleteView(module_views.ItemDeleteView):
+class IdeaDeleteView(module_views.AbstractIdeaDeleteView):
     model = models.Idea
     success_message = _('Your Idea has been deleted')
     permission_required = 'meinberlin_ideas.change_idea'

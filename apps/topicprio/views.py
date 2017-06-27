@@ -31,7 +31,7 @@ class TopicFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class TopicListView(module_views.ItemListView):
+class TopicListView(module_views.AbstractIdeaListView):
     model = models.Topic
     filter_set = TopicFilterSet
 
@@ -43,7 +43,7 @@ class TopicListView(module_views.ItemListView):
             .annotate_comment_count()
 
 
-class TopicDetailView(module_views.ItemDetailView):
+class TopicDetailView(module_views.AbstractIdeaDetailView):
     model = models.Topic
     queryset = models.Topic.objects.annotate_positive_rating_count()\
         .annotate_negative_rating_count()
@@ -99,7 +99,7 @@ class TopicMgmtView(DashboardBaseMixin,
             .annotate_comment_count()
 
 
-class TopicMgmtCreateView(module_views.ItemCreateView):
+class TopicMgmtCreateView(module_views.AbstractIdeaCreateView):
     model = models.Topic
     form_class = forms.TopicForm
     permission_required = 'meinberlin_topicprio.add_topic'
@@ -116,7 +116,7 @@ class TopicMgmtCreateView(module_views.ItemCreateView):
             kwargs={'slug': self.project.slug})
 
 
-class TopicMgmtUpdateView(module_views.ItemUpdateView):
+class TopicMgmtUpdateView(module_views.AbstractIdeaUpdateView):
     model = models.Topic
     form_class = forms.TopicForm
     permission_required = 'meinberlin_topicprio.change_topic'
@@ -133,7 +133,7 @@ class TopicMgmtUpdateView(module_views.ItemUpdateView):
             kwargs={'slug': self.get_object().project.slug})
 
 
-class TopicMgmtDeleteView(module_views.ItemDeleteView):
+class TopicMgmtDeleteView(module_views.AbstractIdeaDeleteView):
     model = models.Topic
     success_message = _('The topic has been deleted')
     permission_required = 'meinberlin_topicprio.change_topic'
