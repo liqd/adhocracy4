@@ -1,9 +1,9 @@
 import pytest
 
-from tests.apps.questions import models as question_models
-
+from adhocracy4.filters import views as filter_views
 from adhocracy4.filters.filters import DefaultsFilterSet
-from adhocracy4.modules.views import ItemListView
+from adhocracy4.projects import views as project_views
+from tests.apps.questions import models as question_models
 
 
 class TextFilter(DefaultsFilterSet):
@@ -19,7 +19,8 @@ class TextFilter(DefaultsFilterSet):
 
 @pytest.fixture
 def question_list_view():
-    class DummyView(ItemListView):
+    class DummyView(project_views.ProjectContextDispatcher,
+                    filter_views.FilteredListView):
         model = question_models.Question
         filter_set = TextFilter
     return DummyView.as_view()

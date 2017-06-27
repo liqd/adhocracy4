@@ -2,24 +2,24 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 
 from adhocracy4.filters import views as filter_views
-from adhocracy4.projects import mixins as project_mixins
+from adhocracy4.projects import views as project_views
 from adhocracy4.rules import mixins as rules_mixins
 
 from . import models
 
 
-class ItemListView(project_mixins.ProjectMixin, filter_views.FilteredListView):
+class AbstractIdeaListView(project_views.ProjectContextDispatcher, filter_views.FilteredListView):
     model = None
     paginate_by = 15
     filter_set = None
 
 
-class ItemDetailView(rules_mixins.PermissionRequiredMixin, generic.DetailView):
+class AbstractIdeaDetailView(project_views.ProjectContextDispatcher, rules_mixins.PermissionRequiredMixin, generic.DetailView):
     model = None
     permission_required = None
 
 
-class ItemCreateView(rules_mixins.PermissionRequiredMixin, generic.CreateView):
+class AbstractIdeaCreateView(project_views.ProjectContextDispatcher, rules_mixins.PermissionRequiredMixin, generic.CreateView):
     model = None
     form_class = None
     permission_required = None
@@ -46,7 +46,7 @@ class ItemCreateView(rules_mixins.PermissionRequiredMixin, generic.CreateView):
         return kwargs
 
 
-class ItemUpdateView(rules_mixins.PermissionRequiredMixin, generic.UpdateView):
+class AbstractIdeaUpdateView(project_views.ProjectContextDispatcher, rules_mixins.PermissionRequiredMixin, generic.UpdateView):
     model = None
     form_class = None
     permission_required = None
@@ -59,7 +59,7 @@ class ItemUpdateView(rules_mixins.PermissionRequiredMixin, generic.UpdateView):
         return kwargs
 
 
-class ItemDeleteView(rules_mixins.PermissionRequiredMixin, generic.DeleteView):
+class AbstractIdeaDeleteView(project_views.ProjectContextDispatcher, rules_mixins.PermissionRequiredMixin, generic.DeleteView):
     model = None
     permission_required = None
 
