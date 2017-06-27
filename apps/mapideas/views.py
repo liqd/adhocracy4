@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters import filters as a4_filters
@@ -75,7 +74,3 @@ class MapIdeaDeleteView(idea_views.AbstractIdeaDeleteView):
     success_message = _('Your Idea has been deleted')
     permission_required = 'meinberlin_mapideas.change_idea'
     template_name = 'meinberlin_mapideas/mapidea_confirm_delete.html'
-
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, self.success_message)
-        return super().delete(request, *args, **kwargs)

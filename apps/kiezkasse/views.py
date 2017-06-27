@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
@@ -77,10 +76,6 @@ class ProposalDeleteView(idea_views.AbstractIdeaDeleteView):
     success_message = _('Your budget request has been deleted')
     permission_required = 'meinberlin_kiezkasse.change_proposal'
     template_name = 'meinberlin_kiezkasse/proposal_confirm_delete.html'
-
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, self.success_message)
-        return super(ProposalDeleteView, self).delete(request, *args, **kwargs)
 
 
 class ProposalModerateView(rules_mixins.PermissionRequiredMixin,

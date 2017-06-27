@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
@@ -143,10 +142,6 @@ class TopicMgmtDeleteView(idea_views.AbstractIdeaDeleteView):
     @property
     def organisation(self):
         return self.get_object().project.organisation
-
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, self.success_message)
-        return super().delete(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse(

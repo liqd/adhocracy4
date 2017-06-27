@@ -37,9 +37,7 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
 
 class AbstractIdeaListView(project_views.ProjectContextDispatcher,
                            filter_views.FilteredListView):
-    model = None
     paginate_by = 15
-    filter_set = None
 
 
 class IdeaListView(AbstractIdeaListView):
@@ -57,8 +55,7 @@ class IdeaListView(AbstractIdeaListView):
 class AbstractIdeaDetailView(project_views.ProjectContextDispatcher,
                              rules_mixins.PermissionRequiredMixin,
                              generic.DetailView):
-    model = None
-    permission_required = None
+    pass
 
 
 class IdeaDetailView(AbstractIdeaDetailView):
@@ -71,29 +68,27 @@ class IdeaDetailView(AbstractIdeaDetailView):
 class AbstractIdeaCreateView(project_views.ProjectContextDispatcher,
                              rules_mixins.PermissionRequiredMixin,
                              generic.CreateView):
-    model = None
-    form_class = None
-    permission_required = None
 
     def dispatch(self, *args, **kwargs):
         mod_slug = self.kwargs[self.slug_url_kwarg]
-        self.module = models.Module.objects.get(slug=mod_slug)
-        self.project = self.module.project
+        module = models.Module.objects.get(slug=mod_slug)
+        kwargs['project'] = module.project
         return super().dispatch(*args, **kwargs)
 
     def get_permission_object(self, *args, **kwargs):
-        return self.module
+        return self.project.active_module
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
-        form.instance.module = self.module
+        form.instance.module = self.project.active_module
         return super().form_valid(form)
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['module'] = self.module
-        if self.module.settings_instance:
-            kwargs['settings_instance'] = self.module.settings_instance
+        kwargs['module'] = self.project.active_module
+        if self.project.active_module.settings_instance:
+            kwargs['settings_instance'] = \
+                self.project.active_module.settings_instance
         return kwargs
 
 
@@ -107,15 +102,13 @@ class IdeaCreateView(AbstractIdeaCreateView):
 class AbstractIdeaUpdateView(project_views.ProjectContextDispatcher,
                              rules_mixins.PermissionRequiredMixin,
                              generic.UpdateView):
-    model = None
-    form_class = None
-    permission_required = None
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['module'] = self.object.module
-        if self.object.module.settings_instance:
-            kwargs['settings_instance'] = self.object.module.settings_instance
+        kwargs['module'] = self.project.active_module
+        if self.project.active_module.settings_instance:
+            kwargs['settings_instance'] = \
+                self.project.active_module.settings_instance
         return kwargs
 
 
@@ -129,12 +122,15 @@ class IdeaUpdateView(AbstractIdeaUpdateView):
 class AbstractIdeaDeleteView(project_views.ProjectContextDispatcher,
                              rules_mixins.PermissionRequiredMixin,
                              generic.DeleteView):
-    model = None
-    permission_required = None
 
     def get_success_url(self):
         return reverse(
-            'project-detail', kwargs={'slug': self.object.project.slug})
+            'project-detail', kwargs={'slug': self.project.slug})
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super(AbstractIdeaDeleteView, self)\
+            .delete(request, *args, **kwargs)
 
 
 class IdeaDeleteView(AbstractIdeaDeleteView):
@@ -142,7 +138,3 @@ class IdeaDeleteView(AbstractIdeaDeleteView):
     success_message = _('Your Idea has been deleted')
     permission_required = 'meinberlin_ideas.change_idea'
     template_name = 'meinberlin_ideas/idea_confirm_delete.html'
-
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, self.success_message)
-        return super(IdeaDeleteView, self).delete(request, *args, **kwargs)
