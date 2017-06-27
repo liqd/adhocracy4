@@ -145,6 +145,10 @@ class Project(base.TimeStampedModel):
     def is_private(self):
         return not self.is_public
 
+    @property
+    def modules(self):
+        return self.module_set
+
     @functional.cached_property
     def active_phase(self):
         return self.phases\
