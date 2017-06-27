@@ -26,6 +26,7 @@ class Moderateable(models.Model):
         ModeratorStatement,
         related_name='+',
         null=True,
+        blank=True,
     )
 
     class Meta:
