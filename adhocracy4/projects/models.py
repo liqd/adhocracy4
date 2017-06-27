@@ -150,6 +150,14 @@ class Project(base.TimeStampedModel):
         return self.module_set
 
     @functional.cached_property
+    def active_module(self):
+        active_phase = self.active_phase()
+        if active_phase:
+            return active_phase.module
+
+        return self.modules.first()
+
+    @functional.cached_property
     def active_phase(self):
         return self.phases\
                    .active_phases()\
