@@ -9,7 +9,6 @@
                {% endif %}">
     <div class="l-wrapper">
         <div class="l-center-6">
-            <div class="project-header__type">{{ view.project.typ|get_blueprint_title }}</div>
             <h1 class="project-header__title">{{ view.project.name }}</h1>
             <div class="project-header__action">
                 {% block project_action %}{% endblock %}
@@ -28,7 +27,7 @@
 <div class="l-wrapper">
     <nav class="tablist" role="tablist">
         <a
-            id="#tab-project-{{ view.project.pk }}-information"
+            id="tab-project-{{ view.project.pk }}-information"
             class="tab"
             data-toggle="tab"
             href="#tabpanel-project-{{ view.project.pk }}-information"
@@ -38,7 +37,7 @@
             {% trans 'Information' %}
         </a>
         <a
-            id="#tab-project-{{ view.project.pk }}-participation"
+            id="tab-project-{{ view.project.pk }}-participation"
             class="tab active"
             data-toggle="tab"
             href="#tabpanel-project-{{ view.project.pk }}-participation"
@@ -48,7 +47,7 @@
             {% trans 'Participation' %}
         </a>
         <a
-            id="#tab-project-{{ view.project.pk }}-result"
+            id="tab-project-{{ view.project.pk }}-result"
             class="tab"
             data-toggle="tab"
             href="#tabpanel-project-{{ view.project.pk }}-result"
