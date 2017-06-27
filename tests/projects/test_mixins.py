@@ -1,11 +1,10 @@
 import pytest
 from dateutil.parser import parse
-from django.http import HttpResponse
-from django.views.generic import ListView, View
+from django.views.generic import ListView
 from freezegun import freeze_time
 from tests.apps.questions import models as question_models
 
-from adhocracy4.projects import mixins, models, views
+from adhocracy4.projects import mixins
 
 
 @pytest.fixture
@@ -13,40 +12,6 @@ def question_list_view():
     class DummyView(mixins.ProjectMixin, ListView):
         model = question_models.Question
     return DummyView.as_view()
-
-
-def project_detail_view_factory(_project):
-    class FakeProjectDetailView(views.PhaseDispatcher, View):
-        model = models.Project
-        project = _project
-
-        def get(self, request, *args, **kwargs):
-            return HttpResponse('project_detail')
-    return FakeProjectDetailView.as_view()
-
-
-@pytest.mark.django_db
-def test_phase_dispatch_mixin_phase(rf, phase):
-    project = phase.module.project
-    view = project_detail_view_factory(project)
-
-    with freeze_time(phase.start_date):
-        request = rf.get('/url')
-        response = view(request)
-        assert 'a4test_questions/question_list.html' in response.template_name
-
-    with freeze_time(phase.end_date):
-        request = rf.get('/url')
-        response = view(request)
-        assert 'a4test_questions/question_list.html' in response.template_name
-
-
-@pytest.mark.django_db
-def test_phase_dispatch_mixin_default(rf, project):
-    view = project_detail_view_factory(project)
-    request = rf.get('/url')
-    response = view(request)
-    assert response.content == b'project_detail'
 
 
 @pytest.mark.django_db
