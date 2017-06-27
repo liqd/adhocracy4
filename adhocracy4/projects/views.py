@@ -36,7 +36,7 @@ class ProjectContextDispatcher(generic.View):
     def validate_object_project(self):
         """Validate that the current objects project matches the context."""
         object_project = self._get_object_project()
-        return object_project and object_project == self.project
+        return not object_project or object_project == self.project
 
     def _get_object_project(self):
         if hasattr(self, 'get_object'):
