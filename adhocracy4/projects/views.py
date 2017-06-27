@@ -20,7 +20,7 @@ class ProjectContextDispatcher(generic.View):
     def get_project(self, *args, **kwargs):
         """Get the project from the kwargs, the url or the current object.
 
-        Note: Maybe overwritten by views with different projects relations.
+        Note: May be overwritten by views with different projects relations.
         """
         if 'project' in kwargs and isinstance(kwargs['project'], Project):
             return kwargs['project']
