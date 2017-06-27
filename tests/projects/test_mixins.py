@@ -10,7 +10,7 @@ from adhocracy4.projects import mixins, models
 
 @pytest.fixture
 def project_detail_view():
-    class FakeProjectDetailView(mixins.PhaseDispatchMixin, View):
+    class FakeProjectDetailView(mixins.PhaseDispatcher, View):
         model = models.Project
 
         def get(self, request, *args, **kwargs):

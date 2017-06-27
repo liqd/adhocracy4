@@ -1,7 +1,7 @@
 from django.views import generic
 
 
-class PhaseDispatchMixin(generic.DetailView):
+class PhaseDispatcher(generic.DetailView):
     def dispatch(self, request, *args, **kwargs):
         kwargs['project'] = self.get_object()
         return self._view_by_phase()(request, *args, **kwargs)

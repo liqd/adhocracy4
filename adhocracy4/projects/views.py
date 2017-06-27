@@ -5,7 +5,7 @@ from . import mixins, models
 
 
 class ProjectDetailView(rules_views.PermissionRequiredMixin,
-                        mixins.PhaseDispatchMixin,
+                        mixins.PhaseDispatcher,
                         generic.DetailView):
 
     model = models.Project
