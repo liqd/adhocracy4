@@ -1,7 +1,7 @@
 from django.views import generic
 
 from adhocracy4.modules import views as module_views
-from adhocracy4.projects.mixins import ProjectMixin
+from adhocracy4.projects.views import ProjectContextDispatcher
 from adhocracy4.rules import mixins as rules_mixins
 from apps.dashboard.mixins import DashboardBaseMixin
 
@@ -19,7 +19,7 @@ class DocumentManagementView(generic.TemplateView,
 
     def dispatch(self, *args, **kwargs):
         self.project = kwargs['project']
-        self.module = self.project.module_set.first()
+        self.module = self.project.modules.first()
         self.request.module = self.module
 
         return super(DocumentManagementView, self).dispatch(*args, **kwargs)
@@ -76,7 +76,7 @@ class ChapterDetailView(rules_mixins.PermissionRequiredMixin,
         return models.Chapter.objects.filter(module=self.module)
 
 
-class DocumentDetailView(ProjectMixin, ChapterDetailView):
+class DocumentDetailView(ProjectContextDispatcher, ChapterDetailView):
     def get_object(self):
         return models.Chapter.objects.filter(module=self.module).first()
 

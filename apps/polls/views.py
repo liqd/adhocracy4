@@ -67,7 +67,7 @@ class PollManagementView(DashboardBaseMixin,
 
     def dispatch(self, *args, **kwargs):
         self.project = kwargs['project']
-        self.module = self.project.module_set.first()
+        self.module = self.project.modules.first()
         self.request.module = self.module
         self.poll = self.get_or_create_poll()
 

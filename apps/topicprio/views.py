@@ -86,7 +86,7 @@ class TopicMgmtView(DashboardBaseMixin,
 
     def dispatch(self, *args, **kwargs):
         self.project = kwargs['project']
-        self.module = self.project.module_set.first()
+        self.module = self.project.modules.first()
         self.request.module = self.module
         return super(TopicMgmtView, self).dispatch(*args, **kwargs)
 
