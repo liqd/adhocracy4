@@ -19,11 +19,15 @@
 
     {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
-    {% for project in project_list %}
-        {% include "meinberlin_dashboard/includes/project_list_item.html" with project=project %}
-    {% empty %}
+    {% if project_list|length > 0 %}
+        <ul class="u-list-reset">
+            {% for project in project_list %}
+                {% include "meinberlin_dashboard/includes/project_list_item.html" with project=project %}
+            {% endfor %}
+        </ul>
+    {% else %}
         <p>{% trans 'We could not find any projects.' %}</p>
-    {% endfor %}
+    {% endif %}
 
     {% include "meinberlin_contrib/includes/pagination.html" %}
 

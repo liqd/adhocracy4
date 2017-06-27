@@ -33,7 +33,7 @@ var ReactRatings = require('adhocracy4').ratings
 var ReactReports = require('adhocracy4').reports
 var ReactFollows = require('adhocracy4').follows
 
-var ReactParagraphs = require('../../../apps/documents/assets/ParagraphBox.jsx')
+var ReactDocuments = require('../../../apps/documents/assets/react_documents.jsx')
 var ReactPolls = require('../../../apps/polls/assets/react_polls.jsx')
 
 // This function is overwritten with custom behavior in embed.js.
@@ -44,7 +44,7 @@ var getCurrentHref = function () {
 module.exports = {
   'renderComment': ReactComments.renderComment,
   'renderRatings': ReactRatings.renderRatings,
-  'renderParagraphs': ReactParagraphs.renderParagraphs,
+  'renderDocumentManagement': ReactDocuments.renderDocumentManagement,
   'renderPolls': ReactPolls.renderPolls,
   'renderPollManagement': ReactPolls.renderPollManagement,
   'renderReports': ReactReports.renderReports,

@@ -1,5 +1,9 @@
+// should be used with ul/ol
 @mixin grid-tiles($n, $settings: ()) {
     @include clearfix;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
     > * {
         @include grid-same-width($n, $settings);
