@@ -1,13 +1,14 @@
 from django.views import generic
 
-from adhocracy4.projects.views import ProjectContextDispatcher
+from adhocracy4.projects import views as project_views
 from adhocracy4.rules import mixins as rules_mixins
 from apps.dashboard.mixins import DashboardBaseMixin
 
 from . import models
 
 
-class DocumentManagementView(generic.TemplateView,
+class DocumentManagementView(project_views.ProjectContextDispatcher,
+                             generic.TemplateView,
                              DashboardBaseMixin,
                              rules_mixins.PermissionRequiredMixin):
     template_name = 'meinberlin_documents/document_management.html'
@@ -16,21 +17,15 @@ class DocumentManagementView(generic.TemplateView,
     # Dashboard related attributes
     menu_item = 'project'
 
-    def dispatch(self, *args, **kwargs):
-        self.project = kwargs['project']
-        self.module = self.project.modules.first()
-        self.request.module = self.module
-
-        return super(DocumentManagementView, self).dispatch(*args, **kwargs)
-
     def get_context_data(self, **kwargs):
         context = super(DocumentManagementView, self)\
             .get_context_data(**kwargs)
-        context['module'] = self.module
+        context['module'] = self.project.active_module
         return context
 
 
-class ChapterDetailView(rules_mixins.PermissionRequiredMixin,
+class ChapterDetailView(project_views.ProjectContextDispatcher,
+                        rules_mixins.PermissionRequiredMixin,
                         generic.DetailView):
     model = models.Chapter
     permission_required = 'meinberlin_documents.view_chapter'
@@ -40,31 +35,22 @@ class ChapterDetailView(rules_mixins.PermissionRequiredMixin,
         context['chapter_list'] = self.chapter_list
         return context
 
-    def dispatch(self, *args, **kwargs):
-        chapter = self.get_object()
-
-        # Simulate ProjectMixin behaviour
-        self.project = chapter.project
-        self.phase = self.project.active_phase \
-            or self.project.past_phases.first()
-        self.module = chapter.module
-        self.request.module = self.module
-
-        return super(ChapterDetailView, self).dispatch(*args, **kwargs)
-
     @property
     def chapter_list(self):
-        return models.Chapter.objects.filter(module=self.module)
+        return models.Chapter.objects.filter(module=self.project.active_module)
 
 
-class DocumentDetailView(ProjectContextDispatcher, ChapterDetailView):
+class DocumentDetailView(project_views.ProjectContextDispatcher,
+                         ChapterDetailView):
+
     def get_object(self):
         return models.Chapter.objects\
             .filter(module=self.project.active_module)\
             .first()
 
 
-class ParagraphDetailView(rules_mixins.PermissionRequiredMixin,
+class ParagraphDetailView(project_views.ProjectContextDispatcher,
+                          rules_mixins.PermissionRequiredMixin,
                           generic.DetailView):
     model = models.Paragraph
     permission_required = 'meinberlin_documents.view_paragraph'

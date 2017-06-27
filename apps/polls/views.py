@@ -4,14 +4,14 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.views import generic
 
-from adhocracy4.projects import mixins as project_mixins
+from adhocracy4.projects import views as project_views
 from adhocracy4.rules import mixins as rules_mixins
 from apps.dashboard.mixins import DashboardBaseMixin
 
 from . import models
 
 
-class PollDetailView(project_mixins.ProjectMixin,
+class PollDetailView(project_views.ProjectContextDispatcher,
                      rules_mixins.PermissionRequiredMixin,
                      generic.DetailView):
     model = models.Poll
@@ -40,7 +40,8 @@ class PollDetailView(project_mixins.ProjectMixin,
         return self.project.active_module
 
 
-class PollManagementView(DashboardBaseMixin,
+class PollManagementView(project_views.ProjectContextDispatcher,
+                         DashboardBaseMixin,
                          rules_mixins.PermissionRequiredMixin,
                          generic.DetailView):
     template_name = 'meinberlin_polls/poll_management_form.html'
@@ -55,9 +56,10 @@ class PollManagementView(DashboardBaseMixin,
 
     def get_or_create_poll(self):
         try:
-            obj = models.Poll.objects.get(module=self.module)
+            obj = models.Poll.objects.get(module=self.project.active_module)
         except models.Poll.DoesNotExist:
-            obj = models.Poll(module=self.module, creator=self.request.user)
+            obj = models.Poll(module=self.project.active_module,
+                              creator=self.request.user)
             obj.save()
         return obj
 
@@ -65,11 +67,3 @@ class PollManagementView(DashboardBaseMixin,
         return reverse(
             'dashboard-project-list',
             kwargs={'organisation_slug': self.organisation.slug, })
-
-    def dispatch(self, *args, **kwargs):
-        self.project = kwargs['project']
-        self.module = self.project.modules.first()
-        self.request.module = self.module
-        self.poll = self.get_or_create_poll()
-
-        return super(PollManagementView, self).dispatch(*args, **kwargs)
