@@ -1,27 +1,31 @@
 import csv
 
+from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import FieldError
 from django.http import HttpResponse
 from django.utils.translation import ugettext as _
+from django.views import generic
 
-from adhocracy4.modules import views as module_views
+from adhocracy4.projects import mixins as project_mixins
+from adhocracy4.ratings.models import Rating
 
 
-class ItemExportView(module_views.ItemListView):
-    paginate_by = 0
+class ItemExportView(project_mixins.ProjectMixin,
+                     generic.ListView):
     fields = None
     exclude = None
     virtual = None
     model = None
 
     def __init__(self):
-        super(ItemExportView, self).__init__()
+        super().__init__()
         if self.fields and self.exclude:
             raise FieldError()
         self._header, self._names = self._setup_fields()
 
     def _setup_fields(self):
         meta = self.model._meta
+        exclude = self.exclude if self.exclude else []
 
         if self.fields:
             fields = [meta.get_field(name) for name in self.fields]
@@ -33,22 +37,28 @@ class ItemExportView(module_views.ItemListView):
         for field in fields:
             if field.concrete \
                     and not (field.one_to_one and field.rel.parent_link) \
-                    and field.attname not in self.exclude \
+                    and field.attname not in exclude \
                     and field.attname not in names:
 
                 names.append(field.attname)
                 header.append(str(field.verbose_name))
 
-        if self.virtual:
-            for head, name in self.virtual:
-                if name not in names:
-                    names.append(name)
-                    header.append(head)
+        virtual = self.get_virtual_fields({})
+        for name, head in virtual.items():
+            if name not in names:
+                names.append(name)
+                header.append(head)
 
         return header, names
 
     def get_queryset(self):
         return super().get_queryset()
+
+    def get_virtual_fields(self, virtual):
+        virtual = super().get_virtual_fields(virtual)
+        if 'link' not in virtual:
+            virtual['link'] = _('Link')
+        return virtual
 
     def get_link_data(self, item):
         return self.request.build_absolute_uri(item.get_absolute_url())
@@ -85,3 +95,73 @@ class ItemExportView(module_views.ItemListView):
             writer.writerow(data)
 
         return response
+
+
+class ItemExportWithRatesMixin:
+    def get_virtual_fields(self, virtual):
+        virtual = super().get_virtual_fields(virtual)
+        if 'ratings_positive' not in virtual:
+            virtual['ratings_positive'] = _('Positive ratings')
+        if 'ratings_negative' not in virtual:
+            virtual['ratings_negative'] = _('Negative ratings')
+
+        return virtual
+
+    def _count_ratings(self, item, value):
+        ct = ContentType.objects.get_for_model(item)
+        return Rating.objects.filter(content_type=ct, value=value).count()
+
+    def get_ratings_positive_data(self, item):
+        if hasattr(item, 'positive_rating_count'):
+            return item.positive_rating_count
+
+        if hasattr(item, 'ratings'):
+            return self._count_ratings(item, Rating.POSITIVE)
+
+        return 0
+
+    def get_ratings_negative_data(self, item):
+        if hasattr(item, 'negative_rating_count'):
+            return item.negative_rating_count
+
+        if hasattr(item, 'ratings'):
+            return self._count_ratings(item, Rating.NEGATIVE)
+
+        return 0
+
+
+class ItemExportWithCommentCountMixin:
+    def get_virtual_fields(self, virtual):
+        virtual = super().get_virtual_fields(virtual)
+        if 'comment_count' not in virtual:
+            virtual['comment_count'] = _('Comment count')
+        return virtual
+
+    def get_comment_count_data(self, item):
+        if hasattr(item, 'comment_count'):
+            return item.comment_count
+
+        if hasattr(item, 'comments'):
+            return item.comments.count()
+
+        return 0
+
+
+class ItemExportWithCommentsMixin:
+    COMMENT_FMT = '{date} - {username}\n{text}'
+
+    def get_virtual_fields(self, virtual):
+        virtual = super().get_virtual_fields(virtual)
+        if 'comments' not in virtual:
+            virtual['comments'] = _('Comments')
+        return virtual
+
+    def get_comment_data(self, item):
+        if hasattr(item, 'comments'):
+            comments = [self.COMMENT_FMT.format(
+                date=comment.created.isoformat(),
+                username=comment.creator.username,
+                text=comment.comment)
+                for comment in item.comments.all()]
+
+            return '\n----\n'.join(comments)
