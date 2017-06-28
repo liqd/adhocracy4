@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 {% load i18n rules react_follows thumbnail wagtailcore_tags dashboard_tags %}
 
-{% block title %}{{view.project.name}} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-<div class="project-header{% if view.project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
-               background-image: url({{ view.project.image |thumbnail_url:'heroimage' }});
+<div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
+               background-image: url({{ project.image |thumbnail_url:'heroimage' }});
                {% endif %}">
     <div class="l-wrapper">
         <div class="l-center-6">
-            <h1 class="project-header__title">{{ view.project.name }}</h1>
+            <h1 class="project-header__title">{{ project.name }}</h1>
             <div class="project-header__action">
                 {% block project_action %}{% endblock %}
                 {% if request.user.is_authenticated %}
-                    {% react_follows view.project %}
+                    {% react_follows project %}
                 {% endif %}
-                {% has_perm 'meinberlin_projects.add_project' request.user view.project as user_may_change %}
+                {% has_perm 'meinberlin_projects.add_project' request.user project as user_may_change %}
                 {% if user_may_change %}
-                    <a href="{% url 'dashboard-project-edit' view.project.slug %}" class="button button--light">{% trans 'Edit' %}</a>
+                    <a href="{% url 'dashboard-project-edit' project.slug %}" class="button button--light">{% trans 'Edit' %}</a>
                 {% endif %}
             </div>
         </div>
@@ -27,32 +27,32 @@
 <div class="l-wrapper">
     <nav class="tablist" role="tablist">
         <a
-            id="tab-project-{{ view.project.pk }}-information"
+            id="tab-project-{{ project.pk }}-information"
             class="tab"
             data-toggle="tab"
-            href="#tabpanel-project-{{ view.project.pk }}-information"
+            href="#tabpanel-project-{{ project.pk }}-information"
             role="tab"
-            aria-controls="tabpanel-project-{{ view.project.pk }}-information"
+            aria-controls="tabpanel-project-{{ project.pk }}-information"
             aria-expanded="false">
             {% trans 'Information' %}
         </a>
         <a
-            id="tab-project-{{ view.project.pk }}-participation"
+            id="tab-project-{{ project.pk }}-participation"
             class="tab active"
             data-toggle="tab"
-            href="#tabpanel-project-{{ view.project.pk }}-participation"
+            href="#tabpanel-project-{{ project.pk }}-participation"
             role="tab"
-            aria-controls="tabpanel-project-{{ view.project.pk }}-participation"
+            aria-controls="tabpanel-project-{{ project.pk }}-participation"
             aria-expanded="true">
             {% trans 'Participation' %}
         </a>
         <a
-            id="tab-project-{{ view.project.pk }}-result"
+            id="tab-project-{{ project.pk }}-result"
             class="tab"
             data-toggle="tab"
-            href="#tabpanel-project-{{ view.project.pk }}-result"
+            href="#tabpanel-project-{{ project.pk }}-result"
             role="tab"
-            aria-controls="tabpanel-project-{{ view.project.pk }}-result"
+            aria-controls="tabpanel-project-{{ project.pk }}-result"
             aria-expanded="false">
             {% trans 'Result' %}
         </a>
@@ -61,37 +61,37 @@
 
 <div
     class="tabpanel"
-    id="tabpanel-project-{{ view.project.pk }}-information"
+    id="tabpanel-project-{{ project.pk }}-information"
     role="tabpanel"
-    aria-labelledby="tab-project-{{ view.project.pk }}-information"
+    aria-labelledby="tab-project-{{ project.pk }}-information"
     aria-expanded="false">
     <div class="l-wrapper">
         <div class="l-center-8">
-            {{ view.project.information | richtext }}
+            {{ project.information | richtext }}
         </div>
     </div>
 </div>
 <div
     class="tabpanel active"
-    id="tabpanel-project-{{ view.project.pk }}-participation"
+    id="tabpanel-project-{{ project.pk }}-participation"
     role="tabpanel"
-    aria-labelledby="tab-project-{{ view.project.pk }}-participation"
+    aria-labelledby="tab-project-{{ project.pk }}-participation"
     aria-expanded="true">
     <div class="l-wrapper">
-        {% include "meinberlin_projects/includes/phase_indicator.html" with project=view.project %}
+        {% include "meinberlin_projects/includes/phase_indicator.html" with project=project %}
     </div>
     {% block phase_content %}{% endblock %}
 </div>
 <div
     class="tabpanel"
-    id="tabpanel-project-{{ view.project.pk }}-result"
+    id="tabpanel-project-{{ project.pk }}-result"
     role="tabpanel"
-    aria-labelledby="tab-project-{{ view.project.pk }}-result"
+    aria-labelledby="tab-project-{{ project.pk }}-result"
     aria-expanded="false">
     <div class="l-wrapper">
         <div class="l-center-8">
-            {% if view.project.result %}
-                {{ view.project.result | richtext }}
+            {% if project.result %}
+                {{ project.result | richtext }}
             {% else %}
                 {% trans 'No results yet.' %}
             {% endif %}

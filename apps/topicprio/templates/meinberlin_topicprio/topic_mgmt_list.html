@@ -16,7 +16,7 @@
             {% trans 'Topics' %}
         </h1>
         <div class="lr-bar__right">
-            <a href="{% url 'meinberlin_topicprio:topic-mgmt-create' slug=view.project.active_module.slug %}" class="button">
+            <a href="{% url 'meinberlin_topicprio:topic-mgmt-create' slug=project.active_module.slug %}" class="button">
                 {% trans 'Add Topic' %}
             </a>
         </div>
