@@ -1,3 +1,5 @@
+from unittest import mock
+
 import pytest
 from django.http import HttpResponse
 from django.http import HttpResponseForbidden
@@ -96,7 +98,7 @@ def test_project_context_url_overwrite(rf, project):
 
 
 @pytest.mark.django_db
-def test_project_context_object(rf, project, mock):
+def test_project_context_object(rf, project):
     class FakeProjectContextGetObjectView(FakeProjectContextView):
         def get_object(self):
             return mock.Mock(project=project)
@@ -150,7 +152,7 @@ def test_project_context_missing(rf):
 
 
 @pytest.mark.django_db
-def test_project_context_invalid(rf, mock, project_factory):
+def test_project_context_invalid(rf, project_factory):
     class FakeProjectContextViewInvalid(FakeProjectContextView):
         def get_project(self, *args, **kwargs):
             return project_factory()
