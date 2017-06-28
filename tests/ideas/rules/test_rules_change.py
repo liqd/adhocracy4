@@ -53,14 +53,13 @@ def test_phase_active_project_draft(phase_factory, idea_factory, user):
                                           phases.CollectPhase,
                                           module__project__is_draft=True)
     anonymous, moderator, initiator = setup_users(project)
-    # creator = item.creator
+    creator = item.creator
 
     assert project.is_draft
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, item)
         assert not rules.has_perm(perm_name, user, item)
-        # FIXME: why are they allowed to edit content from drafted projects
-        # assert not rules.has_perm(perm_name, creator, item)
+        assert not rules.has_perm(perm_name, creator, item)
         assert rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
 
