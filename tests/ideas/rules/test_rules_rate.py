@@ -1,10 +1,10 @@
-from datetime import timedelta
-
 import pytest
 import rules
-from freezegun import freeze_time
 
 from apps.ideas import phases
+from tests.helpers import freeze_phase
+from tests.helpers import freeze_post_phase
+from tests.helpers import freeze_pre_phase
 from tests.helpers import setup_phase
 from tests.helpers import setup_users
 
@@ -22,7 +22,7 @@ def test_rules_pre_phase(phase_factory, idea_factory, user):
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_public
-    with freeze_time(phase.start_date - timedelta(days=1)):
+    with freeze_pre_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, item)
         assert not rules.has_perm(perm_name, user, item)
         assert rules.has_perm(perm_name, moderator, item)
@@ -36,7 +36,7 @@ def test_rules_public(phase_factory, idea_factory, user):
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_public
-    with freeze_time(phase.start_date + timedelta(seconds=1)):
+    with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, item)
         assert not rules.has_perm(perm_name, user, item)
         assert rules.has_perm(perm_name, moderator, item)
@@ -51,7 +51,7 @@ def test_rules_draft(phase_factory, idea_factory, user):
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_draft
-    with freeze_time(phase.start_date + timedelta(seconds=1)):
+    with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, item)
         assert not rules.has_perm(perm_name, user, item)
         assert rules.has_perm(perm_name, moderator, item)
@@ -66,7 +66,7 @@ def test_rules_archived(phase_factory, idea_factory, user):
     anonymous, moderator, initiator = setup_users(project)
 
     assert project.is_archived
-    with freeze_time(phase.end_date + timedelta(seconds=1)):
+    with freeze_post_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, item)
         assert not rules.has_perm(perm_name, user, item)
         assert rules.has_perm(perm_name, moderator, item)
