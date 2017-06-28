@@ -64,6 +64,12 @@ class ProjectContextDispatcher(generic.View):
         return super(ProjectContextDispatcher, self)\
             .dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        """Append project to the template context."""
+        if 'project' not in kwargs:
+            kwargs['project'] = self.project
+        return super(ProjectContextDispatcher, self).get_context_data(**kwargs)
+
 
 class PhaseDispatcher(generic.View):
     """Dispatch the request to the active or last phases view.
