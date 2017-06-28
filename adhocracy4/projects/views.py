@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseServerError
 from django.shortcuts import get_object_or_404
@@ -40,12 +41,15 @@ class ProjectContextDispatcher(generic.View):
 
     def _get_object_project(self):
         if hasattr(self, 'get_object'):
-            object = self.get_object()
-            if hasattr(object, 'project'):
-                return object.project
+            try:
+                object = self.get_object()
+                if hasattr(object, 'project'):
+                    return object.project
 
-            if isinstance(object, Project):
-                return object
+                if isinstance(object, Project):
+                    return object
+            except Http404:
+                return None
 
         return None
 
