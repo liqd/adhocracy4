@@ -10,7 +10,7 @@ from . import models
 
 def get_ordering_choices(request):
     choices = (('-created', _('Most recent')),)
-    if request.module.has_feature('rate', models.MapIdea):
+    if request.project.active_module.has_feature('rate', models.MapIdea):
         choices += ('-positive_rating_count', _('Most popular')),
     choices += ('-comment_count', _('Most commented')),
     return choices

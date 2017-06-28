@@ -5,6 +5,7 @@ from django.views import generic
 
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
+from adhocracy4.modules import models as module_models
 from adhocracy4.projects import views as project_views
 from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import filters
@@ -15,7 +16,7 @@ from . import models
 
 def get_ordering_choices(request):
     choices = (('-created', _('Most recent')),)
-    if request.module.has_feature('rate', models.Idea):
+    if request.project.active_module.has_feature('rate', models.Idea):
         choices += ('-positive_rating_count', _('Most popular')),
     choices += ('-comment_count', _('Most commented')),
     return choices
@@ -72,7 +73,7 @@ class AbstractIdeaCreateView(project_views.ProjectContextDispatcher,
 
     def dispatch(self, *args, **kwargs):
         mod_slug = self.kwargs[self.slug_url_kwarg]
-        self.module = models.Module.objects.get(slug=mod_slug)
+        self.module = module_models.Module.objects.get(slug=mod_slug)
         kwargs['project'] = self.module.project
         return super().dispatch(*args, **kwargs)
 

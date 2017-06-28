@@ -8,7 +8,8 @@ from . import widgets
 
 
 def category_queryset(request):
-    return category_models.Category.objects.filter(module=request.module)
+    return category_models.Category.objects.filter(
+        module=request.project.active_module)
 
 
 class CategoryFilterWidget(widgets.DropdownLinkWidget):
