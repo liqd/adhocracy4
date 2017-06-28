@@ -1,5 +1,6 @@
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -27,3 +28,7 @@ class OfflineEvent(UserGeneratedContentModel):
         self.description = transforms.clean_html_field(
             self.description, 'image-editor')
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('meinberlin_offlineevents:offlineevent-detail',
+                       args=[str(self.slug)])

@@ -12,7 +12,7 @@
             {% if obj|is_phase %}
                 <li>
                     <a
-                            href="{% url 'project-detail' project.slug %}"
+                            href="{{ project.get_absolute_url }}"
                         class="phase-list__button {% if obj == active_phase %} is-active{% endif %}"
                     >
                         {{ obj.name }}
@@ -21,7 +21,7 @@
             {% else %}
                 <li>
                     <a
-                        href="{% url 'meinberlin_offlineevents:offlineevent-detail' obj.slug %}"
+                        href="{{  obj.get_absolute_url }}"
                         class="phase-list__button"
                     >
                         {{ obj.name }}
