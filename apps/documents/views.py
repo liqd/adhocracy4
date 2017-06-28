@@ -13,6 +13,7 @@ class DocumentManagementView(project_views.ProjectContextDispatcher,
                              rules_mixins.PermissionRequiredMixin):
     template_name = 'meinberlin_documents/document_management.html'
     permission_required = 'a4projects.add_project'
+    project_url_kwarg = 'slug'
 
     # Dashboard related attributes
     menu_item = 'project'

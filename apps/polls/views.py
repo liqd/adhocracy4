@@ -47,6 +47,7 @@ class PollManagementView(project_views.ProjectContextDispatcher,
     template_name = 'meinberlin_polls/poll_management_form.html'
     model = models.Poll
     permission_required = 'a4projects.add_project'
+    project_url_kwarg = 'slug'
 
     # Dashboard related attributes
     menu_item = 'project'

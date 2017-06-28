@@ -77,6 +77,7 @@ class TopicMgmtView(project_views.ProjectContextDispatcher,
     template_name = 'meinberlin_topicprio/topic_mgmt_list.html'
     filter_set = TopicCreateFilterSet
     permission_required = 'a4projects.add_project'
+    project_url_kwarg = 'slug'
 
     # Dashboard related attributes
     menu_item = 'project'
@@ -120,12 +121,12 @@ class TopicMgmtUpdateView(idea_views.AbstractIdeaUpdateView):
 
     @property
     def organisation(self):
-        return self.get_object().project.organisation
+        return self.project.organisation
 
     def get_success_url(self):
         return reverse(
             'dashboard-project-management',
-            kwargs={'slug': self.get_object().project.slug})
+            kwargs={'slug': self.project.slug})
 
 
 class TopicMgmtDeleteView(idea_views.AbstractIdeaDeleteView):
@@ -137,9 +138,9 @@ class TopicMgmtDeleteView(idea_views.AbstractIdeaDeleteView):
 
     @property
     def organisation(self):
-        return self.get_object().project.organisation
+        return self.project.organisation
 
     def get_success_url(self):
         return reverse(
             'dashboard-project-management',
-            kwargs={'slug': self.get_object().project.slug})
+            kwargs={'slug': self.project.slug})
