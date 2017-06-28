@@ -1,11 +1,12 @@
 import rules
+from rules.predicates import is_superuser
 
 from adhocracy4.modules import predicates as module_predicates
-from adhocracy4.projects import predicates as project_predicates
+from adhocracy4.organisations.predicates import is_initiator
 
 rules.add_perm(
     'meinberlin_offlineevents.list_offlineevent',
-    project_predicates.is_moderator
+    is_superuser | is_initiator
 )
 
 rules.add_perm(
@@ -15,16 +16,16 @@ rules.add_perm(
 
 rules.add_perm(
     'meinberlin_offlineevents.add_offlineevent',
-    module_predicates.is_project_admin
+    is_superuser | is_initiator
 )
 
 rules.add_perm(
     'meinberlin_offlineevents.change_offlineevent',
-    module_predicates.is_project_admin
+    is_superuser | is_initiator
 )
 
 
 rules.add_perm(
     'meinberlin_offlineevents.delete_offlineevent',
-    module_predicates.is_project_admin
+    is_superuser | is_initiator
 )

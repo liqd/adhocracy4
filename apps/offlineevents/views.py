@@ -26,7 +26,7 @@ class OfflineEventListView(DashboardBaseMixin,
                            generic.ListView):
     model = models.OfflineEvent
     template_name = 'meinberlin_offlineevents/offlineevent_list.html'
-    permission_required = 'a4projects.add_project'
+    permission_required = 'meinberlin_offlineevents.list_offlineevent'
     menu_item = 'project'
 
     def dispatch(self, *args, **kwargs):
@@ -35,6 +35,9 @@ class OfflineEventListView(DashboardBaseMixin,
 
     def get_queryset(self):
         return super().get_queryset().filter(project__slug=self.project)
+
+    def get_permission_object(self):
+        return self.organisation
 
 
 class OfflineEventCreateView(rules_mixins.PermissionRequiredMixin,
@@ -83,6 +86,9 @@ class OfflineEventUpdateView(rules_mixins.PermissionRequiredMixin,
     def organisation(self):
         return self.project.organisation
 
+    def get_permission_object(self):
+        return self.organisation
+
     def get_success_url(self):
         return reverse(
             'meinberlin_offlineevents:offlineevent-list',
@@ -93,7 +99,7 @@ class OfflineEventDeleteView(rules_mixins.PermissionRequiredMixin,
                              generic.DeleteView):
     model = models.OfflineEvent
     success_message = _('The offline event has been deleted')
-    permission_required = 'meinberlin_offlineevents.change_offlineevent'
+    permission_required = 'meinberlin_offlineevents.delete_offlineevent'
     template_name = 'meinberlin_offlineevents/offlineevent_confirm_delete.html'
     menu_item = 'project'
 
@@ -104,6 +110,9 @@ class OfflineEventDeleteView(rules_mixins.PermissionRequiredMixin,
     @property
     def organisation(self):
         return self.get_object().project.organisation
+
+    def get_permission_object(self):
+        return self.organisation
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
