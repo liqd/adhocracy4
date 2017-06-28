@@ -261,6 +261,7 @@ const DocumentManagement = React.createClass({
         <h2>{django.gettext('Contents')}</h2>
         <ChapterNav
           chapters={this.state.chapters}
+          activeChapter={this.state.chapters[chapterIndex]}
           onMoveUp={this.handleChapterMoveUp}
           onMoveDown={this.handleChapterMoveDown}
           onDelete={this.handleChapterDelete}
