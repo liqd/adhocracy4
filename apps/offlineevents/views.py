@@ -1,12 +1,12 @@
 from django.contrib import messages
 from django.core.urlresolvers import reverse
+from django.utils import functional
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.modules import views as module_views
 from adhocracy4.projects.models import Project
 from adhocracy4.rules import mixins as rules_mixins
-from apps.dashboard.mixins import DashboardBaseMixin
 
 from . import forms
 from . import models
@@ -21,8 +21,7 @@ class OfflineEventDetailView(module_views.ItemDetailView):
         return self.get_object().project
 
 
-class OfflineEventListView(DashboardBaseMixin,
-                           rules_mixins.PermissionRequiredMixin,
+class OfflineEventListView(rules_mixins.PermissionRequiredMixin,
                            generic.ListView):
     model = models.OfflineEvent
     template_name = 'meinberlin_offlineevents/offlineevent_list.html'
@@ -38,6 +37,18 @@ class OfflineEventListView(DashboardBaseMixin,
 
     def get_permission_object(self):
         return self.organisation
+
+    @functional.cached_property
+    def organisation(self):
+        return self.project.organisation
+
+    @functional.cached_property
+    def other_organisations_of_user(self):
+        user = self.request.user
+        if self.organisation:
+            return user.organisation_set.exclude(pk=self.organisation.pk)
+        else:
+            return None
 
 
 class OfflineEventCreateView(rules_mixins.PermissionRequiredMixin,
