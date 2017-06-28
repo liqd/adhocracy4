@@ -69,7 +69,7 @@ urlpatterns = [
     url(r'^topicprio/', include('apps.topicprio.urls',
                                 namespace='meinberlin_topicprio')),
     url(r'^offlineevents/', include('apps.offlineevents.urls',
-                                    namespace='meinberlin_offineevents')),
+                                    namespace='meinberlin_offlineevents')),
 
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),
