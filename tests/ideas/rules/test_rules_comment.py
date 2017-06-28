@@ -16,7 +16,7 @@ def test_perm_exists():
 
 
 @pytest.mark.django_db
-def test_rules_pre_phase(phase_factory, idea_factory, user):
+def test_pre_phase(phase_factory, idea_factory, user):
     phase, _, project, item = setup_phase(phase_factory, idea_factory,
                                           phases.CollectPhase)
     anonymous, moderator, initiator = setup_users(project)
@@ -30,7 +30,7 @@ def test_rules_pre_phase(phase_factory, idea_factory, user):
 
 
 @pytest.mark.django_db
-def test_rules_public(phase_factory, idea_factory, user):
+def test_phase_active(phase_factory, idea_factory, user):
     phase, _, project, item = setup_phase(phase_factory, idea_factory,
                                           phases.CollectPhase)
     anonymous, moderator, initiator = setup_users(project)
@@ -44,7 +44,7 @@ def test_rules_public(phase_factory, idea_factory, user):
 
 
 @pytest.mark.django_db
-def test_rules_draft(phase_factory, idea_factory, user):
+def test_phase_active_project_draft(phase_factory, idea_factory, user):
     phase, _, project, item = setup_phase(phase_factory, idea_factory,
                                           phases.CollectPhase,
                                           module__project__is_draft=True)
@@ -60,7 +60,7 @@ def test_rules_draft(phase_factory, idea_factory, user):
 
 
 @pytest.mark.django_db
-def test_rules_archived(phase_factory, idea_factory, user):
+def test_post_phase_project_archived(phase_factory, idea_factory, user):
     phase, _, project, item = setup_phase(phase_factory, idea_factory,
                                           phases.CollectPhase,
                                           module__project__is_archived=True)
