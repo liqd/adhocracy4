@@ -21,30 +21,28 @@ class OfflineEventDetailView(module_views.ItemDetailView):
         return self.get_object().project
 
 
-class OfflineEventMgmtView(DashboardBaseMixin,
+class OfflineEventListView(DashboardBaseMixin,
                            rules_mixins.PermissionRequiredMixin,
                            generic.ListView):
     model = models.OfflineEvent
-    template_name = 'meinberlin_offlineevents/offlineevent_mgmt_list.html'
+    template_name = 'meinberlin_offlineevents/offlineevent_list.html'
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
 
     def dispatch(self, *args, **kwargs):
         self.project = Project.objects.get(slug=kwargs['slug'])
-        return super(OfflineEventMgmtView, self).dispatch(*args, **kwargs)
+        return super(OfflineEventListView, self).dispatch(*args, **kwargs)
 
     def get_queryset(self):
         return super().get_queryset().filter(project__slug=self.project)
 
 
-class OfflineEventMgmtCreateView(rules_mixins.PermissionRequiredMixin,
-                                 generic.CreateView):
-
+class OfflineEventCreateView(rules_mixins.PermissionRequiredMixin,
+                             generic.CreateView):
     model = models.OfflineEvent
     form_class = forms.OfflineEventForm
     permission_required = 'meinberlin_offlineevents.add_offlineevent'
-    template_name = \
-        'meinberlin_offlineevents/offlineevent_mgmt_create_form.html'
+    template_name = 'meinberlin_offlineevents/offlineevent_create_form.html'
     menu_item = 'project'
 
     @property
@@ -56,8 +54,7 @@ class OfflineEventMgmtCreateView(rules_mixins.PermissionRequiredMixin,
 
     def dispatch(self, *args, **kwargs):
         self.project = Project.objects.get(slug=kwargs['slug'])
-        return super(OfflineEventMgmtCreateView, self).dispatch(
-            *args, **kwargs)
+        return super(OfflineEventCreateView, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
@@ -66,17 +63,16 @@ class OfflineEventMgmtCreateView(rules_mixins.PermissionRequiredMixin,
 
     def get_success_url(self):
         return reverse(
-            'meinberlin_offlineevents:offlineevent-mgmt',
+            'meinberlin_offlineevents:offlineevent-list',
             kwargs={'slug': self.project.slug})
 
 
-class OfflineEventMgmtUpdateView(rules_mixins.PermissionRequiredMixin,
-                                 generic.UpdateView):
+class OfflineEventUpdateView(rules_mixins.PermissionRequiredMixin,
+                             generic.UpdateView):
     model = models.OfflineEvent
     form_class = forms.OfflineEventForm
     permission_required = 'meinberlin_offlineevents.change_offlineevent'
-    template_name = \
-        'meinberlin_offlineevents/offlineevent_mgmt_update_form.html'
+    template_name = 'meinberlin_offlineevents/offlineevent_update_form.html'
     menu_item = 'project'
 
     @property
@@ -89,17 +85,16 @@ class OfflineEventMgmtUpdateView(rules_mixins.PermissionRequiredMixin,
 
     def get_success_url(self):
         return reverse(
-            'meinberlin_offlineevents:offlineevent-mgmt',
+            'meinberlin_offlineevents:offlineevent-list',
             kwargs={'slug': self.project.slug})
 
 
-class OfflineEventMgmtDeleteView(rules_mixins.PermissionRequiredMixin,
-                                 generic.DeleteView):
+class OfflineEventDeleteView(rules_mixins.PermissionRequiredMixin,
+                             generic.DeleteView):
     model = models.OfflineEvent
     success_message = _('The offline event has been deleted')
     permission_required = 'meinberlin_offlineevents.change_offlineevent'
-    template_name = \
-        'meinberlin_offlineevents/offlineevent_mgmt_confirm_delete.html'
+    template_name = 'meinberlin_offlineevents/offlineevent_confirm_delete.html'
     menu_item = 'project'
 
     @property
@@ -116,5 +111,5 @@ class OfflineEventMgmtDeleteView(rules_mixins.PermissionRequiredMixin,
 
     def get_success_url(self):
         return reverse(
-            'meinberlin_offlineevents:offlineevent-mgmt',
+            'meinberlin_offlineevents:offlineevent-list',
             kwargs={'slug': self.project.slug})

@@ -16,7 +16,7 @@
             {% trans 'Offline Events' %}
         </h1>
         <div class="lr-bar__right">
-            <a href="{% url 'meinberlin_offlineevents:offlineevent-mgmt-create' slug=view.project.slug %}" class="button">
+            <a href="{% url 'meinberlin_offlineevents:offlineevent-create' slug=view.project.slug %}" class="button">
                 {% trans 'Add offline event' %}
             </a>
         </div>
@@ -26,7 +26,7 @@
             {% if object_list.count > 0 %}
                 <ul>
                     {% for object in object_list %}
-                        {% include "meinberlin_offlineevents/includes/offlineevent_mgmt_list_item.html" with object=object %}
+                        {% include "meinberlin_offlineevents/includes/offlineevent_list_item.html" with object=object %}
                     {% endfor %}
                 </ul>
             {% else %}
