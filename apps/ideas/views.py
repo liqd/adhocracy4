@@ -68,27 +68,27 @@ class IdeaDetailView(AbstractIdeaDetailView):
 class AbstractIdeaCreateView(project_views.ProjectContextDispatcher,
                              rules_mixins.PermissionRequiredMixin,
                              generic.CreateView):
+    """Create an idea in the context of a module."""
 
     def dispatch(self, *args, **kwargs):
         mod_slug = self.kwargs[self.slug_url_kwarg]
-        module = models.Module.objects.get(slug=mod_slug)
-        kwargs['project'] = module.project
+        self.module = models.Module.objects.get(slug=mod_slug)
+        kwargs['project'] = self.module.project
         return super().dispatch(*args, **kwargs)
 
     def get_permission_object(self, *args, **kwargs):
-        return self.project.active_module
+        return self.module
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
-        form.instance.module = self.project.active_module
+        form.instance.module = self.module
         return super().form_valid(form)
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['module'] = self.project.active_module
-        if self.project.active_module.settings_instance:
-            kwargs['settings_instance'] = \
-                self.project.active_module.settings_instance
+        kwargs['module'] = self.module
+        if self.module.settings_instance:
+            kwargs['settings_instance'] = self.module.settings_instance
         return kwargs
 
 
