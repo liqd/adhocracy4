@@ -34,7 +34,7 @@ class OfflineEventListView(DashboardBaseMixin,
         return super(OfflineEventListView, self).dispatch(*args, **kwargs)
 
     def get_queryset(self):
-        return super().get_queryset().filter(project__slug=self.project)
+        return super().get_queryset().filter(project=self.project)
 
     def get_permission_object(self):
         return self.organisation
