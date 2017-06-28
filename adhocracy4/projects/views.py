@@ -9,7 +9,7 @@ from . import models
 from .models import Project
 
 
-class ProjectContextDispatcher(generic.View):
+class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
     """Add a project attribute to the view.
 
     Note: Must always be defined as the _first_ parent class.
