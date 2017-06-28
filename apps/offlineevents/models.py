@@ -11,7 +11,7 @@ from adhocracy4.projects import models as project_models
 class OfflineEvent(UserGeneratedContentModel):
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(max_length=120, verbose_name=_('Name'))
-    date = models.DateTimeField(blank=True, null=True, verbose_name=_('Date'))
+    date = models.DateTimeField(verbose_name=_('Date'))
     description = RichTextUploadingField(
         config_name='image-editor', verbose_name=_('Description'))
     project = models.ForeignKey(

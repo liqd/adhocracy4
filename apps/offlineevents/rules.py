@@ -1,6 +1,12 @@
 import rules
 
 from adhocracy4.modules import predicates as module_predicates
+from adhocracy4.projects import predicates as project_predicates
+
+rules.add_perm(
+    'meinberlin_offlineevents.list_offlineevent',
+    project_predicates.is_moderator
+)
 
 rules.add_perm(
     'meinberlin_offlineevents.view_offlineevent',
