@@ -32,11 +32,6 @@
                 {% block additional_content %}{% endblock %}
             </div>
 
-            <div class="item-detail__meta">
-                <strong class="item-detail__creator">{{ object.creator.username }}</strong>
-                {{ object.created|date }}
-            </div>
-
             <div class="item-detail__actions lr-bar">
                 {% if object|has_feature:"rate" %}
                     <div class="lr-bar__left">
