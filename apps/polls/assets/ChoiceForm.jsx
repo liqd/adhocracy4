@@ -27,7 +27,7 @@ let ChoiceForm = React.createClass({
             name={'choices-' + this.props.index + '-name'}
             type="text"
             className="input-addon__input"
-            defaultValue={this.props.choice.label}
+            value={this.props.choice.label}
             onChange={this.handleLabelChange} />
           <button
             className="input-addon__after button button--light"
