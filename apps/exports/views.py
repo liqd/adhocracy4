@@ -268,3 +268,23 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
                     username=reply.creator.username,
                     text=strip_tags(reply.comment.strip())
                 )
+
+
+class ItemExportWithLocationMixin(VirtualFieldMixin):
+    def get_virtual_fields(self):
+        virtual = super().get_virtual_fields()
+        if 'location' not in virtual:
+            virtual['location'] = _('Location')
+        if 'location_label' not in virtual:
+            virtual['location_label'] = _('Location label')
+        return virtual
+
+    def get_location_data(self, item):
+        if hasattr(item, 'point'):
+            point = item.point
+            if 'geometry' in point:
+                return ', '.join(map(str, point['geometry']['coordinates']))
+        return ''
+
+    def get_location_label_data(self, item):
+        return getattr(item, 'point_label', '')
