@@ -6,6 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import FieldError
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.utils.html import strip_tags
 from django.utils.translation import ugettext as _
 from django.views import generic
 
@@ -173,6 +174,9 @@ class ItemExportView(AbstractCSVExportView,
     def get_link_data(self, item):
         return self.request.build_absolute_uri(item.get_absolute_url())
 
+    def get_description_data(self, item):
+        return strip_tags(item.description.strip())
+
     def get_creator_data(self, item):
         return item.creator.username
 
@@ -255,12 +259,12 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
             yield self.COMMENT_FMT.format(
                 date=comment.created.isoformat(),
                 username=comment.creator.username,
-                text=comment.comment.strip()
+                text=strip_tags(comment.comment.strip())
             )
 
             for reply in comment.child_comments.all():
                 yield self.REPLY_FMT.format(
                     date=reply.created.isoformat(),
                     username=reply.creator.username,
-                    text=reply.comment.strip()
+                    text=strip_tags(reply.comment.strip())
                 )
