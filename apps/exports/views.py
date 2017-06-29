@@ -1,5 +1,6 @@
 import csv
 from collections import OrderedDict
+from functools import lru_cache
 
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import FieldError
@@ -14,7 +15,8 @@ from adhocracy4.projects.models import Project
 from adhocracy4.ratings.models import Rating
 
 
-def _get_exports(project):
+@lru_cache()
+def get_exports(project):
     exports = []
     existing_views = set()
     for phase in project.phases:
@@ -40,7 +42,7 @@ class ExportProjectDispatcher(generic.RedirectView,
         assert project.module_set.count() == 1
         module = project.module_set.first()
 
-        exports = _get_exports(project)
+        exports = get_exports(project)
         assert len(exports) <= 1
 
         # Show error page if no exports are available
@@ -55,7 +57,7 @@ class ExportModuleDispatcher(generic.View):
         export_id = int(kwargs.pop('export_id'))
         module = module_models.Module.objects.get(slug=kwargs['module_slug'])
         project = module.project
-        exports = _get_exports(project)
+        exports = get_exports(project)
         assert len(exports) > export_id
 
         view = exports[export_id][1].as_view()
