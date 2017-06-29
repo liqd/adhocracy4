@@ -290,7 +290,7 @@ class ItemExportWithLocationMixin(VirtualFieldMixin):
         return getattr(item, 'point_label', '')
 
 
-class ItemExportWithModeratorStatement(VirtualFieldMixin):
+class ItemExportWithModeratorFeedback(VirtualFieldMixin):
     def get_virtual_fields(self):
         virtual = super().get_virtual_fields()
         if 'moderator_feedback' not in virtual:

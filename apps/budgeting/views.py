@@ -39,7 +39,7 @@ class ProposalExportView(export_views.ItemExportView,
                          export_views.ItemExportWithCommentCountMixin,
                          export_views.ItemExportWithCommentsMixin,
                          export_views.ItemExportWithLocationMixin,
-                         export_views.ItemExportWithModeratorStatement):
+                         export_views.ItemExportWithModeratorFeedback):
     model = models.Proposal
     fields = ['name', 'description', 'creator', 'created', 'budget']
 
