@@ -9,8 +9,11 @@
 
 .item-detail__meta {
     padding-bottom: 0.6em;
-    border-bottom: 2px solid $border-color;
-    margin-bottom: 0.6em;
+}
+
+.item-detail__actions {
+    padding-top: 0.6em;
+    border-top: 2px solid $border-color;
 }
 
 .item-detail__creator {
