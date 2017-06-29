@@ -79,8 +79,11 @@ class ItemExportView(generic.ListView, VirtualFieldMixin):
             return get_field_attr
 
         # If item is a dict, return the fields data by key
-        if name in item:
-            return item['name']
+        try:
+            if name in item:
+                return item['name']
+        except TypeError:
+            pass
 
         # Finally try to get the fields data as a property
         return getattr(item, name, '')
