@@ -20,3 +20,10 @@
     {% include "meinberlin_offlineevents/includes/offlineevent_form.html" with cancel=cancel %}
 </div>
 {% endblock %}
+
+{% block extra_js %}
+    {{ form.media.js }}
+{% endblock %}
+{% block extra_css %}
+    {{ form.media.css }}
+{% endblock %}
