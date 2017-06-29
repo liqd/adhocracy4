@@ -2,4 +2,7 @@ from django.contrib import admin
 
 from . import models
 
-admin.site.register(models.OfflineEvent, admin.ModelAdmin)
+
+@admin.register(models.OfflineEvent)
+class OfflineEventAdmin(admin.ModelAdmin):
+    readonly_fields = ('creator', )
