@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from django.views import generic
 
-from adhocracy4.projects import mixins as project_mixins
+from adhocracy4.comments.models import Comment
 from adhocracy4.ratings.models import Rating
 
 
@@ -146,18 +146,23 @@ class ItemExportWithCommentCountMixin(VirtualFieldMixin):
         return virtual
 
     def get_comment_count_data(self, item):
-        if hasattr(item, 'comment_count'):
-            return item.comment_count
-
+        # FIXME: the annotated comment_count does currently not include replies
+        # if hasattr(item, 'comment_count'):
+        #     return item.comment_count
         if hasattr(item, 'comments'):
-            return item.comments.count()
+            return self._comment_count(item)
 
         return 0
 
+    def _comment_count(self, item):
+        comment_ids = item.comments.values_list('id', flat=True)
+        replies = Comment.objects.filter(parent_comment__in=comment_ids)
+        return len(comment_ids) + len(replies)
 
 
 class ItemExportWithCommentsMixin(VirtualFieldMixin):
     COMMENT_FMT = '{date} - {username}\n{text}'
+    REPLY_FMT = '@reply: {date} - {username}\n{text}'
 
     def get_virtual_fields(self):
         virtual = super().get_virtual_fields()
@@ -165,12 +170,22 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
             virtual['comments'] = _('Comments')
         return virtual
 
-    def get_comment_data(self, item):
+    def get_comments_data(self, item):
         if hasattr(item, 'comments'):
-            comments = [self.COMMENT_FMT.format(
+            return '\n----\n'.join(self._flat_comments(item))
+        return ''
+
+    def _flat_comments(self, item):
+        for comment in item.comments.all():
+            yield self.COMMENT_FMT.format(
                 date=comment.created.isoformat(),
                 username=comment.creator.username,
-                text=comment.comment)
-                for comment in item.comments.all()]
+                text=comment.comment.strip()
+            )
 
-            return '\n----\n'.join(comments)
+            for reply in comment.child_comments.all():
+                yield self.REPLY_FMT.format(
+                    date=reply.created.isoformat(),
+                    username=reply.creator.username,
+                    text=reply.comment.strip()
+                )
