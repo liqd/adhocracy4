@@ -14,6 +14,7 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects.models import Project
 from adhocracy4.ratings.models import Rating
+from adhocracy4.rules import mixins as rules_mixins
 
 
 @lru_cache()
@@ -30,12 +31,13 @@ def get_exports(project):
     return exports
 
 
-class ExportProjectDispatcher(generic.RedirectView,
+class ExportProjectDispatcher(rules_mixins.PermissionRequiredMixin,
+                              generic.RedirectView,
                               generic.detail.SingleObjectMixin):
-    # TODO: permission checks
     permanent = False
     model = Project
     slug_url_kwarg = 'project_slug'
+    permission_required = 'a4projects.add_project'
 
     def get_redirect_url(self, *args, **kwargs):
         project = self.get_object()
@@ -51,18 +53,32 @@ class ExportProjectDispatcher(generic.RedirectView,
         return reverse('export-module',
                        kwargs={'module_slug': module.slug, 'export_id': 0})
 
+    def get_permission_object(self):
+        project = self.get_object()
+        return project.organisation
 
-class ExportModuleDispatcher(generic.View):
-    # TODO: permission checks
+
+class ExportModuleDispatcher(rules_mixins.PermissionRequiredMixin,
+                             generic.View):
+    permission_required = 'a4projects.add_project'
+
     def dispatch(self, request, *args, **kwargs):
         export_id = int(kwargs.pop('export_id'))
         module = module_models.Module.objects.get(slug=kwargs['module_slug'])
         project = module.project
+
+        self.project = project
+        if not self.has_permission():
+            return self.handle_no_permission()
+
         exports = get_exports(project)
         assert len(exports) > export_id
 
         view = exports[export_id][1].as_view()
         return view(request, module=module, *args, **kwargs)
+
+    def get_permission_object(self):
+        return self.project.organisation
 
 
 class AbstractCSVExportView(generic.View):
