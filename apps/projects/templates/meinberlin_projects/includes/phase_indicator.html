@@ -13,7 +13,7 @@
                 <li>
                     <a
                             href="{{ project.get_absolute_url }}"
-                        class="phase-list__button {% if obj == active_phase %} is-active{% endif %}"
+                            class="phase-list__button {% if obj == active_phase %} is-active{% endif %}"
                     >
                         {{ obj.name }}
                     </a>
@@ -21,7 +21,7 @@
             {% else %}
                 <li>
                     <a
-                        href="{{  obj.get_absolute_url }}"
+                        href="{{ obj.get_absolute_url }}"
                         class="phase-list__button"
                     >
                         {{ obj.name }}
