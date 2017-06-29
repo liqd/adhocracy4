@@ -58,5 +58,15 @@
             </a>
         </span>
         {% endif %}
+
+        {% if project|has_exports %}
+        <span class="list-item__action">
+            <a href="{% url 'export-project' project_slug=project.slug %}"
+               class="button button--light button--small">
+                <i class="fa fa-download" aria-hidden="true"></i>
+                {% trans 'Export' %}
+            </a>
+        </span>
+        {% endif %}
     </div>
 </li>
