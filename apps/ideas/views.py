@@ -40,7 +40,7 @@ class IdeaExportView(export_views.ItemExportView,
     fields = ['name', 'description', 'creator', 'created']
 
     def get_queryset(self):
-        return models.Idea.objects \
+        return super().get_queryset() \
             .filter(module=self.module)\
             .annotate_comment_count()\
             .annotate_positive_rating_count()\
