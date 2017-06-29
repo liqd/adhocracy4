@@ -1,4 +1,5 @@
 import csv
+from collections import OrderedDict
 
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import FieldError
@@ -10,8 +11,12 @@ from adhocracy4.projects import mixins as project_mixins
 from adhocracy4.ratings.models import Rating
 
 
-class ItemExportView(project_mixins.ProjectMixin,
-                     generic.ListView):
+class VirtualFieldMixin:
+    def get_virtual_fields(self):
+        return OrderedDict()
+
+
+class ItemExportView(generic.ListView, VirtualFieldMixin):
     fields = None
     exclude = None
     virtual = None
@@ -43,7 +48,7 @@ class ItemExportView(project_mixins.ProjectMixin,
                 names.append(field.attname)
                 header.append(str(field.verbose_name))
 
-        virtual = self.get_virtual_fields({})
+        virtual = self.get_virtual_fields()
         for name, head in virtual.items():
             if name not in names:
                 names.append(name)
@@ -54,8 +59,8 @@ class ItemExportView(project_mixins.ProjectMixin,
     def get_queryset(self):
         return super().get_queryset()
 
-    def get_virtual_fields(self, virtual):
-        virtual = super().get_virtual_fields(virtual)
+    def get_virtual_fields(self):
+        virtual = super().get_virtual_fields()
         if 'link' not in virtual:
             virtual['link'] = _('Link')
         return virtual
@@ -97,9 +102,9 @@ class ItemExportView(project_mixins.ProjectMixin,
         return response
 
 
-class ItemExportWithRatesMixin:
-    def get_virtual_fields(self, virtual):
-        virtual = super().get_virtual_fields(virtual)
+class ItemExportWithRatesMixin(VirtualFieldMixin):
+    def get_virtual_fields(self):
+        virtual = super().get_virtual_fields()
         if 'ratings_positive' not in virtual:
             virtual['ratings_positive'] = _('Positive ratings')
         if 'ratings_negative' not in virtual:
@@ -130,9 +135,9 @@ class ItemExportWithRatesMixin:
         return 0
 
 
-class ItemExportWithCommentCountMixin:
-    def get_virtual_fields(self, virtual):
-        virtual = super().get_virtual_fields(virtual)
+class ItemExportWithCommentCountMixin(VirtualFieldMixin):
+    def get_virtual_fields(self):
+        virtual = super().get_virtual_fields()
         if 'comment_count' not in virtual:
             virtual['comment_count'] = _('Comment count')
         return virtual
@@ -147,11 +152,12 @@ class ItemExportWithCommentCountMixin:
         return 0
 
 
-class ItemExportWithCommentsMixin:
+
+class ItemExportWithCommentsMixin(VirtualFieldMixin):
     COMMENT_FMT = '{date} - {username}\n{text}'
 
-    def get_virtual_fields(self, virtual):
-        virtual = super().get_virtual_fields(virtual)
+    def get_virtual_fields(self):
+        virtual = super().get_virtual_fields()
         if 'comments' not in virtual:
             virtual['comments'] = _('Comments')
         return virtual
