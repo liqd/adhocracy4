@@ -8,6 +8,7 @@ from django.utils.translation import ugettext as _
 from django.views import generic
 
 from adhocracy4.comments.models import Comment
+from adhocracy4.modules import models as module_models
 from adhocracy4.ratings.models import Rating
 
 
@@ -16,10 +17,26 @@ class VirtualFieldMixin:
         return OrderedDict()
 
 
-class ItemExportView(generic.ListView, VirtualFieldMixin):
+class AbstractCSVExportView(generic.View):
+    def get(self, request, *args, **kwargs):
+        response = HttpResponse(content_type='text/csv; charset=utf-8')
+        response['Content-Disposition'] = (
+            'attachment; filename="ideas.csv"'
+        )
+
+        writer = csv.writer(response, lineterminator='\n',
+                            quotechar='"', quoting=csv.QUOTE_ALL)
+        writer.writerow(self.get_header())
+        writer.writerows(self.export_rows())
+
+        return response
+
+
+class ItemExportView(AbstractCSVExportView,
+                     VirtualFieldMixin,
+                     generic.list.MultipleObjectMixin):
     fields = None
     exclude = None
-    virtual = None
     model = None
 
     def __init__(self):
@@ -56,8 +73,13 @@ class ItemExportView(generic.ListView, VirtualFieldMixin):
 
         return header, names
 
+    def dispatch(self, request, *args, **kwargs):
+        self.module = \
+            module_models.Module.objects.get(slug=kwargs['module_slug'])
+        return super().dispatch(request, *args, **kwargs)
+
     def get_queryset(self):
-        return super().get_queryset()
+        return super().get_queryset().filter(module=self.module)
 
     def get_virtual_fields(self):
         virtual = super().get_virtual_fields()
@@ -65,8 +87,12 @@ class ItemExportView(generic.ListView, VirtualFieldMixin):
             virtual['link'] = _('Link')
         return virtual
 
-    def get_link_data(self, item):
-        return self.request.build_absolute_uri(item.get_absolute_url())
+    def get_header(self):
+        return self._header
+
+    def export_rows(self):
+        for item in self.get_queryset().all():
+            yield [self.get_field_data(item, name) for name in self._names]
 
     def get_field_data(self, item, name):
         # Use custom getters if they are defined
@@ -88,25 +114,14 @@ class ItemExportView(generic.ListView, VirtualFieldMixin):
         # Finally try to get the fields data as a property
         return getattr(item, name, '')
 
-    def get_header(self):
-        return self._header
+    def get_link_data(self, item):
+        return self.request.build_absolute_uri(item.get_absolute_url())
 
-    def export_rows(self):
-        for item in self.get_queryset().all():
-            yield [self.get_field_data(item, name) for name in self._names]
+    def get_creator_data(self, item):
+        return item.creator.username
 
-    def get(self, request, *args, **kwargs):
-        response = HttpResponse(content_type='text/csv; charset=utf-8')
-        response['Content-Disposition'] = (
-            'attachment; filename="ideas.csv"'
-        )
-
-        writer = csv.writer(response, lineterminator='\n',
-                            quotechar='"', quoting=csv.QUOTE_ALL)
-        writer.writerow(self.get_header())
-        writer.writerows(self.export_rows())
-
-        return response
+    def get_created_data(self, item):
+        return item.created.isoformat()
 
 
 class ItemExportWithRatesMixin(VirtualFieldMixin):
