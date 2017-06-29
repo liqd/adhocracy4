@@ -88,6 +88,13 @@ class ItemExportView(generic.ListView, VirtualFieldMixin):
         # Finally try to get the fields data as a property
         return getattr(item, name, '')
 
+    def get_header(self):
+        return self._header
+
+    def export_rows(self):
+        for item in self.get_queryset().all():
+            yield [self.get_field_data(item, name) for name in self._names]
+
     def get(self, request, *args, **kwargs):
         response = HttpResponse(content_type='text/csv; charset=utf-8')
         response['Content-Disposition'] = (
@@ -96,11 +103,8 @@ class ItemExportView(generic.ListView, VirtualFieldMixin):
 
         writer = csv.writer(response, lineterminator='\n',
                             quotechar='"', quoting=csv.QUOTE_ALL)
-        writer.writerow(self._header)
-
-        for item in self.get_queryset().all():
-            data = [self.get_field_data(item, name) for name in self._names]
-            writer.writerow(data)
+        writer.writerow(self.get_header())
+        writer.writerows(self.export_rows())
 
         return response
 
