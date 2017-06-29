@@ -123,7 +123,7 @@ const DocumentManagement = React.createClass({
   |--------------------------------------------------------------------------
   */
 
-  getNewParagraph: function (name, text) {
+  getNewParagraph: function (name = '', text = '') {
     return {
       name: name,
       text: text,
@@ -132,7 +132,7 @@ const DocumentManagement = React.createClass({
   },
 
   handleParagraphAppend: function (chapterIndex) {
-    const newParagraph = this.getNewParagraph('', '')
+    const newParagraph = this.getNewParagraph()
     const diff = {}
     diff[chapterIndex] = {
       paragraphs: {
@@ -261,6 +261,7 @@ const DocumentManagement = React.createClass({
         <h2>{django.gettext('Contents')}</h2>
         <ChapterNav
           chapters={this.state.chapters}
+          activeChapter={this.state.chapters[chapterIndex]}
           onMoveUp={this.handleChapterMoveUp}
           onMoveDown={this.handleChapterMoveDown}
           onDelete={this.handleChapterDelete}

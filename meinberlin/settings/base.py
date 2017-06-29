@@ -76,6 +76,7 @@ INSTALLED_APPS = (
     'apps.maps.apps.Config',
     'apps.notifications.apps.Config',
     'apps.exports.apps.Config',
+    'apps.offlineevents.apps.Config',
 
     'apps.account.apps.Config',
     'apps.dashboard.apps.Config',

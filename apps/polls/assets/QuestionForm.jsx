@@ -58,7 +58,7 @@ let QuestionForm = React.createClass({
             <textarea
               id={'id_questions-' + this.props.key + '-name'}
               name={'questions-' + this.props.key + '-name'}
-              defaultValue={this.props.question.label}
+              value={this.props.question.label}
               onChange={this.handleLabelChange} />
             <ErrorList errors={this.props.errors} field="label" />
           </div>
