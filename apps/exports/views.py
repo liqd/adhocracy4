@@ -3,21 +3,75 @@ from collections import OrderedDict
 
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import FieldError
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from django.views import generic
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.modules import models as module_models
+from adhocracy4.projects.models import Project
 from adhocracy4.ratings.models import Rating
 
 
-class VirtualFieldMixin:
-    def get_virtual_fields(self):
-        return OrderedDict()
+def _get_exports(project):
+    exports = []
+    existing_views = set()
+    for phase in project.phases:
+        phase_view = phase.content().view
+        if hasattr(phase_view, 'exports'):
+            for name, view in phase_view.exports:
+                if view not in existing_views:
+                    existing_views.add(view)
+                    exports.append((name, view))
+    return exports
+
+
+class ExportProjectDispatcher(generic.RedirectView,
+                              generic.detail.SingleObjectMixin):
+    # TODO: permission checks
+    permanent = False
+    model = Project
+    slug_url_kwarg = 'project_slug'
+
+    def get_redirect_url(self, *args, **kwargs):
+        project = self.get_object()
+
+        assert project.module_set.count() == 1
+        module = project.module_set.first()
+
+        exports = _get_exports(project)
+        assert len(exports) <= 1
+
+        # Show error page if no exports are available
+
+        return reverse('export-module',
+                       kwargs={'module_slug': module.slug, 'export_id': 0})
+
+
+class ExportModuleDispatcher(generic.View):
+    # TODO: permission checks
+    def dispatch(self, request, *args, **kwargs):
+        export_id = int(kwargs.pop('export_id'))
+        module = module_models.Module.objects.get(slug=kwargs['module_slug'])
+        project = module.project
+        exports = _get_exports(project)
+        assert len(exports) > export_id
+
+        view = exports[export_id][1].as_view()
+        return view(request, module=module, *args, **kwargs)
 
 
 class AbstractCSVExportView(generic.View):
+    def dispatch(self, request, *args, **kwargs):
+        if 'module' in kwargs:
+            self.module = kwargs['module']
+        else:
+            self.module = \
+                module_models.Module.objects.get(slug=kwargs['module_slug'])
+
+        return super().dispatch(request, *args, **kwargs)
+
     def get(self, request, *args, **kwargs):
         response = HttpResponse(content_type='text/csv; charset=utf-8')
         response['Content-Disposition'] = (
@@ -30,6 +84,11 @@ class AbstractCSVExportView(generic.View):
         writer.writerows(self.export_rows())
 
         return response
+
+
+class VirtualFieldMixin:
+    def get_virtual_fields(self):
+        return OrderedDict()
 
 
 class ItemExportView(AbstractCSVExportView,
@@ -72,11 +131,6 @@ class ItemExportView(AbstractCSVExportView,
                 header.append(head)
 
         return header, names
-
-    def dispatch(self, request, *args, **kwargs):
-        self.module = \
-            module_models.Module.objects.get(slug=kwargs['module_slug'])
-        return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         return super().get_queryset().filter(module=self.module)
