@@ -288,3 +288,21 @@ class ItemExportWithLocationMixin(VirtualFieldMixin):
 
     def get_location_label_data(self, item):
         return getattr(item, 'point_label', '')
+
+
+class ItemExportWithModeratorStatement(VirtualFieldMixin):
+    def get_virtual_fields(self):
+        virtual = super().get_virtual_fields()
+        if 'moderator_feedback' not in virtual:
+            virtual['moderator_feedback'] = _('Moderator feedback')
+        if 'moderator_statement' not in virtual:
+            virtual['moderator_statement'] = _('Moderator statement')
+        return virtual
+
+    def get_moderator_feedback_data(self, item):
+        return item.get_moderator_feedback_display()
+
+    def get_moderator_statement_data(self, item):
+        if item.moderator_statement:
+            return strip_tags(item.moderator_statement.statement.strip())
+        return ''
