@@ -7,6 +7,7 @@ from . import models
 
 class ItemAdmin(admin.ModelAdmin):
     list_filter = ('module__project', 'module')
+    readonly_fields = ('creator', )
 
 
 class ModuleAdmin(admin.ModelAdmin):
