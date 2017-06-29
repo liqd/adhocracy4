@@ -42,10 +42,10 @@ class ItemExportView(generic.ListView, VirtualFieldMixin):
         for field in fields:
             if field.concrete \
                     and not (field.one_to_one and field.rel.parent_link) \
-                    and field.attname not in exclude \
-                    and field.attname not in names:
+                    and field.name not in exclude \
+                    and field.name not in names:
 
-                names.append(field.attname)
+                names.append(field.name)
                 header.append(str(field.verbose_name))
 
         virtual = self.get_virtual_fields()
