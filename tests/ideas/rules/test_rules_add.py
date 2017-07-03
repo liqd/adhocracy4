@@ -72,8 +72,7 @@ def test_phase_active_project_draft(phase_factory, user):
     assert project.is_draft
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, module)
-        # FIXME: why are they allowed to add content to drafted projects
-        # assert not rules.has_perm(perm_name, user, module)
+        assert not rules.has_perm(perm_name, user, module)
         assert rules.has_perm(perm_name, moderator, module)
         assert rules.has_perm(perm_name, initiator, module)
 

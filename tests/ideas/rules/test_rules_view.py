@@ -71,9 +71,8 @@ def test_phase_active_project_draft(phase_factory, idea_factory, user):
 
     assert project.is_draft
     with freeze_phase(phase):
-        # FIXME: why are they allowed to view content from drafted projects
-        # assert not rules.has_perm(perm_name, anonymous, item)
-        # assert not rules.has_perm(perm_name, user, item)
+        assert not rules.has_perm(perm_name, anonymous, item)
+        assert not rules.has_perm(perm_name, user, item)
         assert rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
 
