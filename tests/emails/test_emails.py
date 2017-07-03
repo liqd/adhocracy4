@@ -43,8 +43,9 @@ def test_send_sync(user):
 @pytest.mark.django_db
 def test_send_async(user):
     # Patch the background task decorator and reload the module
-    patch('background_task.background',
-          wraps=lambda **kwargs: lambda f: f).start()
+    def identity_decorator(*args, **kwargs):
+        return lambda fun: fun
+    patch('background_task.background', wraps=identity_decorator).start()
     import adhocracy4.emails.tasks
     importlib.reload(adhocracy4.emails.tasks)
 
