@@ -1,9 +1,17 @@
+from itertools import chain
 from django.apps import apps
 from django.conf import settings
-from django.db.models.signals import post_save
+from django.contrib.contenttypes.models import ContentType
+from django.db.models.signals import post_delete, post_save
 
 from .models import Action
 from .verbs import Verbs
+
+# Actions resulting from the create_system_actions management call
+SYSTEM_ACTIONABLES = (
+    ('a4phases', 'Phase'),
+    ('a4projects', 'Project')
+)
 
 
 def _extract_target(instance):
@@ -15,7 +23,7 @@ def _extract_target(instance):
     return target
 
 
-def add_action(sender, instance, created, **kwargs):
+def _add_action(sender, instance, created, **kwargs):
     actor = instance.creator if hasattr(instance, 'creator') else None
     target = None
     if created:
@@ -43,4 +51,15 @@ def add_action(sender, instance, created, **kwargs):
 
 
 for app, model in settings.A4_ACTIONABLES:
-    post_save.connect(add_action, apps.get_model(app, model))
+    post_save.connect(_add_action, apps.get_model(app, model))
+
+
+def _delete_action(sender, instance, **kwargs):
+    contenttype = ContentType.objects.get_for_model(sender)
+    Action.objects\
+        .filter(obj_content_type=contenttype, obj_object_id=instance.id)\
+        .delete()
+
+
+for app, model in chain(SYSTEM_ACTIONABLES, settings.A4_ACTIONABLES):
+    post_delete.connect(_delete_action, apps.get_model(app, model))

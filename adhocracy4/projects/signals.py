@@ -10,6 +10,7 @@ from .models import Project
 def backup_image_path(sender, instance, **kwargs):
     if issubclass(sender, Project):
         instance._current_image_file = instance.image
+        instance._current_tile_image_file = instance.tile_image
 
 
 @receiver(post_save)
@@ -18,9 +19,13 @@ def delete_old_image(sender, instance, **kwargs):
         if hasattr(instance, '_current_image_file'):
             if instance._current_image_file != instance.image:
                 services.delete_images([instance._current_image_file])
+        if hasattr(instance, '_current_tile_image_file'):
+            if instance._current_tile_image_file != instance.tile_image:
+                services.delete_images([instance._current_tile_image_file])
 
 
 @receiver(post_delete)
 def delete_images_for_project(sender, instance, **kwargs):
     if issubclass(sender, Project):
         services.delete_images([instance.image])
+        services.delete_images([instance.tile_image])
