@@ -6,6 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import FieldError
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.utils import timezone
 from django.utils.html import strip_tags
 from django.utils.translation import ugettext as _
 from django.views import generic
@@ -91,11 +92,16 @@ class AbstractCSVExportView(generic.View):
 
         return super().dispatch(request, *args, **kwargs)
 
+    def get_filename(self):
+        project = self.module.project
+        filename = '%s_%s.csv' % (project.slug,
+                                  timezone.now().strftime('%Y%m%dT%H%M%S'))
+        return filename
+
     def get(self, request, *args, **kwargs):
         response = HttpResponse(content_type='text/csv; charset=utf-8')
-        response['Content-Disposition'] = (
-            'attachment; filename="ideas.csv"'
-        )
+        response['Content-Disposition'] = \
+            'attachment; filename="%s"' % self.get_filename()
 
         writer = csv.writer(response, lineterminator='\n',
                             quotechar='"', quoting=csv.QUOTE_ALL)
