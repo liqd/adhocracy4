@@ -53,8 +53,8 @@ class ProjectForm(forms.ModelForm):
 
     class Meta:
         model = project_models.Project
-        fields = ['name', 'description', 'image', 'information', 'result',
-                  'is_archived']
+        fields = ['name', 'description', 'image', 'tile_image', 'information',
+                  'result', 'is_archived']
 
 
 class PhaseForm(forms.ModelForm):
@@ -361,7 +361,7 @@ class ExternalProjectBaseForm(forms.ModelForm):
 
     class Meta:
         model = extproject_models.ExternalProject
-        fields = ['name', 'url', 'description', 'image', 'is_archived']
+        fields = ['name', 'url', 'description', 'tile_image', 'is_archived']
 
 
 class ExternalProjectCreateForm(ExternalProjectBaseForm):
@@ -427,7 +427,7 @@ class BplanProjectBaseForm(ExternalProjectBaseForm):
 
     class Meta:
         model = bplan_models.Bplan
-        fields = ['name', 'url', 'description', 'image', 'is_archived',
+        fields = ['name', 'url', 'description', 'tile_image', 'is_archived',
                   'office_worker_email']
 
 

@@ -7,15 +7,8 @@ class ChoiceInline(admin.TabularInline):
     model = models.Choice
 
 
+@admin.register(models.Question)
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [
         ChoiceInline
     ]
-
-
-class VoteAdmin(admin.ModelAdmin):
-    list_filter = ('choice__question',)
-
-
-admin.site.register(models.Question, QuestionAdmin)
-admin.site.register(models.Vote, VoteAdmin)

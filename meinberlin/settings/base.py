@@ -75,6 +75,7 @@ INSTALLED_APPS = (
     'apps.moderatorfeedback.apps.Config',
     'apps.maps.apps.Config',
     'apps.notifications.apps.Config',
+    'apps.offlineevents.apps.Config',
 
     'apps.account.apps.Config',
     'apps.dashboard.apps.Config',
@@ -181,7 +182,8 @@ IMAGE_ALIASES = {
         'max_size': 5*10**6,
         'fileformats': ('image/png', 'image/jpeg', 'image/gif')
     },
-    'heroimage': {'min_resolution': (1300, 600)},
+    'heroimage': {'min_resolution': (1500, 500)},
+    'tileimage': {'min_resolution': (500, 300)},
     'logo': {'min_resolution': (200, 200), 'aspect_ratio': (1, 1)},
     'avatar': {'min_resolution': (200, 200)},
     'idea_image': {'min_resolution': (800, 200)},
@@ -251,7 +253,7 @@ SERVICE_KONTO_API_URL = 'https://skbref.verwalt-berlin.de/HHGWUserData/HHGWUserD
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_RESTRICT_BY_USER = True
-CKEDITOR_ALLOW_NONIMAGE_FILES = False
+CKEDITOR_ALLOW_NONIMAGE_FILES = True
 
 CKEDITOR_CONFIGS = {
     'default': {
