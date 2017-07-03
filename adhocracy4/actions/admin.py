@@ -5,4 +5,4 @@ from .models import Action
 
 @admin.register(Action)
 class ActionAdmin(admin.ModelAdmin):
-    readonly_fields = ('creator',)
+    readonly_fields = ('actor',)
