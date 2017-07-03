@@ -6,6 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import FieldError
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.http import HttpResponseNotFound
 from django.utils import timezone
 from django.utils.html import strip_tags
 from django.utils.translation import ugettext as _
@@ -43,14 +44,19 @@ class ExportProjectDispatcher(rules_mixins.PermissionRequiredMixin,
     def get_redirect_url(self, *args, **kwargs):
         project = self.get_object()
 
+        # Currently only exactly one module per project ist allowed
         assert project.module_set.count() == 1
         module = project.module_set.first()
 
+        # Currently only exactly one export view per project is allowed
         exports = get_exports(project)
         assert len(exports) <= 1
 
-        # Show error page if no exports are available
+        # Return a 404 response if no exports are available
+        if len(exports) == 0:
+            return HttpResponseNotFound()
 
+        # Redirect directly to the export page of the only export
         return reverse('export-module',
                        kwargs={'module_slug': module.slug, 'export_id': 0})
 
@@ -69,12 +75,16 @@ class ExportModuleDispatcher(rules_mixins.PermissionRequiredMixin,
         project = module.project
 
         self.project = project
+
+        # Since the PermissionRequiredMixin.dispatch method is never called
+        # we have to check permissions manually
         if not self.has_permission():
             return self.handle_no_permission()
 
         exports = get_exports(project)
         assert len(exports) > export_id
 
+        # Dispatch the request to the export view
         view = exports[export_id][1].as_view()
         return view(request, module=module, *args, **kwargs)
 
