@@ -210,10 +210,6 @@ class ItemExportWithRatesMixin(VirtualFieldMixin):
 
         return virtual
 
-    def _count_ratings(self, item, value):
-        ct = ContentType.objects.get_for_model(item)
-        return Rating.objects.filter(content_type=ct, value=value).count()
-
     def get_ratings_positive_data(self, item):
         if hasattr(item, 'positive_rating_count'):
             return item.positive_rating_count
@@ -232,6 +228,10 @@ class ItemExportWithRatesMixin(VirtualFieldMixin):
 
         return 0
 
+    def _count_ratings(self, item, value):
+        ct = ContentType.objects.get_for_model(item)
+        return Rating.objects.filter(content_type=ct, value=value).count()
+
 
 class ItemExportWithCommentCountMixin(VirtualFieldMixin):
     def get_virtual_fields(self):
@@ -245,11 +245,11 @@ class ItemExportWithCommentCountMixin(VirtualFieldMixin):
         # if hasattr(item, 'comment_count'):
         #     return item.comment_count
         if hasattr(item, 'comments'):
-            return self._comment_count(item)
+            return self._count_comments(item)
 
         return 0
 
-    def _comment_count(self, item):
+    def _count_comments(self, item):
         comment_ids = item.comments.values_list('id', flat=True)
         replies = Comment.objects.filter(parent_comment__in=comment_ids)
         return len(comment_ids) + len(replies)
