@@ -17,7 +17,8 @@ class ProjectManager(models.Manager):
         return self.get(name=name)
 
     def featured(self):
-        return self.filter(is_draft=False, is_archived=False).order_by('-created')[:8]
+        return self.filter(is_draft=False, is_archived=False)\
+                   .order_by('-created')[:8]
 
 
 class Project(base.TimeStampedModel):
@@ -72,6 +73,14 @@ class Project(base.TimeStampedModel):
             'The image will be shown as a decorative background image.'
         ),
         upload_to='projects/backgrounds',
+        blank=True)
+    tile_image = fields.ConfiguredImageField(
+        'tileimage',
+        verbose_name=_('Tile image'),
+        help_prefix=_(
+            'The image will be shown in the project tile.'
+        ),
+        upload_to='projects/tiles',
         blank=True)
     participants = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
