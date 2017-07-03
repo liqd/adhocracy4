@@ -59,7 +59,7 @@ class BplanSerializer(serializers.ModelSerializer):
 
         image_url = validated_data.pop('image_url', None)
         if image_url:
-            validated_data['image'] = \
+            validated_data['tile_image'] = \
                 self._download_image_from_url(image_url)
 
         bplan = super().create(validated_data)
@@ -91,7 +91,7 @@ class BplanSerializer(serializers.ModelSerializer):
 
         image_url = validated_data.pop('image_url', None)
         if image_url:
-            validated_data['image'] = \
+            validated_data['tile_image'] = \
                 self._download_image_from_url(image_url)
 
         return super().update(instance, validated_data)
@@ -145,16 +145,16 @@ class BplanSerializer(serializers.ModelSerializer):
         image_file = self._image_storage.open(file_name, 'rb')
         image = ImageFile(image_file, file_name)
         config = settings.IMAGE_ALIASES.get('*', {})
-        config.update(settings.IMAGE_ALIASES['heroimage'])
+        config.update(settings.IMAGE_ALIASES['tileimage'])
         validate_image(image, **config)
 
     @property
     def _image_storage(self):
-        return project_models.Project._meta.get_field('image').storage
+        return project_models.Project._meta.get_field('tile_image').storage
 
     @property
     def _image_upload_to(self):
-        return project_models.Project._meta.get_field('image').upload_to
+        return project_models.Project._meta.get_field('tile_image').upload_to
 
     def _generate_image_filename(self, filename):
         if callable(self._image_upload_to):
