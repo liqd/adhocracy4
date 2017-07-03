@@ -112,8 +112,8 @@ class AbstractCSVExportView(generic.View):
 
 
 class VirtualFieldMixin:
-    def get_virtual_fields(self):
-        return OrderedDict()
+    def get_virtual_fields(self, virtual):
+        return virtual
 
 
 class ItemExportView(AbstractCSVExportView,
@@ -138,8 +138,10 @@ class ItemExportView(AbstractCSVExportView,
         else:
             fields = meta.get_fields()
 
+        # Ensure that link is the first row even though it's a virtual field
         names = ['link']
         header = [_('Link')]
+
         for field in fields:
             if field.concrete \
                     and not (field.one_to_one and field.rel.parent_link) \
@@ -149,7 +151,9 @@ class ItemExportView(AbstractCSVExportView,
                 names.append(field.name)
                 header.append(str(field.verbose_name))
 
-        virtual = self.get_virtual_fields()
+        # Get virtual fields in their order from the Mixins
+        virtual = OrderedDict()
+        virtual = self.get_virtual_fields(virtual)
         for name, head in virtual.items():
             if name not in names:
                 names.append(name)
@@ -159,12 +163,6 @@ class ItemExportView(AbstractCSVExportView,
 
     def get_queryset(self):
         return super().get_queryset().filter(module=self.module)
-
-    def get_virtual_fields(self):
-        virtual = super().get_virtual_fields()
-        if 'link' not in virtual:
-            virtual['link'] = _('Link')
-        return virtual
 
     def get_header(self):
         return self._header
@@ -207,14 +205,13 @@ class ItemExportView(AbstractCSVExportView,
 
 
 class ItemExportWithRatesMixin(VirtualFieldMixin):
-    def get_virtual_fields(self):
-        virtual = super().get_virtual_fields()
+    def get_virtual_fields(self, virtual):
         if 'ratings_positive' not in virtual:
             virtual['ratings_positive'] = _('Positive ratings')
         if 'ratings_negative' not in virtual:
             virtual['ratings_negative'] = _('Negative ratings')
 
-        return virtual
+        return super().get_virtual_fields(virtual)
 
     def get_ratings_positive_data(self, item):
         if hasattr(item, 'positive_rating_count'):
@@ -240,11 +237,10 @@ class ItemExportWithRatesMixin(VirtualFieldMixin):
 
 
 class ItemExportWithCommentCountMixin(VirtualFieldMixin):
-    def get_virtual_fields(self):
-        virtual = super().get_virtual_fields()
+    def get_virtual_fields(self, virtual):
         if 'comment_count' not in virtual:
             virtual['comment_count'] = _('Comment count')
-        return virtual
+        return super().get_virtual_fields(virtual)
 
     def get_comment_count_data(self, item):
         # FIXME: the annotated comment_count does currently not include replies
@@ -265,11 +261,10 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
     COMMENT_FMT = '{date} - {username}\n{text}'
     REPLY_FMT = '@reply: {date} - {username}\n{text}'
 
-    def get_virtual_fields(self):
-        virtual = super().get_virtual_fields()
+    def get_virtual_fields(self, virtual):
         if 'comments' not in virtual:
             virtual['comments'] = _('Comments')
-        return virtual
+        return super().get_virtual_fields(virtual)
 
     def get_comments_data(self, item):
         if hasattr(item, 'comments'):
@@ -293,13 +288,12 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
 
 
 class ItemExportWithLocationMixin(VirtualFieldMixin):
-    def get_virtual_fields(self):
-        virtual = super().get_virtual_fields()
+    def get_virtual_fields(self, virtual):
         if 'location' not in virtual:
             virtual['location'] = _('Location')
         if 'location_label' not in virtual:
             virtual['location_label'] = _('Location label')
-        return virtual
+        return super().get_virtual_fields(virtual)
 
     def get_location_data(self, item):
         if hasattr(item, 'point'):
@@ -313,13 +307,12 @@ class ItemExportWithLocationMixin(VirtualFieldMixin):
 
 
 class ItemExportWithModeratorFeedback(VirtualFieldMixin):
-    def get_virtual_fields(self):
-        virtual = super().get_virtual_fields()
+    def get_virtual_fields(self, virtual):
         if 'moderator_feedback' not in virtual:
             virtual['moderator_feedback'] = _('Moderator feedback')
         if 'moderator_statement' not in virtual:
             virtual['moderator_statement'] = _('Moderator statement')
-        return virtual
+        return super().get_virtual_fields(virtual)
 
     def get_moderator_feedback_data(self, item):
         return item.get_moderator_feedback_display()
