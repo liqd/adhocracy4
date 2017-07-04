@@ -5,7 +5,6 @@ from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 from django.views.i18n import javascript_catalog
 from rest_framework import routers
@@ -19,6 +18,7 @@ from apps.bplan.api import BplanViewSet
 from apps.documents.api import DocumentViewSet
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
+from apps.users.decorators import user_is_project_admin
 
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
@@ -77,9 +77,9 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
 
     url(r'^upload/',
-        login_required(ck_views.upload), name='ckeditor_upload'),
-    url(r'^browse/',
-        never_cache(login_required(ck_views.browse)), name='ckeditor_browse'),
+        user_is_project_admin(ck_views.upload), name='ckeditor_upload'),
+    url(r'^browse/', never_cache(user_is_project_admin(ck_views.browse)),
+        name='ckeditor_browse'),
 
     url(r'^jsi18n/$', javascript_catalog,
         js_info_dict, name='javascript-catalog'),
