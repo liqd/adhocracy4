@@ -31,7 +31,7 @@ class AccountAdapter(DefaultAccountAdapter):
 
     def send_mail(self, template_prefix, email, context):
         user = context['user']
-        return UserAccountEmail.send(
+        return UserAccountEmail.send_sync(
             user,
             template_name=template_prefix,
             **context
