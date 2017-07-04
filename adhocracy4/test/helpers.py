@@ -1,4 +1,8 @@
+import importlib
+import json
 import os
+from contextlib import contextmanager
+from unittest import mock
 from urllib.parse import urlparse
 
 from django.conf import settings
@@ -33,3 +37,29 @@ def redirect_target(response):
 def render_template(string, context=None):
     context = Context(context or {})
     return Template(string).render(context)
+
+
+@contextmanager
+def skip_background_mail():
+    def skip_background_decorator(*args, **kwargs):
+        # ignore args and kwargs as they are arguments for background tasks
+        def send_sync_decorator(fun):
+            def send_sync_checked(*args, **kwargs):
+                # Ensure the arguments are json serializable
+                json.dumps((args, kwargs))
+                return fun(*args, **kwargs)
+            return send_sync_checked
+        return send_sync_decorator
+
+    decorator = 'background_task.background'
+    decorated_module = 'adhocracy4.emails.tasks'
+
+    module = importlib.import_module(decorated_module)
+
+    # Patch the decorator and reload the module
+    with mock.patch(decorator, wraps=skip_background_decorator):
+        importlib.reload(module)
+        yield
+
+    # Reset the decorator by reloading the module
+    importlib.reload(module)

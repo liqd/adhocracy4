@@ -50,12 +50,12 @@ class EmailBase:
         return [translation.get_language(), self.fallback_language]
 
     @classmethod
-    def send(cls, object, *args, **kwargs):
+    def send_sync(cls, object, *args, **kwargs):
         """Send email synchronously."""
         return cls().dispatch(object, *args, **kwargs)
 
     @classmethod
-    def send_async(cls, object, *args, **kwargs):
+    def send(cls, object, *args, **kwargs):
         """Send email asynchronously.
 
         NOTE: args and kwargs must be JSON serializable.
