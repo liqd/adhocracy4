@@ -87,7 +87,7 @@ parameter :
     }
     res = POST(https://mein.berlin.de/api/organisations/5/bplan/, data)
 
-Use the update via PATH to change the draft state of the BPLAN project.
+To change the draft state update the BPLAN project via PATCH.
 
 Publish:
 
