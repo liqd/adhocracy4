@@ -75,7 +75,7 @@ Example:
     }
     res = PATCH(https://mein.berlin.de/api/organisations/5/bplan/36/, data)
 
-## Publishing/Unbublishing a BPLAN Project
+## Publishing/Unpublishing a BPLAN Project
 
 When creating a BPLAN project as above, the project is immediately being
 published. To create a BPLAN project in a draft state set the *is_draft*
