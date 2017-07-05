@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.modules import views as module_views
 from apps.contrib import filters
+from apps.exports import views as export_views
 
 from . import forms
 from . import models
@@ -31,9 +32,25 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
+class IdeaExportView(export_views.ItemExportView,
+                     export_views.ItemExportWithRatesMixin,
+                     export_views.ItemExportWithCommentCountMixin,
+                     export_views.ItemExportWithCommentsMixin):
+    model = models.Idea
+    fields = ['name', 'description', 'creator', 'created']
+
+    def get_queryset(self):
+        return super().get_queryset() \
+            .filter(module=self.module)\
+            .annotate_comment_count()\
+            .annotate_positive_rating_count()\
+            .annotate_negative_rating_count()
+
+
 class IdeaListView(module_views.ItemListView):
     model = models.Idea
     filter_set = IdeaFilterSet
+    exports = [(_('Ideas with comments'), IdeaExportView)]
 
     def get_queryset(self):
         return super().get_queryset().filter(module=self.module) \

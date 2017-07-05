@@ -15,6 +15,8 @@ register(factories.OrganisationFactory)
 register(factories.PhaseFactory)
 register(factories.ContentTypeFactory)
 register(factories.CommentFactory)
+register(factories.RatingFactory)
+register(factories.ModeratorStatementFactory)
 
 register(a4_factories.ProjectFactory)
 register(a4_factories.ModuleFactory)

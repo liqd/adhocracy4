@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
@@ -210,6 +212,7 @@ class DashboardProjectManagementView(mixins.DashboardBaseMixin,
             kwargs={'organisation_slug': self.organisation.slug, })
 
 
+@lru_cache()
 def get_management_view(project):
     """
     Test if any phase has a management_view set.
