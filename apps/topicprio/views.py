@@ -7,6 +7,7 @@ from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import filters
 from apps.contrib.views import ProjectContextDispatcher
 from apps.dashboard.mixins import DashboardBaseMixin
+from apps.exports import views as export_views
 from apps.ideas import views as idea_views
 
 from . import forms
@@ -31,9 +32,25 @@ class TopicFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
+class TopicExportView(export_views.ItemExportView,
+                      export_views.ItemExportWithRatesMixin,
+                      export_views.ItemExportWithCommentCountMixin,
+                      export_views.ItemExportWithCommentsMixin):
+    model = models.Topic
+    fields = ['name', 'description', 'creator', 'created']
+
+    def get_queryset(self):
+        return super().get_queryset() \
+            .filter(module=self.module)\
+            .annotate_comment_count()\
+            .annotate_positive_rating_count()\
+            .annotate_negative_rating_count()
+
+
 class TopicListView(idea_views.AbstractIdeaListView):
     model = models.Topic
     filter_set = TopicFilterSet
+    exports = [(_('Topics with comments'), TopicExportView)]
 
     def get_queryset(self):
         return super().get_queryset()\
