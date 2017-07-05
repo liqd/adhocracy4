@@ -205,7 +205,7 @@ class ItemExportView(AbstractCSVExportView,
         return self.request.build_absolute_uri(item.get_absolute_url())
 
     def get_description_data(self, item):
-        return strip_tags(item.description.strip())
+        return strip_tags(item.description).strip()
 
     def get_creator_data(self, item):
         return item.creator.username
@@ -286,14 +286,14 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
             yield self.COMMENT_FMT.format(
                 date=comment.created.isoformat(),
                 username=comment.creator.username,
-                text=strip_tags(comment.comment.strip())
+                text=strip_tags(comment.comment).strip()
             )
 
             for reply in comment.child_comments.all():
                 yield self.REPLY_FMT.format(
                     date=reply.created.isoformat(),
                     username=reply.creator.username,
-                    text=strip_tags(reply.comment.strip())
+                    text=strip_tags(reply.comment).strip()
                 )
 
 
@@ -329,5 +329,5 @@ class ItemExportWithModeratorFeedback(VirtualFieldMixin):
 
     def get_moderator_statement_data(self, item):
         if item.moderator_statement:
-            return strip_tags(item.moderator_statement.statement.strip())
+            return strip_tags(item.moderator_statement.statement).strip()
         return ''
