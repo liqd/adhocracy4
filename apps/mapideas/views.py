@@ -36,8 +36,7 @@ class MapIdeaExportView(export_views.ItemExportView,
                         export_views.ItemExportWithRatesMixin,
                         export_views.ItemExportWithCommentCountMixin,
                         export_views.ItemExportWithCommentsMixin,
-                        export_views.ItemExportWithLocationMixin,
-                        export_views.ItemExportWithModeratorFeedback):
+                        export_views.ItemExportWithLocationMixin):
     model = models.MapIdea
     fields = ['name', 'description', 'creator', 'created']
 
