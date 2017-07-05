@@ -1,10 +1,13 @@
 from contextlib import contextmanager
 from datetime import timedelta
 
+import factory
 from django.contrib.auth.models import AnonymousUser
+from django.db.models.signals import post_save
 from freezegun import freeze_time
 
 
+@factory.django.mute_signals(post_save)
 def setup_phase(phase_factory, item_factory, phase_content_class, **kwargs):
     phase_content = phase_content_class()
     phase = phase_factory(phase_content=phase_content, **kwargs)
@@ -14,6 +17,7 @@ def setup_phase(phase_factory, item_factory, phase_content_class, **kwargs):
     return phase, module, project, item
 
 
+@factory.django.mute_signals(post_save)
 def setup_users(project):
     anonymous = AnonymousUser()
     moderator = project.moderators.first()
