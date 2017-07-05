@@ -6,9 +6,9 @@ from django.views import generic
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.modules import models as module_models
-from adhocracy4.projects import views as project_views
 from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import filters
+from apps.contrib.views import ProjectContextDispatcher
 
 from . import forms
 from . import models
@@ -36,7 +36,7 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class AbstractIdeaListView(project_views.ProjectContextDispatcher,
+class AbstractIdeaListView(ProjectContextDispatcher,
                            filter_views.FilteredListView):
     paginate_by = 15
 
@@ -53,7 +53,7 @@ class IdeaListView(AbstractIdeaListView):
             .annotate_comment_count()
 
 
-class AbstractIdeaDetailView(project_views.ProjectContextDispatcher,
+class AbstractIdeaDetailView(ProjectContextDispatcher,
                              rules_mixins.PermissionRequiredMixin,
                              generic.DetailView):
     pass
@@ -66,7 +66,7 @@ class IdeaDetailView(AbstractIdeaDetailView):
     permission_required = 'meinberlin_ideas.view_idea'
 
 
-class AbstractIdeaCreateView(project_views.ProjectContextDispatcher,
+class AbstractIdeaCreateView(ProjectContextDispatcher,
                              rules_mixins.PermissionRequiredMixin,
                              generic.CreateView):
     """Create an idea in the context of a module."""
@@ -100,7 +100,7 @@ class IdeaCreateView(AbstractIdeaCreateView):
     template_name = 'meinberlin_ideas/idea_create_form.html'
 
 
-class AbstractIdeaUpdateView(project_views.ProjectContextDispatcher,
+class AbstractIdeaUpdateView(ProjectContextDispatcher,
                              rules_mixins.PermissionRequiredMixin,
                              generic.UpdateView):
 
@@ -120,7 +120,7 @@ class IdeaUpdateView(AbstractIdeaUpdateView):
     template_name = 'meinberlin_ideas/idea_update_form.html'
 
 
-class AbstractIdeaDeleteView(project_views.ProjectContextDispatcher,
+class AbstractIdeaDeleteView(ProjectContextDispatcher,
                              rules_mixins.PermissionRequiredMixin,
                              generic.DeleteView):
 

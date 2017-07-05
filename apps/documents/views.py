@@ -1,13 +1,13 @@
 from django.views import generic
 
-from adhocracy4.projects import views as project_views
 from adhocracy4.rules import mixins as rules_mixins
+from apps.contrib.views import ProjectContextDispatcher
 from apps.dashboard.mixins import DashboardBaseMixin
 
 from . import models
 
 
-class DocumentManagementView(project_views.ProjectContextDispatcher,
+class DocumentManagementView(ProjectContextDispatcher,
                              generic.TemplateView,
                              DashboardBaseMixin,
                              rules_mixins.PermissionRequiredMixin):
@@ -25,7 +25,7 @@ class DocumentManagementView(project_views.ProjectContextDispatcher,
         return context
 
 
-class ChapterDetailView(project_views.ProjectContextDispatcher,
+class ChapterDetailView(ProjectContextDispatcher,
                         rules_mixins.PermissionRequiredMixin,
                         generic.DetailView):
     model = models.Chapter
@@ -49,7 +49,7 @@ class DocumentDetailView(ChapterDetailView):
             .first()
 
 
-class ParagraphDetailView(project_views.ProjectContextDispatcher,
+class ParagraphDetailView(ProjectContextDispatcher,
                           rules_mixins.PermissionRequiredMixin,
                           generic.DetailView):
     model = models.Paragraph

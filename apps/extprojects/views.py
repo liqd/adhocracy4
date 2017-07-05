@@ -1,12 +1,12 @@
 from django.shortcuts import get_object_or_404
 from django.views import generic
 
-from adhocracy4.projects import views as project_views
+from apps.contrib.views import ProjectContextDispatcher
 
 from . import models
 
 
-class ExternalProjectRedirectView(project_views.ProjectContextDispatcher,
+class ExternalProjectRedirectView(ProjectContextDispatcher,
                                   generic.RedirectView):
     permanent = True
 

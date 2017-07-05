@@ -2,14 +2,14 @@ from django.core.urlresolvers import reverse_lazy
 from django.views import generic
 from django.views.generic import TemplateView
 
-from adhocracy4.projects import views as project_views
 from adhocracy4.rules import mixins as rules_mixins
+from apps.contrib.views import ProjectContextDispatcher
 
 from . import forms
 from . import models
 
 
-class BplanStatementFormView(project_views.ProjectContextDispatcher,
+class BplanStatementFormView(ProjectContextDispatcher,
                              rules_mixins.PermissionRequiredMixin,
                              generic.CreateView):
     model = models.Statement

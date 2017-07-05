@@ -3,9 +3,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
-from adhocracy4.projects import views as project_views
 from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import filters
+from apps.contrib.views import ProjectContextDispatcher
 from apps.dashboard.mixins import DashboardBaseMixin
 from apps.ideas import views as idea_views
 
@@ -69,7 +69,7 @@ class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class TopicMgmtView(project_views.ProjectContextDispatcher,
+class TopicMgmtView(ProjectContextDispatcher,
                     DashboardBaseMixin,
                     rules_mixins.PermissionRequiredMixin,
                     filter_views.FilteredListView):
