@@ -273,7 +273,7 @@ class ProjectUpdateForm(ProjectEditFormBase):
                 objects['module_settings'].save()
 
         if self.show_categories_form:
-            module = project.modules.first()
+            module = project.module_set.first()
             categories = objects['categories']
             for category in categories:
                 category.module = module
