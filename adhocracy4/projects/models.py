@@ -146,7 +146,7 @@ class Project(base.TimeStampedModel):
         return not self.is_public
 
     @functional.cached_property
-    def active_module(self):
+    def last_active_module(self):
         """Return the module of the currently active or last past phase."""
         phase = self.active_phase or self.past_phases.first()
         if phase:
