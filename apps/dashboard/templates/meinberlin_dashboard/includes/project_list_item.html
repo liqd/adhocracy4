@@ -58,5 +58,13 @@
             </a>
         </span>
         {% endif %}
+
+        <span class="list-item__action">
+            <a href="{% url 'meinberlin_offlineevents:offlineevent-list' slug=project.slug %}"
+               class="button button--light button--small">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                {% trans 'Offline Events' %}
+            </a>
+        </span>
     </div>
 </li>

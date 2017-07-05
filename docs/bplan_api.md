@@ -74,3 +74,31 @@ Example:
         "end_date": "2019-01-01 00:00",
     }
     res = PATCH(https://mein.berlin.de/api/organisations/5/bplan/36/, data)
+
+## Publishing/Unpublishing a BPLAN Project
+
+When creating a BPLAN project as above, the project is immediately being
+published. To create a BPLAN project in a draft state set the *is_draft*
+parameter :
+
+    data = {
+        ...
+        "is_draft": "True",
+    }
+    res = POST(https://mein.berlin.de/api/organisations/5/bplan/, data)
+
+To change the draft state update the BPLAN project via PATCH.
+
+Publish:
+
+    data = {
+        "is_daft": "False"
+    }
+    res = PATCH(https://mein.berlin.de/api/organisations/5/bplan/36/, data)
+
+Unpublish:
+
+    data = {
+        "is_daft": "True"
+    }
+    res = PATCH(https://mein.berlin.de/api/organisations/5/bplan/36/, data)

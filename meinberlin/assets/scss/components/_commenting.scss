@@ -15,6 +15,10 @@
     display: block;
     width: 100%;
     text-align: left;
+
+    &.active {
+        color: $brand-primary;
+    }
 }
 
 .commenting__actions {

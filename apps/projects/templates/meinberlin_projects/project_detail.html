@@ -15,7 +15,7 @@
                 {% if request.user.is_authenticated %}
                     {% react_follows project %}
                 {% endif %}
-                {% has_perm 'meinberlin_projects.add_project' request.user project as user_may_change %}
+                {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
                 {% if user_may_change %}
                     <a href="{% url 'dashboard-project-edit' project.slug %}" class="button button--light">{% trans 'Edit' %}</a>
                 {% endif %}
