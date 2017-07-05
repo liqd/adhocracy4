@@ -12,5 +12,5 @@ class ExternalProjectRedirectView(ProjectContextDispatcher,
 
     def get_redirect_url(self, *args, **kwargs):
         extproject = get_object_or_404(models.ExternalProject,
-                                       module=self.project.active_module)
+                                       module=self.project.last_active_module)
         return extproject.url

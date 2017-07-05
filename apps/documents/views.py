@@ -21,7 +21,7 @@ class DocumentManagementView(ProjectContextDispatcher,
     def get_context_data(self, **kwargs):
         context = super(DocumentManagementView, self)\
             .get_context_data(**kwargs)
-        context['module'] = self.project.active_module
+        context['module'] = self.project.last_active_module
         return context
 
 
@@ -38,14 +38,15 @@ class ChapterDetailView(ProjectContextDispatcher,
 
     @property
     def chapter_list(self):
-        return models.Chapter.objects.filter(module=self.project.active_module)
+        return models.Chapter.objects.filter(
+            module=self.project.last_active_module)
 
 
 class DocumentDetailView(ChapterDetailView):
 
     def get_object(self):
         return models.Chapter.objects\
-            .filter(module=self.project.active_module)\
+            .filter(module=self.project.last_active_module)\
             .first()
 
 

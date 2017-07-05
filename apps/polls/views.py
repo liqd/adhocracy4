@@ -34,10 +34,10 @@ class PollDetailView(ProjectContextDispatcher,
 
     def get_object(self):
         return get_object_or_404(models.Poll,
-                                 module=self.project.active_module)
+                                 module=self.project.last_active_module)
 
     def get_permission_object(self):
-        return self.project.active_module
+        return self.project.last_active_module
 
 
 class PollManagementView(ProjectContextDispatcher,
@@ -56,10 +56,11 @@ class PollManagementView(ProjectContextDispatcher,
         return self.get_or_create_poll()
 
     def get_or_create_poll(self):
+        module = self.project.last_active_module
         try:
-            obj = models.Poll.objects.get(module=self.project.active_module)
+            obj = models.Poll.objects.get(module=module)
         except models.Poll.DoesNotExist:
-            obj = models.Poll(module=self.project.active_module,
+            obj = models.Poll(module=module,
                               creator=self.request.user)
             obj.save()
         return obj

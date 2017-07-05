@@ -19,10 +19,10 @@ class BplanStatementFormView(ProjectContextDispatcher,
     success_url = reverse_lazy('meinberlin_bplan:statement-sent')
 
     def get_permission_object(self, *args, **kwargs):
-        return self.project.active_module
+        return self.project.last_active_module
 
     def form_valid(self, form):
-        form.instance.module = self.project.active_module
+        form.instance.module = self.project.last_active_module
         return super().form_valid(form)
 
 

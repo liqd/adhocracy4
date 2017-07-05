@@ -16,7 +16,7 @@ from . import models
 
 def get_ordering_choices(request):
     choices = (('-created', _('Most recent')),)
-    if request.project.active_module.has_feature('rate', models.Idea):
+    if request.project.last_active_module.has_feature('rate', models.Idea):
         choices += ('-positive_rating_count', _('Most popular')),
     choices += ('-comment_count', _('Most commented')),
     return choices
@@ -47,7 +47,7 @@ class IdeaListView(AbstractIdeaListView):
 
     def get_queryset(self):
         return super().get_queryset()\
-            .filter(module=self.project.active_module) \
+            .filter(module=self.project.last_active_module) \
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()
@@ -106,10 +106,10 @@ class AbstractIdeaUpdateView(ProjectContextDispatcher,
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['module'] = self.project.active_module
-        if self.project.active_module.settings_instance:
+        kwargs['module'] = self.project.last_active_module
+        if self.project.last_active_module.settings_instance:
             kwargs['settings_instance'] = \
-                self.project.active_module.settings_instance
+                self.project.last_active_module.settings_instance
         return kwargs
 
 
