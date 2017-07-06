@@ -4,14 +4,14 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.views import generic
 
-from adhocracy4.projects import mixins as project_mixins
 from adhocracy4.rules import mixins as rules_mixins
+from apps.contrib.views import ProjectContextDispatcher
 from apps.dashboard.mixins import DashboardBaseMixin
 
 from . import models
 
 
-class PollDetailView(project_mixins.ProjectMixin,
+class PollDetailView(ProjectContextDispatcher,
                      rules_mixins.PermissionRequiredMixin,
                      generic.DetailView):
     model = models.Poll
@@ -33,18 +33,21 @@ class PollDetailView(project_mixins.ProjectMixin,
             )
 
     def get_object(self):
-        return get_object_or_404(models.Poll, module=self.module)
+        return get_object_or_404(models.Poll,
+                                 module=self.project.last_active_module)
 
     def get_permission_object(self):
-        return self.module
+        return self.project.last_active_module
 
 
-class PollManagementView(DashboardBaseMixin,
+class PollManagementView(ProjectContextDispatcher,
+                         DashboardBaseMixin,
                          rules_mixins.PermissionRequiredMixin,
                          generic.DetailView):
     template_name = 'meinberlin_polls/poll_management_form.html'
     model = models.Poll
     permission_required = 'a4projects.add_project'
+    project_url_kwarg = 'slug'
 
     # Dashboard related attributes
     menu_item = 'project'
@@ -53,10 +56,12 @@ class PollManagementView(DashboardBaseMixin,
         return self.get_or_create_poll()
 
     def get_or_create_poll(self):
+        module = self.project.last_active_module
         try:
-            obj = models.Poll.objects.get(module=self.module)
+            obj = models.Poll.objects.get(module=module)
         except models.Poll.DoesNotExist:
-            obj = models.Poll(module=self.module, creator=self.request.user)
+            obj = models.Poll(module=module,
+                              creator=self.request.user)
             obj.save()
         return obj
 
@@ -64,11 +69,3 @@ class PollManagementView(DashboardBaseMixin,
         return reverse(
             'dashboard-project-list',
             kwargs={'organisation_slug': self.organisation.slug, })
-
-    def dispatch(self, *args, **kwargs):
-        self.project = kwargs['project']
-        self.module = self.project.module_set.first()
-        self.request.module = self.module
-        self.poll = self.get_or_create_poll()
-
-        return super(PollManagementView, self).dispatch(*args, **kwargs)
