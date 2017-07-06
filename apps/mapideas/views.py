@@ -1,10 +1,9 @@
-from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters import filters as a4_filters
-from adhocracy4.modules import views as module_views
 from apps.contrib import filters
 from apps.exports import views as export_views
+from apps.ideas import views as idea_views
 
 from . import forms
 from . import models
@@ -12,7 +11,7 @@ from . import models
 
 def get_ordering_choices(request):
     choices = (('-created', _('Most recent')),)
-    if request.module.has_feature('rate', models.MapIdea):
+    if request.project.last_active_module.has_feature('rate', models.MapIdea):
         choices += ('-positive_rating_count', _('Most popular')),
     choices += ('-comment_count', _('Most commented')),
     return choices
@@ -48,7 +47,7 @@ class MapIdeaExportView(export_views.ItemExportView,
             .annotate_negative_rating_count()
 
 
-class MapIdeaListView(module_views.ItemListView):
+class MapIdeaListView(idea_views.AbstractIdeaListView):
     model = models.MapIdea
     filter_set = MapIdeaFilterSet
     exports = [(_('Ideas with location and comments'), MapIdeaExportView)]
@@ -60,39 +59,36 @@ class MapIdeaListView(module_views.ItemListView):
         return super().dispatch(request, **kwargs)
 
     def get_queryset(self):
-        return super().get_queryset().filter(module=self.module) \
+        return super().get_queryset()\
+            .filter(module=self.project.last_active_module) \
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()
 
 
-class MapIdeaDetailView(module_views.ItemDetailView):
+class MapIdeaDetailView(idea_views.AbstractIdeaDetailView):
     model = models.MapIdea
     queryset = models.MapIdea.objects.annotate_positive_rating_count()\
         .annotate_negative_rating_count()
     permission_required = 'meinberlin_mapideas.view_idea'
 
 
-class MapIdeaCreateView(module_views.ItemCreateView):
+class MapIdeaCreateView(idea_views.AbstractIdeaCreateView):
     model = models.MapIdea
     form_class = forms.MapIdeaForm
     permission_required = 'meinberlin_mapideas.add_idea'
     template_name = 'meinberlin_mapideas/mapidea_create_form.html'
 
 
-class MapIdeaUpdateView(module_views.ItemUpdateView):
+class MapIdeaUpdateView(idea_views.AbstractIdeaUpdateView):
     model = models.MapIdea
     form_class = forms.MapIdeaForm
     permission_required = 'meinberlin_mapideas.change_idea'
     template_name = 'meinberlin_mapideas/mapidea_update_form.html'
 
 
-class MapIdeaDeleteView(module_views.ItemDeleteView):
+class MapIdeaDeleteView(idea_views.AbstractIdeaDeleteView):
     model = models.MapIdea
     success_message = _('Your Idea has been deleted')
     permission_required = 'meinberlin_mapideas.change_idea'
     template_name = 'meinberlin_mapideas/mapidea_confirm_delete.html'
-
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, self.success_message)
-        return super().delete(request, *args, **kwargs)
