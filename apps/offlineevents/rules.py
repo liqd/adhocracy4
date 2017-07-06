@@ -23,9 +23,3 @@ rules.add_perm(
     'meinberlin_offlineevents.change_offlineevent',
     is_superuser | is_initiator
 )
-
-
-rules.add_perm(
-    'meinberlin_offlineevents.delete_offlineevent',
-    is_superuser | is_initiator
-)
