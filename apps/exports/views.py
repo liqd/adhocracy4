@@ -2,6 +2,7 @@ import csv
 from collections import OrderedDict
 from functools import lru_cache
 
+import xlsxwriter
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import FieldError
 from django.core.urlresolvers import reverse
@@ -121,12 +122,50 @@ class AbstractCSVExportView(generic.View):
         return response
 
 
+class AbstractXlsxExportView(generic.View):
+    def dispatch(self, request, *args, **kwargs):
+        if 'module' in kwargs:
+            self.module = kwargs['module']
+        else:
+            self.module = \
+                module_models.Module.objects.get(slug=kwargs['module_slug'])
+
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_filename(self):
+        project = self.module.project
+        filename = '%s_%s.xlsx' % (project.slug,
+                                   timezone.now().strftime('%Y%m%dT%H%M%S'))
+        return filename
+
+    def get(self, request, *args, **kwargs):
+        response = HttpResponse(
+            content_type='application/vnd.openxmlformats-officedocument'
+                         '.spreadsheetml.sheet')
+        response['Content-Disposition'] = \
+            'attachment; filename="%s"' % self.get_filename()
+
+        workbook = xlsxwriter.Workbook(response, {'in_memory': True})
+        worksheet = workbook.add_worksheet()
+
+        for colnum, field in enumerate(self.get_header()):
+            worksheet.write(0, colnum, field)
+
+        for rownum, row in enumerate(self.export_rows(), start=1):
+            for colnum, field in enumerate(row):
+                worksheet.write(rownum, colnum, field)
+
+        workbook.close()
+
+        return response
+
+
 class VirtualFieldMixin:
     def get_virtual_fields(self, virtual):
         return virtual
 
 
-class ItemExportView(AbstractCSVExportView,
+class ItemExportView(AbstractXlsxExportView,
                      VirtualFieldMixin,
                      generic.list.MultipleObjectMixin):
     fields = None
@@ -205,7 +244,7 @@ class ItemExportView(AbstractCSVExportView,
         return self.request.build_absolute_uri(item.get_absolute_url())
 
     def get_description_data(self, item):
-        return strip_tags(item.description.strip())
+        return strip_tags(item.description).strip()
 
     def get_creator_data(self, item):
         return item.creator.username
@@ -286,14 +325,14 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
             yield self.COMMENT_FMT.format(
                 date=comment.created.isoformat(),
                 username=comment.creator.username,
-                text=strip_tags(comment.comment.strip())
+                text=strip_tags(comment.comment).strip()
             )
 
             for reply in comment.child_comments.all():
                 yield self.REPLY_FMT.format(
                     date=reply.created.isoformat(),
                     username=reply.creator.username,
-                    text=strip_tags(reply.comment.strip())
+                    text=strip_tags(reply.comment).strip()
                 )
 
 
@@ -329,5 +368,5 @@ class ItemExportWithModeratorFeedback(VirtualFieldMixin):
 
     def get_moderator_statement_data(self, item):
         if item.moderator_statement:
-            return strip_tags(item.moderator_statement.statement.strip())
+            return strip_tags(item.moderator_statement.statement).strip()
         return ''
