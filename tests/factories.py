@@ -117,3 +117,20 @@ class CommentFactory(factory.django.DjangoModelFactory):
 
     comment = factory.Faker('text')
     creator = factory.SubFactory(UserFactory)
+
+
+class RatingFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = 'a4ratings.Rating'
+
+    value = 1
+    creator = factory.SubFactory(UserFactory)
+
+
+class ModeratorStatementFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'meinberlin_moderatorfeedback.ModeratorStatement'
+
+    statement = factory.Faker('text')
+    creator = factory.SubFactory(UserFactory)
