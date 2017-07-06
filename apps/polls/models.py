@@ -92,7 +92,7 @@ class Vote(UserGeneratedContentModel):
     # Make Vote instances behave like items for rule checking
     @property
     def module(self):
-        self.choice.question.poll.module
+        return self.choice.question.poll.module
 
     @property
     def project(self):
