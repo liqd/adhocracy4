@@ -4,7 +4,7 @@ var django = require('django')
 var update = require('react-addons-update')
 var ChapterNav = require('./ChapterNav')
 var ChapterForm = require('./ChapterForm')
-var Alert = require('../../contrib/static/js/Alert')
+var Alert = require('../../contrib/assets/Alert')
 
 const DocumentManagement = React.createClass({
   getInitialState: function () {

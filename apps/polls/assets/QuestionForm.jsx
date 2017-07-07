@@ -2,7 +2,7 @@ var React = require('react')
 var django = require('django')
 var FlipMove = require('react-flip-move')
 var ChoiceForm = require('./ChoiceForm')
-var ErrorList = require('../../contrib/static/js/ErrorList')
+var ErrorList = require('../../contrib/assets/ErrorList')
 
 let QuestionForm = React.createClass({
   /*

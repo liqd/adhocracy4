@@ -4,7 +4,7 @@ var django = require('django')
 var update = require('react-addons-update')
 var FlipMove = require('react-flip-move')
 var QuestionForm = require('./QuestionForm')
-var Alert = require('../../contrib/static/js/Alert')
+var Alert = require('../../contrib/assets/Alert')
 
 let PollManagement = React.createClass({
   getInitialState: function () {
