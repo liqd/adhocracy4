@@ -54,7 +54,10 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = project_models.Project
         fields = ['name', 'description', 'image', 'tile_image', 'information',
-                  'result', 'is_archived']
+                  'result', 'is_archived', 'is_public']
+        labels = {
+            'is_public': _('This project is public.')
+        }
 
 
 class PhaseForm(forms.ModelForm):

@@ -21,6 +21,8 @@
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project.information %}
 
+    {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.project.is_public %}
+
     {% if view.object %}
         {% include 'meinberlin_embed/includes/project_embed_code.html' with project=view.object %}
     {% endif %}
