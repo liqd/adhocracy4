@@ -28,7 +28,7 @@ blueprints = [
          content=[
              ideas_phases.CollectPhase(),
          ],
-         image='images/blueprints/brainstorming.svg',
+         image='images/brainstorming.svg',
          settings_model=None,
      )),
     ('map-brainstorming',
@@ -40,7 +40,7 @@ blueprints = [
          content=[
              mapideas_phases.CollectPhase(),
          ],
-         image='images/blueprints/map-brainstorming.svg',
+         image='images/map-brainstorming.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
     ('map-idea-collection',
@@ -53,7 +53,7 @@ blueprints = [
              mapideas_phases.CollectPhase(),
              mapideas_phases.RatingPhase()
          ],
-         image='images/blueprints/map-idea-collection.svg',
+         image='images/map-idea-collection.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
     ('agenda-setting',
@@ -68,7 +68,7 @@ blueprints = [
              ideas_phases.CollectPhase(),
              ideas_phases.RatingPhase(),
          ],
-         image='images/blueprints/agenda-setting.svg',
+         image='images/agenda-setting.svg',
          settings_model=None,
      )),
     ('text-review',
@@ -81,7 +81,7 @@ blueprints = [
          content=[
              documents_phases.CommentPhase(),
          ],
-         image='images/blueprints/text-review.svg',
+         image='images/text-review.svg',
          settings_model=None,
      )),
     ('participatory-budgeting',
@@ -95,7 +95,7 @@ blueprints = [
          content=[
              budgeting_phases.RequestPhase()
          ],
-         image='images/blueprints/participatory-budgeting.svg',
+         image='images/participatory-budgeting.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
     ('external-project',
@@ -107,7 +107,7 @@ blueprints = [
          content=[
              extprojects_phases.ExternalPhase(),
          ],
-         image='images/blueprints/external-project.svg',
+         image='images/external-project.svg',
          settings_model=None,
      )),
     ('poll',
@@ -120,7 +120,7 @@ blueprints = [
          content=[
              poll_phases.VotingPhase(),
          ],
-         image='images/blueprints/poll.svg',
+         image='images/poll.svg',
          settings_model=None,
      )),
     ('topic-prioritization',
@@ -132,7 +132,7 @@ blueprints = [
          content=[
              topicprio_phases.PrioritizePhase(),
          ],
-         image='images/blueprints/priorization.svg',
+         image='images/priorization.svg',
          settings_model=None,
      )),
     ('bplan',
@@ -143,7 +143,7 @@ blueprints = [
          content=[
              bplan_phases.StatementPhase(),
          ],
-         image='images/blueprints/bplan.svg',
+         image='images/bplan.svg',
          settings_model=None,
      )),
     ('kiezkasse',
@@ -157,7 +157,7 @@ blueprints = [
          content=[
              kiezkasse_phases.RequestFeedbackPhase(),
          ],
-         image='images/blueprints/kiezkasse.svg',
+         image='images/kiezkasse.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
 ]
