@@ -1572,8 +1572,8 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
-"Bitte setzen Sie einen Hacken, um den Nutzer aktiv zu schalten. Nehmen Sie "
-"den Hacken raus, um den Nutzer inaktiv zu schalten."
+"Bitte setzen Sie einen Haken, um den Nutzer aktiv zu schalten. Nehmen Sie "
+"den Haken raus, um den Nutzer inaktiv zu schalten."
 
 #: apps/users/models.py:55
 msgid "Send me email notifications"
@@ -1584,8 +1584,8 @@ msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
 msgstr ""
-"Bitte setzen Sie einen Hacken, falls Sie Benachrichtigungen per E-Mail "
-"erhalten möchten.  Nehmen Sie den Hacken raus, falls Sie keine "
+"Bitte setzen Sie einen Haken, falls Sie Benachrichtigungen per E-Mail "
+"erhalten möchten.  Nehmen Sie den Haken raus, falls Sie keine "
 "Benachrichtigungen per Email erhalten möchten."
 
 #: apps/users/templates/meinberlin_users/indicator.html.py:20
