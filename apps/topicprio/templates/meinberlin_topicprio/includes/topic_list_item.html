@@ -27,15 +27,9 @@
         {{ object.name }}
         </a>
     </h3>
-    <div class="list-item__labels">
-        {% if object.category %}
+    {% if object.category %}
+        <div class="list-item__labels">
             <span class="label label--big">{{ object.category }}</span>
-        {% endif %}
-    </div>
-    <span class="list-item__author">
-        {{ object.creator.username }}
-    </span>
-    <span class="list-item__date">
-        {{ object.created | date }}
-    </span>
+        </div>
+    {% endif %}
 </li>

@@ -27,7 +27,7 @@ let ChoiceForm = React.createClass({
             name={'choices-' + this.props.index + '-name'}
             type="text"
             className="input-addon__input"
-            defaultValue={this.props.choice.label}
+            value={this.props.choice.label}
             onChange={this.handleLabelChange} />
           <button
             className="input-addon__after button button--light"
@@ -38,7 +38,7 @@ let ChoiceForm = React.createClass({
               aria-label={django.gettext('remove')} />
           </button>
         </div>
-        <ErrorList errors={this.props.errors} />
+        <ErrorList errors={this.props.errors} field="label" />
       </div>
     )
   }

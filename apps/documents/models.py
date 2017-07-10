@@ -1,4 +1,4 @@
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -46,7 +46,7 @@ class Chapter(module_models.Item):
 
 class Paragraph(base.TimeStampedModel):
     name = models.CharField(max_length=120, blank=True)
-    text = RichTextField()
+    text = RichTextUploadingField(config_name='image-editor')
     weight = models.PositiveIntegerField()
     chapter = models.ForeignKey(Chapter,
                                 on_delete=models.CASCADE,

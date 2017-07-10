@@ -5,7 +5,6 @@ from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 from django.views.i18n import javascript_catalog
 from rest_framework import routers
@@ -16,9 +15,10 @@ from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
 from apps.bplan.api import BplanViewSet
-from apps.documents.api import ChapterViewSet
+from apps.documents.api import DocumentViewSet
 from apps.polls.api import PollViewSet
 from apps.polls.api import VoteViewSet
+from apps.users.decorators import user_is_project_admin
 
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
@@ -31,7 +31,8 @@ router.register(r'polls', PollViewSet, base_name='polls')
 router.register(r'pollvotes', VoteViewSet, base_name='pollvotes')
 
 module_router = a4routers.ModuleDefaultRouter()
-module_router.register(r'documents', ChapterViewSet, base_name='chapters')
+# FIXME: rename to 'chapters'
+module_router.register(r'documents', DocumentViewSet, base_name='chapters')
 
 orga_router = a4routers.OrganisationDefaultRouter()
 orga_router.register(r'bplan', BplanViewSet, base_name='bplan')
@@ -52,6 +53,7 @@ urlpatterns = [
     url(r'^accounts/social/', include('allauth.socialaccount.urls')),
     url(r'^documents/', include('wagtail.wagtaildocs.urls')),
     url(r'^projects/', include('apps.projects.urls')),
+    url(r'^exports/', include('apps.exports.urls')),
 
     url(r'^ideas/', include('apps.ideas.urls',
                             namespace='meinberlin_ideas')),
@@ -67,6 +69,8 @@ urlpatterns = [
                                 namespace='meinberlin_budgeting')),
     url(r'^topicprio/', include('apps.topicprio.urls',
                                 namespace='meinberlin_topicprio')),
+    url(r'^offlineevents/', include('apps.offlineevents.urls',
+                                    namespace='meinberlin_offlineevents')),
 
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),
@@ -74,9 +78,9 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
 
     url(r'^upload/',
-        login_required(ck_views.upload), name='ckeditor_upload'),
-    url(r'^browse/',
-        never_cache(login_required(ck_views.browse)), name='ckeditor_browse'),
+        user_is_project_admin(ck_views.upload), name='ckeditor_upload'),
+    url(r'^browse/', never_cache(user_is_project_admin(ck_views.browse)),
+        name='ckeditor_browse'),
 
     url(r'^jsi18n/$', javascript_catalog,
         js_info_dict, name='javascript-catalog'),

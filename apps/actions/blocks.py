@@ -11,7 +11,8 @@ class PlatformActivityBlock(blocks.StructBlock):
     def get_context(self, value, parent_context=None):
         context = super().get_context(value, parent_context=parent_context)
         block = context['self']
-        context['actions'] = Action.objects.public()[:block['count']]
+        context['actions'] = Action.objects \
+            .public().exclude_updates()[:block['count']]
         return context
 
     class Meta:

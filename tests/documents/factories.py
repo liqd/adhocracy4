@@ -13,6 +13,7 @@ class ChapterFactory(factory.django.DjangoModelFactory):
     name = factory.Faker('name')
     creator = factory.SubFactory(UserFactory)
     module = factory.SubFactory(factories.ModuleFactory)
+    weight = factory.Faker('random_number')
 
 
 class ParagraphFactory(factory.django.DjangoModelFactory):

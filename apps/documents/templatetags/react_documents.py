@@ -4,31 +4,28 @@ from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django import template
 from rest_framework.renderers import JSONRenderer
 
+from apps.documents.models import Chapter
 from apps.documents.serializers import ChapterSerializer
 
 register = template.Library()
 
 
-@register.inclusion_tag('meinberlin_documents/react_paragraphs.html',
+@register.inclusion_tag('meinberlin_documents/react_documents.html',
                         takes_context=True)
-def react_paragraphs(context, chapter, module):
+def react_documents(context, module):
+    chapters = Chapter.objects.filter(module=module)
+    serializer = ChapterSerializer(chapters, many=True)
+    chapters_json = JSONRenderer().render(serializer.data)
 
-    serializer = ChapterSerializer(chapter)
-    chapter_json = JSONRenderer().render(serializer.data)
     widget = CKEditorUploadingWidget(config_name='image-editor')
     widget._set_config()
     config = widget.config
 
-    if chapter is None:
-        _id = None
-    else:
-        _id = 'paragraphs-' + str(chapter.pk)
-
     context = {
-        'chapter': chapter_json,
+        'chapters': chapters_json,
         'module': module.pk,
         'config': json.dumps(config),
-        'id': _id
+        'id': 'document-' + str(module.id)
     }
 
     return context
