@@ -330,7 +330,11 @@ msgstr "Beteiligungsphase endet bald:"
 msgid "on <a href=\"%(url)s\">%(name)s</a>"
 msgstr "in <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/bplan/models.py:36
+#: apps/bplan/models.py:12
+msgid "Office worker email"
+msgstr "E-Mail Adresse der Sachbearbeiter*in"
+
+#: apps/bplan/models.py:38
 msgid "Your Name"
 msgstr "Ihr Name"
 
@@ -1296,6 +1300,10 @@ msgstr "nicht umgesetzt"
 #: apps/moderatorfeedback/models.py:12
 msgid "Accepted"
 msgstr "wird umgesetzt"
+
+#: apps/offlineevents/forms.py:14 apps/offlineevents/models.py:15
+msgid "Date"
+msgstr "Datum"
 
 #: apps/polls/phases.py:17
 msgid "Voting phase"
