@@ -297,34 +297,25 @@ msgstr "Anzahl"
 
 #: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:12
 #, python-format
-msgid ""
-"<a href=\"%(url)s\">%(name)s</a> added a new <a href=\"%(comment_url)s"
-"\">comment</a>"
+msgid "%(name)s added a new <a href=\"%(comment_url)s\">comment</a>"
 msgstr ""
-"<a href=\"%(url)s\">%(name)s</a> hat einen neuen <a href=\"%(comment_url)s\">Kommentar</a> erstellt"
+"%(name)s hat einen neuen <a href=\"%(comment_url)s\">Kommentar</a> erstellt"
 
 #: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:14
 #, python-format
-msgid ""
-"<a href=\"%(url)s\">%(name)s</a> updated a <a href=\"%(comment_url)s"
-"\">comment</a>"
+msgid "%(name)s updated a <a href=\"%(comment_url)s\">comment</a>"
 msgstr ""
-"<a href=\"%(url)s\">%(name)s</a> hat einen <a href=\"%(comment_url)s\">Kommentar</a> aktualisiert"
+"%(name)s hat einen <a href=\"%(comment_url)s\">Kommentar</a> aktualisiert"
 
 #: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:16
 #, python-format
-msgid ""
-"<a href=\"%(url)s\">%(name)s</a> added a new <a href=\"%(item_url)s\">item</"
-"a>"
-msgstr ""
-"<a href=\"%(url)s\">%(name)s</a> hat einen neuen <a href=\"%(item_url)s\">Beitrag</a> erstellt"
+msgid "%(name)s added a new <a href=\"%(item_url)s\">item</a>"
+msgstr "%(name)s hat einen neuen <a href=\"%(item_url)s\">Beitrag</a> erstellt"
 
 #: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:18
 #, python-format
-msgid ""
-"<a href=\"%(url)s\">%(name)s</a> updated an <a href=\"%(item_url)s\">item</a>"
-msgstr ""
-"<a href=\"%(url)s\">%(name)s</a> hat einen <a href=\"%(item_url)s\">Beitrag</a> aktualisiert"
+msgid "%(name)s updated an <a href=\"%(item_url)s\">item</a>"
+msgstr "%(name)s hat einen <a href=\"%(item_url)s\">Beitrag</a> aktualisiert"
 
 #: apps/actions/templates/meinberlin_actions/blocks/platform_activity_block.html.py:20
 msgid "New participation started"
