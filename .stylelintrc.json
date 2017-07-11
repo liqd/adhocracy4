@@ -12,7 +12,7 @@
     "block-opening-brace-newline-after": "always",
 
     "selector-attribute-quotes": "always",
-    "selector-no-id": true,
+    "selector-max-id": 0,
     "selector-no-vendor-prefix": true,
     "selector-pseudo-element-colon-notation": "single",
     "no-duplicate-selectors": true,

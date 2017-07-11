@@ -115,6 +115,9 @@ const DocumentManagement = React.createClass({
     this.setState({
       editChapterIndex: index
     })
+    if (this.titleInput) {
+      this.titleInput.focus()
+    }
   },
 
   /*
@@ -272,6 +275,7 @@ const DocumentManagement = React.createClass({
 
         <h2>{django.gettext('Edit chapter')}</h2>
         <ChapterForm
+          titleRef={(el) => { this.titleInput = el }}
           onChapterNameChange={(name) => { this.handleChapterNameChange(chapterIndex, name) }}
           onParagraphNameChange={(paragraphIndex, name) => { this.handleParagraphNameChange(chapterIndex, paragraphIndex, name) }}
           onParagraphTextChange={(paragraphIndex, text) => { this.handleParagraphTextChange(chapterIndex, paragraphIndex, text) }}

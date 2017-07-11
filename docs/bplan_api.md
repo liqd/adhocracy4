@@ -4,12 +4,12 @@ mein.berlin provides an extern REST API to create and manage BPLAN projects.
 
 ## Prerequisites
 
-To use this API you need to have received the *username* and *password* for the
+To use this API you need to have received the *email* and *password* for the
 API user and the *id* of your organisation.
 
 ## Authentication
 
-The API supports the HTTP Basic Authentication mechanism.
+The API supports the HTTP Basic Authentication mechanism using your *email* and *password*.
 
 ## Ceating a BPLAN
 
