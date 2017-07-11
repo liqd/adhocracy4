@@ -30,7 +30,8 @@
                 </div>
                 <div class="action__date">
                     <time datetime="{{ action.timestamp|date:'Y-m-d h:i' }}"
-                          title="{{ action.timestamp|date:'DATETIME_FORMAT' }}">
+                          title="{{ action.timestamp|date:'DATETIME_FORMAT' }}"
+                          class="relative">
                         {{ action.timestamp|date:'d.m.Y' }}
                     </time>
                 </div>
