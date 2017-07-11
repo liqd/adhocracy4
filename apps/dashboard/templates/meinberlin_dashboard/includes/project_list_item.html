@@ -53,8 +53,18 @@
         <span class="list-item__action">
             <a href="{% url 'dashboard-project-moderators' slug=project.slug %}"
                class="button button--light button--small">
-                <i class="fa fa-user" aria-hidden="true"></i>
+                <i class="fa fa-user-md" aria-hidden="true"></i>
                 {% trans 'Moderators' %}
+            </a>
+        </span>
+        {% endif %}
+
+        {% if not project.is_public %}
+        <span class="list-item__action">
+            <a href="{% url 'dashboard-project-participants' slug=project.slug %}"
+               class="button button--light button--small">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                {% trans 'Participants' %}
             </a>
         </span>
         {% endif %}
