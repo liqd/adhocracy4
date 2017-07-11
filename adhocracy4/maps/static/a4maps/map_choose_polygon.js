@@ -6,12 +6,12 @@ function createMap (L, baseurl, attribution, e) {
   return map
 }
 
-function getBasePolygon (L, polygon, bbox) {
+function getBaseBounds (L, polygon, bbox) {
   if (polygon) {
     if (polygon.type === 'FeatureCollection' && polygon.features.length === 0) {
       return bbox
     }
-    return L.geoJson(polygon)
+    return L.geoJson(polygon).getBounds()
   } else {
     return bbox
   }
@@ -45,11 +45,11 @@ var init = function () {
       if (drawnItems.getLayers().length > 0) {
         map.fitBounds(drawnItems.getBounds())
       } else {
-        map.fitBounds(getBasePolygon(L, polygon, bbox).getBounds())
+        map.fitBounds(getBaseBounds(L, polygon, bbox))
       }
     } else {
       drawnItems = L.featureGroup()
-      map.fitBounds(getBasePolygon(L, polygon, bbox).getBounds())
+      map.fitBounds(getBaseBounds(L, polygon, bbox))
     }
     drawnItems.addTo(map)
 
@@ -93,7 +93,7 @@ var init = function () {
     })
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-      map.invalidateSize().fitBounds(getBasePolygon(L, polygon, bbox).getBounds())
+      map.invalidateSize().fitBounds(getBaseBounds(L, polygon, bbox))
     })
   })
 }
