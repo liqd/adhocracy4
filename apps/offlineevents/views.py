@@ -110,7 +110,7 @@ class OfflineEventDeleteView(rules_mixins.PermissionRequiredMixin,
                              generic.DeleteView):
     model = models.OfflineEvent
     success_message = _('The offline event has been deleted')
-    permission_required = 'meinberlin_offlineevents.delete_offlineevent'
+    permission_required = 'meinberlin_offlineevents.change_offlineevent'
     template_name = 'meinberlin_offlineevents/offlineevent_confirm_delete.html'
     menu_item = 'project'
 
