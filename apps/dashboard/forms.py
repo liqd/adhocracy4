@@ -60,11 +60,13 @@ class ProjectForm(forms.ModelForm):
 class PhaseForm(forms.ModelForm):
     end_date = forms.SplitDateTimeField(
         widget=widgets.DateTimeInput(time_format='%H:%M'),
-        require_all_fields=True
+        require_all_fields=True,
+        label=_('End date')
     )
     start_date = forms.SplitDateTimeField(
         widget=widgets.DateTimeInput(time_format='%H:%M'),
-        require_all_fields=True
+        require_all_fields=True,
+        label=_('Start date')
     )
 
     class Meta:
@@ -344,11 +346,13 @@ class ExternalProjectBaseForm(forms.ModelForm):
 
     start_date = forms.SplitDateTimeField(
         required=False,
-        widget=widgets.DateTimeInput(time_format='%H:%M')
+        widget=widgets.DateTimeInput(time_format='%H:%M'),
+        label=_('Start date')
     )
     end_date = forms.SplitDateTimeField(
         required=False,
-        widget=widgets.DateTimeInput(time_format='%H:%M')
+        widget=widgets.DateTimeInput(time_format='%H:%M'),
+        label=_('End date')
     )
 
     def clean_end_date(self, *args, **kwargs):

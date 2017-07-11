@@ -55,7 +55,7 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!adhocracy4|bootstrap)/,  // exclude all dependencies but adhocracy4 and bootstrap
+        exclude: /node_modules\/(?!adhocracy4|bootstrap)/, // exclude all dependencies but adhocracy4 and bootstrap
         loader: 'babel-loader',
         query: {
           presets: ['babel-preset-es2015', 'babel-preset-react'].map(require.resolve)
