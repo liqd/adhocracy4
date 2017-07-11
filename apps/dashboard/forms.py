@@ -1,11 +1,9 @@
 from django import forms
 from django.apps import apps
-from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
 from django.forms import modelformset_factory
 from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext
 
 from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
@@ -298,25 +296,19 @@ class OrganisationForm(forms.ModelForm):
         }
 
 
-class AddUsersFromEmailForm(forms.ModelForm):
-    add_users = CommaSeparatedEmailField(
-        label=_('Add users via email')
-    )
-
-    success_message = (
-        '{} user added.',
-        '{} users added.'
-    )
-
-    related_users_field = 'participants'
-
-    class Meta:
-        model = project_models.Project
-        fields = ('id',)
+class AddUsersFromEmailForm(forms.Form):
+    add_users = CommaSeparatedEmailField()
 
     def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
+        # Remove the instance submitted by UpdateView
+        kwargs.pop('instance', None)
+        # Store the label for the CommaSeparatedEmailField
+        label = kwargs.pop('label', None)
+
         super().__init__(*args, **kwargs)
+
+        if label:
+            self.fields['add_users'].label = label
 
     def clean_add_users(self):
         users = []
@@ -328,33 +320,8 @@ class AddUsersFromEmailForm(forms.ModelForm):
             except ObjectDoesNotExist:
                 missing.append(email)
 
-        if missing:
-            messages.error(
-                self.request,
-                _('Following emails are not registered: ') + ', '.join(
-                    missing)
-            )
-        if users:
-            messages.success(
-                self.request,
-                ungettext(*self.success_message, len(users)).format(len(users))
-            )
-
+        self.missing = missing
         return users
-
-    def save(self, commit=True):
-        if commit:
-            if self.cleaned_data['add_users']:
-                related_users = getattr(self.instance,
-                                        self.related_users_field)
-                related_users.add(*self.cleaned_data['add_users'])
-
-
-class AddModeratorForm(AddUsersFromEmailForm):
-    add_users = CommaSeparatedEmailField(label=_('Add moderator via email'))
-
-    success_message = ('{} moderator added.', '{} moderators added.')
-    related_users_field = 'moderators'
 
 
 class ExternalProjectBaseForm(forms.ModelForm):

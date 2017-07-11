@@ -10,32 +10,6 @@
     <h2>{% trans 'Participants' %}</h2>
     {% include 'meinberlin_dashboard/includes/users_from_email_form.html' %}
 
-    {% if project.participants.count %}
-        <table>
-            <thead>
-                <tr>
-                    <th>{% trans 'Name' %}</th>
-                    <th>{% trans 'Email' %}</th>
-                    <th><span class="sr-only">{% trans 'Remove' %}</span></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in project.participants.all %}
-                    <tr>
-                        <td><label for="user-{{ user.pk }}">{{ user.username }}</label></td>
-                        <td><label for="user-{{ user.pk }}">{{ user.email }}</label></td>
-                        <td class="td--action">
-                            <form method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="user_pk" value="{{ user.pk }}">
-                                <button type="submit" name="submit_action" value="remove_user" title="{% trans 'Remove' %}">
-                                    <i class="fa fa-times" aria-label="{% trans 'Remove' %}"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% endif %}
+    {% include 'meinberlin_dashboard/includes/removeable_user_list.html' with users=project.participants.all %}
+
 {% endblock %}

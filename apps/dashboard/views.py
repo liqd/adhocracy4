@@ -1,10 +1,14 @@
 from functools import lru_cache
 
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseNotFound
+from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ungettext
 from django.views import generic
 from django.views.generic.detail import SingleObjectMixin
 
@@ -16,6 +20,7 @@ from adhocracy4.rules import mixins as rules_mixins
 from apps.bplan import models as bplan_models
 from apps.extprojects import models as extproject_models
 from apps.organisations.models import Organisation
+from apps.users.models import User
 
 from . import blueprints
 from . import forms
@@ -171,10 +176,9 @@ class DashboardOrganisationUpdateView(mixins.DashboardBaseMixin,
     menu_item = 'organisation'
 
 
-class DashboardProjectParticipantsView(mixins.DashboardBaseMixin,
-                                       mixins.DashboardUserRemovalMixin,
-                                       rules_mixins.PermissionRequiredMixin,
-                                       generic.UpdateView):
+class DashboardProjectUserListView(mixins.DashboardBaseMixin,
+                                   rules_mixins.PermissionRequiredMixin,
+                                   generic.UpdateView):
 
     model = project_models.Project
     form_class = forms.AddUsersFromEmailForm
@@ -182,27 +186,65 @@ class DashboardProjectParticipantsView(mixins.DashboardBaseMixin,
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
 
+    related_users_field = 'participants'
+    add_user_field_label = _('Add users via email')
+    success_message = ('{} user added.', '{} users added.')
+    success_message_removal = _('User successfully removed.')
+
+    def post(self, request, *args, **kwargs):
+        if 'submit_action' in request.POST and (
+                request.POST['submit_action'] == 'remove_user'):
+            pk = int(request.POST['user_pk'])
+            user = get_object_or_404(User, pk=pk)
+            project = self.get_object()
+
+            if request.POST['submit_action'] == 'remove_user':
+                related_users = getattr(project, self.related_users_field)
+                related_users.remove(user)
+                messages.success(request, self.success_message_removal)
+
+            return redirect(self.get_success_url())
+        else:
+            return super().post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        if form.missing:
+            messages.error(
+                self.request,
+                _('Following emails are not registered: ') + ', '.join(
+                    form.missing)
+            )
+
+        if form.cleaned_data['add_users']:
+            users = form.cleaned_data['add_users']
+            related_users = getattr(self.object,
+                                    self.related_users_field)
+            related_users.add(*users)
+
+            messages.success(
+                self.request,
+                ungettext(*self.success_message, len(users)).format(len(users))
+            )
+
+        return redirect(self.get_success_url())
+
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['request'] = self.request
+        kwargs['label'] = self.add_user_field_label
         return kwargs
 
 
-class DashboardProjectModeratorsView(mixins.DashboardBaseMixin,
-                                     mixins.DashboardModRemovalMixin,
-                                     rules_mixins.PermissionRequiredMixin,
-                                     generic.UpdateView):
+class DashboardProjectModeratorsView(DashboardProjectUserListView):
 
     model = project_models.Project
-    form_class = forms.AddModeratorForm
     template_name = 'meinberlin_dashboard/project_moderators.html'
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['request'] = self.request
-        return kwargs
+    related_users_field = 'moderators'
+    add_user_field_label = _('Add moderators via email')
+    success_message = ('{} moderator added.', '{} moderators added.')
+    success_message_removal = _('Moderator successfully removed.')
 
 
 class DashboardProjectManagementView(mixins.DashboardBaseMixin,
