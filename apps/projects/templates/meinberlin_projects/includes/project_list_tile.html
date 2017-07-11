@@ -1,10 +1,14 @@
 {% load i18n project_tags extproject_tags thumbnail static %}
 
-<div class="tile">
+<li class="tile">
     <div class="tile__head">
         <a tabindex="-1" class="tile__image tile__image--shadowed"
            aria-labelledby="project-title-{{ project.pk }}"
-           {% if project.image %}style="background-image: url({{ project.image|thumbnail_url:'project_thumbnail' }})"{% endif %}
+           {% if project.tile_image %}
+               style="background-image: url({{ project.tile_image|thumbnail_url:'project_thumbnail' }})"
+           {% elif project.image %}
+               style="background-image: url({{ project.image|thumbnail_url:'project_thumbnail' }})"
+           {% endif %}
            href="{% extproject_url project 'project-detail' %}" target="{{ project|is_external|yesno:"_blank,_self" }}">
         </a>
         {% if project|is_external %}
@@ -42,4 +46,4 @@
             </p>
         {% endif %}
     </div>
-</div>
+</li>

@@ -12,7 +12,7 @@ let PollManagement = React.createClass({
 
     if (questions.length === 0) {
       questions = [
-        this.getNewQuestion('')
+        this.getNewQuestion()
       ]
     }
 
@@ -39,7 +39,7 @@ let PollManagement = React.createClass({
   |--------------------------------------------------------------------------
   */
 
-  getNewQuestion: function (label) {
+  getNewQuestion: function (label = '') {
     return {
       label: label,
       key: this.getNextLocalKey(),
@@ -78,7 +78,7 @@ let PollManagement = React.createClass({
   },
 
   handleAppendQuestion: function () {
-    var newQuestion = this.getNewQuestion('')
+    var newQuestion = this.getNewQuestion()
     var diff = {$push: [newQuestion]}
 
     this.setState({
@@ -100,7 +100,7 @@ let PollManagement = React.createClass({
   |--------------------------------------------------------------------------
   */
 
-  getNewChoice: function (label) {
+  getNewChoice: function (label = '') {
     return {
       label: label,
       key: this.getNextLocalKey()
@@ -118,7 +118,7 @@ let PollManagement = React.createClass({
   },
 
   handleAppendChoice: function (questionIndex) {
-    var newChoice = this.getNewChoice('')
+    var newChoice = this.getNewChoice()
     var diff = {}
     diff[questionIndex] = {choices: {$push: [newChoice]}}
 
@@ -210,7 +210,7 @@ let PollManagement = React.createClass({
 
         <p>
           <button
-            className="button button--light"
+            className="button button--light button--small"
             onClick={this.handleAppendQuestion}
             type="button">
             <i className="fa fa-plus" /> {django.gettext('Add a new question')}

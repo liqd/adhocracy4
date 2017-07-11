@@ -1,6 +1,6 @@
 {% load i18n module_tags item_tags %}
 
-<div class="list-item list-item--squashed">
+<li class="list-item list-item--squashed">
     <div class="list-item__stats">
         {% spaceless %}
         {% if object|has_feature:"rate" %}
@@ -29,9 +29,7 @@
     </h3>
     {% if object.category %}
         <div class="list-item__labels">
-            <div class="list-item__labels">
-                <span class="label label--big">{{ object.category }}</span>
-            </div>
+            <span class="label label--big">{{ object.category }}</span>
         </div>
     {% endif %}
     <span class="list-item__author">
@@ -40,4 +38,4 @@
     <span class="list-item__date">
         {{ object.created | date }}
     </span>
-</div>
+</li>

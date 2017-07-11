@@ -4,12 +4,12 @@ mein.berlin provides an extern REST API to create and manage BPLAN projects.
 
 ## Prerequisites
 
-To use this API you need to have received the *username* and *password* for the
+To use this API you need to have received the *email* and *password* for the
 API user and the *id* of your organisation.
 
 ## Authentication
 
-The API supports the HTTP Basic Authentication mechanism.
+The API supports the HTTP Basic Authentication mechanism using your *email* and *password*.
 
 ## Ceating a BPLAN
 
@@ -72,5 +72,33 @@ Example:
 
     data = {
         "end_date": "2019-01-01 00:00",
+    }
+    res = PATCH(https://mein.berlin.de/api/organisations/5/bplan/36/, data)
+
+## Publishing/Unpublishing a BPLAN Project
+
+When creating a BPLAN project as above, the project is immediately being
+published. To create a BPLAN project in a draft state set the *is_draft*
+parameter :
+
+    data = {
+        ...
+        "is_draft": "True",
+    }
+    res = POST(https://mein.berlin.de/api/organisations/5/bplan/, data)
+
+To change the draft state update the BPLAN project via PATCH.
+
+Publish:
+
+    data = {
+        "is_daft": "False"
+    }
+    res = PATCH(https://mein.berlin.de/api/organisations/5/bplan/36/, data)
+
+Unpublish:
+
+    data = {
+        "is_daft": "True"
     }
     res = PATCH(https://mein.berlin.de/api/organisations/5/bplan/36/, data)

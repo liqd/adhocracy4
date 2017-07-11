@@ -1,5 +1,6 @@
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.fields import GenericRelation
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import cached_property
 
@@ -22,10 +23,9 @@ class Chapter(module_models.Item):
     def __str__(self):
         return "{}_chapter_{}".format(str(self.module), self.pk)
 
-    # FIXME: adapt absolute url!
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
-        return reverse('project-detail', args=[str(self.project.slug)])
+        return reverse('meinberlin_documents:chapter-detail',
+                       args=[str(self.pk)])
 
     @cached_property
     def prev(self):
@@ -46,7 +46,7 @@ class Chapter(module_models.Item):
 
 class Paragraph(base.TimeStampedModel):
     name = models.CharField(max_length=120, blank=True)
-    text = RichTextField()
+    text = RichTextUploadingField(config_name='image-editor')
     weight = models.PositiveIntegerField()
     chapter = models.ForeignKey(Chapter,
                                 on_delete=models.CASCADE,
@@ -67,7 +67,6 @@ class Paragraph(base.TimeStampedModel):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
         return reverse('meinberlin_documents:paragraph-detail',
                        args=[str(self.pk)])
 

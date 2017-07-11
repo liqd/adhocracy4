@@ -8,7 +8,7 @@
         <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
             <ul>
                 <li>
-                    <a href="{% url 'project-detail' object.project.slug %}">
+                    <a href="{{ object.project.get_absolute_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                         {{ object.project.name }}
                     </a>
@@ -19,22 +19,14 @@
         <div class="item-detail">
             <h1 class="item-detail__title">{{ object.name }}</h1>
 
-            <div class="item-detail__labels">
-                {% if object.category %}
+            {% if object.category %}
+                <div class="item-detail__labels">
                     <div class="label label--big">{{ object.category }}</div>
-                {% endif %}
-                {% block additional_labels %}{% endblock %}
-            </div>
+                </div>
+            {% endif %}
 
             <div class="item-detail__content">
                 {{ object.description | richtext }}
-
-                {% block additional_content %}{% endblock %}
-            </div>
-
-            <div class="item-detail__meta">
-                <strong class="item-detail__creator">{{ object.creator.username }}</strong>
-                {{ object.created|date }}
             </div>
 
             <div class="item-detail__actions lr-bar">

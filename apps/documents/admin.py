@@ -3,9 +3,12 @@ from django.contrib import admin
 from . import models
 
 
+@admin.register(models.Paragraph)
 class ParagraphAdmin(admin.ModelAdmin):
     list_filter = ('chapter',)
+    readonly_fields = ('creator',)
 
 
-admin.site.register(models.Chapter)
-admin.site.register(models.Paragraph, ParagraphAdmin)
+@admin.register(models.Chapter)
+class ChapterAdmin(admin.ModelAdmin):
+    readonly_fields = ('creator', )

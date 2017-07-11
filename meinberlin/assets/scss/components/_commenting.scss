@@ -1,16 +1,24 @@
 .commenting {
+    display: block;
     margin-bottom: $spacer;
-}
-
-.commenting__content {
-    padding-right: $padding;
-    border-right: 1px solid $brand-primary;
 }
 
 .commenting__content--border {
     padding: $padding;
     border: 1px solid $border-color;
     border-radius: ($padding / 2);
+}
+
+.commenting--toc__button {
+    // FIXME: This class should either not add styling or not be combined with .button
+    // see: https://github.com/liqd/a4-meinberlin/pull/555#discussion_r122957403
+    display: block;
+    width: 100%;
+    text-align: left;
+
+    &.active {
+        color: $brand-primary;
+    }
 }
 
 .commenting__actions {
@@ -20,6 +28,10 @@
 .commenting__title {
     margin-top: 0;
     font-size: $font-size-lg;
+}
+
+.commenting-form {
+    margin-bottom: 2 * $spacer;
 }
 
 @media (min-width: $breakpoint) {

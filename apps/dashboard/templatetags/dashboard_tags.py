@@ -1,7 +1,8 @@
 from django import template
 
-from ..blueprints import blueprints
-from ..views import get_management_view
+from apps.dashboard.blueprints import blueprints
+from apps.dashboard.views import get_management_view
+from apps.exports.views import get_exports
 
 register = template.Library()
 
@@ -17,3 +18,8 @@ def get_blueprint_title(key):
         if k == key:
             return blueprint.title
     return key
+
+
+@register.filter
+def has_exports(project):
+    return len(get_exports(project)) > 0

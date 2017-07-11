@@ -10,7 +10,7 @@
             aria-expanded="true">
         {% trans 'Information' %}
         {% if form.info_error_count > 0  %}
-            <span class="tab-errorcount">({{ form.info_error_count }})</span>
+            <span class="errorcount">({{ form.info_error_count }})</span>
         {% endif %}
     </a>
     <a
@@ -23,7 +23,7 @@
             aria-expanded="false">
         {% trans 'Participation' %}
         {% if form.participate_error_count > 0  %}
-            <span class="tab-errorcount">({{ form.participate_error_count }})</span>
+            <span class="errorcount">({{ form.participate_error_count }})</span>
         {% endif %}
     </a>
     <a
@@ -36,7 +36,7 @@
             aria-expanded="false">
         {% trans 'Result' %}
         {% if form.result_error_count > 0  %}
-            <span class="tab-errorcount">({{ form.result_error_count }})</span>
+            <span class="errorcount">({{ form.result_error_count }})</span>
         {% endif %}
     </a>
 </nav>

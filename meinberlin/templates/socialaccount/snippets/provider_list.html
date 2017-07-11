@@ -1,0 +1,10 @@
+{% load socialaccount %}
+
+{% get_providers as socialaccount_providers %}
+
+{% for provider in socialaccount_providers %}
+    <a
+        class="button button--secondary socialaccount_provider {{provider.id}}"
+        href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}"
+    >{{provider.name}}</a>
+{% endfor %}

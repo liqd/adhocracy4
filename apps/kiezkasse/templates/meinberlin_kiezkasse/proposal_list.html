@@ -12,9 +12,9 @@
 {% endblock %}
 
 {% block project_action %}
-    {% has_perm 'meinberlin_kiezkasse.add_proposal' request.user view.module as propose_allowed %}
+    {% has_perm 'meinberlin_kiezkasse.add_proposal' request.user project.last_active_module as propose_allowed %}
     {% if propose_allowed %}
-        <a href="{% url 'meinberlin_kiezkasse:proposal-create' slug=view.module.slug %}" class="button">
+        <a href="{% url 'meinberlin_kiezkasse:proposal-create' slug=project.last_active_module.slug %}" class="button">
             {% trans 'Submit proposal' %}
         </a>
     {% endif %}
@@ -38,20 +38,22 @@
                     </div>
                 </div>
             </div>
-            {% map_display_points object_list view.module.settings_instance.polygon %}
+            {% map_display_points object_list project.last_active_module.settings_instance.polygon %}
         </div>
     {% else %}
         <div class="module-content">
             <div class="l-wrapper">
                 <div class="l-center-8">
-
-                    {% for object in object_list %}
-                        {% include "meinberlin_kiezkasse/includes/proposal_list_item.html" with object=object %}
-                    {% endfor %}
-
-                    {% if object_list.count == 0 %}
+                    {% if object_list.count > 0 %}
+                        <ul class="u-list-reset">
+                            {% for object in object_list %}
+                                {% include "meinberlin_kiezkasse/includes/proposal_list_item.html" with object=object %}
+                            {% endfor %}
+                        </ul>
+                    {% else %}
                         {% trans "Nothing to show" %}
                     {% endif %}
+
                     {% include "meinberlin_contrib/includes/pagination.html" %}
                 </div>
             </div>
