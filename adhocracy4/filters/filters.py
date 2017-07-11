@@ -25,8 +25,8 @@ class DefaultsFilterSet(PagedFilterSet):
 
     defaults = None
 
-    def __init__(self, query_data, *args, **kwargs):
-        data = query_data.copy()
+    def __init__(self, data, *args, **kwargs):
+        data = data.copy()
 
         # Set the defaults if they are not manually set yet
         for key, value in self.defaults.items():
