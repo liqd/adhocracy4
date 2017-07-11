@@ -330,7 +330,11 @@ msgstr "Beteiligungsphase endet bald:"
 msgid "on <a href=\"%(url)s\">%(name)s</a>"
 msgstr "in <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/bplan/models.py:36
+#: apps/bplan/models.py:12
+msgid "Office worker email"
+msgstr "E-Mail Adresse der Sachbearbeiter*in"
+
+#: apps/bplan/models.py:38
 msgid "Your Name"
 msgstr "Ihr Name"
 
@@ -1297,6 +1301,10 @@ msgstr "nicht umgesetzt"
 msgid "Accepted"
 msgstr "wird umgesetzt"
 
+#: apps/offlineevents/forms.py:14 apps/offlineevents/models.py:15
+msgid "Date"
+msgstr "Datum"
+
 #: apps/polls/phases.py:17
 msgid "Voting phase"
 msgstr "Abstimmungsphase"
@@ -1564,8 +1572,8 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
-"Bitte setzen Sie einen Hacken, um den Nutzer aktiv zu schalten. Nehmen Sie "
-"den Hacken raus, um den Nutzer inaktiv zu schalten."
+"Bitte setzen Sie einen Haken, um den Nutzer aktiv zu schalten. Nehmen Sie "
+"den Haken raus, um den Nutzer inaktiv zu schalten."
 
 #: apps/users/models.py:55
 msgid "Send me email notifications"
@@ -1576,8 +1584,8 @@ msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
 msgstr ""
-"Bitte setzen Sie einen Hacken, falls Sie Benachrichtigungen per E-Mail "
-"erhalten möchten.  Nehmen Sie den Hacken raus, falls Sie keine "
+"Bitte setzen Sie einen Haken, falls Sie Benachrichtigungen per E-Mail "
+"erhalten möchten.  Nehmen Sie den Haken raus, falls Sie keine "
 "Benachrichtigungen per Email erhalten möchten."
 
 #: apps/users/templates/meinberlin_users/indicator.html.py:20

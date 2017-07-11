@@ -8,7 +8,9 @@ from apps.extprojects.models import ExternalProject
 
 
 class Bplan(ExternalProject):
-    office_worker_email = models.EmailField()
+    office_worker_email = models.EmailField(
+        verbose_name=_('Office worker email')
+    )
 
 
 class AnonymousItem(TimeStampedModel):
