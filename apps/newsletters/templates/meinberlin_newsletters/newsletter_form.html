@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Create a newsletter' %}{% endblock %}
+{% block content %}
+<div class="l-wrapper">
+    <div class="l-center-6">
+        <h1>{% trans 'Submit a new proposal for this project'%}</h1>
+
+        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            {{ form.media }}
+
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender %}
+
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.receivers %}
+
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project %}
+
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.organisation %}
+
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.subject %}
+
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.body %}
+
+            <div class="u-spacer-bottom">
+                <input type="submit" class="button button--primary" name="send" value="{% trans 'Send'%}" />
+                <input type="submit" class="button button--secondary" name="save_draft" value="{% trans 'Save as draft'%}" />
+                <a href="#" class="button button--light">{% trans 'Cancel'%}</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

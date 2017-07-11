@@ -77,6 +77,7 @@ INSTALLED_APPS = (
     'apps.notifications.apps.Config',
     'apps.exports.apps.Config',
     'apps.offlineevents.apps.Config',
+    'apps.newsletters.apps.Config',
 
     'apps.account.apps.Config',
     'apps.dashboard.apps.Config',
