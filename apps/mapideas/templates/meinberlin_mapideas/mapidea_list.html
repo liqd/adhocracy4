@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block project_action %}
-    {% has_perm 'meinberlin_mapideas.add_idea' request.user project.last_active_module as propose_allowed %}
+    {% has_perm 'meinberlin_mapideas.add_mapidea' request.user project.last_active_module as propose_allowed %}
     {% if propose_allowed %}
         <a href="{% url 'meinberlin_mapideas:mapidea-create' slug=project.last_active_module.slug %}" class="button">
             {% trans 'Submit Idea' %}

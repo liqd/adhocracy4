@@ -60,7 +60,7 @@ const Paragraph = React.createClass({
   },
 
   render: function () {
-    var ckEditorToolbarsHeight = 60  // measured on example editor
+    var ckEditorToolbarsHeight = 60 // measured on example editor
     return (
       <section>
         <div className="commenting">

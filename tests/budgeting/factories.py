@@ -1,23 +1,23 @@
 import factory
 
-from adhocracy4.test import factories as a4_factories
-from apps.budgeting import models as budgeting_models
+from adhocracy4.test.factories import ModuleFactory
+from apps.budgeting import models
 from apps.moderatorfeedback import models as moderatorfeedback_models
-from tests import factories
+from tests.factories import ModeratorStatementFactory
+from tests.factories import UserFactory
 
 
 class ProposalFactory(factory.django.DjangoModelFactory):
 
     class Meta:
-        model = budgeting_models.Proposal
+        model = models.Proposal
 
     name = factory.Faker('name')
     description = 'Description'
-    creator = factory.SubFactory(factories.UserFactory)
-    module = factory.SubFactory(a4_factories.ModuleFactory)
+    creator = factory.SubFactory(UserFactory)
+    module = factory.SubFactory(ModuleFactory)
 
-    moderator_statement = factory.SubFactory(
-        factories.ModeratorStatementFactory)
+    moderator_statement = factory.SubFactory(ModeratorStatementFactory)
     moderator_feedback = moderatorfeedback_models.DEFAULT_CHOICES[0][0]
 
     point_label = factory.Faker('address')
