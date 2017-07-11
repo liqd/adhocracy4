@@ -10,11 +10,4 @@ meinberlin/settings/local.py
 .coverage
 htmlcov/
 media/
-
-# Ignore generated static files
 /meinberlin/static/
-/images/layers-2x.png
-/images/layers.png
-/images/spritesheet-2x.png
-/images/spritesheet.*
-
