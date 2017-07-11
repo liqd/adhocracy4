@@ -105,4 +105,4 @@ class ProjectListView(filter_views.FilteredListView):
     filter_set = ProjectFilterSet
 
     def get_queryset(self):
-        return super().get_queryset().filter(is_draft=False)
+        return super().get_queryset().filter(is_draft=False, is_public=True)
