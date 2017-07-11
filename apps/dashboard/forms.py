@@ -298,22 +298,30 @@ class OrganisationForm(forms.ModelForm):
         }
 
 
-class AddModeratorForm(forms.ModelForm):
-    add_moderators = CommaSeparatedEmailField(label=_('Add moderator via '
-                                                      'email'))
+class AddUsersFromEmailForm(forms.ModelForm):
+    add_users = CommaSeparatedEmailField(
+        label=_('Add users via email')
+    )
+
+    success_message = (
+        '{} user added.',
+        '{} users added.'
+    )
+
+    related_users_field = 'participants'
 
     class Meta:
         model = project_models.Project
-        fields = ('moderators',)
+        fields = ('id',)
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super().__init__(*args, **kwargs)
 
-    def clean_add_moderators(self):
+    def clean_add_users(self):
         users = []
         missing = []
-        for email in self.cleaned_data['add_moderators']:
+        for email in self.cleaned_data['add_users']:
             try:
                 user = User.objects.get(email__exact=email)
                 users.append(user)
@@ -329,20 +337,24 @@ class AddModeratorForm(forms.ModelForm):
         if users:
             messages.success(
                 self.request,
-                ungettext(
-                    '{} moderator added.',
-                    '{} moderators added.', len(users)
-                ).format(len(users))
+                ungettext(*self.success_message, len(users)).format(len(users))
             )
 
         return users
 
     def save(self, commit=True):
         if commit:
-            if self.cleaned_data['add_moderators']:
-                self.instance.moderators.add(
-                    *self.cleaned_data['add_moderators']
-                )
+            if self.cleaned_data['add_users']:
+                related_users = getattr(self.instance,
+                                        self.related_users_field)
+                related_users.add(*self.cleaned_data['add_users'])
+
+
+class AddModeratorForm(AddUsersFromEmailForm):
+    add_users = CommaSeparatedEmailField(label=_('Add moderator via email'))
+
+    success_message = ('{} moderator added.', '{} moderators added.')
+    related_users_field = 'moderators'
 
 
 class ExternalProjectBaseForm(forms.ModelForm):

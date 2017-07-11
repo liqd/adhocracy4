@@ -123,6 +123,27 @@ class DashboardProjectPublishMixin:
                         organisation_slug=self.organisation.slug)
 
 
+class DashboardUserRemovalMixin:
+    related_users_field = 'participants'
+    success_message = _('User successfully removed.')
+
+    def post(self, request, *args, **kwargs):
+        if 'submit_action' in request.POST and (
+                request.POST['submit_action'] == 'remove_user'):
+            pk = int(request.POST['user_pk'])
+            user = get_object_or_404(User, pk=pk)
+            project = self.get_object()
+
+            if request.POST['submit_action'] == 'remove_user':
+                related_users = getattr(project, self.related_users_field)
+                related_users.remove(user)
+                messages.success(request, self.success_message)
+
+            return redirect(self.get_success_url())
+        else:
+            return super().post(request, *args, **kwargs)
+
+
 class DashboardModRemovalMixin:
     def post(self, request, *args, **kwargs):
         if 'submit_action' in request.POST:

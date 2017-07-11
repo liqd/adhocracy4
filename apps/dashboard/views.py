@@ -171,6 +171,23 @@ class DashboardOrganisationUpdateView(mixins.DashboardBaseMixin,
     menu_item = 'organisation'
 
 
+class DashboardProjectParticipantsView(mixins.DashboardBaseMixin,
+                                       mixins.DashboardUserRemovalMixin,
+                                       rules_mixins.PermissionRequiredMixin,
+                                       generic.UpdateView):
+
+    model = project_models.Project
+    form_class = forms.AddUsersFromEmailForm
+    template_name = 'meinberlin_dashboard/project_participants.html'
+    permission_required = 'a4projects.add_project'
+    menu_item = 'project'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
+
 class DashboardProjectModeratorsView(mixins.DashboardBaseMixin,
                                      mixins.DashboardModRemovalMixin,
                                      rules_mixins.PermissionRequiredMixin,
