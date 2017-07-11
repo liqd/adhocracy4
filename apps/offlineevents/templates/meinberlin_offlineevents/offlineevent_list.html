@@ -16,7 +16,7 @@
             {% trans 'Offline Events' %}
         </h1>
         <div class="lr-bar__right">
-            <a href="{% url 'meinberlin_offlineevents:offlineevent-create' slug=view.project.slug %}" class="button">
+            <a href="{% url 'meinberlin_offlineevents:offlineevent-create' project_slug=project.slug %}" class="button">
                 {% trans 'Add offline event' %}
             </a>
         </div>
