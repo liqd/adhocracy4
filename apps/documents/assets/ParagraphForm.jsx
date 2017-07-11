@@ -1,6 +1,6 @@
 var React = require('react')
 var django = require('django')
-var ErrorList = require('../../contrib/static/js/ErrorList')
+var ErrorList = require('../../contrib/assets/ErrorList')
 
 const ckGet = function (id) {
   return window.CKEDITOR.instances[id]

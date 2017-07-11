@@ -1,4 +1,5 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 var webpack = require('webpack')
 var path = require('path')
 var autoprefixer = require('autoprefixer')
@@ -95,6 +96,23 @@ module.exports = {
   plugins: [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-    new ExtractTextPlugin('[name].css')
+    new ExtractTextPlugin('[name].css'),
+    new CopyWebpackPlugin([
+      {
+        from: './meinberlin/assets/images/**/*',
+        to: 'images/',
+        flatten: true
+      },
+      {
+        from: './meinberlin/assets/info',
+        to: 'info/',
+        flatten: false
+      },
+      {
+        from: './meinberlin/assets/js/popover.js',
+        to: 'js/',
+        flatten: false
+      }
+    ])
   ]
 }
