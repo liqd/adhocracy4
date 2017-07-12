@@ -13,9 +13,9 @@ def test_email_regex(client, project):
     assert response.status_code == 200
 
     response_form = client.post(url, {
-        'add_moderators': 'max@sdg.de, nina@dsgo.de,peter@qwrde',
+        'add_users': 'max@sdg.de, nina@dsgo.de,peter@qwrde',
     })
-    assert 'add_moderators' in response_form.context["form"].errors
+    assert 'add_users' in response_form.context["form"].errors
 
 
 @pytest.mark.django_db
@@ -30,7 +30,7 @@ def test_adding_moderator(client, project, user):
     assert response.status_code == 200
 
     response_form = client.post(url, {
-        'add_moderators': 'max@sdg.de, nina@dsgo.de, {}'.format(user.email),
+        'add_users': 'max@sdg.de, nina@dsgo.de, {}'.format(user.email),
     })
     assert response_form.status_code == 302
     assert project.moderators.count() == 1
@@ -51,8 +51,8 @@ def test_removing_moderator(client, project):
     old_count = project.moderators.count()
 
     response_form = client.post(url, {
-        'submit_action': 'remove_moderator',
-        'moderator_pk': mod.pk
+        'submit_action': 'remove_user',
+        'user_pk': mod.pk
     })
     assert response_form.status_code == 302
     assert project.moderators.count() == old_count - 1
