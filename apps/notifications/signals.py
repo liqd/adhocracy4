@@ -33,44 +33,10 @@ def send_notifications(instance, created, **kwargs):
 @receiver(signals.m2m_changed, sender=Project.moderators.through)
 def autofollow_project_moderators(instance, action, pk_set, reverse, **kwargs):
     if action == 'post_add':
-        if not reverse:
-            project = instance
-            users_pks = pk_set
-
-            for user_pk in users_pks:
-                Follow.objects.update_or_create(
-                    project=project,
-                    creator_id=user_pk,
-                    defaults={
-                        'enabled': True
-                    }
-                )
-        else:
-            user = instance
-            project_pks = pk_set
-
-            for project_pk in project_pks:
-                Follow.objects.update_or_create(
-                    project_id=project_pk,
-                    creator=user,
-                    defaults={
-                        'enabled': True
-                    }
-                )
+        autofollow_project(instance, pk_set, reverse)
 
 
-@receiver(signals.m2m_changed, sender=Project.participants.through)
-def autofollow_project_participants(instance, action, pk_set, reverse,
-                                    **kwargs):
-    if action == 'post_add':
-        autofollow_project_participants_add(instance, pk_set, reverse)
-    elif action == 'post_remove':
-        autofollow_project_participants_remove(instance, pk_set, reverse)
-    elif action == 'post_clear':
-        autofollow_project_participants_clear(instance, pk_set, reverse)
-
-
-def autofollow_project_participants_add(instance, pk_set, reverse):
+def autofollow_project(instance, pk_set, reverse):
     if not reverse:
         project = instance
         users_pks = pk_set
@@ -97,40 +63,38 @@ def autofollow_project_participants_add(instance, pk_set, reverse):
             )
 
 
-def autofollow_project_participants_remove(instance, pk_set, reverse):
+@receiver(signals.m2m_changed, sender=Project.participants.through)
+def autofollow_project_participants(instance, action, pk_set, reverse,
+                                    **kwargs):
+    if action == 'post_add':
+        autofollow_project(instance, pk_set, reverse)
+    elif action == 'post_remove':
+        autounfollow_project_participants_remove(instance, pk_set, reverse)
+    elif action == 'post_clear':
+        autounfollow_project_participants_clear(instance, reverse)
+
+
+def autounfollow_project_participants_remove(instance, pk_set, reverse):
     if not reverse:
-        # Exclude users who are moderators of the project
-        user_ids = User.objects\
-            .filter(id__in=pk_set)\
-            .exclude(id__in=instance.moderators.values_list('id', flat=True))\
-            .values_list('id')
-
-        Follow.objects\
-            .filter(project=instance, creator_id__in=user_ids)\
-            .delete()
-
+        for user in User.objects.filter(id__in=pk_set):
+            autounfollow_project_participants(instance, user)
     else:
-        # Exclude projects where the user is a moderator
-        project_ids = Project.objects\
-            .filter(id__in=pk_set)\
-            .exclude(moderators=instance)\
-            .values_list('id')
-
-        Follow.objects\
-            .filter(project_id__in=project_ids, creator=instance)\
-            .delete()
+        for project in Project.objects.filter(id__in=pk_set):
+            autounfollow_project_participants(project, instance)
 
 
-def autofollow_project_participants_clear(instance, pk_set, reverse):
+def autounfollow_project_participants_clear(instance, reverse):
     if not reverse:
-        moderator_ids = instance.moderators.values_list('id', flat=True)
-        Follow.objects\
-            .filter(project=instance)\
-            .exclude(creator_id__in=moderator_ids)\
-            .delete()
-
+        for follow in Follow.objects.filter(project=instance):
+            autounfollow_project_participants(instance, follow.creator)
     else:
-        Follow.objects\
-            .filter(project_id__in=pk_set, creator=instance)\
-            .exclude(project__in=instance.project_moderator.all())\
+        for follow in Follow.objects.filter(creator=instance):
+            autounfollow_project_participants(follow.project, instance)
+
+
+def autounfollow_project_participants(project, user):
+    if not user.is_superuser and not project.has_moderator(user):
+
+        Follow.objects \
+            .filter(project=project, creator=user) \
             .delete()
