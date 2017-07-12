@@ -20,6 +20,7 @@ from adhocracy4.rules import mixins as rules_mixins
 from apps.bplan import models as bplan_models
 from apps.extprojects import models as extproject_models
 from apps.organisations.models import Organisation
+from apps.projects.emails import InviteParticipantEmail
 from apps.users.models import User
 
 from . import blueprints
@@ -243,6 +244,18 @@ class DashboardProjectParticipantsView(AbstractProjectUserListView):
     add_user_field_label = _('Add users via email')
     success_message = ('{} user added.', '{} users added.')
     success_message_removal = _('User successfully removed.')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        # Send invitation mails to the new participants
+        users = form.cleaned_data.get('add_users', None)
+        if users:
+            participant_ids = [user.id for user in users]
+            InviteParticipantEmail.send(self.object,
+                                        participant_ids=participant_ids)
+
+        return response
 
 
 class DashboardProjectModeratorsView(AbstractProjectUserListView):
