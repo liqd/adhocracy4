@@ -1,4 +1,8 @@
 import django_filters
+from django.core.exceptions import ImproperlyConfigured
+from django.db.models import Q
+from functools import reduce
+import operator
 
 
 class PagedFilterSet(django_filters.FilterSet):
@@ -34,3 +38,30 @@ class DefaultsFilterSet(PagedFilterSet):
                 data[key] = value
 
         super().__init__(data, *args, **kwargs)
+
+
+class FreeTextFilter(django_filters.CharFilter):
+    """Free text filter searches given fields.
+
+    Set fields to search on.
+    """
+
+    def multi_filter(self, qs, name, value):
+        if value:
+            qs = qs.filter(reduce(operator.or_, self.get_q_objects(value)))
+        return qs
+
+    def get_q_objects(self, value):
+        q_objects = [Q(((field + '__icontains'), value))
+                     for field in self.fields]
+        return q_objects
+
+    def __init__(self, *args, **kwargs):
+        kwargs['method'] = self.multi_filter
+
+        if 'fields' in kwargs:
+            self.fields = kwargs.pop('fields')
+        else:
+            raise ImproperlyConfigured('set fields to search on')
+
+        super().__init__(*args, **kwargs)
