@@ -176,30 +176,28 @@ class DashboardOrganisationUpdateView(mixins.DashboardBaseMixin,
     menu_item = 'organisation'
 
 
-class DashboardProjectUserListView(mixins.DashboardBaseMixin,
-                                   rules_mixins.PermissionRequiredMixin,
-                                   generic.UpdateView):
+class AbstractProjectUserListView(mixins.DashboardBaseMixin,
+                                  rules_mixins.PermissionRequiredMixin,
+                                  generic.base.TemplateResponseMixin,
+                                  generic.edit.FormMixin,
+                                  generic.detail.SingleObjectMixin,
+                                  generic.edit.ProcessFormView):
 
-    model = project_models.Project
     form_class = forms.AddUsersFromEmailForm
-    template_name = 'meinberlin_dashboard/project_participants.html'
-    permission_required = 'a4projects.add_project'
-    menu_item = 'project'
 
-    related_users_field = 'participants'
-    add_user_field_label = _('Add users via email')
-    success_message = ('{} user added.', '{} users added.')
-    success_message_removal = _('User successfully removed.')
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
         if 'submit_action' in request.POST and (
                 request.POST['submit_action'] == 'remove_user'):
             pk = int(request.POST['user_pk'])
             user = get_object_or_404(User, pk=pk)
-            project = self.get_object()
 
             if request.POST['submit_action'] == 'remove_user':
-                related_users = getattr(project, self.related_users_field)
+                related_users = getattr(self.object, self.related_users_field)
                 related_users.remove(user)
                 messages.success(request, self.success_message_removal)
 
@@ -234,7 +232,20 @@ class DashboardProjectUserListView(mixins.DashboardBaseMixin,
         return kwargs
 
 
-class DashboardProjectModeratorsView(DashboardProjectUserListView):
+class DashboardProjectParticipantsView(AbstractProjectUserListView):
+
+    model = project_models.Project
+    template_name = 'meinberlin_dashboard/project_participants.html'
+    permission_required = 'a4projects.add_project'
+    menu_item = 'project'
+
+    related_users_field = 'participants'
+    add_user_field_label = _('Add users via email')
+    success_message = ('{} user added.', '{} users added.')
+    success_message_removal = _('User successfully removed.')
+
+
+class DashboardProjectModeratorsView(AbstractProjectUserListView):
 
     model = project_models.Project
     template_name = 'meinberlin_dashboard/project_moderators.html'

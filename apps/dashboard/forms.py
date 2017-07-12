@@ -300,8 +300,6 @@ class AddUsersFromEmailForm(forms.Form):
     add_users = CommaSeparatedEmailField()
 
     def __init__(self, *args, **kwargs):
-        # Remove the instance submitted by UpdateView
-        kwargs.pop('instance', None)
         # Store the label for the CommaSeparatedEmailField
         label = kwargs.pop('label', None)
 
