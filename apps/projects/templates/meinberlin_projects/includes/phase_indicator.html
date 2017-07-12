@@ -2,18 +2,18 @@
 
 {% with project.active_phase as active_phase %}
 
-{% phases_and_offlineevents_sorted project as phases_and_events %}
-{% with phases_and_events|length as phase_event_count %}
-{% if phase_event_count > 1 %}
+{% offlineevents_and_modules_sorted project as modules_and_events %}
+{% with modules_and_events|length as module_event_count %}
+{% if module_event_count > 1 %}
 <script src="{% static 'js/popover.js' %}"></script>
 <div class="phase-list">
     <ul>
-        {% for obj in phases_and_events %}
-            {% if obj|is_phase %}
+        {% for obj in modules_and_events %}
+            {% if obj|is_module %}
                 <li>
                     <a
                             href="{{ project.get_absolute_url }}"
-                            class="phase-list__button {% if obj == active_phase %} is-active{% endif %}"
+                            class="phase-list__button {% if obj == active_phase.module %} is-active{% endif %}"
                     >
                         {{ obj.name }}
                     </a>
@@ -32,6 +32,7 @@
     </ul>
 </div>
 {% endif %}
+
 {% endwith %}
 
 {% if not object|is_offlineevent %}
