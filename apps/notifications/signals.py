@@ -52,7 +52,7 @@ def autofollow_project_moderators(instance, action, pk_set, reverse, **kwargs):
             for project_pk in project_pks:
                 Follow.objects.update_or_create(
                     project_id=project_pk,
-                    creator_id=user,
+                    creator=user,
                     defaults={
                         'enabled': True
                     }
@@ -90,7 +90,7 @@ def autofollow_project_participants_add(instance, pk_set, reverse):
         for project_pk in project_pks:
             Follow.objects.update_or_create(
                 project_id=project_pk,
-                creator_id=user,
+                creator=user,
                 defaults={
                     'enabled': True
                 }
