@@ -23,6 +23,8 @@ class DashboardBaseMixin(mixins.LoginRequiredMixin,
         if 'organisation_slug' in self.kwargs:
             slug = self.kwargs['organisation_slug']
             return get_object_or_404(org_models.Organisation, slug=slug)
+        if hasattr(self, 'project'):
+            return self.project.organisation
         if 'slug' in self.kwargs:
             slug = self.kwargs['slug']
             project = get_object_or_404(project_models.Project, slug=slug)
