@@ -12,7 +12,6 @@ from rules.compat import access_mixins as mixins
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 from apps.organisations import models as org_models
-from apps.users.models import User
 
 
 class DashboardBaseMixin(mixins.LoginRequiredMixin,
@@ -121,47 +120,3 @@ class DashboardProjectPublishMixin:
 
         return redirect('dashboard-project-list',
                         organisation_slug=self.organisation.slug)
-
-
-class DashboardUserRemovalMixin:
-    related_users_field = 'participants'
-    success_message = _('User successfully removed.')
-
-    def post(self, request, *args, **kwargs):
-        if 'submit_action' in request.POST and (
-                request.POST['submit_action'] == 'remove_user'):
-            pk = int(request.POST['user_pk'])
-            user = get_object_or_404(User, pk=pk)
-            project = self.get_object()
-
-            if request.POST['submit_action'] == 'remove_user':
-                related_users = getattr(project, self.related_users_field)
-                related_users.remove(user)
-                messages.success(request, self.success_message)
-
-            return redirect(self.get_success_url())
-        else:
-            return super().post(request, *args, **kwargs)
-
-
-class DashboardModRemovalMixin:
-    def post(self, request, *args, **kwargs):
-        if 'submit_action' in request.POST:
-            pk = int(request.POST['moderator_pk'])
-            user = get_object_or_404(User, pk=pk)
-            project = self.get_object()
-            can_edit = request.user.has_perm(
-                'a4projects.add_project',
-                project
-            )
-            if not can_edit:
-                raise PermissionDenied
-
-            if request.POST['submit_action'] == 'remove_moderator':
-                project.moderators.remove(user)
-                messages.success(request, _('Moderator successfully removed.'))
-
-            return redirect('dashboard-project-moderators',
-                            slug=project.slug)
-        else:
-            return super().post(request, *args, **kwargs)
