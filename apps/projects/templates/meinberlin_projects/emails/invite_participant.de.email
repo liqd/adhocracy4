@@ -5,7 +5,7 @@
 
 {% block headline %}Einladung zum privaten Projekt  {{ project.name }}{% endblock  %}
 
-{% block content %}Besuchen Sie die Webseite des privaten Projekt auf {{ site.name }} um sich zu beteiligen.{% endblock %}
+{% block content %}Besuchen Sie die Webseite des privaten Projekts auf {{ site.name }} um sich zu beteiligen.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
 {% block cta_label %}Projekt anzeigen{% endblock %}
