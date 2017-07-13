@@ -15,10 +15,18 @@ class FilteredListView(generic.ListView):
 
     filter_set = None
 
+    def filter_kwargs(self):
+        default_kwargs = {
+            'data': self.request.GET,
+            'request': self.request,
+            'queryset': super().get_queryset()
+        }
+
+        return default_kwargs
+
     def filter(self):
         return self.filter_set(
-            self.request.GET,
-            request=self.request
+            **self.filter_kwargs()
         )
 
     def get_queryset(self):
