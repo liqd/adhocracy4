@@ -11,6 +11,8 @@
             {% csrf_token %}
             {{ form.media }}
 
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender_name %}
+
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender %}
 
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.receivers %}

@@ -17,7 +17,8 @@ class Newsletter(UserGeneratedContentModel):
         (ORGANISATION, _('Users following the chosen organisation')),
         (PROJECT, _('Users following the chosen project')),
     )
-
+    sender_name = models.CharField(max_length=254,
+                                    verbose_name=_('Name'))
     sender = models.EmailField(blank=True,
                                verbose_name=_('Sender'))
     subject = models.CharField(max_length=254,
@@ -30,7 +31,8 @@ class Newsletter(UserGeneratedContentModel):
                                 verbose_name=_('Sent'))
 
     receivers = models.PositiveSmallIntegerField(choices=RECEIVER_CHOICES,
-                                                 verbose_name=_('Receivers'))
+                                                 verbose_name=_('Receivers'),
+                                                 default='')
 
     project = models.ForeignKey(Project,
                                 null=True, blank=True,
