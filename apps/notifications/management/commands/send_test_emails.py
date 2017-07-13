@@ -7,6 +7,7 @@ from django.core.management.base import CommandError
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
 from adhocracy4.comments.models import Comment
+from adhocracy4.projects.models import Project
 from adhocracy4.reports import emails as reports_emails
 from adhocracy4.reports.models import Report
 from apps.bplan import emails as bplan_emails
@@ -51,6 +52,8 @@ class Command(BaseCommand):
 
         self._send_allauth_email_confirmation()
         self._send_allauth_password_reset()
+
+        self._send_invitation_private_project()
 
     def _send_notifications_create_idea(self):
         # Send notification for a newly created item
@@ -172,4 +175,12 @@ class Command(BaseCommand):
             receiver=[self.user],
             template_name='account/email/email_confirmation',
             **context
+        )
+
+    def _send_invitation_private_project(self):
+        project = Project.objects.first()
+        TestEmail.send(
+            project,
+            receiver=[self.user],
+            template_name='meinberlin_projects/email/invite_participant'
         )
