@@ -9,6 +9,7 @@
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.logo %}
         <div class="u-spacer-bottom">
             <button type="submit" class="button button--primary">{% trans 'Save changes'%}</button>
         </div>
