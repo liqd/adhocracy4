@@ -18,7 +18,7 @@ class Newsletter(UserGeneratedContentModel):
         (PROJECT, _('Users following the chosen project')),
     )
     sender_name = models.CharField(max_length=254,
-                                    verbose_name=_('Name'))
+                                   verbose_name=_('Name'))
     sender = models.EmailField(blank=True,
                                verbose_name=_('Sender'))
     subject = models.CharField(max_length=254,

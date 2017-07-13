@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_newsletters', '0002_Add sender-name'),
+        ('meinberlin_newsletters', '0002_add-sender-name'),
     ]
 
     operations = [
