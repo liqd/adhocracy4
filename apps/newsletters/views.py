@@ -10,6 +10,11 @@ class NewsletterCreateView(generic.CreateView):
     model = models.Newsletter
     form_class = forms.NewsletterForm
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.creator = self.request.user

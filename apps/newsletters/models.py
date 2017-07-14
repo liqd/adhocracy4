@@ -6,17 +6,19 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects.models import Project
 
+PLATFORM = 0
+ORGANISATION = 1
+PROJECT = 2
+
+RECEIVER_CHOICES = (
+    (PLATFORM, _('Every user on the platform')),
+    (ORGANISATION, _('Users following the chosen organisation')),
+    (PROJECT, _('Users following the chosen project')),
+)
+
 
 class Newsletter(UserGeneratedContentModel):
-    PLATFORM = 0
-    ORGANISATION = 1
-    PROJECT = 2
 
-    RECEIVER_CHOICES = (
-        (PLATFORM, _('Every user on the platform')),
-        (ORGANISATION, _('Users following the chosen organisation')),
-        (PROJECT, _('Users following the chosen project')),
-    )
     sender_name = models.CharField(max_length=254,
                                    verbose_name=_('Name'))
     sender = models.EmailField(blank=True,
