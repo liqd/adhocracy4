@@ -3,6 +3,7 @@ from datetime import datetime
 import django_filters
 from django.apps import apps
 from django.conf import settings
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters import views as filter_views
@@ -105,4 +106,10 @@ class ProjectListView(filter_views.FilteredListView):
     filter_set = ProjectFilterSet
 
     def get_queryset(self):
-        return super().get_queryset().filter(is_draft=False)
+        return super().get_queryset().filter(
+            Q(is_draft=False, is_public=False,
+              participants__pk=self.request.user.pk) |
+            Q(is_draft=False, is_public=False,
+              organisation__initiators__pk=self.request.user.pk) |
+            Q(is_draft=False, is_public=True)
+        ).distinct()
