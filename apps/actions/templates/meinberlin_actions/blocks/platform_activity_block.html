@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="block l-center-6">
+<div class="block block--bordered l-center-6">
     <h2>{{ self.heading }}</h2>
 
     {% for action in actions %}
@@ -28,7 +28,13 @@
                 <div class="action__line">
                     {% blocktrans with url=action.project.get_absolute_url name=action.project.name %}on <a href="{{ url }}">{{ name }}</a>{% endblocktrans %}
                 </div>
-                <div class="action__date">{{ action.timestamp|date:'d.m.Y' }}</div>
+                <div class="action__date">
+                    <time datetime="{{ action.timestamp|date:'Y-m-d h:i' }}"
+                          title="{{ action.timestamp|date:'DATETIME_FORMAT' }}"
+                          class="relative">
+                        {{ action.timestamp|date:'d.m.Y' }}
+                    </time>
+                </div>
             </div>
         </div>
     {% endfor %}

@@ -11,6 +11,10 @@
     @include clearfix;
     border-bottom: 1px solid $border-color;
     padding: 0.5em 0;
+
+    &:last-child {
+        border-bottom: 0;
+    }
 }
 
 .action__icon {
