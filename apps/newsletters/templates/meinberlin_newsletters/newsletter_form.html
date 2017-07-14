@@ -10,20 +10,24 @@
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
             {{ form.media }}
+            <div class="form-group--double">
+                <div class="l-col-2">
+                    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender_name %}
+                </div>
+                <div class="l-col-2">
+                    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender %}
+                </div>
+            </div>
 
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender_name %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.subject %}
 
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.body %}
 
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.receivers %}
 
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project %}
 
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.organisation %}
-
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.subject %}
-
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.body %}
 
             <div class="u-spacer-bottom">
                 <input type="submit" class="button button--primary" name="send" value="{% trans 'Send'%}" />

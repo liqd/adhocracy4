@@ -66,6 +66,10 @@ select {
     }
 }
 
+.form-group--double {
+    @include clearfix;
+}
+
 .form-group--narrow {
     @include grid-width(9);
 }
