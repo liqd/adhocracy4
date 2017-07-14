@@ -27,9 +27,13 @@
                 {{ organisation.name }}
             </a>
         </li>
-
         {% endfor %}
+        {% if request.user.is_superuser %}
+            <li>
+                <a class="dropdown-item" href="{% url 'meinberlin_newsletters:newsletter-create' %}">{% trans "Newsletter" %}</a>
 
+            </li>
+        {% endif %}
         <li>
             <form class="form--inline" action="{% url 'account_logout' %}" method="post" aria-label="{% trans 'Logout' %}">
                 {% csrf_token %}

@@ -3,8 +3,8 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from adhocracy4.images import fields
 
+from adhocracy4.images import fields
 
 
 class Organisation(models.Model):
@@ -22,7 +22,6 @@ class Organisation(models.Model):
         ),
         upload_to='projects/backgrounds',
         blank=True)
-
 
     def __str__(self):
         return self.name
