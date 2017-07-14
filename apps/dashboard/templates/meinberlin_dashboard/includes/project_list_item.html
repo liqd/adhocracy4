@@ -4,6 +4,12 @@
     <p class="list-item__subtitle">{{ project.typ|get_blueprint_title }}</p>
     <h3 class="list-item__title">
         {{ project.name }}
+        {% if project.has_finished %}
+            <span class="label label--primary">{% trans "Finished" %}</span>
+        {% endif %}
+        {% if not project.is_public %}
+            <span class="label label--secondary">{% trans 'private' %}</span>
+        {% endif %}
     </h3>
     <div class="list-item__actions">
         <span class="list-item__action">
