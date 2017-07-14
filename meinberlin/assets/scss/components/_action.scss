@@ -7,19 +7,6 @@
     font-size: $font-size * 100%;
 }
 
-.actions {
-    padding: 0;
-    border: 1px solid $border-color;
-
-    @media (min-width: $breakpoint) {
-        padding: 1em;
-    }
-
-    h2 {
-        margin-top: 0;
-    }
-}
-
 .action {
     @include clearfix;
     border-bottom: 1px solid $border-color;

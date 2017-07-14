@@ -15,6 +15,19 @@
     }
 }
 
+.block--bordered {
+    padding: 0;
+    border: 1px solid $border-color;
+
+    @media (min-width: $breakpoint) {
+        padding: 1em;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+}
+
 .block__actions {
     text-align: center;
 }
