@@ -3,12 +3,13 @@ import re
 from allauth.account.adapter import DefaultAccountAdapter
 from django.conf import settings
 
+from adhocracy4.emails.mixins import SyncEmailMixin
 from apps.contrib.emails import Email
 from apps.users import USERNAME_INVALID_MESSAGE
 from apps.users import USERNAME_REGEX
 
 
-class UserAccountEmail(Email):
+class UserAccountEmail(Email, SyncEmailMixin):
     def get_receivers(self):
         return [self.object]
 
@@ -31,7 +32,7 @@ class AccountAdapter(DefaultAccountAdapter):
 
     def send_mail(self, template_prefix, email, context):
         user = context['user']
-        return UserAccountEmail.send_sync(
+        return UserAccountEmail.send(
             user,
             template_name=template_prefix,
             **context
