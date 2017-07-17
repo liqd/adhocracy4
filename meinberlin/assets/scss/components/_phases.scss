@@ -1,7 +1,8 @@
 $circle-size: 0.6em;
 
 .timeline {
-    text-align: center;
+    font-size: $font-size-sm;
+    padding-left: 2em;
     color: $link-color;
 
     ul {
@@ -11,10 +12,9 @@ $circle-size: 0.6em;
     }
 
     li {
-        display: inline-block;
+        display: block;
         position: relative;
-        margin-right: 5px;
-        margin-bottom: 1em + $circle-size;
+        margin-bottom: 5px;
 
         &:last-child {
             margin-right: 0;
@@ -22,39 +22,37 @@ $circle-size: 0.6em;
 
         &:before {
             content: "";
-            height: 1px;
-            margin: auto;
+            width: 1px;
 
             position: absolute;
-            left: -15px;
-            right: -15px;
-            bottom: -$circle-size;
+            top: -15px;
+            bottom: -15px;
+            left: -$circle-size;
 
             background-color: $border-color;
         }
 
         &:first-child:before {
-            left: 50%;
+            top: 50%;
         }
 
         &:last-child:before {
-            right: 50%;
+            bottom: 50%;
         }
     }
 }
 
 .timeline__button {
-    font-size: $font-size-sm;
-
     &:after {
         content: "";
         width: $circle-size;
         height: $circle-size;
+        z-index: 1;
 
         position: absolute;
-        bottom: (-$circle-size * 1.5);
-        left: 50%;
-        margin-left: -($circle-size / 2);
+        top: 50%;
+        left: (-$circle-size * 1.5);
+        margin-top: (-$circle-size / 2);
 
         background-color: $body-bg;
         border: 1px solid $border-color;
@@ -74,6 +72,48 @@ $circle-size: 0.6em;
         &:after {
             @include button-color($link-color, $link-hover-color);
         }
+    }
+}
+
+@media (min-width: $breakpoint) {
+    .timeline {
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .timeline li {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 1em + $circle-size;
+
+        &:before,
+        &:first-child:before,
+        &:last-child:before {
+            width: auto;
+            height: 1px;
+
+            left: -15px;
+            right: -15px;
+            top: auto;
+            bottom: -$circle-size;
+        }
+
+        &:first-child:before {
+            left: 50%;
+        }
+
+        &:last-child:before {
+            right: 50%;
+        }
+    }
+
+    .timeline__button:after {
+        top: auto;
+        margin-top: 0;
+
+        bottom: (-$circle-size * 1.5);
+        left: 50%;
+        margin-left: (-$circle-size / 2);
     }
 }
 
