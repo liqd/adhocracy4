@@ -8,10 +8,10 @@
         {% trans 'Participation is not possible at the moment. The poll has not been set up yet.' %}
     </p>
 
-    {% has_perm 'meinberlin_polls.change_poll' request.user view.module as may_change %}
+    {% has_perm 'meinberlin_polls.change_poll' request.user project.last_active_module as may_change %}
     {% if may_change %}
         <p>
-            <a href="{% url 'dashboard-project-management' slug=view.project.slug %}">
+            <a href="{% url 'dashboard-project-management' slug=project.slug %}">
                 {% trans 'Setup the poll by adding questions and answers in the dashboard.' %}
             </a>
         </p>

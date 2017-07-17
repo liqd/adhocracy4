@@ -7,7 +7,7 @@
     <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
         <ul>
             <li>
-                <a href="{% url 'meinberlin_offlineevents:offlineevent-list' slug=view.project.slug %}">
+                <a href="{% url 'meinberlin_offlineevents:offlineevent-list' project_slug=project.slug %}">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     {% trans 'back to offline events' %}</a>
             </li>
@@ -16,7 +16,7 @@
 
     <h1>{% trans 'Add a new offline event'%}</h1>
 
-    {% url 'meinberlin_offlineevents:offlineevent-mgmt' view.project.slug as cancel %}
+    {% url 'meinberlin_offlineevents:offlineevent-mgmt' project_slug=project.slug as cancel %}
     {% include "meinberlin_offlineevents/includes/offlineevent_form.html" with cancel=cancel %}
 </div>
 {% endblock %}

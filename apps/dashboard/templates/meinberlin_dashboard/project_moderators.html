@@ -8,53 +8,7 @@
 
     <h1>{{ project.name }}</h1>
     <h2>{% trans 'Moderators' %}</h2>
-    <form method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="{{ form.add_moderators.id_for_label }}">
-                {{ form.add_moderators.label }}
-            </label>
-            {% if form.add_moderators.help_text %}
-            <div class="form-hint">
-                {{ form.add_moderators.help_text }}
-            </div>
-            {% endif %}
-            <div class="button-group input-addon">
-                <div class="input-addon__input widget widget--{{ form.add_moderators|widget_type }}">
-                    {{ form.add_moderators }}
-                </div>
-                <input type="submit" class="button button--primary input-addon__after" value="{% trans 'Add' %}"/>
-            </div>
-            {{ form.add_moderators.errors }}
-        </div>
-    </form>
+    {% include 'meinberlin_dashboard/includes/users_from_email_form.html' %}
 
-    {% if project.moderators.count %}
-        <table>
-            <thead>
-                <tr>
-                    <th>{% trans 'Name' %}</th>
-                    <th>{% trans 'Email' %}</th>
-                    <th><span class="sr-only">{% trans 'Remove' %}</span></th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for moderator in project.moderators.all %}
-                    <tr>
-                        <td><label for="moderator-{{ moderator.pk }}">{{ moderator.username }}</label></td>
-                        <td><label for="moderator-{{ moderator.pk }}">{{ moderator.email }}</label></td>
-                        <td class="td--action">
-                            <form method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="moderator_pk" value="{{ moderator.pk }}">
-                                <button type="submit" name="submit_action" value="remove_moderator" title="{% trans 'Remove' %}">
-                                    <i class="fa fa-times" aria-label="{% trans 'Remove' %}"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% endif %}
+    {% include 'meinberlin_dashboard/includes/removeable_user_list.html' with users=project.moderators.all %}
 {% endblock %}

@@ -1,13 +1,14 @@
-from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
-from adhocracy4.modules import views as module_views
 from adhocracy4.rules import mixins as rules_mixins
 from apps.contrib import filters
+from apps.contrib.views import ProjectContextDispatcher
 from apps.dashboard.mixins import DashboardBaseMixin
+from apps.exports import views as export_views
+from apps.ideas import views as idea_views
 
 from . import forms
 from . import models
@@ -31,18 +32,35 @@ class TopicFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class TopicListView(module_views.ItemListView):
+class TopicExportView(export_views.ItemExportView,
+                      export_views.ItemExportWithRatesMixin,
+                      export_views.ItemExportWithCommentCountMixin,
+                      export_views.ItemExportWithCommentsMixin):
     model = models.Topic
-    filter_set = TopicFilterSet
+    fields = ['name', 'description', 'creator', 'created']
 
     def get_queryset(self):
-        return super().get_queryset().filter(module=self.module) \
+        return super().get_queryset() \
+            .filter(module=self.module)\
+            .annotate_comment_count()\
+            .annotate_positive_rating_count()\
+            .annotate_negative_rating_count()
+
+
+class TopicListView(idea_views.AbstractIdeaListView):
+    model = models.Topic
+    filter_set = TopicFilterSet
+    exports = [(_('Topics with comments'), TopicExportView)]
+
+    def get_queryset(self):
+        return super().get_queryset()\
+            .filter(module=self.project.last_active_module) \
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()
 
 
-class TopicDetailView(module_views.ItemDetailView):
+class TopicDetailView(idea_views.AbstractIdeaDetailView):
     model = models.Topic
     queryset = models.Topic.objects.annotate_positive_rating_count()\
         .annotate_negative_rating_count()
@@ -68,13 +86,15 @@ class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class TopicMgmtView(DashboardBaseMixin,
+class TopicMgmtView(ProjectContextDispatcher,
+                    DashboardBaseMixin,
                     rules_mixins.PermissionRequiredMixin,
                     filter_views.FilteredListView):
     model = models.Topic
     template_name = 'meinberlin_topicprio/topic_mgmt_list.html'
     filter_set = TopicCreateFilterSet
     permission_required = 'a4projects.add_project'
+    project_url_kwarg = 'slug'
 
     # Dashboard related attributes
     menu_item = 'project'
@@ -84,20 +104,15 @@ class TopicMgmtView(DashboardBaseMixin,
             'dashboard-project-list',
             kwargs={'organisation_slug': self.organisation.slug, })
 
-    def dispatch(self, *args, **kwargs):
-        self.project = kwargs['project']
-        self.module = self.project.module_set.first()
-        self.request.module = self.module
-        return super(TopicMgmtView, self).dispatch(*args, **kwargs)
-
     def get_queryset(self):
-        return super().get_queryset().filter(module=self.module) \
+        return super().get_queryset()\
+            .filter(module=self.project.last_active_module) \
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()
 
 
-class TopicMgmtCreateView(module_views.ItemCreateView):
+class TopicMgmtCreateView(idea_views.AbstractIdeaCreateView):
     model = models.Topic
     form_class = forms.TopicForm
     permission_required = 'meinberlin_topicprio.add_topic'
@@ -114,7 +129,7 @@ class TopicMgmtCreateView(module_views.ItemCreateView):
             kwargs={'slug': self.project.slug})
 
 
-class TopicMgmtUpdateView(module_views.ItemUpdateView):
+class TopicMgmtUpdateView(idea_views.AbstractIdeaUpdateView):
     model = models.Topic
     form_class = forms.TopicForm
     permission_required = 'meinberlin_topicprio.change_topic'
@@ -123,15 +138,15 @@ class TopicMgmtUpdateView(module_views.ItemUpdateView):
 
     @property
     def organisation(self):
-        return self.get_object().project.organisation
+        return self.project.organisation
 
     def get_success_url(self):
         return reverse(
             'dashboard-project-management',
-            kwargs={'slug': self.get_object().project.slug})
+            kwargs={'slug': self.project.slug})
 
 
-class TopicMgmtDeleteView(module_views.ItemDeleteView):
+class TopicMgmtDeleteView(idea_views.AbstractIdeaDeleteView):
     model = models.Topic
     success_message = _('The topic has been deleted')
     permission_required = 'meinberlin_topicprio.change_topic'
@@ -140,13 +155,9 @@ class TopicMgmtDeleteView(module_views.ItemDeleteView):
 
     @property
     def organisation(self):
-        return self.get_object().project.organisation
-
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request, self.success_message)
-        return super().delete(request, *args, **kwargs)
+        return self.project.organisation
 
     def get_success_url(self):
         return reverse(
             'dashboard-project-management',
-            kwargs={'slug': self.get_object().project.slug})
+            kwargs={'slug': self.project.slug})

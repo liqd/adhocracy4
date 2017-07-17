@@ -1,0 +1,13 @@
+{% extends 'email_base.'|add:part_type %}
+{% load verbose_name %}
+
+{% block subject %}Invitation to the private project {{ project.name }}{% endblock %}
+
+{% block headline %}Invitation to the private project {{ project.name }}{% endblock  %}
+
+{% block content %}Visit the private project's webpage on {{ site.name }} by clicking the {% if part_type == 'txt' %}link{% else %}button{% endif %} below to participate.{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
+{% block cta_label %}Visit the project{% endblock %}
+
+{% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you are invited to a project.{% endblock %}

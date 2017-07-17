@@ -1,6 +1,6 @@
 var React = require('react')
 var django = require('django')
-var ErrorList = require('../../contrib/static/js/ErrorList')
+var ErrorList = require('../../contrib/assets/ErrorList')
 
 const ckGet = function (id) {
   return window.CKEDITOR.instances[id]
@@ -60,7 +60,7 @@ const Paragraph = React.createClass({
   },
 
   render: function () {
-    var ckEditorToolbarsHeight = 60  // measured on example editor
+    var ckEditorToolbarsHeight = 60 // measured on example editor
     return (
       <section>
         <div className="commenting">

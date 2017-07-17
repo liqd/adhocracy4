@@ -10,16 +10,4 @@ meinberlin/settings/local.py
 .coverage
 htmlcov/
 media/
-
-# Ignore generated static files
-/meinberlin/static/leaflet.*
-/meinberlin/static/adhocracy4.*
-/meinberlin/static/vendor.*
-/meinberlin/static/datepicker.*
-/meinberlin/static/embed.js
-/meinberlin/static/fonts/
-/meinberlin/static/images/layers-2x.png
-/meinberlin/static/images/layers.png
-/meinberlin/static/images/spritesheet-2x.png
-/meinberlin/static/images/spritesheet.*
-
+/meinberlin/static/

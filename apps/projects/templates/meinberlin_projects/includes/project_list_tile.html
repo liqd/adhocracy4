@@ -17,12 +17,18 @@
             <img src="{% static 'images/meinberlin.svg' %}" alt="Mein Berlin" class="tile__badge">
         {% endif %}
 
-        {% get_days project.days_left as days %}
-        {% if project.has_finished %}
-            <span class="tile__label label label--primary">{% trans "Finished" %}</span>
-        {% elif days %}
-            <span class="tile__label label label--primary">{{ days }}</span>
-        {% endif %}
+        <div class="tile__labels">
+            {% get_days project.days_left as days %}
+            {% if project.has_finished %}
+                <span class="label label--primary">{% trans "Finished" %}</span>
+            {% elif days %}
+                <span class="label label--primary">{{ days }}</span>
+            {% endif %}
+
+            {% if not project.is_public %}
+                <span class="label label--secondary">{% trans 'private' %}</span>
+            {% endif %}
+        </div>
     </div>
 
     <div class="tile__body">

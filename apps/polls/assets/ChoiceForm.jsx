@@ -1,6 +1,6 @@
 var React = require('react')
 var django = require('django')
-var ErrorList = require('../../contrib/static/js/ErrorList')
+var ErrorList = require('../../contrib/assets/ErrorList')
 
 let ChoiceForm = React.createClass({
   handleLabelChange: function (e) {

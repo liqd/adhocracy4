@@ -75,6 +75,7 @@ INSTALLED_APPS = (
     'apps.moderatorfeedback.apps.Config',
     'apps.maps.apps.Config',
     'apps.notifications.apps.Config',
+    'apps.exports.apps.Config',
     'apps.offlineevents.apps.Config',
 
     'apps.account.apps.Config',
@@ -252,7 +253,7 @@ SERVICE_KONTO_API_URL = 'https://skbref.verwalt-berlin.de/HHGWUserData/HHGWUserD
 # ckeditor
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
-CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_RESTRICT_BY_USER = 'username'
 CKEDITOR_ALLOW_NONIMAGE_FILES = True
 
 CKEDITOR_CONFIGS = {
