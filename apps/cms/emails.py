@@ -28,7 +28,7 @@ class CsvFormEmail(FormEmail):
     def get_attachments(self):
         attachments = super().get_attachments()
         csv_text = self._generate_csv()
-        mime_doc = MIMEText(_text=csv_text, _subtype='csv')
+        mime_doc = MIMEText(_text=csv_text, _subtype='csv', _charset='utf-8')
         timestamp = timezone.now().strftime("%Y-%m-%d")
         form_title = self.object.title.replace(' ', '_')
         submission_pk = self.object.get_submission_class().objects.last().pk
@@ -47,5 +47,5 @@ class TextFormEmail(FormEmail):
         text = ''
         for field, value in self.object.field_values.items():
             text += '{}:\n{}\n\n'.format(field, value)
-        mime_doc = MIMEText(_text=text)
+        mime_doc = MIMEText(_text=text, _charset='utf-8')
         return attachments + [mime_doc]
