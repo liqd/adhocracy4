@@ -58,5 +58,5 @@ class TextFormEmail(FormEmail):
         text = ''
         for field, value in self.object.field_values.items():
             text += '{}:\n{}\n\n'.format(field, value)
-        mime_doc = MIMEText(_text=text)
+        mime_doc = MIMEText(_text=text, _charset='utf-8')
         return attachments + [mime_doc]
