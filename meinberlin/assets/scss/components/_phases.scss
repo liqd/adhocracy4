@@ -1,3 +1,5 @@
+$circle-size: 0.6em;
+
 .timeline {
     text-align: center;
     color: $link-color;
@@ -12,28 +14,31 @@
         display: inline-block;
         position: relative;
         margin-right: 5px;
-        margin-bottom: 0.5em;
-
-        &:after {
-            content: "";
-            height: 1px;
-            margin: auto;
-
-            position: absolute;
-            left: 100%;
-            right: -15px;
-            top: 0;
-            bottom: 0;
-
-            background-color: $brand-primary;
-        }
+        margin-bottom: 1em + $circle-size;
 
         &:last-child {
             margin-right: 0;
         }
 
-        &:last-child:after {
-            content: none;
+        &:before {
+            content: "";
+            height: 1px;
+            margin: auto;
+
+            position: absolute;
+            left: -15px;
+            right: -15px;
+            bottom: -$circle-size;
+
+            background-color: $border-color;
+        }
+
+        &:first-child:before {
+            left: 50%;
+        }
+
+        &:last-child:before {
+            right: 50%;
         }
     }
 }
@@ -57,8 +62,28 @@
         border-color: $link-hover-color;
     }
 
+    &:after {
+        content: "";
+        width: $circle-size;
+        height: $circle-size;
+
+        position: absolute;
+        bottom: (-$circle-size * 1.5);
+        left: 50%;
+        margin-left: -($circle-size / 2);
+
+        background-color: $body-bg;
+        border: 1px solid $border-color;
+        border-radius: 50%;
+        box-shadow: 0 0 0 0.2em $body-bg;
+    }
+
     &.is-active {
         @include button-color($link-color, $link-hover-color);
+
+        &:after {
+            @include button-color($link-color, $link-hover-color);
+        }
     }
 }
 
