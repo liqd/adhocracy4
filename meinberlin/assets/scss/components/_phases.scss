@@ -1,4 +1,4 @@
-.phase-list {
+.timeline {
     text-align: center;
     color: $link-color;
 
@@ -38,7 +38,7 @@
     }
 }
 
-.phase-list__button {
+.timeline__button {
     @extend %button-base;
     padding: 0.1em 0.7em;
     font-weight: normal;

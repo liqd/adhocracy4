@@ -6,14 +6,14 @@
 {% with modules_and_events|length as module_event_count %}
 {% if module_event_count > 1 %}
 <script src="{% static 'js/popover.js' %}"></script>
-<div class="phase-list">
+<div class="timeline">
     <ul>
         {% for obj in modules_and_events %}
             {% if obj|is_module %}
                 <li>
                     <a
                             href="{{ project.get_absolute_url }}"
-                            class="phase-list__button {% if obj == active_phase.module %} is-active{% endif %}"
+                            class="timeline__button {% if obj == active_phase.module %} is-active{% endif %}"
                     >
                         {{ obj.name }}
                     </a>
@@ -22,7 +22,7 @@
                 <li>
                     <a
                         href="{{ obj.get_absolute_url }}"
-                        class="phase-list__button"
+                        class="timeline__button"
                     >
                         {{ obj.name }}
                     </a>
