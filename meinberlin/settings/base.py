@@ -357,29 +357,6 @@ A4_AUTO_FOLLOWABLES = (
     ('meinberlin_polls', 'vote'),  # TODO: really?
 )
 
-ACTION_TYPES = {
-    'project': [
-        ('a4projects', 'project'),
-        ('meinberlin_bplan', 'bplan'),
-        ('meinberlin_externalproject', 'externalproject'),
-    ],
-    'phase': [
-        ('a4phases', 'phase'),
-    ],
-    'comment': [
-        ('a4comments', 'comment'),
-    ],
-    'rating': [
-        ('a4ratings', 'rating'),
-    ],
-    'item': [
-        ('meinberlin_budgeting', 'proposal'),
-        ('meinberlin_ideas', 'idea'),
-        ('meinberlin_kiezkasse', 'proposal'),
-        ('meinberlin_mapideas', 'mapidea'),
-    ]
-}
-
 A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
