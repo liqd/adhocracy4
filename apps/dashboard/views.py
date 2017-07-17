@@ -222,7 +222,8 @@ class AbstractProjectUserListView(mixins.DashboardBaseMixin,
 
             messages.success(
                 self.request,
-                ungettext(*self.success_message, len(users)).format(len(users))
+                ungettext(self.success_message[0], self.success_message[1],
+                          len(users)).format(len(users))
             )
 
         return redirect(self.get_success_url())
