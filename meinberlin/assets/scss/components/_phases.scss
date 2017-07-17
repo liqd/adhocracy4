@@ -44,23 +44,7 @@ $circle-size: 0.6em;
 }
 
 .timeline__button {
-    @extend %button-base;
-    padding: 0.1em 0.7em;
-    font-weight: normal;
     font-size: $font-size-sm;
-    border-radius: 1.3em;
-    margin-bottom: 0;
-    vertical-align: middle;
-
-    background-color: contrast-color($link-color);
-    color: $link-color;
-    border-color: $link-color;
-
-    &:hover,
-    &:focus {
-        color: $link-hover-color;
-        border-color: $link-hover-color;
-    }
 
     &:after {
         content: "";
@@ -79,6 +63,12 @@ $circle-size: 0.6em;
     }
 
     &.is-active {
+        &:after {
+            border-color: $link-color;
+        }
+    }
+
+    &.is-selected {
         @include button-color($link-color, $link-hover-color);
 
         &:after {
