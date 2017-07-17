@@ -2,18 +2,18 @@
 
 {% with project.active_phase as active_phase %}
 
-{% phases_and_offlineevents_sorted project as phases_and_events %}
-{% with phases_and_events|length as phase_event_count %}
-{% if phase_event_count > 1 %}
+{% offlineevents_and_modules_sorted project as modules_and_events %}
+{% with modules_and_events|length as module_event_count %}
+{% if module_event_count > 1 %}
 <script src="{% static 'js/popover.js' %}"></script>
 <div class="phase-list">
     <ul>
-        {% for obj in phases_and_events %}
-            {% if obj|is_phase %}
+        {% for obj in modules_and_events %}
+            {% if obj|is_module %}
                 <li>
                     <a
                             href="{{ project.get_absolute_url }}"
-                            class="phase-list__button {% if obj == active_phase %} is-active{% endif %}"
+                            class="phase-list__button {% if obj == active_phase.module %} is-active{% endif %}"
                     >
                         {{ obj.name }}
                     </a>
@@ -32,28 +32,30 @@
     </ul>
 </div>
 {% endif %}
+
 {% endwith %}
 
 {% if not object|is_offlineevent %}
-<div class="phase-info">
-    <div class="l-center-6">
-        {% if active_phase %}
+<div class="l-center-6">
+    {% for phase in project.phases %}
+        <div class="phase-info {% if phase = active_phase %}phase-info--active{% endif %}">
+
             <h3 class="phase-info__title">
-                {{ active_phase.name }}
+                {{ phase.name }}
             </h3>
             <div class="phase-info__subtitle">
-                {{ active_phase.start_date }}
-                &mdash; {{ active_phase.end_date }}
+                {{ phase.start_date }}
+                &mdash; {{ phase.end_date }}
             </div>
             <div class="phase-info__description">
-                {{ active_phase.description }}
+                {{ phase.description }}
             </div>
-        {% else %}
-            <h3 class="phase-info__title">
-                {% trans "Participation is not possible at the moment." %}
-            </h3>
-        {% endif %}
-    </div>
+        </div>
+    {% empty %}
+        <h3 class="phase-info__title">
+            {% trans "Participation is not possible at the moment." %}
+        </h3>
+    {% endfor %}
 </div>
 {% endif %}
 

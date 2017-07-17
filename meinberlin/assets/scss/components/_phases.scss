@@ -64,11 +64,19 @@
 
 .phase-info {
     margin-bottom: $spacer * 2;
+    padding: $padding;
+    border-left: 0.3em solid transparent;
+}
+
+.phase-info--active {
+    background-color: $bg-tertiary;
+    border-left-color: $brand-primary;
 }
 
 .phase-info__title {
     font-size: $font-size-xl;
     margin-bottom: 0.5rem;
+    margin-top: 0;
 }
 
 .phase-info__subtitle {
