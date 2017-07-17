@@ -75,7 +75,7 @@ class TextInputWidget(TextInput):
         return render_to_string(self.template, {
             'id': _id,
             'value_label': value,
-            'name': self.label.lower(),
+            'name': name,
             'label': self.label,
             'right': self.right,
             'url_par': self.data
