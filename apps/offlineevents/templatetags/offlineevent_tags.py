@@ -13,7 +13,7 @@ def offlineevents_and_modules_sorted(project):
     events = list(OfflineEvent.objects.filter(project=project))
     res = modules + events
     res_sorted = sorted(
-        res, key=lambda x: x.first_phase_start if
+        res, key=lambda x: x.first_phase_start_date if
         isinstance(x, Module) else x.date)
     return res_sorted
 
