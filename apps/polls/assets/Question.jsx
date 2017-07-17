@@ -1,7 +1,7 @@
 var api = require('adhocracy4').api
 var React = require('react')
 var django = require('django')
-var Alert = require('../../contrib/static/js/Alert')
+var Alert = require('../../contrib/assets/Alert')
 
 var Question = React.createClass({
   getInitialState: function () {

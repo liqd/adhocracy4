@@ -21,7 +21,7 @@ const ChapterNav = (props) => {
                   onClick={() => { props.onClick(index) }}
                   errors={props.errors ? props.errors[index] : {}}
                   active={key === activeKey}
-                  />
+                />
               </li>
             )
           })

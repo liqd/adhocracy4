@@ -48,6 +48,8 @@ class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
                     return object
             except Http404:
                 return None
+            except AttributeError:
+                return None
 
         return None
 

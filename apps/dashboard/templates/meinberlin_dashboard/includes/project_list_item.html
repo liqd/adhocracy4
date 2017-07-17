@@ -4,6 +4,12 @@
     <p class="list-item__subtitle">{{ project.typ|get_blueprint_title }}</p>
     <h3 class="list-item__title">
         {{ project.name }}
+        {% if project.has_finished %}
+            <span class="label label--primary">{% trans "Finished" %}</span>
+        {% endif %}
+        {% if not project.is_public %}
+            <span class="label label--secondary">{% trans 'private' %}</span>
+        {% endif %}
     </h3>
     <div class="list-item__actions">
         <span class="list-item__action">
@@ -53,14 +59,24 @@
         <span class="list-item__action">
             <a href="{% url 'dashboard-project-moderators' slug=project.slug %}"
                class="button button--light button--small">
-                <i class="fa fa-user" aria-hidden="true"></i>
+                <i class="fa fa-user-md" aria-hidden="true"></i>
                 {% trans 'Moderators' %}
             </a>
         </span>
         {% endif %}
 
+        {% if not project.is_public %}
         <span class="list-item__action">
-            <a href="{% url 'meinberlin_offlineevents:offlineevent-list' slug=project.slug %}"
+            <a href="{% url 'dashboard-project-participants' slug=project.slug %}"
+               class="button button--light button--small">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                {% trans 'Participants' %}
+            </a>
+        </span>
+        {% endif %}
+
+        <span class="list-item__action">
+            <a href="{% url 'meinberlin_offlineevents:offlineevent-list' project_slug=project.slug %}"
                class="button button--light button--small">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
                 {% trans 'Offline Events' %}

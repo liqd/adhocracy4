@@ -1,0 +1,22 @@
+{% load i18n widget_tweaks %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="{{ form.add_users.id_for_label }}">
+            {{ form.add_users.label }}
+        </label>
+        {% if form.add_users.help_text %}
+        <div class="form-hint">
+            {{ form.add_users.help_text }}
+        </div>
+        {% endif %}
+        <div class="button-group input-addon">
+            <div class="input-addon__input widget widget--{{ form.add_users|widget_type }}">
+                {{ form.add_users }}
+            </div>
+            <input type="submit" class="button button--primary input-addon__after" value="{% trans 'Add' %}"/>
+        </div>
+        {{ form.add_users.errors }}
+    </div>
+</form>

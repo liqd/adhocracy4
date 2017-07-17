@@ -1,6 +1,6 @@
 var React = require('react')
 var django = require('django')
-var ErrorList = require('../../contrib/static/js/ErrorList')
+var ErrorList = require('../../contrib/assets/ErrorList')
 var ParagraphForm = require('./ParagraphForm')
 var FlipMove = require('react-flip-move')
 
@@ -17,6 +17,7 @@ const ChapterForm = (props) => {
           <label>
             {django.gettext('Chapter title')}
             <input
+              ref={props.titleRef}
               type="text"
               value={props.chapter.name}
               onChange={(e) => handleChapterNameChange(props, e)} />

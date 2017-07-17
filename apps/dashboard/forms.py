@@ -1,11 +1,9 @@
 from django import forms
 from django.apps import apps
-from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
 from django.forms import modelformset_factory
 from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext
 
 from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
@@ -54,17 +52,22 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = project_models.Project
         fields = ['name', 'description', 'image', 'tile_image', 'information',
-                  'result', 'is_archived']
+                  'result', 'is_archived', 'is_public']
+        labels = {
+            'is_public': _('This project is public.')
+        }
 
 
 class PhaseForm(forms.ModelForm):
     end_date = forms.SplitDateTimeField(
         widget=widgets.DateTimeInput(time_format='%H:%M'),
-        require_all_fields=True
+        require_all_fields=True,
+        label=_('End date')
     )
     start_date = forms.SplitDateTimeField(
         widget=widgets.DateTimeInput(time_format='%H:%M'),
-        require_all_fields=True
+        require_all_fields=True,
+        label=_('Start date')
     )
 
     class Meta:
@@ -293,62 +296,43 @@ class OrganisationForm(forms.ModelForm):
         }
 
 
-class AddModeratorForm(forms.ModelForm):
-    add_moderators = CommaSeparatedEmailField(label=_('Add moderator via '
-                                                      'email'))
-
-    class Meta:
-        model = project_models.Project
-        fields = ('moderators',)
+class AddUsersFromEmailForm(forms.Form):
+    add_users = CommaSeparatedEmailField()
 
     def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
+        # Store the label for the CommaSeparatedEmailField
+        label = kwargs.pop('label', None)
+
         super().__init__(*args, **kwargs)
 
-    def clean_add_moderators(self):
+        if label:
+            self.fields['add_users'].label = label
+
+    def clean_add_users(self):
         users = []
         missing = []
-        for email in self.cleaned_data['add_moderators']:
+        for email in self.cleaned_data['add_users']:
             try:
                 user = User.objects.get(email__exact=email)
                 users.append(user)
             except ObjectDoesNotExist:
                 missing.append(email)
 
-        if missing:
-            messages.error(
-                self.request,
-                _('Following emails are not registered: ') + ', '.join(
-                    missing)
-            )
-        if users:
-            messages.success(
-                self.request,
-                ungettext(
-                    '{} moderator added.',
-                    '{} moderators added.', len(users)
-                ).format(len(users))
-            )
-
+        self.missing = missing
         return users
-
-    def save(self, commit=True):
-        if commit:
-            if self.cleaned_data['add_moderators']:
-                self.instance.moderators.add(
-                    *self.cleaned_data['add_moderators']
-                )
 
 
 class ExternalProjectBaseForm(forms.ModelForm):
 
     start_date = forms.SplitDateTimeField(
         required=False,
-        widget=widgets.DateTimeInput(time_format='%H:%M')
+        widget=widgets.DateTimeInput(time_format='%H:%M'),
+        label=_('Start date')
     )
     end_date = forms.SplitDateTimeField(
         required=False,
-        widget=widgets.DateTimeInput(time_format='%H:%M')
+        widget=widgets.DateTimeInput(time_format='%H:%M'),
+        label=_('End date')
     )
 
     def clean_end_date(self, *args, **kwargs):
