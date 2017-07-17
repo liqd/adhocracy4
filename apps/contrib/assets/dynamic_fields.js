@@ -1,19 +1,24 @@
 
 var $ = require('jquery')
-
 $(function () {
-  hide2()
+  var $idReceivers0 = $('#id_receivers_0')
+  var $idReceivers1 = $('#id_receivers_1')
+  var $projectSelect = $('#selection-project')
+  var $organisationSelect = $('#selection-organisation')
+
+  hideSelection()
   $('#receiver-selection').on('change', function () {
-    hide2()
-    if (document.getElementById('id_receivers_0').checked) {
-      $('#selection-project').show()
-    } else if (document.getElementById('id_receivers_1').checked) {
-      $('#selection-organisation').show()
+    hideSelection()
+    if ($idReceivers0.prop('checked')) {
+      $projectSelect.show()
+    } else if ($idReceivers1.prop('checked')) {
+      $organisationSelect.show()
     }
   })
+  function hideSelection () {
+    $organisationSelect.hide()
+    $projectSelect.hide()
+  }
 })
 
-function hide2 () {
-  $('#selection-organisation').hide()
-  $('#selection-project').hide()
-}
+
