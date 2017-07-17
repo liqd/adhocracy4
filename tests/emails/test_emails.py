@@ -2,7 +2,6 @@ import pytest
 from django.core import mail
 
 from adhocracy4.emails import EmailBase
-from adhocracy4.test.helpers import skip_background_mail
 
 CONTEXT = {
     'subject': 'TEST SUBJECT',
@@ -40,8 +39,7 @@ def test_send_sync(user):
 
 @pytest.mark.django_db
 def test_send_async(user):
-    with skip_background_mail():
-        send_async_mails = EmailTest.send(user)
+    send_async_mails = EmailTest.send(user)
 
     assert send_async_mails == []
     assert len(mail.outbox) == 1
