@@ -1,7 +1,5 @@
-import importlib
 import json
 import os
-from contextlib import contextmanager
 from unittest import mock
 from urllib.parse import urlparse
 
@@ -39,27 +37,23 @@ def render_template(string, context=None):
     return Template(string).render(context)
 
 
-@contextmanager
-def skip_background_mail():
-    def skip_background_decorator(*args, **kwargs):
-        # ignore args and kwargs as they are arguments for background tasks
-        def send_sync_decorator(fun):
-            def send_sync_checked(*args, **kwargs):
+def patch_background_task_decorator():
+    """Patch the 'background' decorator from background_task.
+
+    The decorator will be patched by a synchronous function that
+    first checks if its input is json serializable (a prerequisite of
+    background_tasks) and second calls the actual task function.
+    """
+    decorator = 'background_task.background'
+
+    def decorator_mock(*args, **kwargs):
+        def background_mock(task_function):
+            def json_checked_function(*args, **kwargs):
                 # Ensure the arguments are json serializable
                 json.dumps((args, kwargs))
-                return fun(*args, **kwargs)
-            return send_sync_checked
-        return send_sync_decorator
+                return task_function(*args, **kwargs)
+            return json_checked_function
+        return background_mock
 
-    decorator = 'background_task.background'
-    decorated_module = 'adhocracy4.emails.tasks'
-
-    module = importlib.import_module(decorated_module)
-
-    # Patch the decorator and reload the module
-    with mock.patch(decorator, wraps=skip_background_decorator):
-        importlib.reload(module)
-        yield
-
-    # Reset the decorator by reloading the module
-    importlib.reload(module)
+    patcher = mock.patch(decorator, wraps=decorator_mock)
+    return patcher
