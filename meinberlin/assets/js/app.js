@@ -36,6 +36,7 @@ var ReactFollows = require('adhocracy4').follows
 var ReactDocuments = require('../../../apps/documents/assets/react_documents.jsx')
 var ReactPolls = require('../../../apps/polls/assets/react_polls.jsx')
 
+var dynamicFields = require('../../../apps/contrib/assets/dynamic_fields.js')
 // This function is overwritten with custom behavior in embed.js.
 var getCurrentHref = function () {
   return location.href

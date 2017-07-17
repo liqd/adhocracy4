@@ -22,13 +22,16 @@
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.subject %}
 
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.body %}
-
+            <div id="receiver-selection">
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.receivers %}
-
+            </div>
+            <div id="selection-project">
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project %}
+            </div>
 
+            <div id="selection-organisation">
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.organisation %}
-
+            </div>
             <div class="u-spacer-bottom">
                 <input type="submit" class="button button--primary" name="send" value="{% trans 'Send'%}" />
                 <input type="submit" class="button button--secondary" name="save_draft" value="{% trans 'Save as draft'%}" />

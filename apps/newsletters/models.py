@@ -11,9 +11,9 @@ ORGANISATION = 1
 PROJECT = 2
 
 RECEIVER_CHOICES = (
-    (PLATFORM, _('Every user on the platform')),
-    (ORGANISATION, _('Users following the chosen organisation')),
     (PROJECT, _('Users following the chosen project')),
+    (ORGANISATION, _('Users following the chosen organisation')),
+    (PLATFORM, _('Every user on the platform')),
 )
 
 
