@@ -31,7 +31,7 @@ var init = function () {
     })
 
     var basePolygon = L.geoJson(polygon, {style: polygonStyle}).addTo(map)
-    map.fitBounds(basePolygon)
+    map.fitBounds(basePolygon.getBounds())
     map.options.minZoom = map.getZoom()
     L.control.zoom({
       position: 'topleft'

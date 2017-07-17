@@ -21,7 +21,9 @@
     "moment": "^2.14.1",
     "react": "15.1.0",
     "react-addons-update": "~15.1.0",
-    "react-dom": "15.1.0"
+    "react-dom": "15.1.0",
+    "leaflet": "^1.0.3",
+    "leaflet-draw": "^0.4.2"
   },
   "devDependencies": {
     "eslint": "^4.0.0",
@@ -30,6 +32,8 @@
     "eslint-plugin-promise": "^3.0.0",
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-standard": "^3.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
     "husky": "0.13.4",
     "polylint.sh": "0.0.2"
   },

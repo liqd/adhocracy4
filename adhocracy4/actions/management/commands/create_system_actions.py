@@ -54,13 +54,17 @@ class Command(BaseCommand):
                     obj_object_id=project.id
                 ).first()
 
-                # If the first phases start has been modified and moved ahead
-                # of the previous action, a new project start action is created
-                if not existing_action \
-                        or existing_action.timestamp < phase.start_date:
-
+                if not existing_action:
                     Action.objects.create(
                         project=project,
                         verb=Verbs.START.value,
                         obj=project,
+                        timestamp=phase.start_date
                     )
+
+                elif existing_action.timestamp < phase.start_date:
+                    # If the first phases start has been modified and moved
+                    # ahead, the existing actions timestamp has be adapted to
+                    # the actual project start.
+                    existing_action.timestamp = phase.start_date
+                    existing_action.save()

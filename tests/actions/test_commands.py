@@ -138,7 +138,7 @@ def test_project_starts_later_or_earlier(phase_factory):
 
 
 @pytest.mark.django_db
-def test_project_start_hour(phase_factory):
+def test_project_start_last_hour(phase_factory):
 
     phase = phase_factory(
         start_date=parse('2013-01-01 17:00:00 UTC'),
@@ -212,10 +212,12 @@ def test_project_start_reschedule(phase_factory):
         assert action_count == 1
 
     # first phases start date has been moved forward
-    # and a new action will be created
+    # and the start actions timestamp has to be adapted
     phase.start_date = phase.start_date + timedelta(days=1)
     phase.save()
     with freeze_time(phase.start_date + timedelta(minutes=30)):
         call_command('create_system_actions')
         action_count = Action.objects.filter(verb=START).count()
-        assert action_count == 2
+        assert action_count == 1
+        action = Action.objects.filter(verb=START).first()
+        assert action.timestamp == phase.start_date
