@@ -6,19 +6,20 @@ $(function () {
   var $projectSelect = $('#selection-project')
   var $organisationSelect = $('#selection-organisation')
 
-  hideSelection()
-  $('#receiver-selection').on('change', function () {
+  showField()
+  $('#receiver-selection').on('change', showField)
+
+  function hideSelection () {
+    $organisationSelect.hide()
+    $projectSelect.hide()
+  }
+
+  function showField () {
     hideSelection()
     if ($idReceivers0.prop('checked')) {
       $projectSelect.show()
     } else if ($idReceivers1.prop('checked')) {
       $organisationSelect.show()
     }
-  })
-  function hideSelection () {
-    $organisationSelect.hide()
-    $projectSelect.hide()
   }
 })
-
-
