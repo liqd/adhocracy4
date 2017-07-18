@@ -1,4 +1,4 @@
-{% load contrib_tags i18n offlineevent_tags static %}
+{% load contrib_tags i18n offlineevent_tags dashboard_tags static %}
 
 {% with project.active_phase as active_phase %}
 
@@ -6,23 +6,23 @@
 {% with modules_and_events|length as module_event_count %}
 {% if module_event_count > 1 %}
 <script src="{% static 'js/popover.js' %}"></script>
-<div class="phase-list">
+<nav class="timeline" aria-label="{% trans 'Timeline' %}">
     <ul>
         {% for obj in modules_and_events %}
             {% if obj|is_module %}
                 <li>
                     <a
-                            href="{{ project.get_absolute_url }}"
-                            class="phase-list__button {% if obj == active_phase.module %} is-active{% endif %}"
+                        href="{{ project.get_absolute_url }}"
+                        class="button button--light button--small timeline__button {% if obj == active_phase.module %}is-active{% endif %} {% if not object|is_offlineevent %}is-selected{% endif %}"
                     >
-                        {{ obj.name }}
+                        {{ project.typ|get_blueprint_title }}
                     </a>
                 </li>
             {% else %}
                 <li>
                     <a
                         href="{{ obj.get_absolute_url }}"
-                        class="phase-list__button"
+                        class="button button--light button--small timeline__button {% if obj == object %}is-selected{% endif %}"
                     >
                         {{ obj.name }}
                     </a>
@@ -30,9 +30,8 @@
             {% endif %}
         {% endfor %}
     </ul>
-</div>
+</nav>
 {% endif %}
-
 {% endwith %}
 
 {% if not object|is_offlineevent %}

@@ -1,5 +1,8 @@
-.phase-list {
-    text-align: center;
+$circle-size: 0.6em;
+
+.timeline {
+    font-size: $font-size-sm;
+    padding-left: 2em;
     color: $link-color;
 
     ul {
@@ -9,56 +12,108 @@
     }
 
     li {
-        display: inline-block;
+        display: block;
         position: relative;
-        margin-right: 5px;
-        margin-bottom: 0.5em;
-
-        &:after {
-            content: "";
-            height: 1px;
-            margin: auto;
-
-            position: absolute;
-            left: 100%;
-            right: -15px;
-            top: 0;
-            bottom: 0;
-
-            background-color: $brand-primary;
-        }
+        margin-bottom: 5px;
 
         &:last-child {
             margin-right: 0;
         }
 
-        &:last-child:after {
-            content: none;
+        &:before {
+            content: "";
+            width: 1px;
+
+            position: absolute;
+            top: -15px;
+            bottom: -15px;
+            left: -$circle-size;
+
+            background-color: $border-color;
+        }
+
+        &:first-child:before {
+            top: 50%;
+        }
+
+        &:last-child:before {
+            bottom: 50%;
         }
     }
 }
 
-.phase-list__button {
-    @extend %button-base;
-    padding: 0.1em 0.7em;
-    font-weight: normal;
-    font-size: $font-size-sm;
-    border-radius: 1.3em;
-    margin-bottom: 0;
-    vertical-align: middle;
+.timeline__button {
+    &:after {
+        content: "";
+        width: $circle-size;
+        height: $circle-size;
+        z-index: 1;
 
-    background-color: contrast-color($link-color);
-    color: $link-color;
-    border-color: $link-color;
+        position: absolute;
+        top: 50%;
+        left: (-$circle-size * 1.5);
+        margin-top: (-$circle-size / 2);
 
-    &:hover,
-    &:focus {
-        color: $link-hover-color;
-        border-color: $link-hover-color;
+        background-color: $body-bg;
+        border: 1px solid $border-color;
+        border-radius: 50%;
+        box-shadow: 0 0 0 0.2em $body-bg;
     }
 
     &.is-active {
+        &:after {
+            border-color: $link-color;
+        }
+    }
+
+    &.is-selected {
         @include button-color($link-color, $link-hover-color);
+
+        &:after {
+            @include button-color($link-color, $link-hover-color);
+        }
+    }
+}
+
+@media (min-width: $breakpoint) {
+    .timeline {
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .timeline li {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 1em + $circle-size;
+
+        &:before,
+        &:first-child:before,
+        &:last-child:before {
+            width: auto;
+            height: 1px;
+
+            left: -15px;
+            right: -15px;
+            top: auto;
+            bottom: -$circle-size;
+        }
+
+        &:first-child:before {
+            left: 50%;
+        }
+
+        &:last-child:before {
+            right: 50%;
+        }
+    }
+
+    .timeline__button:after {
+        top: auto;
+        margin-top: 0;
+
+        bottom: (-$circle-size * 1.5);
+        left: 50%;
+        margin-left: (-$circle-size / 2);
     }
 }
 
