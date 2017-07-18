@@ -1886,10 +1886,6 @@ msgstr ""
 "dieser schon einmal genutzt wurde. Bitte fordern Sie die <a href="
 "\"%(passwd_reset_url)s\">Zurücksetzung des Passwort</a> erneut an."
 
-#: meinberlin/templates/account/password_reset_from_key.html.py:20
-msgid "change password"
-msgstr "Passwort ändern"
-
 #: meinberlin/templates/account/password_reset_from_key.html.py:23
 msgid "Your password is now changed."
 msgstr "Ihr Passwort wurde geändert."
