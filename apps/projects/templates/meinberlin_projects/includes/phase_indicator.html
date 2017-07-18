@@ -13,7 +13,7 @@
                 <li>
                     <a
                         href="{{ project.get_absolute_url }}"
-                        class="button button--light button--small timeline__button {% if obj == active_phase.module %}is-active{% endif %} {% if obj == object %}is-selected{% endif %}"
+                        class="button button--light button--small timeline__button {% if obj == active_phase.module %}is-active{% endif %} {% if not object|is_offlineevent %}is-selected{% endif %}"
                     >
                         {{ obj.name }}
                     </a>
