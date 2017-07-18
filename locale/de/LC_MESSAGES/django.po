@@ -62,7 +62,7 @@ msgstr "Kommentare"
 
 #: adhocracy4/comments/serializers.py:25
 msgid "unknown user"
-msgstr "unbekannte*r Nutzer*in"
+msgstr "unbekannter Nutzer"
 
 #: adhocracy4/images/fields.py:70
 #, python-brace-format
@@ -184,9 +184,9 @@ msgid ""
 "how the project’s participation will look like. It will be always visible in "
 "the „Info“ tab on your project’s page."
 msgstr ""
-"Die Beschreibung verdeutlicht Nutzer*innen was das Ziel des Projekts ist und "
-"wie die Beteiligung von statten gehen wird. Sie wird im Info-Tab der "
-"Projektseite angezeigt werden."
+"Die Beschreibung verdeutlicht Nutzerinnen und Nutzern was das Ziel des "
+"Projekts ist und wie die Beteiligung von statten gehen wird. Sie wird im "
+"Info-Tab der Projektseite angezeigt werden."
 
 #: adhocracy4/projects/models.py:55
 msgid "Results of your project"
@@ -423,8 +423,8 @@ msgstr "Vorschlagsphase"
 #: apps/budgeting/phases.py:17 apps/kiezkasse/phases.py:50
 msgid "Request budgeting and get feedback through rates and comments."
 msgstr ""
-"Nutzer können Vorschläge mit Budgetangabe machen und erhalten durch "
-"Bewertungen und Kommentare Rückmeldung."
+"Nutzerinnen und Nutzer können Vorschläge mit Budgetangabe machen und "
+"erhalten durch Bewertungen und Kommentare Rückmeldung."
 
 #: apps/budgeting/phases.py:19
 msgid "participatory budgeting"
@@ -770,9 +770,9 @@ msgid ""
 "specifications and locate them. Anyone can comment and rate on different "
 "proposals."
 msgstr ""
-"Mit dem Bürgerhaushalt ist es den Teilnehmern möglich, Vorschläge mit einem "
-"Budget zu versehen und sie auf einer Karte zu verorten. Diese Vorschläge "
-"können bewertet und kommentiert werden."
+"Mit dem Bürgerhaushalt ist es den Teilnehmenden möglich, Vorschläge mit "
+"einem Budget zu versehen und sie auf einer Karte zu verorten. Diese "
+"Vorschläge können bewertet und kommentiert werden."
 
 #: apps/dashboard/blueprints.py:103
 #: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:15
@@ -828,7 +828,7 @@ msgid ""
 "With kiezkasse it’s possible to make proposals with budget specifications "
 "and locate them. The proposals can be commented and rated."
 msgstr ""
-"Mit der Kiezkasse ist es den Teilnehmern möglich, Vorschläge mit einem "
+"Mit der Kiezkasse ist es den Teilnehmemenden möglich, Vorschläge mit einem "
 "Budget zu versehen und sie auf einer Karte zu verorten. Diese Vorschläge "
 "können bewertet und kommentiert werden."
 
@@ -1010,7 +1010,7 @@ msgstr "Inhalte"
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:4
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:10
 msgid "Moderators"
-msgstr "Moderatoren"
+msgstr "Moderator*innen"
 
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:73
 #: apps/dashboard/templates/meinberlin_dashboard/project_participants.html.py:4
@@ -1090,7 +1090,7 @@ msgstr "Moderator*innen via E-Mail Adresse hinzufügen"
 
 #: apps/dashboard/views.py:272
 msgid "Moderator successfully removed."
-msgstr "Moderator erfolgreich entfernt."
+msgstr "Moderator*in erfolgreich entfernt."
 
 #: apps/documents/phases.py:17
 msgid "Comment phase"
@@ -1317,7 +1317,7 @@ msgstr "Ich möchte mich an der Umsetzung des Vorschlags beteiligen."
 
 #: apps/kiezkasse/phases.py:17
 msgid "Request budgeting."
-msgstr "Nutzer können Vorschläge mit Budgetangabe machen"
+msgstr "Nutzerinnen und Nutzer können Vorschläge mit Budgetangabe machen"
 
 #: apps/kiezkasse/phases.py:18 apps/kiezkasse/phases.py:35
 #: apps/kiezkasse/phases.py:52
