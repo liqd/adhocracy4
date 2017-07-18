@@ -287,7 +287,7 @@ msgstr "E-Mail Adressen"
 #: meinberlin/templates/socialaccount/connections.html.py:5
 #: meinberlin/templates/socialaccount/connections.html.py:8
 msgid "Account Connections"
-msgstr "Benutzerkonto Verbindungen"
+msgstr "Nutzerkonto Verbindungen"
 
 #: apps/account/templates/meinberlin_account/profile.html.py:5
 msgid "Your user profile"
@@ -1082,7 +1082,7 @@ msgstr "Nutzer*innen via E-Mail Adresse hinzufügen"
 
 #: apps/dashboard/views.py:247
 msgid "User successfully removed."
-msgstr "Benutzer*in erfolgreich entfernt."
+msgstr "Nutzer*in erfolgreich entfernt."
 
 #: apps/dashboard/views.py:270
 msgid "Add moderators via email"
@@ -1203,6 +1203,10 @@ msgstr "Ortsbezeichnung"
 #: apps/exports/views.py:361
 msgid "Moderator feedback"
 msgstr "Rückmeldung der Moderation"
+
+#: apps/exports/views.py:363
+msgid "Moderator statement"
+msgstr "Moderationskommentar"
 
 #: apps/extprojects/phases.py:15
 msgid "External phase"
@@ -1630,9 +1634,9 @@ msgid ""
 "Enter a valid username. This value may contain only letters, digits, spaces "
 "and @/./+/-/_ characters. It must start with a digit or a letter."
 msgstr ""
-"Bitte geben Sie einen gültigen Benutzernamen ein. Dieser darf nur "
+"Bitte geben Sie einen gültigen Nutzernamen ein. Dieser darf nur "
 "Buchstaben, Zahlen, Leerzeichen und nur @/./+/-/_ Zeichen erhalten. Der "
-"Benutzername muss mit einem Buchstaben oder einer Zahl anfangen."
+"Nutzername muss mit einem Buchstaben oder einer Zahl anfangen."
 
 #: apps/users/admin.py:11
 msgid "Permissions"
@@ -1657,7 +1661,7 @@ msgstr "Bitte akzeptieren sie die Nutzungsbedingungen."
 
 #: apps/users/models.py:14
 msgid "username"
-msgstr "Benutzername"
+msgstr "Nutzername"
 
 #: apps/users/models.py:18
 msgid ""
@@ -1668,11 +1672,11 @@ msgstr ""
 
 #: apps/users/models.py:24
 msgid "A user with that username already exists."
-msgstr "Der Benutzer mit diesem Benutzernamen existiert bereits."
+msgstr "Der Nutzer mit diesem Nutzernamen existiert bereits."
 
 #: apps/users/models.py:31
 msgid "A user with that email address already exists."
-msgstr "Der Benutzer mit dieser Emailadresse existiert bereits."
+msgstr "Der Nutzer mit dieser Emailadresse existiert bereits."
 
 #: apps/users/models.py:35
 msgid "staff status"
@@ -1711,7 +1715,7 @@ msgstr ""
 
 #: apps/users/templates/meinberlin_users/indicator.html.py:20
 msgid "Account Settings"
-msgstr "Benutzerkonto Einstellungen"
+msgstr "Nutzerkonto Einstellungen"
 
 #: apps/users/templates/meinberlin_users/indicator.html.py:52
 #: apps/users/templates/meinberlin_users/indicator.html.py:60
@@ -1806,7 +1810,7 @@ msgid ""
 "If you have not created an account yet, then please <a href=\"%(signup_url)s"
 "\">register</a> first."
 msgstr ""
-"Wenn Sie noch kein Benutzerkonto haben, <a href=\"%(signup_url)s"
+"Wenn Sie noch kein Nutzerkonto haben, <a href=\"%(signup_url)s"
 "\">registrieren</a> Sie sich bitte zuerst."
 
 #: meinberlin/templates/account/login.html.py:27
@@ -1897,7 +1901,7 @@ msgid ""
 "Already have an account? Then please\n"
 "        <a href=\"%(login_url)s\">login</a>."
 msgstr ""
-"Haben Sie schon ein Benutzerkonto? Dann <a href=\"%(login_url)s\">melden Sie "
+"Haben Sie schon ein Nutzerkonto? Dann <a href=\"%(login_url)s\">melden Sie "
 "sich bitte an</a>."
 
 #: meinberlin/templates/account/signup.html.py:23
@@ -1961,11 +1965,11 @@ msgstr ""
 
 #: meinberlin/templates/socialaccount/connections.html.py:12
 msgid "Your account is connected to the following services:"
-msgstr "Ihr Benutzerkonto ist mit folgenden Diensten verbunden:"
+msgstr "Ihr Nutzerkonto ist mit folgenden Diensten verbunden:"
 
 #: meinberlin/templates/socialaccount/connections.html.py:35
 msgid "You can connect your account to the following services:"
-msgstr "Sie können Ihr Benutzerkonto mit folgenden Diensten verbinden:"
+msgstr "Sie können Ihr Nutzerkonto mit folgenden Diensten verbinden:"
 
 #: meinberlin/templates/socialaccount/login_cancelled.html.py:5
 #: meinberlin/templates/socialaccount/login_cancelled.html.py:9
@@ -1993,9 +1997,9 @@ msgid ""
 "        but the email address passed from %(provider_name)s is already "
 "registered to an existing user account."
 msgstr ""
-"Sie haben versucht sich mit Ihrem %(provider_name)s Benutzerkonto auf "
+"Sie haben versucht sich mit Ihrem %(provider_name)s Nutzerkonto auf "
 "%(site_name)s anzumelden. Die vom %(provider_name)s übergebene Email-Adresse "
-"wird jedoch bereits von einem vorhandenen Benutzerkonto verwendet."
+"wird jedoch bereits von einem vorhandenen Nutzerkonto verwendet."
 
 #: meinberlin/templates/socialaccount/signup.html.py:21
 #, python-format
@@ -2005,5 +2009,5 @@ msgid ""
 "        and connect %(provider_name)s from the account settings."
 msgstr ""
 "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem %(site_name)s "
-"Benutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
-"Benutzerkonto Einstellungen."
+"Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
+"Nutzerkonto Einstellungen."
