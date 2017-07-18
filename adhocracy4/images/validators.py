@@ -21,7 +21,7 @@ def validate_image(
                 ', '.join(fileformats)
             )
         )
-        errors.append(ValidationError(msg))
+        raise ValidationError(msg)
     if image.size > max_size:
         max_size_mb = math.floor(max_size/10**6)
         msg = _('Image should be at most {max_size} MB')
