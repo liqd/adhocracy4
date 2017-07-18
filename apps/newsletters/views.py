@@ -5,7 +5,7 @@ from django.views import generic
 
 from adhocracy4.follows.models import Follow
 from adhocracy4.projects.models import Project
-from apps.organisations.models import Organisation
+from apps.newsletters.models import PROJECT, PLATFORM, ORGANISATION
 from apps.users.models import User
 
 from . import emails
@@ -32,33 +32,29 @@ class NewsletterCreateView(generic.CreateView):
             instance.sent = timezone.now()
             instance.save()
             # TODO: send mails
-            if int(form.cleaned_data['receivers']) == 2:
+            receivers = int(form.cleaned_data['receivers'])
+            if receivers == PROJECT:
 
                 project_follower = Follow.objects.filter(
-                    project=Project.objects.get(id=form.data['project']))
+                    project=Project.objects.get(id=form.data['project']),
+                    enabled=True)
 
-                participant_ids = [user.id for user in project_follower]
+                participant_ids = [follow.creator.id for follow in project_follower]
                 emails.NewsletterEmail.send(self.object,
                                             participant_ids=participant_ids)
-                pass
-            # proje
-            elif int(form.cleaned_data['receivers']) == 1:
-                organisation_members = Organisation.objects.all()
-
-                participant_ids = [user.id for user in organisation_members]
+            elif receivers == ORGANISATION:
+                organisation_followers = Follow.objects.filter(
+                    project__organisation=int(form.data['organisation']),
+                    enabled=True
+                ).values('creator').distinct()
+                participant_ids = [follow['creator'] for follow in organisation_followers]
                 emails.NewsletterEmail.send(self.object,
                                             participant_ids=participant_ids)
-                pass
-            # organ
-            else:
+            elif receivers == PLATFORM:
                 users = User.objects.all()
                 participant_ids = [user.id for user in users]
                 emails.NewsletterEmail.send(self.object,
                                             participant_ids=participant_ids)
-
-                pass
-
-            # all
         return HttpResponseRedirect(reverse(
             'meinberlin_newsletters:newsletter-create'))
 
