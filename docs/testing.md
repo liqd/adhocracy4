@@ -83,16 +83,74 @@ See your test fail at least once. To do so, implement a bug in your
 code or experiment with the assertions. The goal is to verify that the
 test does not pass although the code is buggy.
 
+Randomize Data
+-----------
 
+In order to verify that tests are performed with varying input, use
+random data. Otherwise, the test only covers static cases that might
+fail to trigger errors.
+
+## Example
+
+```Python
+
+from faker import Faker
+
+...
+
+def test_send_request(..):
+    fake = Faker()
+    ...
+
+    # Create project
+    request = {
+        'phases-TOTAL_FORMS': '2',
+        'phases-INITIAL_FORMS': '0',
+        'phases-0-id': '',
+        'phases-0-start_date': '2016-10-01 16:12',
+        'phases-0-end_date': '2016-10-01 16:13',
+        'phases-0-name': 'Name 0',
+        'phases-0-description': fake.text(max_nb_chars=200),
+        'phases-0-type': 'euth_offlinephases:000:offline',
+        'phases-0-weight': '0',
+        'phases-0-delete': '0',
+        'phases-1-id': '',
+        'phases-1-start_date': '2016-10-01 16:14',
+        'phases-1-end_date': '2016-10-01 16:15',
+        'phases-1-name': 'Name 1',
+        'phases-1-description': 'Description 1',
+        'phases-1-type': 'euth_ideas:020:collect',
+        'phases-1-weight': '1',
+        'phases-1-delete': '0',
+        'project-description': 'Project description',
+        'project-name': 'Project name',
+        'project-information': 'Project info',
+    }
+
+    response = client.post(url, request)
+
+    assert response.status_code == 302, str(request)
+```
+
+Note that the fake object provides random data. If the test fails, it
+might be hard to reproduce the exact input. Hence, we print the
+request in the `assert` statement in case of error.
+
+This example only covers some fields. Feel free to randomize as many as
+possible.
+
+## Summary
+
+* test with random data
+* print the data triggering the error
+
+-----
 
 * fuzzing
 * property testing
 * trust boundaries
 * automated vs. manual testing
 * if you need to mock a lot, question your code
-
-python specific
 * `pytest.mark.parametrize` if you want to execute the test w/ different
   input
-* random data by using `import faker`
 
