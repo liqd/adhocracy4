@@ -1676,7 +1676,7 @@ msgstr "Der Nutzer mit diesem Nutzernamen existiert bereits."
 
 #: apps/users/models.py:31
 msgid "A user with that email address already exists."
-msgstr "Der Nutzer mit dieser Emailadresse existiert bereits."
+msgstr "Der Nutzer mit dieser E-Mail Adresse existiert bereits."
 
 #: apps/users/models.py:35
 msgid "staff status"
@@ -1776,15 +1776,15 @@ msgstr "E-Mail Adresse hinzufügen"
 
 #: meinberlin/templates/account/email_confirm.html.py:4
 #: meinberlin/templates/account/email_confirm.html.py:7
-msgid "Confirm E-mail Address"
-msgstr "Bitte bestätigen Sie Ihre E-Mail-Adresse."
+msgid "Confirm Email Address"
+msgstr "Bitte bestätigen Sie Ihre E-Mail Adresse."
 
 #: meinberlin/templates/account/email_confirm.html.py:11
 #, python-format
 msgid ""
 "Please\n"
 "            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an\n"
-"            e-mail address for user %(user_display)s."
+"            email address for user %(user_display)s."
 msgstr ""
 "Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> eine E-"
 "Mail Adresse des Nutzers %(user_display)s ist."
@@ -1796,12 +1796,11 @@ msgstr "Bestätigen"
 #: meinberlin/templates/account/email_confirm.html.py:21
 #, python-format
 msgid ""
-"This e-mail confirmation link expired or is invalid.\n"
-"            Please <a href=\"%(email_url)s\">issue a new e-mail "
-"confirmation\n"
+"This email confirmation link expired or is invalid.\n"
+"            Please <a href=\"%(email_url)s\">issue a new email confirmation\n"
 "                request</a>."
 msgstr ""
-"Der Link zur E-Mail-Bestätigung ist abgelaufen oder ist ungültig. Bitte <a "
+"Der Link zur E-Mail Bestätigung ist abgelaufen oder ist ungültig. Bitte <a "
 "href=\"%(email_url)s\">fordern Sie eine neue Bestätigungsemail an</a>."
 
 #: meinberlin/templates/account/login.html.py:9
@@ -1854,7 +1853,7 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll send you "
 "an e-mail allowing you to reset it."
 msgstr ""
-"Passwort vergessen? Tragen Sie Ihre E-mail Adresse ein und Sie bekommen eine "
+"Passwort vergessen? Tragen Sie Ihre E-Mail Adresse ein und Sie bekommen eine "
 "Email mit der Sie das Passwort zurücksetzen können."
 
 #: meinberlin/templates/account/password_reset.html.py:18
@@ -1988,7 +1987,7 @@ msgstr ""
 #: meinberlin/templates/socialaccount/signup.html.py:13
 #: meinberlin/templates/socialaccount/signup.html.py:16
 msgid "Email address is already in use"
-msgstr "Email-Adresse wird bereits verwendet"
+msgstr "E-Mail Adresse wird bereits verwendet"
 
 #: meinberlin/templates/socialaccount/signup.html.py:19
 #, python-format
@@ -1998,8 +1997,8 @@ msgid ""
 "registered to an existing user account."
 msgstr ""
 "Sie haben versucht sich mit Ihrem %(provider_name)s Nutzerkonto auf "
-"%(site_name)s anzumelden. Die vom %(provider_name)s übergebene Email-Adresse "
-"wird jedoch bereits von einem vorhandenen Nutzerkonto verwendet."
+"%(site_name)s anzumelden. Die vom %(provider_name)s übergebene E-Mail "
+"Adresse wird jedoch bereits von einem vorhandenen Nutzerkonto verwendet."
 
 #: meinberlin/templates/socialaccount/signup.html.py:21
 #, python-format
