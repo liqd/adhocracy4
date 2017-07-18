@@ -90,7 +90,7 @@ In order to verify that tests are performed with varying input, use
 random data. Otherwise, the test only covers static cases that might
 fail to trigger errors.
 
-## Example
+### Example
 
 ```Python
 
@@ -139,7 +139,7 @@ request in the `assert` statement in case of error.
 This example only covers some fields. Feel free to randomize as many as
 possible.
 
-## Summary
+### Summary
 
 * test with random data
 * print the data triggering the error
