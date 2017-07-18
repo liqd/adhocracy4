@@ -1021,7 +1021,7 @@ msgstr "Teilnehmer*innen"
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:82
 #: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html.py:16
 msgid "Offline Events"
-msgstr "Offline-Veranstaltungen"
+msgstr "Veranstaltungen"
 
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:91
 msgid "Export"
@@ -1406,11 +1406,11 @@ msgstr "Datum"
 
 #: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html.py:4
 msgid "Confirm Offline Event Deletion"
-msgstr "Bestätigung der Offline-Veranstaltung"
+msgstr "Bestätigung der Veranstaltung"
 
 #: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html.py:8
 msgid "Are you sure you want to delete the offline event?"
-msgstr "Sind Sie sicher, dass Sie diese Offline-Veranstaltung löschen möchten?"
+msgstr "Sind Sie sicher, dass Sie diese Veranstaltung löschen möchten?"
 
 #: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_create_form.html.py:4
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_create_form.html.py:4
@@ -1420,23 +1420,23 @@ msgstr "Neues Thema erstellen"
 #: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_create_form.html.py:12
 #: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_update_form.html.py:12
 msgid "back to offline events"
-msgstr "Zurück zur Offline-Veranstaltung"
+msgstr "Zurück zur Veranstaltung"
 
 #: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_create_form.html.py:17
 msgid "Add a new offline event"
-msgstr "Neue Offline-Veranstaltung hinzufügen"
+msgstr "Neue Veranstaltung hinzufügen"
 
 #: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html.py:20
 msgid "Add offline event"
-msgstr "Offline-Veranstaltung hinzufügen"
+msgstr "Veranstaltung hinzufügen"
 
 #: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_update_form.html.py:17
 msgid "Edit offline event"
-msgstr "Offline-Veranstaltung bearbeiten"
+msgstr "Veranstaltung bearbeiten"
 
 #: apps/offlineevents/views.py:75
 msgid "The offline event has been deleted"
-msgstr "Die Offline-Veranstaltung wurde gelöscht."
+msgstr "Die Veranstaltung wurde gelöscht."
 
 #: apps/polls/phases.py:17
 msgid "Voting phase"
