@@ -15,7 +15,7 @@ help:
 
 install:
 	npm install
-	$(VIRTUAL_ENV)/bin/python3 setup.py development
+	$(VIRTUAL_ENV)/bin/pip install -r requirements/dev.txt
 
 lint:
 	. $(VIRTUAL_ENV)/bin/activate && node_modules/.bin/polylint
