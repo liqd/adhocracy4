@@ -1,0 +1,11 @@
+
+
+{% extends 'email_base.'|add:part_type %}
+
+{% load verbose_name %}
+
+{% block headline %}Der Newsletter befasst sich mit {{ email }}, {{ subject }}, {{ receiver }}{% endblock %}
+
+{% block subject %}{% endblock %}
+
+{% block content %}try message{% endblock %}
