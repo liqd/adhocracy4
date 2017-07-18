@@ -2,20 +2,19 @@ from django.contrib.auth import get_user_model
 from django.db.models import signals
 from django.dispatch import receiver
 
-from adhocracy4.actions.models import Action as A4Action
+from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
 from adhocracy4.follows.models import Follow
 from adhocracy4.projects.models import Project
-from apps.actions.models import Action
 
 from . import emails
 
 User = get_user_model()
 
 
-@receiver(signals.post_save, sender=A4Action)
+@receiver(signals.post_save, sender=Action)
 def send_notifications(instance, created, **kwargs):
-    action = Action.proxy_of(instance)
+    action = instance
     verb = Verbs(action.verb)
 
     if action.type in ('item', 'comment') \

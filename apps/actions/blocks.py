@@ -1,7 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from wagtail.wagtailcore import blocks
 
-from .models import Action
+from adhocracy4.actions.models import Action
 
 
 class PlatformActivityBlock(blocks.StructBlock):
@@ -12,7 +12,7 @@ class PlatformActivityBlock(blocks.StructBlock):
         context = super().get_context(value, parent_context=parent_context)
         block = context['self']
         context['actions'] = Action.objects \
-            .public().exclude_updates()[:block['count']]
+            .filter_public().exclude_updates()[:block['count']]
         return context
 
     class Meta:
