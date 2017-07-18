@@ -1188,10 +1188,6 @@ msgstr "Location label"
 msgid "Moderator feedback"
 msgstr "Moderator feedback"
 
-#: apps/exports/views.py:363
-msgid "Moderator statement"
-msgstr "Moderator statement"
-
 #: apps/extprojects/phases.py:15
 msgid "External phase"
 msgstr "External phase"

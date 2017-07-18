@@ -1204,10 +1204,6 @@ msgstr "Ortsbezeichnung"
 msgid "Moderator feedback"
 msgstr "Rückmeldung der Moderation"
 
-#: apps/exports/views.py:363
-msgid "Moderator statement"
-msgstr "Moderationskommentar"
-
 #: apps/extprojects/phases.py:15
 msgid "External phase"
 msgstr "Externe Phase"
