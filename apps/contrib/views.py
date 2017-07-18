@@ -38,7 +38,8 @@ class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
         return not object_project or object_project == self.project
 
     def _get_object_project(self):
-        if hasattr(self, 'get_object'):
+        if hasattr(self, 'get_object') \
+                and not isinstance(self, generic.CreateView):
             try:
                 object = self.get_object()
                 if hasattr(object, 'project'):
