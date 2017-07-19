@@ -57,6 +57,13 @@
                         {% trans 'Settings' %}
                     </a>
                 </li>
+                <li class="dashboard-nav__page">
+                    <a href="{% url 'dashboard-newsletter-create' organisation_slug=view.organisation.slug %}"
+                       class="dashboard-nav__item dashboard-nav__item--interactive {% ifequal view.menu_item 'newsletter' %}is-active{% endifequal %}">
+                        <i class="fa fa-envelope-o"></i>
+                        {% trans 'Newsletter' %}
+                    </a>
+                </li>
             </ul>
         </nav>
 

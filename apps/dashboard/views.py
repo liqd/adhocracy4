@@ -15,6 +15,7 @@ from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 from apps.bplan import models as bplan_models
 from apps.extprojects import models as extproject_models
+from apps.newsletters.views import NewsletterCreateView
 from apps.organisations.models import Organisation
 
 from . import blueprints
@@ -169,6 +170,26 @@ class DashboardOrganisationUpdateView(mixins.DashboardBaseMixin,
     success_message = _('Organisation successfully updated.')
     permission_required = 'meinberlin_organisations.change_organisation'
     menu_item = 'organisation'
+
+
+class DashboardNewsletterCreateView(NewsletterCreateView,
+                                    mixins.DashboardBaseMixin):
+    template_name = 'meinberlin_dashboard/newsletter_form.html'
+    menu_item = 'newsletter'
+    success_message = _('Newsletter s<uccessfully created.')
+    form_class = forms.NewsletterCreateForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['organisation'] = self.organisation
+        kwargs.pop('user')
+        return kwargs
+
+    def get_success_url(self):
+
+        return reverse(
+            'dashboard-newsletter-create',
+            kwargs={'organisation_slug': self.organisation})
 
 
 class DashboardProjectModeratorsView(mixins.DashboardBaseMixin,
