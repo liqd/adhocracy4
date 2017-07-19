@@ -126,7 +126,7 @@ $circle-size: 0.6em;
 }
 
 .phase-info__item {
-    padding: $padding 0;
+    padding: ($padding / 2) 0;
     border-bottom: 1px solid $border-color;
 
     &:first-child {
@@ -135,8 +135,6 @@ $circle-size: 0.6em;
     }
 }
 
-.phase-info__item__title,
-.phase-info__item__subtitle,
 .phase-info__active__title,
 .phase-info__active__subtitle {
     margin-bottom: 0.5rem;
