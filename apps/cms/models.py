@@ -108,10 +108,10 @@ class EmailFormPage(AbstractEmailForm):
     attach_as = models.CharField(
         max_length=3,
         choices=(
-            ('csv', 'CSV Document'),
+            ('xls', 'XLSX Document'),
             ('txt', 'Text'),
         ),
-        default='csv',
+        default='xlsx',
         help_text='Form results are send in this document format',
     )
 
@@ -131,8 +131,8 @@ class EmailFormPage(AbstractEmailForm):
 
     def send_mail(self, form):
         self.form = form
-        if self.attach_as == 'csv':
-            emails.CsvFormEmail.send(self)
+        if self.attach_as == 'xls':
+            emails.XlsxFormEmail.send(self)
         elif self.attach_as == 'txt':
             emails.TextFormEmail.send(self)
 
