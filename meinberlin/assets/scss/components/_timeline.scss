@@ -159,3 +159,8 @@ $circle-size: 0.6em;
         border-top: 1px solid $border-color;
     }
 }
+
+.phase-info__highlight {
+    font-weight: normal;
+    color: $brand-primary;
+}

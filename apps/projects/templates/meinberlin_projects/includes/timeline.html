@@ -55,7 +55,7 @@
                         <h3 class="phase-info__title{% if phase == active_phase %} lr-bar{% endif %}">
                             {% if phase == active_phase %}
                                 <span class="lr-bar__left">{{ phase.name }}</span>
-                                <span class="lr-bar__right">{% trans 'active' %}</span>
+                                <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
                             {% else %}
                                 {{ phase.name }}
                             {% endif %}
