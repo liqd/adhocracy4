@@ -28,8 +28,10 @@ class XlsxFormEmail(FormEmail):
 
         rows = self.object.field_values.items()
         for rownum, row in enumerate(rows, start=1):
-            worksheet.write(rownum, 0, row[0])
-            worksheet.write(rownum, 1, row[1])
+            field = row[0].replace('\r', '')
+            worksheet.write(rownum, 0, field)
+            value = row[1].replace('\r', '')
+            worksheet.write(rownum, 1, value)
 
         workbook.close()
         return stream.getvalue()
