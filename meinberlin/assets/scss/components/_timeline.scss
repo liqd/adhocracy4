@@ -125,31 +125,8 @@ $circle-size: 0.6em;
     padding: $padding;
 }
 
-.phase-info__active {
-    margin-bottom: $spacer;
-}
-
-.phase-info__title {
-    font-size: $font-size-lg;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    margin-top: 0;
-}
-
-.phase-info__subtitle {
-    margin-bottom: 0.5rem;
-}
-
 .phase-info__overview {
     margin-top: $spacer * 2;
-
-    .phase-info__title {
-        font-size: 1em;
-    }
-
-    .phase-info__subtitle {
-        margin-bottom: 0;
-    }
 }
 
 .phase-info__item {
@@ -159,6 +136,22 @@ $circle-size: 0.6em;
     &:first-child {
         border-top: 1px solid $border-color;
     }
+}
+
+.phase-info__item__title,
+.phase-info__item__subtitle,
+.phase-info__active__title,
+.phase-info__active__subtitle {
+    margin-bottom: 0.5rem;
+}
+
+.phase-info__active__title {
+    font-size: $font-size-lg;
+    margin-top: 0;
+}
+
+.phase-info__item__title {
+    font-weight: bold;
 }
 
 .phase-info__highlight {

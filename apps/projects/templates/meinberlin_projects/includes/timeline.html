@@ -36,53 +36,53 @@
 <div class="l-center-6">
     <div class="phase-info">
         {% if object|is_offlineevent %}
-            <h3 class="phase-info__title">
-                {% trans 'Offline-Event' %}
-            </h3>
-            <div class="phase-info__subtitle">
-                {{ object.date|date:'DATE_FORMAT' }}
-            </div>
-            <div class="phase-info__description">
-                {% trans 'Here you can read the documentation on what happened during this Offline-Event.' %}
+            <div class="phase-info__active">
+                <h3 class="phase-info__active__title">
+                    {% trans 'Offline-Event' %}
+                </h3>
+                <div class="phase-info__active__subtitle">
+                    {{ object.date|date:'DATE_FORMAT' }}
+                </div>
+                <div class="phase-info__active__description">
+                    {% trans 'Here you can read the documentation on what happened during this Offline-Event.' %}
+                </div>
             </div>
         {% else %}
-            {% if active_phase %}
-                <div class="phase-info__active">
-                    <h3 class="phase-info__title">
+            <div class="phase-info__active">
+                {% if active_phase %}
+                    <h3 class="phase-info__active__title">
                         {{ active_phase.name }}
                     </h3>
-                    <div class="phase-info__subtitle">
+                    <div class="phase-info__active__subtitle">
                         {{ active_phase.start_date|date:'DATE_FORMAT' }}
                         &ndash; {{ active_phase.end_date|date:'DATE_FORMAT' }}
                     </div>
-                    <div class="phase-info__description">
+                    <div class="phase-info__active__description">
                         {{ active_phase.description }}
                     </div>
-                </div>
-            {% else %}
-                <div class="phase-info__active">
-                    <h3 class="phase-info__title">
+                {% else %}
+                    <h3 class="phase-info__active__title">
                         {% trans 'Participation is not possible at the moment.' %}
                     </h3>
-                    <div class="phase-info__description">
+                    <div class="phase-info__active__description">
                         {% trans 'description' %}
                     </div>
-                </div>
-            {% endif %}
+                {% endif %}
+            </div>
 
             {% if project.phases|length > 1 or not active_phase %}
                 <div class="phase-info__overview collapse" id="phase-overview">
                     {% for phase in project.phases %}
                         <div class="phase-info__item">
-                            <h3 class="phase-info__title{% if phase == active_phase %} lr-bar{% endif %}">
+                            <div class="phase-info__item__title{% if phase == active_phase %} lr-bar{% endif %}">
                                 {% if phase == active_phase %}
                                     <span class="lr-bar__left">{{ phase.name }}</span>
                                     <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
                                 {% else %}
                                     {{ phase.name }}
                                 {% endif %}
-                            </h3>
-                            <div class="phase-info__subtitle">
+                            </div>
+                            <div class="phase-info__item__subtitle">
                                 {{ phase.start_date|date:'DATE_FORMAT' }}
                                 &ndash; {{ phase.end_date|date:'DATE_FORMAT' }}
                             </div>
