@@ -3,7 +3,7 @@
 test_db.sqlite3
 db.sqlite3*
 node_modules
-meinberlin/settings/local.py
+meinberlin/config/settings/local.py
 .env/
 .idea/
 .cache/
