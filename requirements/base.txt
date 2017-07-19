@@ -6,6 +6,7 @@ git+git://github.com/bmispelon/django-multiform.git@0e02f0d5729a80502a290070b474
 html5lib==0.999999999
 wagtail==1.11.1
 XlsxWriter==0.9.8
+zeep==2.2.0
 
 # Inherited a4-core requirements
 bleach==2.0.0
