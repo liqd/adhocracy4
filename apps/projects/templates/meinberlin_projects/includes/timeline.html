@@ -35,25 +35,48 @@
 
 {% if not object|is_offlineevent %}
 <div class="l-center-6">
-    {% for phase in project.phases %}
-        <div class="phase-info {% if phase = active_phase %}phase-info--active{% endif %}">
-
-            <h3 class="phase-info__title">
-                {{ phase.name }}
-            </h3>
-            <div class="phase-info__subtitle">
-                {{ phase.start_date }}
-                &mdash; {{ phase.end_date }}
-            </div>
-            <div class="phase-info__description">
-                {{ phase.description }}
-            </div>
-        </div>
-    {% empty %}
+    <div class="phase-info">
         <h3 class="phase-info__title">
-            {% trans "Participation is not possible at the moment." %}
+            {{ active_phase.name }}
         </h3>
-    {% endfor %}
+        <div class="phase-info__subtitle">
+            {{ active_phase.start_date }}
+            &mdash; {{ active_phase.end_date }}
+        </div>
+        <div class="phase-info__description">
+            {{ active_phase.description }}
+        </div>
+        {% if project.phases|length > 1 %}
+            <div class="phase-info__overview collapse" id="phase-overview">
+                {% for phase in project.phases %}
+                    <div class="phase-info__item">
+                        <h3 class="phase-info__title{% if phase == active_phase %} lr-bar{% endif %}">
+                            {% if phase == active_phase %}
+                                <span class="lr-bar__left">{{ phase.name }}</span>
+                                <span class="lr-bar__right">{% trans 'active' %}</span>
+                            {% else %}
+                                {{ phase.name }}
+                            {% endif %}
+                        </h3>
+                        <div class="phase-info__subtitle">
+                            {{ phase.start_date }}
+                            &mdash; {{ phase.end_date }}
+                        </div>
+                        <div class="phase-info__description">
+                            {{ phase.description }}
+                        </div>
+                    </div>
+                {% empty %}
+                    <h3 class="phase-info__title">
+                        {% trans "Participation is not possible at the moment." %}
+                    </h3>
+                {% endfor %}
+            </div>
+            <button class="button button--link" type="button" data-toggle="collapse" data-target="#phase-overview" aria-expanded="false" aria-controls="phase-overview">
+                {% trans 'Show all phases' %}
+            </button>
+        {% endif %}
+    </div>
 </div>
 {% endif %}
 
