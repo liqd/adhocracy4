@@ -2,7 +2,7 @@
 *__pycache__/
 test_db.sqlite3
 db.sqlite3*
-node_modules
+node_modules/
 meinberlin/config/settings/local.py
 .env/
 .idea/
@@ -10,4 +10,4 @@ meinberlin/config/settings/local.py
 .coverage
 htmlcov/
 media/
-/meinberlin/static/
+meinberlin/static/
