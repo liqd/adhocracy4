@@ -138,3 +138,20 @@ $circle-size: 0.6em;
 .phase-info__subtitle {
     margin-bottom: 0.5rem;
 }
+
+.phase-info__overview {
+    margin-top: $spacer * 2;
+
+    .phase-info__title {
+        font-size: 1em;
+    }
+}
+
+.phase-info__item {
+    padding: $padding 0;
+    border-bottom: 1px solid $border-color;
+
+    &:first-child {
+        border-top: 1px solid $border-color;
+    }
+}
