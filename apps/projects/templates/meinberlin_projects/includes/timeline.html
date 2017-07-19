@@ -36,19 +36,31 @@
 {% if not object|is_offlineevent %}
 <div class="l-center-6">
     <div class="phase-info">
-        <div class="phase-info__active">
-            <h3 class="phase-info__title">
-                {{ active_phase.name }}
-            </h3>
-            <div class="phase-info__subtitle">
-                {{ active_phase.start_date|date:'DATE_FORMAT' }}
-                &ndash; {{ active_phase.end_date|date:'DATE_FORMAT' }}
+        {% if active_phase %}
+            <div class="phase-info__active">
+                <h3 class="phase-info__title">
+                    {{ active_phase.name }}
+                </h3>
+                <div class="phase-info__subtitle">
+                    {{ active_phase.start_date|date:'DATE_FORMAT' }}
+                    &ndash; {{ active_phase.end_date|date:'DATE_FORMAT' }}
+                </div>
+                <div class="phase-info__description">
+                    {{ active_phase.description }}
+                </div>
             </div>
-            <div class="phase-info__description">
-                {{ active_phase.description }}
+        {% else %}
+            <div class="phase-info__active">
+                <h3 class="phase-info__title">
+                    {% trans 'Participation is not possible at the moment.' %}
+                </h3>
+                <div class="phase-info__description">
+                    {% trans 'description' %}
+                </div>
             </div>
-        </div>
-        {% if project.phases|length > 1 %}
+        {% endif %}
+
+        {% if project.phases|length > 1 or not active_phase %}
             <div class="phase-info__overview collapse" id="phase-overview">
                 {% for phase in project.phases %}
                     <div class="phase-info__item">
