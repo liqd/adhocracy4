@@ -5,7 +5,6 @@
 {% offlineevents_and_modules_sorted project as modules_and_events %}
 {% with modules_and_events|length as module_event_count %}
 {% if module_event_count > 1 %}
-<script src="{% static 'js/popover.js' %}"></script>
 <nav class="timeline" aria-label="{% trans 'Timeline' %}">
     <ul>
         {% for obj in modules_and_events %}
