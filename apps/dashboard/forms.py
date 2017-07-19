@@ -1,5 +1,6 @@
 from django import forms
 from django.apps import apps
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
 from django.forms import modelformset_factory
@@ -19,7 +20,8 @@ from apps.extprojects import phases as extproject_phases
 from apps.maps.widgets import MapChoosePolygonWithPresetWidget
 from apps.organisations.models import Organisation
 from apps.users.fields import CommaSeparatedEmailField
-from apps.users.models import User
+
+User = get_user_model()
 
 
 def get_module_settings_form(settings_instance_or_modelref):

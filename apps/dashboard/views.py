@@ -1,6 +1,7 @@
 from functools import lru_cache
 
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
@@ -21,12 +22,13 @@ from apps.bplan import models as bplan_models
 from apps.extprojects import models as extproject_models
 from apps.organisations.models import Organisation
 from apps.projects.emails import InviteParticipantEmail
-from apps.users.models import User
 
 from . import blueprints
 from . import forms
 from . import mixins
 from .filtersets import DashboardProjectFilterSet
+
+User = get_user_model()
 
 
 class DashboardProjectListView(mixins.DashboardBaseMixin,
