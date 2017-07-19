@@ -11,3 +11,9 @@ meinberlin/config/settings/local.py
 htmlcov/
 media/
 meinberlin/static/
+
+# setuptools
+/build
+/dist
+/*.egg-info
+/share
