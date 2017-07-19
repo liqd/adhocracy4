@@ -32,7 +32,7 @@
     display: none;
 
     [aria-expanded="false"] > & {
-        display: inline-block;
+        display: inline;
     }
 }
 
@@ -40,6 +40,6 @@
     display: none;
 
     [aria-expanded="true"] > & {
-        display: inline-block;
+        display: inline;
     }
 }
