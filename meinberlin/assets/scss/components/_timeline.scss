@@ -125,16 +125,13 @@ $circle-size: 0.6em;
     padding: $padding;
 }
 
-.phase-info__overview {
-    margin-top: $spacer * 2;
-}
-
 .phase-info__item {
     padding: $padding 0;
     border-bottom: 1px solid $border-color;
 
     &:first-child {
         border-top: 1px solid $border-color;
+        margin-top: $spacer * 2;
     }
 }
 
