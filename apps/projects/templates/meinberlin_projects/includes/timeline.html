@@ -39,9 +39,20 @@
             <h2 class="item-detail__title">
                 {% trans 'Online participation' %}
             </h2>
-            <div class="item-detail__meta">
-                <strong>{% trans 'Starts on '%} {{ active_phase.start_date|date:'DATE_FORMAT' }}</strong>
-            </div>
+            {% if not active_phase %}
+                <div class="item-detail__meta">
+                    <strong>
+                        {% trans 'Participation is not possible at the moment.' %}
+                        {% if not project.past_phases %}
+                            {% blocktrans with project.phases.first.start_date|date:'DATE_FORMAT' as date %}It starts on {{ date }}.{% endblocktrans%}
+                        {% elif project.has_finished %}
+                            {% blocktrans with project.phases.last.end_date|date:'DATE_FORMAT' as date %}It ended on {{ date }}.{% endblocktrans%}
+                        {% else %}
+                            {% blocktrans with project.future_phases.first.start_date|date:'DATE_FORMAT' as date %}It continues on {{ date }}.{% endblocktrans%}
+                        {% endif %}
+                    </strong>
+                </div>
+            {% endif %}
             <div class="item-detail__meta">
                 {{ project.description }}
             </div>
