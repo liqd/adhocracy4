@@ -28,13 +28,16 @@ class XlsxFormEmail(FormEmail):
 
         rows = self.object.field_values.items()
         for rownum, row in enumerate(rows, start=1):
-            field = row[0].replace('\r', '')
-            worksheet.write(rownum, 0, field)
-            value = row[1].replace('\r', '')
-            worksheet.write(rownum, 1, value)
+            worksheet.write(rownum, 0, row[0])
+            worksheet.write(rownum, 1, self._fix_newline_if_string(row[1]))
 
         workbook.close()
         return stream.getvalue()
+
+    def _fix_newline_if_string(self, value):
+        if isinstance(value, str):
+            return value.replace('\r', '')
+        return value
 
     def get_attachments(self):
         attachments = super().get_attachments()
