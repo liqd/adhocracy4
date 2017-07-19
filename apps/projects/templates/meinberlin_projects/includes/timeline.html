@@ -87,10 +87,6 @@
                                 &ndash; {{ phase.end_date|date:'DATE_FORMAT' }}
                             </div>
                         </div>
-                    {% empty %}
-                        <h3 class="phase-info__title">
-                            {% trans "Participation is not possible at the moment." %}
-                        </h3>
                     {% endfor %}
                 </div>
                 <button class="button button--link" type="button" data-toggle="collapse" data-target="#phase-overview" aria-expanded="false" aria-controls="phase-overview">
