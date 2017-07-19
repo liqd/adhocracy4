@@ -1,0 +1,15 @@
+<div class="btn-group filter-element {% if right %}right{% endif %}">
+    <label for="{{ id }}" class="filter-label">
+        {{ label }}
+    </label>
+    <br>
+    <form class="search-filter" action="" method="get" id="{{ id }}">
+        {% for par_name, value in url_par.items %}
+            {% if par_name != name %}
+                <input type="hidden" name="{{ par_name }}" value="{{ value }}">
+            {% endif %}
+        {% endfor %}
+        <input class="search-filter-input" id="{{ id }}" type="text" name="{{ name }}" value="{{ value_label }}">
+        <button class="search-filter-btn btn" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </form>
+</div>

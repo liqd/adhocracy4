@@ -11,7 +11,7 @@ from django.utils.translation import ugettext as _
 class DropdownLinkWidget(django_filters.widgets.LinkWidget):
     label = None
     right = False
-    template = 'adhocracy4/widgets/dropdown_link.html'
+    template = 'a4filters/widgets/dropdown_link.html'
 
     def get_option_label(self, value, choices=()):
         option_label = BLANK_CHOICE_DASH[0][1]
@@ -57,7 +57,7 @@ class DropdownLinkWidget(django_filters.widgets.LinkWidget):
 class TextInputWidget(TextInput):
     label = None
     right = False
-    template = 'adhocracy4/widgets/text_input.html'
+    template = 'a4filters/widgets/text_input.html'
 
     def value_from_datadict(self, data, files, name):
         value = super().value_from_datadict(data, files, name)
