@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONFIG_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.dirname(CONFIG_DIR)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # Application definition
@@ -112,7 +113,7 @@ MIDDLEWARE_CLASSES = (
 
 SITE_ID = 1
 
-ROOT_URLCONF = 'meinberlin.urls'
+ROOT_URLCONF = 'meinberlin.config.urls'
 
 LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
@@ -134,7 +135,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'meinberlin.wsgi.application'
+WSGI_APPLICATION = 'meinberlin.config.wsgi.application'
 
 
 # Database
