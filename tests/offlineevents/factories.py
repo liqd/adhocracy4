@@ -1,7 +1,7 @@
 import factory
 
 from adhocracy4.test.factories import ProjectFactory
-from apps.offlineevents import models
+from meinberlin.apps.offlineevents import models
 from tests.factories import UserFactory
 
 

@@ -1,7 +1,7 @@
 import factory
 
 from adhocracy4.test.factories import ModuleFactory
-from apps.mapideas import models
+from meinberlin.apps.mapideas import models
 from tests.factories import UserFactory
 
 

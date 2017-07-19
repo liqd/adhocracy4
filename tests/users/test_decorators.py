@@ -1,6 +1,6 @@
 import pytest
 
-from apps.users.decorators import _user_is_project_admin
+from meinberlin.apps.users.decorators import _user_is_project_admin
 from tests.helpers import setup_users
 
 

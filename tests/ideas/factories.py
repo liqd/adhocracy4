@@ -1,7 +1,7 @@
 import factory
 
 from adhocracy4.test.factories import ModuleFactory
-from apps.ideas import models as idea_models
+from meinberlin.apps.ideas import models as idea_models
 from tests.factories import UserFactory
 
 
