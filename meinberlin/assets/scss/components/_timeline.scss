@@ -118,18 +118,19 @@ $circle-size: 0.6em;
 }
 
 .phase-info {
+    box-shadow: 0 0 1.25em 0 rgba(0, 0, 0, 0.2);
+    border-radius: $border-radius;
     margin-bottom: $spacer * 2;
     padding: $padding;
-    border-left: 0.3em solid transparent;
 }
 
-.phase-info--active {
-    background-color: $bg-tertiary;
-    border-left-color: $brand-primary;
+.phase-info__active {
+    margin-bottom: $spacer;
 }
 
 .phase-info__title {
-    font-size: $font-size-xl;
+    font-size: $font-size-lg;
+    font-weight: bold;
     margin-bottom: 0.5rem;
     margin-top: 0;
 }

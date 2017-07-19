@@ -36,15 +36,17 @@
 {% if not object|is_offlineevent %}
 <div class="l-center-6">
     <div class="phase-info">
-        <h3 class="phase-info__title">
-            {{ active_phase.name }}
-        </h3>
-        <div class="phase-info__subtitle">
-            {{ active_phase.start_date }}
-            &mdash; {{ active_phase.end_date }}
-        </div>
-        <div class="phase-info__description">
-            {{ active_phase.description }}
+        <div class="phase-info__active">
+            <h3 class="phase-info__title">
+                {{ active_phase.name }}
+            </h3>
+            <div class="phase-info__subtitle">
+                {{ active_phase.start_date|date:'DATE_FORMAT' }}
+                &ndash; {{ active_phase.end_date|date:'DATE_FORMAT' }}
+            </div>
+            <div class="phase-info__description">
+                {{ active_phase.description }}
+            </div>
         </div>
         {% if project.phases|length > 1 %}
             <div class="phase-info__overview collapse" id="phase-overview">
@@ -59,8 +61,8 @@
                             {% endif %}
                         </h3>
                         <div class="phase-info__subtitle">
-                            {{ phase.start_date }}
-                            &mdash; {{ phase.end_date }}
+                            {{ phase.start_date|date:'DATE_FORMAT' }}
+                            &ndash; {{ phase.end_date|date:'DATE_FORMAT' }}
                         </div>
                         <div class="phase-info__description">
                             {{ phase.description }}
