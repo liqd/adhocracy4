@@ -3,6 +3,7 @@ $circle-size: 0.6em;
 .timeline {
     font-size: $font-size-sm;
     padding-left: 2em;
+    margin-bottom: $spacer;
     color: $link-color;
 
     ul {
