@@ -1,4 +1,4 @@
-{% load contrib_tags i18n offlineevent_tags dashboard_tags static %}
+{% load contrib_tags i18n offlineevent_tags static %}
 
 {% with project.active_phase as active_phase %}
 
@@ -14,7 +14,7 @@
                         href="{{ project.get_absolute_url }}"
                         class="button button--light button--small timeline__button {% if obj == active_phase.module %}is-active{% endif %} {% if not object|is_offlineevent %}is-selected{% endif %}"
                     >
-                        {{ project.typ|get_blueprint_title }}
+                        {% trans 'Online participation' %}
                     </a>
                 </li>
             {% else %}
