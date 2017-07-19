@@ -118,13 +118,6 @@ $circle-size: 0.8em;
     }
 }
 
-.phase-info {
-    box-shadow: 0 0 2em 0 rgba(0, 0, 0, 0.2);
-    border-radius: $border-radius;
-    margin: $spacer * 2 0;
-    padding: $padding;
-}
-
 .phase-info__item {
     padding: $padding 0;
     border-bottom: 1px solid $border-color;
@@ -133,16 +126,10 @@ $circle-size: 0.8em;
         border-top: 1px solid $border-color;
         margin-top: $spacer * 2;
     }
-}
 
-.phase-info__active__title,
-.phase-info__active__subtitle {
-    margin-bottom: 0.5rem;
-}
-
-.phase-info__active__title {
-    font-size: $font-size-lg;
-    margin-top: 0;
+    &:last-child {
+        margin-bottom: $spacer;
+    }
 }
 
 .phase-info__item__title {

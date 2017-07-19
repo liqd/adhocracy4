@@ -57,7 +57,7 @@
                 {{ project.description }}
             </div>
 
-            <div class="phase-info__overview collapse" id="phase-overview">
+            <div class="phase-info collapse" id="phase-overview">
                 {% for phase in project.phases %}
                     <div class="phase-info__item">
                         <div class="phase-info__item__title{% if phase == active_phase %} lr-bar{% endif %}">
