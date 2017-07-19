@@ -11,7 +11,7 @@ from wagtail.wagtailforms.models import AbstractFormField
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 
-from apps.actions import blocks as actions_blocks
+from meinberlin.apps.actions import blocks as actions_blocks
 
 from . import blocks as cms_blocks
 from . import emails

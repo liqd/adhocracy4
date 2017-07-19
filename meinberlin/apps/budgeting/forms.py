@@ -1,5 +1,5 @@
-from apps.mapideas.forms import MapIdeaForm
-from apps.moderatorfeedback.forms import item_moderate_form_factory
+from meinberlin.apps.mapideas.forms import MapIdeaForm
+from meinberlin.apps.moderatorfeedback.forms import item_moderate_form_factory
 
 from . import models
 

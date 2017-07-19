@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.projects.models import Project
-from apps.projects import views
+from meinberlin.apps.projects import views
 
 
 class DashboardProjectFilterSet(DefaultsFilterSet):

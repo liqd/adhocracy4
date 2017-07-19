@@ -9,8 +9,8 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.projects import models as project_models
-from apps.contrib.widgets import DropdownLinkWidget
-from apps.dashboard import blueprints
+from meinberlin.apps.contrib.widgets import DropdownLinkWidget
+from meinberlin.apps.dashboard import blueprints
 
 
 class OrderingWidget(DropdownLinkWidget):

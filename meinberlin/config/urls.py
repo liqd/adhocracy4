@@ -14,11 +14,11 @@ from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
-from apps.bplan.api import BplanViewSet
-from apps.documents.api import DocumentViewSet
-from apps.polls.api import PollViewSet
-from apps.polls.api import VoteViewSet
-from apps.users.decorators import user_is_project_admin
+from meinberlin.apps.bplan.api import BplanViewSet
+from meinberlin.apps.documents.api import DocumentViewSet
+from meinberlin.apps.polls.api import PollViewSet
+from meinberlin.apps.polls.api import VoteViewSet
+from meinberlin.apps.users.decorators import user_is_project_admin
 
 js_info_dict = {
     'packages': ('adhocracy4.comments',),
@@ -43,33 +43,33 @@ ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
 
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
-    url(r'^dashboard/', include('apps.dashboard.urls')),
-    url(r'^account/', include('apps.account.urls')),
-    url(r'^embed/', include('apps.embed.urls')),
-    url(r'^profile/', include('apps.users.urls')),
+    url(r'^dashboard/', include('meinberlin.apps.dashboard.urls')),
+    url(r'^account/', include('meinberlin.apps.account.urls')),
+    url(r'^embed/', include('meinberlin.apps.embed.urls')),
+    url(r'^profile/', include('meinberlin.apps.users.urls')),
 
     url(r'^admin/', include('wagtail.wagtailadmin.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/social/', include('allauth.socialaccount.urls')),
     url(r'^documents/', include('wagtail.wagtaildocs.urls')),
-    url(r'^projects/', include('apps.projects.urls')),
-    url(r'^exports/', include('apps.exports.urls')),
+    url(r'^projects/', include('meinberlin.apps.projects.urls')),
+    url(r'^exports/', include('meinberlin.apps.exports.urls')),
 
-    url(r'^ideas/', include('apps.ideas.urls',
+    url(r'^ideas/', include('meinberlin.apps.ideas.urls',
                             namespace='meinberlin_ideas')),
-    url(r'^kiezkasse/', include('apps.kiezkasse.urls',
+    url(r'^kiezkasse/', include('meinberlin.apps.kiezkasse.urls',
                                 namespace='meinberlin_kiezkasse')),
-    url(r'^mapideas/', include('apps.mapideas.urls',
+    url(r'^mapideas/', include('meinberlin.apps.mapideas.urls',
                                namespace='meinberlin_mapideas')),
-    url(r'^text/', include('apps.documents.urls',
+    url(r'^text/', include('meinberlin.apps.documents.urls',
                            namespace='meinberlin_documents')),
-    url(r'^bplan/', include('apps.bplan.urls',
+    url(r'^bplan/', include('meinberlin.apps.bplan.urls',
                             namespace='meinberlin_bplan')),
-    url(r'^budgeting/', include('apps.budgeting.urls',
+    url(r'^budgeting/', include('meinberlin.apps.budgeting.urls',
                                 namespace='meinberlin_budgeting')),
-    url(r'^topicprio/', include('apps.topicprio.urls',
+    url(r'^topicprio/', include('meinberlin.apps.topicprio.urls',
                                 namespace='meinberlin_topicprio')),
-    url(r'^offlineevents/', include('apps.offlineevents.urls',
+    url(r'^offlineevents/', include('meinberlin.apps.offlineevents.urls',
                                     namespace='meinberlin_offlineevents')),
 
     url(r'^api/', include(ct_router.urls)),

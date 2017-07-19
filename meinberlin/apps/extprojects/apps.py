@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class Config(AppConfig):
-    name = 'apps.extprojects'
+    name = 'meinberlin.apps.extprojects'
     label = 'meinberlin_extprojects'

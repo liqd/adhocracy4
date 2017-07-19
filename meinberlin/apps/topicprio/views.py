@@ -4,11 +4,11 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.rules import mixins as rules_mixins
-from apps.contrib import filters
-from apps.contrib.views import ProjectContextDispatcher
-from apps.dashboard.mixins import DashboardBaseMixin
-from apps.exports import views as export_views
-from apps.ideas import views as idea_views
+from meinberlin.apps.contrib import filters
+from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.dashboard.mixins import DashboardBaseMixin
+from meinberlin.apps.exports import views as export_views
+from meinberlin.apps.ideas import views as idea_views
 
 from . import forms
 from . import models

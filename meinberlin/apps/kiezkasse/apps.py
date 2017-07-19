@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class Config(AppConfig):
-    name = 'apps.kiezkasse'
+    name = 'meinberlin.apps.kiezkasse'
     label = 'meinberlin_kiezkasse'

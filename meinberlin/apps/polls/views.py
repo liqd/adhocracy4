@@ -5,8 +5,8 @@ from django.shortcuts import render_to_response
 from django.views import generic
 
 from adhocracy4.rules import mixins as rules_mixins
-from apps.contrib.views import ProjectContextDispatcher
-from apps.dashboard.mixins import DashboardBaseMixin
+from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.dashboard.mixins import DashboardBaseMixin
 
 from . import models
 

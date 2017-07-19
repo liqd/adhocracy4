@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import user_passes_test
 
 from adhocracy4.projects.models import Project
-from apps.organisations.models import Organisation
+from meinberlin.apps.organisations.models import Organisation
 
 
 def user_is_project_admin(view_func):

@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 from django.views.generic.base import RedirectView
 
-from apps.users.models import User
+from meinberlin.apps.users.models import User
 
 from . import forms
 

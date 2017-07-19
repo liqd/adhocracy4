@@ -67,31 +67,31 @@ INSTALLED_APPS = (
     'adhocracy4.actions.apps.ActionsConfig',
     'adhocracy4.follows.apps.FollowsConfig',
 
-    'apps.contrib.apps.Config',
-    'apps.cms.apps.Config',
-    'apps.users.apps.Config',
-    'apps.projects.apps.Config',
-    'apps.organisations.apps.Config',
-    'apps.embed.apps.Config',
-    'apps.moderatorfeedback.apps.Config',
-    'apps.maps.apps.Config',
-    'apps.notifications.apps.Config',
-    'apps.exports.apps.Config',
-    'apps.offlineevents.apps.Config',
+    'meinberlin.apps.contrib.apps.Config',
+    'meinberlin.apps.cms.apps.Config',
+    'meinberlin.apps.users.apps.Config',
+    'meinberlin.apps.projects.apps.Config',
+    'meinberlin.apps.organisations.apps.Config',
+    'meinberlin.apps.embed.apps.Config',
+    'meinberlin.apps.moderatorfeedback.apps.Config',
+    'meinberlin.apps.maps.apps.Config',
+    'meinberlin.apps.notifications.apps.Config',
+    'meinberlin.apps.exports.apps.Config',
+    'meinberlin.apps.offlineevents.apps.Config',
 
-    'apps.account.apps.Config',
-    'apps.dashboard.apps.Config',
+    'meinberlin.apps.account.apps.Config',
+    'meinberlin.apps.dashboard.apps.Config',
 
-    'apps.actions.apps.Config',
-    'apps.bplan.apps.Config',
-    'apps.budgeting.apps.Config',
-    'apps.documents.apps.Config',
-    'apps.extprojects.apps.Config',
-    'apps.ideas.apps.Config',
-    'apps.kiezkasse.apps.Config',
-    'apps.mapideas.apps.Config',
-    'apps.polls.apps.Config',
-    'apps.topicprio.apps.Config',
+    'meinberlin.apps.actions.apps.Config',
+    'meinberlin.apps.bplan.apps.Config',
+    'meinberlin.apps.budgeting.apps.Config',
+    'meinberlin.apps.documents.apps.Config',
+    'meinberlin.apps.extprojects.apps.Config',
+    'meinberlin.apps.ideas.apps.Config',
+    'meinberlin.apps.kiezkasse.apps.Config',
+    'meinberlin.apps.mapideas.apps.Config',
+    'meinberlin.apps.polls.apps.Config',
+    'meinberlin.apps.topicprio.apps.Config',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,7 +108,7 @@ MIDDLEWARE_CLASSES = (
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 
-    'apps.embed.middleware.AjaxPathMiddleware',
+    'meinberlin.apps.embed.middleware.AjaxPathMiddleware',
 )
 
 SITE_ID = 1
@@ -222,7 +222,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-ACCOUNT_ADAPTER = 'apps.users.adapters.AccountAdapter'
+ACCOUNT_ADAPTER = 'meinberlin.apps.users.adapters.AccountAdapter'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 ACCOUNT_EMAIL_REQUIRED = True
@@ -232,7 +232,7 @@ ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 10
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
-ACCOUNT_SIGNUP_FORM_CLASS = 'apps.users.forms.TermsSignupForm'
+ACCOUNT_SIGNUP_FORM_CLASS = 'meinberlin.apps.users.forms.TermsSignupForm'
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_URL = 'account_login'
@@ -243,7 +243,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.BCryptPasswordHasher',  # a3
-    'apps.users.hashers.A2PasswordHasher',
+    'meinberlin.apps.users.hashers.A2PasswordHasher',
 ]
 
 # Service Konto
@@ -253,7 +253,7 @@ SERVICE_KONTO_API_URL = 'https://skbref.verwalt-berlin.de/HHGWUserData/HHGWUserD
 
 # ckeditor
 
-CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_RESTRICT_BY_USER = 'username'
 CKEDITOR_ALLOW_NONIMAGE_FILES = True
 

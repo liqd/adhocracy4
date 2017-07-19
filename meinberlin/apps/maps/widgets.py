@@ -5,8 +5,8 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.forms.widgets import Widget
 from django.template import loader
 
-from apps.maps.models import MapPreset
-from apps.maps.models import MapPresetCategory
+from meinberlin.apps.maps.models import MapPreset
+from meinberlin.apps.maps.models import MapPresetCategory
 
 
 class MapChoosePolygonWithPresetWidget(Widget):

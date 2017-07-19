@@ -4,9 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.rules import mixins as rules_mixins
-from apps.contrib.views import ProjectContextDispatcher
-from apps.dashboard.mixins import DashboardBaseMixin
-from apps.ideas import views as idea_views
+from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.dashboard.mixins import DashboardBaseMixin
+from meinberlin.apps.ideas import views as idea_views
 
 from . import forms
 from . import models

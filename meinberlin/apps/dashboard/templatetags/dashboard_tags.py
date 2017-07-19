@@ -1,8 +1,8 @@
 from django import template
 
-from apps.dashboard.blueprints import blueprints
-from apps.dashboard.views import get_management_view
-from apps.exports.views import get_exports
+from meinberlin.apps.dashboard.blueprints import blueprints
+from meinberlin.apps.dashboard.views import get_management_view
+from meinberlin.apps.exports.views import get_exports
 
 register = template.Library()
 

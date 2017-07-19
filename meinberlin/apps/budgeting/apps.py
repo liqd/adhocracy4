@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class Config(AppConfig):
-    name = 'apps.budgeting'
+    name = 'meinberlin.apps.budgeting'
     label = 'meinberlin_budgeting'

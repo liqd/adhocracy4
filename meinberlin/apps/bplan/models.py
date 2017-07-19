@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.models.base import TimeStampedModel
 from adhocracy4.modules import models as module_models
-from apps.extprojects.models import ExternalProject
+from meinberlin.apps.extprojects.models import ExternalProject
 
 
 class Bplan(ExternalProject):

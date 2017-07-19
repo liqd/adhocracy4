@@ -5,7 +5,7 @@ from .provider import ServiceKontoProvider
 
 
 class Config(AppConfig):
-    name = 'apps.servicekonto'
+    name = 'meinberlin.apps.servicekonto'
     label = 'meinberlin_servicekonto'
 
     def ready(self):

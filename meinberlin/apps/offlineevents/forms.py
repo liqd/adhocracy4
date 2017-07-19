@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from apps.contrib.widgets import DateTimeInput
+from meinberlin.apps.contrib.widgets import DateTimeInput
 
 from . import models
 

@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class Config(AppConfig):
-    name = 'apps.actions'
+    name = 'meinberlin.apps.actions'
     label = 'meinberlin_actions'
 
     def ready(self):

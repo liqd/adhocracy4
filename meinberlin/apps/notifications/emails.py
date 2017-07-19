@@ -1,6 +1,6 @@
 from django.contrib import auth
 
-from apps.contrib.emails import Email
+from meinberlin.apps.contrib.emails import Email
 
 User = auth.get_user_model()
 

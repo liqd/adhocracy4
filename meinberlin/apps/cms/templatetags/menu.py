@@ -1,6 +1,6 @@
 from django import template
 
-from apps.cms import models as cms_models
+from meinberlin.apps.cms import models as cms_models
 
 register = template.Library()
 

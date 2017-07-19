@@ -10,16 +10,16 @@ from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
-from apps.bplan import models as bplan_models
-from apps.bplan import phases as bplan_phases
-from apps.contrib import multiform
-from apps.contrib import widgets
-from apps.contrib.formset import dynamic_modelformset_factory
-from apps.extprojects import models as extproject_models
-from apps.extprojects import phases as extproject_phases
-from apps.maps.widgets import MapChoosePolygonWithPresetWidget
-from apps.organisations.models import Organisation
-from apps.users.fields import CommaSeparatedEmailField
+from meinberlin.apps.bplan import models as bplan_models
+from meinberlin.apps.bplan import phases as bplan_phases
+from meinberlin.apps.contrib import multiform
+from meinberlin.apps.contrib import widgets
+from meinberlin.apps.contrib.formset import dynamic_modelformset_factory
+from meinberlin.apps.extprojects import models as extproject_models
+from meinberlin.apps.extprojects import phases as extproject_phases
+from meinberlin.apps.maps.widgets import MapChoosePolygonWithPresetWidget
+from meinberlin.apps.organisations.models import Organisation
+from meinberlin.apps.users.fields import CommaSeparatedEmailField
 
 User = get_user_model()
 

@@ -1,4 +1,4 @@
-from apps.contrib.emails import Email
+from meinberlin.apps.contrib.emails import Email
 
 
 class OfficeWorkerNotification(Email):

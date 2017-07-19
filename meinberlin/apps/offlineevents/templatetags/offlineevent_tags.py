@@ -2,7 +2,7 @@ from django import template
 
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
-from apps.offlineevents.models import OfflineEvent
+from meinberlin.apps.offlineevents.models import OfflineEvent
 
 register = template.Library()
 

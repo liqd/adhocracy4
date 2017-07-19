@@ -7,9 +7,9 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.modules import models as module_models
 from adhocracy4.rules import mixins as rules_mixins
-from apps.contrib import filters
-from apps.contrib.views import ProjectContextDispatcher
-from apps.exports import views as export_views
+from meinberlin.apps.contrib import filters
+from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.exports import views as export_views
 
 from . import forms
 from . import models

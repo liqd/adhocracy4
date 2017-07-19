@@ -2,7 +2,7 @@ import rules
 from rules.predicates import is_superuser
 
 from adhocracy4.modules import predicates as module_predicates
-from apps.contrib import predicates as contrib_predicates
+from meinberlin.apps.contrib import predicates as contrib_predicates
 
 from . import models
 

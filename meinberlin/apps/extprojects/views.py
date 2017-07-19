@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.views import generic
 
-from apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.contrib.views import ProjectContextDispatcher
 
 from . import models
 

@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class Config(AppConfig):
-    name = 'apps.contrib'
+    name = 'meinberlin.apps.contrib'
     label = 'meinberlin_contrib'

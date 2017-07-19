@@ -5,7 +5,7 @@ from django.db import migrations, models
 import django.utils.timezone
 from django.conf import settings
 import autoslug.fields
-import apps.moderatorfeedback.fields
+import meinberlin.apps.moderatorfeedback.fields
 import django.db.models.deletion
 import ckeditor.fields
 import adhocracy4.maps.fields
@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 ('description', ckeditor.fields.RichTextField()),
                 ('budget', models.PositiveIntegerField(default=0, help_text='Required Budget')),
                 ('category', models.ForeignKey(to='a4categories.Category', null=True, on_delete=django.db.models.deletion.SET_NULL, blank=True)),
-                ('moderator_feedback', apps.moderatorfeedback.fields.ModeratorFeedbackField(default=None, choices=[('CONSIDERATION', 'Under consideration'), ('REJECTED', 'Rejected'), ('ACCEPTED', 'Accepted')], null=True, blank=True, max_length=254)),
+                ('moderator_feedback', meinberlin.apps.moderatorfeedback.fields.ModeratorFeedbackField(default=None, choices=[('CONSIDERATION', 'Under consideration'), ('REJECTED', 'Rejected'), ('ACCEPTED', 'Accepted')], null=True, blank=True, max_length=254)),
             ],
             options={
                 'ordering': ['-created'],

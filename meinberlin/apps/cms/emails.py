@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 
-from apps.contrib.emails import Email
+from meinberlin.apps.contrib.emails import Email
 
 
 class FormEmail(Email):

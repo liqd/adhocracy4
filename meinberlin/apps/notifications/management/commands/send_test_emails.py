@@ -10,11 +10,11 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.projects.models import Project
 from adhocracy4.reports import emails as reports_emails
 from adhocracy4.reports.models import Report
-from apps.bplan import emails as bplan_emails
-from apps.bplan.models import Statement
-from apps.contrib.emails import Email
-from apps.ideas.models import Idea
-from apps.notifications import emails as notification_emails
+from meinberlin.apps.bplan import emails as bplan_emails
+from meinberlin.apps.bplan.models import Statement
+from meinberlin.apps.contrib.emails import Email
+from meinberlin.apps.ideas.models import Idea
+from meinberlin.apps.notifications import emails as notification_emails
 
 User = get_user_model()
 

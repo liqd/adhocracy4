@@ -1,6 +1,6 @@
 from django import forms
 
-from apps.users.models import User
+from meinberlin.apps.users.models import User
 
 
 class ProfileForm(forms.ModelForm):

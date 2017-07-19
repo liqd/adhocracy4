@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class Config(AppConfig):
-    name = 'apps.dashboard'
+    name = 'meinberlin.apps.dashboard'
     label = 'meinberlin_dashboard'

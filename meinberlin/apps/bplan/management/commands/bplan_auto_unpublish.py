@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from apps.bplan import models as bplan_models
+from meinberlin.apps.bplan import models as bplan_models
 
 
 class Command(BaseCommand):

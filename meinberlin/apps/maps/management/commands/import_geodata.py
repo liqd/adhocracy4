@@ -5,7 +5,7 @@ import sys
 
 from django.core.management.base import BaseCommand
 
-from apps.maps import models as map_models
+from meinberlin.apps.maps import models as map_models
 
 
 class Command(BaseCommand):
