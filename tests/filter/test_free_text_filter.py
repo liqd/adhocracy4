@@ -5,7 +5,7 @@ from django.core.exceptions import ImproperlyConfigured
 from tests.apps.questions import models as question_models
 
 from adhocracy4.filters.filters import FreeTextFilter
-from adhocracy4.modules.views import ItemListView
+from adhocracy4.filters.views import FilteredListView
 
 
 class SearchFilterSet(django_filters.FilterSet):
@@ -21,7 +21,7 @@ class SearchFilterSet(django_filters.FilterSet):
 
 @pytest.fixture
 def question_list_view():
-    class DummyView(ItemListView):
+    class DummyView(FilteredListView):
         model = question_models.Question
         filter_set = SearchFilterSet
     return DummyView.as_view()
