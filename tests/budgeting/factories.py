@@ -1,8 +1,9 @@
 import factory
 
 from adhocracy4.test.factories import ModuleFactory
-from apps.budgeting import models
-from apps.moderatorfeedback import models as moderatorfeedback_models
+from meinberlin.apps.budgeting import models
+from meinberlin.apps.moderatorfeedback import \
+    models as moderatorfeedback_models
 from tests.factories import ModeratorStatementFactory
 from tests.factories import UserFactory
 

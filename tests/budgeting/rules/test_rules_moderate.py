@@ -1,7 +1,7 @@
 import pytest
 import rules
 
-from apps.budgeting import phases
+from meinberlin.apps.budgeting import phases
 from tests.helpers import freeze_phase
 from tests.helpers import freeze_post_phase
 from tests.helpers import freeze_pre_phase

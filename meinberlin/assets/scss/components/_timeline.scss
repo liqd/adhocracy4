@@ -1,0 +1,139 @@
+$circle-size: 0.6em;
+
+.timeline {
+    font-size: $font-size-sm;
+    padding-left: 2em;
+    color: $link-color;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        display: block;
+        position: relative;
+        margin-bottom: 5px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &:before {
+            content: "";
+            width: 1px;
+
+            position: absolute;
+            top: -15px;
+            bottom: -15px;
+            left: -$circle-size;
+
+            background-color: $border-color;
+        }
+
+        &:first-child:before {
+            top: 50%;
+        }
+
+        &:last-child:before {
+            bottom: 50%;
+        }
+    }
+}
+
+.timeline__button {
+    &:after {
+        content: "";
+        width: $circle-size;
+        height: $circle-size;
+        z-index: 1;
+
+        position: absolute;
+        top: 50%;
+        left: (-$circle-size * 1.5);
+        margin-top: (-$circle-size / 2);
+
+        background-color: $body-bg;
+        border: 1px solid $border-color;
+        border-radius: 50%;
+        box-shadow: 0 0 0 0.2em $body-bg;
+    }
+
+    &.is-active {
+        &:after {
+            border-color: $link-color;
+        }
+    }
+
+    &.is-selected {
+        @include button-color($link-color, $link-hover-color);
+
+        &:after {
+            @include button-color($link-color, $link-hover-color);
+        }
+    }
+}
+
+@media (min-width: $breakpoint) {
+    .timeline {
+        text-align: center;
+        padding-left: 0;
+    }
+
+    .timeline li {
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 1em + $circle-size;
+
+        &:before,
+        &:first-child:before,
+        &:last-child:before {
+            width: auto;
+            height: 1px;
+
+            left: -15px;
+            right: -15px;
+            top: auto;
+            bottom: -$circle-size;
+        }
+
+        &:first-child:before {
+            left: 50%;
+        }
+
+        &:last-child:before {
+            right: 50%;
+        }
+    }
+
+    .timeline__button:after {
+        top: auto;
+        margin-top: 0;
+
+        bottom: (-$circle-size * 1.5);
+        left: 50%;
+        margin-left: (-$circle-size / 2);
+    }
+}
+
+.phase-info {
+    margin-bottom: $spacer * 2;
+    padding: $padding;
+    border-left: 0.3em solid transparent;
+}
+
+.phase-info--active {
+    background-color: $bg-tertiary;
+    border-left-color: $brand-primary;
+}
+
+.phase-info__title {
+    font-size: $font-size-xl;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+}
+
+.phase-info__subtitle {
+    margin-bottom: 0.5rem;
+}
