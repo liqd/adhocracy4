@@ -2,12 +2,18 @@
 *__pycache__/
 test_db.sqlite3
 db.sqlite3*
-node_modules
-meinberlin/settings/local.py
+node_modules/
+meinberlin/config/settings/local.py
 .env/
 .idea/
 .cache/
 .coverage
 htmlcov/
 media/
-/meinberlin/static/
+meinberlin/static/
+
+# setuptools
+/build
+/dist
+/*.egg-info
+/share

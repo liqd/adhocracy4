@@ -5,7 +5,7 @@ from rest_framework import status
 
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
-from apps.bplan import models as bplan_models
+from meinberlin.apps.bplan import models as bplan_models
 
 
 @pytest.mark.django_db

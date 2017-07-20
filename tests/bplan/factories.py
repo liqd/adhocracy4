@@ -1,6 +1,6 @@
 import factory
 
-from apps.bplan import models as bplan_models
+from meinberlin.apps.bplan import models as bplan_models
 from tests.factories import OrganisationFactory
 
 

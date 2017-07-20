@@ -2,8 +2,8 @@ import pytest
 from django.utils.translation import ugettext as _
 
 from adhocracy4.ratings.models import Rating
-from apps.exports import views
-from apps.ideas import models
+from meinberlin.apps.exports import views
+from meinberlin.apps.ideas import models
 
 
 @pytest.mark.django_db
