@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-21 16:47+0200\n"
+"POT-Creation-Date: 2017-07-17 15:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,8 +24,8 @@ msgstr "Do you really want to delete this comment?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:93
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
-#: apps/documents/assets/ChapterNavItem.jsx:44
-#: apps/documents/assets/ChapterNavItem.jsx:47
+#: apps/documents/assets/ChapterNavItem.jsx:48
+#: apps/documents/assets/ChapterNavItem.jsx:51
 #: apps/documents/assets/ParagraphForm.jsx:123
 #: apps/documents/assets/ParagraphForm.jsx:126
 #: apps/polls/assets/QuestionForm.jsx:115
@@ -119,7 +119,7 @@ msgstr "Your message here"
 msgid "Send Report"
 msgstr "Send Report"
 
-#: apps/contrib/static/js/Alert.jsx:10 apps/contrib/static/js/Alert.jsx:11
+#: apps/contrib/assets/Alert.jsx:10 apps/contrib/assets/Alert.jsx:11
 #: meinberlin/assets/js/embed.js:30 meinberlin/assets/js/embed.js:31
 msgid "Close"
 msgstr "Close"
@@ -128,28 +128,28 @@ msgstr "Close"
 msgid "Chapter title"
 msgstr "Chapter title"
 
-#: apps/documents/assets/ChapterForm.jsx:55
+#: apps/documents/assets/ChapterForm.jsx:56
 msgid "Add a new paragraph"
 msgstr "Add a new paragraph"
 
-#: apps/documents/assets/ChapterNav.jsx:8
+#: apps/documents/assets/ChapterNav.jsx:9
 msgid "Chapter navigation"
 msgstr "Chapter navigation"
 
-#: apps/documents/assets/ChapterNav.jsx:31
+#: apps/documents/assets/ChapterNav.jsx:36
 msgid "Add a new chapter"
 msgstr "Add a new chapter"
 
-#: apps/documents/assets/ChapterNavItem.jsx:27
-#: apps/documents/assets/ChapterNavItem.jsx:30
+#: apps/documents/assets/ChapterNavItem.jsx:31
+#: apps/documents/assets/ChapterNavItem.jsx:34
 #: apps/documents/assets/ParagraphForm.jsx:106
 #: apps/documents/assets/ParagraphForm.jsx:109
 #: apps/polls/assets/QuestionForm.jsx:98 apps/polls/assets/QuestionForm.jsx:101
 msgid "Move up"
 msgstr "Move up"
 
-#: apps/documents/assets/ChapterNavItem.jsx:36
-#: apps/documents/assets/ChapterNavItem.jsx:39
+#: apps/documents/assets/ChapterNavItem.jsx:40
+#: apps/documents/assets/ChapterNavItem.jsx:43
 #: apps/documents/assets/ParagraphForm.jsx:115
 #: apps/documents/assets/ParagraphForm.jsx:118
 #: apps/polls/assets/QuestionForm.jsx:107
@@ -165,23 +165,23 @@ msgstr "first chapter"
 msgid "new chapter"
 msgstr "new chapter"
 
-#: apps/documents/assets/DocumentManagement.jsx:232
+#: apps/documents/assets/DocumentManagement.jsx:235
 msgid "The document has been updated."
 msgstr "The document has been updated."
 
-#: apps/documents/assets/DocumentManagement.jsx:247
+#: apps/documents/assets/DocumentManagement.jsx:250
 msgid "The document could not be updated."
 msgstr "The document could not be updated."
 
-#: apps/documents/assets/DocumentManagement.jsx:261
+#: apps/documents/assets/DocumentManagement.jsx:264
 msgid "Contents"
 msgstr "Contents"
 
-#: apps/documents/assets/DocumentManagement.jsx:272
+#: apps/documents/assets/DocumentManagement.jsx:276
 msgid "Edit chapter"
 msgstr "Edit chapter"
 
-#: apps/documents/assets/DocumentManagement.jsx:288
+#: apps/documents/assets/DocumentManagement.jsx:293
 #: apps/polls/assets/PollManagement.jsx:222
 msgid "Save"
 msgstr "Save"

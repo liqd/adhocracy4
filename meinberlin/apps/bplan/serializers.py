@@ -158,7 +158,7 @@ class BplanSerializer(serializers.ModelSerializer):
 
     def _generate_image_filename(self, filename):
         if callable(self._image_upload_to):
-            raise Exception(_('Callable upload_to fields are not supported'))
+            raise Exception('Callable upload_to fields are not supported')
 
         dirname = datetime.datetime.now().strftime(self._image_upload_to)
         filename = posixpath.join(dirname, filename)
