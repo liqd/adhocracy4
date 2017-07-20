@@ -5,10 +5,6 @@ from django.utils import timezone
 from django.views import generic
 
 from adhocracy4.follows.models import Follow
-from adhocracy4.projects.models import Project
-from apps.newsletters.models import ORGANISATION
-from apps.newsletters.models import PLATFORM
-from apps.newsletters.models import PROJECT
 from apps.organisations.models import Organisation
 from apps.users.models import User
 
@@ -47,20 +43,25 @@ class NewsletterCreateView(generic.CreateView):
                     has_initiator(self.request.user)):
                 raise PermissionDenied
 
-            if receivers == PROJECT:
+            if receivers == models.PROJECT:
                 participant_ids = Follow.objects.filter(
                     project=int(form.data['project']),
                     enabled=True
                 ).values_list('creator', flat=True)
 
-            elif receivers == ORGANISATION:
+            elif receivers == models.ORGANISATION:
                 participant_ids = Follow.objects.filter(
                     project__organisation=int(form.data['organisation']),
                     enabled=True
                 ).values_list('creator', flat=True).distinct()
 
-            elif receivers == PLATFORM:
-                participant_ids = User.objects.all().values_list('pk', flat=True)
+            elif receivers == models.PLATFORM:
+                participant_ids = User.objects.all().values_list('pk',
+                                                                 flat=True)
+
+            elif receivers == models.INITIATOR:
+                participant_ids = Organisation.objects.get(
+                    pk=int(form.data['organisation'])).initiators.all()
 
             emails.NewsletterEmail.send(self.object,
                                         participant_ids=participant_ids)
