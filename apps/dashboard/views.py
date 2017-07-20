@@ -189,7 +189,7 @@ class DashboardNewsletterCreateView(NewsletterCreateView,
 
         return reverse(
             'dashboard-newsletter-create',
-            kwargs={'organisation_slug': self.organisation})
+            kwargs={'organisation_slug': self.organisation.slug})
 
 
 class DashboardProjectModeratorsView(mixins.DashboardBaseMixin,

@@ -1,3 +1,4 @@
+from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
 from django.utils import timezone
@@ -8,6 +9,7 @@ from adhocracy4.projects.models import Project
 from apps.newsletters.models import ORGANISATION
 from apps.newsletters.models import PLATFORM
 from apps.newsletters.models import PROJECT
+from apps.organisations.models import Organisation
 from apps.users.models import User
 
 from . import emails
@@ -39,8 +41,12 @@ class NewsletterCreateView(generic.CreateView):
 
             # TODO: send mails
             receivers = int(form.cleaned_data['receivers'])
+            if not(self.request.user.is_superuser or
+                    Organisation.objects.get(
+                    pk=int(form.data['organisation'])).
+                    has_initiator(self.request.user)):
+                raise PermissionDenied
             if receivers == PROJECT:
-
                 project_follower = Follow.objects.filter(
                     project=Project.objects.get(id=form.data['project']),
                     enabled=True)
@@ -63,7 +69,7 @@ class NewsletterCreateView(generic.CreateView):
                 participant_ids = [user.id for user in users]
                 emails.NewsletterEmail.send(self.object,
                                             participant_ids=participant_ids)
-        return HttpResponseRedirect(self.get_success_url())
+            return HttpResponseRedirect(self.get_success_url())
 
 
 class NewsletterUpdateView(generic.UpdateView):
