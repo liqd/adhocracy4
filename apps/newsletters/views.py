@@ -39,36 +39,31 @@ class NewsletterCreateView(generic.CreateView):
             instance.sent = timezone.now()
             instance.save()
 
-            # TODO: send mails
             receivers = int(form.cleaned_data['receivers'])
+            participant_ids = []
             if not(self.request.user.is_superuser or
                     Organisation.objects.get(
                     pk=int(form.data['organisation'])).
                     has_initiator(self.request.user)):
                 raise PermissionDenied
-            if receivers == PROJECT:
-                project_follower = Follow.objects.filter(
-                    project=Project.objects.get(id=form.data['project']),
-                    enabled=True)
 
-                participant_ids = [follow.creator.id
-                                   for follow in project_follower]
-                emails.NewsletterEmail.send(self.object,
-                                            participant_ids=participant_ids)
+            if receivers == PROJECT:
+                participant_ids = Follow.objects.filter(
+                    project=int(form.data['project']),
+                    enabled=True
+                ).values_list('creator', flat=True)
+
             elif receivers == ORGANISATION:
-                organisation_followers = Follow.objects.filter(
+                participant_ids = Follow.objects.filter(
                     project__organisation=int(form.data['organisation']),
                     enabled=True
-                ).values('creator').distinct()
-                participant_ids = [follow['creator']
-                                   for follow in organisation_followers]
-                emails.NewsletterEmail.send(self.object,
-                                            participant_ids=participant_ids)
+                ).values_list('creator', flat=True).distinct()
+
             elif receivers == PLATFORM:
-                users = User.objects.all()
-                participant_ids = [user.id for user in users]
-                emails.NewsletterEmail.send(self.object,
-                                            participant_ids=participant_ids)
+                participant_ids = User.objects.all().values_list('pk', flat=True)
+
+            emails.NewsletterEmail.send(self.object,
+                                        participant_ids=participant_ids)
             return HttpResponseRedirect(self.get_success_url())
 
 
