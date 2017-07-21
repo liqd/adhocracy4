@@ -20,7 +20,7 @@ class Organisation(models.Model):
         help_prefix=_(
             'The image will be shown in the newsletter in the banner.'
         ),
-        upload_to='projects/backgrounds',
+        upload_to='organisation/logos',
         blank=True)
 
     def __str__(self):

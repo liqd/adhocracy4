@@ -179,6 +179,11 @@ class DashboardNewsletterCreateView(NewsletterCreateView,
     success_message = _('Newsletter s<uccessfully created.')
     form_class = forms.NewsletterCreateForm
 
+    def get_email_kwargs(self):
+        kwargs = {}
+        kwargs.update({'organisation': self.organisation})
+        return kwargs
+
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['organisation'] = self.organisation

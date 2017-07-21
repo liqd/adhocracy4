@@ -1,0 +1,59 @@
+{% load i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block subject %}{% endblock %}</title>
+  </head>
+  <body style="margin: 0; padding: 0; min-width: 100% !important; background: #fff;">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0"
+           style="width: 100%; max-width: 500px; margin: auto;">
+      <tr>
+        <td style="padding-top: 20px; text-align: center;" align="center">
+          <img width="30%" src="cid:logo" style="width: 30%;" alt="Logo" >
+        </td>
+      </tr>
+      <tr>
+          <td style="padding-top: 20px;">
+              <h2>{% block headline %}{% endblock %}</h2>
+          </td>
+      </tr>
+      <tr>
+          <td>
+            {% block content_html %}
+                {% load capture_tags %}
+                {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
+                {{ content|linebreaks }}
+            {% endblock %}
+          </td>
+      </tr>
+      <tr>
+          <td style="color: #818181; font-size: small;">
+              <hr />
+              {% block reason %}{% endblock %}
+          </td>
+      </tr>
+       <tr>
+            <td>
+                <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                style="width: 100%; border-collapse: collapse; padding-top: 30px;">
+                    <tr>
+                        {% if organisation %}
+                        <td style="width: 1%;padding-right: 15px;">
+                            <img width="50" src="cid:meinberlin_logo" style="width: 50px;" alt="MeinBerlin" >
+                        </td>
+                        {% endif %}
+                        <td  style="color: #818181; font-size: small; vertical-align: top;">
+                            <p>    {% trans 'meinBerlin is a participation platform operated by' %}<br />
+                                    Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin<br />
+                                   <a href="{{ email.get_host }}/contact">{% trans 'Contact' %}</a><br />
+                                   <a href="{{ email.get_host }}/terms-of-use">{% trans 'Terms of use' %}</a>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+      </tr>
+    </table>
+  </body>
+</html>

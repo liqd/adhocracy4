@@ -17,6 +17,11 @@ class NewsletterCreateView(generic.CreateView):
     model = models.Newsletter
     form_class = forms.NewsletterForm
 
+    def get_email_kwargs(self):
+        kwargs = {}
+        kwargs.update({'organisation': None})
+        return kwargs
+
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
@@ -63,8 +68,9 @@ class NewsletterCreateView(generic.CreateView):
                 participant_ids = Organisation.objects.get(
                     pk=int(form.data['organisation'])).initiators.all()
 
-            emails.NewsletterEmail.send(self.object,
-                                        participant_ids=participant_ids)
+            emails.NewsletterEmail.send(instance,
+                                        participant_ids=participant_ids,
+                                        **self.get_email_kwargs())
             return HttpResponseRedirect(self.get_success_url())
 
 
