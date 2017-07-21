@@ -18,7 +18,7 @@ module.exports = {
       'moment',
       'moment/locale/de.js',
       'react',
-      'react-addons-update',
+      'immutability-helper',
       'react-dom',
       'react-flip-move',
       'shariff',
