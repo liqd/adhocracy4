@@ -1,6 +1,6 @@
 import pytest
 
-from apps.dashboard import forms
+from meinberlin.apps.dashboard import forms
 
 
 def test_add_users_from_email_regex():

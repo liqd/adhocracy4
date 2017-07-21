@@ -2,7 +2,7 @@ import csv
 
 import pytest
 
-from apps.exports import views
+from meinberlin.apps.exports import views
 
 
 @pytest.mark.django_db

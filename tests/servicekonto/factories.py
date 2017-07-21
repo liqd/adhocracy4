@@ -1,7 +1,7 @@
 import factory
 from allauth.socialaccount.models import SocialAccount
 
-from apps.servicekonto.provider import ServiceKontoProvider
+from meinberlin.apps.servicekonto.provider import ServiceKontoProvider
 from tests.factories import UserFactory
 
 
