@@ -4,6 +4,7 @@
 
 {% offlineevents_and_modules_sorted project as modules_and_events %}
 {% with modules_and_events|length as module_event_count %}
+
 {% if module_event_count > 1 %}
 <nav class="timeline" aria-label="{% trans 'Timeline' %}">
     <ul>
@@ -31,14 +32,15 @@
     </ul>
 </nav>
 {% endif %}
-{% endwith %}
 
 {% if not object|is_offlineevent %}
     <div class="l-center-6">
         <div class="item-detail">
-            <h2 class="item-detail__title">
-                {% trans 'Online participation' %}
-            </h2>
+            {% if module_event_count > 1 %}
+                <h2 class="item-detail__title">
+                    {% trans 'Online participation' %}
+                </h2>
+            {% endif %}
             {% if not active_phase %}
                 <div class="item-detail__meta">
                     <strong>
@@ -87,4 +89,5 @@
     </div>
 {% endif %}
 
+{% endwith %}
 {% endwith %}
