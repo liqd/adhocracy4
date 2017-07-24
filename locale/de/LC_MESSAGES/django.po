@@ -1512,6 +1512,47 @@ msgstr ""
 "\n"
 "Beteiligung fängt ab dem %(date)s an"
 
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:9
+msgid "Timeline"
+msgstr "Zeitleiste"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:18
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:41
+msgid "Online participation"
+msgstr "Onlinebeteiligung"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:47
+msgid "Participation is not possible at the moment."
+msgstr "Die Beteiligung ist aktuell nicht möglich."
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:49
+#, python-format
+msgid "It starts on %(date)s."
+msgstr "Sie startet am %(date)s."
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:51
+#, python-format
+msgid "It ended on %(date)s."
+msgstr "Sie hat am %(date)s geendet."
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:53
+#, python-format
+msgid "It continues on %(date)s."
+msgstr "Es geht weiter am %(date)s."
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:68
+#: meinberlin/apps/users/models.py:42
+msgid "active"
+msgstr "aktiv"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:85
+msgid "Show phase overview"
+msgstr "Phasen anzeigen"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:86
+msgid "Hide phase overview"
+msgstr "Phasen verstecken"
+
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html.py:96
 msgid "No results yet."
 msgstr "Noch gibt es keine Ergebnisse."
