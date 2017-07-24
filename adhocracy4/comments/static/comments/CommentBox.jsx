@@ -3,7 +3,7 @@ var CommentForm = require('./CommentForm')
 var api = require('../../../static/api')
 
 var React = require('react')
-var update = require('react-addons-update')
+var update = require('immutability-helper')
 var django = require('django')
 
 let CommentBox = React.createClass({
