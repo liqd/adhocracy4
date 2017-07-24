@@ -38,7 +38,7 @@ var ReactPolls = require('../../apps/polls/assets/react_polls.jsx')
 
 var relativeTimestamps = require('../../apps/actions/assets/timestamps.js')
 
-var dynamicFields = require('../../../apps/contrib/assets/dynamic_fields.js')
+var dynamicFields = require('../../apps/contrib/assets/dynamic_fields.js')
 // This function is overwritten with custom behavior in embed.js.
 var getCurrentHref = function () {
   return location.href
