@@ -71,6 +71,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.cms.apps.Config',
     'meinberlin.apps.users.apps.Config',
     'meinberlin.apps.projects.apps.Config',
+    'meinberlin.apps.modules.apps.Config',
     'meinberlin.apps.organisations.apps.Config',
     'meinberlin.apps.embed.apps.Config',
     'meinberlin.apps.moderatorfeedback.apps.Config',

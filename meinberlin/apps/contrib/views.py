@@ -24,6 +24,9 @@ class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
         if 'project' in kwargs and isinstance(kwargs['project'], Project):
             return kwargs['project']
 
+        if 'module' in kwargs:
+            return kwargs['module'].project
+
         if self.project_url_kwarg and self.project_url_kwarg in kwargs:
             lookup = {
                 self.project_lookup_field: kwargs[self.project_url_kwarg]
