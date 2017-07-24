@@ -1,6 +1,6 @@
 [run]
 source =
-    apps
+    meinberlin/apps
 omit =
     */migrations/*
     */autofixtures.py

@@ -3,9 +3,9 @@ from django.core.urlresolvers import reverse
 from freezegun import freeze_time
 
 from adhocracy4.test.helpers import redirect_target
-from apps.ideas import models
-from apps.ideas import phases
-from apps.ideas import views
+from meinberlin.apps.ideas import models
+from meinberlin.apps.ideas import phases
+from meinberlin.apps.ideas import views
 
 
 @pytest.mark.django_db
