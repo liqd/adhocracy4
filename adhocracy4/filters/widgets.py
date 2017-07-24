@@ -61,8 +61,12 @@ class DropdownLinkWidget(django_filters.widgets.LinkWidget):
         })
 
 
-class TextInputWidget(TextInput):
-    """Extend to get a text input into your filter.
+class FreeTextFilterWidget(TextInput):
+    """This widget renders a complete element. It automatically
+    creates hidden fields for all other filters so they are
+    preserved on submit.
+
+    Extend to get a text input into your filter.
 
     Put 'adhocracy4.filters.apps.FiltersConfig' into your
     settings.
@@ -70,7 +74,6 @@ class TextInputWidget(TextInput):
     To use your own template, overwrite the given one.
     """
     label = None
-    right = False
     template = 'a4filters/widgets/text_input.html'
 
     def value_from_datadict(self, data, files, name):
@@ -88,9 +91,8 @@ class TextInputWidget(TextInput):
 
         return render_to_string(self.template, {
             'id': _id,
-            'value_label': value,
+            'value': value,
             'name': name,
             'label': self.label,
-            'right': self.right,
             'url_par': self.data
         })
