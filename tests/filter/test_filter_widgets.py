@@ -24,8 +24,8 @@ def test_render_dropdown_link_widget():
             in html)
 
 
-def test_render_text_input_widget():
-    widget = widgets.TextInputWidget()
+def test_free_text_filter_widget():
+    widget = widgets.FreeTextFilterWidget()
     html = widget.render('test_filter', 'test_val1', attrs={'id': 'test_id'})
 
     assert ('<label for="test_id" class="filter-label">') in html

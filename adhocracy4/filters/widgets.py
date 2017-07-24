@@ -74,7 +74,7 @@ class FreeTextFilterWidget(TextInput):
     To use your own template, overwrite the given one.
     """
     label = None
-    template = 'a4filters/widgets/text_input.html'
+    template = 'a4filters/widgets/free_text_filter.html'
 
     def value_from_datadict(self, data, files, name):
         value = super().value_from_datadict(data, files, name)
