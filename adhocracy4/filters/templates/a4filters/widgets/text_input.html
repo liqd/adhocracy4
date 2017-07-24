@@ -1,0 +1,17 @@
+{% load i18n %}
+
+<div class="btn-group filter-element">
+    <label for="{{ id }}" class="filter-label">
+        {{ label }}
+    </label>
+    <br>
+    <form class="search-filter" action="" method="get" id="{{ id }}">
+        {% for par_name, value in url_par.items %}
+            {% if par_name != name %}
+                <input type="hidden" name="{{ par_name }}" value="{{ value }}">
+            {% endif %}
+        {% endfor %}
+        <input class="search-filter-input" id="{{ id }}" type="text" name="{{ name }}" value="{{ value }}">
+        <button class="search-filter-btn btn" type="submit" title="{% trans 'Search' %}"><i class="fa fa-search" aria-label="{% trans 'Search' %}"></i></button>
+    </form>
+</div>

@@ -1,0 +1,18 @@
+<div class="btn-group filter-element {% if right %}right{% endif %} navbar-absolute">
+    <label for="{{ id }}" class="filter-label">
+        {{ label }}
+    </label>
+    <br>
+    <button
+        type="button"
+        class="btn btn-default btn-filter dropdown-toggle"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        id="{{ id }}"
+    >
+        <div class="value-label">{{ value_label }}</div>
+        <i class="fa fa-caret-down drop-down-caret" aria-hidden="true"></i>
+    </button>
+    {{ options }}
+</div>
