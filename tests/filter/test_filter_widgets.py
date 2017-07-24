@@ -25,7 +25,19 @@ def test_render_dropdown_link_widget():
 
 
 def test_free_text_filter_widget():
-    widget = widgets.FreeTextFilterWidget()
-    html = widget.render('test_filter', 'test_val1', attrs={'id': 'test_id'})
+    name = 'test_filter'
+    data = {
+        'items': [
+            ('test_filter', 'value'),
+            ('other', 'other_value'),
+        ]
+    }
 
-    assert ('<label for="test_id" class="filter-label">') in html
+    widget = widgets.FreeTextFilterWidget()
+    value = widget.value_from_datadict(data, [], name)
+    html = widget.render(name, value, attrs={'id': 'test_id'})
+
+    assert '<input type="hidden" name="other" value="other_value">' in html
+    assert ('<input class="search-filter-input" id="test_id" type="text" '
+            'name="test_filter" value="">'
+            in html)
