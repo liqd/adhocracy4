@@ -9,6 +9,13 @@ from django.utils.translation import ugettext as _
 
 
 class DropdownLinkWidget(django_filters.widgets.LinkWidget):
+    """Extend to get a dropdown with links.
+
+    Put 'adhocracy4.filters.apps.FiltersConfig' into your
+    settings.
+
+    To use your own template, overwrite the given one.
+    """
     label = None
     right = False
     template = 'a4filters/widgets/dropdown_link.html'
@@ -55,6 +62,13 @@ class DropdownLinkWidget(django_filters.widgets.LinkWidget):
 
 
 class TextInputWidget(TextInput):
+    """Extend to get a text input into your filter.
+
+    Put 'adhocracy4.filters.apps.FiltersConfig' into your
+    settings.
+
+    To use your own template, overwrite the given one.
+    """
     label = None
     right = False
     template = 'a4filters/widgets/text_input.html'
