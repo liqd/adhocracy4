@@ -1,0 +1,13 @@
+{% extends 'email_base.'|add:part_type %}
+{% load verbose_name %}
+
+{% block subject %}Einladung zum privaten Projekt {{ project.name }}{% endblock %}
+
+{% block headline %}Einladung zum privaten Projekt  {{ project.name }}{% endblock  %}
+
+{% block content %}Besuchen Sie die Webseite des privaten Projekts auf {{ site.name }} um sich zu beteiligen.{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
+{% block cta_label %}Projekt anzeigen{% endblock %}
+
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie zu einem privaten Projekt eingeladen wurden.{% endblock %}

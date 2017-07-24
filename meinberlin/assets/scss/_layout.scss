@@ -67,6 +67,12 @@
     }
 
     .l-tiles-4 {
+        @include grid-tiles(2);
+    }
+}
+
+@media (min-width: $breakpoint-md) {
+    .l-tiles-4 {
         @include grid-tiles(4);
     }
 }

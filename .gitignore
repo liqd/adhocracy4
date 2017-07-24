@@ -2,24 +2,18 @@
 *__pycache__/
 test_db.sqlite3
 db.sqlite3*
-node_modules
-meinberlin/settings/local.py
+node_modules/
+meinberlin/config/settings/local.py
 .env/
 .idea/
 .cache/
 .coverage
 htmlcov/
 media/
+meinberlin/static/
 
-# Ignore generated static files
-/meinberlin/static/leaflet.*
-/meinberlin/static/adhocracy4.*
-/meinberlin/static/vendor.*
-/meinberlin/static/datepicker.*
-/meinberlin/static/embed.js
-/meinberlin/static/fonts/
-/meinberlin/static/images/layers-2x.png
-/meinberlin/static/images/layers.png
-/meinberlin/static/images/spritesheet-2x.png
-/meinberlin/static/images/spritesheet.*
-
+# setuptools
+/build
+/dist
+/*.egg-info
+/share

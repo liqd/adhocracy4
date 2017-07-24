@@ -1,0 +1,60 @@
+{% load contrib_tags i18n offlineevent_tags dashboard_tags static %}
+
+{% with project.active_phase as active_phase %}
+
+{% offlineevents_and_modules_sorted project as modules_and_events %}
+{% with modules_and_events|length as module_event_count %}
+{% if module_event_count > 1 %}
+<nav class="timeline" aria-label="{% trans 'Timeline' %}">
+    <ul>
+        {% for obj in modules_and_events %}
+            {% if obj|is_module %}
+                <li>
+                    <a
+                        href="{{ project.get_absolute_url }}"
+                        class="button button--light button--small timeline__button {% if obj == active_phase.module %}is-active{% endif %} {% if not object|is_offlineevent %}is-selected{% endif %}"
+                    >
+                        {{ project.typ|get_blueprint_title }}
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a
+                        href="{{ obj.get_absolute_url }}"
+                        class="button button--light button--small timeline__button {% if obj == object %}is-selected{% endif %}"
+                    >
+                        {{ obj.name }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}
+{% endwith %}
+
+{% if not object|is_offlineevent %}
+<div class="l-center-6">
+    {% for phase in project.phases %}
+        <div class="phase-info {% if phase = active_phase %}phase-info--active{% endif %}">
+
+            <h3 class="phase-info__title">
+                {{ phase.name }}
+            </h3>
+            <div class="phase-info__subtitle">
+                {{ phase.start_date }}
+                &mdash; {{ phase.end_date }}
+            </div>
+            <div class="phase-info__description">
+                {{ phase.description }}
+            </div>
+        </div>
+    {% empty %}
+        <h3 class="phase-info__title">
+            {% trans "Participation is not possible at the moment." %}
+        </h3>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endwith %}

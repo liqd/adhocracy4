@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 10:01+0200\n"
-"PO-Revision-Date: 2017-05-30 12:04+0100\n"
+"POT-Creation-Date: 2017-07-17 15:33+0200\n"
+"PO-Revision-Date: 2017-07-17 15:32+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -19,20 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html.py:8
-#: adhocracy4/images/templates/a4images/image_upload_widget.html.py:8
 #: meinberlin/templates/a4images/image_upload_widget.html.py:10
 #: meinberlin/templates/a4images/image_upload_widget.html.py:11
 msgid "Remove the picture"
 msgstr "Bild entfernen"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html.py:12
-#: adhocracy4/images/templates/a4images/image_upload_widget.html.py:12
 #: meinberlin/templates/a4images/image_upload_widget.html.py:16
 #: meinberlin/templates/a4images/image_upload_widget.html.py:17
 msgid "Upload a picture"
 msgstr "Bild hochladen"
 
-#: adhocracy4/images/templates/a4images/image_upload_widget.html.py:19
 #: adhocracy4/images/templates/a4images/image_upload_widget.html.py:19
 msgid ""
 "\n"
@@ -51,6 +48,7 @@ msgstr "Kommentar"
 #: adhocracy4/comments/models.py:36
 #: apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html.py:16
 #: apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html.py:17
+#: apps/exports/views.py:315
 #: apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html.py:18
 #: apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html.py:19
 #: apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_list_item.html.py:16
@@ -64,7 +62,7 @@ msgstr "Kommentare"
 
 #: adhocracy4/comments/serializers.py:25
 msgid "unknown user"
-msgstr "unbekannte*r Nutzer*in"
+msgstr "unbekannter Nutzer"
 
 #: adhocracy4/images/fields.py:70
 #, python-brace-format
@@ -119,22 +117,32 @@ msgstr ""
 "Bitte zeichnen Sie einen Bereich auf der Karte ein oder wählen Sie einen "
 "vordefinierten Bereich aus"
 
+#: adhocracy4/maps/models.py:11
+msgid "Polygon"
+msgstr "Polygon"
+
+#: adhocracy4/maps/models.py:12
+msgid "Please draw an area on the map."
+msgstr "Bitte zeichnen Sie einen Bereich auf der Karte ein."
+
 #: adhocracy4/phases/models.py:41
-#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:36
-#: apps/ideas/models.py:25
+#: apps/dashboard/templates/meinberlin_dashboard/includes/removeable_user_list.html.py:7
+#: apps/ideas/models.py:25 apps/offlineevents/models.py:14
 msgid "Name"
 msgstr "Name"
 
-#: adhocracy4/phases/models.py:43
-#: apps/ideas/models.py:26
+#: adhocracy4/phases/models.py:43 apps/ideas/models.py:26
+#: apps/offlineevents/models.py:17
 msgid "Description"
 msgstr "Beschreibung"
 
-#: adhocracy4/phases/models.py:47
+#: adhocracy4/phases/models.py:47 apps/dashboard/forms.py:70
+#: apps/dashboard/forms.py:330
 msgid "Start date"
 msgstr "Anfangsdatum"
 
-#: adhocracy4/phases/models.py:49
+#: adhocracy4/phases/models.py:49 apps/dashboard/forms.py:65
+#: apps/dashboard/forms.py:335
 msgid "End date"
 msgstr "Enddatum"
 
@@ -142,11 +150,11 @@ msgstr "Enddatum"
 msgid "End date can not be smallerthan the start date."
 msgstr "Das Enddatum kann nicht vor dem Startdatum liegen."
 
-#: adhocracy4/projects/models.py:27
+#: adhocracy4/projects/models.py:28
 msgid "Title of your project"
 msgstr "Titel Ihres Projekts"
 
-#: adhocracy4/projects/models.py:28
+#: adhocracy4/projects/models.py:29
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -154,11 +162,11 @@ msgstr ""
 "Der Titel wird in Kacheln und im Kopf der Projektseite angezeigt werden. Er "
 "darf maximal 120 Zeichen lang sein."
 
-#: adhocracy4/projects/models.py:37
+#: adhocracy4/projects/models.py:38
 msgid "Short description of your project"
 msgstr "Kurzbeschreibung Ihres Projekts"
 
-#: adhocracy4/projects/models.py:38
+#: adhocracy4/projects/models.py:39
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -166,25 +174,25 @@ msgstr ""
 "Die Kurzbeschreibung wird in Kacheln und im Kopf der Projektseite angezeigt "
 "werden. Sie sollte das Ziel des Projekts in maximal 250 Zeichen beschreiben."
 
-#: adhocracy4/projects/models.py:45
+#: adhocracy4/projects/models.py:46
 msgid "Description of your project"
 msgstr "Beschreibung Ihres Projekts"
 
-#: adhocracy4/projects/models.py:46
+#: adhocracy4/projects/models.py:47
 msgid ""
 "This description should tell participants what the goal of the project is, "
 "how the project’s participation will look like. It will be always visible in "
 "the „Info“ tab on your project’s page."
 msgstr ""
-"Die Beschreibung verdeutlicht Nutzer*innen was das Ziel des Projekts ist und "
-"wie die Beteiligung von statten gehen wird. Sie wird im Info-Tab der "
-"Projektseite angezeigt werden."
+"Die Beschreibung verdeutlicht Nutzerinnen und Nutzern was das Ziel des "
+"Projekts ist und wie die Beteiligung von statten gehen wird. Sie wird im "
+"Info-Tab der Projektseite angezeigt werden."
 
-#: adhocracy4/projects/models.py:54
+#: adhocracy4/projects/models.py:55
 msgid "Results of your project"
 msgstr "Ergebnisse Ihres Projekts"
 
-#: adhocracy4/projects/models.py:55
+#: adhocracy4/projects/models.py:56
 msgid ""
 "Here you should explain what the expected outcome of the project will be and "
 "how you are planning to use the results. If the project is finished you "
@@ -194,34 +202,45 @@ msgstr ""
 "wie die Ergebnisse weiterverarbeitet werden. Wenn das Projekt abgeschlossen "
 "ist, sollten Sie hier eine Zusammenfassung der Resultate hinzufügen."
 
-#: adhocracy4/projects/models.py:62
+#: adhocracy4/projects/models.py:63
 msgid "Access to the project"
 msgstr "Zugang zum Projekt"
 
-#: adhocracy4/projects/models.py:63
+#: adhocracy4/projects/models.py:64
 msgid ""
 "Please indicate who should be able to participate in your project. Teasers "
 "for your project including title and short description will always be "
 "visible to everyone"
 msgstr ""
+"Bitte gib an, wer auf dein Projekt Zugriff haben soll. Die Projektkachel "
+"inklusive des Titels und der Kurzbeschreibung ist immer für alle "
+"Nutzer*innen sichtbar."
 
-#: adhocracy4/projects/models.py:70
+#: adhocracy4/projects/models.py:71
 msgid "Header image"
 msgstr "Headerbild"
 
-#: adhocracy4/projects/models.py:72
+#: adhocracy4/projects/models.py:73
 msgid "The image will be shown as a decorative background image."
 msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 
-#: adhocracy4/projects/models.py:88
+#: adhocracy4/projects/models.py:79
+msgid "Tile image"
+msgstr "Kachel-Bild"
+
+#: adhocracy4/projects/models.py:81
+msgid "The image will be shown in the project tile."
+msgstr "Das Bild wird in der Projekt-Kachel angezeigt."
+
+#: adhocracy4/projects/models.py:97
 msgid "Project is archived"
 msgstr "Projekt ist archiviert."
 
-#: adhocracy4/projects/models.py:89
+#: adhocracy4/projects/models.py:98
 msgid "Set to archive the project"
 msgstr "Setzen, um das Projekt zu archivieren."
 
-#: adhocracy4/projects/models.py:93
+#: adhocracy4/projects/models.py:102
 msgid "Type of the project"
 msgstr "Typ des Projekt"
 
@@ -238,7 +257,7 @@ msgstr "noch wenige Stunden"
 
 #: adhocracy4/reports/templatetags/react_reports.py:30
 #: apps/contrib/templates/meinberlin_contrib/item_detail.html.py:76
-#: apps/topicprio/templates/meinberlin_topicprio/topic_detail.html.py:61
+#: apps/topicprio/templates/meinberlin_topicprio/topic_detail.html.py:53
 msgid "Report"
 msgstr "Melden"
 
@@ -268,7 +287,7 @@ msgstr "E-Mail Adressen"
 #: meinberlin/templates/socialaccount/connections.html.py:5
 #: meinberlin/templates/socialaccount/connections.html.py:8
 msgid "Account Connections"
-msgstr "Benutzerkonto Verbindungen"
+msgstr "Nutzerkonto Verbindungen"
 
 #: apps/account/templates/meinberlin_account/profile.html.py:5
 msgid "Your user profile"
@@ -330,23 +349,27 @@ msgstr "Beteiligungsphase endet bald:"
 msgid "on <a href=\"%(url)s\">%(name)s</a>"
 msgstr "in <a href=\"%(url)s\">%(name)s</a>"
 
-#: apps/bplan/models.py:36
+#: apps/bplan/models.py:12
+msgid "Office worker email"
+msgstr "E-Mail Adresse der Sachbearbeiter*in"
+
+#: apps/bplan/models.py:38
 msgid "Your Name"
 msgstr "Ihr Name"
 
-#: apps/bplan/models.py:38 apps/users/models.py:28
+#: apps/bplan/models.py:40 apps/users/models.py:28
 msgid "Email address"
 msgstr "E-Mail Adresse"
 
-#: apps/bplan/models.py:40
+#: apps/bplan/models.py:42
 msgid "Statement"
 msgstr "Stellungnahme"
 
-#: apps/bplan/models.py:43
+#: apps/bplan/models.py:45
 msgid "Street, House number"
 msgstr "Straße, Hausnummer"
 
-#: apps/bplan/models.py:45
+#: apps/bplan/models.py:47
 msgid "Postal code, City"
 msgstr "Postleitzahl, Stadt"
 
@@ -363,13 +386,9 @@ msgid "bplan"
 msgstr "Bebauungsplan"
 
 #: apps/bplan/serializers.py:78 apps/bplan/serializers.py:79
-#: apps/dashboard/forms.py:464 apps/dashboard/forms.py:465
+#: apps/dashboard/forms.py:448 apps/dashboard/forms.py:449
 msgid "Bplan statement phase"
 msgstr "Bebauungsplan Stellungnahmephase"
-
-#: apps/bplan/serializers.py:161
-msgid "Callable upload_to fields are not supported"
-msgstr ""
 
 #: apps/bplan/templates/meinberlin_bplan/statement_create_form.html.py:4
 #: apps/bplan/templates/meinberlin_bplan/statement_create_form.html.py:9
@@ -404,8 +423,8 @@ msgstr "Vorschlagsphase"
 #: apps/budgeting/phases.py:17 apps/kiezkasse/phases.py:50
 msgid "Request budgeting and get feedback through rates and comments."
 msgstr ""
-"Nutzer können Vorschläge mit Budgetangabe machen und erhalten durch "
-"Bewertungen und Kommentare Rückmeldung."
+"Nutzerinnen und Nutzer können Vorschläge mit Budgetangabe machen und "
+"erhalten durch Bewertungen und Kommentare Rückmeldung."
 
 #: apps/budgeting/phases.py:19
 msgid "participatory budgeting"
@@ -418,6 +437,7 @@ msgstr "Bürgerhaushalt"
 #: apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_form.html.py:23
 #: apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_form.html.py:19
 #: apps/moderatorfeedback/templates/meinberlin_moderatorfeedback/includes/item_moderate_form.html.py:10
+#: apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html.py:12
 #: apps/topicprio/templates/meinberlin_topicprio/includes/topic_mgmt_form.html.py:15
 msgid "Save"
 msgstr "Speichern"
@@ -432,6 +452,8 @@ msgstr "Speichern"
 #: apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_form.html.py:20
 #: apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html.py:16
 #: apps/moderatorfeedback/templates/meinberlin_moderatorfeedback/includes/item_moderate_form.html.py:11
+#: apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html.py:13
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html.py:15
 #: apps/topicprio/templates/meinberlin_topicprio/includes/topic_mgmt_form.html.py:16
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_confirm_delete.html.py:15
 msgid "Cancel"
@@ -477,7 +499,8 @@ msgstr "Sind Sie sicher, dass Sie diesen Vorschlag löschen möchten?"
 #: apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html.py:13
 #: apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html.py:13
 #: apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html.py:13
-#: apps/projects/views.py:31
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html.py:12
+#: apps/projects/views.py:32
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_confirm_delete.html.py:12
 msgid "Yes"
 msgstr "Ja"
@@ -505,6 +528,9 @@ msgstr "Anlegen eines neuen Vorschlags"
 #: apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html.py:8
 #: apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html.py:8
 #: apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html.py:8
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_create_form.html.py:7
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html.py:5
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_update_form.html.py:7
 #: apps/polls/templates/meinberlin_polls/poll_management_form.html.py:5
 #: apps/topicprio/templates/meinberlin_topicprio/topic_detail.html.py:8
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_create_form.html.py:7
@@ -563,6 +589,7 @@ msgstr "auszoomen"
 #: apps/ideas/templates/meinberlin_ideas/idea_list.html.py:31
 #: apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html.py:54
 #: apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html.py:54
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html.py:33
 #: apps/topicprio/templates/meinberlin_topicprio/topic_list.html.py:22
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_list.html.py:35
 msgid "Nothing to show"
@@ -586,22 +613,26 @@ msgid "Edit proposal"
 msgstr "Vorschlag editieren"
 
 #: apps/budgeting/views.py:15 apps/dashboard/filtersets.py:17
-#: apps/ideas/views.py:13 apps/kiezkasse/views.py:15 apps/mapideas/views.py:13
-#: apps/projects/views.py:71
+#: apps/ideas/views.py:19 apps/kiezkasse/views.py:15 apps/mapideas/views.py:13
+#: apps/projects/views.py:72
 msgid "Most recent"
 msgstr "am aktuellsten"
 
-#: apps/budgeting/views.py:17 apps/ideas/views.py:15 apps/kiezkasse/views.py:17
-#: apps/mapideas/views.py:15 apps/topicprio/views.py:24
+#: apps/budgeting/views.py:17 apps/ideas/views.py:21 apps/kiezkasse/views.py:17
+#: apps/mapideas/views.py:15 apps/topicprio/views.py:25
 msgid "Most popular"
 msgstr "am beliebtesten"
 
-#: apps/budgeting/views.py:18 apps/ideas/views.py:16 apps/kiezkasse/views.py:18
-#: apps/mapideas/views.py:16 apps/topicprio/views.py:25
+#: apps/budgeting/views.py:18 apps/ideas/views.py:22 apps/kiezkasse/views.py:18
+#: apps/mapideas/views.py:16 apps/topicprio/views.py:26
 msgid "Most commented"
 msgstr "meist kommentiert"
 
-#: apps/budgeting/views.py:76 apps/kiezkasse/views.py:76
+#: apps/budgeting/views.py:56 apps/kiezkasse/views.py:56
+msgid "Proposals with comments"
+msgstr "Vorschläge mit Kommentaren"
+
+#: apps/budgeting/views.py:95 apps/kiezkasse/views.py:95
 msgid "Your budget request has been deleted"
 msgstr "Ihr Vorschlag wurde gelöscht"
 
@@ -621,11 +652,11 @@ msgstr "Alle Projekte anzeigen"
 msgid "Send"
 msgstr "Senden"
 
-#: apps/contrib/filters.py:15 apps/dashboard/forms.py:82
+#: apps/contrib/filters.py:16 apps/dashboard/forms.py:85
 msgid "Category"
 msgstr "Kategorie"
 
-#: apps/contrib/filters.py:29 apps/projects/views.py:16
+#: apps/contrib/filters.py:30 apps/projects/views.py:17
 msgid "Ordering"
 msgstr "Sortierung"
 
@@ -640,7 +671,7 @@ msgstr "Listenansicht"
 
 #: apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html.py:8
 #: apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html.py:14
-#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:17
+#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:23
 msgid "View"
 msgstr "Ansicht"
 
@@ -654,24 +685,25 @@ msgstr "Seitennummerierung"
 
 #: apps/contrib/templates/meinberlin_contrib/item_detail.html.py:53
 #: apps/contrib/templates/meinberlin_contrib/item_detail.html.py:61
+#: apps/topicprio/templates/meinberlin_topicprio/topic_detail.html.py:41
 #: apps/topicprio/templates/meinberlin_topicprio/topic_detail.html.py:49
-#: apps/topicprio/templates/meinberlin_topicprio/topic_detail.html.py:57
 msgid "Actions"
 msgstr "Aktionen"
 
 #: apps/contrib/templates/meinberlin_contrib/item_detail.html.py:67
 #: apps/dashboard/templates/meinberlin_dashboard/includes/external_project_list_item.html.py:15
-#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:38
-#: apps/projects/templates/meinberlin_projects/project_detail.html.py:21
+#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:44
+#: apps/projects/templates/meinberlin_projects/project_detail.html.py:20
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #: apps/contrib/templates/meinberlin_contrib/item_detail.html.py:71
+#: apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html.py:19
 #: apps/topicprio/templates/meinberlin_topicprio/includes/topic_mgmt_list_item.html.py:16
 msgid "Delete"
 msgstr "Löschen"
 
-#: apps/contrib/widgets.py:29 apps/projects/views.py:29
+#: apps/contrib/widgets.py:29 apps/projects/views.py:30
 msgid "All"
 msgstr "Alle"
 
@@ -738,12 +770,12 @@ msgid ""
 "specifications and locate them. Anyone can comment and rate on different "
 "proposals."
 msgstr ""
-"Mit dem Bürgerhaushalt ist es den Teilnehmern möglich, Vorschläge mit einem "
-"Budget zu versehen und sie auf einer Karte zu verorten. Diese Vorschläge "
-"können bewertet und kommentiert werden."
+"Mit dem Bürgerhaushalt ist es den Teilnehmenden möglich, Vorschläge mit "
+"einem Budget zu versehen und sie auf einer Karte zu verorten. Diese "
+"Vorschläge können bewertet und kommentiert werden."
 
 #: apps/dashboard/blueprints.py:103
-#: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:11
+#: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:15
 msgid "External project"
 msgstr "Externes Projekt"
 
@@ -796,54 +828,43 @@ msgid ""
 "With kiezkasse it’s possible to make proposals with budget specifications "
 "and locate them. The proposals can be commented and rated."
 msgstr ""
-"Mit der Kiezkasse ist es den Teilnehmern möglich, Vorschläge mit einem "
+"Mit der Kiezkasse ist es den Teilnehmemenden möglich, Vorschläge mit einem "
 "Budget zu versehen und sie auf einer Karte zu verorten. Diese Vorschläge "
 "können bewertet und kommentiert werden."
 
+#: apps/dashboard/forms.py:57
+msgid "This project is public."
+msgstr "Dieses Projekt ist öffentlich."
 
-#: apps/dashboard/forms.py:292
+#: apps/dashboard/forms.py:295
 msgid "Organisation name"
 msgstr "Organisationsname"
 
-#: apps/dashboard/forms.py:297
-msgid "Add moderator via email"
-msgstr "Moderator via E-Mail Adresse hinzufügen"
-
-#: apps/dashboard/forms.py:321
-msgid "Following emails are not registered: "
-msgstr "Folgende E-Mail Adressen sind nicht registriert: "
-
-#: apps/dashboard/forms.py:328
-msgid "{} moderator added."
-msgid_plural "{} moderators added."
-msgstr[0] "{} Moderator hinzugefügt."
-msgstr[1] "{} Moderatoren hinzugefügt."
-
-#: apps/dashboard/forms.py:359
+#: apps/dashboard/forms.py:343
 msgid "End date can not be smaller than the start date."
 msgstr "Das Enddatum kann nicht kleiner als das Startdatum sein."
 
-#: apps/dashboard/forms.py:379
+#: apps/dashboard/forms.py:363
 msgid "External projects require no information."
 msgstr "Externe Projekte benötigen keine Information."
 
-#: apps/dashboard/forms.py:397 apps/dashboard/forms.py:398
+#: apps/dashboard/forms.py:381 apps/dashboard/forms.py:382
 msgid "External project phase"
 msgstr "Externe Projekt Phase"
 
-#: apps/dashboard/forms.py:446
+#: apps/dashboard/forms.py:430
 msgid "Bplan projects require no information."
 msgstr "Bebauungspläne benötigen keine Information."
 
-#: apps/dashboard/mixins.py:62
+#: apps/dashboard/mixins.py:63
 msgid "Project succesfully created."
 msgstr "Projekt erfolgreich erstellt."
 
-#: apps/dashboard/mixins.py:76
+#: apps/dashboard/mixins.py:77
 msgid "Project successfully updated."
 msgstr "Projekt erfolgreich aktualisiert."
 
-#: apps/dashboard/mixins.py:107
+#: apps/dashboard/mixins.py:108
 msgid ""
 "Project can not be published until every Phase it contains has start and end "
 "dates."
@@ -851,17 +872,13 @@ msgstr ""
 "Das Projekt kann nicht veröffentlicht werden, solange nicht jede Phase ein "
 "Start- und Enddatum hat."
 
-#: apps/dashboard/mixins.py:113
+#: apps/dashboard/mixins.py:114
 msgid "Project successfully published."
 msgstr "Projekt erfolgreich veröffentlicht"
 
-#: apps/dashboard/mixins.py:119
+#: apps/dashboard/mixins.py:120
 msgid "Project successfully unpublished."
 msgstr "Projekt erfolgreich depubliziert."
-
-#: apps/dashboard/mixins.py:141
-msgid "Moderator successfully removed."
-msgstr "Moderator erfolgreich entfernt."
 
 #: apps/dashboard/templates/meinberlin_dashboard/base_dashboard.html.py:4
 msgid "Dashboard"
@@ -895,6 +912,7 @@ msgstr "Neues Projekt"
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_create_breadcrumbs.html.py:7
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_update_breadcrumbs.html.py:7
 #: apps/documents/templates/meinberlin_documents/document_management.html.py:10
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html.py:10
 #: apps/polls/templates/meinberlin_polls/poll_management_form.html.py:10
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_list.html.py:10
 msgid "back to dashboard"
@@ -929,12 +947,12 @@ msgid "Select"
 msgstr "Auswählen"
 
 #: apps/dashboard/templates/meinberlin_dashboard/includes/external_project_list_item.html.py:25
-#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:28
+#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:34
 msgid "Publish"
 msgstr "Veröffentlichen"
 
 #: apps/dashboard/templates/meinberlin_dashboard/includes/external_project_list_item.html.py:27
-#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:30
+#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:36
 msgid "Unpublish"
 msgstr "Depublizieren"
 
@@ -956,33 +974,74 @@ msgid "Phases"
 msgstr "Phasen"
 
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_form_tablist.html.py:11
-#: apps/projects/templates/meinberlin_projects/project_detail.html.py:38
+#: apps/projects/templates/meinberlin_projects/project_detail.html.py:37
 msgid "Information"
 msgstr "Information"
 
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_form_tablist.html.py:24
-#: apps/projects/templates/meinberlin_projects/project_detail.html.py:48
+#: apps/projects/templates/meinberlin_projects/project_detail.html.py:47
 msgid "Participation"
 msgstr "Beteiligung"
 
 #: apps/dashboard/templates/meinberlin_dashboard/includes/project_form_tablist.html.py:37
-#: apps/projects/templates/meinberlin_projects/project_detail.html.py:58
+#: apps/projects/templates/meinberlin_projects/project_detail.html.py:57
 msgid "Result"
 msgstr "Ergebnis"
 
-#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:15
+#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:8
+#: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:23
+msgid "Finished"
+msgstr "Abgeschlossen"
+
+#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:11
+#: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:29
+msgid "private"
+msgstr "privat"
+
+#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:21
 msgid "Preview"
 msgstr "Vorschau"
 
-#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:47
+#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:53
 msgid "Contents"
 msgstr "Inhalte"
 
-#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:57
+#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:63
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:4
 #: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:10
 msgid "Moderators"
-msgstr "Moderatoren"
+msgstr "Moderator*innen"
+
+#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:73
+#: apps/dashboard/templates/meinberlin_dashboard/project_participants.html.py:4
+#: apps/dashboard/templates/meinberlin_dashboard/project_participants.html.py:10
+msgid "Participants"
+msgstr "Teilnehmer*innen"
+
+#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:82
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html.py:16
+msgid "Offline Events"
+msgstr "Veranstaltungen"
+
+#: apps/dashboard/templates/meinberlin_dashboard/includes/project_list_item.html.py:91
+msgid "Export"
+msgstr "Exportieren"
+
+#: apps/dashboard/templates/meinberlin_dashboard/includes/removeable_user_list.html.py:8
+msgid "Email"
+msgstr "E-Mail"
+
+#: apps/dashboard/templates/meinberlin_dashboard/includes/removeable_user_list.html.py:9
+#: apps/dashboard/templates/meinberlin_dashboard/includes/removeable_user_list.html.py:21
+#: apps/dashboard/templates/meinberlin_dashboard/includes/removeable_user_list.html.py:22
+#: meinberlin/templates/account/email.html.py:35
+#: meinberlin/templates/socialaccount/connections.html.py:32
+msgid "Remove"
+msgstr "Entfernen"
+
+#: apps/dashboard/templates/meinberlin_dashboard/includes/users_from_email_form.html.py:18
+msgid "Add"
+msgstr "Hinzufügen"
 
 #: apps/dashboard/templates/meinberlin_dashboard/organisation_form.html.py:7
 msgid "Edit your organisation information"
@@ -1004,30 +1063,34 @@ msgstr "Projekte"
 msgid "We could not find any projects."
 msgstr "Wir konnten keine Projekte finden."
 
-#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:26
-msgid "Add"
-msgstr "Hinzufügen"
-
-#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:37
-msgid "Email"
-msgstr "E-Mail"
-
-#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:38
-#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:50
-#: apps/dashboard/templates/meinberlin_dashboard/project_moderators.html.py:51
-#: meinberlin/templates/account/email.html.py:35
-#: meinberlin/templates/socialaccount/connections.html.py:32
-msgid "Remove"
-msgstr "Entfernen"
-
 #: apps/dashboard/templates/meinberlin_dashboard/project_update_form.html.py:4
 #: apps/dashboard/templates/meinberlin_dashboard/project_update_form.html.py:9
 msgid "Edit project"
 msgstr "Projekt bearbeiten"
 
-#: apps/dashboard/views.py:167
+#: apps/dashboard/views.py:175
 msgid "Organisation successfully updated."
 msgstr "Organisation erfolgreich aktualisiert"
+
+#: apps/dashboard/views.py:213
+msgid "Following emails are not registered: "
+msgstr "Folgende E-Mail Adressen sind nicht registriert: "
+
+#: apps/dashboard/views.py:245
+msgid "Add users via email"
+msgstr "Nutzer*innen via E-Mail Adresse hinzufügen"
+
+#: apps/dashboard/views.py:247
+msgid "User successfully removed."
+msgstr "Nutzer*in erfolgreich entfernt."
+
+#: apps/dashboard/views.py:270
+msgid "Add moderators via email"
+msgstr "Moderator*innen via E-Mail Adresse hinzufügen"
+
+#: apps/dashboard/views.py:272
+msgid "Moderator successfully removed."
+msgstr "Moderator*in erfolgreich entfernt."
 
 #: apps/documents/phases.py:17
 msgid "Comment phase"
@@ -1078,7 +1141,7 @@ msgstr "Zurück zum Kapitel"
 #: apps/users/templates/meinberlin_users/indicator.html.py:57
 #: meinberlin/templates/account/login.html.py:4
 #: meinberlin/templates/account/login.html.py:7
-#: meinberlin/templates/account/login.html.py:23
+#: meinberlin/templates/account/login.html.py:26
 msgid "Login"
 msgstr "Anmelden"
 
@@ -1112,6 +1175,38 @@ msgstr ""
 #: apps/embed/templates/meinberlin_embed/includes/project_embed_code.html.py:4
 msgid "Embed Code"
 msgstr "Code zum Einbetten des Projekts"
+
+#: apps/exports/views.py:192
+msgid "Link"
+msgstr "Link"
+
+#: apps/exports/views.py:259
+msgid "Positive ratings"
+msgstr "Positive Bewertungen"
+
+#: apps/exports/views.py:261
+msgid "Negative ratings"
+msgstr "Negative Bewertungen"
+
+#: apps/exports/views.py:291
+msgid "Comment count"
+msgstr "Anzahl Kommentare"
+
+#: apps/exports/views.py:342
+msgid "Location"
+msgstr "Ort"
+
+#: apps/exports/views.py:344
+msgid "Location label"
+msgstr "Ortsbezeichnung"
+
+#: apps/exports/views.py:361
+msgid "Moderator feedback"
+msgstr "Rückmeldung der Moderation"
+
+#: apps/exports/views.py:363
+msgid "Moderator statement"
+msgstr "Moderationskommentar"
 
 #: apps/extprojects/phases.py:15
 msgid "External phase"
@@ -1204,7 +1299,11 @@ msgstr "Zurück zur Idee"
 msgid "Edit idea"
 msgstr "Idee bearbeiten"
 
-#: apps/ideas/views.py:68 apps/mapideas/views.py:74
+#: apps/ideas/views.py:63
+msgid "Ideas with comments"
+msgstr "Ideen mit Kommentaren"
+
+#: apps/ideas/views.py:156 apps/mapideas/views.py:92
 msgid "Your Idea has been deleted"
 msgstr "Ihre Idee wurde gelöscht"
 
@@ -1218,7 +1317,7 @@ msgstr "Ich möchte mich an der Umsetzung des Vorschlags beteiligen."
 
 #: apps/kiezkasse/phases.py:17
 msgid "Request budgeting."
-msgstr "Nutzer können Vorschläge mit Budgetangabe machen"
+msgstr "Nutzerinnen und Nutzer können Vorschläge mit Budgetangabe machen"
 
 #: apps/kiezkasse/phases.py:18 apps/kiezkasse/phases.py:35
 #: apps/kiezkasse/phases.py:52
@@ -1277,13 +1376,17 @@ msgstr ""
 msgid "Submit Idea"
 msgstr "Idee anlegen"
 
+#: apps/mapideas/views.py:53
+msgid "Ideas with location and comments"
+msgstr "Ideen mit Verortung und Kommentaren"
+
 #: apps/maps/templates/meinberlin_maps/map_choose_polygon_with_preset_widget.html.py:6
 msgid "You can choose a preset for further customization."
 msgstr "Sie können einen vordefinierten Bereich auswählen."
 
 #: apps/moderatorfeedback/fields.py:7
 msgid "Moderator feedback for items with fixed feedback choices"
-msgstr ""
+msgstr "Rückmeldung der Moderation für Beiträge mit festen Rückmelde-Optionen"
 
 #: apps/moderatorfeedback/models.py:10
 msgid "Under consideration"
@@ -1297,6 +1400,44 @@ msgstr "nicht umgesetzt"
 msgid "Accepted"
 msgstr "wird umgesetzt"
 
+#: apps/offlineevents/forms.py:14 apps/offlineevents/models.py:15
+msgid "Date"
+msgstr "Datum"
+
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html.py:4
+msgid "Confirm Offline Event Deletion"
+msgstr "Bestätigung der Veranstaltung"
+
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html.py:8
+msgid "Are you sure you want to delete the offline event?"
+msgstr "Sind Sie sicher, dass Sie diese Veranstaltung löschen möchten?"
+
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_create_form.html.py:4
+#: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_create_form.html.py:4
+msgid "Create a new topic"
+msgstr "Neues Thema erstellen"
+
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_create_form.html.py:12
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_update_form.html.py:12
+msgid "back to offline events"
+msgstr "Zurück zur Veranstaltung"
+
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_create_form.html.py:17
+msgid "Add a new offline event"
+msgstr "Neue Veranstaltung hinzufügen"
+
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html.py:20
+msgid "Add offline event"
+msgstr "Veranstaltung hinzufügen"
+
+#: apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_update_form.html.py:17
+msgid "Edit offline event"
+msgstr "Veranstaltung bearbeiten"
+
+#: apps/offlineevents/views.py:75
+msgid "The offline event has been deleted"
+msgstr "Die Veranstaltung wurde gelöscht."
+
 #: apps/polls/phases.py:17
 msgid "Voting phase"
 msgstr "Abstimmungsphase"
@@ -1308,10 +1449,6 @@ msgstr "Abgeben von Stimmen und kommentieren der Umfrage."
 #: apps/polls/phases.py:19
 msgid "polls"
 msgstr "Umfragen"
-
-#: apps/polls/templates/meinberlin_polls/base_management.html.py:5
-msgid "Management"
-msgstr "Inhalte"
 
 #: apps/polls/templates/meinberlin_polls/poll_404.html.py:8
 msgid ""
@@ -1340,7 +1477,7 @@ msgstr "Jeder Nutzer darf pro Frage nur eine Stimme abgeben."
 msgid "Choice has to belong to the question set in the url."
 msgstr "Die Auswahl muss zu der richtigen Frage gehören."
 
-#: apps/projects/templates/meinberlin_projects/includes/phase_indicator.html.py:45
+#: apps/projects/templates/meinberlin_projects/includes/phase_indicator.html.py:53
 msgid "Participation is not possible at the moment."
 msgstr "Die Beteiligung ist aktuell nicht möglich."
 
@@ -1360,11 +1497,7 @@ msgstr ""
 "\n"
 "Von %(start)s <br>bis %(end)s"
 
-#: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:18
-msgid "Finished"
-msgstr "Abgeschlossen"
-
-#: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:33
+#: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:43
 #, python-format
 msgid ""
 "\n"
@@ -1374,7 +1507,7 @@ msgstr ""
 "\n"
 "Beteiligung möglich bis zum %(date)s"
 
-#: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:39
+#: apps/projects/templates/meinberlin_projects/includes/project_list_tile.html.py:49
 #, python-format
 msgid ""
 "\n"
@@ -1384,31 +1517,31 @@ msgstr ""
 "\n"
 "Beteiligung fängt ab dem %(date)s an"
 
-#: apps/projects/templates/meinberlin_projects/project_detail.html.py:97
+#: apps/projects/templates/meinberlin_projects/project_detail.html.py:96
 msgid "No results yet."
 msgstr "Noch gibt es keine Ergebnisse."
 
-#: apps/projects/views.py:21
+#: apps/projects/views.py:22
 msgid "Organisation"
 msgstr "Organisation"
 
-#: apps/projects/views.py:25
+#: apps/projects/views.py:26
 msgid "Archived"
 msgstr "Archiviert"
 
-#: apps/projects/views.py:30
+#: apps/projects/views.py:31
 msgid "No"
 msgstr "Nein"
 
-#: apps/projects/views.py:37
+#: apps/projects/views.py:38
 msgid "Year"
 msgstr "Jahr"
 
-#: apps/projects/views.py:40 apps/projects/views.py:56
+#: apps/projects/views.py:41 apps/projects/views.py:57
 msgid "Any"
 msgstr "Alle"
 
-#: apps/projects/views.py:53
+#: apps/projects/views.py:54
 msgid "Project Type"
 msgstr "Projekttyp"
 
@@ -1463,10 +1596,6 @@ msgstr "Bestätigen der Themalöschung"
 msgid "Are you sure you want to delete the topic?"
 msgstr "Sind Sie sicher, dass Sie das Thema löschen möchten?"
 
-#: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_create_form.html.py:4
-msgid "Create a new topic"
-msgstr "Neues Thema erstellen"
-
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_create_form.html.py:12
 #: apps/topicprio/templates/meinberlin_topicprio/topic_mgmt_update_form.html.py:12
 msgid "back to topic list"
@@ -1488,11 +1617,15 @@ msgstr "Thema hinzufügen"
 msgid "Edit topic"
 msgstr "Thema bearbeiten"
 
-#: apps/topicprio/views.py:23 apps/topicprio/views.py:62
+#: apps/topicprio/views.py:24 apps/topicprio/views.py:80
 msgid "Alphabetical"
 msgstr "Alphabetisch"
 
-#: apps/topicprio/views.py:136
+#: apps/topicprio/views.py:53
+msgid "Topics with comments"
+msgstr "Themen mit Kommentaren"
+
+#: apps/topicprio/views.py:151
 msgid "The topic has been deleted"
 msgstr "Das Thema wurde gelöscht."
 
@@ -1501,9 +1634,9 @@ msgid ""
 "Enter a valid username. This value may contain only letters, digits, spaces "
 "and @/./+/-/_ characters. It must start with a digit or a letter."
 msgstr ""
-"Bitte geben Sie einen gültigen Benutzernamen ein. Dieser darf nur "
+"Bitte geben Sie einen gültigen Nutzernamen ein. Dieser darf nur "
 "Buchstaben, Zahlen, Leerzeichen und nur @/./+/-/_ Zeichen erhalten. Der "
-"Benutzername muss mit einem Buchstaben oder einer Zahl anfangen."
+"Nutzername muss mit einem Buchstaben oder einer Zahl anfangen."
 
 #: apps/users/admin.py:11
 msgid "Permissions"
@@ -1528,7 +1661,7 @@ msgstr "Bitte akzeptieren sie die Nutzungsbedingungen."
 
 #: apps/users/models.py:14
 msgid "username"
-msgstr "Benutzername"
+msgstr "Nutzername"
 
 #: apps/users/models.py:18
 msgid ""
@@ -1539,15 +1672,15 @@ msgstr ""
 
 #: apps/users/models.py:24
 msgid "A user with that username already exists."
-msgstr "Der Benutzer mit diesem Benutzernamen existiert bereits."
+msgstr "Der Nutzer mit diesem Nutzernamen existiert bereits."
 
 #: apps/users/models.py:31
 msgid "A user with that email address already exists."
-msgstr "Der Benutzer mit dieser Emailadresse existiert bereits."
+msgstr "Der Nutzer mit dieser E-Mail Adresse existiert bereits."
 
 #: apps/users/models.py:35
 msgid "staff status"
-msgstr ""
+msgstr "Mitarbeiterstatus"
 
 #: apps/users/models.py:38
 msgid "Designates whether the user can log into this admin site."
@@ -1564,8 +1697,8 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
-"Bitte setzen Sie einen Hacken, um den Nutzer aktiv zu schalten. Nehmen Sie "
-"den Hacken raus, um den Nutzer inaktiv zu schalten."
+"Bitte setzen Sie einen Haken, um den Nutzer aktiv zu schalten. Nehmen Sie "
+"den Haken raus, um den Nutzer inaktiv zu schalten."
 
 #: apps/users/models.py:55
 msgid "Send me email notifications"
@@ -1576,13 +1709,13 @@ msgid ""
 "Designates whether you want to receive notifications. Unselect if you do not "
 "want to receive notifications."
 msgstr ""
-"Bitte setzen Sie einen Hacken, falls Sie Benachrichtigungen per E-Mail "
-"erhalten möchten.  Nehmen Sie den Hacken raus, falls Sie keine "
+"Bitte setzen Sie einen Haken, falls Sie Benachrichtigungen per E-Mail "
+"erhalten möchten.  Nehmen Sie den Haken raus, falls Sie keine "
 "Benachrichtigungen per Email erhalten möchten."
 
 #: apps/users/templates/meinberlin_users/indicator.html.py:20
 msgid "Account Settings"
-msgstr "Benutzerkonto Einstellungen"
+msgstr "Nutzerkonto Einstellungen"
 
 #: apps/users/templates/meinberlin_users/indicator.html.py:52
 #: apps/users/templates/meinberlin_users/indicator.html.py:60
@@ -1643,15 +1776,15 @@ msgstr "E-Mail Adresse hinzufügen"
 
 #: meinberlin/templates/account/email_confirm.html.py:4
 #: meinberlin/templates/account/email_confirm.html.py:7
-msgid "Confirm E-mail Address"
-msgstr "Bitte bestätigen Sie Ihre E-Mail-Adresse."
+msgid "Confirm Email Address"
+msgstr "Bitte bestätigen Sie Ihre E-Mail Adresse."
 
 #: meinberlin/templates/account/email_confirm.html.py:11
 #, python-format
 msgid ""
 "Please\n"
 "            confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an\n"
-"            e-mail address for user %(user_display)s."
+"            email address for user %(user_display)s."
 msgstr ""
 "Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> eine E-"
 "Mail Adresse des Nutzers %(user_display)s ist."
@@ -1663,12 +1796,11 @@ msgstr "Bestätigen"
 #: meinberlin/templates/account/email_confirm.html.py:21
 #, python-format
 msgid ""
-"This e-mail confirmation link expired or is invalid.\n"
-"            Please <a href=\"%(email_url)s\">issue a new e-mail "
-"confirmation\n"
+"This email confirmation link expired or is invalid.\n"
+"            Please <a href=\"%(email_url)s\">issue a new email confirmation\n"
 "                request</a>."
 msgstr ""
-"Der Link zur E-Mail-Bestätigung ist abgelaufen oder ist ungültig. Bitte <a "
+"Der Link zur E-Mail Bestätigung ist abgelaufen oder ist ungültig. Bitte <a "
 "href=\"%(email_url)s\">fordern Sie eine neue Bestätigungsemail an</a>."
 
 #: meinberlin/templates/account/login.html.py:9
@@ -1677,12 +1809,16 @@ msgid ""
 "If you have not created an account yet, then please <a href=\"%(signup_url)s"
 "\">register</a> first."
 msgstr ""
-"Wenn Sie noch kein Benutzerkonto haben, <a href=\"%(signup_url)s"
+"Wenn Sie noch kein Nutzerkonto haben, <a href=\"%(signup_url)s"
 "\">registrieren</a> Sie sich bitte zuerst."
 
-#: meinberlin/templates/account/login.html.py:25
+#: meinberlin/templates/account/login.html.py:27
 msgid "Forgot Password?"
 msgstr "Passwort vergessen?"
+
+#: meinberlin/templates/account/login.html.py:32
+msgid "Or use your Service-Konto:"
+msgstr "Oder benutzen Sie ihr Service-Konto:"
 
 #: meinberlin/templates/account/logout.html.py:4
 #: meinberlin/templates/account/logout.html.py:7
@@ -1717,7 +1853,7 @@ msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll send you "
 "an e-mail allowing you to reset it."
 msgstr ""
-"Passwort vergessen? Tragen Sie Ihre E-mail Adresse ein und Sie bekommen eine "
+"Passwort vergessen? Tragen Sie Ihre E-Mail Adresse ein und Sie bekommen eine "
 "Email mit der Sie das Passwort zurücksetzen können."
 
 #: meinberlin/templates/account/password_reset.html.py:18
@@ -1750,10 +1886,6 @@ msgstr ""
 "dieser schon einmal genutzt wurde. Bitte fordern Sie die <a href="
 "\"%(passwd_reset_url)s\">Zurücksetzung des Passwort</a> erneut an."
 
-#: meinberlin/templates/account/password_reset_from_key.html.py:20
-msgid "change password"
-msgstr "Passwort ändern"
-
 #: meinberlin/templates/account/password_reset_from_key.html.py:23
 msgid "Your password is now changed."
 msgstr "Ihr Passwort wurde geändert."
@@ -1764,7 +1896,7 @@ msgid ""
 "Already have an account? Then please\n"
 "        <a href=\"%(login_url)s\">login</a>."
 msgstr ""
-"Haben Sie schon ein Benutzerkonto? Dann <a href=\"%(login_url)s\">melden Sie "
+"Haben Sie schon ein Nutzerkonto? Dann <a href=\"%(login_url)s\">melden Sie "
 "sich bitte an</a>."
 
 #: meinberlin/templates/account/signup.html.py:23
@@ -1823,15 +1955,16 @@ msgstr "Fehler bei der Anmeldung am Service-Konto"
 msgid ""
 "An error occurred while attempting to login via your Service-Konto account."
 msgstr ""
-"Beim Versuch sich mit Ihrem Service-Konto anzumelden ist ein Fehler aufgetreten."
+"Beim Versuch sich mit Ihrem Service-Konto anzumelden ist ein Fehler "
+"aufgetreten."
 
 #: meinberlin/templates/socialaccount/connections.html.py:12
 msgid "Your account is connected to the following services:"
-msgstr "Ihr Benutzerkonto ist mit folgenden Diensten verbunden:"
+msgstr "Ihr Nutzerkonto ist mit folgenden Diensten verbunden:"
 
 #: meinberlin/templates/socialaccount/connections.html.py:35
 msgid "You can connect your account to the following services:"
-msgstr "Sie können Ihr Benutzerkonto mit folgenden Diensten verbinden:"
+msgstr "Sie können Ihr Nutzerkonto mit folgenden Diensten verbinden:"
 
 #: meinberlin/templates/socialaccount/login_cancelled.html.py:5
 #: meinberlin/templates/socialaccount/login_cancelled.html.py:9
@@ -1844,13 +1977,13 @@ msgid ""
 "You decided to cancel logging in to our site using the Service-Konto. If "
 "this was a mistake, please proceed to <a href=\"%(login_url)s\">sign in</a>."
 msgstr ""
-"Sie haben die Anmeldung am Service-Konto abgebrochen. Wenn das ein Versehen war, "
-"können Sie den <a href=\"%(login_url)s\">Anmeldevorgang wiederholen</a>."
+"Sie haben die Anmeldung am Service-Konto abgebrochen. Wenn das ein Versehen "
+"war, können Sie den <a href=\"%(login_url)s\">Anmeldevorgang wiederholen</a>."
 
 #: meinberlin/templates/socialaccount/signup.html.py:13
 #: meinberlin/templates/socialaccount/signup.html.py:16
 msgid "Email address is already in use"
-msgstr "Email-Adresse wird bereits verwendet"
+msgstr "E-Mail Adresse wird bereits verwendet"
 
 #: meinberlin/templates/socialaccount/signup.html.py:19
 #, python-format
@@ -1859,9 +1992,9 @@ msgid ""
 "        but the email address passed from %(provider_name)s is already "
 "registered to an existing user account."
 msgstr ""
-"Sie haben versucht sich mit Ihrem %(provider_name)s Benutzerkonto auf "
-"%(site_name)s anzumelden. Die vom %(provider_name)s übergebene Email-Adresse "
-"wird jedoch bereits von einem vorhandenen Benutzerkonto verwendet."
+"Sie haben versucht sich mit Ihrem %(provider_name)s Nutzerkonto auf "
+"%(site_name)s anzumelden. Die vom %(provider_name)s übergebene E-Mail "
+"Adresse wird jedoch bereits von einem vorhandenen Nutzerkonto verwendet."
 
 #: meinberlin/templates/socialaccount/signup.html.py:21
 #, python-format
@@ -1871,5 +2004,5 @@ msgid ""
 "        and connect %(provider_name)s from the account settings."
 msgstr ""
 "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem %(site_name)s "
-"Benutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
-"Benutzerkonto Einstellungen."
+"Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
+"Nutzerkonto Einstellungen."

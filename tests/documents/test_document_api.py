@@ -3,7 +3,7 @@ import pytest
 from django.core.urlresolvers import reverse
 from rest_framework import status
 
-from apps.documents import models as document_models
+from meinberlin.apps.documents import models as document_models
 
 
 @pytest.mark.django_db

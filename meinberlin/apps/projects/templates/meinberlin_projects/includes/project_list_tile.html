@@ -1,0 +1,55 @@
+{% load i18n project_tags extproject_tags thumbnail static %}
+
+<li class="tile">
+    <div class="tile__head">
+        <a tabindex="-1" class="tile__image tile__image--shadowed"
+           aria-labelledby="project-title-{{ project.pk }}"
+           {% if project.tile_image %}
+               style="background-image: url({{ project.tile_image|thumbnail_url:'project_thumbnail' }})"
+           {% elif project.image %}
+               style="background-image: url({{ project.image|thumbnail_url:'project_thumbnail' }})"
+           {% endif %}
+           href="{% extproject_url project 'project-detail' %}" target="{{ project|is_external|yesno:"_blank,_self" }}">
+        </a>
+        {% if project|is_external %}
+            <img src="{% static 'images/external_project.svg' %}" alt="{% trans 'External project' %}" class="tile__badge">
+        {% else %}
+            <img src="{% static 'images/meinberlin.svg' %}" alt="Mein Berlin" class="tile__badge">
+        {% endif %}
+
+        <div class="tile__labels">
+            {% get_days project.days_left as days %}
+            {% if project.has_finished %}
+                <span class="label label--primary">{% trans "Finished" %}</span>
+            {% elif days %}
+                <span class="label label--primary">{{ days }}</span>
+            {% endif %}
+
+            {% if not project.is_public %}
+                <span class="label label--secondary">{% trans 'private' %}</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="tile__body">
+        <h3 class="tile__title" id="project-title-{{ project.pk }}">
+            <a href="{% extproject_url project 'project-detail' %}" target="{{ project|is_external|yesno:"_blank,_self" }}">{{ project.name }}</a>
+        </h3>
+
+        <p class="tile__text">{{ project.description }}</p>
+
+        {% if project.active_phase %}
+            <p class="tile__hint">
+                {% blocktrans with project.active_phase.end_date|date:'d.m.Y' as date %}
+                    Participation possible until {{ date }}
+                {% endblocktrans %}
+            </p>
+        {% elif project.future_phases %}
+            <p class="tile__hint">
+                {% blocktrans with project.future_phases.0.start_date|date:'d.m.Y' as date %}
+                    Participation starting from {{ date }}
+                {% endblocktrans %}
+            </p>
+        {% endif %}
+    </div>
+</li>

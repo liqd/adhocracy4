@@ -19,6 +19,11 @@
     color: contrast-color($brand-primary);
 }
 
+.label--secondary {
+    background-color: $brand-secondary;
+    color: contrast-color($brand-secondary);
+}
+
 .label--CONSIDERATION {
     background-color: $feedback-color-consideration;
     color: contrast-color($feedback-color-consideration);

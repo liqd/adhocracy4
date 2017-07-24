@@ -1,4 +1,3 @@
-@import '~sass-planifolia/sass/math';
 @import '~sass-planifolia/sass/grid';
 @import '~sass-planifolia/sass/contrast';
 
@@ -46,9 +45,8 @@
 @import 'components/module';
 @import 'components/multiform';
 @import 'components/pagination';
-@import 'components/phases';
+@import 'components/timeline';
 @import 'components/poll';
-@import 'components/popover';
 @import 'components/portal_header';
 @import 'components/project_header';
 @import 'components/radio';
