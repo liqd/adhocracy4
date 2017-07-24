@@ -27,3 +27,19 @@
         display: block;
     }
 }
+
+.u-if-collapsed {
+    display: none;
+
+    [aria-expanded="false"] > & {
+        display: inline;
+    }
+}
+
+.u-if-not-collapsed {
+    display: none;
+
+    [aria-expanded="true"] > & {
+        display: inline;
+    }
+}
