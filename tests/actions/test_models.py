@@ -3,7 +3,7 @@ from freezegun import freeze_time
 
 from django.utils import timezone
 
-from adhocracy4.actions.models import Action
+from adhocracy4.actions.models import Action, configure_icon, configure_type
 from adhocracy4.actions.verbs import Verbs
 
 
@@ -89,3 +89,81 @@ def test_action_string_without_actor(question_factory):
         question,
     )
     assert str(action) == str_expected
+
+
+@pytest.mark.django_db
+def test_type_property(question):
+    action = Action(
+        verb=Verbs.ADD.value,
+        obj=question,
+    )
+
+    assert action.type == 'unkown'
+
+    configure_type(
+        'thing',
+        (question._meta.app_label, question._meta.model_name)
+    )
+    assert action.type == 'thing'
+
+    configure_type(
+        'thong',
+        (question._meta.app_label, question._meta.model_name)
+    )
+    assert action.type == 'thong'
+
+
+@pytest.mark.django_db
+def test_icon_property(question):
+    action = Action(
+        verb=Verbs.ADD.value,
+        obj=question,
+    )
+
+    assert action.icon == 'star'
+
+    configure_type(
+        'thing',
+        (question._meta.app_label, question._meta.model_name)
+    )
+    assert action.icon == 'star'
+
+    configure_icon('plus', verb=Verbs.ADD)
+    assert action.icon == 'plus'
+
+    other_action = Action(
+        verb=Verbs.CREATE.value,
+        obj=question
+    )
+    assert other_action.icon == 'star'
+
+    configure_icon('circle', type='thing')
+    assert action.icon == 'plus'
+    assert other_action.icon == 'circle'
+
+
+@pytest.mark.django_db
+def test_queryset_filter_public(action_factory):
+    action_factory(obj__module__project__is_public=False)
+    action_factory(obj__module__project__is_draft=True)
+    action1 = action_factory(obj=None)
+    action2 = action_factory(obj=None)
+
+    assert list(Action.objects.filter_public()) == [action2, action1]
+
+
+@pytest.mark.django_db
+def test_queryset_exlude_update(action_factory):
+    action = action_factory(verb=Verbs.UPDATE.value)
+    action_factory()
+
+    assert action not in Action.objects.exclude_updates()
+
+
+@pytest.mark.django_db
+def test_default_ordering(action_factory):
+    action1 = action_factory()
+    action2 = action_factory()
+    action3 = action_factory()
+
+    assert list(Action.objects.filter_public()) == [action3, action2, action1]

@@ -24,6 +24,11 @@ class Module(models.Model):
             if hasattr(self, setting):
                 return getattr(self, setting)
 
+    @property
+    def first_phase_start_date(self):
+        first_phase = self.phase_set.order_by('start_date').first()
+        return first_phase.start_date
+
     def has_feature(self, feature, model):
         for phase in self.phase_set.all():
             if phase.has_feature(feature, model):
