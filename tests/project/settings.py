@@ -186,4 +186,5 @@ LOGIN_URL = "/accounts/login"
 IMAGE_ALIASES = {
     '*': {'max_size': 5*10**6, 'fileformats': ('image/png', 'image/jpeg', 'image/gif')},
     'heroimage': {'min_resolution': (1300, 600)},
+    'tileimage': {'min_resolution': (500, 300)},
 }

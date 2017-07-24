@@ -43,7 +43,7 @@ var init = function () {
       map.closePopup()
     })
 
-    map.fitBounds(basePolygon)
+    map.fitBounds(basePolygon.getBounds())
     map.options.minZoom = map.getZoom()
     initial = 1
 

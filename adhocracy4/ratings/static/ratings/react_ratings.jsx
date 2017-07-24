@@ -10,7 +10,7 @@ var RatingBox = React.createClass({
     api.rating.add({
       urlReplaces: {
         objectPk: this.props.objectId,
-        contentTypeId: this.props.contentType,
+        contentTypeId: this.props.contentType
       },
       value: number
     }).done(function (data) {
@@ -27,7 +27,7 @@ var RatingBox = React.createClass({
     api.rating.change({
       urlReplaces: {
         objectPk: this.props.objectId,
-        contentTypeId: this.props.contentType,
+        contentTypeId: this.props.contentType
       },
       value: number
     }, id)
