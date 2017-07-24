@@ -24,6 +24,32 @@ class Module(models.Model):
             if hasattr(self, setting):
                 return getattr(self, setting)
 
+    @functional.cached_property
+    def is_active(self):
+        return self.phase_set \
+            .active_phases()\
+            .exists()
+
+    @functional.cached_property
+    def active_phase(self):
+        return self.phase_set \
+            .active_phases() \
+            .first()
+
+    @functional.cached_property
+    def phases(self):
+        return self.phase_set()
+
+    @property
+    def past_phases(self):
+        phases = self.phase_set.filter(end_date__lte=timezone.now())
+        return phases.order_by('-end_date')
+
+    @property
+    def last_active_phase(self):
+        phase = self.active_phase or self.past_phases.first()
+        return phase
+
     @property
     def first_phase_start_date(self):
         first_phase = self.phase_set.order_by('start_date').first()
