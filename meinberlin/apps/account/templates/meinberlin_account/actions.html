@@ -1,0 +1,17 @@
+{% extends "meinberlin_account/account_dashboard.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Activities' %} &mdash; {{ block.super }}{% endblock %}
+
+{% block dashboard_content %}
+    <h1>{% trans 'Activities' %}</h1>
+
+    <div>
+        {% for action in action_list %}
+            {% include 'meinberlin_actions/includes/action.html' with action=action %}
+        {% endfor %}
+    </div>
+
+    {% include "meinberlin_contrib/includes/pagination.html" %}
+{% endblock %}

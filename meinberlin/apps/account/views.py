@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 from django.views.generic.base import RedirectView
 
+from adhocracy4.actions.models import Action
 from meinberlin.apps.users.models import User
 
 from . import forms
@@ -29,3 +30,13 @@ class ProfileUpdateView(SuccessMessageMixin,
 
     def get_success_url(self):
         return self.request.path
+
+
+class ProfileActionsView(generic.ListView):
+
+    model = Action
+    paginate_by = 10
+    template_name = 'meinberlin_account/actions.html'
+
+    def get_queryset(self):
+        return super().get_queryset().exclude_updates()
