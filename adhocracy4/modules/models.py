@@ -1,5 +1,8 @@
 from autoslug import AutoSlugField
 from django.db import models
+from django.utils import functional
+from django.utils import timezone
+from django.core.urlresolvers import reverse
 
 from adhocracy4.models import base
 from adhocracy4.projects import models as project_models
@@ -16,6 +19,9 @@ class Module(models.Model):
     def __str__(self):
         return "{} ({})".format(self.project, self.weight)
 
+    def get_absolute_url(self):
+        return reverse('module-detail', args=[str(self.slug)])
+
     @property
     def settings_instance(self):
         settingslist = [field for field in self._meta.get_all_field_names()
@@ -23,6 +29,32 @@ class Module(models.Model):
         for setting in settingslist:
             if hasattr(self, setting):
                 return getattr(self, setting)
+
+    @functional.cached_property
+    def is_active(self):
+        return self.phase_set \
+            .active_phases()\
+            .exists()
+
+    @functional.cached_property
+    def active_phase(self):
+        return self.phase_set \
+            .active_phases() \
+            .first()
+
+    @functional.cached_property
+    def phases(self):
+        return self.phase_set.all()
+
+    @property
+    def past_phases(self):
+        phases = self.phase_set.filter(end_date__lte=timezone.now())
+        return phases.order_by('-end_date')
+
+    @property
+    def last_active_phase(self):
+        phase = self.active_phase or self.past_phases.first()
+        return phase
 
     @property
     def first_phase_start_date(self):
