@@ -5,6 +5,7 @@ from django.views import generic
 from django.views.generic.base import RedirectView
 
 from adhocracy4.actions.models import Action
+from adhocracy4.follows.models import Follow
 from meinberlin.apps.users.models import User
 
 from . import forms
@@ -39,4 +40,8 @@ class ProfileActionsView(generic.ListView):
     template_name = 'meinberlin_account/actions.html'
 
     def get_queryset(self):
-        return super().get_queryset().exclude_updates()
+        user = get_object_or_404(User, pk=self.request.user.id)
+        follows = Follow.objects.filter(creator=user, enabled=True)
+        projects = [follow.project for follow in follows]
+        return super().get_queryset().exclude_updates()\
+            .filter(project__in=projects)
