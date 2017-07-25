@@ -12,10 +12,10 @@ PROJECT = 2
 INITIATOR = 3
 
 RECEIVER_CHOICES = (
-    (PROJECT, _('Users following the chosen project')),
+    (PROJECT, _('Users following a specific project')),
     (ORGANISATION, _('Users following your organisation')),
     (INITIATOR, _('Every initiator of your organisation')),
-    (PLATFORM, _('Every user on the platform'))
+    (PLATFORM, _('Every user of the platform'))
 
 )
 
