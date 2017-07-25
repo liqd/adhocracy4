@@ -9,15 +9,12 @@ function createMap (L, baseurl, attribution, e) {
 function createMarker ($, L, newlatln, oldlatln, basePolygon, map, name) {
   var icon = L.icon({
     iconUrl: '/static/images/map_pin_01_2x.png',
-    shadowUrl: '/static/images/map_shadow_01_2x.png',
     iconSize: [30, 45],
     iconAnchor: [15, 45],
-    shadowSize: [40, 54],
-    shadowAnchor: [20, 54],
     popupAnchor: [0, -45]
   })
 
-  var marker = L.marker(newlatln, { draggable: true, icon: icon }).addTo(map)
+  var marker = L.marker(newlatln, {draggable: true, icon: icon}).addTo(map)
   marker.on('dragend', function () {
     var markerInsidePolygon = false
     basePolygon.getLayers().forEach(function (each) {

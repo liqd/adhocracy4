@@ -22,11 +22,8 @@ var init = function () {
 
     var icon = L.icon({
       iconUrl: '/static/images/map_pin_01_2x.png',
-      shadowUrl: '/static/images/map_shadow_01_2x.png',
       iconSize: [30, 45],
       iconAnchor: [15, 45],
-      shadowSize: [40, 54],
-      shadowAnchor: [20, 54],
       popupAnchor: [0, -45]
     })
 
@@ -39,7 +36,7 @@ var init = function () {
 
     L.geoJson(point, {
       pointToLayer: function (feature, latlng) {
-        var marker = L.marker(latlng, {icon: icon}).addTo(map)
+        var marker = L.marker(latlng, {riseOnHover: true, icon: icon}).addTo(map)
         return marker
       }
     })
