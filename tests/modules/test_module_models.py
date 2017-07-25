@@ -40,8 +40,7 @@ def test_first_phase_start_date(phase, phase_factory):
 
 
 @pytest.mark.django_db
-def test_phases(phase_factory):
-    phase = phase_factory()
+def test_phases(phase, phase_factory):
     module = phase.module
     phase2 = phase_factory(module=module)
     assert list(module.phases) == [phase, phase2]

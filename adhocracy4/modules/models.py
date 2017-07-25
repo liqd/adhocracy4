@@ -44,7 +44,7 @@ class Module(models.Model):
 
     @functional.cached_property
     def phases(self):
-        return self.phase_set()
+        return self.phase_set.all()
 
     @property
     def past_phases(self):
