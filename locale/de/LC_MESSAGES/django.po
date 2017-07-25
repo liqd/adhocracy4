@@ -18,6 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html.py:15
+msgid "Search"
+msgstr "Suchen"
+
 #: adhocracy4/images/templates/a4images/image_upload_widget.html.py:8
 #: adhocracy4/images/templates/a4images/image_upload_widget.html.py:8
 #: meinberlin/templates/a4images/image_upload_widget.html.py:10
@@ -279,6 +283,12 @@ msgid "Profile"
 msgstr "Profil"
 
 #: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html.py:30
+#: meinberlin/apps/account/templates/meinberlin_account/actions.html.py:5
+#: meinberlin/apps/account/templates/meinberlin_account/actions.html.py:8
+msgid "Activities"
+msgstr "Aktivitäten"
+
+#: meinberlin/apps/account/templates/meinberlin_account/account_dashboard.html.py:37
 #: meinberlin/templates/account/password_change.html.py:5
 #: meinberlin/templates/account/password_change.html.py:42
 #: meinberlin/templates/account/password_reset_from_key.html.py:20
