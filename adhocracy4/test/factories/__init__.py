@@ -9,7 +9,6 @@ from adhocracy4.projects.models import Project
 from adhocracy4.organisations.models import Organisation
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
-from adhocracy4.maps import models
 
 
 class UserFactory(factory.django.DjangoModelFactory):
@@ -117,20 +116,3 @@ class SettingsFactory(factory.django.DjangoModelFactory):
         abstract = True
 
     module = factory.SubFactory(ModuleFactory)
-
-
-class AreaSettingsFactory(SettingsFactory):
-    class Meta:
-        model = models.AreaSettings
-
-    polygon = {
-        'type': 'FeatureCollection',
-        'features': [{
-            'type': 'Feature',
-            'properties': {},
-            'geometry': {
-                'type': 'Polygon',
-                'coordinates': [[[0.0, 0.0], [0.0, 1.0], [1.0, 1.0]]]
-            }
-        }]
-    }
