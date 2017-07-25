@@ -79,7 +79,7 @@ $circle-size: 0.8em;
     .timeline li {
         display: inline-block;
         margin-right: 5px;
-        margin-bottom: 1em + $circle-size;
+        margin-bottom: 2.5em + $circle-size;
 
         &:before,
         &:first-child:before,
@@ -109,6 +109,14 @@ $circle-size: 0.8em;
         bottom: (-$circle-size * 1.5);
         left: 50%;
         margin-left: (-$circle-size / 2);
+    }
+
+    .timeline__active {
+        position: absolute;
+        bottom: (-$circle-size * 1.5 - 1.5em);
+        left: 0;
+        right: 0;
+        text-align: center;
     }
 }
 

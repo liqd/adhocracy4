@@ -17,6 +17,9 @@
                     >
                         {% trans 'Online participation' %}
                     </a>
+                    {% if obj == active_phase.module %}
+                        <span class="timeline__active">{% trans 'active' %}</span>
+                    {% endif %}
                 </li>
             {% else %}
                 <li>
