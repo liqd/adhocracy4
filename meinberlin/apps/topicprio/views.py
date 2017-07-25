@@ -105,8 +105,10 @@ class TopicMgmtView(ProjectContextDispatcher,
             kwargs={'organisation_slug': self.organisation.slug, })
 
     def get_queryset(self):
+        # FIXME: Add multi-module support
+        module = self.project.module_set.first()
         return super().get_queryset()\
-            .filter(module=self.project.last_active_module) \
+            .filter(module=module) \
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()
