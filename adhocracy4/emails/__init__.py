@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.contrib.sites import models as site_models
 from django.core.mail.message import EmailMultiAlternatives
-from django.template import Context
 from django.template.loader import select_template
 from django.utils import translation
 
@@ -32,11 +31,11 @@ class EmailBase:
 
     def get_context(self):
         object_context_key = self.object.__class__.__name__.lower()
-        return Context({
+        return {
             'email': self,
             'site': self.get_site(),
             object_context_key: self.object
-        })
+        }
 
     def get_receivers(self):
         return []
@@ -64,9 +63,9 @@ class EmailBase:
         with translation.override(language):
             parts = []
             for part_type in ('subject', 'txt', 'html'):
-                context.update({'part_type': part_type})
+                context['part_type'] = part_type
                 parts.append(template.render(context))
-                context.pop()
+                context.pop('part_type')
 
         return tuple(parts)
 
@@ -81,9 +80,9 @@ class EmailBase:
 
         mails = []
         for receiver in receivers:
-            context.update({'receiver': receiver})
+            context['receiver'] = receiver
             (subject, text, html) = self.render(template, context)
-            context.pop()
+            context.pop('receiver')
 
             if hasattr(receiver, 'email'):
                 to_address = receiver.email
