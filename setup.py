@@ -13,7 +13,7 @@ setup(name='adhocracy4',
       include_package_data=True,
       install_requires = [
           'bleach',
-          'Django >=1.8, <1.9',
+          'Django >=1.8',
           'djangorestframework >= 3.5, <4.0',
           'django-autoslug',
           'django-ckeditor',
