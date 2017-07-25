@@ -23,7 +23,9 @@ class DocumentManagementView(ProjectContextDispatcher,
     def get_context_data(self, **kwargs):
         context = super(DocumentManagementView, self)\
             .get_context_data(**kwargs)
-        context['module'] = self.project.last_active_module
+        # FIXME: Add multi-module support
+        module = self.project.module_set.first()
+        context['module'] = module
         return context
 
 

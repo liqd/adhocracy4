@@ -123,10 +123,11 @@ class AbstractIdeaUpdateView(ProjectContextDispatcher,
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['module'] = self.project.last_active_module
-        if self.project.last_active_module.settings_instance:
+        instance = kwargs.get('instance')
+        kwargs['module'] = instance.module
+        if instance.module.settings_instance:
             kwargs['settings_instance'] = \
-                self.project.last_active_module.settings_instance
+                instance.module.settings_instance
         return kwargs
 
 
