@@ -153,6 +153,14 @@ class Project(base.TimeStampedModel):
             return phase.module
         return None
 
+    @property
+    def active_module(self):
+        """Return the currently active module that ends first."""
+        phase = self.phases.active_phases().order_by('end_date').first()
+        if phase:
+            return phase.module
+        return None
+
     @functional.cached_property
     def active_phase(self):
         return self.phases\

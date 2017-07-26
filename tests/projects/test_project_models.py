@@ -196,3 +196,35 @@ def test_past_phases_property(module, phase_factory):
         assert list(project.past_phases) == [phase3]
     with freeze_time(phase2.end_date):
         assert list(project.past_phases) == [phase2, phase3]
+
+
+@pytest.mark.django_db
+def test_active_module_property(project, module_factory, phase_factory):
+    module = module_factory(project=project)
+    module2 = module_factory(project=project)
+    phase_factory(
+        module=module,
+        start_date=parse('2013-03-01 18:00:00 UTC'),
+        end_date=parse('2013-03-02 18:00:00 UTC')
+    )
+    phase2 = phase_factory(
+        module=module,
+        start_date=parse('2013-01-05 18:00:00 UTC'),
+        end_date=parse('2013-01-12 18:00:00 UTC')
+    )
+    phase3 = phase_factory(
+        module=module2,
+        start_date=parse('2013-01-01 18:00:00 UTC'),
+        end_date=parse('2013-01-10 18:00:00 UTC')
+    )
+
+    with freeze_time(phase3.start_date - timedelta(minutes=1)):
+        assert project.active_module is None
+    with freeze_time(phase3.start_date):
+        assert project.active_module == module2
+    with freeze_time(phase2.start_date):
+        assert project.active_module == module2
+    with freeze_time(phase2.end_date - timedelta(minutes=1)):
+        assert project.active_module == module
+    with freeze_time(phase2.end_date):
+        assert project.active_module is None
