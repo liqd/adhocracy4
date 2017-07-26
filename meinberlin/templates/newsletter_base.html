@@ -5,12 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{% block subject %}{% endblock %}</title>
   </head>
-  <body style="margin: 0; padding: 0; min-width: 100% !important; background: #fff;">
-    <table width="100%" border="0" cellpadding="0" cellspacing="0"
-           style="width: 100%; max-width: 500px; margin: auto;">
+  <body style="margin: 0; padding: 0; min-width: 100% !important; background: #e6e6e6; line-height: 2px;">
+  <div style="margin: 20px auto 20px auto; width: 100%; max-width: 650px; background-color: #fff; box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0"
+           style="width: 90%; max-width: 500px; margin: auto;">
       <tr>
         <td style="padding-top: 20px; text-align: center;" align="center">
-          <img width="50%" src="cid:logo" style="max-height: 110px; width: auto;" alt="Logo" >
+          <img width="50%" src="cid:logo" style="max-height: 110px ;width: auto;" alt="Logo" >
         </td>
       </tr>
       <tr>
@@ -19,17 +20,14 @@
           </td>
       </tr>
       <tr>
-          <td>
-            {% block content_html %}
-                {% load capture_tags %}
-                {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
+          <td>{% block content %}{% endblock %}
                 {{ content|linebreaks }}
-            {% endblock %}
+
           </td>
       </tr>
       <tr>
-          <td style="color: #818181; font-size: small;">
-              <hr color="#818181" style=" border-bottom:1px;"/>
+          <td style="color: #818181; font-size: x-small;">
+              <hr style=" border-bottom:1px; border-color: #818181;"/>
               {% block reason %}{% endblock %}
           </td>
       </tr>
@@ -39,11 +37,11 @@
                 style="width: 100%; border-collapse: collapse;">
                     <tr>
                         {% if organisation.logo %}
-                        <td style="width: 1%;">
+                        <td style="width: 1%; padding-right: 10px">
                             <img width="50" src="cid:meinberlin_logo" style="width: 50px;" alt="MeinBerlin" >
                         </td>
                         {% endif %}
-                        <td  style="color: #818181; font-size: small; vertical-align: top;">
+                        <td  style="color: #818181; font-size: x-small; vertical-align: top;">
                             <p>    {% trans 'meinBerlin is a participation platform operated by' %}<br />
                                     Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin<br />
                                    <a href="{{ email.get_host }}/contact">{% trans 'Contact' %}</a><br />
@@ -55,5 +53,6 @@
             </td>
       </tr>
     </table>
+      </div>
   </body>
 </html>
