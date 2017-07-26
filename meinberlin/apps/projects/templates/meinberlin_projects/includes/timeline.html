@@ -18,7 +18,7 @@
                         {% trans 'Online participation' %}
                     </a>
                     {% if obj == active_phase.module %}
-                        <span class="timeline__active">{% trans 'active' %}</span>
+                        <span class="timeline__active" aria-label="">{% trans 'active' %}</span>
                     {% endif %}
                 </li>
             {% else %}
@@ -28,6 +28,7 @@
                         class="button button--light button--small timeline__button {% if obj == object %}is-selected{% endif %}"
                     >
                         {{ obj.name }}
+                        {% if obj == object %}<span class="sr-only">{% trans 'current page' %}</span>{% endif %}
                     </a>
                 </li>
             {% endif %}
