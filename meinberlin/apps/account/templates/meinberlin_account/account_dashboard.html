@@ -24,6 +24,13 @@
                         </a>
                     </li>
                     <li class="dashboard-nav__page">
+                        <a href="{% url 'account_actions' %}"
+                           class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_actions" %}is-active{% endif %}">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            {% trans 'Activities' %}
+                        </a>
+                    </li>
+                    <li class="dashboard-nav__page">
                         <a href="{% url 'account_change_password' %}"
                            class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == "account_change_password" %}is-active{% endif %}">
                             <i class="fa fa-lock" aria-hidden="true"></i>
