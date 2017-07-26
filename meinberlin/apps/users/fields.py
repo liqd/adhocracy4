@@ -2,7 +2,7 @@ import re
 
 from django.core.validators import RegexValidator
 from django.forms.fields import Field
-from django.forms.widgets import Input
+from django.forms.widgets import TextInput
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -14,7 +14,7 @@ class CommaSeparatedEmailField(Field):
                   'commas.')
     )]
 
-    widget = Input(attrs={
+    widget = TextInput(attrs={
         'placeholder': 'maria@example.com, peter@example.com, '
                        'nicola@example.com,…'
     })
