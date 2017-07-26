@@ -5,7 +5,7 @@
         {{ label }}
     </label>
     <br>
-    <form class="search-filter" action="" method="get">
+    <form class="search-filter" action="" method="get" role="presentation">
         {% for par_name, value in url_par.items %}
             {% if par_name != name %}
                 <input type="hidden" name="{{ par_name }}" value="{{ value }}">
