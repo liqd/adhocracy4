@@ -13,10 +13,13 @@
                 <li>
                     <a
                         href="{{ project.get_absolute_url }}"
-                        class="button button--light button--small timeline__button {% if obj == active_phase.module %}is-active{% endif %} {% if not object|is_offlineevent %}is-selected{% endif %}"
+                        class="button button--light button--small timeline__button {% if not object|is_offlineevent %}is-selected{% endif %}"
                     >
                         {% trans 'Online participation' %}
                     </a>
+                    {% if obj == active_phase.module %}
+                        <span class="timeline__active" aria-label="">{% trans 'active' %}</span>
+                    {% endif %}
                 </li>
             {% else %}
                 <li>
@@ -25,6 +28,7 @@
                         class="button button--light button--small timeline__button {% if obj == object %}is-selected{% endif %}"
                     >
                         {{ obj.name }}
+                        {% if obj == object %}<span class="sr-only">{% trans 'current page' %}</span>{% endif %}
                     </a>
                 </li>
             {% endif %}
