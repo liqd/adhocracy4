@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 from django.views.generic.base import RedirectView
+from rules.contrib.views import LoginRequiredMixin
 
 from adhocracy4.actions.models import Action
 from adhocracy4.follows.models import Follow
@@ -19,6 +20,7 @@ class AccountView(RedirectView):
 
 
 class ProfileUpdateView(SuccessMessageMixin,
+                        LoginRequiredMixin,
                         generic.UpdateView):
 
     model = User
@@ -33,7 +35,8 @@ class ProfileUpdateView(SuccessMessageMixin,
         return self.request.path
 
 
-class ProfileActionsView(generic.ListView):
+class ProfileActionsView(LoginRequiredMixin,
+                         generic.ListView):
 
     model = Action
     paginate_by = 10
