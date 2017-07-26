@@ -40,7 +40,7 @@ class Module(models.Model):
     def is_active_in_project(self):
         return self == self.project.active_module
 
-    @functional.cached_property
+    @property
     def active_phase(self):
         return self.phase_set \
             .active_phases() \
