@@ -11,6 +11,9 @@ User = auth.get_user_model()
 class NewsletterEmail(Email):
     template_name = 'meinberlin_newsletters/emails/newsletter_email'
 
+    def get_reply_to(self):
+        return ['{} <{}>'.format(self.object.sender_name, self.object.sender)]
+
     def get_languages(self, receiver):
         return ['raw']
 
