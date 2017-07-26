@@ -15,7 +15,7 @@ class ModuleDetailView(rules_mixins.PermissionRequiredMixin,
 
     def dispatch(self, request, *args, **kwargs):
         module = self.get_object()
-        if module.is_active:
+        if module.is_active_in_project:
             return ModuleRedirectView.as_view()(request, *args, **kwargs)
         return super().dispatch(request, *args, **kwargs)
 
