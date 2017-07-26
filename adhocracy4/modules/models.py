@@ -30,11 +30,15 @@ class Module(models.Model):
             if hasattr(self, setting):
                 return getattr(self, setting)
 
-    @functional.cached_property
+    @property
     def is_active(self):
         return self.phase_set \
             .active_phases()\
             .exists()
+
+    @property
+    def is_active_in_project(self):
+        return self == self.project.active_module
 
     @functional.cached_property
     def active_phase(self):
