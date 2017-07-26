@@ -15,6 +15,9 @@ class EmailBase:
     fallback_language = 'en'
     for_moderator = False
 
+    def get_reply_to(self):
+        return []
+
     def get_site(self):
         return site_models.Site.objects.get(pk=self.site_id)
 
@@ -95,6 +98,7 @@ class EmailBase:
                 body=text,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 to=[to_address],
+                reply_to=self.get_reply_to()
             )
 
             if len(attachments) > 0:
