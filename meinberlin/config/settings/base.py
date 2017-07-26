@@ -66,6 +66,7 @@ INSTALLED_APPS = (
     'adhocracy4.maps.apps.MapsConfig',
     'adhocracy4.actions.apps.ActionsConfig',
     'adhocracy4.follows.apps.FollowsConfig',
+    'adhocracy4.filters.apps.FiltersConfig',
 
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.cms.apps.Config',
