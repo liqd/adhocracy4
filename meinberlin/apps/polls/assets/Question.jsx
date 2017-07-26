@@ -178,7 +178,7 @@ var Question = React.createClass({
 
               if (this.state.showResult || !this.state.active) {
                 return (
-                  <div className="poll-row" key={i}>
+                  <div className="poll-row" key={choice.id}>
                     <div className="poll-row__number">{ percent }%</div>
                     <div className="poll-row__label">{ choice.label }</div>
                     { chosen ? <i className="fa fa-check-circle u-primary" aria-label={django.gettext('Your choice')} /> : '' }
@@ -187,7 +187,7 @@ var Question = React.createClass({
                 )
               } else {
                 return (
-                  <label className="poll-row radio" key={i}>
+                  <label className="poll-row radio" key={choice.id}>
                     <input
                       className="poll-row__radio radio__input"
                       type="radio"
