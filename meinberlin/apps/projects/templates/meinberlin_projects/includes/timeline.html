@@ -17,9 +17,8 @@
                     >
                         {% trans 'Online participation' %}
                     </a>
-                    {% if obj == active_phase.module %}
-                        <span class="timeline__active">{% trans 'active' %}</span>
-                    {% endif %}
+                    {% if obj == active_phase.module %}<span class="timeline__active">{% trans 'active' %}</span>{% endif %}
+                    {% if obj == object %}<span class="sr-only">{% trans 'current page' %}</span>{% endif %}
                 </li>
             {% else %}
                 <li>
