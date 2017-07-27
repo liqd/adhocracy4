@@ -16,7 +16,7 @@ class EmailBase:
     for_moderator = False
 
     def get_reply_to(self):
-        return []
+        return None
 
     def get_site(self):
         return site_models.Site.objects.get(pk=self.site_id)
