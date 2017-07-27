@@ -12,7 +12,6 @@ var Question = React.createClass({
       counts: choices.map(o => o.count),
       ownChoice: ownChoice,
       selectedChoice: ownChoice,
-      active: true,
       showResult: !(ownChoice === null) || hasFinished,
       alert: null
     }
@@ -137,9 +136,7 @@ var Question = React.createClass({
 
     let footer
     let totalString = `${total} ${django.ngettext('vote', 'votes', total)}`
-    if (!this.state.active) {
-      footer = totalString
-    } else if (this.state.showResult) {
+    if (this.state.showResult) {
       footer = (
         <div className="poll__actions">
           { totalString }
@@ -176,7 +173,7 @@ var Question = React.createClass({
               let percent = total === 0 ? 0 : Math.round(count / total * 100)
               let highlight = count === max && max > 0
 
-              if (this.state.showResult || !this.state.active) {
+              if (this.state.showResult) {
                 return (
                   <div className="poll-row" key={choice.id}>
                     <div className="poll-row__number">{ percent }%</div>
