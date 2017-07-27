@@ -10,8 +10,8 @@ from adhocracy4.test import helpers
 
 
 def pytest_configure(config):
-    """Patch backgroun_task decorators for all tests."""
-    helpers.patch_background_task_decorator().start()
+    # Patch email background_task decorators for all tests
+    helpers.patch_background_task_decorator('adhocracy4.emails.tasks')
 
 
 @pytest.fixture
