@@ -1,0 +1,25 @@
+{% extends 'meinberlin_projects/project_detail.html' %}
+{% load i18n wagtailcore_tags %}
+
+{% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
+{% block phase_content %}
+    <div class="l-wrapper">
+        <div class="l-center-6">
+
+            <div class="item-detail">
+                <h2 class="item-detail__title">{{ object.name }}</h2>
+
+                <div class="item-detail__meta">
+                    <strong>{{ object.date }}</strong>
+                </div>
+
+
+                <div class="item-detail__content">
+                    {{ object.description | richtext }}
+
+                    {% block additional_content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

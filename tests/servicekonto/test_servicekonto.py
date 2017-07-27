@@ -10,15 +10,15 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.test import RequestFactory
 
-from apps.servicekonto.provider import ServiceKontoProvider
-from apps.servicekonto.views import ServiceKontoApiError
+from meinberlin.apps.servicekonto.provider import ServiceKontoProvider
+from meinberlin.apps.servicekonto.views import ServiceKontoApiError
 
 User = get_user_model()
 
 
 def _mock_servicekonto_response(monkeypatch, response):
     monkeypatch.setattr(
-        'apps.servicekonto.views._get_service_konto_user_data_xml',
+        'meinberlin.apps.servicekonto.views._get_service_konto_user_data_xml',
         lambda request, token: str(response)
     )
 
@@ -239,7 +239,7 @@ def test_invalid_token(monkeypatch, client, user):
         raise ServiceKontoApiError(error=AuthError.DENIED)
 
     monkeypatch.setattr(
-        'apps.servicekonto.views._get_service_konto_user_data_xml',
+        'meinberlin.apps.servicekonto.views._get_service_konto_user_data_xml',
         auth_denied
     )
 

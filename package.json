@@ -1,5 +1,16 @@
 {
   "name": "a4-meinberlin",
+  "version": "0.0.1-dev.1",
+  "license": "AGPL-3.0+",
+  "description": "Frontend for meinBerlin",
+  "author": {
+    "name": "Liquid Democracy e.V.",
+    "email": "info@liqd.de",
+    "url": "https://liqd.net"
+  },
+  "files": [
+    "meinberlin"
+  ],
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
     "autoprefixer": "7.1.1",

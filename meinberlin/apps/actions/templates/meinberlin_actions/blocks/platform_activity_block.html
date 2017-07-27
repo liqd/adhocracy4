@@ -1,0 +1,7 @@
+<div class="block block--bordered l-center-6">
+    <h2>{{ self.heading }}</h2>
+
+    {% for action in actions %}
+        {% include 'meinberlin_actions/includes/action.html' with action=action %}
+    {% endfor %}
+</div>

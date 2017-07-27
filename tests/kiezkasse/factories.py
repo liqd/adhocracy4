@@ -1,7 +1,7 @@
 import factory
 
 from adhocracy4.test.factories import ModuleFactory
-from apps.kiezkasse import models
+from meinberlin.apps.kiezkasse import models
 from tests.factories import UserFactory
 
 
