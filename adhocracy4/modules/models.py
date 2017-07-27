@@ -1,6 +1,5 @@
 from autoslug import AutoSlugField
 from django.db import models
-from django.utils import functional
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 
@@ -46,7 +45,7 @@ class Module(models.Model):
             .active_phases() \
             .first()
 
-    @functional.cached_property
+    @property
     def phases(self):
         return self.phase_set.all()
 
