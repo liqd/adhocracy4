@@ -12,10 +12,8 @@ class PhaseDispatchMixin(generic.DetailView):
         """
         project = self.get_object()
 
-        if project.active_phase:
-            return project.active_phase.view.as_view()
-        elif project.past_phases:
-            return project.past_phases[0].view.as_view()
+        if project.last_active_module:
+            return project.last_active_module.last_active_phase.view.as_view()
         else:
             return super().dispatch
 

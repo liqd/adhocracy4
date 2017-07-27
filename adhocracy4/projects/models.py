@@ -172,9 +172,9 @@ class Project(base.TimeStampedModel):
 
     @property
     def days_left(self):
-        if self.active_phase:
+        if self.active_module and self.active_module.active_phase:
             today = timezone.now().replace(hour=0, minute=0, second=0)
-            time_delta = self.active_phase.end_date - today
+            time_delta = self.active_module.active_phase.end_date - today
             return time_delta.days
 
     @property
