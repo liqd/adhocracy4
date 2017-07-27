@@ -166,9 +166,9 @@ class Project(base.TimeStampedModel):
 
     @property
     def active_phase(self):
-        return self.phases\
-                   .active_phases()\
-                   .first()
+        if self.active_module:
+            return self.active_module.active_phase
+        return None
 
     @property
     def days_left(self):
