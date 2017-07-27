@@ -36,7 +36,7 @@ class NewsletterEmail(Email):
         attachments = super().get_attachments()
 
         organisation = self.kwargs['organisation']
-        if organisation.logo:
+        if organisation and organisation.logo:
             f = open(organisation.logo.path, 'rb')
             logo = MIMEImage(f.read())
             logo.add_header('Content-ID', '<{}>'.format('logo'))
