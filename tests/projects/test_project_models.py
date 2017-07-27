@@ -200,8 +200,8 @@ def test_past_phases_property(module, phase_factory):
 
 @pytest.mark.django_db
 def test_active_module_property(project, module_factory, phase_factory):
-    module = module_factory(project=project)
-    module2 = module_factory(project=project)
+    module = module_factory(project=project, weight=2)
+    module2 = module_factory(project=project, weight=1)
     phase_factory(
         module=module,
         start_date=parse('2013-03-01 18:00:00 UTC'),

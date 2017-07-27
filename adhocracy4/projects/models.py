@@ -148,15 +148,18 @@ class Project(base.TimeStampedModel):
     @property
     def last_active_module(self):
         """Return the module of the currently active or last past phase."""
-        phase = self.active_phase or self.past_phases.first()
+        if self.active_module:
+            return self.active_module
+        phase = self.past_phases.first()
         if phase:
             return phase.module
         return None
 
     @property
     def active_module(self):
-        """Return the currently active module that ends first."""
-        phase = self.phases.active_phases().order_by('end_date').first()
+        """Return the currently active module."""
+        phase = self.phases.active_phases()\
+            .order_by('module__weight', 'weight').first()
         if phase:
             return phase.module
         return None
