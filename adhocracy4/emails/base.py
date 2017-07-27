@@ -48,6 +48,9 @@ class EmailBase:
     def get_languages(self, receiver):
         return [translation.get_language(), self.fallback_language]
 
+    def get_reply_to(self):
+        return None
+
     @classmethod
     def send(cls, object, *args, **kwargs):
         """Send email asynchronously.
@@ -105,6 +108,7 @@ class EmailBase:
                 body=text,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 to=[to_address],
+                reply_to=self.get_reply_to(),
             )
 
             if len(attachments) > 0:
