@@ -11,7 +11,7 @@ from . import factories
 
 
 def pytest_configure(config):
-    """Patch backgroun_task decorators for all tests."""
+    """Patch background_task decorators for all tests."""
     helpers.patch_background_task_decorator().start()
 
 
