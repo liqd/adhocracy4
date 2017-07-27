@@ -6,7 +6,7 @@ export const Modal = React.createClass({
     let dismiss = this.props.dismissOnSubmit ? 'modal' : 'false'
     return (
       <div className="modal fade" id={this.props.name} tabIndex="-1"
-        role="dialog" aria-labelledby="myModalLabel">
+        role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-lg" role="document">
           <div className="modal-content">
             <div className="modal-header">
