@@ -1,5 +1,4 @@
-from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404
+from django.http.response import HttpResponseRedirect
 from django.views import generic
 
 from adhocracy4.rules import mixins as rules_mixins
@@ -16,7 +15,8 @@ class ModuleDetailView(rules_mixins.PermissionRequiredMixin,
     def dispatch(self, request, *args, **kwargs):
         module = self.get_object()
         if module.is_active_in_project:
-            return ModuleRedirectView.as_view()(request, *args, **kwargs)
+            redirect_url = module.project.get_absolute_url()
+            return HttpResponseRedirect(redirect_url)
         return super().dispatch(request, *args, **kwargs)
 
     @property
@@ -25,21 +25,3 @@ class ModuleDetailView(rules_mixins.PermissionRequiredMixin,
 
     def get_permission_object(self):
         return self.project
-
-
-class ModuleRedirectView(rules_mixins.PermissionRequiredMixin,
-                         generic.RedirectView):
-    permission_required = 'a4projects.view_project'
-    permanent = False
-
-    def dispatch(self, request, *args, **kwargs):
-        module_slug = kwargs.get('module_slug')
-        self.module = get_object_or_404(models.Module, slug=module_slug)
-        return super().dispatch(request, *args, **kwargs)
-
-    def get_redirect_url(self, *args, **kwargs):
-        return reverse(
-            'project-detail', kwargs={'slug': self.module.project.slug})
-
-    def get_permission_object(self):
-        return self.module.project
