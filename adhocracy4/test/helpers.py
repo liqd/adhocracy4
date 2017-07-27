@@ -1,3 +1,4 @@
+import importlib
 import json
 import os
 from unittest import mock
@@ -37,12 +38,14 @@ def render_template(string, context=None):
     return Template(string).render(context)
 
 
-def patch_background_task_decorator():
+def patch_background_task_decorator(*decorated_modules):
     """Patch the 'background' decorator from background_task.
 
     The decorator will be patched by a synchronous function that
     first checks if its input is json serializable (a prerequisite of
     background_tasks) and second calls the actual task function.
+    The modules on which the decorator is used have to be indicated
+    because they have to be reloaded to effectively apply the patch.
     """
     decorator = 'background_task.background'
 
@@ -56,4 +59,11 @@ def patch_background_task_decorator():
         return background_mock
 
     patcher = mock.patch(decorator, wraps=decorator_mock)
-    return patcher
+    mocked_decorator = patcher.start()
+
+    # Apply the patch by reloading the modules using the decorator
+    for decorated_module in decorated_modules:
+        module = importlib.import_module(decorated_module)
+        importlib.reload(module)
+
+    return patcher, mocked_decorator
