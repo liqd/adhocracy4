@@ -2,9 +2,9 @@ import django_filters
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import models as category_models
+from adhocracy4.filters.widgets import DropdownLinkWidget
 
 from . import mixins
-from . import widgets
 
 
 def category_queryset(request):
@@ -12,7 +12,7 @@ def category_queryset(request):
         module=request.project.last_active_module)
 
 
-class CategoryFilterWidget(widgets.DropdownLinkWidget):
+class CategoryFilterWidget(DropdownLinkWidget):
     label = _('Category')
 
 
@@ -26,7 +26,7 @@ class CategoryFilter(django_filters.ModelChoiceFilter):
         super().__init__(*args, **kwargs)
 
 
-class OrderingWidget(widgets.DropdownLinkWidget):
+class OrderingWidget(DropdownLinkWidget):
     label = _('Ordering')
     right = True
 

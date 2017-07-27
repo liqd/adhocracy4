@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<div class="action">
+    <i class="fa fa-{{ action.icon }} action__icon" aria-hidden="true"></i>
+    <div class="action__main">
+        <div class="action__line">
+            {% if action.type == 'comment' and action.verb == 'add' %}
+                {% blocktrans with url=action.actor.get_absolute_url name=action.actor.username comment_url=action.obj.get_absolute_url %}{{ name }} added a new <a href="{{ comment_url }}">comment</a>{% endblocktrans %}
+            {% elif action.type == 'comment' and action.verb == 'update' %}
+                {% blocktrans with url=action.actor.get_absolute_url name=action.actor.username comment_url=action.obj.get_absolute_url %}{{ name }} updated a <a href="{{ comment_url }}">comment</a>{% endblocktrans %}
+            {% elif action.type == 'item' and action.verb == 'add' %}
+                {% blocktrans with url=action.actor.get_absolute_url name=action.actor.username item_url=action.obj.get_absolute_url %}{{ name }} added a new <a href="{{ item_url }}">item</a>{% endblocktrans %}
+            {% elif action.type == 'item' and action.verb == 'update' %}
+                {% blocktrans with url=action.actor.get_absolute_url name=action.actor.username item_url=action.obj.get_absolute_url %}{{ name }} updated an <a href="{{ item_url }}">item</a>{% endblocktrans %}
+            {% elif action.type == 'project' and action.verb == 'start' %}
+                {% trans "New participation started" %}
+            {% elif action.type == 'phase' and action.verb == 'schedule' %}
+                {% trans "Participation phase will end soon:" %}
+                {{ action.obj.name }}
+            {% else %}
+                {{ action }}
+            {% endif %}
+        </div>
+        <div class="action__line">
+            {% blocktrans with url=action.project.get_absolute_url name=action.project.name %}on <a href="{{ url }}">{{ name }}</a>{% endblocktrans %}
+        </div>
+        <div class="action__date">
+            <time datetime="{{ action.timestamp|date:'Y-m-d h:i' }}"
+                  title="{{ action.timestamp|date:'DATETIME_FORMAT' }}"
+                  class="relative">
+                {{ action.timestamp|date:'d.m.Y' }}
+            </time>
+        </div>
+    </div>
+</div>

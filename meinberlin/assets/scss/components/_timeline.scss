@@ -1,8 +1,9 @@
-$circle-size: 0.6em;
+$circle-size: 0.8em;
 
 .timeline {
     font-size: $font-size-sm;
     padding-left: 2em;
+    margin-bottom: $spacer;
     color: $link-color;
 
     ul {
@@ -60,12 +61,6 @@ $circle-size: 0.6em;
         box-shadow: 0 0 0 0.2em $body-bg;
     }
 
-    &.is-active {
-        &:after {
-            border-color: $link-color;
-        }
-    }
-
     &.is-selected {
         @include button-color($link-color, $link-hover-color);
 
@@ -84,7 +79,7 @@ $circle-size: 0.6em;
     .timeline li {
         display: inline-block;
         margin-right: 5px;
-        margin-bottom: 1em + $circle-size;
+        margin-bottom: 2.5em + $circle-size;
 
         &:before,
         &:first-child:before,
@@ -115,25 +110,35 @@ $circle-size: 0.6em;
         left: 50%;
         margin-left: (-$circle-size / 2);
     }
+
+    .timeline__active {
+        position: absolute;
+        bottom: (-$circle-size * 1.5 - 1.5em);
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
 }
 
-.phase-info {
-    margin-bottom: $spacer * 2;
-    padding: $padding;
-    border-left: 0.3em solid transparent;
+.phase-info__item {
+    padding: $padding 0;
+    border-bottom: 1px solid $border-color;
+
+    &:first-child {
+        border-top: 1px solid $border-color;
+        margin-top: $spacer * 2;
+    }
+
+    &:last-child {
+        margin-bottom: $spacer;
+    }
 }
 
-.phase-info--active {
-    background-color: $bg-tertiary;
-    border-left-color: $brand-primary;
+.phase-info__item__title {
+    font-weight: bold;
 }
 
-.phase-info__title {
-    font-size: $font-size-xl;
-    margin-bottom: 0.5rem;
-    margin-top: 0;
-}
-
-.phase-info__subtitle {
-    margin-bottom: 0.5rem;
+.phase-info__highlight {
+    font-weight: normal;
+    color: $brand-primary;
 }

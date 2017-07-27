@@ -56,7 +56,8 @@ class PollManagementView(ProjectContextDispatcher,
         return self.get_or_create_poll()
 
     def get_or_create_poll(self):
-        module = self.project.last_active_module
+        # FIXME: Add multi-module support
+        module = self.project.module_set.first()
         try:
             obj = models.Poll.objects.get(module=module)
         except models.Poll.DoesNotExist:

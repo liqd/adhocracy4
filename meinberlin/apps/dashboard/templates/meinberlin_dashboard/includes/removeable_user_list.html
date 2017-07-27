@@ -12,8 +12,8 @@
         <tbody>
             {% for user in users %}
                 <tr>
-                    <td><label for="user-{{ user.pk }}">{{ user.username }}</label></td>
-                    <td><label for="user-{{ user.pk }}">{{ user.email }}</label></td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
                     <td class="td--action">
                         <form method="post">
                             {% csrf_token %}
