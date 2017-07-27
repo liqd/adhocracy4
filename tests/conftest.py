@@ -11,8 +11,8 @@ from . import factories
 
 
 def pytest_configure(config):
-    """Patch background_task decorators for all tests."""
-    helpers.patch_background_task_decorator().start()
+    # Patch email background_task decorators for all tests
+    helpers.patch_background_task_decorator('adhocracy4.emails.tasks')
 
 
 register(factories.UserFactory)
