@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'ckeditor_uploader',
     'capture_tag',
+    'background_task',
 
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
