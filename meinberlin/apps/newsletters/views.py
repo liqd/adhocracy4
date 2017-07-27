@@ -29,6 +29,16 @@ class NewsletterCreateView(generic.CreateView):
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
+
+        if hasattr(self, 'organisation'):
+            sender_name = self.organisation.name
+        else:
+            sender_name = settings.WAGTAIL_SITE_NAME
+
+        kwargs['initial'] = {
+            'sender_name': sender_name,
+            'sender': settings.CONTACT_EMAIL
+        }
         return kwargs
 
     def get_success_url(self):
