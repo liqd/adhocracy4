@@ -5,8 +5,15 @@ from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
 from adhocracy4.test import factories as a4_factories
+from adhocracy4.test import helpers
 
 from . import factories
+
+
+def pytest_configure(config):
+    """Patch background_task decorators for all tests."""
+    helpers.patch_background_task_decorator().start()
+
 
 register(factories.UserFactory)
 register(factories.UserFactory, 'user2')
