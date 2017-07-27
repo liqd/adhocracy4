@@ -189,7 +189,7 @@ class DashboardNewsletterCreateView(NewsletterCreateView,
 
     def get_email_kwargs(self):
         kwargs = {}
-        kwargs.update({'organisation': self.organisation})
+        kwargs.update({'organisation_pk': self.organisation.pk})
         return kwargs
 
     def get_form_kwargs(self):

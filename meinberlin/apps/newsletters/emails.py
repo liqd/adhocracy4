@@ -1,15 +1,27 @@
 from email.mime.image import MIMEImage
 
+from django.apps import apps
+from django.conf import settings
 from django.contrib import auth
 from django.contrib.staticfiles import finders
 
 from meinberlin.apps.contrib.emails import Email
 
+Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 User = auth.get_user_model()
 
 
 class NewsletterEmail(Email):
     template_name = 'meinberlin_newsletters/emails/newsletter_email'
+
+    def dispatch(self, object, *args, **kwargs):
+        organisation_pk = kwargs.pop('organisation_pk', None)
+        organisation = None
+        if organisation_pk:
+            organisation = Organisation.objects.get(pk=organisation_pk)
+        kwargs['organisation'] = organisation
+
+        return super().dispatch(object, *args, **kwargs)
 
     def get_reply_to(self):
         return ['{} <{}>'.format(self.object.sender_name, self.object.sender)]

@@ -1,3 +1,5 @@
+from django.apps import apps
+from django.conf import settings
 from django.contrib import auth
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
@@ -6,12 +8,12 @@ from django.utils import timezone
 from django.views import generic
 
 from adhocracy4.follows.models import Follow
-from meinberlin.apps.organisations.models import Organisation
 
 from . import emails
 from . import forms
 from . import models
 
+Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 User = auth.get_user_model()
 
 
@@ -21,7 +23,7 @@ class NewsletterCreateView(generic.CreateView):
 
     def get_email_kwargs(self):
         kwargs = {}
-        kwargs.update({'organisation': None})
+        kwargs.update({'organisation_pk': None})
         return kwargs
 
     def get_form_kwargs(self):
@@ -68,10 +70,11 @@ class NewsletterCreateView(generic.CreateView):
 
             elif receivers == models.INITIATOR:
                 participant_ids = Organisation.objects.get(
-                    pk=int(form.data['organisation'])).initiators.all()
+                    pk=int(form.data['organisation'])).initiators.all()\
+                    .values_list('pk', flat=True)
 
             emails.NewsletterEmail.send(instance,
-                                        participant_ids=participant_ids,
+                                        participant_ids=list(participant_ids),
                                         **self.get_email_kwargs())
             return HttpResponseRedirect(self.get_success_url())
 
