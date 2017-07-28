@@ -129,6 +129,12 @@ var Question = React.createClass({
     }
   },
 
+  doBarTransition: function (node, style) {
+    if (node && node.style) {
+      window.requestAnimationFrame(() => Object.assign(node.style, style))
+    }
+  },
+
   render: function () {
     let counts = this.state.counts
     let total = counts.reduce((sum, c) => sum + c, 0)
@@ -179,7 +185,8 @@ var Question = React.createClass({
                     <div className="poll-row__number">{ percent }%</div>
                     <div className="poll-row__label">{ choice.label }</div>
                     { chosen ? <i className="fa fa-check-circle u-primary" aria-label={django.gettext('Your choice')} /> : '' }
-                    <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')} style={{width: percent + '%'}} />
+                    <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
+                      ref={node => this.doBarTransition(node, {width: percent + '%'})} />
                   </div>
                 )
               } else {
