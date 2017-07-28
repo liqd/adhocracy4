@@ -3,6 +3,7 @@ Django==1.8.17
 django-allauth==0.27.0
 django-autofixture==0.12.1
 django-autoslug==1.9.3
+django-background-tasks==1.1.10
 django-ckeditor==5.1.1
 python-dateutil==2.6.0
 django-filter==1.0.1

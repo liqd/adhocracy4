@@ -1,4 +1,6 @@
+import json
 import os
+from unittest import mock
 from urllib.parse import urlparse
 
 from django.conf import settings
@@ -33,3 +35,25 @@ def redirect_target(response):
 def render_template(string, context=None):
     context = Context(context or {})
     return Template(string).render(context)
+
+
+def patch_background_task_decorator():
+    """Patch the 'background' decorator from background_task.
+
+    The decorator will be patched by a synchronous function that
+    first checks if its input is json serializable (a prerequisite of
+    background_tasks) and second calls the actual task function.
+    """
+    decorator = 'background_task.background'
+
+    def decorator_mock(*args, **kwargs):
+        def background_mock(task_function):
+            def json_checked_function(*args, **kwargs):
+                # Ensure the arguments are json serializable
+                json.dumps((args, kwargs))
+                return task_function(*args, **kwargs)
+            return json_checked_function
+        return background_mock
+
+    patcher = mock.patch(decorator, wraps=decorator_mock)
+    return patcher
