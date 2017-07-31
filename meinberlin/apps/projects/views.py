@@ -7,7 +7,9 @@ from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters import views as filter_views
+from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import DefaultsFilterSet
+from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.dashboard import blueprints
@@ -20,6 +22,10 @@ class OrderingWidget(DropdownLinkWidget):
 
 class OrganisationWidget(DropdownLinkWidget):
     label = _('Organisation')
+
+
+class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
+    label = _('Search')
 
 
 class ArchivedWidget(DropdownLinkWidget):
@@ -75,6 +81,11 @@ class ProjectFilterSet(DefaultsFilterSet):
         widget=OrderingWidget,
     )
 
+    search = FreeTextFilter(
+        widget=FreeTextFilterWidget,
+        fields=['name', 'description']
+    )
+
     organisation = django_filters.ModelChoiceFilter(
         queryset=apps.get_model(settings.A4_ORGANISATIONS_MODEL).objects
                      .order_by('name'),
@@ -97,7 +108,7 @@ class ProjectFilterSet(DefaultsFilterSet):
 
     class Meta:
         model = project_models.Project
-        fields = ['organisation', 'is_archived', 'created', 'typ']
+        fields = ['search', 'organisation', 'is_archived', 'created', 'typ']
 
 
 class ProjectListView(filter_views.FilteredListView):

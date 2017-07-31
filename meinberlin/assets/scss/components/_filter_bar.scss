@@ -31,6 +31,10 @@
             @include grid-position(6);
         }
     }
+
+    .form-group {
+        margin-bottom: 0;
+    }
 }
 
 .control-bar__top-overlap {
