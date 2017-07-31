@@ -18,8 +18,6 @@ from meinberlin.apps.contrib.formset import dynamic_modelformset_factory
 from meinberlin.apps.extprojects import models as extproject_models
 from meinberlin.apps.extprojects import phases as extproject_phases
 from meinberlin.apps.maps.widgets import MapChoosePolygonWithPresetWidget
-from meinberlin.apps.newsletters.forms import RECEIVER_CHOICES
-from meinberlin.apps.newsletters.models import Newsletter
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.users.fields import CommaSeparatedEmailField
 
@@ -476,24 +474,3 @@ class BplanProjectUpdateForm(BplanProjectBaseForm):
             phase.start_date = self.cleaned_data['start_date']
             phase.end_date = self.cleaned_data['end_date']
             phase.save()
-
-
-class NewsletterCreateForm(forms.ModelForm):
-    class Meta:
-        model = Newsletter
-        fields = ['sender_name', 'sender', 'receivers', 'project',
-                  'organisation', 'subject', 'body']
-
-    def __init__(self, organisation, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        radio_choices = []
-        for value, string in RECEIVER_CHOICES:
-            if value != 0:
-                radio_choices.append((value, string))
-        self.fields['receivers'] = forms.ChoiceField(
-            choices=radio_choices, widget=forms.RadioSelect())
-
-        self.fields['project'] = forms.ModelChoiceField(
-            project_models.Project.objects.filter(
-                organisation=organisation.id),
-            required=False, empty_label=None)

@@ -38,8 +38,7 @@ class Newsletter(UserGeneratedContentModel):
                                 verbose_name=_('Sent'))
 
     receivers = models.PositiveSmallIntegerField(choices=RECEIVER_CHOICES,
-                                                 verbose_name=_('Receivers'),
-                                                 default='')
+                                                 verbose_name=_('Receivers'))
 
     project = models.ForeignKey(Project,
                                 null=True, blank=True,

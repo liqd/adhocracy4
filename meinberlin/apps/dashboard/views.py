@@ -20,6 +20,7 @@ from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.bplan import models as bplan_models
 from meinberlin.apps.extprojects import models as extproject_models
+from meinberlin.apps.newsletters.forms import NewsletterForm
 from meinberlin.apps.newsletters.views import NewsletterCreateView
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.projects.emails import InviteParticipantEmail
@@ -185,7 +186,7 @@ class DashboardNewsletterCreateView(NewsletterCreateView,
     template_name = 'meinberlin_dashboard/newsletter_form.html'
     menu_item = 'newsletter'
     success_message = _('Newsletter s<uccessfully created.')
-    form_class = forms.NewsletterCreateForm
+    form_class = NewsletterForm
 
     def get_email_kwargs(self):
         kwargs = {}
