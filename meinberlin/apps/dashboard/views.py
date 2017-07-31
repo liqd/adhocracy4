@@ -181,12 +181,13 @@ class DashboardOrganisationUpdateView(mixins.DashboardBaseMixin,
     menu_item = 'organisation'
 
 
-class DashboardNewsletterCreateView(NewsletterCreateView,
-                                    mixins.DashboardBaseMixin):
+class DashboardNewsletterCreateView(mixins.DashboardBaseMixin,
+                                    NewsletterCreateView):
     template_name = 'meinberlin_dashboard/newsletter_form.html'
     menu_item = 'newsletter'
     success_message = _('Newsletter s<uccessfully created.')
     form_class = NewsletterForm
+    permission_required = 'a4projects.add_project'
 
     def get_email_kwargs(self):
         kwargs = {}

@@ -8,6 +8,7 @@ from django.utils import timezone
 from django.views import generic
 
 from adhocracy4.follows.models import Follow
+from adhocracy4.rules import mixins as rules_mixins
 
 from . import emails
 from . import forms
@@ -17,9 +18,11 @@ Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 User = auth.get_user_model()
 
 
-class NewsletterCreateView(generic.CreateView):
+class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
+                           generic.CreateView):
     model = models.Newsletter
     form_class = forms.NewsletterForm
+    permission_required = 'is_superuser'
 
     def get_email_kwargs(self):
         kwargs = {}
