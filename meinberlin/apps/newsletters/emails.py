@@ -30,7 +30,11 @@ class NewsletterEmail(Email):
         return ['raw']
 
     def get_receivers(self):
-        return User.objects.filter(id__in=self.kwargs['participant_ids'])
+        return User.objects\
+            .filter(id__in=self.kwargs['participant_ids'])\
+            .filter(get_newsletters=True)\
+            .filter(is_active=True)\
+            .distinct()
 
     def get_attachments(self):
         attachments = super().get_attachments()
