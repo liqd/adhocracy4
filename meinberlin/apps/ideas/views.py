@@ -5,6 +5,8 @@ from django.views import generic
 
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
+from adhocracy4.filters import widgets as filters_widgets
+from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.modules import models as module_models
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
@@ -13,6 +15,10 @@ from meinberlin.apps.exports import views as export_views
 
 from . import forms
 from . import models
+
+
+class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
+    label = _('Search')
 
 
 def get_ordering_choices(request):
@@ -31,10 +37,14 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
     ordering = filters.OrderingFilter(
         choices=get_ordering_choices
     )
+    search = FreeTextFilter(
+        widget=FreeTextFilterWidget,
+        fields=['name']
+    )
 
     class Meta:
         model = models.Idea
-        fields = ['category']
+        fields = ['search', 'category']
 
 
 class AbstractIdeaListView(ProjectContextDispatcher,
@@ -123,10 +133,11 @@ class AbstractIdeaUpdateView(ProjectContextDispatcher,
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['module'] = self.project.last_active_module
-        if self.project.last_active_module.settings_instance:
+        instance = kwargs.get('instance')
+        kwargs['module'] = instance.module
+        if instance.module.settings_instance:
             kwargs['settings_instance'] = \
-                self.project.last_active_module.settings_instance
+                instance.module.settings_instance
         return kwargs
 
 

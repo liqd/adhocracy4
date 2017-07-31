@@ -1,3 +1,5 @@
+from django.http import Http404
+from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.rules import mixins as rules_mixins
@@ -21,7 +23,9 @@ class DocumentManagementView(ProjectContextDispatcher,
     def get_context_data(self, **kwargs):
         context = super(DocumentManagementView, self)\
             .get_context_data(**kwargs)
-        context['module'] = self.project.last_active_module
+        # FIXME: Add multi-module support
+        module = self.project.module_set.first()
+        context['module'] = module
         return context
 
 
@@ -45,9 +49,13 @@ class ChapterDetailView(ProjectContextDispatcher,
 class DocumentDetailView(ChapterDetailView):
 
     def get_object(self):
-        return models.Chapter.objects\
-            .filter(module=self.project.last_active_module)\
+        first_chapter = models.Chapter.objects \
+            .filter(module=self.project.last_active_module) \
             .first()
+
+        if not first_chapter:
+            raise Http404(_('Document has no chapters defined.'))
+        return first_chapter
 
 
 class ParagraphDetailView(ProjectContextDispatcher,

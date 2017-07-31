@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-24 13:50+0200\n"
+"POT-Creation-Date: 2017-07-25 10:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1131,6 +1131,10 @@ msgstr "Next Chapter"
 #: meinberlin/apps/documents/templates/meinberlin_documents/paragraph_detail.html.py:14
 msgid "back to chapter"
 msgstr "back to chapter"
+
+#: meinberlin/apps/documents/views.py:55
+msgid "Document has no chapters defined."
+msgstr "Document has no chapters defined."
 
 #: meinberlin/apps/embed/templates/meinberlin_embed/embed.html.py:24
 #: meinberlin/apps/embed/templates/meinberlin_embed/embed.html.py:46
