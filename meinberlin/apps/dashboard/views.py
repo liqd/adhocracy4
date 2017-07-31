@@ -185,7 +185,7 @@ class DashboardNewsletterCreateView(mixins.DashboardBaseMixin,
                                     NewsletterCreateView):
     template_name = 'meinberlin_dashboard/newsletter_form.html'
     menu_item = 'newsletter'
-    success_message = _('Newsletter s<uccessfully created.')
+    success_message = _('Newsletter successfully created.')
     form_class = NewsletterForm
     permission_required = 'a4projects.add_project'
 
@@ -201,7 +201,6 @@ class DashboardNewsletterCreateView(mixins.DashboardBaseMixin,
         return kwargs
 
     def get_success_url(self):
-
         return reverse(
             'dashboard-newsletter-create',
             kwargs={'organisation_slug': self.organisation.slug})
