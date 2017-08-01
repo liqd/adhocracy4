@@ -111,7 +111,7 @@ class EmailFormPage(AbstractEmailForm):
             ('xls', 'XLSX Document'),
             ('txt', 'Text'),
         ),
-        default='xlsx',
+        default='xls',
         help_text='Form results are send in this document format',
     )
 
