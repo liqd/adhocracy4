@@ -6,6 +6,12 @@ from tests.images import factories as img_factories
 from tests.apps.locations import factories as location_factories
 from tests.apps.questions import factories as q_factories
 from adhocracy4.test import factories
+from adhocracy4.test import helpers
+
+
+def pytest_configure(config):
+    # Patch email background_task decorators for all tests
+    helpers.patch_background_task_decorator('adhocracy4.emails.tasks')
 
 
 @pytest.fixture
