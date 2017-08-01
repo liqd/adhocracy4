@@ -150,7 +150,9 @@ class Project(base.TimeStampedModel):
         """Return the module of the currently active or last past phase."""
         if self.active_module:
             return self.active_module
-        phase = self.past_phases.first()
+        phase = self.past_phases \
+            .order_by('module__weight', 'weight')\
+            .first()
         if phase:
             return phase.module
         return None
