@@ -50,8 +50,6 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
         return reverse('meinberlin_newsletters:newsletter-create')
 
     def form_valid(self, form):
-        instance = form.save(commit=False)
-
         # Check if the current user is allowed to send to the selected org
         organisation = form.cleaned_data['organisation']
         if not (self.request.user.is_superuser or
@@ -59,60 +57,40 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
                     .has_initiator(self.request.user)):
             raise PermissionDenied
 
+        instance = form.save(commit=False)
         instance.creator = self.request.user
+        instance.sent = timezone.now()
         instance.save()
         form.save_m2m()
 
-        if 'send' in form.data:
-            instance.sent = timezone.now()
-            instance.save()
+        receivers = int(form.cleaned_data['receivers'])
+        participant_ids = []
 
-            receivers = int(form.cleaned_data['receivers'])
-            participant_ids = []
+        if receivers == models.PROJECT:
+            participant_ids = Follow.objects.filter(
+                project=form.cleaned_data['project'].pk,
+                enabled=True
+            ).values_list('creator', flat=True)
 
-            if receivers == models.PROJECT:
-                participant_ids = Follow.objects.filter(
-                    project=form.cleaned_data['project'].pk,
-                    enabled=True
-                ).values_list('creator', flat=True)
+        elif receivers == models.ORGANISATION:
+            participant_ids = Follow.objects.filter(
+                project__organisation=organisation.pk,
+                enabled=True
+            ).values_list('creator', flat=True).distinct()
 
-            elif receivers == models.ORGANISATION:
-                participant_ids = Follow.objects.filter(
-                    project__organisation=organisation.pk,
-                    enabled=True
-                ).values_list('creator', flat=True).distinct()
+        elif receivers == models.PLATFORM:
+            participant_ids = User.objects.all().values_list('pk',
+                                                             flat=True)
 
-            elif receivers == models.PLATFORM:
-                participant_ids = User.objects.all().values_list('pk',
-                                                                 flat=True)
+        elif receivers == models.INITIATOR:
+            participant_ids = Organisation.objects.get(
+                pk=organisation.pk).initiators.all()\
+                .values_list('pk', flat=True)
 
-            elif receivers == models.INITIATOR:
-                participant_ids = Organisation.objects.get(
-                    pk=organisation.pk).initiators.all()\
-                    .values_list('pk', flat=True)
-
-            emails.NewsletterEmail.send(instance,
-                                        participant_ids=list(participant_ids),
-                                        **self.get_email_kwargs())
-            messages.success(self.request,
-                             _('Newsletter has been queued to be send.'))
-
-        else:
-            messages.success(self.request, _('Newsletter has been saved.'))
-
-        return HttpResponseRedirect(self.get_success_url())
-
-
-class NewsletterUpdateView(generic.UpdateView):
-    model = models.Newsletter
-    form_class = forms.NewsletterForm
-
-    def form_valid(self, form):
-        instance = form.save()
-
-        if 'send' in form.data:
-            instance.sent = timezone.now()
-            instance.save()
-            # TODO: send mails
+        emails.NewsletterEmail.send(instance,
+                                    participant_ids=list(participant_ids),
+                                    **self.get_email_kwargs())
+        messages.success(self.request,
+                         _('Newsletter has been queued to be send.'))
 
         return HttpResponseRedirect(self.get_success_url())
