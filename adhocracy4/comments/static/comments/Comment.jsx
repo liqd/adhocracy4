@@ -14,37 +14,39 @@ var safeHtml = function (text) {
   return { __html: text }
 }
 
-var Comment = React.createClass({
-  getInitialState: function () {
-    return {
+class Comment extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
       edit: false,
       showChildComments: false
     }
-  },
+  }
 
-  toggleEdit: function (e) {
+  toggleEdit (e) {
     if (e) {
       e.preventDefault()
     }
     var newEdit = !this.state.edit
     this.setState({edit: newEdit})
-  },
+  }
 
-  showComments: function (e) {
+  showComments (e) {
     e.preventDefault()
     var newShowChildComment = !this.state.showChildComments
     this.setState({showChildComments: newShowChildComment})
-  },
+  }
 
-  allowForm: function () {
+  allowForm () {
     return !this.props.isReadOnly && this.props.content_type !== this.context.comments_contenttype
-  },
+  }
 
-  isOwner: function () {
+  isOwner () {
     return this.props.user_name === this.context.user_name
-  },
+  }
 
-  renderRatingBox: function () {
+  renderRatingBox () {
     if (!this.props.is_deleted) {
       return (
         <RatingBox
@@ -59,9 +61,9 @@ var Comment = React.createClass({
         />
       )
     }
-  },
+  }
 
-  renderComment: function () {
+  renderComment () {
     let comment
     if (this.state.edit) {
       comment = (
@@ -70,7 +72,7 @@ var Comment = React.createClass({
           subjectId={this.props.object_pk}
           comment={this.props.children}
           rows="5"
-          handleCancel={this.toggleEdit}
+          handleCancel={this.toggleEdit.bind(this)}
           onCommentSubmit={newComment => {
             this.props.handleCommentModify(newComment, this.props.index, this.props.parentIndex)
             this.state.edit = false
@@ -81,9 +83,9 @@ var Comment = React.createClass({
       comment = <div className="comment-text" dangerouslySetInnerHTML={safeHtml(this.props.children)} />
     }
     return comment
-  },
+  }
 
-  renderDeleteModal: function () {
+  renderDeleteModal () {
     if (this.isOwner() || this.context.isModerator) {
       return (
         <Modal
@@ -96,9 +98,9 @@ var Comment = React.createClass({
         />
       )
     }
-  },
+  }
 
-  render: function () {
+  render () {
     let CommentList = require('./CommentList')
     let lastDate
     if (this.props.modified === null && !this.props.is_deleted) {
@@ -136,13 +138,13 @@ var Comment = React.createClass({
             {this.context.isAuthenticated && !this.props.is_deleted &&
               <CommentManageDropdown
                 id={this.props.id}
-                toggleEdit={this.toggleEdit}
+                toggleEdit={this.toggleEdit.bind(this)}
                 renderModeratorOptions={(this.isOwner() || this.context.isModerator) && !this.props.isReadOnly}
               />
             }
           </nav>
         </div>
-        <CommentReplyBar allowForm={this.allowForm()} showComments={this.showComments}
+        <CommentReplyBar allowForm={this.allowForm()} showComments={this.showComments.bind(this)}
           childCommentsLength={this.props.child_comments ? this.props.child_comments.length : 0} />
         {this.state.showChildComments
           ? <div className="comment-child-list">
@@ -166,7 +168,7 @@ var Comment = React.createClass({
       </div>
     )
   }
-})
+}
 
 Comment.contextTypes = {
   comments_contenttype: React.PropTypes.number,
