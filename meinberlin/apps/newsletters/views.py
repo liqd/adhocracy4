@@ -1,10 +1,12 @@
 from django.apps import apps
 from django.conf import settings
 from django.contrib import auth
+from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.follows.models import Follow
@@ -92,6 +94,10 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
             emails.NewsletterEmail.send(instance,
                                         participant_ids=list(participant_ids),
                                         **self.get_email_kwargs())
+            messages.success(_('Newsletter has been queued to be send.'))
+
+        else:
+            messages.success(_('Newsletter has been saved.'))
 
         return HttpResponseRedirect(self.get_success_url())
 
