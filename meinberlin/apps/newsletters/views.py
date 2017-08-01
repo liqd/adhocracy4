@@ -49,6 +49,14 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
 
     def form_valid(self, form):
         instance = form.save(commit=False)
+
+        # Check if the current user is allowed to send to the selected org
+        organisation = form.cleaned_data['organisation']
+        if not (self.request.user.is_superuser or
+                Organisation.objects.get(pk=organisation.pk)
+                    .has_initiator(self.request.user)):
+            raise PermissionDenied
+
         instance.creator = self.request.user
         instance.save()
         form.save_m2m()
@@ -59,21 +67,16 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
 
             receivers = int(form.cleaned_data['receivers'])
             participant_ids = []
-            if not(self.request.user.is_superuser or
-                    Organisation.objects.get(
-                    pk=int(form.data['organisation'])).
-                    has_initiator(self.request.user)):
-                raise PermissionDenied
 
             if receivers == models.PROJECT:
                 participant_ids = Follow.objects.filter(
-                    project=int(form.data['project']),
+                    project=form.cleaned_data['project'].pk,
                     enabled=True
                 ).values_list('creator', flat=True)
 
             elif receivers == models.ORGANISATION:
                 participant_ids = Follow.objects.filter(
-                    project__organisation=int(form.data['organisation']),
+                    project__organisation=organisation.pk,
                     enabled=True
                 ).values_list('creator', flat=True).distinct()
 
@@ -83,13 +86,14 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
 
             elif receivers == models.INITIATOR:
                 participant_ids = Organisation.objects.get(
-                    pk=int(form.data['organisation'])).initiators.all()\
+                    pk=organisation.pk).initiators.all()\
                     .values_list('pk', flat=True)
 
             emails.NewsletterEmail.send(instance,
                                         participant_ids=list(participant_ids),
                                         **self.get_email_kwargs())
-            return HttpResponseRedirect(self.get_success_url())
+
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class NewsletterUpdateView(generic.UpdateView):
