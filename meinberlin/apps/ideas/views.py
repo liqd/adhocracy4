@@ -56,7 +56,7 @@ class IdeaExportView(export_views.ItemExportView,
                      export_views.ItemExportWithRatesMixin,
                      export_views.ItemExportWithCommentCountMixin,
                      export_views.ItemExportWithCommentsMixin):
-    model = models.Idea
+    mmoduleodel = models.Idea
     fields = ['name', 'description', 'creator', 'created']
 
     def get_queryset(self):
@@ -74,7 +74,7 @@ class IdeaListView(AbstractIdeaListView):
 
     def get_queryset(self):
         return super().get_queryset()\
-            .filter(module=self.project.last_active_module) \
+            .filter(module=self.module) \
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()
