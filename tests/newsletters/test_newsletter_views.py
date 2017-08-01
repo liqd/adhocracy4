@@ -300,12 +300,41 @@ def test_limit_initiators_organisation(client, project_factory):
         'sender': 'test@test.de',
         'subject': 'Testsubject',
         'body': 'Testbody',
+        'receivers': newsletter_models.ORGANISATION,
+        'organisation': project2.organisation.pk,
+        'project': '',
+        'send': 'Send',
+    }
+    response = client.post(url, data)
+    assert response.status_code == 403
+    assert newsletter_models.Newsletter.objects.count() == 0
+
+
+@pytest.mark.django_db
+def test_limit_initiators_organisation_projects(client, project_factory):
+    project = project_factory()
+
+    organisation = project.organisation
+
+    assert organisation.initiators.count() == 1
+    initiator = organisation.initiators.first()
+
+    project2 = project_factory()
+
+    url = reverse('dashboard-newsletter-create',
+                  kwargs={'organisation_slug': organisation.slug})
+    client.login(username=initiator.email, password='password')
+
+    data = {
+        'sender_name': 'Tester',
+        'sender': 'test@test.de',
+        'subject': 'Testsubject',
+        'body': 'Testbody',
         'receivers': newsletter_models.PROJECT,
         'organisation': project.organisation.pk,
         'project': project2.pk,
         'send': 'Send',
     }
     response = client.post(url, data)
-    # assert response.status_code == 403
     assert not response.context['form'].is_valid()
     assert newsletter_models.Newsletter.objects.count() == 0
