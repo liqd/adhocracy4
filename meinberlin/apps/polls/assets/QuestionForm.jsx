@@ -4,23 +4,23 @@ var FlipMove = require('react-flip-move')
 var ChoiceForm = require('./ChoiceForm')
 var ErrorList = require('../../contrib/assets/ErrorList')
 
-let QuestionForm = React.createClass({
+class QuestionForm extends React.Component {
   /*
   |--------------------------------------------------------------------------
   | Choice state related handlers
   |--------------------------------------------------------------------------
   */
 
-  handleUpdateChoiceLabel: function (index, label) {
+  handleUpdateChoiceLabel (index, label) {
     this.props.updateChoiceLabel(this.props.index, index, label)
-  },
-  handleDeleteChoice: function (index) {
+  }
+  handleDeleteChoice (index) {
     this.props.deleteChoice(this.props.index, index)
-  },
+  }
 
-  handleAppendChoice: function () {
+  handleAppendChoice () {
     this.props.appendChoice(this.props.index)
-  },
+  }
 
   /*
   |--------------------------------------------------------------------------
@@ -28,25 +28,25 @@ let QuestionForm = React.createClass({
   |--------------------------------------------------------------------------
   */
 
-  handleDelete: function () {
+  handleDelete () {
     this.props.deleteQuestion(this.props.index)
-  },
+  }
 
-  handleMoveUp: function () {
+  handleMoveUp () {
     this.props.moveQuestionUp(this.props.index)
-  },
+  }
 
-  handleMoveDown: function () {
+  handleMoveDown () {
     this.props.moveQuestionDown(this.props.index)
-  },
+  }
 
-  handleLabelChange: function (e) {
+  handleLabelChange (e) {
     var index = this.props.index
     var label = e.target.value
     this.props.updateQuestionLabel(index, label)
-  },
+  }
 
-  render: function () {
+  render () {
     return (
       <section className="commenting">
         <div className="commenting__content commenting__content--border">
@@ -59,7 +59,7 @@ let QuestionForm = React.createClass({
               id={'id_questions-' + this.props.key + '-name'}
               name={'questions-' + this.props.key + '-name'}
               value={this.props.question.label}
-              onChange={this.handleLabelChange} />
+              onChange={this.handleLabelChange.bind(this)} />
             <ErrorList errors={this.props.errors} field="label" />
           </div>
 
@@ -74,8 +74,8 @@ let QuestionForm = React.createClass({
                     key={key}
                     index={index}
                     choice={choice}
-                    updateChoiceLabel={this.handleUpdateChoiceLabel}
-                    deleteChoice={this.handleDeleteChoice}
+                    updateChoiceLabel={this.handleUpdateChoiceLabel.bind(this)}
+                    deleteChoice={this.handleDeleteChoice.bind(this)}
                     errors={errors}
                   />
                 )
@@ -84,7 +84,7 @@ let QuestionForm = React.createClass({
           </FlipMove>
           <button
             className="button button--light button--small"
-            onClick={this.handleAppendChoice}
+            onClick={this.handleAppendChoice.bind(this)}
             type="button">
             <i className="fa fa-plus" /> {django.gettext('Add a new choice')}
           </button>
@@ -93,7 +93,7 @@ let QuestionForm = React.createClass({
         <div className="commenting__actions button-group">
           <button
             className="button button--light button--small"
-            onClick={this.handleMoveUp}
+            onClick={this.handleMoveUp.bind(this)}
             disabled={!this.props.moveQuestionUp}
             title={django.gettext('Move up')}
             type="button">
@@ -102,7 +102,7 @@ let QuestionForm = React.createClass({
           </button>
           <button
             className="button button--light button--small"
-            onClick={this.handleMoveDown}
+            onClick={this.handleMoveDown.bind(this)}
             disabled={!this.props.moveQuestionDown}
             title={django.gettext('Move down')}
             type="button">
@@ -111,7 +111,7 @@ let QuestionForm = React.createClass({
           </button>
           <button
             className="button button--light button--small"
-            onClick={this.handleDelete}
+            onClick={this.handleDelete.bind(this)}
             title={django.gettext('Delete')}
             type="button">
             <i className="fa fa-trash"
@@ -121,6 +121,6 @@ let QuestionForm = React.createClass({
       </section>
     )
   }
-})
+}
 
 module.exports = QuestionForm

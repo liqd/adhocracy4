@@ -3,21 +3,23 @@ var React = require('react')
 var django = require('django')
 var Alert = require('../../contrib/assets/Alert')
 
-var Question = React.createClass({
-  getInitialState: function () {
+class Question extends React.Component {
+  constructor (props) {
+    super(props)
+
     const choices = this.props.question.choices
     const hasFinished = this.props.question.hasFinished
     const ownChoice = this.findOwnChoice(choices)
-    return {
+    this.state = {
       counts: choices.map(o => o.count),
       ownChoice: ownChoice,
       selectedChoice: ownChoice,
       showResult: !(ownChoice === null) || hasFinished,
       alert: null
     }
-  },
+  }
 
-  findOwnChoice: function (choices) {
+  findOwnChoice (choices) {
     let ownChoice = null
     choices.forEach(function (choice, i) {
       if (choice.ownChoice) {
@@ -25,9 +27,9 @@ var Question = React.createClass({
       }
     })
     return ownChoice
-  },
+  }
 
-  findIndexForChoiceId: function (id) {
+  findIndexForChoiceId (id) {
     let index = null
     this.props.question.choices.forEach(function (choice, i) {
       if (choice.id === id) {
@@ -35,16 +37,16 @@ var Question = React.createClass({
       }
     })
     return index
-  },
+  }
 
-  toggleShowResult: function () {
+  toggleShowResult () {
     this.setState({
       selectedChoice: this.state.ownChoice,
       showResult: !this.state.showResult
     })
-  },
+  }
 
-  handleSubmit: function (event) {
+  handleSubmit (event) {
     event.preventDefault()
 
     if (this.props.question.hasFinished) {
@@ -89,21 +91,21 @@ var Question = React.createClass({
           }
         })
       })
-  },
+  }
 
-  removeAlert: function () {
+  removeAlert () {
     this.setState({
       alert: null
     })
-  },
+  }
 
-  handleOnChange: function (event) {
+  handleOnChange (event) {
     this.setState({
       selectedChoice: parseInt(event.target.value)
     })
-  },
+  }
 
-  getVoteButton: function () {
+  getVoteButton () {
     if (this.props.question.hasFinished) {
       return null
     }
@@ -127,15 +129,15 @@ var Question = React.createClass({
         </a>
       )
     }
-  },
+  }
 
-  doBarTransition: function (node, style) {
+  doBarTransition (node, style) {
     if (node && node.style) {
       window.requestAnimationFrame(() => Object.assign(node.style, style))
     }
-  },
+  }
 
-  render: function () {
+  render () {
     let counts = this.state.counts
     let total = counts.reduce((sum, c) => sum + c, 0)
     let max = Math.max.apply(null, counts)
@@ -148,7 +150,7 @@ var Question = React.createClass({
           { totalString }
           &nbsp;
           {!this.props.question.hasFinished &&
-            <button type="button" className="button button--link" onClick={this.toggleShowResult}>
+            <button type="button" className="button button--link" onClick={this.toggleShowResult.bind(this)}>
               { django.gettext('To poll') }
             </button>
           }
@@ -159,7 +161,7 @@ var Question = React.createClass({
         <div className="poll__actions">
           {this.getVoteButton()}
           &nbsp;
-          <button type="button" className="button button--link" onClick={this.toggleShowResult}>
+          <button type="button" className="button button--link" onClick={this.toggleShowResult.bind(this)}>
             { django.gettext('Show preliminary results') }
           </button>
         </div>
@@ -167,7 +169,7 @@ var Question = React.createClass({
     }
 
     return (
-      <form onSubmit={this.handleSubmit} className="poll">
+      <form onSubmit={this.handleSubmit.bind(this)} className="poll">
         <h2>{ this.props.question.label }</h2>
 
         <div className="poll__rows">
@@ -198,7 +200,7 @@ var Question = React.createClass({
                       name="question"
                       value={i}
                       checked={checked}
-                      onChange={this.handleOnChange}
+                      onChange={this.handleOnChange.bind(this)}
                     />
                     <span className="radio__text">{ choice.label }</span>
                   </label>
@@ -208,11 +210,11 @@ var Question = React.createClass({
           }
         </div>
 
-        <Alert onClick={this.removeAlert} {...this.state.alert} />
+        <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
         { footer }
       </form>
     )
   }
-})
+}
 
 module.exports = Question
