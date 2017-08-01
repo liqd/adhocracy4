@@ -1,6 +1,6 @@
 # BPLAN Project API
 
-mein.berlin provides an extern REST API to create and manage BPLAN projects.
+mein.berlin provides an external REST API to create and manage BPLAN projects.
 
 ## Prerequisites
 
@@ -16,12 +16,12 @@ The API supports the HTTP Basic Authentication mechanism using your *email* and 
 The following data fields are posted as JSON to create and publish a BPLAN
 project:
 
--   *name*: Name of the bplan (e.g. used as the title of the project tile)
--   *description*: Description of the bplan shown in the project tile
--   *url*:  URL of the external site the bplan is embedded on
+-   *name*: Name of the BPLAN (e.g. used as the title of the project tile)
+-   *description*: Description of the BPLAN shown in the project tile
+-   *url*: URL of the external site the BPLAN is embedded on
 -   *office_worker_email*: Email of the office worker to receive the statement emails
--   *start_date*: Start data of the participation
--   *end_date*: End data of the participation
+-   *start_date*: Start date of the participation
+-   *end_date*: End date of the participation
 -   *image_url*: URL of the image that is used in the project tile
 
 API endpoint for POST requests:
@@ -38,8 +38,8 @@ Example:
     data = {
         "name":"bplan-123",
         "description": "blan-123",
-        "url":"https://bla.de",
-        "office_worker_email":"test@test.de",
+        "url": "https://example.com/embed",
+        "office_worker_email": "test@example.com",
         "start_date": "2017-01-01 00:00",
         "end_date": "2018-01-01 00:00",
         "image_url": "http://berlin.de/bplan-123.jpg",
@@ -61,7 +61,7 @@ The participation will start end end automatically at the scheduled time.
 
 ## Updating a BPLAN Project
 
-To update a BPLAN setting send a *PATCH* request with the field to update using
+To update a BPLAN setting send a PATCH request with the field to update using
 the *id* of the BPLAN from the create response.
 
 API endpoint for PATCH:
@@ -79,26 +79,26 @@ Example:
 
 When creating a BPLAN project as above, the project is immediately being
 published. To create a BPLAN project in a draft state set the *is_draft*
-parameter :
+parameter:
 
     data = {
         ...
-        "is_draft": "True",
+        "is_draft": True,
     }
     res = POST(https://mein.berlin.de/api/organisations/5/bplan/, data)
 
-To change the draft state update the BPLAN project via PATCH.
+To change the draft state, update the BPLAN project via PATCH.
 
 Publish:
 
     data = {
-        "is_daft": "False"
+        "is_daft": False
     }
     res = PATCH(https://mein.berlin.de/api/organisations/5/bplan/36/, data)
 
 Unpublish:
 
     data = {
-        "is_daft": "True"
+        "is_daft": True
     }
     res = PATCH(https://mein.berlin.de/api/organisations/5/bplan/36/, data)
