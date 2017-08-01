@@ -16,4 +16,14 @@ def test_absolute_media_urls(newsletter_factory):
 
     expected = base.format(rel=settings.BASE_URL + settings.MEDIA_URL,
                            abs=settings.MEDIA_URL)
-    assert expected == newsletter.body
+    assert body == newsletter.body
+    assert expected == newsletter.body_with_absolute_urls
+
+
+@pytest.mark.django_db
+def test_invalidate_cache(newsletter_factory):
+    newsletter = newsletter_factory(body='first body')
+    assert newsletter.body_with_absolute_urls == 'first body'
+
+    newsletter.body = 'second body'
+    assert newsletter.body_with_absolute_urls == 'second body'

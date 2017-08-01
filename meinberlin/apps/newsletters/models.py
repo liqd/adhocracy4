@@ -3,6 +3,7 @@ import re
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.db import models
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.models.base import UserGeneratedContentModel
@@ -48,11 +49,18 @@ class Newsletter(UserGeneratedContentModel):
                                      null=True, blank=True,
                                      on_delete=models.CASCADE)
 
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        if not update_fields or 'body' in update_fields:
-            self.body = self.replace_relative_media_urls(self.body)
-        return super().save(force_insert, force_update, using, update_fields)
+    @cached_property
+    def body_with_absolute_urls(self):
+        return self.replace_relative_media_urls(self.body)
+
+    def __setattr__(self, key, value):
+        super().__setattr__(key, value)
+        # Delete cached properties
+        try:
+            if key == 'body':
+                del self.body_with_absolute_urls
+        except AttributeError:
+            pass
 
     @staticmethod
     def replace_relative_media_urls(text):
