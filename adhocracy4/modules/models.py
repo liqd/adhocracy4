@@ -37,7 +37,7 @@ class Module(models.Model):
 
     @property
     def is_active_in_project(self):
-        return self == self.project.active_module
+        return self == self.project.last_active_module
 
     @property
     def active_phase(self):

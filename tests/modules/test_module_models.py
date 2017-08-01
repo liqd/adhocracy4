@@ -40,7 +40,7 @@ def test_is_active_in_project(phase_factory, module, module_factory):
         assert module2.is_active_in_project
     with freeze_time(phase2.end_date):
         assert not module.is_active_in_project
-        assert not module2.is_active_in_project
+        assert module2.is_active_in_project
 
 
 @pytest.mark.django_db
