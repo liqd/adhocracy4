@@ -12,7 +12,6 @@ var Question = React.createClass({
       counts: choices.map(o => o.count),
       ownChoice: ownChoice,
       selectedChoice: ownChoice,
-      active: true,
       showResult: !(ownChoice === null) || hasFinished,
       alert: null
     }
@@ -130,6 +129,12 @@ var Question = React.createClass({
     }
   },
 
+  doBarTransition: function (node, style) {
+    if (node && node.style) {
+      window.requestAnimationFrame(() => Object.assign(node.style, style))
+    }
+  },
+
   render: function () {
     let counts = this.state.counts
     let total = counts.reduce((sum, c) => sum + c, 0)
@@ -137,9 +142,7 @@ var Question = React.createClass({
 
     let footer
     let totalString = `${total} ${django.ngettext('vote', 'votes', total)}`
-    if (!this.state.active) {
-      footer = totalString
-    } else if (this.state.showResult) {
+    if (this.state.showResult) {
       footer = (
         <div className="poll__actions">
           { totalString }
@@ -176,18 +179,19 @@ var Question = React.createClass({
               let percent = total === 0 ? 0 : Math.round(count / total * 100)
               let highlight = count === max && max > 0
 
-              if (this.state.showResult || !this.state.active) {
+              if (this.state.showResult) {
                 return (
-                  <div className="poll-row" key={i}>
+                  <div className="poll-row" key={choice.id}>
                     <div className="poll-row__number">{ percent }%</div>
                     <div className="poll-row__label">{ choice.label }</div>
                     { chosen ? <i className="fa fa-check-circle u-primary" aria-label={django.gettext('Your choice')} /> : '' }
-                    <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')} style={{width: percent + '%'}} />
+                    <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
+                      ref={node => this.doBarTransition(node, {width: percent + '%'})} />
                   </div>
                 )
               } else {
                 return (
-                  <label className="poll-row radio" key={i}>
+                  <label className="poll-row radio" key={choice.id}>
                     <input
                       className="poll-row__radio radio__input"
                       type="radio"
