@@ -53,6 +53,7 @@ INSTALLED_APPS = (
     'ckeditor',
     'ckeditor_uploader',
     'capture_tag',
+    'background_task',
 
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
@@ -66,6 +67,7 @@ INSTALLED_APPS = (
     'adhocracy4.maps.apps.MapsConfig',
     'adhocracy4.actions.apps.ActionsConfig',
     'adhocracy4.follows.apps.FollowsConfig',
+    'adhocracy4.filters.apps.FiltersConfig',
 
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.cms.apps.Config',
