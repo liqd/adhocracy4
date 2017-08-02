@@ -321,6 +321,12 @@ msgstr "E-Mail Adressen"
 msgid "Account Connections"
 msgstr "Nutzerkonto Verbindungen"
 
+#: meinberlin/apps/account/templates/meinberlin_account/actions.html.py:9
+msgid ""
+"Here you can find any actions that have happened in projects you are "
+"following."
+msgstr "Hier sehen Sie alle Aktionen aus den Projekten, denen Sie folgen."
+
 #: meinberlin/apps/account/templates/meinberlin_account/profile.html.py:5
 msgid "Your user profile"
 msgstr "Ihr Nutzerprofil"
@@ -1552,6 +1558,11 @@ msgstr "Onlinebeteiligung"
 #: meinberlin/apps/users/models.py:42
 msgid "active"
 msgstr "aktiv"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:21
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:30
+msgid "current page"
+msgstr "aktuelle Seite"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html.py:50
 msgid "Participation is not possible at the moment."
