@@ -6,7 +6,7 @@
         <title>{% block subject %}{% endblock %}</title>
     </head>
     <body style="margin: 0; padding: 0; min-width: 100% !important; background: #e6e6e6; line-height: 1.2;">
-        <div style="margin: 20px auto 20px auto; padding: 20px; width: 100%; max-width: 650px; background-color: #fff; box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);">
+        <div style="margin: 20px auto; padding: 20px; width: 100%; max-width: 650px; background-color: #fff; box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);">
             <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
                 <tr>
                     <td style="padding-top: 20px; text-align: center;" align="center">
@@ -30,7 +30,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding: 15px 0 0;">
+                    <td style="padding-top: 15px;">
                         <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
                             <tr>
                                 {% if organisation.logo %}
@@ -41,7 +41,9 @@
                                 <td style="color: #818181; font-size: x-small; vertical-align: top;">
                                     <p>
                                         {% trans 'meinBerlin is a participation platform operated by' %}<br />
-                                        Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin<br />
+                                        Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
+                                    </p>
+                                    <p>
                                         <a href="{{ email.get_host }}/contact">{% trans 'Contact' %}</a><br />
                                         <a href="{{ email.get_host }}/terms-of-use">{% trans 'Terms of use' %}</a>
                                     </p>
