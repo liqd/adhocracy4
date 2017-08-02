@@ -1,0 +1,38 @@
+{% extends "meinberlin_dashboard/base_dashboard.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Newsletter" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block dashboard_content %}
+    <h1>{% trans "Create Newsletter" %}</h1>
+
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+                 <div class="form-group--double">
+                <div class="l-col-2">
+                    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender_name %}
+                </div>
+                <div class="l-col-2">
+                    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender %}
+                </div>
+            </div>
+
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.subject %}
+
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.body %}
+            <div id="receiver-selection">
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.receivers %}
+            </div>
+            <div id="selection-project">
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project %}
+            </div>
+
+            <input type="hidden" id="{{ form.organisation.id_for_label}}" name="{{form.organisation.html_name}}" value="{{view.organisation.id}}" />
+
+            <div class="u-spacer-bottom">
+                <input type="submit" class="button button--primary" name="send" value="{% trans 'Send'%}" />
+                <a href="{% url 'dashboard-project-list' organisation_slug=view.organisation.slug %}" class="button button--light">{% trans 'Cancel'%}</a>
+            </div>
+    </form>
+    {{ form.media }}
+{% endblock %}

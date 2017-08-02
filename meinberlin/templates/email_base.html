@@ -1,62 +1,63 @@
 {% load i18n %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{% block subject %}{% endblock %}</title>
-  </head>
-  <body style="margin: 0; padding: 0; min-width: 100% !important; background: #fff;">
-    <table width="100%" border="0" cellpadding="0" cellspacing="0"
-           style="width: 100%; max-width: 500px; margin: auto;">
-      <tr>
-        <td style="padding-top: 20px; text-align: center;" align="center">
-          <img width="15%" src="cid:logo" style="width: 15%;" alt="MeinBerlin" >
-        </td>
-      </tr>
-      <tr>
-          <td style="padding-top: 20px;">
-              <h2>{% block headline %}{% endblock %}</h2>
-          </td>
-      </tr>
-      <tr>
-          <td>
-            {% block content_html %}
-                {% load capture_tags %}
-                {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
-                {{ content|linebreaks }}
-            {% endblock %}
-          </td>
-      </tr>
-      {% block cta %}
-      <tr>
-          <td style="padding-top: 20px;">
-              <a href="{% block cta_url %}{% endblock %}"
-                 style="padding: 0 20px; font-weight: bold; line-height: 40px; margin: 0 auto; color: #fff;
-                        background-color: #253276; border-color: #253276; display: inline-block;
-                        vertical-align: middle; text-decoration: none;">
-                 {% block cta_label %}{% endblock %}
-              </a>
-          </td>
-      </tr>
-      {% endblock %}
-      <tr>
-          <td style="color: #818181; font-size: small; padding-top: 20px;">
-              <hr />
-              {% block reason %}{% endblock %}
-              <p>
-                  {% trans 'meinBerlin is a participation platform operated by' %}<br />
-                  Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
-              </p>
-          </td>
-      </tr>
-      <tr>
-          <td style="color: #818181; font-size: small; padding-top: 10px; padding-bottom: 10px;">
-              <p>
-                  <a href="{{ email.get_host }}/contact">{% trans 'Contact' %}</a><br />
-                  <a href="{{ email.get_host }}/terms-of-use">{% trans 'Terms of use' %}</a>
-              </p>
-          </td>
-      </tr>
-    </table>
-  </body>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block subject %}{% endblock %}</title>
+    </head>
+    <body style="margin: 0; padding: 0; min-width: 100% !important; background: #e6e6e6; line-height: 1.2;">
+        <div style="margin: 20px auto; padding: 20px; width: 100%; max-width: 650px; background-color: #fff; box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
+                <tr>
+                    <td style="padding-top: 20px; text-align: center;" align="center">
+                        <img width="15%" src="cid:logo" style="width: 15%;" alt="MeinBerlin" >
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 20px;">
+                        <h2>{% block headline %}{% endblock %}</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        {% block content_html %}
+                            {% load capture_tags %}
+                            {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
+                            {{ content|linebreaks }}
+                        {% endblock %}
+                    </td>
+                </tr>
+                {% block cta %}
+                    <tr>
+                        <td style="padding-top: 20px;">
+                            <a href="{% block cta_url %}{% endblock %}"
+                               style="padding: 0 20px; font-weight: bold; line-height: 40px; margin: 0 auto; color: #fff;
+                                    background-color: #253276; border-color: #253276; display: inline-block;
+                                    vertical-align: middle; text-decoration: none;">
+                                {% block cta_label %}{% endblock %}
+                            </a>
+                        </td>
+                    </tr>
+                {% endblock %}
+                <tr>
+                    <td style="color: #818181; font-size: x-small; padding-top: 20px;">
+                        <hr />
+                        {% block reason %}{% endblock %}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="color: #818181; font-size: x-small; padding-top: 15px;">
+                        <p>
+                            {% trans 'meinBerlin is a participation platform operated by' %}<br />
+                            Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
+                        </p>
+                        <p>
+                            <a href="{{ email.get_host }}/contact">{% trans 'Contact' %}</a><br />
+                            <a href="{{ email.get_host }}/terms-of-use">{% trans 'Terms of use' %}</a>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
 </html>

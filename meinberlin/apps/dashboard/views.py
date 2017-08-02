@@ -20,6 +20,8 @@ from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.bplan import models as bplan_models
 from meinberlin.apps.extprojects import models as extproject_models
+from meinberlin.apps.newsletters.forms import NewsletterForm
+from meinberlin.apps.newsletters.views import NewsletterCreateView
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.projects.emails import InviteParticipantEmail
 
@@ -177,6 +179,31 @@ class DashboardOrganisationUpdateView(mixins.DashboardBaseMixin,
     success_message = _('Organisation successfully updated.')
     permission_required = 'meinberlin_organisations.change_organisation'
     menu_item = 'organisation'
+
+
+class DashboardNewsletterCreateView(mixins.DashboardBaseMixin,
+                                    NewsletterCreateView):
+    template_name = 'meinberlin_dashboard/newsletter_form.html'
+    menu_item = 'newsletter'
+    success_message = _('Newsletter successfully created.')
+    form_class = NewsletterForm
+    permission_required = 'a4projects.add_project'
+
+    def get_email_kwargs(self):
+        kwargs = {}
+        kwargs.update({'organisation_pk': self.organisation.pk})
+        return kwargs
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['organisation'] = self.organisation
+        kwargs.pop('user')
+        return kwargs
+
+    def get_success_url(self):
+        return reverse(
+            'dashboard-newsletter-create',
+            kwargs={'organisation_slug': self.organisation.slug})
 
 
 class AbstractProjectUserListView(mixins.DashboardBaseMixin,

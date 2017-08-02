@@ -28,4 +28,7 @@ urlpatterns = [
     url(r'^projects/(?P<slug>[-\w_]+)/management/$',
         views.DashboardProjectManagementView.as_view(),
         name='dashboard-project-management'),
+    url(r'^newsletters/(?P<organisation_slug>[-\w_]+)/create/$',
+        views.DashboardNewsletterCreateView.as_view(),
+        name='dashboard-newsletter-create')
 ]

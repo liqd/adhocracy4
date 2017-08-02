@@ -71,6 +71,8 @@ urlpatterns = [
                                 namespace='meinberlin_topicprio')),
     url(r'^offlineevents/', include('meinberlin.apps.offlineevents.urls',
                                     namespace='meinberlin_offlineevents')),
+    url(r'^newsletters/', include('meinberlin.apps.newsletters.urls',
+                                  namespace='meinberlin_newsletters')),
 
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),

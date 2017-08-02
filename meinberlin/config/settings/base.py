@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.notifications.apps.Config',
     'meinberlin.apps.exports.apps.Config',
     'meinberlin.apps.offlineevents.apps.Config',
+    'meinberlin.apps.newsletters.apps.Config',
 
     'meinberlin.apps.account.apps.Config',
     'meinberlin.apps.dashboard.apps.Config',
@@ -188,7 +189,7 @@ IMAGE_ALIASES = {
     },
     'heroimage': {'min_resolution': (1500, 500)},
     'tileimage': {'min_resolution': (500, 300)},
-    'logo': {'min_resolution': (200, 200), 'aspect_ratio': (1, 1)},
+    'logo': {'min_resolution': (200, 200)},
     'avatar': {'min_resolution': (200, 200)},
     'idea_image': {'min_resolution': (800, 200)},
 }
