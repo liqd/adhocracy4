@@ -91,6 +91,7 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
                                     participant_ids=list(participant_ids),
                                     **self.get_email_kwargs())
         messages.success(self.request,
-                         _('Newsletter has been queued to be send.'))
+                         _('Newsletter has been saved and '
+                           'will be sent to the recipients.'))
 
         return HttpResponseRedirect(self.get_success_url())
