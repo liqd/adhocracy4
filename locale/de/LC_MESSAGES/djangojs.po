@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-24 13:50+0200\n"
+"POT-Creation-Date: 2017-08-02 10:53+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -250,34 +250,34 @@ msgstr "Die Umfrage konnte nicht aktualisiert werden."
 msgid "Add a new question"
 msgstr "Neue Frage"
 
-#: meinberlin/apps/polls/assets/Question.jsx:79
+#: meinberlin/apps/polls/assets/Question.jsx:78
 msgid "Vote counted"
 msgstr "Ihre Stimme wurde gezählt."
 
-#: meinberlin/apps/polls/assets/Question.jsx:89
+#: meinberlin/apps/polls/assets/Question.jsx:88
 msgid "Vote has not been counted due to a server error."
 msgstr "Ihre Stimme konnte aufgrund eines Serverfehlers nicht gezählt werden."
 
-#: meinberlin/apps/polls/assets/Question.jsx:118
-#: meinberlin/apps/polls/assets/Question.jsx:127
+#: meinberlin/apps/polls/assets/Question.jsx:117
+#: meinberlin/apps/polls/assets/Question.jsx:126
 msgid "Vote"
 msgstr "Stimme abgeben"
 
-#: meinberlin/apps/polls/assets/Question.jsx:139
+#: meinberlin/apps/polls/assets/Question.jsx:144
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "Stimme"
 msgstr[1] "Stimmen"
 
-#: meinberlin/apps/polls/assets/Question.jsx:149
+#: meinberlin/apps/polls/assets/Question.jsx:152
 msgid "To poll"
 msgstr "Zur Umfrage"
 
-#: meinberlin/apps/polls/assets/Question.jsx:160
+#: meinberlin/apps/polls/assets/Question.jsx:163
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
-#: meinberlin/apps/polls/assets/Question.jsx:184
+#: meinberlin/apps/polls/assets/Question.jsx:187
 msgid "Your choice"
 msgstr "Ihre Wahl"
 
