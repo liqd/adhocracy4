@@ -189,7 +189,7 @@ IMAGE_ALIASES = {
     },
     'heroimage': {'min_resolution': (1500, 500)},
     'tileimage': {'min_resolution': (500, 300)},
-    'logo': {'min_resolution': (200, 200)},
+    'logo': {'min_resolution': (200, 50)},
     'avatar': {'min_resolution': (200, 200)},
     'idea_image': {'min_resolution': (800, 200)},
 }
