@@ -18,8 +18,8 @@ class Module(models.Model):
 
     @property
     def settings_instance(self):
-        settingslist = [field for field in self._meta.get_all_field_names()
-                        if field.endswith('_settings')]
+        settingslist = [field.name for field in self._meta.get_fields()
+                        if field.name.endswith('_settings')]
         for setting in settingslist:
             if hasattr(self, setting):
                 return getattr(self, setting)
