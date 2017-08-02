@@ -3,7 +3,7 @@ from itertools import chain
 import django_filters
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms import TextInput
-from django.forms.widgets import flatatt
+from django.forms.utils import flatatt
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 
