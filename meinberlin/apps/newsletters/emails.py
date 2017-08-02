@@ -43,14 +43,14 @@ class NewsletterEmail(Email):
         if organisation and organisation.logo:
             f = open(organisation.logo.path, 'rb')
             logo = MIMEImage(f.read())
-            logo.add_header('Content-ID', '<{}>'.format('logo'))
+            logo.add_header('Content-ID', '<{}>'.format('organisation_logo'))
             attachments += [logo]
         meinberlin_filename = finders.find('images/email_logo.png')
         if meinberlin_filename:
             f = open(meinberlin_filename, 'rb')
             meinberlin_logo = MIMEImage(f.read())
             meinberlin_logo.add_header(
-                'Content-ID', '<{}>'.format('meinberlin_logo'))
+                'Content-ID', '<{}>'.format('logo'))
             attachments += [meinberlin_logo]
 
         return attachments
