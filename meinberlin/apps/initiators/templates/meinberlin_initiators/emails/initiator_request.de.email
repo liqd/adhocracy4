@@ -1,0 +1,29 @@
+{% extends 'email_base.'|add:part_type %}
+{% load wagtailcore_tags %}
+
+{% block subject %}Neue Initiatorenanfrage von {{ user.username }}{% endblock %}
+
+{% block headline %}Neue Initiatorenanfrage von {{ user.username }}{% endblock %}
+
+{% block content %}
+{{ user.username }} möchte zur Initator*in gemacht werden.
+
+Name
+{{ user.username }}
+
+Name der Behörde
+{{ organisation_name }}
+
+Dienstliche E-Mail-Adresse
+{{ user.email }}
+
+Telefonnummer
+{{ phone }}
+
+Datum der Nutzerregistrierung auf meinBerlin
+{{ user.date_joined }}
+
+{% endblock %}
+
+{% block cta_label %}Zur Administration{% endblock %}
+{% block cta_url %}{{ email.get_host }}{% url 'admin:index' %}{% endblock %}

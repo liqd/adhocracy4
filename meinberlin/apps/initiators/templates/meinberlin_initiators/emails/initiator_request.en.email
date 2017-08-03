@@ -1,0 +1,29 @@
+{% extends 'email_base.'|add:part_type %}
+{% load wagtailcore_tags %}
+
+{% block subject %}New initiator request by {{ user.username }}{% endblock %}
+
+{% block headline %}New initiator request by {{ user.username }}{% endblock %}
+
+{% block content %}
+{{ user.username }} wants to become an initiator.
+
+Name
+{{ user.username }}
+
+Name of the Organisation
+{{ organisation_name }}
+
+Email address
+{{ user.email }}
+
+Phone number
+{{ phone }}
+
+Date of registration on meinBerlin
+{{ user.date_joined }}
+
+{% endblock %}
+
+{% block cta_label %}Go to Administration{% endblock %}
+{% block cta_url %}{{ email.get_host }}{% url 'admin:index' %}{% endblock %}

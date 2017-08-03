@@ -84,6 +84,7 @@ INSTALLED_APPS = (
 
     'meinberlin.apps.account.apps.Config',
     'meinberlin.apps.dashboard.apps.Config',
+    'meinberlin.apps.initiators.apps.Config',
 
     'meinberlin.apps.actions.apps.Config',
     'meinberlin.apps.bplan.apps.Config',
