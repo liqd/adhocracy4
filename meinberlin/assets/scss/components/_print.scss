@@ -1,0 +1,43 @@
+@media print {
+    button,
+    [type="submit"],
+    .errorlist,
+    input,
+    textarea,
+    select,
+    .widget--radioselect,
+    .widget--checkboxselectmultiple,
+    .form-hint,
+    .form-check__label,
+    .form-check,
+    .form-group,
+    .tile__head,
+    .main-header,
+    .main-nav__logo,
+    .pagination,
+    .shariff,
+    .comments-login,
+    .breadcrumbs,
+    .project-header__action,
+    .tablist,
+    .list-item__actions,
+    .dashboard-nav {
+        display: none !important;
+    }
+
+    .tile {
+        page-break-inside: avoid;
+    }
+
+    .list-item__title,
+    .list-item__subtitle {
+        text-align: center;
+    }
+
+    html {
+        background: none;
+        // stylelint-disable scale-unlimited/declaration-strict-value
+        color: #000;  // Black prints faster:
+        // stylelint-enable
+    }
+}
