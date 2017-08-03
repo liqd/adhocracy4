@@ -135,7 +135,7 @@ msgstr "Ein Bild aus einem lokalen Ordner auswählen."
 #: adhocracy4/maps/fields.py:16
 #: adhocracy4/maps/fields.py:16
 msgid "Geometry as GeoJSON"
-msgstr ""
+msgstr "GeoJSON kodierte Koordinaten"
 
 #: adhocracy4/maps/fields.py:34
 #: adhocracy4/maps/fields.py:34
@@ -990,7 +990,7 @@ msgstr "Einstellungen"
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/newsletter_form.html.py:4
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html.py:33
 msgid "Newsletter"
-msgstr ""
+msgstr "Newsletter"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/blueprint_list.html.py:4
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/blueprint_list.html.py:18
@@ -1135,7 +1135,7 @@ msgstr "Hinzufügen"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/newsletter_form.html.py:7
 msgid "Create Newsletter"
-msgstr ""
+msgstr "Newsletter erstellen"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/organisation_form.html.py:7
 msgid "Edit your organisation information"
@@ -1412,26 +1412,28 @@ msgstr "Organisation"
 
 #: meinberlin/apps/initiators/forms.py:17
 msgid "Phone number"
-msgstr ""
+msgstr "Telefonnummer"
 
 #: meinberlin/apps/initiators/templates/meinberlin_initiators/request.html.py:4
 #: meinberlin/apps/initiators/templates/meinberlin_initiators/request.html.py:9
 msgid "Registration for Initiators"
-msgstr ""
+msgstr "Initiatorenanfrage"
 
 #: meinberlin/apps/initiators/templates/meinberlin_initiators/request.html.py:11
 msgid ""
 "If you want to initiate new participation projects on meinBerlin, please use "
 "this form to request the required access permissions."
 msgstr ""
+"Bitte füllen Sie das folgende Formular aus um die Berechtigung zu erhalten "
+"eigene Beteiligungsprojekte auf meinBerlin zu erstellen."
 
 #: meinberlin/apps/initiators/templates/meinberlin_initiators/request.html.py:20
 msgid "Send request"
-msgstr ""
+msgstr "Anfrage senden"
 
 #: meinberlin/apps/initiators/views.py:27
 msgid "Request was send."
-msgstr ""
+msgstr "Initiatorenanfrage wurde gesendet."
 
 #: meinberlin/apps/kiezkasse/models.py:17
 msgid "Own contribution to the proposal"
@@ -1529,51 +1531,51 @@ msgstr "wird umgesetzt"
 
 #: meinberlin/apps/newsletters/models.py:18
 msgid "Users following a specific project"
-msgstr ""
+msgstr "Nutzer*innen die einem bestimmten Projekt folgen"
 
 #: meinberlin/apps/newsletters/models.py:19
 msgid "Users following your organisation"
-msgstr ""
+msgstr "Nutzer*innen die Ihrer Organisation folgen"
 
 #: meinberlin/apps/newsletters/models.py:20
 msgid "Every initiator of your organisation"
-msgstr ""
+msgstr "Initiator*innen Ihrer Organisation"
 
 #: meinberlin/apps/newsletters/models.py:21
 msgid "Every user of the platform"
-msgstr ""
+msgstr "Alle Nutzer*innen der Plattform"
 
 #: meinberlin/apps/newsletters/models.py:31
 msgid "Sender"
-msgstr ""
+msgstr "Absender"
 
 #: meinberlin/apps/newsletters/models.py:33
 msgid "Subject"
-msgstr ""
+msgstr "Betreff"
 
 #: meinberlin/apps/newsletters/models.py:36
 msgid "Email body"
-msgstr ""
+msgstr "Inhalt der E-Mail"
 
 #: meinberlin/apps/newsletters/models.py:39
 msgid "Sent"
-msgstr ""
+msgstr "Senden"
 
 #: meinberlin/apps/newsletters/models.py:42
 msgid "Receivers"
-msgstr ""
+msgstr "Empfänger"
 
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_form.html.py:4
 msgid "Create a newsletter"
-msgstr ""
+msgstr "Newsletter erstellen"
 
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_form.html.py:8
 msgid "Create newsletter"
-msgstr ""
+msgstr "Newsletter erstellen"
 
 #: meinberlin/apps/newsletters/views.py:94
 msgid "Newsletter has been saved and will be sent to the recipients."
-msgstr ""
+msgstr "Der Newsletter wurde gespeichert und wird an die Empfänger gesendet."
 
 #: meinberlin/apps/offlineevents/forms.py:14
 #: meinberlin/apps/offlineevents/models.py:15
@@ -1616,11 +1618,11 @@ msgstr "Die Veranstaltung wurde gelöscht."
 
 #: meinberlin/apps/organisations/models.py:19
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: meinberlin/apps/organisations/models.py:21
 msgid "The image will be shown in the newsletter in the banner."
-msgstr ""
+msgstr "Das Bild wird in der Kopfzeile von Newslettern angezeigt."
 
 #: meinberlin/apps/polls/phases.py:17
 msgid "Voting phase"
@@ -1915,18 +1917,21 @@ msgid ""
 "want to receive notifications."
 msgstr ""
 "Bitte setzen Sie einen Haken, falls Sie Benachrichtigungen per E-Mail "
-"erhalten möchten.  Nehmen Sie den Haken raus, falls Sie keine "
-"Benachrichtigungen per Email erhalten möchten."
+"erhalten möchten. Nehmen Sie den Haken raus, falls Sie keine "
+"Benachrichtigungen per E-Mail erhalten möchten."
 
 #: meinberlin/apps/users/models.py:63
 msgid "Send me newsletters"
-msgstr ""
+msgstr "Bitte senden Sie mir E-Mail Newsletter"
 
 #: meinberlin/apps/users/models.py:66
 msgid ""
 "Designates whether you want to receive newsletters. Unselect if you do not "
 "want to receive newsletters."
 msgstr ""
+"Bitte setzen Sie einen Haken, falls Sie Newsletter "
+"erhalten möchten. Nehmen Sie den Haken raus, falls Sie keine "
+"Newsletter erhalten möchten."
 
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html.py:20
 msgid "Account Settings"
