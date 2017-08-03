@@ -35,6 +35,7 @@ User = get_user_model()
 
 class DashboardProjectListView(mixins.DashboardBaseMixin,
                                rules_mixins.PermissionRequiredMixin,
+                               mixins.DashboardProjectDuplicateMixin,
                                mixins.DashboardProjectPublishMixin,
                                filter_views.FilteredListView):
     model = project_models.Project

@@ -1,3 +1,5 @@
+from copy import copy
+
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import PermissionDenied
@@ -80,6 +82,37 @@ class DashboardProjectUpdateMixin(DashboardProjectBaseMixin,
         return super().get_queryset().filter(
             organisation=self.organisation
         )
+
+
+class DashboardProjectDuplicateMixin:
+    def post(self, request, *args, **kwargs):
+
+        if 'duplicate' in request.POST:
+            pk = int(request.POST['project_pk'])
+            project = get_object_or_404(project_models.Project, pk=pk)
+            can_add = request.user.has_perm('a4projects.add_project',
+                                            project)
+            if not can_add:
+                raise PermissionDenied
+            project_clone = copy(project)
+            project_clone.pk = None
+            project_clone.save()
+            for module in project.module_set.all():
+                module_clone = copy(module)
+                module_clone.project = project_clone
+                module_clone.pk = None
+                module_clone.name = \
+                    '{}_{}'.format(module.name, project_clone.pk)
+                module_clone.save()
+                for phase in module.phase_set.all():
+                    phase_clone = copy(phase)
+                    phase_clone.module = module_clone
+                    phase_clone.pk = None
+                    phase_clone.save()
+        else:
+            return super().post(request, *args, **kwargs)
+        return redirect('dashboard-project-list',
+                        organisation_slug=self.organisation.slug)
 
 
 class DashboardProjectPublishMixin:
