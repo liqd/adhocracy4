@@ -6,8 +6,11 @@ var ChapterNav = require('./ChapterNav')
 var ChapterForm = require('./ChapterForm')
 var Alert = require('../../contrib/assets/Alert')
 
-const DocumentManagement = React.createClass({
-  getInitialState: function () {
+class DocumentManagement extends React.Component {
+  constructor (props) {
+    super(props)
+    this.maxLocalKey = 0
+
     let chapters = this.props.chapters
     if (!chapters || chapters.length === 0) {
       chapters = [
@@ -15,23 +18,22 @@ const DocumentManagement = React.createClass({
       ]
     }
 
-    return {
+    this.state = {
       chapters: chapters,
       errors: null,
       alert: null,
       editChapterIndex: 0
     }
-  },
+  }
 
-  maxLocalKey: 0,
-  getNextLocalKey: function () {
+  getNextLocalKey () {
     /** Get an artificial key for non-committed items.
      *
      *  The key is prefixed to prevent collisions with real database keys.
      */
     this.maxLocalKey++
     return 'local_' + this.maxLocalKey
-  },
+  }
 
   /*
   |--------------------------------------------------------------------------
@@ -39,15 +41,15 @@ const DocumentManagement = React.createClass({
   |--------------------------------------------------------------------------
   */
 
-  getNewChapter: function (name) {
+  getNewChapter (name) {
     return {
       name: name,
       key: this.getNextLocalKey(),
       paragraphs: []
     }
-  },
+  }
 
-  handleChapterMoveUp: function (index) {
+  handleChapterMoveUp (index) {
     const value = this.state.chapters[index]
     const diff = {$splice: [[index, 1], [index - 1, 0, value]]}
     let editChapterIndex = this.state.editChapterIndex
@@ -60,9 +62,9 @@ const DocumentManagement = React.createClass({
       chapters: update(this.state.chapters, diff),
       editChapterIndex: editChapterIndex
     })
-  },
+  }
 
-  handleChapterMoveDown: function (index) {
+  handleChapterMoveDown (index) {
     const value = this.state.chapters[index]
     const diff = {$splice: [[index, 1], [index + 1, 0, value]]}
     let editChapterIndex = this.state.editChapterIndex
@@ -75,9 +77,9 @@ const DocumentManagement = React.createClass({
       chapters: update(this.state.chapters, diff),
       editChapterIndex: editChapterIndex
     })
-  },
+  }
 
-  handleChapterDelete: function (index) {
+  handleChapterDelete (index) {
     const diff = {$splice: [[index, 1]]}
     let editChapterIndex = this.state.editChapterIndex
     if (index < editChapterIndex) {
@@ -89,17 +91,17 @@ const DocumentManagement = React.createClass({
       chapters: update(this.state.chapters, diff),
       editChapterIndex: editChapterIndex
     })
-  },
+  }
 
-  handleChapterAppend: function () {
+  handleChapterAppend () {
     const newChapter = this.getNewChapter(django.gettext('new chapter'))
     const diff = {$push: [newChapter]}
     this.setState({
       chapters: update(this.state.chapters, diff)
     })
-  },
+  }
 
-  handleChapterNameChange: function (index, name) {
+  handleChapterNameChange (index, name) {
     const diff = {}
     diff[index] = {
       $merge: {
@@ -109,16 +111,16 @@ const DocumentManagement = React.createClass({
     this.setState({
       chapters: update(this.state.chapters, diff)
     })
-  },
+  }
 
-  handleChapterEdit: function (index) {
+  handleChapterEdit (index) {
     this.setState({
       editChapterIndex: index
     })
     if (this.titleInput) {
       this.titleInput.focus()
     }
-  },
+  }
 
   /*
   |--------------------------------------------------------------------------
@@ -126,15 +128,15 @@ const DocumentManagement = React.createClass({
   |--------------------------------------------------------------------------
   */
 
-  getNewParagraph: function (name = '', text = '') {
+  getNewParagraph (name = '', text = '') {
     return {
       name: name,
       text: text,
       key: this.getNextLocalKey()
     }
-  },
+  }
 
-  handleParagraphAppend: function (chapterIndex) {
+  handleParagraphAppend (chapterIndex) {
     const newParagraph = this.getNewParagraph()
     const diff = {}
     diff[chapterIndex] = {
@@ -145,9 +147,9 @@ const DocumentManagement = React.createClass({
     this.setState({
       chapters: update(this.state.chapters, diff)
     })
-  },
+  }
 
-  handleParagraphMoveUp: function (chapterIndex, paragraphIndex) {
+  handleParagraphMoveUp (chapterIndex, paragraphIndex) {
     const value = this.state.chapters[chapterIndex].paragraphs[paragraphIndex]
     const diff = {}
     diff[chapterIndex] = {
@@ -158,9 +160,9 @@ const DocumentManagement = React.createClass({
     this.setState({
       chapters: update(this.state.chapters, diff)
     })
-  },
+  }
 
-  handleParagraphMoveDown: function (chapterIndex, paragraphIndex) {
+  handleParagraphMoveDown (chapterIndex, paragraphIndex) {
     const value = this.state.chapters[chapterIndex].paragraphs[paragraphIndex]
     const diff = {}
     diff[chapterIndex] = {
@@ -171,9 +173,9 @@ const DocumentManagement = React.createClass({
     this.setState({
       chapters: update(this.state.chapters, diff)
     })
-  },
+  }
 
-  handleParagraphDelete: function (chapterIndex, paragraphIndex) {
+  handleParagraphDelete (chapterIndex, paragraphIndex) {
     const diff = {}
     diff[chapterIndex] = {
       paragraphs: {
@@ -183,9 +185,9 @@ const DocumentManagement = React.createClass({
     this.setState({
       chapters: update(this.state.chapters, diff)
     })
-  },
+  }
 
-  handleParagraphNameChange: function (chapterIndex, paragraphIndex, name) {
+  handleParagraphNameChange (chapterIndex, paragraphIndex, name) {
     const diff = {}
     diff[chapterIndex] = {paragraphs: []}
     diff[chapterIndex]['paragraphs'][paragraphIndex] = {
@@ -196,9 +198,9 @@ const DocumentManagement = React.createClass({
     this.setState({
       chapters: update(this.state.chapters, diff)
     })
-  },
+  }
 
-  handleParagraphTextChange: function (chapterIndex, paragraphIndex, text) {
+  handleParagraphTextChange (chapterIndex, paragraphIndex, text) {
     const diff = {}
     diff[chapterIndex] = {paragraphs: []}
     diff[chapterIndex]['paragraphs'][paragraphIndex] = {
@@ -209,15 +211,15 @@ const DocumentManagement = React.createClass({
     this.setState({
       chapters: update(this.state.chapters, diff)
     })
-  },
+  }
 
-  removeAlert: function () {
+  removeAlert () {
     this.setState({
       alert: null
     })
-  },
+  }
 
-  handleSubmit: function (e) {
+  handleSubmit (e) {
     if (e) {
       e.preventDefault()
     }
@@ -252,24 +254,24 @@ const DocumentManagement = React.createClass({
           errors: errors
         })
       })
-  },
+  }
 
-  render: function () {
+  render () {
     const chapterIndex = this.state.editChapterIndex
     const chapterErrors = this.state.errors && this.state.errors[chapterIndex] ? this.state.errors[chapterIndex] : {}
 
     return (
-      <form onSubmit={this.handleSubmit} onChange={this.removeAlert}>
+      <form onSubmit={this.handleSubmit.bind(this)} onChange={this.removeAlert.bind(this)}>
 
         <h2>{django.gettext('Contents')}</h2>
         <ChapterNav
           chapters={this.state.chapters}
           activeChapter={this.state.chapters[chapterIndex]}
-          onMoveUp={this.handleChapterMoveUp}
-          onMoveDown={this.handleChapterMoveDown}
-          onDelete={this.handleChapterDelete}
-          onChapterAppend={this.handleChapterAppend}
-          onClick={this.handleChapterEdit}
+          onMoveUp={this.handleChapterMoveUp.bind(this)}
+          onMoveDown={this.handleChapterMoveDown.bind(this)}
+          onDelete={this.handleChapterDelete.bind(this)}
+          onChapterAppend={this.handleChapterAppend.bind(this)}
+          onClick={this.handleChapterEdit.bind(this)}
           errors={this.state.errors}
         />
 
@@ -288,12 +290,12 @@ const DocumentManagement = React.createClass({
           errors={chapterErrors}
         />
 
-        <Alert onClick={this.removeAlert} {...this.state.alert} />
+        <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
 
         <button type="submit" className="button button--primary">{django.gettext('Save')}</button>
       </form>
     )
   }
-})
+}
 
 module.exports = DocumentManagement
