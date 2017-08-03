@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-03 15:52+0200\n"
+"POT-Creation-Date: 2017-08-03 16:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1106,27 +1106,23 @@ msgstr "Edit project"
 msgid "Organisation successfully updated."
 msgstr "Organisation successfully updated."
 
-#: meinberlin/apps/dashboard/views.py:188
-msgid "Newsletter successfully created."
-msgstr "Newsletter successfully created."
-
-#: meinberlin/apps/dashboard/views.py:242
+#: meinberlin/apps/dashboard/views.py:241
 msgid "Following emails are not registered: "
 msgstr "Following emails are not registered: "
 
-#: meinberlin/apps/dashboard/views.py:274
+#: meinberlin/apps/dashboard/views.py:273
 msgid "Add users via email"
 msgstr "Add users via email"
 
-#: meinberlin/apps/dashboard/views.py:276
+#: meinberlin/apps/dashboard/views.py:275
 msgid "User successfully removed."
 msgstr "User successfully removed."
 
-#: meinberlin/apps/dashboard/views.py:299
+#: meinberlin/apps/dashboard/views.py:298
 msgid "Add moderators via email"
 msgstr "Add moderators via email"
 
-#: meinberlin/apps/dashboard/views.py:301
+#: meinberlin/apps/dashboard/views.py:300
 msgid "Moderator successfully removed."
 msgstr "Moderator successfully removed."
 
@@ -1500,9 +1496,6 @@ msgid "Receivers"
 msgstr "Receivers"
 
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_form.html.py:4
-msgid "Create a newsletter"
-msgstr "Create a newsletter"
-
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_form.html.py:8
 msgid "Create newsletter"
 msgstr "Create newsletter"
@@ -2163,6 +2156,12 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid "Newsletter successfully created."
+#~ msgstr "Newsletter successfully created."
+
+#~ msgid "Create a newsletter"
+#~ msgstr "Create a newsletter"
 
 #~ msgid "Phase %(phase_num)s of %(phase_count)s"
 #~ msgstr "Phase %(phase_num)s of %(phase_count)s"

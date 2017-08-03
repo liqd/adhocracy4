@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-03 15:52+0200\n"
+"POT-Creation-Date: 2017-08-03 16:12+0200\n"
 "PO-Revision-Date: 2017-07-17 15:32+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1166,27 +1166,23 @@ msgstr "Projekt bearbeiten"
 msgid "Organisation successfully updated."
 msgstr "Organisation erfolgreich aktualisiert"
 
-#: meinberlin/apps/dashboard/views.py:188
-msgid "Newsletter successfully created."
-msgstr ""
-
-#: meinberlin/apps/dashboard/views.py:242
+#: meinberlin/apps/dashboard/views.py:241
 msgid "Following emails are not registered: "
 msgstr "Folgende E-Mail Adressen sind nicht registriert: "
 
-#: meinberlin/apps/dashboard/views.py:274
+#: meinberlin/apps/dashboard/views.py:273
 msgid "Add users via email"
 msgstr "Nutzer*innen via E-Mail Adresse hinzufügen"
 
-#: meinberlin/apps/dashboard/views.py:276
+#: meinberlin/apps/dashboard/views.py:275
 msgid "User successfully removed."
 msgstr "Nutzer*in erfolgreich entfernt."
 
-#: meinberlin/apps/dashboard/views.py:299
+#: meinberlin/apps/dashboard/views.py:298
 msgid "Add moderators via email"
 msgstr "Moderator*innen via E-Mail Adresse hinzufügen"
 
-#: meinberlin/apps/dashboard/views.py:301
+#: meinberlin/apps/dashboard/views.py:300
 msgid "Moderator successfully removed."
 msgstr "Moderator*in erfolgreich entfernt."
 
@@ -1566,9 +1562,6 @@ msgid "Receivers"
 msgstr "Empfänger"
 
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_form.html.py:4
-msgid "Create a newsletter"
-msgstr "Newsletter erstellen"
-
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_form.html.py:8
 msgid "Create newsletter"
 msgstr "Newsletter erstellen"
@@ -1929,9 +1922,8 @@ msgid ""
 "Designates whether you want to receive newsletters. Unselect if you do not "
 "want to receive newsletters."
 msgstr ""
-"Bitte setzen Sie einen Haken, falls Sie Newsletter "
-"erhalten möchten. Nehmen Sie den Haken raus, falls Sie keine "
-"Newsletter erhalten möchten."
+"Bitte setzen Sie einen Haken, falls Sie Newsletter erhalten möchten. Nehmen "
+"Sie den Haken raus, falls Sie keine Newsletter erhalten möchten."
 
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html.py:20
 msgid "Account Settings"
@@ -2230,6 +2222,9 @@ msgstr ""
 "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem %(site_name)s "
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
+
+#~ msgid "Create a newsletter"
+#~ msgstr "Newsletter erstellen"
 
 #~ msgid "Moderator statement"
 #~ msgstr "Moderationskommentar"
