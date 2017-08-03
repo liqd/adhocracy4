@@ -10,11 +10,17 @@
 
             <p>{% trans 'If you want to initiate new participation projects on meinBerlin, please use this form to request the required access permissions.' %}</p>
 
-            <form action="" method="post">
+            <form enctype="multipart/form-data" action="{{ request.path }}" method="post" >
                 {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="{% trans 'Send request' %}" class="button button--primary" />
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.organisation_name %}
+
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.phone %}
+
+                <div class="u-spacer-bottom">
+                    <button type="submit" class="button button--primary">{% trans 'Send request' %}</button>
+                </div>
             </form>
+            {{ form.media }}
         </div>
     </div>
 {% endblock %}
