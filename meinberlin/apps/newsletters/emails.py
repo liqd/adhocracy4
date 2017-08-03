@@ -25,9 +25,6 @@ class NewsletterEmail(Email):
     def get_reply_to(self):
         return ['{} <{}>'.format(self.object.sender_name, self.object.sender)]
 
-    def get_languages(self, receiver):
-        return ['raw']
-
     def get_receivers(self):
         return User.objects\
             .filter(id__in=self.kwargs['participant_ids'])\
