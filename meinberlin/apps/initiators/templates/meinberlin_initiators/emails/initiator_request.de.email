@@ -26,4 +26,4 @@ Datum der Nutzerregistrierung auf meinBerlin
 {% endblock %}
 
 {% block cta_label %}Zur Administration{% endblock %}
-{% block cta_url %}https://mein.berlin.de/django-admin{% endblock %}
+{% block cta_url %}{{ email.get_host }}{% url 'admin:index' %}{% endblock %}

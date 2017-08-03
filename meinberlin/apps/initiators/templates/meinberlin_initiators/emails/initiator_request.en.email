@@ -26,4 +26,4 @@ Date of registration on meinBerlin
 {% endblock %}
 
 {% block cta_label %}Go to Administration{% endblock %}
-{% block cta_url %}https://mein.berlin.de/django-admin{% endblock %}
+{% block cta_url %}{{ email.get_host }}{% url 'admin:index' %}{% endblock %}
