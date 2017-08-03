@@ -12,7 +12,7 @@ Name
 {{ user.username }}
 
 Name der Behörde
-{{ organisation_name }}
+{{ organisation.name }}
 
 Dienstliche E-Mail-Adresse
 {{ user.email }}
@@ -26,4 +26,4 @@ Datum der Nutzerregistrierung auf meinBerlin
 {% endblock %}
 
 {% block cta_label %}Zur Administration{% endblock %}
-{% block cta_url %}{{ email.get_host }}{% url 'admin:index' %}{% endblock %}
+{% block cta_url %}{{ email.get_host }}{% url 'admin:meinberlin_organisations_organisation_change' organisation.id %}{% endblock %}

@@ -12,7 +12,7 @@ Name
 {{ user.username }}
 
 Name of the Organisation
-{{ organisation_name }}
+{{ organisation.name }}
 
 Email address
 {{ user.email }}
@@ -26,4 +26,4 @@ Date of registration on meinBerlin
 {% endblock %}
 
 {% block cta_label %}Go to Administration{% endblock %}
-{% block cta_url %}{{ email.get_host }}{% url 'admin:index' %}{% endblock %}
+{% block cta_url %}{{ email.get_host }}{% url 'admin:meinberlin_organisations_organisation_change' organisation.id %}{% endblock %}

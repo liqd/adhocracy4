@@ -17,7 +17,10 @@ class InitiatorRequestView(rules_mixins.PermissionRequiredMixin,
     success_url = '/'
 
     def form_valid(self, form):
-        emails.InitiatorRequest.send(self.request.user, **form.cleaned_data)
+        organisation = form.cleaned_data['organisation']
+        emails.InitiatorRequest.send(self.request.user,
+                                     phone=form.cleaned_data['phone'],
+                                     organisation_id=organisation.id)
         messages.add_message(
             self.request,
             messages.SUCCESS,

@@ -12,7 +12,7 @@
 
             <form enctype="multipart/form-data" action="{{ request.path }}" method="post" >
                 {% csrf_token %}
-                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.organisation_name %}
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.organisation %}
 
                 {% include 'meinberlin_contrib/includes/form_field.html' with field=form.phone %}
 
