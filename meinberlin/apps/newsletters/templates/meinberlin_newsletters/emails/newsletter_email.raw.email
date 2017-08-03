@@ -1,5 +1,3 @@
-
-
 {% extends 'newsletter_base.'|add:part_type %}
 
 {% load verbose_name %}
@@ -10,4 +8,4 @@
 
 {% block content %}{{ newsletter.body_with_absolute_urls|safe }}{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you are following a project of {{newsletter.organisation}} or signed in as an initiator of the organisation. If you don’t want to receive these notifications anymore, you can unfollow the project on the project page.{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you are registered on {{ site.name }}. If you don't want to receive newsletters anymore, you may disable them in your user account settings.{% endblock %}
