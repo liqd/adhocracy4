@@ -8,6 +8,6 @@
 
 {% block subject %}{{ newsletter.subject }}{% endblock %}
 
-{% block content %}{{ newsletter.body|safe }}{% endblock %}
+{% block content %}{{ newsletter.body_with_absolute_urls|safe }}{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you are following a project of {{newsletter.organisation}} or signed in as an initiator of the organisation. If you don’t want to receive these notifications anymore, you can unfollow the project on the project page.{% endblock %}
