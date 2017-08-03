@@ -1,4 +1,5 @@
 from copy import copy
+from datetime import datetime
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -86,17 +87,27 @@ class DashboardProjectUpdateMixin(DashboardProjectBaseMixin,
 
 class DashboardProjectDuplicateMixin:
     def post(self, request, *args, **kwargs):
-
         if 'duplicate' in request.POST:
             pk = int(request.POST['project_pk'])
             project = get_object_or_404(project_models.Project, pk=pk)
             can_add = request.user.has_perm('a4projects.add_project',
                                             project)
+
             if not can_add:
                 raise PermissionDenied
+
             project_clone = copy(project)
             project_clone.pk = None
+            if project_clone.tile_image:
+                project_clone.tile_image.save(project.tile_image.name,
+                                              project.tile_image, False)
+            if project_clone.image:
+                project_clone.image.save(project.image.name,
+                                         project.image, False)
+            project_clone.created = datetime.now()
+            project_clone.is_draft = True
             project_clone.save()
+
             for module in project.module_set.all():
                 module_clone = copy(module)
                 module_clone.project = project_clone
@@ -109,10 +120,11 @@ class DashboardProjectDuplicateMixin:
                     phase_clone.module = module_clone
                     phase_clone.pk = None
                     phase_clone.save()
+            messages.success(request,
+                             _('Project successfully duplicated.'))
+            return redirect('dashboard-project-edit', slug=project_clone.slug)
         else:
             return super().post(request, *args, **kwargs)
-        return redirect('dashboard-project-list',
-                        organisation_slug=self.organisation.slug)
 
 
 class DashboardProjectPublishMixin:
