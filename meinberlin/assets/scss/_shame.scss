@@ -6,6 +6,12 @@
     box-sizing: border-box !important;
 }
 
+// safari doesn't allow styling of these otherwise
+// see https://css-tricks.com/webkit-html5-search-inputs/
+input[type="search"] {
+    -webkit-appearance: none;
+}
+
 // used by adhocracy4
 .submit-button {
     @extend %button-base;
