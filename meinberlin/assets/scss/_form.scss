@@ -117,12 +117,13 @@ select {
 }
 
 .input-addon__input {
-    flex: 1;
+    flex-grow: 1;
 }
 
 .input-addon__before,
 .input-addon__after {
-    flex: 0;
+    flex-grow: 0;
+    width: auto !important;
 }
 
 .input-addon__input,
