@@ -1529,11 +1529,11 @@ msgstr "wird umgesetzt"
 #: meinberlin/apps/newsletters/forms.py:25
 #: meinberlin/apps/newsletters/models.py:42
 msgid "Receivers"
-msgstr "Empfänger"
+msgstr "Empfänger*innen"
 
 #: meinberlin/apps/newsletters/forms.py:35
 msgid "Project"
-msgstr ""
+msgstr "Projekt"
 
 #: meinberlin/apps/newsletters/models.py:18
 msgid "Users following a specific project"
@@ -1574,7 +1574,7 @@ msgstr "Newsletter erstellen"
 
 #: meinberlin/apps/newsletters/views.py:94
 msgid "Newsletter has been saved and will be sent to the recipients."
-msgstr "Der Newsletter wurde gespeichert und wird an die Empfänger gesendet."
+msgstr "Der Newsletter wurde gespeichert und wird an die Empfänger*innen gesendet."
 
 #: meinberlin/apps/offlineevents/forms.py:14
 #: meinberlin/apps/offlineevents/models.py:15
