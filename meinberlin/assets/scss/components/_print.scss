@@ -1,5 +1,9 @@
+$print-black: #000;
+$print-link: #005cb4;
+
 @media print {
     button,
+    .button,
     [type="submit"],
     .errorlist,
     input,
@@ -12,32 +16,110 @@
     .form-check,
     .form-group,
     .tile__head,
-    .main-header,
-    .main-nav__logo,
     .pagination,
+    .portal-header,
     .shariff,
     .comments-login,
     .breadcrumbs,
     .project-header__action,
     .tablist,
     .list-item__actions,
-    .dashboard-nav {
+    .dashboard-nav,
+    .item-detail__meta,
+    .wagtail-userbar {
         display: none !important;
+    }
+
+    .tabpanel,
+    .phase-info {
+        display: block !important;
+    }
+
+    html {
+        background: none;
+        color: $print-black; // Black prints faster:
+        font-size: 85%;
+    }
+
+    a {
+        color: $print-link;
+
+        &:after {
+            content: " [" attr(href) "] ";
+            font-size: 0.7em;
+        }
+    }
+
+    .l-center-6,
+    .l-center-8,
+    .l-wrapper {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+    }
+
+    .main-nav__logo:after {
+        content: "";
+    }
+
+    .block {
+        page-break-inside: avoid;
+    }
+
+    .block--cta {
+        background-color: transparent;
+        color: $print-black;
     }
 
     .tile {
         page-break-inside: avoid;
     }
 
-    .list-item__title,
-    .list-item__subtitle {
-        text-align: center;
+    .tile__hint {
+        color: $text-muted;
     }
 
-    html {
-        background: none;
-        // stylelint-disable scale-unlimited/declaration-strict-value
-        color: #000;  // Black prints faster:
-        // stylelint-enable
+    .hero-unit {
+        background-image: none !important;
+
+        &:before {
+            content: none;
+        }
+    }
+
+    .hero-unit__title,
+    .hero-unit__subtitle {
+        color: $print-black;
+    }
+
+    .project-header {
+        padding-top: 0;
+        margin-top: 0 !important;
+        min-height: 0;
+        background-image: none !important;
+
+        &:before {
+            content: none;
+        }
+    }
+
+    .project-header__title {
+        color: $print-black;
+    }
+
+    .list-item {
+        border: 1px solid $border-color;
+    }
+
+    .black-divider {
+        padding: 0;
+        margin-bottom: 0.2em;
+        background: transparent;
+        color: $print-black;
+        font-size: 1.2em;
+    }
+
+    .comment {
+        margin-bottom: 1em;
     }
 }
