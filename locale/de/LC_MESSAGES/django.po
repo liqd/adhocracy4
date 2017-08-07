@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-03 16:12+0200\n"
+"POT-Creation-Date: 2017-08-07 15:56+0200\n"
 "PO-Revision-Date: 2017-07-17 15:32+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1402,7 +1402,8 @@ msgstr "Ideen mit Kommentaren"
 msgid "Your Idea has been deleted"
 msgstr "Ihre Idee wurde gelöscht"
 
-#: meinberlin/apps/initiators/forms.py:11 meinberlin/apps/projects/views.py:24
+#: meinberlin/apps/initiators/forms.py:11
+#: meinberlin/apps/newsletters/forms.py:40 meinberlin/apps/projects/views.py:24
 msgid "Organisation"
 msgstr "Organisation"
 
@@ -1525,6 +1526,15 @@ msgstr "nicht umgesetzt"
 msgid "Accepted"
 msgstr "wird umgesetzt"
 
+#: meinberlin/apps/newsletters/forms.py:25
+#: meinberlin/apps/newsletters/models.py:42
+msgid "Receivers"
+msgstr "Empfänger*innen"
+
+#: meinberlin/apps/newsletters/forms.py:35
+msgid "Project"
+msgstr "Projekt"
+
 #: meinberlin/apps/newsletters/models.py:18
 msgid "Users following a specific project"
 msgstr "Nutzer*innen die einem bestimmten Projekt folgen"
@@ -1557,10 +1567,6 @@ msgstr "Inhalt der E-Mail"
 msgid "Sent"
 msgstr "Senden"
 
-#: meinberlin/apps/newsletters/models.py:42
-msgid "Receivers"
-msgstr "Empfänger"
-
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_form.html.py:4
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_form.html.py:8
 msgid "Create newsletter"
@@ -1568,7 +1574,7 @@ msgstr "Newsletter erstellen"
 
 #: meinberlin/apps/newsletters/views.py:94
 msgid "Newsletter has been saved and will be sent to the recipients."
-msgstr "Der Newsletter wurde gespeichert und wird an die Empfänger gesendet."
+msgstr "Der Newsletter wurde gespeichert und wird an die Empfänger*innen gesendet."
 
 #: meinberlin/apps/offlineevents/forms.py:14
 #: meinberlin/apps/offlineevents/models.py:15
