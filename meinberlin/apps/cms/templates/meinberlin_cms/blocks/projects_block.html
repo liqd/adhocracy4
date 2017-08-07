@@ -1,7 +1,7 @@
 {% load rules i18n %}
 <div class="block block--projects">
     <h2>{{ value.title }}</h2>
-    <ul class="l-tiles-4">
+    <ul class="l-tiles-4 u-list-reset">
         {% for project in value.projects %}
             {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
         {% endfor %}
