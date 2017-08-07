@@ -37,6 +37,6 @@ def test_free_text_filter_widget():
 
     assert 'value' == value
     assert '<input type="hidden" name="other" value="other_value">' in html
-    assert ('<input class="search-filter-input" id="test_id" type="text" '
+    assert ('<input class="search-filter-input" id="test_id" type="search" '
             'name="test_filter" value="value">'
             in html)
