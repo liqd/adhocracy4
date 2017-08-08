@@ -68,33 +68,23 @@ def test_phases(phase, phase_factory):
 
 
 @pytest.mark.django_db
-def test_future_phases(phase, phase_factory):
-    module = phase.module
-    phase_factory(
+def test_last_active_phase(module, phase_factory):
+    phase1 = phase_factory(
         module=module,
-        start_date=phase.start_date - timedelta(days=3),
-        end_date=phase.start_date - timedelta(days=2))
-    with freeze_time(phase.start_date - timedelta(days=1)):
-        assert list(module.future_phases) == [phase]
-
-
-@pytest.mark.django_db
-def test_past_phases(phase, phase_factory):
-    module = phase.module
-    phase_factory(
+        start_date=parse('2013-01-01 18:00:00 UTC'),
+        end_date=parse('2013-01-02 18:00:00 UTC'),
+    )
+    phase2 = phase_factory(
         module=module,
-        start_date=phase.end_date + timedelta(days=2),
-        end_date=phase.end_date + timedelta(days=3))
-    with freeze_time(phase.end_date + timedelta(days=1)):
-        assert list(module.past_phases) == [phase]
+        start_date=parse('2013-02-01 18:00:00 UTC'),
+        end_date=parse('2013-02-02 18:00:00 UTC'),
+    )
 
-
-@pytest.mark.django_db
-def test_last_active_phase(phase, phase_factory):
-    module = phase.module
-    last_active_phase = phase_factory(
-        module=module,
-        start_date=phase.end_date + timedelta(days=2),
-        end_date=phase.end_date + timedelta(days=3))
-    with freeze_time(last_active_phase.end_date + timedelta(days=1)):
-        assert module.last_active_phase == last_active_phase
+    with freeze_time(phase1.start_date - timedelta(minutes=1)):
+        assert module.last_active_phase is None
+    with freeze_time(phase1.start_date):
+        assert module.last_active_phase == phase1
+    with freeze_time(phase1.end_date):
+        assert module.last_active_phase == phase1
+    with freeze_time(phase2.end_date):
+        assert module.last_active_phase == phase2
