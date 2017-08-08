@@ -6,10 +6,11 @@ import xlsxwriter
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 
+from adhocracy4.emails.mixins import SyncEmailMixin
 from meinberlin.apps.contrib.emails import Email
 
 
-class FormEmail(Email):
+class FormEmail(SyncEmailMixin, Email):
     template_name = 'meinberlin_cms/emails/form_submission'
 
     def get_receivers(self):

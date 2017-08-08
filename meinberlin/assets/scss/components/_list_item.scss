@@ -5,11 +5,16 @@
     border: 1px solid $border-color;
     background-color: $body-bg;
     margin-bottom: $spacer;
+    page-break-inside: avoid;
 }
 
 .list-item--squashed {
     border: 0;
     margin-bottom: 2px;
+
+    @media print {
+        border: 1px solid $border-color;
+    }
 }
 
 .list-item__title {

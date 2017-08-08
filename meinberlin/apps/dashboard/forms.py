@@ -246,10 +246,10 @@ class ProjectUpdateForm(ProjectEditFormBase):
         qs = kwargs['phases__queryset']
         module = qs.first().module
         if module.settings_instance:
-            self.base_forms.append(
+            self.base_forms.append((
                 'module_settings',
                 get_module_settings_form(module.settings_instance),
-            )
+            ))
 
         phases = [phase.content() for phase in qs]
         self.show_categories_form = self._show_categories_form(phases)

@@ -57,6 +57,10 @@
     min-width: 0.4em;
 
     transition: width 0.3s;
+
+    @media print {
+        border: 1px solid $border-color;
+    }
 }
 
 .poll-row__bar--highlight {
