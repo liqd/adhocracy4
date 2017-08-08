@@ -1,35 +1,8 @@
 @media print {
-    button,
-    .button,
-    [type="submit"],
-    .errorlist,
-    input,
-    textarea,
-    select,
-    .widget--radioselect,
-    .widget--checkboxselectmultiple,
-    .form-hint,
-    .form-check__label,
-    .form-check,
-    .form-group,
-    .tile__head,
-    .pagination,
     .portal-header,
     .shariff,
-    .comments-login,
-    .breadcrumbs,
-    .project-header__action,
-    .tablist,
-    .list-item__actions,
-    .dashboard-nav,
-    .item-detail__meta,
     .wagtail-userbar {
         display: none !important;
-    }
-
-    .tabpanel,
-    .phase-info {
-        display: block !important;
     }
 
     html {
@@ -46,17 +19,4 @@
             font-size: 0.7em;
         }
     }
-
-    .l-center-6,
-    .l-center-8,
-    .l-wrapper {
-        width: 100%;
-        max-width: none;
-        margin: 0;
-    }
-
-    .main-nav__logo:after {
-        content: "";
-    }
-
 }
