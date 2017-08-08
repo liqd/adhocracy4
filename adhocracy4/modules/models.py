@@ -14,6 +14,9 @@ class Module(models.Model):
     project = models.ForeignKey(
         project_models.Project, on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ['weight']
+
     def __str__(self):
         return "{} ({})".format(self.project, self.weight)
 
