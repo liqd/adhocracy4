@@ -1,6 +1,5 @@
 from autoslug import AutoSlugField
 from django.db import models
-from django.utils import timezone
 from django.core.urlresolvers import reverse
 
 from adhocracy4.models import base
@@ -51,19 +50,15 @@ class Module(models.Model):
 
     @property
     def future_phases(self):
-        phases = self.phase_set.filter(models.Q(start_date__gt=timezone.now())
-                                       | models.Q(start_date=None))
-        return phases.order_by('start_date')
+        return self.phase_set.future_phases()
 
     @property
     def past_phases(self):
-        phases = self.phase_set.filter(end_date__lte=timezone.now())
-        return phases.order_by('-end_date')
+        return self.phase_set.past_phases()
 
     @property
     def last_active_phase(self):
-        phase = self.active_phase or self.past_phases.first()
-        return phase
+        return self.active_phase or self.past_phases.first()
 
     @property
     def first_phase_start_date(self):

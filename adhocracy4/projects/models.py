@@ -146,6 +146,10 @@ class Project(base.TimeStampedModel):
         return not self.is_public
 
     @property
+    def modules(self):
+        return self.module_set.all()
+
+    @property
     def last_active_module(self):
         """Return the module of the currently active or last past phase."""
         if self.active_module:
@@ -160,8 +164,7 @@ class Project(base.TimeStampedModel):
     @property
     def active_module(self):
         """Return the currently active module."""
-        phase = self.phases.active_phases()\
-            .order_by('module__weight', 'weight').first()
+        phase = self.phases.active_phases().first()
         if phase:
             return phase.module
         return None
@@ -186,18 +189,20 @@ class Project(base.TimeStampedModel):
 
     @property
     def future_phases(self):
-        phases = self.phases.filter(models.Q(start_date__gt=timezone.now())
-                                    | models.Q(start_date=None))
-        return phases.order_by('start_date')
+        return self.phases.future_phases()
 
     @property
     def past_phases(self):
-        phases = self.phases.filter(end_date__lte=timezone.now())
-        return phases.order_by('-end_date')
+        return self.phases.past_phases()
+
+    @property
+    def has_started(self):
+        return self.last_active_module is not None
 
     @property
     def has_finished(self):
-        return not self.active_phase and self.future_phases.count() == 0
+        return not self.active_module\
+               and not self.phases.future_phases().exists()
 
     @property
     def is_archivable(self):
