@@ -324,4 +324,4 @@ def test_last_active_module_property(project, module_factory, phase_factory):
         assert project.last_active_module == module2
     # Freeze after every phase
     with freeze_time(phase2.end_date):
-        assert project.last_active_module == module2
+        assert project.last_active_module == module
