@@ -33,7 +33,7 @@ class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
             }
             return get_object_or_404(Module, **lookup)
 
-        return None
+        return self._get_object_module()
 
     def validate_object_module(self):
         """Validate that the current objects module matches the context."""
