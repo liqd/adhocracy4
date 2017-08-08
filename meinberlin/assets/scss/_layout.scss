@@ -1,9 +1,6 @@
 // should be used with ul/ol
 @mixin grid-tiles($n, $settings: ()) {
     @include clearfix;
-    margin: 0;
-    padding: 0;
-    list-style: none;
 
     > * {
         @include grid-same-width($n, $settings);
@@ -29,6 +26,14 @@
     max-width: 81rem;
     margin: 0 auto;
     padding: 0 $padding;
+}
+
+.l-tiles-2,
+.l-tiles-3,
+.l-tiles-4 {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 @media (min-width: $breakpoint) {
