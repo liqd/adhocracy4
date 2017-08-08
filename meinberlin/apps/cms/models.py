@@ -130,16 +130,20 @@ class EmailFormPage(AbstractEmailForm):
     ]
 
     def send_mail(self, form):
-        self.form = form
+        kwargs = {
+            'title': self.title.replace(' ', '_'),
+            'to_addresses': self.to_address.split(','),
+            'field_values': self.get_field_values(form),
+            'submission_pk': self.get_submission_class().objects.last().pk
+        }
         if self.attach_as == 'xls':
-            emails.XlsxFormEmail.send(self)
+            emails.XlsxFormEmail.send(self, **kwargs)
         elif self.attach_as == 'txt':
-            emails.TextFormEmail.send(self)
+            emails.TextFormEmail.send(self, **kwargs)
 
-    @property
-    def field_values(self):
+    def get_field_values(self, form):
         fields = {}
-        for field in self.form:
+        for field in form:
             value = field.value()
             if isinstance(value, list):
                 value = ', '.join(value)
