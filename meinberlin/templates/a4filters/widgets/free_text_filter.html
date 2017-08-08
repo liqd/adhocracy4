@@ -7,9 +7,7 @@
             <input type="hidden" name="{{ par_name }}" value="{{ value }}">
         {% endif %}
     {% endfor %}
-    <div class="input-addon__after">
-        <button class="button button--light" type="submit" title="{% trans 'Search' %}">
-            <i class="fa fa-search" aria-label="{% trans 'Search' %}"></i>
-        </button>
-    </div>
+    <button class="input-addon__after button button--light" type="submit" title="{% trans 'Search' %}">
+        <i class="fa fa-search" aria-label="{% trans 'Search' %}"></i>
+    </button>
 </form>
