@@ -41,7 +41,7 @@
     a {
         color: $print-link;
 
-        &:after {
+        &[href^="http"]:after {
             content: " [" attr(href) "] ";
             font-size: 0.7em;
         }
