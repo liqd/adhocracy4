@@ -3,6 +3,7 @@
     flex-direction: column;
     border: 1px solid $border-color;
     margin-bottom: $padding;
+    page-break-inside: avoid;
 }
 
 .tile__head {
@@ -75,4 +76,8 @@
 .tile__hint {
     color: $brand-danger;
     font-size: $font-size-sm;
+
+    @media print {
+        color: $text-muted;
+    }
 }

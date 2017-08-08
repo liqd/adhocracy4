@@ -40,3 +40,14 @@
     font-weight: normal;
     font-size: $font-size-xl;
 }
+
+@media print {
+    .hero-unit {
+        background-image: none !important;
+        color: $print-black;
+
+        &:before {
+            content: none;
+        }
+    }
+}
