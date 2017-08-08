@@ -5,8 +5,19 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 var classnames = require('classnames')
 
-var RatingBox = React.createClass({
-  handleRatingCreate: function (number) {
+class RatingBox extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      positiveRatings: this.props.positiveRatings,
+      negativeRatings: this.props.negativeRatings,
+      userHasRatingd: this.props.userRating !== null,
+      userRating: this.props.userRating,
+      userRatingId: this.props.userRatingId
+    }
+  }
+  handleRatingCreate (number) {
     api.rating.add({
       urlReplaces: {
         objectPk: this.props.objectId,
@@ -22,8 +33,8 @@ var RatingBox = React.createClass({
         userRatingId: data.id
       })
     }.bind(this))
-  },
-  handleRatingModify: function (number, id) {
+  }
+  handleRatingModify (number, id) {
     api.rating.change({
       urlReplaces: {
         objectPk: this.props.objectId,
@@ -38,11 +49,11 @@ var RatingBox = React.createClass({
           userRating: data.meta_info.user_rating_on_same_object_value
         })
       }.bind(this))
-  },
-  updateUserRating: function (data) {
+  }
+  updateUserRating (data) {
     this.state.ratings[this.state.userRatingIndex] = data
-  },
-  ratingUp: function (e) {
+  }
+  ratingUp (e) {
     e.preventDefault()
     if (this.props.authenticatedAs === null) {
       window.location.href = config.loginUrl
@@ -62,8 +73,8 @@ var RatingBox = React.createClass({
     } else {
       this.handleRatingCreate(1)
     }
-  },
-  ratingDown: function (e) {
+  }
+  ratingDown (e) {
     e.preventDefault()
     if (this.props.authenticatedAs === null) {
       window.location.href = config.loginUrl
@@ -83,20 +94,8 @@ var RatingBox = React.createClass({
     } else {
       this.handleRatingCreate(-1)
     }
-  },
-  getInitialState: function () {
-    return {
-      positiveRatings: this.props.positiveRatings,
-      negativeRatings: this.props.negativeRatings,
-      userHasRatingd: this.props.userRating !== null,
-      userRating: this.props.userRating,
-      userRatingId: this.props.userRatingId
-    }
-  },
-  componentDidMount: function () {
-    this.getInitialState()
-  },
-  render: function () {
+  }
+  render () {
     let getRatingClasses = ratingType => {
       let valueForRatingType = ratingType === 'up' ? 1 : -1
       return classnames(`rating-button rating-${ratingType}`, {
@@ -109,21 +108,21 @@ var RatingBox = React.createClass({
         <button
           className={getRatingClasses('up')}
           disabled={this.props.isReadOnly}
-          onClick={this.ratingUp}>
+          onClick={this.ratingUp.bind(this)}>
           <i className="fa fa-chevron-up" aria-hidden="true" />
           {this.state.positiveRatings}
         </button>
         <button
           className={getRatingClasses('down')}
           disabled={this.props.isReadOnly}
-          onClick={this.ratingDown}>
+          onClick={this.ratingDown.bind(this)}>
           <i className="fa fa-chevron-down" aria-hidden="true" />
           {this.state.negativeRatings}
         </button>
       </div>
     )
   }
-})
+}
 
 module.exports.RatingBox = RatingBox
 

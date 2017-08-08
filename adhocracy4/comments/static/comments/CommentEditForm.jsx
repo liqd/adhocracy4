@@ -1,14 +1,16 @@
 var React = require('react')
 var django = require('django')
 
-var CommentEditForm = React.createClass({
-  getInitialState: function () {
-    return {comment: this.props.comment}
-  },
-  handleTextChange: function (e) {
+class CommentEditForm extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {comment: this.props.comment}
+  }
+  handleTextChange (e) {
     this.setState({comment: e.target.value})
-  },
-  handleSubmit: function (e) {
+  }
+  handleSubmit (e) {
     e.preventDefault()
     var comment = this.state.comment.trim()
     if (!comment) {
@@ -21,14 +23,14 @@ var CommentEditForm = React.createClass({
         contentTypeId: this.props.subjectType
       }
     })
-  },
-  render: function () {
+  }
+  render () {
     return (
-      <form className="general-form" onSubmit={this.handleSubmit}>
+      <form className="general-form" onSubmit={this.handleSubmit.bind(this)}>
         <div className="form-group">
           <textarea rows={this.props.rows} className="form-control"
             placeholder={django.gettext('Your comment here')}
-            onChange={this.handleTextChange} required="required" defaultValue={this.state.comment} />
+            onChange={this.handleTextChange.bind(this)} required="required" defaultValue={this.state.comment.bind(this)} />
         </div>
         <input type="submit" value={django.gettext('post')} className="submit-button" />
         <input type="submit" value={django.gettext('cancel')} className="cancel-button"
@@ -36,7 +38,7 @@ var CommentEditForm = React.createClass({
       </form>
     )
   }
-})
+}
 
 CommentEditForm.contextTypes = {
   isAuthenticated: React.PropTypes.bool
