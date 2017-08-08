@@ -3,6 +3,14 @@
     margin: 4em 0 2.5em;
     background-color: $text-color;
     color: contrast-color($text-color);
+
+    @media print {
+        padding: 0;
+        margin-bottom: 0.2em;
+        background-color: transparent;
+        color: $print-black;
+        font-size: 1.2em;
+    }
 }
 
 .comment-box {
@@ -55,6 +63,10 @@
 .comment {
     margin-top: $spacer * 2;
     margin-bottom: $spacer * 3;
+
+    @media print {
+        margin-bottom: 1em;
+    }
 }
 
 .comment-text {

@@ -119,12 +119,3 @@ button,
     text-align: left;
     cursor: pointer;
 }
-
-@media print {
-    html {
-        background: none;
-        // stylelint-disable scale-unlimited/declaration-strict-value
-        color: #000;  // Black prints faster:
-        // stylelint-enable
-    }
-}
