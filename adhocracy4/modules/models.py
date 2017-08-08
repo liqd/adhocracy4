@@ -30,12 +30,6 @@ class Module(models.Model):
 
     @property
     def is_active(self):
-        return self.phase_set \
-            .active_phases()\
-            .exists()
-
-    @property
-    def is_active_in_project(self):
         return self == self.project.last_active_module
 
     @property

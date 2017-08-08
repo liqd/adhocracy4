@@ -14,7 +14,7 @@ class ModuleDetailView(rules_mixins.PermissionRequiredMixin,
 
     def dispatch(self, request, *args, **kwargs):
         module = self.get_object()
-        if module.is_active_in_project:
+        if module.is_active:
             redirect_url = module.project.get_absolute_url()
             return HttpResponseRedirect(redirect_url)
         if module.last_active_phase:
