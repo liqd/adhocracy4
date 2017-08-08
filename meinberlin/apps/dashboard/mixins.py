@@ -1,4 +1,4 @@
-from copy import copy
+from copy import deepcopy
 from datetime import datetime
 
 from django.contrib import messages
@@ -96,7 +96,7 @@ class DashboardProjectDuplicateMixin:
             if not can_add:
                 raise PermissionDenied
 
-            project_clone = copy(project)
+            project_clone = deepcopy(project)
             project_clone.pk = None
             if project_clone.tile_image:
                 project_clone.tile_image.save(project.tile_image.name,
@@ -109,14 +109,15 @@ class DashboardProjectDuplicateMixin:
             project_clone.save()
 
             for module in project.module_set.all():
-                module_clone = copy(module)
+                module_clone = deepcopy(module)
                 module_clone.project = project_clone
                 module_clone.pk = None
                 module_clone.name = \
                     '{}_{}'.format(module.name, project_clone.pk)
                 module_clone.save()
+
                 for phase in module.phase_set.all():
-                    phase_clone = copy(phase)
+                    phase_clone = deepcopy(phase)
                     phase_clone.module = module_clone
                     phase_clone.pk = None
                     phase_clone.save()
