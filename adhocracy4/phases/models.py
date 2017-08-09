@@ -20,6 +20,23 @@ class PhasesQuerySet(models.QuerySet):
     def finished_phases(self):
         return self.filter(end_date__lte=timezone.now())
 
+    def past_phases(self):
+        """Return past phases ordered by end date starting from the latest."""
+        return self\
+            .filter(end_date__lte=timezone.now())\
+            .order_by('-end_date')
+
+    def future_phases(self):
+        """
+        Return future phases ordered by start date starting from the next.
+
+        Note: Phases without a start date are assumed to start in the future.
+        """
+        return self\
+            .filter(models.Q(start_date__gt=timezone.now())
+                    | models.Q(start_date=None))\
+            .order_by('start_date')
+
     def finish_next(self, hours=24):
         """
         All phases that are active and finish within the given time.

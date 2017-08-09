@@ -173,14 +173,11 @@ class Project(base.TimeStampedModel):
 
     @property
     def future_phases(self):
-        phases = self.phases.filter(models.Q(start_date__gt=timezone.now())
-                                    | models.Q(start_date=None))
-        return phases.order_by('start_date')
+        return self.phases.future_phases()
 
     @property
     def past_phases(self):
-        phases = self.phases.filter(end_date__lte=timezone.now())
-        return phases.order_by('-end_date')
+        return self.phases.past_phases()
 
     @property
     def has_finished(self):
