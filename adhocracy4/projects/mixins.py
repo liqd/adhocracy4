@@ -1,3 +1,4 @@
+from django.http.response import HttpResponseRedirect
 from django.utils.functional import cached_property
 from django.views import generic
 
@@ -27,6 +28,24 @@ class PhaseDispatchMixin(generic.DetailView):
             return self.module.last_active_phase.view.as_view()
         else:
             return super().dispatch
+
+
+class ModuleDispatchMixin(PhaseDispatchMixin):
+
+    @cached_property
+    def project(self):
+        return self.module.project
+
+    @cached_property
+    def module(self):
+        return self.get_object()
+
+    def dispatch(self, request, *args, **kwargs):
+        # Redirect to the project detail page if the module is shown there
+        if self.module == self.project.last_active_module:
+            return HttpResponseRedirect(self.project.get_absolute_url())
+
+        return super().dispatch(request, *args, **kwargs)
 
 
 class ProjectMixin(generic.base.ContextMixin):
