@@ -3,7 +3,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.utils import functional, timezone
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.models import base
@@ -135,17 +135,17 @@ class Project(base.TimeStampedModel):
     def has_moderator(self, user):
         return user in self.moderators.all()
 
-    @functional.cached_property
+    @property
     def other_projects(self):
         other_projects = self.organisation.project_set\
             .filter(is_draft=False, is_archived=False).exclude(slug=self.slug)
         return other_projects
 
-    @functional.cached_property
+    @property
     def is_private(self):
         return not self.is_public
 
-    @functional.cached_property
+    @property
     def last_active_module(self):
         """Return the module of the currently active or last past phase."""
         phase = self.active_phase or self.past_phases.first()
@@ -153,7 +153,7 @@ class Project(base.TimeStampedModel):
             return phase.module
         return None
 
-    @functional.cached_property
+    @property
     def active_phase(self):
         return self.phases\
                    .active_phases()\
