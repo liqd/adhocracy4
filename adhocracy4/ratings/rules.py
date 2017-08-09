@@ -8,7 +8,7 @@ from adhocracy4.phases import predicates as phase_predicates
 def content_object_allows_rating(user, rating):
     content_object = rating.content_object
     return phase_predicates.has_feature_active(
-        content_object.project, content_object.__class__, 'rate'
+        content_object.module, content_object.__class__, 'rate'
     )
 
 
