@@ -37,6 +37,7 @@
 {% if not object|is_offlineevent %}
     <div class="l-center-6">
         <div class="item-detail">
+            {% if module %}
             {% if module_event_count > 1 %}
                 <h2 class="item-detail__title">
                     {{ module.name }}
@@ -86,6 +87,14 @@
                 <span class="u-if-collapsed">{% trans 'Show phase overview' %}</span>
                 <span class="u-if-not-collapsed">{% trans 'Hide phase overview' %}</span>
             </button>
+            {% else %}
+            <div class="item-detail__meta">
+                <strong>
+                    {% trans 'Participation is not possible at the moment.' %}
+                    {% blocktrans with project.future_phases.first.start_date|date:'DATE_FORMAT' as date %}It starts on {{ date }}.{% endblocktrans%}
+                </strong>
+            </div>
+            {% endif %}
         </div>
     </div>
 {% endif %}
