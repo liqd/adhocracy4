@@ -1,5 +1,6 @@
 import pytest
 from dateutil.parser import parse
+from datetime import timedelta
 from django.core.exceptions import ValidationError
 from freezegun import freeze_time
 
@@ -138,3 +139,46 @@ def test_is_over_property(phase):
 @pytest.mark.django_db
 def test_str(phase):
     str(phase) == "AskPhase (a4test_questions:020:ask)"
+
+
+@pytest.mark.django_db
+def test_past_phases(phase_factory):
+    phase1 = phase_factory(
+        start_date=parse('2013-01-01 18:00:00 UTC'),
+        end_date=parse('2013-01-10 18:00:00 UTC'),
+    )
+    phase2 = phase_factory(
+        start_date=parse('2013-01-05 18:00:00 UTC'),
+        end_date=parse('2013-01-15 18:00:00 UTC'),
+    )
+
+    with freeze_time(phase1.start_date):
+        assert list(models.Phase.objects.past_phases()) == []
+    with freeze_time(phase1.end_date):
+        assert list(models.Phase.objects.past_phases()) == [phase1]
+    with freeze_time(phase2.end_date):
+        assert list(models.Phase.objects.past_phases()) == [phase2, phase1]
+
+
+@pytest.mark.django_db
+def test_future_phases(phase_factory):
+    phase1 = phase_factory(
+        start_date=parse('2013-01-01 18:00:00 UTC'),
+        end_date=parse('2013-01-10 18:00:00 UTC'),
+    )
+    phase2 = phase_factory(
+        start_date=parse('2013-01-05 18:00:00 UTC'),
+        end_date=parse('2013-01-15 18:00:00 UTC'),
+    )
+    phase3 = phase_factory(
+        start_date=None,
+        end_date=None
+    )
+
+    with freeze_time(phase1.start_date - timedelta(minutes=1)):
+        assert (list(models.Phase.objects.future_phases())
+                == [phase3, phase1, phase2])
+    with freeze_time(phase2.start_date - timedelta(minutes=1)):
+        assert list(models.Phase.objects.future_phases()) == [phase3, phase2]
+    with freeze_time(phase2.end_date):
+        assert list(models.Phase.objects.future_phases()) == [phase3]

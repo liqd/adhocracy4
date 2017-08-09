@@ -3,7 +3,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.utils import functional, timezone
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.models import base
@@ -135,35 +135,49 @@ class Project(base.TimeStampedModel):
     def has_moderator(self, user):
         return user in self.moderators.all()
 
-    @functional.cached_property
+    @property
     def other_projects(self):
         other_projects = self.organisation.project_set\
             .filter(is_draft=False, is_archived=False).exclude(slug=self.slug)
         return other_projects
 
-    @functional.cached_property
+    @property
     def is_private(self):
         return not self.is_public
 
-    @functional.cached_property
+    @property
+    def modules(self):
+        return self.module_set.all()
+
+    @property
     def last_active_module(self):
         """Return the module of the currently active or last past phase."""
-        phase = self.active_phase or self.past_phases.first()
+        if self.active_module:
+            return self.active_module
+        last_active_phase = self.phases.past_phases().first()
+        if last_active_phase:
+            return last_active_phase.module
+        return None
+
+    @property
+    def active_module(self):
+        """Return the currently active module."""
+        phase = self.phases.active_phases().first()
         if phase:
             return phase.module
         return None
 
-    @functional.cached_property
+    @property
     def active_phase(self):
-        return self.phases\
-                   .active_phases()\
-                   .first()
+        if self.active_module:
+            return self.active_module.active_phase
+        return None
 
     @property
     def days_left(self):
-        if self.active_phase:
+        if self.active_module and self.active_module.active_phase:
             today = timezone.now().replace(hour=0, minute=0, second=0)
-            time_delta = self.active_phase.end_date - today
+            time_delta = self.active_module.active_phase.end_date - today
             return time_delta.days
 
     @property
@@ -173,18 +187,20 @@ class Project(base.TimeStampedModel):
 
     @property
     def future_phases(self):
-        phases = self.phases.filter(models.Q(start_date__gt=timezone.now())
-                                    | models.Q(start_date=None))
-        return phases.order_by('start_date')
+        return self.phases.future_phases()
 
     @property
     def past_phases(self):
-        phases = self.phases.filter(end_date__lte=timezone.now())
-        return phases.order_by('-end_date')
+        return self.phases.past_phases()
+
+    @property
+    def has_started(self):
+        return self.last_active_module is not None
 
     @property
     def has_finished(self):
-        return not self.active_phase and self.future_phases.count() == 0
+        return not self.active_module\
+               and not self.phases.future_phases().exists()
 
     @property
     def is_archivable(self):

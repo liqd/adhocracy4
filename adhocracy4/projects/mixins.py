@@ -1,29 +1,59 @@
+from django.http.response import HttpResponseRedirect
+from django.utils.functional import cached_property
 from django.views import generic
 
 
 class PhaseDispatchMixin(generic.DetailView):
+
+    @cached_property
+    def project(self):
+        return self.get_object()
+
+    @cached_property
+    def module(self):
+        return self.project.last_active_module
+
     def dispatch(self, request, *args, **kwargs):
-        kwargs['project'] = self.get_object()
+        # Choose the appropriate view for the current active phase.
+        kwargs['project'] = self.project
+        kwargs['module'] = self.module
+
         return self._view_by_phase()(request, *args, **kwargs)
 
     def _view_by_phase(self):
         """
         Choose the appropriate view for the current active phase.
         """
-        project = self.get_object()
-
-        if project.active_phase:
-            return project.active_phase.view.as_view()
-        elif project.past_phases:
-            return project.past_phases[0].view.as_view()
+        if self.module and self.module.last_active_phase:
+            return self.module.last_active_phase.view.as_view()
         else:
             return super().dispatch
+
+
+class ModuleDispatchMixin(PhaseDispatchMixin):
+
+    @cached_property
+    def project(self):
+        return self.module.project
+
+    @cached_property
+    def module(self):
+        return self.get_object()
+
+    def dispatch(self, request, *args, **kwargs):
+        # Redirect to the project detail page if the module is shown there
+        if self.module == self.project.last_active_module:
+            return HttpResponseRedirect(self.project.get_absolute_url())
+
+        return super().dispatch(request, *args, **kwargs)
 
 
 class ProjectMixin(generic.base.ContextMixin):
     def dispatch(self, *args, **kwargs):
         self.project = kwargs['project']
-        self.phase = self.project.active_phase or self.project.past_phases[0]
-        self.module = self.phase.module if self.phase else None
+        self.module = kwargs['module']
+        self.phase = self.module.last_active_phase if self.module else None
+        # Workaround for filters
         self.request.module = self.module
+
         return super(ProjectMixin, self).dispatch(*args, **kwargs)
