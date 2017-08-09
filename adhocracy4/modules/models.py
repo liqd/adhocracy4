@@ -1,5 +1,6 @@
 from autoslug import AutoSlugField
 from django.db import models
+from django.core.urlresolvers import reverse
 
 from adhocracy4.models import base
 from adhocracy4.projects import models as project_models
@@ -18,6 +19,9 @@ class Module(models.Model):
 
     def __str__(self):
         return "{} ({})".format(self.project, self.weight)
+
+    def get_absolute_url(self):
+        return reverse('module-detail', args=[str(self.slug)])
 
     @property
     def settings_instance(self):
