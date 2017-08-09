@@ -172,16 +172,35 @@ class Project(base.TimeStampedModel):
 
     @property
     def active_phase(self):
-        return self.phases\
-                   .active_phases()\
-                   .first()
+        """
+        Return the currently active phase.
+
+        The currently active phase is defined as the phase that out of all
+        currently active phases ends last. This is analogous to the last
+        active phase.
+
+        Attention: This method is _deprecated_ as multiple phases may be
+        active at the same time.
+        """
+        last_active_phase = self.last_active_phase
+        if last_active_phase and not last_active_phase.is_over:
+            return last_active_phase
+        return None
 
     @property
     def days_left(self):
-        if self.active_phase:
+        """
+        Return the number of days left in the currently active phase.
+
+        Attention: This method is _deprecated_ as multiple phases may be
+        active at the same time.
+        """
+        active_phase = self.active_phase
+        if active_phase:
             today = timezone.now().replace(hour=0, minute=0, second=0)
-            time_delta = self.active_phase.end_date - today
+            time_delta = active_phase.end_date - today
             return time_delta.days
+        return None
 
     @property
     def phases(self):
