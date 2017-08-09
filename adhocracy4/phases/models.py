@@ -37,6 +37,10 @@ class PhasesQuerySet(models.QuerySet):
                     | models.Q(start_date=None))\
             .order_by('start_date')
 
+    def past_and_active_phases(self):
+        """Return past and active phases."""
+        return self.filter(start_date__lte=timezone.now())
+
     def finish_next(self, hours=24):
         """
         All phases that are active and finish within the given time.

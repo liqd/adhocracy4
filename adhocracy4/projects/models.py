@@ -146,11 +146,28 @@ class Project(base.TimeStampedModel):
         return not self.is_public
 
     @property
+    def modules(self):
+        return self.module_set.all()
+
+    @property
+    def last_active_phase(self):
+        """
+        Return the last active phase.
+
+        The last active phase is defined as the phase that out of all past
+        and currently active phases ends last.
+        """
+        return self.phases\
+            .past_and_active_phases()\
+            .order_by('-end_date')\
+            .first()
+
+    @property
     def last_active_module(self):
-        """Return the module of the currently active or last past phase."""
-        phase = self.active_phase or self.past_phases.first()
-        if phase:
-            return phase.module
+        """Return the module of the last active phase."""
+        last_active_phase = self.last_active_phase
+        if last_active_phase:
+            return last_active_phase.module
         return None
 
     @property
