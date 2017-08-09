@@ -37,25 +37,58 @@ def test_is_privat(project):
 
 
 @pytest.mark.django_db
-def test_no_days_left(phase):
-    project = phase.module.project
-    with freeze_time(phase.end_date):
+def test_days_left(project, phase_factory):
+    phase1 = phase_factory(
+        start_date=parse('2013-01-01 18:00:00 UTC'),
+        end_date=parse('2013-01-02 18:00:00 UTC'),
+        module__project=project,
+    )
+    phase2 = phase_factory(
+        start_date=parse('2013-02-01 18:00:00 UTC'),
+        end_date=parse('2013-02-02 18:00:00 UTC'),
+        module__project=project,
+    )
+
+    with freeze_time(phase1.start_date):
+        assert project.days_left is 1
+    with freeze_time(phase1.end_date):
+        assert project.days_left is None
+    with freeze_time(phase2.start_date):
+        assert project.days_left is 1
+    with freeze_time(phase2.end_date):
         assert project.days_left is None
 
 
 @pytest.mark.django_db
-def test_one_day_left(phase):
-    project = phase.module.project
-    with freeze_time(phase.end_date - timedelta(days=1)):
-        assert project.days_left == 1
+def test_has_finished(project, phase_factory):
+    phase1 = phase_factory(
+        start_date=parse('2013-01-01 18:00:00 UTC'),
+        end_date=parse('2013-01-02 18:00:00 UTC'),
+        module__project=project,
+    )
+    phase2 = phase_factory(
+        start_date=parse('2013-02-01 18:00:00 UTC'),
+        end_date=parse('2013-02-02 18:00:00 UTC'),
+        module__project=project,
+    )
+
+    with freeze_time(phase1.start_date - timedelta(minutes=1)):
+        assert not project.has_finished
+    with freeze_time(phase1.start_date):
+        assert not project.has_finished
+    with freeze_time(phase1.end_date):
+        assert not project.has_finished
+    with freeze_time(phase2.end_date):
+        assert project.has_finished
 
 
 @pytest.mark.django_db
-def test_has_finished(phase):
+def test_has_started(phase):
     project = phase.module.project
-    with freeze_time(phase.end_date + timedelta(days=1)):
-        assert project.days_left is None
-        assert project.has_finished is True
+    with freeze_time(phase.start_date - timedelta(minutes=1)):
+        assert not project.has_started
+    with freeze_time(phase.start_date):
+        assert project.has_started
 
 
 @pytest.mark.django_db
@@ -136,63 +169,86 @@ def test_phases_property(module, phase_factory):
 
 
 @pytest.mark.django_db
-def test_future_phases_property(module, phase_factory):
-    project = module.project
+def test_active_phase_property(project, module_factory, phase_factory):
+    module1 = module_factory(project=project, weight=1)
+    module2 = module_factory(project=project, weight=2)
     phase1 = phase_factory(
-        module=module,
-        start_date=parse('2013-03-01 18:00:00 UTC'),
-        end_date=parse('2013-03-02 18:00:00 UTC')
+        module=module1,
+        start_date=parse('2013-01-01 18:00:00 UTC'),
+        end_date=parse('2013-01-10 18:00:00 UTC'),
+        weight=1,
     )
     phase2 = phase_factory(
-        module=module,
-        start_date=parse('2013-02-01 18:00:00 UTC'),
-        end_date=parse('2013-02-02 18:00:00 UTC')
+        module=module2,
+        start_date=parse('2013-01-05 18:00:00 UTC'),
+        end_date=parse('2013-01-15 18:00:00 UTC'),
+        weight=1,
     )
     phase3 = phase_factory(
-        module=module,
-        start_date=parse('2013-01-01 18:00:00 UTC'),
-        end_date=parse('2013-01-02 18:00:00 UTC')
-    )
-    phase4 = phase_factory(
-        module=module,
-        start_date=None,
-        end_date=None
+        module=module2,
+        start_date=parse('2013-03-01 18:00:00 UTC'),
+        end_date=parse('2013-03-02 18:00:00 UTC'),
+        weight=2,
     )
 
-    with freeze_time(phase3.start_date):
-        assert list(project.future_phases) == [phase4, phase2, phase1]
-    with freeze_time(phase3.end_date):
-        assert list(project.future_phases) == [phase4, phase2, phase1]
+    # Freeze prior to every phase
+    with freeze_time(phase1.start_date - timedelta(minutes=1)):
+        assert project.active_phase is None
+    # Freeze during single phase
+    with freeze_time(phase1.start_date):
+        assert project.active_phase == phase1
+    # Freeze overlapping phases from different modules
     with freeze_time(phase2.start_date):
-        assert list(project.future_phases) == [phase4, phase1]
-    with freeze_time(phase2.end_date):
-        assert list(project.future_phases) == [phase4, phase1]
+        assert project.active_phase == phase2
+    # Freeze single phase from overlapping modules
+    with freeze_time(phase2.end_date - timedelta(minutes=1)):
+        assert project.active_phase == phase2
+    # Freeze on gap between phases of a module
+    with freeze_time(phase3.start_date - timedelta(minutes=1)):
+        assert project.active_phase is None
+    # Freeze after every phase
+    with freeze_time(phase3.end_date):
+        assert project.active_phase is None
 
 
 @pytest.mark.django_db
-def test_past_phases_property(module, phase_factory):
-    project = module.project
-    phase_factory(
-        module=module,
-        start_date=parse('2013-03-01 18:00:00 UTC'),
-        end_date=parse('2013-03-02 18:00:00 UTC')
+def test_last_active_module_property(project, module_factory, phase_factory):
+    module1 = module_factory(project=project, weight=1)
+    module2 = module_factory(project=project, weight=2)
+    phase1 = phase_factory(
+        module=module1,
+        start_date=parse('2013-01-01 18:00:00 UTC'),
+        end_date=parse('2013-01-10 18:00:00 UTC'),
+        weight=1,
     )
     phase2 = phase_factory(
-        module=module,
-        start_date=parse('2013-02-01 18:00:00 UTC'),
-        end_date=parse('2013-02-02 18:00:00 UTC')
+        module=module2,
+        start_date=parse('2013-01-05 18:00:00 UTC'),
+        end_date=parse('2013-01-15 18:00:00 UTC'),
+        weight=1,
     )
     phase3 = phase_factory(
-        module=module,
-        start_date=parse('2013-01-01 18:00:00 UTC'),
-        end_date=parse('2013-01-02 18:00:00 UTC')
+        module=module2,
+        start_date=parse('2013-03-01 18:00:00 UTC'),
+        end_date=parse('2013-03-02 18:00:00 UTC'),
+        weight=2,
     )
 
-    with freeze_time(phase3.start_date):
-        assert list(project.past_phases) == []
-    with freeze_time(phase3.end_date):
-        assert list(project.past_phases) == [phase3]
+    # Freeze prior to every phase
+    with freeze_time(phase1.start_date - timedelta(minutes=1)):
+        assert project.last_active_module is None
+    # Freeze during single phase
+    with freeze_time(phase1.start_date):
+        assert project.last_active_module == module1
+    # Freeze overlapping phases from different modules
     with freeze_time(phase2.start_date):
-        assert list(project.past_phases) == [phase3]
-    with freeze_time(phase2.end_date):
-        assert list(project.past_phases) == [phase2, phase3]
+        assert project.last_active_module == module2
+    # Freeze single phase from overlapping modules
+    with freeze_time(phase2.end_date - timedelta(minutes=1)):
+        assert project.last_active_module == module2
+    # Freeze on gap between phases of a module
+    with freeze_time(phase3.start_date - timedelta(minutes=1)):
+        assert project.last_active_module == module2
+    # Freeze after every phase
+    with freeze_time(phase3.end_date):
+        assert project.last_active_module == module2
