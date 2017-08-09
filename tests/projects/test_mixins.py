@@ -49,15 +49,17 @@ def test_phase_dispatch_mixin_default(rf, project_detail_view, project):
 
 @pytest.mark.django_db
 def test_project_mixin(rf, question_list_view, phase):
-    project = phase.module.project
+    module = phase.module
+    project = module.project
     request = rf.get('/project_name/ideas')
 
     with freeze_time(phase.start_date):
-        response = question_list_view(request, project=project)
+        response = question_list_view(request, project=project, module=module)
 
-    response = question_list_view(request, project=project)
+    response = question_list_view(request, project=project, module=module)
     view_data = response.context_data['view']
     assert view_data.project == project
+    assert view_data.module == module
     assert view_data.phase == phase
 
 
@@ -74,9 +76,10 @@ def test_project_inject_phase_after_finish(rf, phase_factory,
     request = rf.get('/project_name/ideas')
 
     with freeze_time(phase.end_date):
-        response = question_list_view(request, project=project)
+        response = question_list_view(request, project=project, module=module)
 
-    response = question_list_view(request, project=project)
+    response = question_list_view(request, project=project, module=module)
     view_data = response.context_data['view']
     assert view_data.project == project
+    assert view_data.module == module
     assert view_data.phase == phase
