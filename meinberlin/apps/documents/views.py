@@ -42,15 +42,14 @@ class ChapterDetailView(ProjectContextDispatcher,
 
     @property
     def chapter_list(self):
-        return models.Chapter.objects.filter(
-            module=self.project.last_active_module)
+        return models.Chapter.objects.filter(module=self.module)
 
 
 class DocumentDetailView(ChapterDetailView):
 
     def get_object(self):
         first_chapter = models.Chapter.objects \
-            .filter(module=self.project.last_active_module) \
+            .filter(module=self.module) \
             .first()
 
         if not first_chapter:

@@ -23,7 +23,7 @@ class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
 
 def get_ordering_choices(request):
     choices = (('-created', _('Most recent')),)
-    if request.project.last_active_module.has_feature('rate', models.Idea):
+    if request.module.has_feature('rate', models.Idea):
         choices += ('-positive_rating_count', _('Most popular')),
     choices += ('-comment_count', _('Most commented')),
     return choices
