@@ -57,11 +57,11 @@ def is_allowed_view_item(user, item):
 
 def is_allowed_add_item(item_class):
     @rules.predicate
-    def _add_item(user, item):
-        return (is_project_admin(user, item) |
-                (is_context_member(user, item) &
-                 is_live_context(user, item) &
-                 phase_predicates.phase_allows_add(item_class)(user, item)))
+    def _add_item(user, module):
+        return (is_project_admin(user, module) |
+                (is_context_member(user, module) &
+                 is_live_context(user, module) &
+                 phase_predicates.phase_allows_add(item_class)(user, module)))
     return _add_item
 
 
