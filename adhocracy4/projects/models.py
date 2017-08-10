@@ -155,12 +155,11 @@ class Project(base.TimeStampedModel):
         Return the last active phase.
 
         The last active phase is defined as the phase that out of all past
-        and currently active phases ends last.
+        and currently active phases started last.
         """
         return self.phases\
             .past_and_active_phases()\
-            .order_by('-end_date')\
-            .first()
+            .last()
 
     @property
     def last_active_module(self):
@@ -176,7 +175,7 @@ class Project(base.TimeStampedModel):
         Return the currently active phase.
 
         The currently active phase is defined as the phase that out of all
-        currently active phases ends last. This is analogous to the last
+        currently active phases started last. This is analogous to the last
         active phase.
 
         Attention: This method is _deprecated_ as multiple phases may be

@@ -73,7 +73,7 @@ modules may overlap but only one module is defined as active.
 - modules have a have a developer-defined order called weight
 - a project defines a last active module as
     -   the module of the last active phase
-    -   the last active phase is defined as the last ending phase out of all past
+    -   the last active phase is defined as the last starting phase out of all past
         and currently active phases
 
 ## Use cases
