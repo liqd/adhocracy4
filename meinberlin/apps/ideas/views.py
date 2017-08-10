@@ -56,7 +56,7 @@ class IdeaExportView(export_views.ItemExportView,
                      export_views.ItemExportWithRatesMixin,
                      export_views.ItemExportWithCommentCountMixin,
                      export_views.ItemExportWithCommentsMixin):
-    mmoduleodel = models.Idea
+    model = models.Idea
     fields = ['name', 'description', 'creator', 'created']
 
     def get_queryset(self):
