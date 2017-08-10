@@ -51,7 +51,7 @@ class Module(models.Model):
 
     @property
     def last_active_phase(self):
-        return self.active_phase or self.past_phases.first()
+        return self.active_phase or self.past_phases.last()
 
     @property
     def first_phase_start_date(self):

@@ -157,7 +157,7 @@ def test_past_phases(phase_factory):
     with freeze_time(phase1.end_date):
         assert list(models.Phase.objects.past_phases()) == [phase1]
     with freeze_time(phase2.end_date):
-        assert list(models.Phase.objects.past_phases()) == [phase2, phase1]
+        assert list(models.Phase.objects.past_phases()) == [phase1, phase2]
 
 
 @pytest.mark.django_db
