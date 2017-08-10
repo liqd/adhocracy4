@@ -5,19 +5,21 @@ let $ = require('jquery')
 let React = require('react')
 let django = require('django')
 
-const ReportModal = React.createClass({
-  getInitialState: function () {
-    return {
+class ReportModal extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
       report: '',
       showSuccessMessage: false,
       showErrorMessage: false,
       showReportForm: true
     }
-  },
-  handleTextChange: function (e) {
+  }
+  handleTextChange (e) {
     this.setState({report: e.target.value})
-  },
-  resetModal: function () {
+  }
+  resetModal () {
     if (!$('#' + this.props.name).is(':visible')) {
       this.setState({
         report: '',
@@ -27,14 +29,14 @@ const ReportModal = React.createClass({
         errors: null
       })
     } else {
-      setTimeout(this.resetModal, 500)
+      setTimeout(this.resetModal.bind(this), 500)
     }
-  },
-  closeModal: function () {
+  }
+  closeModal () {
     $('#' + this.props.name).modal('hide')
     this.resetModal()
-  },
-  submitReport: function () {
+  }
+  submitReport () {
     api.report.submit({
       description: this.state.report,
       content_type: this.props.contentType,
@@ -48,8 +50,8 @@ const ReportModal = React.createClass({
           showErrorMessage: false
         })
       }.bind(this))
-  },
-  render: function () {
+  }
+  render () {
     let partials = {}
     if (this.state.showSuccessMessage) {
       partials.title = (<span><i className="fa fa-check" /> Thank you! We are taking care of it.</span>)
@@ -60,7 +62,7 @@ const ReportModal = React.createClass({
       partials.body = (
         <div className="form-group">
           <textarea rows="5" className="form-control report-message" value={this.state.report}
-            placeholder={django.gettext('Your message here')} onChange={this.handleTextChange} />
+            placeholder={django.gettext('Your message here')} onChange={this.handleTextChange.bind(this)} />
           {this.state.errors && <span className="help-block">{this.state.errors.description}</span>}
         </div>
       )
@@ -70,14 +72,14 @@ const ReportModal = React.createClass({
       <Modal
         abort={this.props.abort}
         name={this.props.name}
-        closeHandler={this.closeModal}
-        submitHandler={this.submitReport}
+        closeHandler={this.closeModal.bind(this)}
+        submitHandler={this.submitReport.bind(this)}
         action={django.gettext('Send Report')}
         partials={partials}
         dismissOnSubmit={false}
       />
     )
   }
-})
+}
 
 module.exports = ReportModal

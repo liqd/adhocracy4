@@ -6,8 +6,15 @@ var React = require('react')
 var update = require('immutability-helper')
 var django = require('django')
 
-let CommentBox = React.createClass({
-  updateStateComment: function (index, parentIndex, updatedComment) {
+class CommentBox extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      comments: this.props.comments
+    }
+  }
+  updateStateComment (index, parentIndex, updatedComment) {
     var comments = this.state.comments
     var diff = {}
     if (typeof parentIndex !== 'undefined') {
@@ -18,8 +25,8 @@ let CommentBox = React.createClass({
     }
     comments = update(comments, diff)
     this.setState({ comments: comments })
-  },
-  handleCommentSubmit: function (comment, parentIndex) {
+  }
+  handleCommentSubmit (comment, parentIndex) {
     api.comments.add(comment)
       .done(function (comment) {
         var comments = this.state.comments
@@ -33,8 +40,8 @@ let CommentBox = React.createClass({
           comments: update(comments, diff)
         })
       }.bind(this))
-  },
-  handleCommentModify: function (modifiedComment, index, parentIndex) {
+  }
+  handleCommentModify (modifiedComment, index, parentIndex) {
     var comments = this.state.comments
     var comment = comments[index]
     if (typeof parentIndex !== 'undefined') {
@@ -43,8 +50,8 @@ let CommentBox = React.createClass({
 
     api.comments.change(modifiedComment, comment.id)
       .done(this.updateStateComment.bind(this, index, parentIndex))
-  },
-  handleCommentDelete: function (index, parentIndex) {
+  }
+  handleCommentDelete (index, parentIndex) {
     var comments = this.state.comments
     var comment = comments[index]
     if (typeof parentIndex !== 'undefined') {
@@ -59,38 +66,33 @@ let CommentBox = React.createClass({
     }
     api.comments.delete(data, comment.id)
       .done(this.updateStateComment.bind(this, index, parentIndex))
-  },
-  getInitialState: function () {
-    return {
-      comments: this.props.comments
-    }
-  },
-  getChildContext: function () {
+  }
+  getChildContext () {
     return {
       isAuthenticated: this.props.isAuthenticated,
       isModerator: this.props.isModerator,
       comments_contenttype: this.props.comments_contenttype,
       user_name: this.props.user_name
     }
-  },
-  render: function () {
+  }
+  render () {
     return (
       <div>
         <div className="black-divider">{this.state.comments.length + ' ' + django.ngettext('comment', 'comments', this.state.comments.length)}</div>
         <div className="comment-box">
           <CommentForm subjectType={this.props.subjectType} subjectId={this.props.subjectId}
-            onCommentSubmit={this.handleCommentSubmit} placeholder={django.gettext('Your comment here')}
+            onCommentSubmit={this.handleCommentSubmit.bind(this)} placeholder={django.gettext('Your comment here')}
             rows="5" isReadOnly={this.props.isReadOnly} />
           <div className="comment-list">
-            <CommentList comments={this.state.comments} handleCommentDelete={this.handleCommentDelete}
-              handleCommentSubmit={this.handleCommentSubmit} handleCommentModify={this.handleCommentModify}
+            <CommentList comments={this.state.comments} handleCommentDelete={this.handleCommentDelete.bind(this)}
+              handleCommentSubmit={this.handleCommentSubmit.bind(this)} handleCommentModify={this.handleCommentModify.bind(this)}
               isReadOnly={this.props.isReadOnly} />
           </div>
         </div>
       </div>
     )
   }
-})
+}
 
 CommentBox.childContextTypes = {
   isAuthenticated: React.PropTypes.bool,
