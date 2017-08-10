@@ -1,12 +1,12 @@
 {% extends 'email_base.'|add:part_type %}
 {% load wagtailcore_tags %}
 
-{% block subject %}Neue Stellungnahme zum {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
+{% block subject %}Neue Stellungnahme zum {{ project.name }} von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
 
-{% block headline %}Neue Stellungnahme zum {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
+{% block headline %}Neue Stellungnahme zum {{ project.name }} von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
 
 {% block content %}
-Es wurde eine neue Stellungnahme für den {{ project.name }} von {{ project.active_phase.start_date|date:'d.m.Y' }} - {{ project.active_phase.end_date|date:'d.m.Y' }} abgegeben.
+Es wurde eine neue Stellungnahme für den {{ project.name }} von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }} abgegeben.
 
 Name
 {{ statement.name }}
