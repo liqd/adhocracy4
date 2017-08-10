@@ -95,6 +95,9 @@ module.exports = {
   },
   plugins: [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.ProvidePlugin({
+      timeago: 'timeago.js'
+    }),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
     new ExtractTextPlugin('[name].css'),
     new CopyWebpackPlugin([
