@@ -9,7 +9,7 @@ from . import mixins
 
 def category_queryset(request):
     return category_models.Category.objects.filter(
-        module=request.project.last_active_module)
+        module=request.module)
 
 
 class CategoryFilterWidget(DropdownLinkWidget):
