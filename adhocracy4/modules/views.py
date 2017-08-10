@@ -12,3 +12,11 @@ class ModuleDetailView(rules_mixins.PermissionRequiredMixin,
 
     def get_permission_object(self):
         return self.project
+
+    def get_context_data(self, **kwargs):
+        """Append project and module to the template context."""
+        if 'project' not in kwargs:
+            kwargs['project'] = self.project
+        if 'module' not in kwargs:
+            kwargs['module'] = self.module
+        return super().get_context_data(**kwargs)
