@@ -1,15 +1,30 @@
 from autoslug import AutoSlugField
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.models import base
 from adhocracy4.projects import models as project_models
 
 
 class Module(models.Model):
-    name = models.CharField(max_length=512, unique=True)
     slug = AutoSlugField(populate_from='name', unique=True)
-    description = models.TextField(null=True, blank=True)
+    name = models.CharField(
+        max_length=512,
+        verbose_name=_('Title of the module'),
+        help_text=_('This title will appear in the timeline and the header on '
+                    'the module and project detail pages. It should be '
+                    'max. 512 characters long')
+    )
+    description = models.CharField(
+        null=True,
+        blank=True,
+        max_length=250,
+        verbose_name=_('Short description of the module'),
+        help_text=_('This short description will appear on the header of the '
+                    'module and project detail pages. It should briefly state '
+                    'the goal of the module in max. 250 chars.')
+    )
     weight = models.PositiveIntegerField()
     project = models.ForeignKey(
         project_models.Project, on_delete=models.CASCADE)
