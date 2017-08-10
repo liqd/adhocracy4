@@ -15,7 +15,7 @@
                     >
                         {{ obj.name }}
                     </a>
-                    {% if obj == project.last_active_module %}<span class="timeline__active">{% trans 'active' %}</span>{% endif %}
+                    {% if obj.active_phase %}<span class="timeline__active">{% trans 'active' %}</span>{% endif %}
                     {% if obj == module %}<span class="sr-only">{% trans 'current page' %}</span>{% endif %}
                 </li>
             {% else %}
@@ -37,55 +37,64 @@
 {% if not object|is_offlineevent %}
     <div class="l-center-6">
         <div class="item-detail">
-            {% if module_event_count > 1 %}
-                <h2 class="item-detail__title">
-                    {{ module.name }}
-                </h2>
-            {% endif %}
-            {% if not project.active_module %}
+            {% if module %}
+                {% if module_event_count > 1 %}
+                    <h2 class="item-detail__title">
+                        {{ module.name }}
+                    </h2>
+                {% endif %}
+                {% if not module.active_phase %}
+                    <div class="item-detail__meta">
+                        <strong>
+                            {% trans 'Participation is not possible at the moment.' %}
+                            {% if not module.past_phases %}
+                                {% blocktrans with module.future_phases.first.start_date|date:'DATE_FORMAT' as date %}It starts on {{ date }}.{% endblocktrans%}
+                            {% elif module.future_phases %}
+                                {% blocktrans with module.future_phases.first.start_date|date:'DATE_FORMAT' as date %}It continues on {{ date }}.{% endblocktrans%}
+                            {% else %}
+                                {% blocktrans with module.past_phases.last.end_date|date:'DATE_FORMAT' as date %}It ended on {{ date }}.{% endblocktrans%}
+                            {% endif %}
+                        </strong>
+                    </div>
+                {% endif %}
+                <div class="item-detail__meta">
+                    {{ module.description }}
+                </div>
+
+                <div class="phase-info collapse" id="phase-overview">
+                    {% for phase in module.phases %}
+                        <div class="phase-info__item">
+                            <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar{% endif %}">
+                                {% if phase == module.active_phase %}
+                                    <span class="lr-bar__left">{{ phase.name }}</span>
+                                    <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
+                                {% else %}
+                                    {{ phase.name }}
+                                {% endif %}
+                            </div>
+                            <div class="phase-info__item__subtitle">
+                                {{ phase.start_date|date:'DATE_FORMAT' }}
+                                &ndash; {{ phase.end_date|date:'DATE_FORMAT' }}
+                            </div>
+                            <div class="phase-info__item__description">
+                                {{ phase.description }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <button class="button button--link" type="button" data-toggle="collapse" data-target="#phase-overview" aria-expanded="false" aria-controls="phase-overview">
+                    <span class="u-if-collapsed">{% trans 'Show phase overview' %}</span>
+                    <span class="u-if-not-collapsed">{% trans 'Hide phase overview' %}</span>
+                </button>
+            {% else %}
                 <div class="item-detail__meta">
                     <strong>
                         {% trans 'Participation is not possible at the moment.' %}
-                        {% if not project.past_phases %}
-                            {% blocktrans with project.phases.first.start_date|date:'DATE_FORMAT' as date %}It starts on {{ date }}.{% endblocktrans%}
-                        {% elif project.has_finished %}
-                            {% blocktrans with project.phases.last.end_date|date:'DATE_FORMAT' as date %}It ended on {{ date }}.{% endblocktrans%}
-                        {% else %}
-                            {% blocktrans with project.future_phases.first.start_date|date:'DATE_FORMAT' as date %}It continues on {{ date }}.{% endblocktrans%}
-                        {% endif %}
+                        {% blocktrans with project.future_phases.first.start_date|date:'DATE_FORMAT' as date %}It starts on {{ date }}.{% endblocktrans%}
                     </strong>
                 </div>
             {% endif %}
-            <div class="item-detail__meta">
-                {{ project.description }}
-            </div>
-
-            <div class="phase-info collapse" id="phase-overview">
-                {% for phase in module.phases %}
-                    <div class="phase-info__item">
-                        <div class="phase-info__item__title{% if phase == project.module.active_phase %} lr-bar{% endif %}">
-                            {% if phase == project.module.active_phase %}
-                                <span class="lr-bar__left">{{ phase.name }}</span>
-                                <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
-                            {% else %}
-                                {{ phase.name }}
-                            {% endif %}
-                        </div>
-                        <div class="phase-info__item__subtitle">
-                            {{ phase.start_date|date:'DATE_FORMAT' }}
-                            &ndash; {{ phase.end_date|date:'DATE_FORMAT' }}
-                        </div>
-                        <div class="phase-info__item__description">
-                            {{ phase.description }}
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-
-            <button class="button button--link" type="button" data-toggle="collapse" data-target="#phase-overview" aria-expanded="false" aria-controls="phase-overview">
-                <span class="u-if-collapsed">{% trans 'Show phase overview' %}</span>
-                <span class="u-if-not-collapsed">{% trans 'Hide phase overview' %}</span>
-            </button>
         </div>
     </div>
 {% endif %}
