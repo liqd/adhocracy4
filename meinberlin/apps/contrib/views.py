@@ -9,7 +9,10 @@ from adhocracy4.projects.models import Project
 
 
 class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
-    """Add a project attribute to the view.
+    """Add project and module attributes to the view.
+
+    This acts as a replacement of ProjectMixin and
+    is a counterpart to the PhaseDispatcher logic.
 
     Note: Must always be defined as the _first_ parent class.
     """
@@ -20,7 +23,7 @@ class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
     module_url_kwarg = 'module_slug'
 
     def get_module(self, *args, **kwargs):
-        """Get the module from the kwargs or the url.
+        """Get the module from the kwargs, url or current object.
 
         Note: May be overwritten by views with different module relations.
         """
@@ -33,41 +36,18 @@ class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
             }
             return get_object_or_404(Module, **lookup)
 
-        return self._get_object_module()
-
-    def validate_object_module(self):
-        """Validate that the current objects module matches the context."""
-        object_module = self._get_object_module()
-        return not object_module or object_module == self.module
-
-    def _get_object_module(self):
-        if hasattr(self, 'get_object') \
-                and not isinstance(self, generic.CreateView):
-            try:
-                object = self.get_object()
-                if hasattr(object, 'module'):
-                    return object.module
-
-                if isinstance(object, Module):
-                    return object
-            except Http404:
-                return None
-            except AttributeError:
-                return None
-
-        return None
+        return self._get_object(Module, 'module')
 
     def get_project(self, *args, **kwargs):
-        """Get the project from the kwargs, the url or the current object.
+        """Get the project from the module, kwargs, url or current object.
 
         Note: May be overwritten by views with different projects relations.
-              If a module is detected, the project
         """
+        if self.module:
+            return self.module.project
+
         if 'project' in kwargs and isinstance(kwargs['project'], Project):
             return kwargs['project']
-
-        if 'module' in kwargs:
-            return kwargs['module'].project
 
         if self.project_url_kwarg and self.project_url_kwarg in kwargs:
             lookup = {
@@ -75,23 +55,28 @@ class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
             }
             return get_object_or_404(Project, **lookup)
 
-        return self._get_object_project()
+        return self._get_object(Project, 'project')
 
     def validate_object_project(self):
         """Validate that the current objects project matches the context."""
-        object_project = self._get_object_project()
+        object_project = self._get_object(Project, 'project')
         return not object_project or object_project == self.project
 
-    def _get_object_project(self):
+    def validate_object_module(self):
+        """Validate that the current objects module matches the context."""
+        object_module = self._get_object(Module, 'module')
+        return not object_module or object_module == self.module
+
+    def _get_object(self, cls, attr):
         if hasattr(self, 'get_object') \
                 and not isinstance(self, generic.CreateView):
             try:
                 object = self.get_object()
-                if hasattr(object, 'project'):
-                    return object.project
-
-                if isinstance(object, Project):
+                if isinstance(object, cls):
                     return object
+
+                if hasattr(object, attr):
+                    return getattr(object, attr)
             except Http404:
                 return None
             except AttributeError:
@@ -100,21 +85,17 @@ class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
         return None
 
     def dispatch(self, request, *args, **kwargs):
-        """Get this contexts project and validate it."""
+        """Get this contexts project and module and validate them."""
         module = self.get_module(*args, **kwargs)
-        if module:
-            project = module.project
-        else:
-            project = self.get_project(*args, **kwargs)
-            module = project.last_active_module
+        self.module = module
+        self.request.module = module
+
+        project = self.get_project(*args, **kwargs)
+        self.project = project
+        self.request.project = project
 
         if not project:
             return HttpResponseServerError()
-
-        self.project = project
-        self.request.project = project
-        self.module = module
-        self.request.module = module
 
         if not self.validate_object_project()\
                 or not self.validate_object_module():
