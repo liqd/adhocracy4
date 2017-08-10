@@ -105,7 +105,7 @@ class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
             .dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        """Append project to the template context."""
+        """Append project and module to the template context."""
         if 'project' not in kwargs:
             kwargs['project'] = self.project
         if 'module' not in kwargs:
