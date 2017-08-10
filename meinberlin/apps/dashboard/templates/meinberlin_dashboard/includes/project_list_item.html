@@ -36,15 +36,23 @@
                 {% trans 'Unpublish' %}
                 {% endif %}
             </button>
+
+            <button type="submit" name="duplicate" value="{{ project }}"
+                    class="button button--light button--small">
+                <i class="fa fa-files-o" aria-hidden="true"></i>
+                {% trans 'Duplicate' %}
+            </button>
         </form>
         <span class="list-item__action">
             <a href="{% url 'dashboard-project-edit' slug=project.slug %}"
              class="button button--light button--small">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
                 {% trans 'Edit'%}
+
             </a>
         </span>
 
+        </span>
         {% if project|has_management_view %}
         <span class="list-item__action">
             <a href="{% url 'dashboard-project-management' slug=project.slug %}"
