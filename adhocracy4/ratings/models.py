@@ -30,6 +30,11 @@ class Rating(UserGeneratedContentModel):
         return str(self.value)
 
     @property
+    def module(self):
+        co = self.content_object
+        return co.module
+
+    @property
     def project(self):
         co = self.content_object
         return co.project
