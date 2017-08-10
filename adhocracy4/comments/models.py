@@ -60,10 +60,8 @@ class Comment(base.UserGeneratedContentModel):
     def get_absolute_url(self):
         if hasattr(self.content_object, 'get_absolute_url'):
             return self.content_object.get_absolute_url()
-        elif hasattr(self.project, 'get_absolute_url'):
-            return self.project.get_absolute_url()
         else:
-            return None
+            return self.module.get_absolute_url()
 
     @property
     def notification_content(self):
@@ -71,7 +69,11 @@ class Comment(base.UserGeneratedContentModel):
 
     @property
     def project(self):
+        return self.module.project
+
+    @property
+    def module(self):
         co = self.content_object
         if isinstance(co, self.__class__):
             co = co.content_object
-        return co.project
+        return co.module
