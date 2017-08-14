@@ -69,10 +69,10 @@ modules may overlap.
 
 ### Details
 
-- each module belongs to a project
-- each module only has phases from one app
-- modules have a have a developer-defined order called weight
-- a project defines a "last active" module as
+-   each module belongs to a project
+-   each module only has phases from one app
+-   modules have a developer-defined order called weight
+-   a project defines a "last active" module as
     -   the module of the last active phase
     -   the last active phase is defined as the last starting phase out of all past
         and currently active phases
