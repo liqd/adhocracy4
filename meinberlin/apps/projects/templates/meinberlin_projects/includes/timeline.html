@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="phase-info collapse" id="phase-overview">
-                    {% for phase in module.phases %}
+                    {% for phase in module.phases %}{# FIXME: not ordered by start_date but by weight #}
                         <div class="phase-info__item">
                             <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar{% endif %}">
                                 {% if phase == module.active_phase %}
