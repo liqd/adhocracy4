@@ -3,7 +3,7 @@ import rules
 
 @rules.predicate
 def has_started(user, project):
-    return project.has_started()
+    return project.has_started
 
 
 @rules.predicate
