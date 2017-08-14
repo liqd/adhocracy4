@@ -63,15 +63,16 @@ Below are listed the differences of what is currently implemented in a4 and opin
 
 ### Definition
 
-A module is a container of multiple phases of a single app. Within a project context multiple
-modules may overlap but only one module is defined as active.
+A module is a container of multiple phases of a single app. A module is called
+active when one of its phases is active. Within a project context multiple
+modules may overlap.
 
 ### Details
 
 - each module belongs to a project
 - each module only has phases from one app
 - modules have a have a developer-defined order called weight
-- a project defines a last active module as
+- a project defines a "last active" module as
     -   the module of the last active phase
     -   the last active phase is defined as the last starting phase out of all past
         and currently active phases
