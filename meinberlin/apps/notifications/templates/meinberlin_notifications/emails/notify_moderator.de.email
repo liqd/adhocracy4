@@ -8,7 +8,7 @@
 {% block content %}{{ action.actor.username }} hat einen neuen Beitrag im Projekt {{ action.project.name }} erstellt. Schauen Sie nach was in dem Projekt aktuell passiert.{% endblock %}
 
 
-{% block cta_url %}{% if action.target.get_absolute_url %}{{ email.get_host }}{{ action.target.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
-{% block cta_label %}{% if action.target.get_absolute_url %}Beitrag anzeigen{% else %}Projekt anzeigen{% endif %}{% endblock %}
+{% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
+{% block cta_label %}{% if action.obj.get_absolute_url %}Beitrag anzeigen{% else %}Projekt anzeigen{% endif %}{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie Moderator des Projekts sind. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie Benachrichtigungen in Ihren Benutzerkonto Einstellungen komplett deaktivieren.{% endblock %}

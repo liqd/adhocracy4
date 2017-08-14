@@ -3,7 +3,7 @@ import rules
 
 @rules.predicate
 def has_started(user, project):
-    return project.active_phase or len(project.past_phases) > 0
+    return project.has_started
 
 
 @rules.predicate

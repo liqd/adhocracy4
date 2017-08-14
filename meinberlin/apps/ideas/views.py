@@ -7,7 +7,6 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
-from adhocracy4.modules import models as module_models
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
@@ -23,7 +22,7 @@ class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
 
 def get_ordering_choices(request):
     choices = (('-created', _('Most recent')),)
-    if request.project.last_active_module.has_feature('rate', models.Idea):
+    if request.module.has_feature('rate', models.Idea):
         choices += ('-positive_rating_count', _('Most popular')),
     choices += ('-comment_count', _('Most commented')),
     return choices
@@ -74,7 +73,7 @@ class IdeaListView(AbstractIdeaListView):
 
     def get_queryset(self):
         return super().get_queryset()\
-            .filter(module=self.project.last_active_module) \
+            .filter(module=self.module) \
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()
@@ -98,11 +97,7 @@ class AbstractIdeaCreateView(ProjectContextDispatcher,
                              generic.CreateView):
     """Create an idea in the context of a module."""
 
-    def dispatch(self, *args, **kwargs):
-        mod_slug = self.kwargs[self.slug_url_kwarg]
-        self.module = module_models.Module.objects.get(slug=mod_slug)
-        kwargs['project'] = self.module.project
-        return super().dispatch(*args, **kwargs)
+    module_url_kwarg = 'slug'
 
     def get_permission_object(self, *args, **kwargs):
         return self.module

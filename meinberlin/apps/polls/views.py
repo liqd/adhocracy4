@@ -33,11 +33,10 @@ class PollDetailView(ProjectContextDispatcher,
             )
 
     def get_object(self):
-        return get_object_or_404(models.Poll,
-                                 module=self.project.last_active_module)
+        return get_object_or_404(models.Poll, module=self.module)
 
     def get_permission_object(self):
-        return self.project.last_active_module
+        return self.module
 
 
 class PollManagementView(ProjectContextDispatcher,
@@ -57,7 +56,7 @@ class PollManagementView(ProjectContextDispatcher,
 
     def get_or_create_poll(self):
         # FIXME: Add multi-module support
-        module = self.project.module_set.first()
+        module = self.project.module_set.order_by('weight').first()
         try:
             obj = models.Poll.objects.get(module=module)
         except models.Poll.DoesNotExist:

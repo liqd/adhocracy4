@@ -23,6 +23,11 @@ rules.add_perm(
     module_predicates.is_allowed_comment_item
 )
 
+
+# Note: Those rules are checked from api.py which uses Put-As-Create.
+# Thus the is_allowed_add_item has to be checked in the add and change case.
+# It has to be ensured that the permission is always checked against a module
+# never a Vote object.
 rules.add_perm(
     'meinberlin_polls.add_vote',
     module_predicates.is_allowed_add_item(models.Vote)

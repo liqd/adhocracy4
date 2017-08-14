@@ -70,10 +70,14 @@ class Paragraph(base.TimeStampedModel):
         return reverse('meinberlin_documents:paragraph-detail',
                        args=[str(self.pk)])
 
-    @cached_property
+    @property
     def creator(self):
         return self.chapter.creator
 
-    @cached_property
+    @property
     def project(self):
-        return self.chapter.project
+        return self.module.project
+
+    @property
+    def module(self):
+        return self.chapter.module
