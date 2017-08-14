@@ -7,7 +7,7 @@
 }
 
 .tablist {
-    border-bottom: 2px solid $border-color;
+    border-bottom: 1px solid $border-color;
     text-align: center;
     margin-bottom: $spacer * 2;
 }
@@ -18,22 +18,22 @@
     vertical-align: bottom;
     padding: 0.4em 0.6em;
     margin-right: 0.5em;
+    margin-bottom: -1px;
     text-decoration: none;
     color: inherit;
 
+    border: 1px solid transparent;
+    border-top-right-radius: 0.3em;
+    border-top-left-radius: 0.3em;
+    border-bottom: 0;
+
     &:hover,
-    &:focus,
-    &.active {
+    &:focus {
         color: $link-color;
     }
 
-    &.active:after {
-        content: "";
-        position: absolute;
-        height: 2px;
-        left: 0;
-        right: 0;
-        bottom: -2px;
-        background-color: $link-color;
+    &.active {
+        border-color: $border-color;
+        background-color: $body-bg;
     }
 }
