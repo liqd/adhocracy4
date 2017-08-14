@@ -6,3 +6,4 @@ recursive-include adhocracy4/projects/templates *
 recursive-include adhocracy4/reports/templates *
 recursive-include adhocracy4/maps/templates *
 recursive-include adhocracy4/maps/static *
+recursive-include adhocracy4/filters/templates/widgets *
