@@ -2,15 +2,13 @@
 
 ## Phases
 
-### Original design
-
-#### Definition
+### Definition
 
 A phase is a fixed time interval inside the linear time line of
 a participation project. It enables participants to interact in a certain
 way with the participation project's content.
 
-#### Details
+### Details
 
 -   each app defines phases (eg ideas/phases.py)
 -   each phase belongs to a module (indirectly to a project)
@@ -27,16 +25,12 @@ way with the participation project's content.
         comment ideas"
 -   phases provide an initiator-configurable name and description
 
-#### Use cases
+### Use cases
 
 -   an initiator can create a project by combining any arbitrary phases
     -   only have to obey some rules (dates and order given)
 
-### Current implementation
-
-Below are listed the differences of what is currently implemented in a4 and opin:
-
-#### Details
+### Current Implementation
 
 -   abstract concept "phase" is split into "phase type" and "phase"
 -   phase type is inconsistently called phase content or phase identifier sometimes
@@ -77,11 +71,12 @@ modules may overlap.
     -   the last active phase is defined as the last starting phase out of all past
         and currently active phases
 
-## Use cases
+### Use cases
 
 -   an initiator can select a blueprint
     -   blueprints define which module and phase combinations are possible
 -   an initiator can add an offline phase before/after each phase (only OPIN)
+
 
 ## (Upcoming) challenges
 
