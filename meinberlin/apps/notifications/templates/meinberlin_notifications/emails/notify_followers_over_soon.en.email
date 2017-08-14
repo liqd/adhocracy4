@@ -4,7 +4,7 @@
 
 {% block headline %}Only a few hours left to participate in {{ action.project.name }}{% endblock %}
 
-{% block content %}The current participation phase of the project "{{ action.project.name }}" by "{{ action.project.organisation.name }}" will be over at {{ action.obj.module.active_phase.end_date|date:'d.m.Y' }}. If you want to participate, visit the project page soon.
+{% block content %}The current participation phase of the project "{{ action.project.name }}" by "{{ action.project.organisation.name }}" will be over at {{ action.obj.end_date|date:'d.m.Y' }}. If you want to participate, visit the project page soon.
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}

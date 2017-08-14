@@ -4,7 +4,7 @@
 
 {% block headline %}Es bleiben nur noch wenige Stunden zur Beteiligung an "{{ action.project.name }}"{% endblock %}
 
-{% block content %}Die aktuelle Beteiligungsphase für das Projekt "{{ action.project.name }}" endet am {{ action.obj.module.active_phase.end_date|date:'d.m.Y' }}. Wenn Sie sich noch beteiligen möchten, besuchen Sie die Projektseite.{% endblock %}
+{% block content %}Die aktuelle Beteiligungsphase für das Projekt "{{ action.project.name }}" endet am {{ action.obj.end_date|date:'d.m.Y' }}. Wenn Sie sich noch beteiligen möchten, besuchen Sie die Projektseite.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
 {% block cta_label %}Projekt anzeigen{% endblock %}
