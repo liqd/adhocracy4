@@ -6,7 +6,7 @@ class OfficeWorkerNotification(Email):
 
     @property
     def office_worker_email(self):
-        project = self.object.project
+        project = self.object.module.project
         return project.externalproject.bplan.office_worker_email
 
     def get_receivers(self):
@@ -14,7 +14,8 @@ class OfficeWorkerNotification(Email):
 
     def get_context(self):
         context = super().get_context()
-        context['project'] = self.object.project
+        context['module'] = self.object.module
+        context['project'] = self.object.module.project
         return context
 
 
@@ -26,5 +27,6 @@ class SubmitterConfirmation(Email):
 
     def get_context(self):
         context = super().get_context()
-        context['project'] = self.object.project
+        context['module'] = self.object.module
+        context['project'] = self.object.module.project
         return context

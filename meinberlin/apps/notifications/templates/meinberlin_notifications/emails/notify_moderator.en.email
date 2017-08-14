@@ -7,7 +7,7 @@
 
 {% block content %}On the project {{ action.project.name }} a {{ action.obj | verbose_name }} was added by {{ action.actor.username }}. Checkout what happend on the project {{ action.project.name }} on {{ site.name }} by clicking the {% if part_type == 'txt' %}link{% else %}button{% endif %} below.{% endblock %}
 
-{% block cta_url %}{% if action.target.get_absolute_url %}{{ email.get_host }}{{ action.target.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
-{% block cta_label %}{% if action.target.get_absolute_url %}Check your {{ action.target | verbose_name }}{% else %}Visit the project{% endif %}{% endblock %}
+{% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
+{% block cta_label %}{% if action.obj.get_absolute_url %}Check your {{ action.target | verbose_name }}{% else %}Visit the project{% endif %}{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you are a moderator in the project. If you don’t want to receive these notifications anymore, you can disable notifications completely in your account settings.{% endblock %}

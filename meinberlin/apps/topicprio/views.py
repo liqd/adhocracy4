@@ -64,7 +64,7 @@ class TopicListView(idea_views.AbstractIdeaListView):
 
     def get_queryset(self):
         return super().get_queryset()\
-            .filter(module=self.project.last_active_module) \
+            .filter(module=self.module) \
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()

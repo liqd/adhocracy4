@@ -7,6 +7,7 @@ from django.core.management.base import CommandError
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
 from adhocracy4.comments.models import Comment
+from adhocracy4.emails.mixins import SyncEmailMixin
 from adhocracy4.projects.models import Project
 from adhocracy4.reports import emails as reports_emails
 from adhocracy4.reports.models import Report
@@ -19,7 +20,7 @@ from meinberlin.apps.notifications import emails as notification_emails
 User = get_user_model()
 
 
-class TestEmail(Email):
+class TestEmail(Email, SyncEmailMixin):
     def get_receivers(self):
         return self.kwargs['receiver']
 
@@ -182,5 +183,5 @@ class Command(BaseCommand):
         TestEmail.send(
             project,
             receiver=[self.user],
-            template_name='meinberlin_projects/email/invite_participant'
+            template_name='meinberlin_projects/emails/invite_participant'
         )

@@ -40,13 +40,13 @@
 
         {% if project.active_phase %}
             <p class="tile__hint">
-                {% blocktrans with project.active_phase.end_date|date:'d.m.Y' as date %}
+                {% blocktrans with project.last_active_phase.end_date|date:'d.m.Y' as date %}
                     Participation possible until {{ date }}
                 {% endblocktrans %}
             </p>
         {% elif project.future_phases %}
             <p class="tile__hint">
-                {% blocktrans with project.future_phases.0.start_date|date:'d.m.Y' as date %}
+                {% blocktrans with project.future_phases.first.start_date|date:'d.m.Y' as date %}
                     Participation starting from {{ date }}
                 {% endblocktrans %}
             </p>
