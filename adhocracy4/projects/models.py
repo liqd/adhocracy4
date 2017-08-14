@@ -42,6 +42,7 @@ class Project(base.TimeStampedModel):
                     'in max. 250 chars.')
     )
     information = RichTextUploadingField(
+        blank=True,
         config_name='image-editor',
         verbose_name=_('Description of your project'),
         help_text=_('This description should tell participants '
