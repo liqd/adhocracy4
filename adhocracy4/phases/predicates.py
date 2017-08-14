@@ -2,6 +2,7 @@ import rules
 
 
 def has_feature_active(module, model, feature):
+    module = getattr(module, 'module', module)
     if not module.active_phase:
         return False
     else:
