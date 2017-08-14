@@ -1,4 +1,4 @@
-{% extends "meinberlin_dashboard/base_dashboard.html" %}
+{% extends "meinberlin_dashboard2/base_dashboard.html" %}
 {% load i18n %}
 
 {% block title %}{% trans "Projects" %} &mdash; {{ block.super }}{% endblock%}
@@ -11,7 +11,7 @@
             {% trans 'Projects' %}
         </h1>
         <div class="lr-bar__right">
-            <a href="{% url 'dashboard-blueprint-list' organisation_slug=view.organisation.slug %}" class="button">
+            <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}" class="button">
                 {% trans 'New Project' %}
             </a>
         </div>
@@ -22,7 +22,7 @@
     {% if project_list|length > 0 %}
         <ul class="u-list-reset">
             {% for project in project_list %}
-                {% include "meinberlin_dashboard/includes/project_list_item.html" with project=project %}
+                {% include "meinberlin_dashboard2/includes/project_list_item.html" with project=project %}
             {% endfor %}
         </ul>
     {% else %}

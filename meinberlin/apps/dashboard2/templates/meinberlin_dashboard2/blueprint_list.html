@@ -1,0 +1,15 @@
+{% extends "meinberlin_dashboard2/base_dashboard.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "New Project" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block dashboard_content %}
+<h1 class="menu-layout__title">{% trans "New Project" %}</h1>
+
+<ul class="l-tiles-3">
+    {% for blueprint_slug, blueprint in view.blueprints %}
+        {% include "meinberlin_dashboard2/includes/blueprint_list_tile.html" with blueprint=blueprint %}
+    {% endfor %}
+</ul>
+
+{% endblock %}
