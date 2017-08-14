@@ -26,11 +26,11 @@ def test_pre_phase(phase_factory, poll_factory, question, choice, vote, user):
 
     assert project.is_public
     with freeze_pre_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, vote)
-        assert not rules.has_perm(perm_name, user, vote)
-        assert not rules.has_perm(perm_name, creator, vote)
-        assert rules.has_perm(perm_name, moderator, vote)
-        assert rules.has_perm(perm_name, initiator, vote)
+        assert not rules.has_perm(perm_name, anonymous, vote.module)
+        assert not rules.has_perm(perm_name, user, vote.module)
+        assert not rules.has_perm(perm_name, creator, vote.module)
+        assert rules.has_perm(perm_name, moderator, vote.module)
+        assert rules.has_perm(perm_name, initiator, vote.module)
 
 
 @pytest.mark.django_db
@@ -44,11 +44,11 @@ def test_phase_active(phase_factory, poll_factory, question, choice, vote,
 
     assert project.is_public
     with freeze_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, vote)
-        assert rules.has_perm(perm_name, user, vote)
-        assert rules.has_perm(perm_name, creator, vote)
-        assert rules.has_perm(perm_name, moderator, vote)
-        assert rules.has_perm(perm_name, initiator, vote)
+        assert not rules.has_perm(perm_name, anonymous, vote.module)
+        assert rules.has_perm(perm_name, user, vote.module)
+        assert rules.has_perm(perm_name, creator, vote.module)
+        assert rules.has_perm(perm_name, moderator, vote.module)
+        assert rules.has_perm(perm_name, initiator, vote.module)
 
 
 @pytest.mark.django_db
@@ -63,11 +63,11 @@ def test_phase_active_project_draft(phase_factory, poll_factory, question,
 
     assert project.is_draft
     with freeze_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, vote)
-        assert not rules.has_perm(perm_name, user, vote)
-        assert not rules.has_perm(perm_name, creator, vote)
-        assert rules.has_perm(perm_name, moderator, vote)
-        assert rules.has_perm(perm_name, initiator, vote)
+        assert not rules.has_perm(perm_name, anonymous, vote.module)
+        assert not rules.has_perm(perm_name, user, vote.module)
+        assert not rules.has_perm(perm_name, creator, vote.module)
+        assert rules.has_perm(perm_name, moderator, vote.module)
+        assert rules.has_perm(perm_name, initiator, vote.module)
 
 
 @pytest.mark.django_db
@@ -82,8 +82,8 @@ def test_post_phase_project_archived(phase_factory, poll_factory, question,
 
     assert project.is_archived
     with freeze_post_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, vote)
-        assert not rules.has_perm(perm_name, user, vote)
-        assert not rules.has_perm(perm_name, creator, vote)
-        assert rules.has_perm(perm_name, moderator, vote)
-        assert rules.has_perm(perm_name, initiator, vote)
+        assert not rules.has_perm(perm_name, anonymous, vote.module)
+        assert not rules.has_perm(perm_name, user, vote.module)
+        assert not rules.has_perm(perm_name, creator, vote.module)
+        assert rules.has_perm(perm_name, moderator, vote.module)
+        assert rules.has_perm(perm_name, initiator, vote.module)
