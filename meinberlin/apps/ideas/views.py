@@ -7,7 +7,6 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
-from adhocracy4.modules import models as module_models
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
@@ -98,11 +97,7 @@ class AbstractIdeaCreateView(ProjectContextDispatcher,
                              generic.CreateView):
     """Create an idea in the context of a module."""
 
-    def dispatch(self, *args, **kwargs):
-        mod_slug = self.kwargs[self.slug_url_kwarg]
-        self.module = module_models.Module.objects.get(slug=mod_slug)
-        kwargs['project'] = self.module.project
-        return super().dispatch(*args, **kwargs)
+    module_url_kwarg = 'slug'
 
     def get_permission_object(self, *args, **kwargs):
         return self.module
