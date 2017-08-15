@@ -1,4 +1,3 @@
-from django.core.exceptions import FieldError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -21,13 +20,7 @@ class ModeratorFeedbackField(models.CharField):
         """
         # Get the feedback choices as defined in the model
         if hasattr(cls, 'moderator_feedback_choices'):
-            self._choices = cls.moderator_feedback_choices
-
-        # Since the choices are initialized late,
-        # they have to be manually checked
-        errors = self._check_choices()
-        if errors:
-            raise FieldError(errors)
+            self.choices = cls.moderator_feedback_choices
 
         # Call the super method at last so that choices are already initialized
         super(ModeratorFeedbackField, self) \
