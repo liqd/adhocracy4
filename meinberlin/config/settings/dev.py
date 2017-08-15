@@ -9,16 +9,17 @@ for template_engine in TEMPLATES:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'qid$h1o8&wh#p(j)lifis*5-rf@lbiy8%^3l4x%@b$z(tli@ab'
 
-
-try:
-    import debug_toolbar
-except ImportError:
-    pass
-else:
-    INSTALLED_APPS += ('debug_toolbar',)
-    MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-
-    INTERNAL_IPS = ('127.0.0.1', 'localhost')
+# FIXME: reenable after upgrade to wagtail 1.12
+# see: https://github.com/jazzband/django-debug-toolbar/issues/950
+# try:
+#     import debug_toolbar
+# except ImportError:
+#     pass
+# else:
+#     INSTALLED_APPS += ('debug_toolbar',)
+#     MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+#
+#     INTERNAL_IPS = ('127.0.0.1', 'localhost')
 
 try:
     from .local import *
