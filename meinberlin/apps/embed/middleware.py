@@ -1,7 +1,8 @@
+from django.utils.deprecation import MiddlewareMixin
 from django.utils.http import urlquote
 
 
-class AjaxPathMiddleware(object):
+class AjaxPathMiddleware(MiddlewareMixin):
     """Append request path as a header.
 
     In an ajax request, redirects are handled implicitly, so it it not possible

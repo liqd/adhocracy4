@@ -100,7 +100,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.topicprio.apps.Config',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
