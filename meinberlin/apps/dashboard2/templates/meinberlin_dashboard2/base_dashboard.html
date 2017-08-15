@@ -29,7 +29,7 @@
                                 <li>
                                     <a
                                             class="dropdown-item"
-                                            href="{% url 'dashboard-project-list' organisation_slug=organisation.slug %}"
+                                            href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}"
                                     >
                                         {{ organisation.name }}
                                     </a>
@@ -43,7 +43,7 @@
             </div>
             <ul class="dashboard-nav__pages">
                 <li class="dashboard-nav__page">
-                    <a href="{% url 'dashboard-project-list' organisation_slug=view.organisation.slug %}"
+                    <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
                        class="dashboard-nav__item dashboard-nav__item--interactive {% ifequal view.menu_item 'project' %}is-active{% endifequal %}">
                         <i class="fa fa-file-o"></i>
                         {% trans 'Participation projects' %}

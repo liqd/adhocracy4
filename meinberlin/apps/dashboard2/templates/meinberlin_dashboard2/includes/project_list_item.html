@@ -24,73 +24,13 @@
                 {% endif %}
             </a>
         </span>
-        <form method="post" class="list-item__action" role="presentation">
-            {% csrf_token %}
-            <input type="hidden" name="project_pk" value="{{ project.pk }}">
-            <button type="submit" name="submit_action" value="{{ project.is_draft|yesno:'publish,unpublish' }}"
-                    class="button button--light button--small">
-                <i class="fa fa-flag" aria-hidden="true"></i>
-                {% if project.is_draft %}
-                {% trans 'Publish' %}
-                {% else %}
-                {% trans 'Unpublish' %}
-                {% endif %}
-            </button>
-        </form>
+
         <span class="list-item__action">
-            <a href="{% url 'dashboard-project-edit' slug=project.slug %}"
+            <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
              class="button button--light button--small">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
                 {% trans 'Edit'%}
             </a>
         </span>
-
-        {% if project|has_management_view %}
-        <span class="list-item__action">
-            <a href="{% url 'dashboard-project-management' slug=project.slug %}"
-               class="button button--light button--small">
-                <i class="fa fa-cogs" aria-hidden="true"></i>
-                {% trans 'Contents' %}
-            </a>
-        </span>
-        {% endif %}
-
-        {% if not project|is_external %}
-        <span class="list-item__action">
-            <a href="{% url 'dashboard-project-moderators' slug=project.slug %}"
-               class="button button--light button--small">
-                <i class="fa fa-user-md" aria-hidden="true"></i>
-                {% trans 'Moderators' %}
-            </a>
-        </span>
-        {% endif %}
-
-        {% if not project.is_public %}
-        <span class="list-item__action">
-            <a href="{% url 'dashboard-project-participants' slug=project.slug %}"
-               class="button button--light button--small">
-                <i class="fa fa-users" aria-hidden="true"></i>
-                {% trans 'Participants' %}
-            </a>
-        </span>
-        {% endif %}
-
-        <span class="list-item__action">
-            <a href="{% url 'meinberlin_offlineevents:offlineevent-list' project_slug=project.slug %}"
-               class="button button--light button--small">
-                <i class="fa fa-calendar" aria-hidden="true"></i>
-                {% trans 'Offline Events' %}
-            </a>
-        </span>
-
-        {% if project|has_exports %}
-        <span class="list-item__action">
-            <a href="{% url 'export-project' project_slug=project.slug %}"
-               class="button button--light button--small">
-                <i class="fa fa-download" aria-hidden="true"></i>
-                {% trans 'Export' %}
-            </a>
-        </span>
-        {% endif %}
     </div>
 </li>
