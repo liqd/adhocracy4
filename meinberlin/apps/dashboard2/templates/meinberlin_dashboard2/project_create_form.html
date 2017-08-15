@@ -1,0 +1,35 @@
+{% extends "meinberlin_dashboard2/base_dashboard.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Create project based on" %} {{ view.blueprint.title }} &mdash; {{ block.super }}{% endblock %}
+
+{% block dashboard_content %}
+    <h1>{% trans "Create project based on" %} {{ view.blueprint.title }}</h1>
+
+    {% for error in form.non_field_errors %}
+        <span>{{ error }}</span>
+    {% endfor %}
+
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
+
+        <div class="u-spacer-bottom">
+            <input type="submit" class="button button--primary" name="send" value="{% trans 'Send' %}"/>
+            <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
+               class="button button--light">{% trans 'Cancel' %}</a>
+        </div>
+    </form>
+{% endblock %}
+
+{% block extra_js %}
+    {{ form.media.js }}
+{% endblock %}
+{% block extra_css %}
+    {{ form.media.css }}
+{% endblock %}

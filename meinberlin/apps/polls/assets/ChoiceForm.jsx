@@ -2,18 +2,18 @@ var React = require('react')
 var django = require('django')
 var ErrorList = require('../../contrib/assets/ErrorList')
 
-let ChoiceForm = React.createClass({
-  handleLabelChange: function (e) {
+class ChoiceForm extends React.Component {
+  handleLabelChange (e) {
     var index = this.props.index
     var label = e.target.value
     this.props.updateChoiceLabel(index, label)
-  },
+  }
 
-  handleDelete: function () {
+  handleDelete () {
     this.props.deleteChoice(this.props.index)
-  },
+  }
 
-  render: function () {
+  render () {
     return (
       <div className="form-group form-group--narrow">
         <label
@@ -28,10 +28,10 @@ let ChoiceForm = React.createClass({
             type="text"
             className="input-addon__input"
             value={this.props.choice.label}
-            onChange={this.handleLabelChange} />
+            onChange={this.handleLabelChange.bind(this)} />
           <button
             className="input-addon__after button button--light"
-            onClick={this.handleDelete}
+            onClick={this.handleDelete.bind(this)}
             title={django.gettext('remove')}
             type="button">
             <i className="fa fa-times"
@@ -42,6 +42,6 @@ let ChoiceForm = React.createClass({
       </div>
     )
   }
-})
+}
 
 module.exports = ChoiceForm

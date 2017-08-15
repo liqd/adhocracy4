@@ -35,6 +35,7 @@ User = get_user_model()
 
 class DashboardProjectListView(mixins.DashboardBaseMixin,
                                rules_mixins.PermissionRequiredMixin,
+                               mixins.DashboardProjectDuplicateMixin,
                                mixins.DashboardProjectPublishMixin,
                                filter_views.FilteredListView):
     model = project_models.Project
@@ -185,7 +186,6 @@ class DashboardNewsletterCreateView(mixins.DashboardBaseMixin,
                                     NewsletterCreateView):
     template_name = 'meinberlin_dashboard/newsletter_form.html'
     menu_item = 'newsletter'
-    success_message = _('Newsletter successfully created.')
     form_class = NewsletterForm
     permission_required = 'a4projects.add_project'
 

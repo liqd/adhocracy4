@@ -3,7 +3,6 @@ from email.mime.image import MIMEImage
 from django.apps import apps
 from django.conf import settings
 from django.contrib import auth
-from django.contrib.staticfiles import finders
 
 from meinberlin.apps.contrib.emails import Email
 
@@ -26,9 +25,6 @@ class NewsletterEmail(Email):
     def get_reply_to(self):
         return ['{} <{}>'.format(self.object.sender_name, self.object.sender)]
 
-    def get_languages(self, receiver):
-        return ['raw']
-
     def get_receivers(self):
         return User.objects\
             .filter(id__in=self.kwargs['participant_ids'])\
@@ -43,14 +39,7 @@ class NewsletterEmail(Email):
         if organisation and organisation.logo:
             f = open(organisation.logo.path, 'rb')
             logo = MIMEImage(f.read())
-            logo.add_header('Content-ID', '<{}>'.format('logo'))
+            logo.add_header('Content-ID', '<{}>'.format('organisation_logo'))
             attachments += [logo]
-        meinberlin_filename = finders.find('images/email_logo.png')
-        if meinberlin_filename:
-            f = open(meinberlin_filename, 'rb')
-            meinberlin_logo = MIMEImage(f.read())
-            meinberlin_logo.add_header(
-                'Content-ID', '<{}>'.format('meinberlin_logo'))
-            attachments += [meinberlin_logo]
 
         return attachments

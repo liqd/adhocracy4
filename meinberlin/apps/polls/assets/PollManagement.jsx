@@ -6,8 +6,11 @@ var FlipMove = require('react-flip-move')
 var QuestionForm = require('./QuestionForm')
 var Alert = require('../../contrib/assets/Alert')
 
-let PollManagement = React.createClass({
-  getInitialState: function () {
+class PollManagement extends React.Component {
+  constructor (props) {
+    super(props)
+    this.maxLocalKey = 0
+
     var questions = this.props.poll.questions
 
     if (questions.length === 0) {
@@ -16,22 +19,21 @@ let PollManagement = React.createClass({
       ]
     }
 
-    return {
+    this.state = {
       questions: questions,
       errors: [],
       alert: null
     }
-  },
+  }
 
-  maxLocalKey: 0,
-  getNextLocalKey: function () {
+  getNextLocalKey () {
     /** Get an artificial key for non-committed items.
      *
      *  The key is prefixed to prevent collisions with real database keys.
      */
     this.maxLocalKey++
     return 'local_' + this.maxLocalKey
-  },
+  }
 
   /*
   |--------------------------------------------------------------------------
@@ -39,7 +41,7 @@ let PollManagement = React.createClass({
   |--------------------------------------------------------------------------
   */
 
-  getNewQuestion: function (label = '') {
+  getNewQuestion (label = '') {
     return {
       label: label,
       key: this.getNextLocalKey(),
@@ -48,51 +50,51 @@ let PollManagement = React.createClass({
         this.getNewChoice()
       ]
     }
-  },
+  }
 
-  handleUpdateQuestionLabel: function (index, label) {
+  handleUpdateQuestionLabel (index, label) {
     var diff = {}
     diff[index] = {$merge: {label: label}}
 
     this.setState({
       questions: update(this.state.questions, diff)
     })
-  },
+  }
 
-  handleMoveQuestionUp: function (index) {
+  handleMoveQuestionUp (index) {
     var question = this.state.questions[index]
     var diff = {$splice: [[index, 1], [index - 1, 0, question]]}
 
     this.setState({
       questions: update(this.state.questions, diff)
     })
-  },
+  }
 
-  handleMoveQuestionDown: function (index) {
+  handleMoveQuestionDown (index) {
     var question = this.state.questions[index]
     var diff = {$splice: [[index, 1], [index + 1, 0, question]]}
 
     this.setState({
       questions: update(this.state.questions, diff)
     })
-  },
+  }
 
-  handleAppendQuestion: function () {
+  handleAppendQuestion () {
     var newQuestion = this.getNewQuestion()
     var diff = {$push: [newQuestion]}
 
     this.setState({
       questions: update(this.state.questions, diff)
     })
-  },
+  }
 
-  handleDeleteQuestion: function (index) {
+  handleDeleteQuestion (index) {
     var diff = {$splice: [[index, 1]]}
 
     this.setState({
       questions: update(this.state.questions, diff)
     })
-  },
+  }
 
   /*
   |--------------------------------------------------------------------------
@@ -100,14 +102,14 @@ let PollManagement = React.createClass({
   |--------------------------------------------------------------------------
   */
 
-  getNewChoice: function (label = '') {
+  getNewChoice (label = '') {
     return {
       label: label,
       key: this.getNextLocalKey()
     }
-  },
+  }
 
-  handleUpdateChoiceLabel: function (questionIndex, choiceIndex, label) {
+  handleUpdateChoiceLabel (questionIndex, choiceIndex, label) {
     var diff = {}
     diff[questionIndex] = {choices: {}}
     diff[questionIndex]['choices'][choiceIndex] = {$merge: {label: label}}
@@ -115,9 +117,9 @@ let PollManagement = React.createClass({
     this.setState({
       questions: update(this.state.questions, diff)
     })
-  },
+  }
 
-  handleAppendChoice: function (questionIndex) {
+  handleAppendChoice (questionIndex) {
     var newChoice = this.getNewChoice()
     var diff = {}
     diff[questionIndex] = {choices: {$push: [newChoice]}}
@@ -125,16 +127,16 @@ let PollManagement = React.createClass({
     this.setState({
       questions: update(this.state.questions, diff)
     })
-  },
+  }
 
-  handleDeleteChoice: function (questionIndex, choiceIndex) {
+  handleDeleteChoice (questionIndex, choiceIndex) {
     var diff = {}
     diff[questionIndex] = {choices: {$splice: [[choiceIndex, 1]]}}
 
     this.setState({
       questions: update(this.state.questions, diff)
     })
-  },
+  }
 
   /*
   |--------------------------------------------------------------------------
@@ -142,13 +144,13 @@ let PollManagement = React.createClass({
   |--------------------------------------------------------------------------
   */
 
-  removeAlert: function () {
+  removeAlert () {
     this.setState({
       alert: null
     })
-  },
+  }
 
-  handleSubmit: function (e) {
+  handleSubmit (e) {
     e.preventDefault()
 
     let data = {
@@ -179,11 +181,11 @@ let PollManagement = React.createClass({
           errors: errors
         })
       })
-  },
+  }
 
-  render: function () {
+  render () {
     return (
-      <form onSubmit={this.handleSubmit} onChange={this.removeAlert}>
+      <form onSubmit={this.handleSubmit.bind(this)} onChange={this.removeAlert.bind(this)}>
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
             this.state.questions.map((question, index) => {
@@ -194,14 +196,14 @@ let PollManagement = React.createClass({
                   key={key}
                   index={index}
                   question={question}
-                  updateQuestionLabel={this.handleUpdateQuestionLabel}
-                  moveQuestionUp={index !== 0 ? this.handleMoveQuestionUp : null}
-                  moveQuestionDown={index < this.state.questions.length - 1 ? this.handleMoveQuestionDown : null}
-                  deleteQuestion={this.handleDeleteQuestion}
+                  updateQuestionLabel={this.handleUpdateQuestionLabel.bind(this)}
+                  moveQuestionUp={index !== 0 ? this.handleMoveQuestionUp.bind(this) : null}
+                  moveQuestionDown={index < this.state.questions.length - 1 ? this.handleMoveQuestionDown.bind(this) : null}
+                  deleteQuestion={this.handleDeleteQuestion.bind(this)}
                   errors={errors}
-                  updateChoiceLabel={this.handleUpdateChoiceLabel}
-                  deleteChoice={this.handleDeleteChoice}
-                  appendChoice={this.handleAppendChoice}
+                  updateChoiceLabel={this.handleUpdateChoiceLabel.bind(this)}
+                  deleteChoice={this.handleDeleteChoice.bind(this)}
+                  appendChoice={this.handleAppendChoice.bind(this)}
                 />
               )
             })
@@ -211,18 +213,18 @@ let PollManagement = React.createClass({
         <p>
           <button
             className="button button--light button--small"
-            onClick={this.handleAppendQuestion}
+            onClick={this.handleAppendQuestion.bind(this)}
             type="button">
             <i className="fa fa-plus" /> {django.gettext('Add a new question')}
           </button>
         </p>
 
-        <Alert onClick={this.removeAlert} {...this.state.alert} />
+        <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
 
         <button type="submit" className="button button--primary">{django.gettext('Save')}</button>
       </form>
     )
   }
-})
+}
 
 module.exports = PollManagement

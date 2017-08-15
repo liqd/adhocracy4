@@ -1,6 +1,7 @@
 .block {
     @include clearfix;
     margin-bottom: 2.8em;
+    page-break-inside: avoid;
 }
 
 .block--cta {
@@ -12,6 +13,11 @@
 
     .rich-text > :first-child {
         margin-top: 0;
+    }
+
+    @media print {
+        background-color: transparent;
+        color: $print-black;
     }
 }
 

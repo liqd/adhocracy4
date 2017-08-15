@@ -10,25 +10,24 @@ const ckReplace = function (id, config) {
   return window.CKEDITOR.replace(id, config)
 }
 
-const Paragraph = React.createClass({
-
-  handleNameChange: function (e) {
+class Paragraph extends React.Component {
+  handleNameChange (e) {
     const name = e.target.value
     this.props.onNameChange(name)
-  },
+  }
 
-  ckId: function () {
+  ckId () {
     return 'id_paragraphs-' + this.props.id + '-text'
-  },
+  }
 
-  ckEditorDestroy: function () {
+  ckEditorDestroy () {
     const editor = ckGet(this.ckId())
     if (editor) {
       editor.destroy()
     }
-  },
+  }
 
-  ckEditorCreate: function () {
+  ckEditorCreate () {
     if (!ckGet(this.ckId())) {
       var editor = ckReplace(this.ckId(), this.props.config)
       editor.on('change', function (e) {
@@ -37,29 +36,29 @@ const Paragraph = React.createClass({
       }.bind(this))
       editor.setData(this.props.paragraph.text)
     }
-  },
+  }
 
-  componentWillUpdate: function (nextProps) {
+  componentWillUpdate (nextProps) {
     if (nextProps.index > this.props.index) {
       this.ckEditorDestroy()
     }
-  },
+  }
 
-  componentDidUpdate: function (prevProps) {
+  componentDidUpdate (prevProps) {
     if (this.props.index > prevProps.index) {
       this.ckEditorCreate()
     }
-  },
+  }
 
-  componentDidMount: function () {
+  componentDidMount () {
     this.ckEditorCreate()
-  },
+  }
 
-  componentWillUnmount: function () {
+  componentWillUnmount () {
     this.ckEditorDestroy()
-  },
+  }
 
-  render: function () {
+  render () {
     var ckEditorToolbarsHeight = 60 // measured on example editor
     return (
       <section>
@@ -76,7 +75,7 @@ const Paragraph = React.createClass({
                 name={'paragraphs-' + this.props.id + '-name'}
                 type="text"
                 value={this.props.paragraph.name}
-                onChange={this.handleNameChange} />
+                onChange={this.handleNameChange.bind(this)} />
               <ErrorList errors={this.props.errors} field="name" />
             </div>
 
@@ -130,6 +129,6 @@ const Paragraph = React.createClass({
       </section>
     )
   }
-})
+}
 
 module.exports = Paragraph

@@ -7,7 +7,7 @@ git+git://github.com/encolpe/django-multiform.git@django-1.9
 html5lib==0.999999999
 wagtail==1.11.1
 XlsxWriter==0.9.8
-zeep==2.2.0
+zeep==2.3.0
 
 # Inherited a4-core requirements
 bleach==2.0.0

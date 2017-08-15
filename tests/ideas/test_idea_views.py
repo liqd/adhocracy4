@@ -19,7 +19,7 @@ def test_list_view(rf, phase, module_factory, idea_factory):
     with freeze_time(phase.start_date):
         view = views.IdeaListView.as_view()
         request = rf.get('/ideas')
-        response = view(request, project=project)
+        response = view(request, project=project, module=module)
 
         assert idea in response.context_data['idea_list']
         assert other_idea not in response.context_data['idea_list']

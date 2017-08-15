@@ -44,15 +44,19 @@ ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
     url(r'^dashboard/', include('meinberlin.apps.dashboard.urls')),
+    url(r'^dashboard2/', include('meinberlin.apps.dashboard2.urls')),
     url(r'^account/', include('meinberlin.apps.account.urls')),
     url(r'^embed/', include('meinberlin.apps.embed.urls')),
     url(r'^profile/', include('meinberlin.apps.users.urls')),
+    url(r'^initiators/', include('meinberlin.apps.initiators.urls',
+                                 namespace='meinberlin_initiators')),
 
     url(r'^admin/', include('wagtail.wagtailadmin.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/social/', include('allauth.socialaccount.urls')),
     url(r'^documents/', include('wagtail.wagtaildocs.urls')),
     url(r'^projects/', include('meinberlin.apps.projects.urls')),
+    url(r'^modules/', include('meinberlin.apps.modules.urls')),
     url(r'^exports/', include('meinberlin.apps.exports.urls')),
 
     url(r'^ideas/', include('meinberlin.apps.ideas.urls',

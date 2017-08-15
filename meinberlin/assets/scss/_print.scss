@@ -1,0 +1,22 @@
+@media print {
+    .portal-header,
+    .shariff,
+    .wagtail-userbar {
+        display: none !important;
+    }
+
+    html {
+        background: none;
+        color: $print-black; // Black prints faster:
+        font-size: 85%;
+    }
+
+    a {
+        color: $print-link;
+
+        &[href^="http"]:after {
+            content: " [" attr(href) "] ";
+            font-size: 0.7em;
+        }
+    }
+}

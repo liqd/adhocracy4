@@ -11,6 +11,10 @@
     @media (min-width: $breakpoint) {
         padding: 3em 0 4em;
     }
+
+    @media print {
+        padding-top: 0;
+    }
 }
 
 .project-header--image {
@@ -31,6 +35,16 @@
         left: 0;
 
         background-color: rgba(#000, 0.5);
+    }
+
+    @media print {
+        min-height: 0;
+        color: $print-black;
+        background-image: none !important;
+
+        &:before {
+            content: none;
+        }
     }
 }
 

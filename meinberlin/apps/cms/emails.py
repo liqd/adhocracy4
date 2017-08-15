@@ -13,7 +13,7 @@ class FormEmail(Email):
     template_name = 'meinberlin_cms/emails/form_submission'
 
     def get_receivers(self):
-        return [x.strip() for x in self.object.to_address.split(',')]
+        return [x.strip() for x in self.kwargs.get('to_addresses')]
 
 
 class XlsxFormEmail(FormEmail):
@@ -26,8 +26,8 @@ class XlsxFormEmail(FormEmail):
         worksheet.write(0, 0, _('Form Field'))
         worksheet.write(0, 1, _('Response'))
 
-        rows = self.object.field_values.items()
-        for rownum, row in enumerate(rows, start=1):
+        field_values = self.kwargs.get('field_values')
+        for rownum, row in enumerate(field_values.items(), start=1):
             worksheet.write(rownum, 0, row[0])
             worksheet.write(rownum, 1, self._fix_newline_if_string(row[1]))
 
@@ -46,8 +46,8 @@ class XlsxFormEmail(FormEmail):
             _data=xlsx_data,
             _subtype='vnd.openxmlformats-officedocument.spreadsheetml.sheet')
         timestamp = timezone.now().strftime("%Y-%m-%d")
-        form_title = self.object.title.replace(' ', '_')
-        submission_pk = self.object.get_submission_class().objects.last().pk
+        form_title = self.kwargs.get('title')
+        submission_pk = self.kwargs.get('submission_pk')
         filename = '{}_{}_{}.xlsx'.format(timestamp, form_title, submission_pk)
         mime_doc.add_header(
             'Content-Disposition',
@@ -61,7 +61,8 @@ class TextFormEmail(FormEmail):
     def get_attachments(self):
         attachments = super().get_attachments()
         text = ''
-        for field, value in self.object.field_values.items():
+        field_values = self.kwargs.get('field_values')
+        for field, value in field_values.items():
             text += '{}:\n{}\n\n'.format(field, value)
         mime_doc = MIMEText(_text=text, _charset='utf-8')
         return attachments + [mime_doc]

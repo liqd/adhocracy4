@@ -3,6 +3,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
+from adhocracy4.filters import widgets as filters_widgets
+from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
@@ -12,6 +14,10 @@ from meinberlin.apps.ideas import views as idea_views
 
 from . import forms
 from . import models
+
+
+class FreeTextFilterWidget(filters_widgets.FreeTextFilterWidget):
+    label = _('Search')
 
 
 class TopicFilterSet(a4_filters.DefaultsFilterSet):
@@ -26,10 +32,14 @@ class TopicFilterSet(a4_filters.DefaultsFilterSet):
             ('-comment_count', _('Most commented'))
         )
     )
+    search = FreeTextFilter(
+        widget=FreeTextFilterWidget,
+        fields=['name']
+    )
 
     class Meta:
         model = models.Topic
-        fields = ['category']
+        fields = ['search', 'category']
 
 
 class TopicExportView(export_views.ItemExportView,
@@ -54,7 +64,7 @@ class TopicListView(idea_views.AbstractIdeaListView):
 
     def get_queryset(self):
         return super().get_queryset()\
-            .filter(module=self.project.last_active_module) \
+            .filter(module=self.module) \
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()
