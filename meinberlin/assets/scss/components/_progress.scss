@@ -1,0 +1,24 @@
+.progress__background,
+.progress__value {
+    stroke-width: 3;
+    fill: none;
+}
+
+.progress__background {
+    stroke: $bg-tertiary;
+}
+
+.progress__value {
+    stroke: $brand-primary;
+    transform: rotate(-90deg);
+    transform-origin: center;
+}
+
+.progress__label {
+    text-anchor: middle;
+    font-size: 6px;
+}
+
+.progress__check {
+    fill: $brand-primary;
+}
