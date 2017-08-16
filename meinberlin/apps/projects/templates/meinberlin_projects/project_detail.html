@@ -11,9 +11,6 @@
         <div class="l-center-6">
             <h1 class="project-header__title">{{ project.name }}</h1>
             <p class="project-header__description">{{ project.description }}</p>
-            <div class="project-header__action">
-                {% block project_action %}{% endblock %}
-            </div>
         </div>
     </div>
 </div>
@@ -85,6 +82,10 @@
     aria-expanded="true">
     <div class="l-wrapper">
         {% include "meinberlin_projects/includes/timeline.html" with project=project %}
+
+        <div class="l-center-6">
+            {% block project_action %}{% endblock %}
+        </div>
     </div>
     {% block phase_content %}{% endblock %}
 </div>
