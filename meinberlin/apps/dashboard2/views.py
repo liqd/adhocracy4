@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.utils import functional
 from django.utils.translation import ugettext_lazy as _
@@ -15,6 +16,7 @@ from meinberlin.apps.organisations.models import Organisation
 from . import blueprints
 from . import forms
 from . import mixins
+from .contents import content
 
 User = get_user_model()
 
@@ -100,7 +102,6 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
 
 
 class ProjectUpdateView(mixins.DashboardBaseMixin,
-                        mixins.BlueprintMixin,
                         generic.UpdateView,
                         SuccessMessageMixin):
     model = project_models.Project
@@ -108,4 +109,132 @@ class ProjectUpdateView(mixins.DashboardBaseMixin,
     form_class = forms.ProjectUpdateForm
     template_name = 'meinberlin_dashboard2/project_update_form.html'
     permission_required = 'a4projects.add_project'
-    success_message = _('Project succesfully created.')
+    success_message = _('Project successfully created.')
+
+
+class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
+                                 generic.View):
+
+    def dispatch(self, request, *args, **kwargs):
+        project = self.get_project()
+        component = self.get_component()
+        menu = self.get_project_menu(project)
+
+        kwargs['project'] = project
+        kwargs['menu'] = menu
+
+        return component.get_view()(request, *args, **kwargs)
+
+    def get_component(self):
+        if 'component_identifier' not in self.kwargs:
+            raise Http404('Component not found')
+        if self.kwargs['component_identifier'] not in content:
+            raise Http404('Component not found')
+        return content[self.kwargs['component_identifier']]
+
+    def get_project(self):
+        if 'project_slug' not in self.kwargs:
+            raise Http404('Project not found')
+
+        return get_object_or_404(project_models.Project,
+                                 slug=self.kwargs['project_slug'])
+
+    def get_project_menu(self, project):
+        project_menu = []
+        for component in content.get_project_components():
+            menu_item = component.get_menu_item(project)
+            if menu_item:
+                is_active = (component == self.get_component())
+                url = reverse('a4dashboard:project-edit-component', kwargs={
+                    'project_slug': project.slug,
+                    'component_identifier': component.identifier
+                })
+
+                project_menu.append({
+                    'label': menu_item,
+                    'is_active': is_active,
+                    'url': url,
+                })
+
+        menu_modules = []
+        for module in project.modules:
+            menu_module = self.get_module_menu(module)
+            if menu_module:
+                menu_modules.append({
+                    'module': module,
+                    'menu': menu_modules,
+                })
+
+        return {'project': project_menu, 'modules': menu_modules}
+
+    def get_module_menu(self, module):
+        module_menu = []
+        for component in content.get_module_components():
+            menu_item = component.get_menu_item(module)
+            if menu_item:
+                # is_active = (component == self.get_component())
+                is_active = False
+                url = reverse('a4dashboard:project-edit-component', kwargs={
+                    'project_slug': module.project.slug,
+                    # 'module_slug':
+                    'component_identifier': component.identifier
+                })
+
+                module_menu.append({
+                    'label': menu_item,
+                    'is_active': is_active,
+                    'url': url,
+                })
+        return module_menu or None
+
+
+class ProjectBasicComponentView(mixins.DashboardBaseMixin,
+                                generic.UpdateView,
+                                SuccessMessageMixin):
+    permission_required = 'a4projects.add_project'
+    model = project_models.Project
+    form_class = forms.ProjectBasicForm
+    template_name = 'meinberlin_dashboard2/base_form_project.html'
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/project_basic_form.html'
+    title = _('Edit basic settings')
+    success_message = _('Project successfully updated.')
+
+    def dispatch(self, request, project, menu, *args, **kwargs):
+        self.project = project
+        self.menu = menu
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        return self.project
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dashboard_menu'] = self.menu
+        return context
+
+
+class ProjectInformationComponentView(mixins.DashboardBaseMixin,
+                                      generic.UpdateView,
+                                      SuccessMessageMixin):
+    permission_required = 'a4projects.add_project'
+    model = project_models.Project
+    form_class = forms.ProjectInformationForm
+    template_name = 'meinberlin_dashboard2/base_form_project.html'
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/project_information_form.html'
+    title = _('Edit project information')
+    success_message = _('Project successfully updated.')
+
+    def dispatch(self, request, project, menu, *args, **kwargs):
+        self.project = project
+        self.menu = menu
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        return self.project
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dashboard_menu'] = self.menu
+        return context

@@ -100,7 +100,30 @@ class ProjectUpdateForm(forms.ModelForm):
             'is_public': _('This project is public.')
         }
 
-    success_message = _('Project successfully updated.')
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            organisation=self.organisation
+        )
+
+
+class ProjectBasicForm(forms.ModelForm):
+
+    class Meta:
+        model = project_models.Project
+        fields = ['name', 'description', 'image', 'tile_image', 'is_archived',
+                  'is_public']
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            organisation=self.organisation
+        )
+
+
+class ProjectInformationForm(forms.ModelForm):
+
+    class Meta:
+        model = project_models.Project
+        fields = ['information']
 
     def get_queryset(self):
         return super().get_queryset().filter(
