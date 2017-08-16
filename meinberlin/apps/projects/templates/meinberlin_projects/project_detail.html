@@ -24,39 +24,41 @@
     </div>
 </div>
 
-<div class="l-wrapper">
-    <nav class="tablist" role="tablist">
-        <a
-            id="tab-project-{{ project.pk }}-information"
-            class="tab"
-            data-toggle="tab"
-            href="#tabpanel-project-{{ project.pk }}-information"
-            role="tab"
-            aria-controls="tabpanel-project-{{ project.pk }}-information"
-            aria-expanded="false">
-            {% trans 'Information' %}
-        </a>
-        <a
-            id="tab-project-{{ project.pk }}-participation"
-            class="tab active"
-            data-toggle="tab"
-            href="#tabpanel-project-{{ project.pk }}-participation"
-            role="tab"
-            aria-controls="tabpanel-project-{{ project.pk }}-participation"
-            aria-expanded="true">
-            {% trans 'Participation' %}
-        </a>
-        <a
-            id="tab-project-{{ project.pk }}-result"
-            class="tab"
-            data-toggle="tab"
-            href="#tabpanel-project-{{ project.pk }}-result"
-            role="tab"
-            aria-controls="tabpanel-project-{{ project.pk }}-result"
-            aria-expanded="false">
-            {% trans 'Result' %}
-        </a>
-    </nav>
+<div class="tablist tablist--left">
+    <div class="l-wrapper">
+        <nav role="tablist">
+            <a
+                id="tab-project-{{ project.pk }}-information"
+                class="tab"
+                data-toggle="tab"
+                href="#tabpanel-project-{{ project.pk }}-information"
+                role="tab"
+                aria-controls="tabpanel-project-{{ project.pk }}-information"
+                aria-expanded="false">
+                {% trans 'Information' %}
+            </a>
+            <a
+                id="tab-project-{{ project.pk }}-participation"
+                class="tab active"
+                data-toggle="tab"
+                href="#tabpanel-project-{{ project.pk }}-participation"
+                role="tab"
+                aria-controls="tabpanel-project-{{ project.pk }}-participation"
+                aria-expanded="true">
+                {% trans 'Participation' %}
+            </a>
+            <a
+                id="tab-project-{{ project.pk }}-result"
+                class="tab"
+                data-toggle="tab"
+                href="#tabpanel-project-{{ project.pk }}-result"
+                role="tab"
+                aria-controls="tabpanel-project-{{ project.pk }}-result"
+                aria-expanded="false">
+                {% trans 'Result' %}
+            </a>
+        </nav>
+    </div>
 </div>
 
 <div
