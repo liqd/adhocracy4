@@ -21,6 +21,13 @@ from .contents import content
 User = get_user_model()
 
 
+def get_object_or_none(*args, **kwargs):
+    try:
+        return get_object_or_404(*args, **kwargs)
+    except Http404:
+        return None
+
+
 class ProjectListView(rules_mixins.PermissionRequiredMixin,
                       generic.ListView):
     model = project_models.Project
@@ -113,13 +120,21 @@ class ProjectUpdateView(mixins.DashboardBaseMixin,
 
 
 class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
+                                 mixins.DashboardMenuMixin,
                                  generic.View):
 
     def dispatch(self, request, *args, **kwargs):
         project = self.get_project()
-        component = self.get_component()
-        menu = self.get_project_menu(project)
+        if not project:
+            raise Http404('Project not found')
 
+        component = self.get_component()
+        if not component:
+            raise Http404('Component not found')
+
+        menu = self.get_menu()
+
+        kwargs['module'] = None
         kwargs['project'] = project
         kwargs['menu'] = menu
 
@@ -127,65 +142,19 @@ class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
 
     def get_component(self):
         if 'component_identifier' not in self.kwargs:
-            raise Http404('Component not found')
+            return None
         if self.kwargs['component_identifier'] not in content:
-            raise Http404('Component not found')
+            return None
         return content[self.kwargs['component_identifier']]
 
     def get_project(self):
         if 'project_slug' not in self.kwargs:
-            raise Http404('Project not found')
+            return None
+        return get_object_or_none(project_models.Project,
+                                  slug=self.kwargs['project_slug'])
 
-        return get_object_or_404(project_models.Project,
-                                 slug=self.kwargs['project_slug'])
-
-    def get_project_menu(self, project):
-        project_menu = []
-        for component in content.get_project_components():
-            menu_item = component.get_menu_item(project)
-            if menu_item:
-                is_active = (component == self.get_component())
-                url = reverse('a4dashboard:project-edit-component', kwargs={
-                    'project_slug': project.slug,
-                    'component_identifier': component.identifier
-                })
-
-                project_menu.append({
-                    'label': menu_item,
-                    'is_active': is_active,
-                    'url': url,
-                })
-
-        menu_modules = []
-        for module in project.modules:
-            menu_module = self.get_module_menu(module)
-            if menu_module:
-                menu_modules.append({
-                    'module': module,
-                    'menu': menu_modules,
-                })
-
-        return {'project': project_menu, 'modules': menu_modules}
-
-    def get_module_menu(self, module):
-        module_menu = []
-        for component in content.get_module_components():
-            menu_item = component.get_menu_item(module)
-            if menu_item:
-                # is_active = (component == self.get_component())
-                is_active = False
-                url = reverse('a4dashboard:project-edit-component', kwargs={
-                    'project_slug': module.project.slug,
-                    # 'module_slug':
-                    'component_identifier': component.identifier
-                })
-
-                module_menu.append({
-                    'label': menu_item,
-                    'is_active': is_active,
-                    'url': url,
-                })
-        return module_menu or None
+    def get_module(self):
+        return None
 
 
 class ProjectBasicComponentView(mixins.DashboardBaseMixin,
@@ -211,6 +180,7 @@ class ProjectBasicComponentView(mixins.DashboardBaseMixin,
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['dashboard_menu'] = self.menu
+        context['project'] = self.project
         return context
 
 
@@ -237,4 +207,6 @@ class ProjectInformationComponentView(mixins.DashboardBaseMixin,
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['dashboard_menu'] = self.menu
+        context['project'] = self.project
+        return context
         return context

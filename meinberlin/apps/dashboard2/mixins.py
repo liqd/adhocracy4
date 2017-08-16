@@ -7,6 +7,7 @@ from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.organisations import models as org_models
 
 from .blueprints import blueprints
+from .contents import content
 
 
 class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
@@ -44,3 +45,65 @@ class BlueprintMixin:
     @property
     def blueprint_key(self):
         return self.kwargs['blueprint_slug']
+
+
+class DashboardMenuMixin:
+
+    def get_menu(self):
+        current_component = self.get_component()
+        project = self.get_project()
+        current_module = self.get_module()
+
+        project_menu = self.get_project_menu(project, current_component)
+
+        menu_modules = []
+        for module in project.modules:
+            menu_module = self.get_module_menu(module,
+                                               current_component,
+                                               current_module)
+            if menu_module:
+                menu_modules.append({
+                    'module': module,
+                    'menu': menu_module,
+                })
+
+        return {'project': project_menu, 'modules': menu_modules}
+
+    @classmethod
+    def get_project_menu(cls, project, current_component):
+        project_menu = []
+        for component in content.get_project_components():
+            menu_item = component.get_menu_item(project)
+            if menu_item:
+                is_active = (component == current_component)
+                url = reverse('a4dashboard:project-edit-component', kwargs={
+                    'project_slug': project.slug,
+                    'component_identifier': component.identifier
+                })
+
+                project_menu.append({
+                    'label': menu_item,
+                    'is_active': is_active,
+                    'url': url,
+                })
+        return project_menu or None
+
+    @classmethod
+    def get_module_menu(cls, module, current_component, current_module):
+        module_menu = []
+        for component in content.get_module_components():
+            menu_item = component.get_menu_item(module)
+            if menu_item:
+                is_active = (component == current_component and
+                             module.pk == current_module.pk)
+                url = reverse('a4dashboard:module-edit-component', kwargs={
+                    'module_slug': module.slug,
+                    'component_identifier': component.identifier
+                })
+
+                module_menu.append({
+                    'label': menu_item,
+                    'is_active': is_active,
+                    'url': url,
+                })
+        return module_menu or None
