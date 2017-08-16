@@ -9,6 +9,10 @@ class DashboardComponent:
     - identifier (defaults to "app_label:label")
       - has to be unique
       - may only contain alphanumeric characters and -, _, :
+
+    Required methods:
+    - get_view(): view function
+      Return a view function which takes menu and project/module as kwargs
     """
 
     app_label = None
@@ -23,6 +27,9 @@ class DashboardComponent:
             app_label=self.app_label,
             component_label=self.label,
         )
+
+    def get_view(self):
+        pass
 
 
 class DashboardProjectComponent(DashboardComponent):
