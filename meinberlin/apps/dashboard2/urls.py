@@ -17,4 +17,9 @@ urlpatterns = [
     url(r'^projects/(?P<project_slug>[-\w_]+)/$',
         views.ProjectUpdateView.as_view(),
         name='project-edit'),
+    url(r'^projects/(?P<project_slug>[-\w_]+)/'
+        r'(?P<component_identifier>[-_:\w]+)/$',
+        views.ProjectComponentDispatcher.as_view(),
+        name='project-edit-component'),
+
 ]
