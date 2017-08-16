@@ -32,6 +32,7 @@ input[type="search"] {
 .btngroup .btn {
     @extend %button-base;
     @extend .button--light;
+    @extend .button--small;
 
     &:first-child {
         border-bottom-right-radius: 0;
