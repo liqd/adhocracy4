@@ -18,10 +18,10 @@ class DashboardContents:
         self._registry['module'][component.identifier] = component
 
     def get_project_components(self):
-        return self._registry['project'].items()
+        return self._registry['project'].values()
 
     def get_module_components(self):
-        return self._registry['module'].items()
+        return self._registry['module'].values()
 
 
 content = DashboardContents()
