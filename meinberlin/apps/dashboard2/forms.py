@@ -1,8 +1,11 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import models as category_models
+from adhocracy4.modules import models as module_models
+from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.contrib import multiform
 
@@ -100,11 +103,6 @@ class ProjectUpdateForm(forms.ModelForm):
             'is_public': _('This project is public.')
         }
 
-    def get_queryset(self):
-        return super().get_queryset().filter(
-            organisation=self.organisation
-        )
-
 
 class ProjectBasicForm(forms.ModelForm):
 
@@ -113,11 +111,6 @@ class ProjectBasicForm(forms.ModelForm):
         fields = ['name', 'description', 'image', 'tile_image', 'is_archived',
                   'is_public']
 
-    def get_queryset(self):
-        return super().get_queryset().filter(
-            organisation=self.organisation
-        )
-
 
 class ProjectInformationForm(forms.ModelForm):
 
@@ -125,7 +118,29 @@ class ProjectInformationForm(forms.ModelForm):
         model = project_models.Project
         fields = ['information']
 
-    def get_queryset(self):
-        return super().get_queryset().filter(
-            organisation=self.organisation
-        )
+
+class ModuleBasicForm(forms.ModelForm):
+
+    class Meta:
+        model = module_models.Module
+        fields = ['name', 'description']
+
+
+class PhaseForm(forms.ModelForm):
+
+    class Meta:
+        model = phase_models.Phase
+        exclude = ('module', )
+
+        widgets = {
+            'type': forms.HiddenInput(),
+            'weight': forms.HiddenInput()
+        }
+
+
+PhaseFormSet = inlineformset_factory(module_models.Module,
+                                     phase_models.Phase,
+                                     form=PhaseForm,
+                                     extra=0,
+                                     can_delete=False,
+                                     )

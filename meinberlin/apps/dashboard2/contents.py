@@ -1,27 +1,25 @@
 class DashboardContents:
-    _registry = {'project': {}, 'module': {}}
+    _registry = {'projects': {}, 'modules': {}}
 
-    def __getitem__(self, identifier):
-        component = self._registry['project'].get(identifier, None)
-        if not component:
-            component = self._registry['module'].get(identifier)
-        return component
+    @property
+    def projects(self):
+        return self._registry['projects']
 
-    def __contains__(self, identifier):
-        return (identifier in self._registry['project'] or
-                identifier in self._registry['module'])
+    @property
+    def modules(self):
+        return self._registry['modules']
 
     def register_project(self, component):
-        self._registry['project'][component.identifier] = component
+        self._registry['projects'][component.identifier] = component
 
     def register_module(self, component):
-        self._registry['module'][component.identifier] = component
+        self._registry['modules'][component.identifier] = component
 
     def get_project_components(self):
-        return self._registry['project'].values()
+        return self._registry['projects'].values()
 
     def get_module_components(self):
-        return self._registry['module'].values()
+        return self._registry['modules'].values()
 
 
 content = DashboardContents()

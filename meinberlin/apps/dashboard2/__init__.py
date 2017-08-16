@@ -1,5 +1,4 @@
 from .contents import content
-from .components import DashboardModuleComponent
-from .components import DashboardProjectComponent
+from .components import DashboardComponent
 
-__all__ = ['content', 'DashboardModuleComponent', 'DashboardProjectComponent']
+__all__ = ['content', 'DashboardComponent']
