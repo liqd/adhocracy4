@@ -108,4 +108,4 @@ class ProjectUpdateView(mixins.DashboardBaseMixin,
     form_class = forms.ProjectUpdateForm
     template_name = 'meinberlin_dashboard2/project_update_form.html'
     permission_required = 'a4projects.add_project'
-    success_message = _('Project succesfully created.')
+    success_message = _('Project successfully created.')
