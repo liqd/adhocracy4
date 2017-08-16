@@ -28,3 +28,8 @@ def filter_has_perm(perm, user, objects):
         return objects
     else:
         return [obj for obj in objects if user.has_perm(perm, obj)]
+
+
+@register.filter
+def percentage(value, max_value):
+    return round(value / max_value * 100)

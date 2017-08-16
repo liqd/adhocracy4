@@ -1,0 +1,43 @@
+.progress__background,
+.progress__value {
+    stroke-width: 3;
+    fill: none;
+}
+
+.progress__background {
+    stroke: $bg-tertiary;
+}
+
+.progress__value {
+    stroke: $brand-primary;
+    transform: rotate(-90deg);
+    transform-origin: center;
+}
+
+.progress__label {
+    text-anchor: middle;
+    font-size: 6px;
+}
+
+.progress__check {
+    fill: $brand-primary;
+}
+
+.progress-box {
+    display: flex;
+    align-items: center;
+    padding: $padding;
+    border: 1px solid $border-color;
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+    border-bottom: 0;
+}
+
+.progress-box__progress {
+    flex: 1 1 40%;
+}
+
+.progress-box__description {
+    flex: 1 1 60%;
+    margin-left: $padding;
+}
