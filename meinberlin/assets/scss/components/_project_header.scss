@@ -4,13 +4,8 @@
     justify-content: center;
     padding: 1.3em 0;
     position: relative;
-    margin-bottom: 1em;
 
     text-align: center;
-
-    @media (min-width: $breakpoint) {
-        padding: 3em 0 4em;
-    }
 
     @media print {
         padding-top: 0;
@@ -60,9 +55,4 @@
     @media (min-width: $breakpoint) {
         font-size: $font-size-xxl;
     }
-}
-
-.project-header__type {
-    @include secondary-text;
-    margin-bottom: 0.9em;
 }
