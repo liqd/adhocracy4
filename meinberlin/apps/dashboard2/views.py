@@ -254,13 +254,13 @@ class ModulePhasesComponentView(mixins.DashboardBaseMixin,
                                 SuccessMessageMixin,
                                 generic.UpdateView):
     permission_required = 'a4projects.add_project'
-    model = project_models.Project
-    form_class = forms.ModulePhasesForm
+    model = module_models.Module
+    form_class = forms.PhaseFormSet
     template_name = 'meinberlin_dashboard2/base_form_module.html'
     form_template_name = 'meinberlin_dashboard2/includes' \
                          '/module_phases_form.html'
     title = _('Edit phases information')
-    success_message = _('Project successfully updated.')
+    success_message = _('Module successfully updated.')
 
     def dispatch(self, request, project, module, menu, *args, **kwargs):
         self.module = module
@@ -269,7 +269,7 @@ class ModulePhasesComponentView(mixins.DashboardBaseMixin,
         return super().dispatch(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
-        return self.project
+        return self.module
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

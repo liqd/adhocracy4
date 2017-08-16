@@ -1,8 +1,11 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import models as category_models
+from adhocracy4.modules import models as module_models
+from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.contrib import multiform
 
@@ -116,9 +119,21 @@ class ProjectInformationForm(forms.ModelForm):
         fields = ['information']
 
 
+class PhaseForm(forms.ModelForm):
 
-class ModulePhasesForm(forms.ModelForm):
     class Meta:
-        model = project_models.Project
-        fields = ['name']
+        model = phase_models.Phase
+        exclude = ('module', )
 
+        widgets = {
+            'type': forms.HiddenInput(),
+            'weight': forms.HiddenInput()
+        }
+
+
+PhaseFormSet = inlineformset_factory(module_models.Module,
+                                     phase_models.Phase,
+                                     form=PhaseForm,
+                                     extra=0,
+                                     can_delete=False,
+                                     )
