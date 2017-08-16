@@ -57,9 +57,11 @@
                         </strong>
                     </div>
                 {% endif %}
-                <div class="item-detail__meta">
-                    {{ module.description }}
-                </div>
+                {% if module_event_count > 1 and  module.description %}
+                    <div class="item-detail__meta">
+                        {{ module.description }}
+                    </div>
+                {% endif %}
 
                 <div class="phase-info collapse" id="phase-overview">
                     {% for phase in module.phases %}{# FIXME: not ordered by start_date but by weight #}
