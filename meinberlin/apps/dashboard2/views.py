@@ -250,6 +250,35 @@ class ProjectInformationComponentView(mixins.DashboardBaseMixin,
         return context
 
 
+class ModuleBasicComponentView(mixins.DashboardBaseMixin,
+                               SuccessMessageMixin,
+                               generic.UpdateView):
+    permission_required = 'a4projects.add_project'
+    model = module_models.Module
+    form_class = forms.ModuleBasicForm
+    template_name = 'meinberlin_dashboard2/base_form_module.html'
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/module_basic_form.html'
+    title = _('Edit basic module information')
+    success_message = _('Module successfully updated.')
+
+    def dispatch(self, request, project, module, menu, *args, **kwargs):
+        self.module = module
+        self.project = project
+        self.menu = menu
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        return self.module
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dashboard_menu'] = self.menu
+        context['project'] = self.project
+        context['module'] = self.module
+        return context
+
+
 class ModulePhasesComponentView(mixins.DashboardBaseMixin,
                                 SuccessMessageMixin,
                                 generic.UpdateView):

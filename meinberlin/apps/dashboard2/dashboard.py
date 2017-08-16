@@ -30,6 +30,18 @@ class ProjectInformationComponent(DashboardComponent):
         return views.ProjectInformationComponentView.as_view()
 
 
+class ModuleBasicComponent(DashboardComponent):
+    app_label = Config.label
+    label = 'phases'
+    identifier = 'module_basic'
+
+    def get_menu_label(self, module):
+        return _('Basic information')
+
+    def get_view(self):
+        return views.ModuleBasicComponentView.as_view()
+
+
 class ModulePhasesComponent(DashboardComponent):
     app_label = Config.label
     label = 'phases'
@@ -44,4 +56,5 @@ class ModulePhasesComponent(DashboardComponent):
 
 content.register_project(ProjectBasicComponent())
 content.register_project(ProjectInformationComponent())
+content.register_module(ModuleBasicComponent())
 content.register_module(ModulePhasesComponent())

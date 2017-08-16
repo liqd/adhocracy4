@@ -119,6 +119,13 @@ class ProjectInformationForm(forms.ModelForm):
         fields = ['information']
 
 
+class ModuleBasicForm(forms.ModelForm):
+
+    class Meta:
+        model = module_models.Module
+        fields = ['name', 'description']
+
+
 class PhaseForm(forms.ModelForm):
 
     class Meta:
