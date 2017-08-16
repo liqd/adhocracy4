@@ -14,6 +14,6 @@ based on [adhocracy 4](https://github.com/liqd/adhocracy4).
 ## Installation
 
     git clone https://github.com/liqd/a4-meinberlin.git
-    cd a3-meinberlin
+    cd a4-meinberlin
     make install
     make build
