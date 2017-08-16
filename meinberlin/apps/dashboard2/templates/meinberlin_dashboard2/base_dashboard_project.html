@@ -9,20 +9,11 @@
                     <div class="dashboard-nav__item">{{ project.name }}</div>
                 </div>
                 <ul class="dashboard-nav__pages">
-                    {% if dashboard_menu %}
-                        {% for item in dashboard_menu.project %}
-                            <li class="dashboard-nav__page">
-                                <a href="{{ item.url }}" class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">{{ item.label }}</a>
-                            </li>
-                        {% endfor %}
-                    {% else %}
-                    <li class="dashboard-nav__page">
-                        <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive is-active">Grundeinstellungen</a>
-                    </li>
-                    <li class="dashboard-nav__page">
-                        <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive">Information</a>
-                    </li>
-                    {% endif %}
+                    {% for item in dashboard_menu.project %}
+                        <li class="dashboard-nav__page">
+                            <a href="{{ item.url }}" class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">{{ item.label }}</a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
 
