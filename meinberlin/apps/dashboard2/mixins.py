@@ -35,9 +35,7 @@ class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
         return self.organisation
 
     def get_success_url(self):
-        return reverse(
-            'dashboard:project-list',
-            kwargs={'organisation_slug': self.organisation.slug})
+        return self.request.path
 
 
 class BlueprintMixin:

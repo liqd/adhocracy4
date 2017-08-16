@@ -196,8 +196,8 @@ class ModuleComponentDispatcher(mixins.DashboardBaseMixin,
 
 
 class ProjectBasicComponentView(mixins.DashboardBaseMixin,
-                                generic.UpdateView,
-                                SuccessMessageMixin):
+                                SuccessMessageMixin,
+                                generic.UpdateView):
     permission_required = 'a4projects.add_project'
     model = project_models.Project
     form_class = forms.ProjectBasicForm
@@ -223,8 +223,9 @@ class ProjectBasicComponentView(mixins.DashboardBaseMixin,
 
 
 class ProjectInformationComponentView(mixins.DashboardBaseMixin,
-                                      generic.UpdateView,
-                                      SuccessMessageMixin):
+                                      SuccessMessageMixin,
+                                      generic.UpdateView
+                                      ):
     permission_required = 'a4projects.add_project'
     model = project_models.Project
     form_class = forms.ProjectInformationForm
@@ -250,8 +251,8 @@ class ProjectInformationComponentView(mixins.DashboardBaseMixin,
 
 
 class ModulePhasesComponentView(mixins.DashboardBaseMixin,
-                                generic.UpdateView,
-                                SuccessMessageMixin):
+                                SuccessMessageMixin,
+                                generic.UpdateView):
     permission_required = 'a4projects.add_project'
     model = project_models.Project
     form_class = forms.ModulePhasesForm
