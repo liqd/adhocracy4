@@ -2,6 +2,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 
+from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.organisations import models as org_models
@@ -18,13 +19,15 @@ class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
             slug = self.kwargs['organisation_slug']
             return get_object_or_404(org_models.Organisation, slug=slug)
 
-        # if hasattr(self, 'project'):
-        #     return self.project.organisation
-
         if 'project_slug' in self.kwargs:
             slug = self.kwargs['project_slug']
             project = get_object_or_404(project_models.Project, slug=slug)
             return project.organisation
+
+        if 'module_slug' in self.kwargs:
+            slug = self.kwargs['module_slug']
+            module = get_object_or_404(module_models.Module, slug=slug)
+            return module.project.organisation
 
         raise ObjectDoesNotExist()
 

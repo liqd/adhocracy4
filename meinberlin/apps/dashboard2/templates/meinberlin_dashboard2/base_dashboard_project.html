@@ -6,7 +6,7 @@
         <nav class="menu-layout__menu" aria-label="{% trans 'Dashboard navigation' %}">
             <div class="dashboard-nav">
                 <div class="dashboard-nav__dropdown">
-                    <div class="dashboard-nav__item">Entwicklungs- und Pflegeplan</div>
+                    <div class="dashboard-nav__item">{{ project.name }}</div>
                 </div>
                 <ul class="dashboard-nav__pages">
                     {% if dashboard_menu %}
@@ -25,6 +25,21 @@
                     {% endif %}
                 </ul>
             </div>
+
+            {% for module_menu in dashboard_menu.modules %}
+                <div class="dashboard-nav">
+                    <div class="dashboard-nav__dropdown">
+                        <div class="dashboard-nav__item">{{ module_menu.module.name }}</div>
+                    </div>
+                    <ul class="dashboard-nav__pages">
+                        {% for item in module_menu.menu %}
+                            <li class="dashboard-nav__page">
+                                <a href="{{ item.url }}" class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">{{ item.label }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
         </nav>
 
         <div class="menu-layout__content menu-layout__content--aside">

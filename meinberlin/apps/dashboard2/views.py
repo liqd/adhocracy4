@@ -157,6 +157,44 @@ class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
         return None
 
 
+class ModuleComponentDispatcher(mixins.DashboardBaseMixin,
+                                mixins.DashboardMenuMixin,
+                                generic.View):
+
+    def dispatch(self, request, *args, **kwargs):
+        module = self.get_module()
+        if not module:
+            raise Http404('Module not found')
+
+        component = self.get_component()
+        if not component:
+            raise Http404('Component not found')
+
+        menu = self.get_menu()
+
+        kwargs['module'] = module
+        kwargs['project'] = module.project
+        kwargs['menu'] = menu
+
+        return component.get_view()(request, *args, **kwargs)
+
+    def get_component(self):
+        if 'component_identifier' not in self.kwargs:
+            return None
+        if self.kwargs['component_identifier'] not in content:
+            return None
+        return content[self.kwargs['component_identifier']]
+
+    def get_module(self):
+        if 'module_slug' not in self.kwargs:
+            return None
+        return get_object_or_none(module_models.Module,
+                                  slug=self.kwargs['module_slug'])
+
+    def get_project(self):
+        return self.get_module().project
+
+
 class ProjectBasicComponentView(mixins.DashboardBaseMixin,
                                 generic.UpdateView,
                                 SuccessMessageMixin):
@@ -209,4 +247,32 @@ class ProjectInformationComponentView(mixins.DashboardBaseMixin,
         context['dashboard_menu'] = self.menu
         context['project'] = self.project
         return context
+
+
+class ModulePhasesComponentView(mixins.DashboardBaseMixin,
+                                generic.UpdateView,
+                                SuccessMessageMixin):
+    permission_required = 'a4projects.add_project'
+    model = project_models.Project
+    form_class = forms.ModulePhasesForm
+    template_name = 'meinberlin_dashboard2/base_form_module.html'
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/module_phases_form.html'
+    title = _('Edit phases information')
+    success_message = _('Project successfully updated.')
+
+    def dispatch(self, request, project, module, menu, *args, **kwargs):
+        self.module = module
+        self.project = project
+        self.menu = menu
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        return self.project
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dashboard_menu'] = self.menu
+        context['project'] = self.project
+        context['module'] = self.module
         return context

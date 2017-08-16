@@ -129,3 +129,14 @@ class ProjectInformationForm(forms.ModelForm):
         return super().get_queryset().filter(
             organisation=self.organisation
         )
+
+
+class ModulePhasesForm(forms.ModelForm):
+    class Meta:
+        model = project_models.Project
+        fields = ['name']
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            organisation=self.organisation
+        )
