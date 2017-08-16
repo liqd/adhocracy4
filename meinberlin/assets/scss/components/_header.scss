@@ -197,7 +197,6 @@ $header-overlap: -35px;
 
 .messages,
 .hero-unit,
-#main > .tablist,
 .project-header {
     &:first-child {
         margin-top: $header-overlap - $header-margin-bottom;
@@ -208,6 +207,7 @@ $header-overlap: -35px;
     }
 }
 
-#main > .tablist:first-child {
+.u-after-dialogue-box:first-child {
+    margin-top: $header-overlap - $header-margin-bottom;
     padding-top: -($header-overlap - $header-margin-bottom);
 }
