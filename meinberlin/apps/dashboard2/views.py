@@ -143,9 +143,9 @@ class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
     def get_component(self):
         if 'component_identifier' not in self.kwargs:
             return None
-        if self.kwargs['component_identifier'] not in content:
+        if self.kwargs['component_identifier'] not in content.projects:
             return None
-        return content[self.kwargs['component_identifier']]
+        return content.projects[self.kwargs['component_identifier']]
 
     def get_project(self):
         if 'project_slug' not in self.kwargs:
@@ -181,9 +181,9 @@ class ModuleComponentDispatcher(mixins.DashboardBaseMixin,
     def get_component(self):
         if 'component_identifier' not in self.kwargs:
             return None
-        if self.kwargs['component_identifier'] not in content:
+        if self.kwargs['component_identifier'] not in content.modules:
             return None
-        return content[self.kwargs['component_identifier']]
+        return content.modules[self.kwargs['component_identifier']]
 
     def get_module(self):
         if 'module_slug' not in self.kwargs:

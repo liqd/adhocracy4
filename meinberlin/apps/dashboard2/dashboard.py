@@ -1,42 +1,41 @@
 from django.utils.translation import ugettext_lazy as _
 
-from . import DashboardModuleComponent
-from . import DashboardProjectComponent
+from . import DashboardComponent
 from . import content
 from . import views
 from .apps import Config
 
 
-class ProjectBasicComponent(DashboardProjectComponent):
+class ProjectBasicComponent(DashboardComponent):
     app_label = Config.label
     label = 'basic'
     identifier = 'basic'
 
-    def get_menu_item(self, project):
+    def get_menu_label(self, project):
         return _('Basic settings')
 
     def get_view(self):
         return views.ProjectBasicComponentView.as_view()
 
 
-class ProjectInformationComponent(DashboardProjectComponent):
+class ProjectInformationComponent(DashboardComponent):
     app_label = Config.label
     label = 'information'
     identifier = 'information'
 
-    def get_menu_item(self, project):
+    def get_menu_label(self, project):
         return _('Information')
 
     def get_view(self):
         return views.ProjectInformationComponentView.as_view()
 
 
-class ModulePhasesComponent(DashboardModuleComponent):
+class ModulePhasesComponent(DashboardComponent):
     app_label = Config.label
     label = 'phases'
     identifier = 'phases'
 
-    def get_menu_item(self, module):
+    def get_menu_label(self, module):
         return _('Phases')
 
     def get_view(self):

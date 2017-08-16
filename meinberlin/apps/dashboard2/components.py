@@ -9,8 +9,16 @@ class DashboardComponent:
     - identifier (defaults to "app_label:label")
       - has to be unique
       - may only contain alphanumeric characters and -, _, :
+      - Note: is is recommended to define a custom unique identifier as
+        otherwise the app_label is exposed in dashboard urls.
 
     Required methods:
+    - get_menu_label(project_or_module): str | None
+      In case of a component registered for modules the module to edit is
+      passed. In case of a component registered for projects the project.
+      Return a localized string if the component should be rendered for the
+      project or module passed. Return None otherwise.
+
     - get_view(): view function
       Return a view function which takes menu and project/module as kwargs
     """
@@ -28,35 +36,8 @@ class DashboardComponent:
             component_label=self.label,
         )
 
+    def get_menu_label(self, project_or_module):
+        pass
+
     def get_view(self):
-        pass
-
-
-class DashboardProjectComponent(DashboardComponent):
-    """Abstract interface for project components.
-
-    Inherits from DashboardComponent.
-
-    Required methods: str | None
-    - get_menu_item(project):
-      Return a localized string if the component should be rendered for the
-      project passed. Return None otherwise
-    """
-
-    def get_menu_item(self, project):
-        pass
-
-
-class DashboardModuleComponent(DashboardComponent):
-    """Abstract interface for module components.
-
-    Inherits from DashboardComponent.
-
-    Required methods: str | None
-    - get_menu_item(module):
-      Return a localized string if the component should be rendered for the
-      module passed. Return None otherwise
-    """
-
-    def get_menu_item(self, module):
         pass

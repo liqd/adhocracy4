@@ -57,6 +57,7 @@ class DashboardMenuMixin:
         project = self.get_project()
         current_module = self.get_module()
 
+        # FIXME: the menu items are in no specific order
         project_menu = self.get_project_menu(project, current_component)
 
         menu_modules = []
@@ -76,7 +77,7 @@ class DashboardMenuMixin:
     def get_project_menu(cls, project, current_component):
         project_menu = []
         for component in content.get_project_components():
-            menu_item = component.get_menu_item(project)
+            menu_item = component.get_menu_label(project)
             if menu_item:
                 is_active = (component == current_component)
                 url = reverse('a4dashboard:project-edit-component', kwargs={
@@ -95,7 +96,7 @@ class DashboardMenuMixin:
     def get_module_menu(cls, module, current_component, current_module):
         module_menu = []
         for component in content.get_module_components():
-            menu_item = component.get_menu_item(module)
+            menu_item = component.get_menu_label(module)
             if menu_item:
                 is_active = (component == current_component and
                              module.pk == current_module.pk)
