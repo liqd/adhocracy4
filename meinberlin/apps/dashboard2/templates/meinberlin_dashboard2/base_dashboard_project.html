@@ -1,0 +1,30 @@
+{% extends "meinberlin_dashboard2/base_dashboard.html" %}
+{% load i18n %}
+
+{% block dashboard_content %}
+    <div class="menu-layout">
+        <nav class="menu-layout__menu" aria-label="{% trans 'Dashboard navigation' %}">
+            <div class="dashboard-nav">
+                <div class="dashboard-nav__dropdown">
+                    <div class="dashboard-nav__item">Entwicklungs- und Pflegeplan</div>
+                </div>
+                <ul class="dashboard-nav__pages">
+                    <li class="dashboard-nav__page">
+                        <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive is-active">Grundeinstellungen</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive">Information</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="menu-layout__content menu-layout__content--aside">
+            {% block dashboard_project_content %}{% endblock %}
+        </div>
+
+        <div class="menu-layout__aside">
+            No progress this far!!
+        </div>
+    </div>
+{% endblock %}

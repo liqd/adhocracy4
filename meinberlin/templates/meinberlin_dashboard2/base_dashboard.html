@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="tablist tablist--right tablist--background u-after-dialogue-box">
+    <div class="l-wrapper">
+        <div style="float: left">
+            {% if view.other_organisations_of_user %}
+                <button
+                        title="{% trans 'Organisations' %}"
+                        type="button"
+                        class="dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        id="organisation-selection"
+                >
+                    {{ view.organisation.name }}
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="organisation-selection">
+                    {% for organisation in view.other_organisations_of_user %}
+                        <li>
+                            <a
+                                    class="dropdown-item"
+                                    href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}"
+                            >
+                                {{ organisation.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {{ view.organisation.name }}
+            {% endif %}
+        </div>
+
+        <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
+           class="tab {% ifequal view.menu_item 'project' %}active{% endifequal %}">
+            {% trans 'Participation projects' %}
+        </a>
+        <a href="{% url 'dashboard-organisation-edit' organisation_slug=view.organisation.slug %}"
+           class="tab {% ifequal view.menu_item 'organisation' %}active{% endifequal %}">
+            {% trans 'Settings' %}
+        </a>
+        <a href="{% url 'dashboard-newsletter-create' organisation_slug=view.organisation.slug %}"
+           class="tab {% ifequal view.menu_item 'newsletter' %}active{% endifequal %}">
+            {% trans 'Newsletter' %}
+        </a>
+    </div>
+</div>
+
+<div class="l-wrapper">
+    {% block dashboard_content %}{% endblock %}
+</div>
+
+{% endblock %}

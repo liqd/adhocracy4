@@ -1,5 +1,6 @@
 .menu-layout__menu,
-.menu-layout__content {
+.menu-layout__content,
+.menu-layout__aside {
     margin-bottom: 2em;
 }
 
@@ -14,5 +15,13 @@
 
     .menu-layout__content {
         @include grid-span(9, 3);
+    }
+
+    .menu-layout__content--aside {
+        @include grid-width(6);
+    }
+
+    .menu-layout__aside {
+        @include grid-span(3, 9);
     }
 }

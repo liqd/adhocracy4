@@ -1,9 +1,9 @@
-{% extends "meinberlin_dashboard2/base_dashboard.html" %}
+{% extends "meinberlin_dashboard2/base_dashboard_project.html" %}
 {% load i18n %}
 
 {% block title %}{% trans "Edit project" %} &mdash; {{ block.super }}{% endblock%}
 
-{% block dashboard_content %}
+{% block dashboard_project_content %}
     <h1>{% trans "Edit project" %}</h1>
 
     {% for error in form.non_field_errors %}
