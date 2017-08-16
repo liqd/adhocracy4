@@ -195,101 +195,46 @@ class ModuleComponentDispatcher(mixins.DashboardBaseMixin,
         return self.get_module().project
 
 
-class ProjectBasicComponentView(mixins.DashboardBaseMixin,
-                                SuccessMessageMixin,
-                                generic.UpdateView):
-    permission_required = 'a4projects.add_project'
-    model = project_models.Project
-    form_class = forms.ProjectBasicForm
-    template_name = 'meinberlin_dashboard2/base_form_project.html'
-    form_template_name = 'meinberlin_dashboard2/includes' \
-                         '/project_basic_form.html'
-    title = _('Edit basic settings')
-    success_message = _('Project successfully updated.')
-
-    def dispatch(self, request, project, menu, *args, **kwargs):
-        self.project = project
-        self.menu = menu
-        return super().dispatch(request, *args, **kwargs)
-
-    def get_object(self, queryset=None):
-        return self.project
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['dashboard_menu'] = self.menu
-        context['project'] = self.project
-        return context
-
-
-class ProjectInformationComponentView(mixins.DashboardBaseMixin,
-                                      SuccessMessageMixin,
-                                      generic.UpdateView
-                                      ):
-    permission_required = 'a4projects.add_project'
-    model = project_models.Project
-    form_class = forms.ProjectInformationForm
-    template_name = 'meinberlin_dashboard2/base_form_project.html'
-    form_template_name = 'meinberlin_dashboard2/includes' \
-                         '/project_information_form.html'
-    title = _('Edit project information')
-    success_message = _('Project successfully updated.')
-
-    def dispatch(self, request, project, menu, *args, **kwargs):
-        self.project = project
-        self.menu = menu
-        return super().dispatch(request, *args, **kwargs)
-
-    def get_object(self, queryset=None):
-        return self.project
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['dashboard_menu'] = self.menu
-        context['project'] = self.project
-        return context
-
-
-class ModuleBasicComponentView(mixins.DashboardBaseMixin,
+class ProjectComponentFormView(mixins.DashboardBaseMixin,
                                SuccessMessageMixin,
                                generic.UpdateView):
     permission_required = 'a4projects.add_project'
-    model = module_models.Module
-    form_class = forms.ModuleBasicForm
-    template_name = 'meinberlin_dashboard2/base_form_module.html'
-    form_template_name = 'meinberlin_dashboard2/includes' \
-                         '/module_basic_form.html'
-    title = _('Edit basic module information')
-    success_message = _('Module successfully updated.')
+    model = project_models.Project
+    template_name = 'meinberlin_dashboard2/base_form_project.html'
+    success_message = _('Project successfully updated.')
 
-    def dispatch(self, request, project, module, menu, *args, **kwargs):
-        self.module = module
+    # Properties to be set when calling as_view()
+    title = ''
+    form_class = None
+    form_template_name = ''
+
+    def dispatch(self, request, project, menu, *args, **kwargs):
         self.project = project
         self.menu = menu
         return super().dispatch(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
-        return self.module
+        return self.project
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['dashboard_menu'] = self.menu
         context['project'] = self.project
-        context['module'] = self.module
         return context
 
 
-class ModulePhasesComponentView(mixins.DashboardBaseMixin,
-                                SuccessMessageMixin,
-                                generic.UpdateView):
+class ModuleComponentFormView(mixins.DashboardBaseMixin,
+                              SuccessMessageMixin,
+                              generic.UpdateView):
     permission_required = 'a4projects.add_project'
     model = module_models.Module
-    form_class = forms.PhaseFormSet
     template_name = 'meinberlin_dashboard2/base_form_module.html'
-    form_template_name = 'meinberlin_dashboard2/includes' \
-                         '/module_phases_form.html'
-    title = _('Edit phases information')
     success_message = _('Module successfully updated.')
+
+    # Properties to be set when calling as_view()
+    title = ''
+    form_class = None
+    form_template_name = ''
 
     def dispatch(self, request, project, module, menu, *args, **kwargs):
         self.module = module
