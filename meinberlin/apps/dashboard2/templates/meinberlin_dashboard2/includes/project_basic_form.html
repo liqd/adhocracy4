@@ -1,0 +1,15 @@
+{% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+
+{% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
+
+{% include 'meinberlin_contrib/includes/form_field.html' with field=form.tile_image %}
+
+{% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
+
+{% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.is_public %}
+
+{% include 'meinberlin_embed/includes/project_embed_code.html' with project=project %}
+
+{% if project.has_finished %}
+    {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.is_archived %}
+{% endif %}

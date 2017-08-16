@@ -187,3 +187,54 @@ class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
                 })
         return module_menu or None
 
+
+class ProjectBasicComponentView(mixins.DashboardBaseMixin,
+                                generic.UpdateView,
+                                SuccessMessageMixin):
+    permission_required = 'a4projects.add_project'
+    model = project_models.Project
+    form_class = forms.ProjectBasicForm
+    template_name = 'meinberlin_dashboard2/base_form_project.html'
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/project_basic_form.html'
+    title = _('Edit basic settings')
+    success_message = _('Project successfully updated.')
+
+    def dispatch(self, request, project, menu, *args, **kwargs):
+        self.project = project
+        self.menu = menu
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        return self.project
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dashboard_menu'] = self.menu
+        return context
+
+
+class ProjectInformationComponentView(mixins.DashboardBaseMixin,
+                                      generic.UpdateView,
+                                      SuccessMessageMixin):
+    permission_required = 'a4projects.add_project'
+    model = project_models.Project
+    form_class = forms.ProjectInformationForm
+    template_name = 'meinberlin_dashboard2/base_form_project.html'
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/project_information_form.html'
+    title = _('Edit project information')
+    success_message = _('Project successfully updated.')
+
+    def dispatch(self, request, project, menu, *args, **kwargs):
+        self.project = project
+        self.menu = menu
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_object(self, queryset=None):
+        return self.project
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dashboard_menu'] = self.menu
+        return context
