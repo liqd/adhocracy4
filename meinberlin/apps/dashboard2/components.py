@@ -68,7 +68,10 @@ class ProjectFormComponent(DashboardComponent):
         )
 
     def get_progress(self, object):
-        required_fields = self._get_required_fields(self.form_class, object)
+        required_fields = self.form_class.get_required_fields()
+        if required_fields == '__all__':
+            required_fields = self._get_all_required_fields(self.form_class,
+                                                            object)
 
         if not required_fields:
             return 0, 0
@@ -76,20 +79,15 @@ class ProjectFormComponent(DashboardComponent):
         return self._get_progress_for_object(object, required_fields)
 
     @staticmethod
-    def _get_required_fields(form_class, model):
-        meta = getattr(form_class, 'Meta', None)
-        required_fields = getattr(meta, 'required', [])
-
-        if required_fields == '__all__':
-            required_fields = []
-            for field_name in form_class.base_fields.keys():
-                try:
-                    field = model._meta.get_field(field_name)
-                    if field.concrete:
-                        required_fields.append(field_name)
-                except FieldDoesNotExist:
-                    pass
-
+    def _get_all_required_fields(form_class, model):
+        required_fields = []
+        for field_name in form_class.base_fields.keys():
+            try:
+                field = model._meta.get_field(field_name)
+                if field.concrete:
+                    required_fields.append(field_name)
+            except FieldDoesNotExist:
+                pass
         return required_fields
 
     @staticmethod
@@ -122,8 +120,10 @@ class ModuleFormSetComponent(ModuleFormComponent):
         child_form_class = self.form_class.form
         child_model = child_form_class._meta.model
 
-        required_fields = self._get_required_fields(child_form_class,
-                                                    child_model)
+        required_fields = self.form_class.get_required_fields()
+        if required_fields == '__all__':
+            required_fields = self._get_all_required_fields(child_form_class,
+                                                            child_model)
 
         if not required_fields:
             return 0, 0

@@ -49,7 +49,61 @@ class ProjectUpdateForm(forms.ModelForm):
         }
 
 
-class ProjectBasicForm(forms.ModelForm):
+def _make_fields_required(fields, required):
+    if required:
+        for name, field in fields:
+            if required == '__all__' or name in required:
+                field.required = True
+
+
+class ProjectDashboardForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if not self.instance.is_draft:
+            _make_fields_required(self.fields.items(),
+                                  self.get_required_fields())
+
+    @classmethod
+    def get_required_fields(cls):
+        meta = getattr(cls, 'Meta', None)
+        return getattr(meta, 'required', [])
+
+
+class ModuleDashboardForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if not self.instance.project.is_draft:
+            _make_fields_required(self.fields.items(),
+                                  self.get_required_fields())
+
+    @classmethod
+    def get_required_fields(cls):
+        meta = getattr(cls, 'Meta', None)
+        return getattr(meta, 'required', [])
+
+
+class ModuleDashboardFormSet(forms.BaseInlineFormSet):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if not self.instance.project.is_draft:
+            required_fields = self.get_required_fields()
+            for form in self.forms:
+                _make_fields_required(form.fields.items(),
+                                      required_fields)
+
+    @classmethod
+    def get_required_fields(cls):
+        meta = getattr(cls.form, 'Meta', None)
+        return getattr(meta, 'required', [])
+
+
+class ProjectBasicForm(ProjectDashboardForm):
 
     class Meta:
         model = project_models.Project
@@ -58,7 +112,7 @@ class ProjectBasicForm(forms.ModelForm):
         required = '__all__'
 
 
-class ProjectInformationForm(forms.ModelForm):
+class ProjectInformationForm(ProjectDashboardForm):
 
     class Meta:
         model = project_models.Project
@@ -66,7 +120,7 @@ class ProjectInformationForm(forms.ModelForm):
         required = '__all__'
 
 
-class ModuleBasicForm(forms.ModelForm):
+class ModuleBasicForm(ModuleDashboardForm):
 
     class Meta:
         model = module_models.Module
@@ -90,6 +144,7 @@ class PhaseForm(forms.ModelForm):
 PhaseFormSet = inlineformset_factory(module_models.Module,
                                      phase_models.Phase,
                                      form=PhaseForm,
+                                     formset=ModuleDashboardFormSet,
                                      extra=0,
                                      can_delete=False,
                                      )
