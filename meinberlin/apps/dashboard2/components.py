@@ -1,3 +1,6 @@
+from django.core.exceptions import FieldDoesNotExist
+
+
 class DashboardComponent:
     """Abstract interface for dashboard components.
 
@@ -41,3 +44,59 @@ class DashboardComponent:
 
     def get_view(self):
         pass
+
+    def get_progress(self, project_or_module):
+        return 0, 0
+
+
+class ProjectFormComponent(DashboardComponent):
+
+    menu_label = ''
+    form_title = ''
+    form_class = ''
+    form_template_name = ''
+
+    def get_menu_label(self, project):
+        return self.menu_label
+
+    def get_view(self):
+        from .views import ProjectComponentFormView
+        return ProjectComponentFormView.as_view(
+            title=self.form_title,
+            form_class=self.form_class,
+            form_template_name=self.form_template_name
+        )
+
+    def get_progress(self, object):
+        meta = getattr(self.form_class, 'Meta', None)
+        required_fields = getattr(meta, 'required', None)
+
+        if not required_fields:
+            return 0, 0
+
+        if required_fields == '__all__':
+            required_fields = list(self.form_class.base_fields)
+
+        num_valid = num_required = len(required_fields)
+        for field_name in required_fields:
+            try:
+                field = object._meta.get_field(field_name)
+                value = getattr(object, field_name, None)
+
+                if value is None or value in field.empty_values:
+                    num_valid = num_valid - 1
+            except FieldDoesNotExist:
+                pass
+
+        return num_valid, num_required
+
+
+class ModuleFormComponent(ProjectFormComponent):
+
+    def get_view(self):
+        from .views import ModuleComponentFormView
+        return ModuleComponentFormView.as_view(
+            title=self.form_title,
+            form_class=self.form_class,
+            form_template_name=self.form_template_name
+        )

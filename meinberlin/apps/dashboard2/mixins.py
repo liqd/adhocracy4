@@ -82,11 +82,14 @@ class DashboardMenuMixin:
                     'project_slug': project.slug,
                     'component_identifier': component.identifier
                 })
+                num_valid, num_required = component.get_progress(project)
+                is_complete = (num_valid == num_required)
 
                 project_menu.append({
                     'label': menu_item,
                     'is_active': is_active,
                     'url': url,
+                    'is_complete': is_complete,
                 })
         return project_menu or None
 

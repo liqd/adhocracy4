@@ -3,66 +3,11 @@ from django.contrib.auth import get_user_model
 from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
-from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.contrib import multiform
 
 User = get_user_model()
-
-
-class ProjectEditFormBase(multiform.MultiModelForm):
-
-    def _project_form(self):
-        return self.get_formset('project')
-
-    def _phases_form(self):
-        return self.get_formset('phases')
-
-    def _categories_form(self):
-        return self.get_formset('categories')
-
-    def _module_settings_form(self):
-        return self.get_formset('module_settings')
-
-    def info_error_count(self):
-        project_form_errors = self._project_form().errors.keys()
-        info_error_count = len(project_form_errors)
-        if 'result' in project_form_errors:
-            info_error_count = info_error_count - 1
-
-        return info_error_count
-
-    def participate_error_count(self):
-        error_count = 0
-
-        module_settings = self._module_settings_form()
-        if module_settings is not None:
-            error_count += len(module_settings.errors)
-
-        categories = self._categories_form()
-        if categories is not None:
-            error_count += categories.total_error_count()
-
-        error_count += self._phases_form().total_error_count()
-
-        return error_count
-
-    def result_error_count(self):
-        project_form_errors = self._project_form().errors.keys()
-        return 1 if 'result' in project_form_errors else 0
-
-    def _show_categories_form(self, phases):
-        """Check if any of the phases has a categorizable item.
-
-        TODO: Move this functionality to a4phases.
-        """
-        for phase in phases:
-            for models in phase.features.values():
-                for model in models:
-                    if category_models.Categorizable.is_categorizable(model):
-                        return True
 
 
 class ProjectCreateForm(forms.ModelForm):
@@ -110,6 +55,7 @@ class ProjectBasicForm(forms.ModelForm):
         model = project_models.Project
         fields = ['name', 'description', 'image', 'tile_image', 'is_archived',
                   'is_public']
+        required = '__all__'
 
 
 class ProjectInformationForm(forms.ModelForm):
@@ -117,6 +63,7 @@ class ProjectInformationForm(forms.ModelForm):
     class Meta:
         model = project_models.Project
         fields = ['information']
+        required = '__all__'
 
 
 class ModuleBasicForm(forms.ModelForm):
@@ -124,6 +71,7 @@ class ModuleBasicForm(forms.ModelForm):
     class Meta:
         model = module_models.Module
         fields = ['name', 'description']
+        required = '__all__'
 
 
 class PhaseForm(forms.ModelForm):
