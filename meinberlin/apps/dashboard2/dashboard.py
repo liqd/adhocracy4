@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 
 from . import ModuleFormComponent
+from . import ModuleFormSetComponent
 from . import ProjectFormComponent
 from . import content
 from . import forms
@@ -43,7 +44,7 @@ class ModuleBasicComponent(ModuleFormComponent):
                          '/module_basic_form.html'
 
 
-class ModulePhasesComponent(ModuleFormComponent):
+class ModulePhasesComponent(ModuleFormSetComponent):
     app_label = Config.label
     label = 'phases'
     identifier = 'phases'

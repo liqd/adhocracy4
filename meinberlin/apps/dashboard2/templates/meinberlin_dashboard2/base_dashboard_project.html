@@ -31,7 +31,13 @@
                     <ul class="dashboard-nav__pages">
                         {% for item in module_menu.menu %}
                             <li class="dashboard-nav__page">
-                                <a href="{{ item.url }}" class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">{{ item.label }}</a>
+                                <a href="{{ item.url }}"
+                                   class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
+                                    {{ item.label }}
+                                    {% if not item.is_complete %}
+                                        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                                    {% endif %}
+                                </a>
                             </li>
                         {% endfor %}
                     </ul>

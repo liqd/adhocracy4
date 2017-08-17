@@ -84,6 +84,7 @@ class PhaseForm(forms.ModelForm):
             'type': forms.HiddenInput(),
             'weight': forms.HiddenInput()
         }
+        required = '__all__'
 
 
 PhaseFormSet = inlineformset_factory(module_models.Module,

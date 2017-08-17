@@ -105,10 +105,13 @@ class DashboardMenuMixin:
                     'module_slug': module.slug,
                     'component_identifier': component.identifier
                 })
+                num_valid, num_required = component.get_progress(module)
+                is_complete = (num_valid == num_required)
 
                 module_menu.append({
                     'label': menu_item,
                     'is_active': is_active,
                     'url': url,
+                    'is_complete': is_complete,
                 })
         return module_menu or None
