@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
@@ -72,20 +74,35 @@ class DashboardContextMixin(base.ContextMixin):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['dashboard_menu'] = self.get_dashboard_menu()
-        context['project_progress'] = self.get_project_progress()
+
+        # Workaround Djangos update behavior:
+        # All fields from the POST data will be set on the view.object model
+        # instance, regardless of validation errors.
+        # Thus it is not reliable to check on empty fields on the view.object
+        # but it has to be ensured that the model reflects the database.
+        project = deepcopy(self.project)
+        if project:
+            project.refresh_from_db()
+        module = deepcopy(self.module)
+        if module:
+            module.refresh_from_db()
+
+        context['dashboard_menu'] = self.get_dashboard_menu(project, module,
+                                                            self.component)
+        context['project_progress'] = self.get_project_progress(project)
         return context
 
-    def get_project_progress(self):
+    @staticmethod
+    def get_project_progress(project):
         num_valid = 0
         num_required = 0
 
         for component in content.get_project_components():
-            nums = component.get_progress(self.project)
+            nums = component.get_progress(project)
             num_valid = num_valid + nums[0]
             num_required = num_required + nums[1]
 
-        for module in self.project.modules:
+        for module in project.modules:
             for component in content.get_module_components():
                 nums = component.get_progress(module)
                 num_valid = num_valid + nums[0]
@@ -96,15 +113,17 @@ class DashboardContextMixin(base.ContextMixin):
             'required': num_required
         }
 
-    def get_dashboard_menu(self):
+    @staticmethod
+    def get_dashboard_menu(project, current_module, current_component):
+        cls = DashboardContextMixin
         # FIXME: the menu items are in no specific order
-        project_menu = self.get_project_menu(self.project, self.component)
+        project_menu = cls.get_project_menu(project, current_component)
 
         menu_modules = []
-        for module in self.project.modules:
-            menu_module = self.get_module_menu(module,
-                                               self.component,
-                                               self.module)
+        for module in project.modules:
+            menu_module = cls.get_module_menu(module,
+                                              current_component,
+                                              current_module)
             if menu_module:
                 menu_modules.append({
                     'module': module,
