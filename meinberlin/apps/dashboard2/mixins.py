@@ -1,6 +1,7 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
+from django.views.generic import base
 
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
@@ -48,21 +49,62 @@ class BlueprintMixin:
         return self.kwargs['blueprint_slug']
 
 
-class DashboardMenuMixin:
+class DashboardComponentMixin(base.ContextMixin,
+                              base.View):
 
-    def get_menu(self):
-        current_component = self.get_component()
-        project = self.get_project()
-        current_module = self.get_module()
+    def dispatch(self, request, project, module, *args, **kwargs):
+        self.module = module
+        self.project = project
+        return super().dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['project'] = self.project
+        context['module'] = self.module
+        return context
+
+
+class DashboardContextMixin(base.ContextMixin):
+    """Add dashboard information to the context data.
+
+    Assumes self.project, self.module and self.component are set.
+    """
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['dashboard_menu'] = self.get_dashboard_menu()
+        context['project_progress'] = self.get_project_progress()
+        return context
+
+    def get_project_progress(self):
+        num_valid = 0
+        num_required = 0
+
+        for component in content.get_project_components():
+            nums = component.get_progress(self.project)
+            num_valid = num_valid + nums[0]
+            num_required = num_required + nums[1]
+
+        for module in self.project.modules:
+            for component in content.get_module_components():
+                nums = component.get_progress(module)
+                num_valid = num_valid + nums[0]
+                num_required = num_required + nums[1]
+
+        return {
+            'valid': num_valid,
+            'required': num_required
+        }
+
+    def get_dashboard_menu(self):
         # FIXME: the menu items are in no specific order
-        project_menu = self.get_project_menu(project, current_component)
+        project_menu = self.get_project_menu(self.project, self.component)
 
         menu_modules = []
-        for module in project.modules:
+        for module in self.project.modules:
             menu_module = self.get_module_menu(module,
-                                               current_component,
-                                               current_module)
+                                               self.component,
+                                               self.module)
             if menu_module:
                 menu_modules.append({
                     'module': module,

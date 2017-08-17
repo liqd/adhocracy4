@@ -50,7 +50,7 @@
         </div>
 
         <div class="menu-layout__aside">
-            {% include "meinberlin_dashboard2/includes/progress.html" with value=3 max=23 %}
+            {% include "meinberlin_dashboard2/includes/progress.html" with value=project_progress.valid max=project_progress.required %}
         </div>
     </div>
 {% endblock %}

@@ -80,6 +80,7 @@ class ProjectFormComponent(DashboardComponent):
     def get_view(self):
         from .views import ProjectComponentFormView
         return ProjectComponentFormView.as_view(
+            component=self,
             title=self.form_title,
             form_class=self.form_class,
             form_template_name=self.form_template_name
@@ -140,6 +141,7 @@ class ModuleFormComponent(ProjectFormComponent):
     def get_view(self):
         from .views import ModuleComponentFormView
         return ModuleComponentFormView.as_view(
+            component=self,
             title=self.form_title,
             form_class=self.form_class,
             form_template_name=self.form_template_name
