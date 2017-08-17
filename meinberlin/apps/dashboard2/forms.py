@@ -50,6 +50,7 @@ class ProjectUpdateForm(forms.ModelForm):
 
 
 def _make_fields_required(fields, required):
+    """Set the required attributes on all fields who's key is in required."""
     if required:
         for name, field in fields:
             if required == '__all__' or name in required:
@@ -57,6 +58,12 @@ def _make_fields_required(fields, required):
 
 
 class ProjectDashboardForm(forms.ModelForm):
+    """
+    Base form for project related dashboard forms.
+
+    Sets fields to required if the project is published.
+    Intended to be used with ProjectFormComponent's.
+    """
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -72,6 +79,12 @@ class ProjectDashboardForm(forms.ModelForm):
 
 
 class ModuleDashboardForm(forms.ModelForm):
+    """
+    Base form for module related dashboard forms.
+
+    Sets fields to required if the project is published.
+    Intended to be used with ModuleFormComponent's.
+    """
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -87,6 +100,12 @@ class ModuleDashboardForm(forms.ModelForm):
 
 
 class ModuleDashboardFormSet(forms.BaseInlineFormSet):
+    """
+    Base form for module related dashboard formsets.
+
+    Sets fields to required if the project is published.
+    Intended to be used with ModuleFormSetComponent's.
+    """
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

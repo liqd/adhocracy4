@@ -24,6 +24,10 @@ class DashboardComponent:
 
     - get_view(): view function
       Return a view function which takes menu and project/module as kwargs
+
+    - get_progress(): (int, int)
+      Return a tuple containing the number of valid "input fields" as first
+      element and the total number of "input fields" as the second.
     """
 
     app_label = None
@@ -50,6 +54,20 @@ class DashboardComponent:
 
 
 class ProjectFormComponent(DashboardComponent):
+    """Abstract interface for project dashboard components based on forms.
+
+    This component is intended to be used with ProjectDashboardForm's.
+    It will always return a ProjectComponentFormView
+    and provides a default implementation for get_progress.
+
+    Required properties:
+    - menu_label: str
+      This label is always returned regardless of project state
+    - form_title: str
+      This title is shown on top of the rendered form
+    - form_class: ProjectDashboardForm
+      This is the form class used to render from the ProjectComponentFormView
+    """
 
     menu_label = ''
     form_title = ''
@@ -104,6 +122,20 @@ class ProjectFormComponent(DashboardComponent):
 
 
 class ModuleFormComponent(ProjectFormComponent):
+    """Abstract interface for module dashboard components based on forms.
+
+    This component is intended to be used with ModuleDashboardForm's.
+    It will always return a ModuleComponentFormView
+    and provides a default implementation for get_progress.
+
+    Required properties:
+    - menu_label: str
+      This label is always returned regardless of project state
+    - form_title: str
+      This title is shown on top of the rendered form
+    - form_class: ModuleDashboardForm
+      This is the form class used to render from the ModuleComponentFormView
+    """
 
     def get_view(self):
         from .views import ModuleComponentFormView
@@ -115,6 +147,20 @@ class ModuleFormComponent(ProjectFormComponent):
 
 
 class ModuleFormSetComponent(ModuleFormComponent):
+    """Abstract interface for module dashboard components based on formsets.
+
+    This component is intended to be used with ModuleDashboardFormSet's.
+    It will always return a ModuleComponentFormView
+    and provides a default implementation for get_progress.
+
+    Required properties:
+    - menu_label: str
+      This label is always returned regardless of project state
+    - form_title: str
+      This title is shown on top of the rendered form
+    - form_class: ModuleDashboardFormSet
+      This is the formset class used to render from the ModuleComponentFormView
+    """
 
     def get_progress(self, parent):
         child_form_class = self.form_class.form

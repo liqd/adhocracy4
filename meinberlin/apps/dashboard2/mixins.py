@@ -71,8 +71,8 @@ class DashboardMenuMixin:
 
         return {'project': project_menu, 'modules': menu_modules}
 
-    @classmethod
-    def get_project_menu(cls, project, current_component):
+    @staticmethod
+    def get_project_menu(project, current_component):
         project_menu = []
         for component in content.get_project_components():
             menu_item = component.get_menu_label(project)
@@ -93,8 +93,8 @@ class DashboardMenuMixin:
                 })
         return project_menu or None
 
-    @classmethod
-    def get_module_menu(cls, module, current_component, current_module):
+    @staticmethod
+    def get_module_menu(module, current_component, current_module):
         module_menu = []
         for component in content.get_module_components():
             menu_item = component.get_menu_label(module)
