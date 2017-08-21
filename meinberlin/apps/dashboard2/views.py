@@ -14,6 +14,7 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 
 from . import blueprints
+from . import content
 from . import forms
 from . import mixins
 
@@ -98,15 +99,13 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
             phase.save()
 
 
-class ProjectUpdateView(mixins.DashboardBaseMixin,
-                        generic.UpdateView,
-                        SuccessMessageMixin):
-    model = project_models.Project
-    slug_url_kwarg = 'project_slug'
-    form_class = forms.ProjectUpdateForm
-    template_name = 'meinberlin_dashboard2/project_update_form.html'
-    permission_required = 'a4projects.add_project'
-    success_message = _('Project successfully created.')
+class ProjectUpdateView(generic.RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        project = get_object_or_404(project_models.Project,
+                                    slug=kwargs['project_slug'])
+        components = content.get_project_components()
+        component = components[0]
+        return component.get_base_url(project)
 
 
 class ProjectPublishView(mixins.DashboardBaseMixin,

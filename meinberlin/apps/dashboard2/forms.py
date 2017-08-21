@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.forms import inlineformset_factory
-from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
@@ -36,17 +35,6 @@ class ProjectCreateForm(forms.ModelForm):
                 self.save_m2m()
 
         return project
-
-
-class ProjectUpdateForm(forms.ModelForm):
-
-    class Meta:
-        model = project_models.Project
-        fields = ['name', 'description', 'image', 'tile_image', 'information',
-                  'result', 'is_archived', 'is_public']
-        labels = {
-            'is_public': _('This project is public.')
-        }
 
 
 def _make_fields_required(fields, required):
