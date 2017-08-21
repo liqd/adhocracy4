@@ -20,9 +20,9 @@
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
 
         <div class="u-spacer-bottom">
-            <input type="submit" class="button button--primary" name="send" value="{% trans 'Send' %}"/>
+            <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send' %}"/>
             <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
-               class="button button--light">{% trans 'Cancel' %}</a>
+               class="btn btn--light">{% trans 'Cancel' %}</a>
         </div>
     </form>
 {% endblock %}

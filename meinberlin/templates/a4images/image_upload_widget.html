@@ -6,13 +6,13 @@
         <span class="upload-wrapper__action">
             {% if has_image_set and not is_required %}
                 <label for="{{ checkbox_id }}"
-                    class="button button--danger"
+                    class="btn btn--danger"
                     title="{% trans 'Remove the picture' %}">
                     <i class="fa fa-trash" aria-label="{% trans 'Remove the picture' %}"></i>
                 </label>
             {% else %}
                 <label for="{{ name }}"
-                    class="button"
+                    class="btn"
                     title="{% trans 'Upload a picture' %}">
                     <i class="fa fa-cloud-upload" aria-label="{% trans 'Upload a picture' %}"></i>
                 </label>

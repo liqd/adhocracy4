@@ -50,3 +50,16 @@
 .tablist--background {
     background-color: $bg-secondary;
 }
+
+// This element is meant to be in combination with tablist--{opposite}
+// It should contain elements with class .btn.btn--small
+
+.tablist__right,
+.tablist__left {
+    font-size: $font-size-sm;
+    float: right;
+}
+
+.tablist__left {
+    float: left;
+}
