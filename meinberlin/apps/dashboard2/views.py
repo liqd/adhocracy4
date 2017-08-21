@@ -3,15 +3,12 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.shortcuts import get_object_or_404
-from django.utils import functional
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
-from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.organisations.models import Organisation
 
 from . import blueprints
 from . import forms
@@ -28,21 +25,12 @@ def get_object_or_none(*args, **kwargs):
         return None
 
 
-class ProjectListView(rules_mixins.PermissionRequiredMixin,
+class ProjectListView(mixins.DashboardBaseMixin,
                       generic.ListView):
     model = project_models.Project
     paginate_by = 12
     template_name = 'meinberlin_dashboard2/project_list.html'
     permission_required = 'a4projects.add_project'
-
-    @functional.cached_property
-    def organisation(self):
-        if 'organisation_slug' in self.kwargs:
-            slug = self.kwargs['organisation_slug']
-            return get_object_or_404(Organisation, slug=slug)
-
-    def get_permission_object(self):
-        return self.organisation
 
     def get_queryset(self):
         return super().get_queryset().filter(
@@ -120,7 +108,6 @@ class ProjectUpdateView(mixins.DashboardBaseMixin,
 
 
 class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
-                                 mixins.DashboardMenuMixin,
                                  generic.View):
 
     def dispatch(self, request, *args, **kwargs):
@@ -132,12 +119,8 @@ class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
         if not component:
             raise Http404('Component not found')
 
-        menu = self.get_menu()
-
         kwargs['module'] = None
         kwargs['project'] = project
-        kwargs['menu'] = menu
-
         return component.get_view()(request, *args, **kwargs)
 
     def get_component(self):
@@ -158,7 +141,6 @@ class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
 
 
 class ModuleComponentDispatcher(mixins.DashboardBaseMixin,
-                                mixins.DashboardMenuMixin,
                                 generic.View):
 
     def dispatch(self, request, *args, **kwargs):
@@ -170,12 +152,8 @@ class ModuleComponentDispatcher(mixins.DashboardBaseMixin,
         if not component:
             raise Http404('Component not found')
 
-        menu = self.get_menu()
-
         kwargs['module'] = module
         kwargs['project'] = module.project
-        kwargs['menu'] = menu
-
         return component.get_view()(request, *args, **kwargs)
 
     def get_component(self):
@@ -196,58 +174,42 @@ class ModuleComponentDispatcher(mixins.DashboardBaseMixin,
 
 
 class ProjectComponentFormView(mixins.DashboardBaseMixin,
+                               mixins.DashboardComponentMixin,
+                               mixins.DashboardContextMixin,
                                SuccessMessageMixin,
                                generic.UpdateView):
+
     permission_required = 'a4projects.add_project'
     model = project_models.Project
     template_name = 'meinberlin_dashboard2/base_form_project.html'
     success_message = _('Project successfully updated.')
 
     # Properties to be set when calling as_view()
+    component = None
     title = ''
     form_class = None
     form_template_name = ''
 
-    def dispatch(self, request, project, menu, *args, **kwargs):
-        self.project = project
-        self.menu = menu
-        return super().dispatch(request, *args, **kwargs)
-
     def get_object(self, queryset=None):
         return self.project
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['dashboard_menu'] = self.menu
-        context['project'] = self.project
-        return context
-
 
 class ModuleComponentFormView(mixins.DashboardBaseMixin,
+                              mixins.DashboardComponentMixin,
+                              mixins.DashboardContextMixin,
                               SuccessMessageMixin,
                               generic.UpdateView):
+
     permission_required = 'a4projects.add_project'
     model = module_models.Module
     template_name = 'meinberlin_dashboard2/base_form_module.html'
     success_message = _('Module successfully updated.')
 
     # Properties to be set when calling as_view()
+    component = None
     title = ''
     form_class = None
     form_template_name = ''
 
-    def dispatch(self, request, project, module, menu, *args, **kwargs):
-        self.module = module
-        self.project = project
-        self.menu = menu
-        return super().dispatch(request, *args, **kwargs)
-
     def get_object(self, queryset=None):
         return self.module
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['dashboard_menu'] = self.menu
-        context['project'] = self.project
-        context['module'] = self.module
-        return context

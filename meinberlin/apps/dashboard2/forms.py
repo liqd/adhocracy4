@@ -3,66 +3,11 @@ from django.contrib.auth import get_user_model
 from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
-from adhocracy4.categories import models as category_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.contrib import multiform
 
 User = get_user_model()
-
-
-class ProjectEditFormBase(multiform.MultiModelForm):
-
-    def _project_form(self):
-        return self.get_formset('project')
-
-    def _phases_form(self):
-        return self.get_formset('phases')
-
-    def _categories_form(self):
-        return self.get_formset('categories')
-
-    def _module_settings_form(self):
-        return self.get_formset('module_settings')
-
-    def info_error_count(self):
-        project_form_errors = self._project_form().errors.keys()
-        info_error_count = len(project_form_errors)
-        if 'result' in project_form_errors:
-            info_error_count = info_error_count - 1
-
-        return info_error_count
-
-    def participate_error_count(self):
-        error_count = 0
-
-        module_settings = self._module_settings_form()
-        if module_settings is not None:
-            error_count += len(module_settings.errors)
-
-        categories = self._categories_form()
-        if categories is not None:
-            error_count += categories.total_error_count()
-
-        error_count += self._phases_form().total_error_count()
-
-        return error_count
-
-    def result_error_count(self):
-        project_form_errors = self._project_form().errors.keys()
-        return 1 if 'result' in project_form_errors else 0
-
-    def _show_categories_form(self, phases):
-        """Check if any of the phases has a categorizable item.
-
-        TODO: Move this functionality to a4phases.
-        """
-        for phase in phases:
-            for models in phase.features.values():
-                for model in models:
-                    if category_models.Categorizable.is_categorizable(model):
-                        return True
 
 
 class ProjectCreateForm(forms.ModelForm):
@@ -104,26 +49,102 @@ class ProjectUpdateForm(forms.ModelForm):
         }
 
 
-class ProjectBasicForm(forms.ModelForm):
+def _make_fields_required(fields, required):
+    """Set the required attributes on all fields who's key is in required."""
+    if required:
+        for name, field in fields:
+            if required == '__all__' or name in required:
+                field.required = True
+
+
+class ProjectDashboardForm(forms.ModelForm):
+    """
+    Base form for project related dashboard forms.
+
+    Sets fields to required if the project is published.
+    Intended to be used with ProjectFormComponent's.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if not self.instance.is_draft:
+            _make_fields_required(self.fields.items(),
+                                  self.get_required_fields())
+
+    @classmethod
+    def get_required_fields(cls):
+        meta = getattr(cls, 'Meta', None)
+        return getattr(meta, 'required', [])
+
+
+class ModuleDashboardForm(forms.ModelForm):
+    """
+    Base form for module related dashboard forms.
+
+    Sets fields to required if the project is published.
+    Intended to be used with ModuleFormComponent's.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if not self.instance.project.is_draft:
+            _make_fields_required(self.fields.items(),
+                                  self.get_required_fields())
+
+    @classmethod
+    def get_required_fields(cls):
+        meta = getattr(cls, 'Meta', None)
+        return getattr(meta, 'required', [])
+
+
+class ModuleDashboardFormSet(forms.BaseInlineFormSet):
+    """
+    Base form for module related dashboard formsets.
+
+    Sets fields to required if the project is published.
+    Intended to be used with ModuleFormSetComponent's.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if not self.instance.project.is_draft:
+            required_fields = self.get_required_fields()
+            for form in self.forms:
+                _make_fields_required(form.fields.items(),
+                                      required_fields)
+
+    @classmethod
+    def get_required_fields(cls):
+        meta = getattr(cls.form, 'Meta', None)
+        return getattr(meta, 'required', [])
+
+
+class ProjectBasicForm(ProjectDashboardForm):
 
     class Meta:
         model = project_models.Project
         fields = ['name', 'description', 'image', 'tile_image', 'is_archived',
                   'is_public']
+        required = '__all__'
 
 
-class ProjectInformationForm(forms.ModelForm):
+class ProjectInformationForm(ProjectDashboardForm):
 
     class Meta:
         model = project_models.Project
         fields = ['information']
+        required = '__all__'
 
 
-class ModuleBasicForm(forms.ModelForm):
+class ModuleBasicForm(ModuleDashboardForm):
 
     class Meta:
         model = module_models.Module
         fields = ['name', 'description']
+        required = '__all__'
 
 
 class PhaseForm(forms.ModelForm):
@@ -136,11 +157,13 @@ class PhaseForm(forms.ModelForm):
             'type': forms.HiddenInput(),
             'weight': forms.HiddenInput()
         }
+        required = '__all__'
 
 
 PhaseFormSet = inlineformset_factory(module_models.Module,
                                      phase_models.Phase,
                                      form=PhaseForm,
+                                     formset=ModuleDashboardFormSet,
                                      extra=0,
                                      can_delete=False,
                                      )
