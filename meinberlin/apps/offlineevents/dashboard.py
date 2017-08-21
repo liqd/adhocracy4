@@ -20,16 +20,16 @@ class OfflineEventsComponent(DashboardComponent):
 
     def get_urls(self):
         return [
-            (r'^offlineevent/projects/(?P<project_slug>[-\w_]+)/$',
+            (r'^offlineevents/projects/(?P<project_slug>[-\w_]+)/$',
              views.OfflineEventListView.as_view(component=self),
              'offlineevent-list'),
-            (r'^offlineevent/create/project/(?P<project_slug>[-\w_]+)/$',
+            (r'^offlineevents/create/project/(?P<project_slug>[-\w_]+)/$',
              views.OfflineEventCreateView.as_view(component=self),
              'offlineevent-create'),
-            (r'^offlineevent/(?P<slug>[-\w_]+)/update/$',
+            (r'^offlineevents/(?P<slug>[-\w_]+)/update/$',
              views.OfflineEventUpdateView.as_view(component=self),
              'offlineevent-update'),
-            (r'^offlineevent/(?P<slug>[-\w_]+)/delete/$',
+            (r'^offlineevents/(?P<slug>[-\w_]+)/delete/$',
              views.OfflineEventDeleteView.as_view(component=self),
              'offlineevent-delete')
         ]
