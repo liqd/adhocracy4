@@ -1,7 +1,6 @@
 from copy import deepcopy
 
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.views.generic import base
 
@@ -130,10 +129,7 @@ class DashboardContextMixin(base.ContextMixin):
             menu_item = component.get_menu_label(project)
             if menu_item:
                 is_active = (component == current_component)
-                url = reverse('a4dashboard:project-edit-component', kwargs={
-                    'project_slug': project.slug,
-                    'component_identifier': component.identifier
-                })
+                url = component.get_base_url(project)
                 num_valid, num_required = component.get_progress(project)
                 is_complete = (num_valid == num_required)
 
@@ -153,10 +149,7 @@ class DashboardContextMixin(base.ContextMixin):
             if menu_item:
                 is_active = (component == current_component and
                              module.pk == current_module.pk)
-                url = reverse('a4dashboard:module-edit-component', kwargs={
-                    'module_slug': module.slug,
-                    'component_identifier': component.identifier
-                })
+                url = component.get_base_url(module)
                 num_valid, num_required = component.get_progress(module)
                 is_complete = (num_valid == num_required)
 

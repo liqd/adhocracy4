@@ -1,4 +1,5 @@
 from django.core.exceptions import FieldDoesNotExist
+from django.urls import reverse
 
 
 class DashboardComponent:
@@ -33,11 +34,11 @@ class DashboardComponent:
       May return None if no additional urls are required. In that case a custom
       get_view method has to be provided.
 
-    Required methods with default implementation:
-    - get_view(): view function
-      Return a view function which takes menu and project/module as kwargs.
-      This view is linked from the dashboard menu.
-      By default the view of the first url from get_urls is returned.
+    - get_base_url(project_or_module): url str
+      Returns the url to the base view of this component.
+      This url is linked from the dashboard menu.
+      By default the first url from get_urls is returned with the project
+      or module slug as first arg.
     """
 
     app_label = None
@@ -62,9 +63,10 @@ class DashboardComponent:
     def get_urls(self):
         pass
 
-    def get_view(self):
-        _, view, _ = self.get_urls()[0]
-        return view
+    def get_base_url(self, project_or_module):
+        _, _, name = self.get_urls()[0]
+        name = 'a4dashboard:' + name
+        return reverse(name, args=[project_or_module.slug])
 
 
 class ProjectFormComponent(DashboardComponent):
@@ -91,14 +93,20 @@ class ProjectFormComponent(DashboardComponent):
     def get_menu_label(self, project):
         return self.menu_label
 
-    def get_view(self):
+    def get_urls(self):
         from .views import ProjectComponentFormView
-        return ProjectComponentFormView.as_view(
+        view = ProjectComponentFormView.as_view(
             component=self,
             title=self.form_title,
             form_class=self.form_class,
             form_template_name=self.form_template_name
         )
+        return [(
+            r'^projects/(?P<project_slug>[-\w_]+)/{identifier}/$'.format(
+                identifier=self.identifier),
+            view,
+            'dashboard-{identifier}-edit'.format(identifier=self.identifier)
+        )]
 
     def get_progress(self, object):
         required_fields = self.form_class.get_required_fields()
@@ -152,14 +160,21 @@ class ModuleFormComponent(ProjectFormComponent):
       This is the form class used to render from the ModuleComponentFormView
     """
 
-    def get_view(self):
+    def get_urls(self):
         from .views import ModuleComponentFormView
-        return ModuleComponentFormView.as_view(
+        view = ModuleComponentFormView.as_view(
             component=self,
             title=self.form_title,
             form_class=self.form_class,
             form_template_name=self.form_template_name
         )
+
+        return [(
+            r'^modules/(?P<module_slug>[-\w_]+)/{identifier}/$'.format(
+                identifier=self.identifier),
+            view,
+            'dashboard-{identifier}-edit'.format(identifier=self.identifier)
+        )]
 
 
 class ModuleFormSetComponent(ModuleFormComponent):

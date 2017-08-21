@@ -13,7 +13,6 @@ from adhocracy4.projects import models as project_models
 from . import blueprints
 from . import forms
 from . import mixins
-from .contents import content
 
 User = get_user_model()
 
@@ -105,50 +104,6 @@ class ProjectUpdateView(mixins.DashboardBaseMixin,
     template_name = 'meinberlin_dashboard2/project_update_form.html'
     permission_required = 'a4projects.add_project'
     success_message = _('Project successfully created.')
-
-
-class ProjectComponentDispatcher(mixins.DashboardComponentMixin,
-                                 generic.View):
-    def get(self, request, *args, **kwargs):
-        component = self.get_component()
-        if not component:
-            raise Http404('Component not found')
-
-        kwargs['module'] = None
-        kwargs['project'] = self.project
-        return component.get_view()(request, *args, **kwargs)
-
-    post = get
-
-    def get_component(self):
-        if 'component_identifier' not in self.kwargs:
-            return None
-        if self.kwargs['component_identifier'] not in content.projects:
-            return None
-        return content.projects[self.kwargs['component_identifier']]
-
-
-class ModuleComponentDispatcher(mixins.DashboardComponentMixin,
-                                generic.View):
-
-    def get(self, request, *args, **kwargs):
-        component = self.get_component()
-        if not component:
-            raise Http404('Component not found')
-
-        kwargs['module'] = self.module
-        kwargs['project'] = self.module.project
-
-        return component.get_view()(request, *args, **kwargs)
-
-    post = get
-
-    def get_component(self):
-        if 'component_identifier' not in self.kwargs:
-            return None
-        if self.kwargs['component_identifier'] not in content.modules:
-            return None
-        return content.modules[self.kwargs['component_identifier']]
 
 
 class ProjectComponentFormView(mixins.DashboardComponentMixin,
