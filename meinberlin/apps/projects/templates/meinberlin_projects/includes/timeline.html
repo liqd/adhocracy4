@@ -11,7 +11,7 @@
                 <li>
                     <a
                         href="{{ obj.get_absolute_url }}"
-                        class="button button--light button--small timeline__button {% if obj == module %}is-selected{% endif %}"
+                        class="btn btn--light btn--small timeline__button {% if obj == module %}is-selected{% endif %}"
                     >
                         {{ obj.name }}
                     </a>
@@ -22,7 +22,7 @@
                 <li>
                     <a
                         href="{{ obj.get_absolute_url }}"
-                        class="button button--light button--small timeline__button {% if obj == object %}is-selected{% endif %}"
+                        class="btn btn--light btn--small timeline__button {% if obj == object %}is-selected{% endif %}"
                     >
                         {{ obj.name }}
                         {% if obj == object %}<span class="sr-only">{% trans 'current page' %}</span>{% endif %}
@@ -85,7 +85,7 @@
                     {% endfor %}
                 </div>
 
-                <button class="button button--link" type="button" data-toggle="collapse" data-target="#phase-overview" aria-expanded="false" aria-controls="phase-overview">
+                <button class="btn btn--link" type="button" data-toggle="collapse" data-target="#phase-overview" aria-expanded="false" aria-controls="phase-overview">
                     <span class="u-if-collapsed">{% trans 'Show phase overview' %}</span>
                     <span class="u-if-not-collapsed">{% trans 'Hide phase overview' %}</span>
                 </button>

@@ -15,7 +15,7 @@
         <span class="list-item__action">
             <a href="{% extproject_url project 'project-detail' %}"
                target="{{ project|is_external|yesno:"_blank,_self" }}"
-               class="button button--light button--small">
+               class="btn btn--light btn--small">
                 <i class="fa fa-eye" aria-hidden="true"></i>
                 {% if project.is_draft %}
                 {% trans 'Preview' %}
@@ -28,7 +28,7 @@
             {% csrf_token %}
             <input type="hidden" name="project_pk" value="{{ project.pk }}">
             <button type="submit" name="submit_action" value="{{ project.is_draft|yesno:'publish,unpublish' }}"
-                    class="button button--light button--small">
+                    class="btn btn--light btn--small">
                 <i class="fa fa-flag" aria-hidden="true"></i>
                 {% if project.is_draft %}
                 {% trans 'Publish' %}
@@ -38,14 +38,14 @@
             </button>
 
             <button type="submit" name="duplicate" value="{{ project }}"
-                    class="button button--light button--small">
+                    class="btn btn--light btn--small">
                 <i class="fa fa-files-o" aria-hidden="true"></i>
                 {% trans 'Duplicate' %}
             </button>
         </form>
         <span class="list-item__action">
             <a href="{% url 'dashboard-project-edit' slug=project.slug %}"
-             class="button button--light button--small">
+             class="btn btn--light btn--small">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
                 {% trans 'Edit'%}
 
@@ -56,7 +56,7 @@
         {% if project|has_management_view %}
         <span class="list-item__action">
             <a href="{% url 'dashboard-project-management' slug=project.slug %}"
-               class="button button--light button--small">
+               class="btn btn--light btn--small">
                 <i class="fa fa-cogs" aria-hidden="true"></i>
                 {% trans 'Contents' %}
             </a>
@@ -66,7 +66,7 @@
         {% if not project|is_external %}
         <span class="list-item__action">
             <a href="{% url 'dashboard-project-moderators' slug=project.slug %}"
-               class="button button--light button--small">
+               class="btn btn--light btn--small">
                 <i class="fa fa-user-md" aria-hidden="true"></i>
                 {% trans 'Moderators' %}
             </a>
@@ -76,7 +76,7 @@
         {% if not project.is_public %}
         <span class="list-item__action">
             <a href="{% url 'dashboard-project-participants' slug=project.slug %}"
-               class="button button--light button--small">
+               class="btn btn--light btn--small">
                 <i class="fa fa-users" aria-hidden="true"></i>
                 {% trans 'Participants' %}
             </a>
@@ -85,7 +85,7 @@
 
         <span class="list-item__action">
             <a href="{% url 'meinberlin_offlineevents:offlineevent-list' project_slug=project.slug %}"
-               class="button button--light button--small">
+               class="btn btn--light btn--small">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
                 {% trans 'Offline Events' %}
             </a>
@@ -94,7 +94,7 @@
         {% if project|has_exports %}
         <span class="list-item__action">
             <a href="{% url 'export-project' project_slug=project.slug %}"
-               class="button button--light button--small">
+               class="btn btn--light btn--small">
                 <i class="fa fa-download" aria-hidden="true"></i>
                 {% trans 'Export' %}
             </a>

@@ -114,7 +114,7 @@ class Question extends React.Component {
       return (
         <button
           type="submit"
-          className="button button--primary"
+          className="btn btn--primary"
           disabled={this.state.selectedChoice === this.state.ownChoice}>
           { django.gettext('Vote') }
         </button>
@@ -124,7 +124,7 @@ class Question extends React.Component {
         encodeURIComponent(window.adhocracy4.getCurrentHref())
 
       return (
-        <a href={loginUrl} className="button button--primary">
+        <a href={loginUrl} className="btn btn--primary">
           { django.gettext('Vote') }
         </a>
       )
@@ -150,7 +150,7 @@ class Question extends React.Component {
           { totalString }
           &nbsp;
           {!this.props.question.hasFinished &&
-            <button type="button" className="button button--link" onClick={this.toggleShowResult.bind(this)}>
+            <button type="button" className="btn btn--link" onClick={this.toggleShowResult.bind(this)}>
               { django.gettext('To poll') }
             </button>
           }
@@ -161,7 +161,7 @@ class Question extends React.Component {
         <div className="poll__actions">
           {this.getVoteButton()}
           &nbsp;
-          <button type="button" className="button button--link" onClick={this.toggleShowResult.bind(this)}>
+          <button type="button" className="btn btn--link" onClick={this.toggleShowResult.bind(this)}>
             { django.gettext('Show preliminary results') }
           </button>
         </div>

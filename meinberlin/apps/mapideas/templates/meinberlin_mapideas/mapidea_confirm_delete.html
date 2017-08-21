@@ -10,10 +10,10 @@
 
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
-            <input type="submit" class="button button--primary" value="{% trans 'Yes'%}" />
+            <input type="submit" class="btn btn--primary" value="{% trans 'Yes'%}" />
 
             {% get_item_detail_url object as detail_url %}
-            <a href="{{ detail_url }}" class="button button--light">{% trans 'Cancel'%}</a>
+            <a href="{{ detail_url }}" class="btn btn--light">{% trans 'Cancel'%}</a>
         </form>
     </div>
 </div>

@@ -30,7 +30,7 @@ const ChapterNav = (props) => {
 
       <p>
         <button
-          className="button button--light button--small"
+          className="btn btn--light btn--small"
           onClick={props.onChapterAppend}
           type="button">
           <i className="fa fa-plus" /> {django.gettext('Add a new chapter')}

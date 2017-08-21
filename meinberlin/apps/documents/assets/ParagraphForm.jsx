@@ -99,7 +99,7 @@ class Paragraph extends React.Component {
 
           <div className="commenting__actions button-group">
             <button
-              className="button button--light button--small"
+              className="btn btn--light btn--small"
               onClick={this.props.onMoveUp}
               disabled={!this.props.onMoveUp}
               title={django.gettext('Move up')}
@@ -108,7 +108,7 @@ class Paragraph extends React.Component {
                 aria-label={django.gettext('Move up')} />
             </button>
             <button
-              className="button button--light button--small"
+              className="btn btn--light btn--small"
               onClick={this.props.onMoveDown}
               disabled={!this.props.onMoveDown}
               title={django.gettext('Move down')}
@@ -117,7 +117,7 @@ class Paragraph extends React.Component {
                 aria-label={django.gettext('Move down')} />
             </button>
             <button
-              className="button button--light button--small"
+              className="btn btn--light btn--small"
               onClick={this.props.onDelete}
               title={django.gettext('Delete')}
               type="button">

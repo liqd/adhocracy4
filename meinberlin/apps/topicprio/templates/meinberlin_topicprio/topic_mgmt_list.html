@@ -17,7 +17,7 @@
         </h1>
         <div class="lr-bar__right">
             {% comment %} FIXME: add multi-module support {% endcomment %}
-            <a href="{% url 'meinberlin_topicprio:topic-mgmt-create' slug=project.module_set.first.slug %}" class="button">
+            <a href="{% url 'meinberlin_topicprio:topic-mgmt-create' slug=project.module_set.first.slug %}" class="btn">
                 {% trans 'Add Topic' %}
             </a>
         </div>

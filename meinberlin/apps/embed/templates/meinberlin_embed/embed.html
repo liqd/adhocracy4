@@ -21,10 +21,10 @@
     <header class="embed-header">
         {% if not object|is_external %}
             {% if request.user.is_anonymous %}
-                <a href="{% url 'account_login' %}" class="button button--light">{% trans 'Login' %}</a>
+                <a href="{% url 'account_login' %}" class="btn btn--light">{% trans 'Login' %}</a>
             {% else %}
                 {% trans 'You are logged in as ' %} {{ request.user.username }}
-                <a href="{% url 'account_logout' %}" class="js-embed-logout button button--light" target="_blank">{% trans 'Logout' %}</a>
+                <a href="{% url 'account_logout' %}" class="js-embed-logout btn btn--light" target="_blank">{% trans 'Logout' %}</a>
             {% endif %}
         {% endif %}
         <div id="embed-status" class="embed-status"></div>
@@ -43,8 +43,8 @@
             <div class="modal-content">
                 <p class="modal-body">{% trans 'You need to login first. By clicking "Login" a popup will open so you can sign in safely. Do you want to login now?' %}</p>
                 <div class="modal-footer">
-                    <a href="{% url 'account_login' %}" class="embed-confirm__login button button--primary">{% trans 'Login' %}</a>
-                    <button class="embed-confirm__cancel button button--light" data-dismiss="modal">{% trans 'Cancel' %}</button>
+                    <a href="{% url 'account_login' %}" class="embed-confirm__login btn btn--primary">{% trans 'Login' %}</a>
+                    <button class="embed-confirm__cancel btn btn--light" data-dismiss="modal">{% trans 'Cancel' %}</button>
                 </div>
             </div>
         </div>

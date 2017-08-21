@@ -15,7 +15,7 @@
         <span class="list-item__action">
             <a href="{% extproject_url project 'project-detail' %}"
                target="{{ project|is_external|yesno:"_blank,_self" }}"
-               class="button button--light button--small">
+               class="btn btn--light btn--small">
                 <i class="fa fa-eye" aria-hidden="true"></i>
                 {% if project.is_draft %}
                 {% trans 'Preview' %}
@@ -27,7 +27,7 @@
 
         <span class="list-item__action">
             <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
-             class="button button--light button--small">
+             class="btn btn--light btn--small">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
                 {% trans 'Edit'%}
             </a>
