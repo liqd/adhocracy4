@@ -9,9 +9,9 @@ class DashboardComponent:
 
     Required properties with default implementation:
     - label (defaults to the lower class name)
-    - identifier (defaults to "app_label:label")
+    - identifier (defaults to "app_label-label")
       - has to be unique
-      - may only contain alphanumeric characters and -, _, :
+      - may only contain alphanumeric characters, _ and -
       - Note: is is recommended to define a custom unique identifier as
         otherwise the app_label is exposed in dashboard urls.
 
@@ -48,7 +48,7 @@ class DashboardComponent:
 
     @property
     def identifier(self):
-        return '{app_label}:{component_label}'.format(
+        return '{app_label}-{component_label}'.format(
             app_label=self.app_label,
             component_label=self.label,
         )
