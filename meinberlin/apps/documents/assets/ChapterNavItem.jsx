@@ -17,7 +17,7 @@ const ChapterNavItem = (props) => {
     <div className="commenting">
       <button
         type="button"
-        className={classNames('commenting__content', 'commenting--toc__button', 'button button--light', 'button--small', {'active': props.active})}
+        className={classNames('commenting__content', 'commenting--toc__button', 'btn btn--light', 'btn--small', {'active': props.active})}
         onClick={props.onClick}>
         {props.name}
         {getErrorCount(props)}
@@ -25,7 +25,7 @@ const ChapterNavItem = (props) => {
 
       <div className="commenting__actions button-group">
         <button
-          className="button button--light button--small"
+          className="btn btn--light btn--small"
           onClick={props.onMoveUp}
           disabled={!props.onMoveUp}
           title={django.gettext('Move up')}
@@ -34,7 +34,7 @@ const ChapterNavItem = (props) => {
             aria-label={django.gettext('Move up')} />
         </button>
         <button
-          className="button button--light button--small"
+          className="btn btn--light btn--small"
           onClick={props.onMoveDown}
           disabled={!props.onMoveDown}
           title={django.gettext('Move down')}
@@ -43,7 +43,7 @@ const ChapterNavItem = (props) => {
             aria-label={django.gettext('Move down')} />
         </button>
         <button
-          className="button button--light button--small"
+          className="btn btn--light btn--small"
           onClick={props.onDelete}
           title={django.gettext('Delete')}
           type="button">

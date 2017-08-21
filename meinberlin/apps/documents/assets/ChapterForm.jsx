@@ -50,7 +50,7 @@ const ChapterForm = (props) => {
       </FlipMove>
 
       <button
-        className="button button--light button--small"
+        className="btn btn--light btn--small"
         onClick={props.onParagraphAppend}
         type="button">
         <i className="fa fa-plus" /> {django.gettext('Add a new paragraph')}

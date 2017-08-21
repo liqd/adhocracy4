@@ -49,8 +49,8 @@
 
     .dropdown-toggle {
         @extend %button-base;
-        @extend .button--light;
-        @extend .button--small;
+        @extend .btn--light;
+        @extend .btn--small;
         vertical-align: baseline;
         line-height: inherit;
     }
