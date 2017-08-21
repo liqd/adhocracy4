@@ -107,21 +107,18 @@ class ProjectUpdateView(mixins.DashboardBaseMixin,
     success_message = _('Project successfully created.')
 
 
-class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
+class ProjectComponentDispatcher(mixins.DashboardComponentMixin,
                                  generic.View):
-
-    def dispatch(self, request, *args, **kwargs):
-        project = self.get_project()
-        if not project:
-            raise Http404('Project not found')
-
+    def get(self, request, *args, **kwargs):
         component = self.get_component()
         if not component:
             raise Http404('Component not found')
 
         kwargs['module'] = None
-        kwargs['project'] = project
+        kwargs['project'] = self.project
         return component.get_view()(request, *args, **kwargs)
+
+    post = get
 
     def get_component(self):
         if 'component_identifier' not in self.kwargs:
@@ -130,31 +127,21 @@ class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
             return None
         return content.projects[self.kwargs['component_identifier']]
 
-    def get_project(self):
-        if 'project_slug' not in self.kwargs:
-            return None
-        return get_object_or_none(project_models.Project,
-                                  slug=self.kwargs['project_slug'])
 
-    def get_module(self):
-        return None
-
-
-class ModuleComponentDispatcher(mixins.DashboardBaseMixin,
+class ModuleComponentDispatcher(mixins.DashboardComponentMixin,
                                 generic.View):
 
-    def dispatch(self, request, *args, **kwargs):
-        module = self.get_module()
-        if not module:
-            raise Http404('Module not found')
-
+    def get(self, request, *args, **kwargs):
         component = self.get_component()
         if not component:
             raise Http404('Component not found')
 
-        kwargs['module'] = module
-        kwargs['project'] = module.project
+        kwargs['module'] = self.module
+        kwargs['project'] = self.module.project
+
         return component.get_view()(request, *args, **kwargs)
+
+    post = get
 
     def get_component(self):
         if 'component_identifier' not in self.kwargs:
@@ -163,18 +150,9 @@ class ModuleComponentDispatcher(mixins.DashboardBaseMixin,
             return None
         return content.modules[self.kwargs['component_identifier']]
 
-    def get_module(self):
-        if 'module_slug' not in self.kwargs:
-            return None
-        return get_object_or_none(module_models.Module,
-                                  slug=self.kwargs['module_slug'])
 
-    def get_project(self):
-        return self.get_module().project
-
-
-class ProjectComponentFormView(mixins.DashboardBaseMixin,
-                               mixins.DashboardComponentMixin,
+class ProjectComponentFormView(mixins.DashboardComponentMixin,
+                               mixins.DashboardBaseMixin,
                                mixins.DashboardContextMixin,
                                SuccessMessageMixin,
                                generic.UpdateView):
@@ -194,8 +172,8 @@ class ProjectComponentFormView(mixins.DashboardBaseMixin,
         return self.project
 
 
-class ModuleComponentFormView(mixins.DashboardBaseMixin,
-                              mixins.DashboardComponentMixin,
+class ModuleComponentFormView(mixins.DashboardComponentMixin,
+                              mixins.DashboardBaseMixin,
                               mixins.DashboardContextMixin,
                               SuccessMessageMixin,
                               generic.UpdateView):

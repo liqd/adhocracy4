@@ -8,6 +8,7 @@ from django.views.generic import base
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.contrib.views import ProjectContextDispatcher
 from meinberlin.apps.organisations import models as org_models
 
 from .blueprints import blueprints
@@ -51,19 +52,8 @@ class BlueprintMixin:
         return self.kwargs['blueprint_slug']
 
 
-class DashboardComponentMixin(base.ContextMixin,
-                              base.View):
-
-    def dispatch(self, request, project, module, *args, **kwargs):
-        self.module = module
-        self.project = project
-        return super().dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['project'] = self.project
-        context['module'] = self.module
-        return context
+class DashboardComponentMixin(ProjectContextDispatcher):
+    component = None
 
 
 class DashboardContextMixin(base.ContextMixin):
