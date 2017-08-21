@@ -36,18 +36,20 @@
             {% endif %}
         </div>
 
-        <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
-           class="tab {% ifequal view.menu_item 'project' %}active{% endifequal %}">
-            {% trans 'Participation projects' %}
-        </a>
-        <a href="{% url 'dashboard-organisation-edit' organisation_slug=view.organisation.slug %}"
-           class="tab {% ifequal view.menu_item 'organisation' %}active{% endifequal %}">
-            {% trans 'Settings' %}
-        </a>
-        <a href="{% url 'dashboard-newsletter-create' organisation_slug=view.organisation.slug %}"
-           class="tab {% ifequal view.menu_item 'newsletter' %}active{% endifequal %}">
-            {% trans 'Newsletter' %}
-        </a>
+        <nav aria-label="{% trans 'Dashboard' %}">
+            <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
+               class="tab {% ifequal view.menu_item 'project' %}active{% endifequal %}">
+                {% trans 'Participation projects' %}
+            </a>
+            <a href="{% url 'dashboard-organisation-edit' organisation_slug=view.organisation.slug %}"
+               class="tab {% ifequal view.menu_item 'organisation' %}active{% endifequal %}">
+                {% trans 'Settings' %}
+            </a>
+            <a href="{% url 'dashboard-newsletter-create' organisation_slug=view.organisation.slug %}"
+               class="tab {% ifequal view.menu_item 'newsletter' %}active{% endifequal %}">
+                {% trans 'Newsletter' %}
+            </a>
+        </nav>
     </div>
 </div>
 
