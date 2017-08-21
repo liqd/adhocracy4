@@ -56,7 +56,7 @@ class DashboardComponent:
 class ProjectFormComponent(DashboardComponent):
     """Abstract interface for project dashboard components based on forms.
 
-    This component is intended to be used with ProjectDashboardForm's.
+    This component is intended to be used with ProjectDashboardForm.
     It will always return a ProjectComponentFormView
     and provides a default implementation for get_progress.
 
@@ -71,7 +71,7 @@ class ProjectFormComponent(DashboardComponent):
 
     menu_label = ''
     form_title = ''
-    form_class = ''
+    form_class = None
     form_template_name = ''
 
     def get_menu_label(self, project):
@@ -125,7 +125,7 @@ class ProjectFormComponent(DashboardComponent):
 class ModuleFormComponent(ProjectFormComponent):
     """Abstract interface for module dashboard components based on forms.
 
-    This component is intended to be used with ModuleDashboardForm's.
+    This component is intended to be used with ModuleDashboardForm.
     It will always return a ModuleComponentFormView
     and provides a default implementation for get_progress.
 
@@ -151,7 +151,7 @@ class ModuleFormComponent(ProjectFormComponent):
 class ModuleFormSetComponent(ModuleFormComponent):
     """Abstract interface for module dashboard components based on formsets.
 
-    This component is intended to be used with ModuleDashboardFormSet's.
+    This component is intended to be used with ModuleDashboardFormSet.
     It will always return a ModuleComponentFormView
     and provides a default implementation for get_progress.
 
