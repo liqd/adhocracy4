@@ -4,7 +4,7 @@
 {% block title %}{% trans "Create project based on" %} {{ view.blueprint.title }} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_project_content %}
-    <h1>{% trans "Create project based on" %} {{ view.blueprint.title }}</h1>
+    <h1 class="u-first-heading">{% trans "Create project based on" %} {{ view.blueprint.title }}</h1>
 
     {% for error in form.non_field_errors %}
         <span>{{ error }}</span>
