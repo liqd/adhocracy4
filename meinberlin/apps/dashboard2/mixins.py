@@ -34,6 +34,14 @@ class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
 
         raise ObjectDoesNotExist()
 
+    @property
+    def other_organisations_of_user(self):
+        user = self.request.user
+        if self.organisation:
+            return user.organisation_set.exclude(pk=self.organisation.pk)
+        else:
+            return None
+
     def get_permission_object(self):
         return self.organisation
 
