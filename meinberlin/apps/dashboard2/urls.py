@@ -1,5 +1,7 @@
+from django.conf.urls import include
 from django.conf.urls import url
 
+from . import content
 from . import views
 
 app_name = 'a4dashboard'
@@ -25,4 +27,5 @@ urlpatterns = [
         r'(?P<component_identifier>[-_:\w]+)/$',
         views.ModuleComponentDispatcher.as_view(),
         name='module-edit-component'),
+    url(r'^', include(content.get_urls())),
 ]

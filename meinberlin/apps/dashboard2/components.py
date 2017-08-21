@@ -22,12 +22,22 @@ class DashboardComponent:
       Return a localized string if the component should be rendered for the
       project or module passed. Return None otherwise.
 
-    - get_view(): view function
-      Return a view function which takes menu and project/module as kwargs
-
     - get_progress(): (int, int)
       Return a tuple containing the number of valid "input fields" as first
       element and the total number of "input fields" as the second.
+
+    - get_urls(): [(urlpattern, view, name), ...]
+      Return a list of urls to register for this component.
+      Each list item has to be a triple of the urlpattern, a view function and
+      an url name.
+      May return None if no additional urls are required. In that case a custom
+      get_view method has to be provided.
+
+    Required methods with default implementation:
+    - get_view(): view function
+      Return a view function which takes menu and project/module as kwargs.
+      This view is linked from the dashboard menu.
+      By default the view of the first url from get_urls is returned.
     """
 
     app_label = None
@@ -46,11 +56,15 @@ class DashboardComponent:
     def get_menu_label(self, project_or_module):
         pass
 
-    def get_view(self):
-        pass
-
     def get_progress(self, project_or_module):
         return 0, 0
+
+    def get_urls(self):
+        pass
+
+    def get_view(self):
+        _, view, _ = self.get_urls()[0]
+        return view
 
 
 class ProjectFormComponent(DashboardComponent):
