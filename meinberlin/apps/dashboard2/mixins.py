@@ -53,6 +53,7 @@ class BlueprintMixin:
 
 
 class DashboardComponentMixin(ProjectContextDispatcher):
+    menu_item = 'project'
     component = None
 
 
