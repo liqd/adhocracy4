@@ -14,15 +14,15 @@
             </a>
         </div>
     </div>
-            {% if object_list.count > 0 %}
-                <ul class="u-list-reset">
-                    {% for object in object_list %}
-                        {% include "meinberlin_offlineevents/includes/offlineevent_list_item.html" with object=object %}
-                    {% endfor %}
-                </ul>
-            {% else %}
-                {% trans "Nothing to show" %}
-            {% endif %}
+    {% if object_list.count > 0 %}
+        <ul class="u-list-reset">
+            {% for object in object_list %}
+                {% include "meinberlin_offlineevents/includes/offlineevent_list_item.html" with object=object %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% trans "Nothing to show" %}
+    {% endif %}
 
-            {% include "meinberlin_contrib/includes/pagination.html" %}
+    {% include "meinberlin_contrib/includes/pagination.html" %}
 {% endblock %}
