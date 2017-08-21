@@ -1,30 +1,21 @@
-{% extends 'meinberlin_dashboard/base_dashboard.html' %}
+{% extends "meinberlin_dashboard2/base_dashboard_project.html" %}
 {% load i18n %}
 
-{% block dashboard_content %}
-    <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
-        <ul>
-            <li>
-                <a href="{% url 'dashboard-project-list' view.organisation.slug %}">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    {% trans 'back to dashboard' %}</a>
-            </li>
-        </ul>
-    </nav>
+{% block title %}{% trans "Offlineevents" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block dashboard_project_content %}
     <div class="lr-bar lr-bar--with-margin">
         <h1 class="lr-bar__left">
             {% trans 'Offline Events' %}
         </h1>
         <div class="lr-bar__right">
-            <a href="{% url 'meinberlin_offlineevents:offlineevent-create' project_slug=project.slug %}" class="button">
+            <a href="{% url 'a4dashboard:offlineevent-create' project_slug=project.slug %}" class="button">
                 {% trans 'Add offline event' %}
             </a>
         </div>
     </div>
-    <div class="module-content">
-        <div class="l-center-8">
             {% if object_list.count > 0 %}
-                <ul>
+                <ul class="u-list-reset">
                     {% for object in object_list %}
                         {% include "meinberlin_offlineevents/includes/offlineevent_list_item.html" with object=object %}
                     {% endfor %}
@@ -34,6 +25,4 @@
             {% endif %}
 
             {% include "meinberlin_contrib/includes/pagination.html" %}
-        </div>
-    </div>
 {% endblock %}

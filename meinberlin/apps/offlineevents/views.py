@@ -3,9 +3,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
-from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.contrib.views import ProjectContextDispatcher
-from meinberlin.apps.dashboard.mixins import DashboardBaseMixin
+from meinberlin.apps.dashboard2 import mixins
 from meinberlin.apps.ideas import views as idea_views
 
 from . import forms
@@ -17,9 +15,9 @@ class OfflineEventDetailView(idea_views.AbstractIdeaDetailView):
     permission_required = 'meinberlin_offlineevents.view_offlineevent'
 
 
-class OfflineEventListView(ProjectContextDispatcher,
-                           DashboardBaseMixin,
-                           rules_mixins.PermissionRequiredMixin,
+class OfflineEventListView(mixins.DashboardComponentMixin,
+                           mixins.DashboardBaseMixin,
+                           mixins.DashboardContextMixin,
                            generic.ListView):
     model = models.OfflineEvent
     template_name = 'meinberlin_offlineevents/offlineevent_list.html'
@@ -30,9 +28,9 @@ class OfflineEventListView(ProjectContextDispatcher,
         return super().get_queryset().filter(project=self.project)
 
 
-class OfflineEventCreateView(ProjectContextDispatcher,
-                             DashboardBaseMixin,
-                             rules_mixins.PermissionRequiredMixin,
+class OfflineEventCreateView(mixins.DashboardComponentMixin,
+                             mixins.DashboardBaseMixin,
+                             mixins.DashboardContextMixin,
                              generic.CreateView):
     model = models.OfflineEvent
     form_class = forms.OfflineEventForm
@@ -47,13 +45,13 @@ class OfflineEventCreateView(ProjectContextDispatcher,
 
     def get_success_url(self):
         return reverse(
-            'meinberlin_offlineevents:offlineevent-list',
+            'a4dashboard:offlineevent-list',
             kwargs={'project_slug': self.project.slug})
 
 
-class OfflineEventUpdateView(ProjectContextDispatcher,
-                             DashboardBaseMixin,
-                             rules_mixins.PermissionRequiredMixin,
+class OfflineEventUpdateView(mixins.DashboardComponentMixin,
+                             mixins.DashboardBaseMixin,
+                             mixins.DashboardContextMixin,
                              generic.UpdateView):
     model = models.OfflineEvent
     form_class = forms.OfflineEventForm
@@ -63,13 +61,17 @@ class OfflineEventUpdateView(ProjectContextDispatcher,
 
     def get_success_url(self):
         return reverse(
-            'meinberlin_offlineevents:offlineevent-list',
+            'a4dashboard:offlineevent-list',
             kwargs={'project_slug': self.project.slug})
 
+    @property
+    def organisation(self):
+        return self.project.organisation
 
-class OfflineEventDeleteView(ProjectContextDispatcher,
-                             DashboardBaseMixin,
-                             rules_mixins.PermissionRequiredMixin,
+
+class OfflineEventDeleteView(mixins.DashboardComponentMixin,
+                             mixins.DashboardBaseMixin,
+                             mixins.DashboardContextMixin,
                              generic.DeleteView):
     model = models.OfflineEvent
     success_message = _('The offline event has been deleted')
@@ -83,5 +85,9 @@ class OfflineEventDeleteView(ProjectContextDispatcher,
 
     def get_success_url(self):
         return reverse(
-            'meinberlin_offlineevents:offlineevent-list',
+            'a4dashboard:offlineevent-list',
             kwargs={'project_slug': self.project.slug})
+
+    @property
+    def organisation(self):
+        return self.project.organisation
