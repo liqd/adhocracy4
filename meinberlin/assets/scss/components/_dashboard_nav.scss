@@ -54,4 +54,9 @@
         color: $brand-primary;
         border-left-color: $brand-primary;
     }
+
+    i {
+        float: right;
+        line-height: inherit;
+    }
 }

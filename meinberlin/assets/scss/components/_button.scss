@@ -96,6 +96,10 @@
     }
 }
 
+.btn--none {
+    @include button-color(transparent, transparent);
+}
+
 .btn--select {
     @include text-truncate;
     max-width: 15em;

@@ -19,5 +19,8 @@ urlpatterns = [
     url(r'^projects/(?P<project_slug>[-\w_]+)/$',
         views.ProjectUpdateView.as_view(),
         name='project-edit'),
+    url(r'^publish/project/(?P<project_slug>[-\w_]+)/$',
+        views.ProjectPublishView.as_view(),
+        name='project-publish'),
     url(r'', include(content.get_urls())),
 ]
