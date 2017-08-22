@@ -57,6 +57,14 @@ def _make_fields_required(fields, required):
                 field.required = True
 
 
+def _make_fields_required_for_publish(fields, required):
+    """Set the required attributes on all fields who's key is in required."""
+    if required:
+        for name, field in fields:
+            if required == '__all__' or name in required:
+                field.required_for_publish = True
+
+
 class ProjectDashboardForm(forms.ModelForm):
     """
     Base form for project related dashboard forms.
@@ -71,6 +79,9 @@ class ProjectDashboardForm(forms.ModelForm):
         if not self.instance.is_draft:
             _make_fields_required(self.fields.items(),
                                   self.get_required_fields())
+
+        _make_fields_required_for_publish(self.fields.items(),
+                                          self.get_required_fields())
 
     @classmethod
     def get_required_fields(cls):
@@ -93,6 +104,9 @@ class ModuleDashboardForm(forms.ModelForm):
             _make_fields_required(self.fields.items(),
                                   self.get_required_fields())
 
+        _make_fields_required_for_publish(self.fields.items(),
+                                          self.get_required_fields())
+
     @classmethod
     def get_required_fields(cls):
         meta = getattr(cls, 'Meta', None)
@@ -110,9 +124,11 @@ class ModuleDashboardFormSet(forms.BaseInlineFormSet):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        if not self.instance.project.is_draft:
-            required_fields = self.get_required_fields()
-            for form in self.forms:
+        required_fields = self.get_required_fields()
+        for form in self.forms:
+            _make_fields_required_for_publish(form.fields.items(),
+                                              required_fields)
+            if not self.instance.project.is_draft:
                 _make_fields_required(form.fields.items(),
                                       required_fields)
 
