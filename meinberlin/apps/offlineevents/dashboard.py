@@ -1,15 +1,13 @@
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from meinberlin.apps.dashboard2 import DashboardComponent
 from meinberlin.apps.dashboard2 import content
 
 from . import views
-from .apps import Config
 
 
 class OfflineEventsComponent(DashboardComponent):
-    app_label = Config.label
-    label = 'offlineevents'
     identifier = 'offlineevents'
 
     def get_menu_label(self, project):
@@ -17,6 +15,11 @@ class OfflineEventsComponent(DashboardComponent):
 
     def get_progress(self, project):
         return 0, 0
+
+    def get_base_url(self, project):
+        return reverse('a4dashboard:offlineevent-list', kwargs={
+            'project_slug': project.slug
+        })
 
     def get_urls(self):
         return [
