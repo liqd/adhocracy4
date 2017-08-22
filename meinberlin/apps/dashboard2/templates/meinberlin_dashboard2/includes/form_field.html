@@ -4,7 +4,7 @@
     <label for="{{ field.id_for_label }}">
         {{ field.label }}
         {% if field.field.required_for_publish and not field.value %}
-            <i class="fa fa-exclamation-circle" title="{% trans 'Missing field for publication' %}" aria-label="{% trans 'Missing field for publication' %}"></i>
+            <i class="fa fa-exclamation-circle u-danger" title="{% trans 'Missing field for publication' %}" aria-label="{% trans 'Missing field for publication' %}"></i>
         {% endif %}
     </label>
     {% if field.help_text %}
