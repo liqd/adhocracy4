@@ -75,7 +75,7 @@ class ProjectDashboardForm(forms.ModelForm):
     @classmethod
     def get_required_fields(cls):
         meta = getattr(cls, 'Meta', None)
-        return getattr(meta, 'required', [])
+        return getattr(meta, 'required_for_project_publish', [])
 
 
 class ModuleDashboardForm(forms.ModelForm):
@@ -96,7 +96,7 @@ class ModuleDashboardForm(forms.ModelForm):
     @classmethod
     def get_required_fields(cls):
         meta = getattr(cls, 'Meta', None)
-        return getattr(meta, 'required', [])
+        return getattr(meta, 'required_for_project_publish', [])
 
 
 class ModuleDashboardFormSet(forms.BaseInlineFormSet):
@@ -119,7 +119,7 @@ class ModuleDashboardFormSet(forms.BaseInlineFormSet):
     @classmethod
     def get_required_fields(cls):
         meta = getattr(cls.form, 'Meta', None)
-        return getattr(meta, 'required', [])
+        return getattr(meta, 'required_for_project_publish', [])
 
 
 class ProjectBasicForm(ProjectDashboardForm):
@@ -128,7 +128,7 @@ class ProjectBasicForm(ProjectDashboardForm):
         model = project_models.Project
         fields = ['name', 'description', 'image', 'tile_image', 'is_archived',
                   'is_public']
-        required = '__all__'
+        required_for_project_publish = '__all__'
 
 
 class ProjectInformationForm(ProjectDashboardForm):
@@ -136,7 +136,7 @@ class ProjectInformationForm(ProjectDashboardForm):
     class Meta:
         model = project_models.Project
         fields = ['information']
-        required = '__all__'
+        required_for_project_publish = '__all__'
 
 
 class ModuleBasicForm(ModuleDashboardForm):
@@ -144,7 +144,7 @@ class ModuleBasicForm(ModuleDashboardForm):
     class Meta:
         model = module_models.Module
         fields = ['name', 'description']
-        required = '__all__'
+        required_for_project_publish = '__all__'
 
 
 class PhaseForm(forms.ModelForm):
@@ -157,7 +157,7 @@ class PhaseForm(forms.ModelForm):
             'type': forms.HiddenInput(),
             'weight': forms.HiddenInput()
         }
-        required = '__all__'
+        required_for_project_publish = '__all__'
 
 
 PhaseFormSet = inlineformset_factory(module_models.Module,
