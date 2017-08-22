@@ -1,0 +1,19 @@
+{% load widget_tweaks i18n %}
+
+<div class="form-group">
+    <label for="{{ field.id_for_label }}">
+        {{ field.label }}
+        {% if field.field.required_for_publish and not field.value %}
+            <i class="fa fa-exclamation-circle" title="{% trans 'Missing field for publication' %}" aria-label="{% trans 'Missing field for publication' %}"></i>
+        {% endif %}
+    </label>
+    {% if field.help_text %}
+    <div class="form-hint">
+        {{ field.help_text }}
+    </div>
+    {% endif %}
+    <div class="widget widget--{{ field|widget_type }}">
+        {{ field }}
+    </div>
+    {{ field.errors }}
+</div>
