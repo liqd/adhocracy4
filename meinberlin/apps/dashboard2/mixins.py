@@ -1,13 +1,13 @@
 from copy import deepcopy
 
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.views.generic import base
 
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.contrib.views import ProjectContextDispatcher
 from meinberlin.apps.organisations import models as org_models
 
 from .blueprints import blueprints
@@ -59,19 +59,9 @@ class BlueprintMixin:
         return self.kwargs['blueprint_slug']
 
 
-class DashboardComponentMixin(base.ContextMixin,
-                              base.View):
-
-    def dispatch(self, request, project, module, *args, **kwargs):
-        self.module = module
-        self.project = project
-        return super().dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['project'] = self.project
-        context['module'] = self.module
-        return context
+class DashboardComponentMixin(ProjectContextDispatcher):
+    menu_item = 'project'
+    component = None
 
 
 class DashboardContextMixin(base.ContextMixin):
@@ -147,10 +137,7 @@ class DashboardContextMixin(base.ContextMixin):
             menu_item = component.get_menu_label(project)
             if menu_item:
                 is_active = (component == current_component)
-                url = reverse('a4dashboard:project-edit-component', kwargs={
-                    'project_slug': project.slug,
-                    'component_identifier': component.identifier
-                })
+                url = component.get_base_url(project)
                 num_valid, num_required = component.get_progress(project)
                 is_complete = (num_valid == num_required)
 
@@ -170,10 +157,7 @@ class DashboardContextMixin(base.ContextMixin):
             if menu_item:
                 is_active = (component == current_component and
                              module.pk == current_module.pk)
-                url = reverse('a4dashboard:module-edit-component', kwargs={
-                    'module_slug': module.slug,
-                    'component_identifier': component.identifier
-                })
+                url = component.get_base_url(module)
                 num_valid, num_required = component.get_progress(module)
                 is_complete = (num_valid == num_required)
 

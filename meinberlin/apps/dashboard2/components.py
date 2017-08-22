@@ -1,72 +1,135 @@
 from django.core.exceptions import FieldDoesNotExist
+from django.urls import reverse
 
 
 class DashboardComponent:
-    """Abstract interface for dashboard components.
+    """Interface for dashboard components.
 
-    Required properties:
-    - app_label
+    Dashboard components are globally registered by their unique identifier.
+    Every dashboard component is used to configure either a project
+    or a module.
+    They define the urlpatterns and views required for configuration
+    and provide an url which acts as the base entry point.
+    Dashboard components keep track of the projects publish progress.
+    A project may only be published if every component progress is complete.
+    If a project is published, the component has to ensure that its progress
+    does not regress. (F.ex. fields required for publishing may not be updated
+    with a blank value after publishing).
 
-    Required properties with default implementation:
-    - label (defaults to the lower class name)
-    - identifier (defaults to "app_label:label")
-      - has to be unique
-      - may only contain alphanumeric characters and -, _, :
-      - Note: is is recommended to define a custom unique identifier as
-        otherwise the app_label is exposed in dashboard urls.
 
-    Required methods:
-    - get_menu_label(project_or_module): str | None
-      In case of a component registered for modules the module to edit is
-      passed. In case of a component registered for projects the project.
-      Return a localized string if the component should be rendered for the
-      project or module passed. Return None otherwise.
+    Properties
+    ----------
+    identifier : str
+        Unique identifier of the component.
+        May only contain alphanumeric characters, _, and -
+        F.ex. an unique identifier would be '{app_label}-{component_name}'.
+        The identifier is used to register and retrieve components from the
+        registry. It may be used to define unique url names.
 
-    - get_view(): view function
-      Return a view function which takes menu and project/module as kwargs
-
-    - get_progress(): (int, int)
-      Return a tuple containing the number of valid "input fields" as first
-      element and the total number of "input fields" as the second.
     """
 
-    app_label = None
-
-    @property
-    def label(self):
-        return self.__class__.__name__.lower()
-
-    @property
-    def identifier(self):
-        return '{app_label}:{component_label}'.format(
-            app_label=self.app_label,
-            component_label=self.label,
-        )
+    identifier = ''
 
     def get_menu_label(self, project_or_module):
-        pass
+        """Return the menu label if the component should be shown.
 
-    def get_view(self):
-        pass
+        Parameters
+        ----------
+        project_or_module : Project or Module
+            The project or module in whose context the component
+            should be shown.
+
+        Returns
+        -------
+        str
+            Return the localized label to be shown in the dashboard menu or
+            '' if the component should not be shown for the passed project or
+            module context.
+
+        """
+        return ''
 
     def get_progress(self, project_or_module):
+        """Return the progress of this component.
+
+        Parameters
+        ----------
+        project_or_module : Project or Module
+            The project or module in whose context the component's progress
+            should be determined.
+
+        Returns
+        -------
+        (int, int)
+            Return a tuple containing the number of valid "input fields" as
+            the first element and the total number of "input fields" as the
+            second element.
+            If no input fields are required (0, 0) should be returned.
+
+        """
         return 0, 0
+
+    def get_urls(self):
+        """Return the urls needed for this component.
+
+        The urls are registered under the prefix of the dashboard and within
+        its `a4dashboard` namespace.
+
+        Returns
+        -------
+        list of (str, func, str)
+            Return a list of triples containing
+            the urlpattern as a string,
+            the view function,
+            and the view name.
+
+        """
+        return []
+
+    def get_base_url(self, project_or_module):
+        """Return the url that acts as the base entry point for the component.
+
+        The url is linked from the dashboard menu.
+
+        Parameters
+        ----------
+        project_or_module : Project or Module
+            The project or module to whose context the component base link
+            should resolve
+
+        Returns
+        -------
+        str
+            Return the url to the base view of this component.
+
+        """
+        return ''
 
 
 class ProjectFormComponent(DashboardComponent):
-    """Abstract interface for project dashboard components based on forms.
+    """Abstract project related dashboard component based on forms.
 
-    This component is intended to be used with ProjectDashboardForm.
-    It will always return a ProjectComponentFormView
-    and provides a default implementation for get_progress.
+    This abstract component is used to make components from forms inheriting
+    from ProjectDashboardForm.
+    It allows to simply pass the form and some additional configuration
+    properties to create a valid component.
+    The components are registering urls based on the the unique identifier
+    and are using ProjectComponentFormView to handle the form processing.
+    Forms inheriting from ProjectDashboardForm may be configured with an
+    additional Meta.required attribute which defines the form fields that have
+    to be validly entered prior to project publishing. The component provides
+    a get_progress implementation based on this list and prevents from removing
+    required data if the project is published.
 
-    Required properties:
-    - menu_label: str
-      This label is always returned regardless of project state
-    - form_title: str
-      This title is shown on top of the rendered form
-    - form_class: ProjectDashboardForm
-      This is the form class used to render from the ProjectComponentFormView
+    Properties
+    ----------
+    menu_label : str
+        This label is always returned regardless of project state
+    form_title : str
+        This title is shown on top of the rendered form
+    form_class : ProjectDashboardForm
+        This is the form class used to render from the ProjectComponentFormView
+
     """
 
     menu_label = ''
@@ -77,14 +140,25 @@ class ProjectFormComponent(DashboardComponent):
     def get_menu_label(self, project):
         return self.menu_label
 
-    def get_view(self):
+    def get_base_url(self, project_or_module):
+        name = 'a4dashboard:dashboard-{identifier}-edit'.format(
+            identifier=self.identifier)
+        return reverse(name, args=[project_or_module.slug])
+
+    def get_urls(self):
         from .views import ProjectComponentFormView
-        return ProjectComponentFormView.as_view(
+        view = ProjectComponentFormView.as_view(
             component=self,
             title=self.form_title,
             form_class=self.form_class,
             form_template_name=self.form_template_name
         )
+        return [(
+            r'^projects/(?P<project_slug>[-\w_]+)/{identifier}/$'.format(
+                identifier=self.identifier),
+            view,
+            'dashboard-{identifier}-edit'.format(identifier=self.identifier)
+        )]
 
     def get_progress(self, object):
         required_fields = self.form_class.get_required_fields()
@@ -123,45 +197,77 @@ class ProjectFormComponent(DashboardComponent):
 
 
 class ModuleFormComponent(ProjectFormComponent):
-    """Abstract interface for module dashboard components based on forms.
+    """Abstract module related dashboard component based on forms.
 
-    This component is intended to be used with ModuleDashboardForm.
-    It will always return a ModuleComponentFormView
-    and provides a default implementation for get_progress.
+    This abstract component is used to make components from forms inheriting
+    from ModuleDashboardForm.
+    It allows to simply pass the form and some additional configuration
+    properties to create a valid component.
+    The components are registering urls based on the the unique identifier
+    and are using ModuleComponentFormView to handle the form processing.
+    Forms inheriting from ModuleDashboardForm may be configured with an
+    additional Meta.required attribute which defines the form fields that have
+    to be validly entered prior to project publishing. The component provides
+    a get_progress implementation based on this list and prevents from removing
+    required data if the project is published.
 
-    Required properties:
-    - menu_label: str
-      This label is always returned regardless of project state
-    - form_title: str
-      This title is shown on top of the rendered form
-    - form_class: ModuleDashboardForm
-      This is the form class used to render from the ModuleComponentFormView
+    Properties
+    ----------
+    menu_label : str
+        This label is always returned regardless of module state
+    form_title : str
+        This title is shown on top of the rendered form
+    form_class : ModuleDashboardForm
+        This is the form class used to render from the ModuleComponentFormView
+
     """
 
-    def get_view(self):
+    def get_base_url(self, project_or_module):
+        name = 'a4dashboard:dashboard-{identifier}-edit'.format(
+            identifier=self.identifier)
+        return reverse(name, args=[project_or_module.slug])
+
+    def get_urls(self):
         from .views import ModuleComponentFormView
-        return ModuleComponentFormView.as_view(
+        view = ModuleComponentFormView.as_view(
             component=self,
             title=self.form_title,
             form_class=self.form_class,
             form_template_name=self.form_template_name
         )
 
+        return [(
+            r'^modules/(?P<module_slug>[-\w_]+)/{identifier}/$'.format(
+                identifier=self.identifier),
+            view,
+            'dashboard-{identifier}-edit'.format(identifier=self.identifier)
+        )]
+
 
 class ModuleFormSetComponent(ModuleFormComponent):
-    """Abstract interface for module dashboard components based on formsets.
+    """Abstract module related dashboard component based on formsets.
 
-    This component is intended to be used with ModuleDashboardFormSet.
-    It will always return a ModuleComponentFormView
-    and provides a default implementation for get_progress.
+    This abstract component is used to make components from forms inheriting
+    from ModuleDashboardFormSet.
+    It allows to simply pass the form and some additional configuration
+    properties to create a valid component.
+    The components are registering urls based on the the unique identifier
+    and are using ModuleComponentFormView to handle the form processing.
+    Forms inheriting from ModuleDashboardFormSet may be configured with an
+    additional Meta.required attribute which defines the form fields that have
+    to be validly entered prior to project publishing. The component provides
+    a get_progress implementation based on this list and prevents from removing
+    required data if the project is published.
 
-    Required properties:
-    - menu_label: str
-      This label is always returned regardless of project state
-    - form_title: str
-      This title is shown on top of the rendered form
-    - form_class: ModuleDashboardFormSet
-      This is the formset class used to render from the ModuleComponentFormView
+    Properties
+    ----------
+    menu_label : str
+        This label is always returned regardless of module state
+    form_title : str
+        This title is shown on top of the rendered form
+    form_class : ModuleDashboardFormSet
+        This is the form class used to render from the ModuleComponentFormView
+
     """
 
     def get_progress(self, parent):

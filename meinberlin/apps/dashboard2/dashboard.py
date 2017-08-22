@@ -5,12 +5,9 @@ from . import ModuleFormSetComponent
 from . import ProjectFormComponent
 from . import content
 from . import forms
-from .apps import Config
 
 
 class ProjectBasicComponent(ProjectFormComponent):
-    app_label = Config.label
-    label = 'basic'
     identifier = 'basic'
 
     menu_label = _('Basic settings')
@@ -21,8 +18,6 @@ class ProjectBasicComponent(ProjectFormComponent):
 
 
 class ProjectInformationComponent(ProjectFormComponent):
-    app_label = Config.label
-    label = 'information'
     identifier = 'information'
 
     menu_label = _('Information')
@@ -33,8 +28,6 @@ class ProjectInformationComponent(ProjectFormComponent):
 
 
 class ModuleBasicComponent(ModuleFormComponent):
-    app_label = Config.label
-    label = 'phases'
     identifier = 'module_basic'
 
     menu_label = _('Basic information')
@@ -45,8 +38,6 @@ class ModuleBasicComponent(ModuleFormComponent):
 
 
 class ModulePhasesComponent(ModuleFormSetComponent):
-    app_label = Config.label
-    label = 'phases'
     identifier = 'phases'
 
     menu_label = _('Phases')
