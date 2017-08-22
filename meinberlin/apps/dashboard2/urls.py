@@ -25,4 +25,7 @@ urlpatterns = [
         r'(?P<component_identifier>[-_:\w]+)/$',
         views.ModuleComponentDispatcher.as_view(),
         name='module-edit-component'),
+    url(r'^publish/project/(?P<project_slug>[-\w_]+)/$',
+        views.ProjectPublishView.as_view(),
+        name='project-publish'),
 ]

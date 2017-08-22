@@ -16,4 +16,19 @@
         {% blocktrans %}required fields for publication{% endblocktrans %}
     </div>
 </div>
-<button type="button" {% if value != max %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top">{% trans 'Publish' %}</button>
+
+<form action="{% url 'a4dashboard:project-publish' project_slug=project.slug %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="referrer" value="{{ request.path }}" />
+
+    {% if project.is_draft %}
+        <button name="action" value="publish" {% if value != max %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top">
+            {% trans 'Publish' %}
+        </button>
+    {% else %}
+        <button name="action" value="unpublish" class="btn btn--primary btn--full btn--attached-top">
+            {% trans 'Unpublish' %}
+        </button>
+    {% endif %}
+</form>
+

@@ -1,10 +1,13 @@
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
 from django.http import Http404
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
+from django.views.generic.detail import SingleObjectMixin
 
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
@@ -171,6 +174,68 @@ class ModuleComponentDispatcher(mixins.DashboardBaseMixin,
 
     def get_project(self):
         return self.get_module().project
+
+
+class ProjectPublishView(mixins.DashboardBaseMixin,
+                         SingleObjectMixin,
+                         generic.View):
+    permission_required = 'a4projects.add_project'
+    model = project_models.Project
+    slug_url_kwarg = 'project_slug'
+
+    def post(self, request, *args, **kwargs):
+        self.project = self.get_object()
+
+        action = request.POST.get('action', None)
+        if action == 'publish':
+            self.publish_project()
+        elif action == 'unpublish':
+            self.unpublish_project()
+        else:
+            messages.warning(self.request, _('Invalid action'))
+
+        return HttpResponseRedirect(self.get_next())
+
+    def get_next(self):
+        if 'referrer' in self.request.POST:
+            return self.request.POST['referrer']
+        elif 'HTTP_REFERER' in self.request.META:
+            return self.request.META['HTTP_REFERER']
+
+        return reverse('project-edit', kwargs={
+            'project_slug': self.project.slug
+        })
+
+    def publish_project(self):
+        if not self.project.is_draft:
+            messages.info(self.request, _('Project is already published'))
+            return
+
+        # FIXME: Move logic somewhere else
+        progress = mixins.DashboardContextMixin\
+            .get_project_progress(self.project)
+        is_complete = progress['valid'] == progress['required']
+
+        if not is_complete:
+            messages.error(self.request,
+                           _('Project cannot be published. '
+                             'Required fields are missing.'))
+            return
+
+        self.project.is_draft = False
+        self.project.save()
+        messages.success(self.request,
+                         _('Project successfully published.'))
+
+    def unpublish_project(self):
+        if self.project.is_draft:
+            messages.info(self.request, _('Project is already unpublished'))
+            return
+
+        self.project.is_draft = True
+        self.project.save()
+        messages.success(self.request,
+                         _('Project successfully unpublished.'))
 
 
 class ProjectComponentFormView(mixins.DashboardBaseMixin,
