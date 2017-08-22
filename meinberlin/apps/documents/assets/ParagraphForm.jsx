@@ -97,7 +97,7 @@ class Paragraph extends React.Component {
             </div>
           </div>
 
-          <div className="commenting__actions btn-group">
+          <div className="commenting__actions btn-group" role="group">
             <button
               className="btn btn--light btn--small"
               onClick={this.props.onMoveUp}

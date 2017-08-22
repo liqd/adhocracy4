@@ -23,7 +23,7 @@ const ChapterNavItem = (props) => {
         {getErrorCount(props)}
       </button>
 
-      <div className="commenting__actions btn-group">
+      <div className="commenting__actions btn-group" role="group">
         <button
           className="btn btn--light btn--small"
           onClick={props.onMoveUp}

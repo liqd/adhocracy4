@@ -90,7 +90,7 @@ class QuestionForm extends React.Component {
           </button>
         </div>
 
-        <div className="commenting__actions btn-group">
+        <div className="commenting__actions btn-group" role="group">
           <button
             className="btn btn--light btn--small"
             onClick={this.handleMoveUp.bind(this)}
