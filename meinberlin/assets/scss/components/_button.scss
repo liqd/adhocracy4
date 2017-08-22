@@ -146,3 +146,11 @@
         border-bottom-right-radius: 0;
     }
 }
+
+@media print {
+    .btn {
+        background-color: contrast-color($print-black);
+        color: $print-black;
+        border-color: $border-color;
+    }
+}
