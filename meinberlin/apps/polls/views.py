@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.views import generic
 
+from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
 from meinberlin.apps.dashboard.mixins import DashboardBaseMixin
@@ -39,8 +40,7 @@ class PollDetailView(ProjectContextDispatcher,
         return self.module
 
 
-class PollManagementView(ProjectContextDispatcher,
-                         DashboardBaseMixin,
+class PollManagementView(DashboardBaseMixin,
                          rules_mixins.PermissionRequiredMixin,
                          generic.DetailView):
     template_name = 'meinberlin_polls/poll_management_form.html'
@@ -56,7 +56,10 @@ class PollManagementView(ProjectContextDispatcher,
 
     def get_or_create_poll(self):
         # FIXME: Add multi-module support
-        module = self.project.module_set.order_by('weight').first()
+        project_slug = self.kwargs['slug']
+        project = get_object_or_404(project_models.Project, slug=project_slug)
+        module = project.module_set.order_by('weight').first()
+
         try:
             obj = models.Poll.objects.get(module=module)
         except models.Poll.DoesNotExist:
