@@ -120,6 +120,14 @@ class DashboardProjectDuplicateMixin:
                     phase_clone.module = module_clone
                     phase_clone.pk = None
                     phase_clone.save()
+
+                settings_instance = module.settings_instance
+                if settings_instance:
+                    settings_instance_clone = deepcopy(settings_instance)
+                    settings_instance_clone.pk = None
+                    settings_instance_clone.module = module_clone
+                    settings_instance_clone.save()
+
             messages.success(request,
                              _('Project successfully duplicated.'))
             return redirect('dashboard-project-edit', slug=project_clone.slug)

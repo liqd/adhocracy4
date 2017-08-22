@@ -14,9 +14,9 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 
 from . import blueprints
+from . import content
 from . import forms
 from . import mixins
-from .contents import content
 
 User = get_user_model()
 
@@ -99,81 +99,13 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
             phase.save()
 
 
-class ProjectUpdateView(mixins.DashboardBaseMixin,
-                        generic.UpdateView,
-                        SuccessMessageMixin):
-    model = project_models.Project
-    slug_url_kwarg = 'project_slug'
-    form_class = forms.ProjectUpdateForm
-    template_name = 'meinberlin_dashboard2/project_update_form.html'
-    permission_required = 'a4projects.add_project'
-    success_message = _('Project successfully created.')
-
-
-class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
-                                 generic.View):
-
-    def dispatch(self, request, *args, **kwargs):
-        project = self.get_project()
-        if not project:
-            raise Http404('Project not found')
-
-        component = self.get_component()
-        if not component:
-            raise Http404('Component not found')
-
-        kwargs['module'] = None
-        kwargs['project'] = project
-        return component.get_view()(request, *args, **kwargs)
-
-    def get_component(self):
-        if 'component_identifier' not in self.kwargs:
-            return None
-        if self.kwargs['component_identifier'] not in content.projects:
-            return None
-        return content.projects[self.kwargs['component_identifier']]
-
-    def get_project(self):
-        if 'project_slug' not in self.kwargs:
-            return None
-        return get_object_or_none(project_models.Project,
-                                  slug=self.kwargs['project_slug'])
-
-    def get_module(self):
-        return None
-
-
-class ModuleComponentDispatcher(mixins.DashboardBaseMixin,
-                                generic.View):
-
-    def dispatch(self, request, *args, **kwargs):
-        module = self.get_module()
-        if not module:
-            raise Http404('Module not found')
-
-        component = self.get_component()
-        if not component:
-            raise Http404('Component not found')
-
-        kwargs['module'] = module
-        kwargs['project'] = module.project
-        return component.get_view()(request, *args, **kwargs)
-
-    def get_component(self):
-        if 'component_identifier' not in self.kwargs:
-            return None
-        if self.kwargs['component_identifier'] not in content.modules:
-            return None
-        return content.modules[self.kwargs['component_identifier']]
-
-    def get_module(self):
-        if 'module_slug' not in self.kwargs:
-            return None
-        return get_object_or_none(module_models.Module,
-                                  slug=self.kwargs['module_slug'])
-
-    def get_project(self):
-        return self.get_module().project
+class ProjectUpdateView(generic.RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        project = get_object_or_404(project_models.Project,
+                                    slug=kwargs['project_slug'])
+        components = content.get_project_components()
+        component = components[0]
+        return component.get_base_url(project)
 
 
 class ProjectPublishView(mixins.DashboardBaseMixin,
@@ -259,8 +191,8 @@ class ProjectComponentFormView(mixins.DashboardBaseMixin,
         return self.project
 
 
-class ModuleComponentFormView(mixins.DashboardBaseMixin,
-                              mixins.DashboardComponentMixin,
+class ModuleComponentFormView(mixins.DashboardComponentMixin,
+                              mixins.DashboardBaseMixin,
                               mixins.DashboardContextMixin,
                               SuccessMessageMixin,
                               generic.UpdateView):

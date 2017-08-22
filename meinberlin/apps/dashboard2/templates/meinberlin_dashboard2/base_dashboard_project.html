@@ -15,7 +15,7 @@
                                class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
                                 {{ item.label }}
                                 {% if not item.is_complete %}
-                                    <i class="fa fa-exclamation-circle" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
+                                    <i class="fa fa-exclamation-circle u-danger" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
                                 {% endif %}
                             </a>
                         </li>
@@ -35,7 +35,7 @@
                                    class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
                                     {{ item.label }}
                                     {% if not item.is_complete %}
-                                        <i class="fa fa-exclamation-circle" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
+                                        <i class="fa fa-exclamation-circle u-danger" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
                                     {% endif %}
                                 </a>
                             </li>
