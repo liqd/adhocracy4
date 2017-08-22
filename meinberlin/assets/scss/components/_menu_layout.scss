@@ -1,27 +1,27 @@
-.menu-layout__menu,
-.menu-layout__content,
-.menu-layout__aside {
+.l-menu__menu,
+.l-menu__content,
+.l-menu__aside {
     margin-bottom: 2em;
 }
 
 @media (min-width: $breakpoint) {
-    .menu-layout {
+    .l-menu {
         @include clearfix;
     }
 
-    .menu-layout__menu {
+    .l-menu__menu {
         @include grid-span(3, 0);
     }
 
-    .menu-layout__content {
+    .l-menu__content {
         @include grid-span(9, 3);
     }
 
-    .menu-layout__content--aside {
+    .l-menu__content--aside {
         @include grid-width(6);
     }
 
-    .menu-layout__aside {
+    .l-menu__aside {
         @include grid-span(3, 9);
     }
 }
