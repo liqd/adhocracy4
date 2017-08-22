@@ -1,5 +1,5 @@
 {% extends "meinberlin_dashboard2/base_dashboard_project.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}{% trans "Edit Module" %} &mdash; {{ block.super }}{% endblock%}
 
@@ -23,6 +23,7 @@
 
 {% block extra_js %}
     {{ form.media.js }}
+    <script src="{% static 'js/unload_warning.js' %}"></script>
 {% endblock %}
 {% block extra_css %}
     {{ form.media.css }}
