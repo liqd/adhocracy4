@@ -12,7 +12,7 @@ class DashboardComponent:
     and provide an url which acts as the base entry point.
     Dashboard components keep track of the projects publish progress.
     A project may only be published if every component progress is complete.
-    If a project is published, the component has to ensure that it's progress
+    If a project is published, the component has to ensure that its progress
     does not regress. (F.ex. fields required for publishing may not be updated
     with a blank value after publishing).
 
@@ -73,7 +73,7 @@ class DashboardComponent:
         """Return the urls needed for this component.
 
         The urls are registered under the prefix of the dashboard and within
-        it's `a4dashboard` namespace.
+        its `a4dashboard` namespace.
 
         Returns
         -------
