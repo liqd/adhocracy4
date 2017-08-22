@@ -9,7 +9,7 @@
             {% if view.other_organisations_of_user %}
                 <button
                         title="{% trans 'Organisations' %}"
-                        type="button button--none button--small"
+                        type="btn btn--none btn--small"
                         class="dropdown-toggle"
                         data-toggle="dropdown"
                         aria-haspopup="true"
@@ -32,7 +32,7 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                <span class="button button--none button--small">{{ view.organisation.name }}</span>
+                <span class="btn btn--none btn--small">{{ view.organisation.name }}</span>
             {% endif %}
         </div>
 
