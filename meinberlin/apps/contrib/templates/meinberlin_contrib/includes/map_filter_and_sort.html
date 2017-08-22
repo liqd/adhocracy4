@@ -3,13 +3,13 @@
 <div class="control-bar">
     {% if mode == 'map' %}
         {% combined_url_parameter request.GET mode='list' as url_par %}
-        <a class="button button--light" href="{{ url_par }}" aria-label="{% trans 'View as list' %}">
+        <a class="btn btn--light" href="{{ url_par }}" aria-label="{% trans 'View as list' %}">
             <i class="fa fa-list" aria-hidden="true"></i>
             {% trans 'View' %}
         </a>
     {% else %}
         {% combined_url_parameter request.GET mode='map' as url_par %}
-        <a class="button button--light" href="{{ url_par }}" aria-label="{% trans 'View as map' %}">
+        <a class="btn btn--light" href="{{ url_par }}" aria-label="{% trans 'View as map' %}">
             <i class="fa fa-map" aria-hidden="true"></i>
             {% trans 'View' %}
         </a>

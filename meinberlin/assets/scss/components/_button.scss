@@ -45,12 +45,12 @@
     vertical-align: middle;
 }
 
-.button {
+.btn {
     @extend %button-base;
     @include button-color($link-color, $link-hover-color);
 }
 
-.button--light {
+.btn--light {
     @include button-color($body-bg, $bg-secondary);
 
     &,
@@ -63,15 +63,15 @@
     }
 }
 
-.button--primary {
+.btn--primary {
     @include button-color($brand-primary, darken($brand-primary, 15%));
 }
 
-.button--secondary {
+.btn--secondary {
     @include button-color($brand-secondary, darken($brand-secondary, 15%));
 }
 
-.button--link {
+.btn--link {
     // horizontal paddings would make the button look off on mobile
     padding-left: 0;
     padding-right: 0;
@@ -96,11 +96,11 @@
     }
 }
 
-.button--none {
+.btn--none {
     @include button-color(transparent, transparent);
 }
 
-.button--select {
+.btn--select {
     @include text-truncate;
     max-width: 15em;
 
@@ -115,22 +115,22 @@
     }
 }
 
-.button--small {
+.btn--small {
     padding: 0.3em 0.6em;
     font-weight: inherit;
 }
 
-.button--huge {
+.btn--huge {
     padding: 0.8em 2em;
 }
 
-.button--full {
+.btn--full {
     display: block;
     width: 100%;
     margin-bottom: $spacer;
 }
 
-.button--attached-top {
+.btn--attached-top {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }

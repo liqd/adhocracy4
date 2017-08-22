@@ -21,7 +21,7 @@ class ChoiceForm extends React.Component {
           htmlFor={'id_choices-' + this.props.index + '-name'}>
           {django.gettext('Choice') + ` #${this.props.index}`}
         </label>
-        <div className="button-group input-addon">
+        <div className="btn-group input-addon">
           <input
             id={'id_choices-' + this.props.index + '-name'}
             name={'choices-' + this.props.index + '-name'}
@@ -30,7 +30,7 @@ class ChoiceForm extends React.Component {
             value={this.props.choice.label}
             onChange={this.handleLabelChange.bind(this)} />
           <button
-            className="input-addon__after button button--light"
+            className="input-addon__after btn btn--light"
             onClick={this.handleDelete.bind(this)}
             title={django.gettext('remove')}
             type="button">

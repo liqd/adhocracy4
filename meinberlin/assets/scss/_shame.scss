@@ -15,24 +15,24 @@ input[type="search"] {
 // used by adhocracy4
 .submit-button {
     @extend %button-base;
-    @extend .button--primary;
+    @extend .btn--primary;
 }
 
 .cancel-button {
     @extend %button-base;
-    @extend .button--light;
+    @extend .btn--light;
 }
 
 .comment .rating-button {
-    @extend .button--small;
+    @extend .btn--small;
 }
 
 // used by adhocracy4 for the follow button, long-term we'd like
 // our own classes.
 .btngroup .btn {
     @extend %button-base;
-    @extend .button--light;
-    @extend .button--small;
+    @extend .btn--light;
+    @extend .btn--small;
 
     &:first-child {
         border-bottom-right-radius: 0;

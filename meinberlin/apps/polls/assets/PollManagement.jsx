@@ -212,7 +212,7 @@ class PollManagement extends React.Component {
 
         <p>
           <button
-            className="button button--light button--small"
+            className="btn btn--light btn--small"
             onClick={this.handleAppendQuestion.bind(this)}
             type="button">
             <i className="fa fa-plus" /> {django.gettext('Add a new question')}
@@ -221,7 +221,7 @@ class PollManagement extends React.Component {
 
         <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
 
-        <button type="submit" className="button button--primary">{django.gettext('Save')}</button>
+        <button type="submit" className="btn btn--primary">{django.gettext('Save')}</button>
       </form>
     )
   }
