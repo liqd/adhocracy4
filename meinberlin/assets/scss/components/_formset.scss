@@ -40,7 +40,3 @@
         text-decoration: line-through;
     }
 }
-
-.formset__form--can-remove .formset__delete:checked ~ * {
-    display: none;
-}
