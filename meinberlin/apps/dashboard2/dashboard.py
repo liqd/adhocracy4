@@ -29,6 +29,17 @@ class ProjectInformationComponent(ProjectFormComponent):
                          '/includes/project_information_form.html'
 
 
+class ProjectResultComponent(ProjectFormComponent):
+    identifier = 'result'
+    weight = 12
+
+    menu_label = _('Result')
+    form_title = _('Edit project result')
+    form_class = forms.ProjectResultForm
+    form_template_name = 'meinberlin_dashboard2' \
+                         '/includes/project_result_form.html'
+
+
 class ModuleBasicComponent(ModuleFormComponent):
     identifier = 'module_basic'
     weight = 10
@@ -53,5 +64,6 @@ class ModulePhasesComponent(ModuleFormSetComponent):
 
 content.register_project(ProjectBasicComponent())
 content.register_project(ProjectInformationComponent())
+content.register_project(ProjectResultComponent())
 content.register_module(ModuleBasicComponent())
 content.register_module(ModulePhasesComponent())
