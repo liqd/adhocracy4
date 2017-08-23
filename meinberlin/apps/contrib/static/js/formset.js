@@ -3,8 +3,7 @@
   $(init)
   $(document).on('a4.embed.ready', init)
 })(function () {
-  // Dynamically add more subforms to a formset.
-  // Removing subforms is not (yet) supported)
+  // Dynamically add or remove subforms to a formset.
 
   var $formsets = $('.js-formset')
   var PLACEHOLDER = /__prefix__/g
@@ -18,7 +17,8 @@
     this.id = parseInt(this.$formset.data('initial-id'))
     this.maxNum = parseInt(this.$formset.find('#id_' + this.prefix + '-MAX_NUM_FORMS').val())
 
-    this.$formset.find('.js-add-form').on('click', this.addForm.bind(this))
+    this.$formset.on('click', '.js-add-form', this.addForm.bind(this))
+    this.$formset.on('click', '.js-remove-form', this.removeForm.bind(this))
   }
 
   DynamicFormSet.prototype.addForm = function () {
@@ -28,6 +28,36 @@
       var newForm = getNewForm(this.$formTemplate, this.id)
       this.$formTemplate.before(newForm)
     }
+  }
+
+  DynamicFormSet.prototype.removeForm = function (event) {
+    var _this = this
+
+    this.id -= 1
+    this.$totalInput.val(this.id + 1)
+
+    var $form = $(event.currentTarget).closest('.js-form')
+    var id = this.$formset.find('.js-form').index($form)
+
+    var updateAttr = function ($el, key, i) {
+      if ($el.attr(key)) {
+        var _old = _this.prefix + '-' + (id + i + 1)
+        var _new = _this.prefix + '-' + (id + i)
+        $el.attr(key, $el.attr(key).replace(_old, _new))
+      }
+    }
+
+    $form.nextUntil(this.$formTemplate).each(function (i, sibling) {
+      $(sibling).find('*').each(function (j, el) {
+        var $el = $(el)
+        // FIXME: only a limited number of attributes is supported
+        updateAttr($el, 'name', i)
+        updateAttr($el, 'for', i)
+        updateAttr($el, 'id', i)
+      })
+    })
+
+    $form.remove()
   }
 
   function getNewForm ($formTemplate, id) {
