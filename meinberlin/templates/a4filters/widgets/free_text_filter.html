@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<form class="input-addon form-group button-group u-inline-flex" action="" method="get" role="presentation">
+<form class="input-addon form-group btn-group u-inline-flex" action="" method="get" role="presentation">
     <input class="input-addon__input input-round" type="search" name="{{ name }}" placeholder="{% trans 'Search' %}" value="{{ value }}">
     {% for par_name, value in url_par.items %}
         {% if par_name != name %}
