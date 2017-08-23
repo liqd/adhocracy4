@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <form class="input-addon form-group u-inline-flex" action="" method="get" role="presentation">
-    <input class="input-addon__input input-round" type="search" name="{{ name }}" placeholder="{% trans 'Search' %}" value="{{ value }}">
+    <input class="input-addon__input" type="search" name="{{ name }}" placeholder="{% trans 'Search' %}" value="{{ value }}">
     {% for par_name, value in url_par.items %}
         {% if par_name != name %}
             <input type="hidden" name="{{ par_name }}" value="{{ value }}">
