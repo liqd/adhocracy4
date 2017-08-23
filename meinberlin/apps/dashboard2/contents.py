@@ -17,14 +17,6 @@ class DashboardContents:
                              .format(component.identifier))
         self._registry[section][component.identifier] = component
 
-    def unregister_project(self, component):
-        identifier = getattr(component, 'identifier', component)
-        self._registry['projects'].pop(identifier, None)
-
-    def unregister_module(self, component):
-        identifier = getattr(component, 'identifier', component)
-        self._registry['modules'].pop(identifier, None)
-
     def get_project_components(self):
         return sorted(self._registry['projects'].values(),
                       key=_component_sort_key)
