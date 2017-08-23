@@ -1,10 +1,13 @@
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
+from . import DashboardComponent
 from . import ModuleFormComponent
 from . import ModuleFormSetComponent
 from . import ProjectFormComponent
 from . import content
 from . import forms
+from . import views
 
 
 class ProjectBasicComponent(ProjectFormComponent):
@@ -51,7 +54,51 @@ class ModulePhasesComponent(ModuleFormSetComponent):
                          '/module_phases_form.html'
 
 
+class ParticipantsComponent(DashboardComponent):
+    identifier = 'participants'
+    weight = 30
+
+    def get_menu_label(self, project):
+        if project.is_private:
+            return _('Participants')
+        return ''
+
+    def get_base_url(self, project):
+        return reverse('a4dashboard:dashboard-participants-edit', kwargs={
+            'project_slug': project.slug
+        })
+
+    def get_urls(self):
+        return [(
+            r'^projects/(?P<project_slug>[-\w_]+)/participants/$',
+            views.DashboardProjectParticipantsView.as_view(component=self),
+            'dashboard-participants-edit'
+        )]
+
+
+class ModeratorsComponent(DashboardComponent):
+    identifier = 'moderators'
+    weight = 31
+
+    def get_menu_label(self, project):
+        return _('Moderators')
+
+    def get_base_url(self, project):
+        return reverse('a4dashboard:dashboard-moderators-edit', kwargs={
+            'project_slug': project.slug
+        })
+
+    def get_urls(self):
+        return [(
+            r'^projects/(?P<project_slug>[-\w_]+)/moderators/$',
+            views.DashboardProjectModeratorsView.as_view(component=self),
+            'dashboard-moderators-edit'
+        )]
+
+
 content.register_project(ProjectBasicComponent())
 content.register_project(ProjectInformationComponent())
+content.register_project(ModeratorsComponent())
+content.register_project(ParticipantsComponent())
 content.register_module(ModuleBasicComponent())
 content.register_module(ModulePhasesComponent())
