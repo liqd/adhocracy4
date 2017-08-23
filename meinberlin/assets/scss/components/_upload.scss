@@ -24,9 +24,6 @@
 // inputs are in the accessibility tree, but the visual representation is very
 // different from the underlying semantics.
 .upload-wrapper__action {
-    position: absolute;
-    top: 0;
-    right: 0;
     z-index: 1;
 }
 
