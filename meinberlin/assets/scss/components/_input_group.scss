@@ -1,21 +1,21 @@
 // FIXME: this only works with buttons if it is included *afterwards*
 
-.input-addon {
+.input-group {
     display: flex;
 }
 
-.input-addon__input {
+.input-group__input {
     flex: 1 1 auto;
 }
 
-.input-addon__before,
-.input-addon__after {
+.input-group__before,
+.input-group__after {
     flex: 0 1 0%;
 }
 
-.input-addon__input,
-.input-addon__before,
-.input-addon__after {
+.input-group__input,
+.input-group__before,
+.input-group__after {
     border-radius: 0;
 
     &:focus {
@@ -24,7 +24,7 @@
     }
 }
 
-.input-addon__before {
+.input-group__before {
     margin-right: -1px;
 
     &:first-child {
@@ -33,7 +33,7 @@
     }
 }
 
-.input-addon__after {
+.input-group__after {
     margin-left: -1px;
 
     &:last-child {

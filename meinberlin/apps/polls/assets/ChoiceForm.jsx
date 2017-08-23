@@ -21,16 +21,16 @@ class ChoiceForm extends React.Component {
           htmlFor={'id_choices-' + this.props.index + '-name'}>
           {django.gettext('Choice') + ` #${this.props.index}`}
         </label>
-        <div className="input-addon">
+        <div className="input-group">
           <input
             id={'id_choices-' + this.props.index + '-name'}
             name={'choices-' + this.props.index + '-name'}
             type="text"
-            className="input-addon__input"
+            className="input-group__input"
             value={this.props.choice.label}
             onChange={this.handleLabelChange.bind(this)} />
           <button
-            className="input-addon__after btn btn--light"
+            className="input-group__after btn btn--light"
             onClick={this.handleDelete.bind(this)}
             title={django.gettext('remove')}
             type="button">

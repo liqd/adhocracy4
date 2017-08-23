@@ -9,13 +9,13 @@
         {{ field.help_text }}
     </div>
     {% endif %}
-    <div class="widget widget--{{ field|widget_type }} input-addon">
+    <div class="widget widget--{{ field|widget_type }} input-group">
         {% if before %}
-            <span class="input-addon__before addon">{{ before }}</span>
+            <span class="input-group__before addon">{{ before }}</span>
         {% endif %}
-        {{ field|add_class:'input-addon__input' }}
+        {{ field|add_class:'input-group__input' }}
         {% if after %}
-            <span class="input-addon__after addon">{{ after }}</span>
+            <span class="input-group__after addon">{{ after }}</span>
         {% endif %}
     </div>
     {{ field.errors }}
