@@ -8,7 +8,7 @@
 
 // CKEditor uses background images for its toolbar
 .cke_button_icon {
-    // stylelint-disable scale-unlimited/declaration-strict-value
+    // stylelint-disable-next-line scale-unlimited/declaration-strict-value
     -webkit-print-color-adjust: exact;
 }
 
