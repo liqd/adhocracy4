@@ -1,3 +1,9 @@
+@media (min-width: $breakpoint) {
+    .formset {
+        @include grid-width(6);
+    }
+}
+
 .formset__form {
     position: relative;
 
