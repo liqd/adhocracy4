@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.messages.views import SuccessMessageMixin
@@ -86,7 +87,13 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
             project=project,
         )
         module.save()
+        self._create_module_settings(module)
         self._create_phases(module, self.blueprint.content)
+
+    def _create_module_settings(self, module):
+        settings_model = apps.get_model(*self.blueprint.settings_model)
+        module_settings = settings_model(module=module)
+        module_settings.save()
 
     def _create_phases(self, module, blueprint_phases):
         for phase_content in blueprint_phases:
