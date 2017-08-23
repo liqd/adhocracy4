@@ -21,7 +21,7 @@ class ChoiceForm extends React.Component {
           htmlFor={'id_choices-' + this.props.index + '-name'}>
           {django.gettext('Choice') + ` #${this.props.index}`}
         </label>
-        <div className="btn-group input-addon">
+        <div className="input-addon">
           <input
             id={'id_choices-' + this.props.index + '-name'}
             name={'choices-' + this.props.index + '-name'}
