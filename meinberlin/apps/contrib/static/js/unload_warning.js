@@ -1,8 +1,8 @@
 /* global $ CKEDITOR */
 
 $(function () {
-  let submitted = false
-  const changeHandler = function () {
+  var submitted = false
+  var changeHandler = function () {
     $(window).on('beforeunload', function () {
       if (!submitted) {
         return false
@@ -10,7 +10,8 @@ $(function () {
     })
   }
 
-  if (CKEDITOR) {
+  // eslint-disable-next-line no-constant-condition
+  if (!typeof CKEDITOR === 'undefined') {
     CKEDITOR.on('instanceReady', function (e) {
       e.editor.on('change', changeHandler)
     })
