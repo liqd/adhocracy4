@@ -6,37 +6,46 @@
     @extend .input-group;
 }
 
-.date-picker-control:link,
-.date-picker-control:visited {
-    padding: 0.5em 0.4em;
-    border: 1px solid $border-color;
-    min-width: inherit;
-
-    background: $bg-secondary;
+.datepicker {
+    @extend .input-group__input;
 }
+
 // stylelint-disable selector-max-specificity
 // need to override the default styling
-.date-picker-control {
+.date-picker-control:link {
+    background-image: none !important;
+    min-width: 3em;
+    z-index: 0;
+
+    @extend .input-group__after;
+    @extend .btn;
+    @extend .btn--light;
+
+    &:focus {
+        outline: 2px solid Highlight !important;
+        outline: 5px auto -webkit-focus-ring-color !important;
+    }
+
     &:focus,
     &:hover {
         span:first-child:before {
             content: '\f073';
+        }
+
+        span {
+            box-shadow: none !important;
+            animation: none !important;
         }
     }
 }
 // stylelint-enable
 
 .date-picker-control span:first-child {
-    width: auto;
-    height: auto;
-
-    // HACK to remove &nbsp;
-    font-size: 0;
+    display: inline;
 
     &:before {
         content: '\f133';
         font-family: 'FontAwesome';
-        font-size: $font-size-lg;
     }
 }
 
