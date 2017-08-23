@@ -14,7 +14,7 @@
 
     {% if form.show_categories_form %}
         <h2>{% trans 'Categories' %} </h2>
-        <div class="js-formset formset formset--inline"
+        <div class="js-formset formset"
              data-prefix="{{ form.categories.prefix }}"
              data-initial-id="{{ form.categories.initial_form_count }}">
             {{ form.categories.management_form }}
@@ -26,8 +26,9 @@
                 {% include 'meinberlin_contrib/includes/inline_form.html' with form=form.categories.empty_form can_delete=form.categories.can_delete %}
             </div>
 
-            <button class="btn btn--secondary btn--small js-add-form" type="button" title="{% trans 'Add category' %}">
-                <i class="fa fa-plus" aria-label="{% trans 'Add category' %}"></i>
+            <button class="btn btn--secondary btn--small btn--full js-add-form" type="button">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                {% trans 'Add category' %}
             </button>
         </div>
     {% endif %}
