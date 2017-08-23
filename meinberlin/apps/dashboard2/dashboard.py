@@ -50,27 +50,9 @@ class ModulePhasesComponent(ModuleFormSetComponent):
                          '/module_phases_form.html'
 
 
-class ModeratorsComponent(DashboardComponent):
-    identifier = 'moderators'
-
-    def get_menu_label(self, project):
-        return _('Moderators')
-
-    def get_base_url(self, project):
-        return reverse('a4dashboard:dashboard-moderators-edit', kwargs={
-            'project_slug': project.slug
-        })
-
-    def get_urls(self):
-        return [(
-            r'^projects/(?P<project_slug>[-\w_]+)/moderators/$',
-            views.DashboardProjectModeratorsView.as_view(component=self),
-            'dashboard-moderators-edit'
-        )]
-
-
 class ParticipantsComponent(DashboardComponent):
     identifier = 'participants'
+    weight = 30
 
     def get_menu_label(self, project):
         if project.is_private:
@@ -87,6 +69,26 @@ class ParticipantsComponent(DashboardComponent):
             r'^projects/(?P<project_slug>[-\w_]+)/participants/$',
             views.DashboardProjectParticipantsView.as_view(component=self),
             'dashboard-participants-edit'
+        )]
+
+
+class ModeratorsComponent(DashboardComponent):
+    identifier = 'moderators'
+    weight = 31
+
+    def get_menu_label(self, project):
+        return _('Moderators')
+
+    def get_base_url(self, project):
+        return reverse('a4dashboard:dashboard-moderators-edit', kwargs={
+            'project_slug': project.slug
+        })
+
+    def get_urls(self):
+        return [(
+            r'^projects/(?P<project_slug>[-\w_]+)/moderators/$',
+            views.DashboardProjectModeratorsView.as_view(component=self),
+            'dashboard-moderators-edit'
         )]
 
 
