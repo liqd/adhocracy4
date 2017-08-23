@@ -15,7 +15,7 @@
         </div>
 
         <a href="{% url 'a4dashboard:project-create' organisation_slug=view.organisation.slug blueprint_slug=blueprint_slug %}"
-           class="btn">
+           class="btn" data-toggle="ajax-modal" data-target-selector="#project-create-form">
             {% trans 'Select'%}
         </a>
     </div>
