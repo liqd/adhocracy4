@@ -1,11 +1,12 @@
-/* globals $ */
+/* globals $ django */
 $(function () {
-  var $ajaxModals = $('[data-toggle="ajax-modal"]')
   var modalHTML = (
     '<div class="modal">' +
       '<div class="modal-dialog modal-lg" role="document">' +
         '<div class="modal-content">' +
-          '<div class="modal-header"><h2 class="modal-title u-first-heading"></h2><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>' +
+          '<div class="modal-header"><h2 class="modal-title u-first-heading"></h2>' +
+            '<button type="button" class="close" data-dismiss="modal" aria-label="' + django.gettext('close') + '"><span aria-hidden="true">&times;</span></button>' +
+          '</div>' +
           '<div class="modal-body"></div>' +
       '  </div>' +
       '</div>' +
@@ -13,7 +14,7 @@ $(function () {
   )
   var $backdrop = $('<div class="modal-backdrop" />')
 
-  $ajaxModals.on('click', function (e) {
+  $(document).on('click', '[data-toggle="ajax-modal"]', function (e) {
     e.preventDefault()
     var target = this.href + ' ' + this.dataset.targetSelector
     var $newModal = $(modalHTML)
