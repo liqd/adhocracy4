@@ -1,3 +1,11 @@
+.widget--datetimeinput {
+    @include clearfix;
+}
+
+.widget--datetimeinput__date {
+    @extend .input-group;
+}
+
 .date-picker-control:link,
 .date-picker-control:visited {
     padding: 0.5em 0.4em;

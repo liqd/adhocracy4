@@ -104,14 +104,6 @@ select {
     }
 }
 
-.widget--datetimeinput {
-    @include clearfix;
-}
-
-.widget--datetimeinput__date {
-    display: flex;
-}
-
 .errorcount {
     color: $brand-danger;
 }
