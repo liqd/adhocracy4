@@ -9,10 +9,11 @@ $(function () {
       }
     })
   }
-  for (let key in CKEDITOR.instances) {
-    if (CKEDITOR.instances.hasOwnProperty(key)) {
-      CKEDITOR.instances[key].on('change', changeHandler)
-    }
+
+  if (CKEDITOR) {
+    CKEDITOR.on('instanceReady', function (e) {
+      e.editor.on('change', changeHandler)
+    })
   }
 
   $(document).one('change', changeHandler)
