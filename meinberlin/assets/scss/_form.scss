@@ -112,56 +112,6 @@ select {
     display: flex;
 }
 
-.input-addon {
-    display: flex;
-}
-
-.input-addon__input {
-    flex: 1 1 auto;
-}
-
-.input-addon__before,
-.input-addon__after {
-    flex: 0 1 0%;
-}
-
-.input-addon__input,
-.input-addon__before,
-.input-addon__after {
-    border-radius: 0;
-
-    &:focus {
-        // highlighted border should be on top
-        z-index: 1;
-    }
-}
-
-.input-addon__before {
-    margin-right: -1px;
-
-    &:first-child {
-        border-top-left-radius: 0.3em;
-        border-bottom-left-radius: 0.3em;
-    }
-}
-
-.input-addon__after {
-    margin-left: -1px;
-
-    &:last-child {
-        border-top-right-radius: 0.3em;
-        border-bottom-right-radius: 0.3em;
-    }
-}
-
-.addon {
-    @extend %input-base;
-    background-color: $body-bg;
-    color: contrast-color($body-bg);
-    min-width: 2.4em;
-    text-align: center;
-}
-
 .input-round {
     border-radius: 0.3em;
 }
