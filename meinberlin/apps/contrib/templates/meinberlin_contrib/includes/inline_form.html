@@ -1,15 +1,15 @@
 {% load i18n %}
-<div class="formset__form form-group">
-    {% if can_delete %}
+<div class="formset__form {% if not form.name.value %}formset__form--can-remove{% endif %} form-group">
+    {% if can_delete or can_remove %}
         <input type="checkbox" name="{{ form.DELETE.html_name }}" id="{{ form.DELETE.id_for_label }}" class="formset__delete">
     {% endif %}
     <label for="{{ form.name.id_for_label }}" class="sr-only">
         {{ form.name.label }}
     </label>
     {{ form.name }}
-    {% if can_delete %}
+    {% if can_delete or can_remove %}
         <label for="{{ form.DELETE.id_for_label }}" class="formset__delete-label" title="{% trans 'Remove category' %}">
-            <i class="fa fa-trash" aria-label="{% trans 'Remove category' %}"></i>
+            <i class="fa {{ form.name.value|yesno:'fa-trash,fa-times' }}" aria-label="{% trans 'Remove category' %}"></i>
         </label>
     {% endif %}
     {% for hidden in form.hidden_fields %}
