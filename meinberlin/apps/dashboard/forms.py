@@ -205,7 +205,8 @@ class ProjectCreateForm(ProjectEditFormBase):
             project.moderators.add(self.creator)
 
         module = module_models.Module(
-            name=project.slug + '_module',
+            name='Onlinebeteiligung',
+            description=project.description,
             weight=1,
             project=project
         )
