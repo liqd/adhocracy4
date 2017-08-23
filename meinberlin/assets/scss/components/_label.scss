@@ -38,3 +38,11 @@
     background-color: $feedback-color-accepted;
     color: contrast-color($feedback-color-accepted);
 }
+
+@media print {
+    .label {
+        color: $print-black;
+        background-color: contrast-color($print-black);
+        border: 1px solid $border-color;
+    }
+}
