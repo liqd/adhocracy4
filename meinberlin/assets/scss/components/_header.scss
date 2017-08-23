@@ -108,6 +108,10 @@ $header-margin-bottom: 25px;
 .main-nav__toggle {
     float: right;
 
+    @media print {
+        display: none;
+    }
+
     @media screen and (min-width: $breakpoint) {
         display: none;
     }
