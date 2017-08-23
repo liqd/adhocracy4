@@ -1,25 +1,29 @@
+def _component_sort_key(component):
+    return component.weight, component.identifier
+
+
 class DashboardContents:
     _registry = {'projects': {}, 'modules': {}}
 
-    @property
-    def projects(self):
-        return self._registry['projects']
-
-    @property
-    def modules(self):
-        return self._registry['modules']
-
     def register_project(self, component):
-        self._registry['projects'][component.identifier] = component
+        self._register('projects', component)
 
     def register_module(self, component):
-        self._registry['modules'][component.identifier] = component
+        self._register('modules', component)
+
+    def _register(self, section, component):
+        if component.identifier in self._registry[section]:
+            raise ValueError('Identifier ({}) is already registered'
+                             .format(component.identifier))
+        self._registry[section][component.identifier] = component
 
     def get_project_components(self):
-        return list(self._registry['projects'].values())
+        return sorted(self._registry['projects'].values(),
+                      key=_component_sort_key)
 
     def get_module_components(self):
-        return list(self._registry['modules'].values())
+        return sorted(self._registry['modules'].values(),
+                      key=_component_sort_key)
 
     def get_urls(self):
         # FIXME: where to move this method

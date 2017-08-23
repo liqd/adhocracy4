@@ -9,6 +9,7 @@ from . import forms
 
 class ProjectBasicComponent(ProjectFormComponent):
     identifier = 'basic'
+    weight = 10
 
     menu_label = _('Basic settings')
     form_title = _('Edit basic settings')
@@ -19,6 +20,7 @@ class ProjectBasicComponent(ProjectFormComponent):
 
 class ProjectInformationComponent(ProjectFormComponent):
     identifier = 'information'
+    weight = 11
 
     menu_label = _('Information')
     form_title = _('Edit project information')
@@ -29,6 +31,7 @@ class ProjectInformationComponent(ProjectFormComponent):
 
 class ModuleBasicComponent(ModuleFormComponent):
     identifier = 'module_basic'
+    weight = 10
 
     menu_label = _('Basic information')
     form_title = _('Edit basic module information')
@@ -39,6 +42,7 @@ class ModuleBasicComponent(ModuleFormComponent):
 
 class ModulePhasesComponent(ModuleFormSetComponent):
     identifier = 'phases'
+    weight = 11
 
     menu_label = _('Phases')
     form_title = _('Edit phases information')

@@ -9,6 +9,7 @@ from . import views
 
 class OfflineEventsComponent(DashboardComponent):
     identifier = 'offlineevents'
+    weight = 20
 
     def get_menu_label(self, project):
         return _('Offline Events')

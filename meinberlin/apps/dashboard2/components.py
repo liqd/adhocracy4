@@ -26,9 +26,16 @@ class DashboardComponent:
         The identifier is used to register and retrieve components from the
         registry. It may be used to define unique url names.
 
+    weight : int
+        Weight of the component.
+        Used to sort components within the dashboard menu.
+        The component with the lowest weight will be the default entry point
+        for editing a project.
+
     """
 
     identifier = ''
+    weight = 0
 
     def get_menu_label(self, project_or_module):
         """Return the menu label if the component should be shown.
