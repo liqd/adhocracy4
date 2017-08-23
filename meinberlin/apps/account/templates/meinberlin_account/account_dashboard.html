@@ -6,9 +6,9 @@
 {% block content %}
 
 <div class="l-wrapper">
-    <div class="menu-layout">
+    <div class="l-menu">
 
-        <nav class="menu-layout__menu dashboard-nav" aria-label="{% trans 'User Dashboard navigation' %}">
+        <nav class="l-menu__menu dashboard-nav" aria-label="{% trans 'User Dashboard navigation' %}">
             <div class="dropdown dashboard-nav__dropdown">
                 <div class="dashboard-nav__item">
                     {{ request.user.username }}
@@ -53,7 +53,7 @@
             {% endwith %}
         </nav>
 
-        <div class="menu-layout__content">
+        <div class="l-menu__content">
             {% block dashboard_content %}{% endblock %}
         </div>
 

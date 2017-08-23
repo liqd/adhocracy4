@@ -2,8 +2,8 @@
 {% load i18n %}
 
 {% block dashboard_content %}
-    <div class="menu-layout">
-        <nav class="menu-layout__menu" aria-label="{% trans 'Participation projects' %}">
+    <div class="l-menu">
+        <nav class="l-menu__menu" aria-label="{% trans 'Participation projects' %}">
             <div class="dashboard-nav">
                 <div class="dashboard-nav__dropdown">
                     <div class="dashboard-nav__item">{{ project.name }}</div>
@@ -45,11 +45,11 @@
             {% endfor %}
         </nav>
 
-        <div class="menu-layout__content menu-layout__content--aside">
+        <div class="l-menu__content l-menu__content--aside">
             {% block dashboard_project_content %}{% endblock %}
         </div>
 
-        <div class="menu-layout__aside">
+        <div class="l-menu__aside">
             {% include "meinberlin_dashboard2/includes/progress.html" with value=project_progress.valid max=project_progress.required project=project %}
         </div>
     </div>

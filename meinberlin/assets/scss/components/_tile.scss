@@ -8,6 +8,10 @@
 
 .tile__head {
     position: relative;
+
+    @media print {
+        display: none;
+    }
 }
 
 .tile__image {
