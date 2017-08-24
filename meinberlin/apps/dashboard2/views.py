@@ -181,48 +181,6 @@ class ProjectPublishView(mixins.DashboardBaseMixin,
                          _('Project successfully unpublished.'))
 
 
-class ProjectComponentFormView(mixins.DashboardBaseMixin,
-                               mixins.DashboardComponentMixin,
-                               mixins.DashboardContextMixin,
-                               SuccessMessageMixin,
-                               generic.UpdateView):
-
-    permission_required = 'a4projects.add_project'
-    model = project_models.Project
-    template_name = 'meinberlin_dashboard2/base_form_project.html'
-    success_message = _('Project successfully updated.')
-
-    # Properties to be set when calling as_view()
-    component = None
-    title = ''
-    form_class = None
-    form_template_name = ''
-
-    def get_object(self, queryset=None):
-        return self.project
-
-
-class ModuleComponentFormView(mixins.DashboardComponentMixin,
-                              mixins.DashboardBaseMixin,
-                              mixins.DashboardContextMixin,
-                              SuccessMessageMixin,
-                              generic.UpdateView):
-
-    permission_required = 'a4projects.add_project'
-    model = module_models.Module
-    template_name = 'meinberlin_dashboard2/base_form_module.html'
-    success_message = _('Module successfully updated.')
-
-    # Properties to be set when calling as_view()
-    component = None
-    title = ''
-    form_class = None
-    form_template_name = ''
-
-    def get_object(self, queryset=None):
-        return self.module
-
-
 class AbstractProjectUserListView(mixins.DashboardComponentMixin,
                                   mixins.DashboardBaseMixin,
                                   mixins.DashboardContextMixin,
