@@ -153,7 +153,7 @@ class ProjectFormComponent(DashboardComponent):
         return reverse(name, args=[project_or_module.slug])
 
     def get_urls(self):
-        from .views import ProjectComponentFormView
+        from ..views import ProjectComponentFormView
         view = ProjectComponentFormView.as_view(
             component=self,
             title=self.form_title,
@@ -235,7 +235,7 @@ class ModuleFormComponent(ProjectFormComponent):
         return reverse(name, args=[project_or_module.slug])
 
     def get_urls(self):
-        from .views import ModuleComponentFormView
+        from ..views import ModuleComponentFormView
         view = ModuleComponentFormView.as_view(
             component=self,
             title=self.form_title,
