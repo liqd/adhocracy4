@@ -1,0 +1,24 @@
+button.select-item {
+    min-width: 11em;
+    padding-left: 2em;
+
+    position: relative;
+
+    white-space: normal;
+    font-size: $font-size-base;
+}
+
+button.select-item-active {
+    color: $gray-dark;
+}
+
+.select-item-desc {
+    display: block;
+    font-size: $font-size-sm;
+}
+
+.select-item-indicator {
+    position: absolute;
+    top: 0.7em;
+    left: 0.6em;
+}
