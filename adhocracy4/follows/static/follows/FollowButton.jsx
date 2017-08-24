@@ -11,14 +11,24 @@ class FollowButton extends React.Component {
       follows: 0
     }
   }
-  toggleFollow () {
-    api.follow.change({ enabled: !this.state.followed }, this.props.project)
+  setFollow (enabled) {
+    if (enabled === this.state.followed) {
+      return false
+    }
+
+    api.follow.change({ enabled: enabled }, this.props.project)
       .done((follow) => {
         this.setState({
           followed: follow.enabled,
           follows: follow.follows
         })
       })
+  }
+  enableFollow () {
+    this.setFollow(true)
+  }
+  disableFollow () {
+    this.setFollow(false)
   }
   componentDidMount () {
     api.follow.get(this.props.project)
@@ -46,14 +56,14 @@ class FollowButton extends React.Component {
             <i className="fa fa-caret-down" aria-hidden="true" />
           </button>
           <span className="dropdown-menu" aria-labelledby="follow-dropdown">
-            <button className="dropdown-item select-item" onClick={this.toggleFollow}>
+            <button className="dropdown-item select-item" onClick={this.disableFollow.bind(this)}>
               {!this.state.followed ? <i className="fa fa-check select-item-indicator" aria-hidden="true" /> : null}
               {django.gettext('Unfollow')}
               <span className="select-item-desc">
                 {django.gettext('Never be notified.')}
               </span>
             </button>
-            <button className="dropdown-item select-item" onClick={this.toggleFollow}>
+            <button className="dropdown-item select-item" onClick={this.enableFollow.bind(this)}>
               {this.state.followed ? <i className="fa fa-check select-item-indicator" aria-hidden="true" /> : null}
               {django.gettext('Follow')}
               <span className="select-item-desc">
