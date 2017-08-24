@@ -10,8 +10,8 @@ from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
 from meinberlin.apps.organisations import models as org_models
 
+from . import components
 from .blueprints import blueprints
-from .contents import content
 
 
 class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
@@ -95,13 +95,13 @@ class DashboardContextMixin(base.ContextMixin):
         num_valid = 0
         num_required = 0
 
-        for component in content.get_project_components():
+        for component in components.get_project_components():
             nums = component.get_progress(project)
             num_valid = num_valid + nums[0]
             num_required = num_required + nums[1]
 
         for module in project.modules:
-            for component in content.get_module_components():
+            for component in components.get_module_components():
                 nums = component.get_progress(module)
                 num_valid = num_valid + nums[0]
                 num_required = num_required + nums[1]
@@ -133,7 +133,7 @@ class DashboardContextMixin(base.ContextMixin):
     @staticmethod
     def get_project_menu(project, current_component):
         project_menu = []
-        for component in content.get_project_components():
+        for component in components.get_project_components():
             menu_item = component.get_menu_label(project)
             if menu_item:
                 is_active = (component == current_component)
@@ -152,7 +152,7 @@ class DashboardContextMixin(base.ContextMixin):
     @staticmethod
     def get_module_menu(module, current_component, current_module):
         module_menu = []
-        for component in content.get_module_components():
+        for component in components.get_module_components():
             menu_item = component.get_menu_label(module)
             if menu_item:
                 is_active = (component == current_component and

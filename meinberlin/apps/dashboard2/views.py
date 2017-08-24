@@ -18,7 +18,7 @@ from adhocracy4.projects import models as project_models
 from meinberlin.apps.projects.emails import InviteParticipantEmail
 
 from . import blueprints
-from . import content
+from . import components
 from . import forms
 from . import mixins
 
@@ -114,8 +114,7 @@ class ProjectUpdateView(generic.RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         project = get_object_or_404(project_models.Project,
                                     slug=kwargs['project_slug'])
-        components = content.get_project_components()
-        component = components[0]
+        component = components.get_project_components()[0]
         return component.get_base_url(project)
 
 

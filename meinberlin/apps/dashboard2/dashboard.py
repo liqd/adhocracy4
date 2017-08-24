@@ -5,7 +5,7 @@ from . import DashboardComponent
 from . import ModuleFormComponent
 from . import ModuleFormSetComponent
 from . import ProjectFormComponent
-from . import content
+from . import components
 from . import forms
 from . import views
 
@@ -107,9 +107,9 @@ class ModeratorsComponent(DashboardComponent):
         )]
 
 
-content.register_project(ProjectBasicComponent())
-content.register_project(ProjectInformationComponent())
-content.register_project(ModeratorsComponent())
-content.register_project(ParticipantsComponent())
-content.register_module(ModuleBasicComponent())
-content.register_module(ModulePhasesComponent())
+components.register_project(ProjectBasicComponent())
+components.register_project(ProjectInformationComponent())
+components.register_project(ModeratorsComponent())
+components.register_project(ParticipantsComponent())
+components.register_module(ModuleBasicComponent())
+components.register_module(ModulePhasesComponent())
