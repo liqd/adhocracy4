@@ -39,10 +39,27 @@ class FollowButton extends React.Component {
   render () {
     return (
       <span className="btngroup btngroup-gray">
-        <button className="btn btn-sm btn-dark btn-primary" type="button" onClick={this.toggleFollow.bind(this)}>
-          <i className={this.state.followed ? 'fa fa-star' : 'fa fa-star-o'} aria-hidden="true" />
-          &nbsp;{this.state.followed ? django.gettext('Unfollow') : django.gettext('Follow')}
-        </button>
+        <span className="dropdown">
+          <button className="btn btn-secondary dropdown-toggle" type="button" id="follow-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i className="fa fa-star" aria-hidden="true" /> {django.gettext('Follow')} <i className="fa fa-caret-down" aria-hidden="true" />
+          </button>
+          <span className="dropdown-menu" aria-labelledby="follow-dropdown">
+            <button className="dropdown-item select-item" onClick={this.toggleFollow}>
+              {!this.state.followed ? <i className="fa fa-check select-item-indicator" aria-hidden="true" /> : null}
+              {django.gettext('Unfollow')}
+              <span className="select-item-desc">
+                {django.gettext('Never be notified.')}
+              </span>
+            </button>
+            <button className="dropdown-item select-item" onClick={this.toggleFollow}>
+              {this.state.followed ? <i className="fa fa-check select-item-indicator" aria-hidden="true" /> : null}
+              {django.gettext('Follow')}
+              <span className="select-item-desc">
+                {django.gettext('Be notified if something happens in the project.')}
+              </span>
+            </button>
+          </span>
+        </span>
         <span className="btn btn-sm btn-dark btn-primary">{this.state.follows}</span>
       </span>
     )
