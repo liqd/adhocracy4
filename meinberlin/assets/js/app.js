@@ -22,10 +22,7 @@ var tab = require('bootstrap/js/src/tab.js')
 var popover = require('bootstrap/js/src/popover.js')
 var collapse = require('bootstrap/js/src/collapse.js')
 
-// initialize moment locale
-var moment = require('moment')
 var django = require('django')
-moment.locale(django.languageCode)
 
 // expose react components
 var ReactComments = require('adhocracy4').comments
