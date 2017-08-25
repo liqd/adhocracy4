@@ -19,13 +19,13 @@ class ImageInputWidget(widgets.ClearableFileInput):
         js = (staticfiles_storage.url('a4images/imageUploader.js'),)
 
     def render(self, name, value, attrs=None):
-
+        html_id = attrs.get('id', name)
         has_image_set = self.is_initial(value)
         is_required = self.is_required
 
         file_placeholder = ugettext('Select a picture from your local folder.')
         file_input = super().render(name, None, {
-            'id': name,
+            'id': html_id,
             'class': 'form-control form-control-file'
         })
 
@@ -40,7 +40,7 @@ class ImageInputWidget(widgets.ClearableFileInput):
             'class': 'form-control form-control-file-dummy',
             'placeholder': file_placeholder,
             'tabindex': '-1',
-            'id': 'text-{}'.format(name)
+            'id': 'text-{}'.format(html_id)
         })
 
         checkbox_id = self.clear_checkbox_id(name)
@@ -48,16 +48,16 @@ class ImageInputWidget(widgets.ClearableFileInput):
         checkbox_input = widgets.CheckboxInput().render(checkbox_name, False, {
             'id': checkbox_id,
             'class': 'clear-image',
-            'data-upload-clear': name,
+            'data-upload-clear': html_id,
         })
 
         context = {
-            'name': name,
+            'id': html_id,
             'has_image_set': has_image_set,
             'is_required': is_required,
             'file_url': file_url,
             'file_input': file_input,
-            'file_id': name + '-file',
+            'file_id': html_id + '-file',
             'text_input': text_input,
             'checkbox_input': checkbox_input,
             'checkbox_id': checkbox_id
