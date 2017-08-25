@@ -52,9 +52,9 @@ class Comment(base.UserGeneratedContentModel):
             self.comment)
 
         if self.is_removed:
-            self.comment = 'deleted by creator'
+            self.comment = _('deleted by creator')
         if self.is_censored:
-            self.comment = 'deleted by moderator'
+            self.comment = _('deleted by moderator')
         return super(Comment, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
