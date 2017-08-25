@@ -12,8 +12,7 @@ $(function () {
     })
   }
 
-  // eslint-disable-next-line no-constant-condition
-  if (!typeof CKEDITOR === 'undefined') {
+  if (window.CKEDITOR) {
     CKEDITOR.on('instanceReady', function (e) {
       e.editor.on('change', changeHandler)
     })
