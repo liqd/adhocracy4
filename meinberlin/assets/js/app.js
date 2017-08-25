@@ -19,7 +19,6 @@ var Shariff = require('shariff')
 var dropdown = require('bootstrap/js/src/dropdown.js')
 var modal = require('bootstrap/js/src/modal.js')
 var tab = require('bootstrap/js/src/tab.js')
-var popover = require('bootstrap/js/src/popover.js')
 var collapse = require('bootstrap/js/src/collapse.js')
 
 var django = require('django')

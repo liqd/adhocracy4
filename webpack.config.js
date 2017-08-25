@@ -107,11 +107,6 @@ module.exports = {
         from: './meinberlin/assets/info',
         to: 'info/',
         flatten: false
-      },
-      {
-        from: './meinberlin/assets/js/popover.js',
-        to: 'js/',
-        flatten: false
       }
     ])
   ]
