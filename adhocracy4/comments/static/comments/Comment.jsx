@@ -134,7 +134,7 @@ class Comment extends React.Component {
           }
           {moderatorLabel}
         </h3>
-        <span className="comment-submission-date">{lastDate}</span>
+        {!this.props.is_deleted ? <span className="comment-submission-date">{lastDate}</span> : null}
         {this.renderComment()}
         <div className="action-bar">
           <nav className="navbar navbar-default navbar-static">
