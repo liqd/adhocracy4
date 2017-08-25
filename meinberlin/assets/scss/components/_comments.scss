@@ -3,6 +3,7 @@
     margin: 4em 0 2.5em;
     background-color: $text-color;
     color: contrast-color($text-color);
+    page-break-before: always;
 
     @media print {
         padding: 0;

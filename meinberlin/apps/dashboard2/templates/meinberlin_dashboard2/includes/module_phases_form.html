@@ -6,13 +6,13 @@
     {% get_phase_name phase_form.type.value as phasename %}
     <h3>{{ phasename }}</h3>
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=phase_form.name %}
+    {% include 'meinberlin_dashboard2/includes/form_field.html' with field=phase_form.name %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=phase_form.description %}
+    {% include 'meinberlin_dashboard2/includes/form_field.html' with field=phase_form.description %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=phase_form.start_date %}
+    {% include 'meinberlin_dashboard2/includes/form_field.html' with field=phase_form.start_date %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=phase_form.end_date %}
+    {% include 'meinberlin_dashboard2/includes/form_field.html' with field=phase_form.end_date %}
 
     {% for hidden in phase_form.hidden_fields %}
         {{ hidden }}

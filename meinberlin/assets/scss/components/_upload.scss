@@ -1,5 +1,6 @@
 .upload-wrapper {
     position: relative;
+
     @include clearfix;
 
     // in front of text input, but invisible

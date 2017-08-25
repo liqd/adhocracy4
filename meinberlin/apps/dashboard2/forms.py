@@ -1,11 +1,12 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
 from django.forms import inlineformset_factory
-from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.users.fields import CommaSeparatedEmailField
 
 User = get_user_model()
 
@@ -38,23 +39,20 @@ class ProjectCreateForm(forms.ModelForm):
         return project
 
 
-class ProjectUpdateForm(forms.ModelForm):
-
-    class Meta:
-        model = project_models.Project
-        fields = ['name', 'description', 'image', 'tile_image', 'information',
-                  'result', 'is_archived', 'is_public']
-        labels = {
-            'is_public': _('This project is public.')
-        }
-
-
 def _make_fields_required(fields, required):
     """Set the required attributes on all fields who's key is in required."""
     if required:
         for name, field in fields:
             if required == '__all__' or name in required:
                 field.required = True
+
+
+def _make_fields_required_for_publish(fields, required):
+    """Set the required attributes on all fields who's key is in required."""
+    if required:
+        for name, field in fields:
+            if required == '__all__' or name in required:
+                field.required_for_publish = True
 
 
 class ProjectDashboardForm(forms.ModelForm):
@@ -72,10 +70,13 @@ class ProjectDashboardForm(forms.ModelForm):
             _make_fields_required(self.fields.items(),
                                   self.get_required_fields())
 
+        _make_fields_required_for_publish(self.fields.items(),
+                                          self.get_required_fields())
+
     @classmethod
     def get_required_fields(cls):
         meta = getattr(cls, 'Meta', None)
-        return getattr(meta, 'required', [])
+        return getattr(meta, 'required_for_project_publish', [])
 
 
 class ModuleDashboardForm(forms.ModelForm):
@@ -93,10 +94,13 @@ class ModuleDashboardForm(forms.ModelForm):
             _make_fields_required(self.fields.items(),
                                   self.get_required_fields())
 
+        _make_fields_required_for_publish(self.fields.items(),
+                                          self.get_required_fields())
+
     @classmethod
     def get_required_fields(cls):
         meta = getattr(cls, 'Meta', None)
-        return getattr(meta, 'required', [])
+        return getattr(meta, 'required_for_project_publish', [])
 
 
 class ModuleDashboardFormSet(forms.BaseInlineFormSet):
@@ -110,16 +114,18 @@ class ModuleDashboardFormSet(forms.BaseInlineFormSet):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        if not self.instance.project.is_draft:
-            required_fields = self.get_required_fields()
-            for form in self.forms:
+        required_fields = self.get_required_fields()
+        for form in self.forms:
+            _make_fields_required_for_publish(form.fields.items(),
+                                              required_fields)
+            if not self.instance.project.is_draft:
                 _make_fields_required(form.fields.items(),
                                       required_fields)
 
     @classmethod
     def get_required_fields(cls):
         meta = getattr(cls.form, 'Meta', None)
-        return getattr(meta, 'required', [])
+        return getattr(meta, 'required_for_project_publish', [])
 
 
 class ProjectBasicForm(ProjectDashboardForm):
@@ -128,7 +134,7 @@ class ProjectBasicForm(ProjectDashboardForm):
         model = project_models.Project
         fields = ['name', 'description', 'image', 'tile_image', 'is_archived',
                   'is_public']
-        required = '__all__'
+        required_for_project_publish = '__all__'
 
 
 class ProjectInformationForm(ProjectDashboardForm):
@@ -136,7 +142,7 @@ class ProjectInformationForm(ProjectDashboardForm):
     class Meta:
         model = project_models.Project
         fields = ['information']
-        required = '__all__'
+        required_for_project_publish = '__all__'
 
 
 class ModuleBasicForm(ModuleDashboardForm):
@@ -144,7 +150,7 @@ class ModuleBasicForm(ModuleDashboardForm):
     class Meta:
         model = module_models.Module
         fields = ['name', 'description']
-        required = '__all__'
+        required_for_project_publish = '__all__'
 
 
 class PhaseForm(forms.ModelForm):
@@ -157,7 +163,7 @@ class PhaseForm(forms.ModelForm):
             'type': forms.HiddenInput(),
             'weight': forms.HiddenInput()
         }
-        required = '__all__'
+        required_for_project_publish = '__all__'
 
 
 PhaseFormSet = inlineformset_factory(module_models.Module,
@@ -167,3 +173,29 @@ PhaseFormSet = inlineformset_factory(module_models.Module,
                                      extra=0,
                                      can_delete=False,
                                      )
+
+
+class AddUsersFromEmailForm(forms.Form):
+    add_users = CommaSeparatedEmailField()
+
+    def __init__(self, *args, **kwargs):
+        # Store the label for the CommaSeparatedEmailField
+        label = kwargs.pop('label', None)
+
+        super().__init__(*args, **kwargs)
+
+        if label:
+            self.fields['add_users'].label = label
+
+    def clean_add_users(self):
+        users = []
+        missing = []
+        for email in self.cleaned_data['add_users']:
+            try:
+                user = User.objects.get(email__exact=email)
+                users.append(user)
+            except ObjectDoesNotExist:
+                missing.append(email)
+
+        self.missing = missing
+        return users

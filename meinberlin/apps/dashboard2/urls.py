@@ -1,5 +1,7 @@
+from django.conf.urls import include
 from django.conf.urls import url
 
+from . import content
 from . import views
 
 app_name = 'a4dashboard'
@@ -17,12 +19,8 @@ urlpatterns = [
     url(r'^projects/(?P<project_slug>[-\w_]+)/$',
         views.ProjectUpdateView.as_view(),
         name='project-edit'),
-    url(r'^projects/(?P<project_slug>[-\w_]+)/'
-        r'(?P<component_identifier>[-_:\w]+)/$',
-        views.ProjectComponentDispatcher.as_view(),
-        name='project-edit-component'),
-    url(r'^modules/(?P<module_slug>[-\w_]+)/'
-        r'(?P<component_identifier>[-_:\w]+)/$',
-        views.ModuleComponentDispatcher.as_view(),
-        name='module-edit-component'),
+    url(r'^publish/project/(?P<project_slug>[-\w_]+)/$',
+        views.ProjectPublishView.as_view(),
+        name='project-publish'),
+    url(r'', include(content.get_urls())),
 ]

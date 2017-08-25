@@ -1,22 +1,12 @@
-{% extends 'meinberlin_dashboard/base_dashboard.html' %}
+{% extends "meinberlin_dashboard2/base_dashboard_project.html" %}
 {% load i18n %}
 
 {% block title %}Edit {{object.name}} &mdash; {{ block.super }}{% endblock %}
-{% block dashboard_content %}
+{% block dashboard_project_content %}
 <div class="l-wrapper">
-    <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
-        <ul>
-            <li>
-                <a href="{% url 'meinberlin_offlineevents:offlineevent-list' project_slug=project.slug %}">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    {% trans 'back to offline events' %}</a>
-            </li>
-        </ul>
-    </nav>
+    <h1 class="u-first-heading">{% trans 'Edit offline event' %}</h1>
 
-    <h1>{% trans 'Edit offline event' %}</h1>
-
-    {% url 'meinberlin_offlineevents:offlineevent-mgmt' project_slug=project.slug as cancel %}
+    {% url 'a4dashboard:offlineevent-list' project_slug=project.slug as cancel %}
     {% include "meinberlin_offlineevents/includes/offlineevent_form.html" with cancel=cancel %}
 </div>
 {% endblock %}

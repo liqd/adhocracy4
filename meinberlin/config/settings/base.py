@@ -368,5 +368,6 @@ A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
 
-CONTACT_EMAIL = 'support-berlin@liqd.de'
+CONTACT_EMAIL = 'support-berlin@liqd.net'
+SUPERVISOR_EMAIL = 'supervisor-berlin@liqd.net'
 EMAIL_DEFAULT_LANGUAGE = 'de'

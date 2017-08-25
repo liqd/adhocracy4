@@ -1,10 +1,10 @@
 {% extends "meinberlin_dashboard2/base_dashboard.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}{% trans "New Project" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_content %}
-<h1 class="menu-layout__title">{% trans "New Project" %}</h1>
+<h1>{% trans "New Project" %}</h1>
 
 <ul class="l-tiles-3">
     {% for blueprint_slug, blueprint in view.blueprints %}
@@ -12,4 +12,8 @@
     {% endfor %}
 </ul>
 
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/ajax_modal.js' %}"></script>
 {% endblock %}

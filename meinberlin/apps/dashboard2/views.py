@@ -1,19 +1,26 @@
+from django.apps import apps
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
 from django.http import Http404
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ungettext
 from django.views import generic
+from django.views.generic.detail import SingleObjectMixin
 
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.projects.emails import InviteParticipantEmail
 
 from . import blueprints
+from . import content
 from . import forms
 from . import mixins
-from .contents import content
 
 User = get_user_model()
 
@@ -77,12 +84,19 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
 
     def _create_modules_and_phases(self, project):
         module = module_models.Module(
-            name=project.slug + '_module',
+            name='Onlinebeteiligung',
+            description=project.description,
             weight=1,
             project=project,
         )
         module.save()
+        self._create_module_settings(module)
         self._create_phases(module, self.blueprint.content)
+
+    def _create_module_settings(self, module):
+        settings_model = apps.get_model(*self.blueprint.settings_model)
+        module_settings = settings_model(module=module)
+        module_settings.save()
 
     def _create_phases(self, module, blueprint_phases):
         for phase_content in blueprint_phases:
@@ -96,81 +110,75 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
             phase.save()
 
 
-class ProjectUpdateView(mixins.DashboardBaseMixin,
-                        generic.UpdateView,
-                        SuccessMessageMixin):
+class ProjectUpdateView(generic.RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        project = get_object_or_404(project_models.Project,
+                                    slug=kwargs['project_slug'])
+        components = content.get_project_components()
+        component = components[0]
+        return component.get_base_url(project)
+
+
+class ProjectPublishView(mixins.DashboardBaseMixin,
+                         SingleObjectMixin,
+                         generic.View):
+    permission_required = 'a4projects.add_project'
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
-    form_class = forms.ProjectUpdateForm
-    template_name = 'meinberlin_dashboard2/project_update_form.html'
-    permission_required = 'a4projects.add_project'
-    success_message = _('Project successfully created.')
 
+    def post(self, request, *args, **kwargs):
+        self.project = self.get_object()
 
-class ProjectComponentDispatcher(mixins.DashboardBaseMixin,
-                                 generic.View):
+        action = request.POST.get('action', None)
+        if action == 'publish':
+            self.publish_project()
+        elif action == 'unpublish':
+            self.unpublish_project()
+        else:
+            messages.warning(self.request, _('Invalid action'))
 
-    def dispatch(self, request, *args, **kwargs):
-        project = self.get_project()
-        if not project:
-            raise Http404('Project not found')
+        return HttpResponseRedirect(self.get_next())
 
-        component = self.get_component()
-        if not component:
-            raise Http404('Component not found')
+    def get_next(self):
+        if 'referrer' in self.request.POST:
+            return self.request.POST['referrer']
+        elif 'HTTP_REFERER' in self.request.META:
+            return self.request.META['HTTP_REFERER']
 
-        kwargs['module'] = None
-        kwargs['project'] = project
-        return component.get_view()(request, *args, **kwargs)
+        return reverse('project-edit', kwargs={
+            'project_slug': self.project.slug
+        })
 
-    def get_component(self):
-        if 'component_identifier' not in self.kwargs:
-            return None
-        if self.kwargs['component_identifier'] not in content.projects:
-            return None
-        return content.projects[self.kwargs['component_identifier']]
+    def publish_project(self):
+        if not self.project.is_draft:
+            messages.info(self.request, _('Project is already published'))
+            return
 
-    def get_project(self):
-        if 'project_slug' not in self.kwargs:
-            return None
-        return get_object_or_none(project_models.Project,
-                                  slug=self.kwargs['project_slug'])
+        # FIXME: Move logic somewhere else
+        progress = mixins.DashboardContextMixin\
+            .get_project_progress(self.project)
+        is_complete = progress['valid'] == progress['required']
 
-    def get_module(self):
-        return None
+        if not is_complete:
+            messages.error(self.request,
+                           _('Project cannot be published. '
+                             'Required fields are missing.'))
+            return
 
+        self.project.is_draft = False
+        self.project.save()
+        messages.success(self.request,
+                         _('Project successfully published.'))
 
-class ModuleComponentDispatcher(mixins.DashboardBaseMixin,
-                                generic.View):
+    def unpublish_project(self):
+        if self.project.is_draft:
+            messages.info(self.request, _('Project is already unpublished'))
+            return
 
-    def dispatch(self, request, *args, **kwargs):
-        module = self.get_module()
-        if not module:
-            raise Http404('Module not found')
-
-        component = self.get_component()
-        if not component:
-            raise Http404('Component not found')
-
-        kwargs['module'] = module
-        kwargs['project'] = module.project
-        return component.get_view()(request, *args, **kwargs)
-
-    def get_component(self):
-        if 'component_identifier' not in self.kwargs:
-            return None
-        if self.kwargs['component_identifier'] not in content.modules:
-            return None
-        return content.modules[self.kwargs['component_identifier']]
-
-    def get_module(self):
-        if 'module_slug' not in self.kwargs:
-            return None
-        return get_object_or_none(module_models.Module,
-                                  slug=self.kwargs['module_slug'])
-
-    def get_project(self):
-        return self.get_module().project
+        self.project.is_draft = True
+        self.project.save()
+        messages.success(self.request,
+                         _('Project successfully unpublished.'))
 
 
 class ProjectComponentFormView(mixins.DashboardBaseMixin,
@@ -194,8 +202,8 @@ class ProjectComponentFormView(mixins.DashboardBaseMixin,
         return self.project
 
 
-class ModuleComponentFormView(mixins.DashboardBaseMixin,
-                              mixins.DashboardComponentMixin,
+class ModuleComponentFormView(mixins.DashboardComponentMixin,
+                              mixins.DashboardBaseMixin,
                               mixins.DashboardContextMixin,
                               SuccessMessageMixin,
                               generic.UpdateView):
@@ -213,3 +221,101 @@ class ModuleComponentFormView(mixins.DashboardBaseMixin,
 
     def get_object(self, queryset=None):
         return self.module
+
+
+class AbstractProjectUserListView(mixins.DashboardComponentMixin,
+                                  mixins.DashboardBaseMixin,
+                                  mixins.DashboardContextMixin,
+                                  generic.base.TemplateResponseMixin,
+                                  generic.edit.FormMixin,
+                                  generic.detail.SingleObjectMixin,
+                                  generic.edit.ProcessFormView):
+
+    form_class = forms.AddUsersFromEmailForm
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if 'submit_action' in request.POST and (
+                request.POST['submit_action'] == 'remove_user'):
+            pk = int(request.POST['user_pk'])
+            user = get_object_or_404(User, pk=pk)
+
+            if request.POST['submit_action'] == 'remove_user':
+                related_users = getattr(self.object, self.related_users_field)
+                related_users.remove(user)
+                messages.success(request, self.success_message_removal)
+
+            return redirect(self.get_success_url())
+        else:
+            return super().post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        if form.missing:
+            messages.error(
+                self.request,
+                _('Following emails are not registered: ') + ', '.join(
+                    form.missing)
+            )
+
+        if form.cleaned_data['add_users']:
+            users = form.cleaned_data['add_users']
+            related_users = getattr(self.object,
+                                    self.related_users_field)
+            related_users.add(*users)
+
+            messages.success(
+                self.request,
+                ungettext(self.success_message[0], self.success_message[1],
+                          len(users)).format(len(users))
+            )
+
+        return redirect(self.get_success_url())
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['label'] = self.add_user_field_label
+        return kwargs
+
+
+class DashboardProjectModeratorsView(AbstractProjectUserListView):
+
+    model = project_models.Project
+    slug_url_kwarg = 'project_slug'
+    template_name = 'meinberlin_dashboard2/project_moderators.html'
+    permission_required = 'a4projects.add_project'
+    menu_item = 'project'
+
+    related_users_field = 'moderators'
+    add_user_field_label = _('Add moderators via email')
+    success_message = ('{} moderator added.', '{} moderators added.')
+    success_message_removal = _('Moderator successfully removed.')
+
+
+class DashboardProjectParticipantsView(AbstractProjectUserListView):
+
+    model = project_models.Project
+    slug_url_kwarg = 'project_slug'
+    template_name = 'meinberlin_dashboard2/project_participants.html'
+    permission_required = 'a4projects.add_project'
+    menu_item = 'project'
+
+    related_users_field = 'participants'
+    add_user_field_label = _('Add users via email')
+    success_message = ('{} user added.', '{} users added.')
+    success_message_removal = _('User successfully removed.')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        # Send invitation mails to the new participants
+        users = form.cleaned_data.get('add_users', None)
+        if users:
+            participant_ids = [user.id for user in users]
+            InviteParticipantEmail.send(self.object,
+                                        participant_ids=participant_ids)
+
+        return response

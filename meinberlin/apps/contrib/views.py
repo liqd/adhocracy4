@@ -1,6 +1,5 @@
+from django.core.exceptions import PermissionDenied
 from django.http import Http404
-from django.http import HttpResponseForbidden
-from django.http import HttpResponseServerError
 from django.shortcuts import get_object_or_404
 from django.views import generic
 
@@ -16,6 +15,9 @@ class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
 
     Note: Must always be defined as the _first_ parent class.
     """
+
+    module = None
+    project = None
 
     project_lookup_field = 'slug'
     project_url_kwarg = 'project_slug'
@@ -95,11 +97,11 @@ class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
         self.request.project = project
 
         if not project:
-            return HttpResponseServerError()
+            raise Http404()
 
         if not self.validate_object_project()\
                 or not self.validate_object_module():
-            return HttpResponseForbidden()
+            raise PermissionDenied()
 
         return super(ProjectContextDispatcher, self)\
             .dispatch(request, *args, **kwargs)
