@@ -10,18 +10,18 @@
                 <i class="fa fa-trash" aria-label="{% trans 'Remove the picture' %}"></i>
             </label>
         {% else %}
-            <label for="{{ name }}"
+            <label for="{{ id }}"
                 class="upload-wrapper__action input-group__after btn"
                 title="{% trans 'Upload a picture' %}">
                 <i class="fa fa-cloud-upload" aria-label="{% trans 'Upload a picture' %}"></i>
             </label>
         {% endif %}
     </div>
-    <div class="form-{{ name }} upload-wrapper__preview">
+    <div class="form-{{ id }} upload-wrapper__preview">
         {{ checkbox_input }}
         <img id="{{ file_id }}"
              src="{% if has_image_set %}{{ file_url }}{% endif %}"
-             data-upload-preview="{{ name }}"
+             data-upload-preview="{{ id }}"
              alt=""
         >
     </div>
