@@ -9,7 +9,7 @@
 ## Who reviews pull requests
  - if the change is breaking (check & label your PR):
    - Review has to be done from another team than the one providing.
- - if the change adds a new feature:
+ - if the change adds a new feature (check & label your PR):
    - Review has to be done from another team than the one providing.
  - if none of the above applies:
    - The providing team can review and merge.
