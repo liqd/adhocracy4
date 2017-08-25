@@ -39,7 +39,8 @@ class ImageInputWidget(widgets.ClearableFileInput):
         text_input = widgets.TextInput().render('__noname__', file_name, {
             'class': 'form-control form-control-file-dummy',
             'placeholder': file_placeholder,
-            'tabindex': '-1'
+            'tabindex': '-1',
+            'id': 'text-{}'.format(name)
         })
 
         checkbox_id = self.clear_checkbox_id(name)
