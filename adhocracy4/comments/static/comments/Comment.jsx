@@ -8,10 +8,14 @@ var CommentManageDropdown = require('./CommentManageDropdown')
 
 var React = require('react')
 var django = require('django')
-var moment = require('moment')
 
 var safeHtml = function (text) {
   return { __html: text }
+}
+
+
+var localeDate = function (dateStr) {
+  return new Date(dateStr).toLocaleString(document.documentElement.lang)
 }
 
 class Comment extends React.Component {
@@ -104,9 +108,9 @@ class Comment extends React.Component {
     let CommentList = require('./CommentList')
     let lastDate
     if (this.props.modified === null && !this.props.is_deleted) {
-      lastDate = moment(this.props.created).format('lll')
+      lastDate = localeDate(this.props.created)
     } else if (!this.props.is_deleted) {
-      lastDate = django.gettext('Latest edit on') + ' ' + moment(this.props.modified).format('lll')
+      lastDate = django.gettext('Latest edit on') + ' ' + localeDate(this.props.modified)
     }
 
     let moderatorLabel
