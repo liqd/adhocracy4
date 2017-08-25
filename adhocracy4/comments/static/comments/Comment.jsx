@@ -13,7 +13,6 @@ var safeHtml = function (text) {
   return { __html: text }
 }
 
-
 var localeDate = function (dateStr) {
   return new Date(dateStr).toLocaleString(document.documentElement.lang)
 }
