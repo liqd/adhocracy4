@@ -17,7 +17,7 @@
     </div>
 </div>
 
-<form action="{% url 'a4dashboard:project-publish' project_slug=project.slug %}" method="post">
+<form action="{% url 'a4dashboard:project-publish' project_slug=project.slug %}" method="post" data-ignore-submit="true">
     {% csrf_token %}
     <input type="hidden" name="referrer" value="{{ request.path }}" />
 

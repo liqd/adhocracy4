@@ -19,7 +19,10 @@ $(function () {
   }
 
   $(document).one('change', changeHandler)
-    .on('submit', function () {
+    .on('submit', function (e) {
+      if ($(e.target).data('ignore-submit') === true) {
+        return true
+      }
       submitted = true
     })
 })
