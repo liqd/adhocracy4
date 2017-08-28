@@ -107,9 +107,31 @@ class ModeratorsComponent(DashboardComponent):
         )]
 
 
+class ModuleAreaSettingsComponent(ModuleFormComponent):
+    identifier = 'area_settings'
+    weight = 12
+
+    menu_label = _('Areasettings')
+    form_title = _('Edit areasettings')
+    form_class = forms.AreaSettingsForm
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/module_areasettings_form.html'
+
+    def get_menu_label(self, module):
+        module_settings = module.settings_instance
+        if module_settings and hasattr(module_settings, 'polygon'):
+            return self.menu_label
+        return ''
+
+    def get_progress(self, module):
+        module_settings = module.settings_instance
+        return super().get_progress(module_settings)
+
+
 content.register_project(ProjectBasicComponent())
 content.register_project(ProjectInformationComponent())
 content.register_project(ModeratorsComponent())
 content.register_project(ParticipantsComponent())
 content.register_module(ModuleBasicComponent())
 content.register_module(ModulePhasesComponent())
+content.register_module(ModuleAreaSettingsComponent())

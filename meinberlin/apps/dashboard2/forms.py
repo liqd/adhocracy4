@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.maps import models as map_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
@@ -227,3 +228,24 @@ class AddUsersFromEmailForm(forms.Form):
 
         self.missing = missing
         return users
+
+
+class AreaSettingsForm(ModuleDashboardForm):
+
+    def __init__(self, *args, **kwargs):
+        self.module = kwargs['instance']
+        kwargs['instance'] = self.module.settings_instance
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        super().save(commit)
+        return self.module
+
+    def get_project(self):
+        return self.module.project
+
+    class Meta:
+        model = map_models.AreaSettings
+        fields = ['polygon']
+        required_for_project_publish = ['polygon']
+        widgets = map_models.AreaSettings.widgets()

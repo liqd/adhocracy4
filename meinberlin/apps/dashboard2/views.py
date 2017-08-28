@@ -205,8 +205,8 @@ class ProjectComponentFormView(mixins.DashboardBaseMixin,
         return self.project
 
 
-class ModuleComponentFormView(mixins.DashboardComponentMixin,
-                              mixins.DashboardBaseMixin,
+class ModuleComponentFormView(mixins.DashboardBaseMixin,
+                              mixins.DashboardComponentMixin,
                               mixins.DashboardContextMixin,
                               SuccessMessageMixin,
                               generic.UpdateView):
