@@ -38,6 +38,7 @@ class ProjectListView(mixins.DashboardBaseMixin,
     paginate_by = 12
     template_name = 'meinberlin_dashboard2/project_list.html'
     permission_required = 'a4projects.add_project'
+    menu_item = 'project'
 
     def get_queryset(self):
         return super().get_queryset().filter(
@@ -61,6 +62,7 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
     form_class = forms.ProjectCreateForm
     template_name = 'meinberlin_dashboard2/project_create_form.html'
     permission_required = 'a4projects.add_project'
+    menu_item = 'project'
     success_message = _('Project succesfully created.')
 
     def get_form_kwargs(self):
@@ -94,9 +96,10 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
         self._create_phases(module, self.blueprint.content)
 
     def _create_module_settings(self, module):
-        settings_model = apps.get_model(*self.blueprint.settings_model)
-        module_settings = settings_model(module=module)
-        module_settings.save()
+        if self.blueprint.settings_model:
+            settings_model = apps.get_model(*self.blueprint.settings_model)
+            module_settings = settings_model(module=module)
+            module_settings.save()
 
     def _create_phases(self, module, blueprint_phases):
         for phase_content in blueprint_phases:
