@@ -5,7 +5,7 @@ django-capture-tag==1.0
 # commit points to PR with 1.9 compatibility
 git+git://github.com/encolpe/django-multiform.git@django-1.9#egg=django-multiform
 html5lib==0.999999999
-wagtail==1.11.1
+wagtail==1.12
 XlsxWriter==0.9.8
 zeep==2.3.0
 
