@@ -60,3 +60,8 @@
         line-height: inherit;
     }
 }
+
+.dashboard-nav__item--primary {
+    background: $brand-primary;
+    color: contrast-color($brand-primary);
+}
