@@ -10,6 +10,9 @@ var init = function () {
     $('#' + inputId).change(function (e) {
       var domInput = e.target
       if (domInput.files && domInput.files[0]) {
+        var name = domInput.files[0].name
+        $('#text-' + inputId).val(name)
+        previewImage.alt = name
         if (window.FileReader) {
           var reader = new window.FileReader()
           reader.onload = function (e) {
