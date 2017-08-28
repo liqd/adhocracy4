@@ -11,11 +11,11 @@
             {{ form.add_users.help_text }}
         </div>
         {% endif %}
-        <div class="input-group">
-            <div class="input-group__input widget widget--{{ form.add_users|widget_type }}">
+        <div class="btn-group input-addon">
+            <div class="input-addon__input widget widget--{{ form.add_users|widget_type }}">
                 {{ form.add_users }}
             </div>
-            <input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Add' %}"/>
+            <input type="submit" class="btn btn--primary input-addon__after" value="{% trans 'Add' %}"/>
         </div>
         {{ form.add_users.errors }}
     </div>

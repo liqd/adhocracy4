@@ -58,6 +58,10 @@
 .tablist__left {
     font-size: $font-size-sm;
     float: right;
+
+    &.dropdown {
+        margin-bottom: 0;
+    }
 }
 
 .tablist__left {
