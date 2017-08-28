@@ -134,9 +134,9 @@ class ProjectBasicForm(ProjectDashboardForm):
 
     class Meta:
         model = project_models.Project
-        fields = ['name', 'description', 'image', 'tile_image', 'is_archived',
-                  'is_public']
-        required_for_project_publish = '__all__'
+        fields = ['name', 'description', 'image', 'tile_image',
+                  'is_archived', 'is_public']
+        required_for_project_publish = ['name', 'description']
 
 
 class ProjectInformationForm(ProjectDashboardForm):
@@ -144,7 +144,7 @@ class ProjectInformationForm(ProjectDashboardForm):
     class Meta:
         model = project_models.Project
         fields = ['information']
-        required_for_project_publish = '__all__'
+        required_for_project_publish = ['information']
 
 
 class ModuleBasicForm(ModuleDashboardForm):
@@ -169,13 +169,15 @@ class PhaseForm(forms.ModelForm):
 
     class Meta:
         model = phase_models.Phase
-        exclude = ('module', )
-
+        fields = ['name', 'description', 'start_date', 'end_date',
+                  'type',  # required for get_phase_name in the tpl
+                  ]
+        required_for_project_publish = ['name', 'description', 'start_date',
+                                        'end_date']
         widgets = {
             'type': forms.HiddenInput(),
             'weight': forms.HiddenInput()
         }
-        required_for_project_publish = '__all__'
 
 
 PhaseFormSet = inlineformset_factory(module_models.Module,
