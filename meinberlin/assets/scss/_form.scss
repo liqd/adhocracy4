@@ -18,8 +18,8 @@ select {
     @extend %input-base;
     display: block;
     max-width: 100%;
-    background-color: $bg-secondary;
-    color: contrast-color($bg-secondary);
+    background-color: $body-bg;
+    color: contrast-color($body-bg);
 
     &:invalid {
         border-color: $brand-danger;
@@ -30,6 +30,15 @@ select {
         color: $input-border-color;
         cursor: not-allowed;
     }
+
+    &:focus {
+        border-color: $brand-secondary;
+        outline: none;
+    }
+}
+
+div.cke_focus {
+    border-color: $brand-secondary;
 }
 
 .form--inline {
