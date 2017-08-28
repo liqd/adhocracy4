@@ -94,9 +94,10 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
         self._create_phases(module, self.blueprint.content)
 
     def _create_module_settings(self, module):
-        settings_model = apps.get_model(*self.blueprint.settings_model)
-        module_settings = settings_model(module=module)
-        module_settings.save()
+        if self.blueprint.settings_model:
+            settings_model = apps.get_model(*self.blueprint.settings_model)
+            module_settings = settings_model(module=module)
+            module_settings.save()
 
     def _create_phases(self, module, blueprint_phases):
         for phase_content in blueprint_phases:
