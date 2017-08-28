@@ -147,6 +147,14 @@ class ProjectInformationForm(ProjectDashboardForm):
         required_for_project_publish = '__all__'
 
 
+class ProjectResultForm(ProjectDashboardForm):
+
+    class Meta:
+        model = project_models.Project
+        fields = ['result']
+        required_for_project_publish = []
+
+
 class ModuleBasicForm(ModuleDashboardForm):
 
     class Meta:
