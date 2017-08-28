@@ -38,6 +38,7 @@ class ProjectListView(mixins.DashboardBaseMixin,
     paginate_by = 12
     template_name = 'meinberlin_dashboard2/project_list.html'
     permission_required = 'a4projects.add_project'
+    menu_item = 'project'
 
     def get_queryset(self):
         return super().get_queryset().filter(
@@ -61,6 +62,7 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
     form_class = forms.ProjectCreateForm
     template_name = 'meinberlin_dashboard2/project_create_form.html'
     permission_required = 'a4projects.add_project'
+    menu_item = 'project'
     success_message = _('Project succesfully created.')
 
     def get_form_kwargs(self):
