@@ -30,6 +30,15 @@ select {
         color: $input-border-color;
         cursor: not-allowed;
     }
+
+    &:focus {
+        border-color: $brand-secondary;
+        outline: none;
+    }
+}
+
+div.cke_focus {
+    border-color: $brand-secondary;
 }
 
 .form--inline {
