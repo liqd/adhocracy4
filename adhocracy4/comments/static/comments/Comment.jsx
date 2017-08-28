@@ -106,9 +106,9 @@ class Comment extends React.Component {
   render () {
     let CommentList = require('./CommentList')
     let lastDate
-    if (this.props.modified === null && !this.props.is_deleted) {
+    if (this.props.modified === null || this.props.is_deleted) {
       lastDate = localeDate(this.props.created)
-    } else if (!this.props.is_deleted) {
+    } else {
       lastDate = django.gettext('Latest edit on') + ' ' + localeDate(this.props.modified)
     }
 
@@ -133,7 +133,7 @@ class Comment extends React.Component {
           }
           {moderatorLabel}
         </h3>
-        {!this.props.is_deleted ? <span className="comment-submission-date">{lastDate}</span> : null}
+        <span className="comment-submission-date">{lastDate}</span>
         {this.renderComment()}
         <div className="action-bar">
           <nav className="navbar navbar-default navbar-static">
