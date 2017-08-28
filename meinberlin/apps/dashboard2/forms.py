@@ -9,6 +9,7 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.contrib import widgets
+from meinberlin.apps.maps.widgets import MapChoosePolygonWithPresetWidget
 from meinberlin.apps.users.fields import CommaSeparatedEmailField
 
 User = get_user_model()
@@ -248,4 +249,5 @@ class AreaSettingsForm(ModuleDashboardForm):
         model = map_models.AreaSettings
         fields = ['polygon']
         required_for_project_publish = ['polygon']
-        widgets = map_models.AreaSettings.widgets()
+        # widgets = map_models.AreaSettings.widgets()
+        widgets = {'polygon': MapChoosePolygonWithPresetWidget}
