@@ -1,36 +1,42 @@
-{% load i18n project_tags extproject_tags dashboard_tags %}
+{% load i18n project_tags extproject_tags dashboard_tags thumbnail %}
 
-<li class="list-item">
-    <p class="list-item__subtitle">{{ project.typ|get_blueprint_title }}</p>
-    <h3 class="list-item__title">
-        {{ project.name }}
-        {% if project.has_finished %}
-            <span class="label label--primary">{% trans "Finished" %}</span>
-        {% endif %}
-        {% if not project.is_public %}
-            <span class="label label--secondary">{% trans 'private' %}</span>
-        {% endif %}
-    </h3>
-    <div class="list-item__actions">
-        <span class="list-item__action">
-            <a href="{% extproject_url project 'project-detail' %}"
-               target="{{ project|is_external|yesno:"_blank,_self" }}"
-               class="btn btn--light btn--small">
-                <i class="fa fa-eye" aria-hidden="true"></i>
-                {% if project.is_draft %}
-                {% trans 'Preview' %}
-                {% else %}
-                {% trans 'View' %}
+<li class="list-item{% if project.image %} list-item--has-image{% endif %}">
+    {% if project.image %}
+        <img class="list-item__image" src="{% thumbnail project.image '170x170' crop %}" alt="" width="117">
+    {% endif %}
+    <div class="lr-bar list-item__body">
+        <div class="lr-bar__left">
+            <p class="list-item__subtitle">{{ project.typ|get_blueprint_title }}</p>
+            <h3 class="list-item__title">
+                {{ project.name }}
+                {% if project.has_finished %}
+                    <span class="label label--primary">{% trans "Finished" %}</span>
                 {% endif %}
-            </a>
-        </span>
-
-        <span class="list-item__action">
-            <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
-             class="btn btn--light btn--small">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-                {% trans 'Edit'%}
-            </a>
-        </span>
+                {% if not project.is_public %}
+                    <span class="label label--secondary">{% trans 'private' %}</span>
+                {% endif %}
+            </h3>
+        </div>
+        <div class="lr-bar__right">
+            <div class="btn-group">
+            {% spaceless %}
+                <a href="{% extproject_url project 'project-detail' %}"
+                   target="{{ project|is_external|yesno:"_blank,_self" }}"
+                   class="btn btn--light btn--small">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    {% if project.is_draft %}
+                    {% trans 'Preview' %}
+                    {% else %}
+                    {% trans 'View' %}
+                    {% endif %}
+                </a>
+                <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
+                   class="btn btn--light btn--small">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    {% trans 'Edit'%}
+                </a>
+            {% endspaceless %}
+            </div>
+        </div>
     </div>
 </li>

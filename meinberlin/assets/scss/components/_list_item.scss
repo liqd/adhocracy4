@@ -17,6 +17,21 @@
     }
 }
 
+.list-item--has-image {
+    padding: 0 $padding 0 0;
+    overflow: hidden;
+}
+
+.list-item__image {
+    float: left;
+    margin-right: $padding;
+}
+
+.list-item__body {
+    overflow: hidden;
+    padding: 0.7em 0;
+}
+
 .list-item__title {
     margin: 0 0 0.5rem;
     font-size: $font-size-lg;
