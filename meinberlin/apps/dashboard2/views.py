@@ -18,9 +18,9 @@ from adhocracy4.projects import models as project_models
 from meinberlin.apps.projects.emails import InviteParticipantEmail
 
 from . import blueprints
-from . import components
 from . import forms
 from . import mixins
+from . import utils
 
 User = get_user_model()
 
@@ -114,7 +114,8 @@ class ProjectUpdateView(generic.RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         project = get_object_or_404(project_models.Project,
                                     slug=kwargs['project_slug'])
-        component = components.get_project_components()[0]
+        dashboard = utils.get_project_dashboard(project)
+        component = dashboard.get_project_components()[0]
         return component.get_base_url(project)
 
 
@@ -153,10 +154,10 @@ class ProjectPublishView(mixins.DashboardBaseMixin,
             messages.info(self.request, _('Project is already published'))
             return
 
-        # FIXME: Move logic somewhere else
-        progress = mixins.DashboardContextMixin\
-            .get_project_progress(self.project)
-        is_complete = progress['valid'] == progress['required']
+        dashboard = utils.get_project_dashboard(self.project)
+
+        num_valid, num_required = dashboard.get_progress()
+        is_complete = (num_valid == num_required)
 
         if not is_complete:
             messages.error(self.request,
