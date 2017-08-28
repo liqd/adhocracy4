@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from django.conf import settings
 from django.utils.module_loading import import_string
 
@@ -95,3 +97,38 @@ class ProjectDashboard:
                     'is_complete': is_complete,
                 })
         return module_menu or None
+
+
+# meinBerlin methods
+@lru_cache(maxsize=8)
+def get_project_type(project):
+    if (hasattr(project, 'externalproject') and
+            hasattr(project.externalproject, 'bplan')):
+        return 'bplan'
+    elif hasattr(project, 'externalproject'):
+        return 'external'
+    else:
+        return 'default'
+
+
+class TypedProjectDashboard(ProjectDashboard):
+    def __init__(self, project):
+        super().__init__(project)
+        self.project_type = get_project_type(project)
+
+    def get_project_components(self):
+        if self.project_type == 'bplan':
+            return [components.projects.get('bplan')]
+        elif self.project_type == 'external':
+            return [components.projects.get('external')]
+
+        return [component for component in components.get_project_components()
+                if component.get_menu_label(self.project)]
+
+    def get_module_components(self):
+        if self.project_type == 'bplan':
+            return []
+        elif self.project_type == 'external':
+            return []
+
+        return components.get_module_components()

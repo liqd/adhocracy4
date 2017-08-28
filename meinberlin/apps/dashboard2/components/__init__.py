@@ -119,6 +119,14 @@ def _component_sort_key(component):
 class DashboardComponents:
     _registry = {'projects': {}, 'modules': {}}
 
+    @property
+    def projects(self):
+        return self._registry['projects']
+
+    @property
+    def modules(self):
+        return self._registry['modules']
+
     def register_project(self, component):
         self._register('projects', component)
 

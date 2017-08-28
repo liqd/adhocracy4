@@ -24,3 +24,16 @@ urlpatterns = [
         name='project-publish'),
     url(r'', include(components.get_urls())),
 ]
+
+
+# # Overwrite the ProjectUpdateView with meinBerlin urls conf
+urlpatterns = [
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
+        r'external-project/$',
+        views.ExternalProjectCreateView.as_view(),
+        name='external-project-create'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
+        r'bplan/$',
+        views.BplanProjectCreateView.as_view(),
+        name='bplan-project-create'),
+] + urlpatterns
