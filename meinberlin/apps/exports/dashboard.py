@@ -13,7 +13,7 @@ class ExportModuleComponent(DashboardComponent):
     weight = 50
 
     def get_menu_label(self, module):
-        if get_exports(module):
+        if not module.project.is_draft and get_exports(module):
             return _('Export')
         return ''
 
