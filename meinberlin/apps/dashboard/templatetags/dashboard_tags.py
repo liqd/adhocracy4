@@ -2,7 +2,7 @@ from django import template
 
 from meinberlin.apps.dashboard.blueprints import blueprints
 from meinberlin.apps.dashboard.views import get_management_view
-from meinberlin.apps.exports.views import get_exports
+from meinberlin.apps.exports import get_exports
 
 register = template.Library()
 
