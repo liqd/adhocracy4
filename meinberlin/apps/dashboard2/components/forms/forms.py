@@ -28,12 +28,15 @@ class ProjectDashboardForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        if not self.instance.is_draft:
+        if not self.get_project().is_draft:
             _make_fields_required(self.fields.items(),
                                   self.get_required_fields())
 
         _make_fields_required_for_publish(self.fields.items(),
                                           self.get_required_fields())
+
+    def get_project(self):
+        return self.instance
 
     @classmethod
     def get_required_fields(cls):
@@ -52,12 +55,15 @@ class ModuleDashboardForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        if not self.instance.project.is_draft:
+        if not self.get_project().is_draft:
             _make_fields_required(self.fields.items(),
                                   self.get_required_fields())
 
         _make_fields_required_for_publish(self.fields.items(),
                                           self.get_required_fields())
+
+    def get_project(self):
+        return self.instance.project
 
     @classmethod
     def get_required_fields(cls):
@@ -83,6 +89,9 @@ class ModuleDashboardFormSet(forms.BaseInlineFormSet):
             if not self.instance.project.is_draft:
                 _make_fields_required(form.fields.items(),
                                       required_fields)
+
+    def get_project(self):
+        return self.instance.project
 
     @classmethod
     def get_required_fields(cls):

@@ -7,7 +7,7 @@ from . import ModuleFormSetComponent
 from . import ProjectFormComponent
 from . import components
 from . import forms
-from . import utils
+from . import get_project_type
 from . import views
 
 
@@ -66,6 +66,29 @@ class ModulePhasesComponent(ModuleFormSetComponent):
                          '/module_phases_form.html'
 
 
+class ModuleAreaSettingsComponent(ModuleFormComponent):
+    identifier = 'area_settings'
+    weight = 12
+
+    menu_label = _('Areasettings')
+    form_title = _('Edit areasettings')
+    form_class = forms.AreaSettingsForm
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/module_areasettings_form.html'
+
+    def get_menu_label(self, module):
+        module_settings = module.settings_instance
+        if module_settings and hasattr(module_settings, 'polygon'):
+            return self.menu_label
+        return ''
+
+    def get_progress(self, module):
+        module_settings = module.settings_instance
+        if module_settings:
+            return super().get_progress(module_settings)
+        return 0, 0
+
+
 class ParticipantsComponent(DashboardComponent):
     identifier = 'participants'
     weight = 30
@@ -119,7 +142,7 @@ class ExternalProjectComponent(ProjectFormComponent):
                          '/external_project_form.html'
 
     def get_menu_label(self, project):
-        project_type = utils.get_project_type(project)
+        project_type = get_project_type(project)
         if project_type == 'external':
             return self.menu_label
         return ''
@@ -163,7 +186,7 @@ class BplanProjectComponent(ProjectFormComponent):
                          '/bplan_project_form.html'
 
     def get_menu_label(self, project):
-        project_type = utils.get_project_type(project)
+        project_type = get_project_type(project)
         if project_type == 'bplan':
             return self.menu_label
         return ''
@@ -196,11 +219,12 @@ class BplanProjectComponent(ProjectFormComponent):
         return num_valid + phase_num_valid, num_required + phase_num_required
 
 
-components.register_project(ProjectBasicComponent())
-components.register_project(ProjectInformationComponent())
-components.register_project(ModeratorsComponent())
-components.register_project(ParticipantsComponent())
-components.register_project(ExternalProjectComponent())
-components.register_project(BplanProjectComponent())
+components.register_module(ModuleAreaSettingsComponent())
 components.register_module(ModuleBasicComponent())
 components.register_module(ModulePhasesComponent())
+components.register_project(BplanProjectComponent())
+components.register_project(ExternalProjectComponent())
+components.register_project(ModeratorsComponent())
+components.register_project(ParticipantsComponent())
+components.register_project(ProjectBasicComponent())
+components.register_project(ProjectInformationComponent())

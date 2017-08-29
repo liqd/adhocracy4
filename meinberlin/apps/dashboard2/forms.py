@@ -5,12 +5,14 @@ from django.core.exceptions import ValidationError
 from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.maps import models as map_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.bplan import models as bplan_models
 from meinberlin.apps.contrib import widgets
 from meinberlin.apps.extprojects import models as extproject_models
+from meinberlin.apps.maps.widgets import MapChoosePolygonWithPresetWidget
 from meinberlin.apps.users.fields import CommaSeparatedEmailField
 
 from .components.forms import ModuleDashboardForm
@@ -52,9 +54,9 @@ class ProjectBasicForm(ProjectDashboardForm):
 
     class Meta:
         model = project_models.Project
-        fields = ['name', 'description', 'image', 'tile_image', 'is_archived',
-                  'is_public']
-        required_for_project_publish = '__all__'
+        fields = ['name', 'description', 'image', 'tile_image',
+                  'is_archived', 'is_public']
+        required_for_project_publish = ['name', 'description']
 
 
 class ProjectInformationForm(ProjectDashboardForm):
@@ -62,7 +64,7 @@ class ProjectInformationForm(ProjectDashboardForm):
     class Meta:
         model = project_models.Project
         fields = ['information']
-        required_for_project_publish = '__all__'
+        required_for_project_publish = ['information']
 
 
 class ProjectResultForm(ProjectDashboardForm):
@@ -95,13 +97,15 @@ class PhaseForm(forms.ModelForm):
 
     class Meta:
         model = phase_models.Phase
-        exclude = ('module', )
-
+        fields = ['name', 'description', 'start_date', 'end_date',
+                  'type',  # required for get_phase_name in the tpl
+                  ]
+        required_for_project_publish = ['name', 'description', 'start_date',
+                                        'end_date']
         widgets = {
             'type': forms.HiddenInput(),
             'weight': forms.HiddenInput()
         }
-        required_for_project_publish = '__all__'
 
 
 PhaseFormSet = inlineformset_factory(module_models.Module,
@@ -205,3 +209,25 @@ class BplanProjectForm(ExternalProjectForm):
                   'office_worker_email']
         required_for_project_publish = ['name', 'url', 'description',
                                         'office_worker_email']
+
+
+class AreaSettingsForm(ModuleDashboardForm):
+
+    def __init__(self, *args, **kwargs):
+        self.module = kwargs['instance']
+        kwargs['instance'] = self.module.settings_instance
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        super().save(commit)
+        return self.module
+
+    def get_project(self):
+        return self.module.project
+
+    class Meta:
+        model = map_models.AreaSettings
+        fields = ['polygon']
+        required_for_project_publish = ['polygon']
+        # widgets = map_models.AreaSettings.widgets()
+        widgets = {'polygon': MapChoosePolygonWithPresetWidget}
