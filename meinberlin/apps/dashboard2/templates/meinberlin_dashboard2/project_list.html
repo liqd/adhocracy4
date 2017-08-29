@@ -13,7 +13,7 @@
                 <ul class="dashboard-nav__pages">
                     <li class="dashboard-nav__page">
                         <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
-                           class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
+                           class="dashboard-nav__item dashboard-nav__item--interactive {% ifequal view.menu_item 'project' %}is-active{% endifequal %}">
                             {% trans 'Active participation projects' %}
                         </a>
                     </li>
