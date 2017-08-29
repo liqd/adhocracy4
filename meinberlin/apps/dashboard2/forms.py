@@ -259,6 +259,12 @@ class CategoryForm(forms.ModelForm):
         'placeholder': _('Category')}
     ))
 
+    @property
+    def media(self):
+        media = super().media
+        media.add_js(['js/formset.js'])
+        return media
+
     class Meta:
         model = category_models.Category
         exclude = ('module',)
