@@ -14,7 +14,7 @@
     this.$formTemplate = this.$formset.find('.js-form-template')
     this.prefix = this.$formset.data('prefix')
     this.$totalInput = this.$formset.find('#id_' + this.prefix + '-TOTAL_FORMS')
-    this.id = parseInt(this.$formset.data('initial-id'))
+    this.total = parseInt(this.$totalInput.val())
     this.maxNum = parseInt(this.$formset.find('#id_' + this.prefix + '-MAX_NUM_FORMS').val())
 
     this.$formset.on('click', '.js-add-form', this.addForm.bind(this))
@@ -22,10 +22,10 @@
   }
 
   DynamicFormSet.prototype.addForm = function () {
-    if (this.id + 1 < this.maxNum) {
-      this.id += 1
-      this.$totalInput.val(this.id + 1)
-      var newForm = getNewForm(this.$formTemplate, this.id)
+    if (this.total < this.maxNum) {
+      this.total += 1
+      this.$totalInput.val(this.total)
+      var newForm = getNewForm(this.$formTemplate, this.total - 1)
       this.$formTemplate.before(newForm)
     }
   }
@@ -33,8 +33,8 @@
   DynamicFormSet.prototype.removeForm = function (event) {
     var _this = this
 
-    this.id -= 1
-    this.$totalInput.val(this.id + 1)
+    this.total -= 1
+    this.$totalInput.val(this.total)
 
     var $form = $(event.currentTarget).closest('.js-form')
     var id = this.$formset.find('.js-form').index($form)
