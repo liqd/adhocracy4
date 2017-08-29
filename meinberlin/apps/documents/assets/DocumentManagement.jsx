@@ -18,10 +18,18 @@ class DocumentManagement extends React.Component {
       ]
     }
 
+    var alert = null
+    if (props.reloadOnSuccess && window.location.href.indexOf('success=true') !== -1) {
+      alert = {
+        type: 'success',
+        message: django.gettext('The document has been updated.')
+      }
+    }
+
     this.state = {
       chapters: chapters,
       errors: null,
-      alert: null,
+      alert: alert,
       editChapterIndex: 0
     }
   }
@@ -231,14 +239,24 @@ class DocumentManagement extends React.Component {
 
     api.document.add(submitData)
       .done((data) => {
-        this.setState({
-          alert: {
-            type: 'success',
-            message: django.gettext('The document has been updated.')
-          },
-          errors: [],
-          chapters: data.chapters
-        })
+        if (this.props.reloadOnSuccess) {
+          var href = window.location.href
+          if (href.indexOf('success=true') !== -1) {
+            window.location.reload()
+          } else {
+            href = href + (href.indexOf('?') !== -1 ? '&' : '?') + 'success=true'
+            window.location.assign(href)
+          }
+        } else {
+          this.setState({
+            alert: {
+              type: 'success',
+              message: django.gettext('The document has been updated.')
+            },
+            errors: [],
+            chapters: data.chapters
+          })
+        }
       })
       .fail((xhr, status, err) => {
         let errors = []

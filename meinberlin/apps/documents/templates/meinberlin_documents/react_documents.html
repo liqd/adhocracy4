@@ -2,7 +2,7 @@
 
 <script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 
-<div id="{{ id }}" data-module="{{ module }}" data-chapters="{{ chapters }}" data-config="{{ config }}"></div>
+<div id="{{ id }}" data-module="{{ module }}" data-chapters="{{ chapters }}" data-config="{{ config }}" data-reloadOnSuccess="{{ reload_on_success }}"></div>
 
 <script>
     window.adhocracy4.renderDocumentManagement('{{id}}')
