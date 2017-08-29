@@ -267,7 +267,7 @@ class CategoryForm(forms.ModelForm):
 
     class Meta:
         model = category_models.Category
-        exclude = ('module',)
+        fields = ['name']
 
 
 CategoryFormSet = inlineformset_factory(module_models.Module,

@@ -1,8 +1,7 @@
 {% load i18n %}
 
 <div class="js-formset formset"
-     data-prefix="{{ form.prefix }}"
-     data-initial-id="{{ form.initial_form_count }}">
+     data-prefix="{{ form.prefix }}">
     {{ form.management_form }}
 
     {% for category_form in form %}

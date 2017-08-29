@@ -147,7 +147,7 @@ class ModuleCategoriesComponent(ModuleFormSetComponent):
             for models in phase.content().features.values():
                 for model in models:
                     if Categorizable.is_categorizable(model):
-                        return 'Categories'
+                        return _('Categories')
         return ''
 
 
