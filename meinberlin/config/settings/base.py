@@ -369,7 +369,7 @@ A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenSt
 A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
 
 A4_DASHBOARD = {
-    'PROJECT_DASHBOARD_CLASS': 'meinberlin.apps.dashboard2.utils.TypedProjectDashboard',
+    'PROJECT_DASHBOARD_CLASS': 'meinberlin.apps.dashboard2.TypedProjectDashboard',
 }
 
 CONTACT_EMAIL = 'support-berlin@liqd.net'
