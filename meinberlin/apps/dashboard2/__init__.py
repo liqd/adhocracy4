@@ -123,8 +123,12 @@ def get_project_type(project):
 
 class TypedProjectDashboard(ProjectDashboard):
     def __init__(self, project):
-        super().__init__(project)
         self.project_type = get_project_type(project)
+        if self.project_type == 'bplan':
+            project = project.externalproject.bplan
+        elif self.project_type == 'external':
+            project = project.externalproject
+        super().__init__(project)
 
     def get_project_components(self):
         if self.project_type == 'bplan':
