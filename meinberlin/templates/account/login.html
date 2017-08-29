@@ -28,8 +28,11 @@
         </div>
     </form>
 
-    <p class="u-spacer-bottom-half">
-        {% trans 'Or use your Service-Konto:' %}
-    </p>
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    {% get_providers as socialaccount_providers %}
+    {% if socialaccount_providers %}
+        <p class="u-spacer-bottom-half">
+            {% trans 'Or use your Service-Konto:' %}
+        </p>
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+    {% endif %}
 {% endblock %}
