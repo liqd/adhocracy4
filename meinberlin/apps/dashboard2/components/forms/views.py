@@ -8,8 +8,8 @@ from adhocracy4.projects import models as project_models
 from ... import mixins
 
 
-class ProjectComponentFormView(mixins.DashboardBaseMixin,
-                               mixins.DashboardComponentMixin,
+class ProjectComponentFormView(mixins.DashboardComponentMixin,
+                               mixins.DashboardBaseMixin,
                                mixins.DashboardContextMixin,
                                SuccessMessageMixin,
                                generic.UpdateView):
