@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.categories import models as category_models
 from adhocracy4.maps import models as map_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
@@ -143,6 +144,51 @@ class AddUsersFromEmailForm(forms.Form):
         return users
 
 
+class AreaSettingsForm(ModuleDashboardForm):
+
+    def __init__(self, *args, **kwargs):
+        self.module = kwargs['instance']
+        kwargs['instance'] = self.module.settings_instance
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        super().save(commit)
+        return self.module
+
+    def get_project(self):
+        return self.module.project
+
+    class Meta:
+        model = map_models.AreaSettings
+        fields = ['polygon']
+        required_for_project_publish = ['polygon']
+        # widgets = map_models.AreaSettings.widgets()
+        widgets = {'polygon': MapChoosePolygonWithPresetWidget}
+
+
+class CategoryForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': _('Category')}
+    ))
+
+    @property
+    def media(self):
+        media = super().media
+        media.add_js(['js/formset.js'])
+        return media
+
+    class Meta:
+        model = category_models.Category
+        fields = ['name']
+
+
+CategoryFormSet = inlineformset_factory(module_models.Module,
+                                        category_models.Category,
+                                        form=CategoryForm,
+                                        formset=ModuleDashboardFormSet,
+                                        )
+
+
 # meinBerlin related Forms
 
 class ExternalProjectCreateForm(ProjectCreateForm):
@@ -209,25 +255,3 @@ class BplanProjectForm(ExternalProjectForm):
                   'office_worker_email']
         required_for_project_publish = ['name', 'url', 'description',
                                         'office_worker_email']
-
-
-class AreaSettingsForm(ModuleDashboardForm):
-
-    def __init__(self, *args, **kwargs):
-        self.module = kwargs['instance']
-        kwargs['instance'] = self.module.settings_instance
-        super().__init__(*args, **kwargs)
-
-    def save(self, commit=True):
-        super().save(commit)
-        return self.module
-
-    def get_project(self):
-        return self.module.project
-
-    class Meta:
-        model = map_models.AreaSettings
-        fields = ['polygon']
-        required_for_project_publish = ['polygon']
-        # widgets = map_models.AreaSettings.widgets()
-        widgets = {'polygon': MapChoosePolygonWithPresetWidget}
