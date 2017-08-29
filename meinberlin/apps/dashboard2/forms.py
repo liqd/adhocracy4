@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.categories import models as category_models
 from adhocracy4.maps import models as map_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
@@ -251,3 +252,20 @@ class AreaSettingsForm(ModuleDashboardForm):
         required_for_project_publish = ['polygon']
         # widgets = map_models.AreaSettings.widgets()
         widgets = {'polygon': MapChoosePolygonWithPresetWidget}
+
+
+class CategoryForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': _('Category')}
+    ))
+
+    class Meta:
+        model = category_models.Category
+        exclude = ('module',)
+
+
+CategoryFormSet = inlineformset_factory(module_models.Module,
+                                        category_models.Category,
+                                        form=CategoryForm,
+                                        formset=ModuleDashboardFormSet,
+                                        )

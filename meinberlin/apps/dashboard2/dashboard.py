@@ -1,6 +1,8 @@
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.categories.models import Categorizable
+
 from . import DashboardComponent
 from . import ModuleFormComponent
 from . import ModuleFormSetComponent
@@ -130,6 +132,24 @@ class ModuleAreaSettingsComponent(ModuleFormComponent):
         return 0, 0
 
 
+class ModuleCategoriesComponent(ModuleFormSetComponent):
+    identifier = 'categories'
+    weight = 13
+
+    form_title = _('Edit categories')
+    form_class = forms.CategoryFormSet
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/module_categories_form.html'
+
+    def get_menu_label(self, module):
+        # TODO: replace by module feature check
+        for phase in module.phases:
+            for models in phase.content().features.values():
+                for model in models:
+                    if Categorizable.is_categorizable(model):
+                        return 'Categories'
+        return ''
+
 content.register_project(ProjectBasicComponent())
 content.register_project(ProjectInformationComponent())
 content.register_project(ModeratorsComponent())
@@ -137,3 +157,4 @@ content.register_project(ParticipantsComponent())
 content.register_module(ModuleBasicComponent())
 content.register_module(ModulePhasesComponent())
 content.register_module(ModuleAreaSettingsComponent())
+content.register_module(ModuleCategoriesComponent())
