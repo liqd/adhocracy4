@@ -150,6 +150,7 @@ class ModuleCategoriesComponent(ModuleFormSetComponent):
                         return 'Categories'
         return ''
 
+
 content.register_project(ProjectBasicComponent())
 content.register_project(ProjectInformationComponent())
 content.register_project(ModeratorsComponent())
