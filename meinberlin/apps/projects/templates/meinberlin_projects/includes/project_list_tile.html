@@ -1,13 +1,12 @@
-{% load i18n project_tags extproject_tags thumbnail static %}
+{% load i18n project_tags extproject_tags contrib_tags thumbnail static %}
+{% project_tile_image project as project_image %}
 
 <li class="tile">
     <div class="tile__head">
         <a tabindex="-1" class="tile__image tile__image--shadowed"
            aria-labelledby="project-title-{{ project.pk }}"
-           {% if project.tile_image %}
-               style="background-image: url({{ project.tile_image|thumbnail_url:'project_thumbnail' }})"
-           {% elif project.image %}
-               style="background-image: url({{ project.image|thumbnail_url:'project_thumbnail' }})"
+           {% if project_image %}
+               style="background-image: url({{ project_image|thumbnail_url:'project_thumbnail' }})"
            {% endif %}
            href="{% extproject_url project 'project-detail' %}" target="{{ project|is_external|yesno:"_blank,_self" }}">
         </a>
