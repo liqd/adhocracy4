@@ -10,7 +10,7 @@ from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
 from meinberlin.apps.organisations import models as org_models
 
-from . import utils
+from . import get_project_dashboard
 from .blueprints import blueprints
 
 
@@ -82,7 +82,7 @@ class DashboardContextMixin(base.ContextMixin):
         if project:
             project.refresh_from_db()
 
-        dashboard = utils.get_project_dashboard(project)
+        dashboard = get_project_dashboard(project)
 
         context['dashboard_menu'] = dashboard.get_menu(self.module,
                                                        self.component)

@@ -21,8 +21,8 @@ from meinberlin.apps.projects.emails import InviteParticipantEmail
 
 from . import blueprints
 from . import forms
+from . import get_project_dashboard
 from . import mixins
-from . import utils
 from .components.forms.views import ProjectComponentFormView
 
 User = get_user_model()
@@ -119,7 +119,7 @@ class ProjectUpdateView(generic.RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         project = get_object_or_404(project_models.Project,
                                     slug=kwargs['project_slug'])
-        dashboard = utils.get_project_dashboard(project)
+        dashboard = get_project_dashboard(project)
         component = dashboard.get_project_components()[0]
         return component.get_base_url(project)
 
@@ -159,7 +159,7 @@ class ProjectPublishView(mixins.DashboardBaseMixin,
             messages.info(self.request, _('Project is already published'))
             return
 
-        dashboard = utils.get_project_dashboard(self.project)
+        dashboard = get_project_dashboard(self.project)
 
         num_valid, num_required = dashboard.get_progress()
         is_complete = (num_valid == num_required)
