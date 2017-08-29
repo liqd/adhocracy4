@@ -5,6 +5,7 @@ cache: pip
 install:
   - pip install -r requirements/dev.txt
   - pip install coveralls
+  - "! python manage.py makemigrations --dry-run --noinput --exit"
 script:
   - py.test --cov
 after_success:
