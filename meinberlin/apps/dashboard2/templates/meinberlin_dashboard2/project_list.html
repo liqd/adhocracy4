@@ -8,20 +8,20 @@
         <nav class="l-menu__menu" aria-label="{% trans 'Participation projects' %}">
             <div class="dashboard-nav">
                 <div class="dashboard-nav__dropdown">
-                    <div class="dashboard-nav__item">{% trans 'Project management' %}</div>
+                    <div class="dashboard-nav__item">{% trans 'Participation projects' %}</div>
                 </div>
                 <ul class="dashboard-nav__pages">
                     <li class="dashboard-nav__page">
                         <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
                            class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
-                            {% trans 'Participation projects' %}
+                            {% trans 'Active participation projects' %}
                         </a>
                     </li>
                 </ul>
             </div>
 
             <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}" class="btn btn--full">
-                {% trans 'New Project' %}
+                {% trans 'New participation project' %}
             </a>
         </nav>
 
