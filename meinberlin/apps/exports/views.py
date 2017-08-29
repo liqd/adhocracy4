@@ -1,6 +1,5 @@
 import csv
 from collections import OrderedDict
-from functools import lru_cache
 
 import xlsxwriter
 from django.contrib.contenttypes.models import ContentType
@@ -19,19 +18,7 @@ from adhocracy4.projects.models import Project
 from adhocracy4.ratings.models import Rating
 from adhocracy4.rules import mixins as rules_mixins
 
-
-@lru_cache()
-def get_exports(project):
-    exports = []
-    existing_views = set()
-    for phase in project.phases:
-        phase_view = phase.content().view
-        if hasattr(phase_view, 'exports'):
-            for name, view in phase_view.exports:
-                if view not in existing_views:
-                    existing_views.add(view)
-                    exports.append((name, view))
-    return exports
+from . import get_exports
 
 
 class ExportProjectDispatcher(rules_mixins.PermissionRequiredMixin,
@@ -82,7 +69,7 @@ class ExportModuleDispatcher(rules_mixins.PermissionRequiredMixin,
         if not self.has_permission():
             return self.handle_no_permission()
 
-        exports = get_exports(project)
+        exports = get_exports(module)
         assert len(exports) > export_id
 
         # Dispatch the request to the export view
