@@ -33,3 +33,8 @@ def filter_has_perm(perm, user, objects):
 @register.filter
 def percentage(value, max_value):
     return round(value / max_value * 100)
+
+
+@register.assignment_tag
+def project_tile_image(project):
+    return project.tile_image or project.image or None
