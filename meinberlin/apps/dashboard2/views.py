@@ -345,7 +345,6 @@ class DashboardDocumentView(mixins.DashboardComponentMixin,
                             mixins.DashboardBaseMixin,
                             mixins.DashboardContextMixin,
                             generic.TemplateView):
-    template_name = 'meinberlin_dashboard2/includes/' \
-                    'module_document_settings.html'
+    template_name = 'meinberlin_dashboard2/module_document_settings.html'
     permission_required = 'a4projects.add_project'
     project_url_kwarg = 'slug'
