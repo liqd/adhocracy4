@@ -125,7 +125,9 @@ class ModuleAreaSettingsComponent(ModuleFormComponent):
 
     def get_progress(self, module):
         module_settings = module.settings_instance
-        return super().get_progress(module_settings)
+        if module_settings:
+            return super().get_progress(module_settings)
+        return 0, 0
 
 
 content.register_project(ProjectBasicComponent())
