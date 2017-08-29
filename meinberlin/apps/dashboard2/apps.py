@@ -7,4 +7,4 @@ class Config(AppConfig):
 
     def ready(self):
         from django.utils.module_loading import autodiscover_modules
-        autodiscover_modules('dashboard', register_to=self.module.content)
+        autodiscover_modules('dashboard', register_to=self.module.components)

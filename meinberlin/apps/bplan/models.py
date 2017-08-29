@@ -9,7 +9,8 @@ from meinberlin.apps.extprojects.models import ExternalProject
 
 class Bplan(ExternalProject):
     office_worker_email = models.EmailField(
-        verbose_name=_('Office worker email')
+        verbose_name=_('Office worker email'),
+        blank=True,
     )
 
 
