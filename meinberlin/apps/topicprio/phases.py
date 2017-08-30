@@ -12,7 +12,6 @@ class PrioritizePhase(phases.PhaseContent):
     phase = 'prioritize'
     weight = 20
     view = views.TopicListView
-    management_view = views.TopicMgmtView
 
     name = _('Prioritize phase')
     description = _('Prioritize and comment topics.')

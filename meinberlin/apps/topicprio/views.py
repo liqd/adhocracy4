@@ -5,10 +5,8 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
-from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
-from meinberlin.apps.contrib.views import ProjectContextDispatcher
-from meinberlin.apps.dashboard.mixins import DashboardBaseMixin
+from meinberlin.apps.dashboard2 import mixins
 from meinberlin.apps.exports import views as export_views
 from meinberlin.apps.ideas import views as idea_views
 
@@ -96,57 +94,48 @@ class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class TopicMgmtView(ProjectContextDispatcher,
-                    DashboardBaseMixin,
-                    rules_mixins.PermissionRequiredMixin,
-                    filter_views.FilteredListView):
+class TopicListDashboardView(mixins.DashboardComponentMixin,
+                             mixins.DashboardBaseMixin,
+                             mixins.DashboardContextMixin,
+                             filter_views.FilteredListView):
     model = models.Topic
-    template_name = 'meinberlin_topicprio/topic_mgmt_list.html'
+    template_name = 'meinberlin_topicprio/topic_dashboard_list.html'
     filter_set = TopicCreateFilterSet
     permission_required = 'a4projects.add_project'
     project_url_kwarg = 'slug'
 
-    # Dashboard related attributes
-    menu_item = 'project'
-
-    def get_success_url(self):
-        return reverse(
-            'dashboard-project-list',
-            kwargs={'organisation_slug': self.organisation.slug, })
-
     def get_queryset(self):
-        # FIXME: Add multi-module support
-        module = self.project.module_set.first()
         return super().get_queryset()\
-            .filter(module=module) \
+            .filter(module=self.module) \
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()
 
 
-class TopicMgmtCreateView(idea_views.AbstractIdeaCreateView):
+class TopicCreateView(mixins.DashboardComponentMixin,
+                      mixins.DashboardBaseMixin,
+                      mixins.DashboardContextMixin,
+                      idea_views.AbstractIdeaCreateView):
     model = models.Topic
     form_class = forms.TopicForm
     permission_required = 'meinberlin_topicprio.add_topic'
-    template_name = 'meinberlin_topicprio/topic_mgmt_create_form.html'
-    menu_item = 'project'
-
-    @property
-    def organisation(self):
-        return self.project.organisation
+    template_name = 'meinberlin_topicprio/topic_create_form.html'
+    module_url_kwarg = 'module_slug'
 
     def get_success_url(self):
         return reverse(
-            'dashboard-project-management',
-            kwargs={'slug': self.project.slug})
+            'a4dashboard:topic-list',
+            kwargs={'module_slug': self.module.slug})
 
 
-class TopicMgmtUpdateView(idea_views.AbstractIdeaUpdateView):
+class TopicUpdateView(mixins.DashboardComponentMixin,
+                      mixins.DashboardBaseMixin,
+                      mixins.DashboardContextMixin,
+                      idea_views.AbstractIdeaUpdateView):
     model = models.Topic
     form_class = forms.TopicForm
     permission_required = 'meinberlin_topicprio.change_topic'
-    template_name = 'meinberlin_topicprio/topic_mgmt_update_form.html'
-    menu_item = 'project'
+    template_name = 'meinberlin_topicprio/topic_update_form.html'
 
     @property
     def organisation(self):
@@ -154,16 +143,18 @@ class TopicMgmtUpdateView(idea_views.AbstractIdeaUpdateView):
 
     def get_success_url(self):
         return reverse(
-            'dashboard-project-management',
-            kwargs={'slug': self.project.slug})
+            'a4dashboard:topic-list',
+            kwargs={'module_slug': self.module.slug})
 
 
-class TopicMgmtDeleteView(idea_views.AbstractIdeaDeleteView):
+class TopicDeleteView(mixins.DashboardComponentMixin,
+                      mixins.DashboardBaseMixin,
+                      mixins.DashboardContextMixin,
+                      idea_views.AbstractIdeaDeleteView):
     model = models.Topic
     success_message = _('The topic has been deleted')
     permission_required = 'meinberlin_topicprio.change_topic'
-    template_name = 'meinberlin_topicprio/topic_mgmt_confirm_delete.html'
-    menu_item = 'project'
+    template_name = 'meinberlin_topicprio/topic_confirm_delete.html'
 
     @property
     def organisation(self):
@@ -171,5 +162,5 @@ class TopicMgmtDeleteView(idea_views.AbstractIdeaDeleteView):
 
     def get_success_url(self):
         return reverse(
-            'dashboard-project-management',
-            kwargs={'slug': self.project.slug})
+            'a4dashboard:topic-list',
+            kwargs={'module_slug': self.module.slug})
