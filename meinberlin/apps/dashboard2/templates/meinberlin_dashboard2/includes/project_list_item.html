@@ -33,6 +33,31 @@
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                     {% trans 'Edit'%}
                 </a>
+                <span class="dropdown dropdown--right">
+                    <button
+                            type="button"
+                            class="dropdown-toggle btn btn--light btn--small"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            id="project-actions"
+                    >
+                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="project-actions">
+                        <li>
+                            <form method="post" class="list-item__action" role="presentation">
+                                {% csrf_token %}
+                                <input type="hidden" name="project_pk" value="{{ project.pk }}">
+                                <button type="submit" name="duplicate" value="{{ project }}"
+                                        class="dropdown-item">
+                                    <i class="fa fa-files-o" aria-hidden="true"></i>
+                                    {% trans 'Duplicate' %}
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </span>
             {% endspaceless %}
             </div>
         </div>

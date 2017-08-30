@@ -36,6 +36,7 @@ def get_object_or_none(*args, **kwargs):
 
 
 class ProjectListView(mixins.DashboardBaseMixin,
+                      mixins.DashboardProjectDuplicateMixin,
                       generic.ListView):
     model = project_models.Project
     paginate_by = 12
