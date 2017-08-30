@@ -128,8 +128,6 @@ class DashboardProjectDuplicateMixin:
                 module_clone = deepcopy(module)
                 module_clone.project = project_clone
                 module_clone.pk = None
-                module_clone.name = \
-                    '{}_{}'.format(module.name, project_clone.pk)
                 module_clone.save()
 
                 for phase in module.phase_set.all():
