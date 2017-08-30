@@ -61,8 +61,8 @@ class ProjectDashboard:
 
         menu_modules = []
         for module in self.project.modules:
-            menu_module = self.get_module_menu(module, current_component,
-                                               current_module)
+            menu_module = self.get_module_menu(module, current_module,
+                                               current_component)
             if menu_module:
                 menu_modules.append({
                     'module': module,
