@@ -4,6 +4,7 @@ from django.views import generic
 
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.dashboard2 import mixins as dashboard_mixins
 from meinberlin.apps.dashboard.mixins import DashboardBaseMixin
 
 from . import models
@@ -27,6 +28,14 @@ class DocumentManagementView(ProjectContextDispatcher,
         module = self.project.module_set.first()
         context['module'] = module
         return context
+
+
+class DashboardDocumentView(dashboard_mixins.DashboardComponentMixin,
+                            dashboard_mixins.DashboardBaseMixin,
+                            dashboard_mixins.DashboardContextMixin,
+                            generic.TemplateView):
+    template_name = 'meinberlin_documents/document_dashboard.html'
+    permission_required = 'a4projects.add_project'
 
 
 class ChapterDetailView(ProjectContextDispatcher,
