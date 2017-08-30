@@ -10,7 +10,7 @@ from . import views
 
 class TopicEditComponent(DashboardComponent):
     identifier = 'topic_edit'
-    weight = 22
+    weight = 20
 
     def get_menu_label(self, module):
         module_app = module.phases[0].content().app
