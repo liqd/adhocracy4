@@ -7,6 +7,7 @@ from django.views import generic
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.dashboard2 import mixins as dashboard_mixins
 from meinberlin.apps.dashboard.mixins import DashboardBaseMixin
 
 from . import models
@@ -72,3 +73,25 @@ class PollManagementView(DashboardBaseMixin,
         return reverse(
             'dashboard-project-list',
             kwargs={'organisation_slug': self.organisation.slug, })
+
+
+class PollDashboardView(dashboard_mixins.DashboardComponentMixin,
+                        dashboard_mixins.DashboardBaseMixin,
+                        dashboard_mixins.DashboardContextMixin,
+                        generic.TemplateView):
+    template_name = 'meinberlin_polls/poll_dashboard.html'
+    permission_required = 'a4projects.add_project'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['poll'] = self.get_or_create_poll()
+        return context
+
+    def get_or_create_poll(self):
+        try:
+            obj = models.Poll.objects.get(module=self.module)
+        except models.Poll.DoesNotExist:
+            obj = models.Poll(module=self.module,
+                              creator=self.request.user)
+            obj.save()
+        return obj
