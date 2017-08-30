@@ -30,7 +30,7 @@ class DocumentManagementView(ProjectContextDispatcher,
         return context
 
 
-class DashboardDocumentView(dashboard_mixins.DashboardComponentMixin,
+class DocumentDashboardView(dashboard_mixins.DashboardComponentMixin,
                             dashboard_mixins.DashboardBaseMixin,
                             dashboard_mixins.DashboardContextMixin,
                             generic.TemplateView):

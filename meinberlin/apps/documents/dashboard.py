@@ -19,9 +19,12 @@ class DocumentComponent(DashboardComponent):
         return ''
 
     def get_progress(self, module):
-        if Chapter.objects.filter(module=module).exists():
-            return 1, 1
-        return 0, 1
+        module_app = module.phases[0].content().app
+        if module_app == 'meinberlin_documents':
+            if Chapter.objects.filter(module=module).exists():
+                return 1, 1
+            return 0, 1
+        return 0, 0
 
     def get_base_url(self, module):
         return reverse('a4dashboard:dashboard-document-settings', kwargs={
@@ -31,7 +34,7 @@ class DocumentComponent(DashboardComponent):
     def get_urls(self):
         return [(
             r'^modules/(?P<module_slug>[-\w_]+)/document/$',
-            views.DashboardDocumentView.as_view(),
+            views.DocumentDashboardView.as_view(component=self),
             'dashboard-document-settings'
         )]
 
