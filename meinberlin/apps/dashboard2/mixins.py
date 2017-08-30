@@ -11,7 +11,6 @@ from meinberlin.apps.contrib.views import ProjectContextDispatcher
 from meinberlin.apps.organisations import models as org_models
 
 from . import get_project_dashboard
-from .blueprints import blueprints
 
 
 class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
@@ -52,6 +51,7 @@ class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
 class BlueprintMixin:
     @property
     def blueprint(self):
+        from .blueprints import blueprints
         return dict(blueprints)[self.blueprint_key]
 
     @property
