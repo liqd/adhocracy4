@@ -19,9 +19,12 @@ class TopicEditComponent(DashboardComponent):
         return ''
 
     def get_progress(self, module):
-        if models.Topic.objects.filter(module=module).exists():
-            return 1, 1
-        return 0, 1
+        module_app = module.phases[0].content().app
+        if module_app == 'meinberlin_topicprio':
+            if models.Topic.objects.filter(module=module).exists():
+                return 1, 1
+            return 0, 1
+        return 0, 0
 
     def get_base_url(self, module):
         return reverse('a4dashboard:topic-list', kwargs={
