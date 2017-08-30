@@ -1,6 +1,7 @@
 var api = require('adhocracy4').api
 var React = require('react')
 var django = require('django')
+var dashboard = require('../../dashboard2/assets/dashboard')
 var update = require('immutability-helper')
 var FlipMove = require('react-flip-move')
 var QuestionForm = require('./QuestionForm')
@@ -166,6 +167,9 @@ class PollManagement extends React.Component {
           },
           errors: []
         })
+        if (this.props.reloadOnSuccess) {
+          dashboard.updateDashboard()
+        }
       })
       .fail((xhr, status, err) => {
         let errors = []

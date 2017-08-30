@@ -18,5 +18,7 @@ module.exports.renderPollManagement = function (mountpoint) {
   let poll = JSON.parse(element.getAttribute('data-poll'))
   let module = element.getAttribute('data-module')
 
-  ReactDOM.render(<PollManagement module={module} poll={poll} />, element)
+  const reloadOnSuccess = JSON.parse(element.getAttribute('data-reloadOnSuccess'))
+
+  ReactDOM.render(<PollManagement module={module} poll={poll} reloadOnSuccess={reloadOnSuccess} />, element)
 }

@@ -19,12 +19,10 @@ class DocumentManagement extends React.Component {
       ]
     }
 
-    var alert = null
-
     this.state = {
       chapters: chapters,
       errors: null,
-      alert: alert,
+      alert: null,
       editChapterIndex: 0
     }
   }
