@@ -87,12 +87,14 @@ class ModuleBasicForm(ModuleDashboardForm):
 class PhaseForm(forms.ModelForm):
     end_date = datetime_fields.DateTimeField(
         time_format='%H:%M',
-        require_all_fields=True,
+        required=False,
+        require_all_fields=False,
         label=(_('End date'), _('End time'))
     )
     start_date = datetime_fields.DateTimeField(
         time_format='%H:%M',
-        require_all_fields=True,
+        required=False,
+        require_all_fields=False,
         label=(_('Start date'), _('Start time'))
     )
 
@@ -203,11 +205,13 @@ class ExternalProjectForm(ProjectDashboardForm):
     start_date = datetime_fields.DateTimeField(
         time_format='%H:%M',
         required=False,
+        require_all_fields=False,
         label=(_('Start date'), _('Start time'))
     )
     end_date = datetime_fields.DateTimeField(
         time_format='%H:%M',
         required=False,
+        require_all_fields=False,
         label=(_('End date'), _('End time'))
     )
 

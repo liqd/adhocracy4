@@ -7,9 +7,10 @@ from django.utils.timezone import localtime
 
 
 class DateTimeInput(form_widgets.SplitDateTimeWidget):
-    def __init__(self, time_label='', *args, **kwargs):
-        self.time_label = time_label
+    def __init__(self, time_label='', time_default=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.time_label = time_label
+        self.time_default = time_default or datetime.time(hour=0, minute=0)
 
     class Media:
         js = (
@@ -29,7 +30,8 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
         time_attrs = self.build_attrs(attrs)
         time_attrs.update({
             'class': 'timepicker',
-            'placeholder': self.widgets[1].format_value(datetime.time(0, 0)),
+            'placeholder': self.widgets[1].format_value(
+                self.get_default_time()),
             'id': attrs['id'] + '_time'
         })
 
@@ -64,3 +66,13 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
         if id_:
             id_ += '_date'
         return id_
+
+    def get_default_time(self):
+        time_widget = self.widgets[1]
+
+        if not self.time_default:
+            return time_widget.format_value(datetime.time(hour=0, minute=0))
+        elif isinstance(self.time_default, (datetime.time, datetime.datetime)):
+            return time_widget.format_value(self.time_default)
+        else:
+            return self.time_default
