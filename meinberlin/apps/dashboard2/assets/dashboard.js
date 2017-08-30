@@ -1,18 +1,20 @@
-/* globals django */
-export default {
-  removeActiveRequired () {
-    const activeIcon = document.querySelector('.dashboard-nav__item.is-active .fa-exclamation-circle')
-    activeIcon.parentNode.removeChild(activeIcon)
-  },
+const $ = require('jquery')
+const elementsToUpdate = ['.l-menu__menu', '.l-menu__aside']
 
-  addActiveRequired () {
-    const missingTranslation = django.gettext('Missing fields for publication')
-    const activeIcon = document.createElement('i')
-    const active = document.querySelector('.dashboard-nav__item.is-active')
+module.exports = {
+  /**
+   * Makes an ajax call to the current page and updates the elements menu and
+   * progress.
+   */
+  updateDashboard () {
+    $.get(window.location.pathname, {dataType: 'html'}, function (data) {
+      const selector = elementsToUpdate.join(', ')
+      const $newElements = $(data).find(selector)
+      const $oldElements = $(selector)
 
-    activeIcon.className = 'fa fa-exclamation-circle u-danger'
-    activeIcon.title = missingTranslation
-    activeIcon.setAttribute('aria-label', missingTranslation)
-    active.appendChild(activeIcon)
+      $oldElements.each(function (i, e) {
+        $(e).replaceWith($newElements.eq(i))
+      })
+    })
   }
 }
