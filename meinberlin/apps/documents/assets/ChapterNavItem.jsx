@@ -45,6 +45,7 @@ const ChapterNavItem = (props) => {
         <button
           className="btn btn--light btn--small"
           onClick={props.onDelete}
+          disabled={!props.onDelete}
           title={django.gettext('Delete')}
           type="button">
           <i className="fa fa-trash"
