@@ -17,7 +17,7 @@ const ChapterNav = (props) => {
                   name={chapter.name}
                   onMoveUp={index !== 0 ? () => { props.onMoveUp(index) } : null}
                   onMoveDown={index < arr.length - 1 ? () => { props.onMoveDown(index) } : null}
-                  onDelete={() => { props.onDelete(index) }}
+                  onDelete={arr.length > 1 ? () => { props.onDelete(index) } : null}
                   onClick={() => { props.onClick(index) }}
                   errors={props.errors ? props.errors[index] : {}}
                   active={key === activeKey}

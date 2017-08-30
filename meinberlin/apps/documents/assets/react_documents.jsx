@@ -9,5 +9,7 @@ module.exports.renderDocumentManagement = function (mountpoint) {
   const module = element.getAttribute('data-module')
   const config = JSON.parse(element.getAttribute('data-config'))
 
-  ReactDOM.render(<DocumentManagement key={module} module={module} chapters={chapters} config={config} />, element)
+  const reloadOnSuccess = JSON.parse(element.getAttribute('data-reloadOnSuccess'))
+
+  ReactDOM.render(<DocumentManagement key={module} module={module} chapters={chapters} config={config} reloadOnSuccess={reloadOnSuccess} />, element)
 }

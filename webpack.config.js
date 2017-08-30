@@ -15,8 +15,6 @@ module.exports = {
       'font-awesome/scss/font-awesome.scss',
       'jquery',
       'js-cookie',
-      'moment',
-      'moment/locale/de.js',
       'react',
       'immutability-helper',
       'react-dom',
@@ -94,7 +92,6 @@ module.exports = {
     root: path.resolve('./node_modules')
   },
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.ProvidePlugin({
       timeago: 'timeago.js'
     }),
@@ -109,11 +106,6 @@ module.exports = {
       {
         from: './meinberlin/assets/info',
         to: 'info/',
-        flatten: false
-      },
-      {
-        from: './meinberlin/assets/js/popover.js',
-        to: 'js/',
         flatten: false
       }
     ])

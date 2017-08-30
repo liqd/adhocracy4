@@ -18,8 +18,8 @@ select {
     @extend %input-base;
     display: block;
     max-width: 100%;
-    background-color: $bg-secondary;
-    color: contrast-color($bg-secondary);
+    background-color: $body-bg;
+    color: contrast-color($body-bg);
 
     &:invalid {
         border-color: $brand-danger;
@@ -30,6 +30,15 @@ select {
         color: $input-border-color;
         cursor: not-allowed;
     }
+
+    &:focus {
+        border-color: $brand-secondary;
+        outline: none;
+    }
+}
+
+div.cke_focus {
+    border-color: $brand-secondary;
 }
 
 .form--inline {
@@ -102,64 +111,6 @@ select {
     label {
         @extend .form-check__label;
     }
-}
-
-.widget--datetimeinput {
-    @include clearfix;
-}
-
-.widget--datetimeinput__date {
-    display: flex;
-}
-
-.input-addon {
-    display: flex;
-}
-
-.input-addon__input {
-    flex: 1 1 auto;
-}
-
-.input-addon__before,
-.input-addon__after {
-    flex: 0 1 0%;
-}
-
-.input-addon__input,
-.input-addon__before,
-.input-addon__after {
-    &:focus {
-        // highlighted border should be on top
-        z-index: 1;
-    }
-}
-
-.input-addon__before {
-    margin-right: -1px;
-}
-
-.input-addon__after {
-    margin-left: -1px;
-}
-
-.addon {
-    @extend %input-base;
-    background-color: $body-bg;
-    color: contrast-color($body-bg);
-
-    &:first-child {
-        border-top-left-radius: 0.3em;
-        border-bottom-left-radius: 0.3em;
-    }
-
-    &:last-child {
-        border-top-right-radius: 0.3em;
-        border-bottom-right-radius: 0.3em;
-    }
-}
-
-.input-round {
-    border-radius: 0.3em;
 }
 
 .errorcount {

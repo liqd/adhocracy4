@@ -10,8 +10,8 @@ from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
 from meinberlin.apps.organisations import models as org_models
 
+from . import get_project_dashboard
 from .blueprints import blueprints
-from .contents import content
 
 
 class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
@@ -81,90 +81,16 @@ class DashboardContextMixin(base.ContextMixin):
         project = deepcopy(self.project)
         if project:
             project.refresh_from_db()
-        module = deepcopy(self.module)
-        if module:
-            module.refresh_from_db()
 
-        context['dashboard_menu'] = self.get_dashboard_menu(project, module,
-                                                            self.component)
-        context['project_progress'] = self.get_project_progress(project)
-        return context
+        dashboard = get_project_dashboard(project)
 
-    @staticmethod
-    def get_project_progress(project):
-        num_valid = 0
-        num_required = 0
+        context['dashboard_menu'] = dashboard.get_menu(self.module,
+                                                       self.component)
 
-        for component in content.get_project_components():
-            nums = component.get_progress(project)
-            num_valid = num_valid + nums[0]
-            num_required = num_required + nums[1]
-
-        for module in project.modules:
-            for component in content.get_module_components():
-                nums = component.get_progress(module)
-                num_valid = num_valid + nums[0]
-                num_required = num_required + nums[1]
-
-        return {
+        num_valid, num_required = dashboard.get_progress()
+        context['project_progress'] = {
             'valid': num_valid,
             'required': num_required
         }
 
-    @staticmethod
-    def get_dashboard_menu(project, current_module, current_component):
-        cls = DashboardContextMixin
-        # FIXME: the menu items are in no specific order
-        project_menu = cls.get_project_menu(project, current_component)
-
-        menu_modules = []
-        for module in project.modules:
-            menu_module = cls.get_module_menu(module,
-                                              current_component,
-                                              current_module)
-            if menu_module:
-                menu_modules.append({
-                    'module': module,
-                    'menu': menu_module,
-                })
-
-        return {'project': project_menu, 'modules': menu_modules}
-
-    @staticmethod
-    def get_project_menu(project, current_component):
-        project_menu = []
-        for component in content.get_project_components():
-            menu_item = component.get_menu_label(project)
-            if menu_item:
-                is_active = (component == current_component)
-                url = component.get_base_url(project)
-                num_valid, num_required = component.get_progress(project)
-                is_complete = (num_valid == num_required)
-
-                project_menu.append({
-                    'label': menu_item,
-                    'is_active': is_active,
-                    'url': url,
-                    'is_complete': is_complete,
-                })
-        return project_menu or None
-
-    @staticmethod
-    def get_module_menu(module, current_component, current_module):
-        module_menu = []
-        for component in content.get_module_components():
-            menu_item = component.get_menu_label(module)
-            if menu_item:
-                is_active = (component == current_component and
-                             module.pk == current_module.pk)
-                url = component.get_base_url(module)
-                num_valid, num_required = component.get_progress(module)
-                is_complete = (num_valid == num_required)
-
-                module_menu.append({
-                    'label': menu_item,
-                    'is_active': is_active,
-                    'url': url,
-                    'is_complete': is_complete,
-                })
-        return module_menu or None
+        return context

@@ -1,12 +1,24 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ValidationError
 from django.forms import inlineformset_factory
+from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.categories import models as category_models
+from adhocracy4.maps import models as map_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.bplan import models as bplan_models
+from meinberlin.apps.contrib import widgets
+from meinberlin.apps.extprojects import models as extproject_models
+from meinberlin.apps.maps.widgets import MapChoosePolygonWithPresetWidget
 from meinberlin.apps.users.fields import CommaSeparatedEmailField
+
+from .components.forms import ModuleDashboardForm
+from .components.forms import ModuleDashboardFormSet
+from .components.forms import ProjectDashboardForm
 
 User = get_user_model()
 
@@ -39,102 +51,13 @@ class ProjectCreateForm(forms.ModelForm):
         return project
 
 
-def _make_fields_required(fields, required):
-    """Set the required attributes on all fields who's key is in required."""
-    if required:
-        for name, field in fields:
-            if required == '__all__' or name in required:
-                field.required = True
-
-
-def _make_fields_required_for_publish(fields, required):
-    """Set the required attributes on all fields who's key is in required."""
-    if required:
-        for name, field in fields:
-            if required == '__all__' or name in required:
-                field.required_for_publish = True
-
-
-class ProjectDashboardForm(forms.ModelForm):
-    """
-    Base form for project related dashboard forms.
-
-    Sets fields to required if the project is published.
-    Intended to be used with ProjectFormComponent's.
-    """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        if not self.instance.is_draft:
-            _make_fields_required(self.fields.items(),
-                                  self.get_required_fields())
-
-        _make_fields_required_for_publish(self.fields.items(),
-                                          self.get_required_fields())
-
-    @classmethod
-    def get_required_fields(cls):
-        meta = getattr(cls, 'Meta', None)
-        return getattr(meta, 'required_for_project_publish', [])
-
-
-class ModuleDashboardForm(forms.ModelForm):
-    """
-    Base form for module related dashboard forms.
-
-    Sets fields to required if the project is published.
-    Intended to be used with ModuleFormComponent's.
-    """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        if not self.instance.project.is_draft:
-            _make_fields_required(self.fields.items(),
-                                  self.get_required_fields())
-
-        _make_fields_required_for_publish(self.fields.items(),
-                                          self.get_required_fields())
-
-    @classmethod
-    def get_required_fields(cls):
-        meta = getattr(cls, 'Meta', None)
-        return getattr(meta, 'required_for_project_publish', [])
-
-
-class ModuleDashboardFormSet(forms.BaseInlineFormSet):
-    """
-    Base form for module related dashboard formsets.
-
-    Sets fields to required if the project is published.
-    Intended to be used with ModuleFormSetComponent's.
-    """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        required_fields = self.get_required_fields()
-        for form in self.forms:
-            _make_fields_required_for_publish(form.fields.items(),
-                                              required_fields)
-            if not self.instance.project.is_draft:
-                _make_fields_required(form.fields.items(),
-                                      required_fields)
-
-    @classmethod
-    def get_required_fields(cls):
-        meta = getattr(cls.form, 'Meta', None)
-        return getattr(meta, 'required_for_project_publish', [])
-
-
 class ProjectBasicForm(ProjectDashboardForm):
 
     class Meta:
         model = project_models.Project
-        fields = ['name', 'description', 'image', 'tile_image', 'is_archived',
-                  'is_public']
-        required_for_project_publish = '__all__'
+        fields = ['name', 'description', 'image', 'tile_image',
+                  'is_archived', 'is_public']
+        required_for_project_publish = ['name', 'description']
 
 
 class ProjectInformationForm(ProjectDashboardForm):
@@ -142,7 +65,15 @@ class ProjectInformationForm(ProjectDashboardForm):
     class Meta:
         model = project_models.Project
         fields = ['information']
-        required_for_project_publish = '__all__'
+        required_for_project_publish = ['information']
+
+
+class ProjectResultForm(ProjectDashboardForm):
+
+    class Meta:
+        model = project_models.Project
+        fields = ['result']
+        required_for_project_publish = []
 
 
 class ModuleBasicForm(ModuleDashboardForm):
@@ -154,16 +85,28 @@ class ModuleBasicForm(ModuleDashboardForm):
 
 
 class PhaseForm(forms.ModelForm):
+    end_date = forms.SplitDateTimeField(
+        widget=widgets.DateTimeInput(time_format='%H:%M'),
+        require_all_fields=True,
+        label=_('End date')
+    )
+    start_date = forms.SplitDateTimeField(
+        widget=widgets.DateTimeInput(time_format='%H:%M'),
+        require_all_fields=True,
+        label=_('Start date')
+    )
 
     class Meta:
         model = phase_models.Phase
-        exclude = ('module', )
-
+        fields = ['name', 'description', 'start_date', 'end_date',
+                  'type',  # required for get_phase_name in the tpl
+                  ]
+        required_for_project_publish = ['name', 'description', 'start_date',
+                                        'end_date']
         widgets = {
             'type': forms.HiddenInput(),
             'weight': forms.HiddenInput()
         }
-        required_for_project_publish = '__all__'
 
 
 PhaseFormSet = inlineformset_factory(module_models.Module,
@@ -199,3 +142,116 @@ class AddUsersFromEmailForm(forms.Form):
 
         self.missing = missing
         return users
+
+
+class AreaSettingsForm(ModuleDashboardForm):
+
+    def __init__(self, *args, **kwargs):
+        self.module = kwargs['instance']
+        kwargs['instance'] = self.module.settings_instance
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        super().save(commit)
+        return self.module
+
+    def get_project(self):
+        return self.module.project
+
+    class Meta:
+        model = map_models.AreaSettings
+        fields = ['polygon']
+        required_for_project_publish = ['polygon']
+        # widgets = map_models.AreaSettings.widgets()
+        widgets = {'polygon': MapChoosePolygonWithPresetWidget}
+
+
+class CategoryForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': _('Category')}
+    ))
+
+    @property
+    def media(self):
+        media = super().media
+        media.add_js(['js/formset.js'])
+        return media
+
+    class Meta:
+        model = category_models.Category
+        fields = ['name']
+
+
+CategoryFormSet = inlineformset_factory(module_models.Module,
+                                        category_models.Category,
+                                        form=CategoryForm,
+                                        formset=ModuleDashboardFormSet,
+                                        )
+
+
+# meinBerlin related Forms
+
+class ExternalProjectCreateForm(ProjectCreateForm):
+
+    class Meta:
+        model = extproject_models.ExternalProject
+        fields = ['name', 'description', 'tile_image', ]
+
+
+class ExternalProjectForm(ProjectDashboardForm):
+
+    start_date = forms.SplitDateTimeField(
+        required=False,
+        widget=widgets.DateTimeInput(time_format='%H:%M'),
+        label=_('Start date')
+    )
+    end_date = forms.SplitDateTimeField(
+        required=False,
+        widget=widgets.DateTimeInput(time_format='%H:%M'),
+        label=_('End date')
+    )
+
+    class Meta:
+        model = extproject_models.ExternalProject
+        fields = ['name', 'url', 'description', 'tile_image', 'is_archived']
+        required_for_project_publish = ['name', 'url', 'description']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.initial['start_date'] = self.instance.phase.start_date
+        self.initial['end_date'] = self.instance.phase.end_date
+
+    def clean_end_date(self, *args, **kwargs):
+        start_date = self.cleaned_data['start_date']
+        end_date = self.cleaned_data['end_date']
+        if start_date and end_date and end_date < start_date:
+            raise ValidationError(
+                _('End date can not be smaller than the start date.'))
+        return end_date
+
+    def save(self, commit=True):
+        project = super().save(commit)
+
+        if commit:
+            phase = project.phase
+            phase.start_date = self.cleaned_data['start_date']
+            phase.end_date = self.cleaned_data['end_date']
+            phase.save()
+
+
+class BplanProjectCreateForm(ExternalProjectCreateForm):
+
+    class Meta:
+        model = bplan_models.Bplan
+        fields = ['name', 'description', 'tile_image', ]
+
+
+class BplanProjectForm(ExternalProjectForm):
+
+    class Meta:
+        model = bplan_models.Bplan
+        fields = ['name', 'url', 'description', 'tile_image', 'is_archived',
+                  'office_worker_email']
+        required_for_project_publish = ['name', 'url', 'description',
+                                        'office_worker_email']

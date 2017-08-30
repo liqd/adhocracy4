@@ -1,6 +1,7 @@
 var api = require('adhocracy4').api
 var React = require('react')
 var django = require('django')
+var dashboard = require('../../dashboard2/assets/dashboard')
 var update = require('immutability-helper')
 var ChapterNav = require('./ChapterNav')
 var ChapterForm = require('./ChapterForm')
@@ -18,10 +19,12 @@ class DocumentManagement extends React.Component {
       ]
     }
 
+    var alert = null
+
     this.state = {
       chapters: chapters,
       errors: null,
-      alert: null,
+      alert: alert,
       editChapterIndex: 0
     }
   }
@@ -231,14 +234,18 @@ class DocumentManagement extends React.Component {
 
     api.document.add(submitData)
       .done((data) => {
-        this.setState({
-          alert: {
-            type: 'success',
-            message: django.gettext('The document has been updated.')
-          },
-          errors: [],
-          chapters: data.chapters
-        })
+        if (this.props.reloadOnSuccess) {
+          dashboard.updateDashboard()
+        } else {
+          this.setState({
+            alert: {
+              type: 'success',
+              message: django.gettext('The document has been updated.')
+            },
+            errors: [],
+            chapters: data.chapters
+          })
+        }
       })
       .fail((xhr, status, err) => {
         let errors = []

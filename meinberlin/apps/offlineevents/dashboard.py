@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from meinberlin.apps.dashboard2 import DashboardComponent
-from meinberlin.apps.dashboard2 import content
+from meinberlin.apps.dashboard2 import components
 
 from . import views
 
@@ -39,4 +39,4 @@ class OfflineEventsComponent(DashboardComponent):
         ]
 
 
-content.register_project(OfflineEventsComponent())
+components.register_project(OfflineEventsComponent())

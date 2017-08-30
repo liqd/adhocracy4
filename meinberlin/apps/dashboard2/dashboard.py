@@ -1,12 +1,16 @@
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.categories.models import Categorizable
+from meinberlin.apps.documents.models import Chapter
+
 from . import DashboardComponent
 from . import ModuleFormComponent
 from . import ModuleFormSetComponent
 from . import ProjectFormComponent
-from . import content
+from . import components
 from . import forms
+from . import get_project_type
 from . import views
 
 
@@ -32,6 +36,17 @@ class ProjectInformationComponent(ProjectFormComponent):
                          '/includes/project_information_form.html'
 
 
+class ProjectResultComponent(ProjectFormComponent):
+    identifier = 'result'
+    weight = 12
+
+    menu_label = _('Result')
+    form_title = _('Edit project result')
+    form_class = forms.ProjectResultForm
+    form_template_name = 'meinberlin_dashboard2' \
+                         '/includes/project_result_form.html'
+
+
 class ModuleBasicComponent(ModuleFormComponent):
     identifier = 'module_basic'
     weight = 10
@@ -52,6 +67,48 @@ class ModulePhasesComponent(ModuleFormSetComponent):
     form_class = forms.PhaseFormSet
     form_template_name = 'meinberlin_dashboard2/includes' \
                          '/module_phases_form.html'
+
+
+class ModuleAreaSettingsComponent(ModuleFormComponent):
+    identifier = 'area_settings'
+    weight = 12
+
+    menu_label = _('Areasettings')
+    form_title = _('Edit areasettings')
+    form_class = forms.AreaSettingsForm
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/module_areasettings_form.html'
+
+    def get_menu_label(self, module):
+        module_settings = module.settings_instance
+        if module_settings and hasattr(module_settings, 'polygon'):
+            return self.menu_label
+        return ''
+
+    def get_progress(self, module):
+        module_settings = module.settings_instance
+        if module_settings:
+            return super().get_progress(module_settings)
+        return 0, 0
+
+
+class ModuleCategoriesComponent(ModuleFormSetComponent):
+    identifier = 'categories'
+    weight = 13
+
+    form_title = _('Edit categories')
+    form_class = forms.CategoryFormSet
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/module_categories_form.html'
+
+    def get_menu_label(self, module):
+        # TODO: replace by module feature check
+        for phase in module.phases:
+            for models in phase.content().features.values():
+                for model in models:
+                    if Categorizable.is_categorizable(model):
+                        return _('Categories')
+        return ''
 
 
 class ParticipantsComponent(DashboardComponent):
@@ -96,9 +153,130 @@ class ModeratorsComponent(DashboardComponent):
         )]
 
 
-content.register_project(ProjectBasicComponent())
-content.register_project(ProjectInformationComponent())
-content.register_project(ModeratorsComponent())
-content.register_project(ParticipantsComponent())
-content.register_module(ModuleBasicComponent())
-content.register_module(ModulePhasesComponent())
+class ExternalProjectComponent(ProjectFormComponent):
+    identifier = 'external'
+    weight = 10
+
+    menu_label = _('External project settings')
+    form_title = _('Edit external project settings')
+    form_class = forms.ExternalProjectForm
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/external_project_form.html'
+
+    def get_menu_label(self, project):
+        project_type = get_project_type(project)
+        if project_type == 'external':
+            return self.menu_label
+        return ''
+
+    def get_base_url(self, project):
+        return reverse('a4dashboard:dashboard-external-project-edit', kwargs={
+            'project_slug': project.slug
+        })
+
+    def get_urls(self):
+        return [(
+            r'^projects/(?P<project_slug>[-\w_]+)/external/$',
+            views.ExternalProjectUpdateView.as_view(
+                component=self,
+                title=self.form_title,
+                form_class=self.form_class,
+                form_template_name=self.form_template_name
+            ),
+            'dashboard-external-project-edit'
+        )]
+
+    def get_progress(self, project):
+        project = project.externalproject
+
+        num_valid, num_required = super().get_progress(project)
+        phase_num_valid, phase_num_required = \
+            self._get_progress_for_object(project.phase,
+                                          ['start_date', 'end_date'])
+
+        return num_valid + phase_num_valid, num_required + phase_num_required
+
+
+class BplanProjectComponent(ProjectFormComponent):
+    identifier = 'bplan'
+    weight = 10
+
+    menu_label = _('Development plan settings')
+    form_title = _('Edit development plan settings')
+    form_class = forms.BplanProjectForm
+    form_template_name = 'meinberlin_dashboard2/includes' \
+                         '/bplan_project_form.html'
+
+    def get_menu_label(self, project):
+        project_type = get_project_type(project)
+        if project_type == 'bplan':
+            return self.menu_label
+        return ''
+
+    def get_base_url(self, project):
+        return reverse('a4dashboard:dashboard-bplan-project-edit', kwargs={
+            'project_slug': project.slug
+        })
+
+    def get_urls(self):
+        return [(
+            r'^projects/(?P<project_slug>[-\w_]+)/bplan/$',
+            views.BplanProjectUpdateView.as_view(
+                component=self,
+                title=self.form_title,
+                form_class=self.form_class,
+                form_template_name=self.form_template_name
+            ),
+            'dashboard-bplan-project-edit'
+        )]
+
+    def get_progress(self, project):
+        project = project.externalproject.bplan
+
+        num_valid, num_required = super().get_progress(project)
+        phase_num_valid, phase_num_required = \
+            self._get_progress_for_object(project.phase,
+                                          ['start_date', 'end_date'])
+
+        return num_valid + phase_num_valid, num_required + phase_num_required
+
+
+class ModuleDocumentComponent(DashboardComponent):
+    identifier = 'document_settings'
+    weight = 20
+
+    def get_menu_label(self, module):
+        module_app = module.phases[0].content().app
+        if module_app == 'meinberlin_documents':
+            return _('Document')
+        return ''
+
+    def get_progress(self, module):
+        if Chapter.objects.filter(module=module).exists():
+            return 1, 1
+        return 0, 1
+
+    def get_base_url(self, module):
+        return reverse('a4dashboard:dashboard-document-settings', kwargs={
+            'module_slug': module.slug
+        })
+
+    def get_urls(self):
+        return [(
+            r'^modules/(?P<module_slug>[-\w_]+)/document/$',
+            views.DashboardDocumentView.as_view(),
+            'dashboard-document-settings'
+        )]
+
+
+components.register_module(ModuleAreaSettingsComponent())
+components.register_module(ModuleBasicComponent())
+components.register_module(ModuleCategoriesComponent())
+components.register_module(ModuleDocumentComponent())
+components.register_module(ModulePhasesComponent())
+components.register_project(BplanProjectComponent())
+components.register_project(ExternalProjectComponent())
+components.register_project(ModeratorsComponent())
+components.register_project(ParticipantsComponent())
+components.register_project(ProjectBasicComponent())
+components.register_project(ProjectInformationComponent())

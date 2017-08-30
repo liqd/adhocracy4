@@ -19,13 +19,9 @@ var Shariff = require('shariff')
 var dropdown = require('bootstrap/js/src/dropdown.js')
 var modal = require('bootstrap/js/src/modal.js')
 var tab = require('bootstrap/js/src/tab.js')
-var popover = require('bootstrap/js/src/popover.js')
 var collapse = require('bootstrap/js/src/collapse.js')
 
-// initialize moment locale
-var moment = require('moment')
 var django = require('django')
-moment.locale(django.languageCode)
 
 // expose react components
 var ReactComments = require('adhocracy4').comments
