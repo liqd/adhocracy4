@@ -11,7 +11,7 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.bplan import models as bplan_models
-from meinberlin.apps.contrib import widgets
+from meinberlin.apps.datetimefield import widgets
 from meinberlin.apps.extprojects import models as extproject_models
 from meinberlin.apps.maps.widgets import MapChoosePolygonWithPresetWidget
 from meinberlin.apps.users.fields import CommaSeparatedEmailField

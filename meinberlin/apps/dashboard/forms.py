@@ -13,8 +13,8 @@ from adhocracy4.projects import models as project_models
 from meinberlin.apps.bplan import models as bplan_models
 from meinberlin.apps.bplan import phases as bplan_phases
 from meinberlin.apps.contrib import multiform
-from meinberlin.apps.contrib import widgets
 from meinberlin.apps.contrib.formset import dynamic_modelformset_factory
+from meinberlin.apps.datetimefield import widgets
 from meinberlin.apps.extprojects import models as extproject_models
 from meinberlin.apps.extprojects import phases as extproject_phases
 from meinberlin.apps.maps.widgets import MapChoosePolygonWithPresetWidget

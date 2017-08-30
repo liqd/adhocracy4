@@ -39,15 +39,16 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
             date = value[0] if value else None
             time = value[1] if value else '00:00'
 
-        return render_to_string('datetime_input.html', {
-            'date': self.widgets[0].render(
-                name + '_0',
-                date,
-                date_attrs
-            ),
-            'time': self.widgets[1].render(
-                name + '_1',
-                time,
-                time_attrs
-            )
-        })
+        return render_to_string(
+            'meinberlin_datetimefield/datetime_input.html', {
+                'date': self.widgets[0].render(
+                    name + '_0',
+                    date,
+                    date_attrs
+                ),
+                'time': self.widgets[1].render(
+                    name + '_1',
+                    time,
+                    time_attrs
+                )
+            })
