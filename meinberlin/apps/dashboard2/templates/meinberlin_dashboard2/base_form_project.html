@@ -22,8 +22,8 @@
 {% endblock %}
 
 {% block extra_js %}
+    {{ block.super }}
     {{ form.media.js }}
-    <script src="{% static 'js/unload_warning.js' %}"></script>
 {% endblock %}
 {% block extra_css %}
     {{ form.media.css }}
