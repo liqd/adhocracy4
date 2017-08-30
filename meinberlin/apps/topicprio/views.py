@@ -102,7 +102,7 @@ class TopicListDashboardView(mixins.DashboardComponentMixin,
     template_name = 'meinberlin_topicprio/topic_dashboard_list.html'
     filter_set = TopicCreateFilterSet
     permission_required = 'a4projects.add_project'
-    project_url_kwarg = 'slug'
+    module_url_kwarg = 'module_slug'
 
     def get_queryset(self):
         return super().get_queryset()\
