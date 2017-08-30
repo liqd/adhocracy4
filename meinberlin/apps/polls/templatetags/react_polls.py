@@ -38,16 +38,19 @@ def react_polls(context, question):
 
 
 @register.simple_tag
-def react_poll_form(poll):
+def react_poll_form(poll, reload_on_success=False):
     serializer = serializers.PollSerializer(poll)
     data_poll = JSONRenderer().render(serializer.data)
+    reload_on_success = json.dumps(reload_on_success)
 
     return format_html(
         (
-            '<div id="{id}" data-module="{module}" data-poll="{poll}"></div>'
+            '<div id="{id}" data-module="{module}" data-poll="{poll}"'
+            ' data-reloadOnSuccess="{reload_on_success}"></div>'
             '<script>window.adhocracy4.renderPollManagement("{id}")</script>'
         ),
         module=poll.module.pk,
         id='question-%s' % (poll.pk,),
-        poll=data_poll
+        poll=data_poll,
+        reload_on_success=reload_on_success,
     )
