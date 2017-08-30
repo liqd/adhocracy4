@@ -8,4 +8,4 @@
     {% if polygon %}data-polygon="{{ polygon }}"{% endif %}
 ></div>
 
-<input id="id_{{ name }}" type="hidden" name="{{ name }}" rows="10" {% if polygon %}value="{{ polygon }}"{% endif %}>
+<input id="id_{{ name }}" type="hidden" name="{{ name }}" {% if polygon %}value="{{ polygon }}"{% endif %}>

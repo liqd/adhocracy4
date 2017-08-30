@@ -8,4 +8,4 @@
     data-polygon="{{ polygon }}"
 ></div>
 
-<input id="id_{{ name }}" type="hidden" name="{{ name }}" rows="10" {% if point %}value="{{ point }}"{% endif %}>
+<input id="id_{{ name }}" type="hidden" name="{{ name }}" {% if point %}value="{{ point }}"{% endif %}>
