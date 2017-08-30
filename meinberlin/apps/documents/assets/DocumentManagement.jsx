@@ -234,17 +234,16 @@ class DocumentManagement extends React.Component {
 
     api.document.add(submitData)
       .done((data) => {
+        this.setState({
+          alert: {
+            type: 'success',
+            message: django.gettext('The document has been updated.')
+          },
+          errors: [],
+          chapters: data.chapters
+        })
         if (this.props.reloadOnSuccess) {
           dashboard.updateDashboard()
-        } else {
-          this.setState({
-            alert: {
-              type: 'success',
-              message: django.gettext('The document has been updated.')
-            },
-            errors: [],
-            chapters: data.chapters
-          })
         }
       })
       .fail((xhr, status, err) => {

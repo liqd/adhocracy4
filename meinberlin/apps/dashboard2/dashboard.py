@@ -2,7 +2,6 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories.models import Categorizable
-from meinberlin.apps.documents.models import Chapter
 
 from . import DashboardComponent
 from . import ModuleFormComponent
@@ -241,38 +240,9 @@ class BplanProjectComponent(ProjectFormComponent):
         return num_valid + phase_num_valid, num_required + phase_num_required
 
 
-class ModuleDocumentComponent(DashboardComponent):
-    identifier = 'document_settings'
-    weight = 20
-
-    def get_menu_label(self, module):
-        module_app = module.phases[0].content().app
-        if module_app == 'meinberlin_documents':
-            return _('Document')
-        return ''
-
-    def get_progress(self, module):
-        if Chapter.objects.filter(module=module).exists():
-            return 1, 1
-        return 0, 1
-
-    def get_base_url(self, module):
-        return reverse('a4dashboard:dashboard-document-settings', kwargs={
-            'module_slug': module.slug
-        })
-
-    def get_urls(self):
-        return [(
-            r'^modules/(?P<module_slug>[-\w_]+)/document/$',
-            views.DashboardDocumentView.as_view(),
-            'dashboard-document-settings'
-        )]
-
-
 components.register_module(ModuleAreaSettingsComponent())
 components.register_module(ModuleBasicComponent())
 components.register_module(ModuleCategoriesComponent())
-components.register_module(ModuleDocumentComponent())
 components.register_module(ModulePhasesComponent())
 components.register_project(BplanProjectComponent())
 components.register_project(ExternalProjectComponent())

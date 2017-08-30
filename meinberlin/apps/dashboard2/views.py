@@ -339,12 +339,3 @@ class BplanProjectUpdateView(ProjectComponentFormView):
 
     def validate_object_module(self):
         return True
-
-
-class DashboardDocumentView(mixins.DashboardComponentMixin,
-                            mixins.DashboardBaseMixin,
-                            mixins.DashboardContextMixin,
-                            generic.TemplateView):
-    template_name = 'meinberlin_dashboard2/module_document_settings.html'
-    permission_required = 'a4projects.add_project'
-    project_url_kwarg = 'slug'
