@@ -11,7 +11,7 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.bplan import models as bplan_models
-from meinberlin.apps.datetimefield import widgets
+from meinberlin.apps.datetimefield import fields as datetime_fields
 from meinberlin.apps.extprojects import models as extproject_models
 from meinberlin.apps.maps.widgets import MapChoosePolygonWithPresetWidget
 from meinberlin.apps.users.fields import CommaSeparatedEmailField
@@ -85,15 +85,15 @@ class ModuleBasicForm(ModuleDashboardForm):
 
 
 class PhaseForm(forms.ModelForm):
-    end_date = forms.SplitDateTimeField(
-        widget=widgets.DateTimeInput(time_format='%H:%M'),
+    end_date = datetime_fields.DateTimeField(
+        time_format='%H:%M',
         require_all_fields=True,
-        label=_('End date')
+        label=(_('End date'), _('End time'))
     )
-    start_date = forms.SplitDateTimeField(
-        widget=widgets.DateTimeInput(time_format='%H:%M'),
+    start_date = datetime_fields.DateTimeField(
+        time_format='%H:%M',
         require_all_fields=True,
-        label=_('Start date')
+        label=(_('Start date'), _('Start time'))
     )
 
     class Meta:
@@ -200,15 +200,15 @@ class ExternalProjectCreateForm(ProjectCreateForm):
 
 class ExternalProjectForm(ProjectDashboardForm):
 
-    start_date = forms.SplitDateTimeField(
+    start_date = datetime_fields.DateTimeField(
+        time_format='%H:%M',
         required=False,
-        widget=widgets.DateTimeInput(time_format='%H:%M'),
-        label=_('Start date')
+        label=(_('Start date'), _('Start time'))
     )
-    end_date = forms.SplitDateTimeField(
+    end_date = datetime_fields.DateTimeField(
+        time_format='%H:%M',
         required=False,
-        widget=widgets.DateTimeInput(time_format='%H:%M'),
-        label=_('End date')
+        label=(_('End date'), _('End time'))
     )
 
     class Meta:
