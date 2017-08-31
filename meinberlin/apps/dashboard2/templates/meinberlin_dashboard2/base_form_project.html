@@ -1,5 +1,5 @@
 {% extends "meinberlin_dashboard2/base_dashboard_project.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}{% trans "Edit project" %} &mdash; {{ block.super }}{% endblock%}
 
@@ -22,6 +22,7 @@
 {% endblock %}
 
 {% block extra_js %}
+    {{ block.super }}
     {{ form.media.js }}
 {% endblock %}
 {% block extra_css %}
