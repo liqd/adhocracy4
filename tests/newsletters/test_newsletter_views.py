@@ -33,11 +33,11 @@ def test_send_organisation(admin, client, project, user_factory,
         'send': 'Send',
     }
 
-    url = reverse('dashboard-newsletter-create',
+    url = reverse('a4dashboard:newsletter-create',
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.post(url, data)
-    assert redirect_target(response) == 'dashboard-newsletter-create'
+    assert redirect_target(response) == 'a4dashboard:newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
 
     assert len(mail.outbox) == 1
@@ -69,11 +69,11 @@ def test_send_organisation_initiators(admin, client, project, user_factory,
         'send': 'Send',
     }
 
-    url = reverse('dashboard-newsletter-create',
+    url = reverse('a4dashboard:newsletter-create',
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.post(url, data)
-    assert redirect_target(response) == 'dashboard-newsletter-create'
+    assert redirect_target(response) == 'a4dashboard:newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
 
     assert len(mail.outbox) == 1
@@ -104,11 +104,11 @@ def test_send_project(admin, client, project, user_factory, follow_factory):
         'send': 'Send',
     }
 
-    url = reverse('dashboard-newsletter-create',
+    url = reverse('a4dashboard:newsletter-create',
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.post(url, data)
-    assert redirect_target(response) == 'dashboard-newsletter-create'
+    assert redirect_target(response) == 'a4dashboard:newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
 
     assert len(mail.outbox) == 1
@@ -169,11 +169,11 @@ def test_skip_opt_out(admin, client, project, user_factory, follow_factory):
         'send': 'Send',
     }
 
-    url = reverse('dashboard-newsletter-create',
+    url = reverse('a4dashboard:newsletter-create',
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.post(url, data)
-    assert redirect_target(response) == 'dashboard-newsletter-create'
+    assert redirect_target(response) == 'a4dashboard:newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
 
     assert len(mail.outbox) == 0
@@ -202,11 +202,11 @@ def test_distinct_receivers(admin, client, project_factory, user_factory,
         'send': 'Send',
     }
 
-    url = reverse('dashboard-newsletter-create',
+    url = reverse('a4dashboard:newsletter-create',
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.post(url, data)
-    assert redirect_target(response) == 'dashboard-newsletter-create'
+    assert redirect_target(response) == 'a4dashboard:newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
 
     assert len(mail.outbox) == 1
@@ -231,11 +231,11 @@ def test_skip_inactive(admin, client, project, user_factory, follow_factory):
         'send': 'Send',
     }
 
-    url = reverse('dashboard-newsletter-create',
+    url = reverse('a4dashboard:newsletter-create',
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.post(url, data)
-    assert redirect_target(response) == 'dashboard-newsletter-create'
+    assert redirect_target(response) == 'a4dashboard:newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
 
     assert len(mail.outbox) == 0
@@ -265,7 +265,7 @@ def test_access_dashboard_newsletter(client, project, admin, user):
     assert organisation.initiators.count() == 1
     initiator = organisation.initiators.first()
 
-    url = reverse('dashboard-newsletter-create',
+    url = reverse('a4dashboard:newsletter-create',
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.get(url)
@@ -291,7 +291,7 @@ def test_limit_initiators_organisation(client, project_factory):
 
     project2 = project_factory()
 
-    url = reverse('dashboard-newsletter-create',
+    url = reverse('a4dashboard:newsletter-create',
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=initiator.email, password='password')
 
@@ -321,7 +321,7 @@ def test_limit_initiators_organisation_projects(client, project_factory):
 
     project2 = project_factory()
 
-    url = reverse('dashboard-newsletter-create',
+    url = reverse('a4dashboard:newsletter-create',
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=initiator.email, password='password')
 

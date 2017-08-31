@@ -49,7 +49,7 @@ class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
 
     def get_success_url(self):
         return reverse(
-            'dashboard-newsletter-create',
+            'a4dashboard:newsletter-create',
             kwargs={'organisation_slug': self.organisation.slug})
 
 

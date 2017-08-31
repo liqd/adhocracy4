@@ -44,8 +44,6 @@ ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
     url(r'^dashboard/', include('meinberlin.apps.dashboard.urls')),
-    url(r'^dashboard2/',
-        include('meinberlin.apps.dashboard.a4dashboard_urls')),
     url(r'^account/', include('meinberlin.apps.account.urls')),
     url(r'^embed/', include('meinberlin.apps.embed.urls')),
     url(r'^profile/', include('meinberlin.apps.users.urls')),
