@@ -84,10 +84,6 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
 
     def form_valid(self, form):
         response = super().form_valid(form)
-
-        signals.project_created.send(sender=None, project=self.object)
-
-        # FIXME: maybe replace by dashboard signals
         self._create_modules_and_phases(self.object)
 
         return response
@@ -100,7 +96,6 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
             project=project,
         )
         module.save()
-        signals.module_created.send(sender=None, module=module)
 
         self._create_module_settings(module)
         self._create_phases(module, self.blueprint.content)
