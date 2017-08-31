@@ -16,8 +16,8 @@ from . import views
 class ProjectBasicComponent(ProjectFormComponent):
     identifier = 'basic'
     weight = 10
+    label = _('Basic settings')
 
-    menu_label = _('Basic settings')
     form_title = _('Edit basic settings')
     form_class = forms.ProjectBasicForm
     form_template_name = 'meinberlin_dashboard2/includes' \
@@ -27,8 +27,8 @@ class ProjectBasicComponent(ProjectFormComponent):
 class ProjectInformationComponent(ProjectFormComponent):
     identifier = 'information'
     weight = 11
+    label = _('Information')
 
-    menu_label = _('Information')
     form_title = _('Edit project information')
     form_class = forms.ProjectInformationForm
     form_template_name = 'meinberlin_dashboard2' \
@@ -38,8 +38,8 @@ class ProjectInformationComponent(ProjectFormComponent):
 class ProjectResultComponent(ProjectFormComponent):
     identifier = 'result'
     weight = 12
+    label = _('Result')
 
-    menu_label = _('Result')
     form_title = _('Edit project result')
     form_class = forms.ProjectResultForm
     form_template_name = 'meinberlin_dashboard2' \
@@ -49,8 +49,8 @@ class ProjectResultComponent(ProjectFormComponent):
 class ModuleBasicComponent(ModuleFormComponent):
     identifier = 'module_basic'
     weight = 10
+    label = _('Basic information')
 
-    menu_label = _('Basic information')
     form_title = _('Edit basic module information')
     form_class = forms.ModuleBasicForm
     form_template_name = 'meinberlin_dashboard2/includes' \
@@ -60,8 +60,8 @@ class ModuleBasicComponent(ModuleFormComponent):
 class ModulePhasesComponent(ModuleFormSetComponent):
     identifier = 'phases'
     weight = 11
+    label = _('Phases')
 
-    menu_label = _('Phases')
     form_title = _('Edit phases information')
     form_class = forms.PhaseFormSet
     form_template_name = 'meinberlin_dashboard2/includes' \
@@ -72,17 +72,15 @@ class ModuleAreaSettingsComponent(ModuleFormComponent):
     identifier = 'area_settings'
     weight = 12
 
-    menu_label = _('Areasettings')
+    label = _('Areasettings')
     form_title = _('Edit areasettings')
     form_class = forms.AreaSettingsForm
     form_template_name = 'meinberlin_dashboard2/includes' \
                          '/module_areasettings_form.html'
 
-    def get_menu_label(self, module):
+    def is_effective(self, module):
         module_settings = module.settings_instance
-        if module_settings and hasattr(module_settings, 'polygon'):
-            return self.menu_label
-        return ''
+        return module_settings and hasattr(module_settings, 'polygon')
 
     def get_progress(self, module):
         module_settings = module.settings_instance
@@ -94,30 +92,29 @@ class ModuleAreaSettingsComponent(ModuleFormComponent):
 class ModuleCategoriesComponent(ModuleFormSetComponent):
     identifier = 'categories'
     weight = 13
+    label = _('Categories')
 
     form_title = _('Edit categories')
     form_class = forms.CategoryFormSet
     form_template_name = 'meinberlin_dashboard2/includes' \
                          '/module_categories_form.html'
 
-    def get_menu_label(self, module):
-        # TODO: replace by module feature check
+    def is_effective(self, module):
         for phase in module.phases:
             for models in phase.content().features.values():
                 for model in models:
                     if Categorizable.is_categorizable(model):
-                        return _('Categories')
-        return ''
+                        return True
+        return False
 
 
 class ParticipantsComponent(DashboardComponent):
     identifier = 'participants'
     weight = 30
+    label = _('Participants')
 
-    def get_menu_label(self, project):
-        if project.is_private:
-            return _('Participants')
-        return ''
+    def is_effective(self, project):
+        return project.is_private
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-participants-edit', kwargs={
@@ -135,9 +132,10 @@ class ParticipantsComponent(DashboardComponent):
 class ModeratorsComponent(DashboardComponent):
     identifier = 'moderators'
     weight = 31
+    label = _('Moderators')
 
-    def get_menu_label(self, project):
-        return _('Moderators')
+    def is_effective(self, project):
+        return True
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-moderators-edit', kwargs={
@@ -155,18 +153,16 @@ class ModeratorsComponent(DashboardComponent):
 class ExternalProjectComponent(ProjectFormComponent):
     identifier = 'external'
     weight = 10
+    label = _('External project settings')
 
-    menu_label = _('External project settings')
     form_title = _('Edit external project settings')
     form_class = forms.ExternalProjectForm
     form_template_name = 'meinberlin_dashboard2/includes' \
                          '/external_project_form.html'
 
-    def get_menu_label(self, project):
+    def is_effective(self, project):
         project_type = get_project_type(project)
-        if project_type == 'external':
-            return self.menu_label
-        return ''
+        return project_type == 'external'
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-external-project-edit', kwargs={
@@ -199,18 +195,16 @@ class ExternalProjectComponent(ProjectFormComponent):
 class BplanProjectComponent(ProjectFormComponent):
     identifier = 'bplan'
     weight = 10
+    label = _('Development plan settings')
 
-    menu_label = _('Development plan settings')
     form_title = _('Edit development plan settings')
     form_class = forms.BplanProjectForm
     form_template_name = 'meinberlin_dashboard2/includes' \
                          '/bplan_project_form.html'
 
-    def get_menu_label(self, project):
+    def is_effective(self, project):
         project_type = get_project_type(project)
-        if project_type == 'bplan':
-            return self.menu_label
-        return ''
+        return project_type == 'bplan'
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-bplan-project-edit', kwargs={

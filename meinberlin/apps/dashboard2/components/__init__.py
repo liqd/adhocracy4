@@ -31,29 +31,36 @@ class DashboardComponent:
         The component with the lowest weight will be the default entry point
         for editing a project.
 
+    label : str
+        The localized label to be shown in the dashboard menu if the component
+        is effective
+
     """
 
     identifier = ''
     weight = 0
+    label = ''
 
-    def get_menu_label(self, project_or_module):
-        """Return the menu label if the component should be shown.
+    def is_effective(self, project_or_module):
+        """Return if the component is effective for the current context.
+
+        If a component isn't effective it won't be shown in the menu or
+        considered when determining the projects' progress.
 
         Parameters
         ----------
         project_or_module : Project or Module
-            The project or module in whose context the component
-            should be shown.
+            The project or module in whose context the component may
+            be effective.
 
         Returns
         -------
-        str
-            Return the localized label to be shown in the dashboard menu or
-            '' if the component should not be shown for the passed project or
-            module context.
+        bool
+            Return True if the component is effective for the passed project
+            or module context.
 
         """
-        return ''
+        return False
 
     def get_progress(self, project_or_module):
         """Return the progress of this component.

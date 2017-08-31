@@ -11,20 +11,16 @@ from . import views
 class TopicEditComponent(DashboardComponent):
     identifier = 'topic_edit'
     weight = 20
+    label = _('Topics')
 
-    def get_menu_label(self, module):
+    def is_effective(self, module):
         module_app = module.phases[0].content().app
-        if module_app == 'meinberlin_topicprio':
-            return _('Topics')
-        return ''
+        return module_app == 'meinberlin_topicprio'
 
     def get_progress(self, module):
-        module_app = module.phases[0].content().app
-        if module_app == 'meinberlin_topicprio':
-            if models.Topic.objects.filter(module=module).exists():
-                return 1, 1
-            return 0, 1
-        return 0, 0
+        if models.Topic.objects.filter(module=module).exists():
+            return 1, 1
+        return 0, 1
 
     def get_base_url(self, module):
         return reverse('a4dashboard:topic-list', kwargs={

@@ -25,11 +25,10 @@ class ProjectFormComponent(DashboardComponent):
     to be validly entered prior to project publishing. The component provides
     a get_progress implementation based on this list and prevents from removing
     required data if the project is published.
+    Form components are always effective.
 
     Properties
     ----------
-    menu_label : str
-        This label is always returned regardless of project state
     form_title : str
         This title is shown on top of the rendered form
     form_class : ProjectDashboardForm
@@ -37,13 +36,12 @@ class ProjectFormComponent(DashboardComponent):
 
     """
 
-    menu_label = ''
     form_title = ''
     form_class = None
     form_template_name = ''
 
-    def get_menu_label(self, project):
-        return self.menu_label
+    def is_effective(self, project):
+        return True
 
     def get_base_url(self, project_or_module):
         name = 'a4dashboard:dashboard-{identifier}-edit'.format(
@@ -115,11 +113,10 @@ class ModuleFormComponent(ProjectFormComponent):
     to be validly entered prior to project publishing. The component provides
     a get_progress implementation based on this list and prevents from removing
     required data if the project is published.
+    Form components are always effective.
 
     Properties
     ----------
-    menu_label : str
-        This label is always returned regardless of module state
     form_title : str
         This title is shown on top of the rendered form
     form_class : ModuleDashboardForm
@@ -163,11 +160,10 @@ class ModuleFormSetComponent(ModuleFormComponent):
     to be validly entered prior to project publishing. The component provides
     a get_progress implementation based on this list and prevents from removing
     required data if the project is published.
+    Form components are always effective.
 
     Properties
     ----------
-    menu_label : str
-        This label is always returned regardless of module state
     form_title : str
         This title is shown on top of the rendered form
     form_class : ModuleDashboardFormSet
