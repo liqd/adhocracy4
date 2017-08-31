@@ -3,8 +3,8 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
-from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.bplan import models as bplan_models
+from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
 from meinberlin.apps.dashboard2.components.forms.views import \
     ProjectComponentFormView
 from meinberlin.apps.dashboard2.views import ProjectCreateView
@@ -14,11 +14,9 @@ from meinberlin.apps.newsletters.views import NewsletterCreateView
 from meinberlin.apps.organisations.models import Organisation
 
 from . import forms
-from . import mixins
 
 
-class DashboardOrganisationUpdateView(mixins.DashboardBaseMixin,
-                                      rules_mixins.PermissionRequiredMixin,
+class DashboardOrganisationUpdateView(a4dashboard_mixins.DashboardBaseMixin,
                                       SuccessMessageMixin,
                                       generic.UpdateView):
 
@@ -31,7 +29,7 @@ class DashboardOrganisationUpdateView(mixins.DashboardBaseMixin,
     menu_item = 'organisation'
 
 
-class DashboardNewsletterCreateView(mixins.DashboardBaseMixin,
+class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
                                     NewsletterCreateView):
     template_name = 'meinberlin_dashboard/newsletter_form.html'
     menu_item = 'newsletter'
