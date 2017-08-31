@@ -78,11 +78,12 @@ class ModuleAreaSettingsComponent(ModuleFormComponent):
     form_template_name = 'meinberlin_dashboard2/includes' \
                          '/module_areasettings_form.html'
 
-    def get_menu_label(self, module):
+    def is_effective(self, module):
         module_settings = module.settings_instance
-        if module_settings and hasattr(module_settings, 'polygon'):
-            return self.menu_label
-        return ''
+        return module_settings and hasattr(module_settings, 'polygon')
+
+    def get_menu_label(self, module):
+        return self.menu_label
 
     def get_progress(self, module):
         module_settings = module.settings_instance
@@ -100,24 +101,27 @@ class ModuleCategoriesComponent(ModuleFormSetComponent):
     form_template_name = 'meinberlin_dashboard2/includes' \
                          '/module_categories_form.html'
 
-    def get_menu_label(self, module):
-        # TODO: replace by module feature check
+    def is_effective(self, module):
         for phase in module.phases:
             for models in phase.content().features.values():
                 for model in models:
                     if Categorizable.is_categorizable(model):
-                        return _('Categories')
-        return ''
+                        return True
+        return False
+
+    def get_menu_label(self, module):
+        return _('Categories')
 
 
 class ParticipantsComponent(DashboardComponent):
     identifier = 'participants'
     weight = 30
 
+    def is_effective(self, project):
+        return project.is_private
+
     def get_menu_label(self, project):
-        if project.is_private:
-            return _('Participants')
-        return ''
+        return _('Participants')
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-participants-edit', kwargs={
@@ -135,6 +139,9 @@ class ParticipantsComponent(DashboardComponent):
 class ModeratorsComponent(DashboardComponent):
     identifier = 'moderators'
     weight = 31
+
+    def is_effective(self, project):
+        return True
 
     def get_menu_label(self, project):
         return _('Moderators')
@@ -162,11 +169,12 @@ class ExternalProjectComponent(ProjectFormComponent):
     form_template_name = 'meinberlin_dashboard2/includes' \
                          '/external_project_form.html'
 
-    def get_menu_label(self, project):
+    def is_effective(self, project):
         project_type = get_project_type(project)
-        if project_type == 'external':
-            return self.menu_label
-        return ''
+        return project_type == 'external'
+
+    def get_menu_label(self, project):
+        return self.menu_label
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-external-project-edit', kwargs={
@@ -206,11 +214,12 @@ class BplanProjectComponent(ProjectFormComponent):
     form_template_name = 'meinberlin_dashboard2/includes' \
                          '/bplan_project_form.html'
 
-    def get_menu_label(self, project):
+    def is_effective(self, project):
         project_type = get_project_type(project)
-        if project_type == 'bplan':
-            return self.menu_label
-        return ''
+        return project_type == 'bplan'
+
+    def get_menu_label(self, project):
+        return self.menu_label
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-bplan-project-edit', kwargs={

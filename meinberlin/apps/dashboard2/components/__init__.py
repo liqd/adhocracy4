@@ -36,6 +36,27 @@ class DashboardComponent:
     identifier = ''
     weight = 0
 
+    def is_effective(self, project_or_module):
+        """Return if the component is effective for the current context.
+
+        If a component isn't effective it won't be shown in the menu or
+        considered when determining the projects' progress.
+
+        Parameters
+        ----------
+        project_or_module : Project or Module
+            The project or module in whose context the component may
+            be effective.
+
+        Returns
+        -------
+        bool
+            Return True if the component is effective for the passed project
+            or module context.
+
+        """
+        return False
+
     def get_menu_label(self, project_or_module):
         """Return the menu label if the component should be shown.
 

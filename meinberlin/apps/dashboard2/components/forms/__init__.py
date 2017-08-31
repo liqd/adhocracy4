@@ -25,6 +25,7 @@ class ProjectFormComponent(DashboardComponent):
     to be validly entered prior to project publishing. The component provides
     a get_progress implementation based on this list and prevents from removing
     required data if the project is published.
+    Form components are always effective.
 
     Properties
     ----------
@@ -41,6 +42,9 @@ class ProjectFormComponent(DashboardComponent):
     form_title = ''
     form_class = None
     form_template_name = ''
+
+    def is_effective(self, project):
+        return True
 
     def get_menu_label(self, project):
         return self.menu_label
@@ -115,6 +119,7 @@ class ModuleFormComponent(ProjectFormComponent):
     to be validly entered prior to project publishing. The component provides
     a get_progress implementation based on this list and prevents from removing
     required data if the project is published.
+    Form components are always effective.
 
     Properties
     ----------
@@ -163,6 +168,7 @@ class ModuleFormSetComponent(ModuleFormComponent):
     to be validly entered prior to project publishing. The component provides
     a get_progress implementation based on this list and prevents from removing
     required data if the project is published.
+    Form components are always effective.
 
     Properties
     ----------

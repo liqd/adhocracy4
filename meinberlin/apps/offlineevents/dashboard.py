@@ -11,6 +11,9 @@ class OfflineEventsComponent(DashboardComponent):
     identifier = 'offlineevents'
     weight = 20
 
+    def is_effective(self, project):
+        return True
+
     def get_menu_label(self, project):
         return _('Offline Events')
 

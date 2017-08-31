@@ -12,10 +12,11 @@ class ExportModuleComponent(DashboardComponent):
     identifier = 'module_export'
     weight = 50
 
+    def is_effective(self, module):
+        return not module.project.is_draft and get_exports(module)
+
     def get_menu_label(self, module):
-        if not module.project.is_draft and get_exports(module):
-            return _('Export')
-        return ''
+        return _('Export')
 
     def get_progress(self, module):
         return 0, 0

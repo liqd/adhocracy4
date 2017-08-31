@@ -34,7 +34,7 @@ class ProjectDashboard:
 
     def get_project_components(self):
         return [component for component in components.get_project_components()
-                if component.get_menu_label(self.project)]
+                if component.is_effective(self.project)]
 
     def get_module_components(self):
         return components.get_module_components()
@@ -44,15 +44,17 @@ class ProjectDashboard:
         num_required = 0
 
         for component in self.get_project_components():
-            nums = component.get_progress(self.project)
-            num_valid = num_valid + nums[0]
-            num_required = num_required + nums[1]
+            if component.is_effective(self.project):
+                nums = component.get_progress(self.project)
+                num_valid = num_valid + nums[0]
+                num_required = num_required + nums[1]
 
         for module in self.project.modules:
             for component in self.get_module_components():
-                nums = component.get_progress(module)
-                num_valid = num_valid + nums[0]
-                num_required = num_required + nums[1]
+                if component.is_effective(module):
+                    nums = component.get_progress(module)
+                    num_valid = num_valid + nums[0]
+                    num_required = num_required + nums[1]
 
         return num_valid, num_required
 
@@ -74,8 +76,8 @@ class ProjectDashboard:
     def get_project_menu(self, current_component):
         project_menu = []
         for component in self.get_project_components():
-            menu_item = component.get_menu_label(self.project)
-            if menu_item:
+            if component.is_effective(self.project):
+                menu_item = component.get_menu_label(self.project)
                 is_active = (component == current_component)
                 url = component.get_base_url(self.project)
                 num_valid, num_required = component.get_progress(self.project)
@@ -92,8 +94,8 @@ class ProjectDashboard:
     def get_module_menu(self, module, current_module, current_component):
         module_menu = []
         for component in self.get_module_components():
-            menu_item = component.get_menu_label(module)
-            if menu_item:
+            if component.is_effective(module):
+                menu_item = component.get_menu_label(module)
                 is_active = (component == current_component and
                              module.pk == current_module.pk)
                 url = component.get_base_url(module)
@@ -137,7 +139,7 @@ class TypedProjectDashboard(ProjectDashboard):
             return [components.projects.get('external')]
 
         return [component for component in components.get_project_components()
-                if component.get_menu_label(self.project)]
+                if component.is_effective(self.project)]
 
     def get_module_components(self):
         if self.project_type == 'bplan':

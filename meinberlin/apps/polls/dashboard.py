@@ -12,19 +12,17 @@ class PollComponent(DashboardComponent):
     identifier = 'polls'
     weight = 20
 
-    def get_menu_label(self, module):
+    def is_effective(self, module):
         module_app = module.phases[0].content().app
-        if module_app == 'meinberlin_polls':
-            return _('Polls')
-        return ''
+        return module_app == 'meinberlin_polls'
+
+    def get_menu_label(self, module):
+        return _('Polls')
 
     def get_progress(self, module):
-        module_app = module.phases[0].content().app
-        if module_app == 'meinberlin_polls':
-            if models.Question.objects.filter(poll__module=module).exists():
-                return 1, 1
-            return 0, 1
-        return 0, 0
+        if models.Question.objects.filter(poll__module=module).exists():
+            return 1, 1
+        return 0, 1
 
     def get_base_url(self, module):
         return reverse('a4dashboard:poll-dashboard', kwargs={
