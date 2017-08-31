@@ -30,7 +30,7 @@
         <nav role="tablist">
             <a
                 id="tab-project-{{ project.pk }}-information"
-                class="tab"
+                class="tab{% if not project.has_started %} active{% endif %}"
                 data-toggle="tab"
                 href="#tabpanel-project-{{ project.pk }}-information"
                 role="tab"
@@ -40,7 +40,7 @@
             </a>
             <a
                 id="tab-project-{{ project.pk }}-participation"
-                class="tab active"
+                class="tab{% if project.has_started and not project.has_finished %} active{% endif %}"
                 data-toggle="tab"
                 href="#tabpanel-project-{{ project.pk }}-participation"
                 role="tab"
@@ -50,7 +50,7 @@
             </a>
             <a
                 id="tab-project-{{ project.pk }}-result"
-                class="tab"
+                class="tab{% if project.has_finished %} active{% endif %}"
                 data-toggle="tab"
                 href="#tabpanel-project-{{ project.pk }}-result"
                 role="tab"
@@ -63,7 +63,7 @@
 </div>
 
 <div
-    class="tabpanel"
+    class="tabpanel{% if not project.has_started %} active{% endif %}"
     id="tabpanel-project-{{ project.pk }}-information"
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-information"
@@ -75,7 +75,7 @@
     </div>
 </div>
 <div
-    class="tabpanel active"
+    class="tabpanel{% if project.has_started and not project.has_finished %} active{% endif %}"
     id="tabpanel-project-{{ project.pk }}-participation"
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-participation"
@@ -90,7 +90,7 @@
     {% block phase_content %}{% endblock %}
 </div>
 <div
-    class="tabpanel"
+    class="tabpanel{% if project.has_finished %} active{% endif %}"
     id="tabpanel-project-{{ project.pk }}-result"
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-result"
