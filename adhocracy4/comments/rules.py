@@ -6,10 +6,12 @@ from adhocracy4.phases import predicates as phase_predicates
 
 @rules.predicate
 def content_object_allows_comment(user, comment):
-    content_object = comment.content_object
-    return phase_predicates.has_feature_active(
-        content_object.module, content_object.__class__, 'comment'
-    )
+    if comment:
+        content_object = comment.content_object
+        return phase_predicates.has_feature_active(
+            content_object.module, content_object.__class__, 'comment'
+        )
+    return False
 
 
 rules.add_perm(
