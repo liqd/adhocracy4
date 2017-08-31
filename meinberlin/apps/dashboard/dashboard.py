@@ -3,9 +3,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from meinberlin.apps.dashboard2 import ProjectFormComponent
 from meinberlin.apps.dashboard2 import components
-from meinberlin.apps.dashboard2 import get_project_type
 
 from . import forms
+from . import get_project_type
 from . import views
 
 
