@@ -77,14 +77,13 @@ class ProjectDashboard:
         project_menu = []
         for component in self.get_project_components():
             if component.is_effective(self.project):
-                menu_item = component.get_menu_label(self.project)
                 is_active = (component == current_component)
                 url = component.get_base_url(self.project)
                 num_valid, num_required = component.get_progress(self.project)
                 is_complete = (num_valid == num_required)
 
                 project_menu.append({
-                    'label': menu_item,
+                    'label': component.label,
                     'is_active': is_active,
                     'url': url,
                     'is_complete': is_complete,
@@ -95,7 +94,6 @@ class ProjectDashboard:
         module_menu = []
         for component in self.get_module_components():
             if component.is_effective(module):
-                menu_item = component.get_menu_label(module)
                 is_active = (component == current_component and
                              module.pk == current_module.pk)
                 url = component.get_base_url(module)
@@ -103,7 +101,7 @@ class ProjectDashboard:
                 is_complete = (num_valid == num_required)
 
                 module_menu.append({
-                    'label': menu_item,
+                    'label': component.label,
                     'is_active': is_active,
                     'url': url,
                     'is_complete': is_complete,

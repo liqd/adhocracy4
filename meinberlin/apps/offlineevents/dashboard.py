@@ -10,12 +10,10 @@ from . import views
 class OfflineEventsComponent(DashboardComponent):
     identifier = 'offlineevents'
     weight = 20
+    label = _('Offline Events')
 
     def is_effective(self, project):
         return True
-
-    def get_menu_label(self, project):
-        return _('Offline Events')
 
     def get_progress(self, project):
         return 0, 0

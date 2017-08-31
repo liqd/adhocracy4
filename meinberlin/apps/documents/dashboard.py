@@ -11,13 +11,11 @@ from . import views
 class DocumentComponent(DashboardComponent):
     identifier = 'document_settings'
     weight = 20
+    label = _('Document')
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
         return module_app == 'meinberlin_documents'
-
-    def get_menu_label(self, module):
-        return _('Document')
 
     def get_progress(self, module):
         if Chapter.objects.filter(module=module).exists():

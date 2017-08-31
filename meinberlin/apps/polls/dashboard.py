@@ -11,13 +11,11 @@ from . import views
 class PollComponent(DashboardComponent):
     identifier = 'polls'
     weight = 20
+    label = _('Polls')
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
         return module_app == 'meinberlin_polls'
-
-    def get_menu_label(self, module):
-        return _('Polls')
 
     def get_progress(self, module):
         if models.Question.objects.filter(poll__module=module).exists():

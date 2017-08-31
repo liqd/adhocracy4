@@ -11,13 +11,11 @@ from . import views
 class TopicEditComponent(DashboardComponent):
     identifier = 'topic_edit'
     weight = 20
+    label = _('Topics')
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
         return module_app == 'meinberlin_topicprio'
-
-    def get_menu_label(self, module):
-        return _('Topics')
 
     def get_progress(self, module):
         if models.Topic.objects.filter(module=module).exists():

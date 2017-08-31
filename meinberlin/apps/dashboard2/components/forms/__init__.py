@@ -29,8 +29,6 @@ class ProjectFormComponent(DashboardComponent):
 
     Properties
     ----------
-    menu_label : str
-        This label is always returned regardless of project state
     form_title : str
         This title is shown on top of the rendered form
     form_class : ProjectDashboardForm
@@ -38,16 +36,12 @@ class ProjectFormComponent(DashboardComponent):
 
     """
 
-    menu_label = ''
     form_title = ''
     form_class = None
     form_template_name = ''
 
     def is_effective(self, project):
         return True
-
-    def get_menu_label(self, project):
-        return self.menu_label
 
     def get_base_url(self, project_or_module):
         name = 'a4dashboard:dashboard-{identifier}-edit'.format(
@@ -123,8 +117,6 @@ class ModuleFormComponent(ProjectFormComponent):
 
     Properties
     ----------
-    menu_label : str
-        This label is always returned regardless of module state
     form_title : str
         This title is shown on top of the rendered form
     form_class : ModuleDashboardForm
@@ -172,8 +164,6 @@ class ModuleFormSetComponent(ModuleFormComponent):
 
     Properties
     ----------
-    menu_label : str
-        This label is always returned regardless of module state
     form_title : str
         This title is shown on top of the rendered form
     form_class : ModuleDashboardFormSet
