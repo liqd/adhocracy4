@@ -6,30 +6,9 @@ from django.views import generic
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
 from meinberlin.apps.dashboard2 import mixins as dashboard_mixins
-from meinberlin.apps.dashboard.mixins import DashboardBaseMixin
 from meinberlin.apps.exports import views as export_views
 
 from . import models
-
-
-class DocumentManagementView(ProjectContextDispatcher,
-                             generic.TemplateView,
-                             DashboardBaseMixin,
-                             rules_mixins.PermissionRequiredMixin):
-    template_name = 'meinberlin_documents/document_management.html'
-    permission_required = 'a4projects.add_project'
-    project_url_kwarg = 'slug'
-
-    # Dashboard related attributes
-    menu_item = 'project'
-
-    def get_context_data(self, **kwargs):
-        context = super(DocumentManagementView, self)\
-            .get_context_data(**kwargs)
-        # FIXME: Add multi-module support
-        module = self.project.module_set.first()
-        context['module'] = module
-        return context
 
 
 class DocumentDashboardView(dashboard_mixins.DashboardComponentMixin,
