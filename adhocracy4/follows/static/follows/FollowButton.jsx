@@ -58,14 +58,14 @@ class FollowButton extends React.Component {
           <span className="dropdown-menu" aria-labelledby="follow-dropdown">
             <button className="dropdown-item select-item" onClick={this.disableFollow.bind(this)}>
               {!this.state.followed ? <i className="fa fa-check select-item-indicator" aria-hidden="true" /> : null}
-              {django.gettext('Unfollow')}
+              {django.gettext('Not following')}
               <span className="select-item-desc">
                 {django.gettext('Never be notified.')}
               </span>
             </button>
             <button className="dropdown-item select-item" onClick={this.enableFollow.bind(this)}>
               {this.state.followed ? <i className="fa fa-check select-item-indicator" aria-hidden="true" /> : null}
-              {django.gettext('Follow')}
+              {django.gettext('Following')}
               <span className="select-item-desc">
                 {django.gettext('Be notified if something happens in the project.')}
               </span>
