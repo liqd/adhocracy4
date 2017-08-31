@@ -16,6 +16,7 @@ from meinberlin.apps.contrib.views import ProjectContextDispatcher
 from meinberlin.apps.organisations import models as org_models
 
 from . import get_project_dashboard
+from . import signals
 
 
 class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
@@ -123,12 +124,14 @@ class DashboardProjectDuplicateMixin:
             project_clone.created = datetime.now()
             project_clone.is_draft = True
             project_clone.save()
+            signals.project_created.send(sender=None, project=project_clone)
 
             for module in project.module_set.all():
                 module_clone = deepcopy(module)
                 module_clone.project = project_clone
                 module_clone.pk = None
                 module_clone.save()
+                signals.module_created.send(sender=None, module=module_clone)
 
                 for phase in module.phase_set.all():
                     phase_clone = deepcopy(phase)
