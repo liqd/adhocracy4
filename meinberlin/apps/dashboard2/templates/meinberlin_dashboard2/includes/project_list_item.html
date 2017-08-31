@@ -1,39 +1,66 @@
 {% load i18n project_tags extproject_tags dashboard_tags thumbnail contrib_tags %}
 {% project_tile_image project as project_image %}
 <li class="list-item list-item--has-image">
-    <div class="list-item__image" style="background-image: url({% thumbnail project_image '170x170' crop %})"></div>
-    <div class="lr-bar list-item__body">
-        <div class="lr-bar__left">
-            <p class="list-item__subtitle">{{ project.typ|get_blueprint_title }}</p>
-            <h2 class="list-item__title">
-                {{ project.name }}
-                {% if project.has_finished %}
-                    <span class="label label--primary">{% trans "Finished" %}</span>
-                {% endif %}
-                {% if not project.is_public %}
-                    <span class="label label--secondary">{% trans 'private' %}</span>
-                {% endif %}
-            </h2>
-        </div>
-        <div class="lr-bar__right">
-            <div class="btn-group">
-            {% spaceless %}
-                <a href="{% extproject_url project 'project-detail' %}"
-                   target="{{ project|is_external|yesno:"_blank,_self" }}"
-                   class="btn btn--light btn--small">
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                    {% if project.is_draft %}
-                    {% trans 'Preview' %}
-                    {% else %}
-                    {% trans 'View' %}
+    <div class="list-item__image-body">
+        <div class="list-item__image" style="background-image: url({% thumbnail project_image '170x170' crop %})"></div>
+        <div class="lr-bar list-item__body">
+            <div class="lr-bar__left">
+                <p class="list-item__subtitle">{{ project.typ|get_blueprint_title }}</p>
+                <h2 class="list-item__title">
+                    {{ project.name }}
+                    {% if project.has_finished %}
+                        <span class="label label--primary">{% trans "Finished" %}</span>
                     {% endif %}
-                </a>
-                <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
-                   class="btn btn--light btn--small">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                    {% trans 'Edit'%}
-                </a>
-            {% endspaceless %}
+                    {% if not project.is_public %}
+                        <span class="label label--secondary">{% trans 'private' %}</span>
+                    {% endif %}
+                </h2>
+            </div>
+            <div class="lr-bar__right">
+                <div class="btn-group">
+                {% spaceless %}
+                    <a href="{% extproject_url project 'project-detail' %}"
+                       target="{{ project|is_external|yesno:"_blank,_self" }}"
+                       class="btn btn--light btn--small">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        {% if project.is_draft %}
+                        {% trans 'Preview' %}
+                        {% else %}
+                        {% trans 'View' %}
+                        {% endif %}
+                    </a>
+                    <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
+                       class="btn btn--light btn--small">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        {% trans 'Edit'%}
+                    </a>
+                    <div class="dropdown dropdown--right">
+                        <button
+                                type="button"
+                                class="dropdown-toggle btn btn--light btn--small"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                id="project-actions"
+                        >
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="project-actions">
+                            <li>
+                                <form method="post" class="list-item__action" role="presentation">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="project_pk" value="{{ project.pk }}">
+                                    <button type="submit" name="duplicate" value="{{ project }}"
+                                            class="dropdown-item">
+                                        <i class="fa fa-files-o" aria-hidden="true"></i>
+                                        {% trans 'Duplicate' %}
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                {% endspaceless %}
+                </div>
             </div>
         </div>
     </div>

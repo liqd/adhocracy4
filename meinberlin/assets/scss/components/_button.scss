@@ -136,7 +136,12 @@
 }
 
 .btn-group {
-    > * {
+    .dropdown {
+        display: inline-block;
+    }
+
+    > *,
+    .dropdown-toggle {
         border-radius: 0;
     }
 
@@ -145,7 +150,8 @@
         border-bottom-left-radius: 0.3em;
     }
 
-    > :last-child {
+    > :last-child,
+    > :last-child .dropdown-toggle {
         border-top-right-radius: 0.3em;
         border-bottom-right-radius: 0.3em;
     }

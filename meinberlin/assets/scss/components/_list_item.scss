@@ -19,13 +19,15 @@
 
 .list-item--has-image {
     padding: 0 $padding 0 0;
-    overflow: hidden;
+}
+
+.list-item__image-body {
+    display: flex;
 }
 
 .list-item__image {
     height: 7.5em;
     width: 7.5em;
-    float: left;
     margin-right: $padding;
 
     background-size: cover;
@@ -35,8 +37,8 @@
 }
 
 .list-item__body {
-    overflow: hidden;
     padding: 0.7em 0;
+    flex: 1 0 auto;
 }
 
 .list-item__title {
