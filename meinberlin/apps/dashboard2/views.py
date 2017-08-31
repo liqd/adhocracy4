@@ -23,6 +23,7 @@ from . import blueprints
 from . import forms
 from . import get_project_dashboard
 from . import mixins
+from . import signals
 from .components.forms.views import ProjectComponentFormView
 
 User = get_user_model()
@@ -83,8 +84,6 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
 
     def form_valid(self, form):
         response = super().form_valid(form)
-
-        # FIXME: maybe replace by dashboard signals
         self._create_modules_and_phases(self.object)
 
         return response
@@ -97,6 +96,7 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
             project=project,
         )
         module.save()
+
         self._create_module_settings(module)
         self._create_phases(module, self.blueprint.content)
 
@@ -173,8 +173,18 @@ class ProjectPublishView(mixins.DashboardBaseMixin,
                              'Required fields are missing.'))
             return
 
+        responses = signals.project_pre_publish.send(sender=None,
+                                                     project=self.project)
+        errors = [str(msg) for func, msg in responses if msg]
+        if errors:
+            msg = _('Project cannot be published.') + ' \n' + '\n'.join(errors)
+            messages.error(self.request, msg)
+            return
+
         self.project.is_draft = False
         self.project.save()
+        signals.project_published.send(sender=None, project=self.project)
+
         messages.success(self.request,
                          _('Project successfully published.'))
 
@@ -185,6 +195,7 @@ class ProjectPublishView(mixins.DashboardBaseMixin,
 
         self.project.is_draft = True
         self.project.save()
+        signals.project_unpublished.send(sender=None, project=self.project)
         messages.success(self.request,
                          _('Project successfully unpublished.'))
 
