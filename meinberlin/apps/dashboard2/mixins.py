@@ -15,6 +15,7 @@ from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
 from meinberlin.apps.organisations import models as org_models
 
+from . import blueprints
 from . import get_project_dashboard
 
 
@@ -56,8 +57,7 @@ class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
 class BlueprintMixin:
     @property
     def blueprint(self):
-        from .blueprints import blueprints
-        return dict(blueprints)[self.blueprint_key]
+        return blueprints.get(self.blueprint_key)
 
     @property
     def blueprint_key(self):

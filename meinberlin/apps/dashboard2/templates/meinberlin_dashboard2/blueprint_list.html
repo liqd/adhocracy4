@@ -29,7 +29,7 @@
             <h1 class="u-first-heading">{% trans "New Project" %}</h1>
 
             <ul class="l-tiles-3">
-                {% for blueprint_slug, blueprint in view.blueprints %}
+                {% for blueprint_slug, blueprint in blueprints %}
                     {% include "meinberlin_dashboard2/includes/blueprint_list_tile.html" with blueprint=blueprint %}
                 {% endfor %}
             </ul>
