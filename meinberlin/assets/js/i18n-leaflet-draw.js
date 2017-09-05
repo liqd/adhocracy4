@@ -3,20 +3,20 @@ window.L.drawLocal = {
     toolbar: {
       actions: {
         title: 'Bereich entfernen',
-        text: 'abbrechen'
+        text: 'Abbrechen'
       },
       finish: {
         title: 'Bereich übernehmen',
-        text: 'übernehmen'
+        text: 'Übernehmen'
       },
       undo: {
-        title: 'letzten Punkt entfernen',
-        text: 'letzten Punkt entfernen'
+        title: 'Letzten Punkt entfernen',
+        text: 'Letzten Punkt entfernen'
       },
       buttons: {
         polyline: 'Draw a polyline',
-        polygon: 'ein Bereich einzeichnen',
-        rectangle: 'ein Rechteck einzeichnen',
+        polygon: 'Einen Bereich einzeichnen',
+        rectangle: 'Ein Rechteck einzeichnen',
         circle: 'Draw a circle',
         marker: 'Draw a marker',
         circlemarker: 'Draw a circlemarker'
@@ -43,7 +43,7 @@ window.L.drawLocal = {
         tooltip: {
           start: 'Klicken, um den Bereich anzufangen.',
           cont: 'Klicken, um hier einen Punkt zu setzen.',
-          end: 'Den ersten Punkt anklicken um den Bereich abzuschließen.'
+          end: 'Den ersten Punkt anklicken, um den Bereich abzuschließen.'
         }
       },
       polyline: {
