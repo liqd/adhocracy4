@@ -37,7 +37,7 @@ def test_send_organisation(admin, client, project, user_factory,
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.post(url, data)
-    assert redirect_target(response) == 'a4dashboard:newsletter-create'
+    assert redirect_target(response) == 'newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
 
     assert len(mail.outbox) == 1
@@ -73,7 +73,7 @@ def test_send_organisation_initiators(admin, client, project, user_factory,
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.post(url, data)
-    assert redirect_target(response) == 'a4dashboard:newsletter-create'
+    assert redirect_target(response) == 'newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
 
     assert len(mail.outbox) == 1
@@ -108,7 +108,7 @@ def test_send_project(admin, client, project, user_factory, follow_factory):
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.post(url, data)
-    assert redirect_target(response) == 'a4dashboard:newsletter-create'
+    assert redirect_target(response) == 'newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
 
     assert len(mail.outbox) == 1
@@ -173,7 +173,7 @@ def test_skip_opt_out(admin, client, project, user_factory, follow_factory):
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.post(url, data)
-    assert redirect_target(response) == 'a4dashboard:newsletter-create'
+    assert redirect_target(response) == 'newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
 
     assert len(mail.outbox) == 0
@@ -206,7 +206,7 @@ def test_distinct_receivers(admin, client, project_factory, user_factory,
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.post(url, data)
-    assert redirect_target(response) == 'a4dashboard:newsletter-create'
+    assert redirect_target(response) == 'newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
 
     assert len(mail.outbox) == 1
@@ -235,7 +235,7 @@ def test_skip_inactive(admin, client, project, user_factory, follow_factory):
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
     response = client.post(url, data)
-    assert redirect_target(response) == 'a4dashboard:newsletter-create'
+    assert redirect_target(response) == 'newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
 
     assert len(mail.outbox) == 0

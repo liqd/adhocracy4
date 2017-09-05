@@ -7,8 +7,8 @@ def test_adding_participant(client, project, user):
     initiator = project.organisation.initiators.first()
     project.participants.clear()
     client.login(username=initiator.email, password='password')
-    url = reverse('dashboard-project-participants', kwargs={
-        'slug': project.slug
+    url = reverse('a4dashboard:dashboard-participants-edit', kwargs={
+        'project_slug': project.slug
     })
     response = client.get(url)
     assert response.status_code == 200
@@ -26,8 +26,8 @@ def test_removing_participant(client, project, user):
 
     initiator = project.organisation.initiators.first()
     client.login(username=initiator.email, password='password')
-    url = reverse('dashboard-project-participants', kwargs={
-        'slug': project.slug
+    url = reverse('a4dashboard:dashboard-participants-edit', kwargs={
+        'project_slug': project.slug
     })
     response = client.get(url)
     assert response.status_code == 200
@@ -48,8 +48,8 @@ def test_adding_moderator(client, project, user):
     initiator = project.organisation.initiators.first()
     project.moderators.clear()
     client.login(username=initiator.email, password='password')
-    url = reverse('dashboard-project-moderators', kwargs={
-        'slug': project.slug
+    url = reverse('a4dashboard:dashboard-moderators-edit', kwargs={
+        'project_slug': project.slug
     })
     response = client.get(url)
     assert response.status_code == 200
@@ -66,8 +66,8 @@ def test_removing_moderator(client, project):
     initiator = project.organisation.initiators.first()
     mod = project.moderators.first()
     client.login(username=initiator.email, password='password')
-    url = reverse('dashboard-project-moderators', kwargs={
-        'slug': project.slug
+    url = reverse('a4dashboard:dashboard-moderators-edit', kwargs={
+        'project_slug': project.slug
     })
     response = client.get(url)
     assert response.status_code == 200
