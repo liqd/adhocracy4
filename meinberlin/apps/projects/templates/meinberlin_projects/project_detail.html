@@ -20,7 +20,7 @@
         <div class="tablist__right">
             {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
             {% if user_may_change %}
-                <a href="{% url 'dashboard-project-edit' project.slug %}" class="btn btn--light btn--small">{% trans 'Edit' %}</a>
+                <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small">{% trans 'Edit' %}</a>
             {% endif %}
             {% if request.user.is_authenticated %}
                 {% react_follows project %}

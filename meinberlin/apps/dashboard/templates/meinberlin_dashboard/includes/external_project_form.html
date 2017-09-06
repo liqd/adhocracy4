@@ -1,27 +1,17 @@
-{% load i18n %}
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.name %}
 
-<form enctype="multipart/form-data" action="{{ request.path }}" method="post">
-    {% csrf_token %}
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.url %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.tile_image %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.url %}
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.description %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.tile_image %}
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.start_date %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.end_date %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.start_date %}
+{% include 'meinberlin_embed/includes/project_embed_code.html' with project=view.object %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.end_date %}
-
-    {% block extra_fields %}{% endblock %}
-
-    {% if object.has_finished %}
-        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.is_archived %}
-    {% endif %}
-
-    <div class="u-spacer-bottom">
-        <input type="submit" class="btn btn--primary" value="{% trans 'Save' %}" />
-    </div>
-</form>
+{% if project.has_finished %}
+    {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.is_archived %}
+{% endif %}

@@ -1,14 +1,11 @@
-from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.views import generic
 
-from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
 from meinberlin.apps.dashboard2 import mixins as dashboard_mixins
-from meinberlin.apps.dashboard.mixins import DashboardBaseMixin
 
 from . import models
 
@@ -39,40 +36,6 @@ class PollDetailView(ProjectContextDispatcher,
 
     def get_permission_object(self):
         return self.module
-
-
-class PollManagementView(DashboardBaseMixin,
-                         rules_mixins.PermissionRequiredMixin,
-                         generic.DetailView):
-    template_name = 'meinberlin_polls/poll_management_form.html'
-    model = models.Poll
-    permission_required = 'a4projects.add_project'
-    project_url_kwarg = 'slug'
-
-    # Dashboard related attributes
-    menu_item = 'project'
-
-    def get_object(self):
-        return self.get_or_create_poll()
-
-    def get_or_create_poll(self):
-        # FIXME: Add multi-module support
-        project_slug = self.kwargs['slug']
-        project = get_object_or_404(project_models.Project, slug=project_slug)
-        module = project.module_set.order_by('weight').first()
-
-        try:
-            obj = models.Poll.objects.get(module=module)
-        except models.Poll.DoesNotExist:
-            obj = models.Poll(module=module,
-                              creator=self.request.user)
-            obj.save()
-        return obj
-
-    def get_success_url(self):
-        return reverse(
-            'dashboard-project-list',
-            kwargs={'organisation_slug': self.organisation.slug, })
 
 
 class PollDashboardView(dashboard_mixins.DashboardComponentMixin,

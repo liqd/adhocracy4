@@ -9,7 +9,6 @@ from . import ModuleFormSetComponent
 from . import ProjectFormComponent
 from . import components
 from . import forms
-from . import get_project_type
 from . import views
 
 
@@ -150,96 +149,10 @@ class ModeratorsComponent(DashboardComponent):
         )]
 
 
-class ExternalProjectComponent(ProjectFormComponent):
-    identifier = 'external'
-    weight = 10
-    label = _('External project settings')
-
-    form_title = _('Edit external project settings')
-    form_class = forms.ExternalProjectForm
-    form_template_name = 'meinberlin_dashboard2/includes' \
-                         '/external_project_form.html'
-
-    def is_effective(self, project):
-        project_type = get_project_type(project)
-        return project_type == 'external'
-
-    def get_base_url(self, project):
-        return reverse('a4dashboard:dashboard-external-project-edit', kwargs={
-            'project_slug': project.slug
-        })
-
-    def get_urls(self):
-        return [(
-            r'^projects/(?P<project_slug>[-\w_]+)/external/$',
-            views.ExternalProjectUpdateView.as_view(
-                component=self,
-                title=self.form_title,
-                form_class=self.form_class,
-                form_template_name=self.form_template_name
-            ),
-            'dashboard-external-project-edit'
-        )]
-
-    def get_progress(self, project):
-        project = project.externalproject
-
-        num_valid, num_required = super().get_progress(project)
-        phase_num_valid, phase_num_required = \
-            self._get_progress_for_object(project.phase,
-                                          ['start_date', 'end_date'])
-
-        return num_valid + phase_num_valid, num_required + phase_num_required
-
-
-class BplanProjectComponent(ProjectFormComponent):
-    identifier = 'bplan'
-    weight = 10
-    label = _('Development plan settings')
-
-    form_title = _('Edit development plan settings')
-    form_class = forms.BplanProjectForm
-    form_template_name = 'meinberlin_dashboard2/includes' \
-                         '/bplan_project_form.html'
-
-    def is_effective(self, project):
-        project_type = get_project_type(project)
-        return project_type == 'bplan'
-
-    def get_base_url(self, project):
-        return reverse('a4dashboard:dashboard-bplan-project-edit', kwargs={
-            'project_slug': project.slug
-        })
-
-    def get_urls(self):
-        return [(
-            r'^projects/(?P<project_slug>[-\w_]+)/bplan/$',
-            views.BplanProjectUpdateView.as_view(
-                component=self,
-                title=self.form_title,
-                form_class=self.form_class,
-                form_template_name=self.form_template_name
-            ),
-            'dashboard-bplan-project-edit'
-        )]
-
-    def get_progress(self, project):
-        project = project.externalproject.bplan
-
-        num_valid, num_required = super().get_progress(project)
-        phase_num_valid, phase_num_required = \
-            self._get_progress_for_object(project.phase,
-                                          ['start_date', 'end_date'])
-
-        return num_valid + phase_num_valid, num_required + phase_num_required
-
-
 components.register_module(ModuleAreaSettingsComponent())
 components.register_module(ModuleBasicComponent())
 components.register_module(ModuleCategoriesComponent())
 components.register_module(ModulePhasesComponent())
-components.register_project(BplanProjectComponent())
-components.register_project(ExternalProjectComponent())
 components.register_project(ModeratorsComponent())
 components.register_project(ParticipantsComponent())
 components.register_project(ProjectBasicComponent())
