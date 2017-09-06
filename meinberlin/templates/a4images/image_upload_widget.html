@@ -20,7 +20,7 @@
     <div class="form-{{ id }} upload-wrapper__preview">
         {{ checkbox_input }}
         <img id="{{ file_id }}"
-             src="{% if has_image_set %}{{ file_url }}{% endif %}"
+             src="{% if has_image_set %}{{ file_url }}{% else %}data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs={% endif %}"
              data-upload-preview="{{ id }}"
              alt=""
         >
