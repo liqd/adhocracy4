@@ -63,7 +63,7 @@ class HomePage(Page):
     subtitle = models.CharField(max_length=120)
 
     header_image = models.ForeignKey(
-        'wagtailimages.Image',
+        'meinberlin_cms.CustomImage',
         null=True,
         blank=False,
         on_delete=models.SET_NULL,
