@@ -75,6 +75,12 @@ class Project(base.TimeStampedModel):
         ),
         upload_to='projects/backgrounds',
         blank=True)
+    image_copyright = models.CharField(
+        max_length=120,
+        verbose_name=_('Header image copyright'),
+        help_text=_('Copyright shown in the header image.'),
+        blank=True,
+    )
     tile_image = fields.ConfiguredImageField(
         'tileimage',
         verbose_name=_('Tile image'),
@@ -83,6 +89,12 @@ class Project(base.TimeStampedModel):
         ),
         upload_to='projects/tiles',
         blank=True)
+    tile_image_copyright = models.CharField(
+        max_length=120,
+        verbose_name=_('Tile image copyright'),
+        help_text=_('Copyright shown in the tile image.'),
+        blank=True,
+    )
     participants = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name='project_participant',
