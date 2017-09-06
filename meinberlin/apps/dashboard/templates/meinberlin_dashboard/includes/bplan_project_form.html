@@ -1,10 +1,19 @@
-{% extends "meinberlin_dashboard/includes/external_project_form.html" %}
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.name %}
 
-{% block extra_fields %}
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.office_worker_email %}
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.url %}
 
-    {% if view.object %}
-        {% include 'meinberlin_embed/includes/project_embed_code.html' with project=view.object %}
-    {% endif %}
-{% endblock %}
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.tile_image %}
 
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.description %}
+
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.start_date %}
+
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.end_date %}
+
+{% include 'meinberlin_dashboard2/includes/form_field.html' with field=form.office_worker_email %}
+
+{% include 'meinberlin_embed/includes/project_embed_code.html' with project=view.object %}
+
+{% if project.has_finished %}
+    {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.is_archived %}
+{% endif %}

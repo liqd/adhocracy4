@@ -1,13 +1,34 @@
-{% extends "meinberlin_dashboard/base_dashboard.html" %}
+{% extends "meinberlin_dashboard2/base_dashboard.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Create external project" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% trans "Create project based on" %} {{ view.blueprint.title }} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
-    {% include 'meinberlin_dashboard/includes/project_create_breadcrumbs.html' %}
+    <div class="l-menu">
+        <div class="l-menu__content l-menu__content--aside">
+            <h1 class="u-first-heading">{% trans "Create project based on" %} {{ view.blueprint.title }}</h1>
 
-    <h1>{% trans "Create external project" %}</h1>
-    {% include 'meinberlin_dashboard/includes/external_project_form.html' with view=view %}
+            {% for error in form.non_field_errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+
+            <form enctype="multipart/form-data" action="{{ request.path }}" method="post" id="project-create-form">
+                {% csrf_token %}
+
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.name %}
+
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
+
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.tile_image %}
+
+                <div class="u-spacer-bottom">
+                    <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send' %}"/>
+                    <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}"
+                       class="btn btn--light">{% trans 'Cancel' %}</a>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock %}
 
 {% block extra_js %}

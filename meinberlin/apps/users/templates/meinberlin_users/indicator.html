@@ -23,7 +23,7 @@
         {% for organisation in request.user.organisations %}
 
         <li>
-            <a class="dropdown-item" href="{% url 'dashboard-project-list' organisation_slug=organisation.slug %}">
+            <a class="dropdown-item" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
                 {{ organisation.name }}
             </a>
         </li>

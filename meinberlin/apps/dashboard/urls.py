@@ -1,34 +1,27 @@
 from django.conf.urls import url
 
+from meinberlin.apps.dashboard2.urls import \
+    urlpatterns as a4dashboard_urlpatterns
+
 from . import views
+
+app_name = 'a4dashboard'
 
 urlpatterns = [
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/settings/$',
         views.DashboardOrganisationUpdateView.as_view(),
-        name='dashboard-organisation-edit'),
-    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/projects/$',
-        views.DashboardProjectListView.as_view(),
-        name='dashboard-project-list'),
-    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/$',
-        views.DashboardBlueprintListView.as_view(),
-        name='dashboard-blueprint-list'),
-    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
-        r'(?P<blueprint_slug>[-\w_]+)/$',
-        views.DashboardProjectCreateViewDispatcher.as_view(),
-        name='dashboard-project-create'),
-    url(r'^projects/(?P<slug>[-\w_]+)/$',
-        views.DashboardProjectUpdateViewDispatcher.as_view(),
-        name='dashboard-project-edit'),
-    url(r'^projects/(?P<slug>[-\w_]+)/moderators/$',
-        views.DashboardProjectModeratorsView.as_view(),
-        name='dashboard-project-moderators'),
-    url(r'^projects/(?P<slug>[-\w_]+)/participants/$',
-        views.DashboardProjectParticipantsView.as_view(),
-        name='dashboard-project-participants'),
-    url(r'^projects/(?P<slug>[-\w_]+)/management/$',
-        views.DashboardProjectManagementView.as_view(),
-        name='dashboard-project-management'),
+        name='organisation-edit'),
     url(r'^newsletters/(?P<organisation_slug>[-\w_]+)/create/$',
         views.DashboardNewsletterCreateView.as_view(),
-        name='dashboard-newsletter-create')
-]
+        name='newsletter-create'),
+
+    # Overwrite the ProjectUpdateView with meinBerlin urls
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
+        r'external-project/$',
+        views.ExternalProjectCreateView.as_view(),
+        name='external-project-create'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
+        r'bplan/$',
+        views.BplanProjectCreateView.as_view(),
+        name='bplan-project-create'),
+] + a4dashboard_urlpatterns

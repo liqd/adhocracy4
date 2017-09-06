@@ -12,7 +12,7 @@ from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.dashboard import blueprints
+from meinberlin.apps.dashboard2 import blueprints
 
 
 class OrderingWidget(DropdownLinkWidget):

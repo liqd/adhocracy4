@@ -1,9 +1,8 @@
-from collections import namedtuple
-
 from django.utils.translation import ugettext_lazy as _
 
 from meinberlin.apps.bplan import phases as bplan_phases
 from meinberlin.apps.budgeting import phases as budgeting_phases
+from meinberlin.apps.dashboard2.blueprints import ProjectBlueprint
 from meinberlin.apps.documents import phases as documents_phases
 from meinberlin.apps.extprojects import phases as extprojects_phases
 from meinberlin.apps.ideas import phases as ideas_phases
@@ -11,12 +10,6 @@ from meinberlin.apps.kiezkasse import phases as kiezkasse_phases
 from meinberlin.apps.mapideas import phases as mapideas_phases
 from meinberlin.apps.polls import phases as poll_phases
 from meinberlin.apps.topicprio import phases as topicprio_phases
-
-ProjectBlueprint = namedtuple(
-    'ProjectBlueprint', [
-        'title', 'description', 'content', 'image', 'settings_model'
-    ]
-)
 
 blueprints = [
     ('brainstorming',
@@ -161,13 +154,3 @@ blueprints = [
          settings_model=('a4maps', 'AreaSettings'),
      )),
 ]
-
-
-class BlueprintMixin:
-    @property
-    def blueprint(self):
-        return dict(blueprints)[self.blueprint_key]
-
-    @property
-    def blueprint_key(self):
-        return self.kwargs['blueprint_slug']
