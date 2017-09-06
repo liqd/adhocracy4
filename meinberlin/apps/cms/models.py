@@ -9,12 +9,33 @@ from wagtail.wagtailcore.models import Page
 from wagtail.wagtailforms.models import AbstractEmailForm
 from wagtail.wagtailforms.models import AbstractFormField
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailimages.models import AbstractImage
+from wagtail.wagtailimages.models import AbstractRendition
+from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsnippets.models import register_snippet
 
 from meinberlin.apps.actions import blocks as actions_blocks
 
 from . import blocks as cms_blocks
 from . import emails
+
+
+class CustomImage(AbstractImage):
+
+    copyright = models.CharField(max_length=255, blank=True)
+
+    admin_form_fields = Image.admin_form_fields + (
+        'copyright',
+    )
+
+
+class CustomRendition(AbstractRendition):
+    image = models.ForeignKey(CustomImage, related_name='renditions')
+
+    class Meta:
+        unique_together = (
+            ('image', 'filter_spec', 'focal_point_key'),
+        )
 
 
 class SimplePage(Page):
@@ -42,7 +63,7 @@ class HomePage(Page):
     subtitle = models.CharField(max_length=120)
 
     header_image = models.ForeignKey(
-        'wagtailimages.Image',
+        'meinberlin_cms.CustomImage',
         null=True,
         blank=False,
         on_delete=models.SET_NULL,
