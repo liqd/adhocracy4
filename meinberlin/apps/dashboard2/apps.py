@@ -8,7 +8,6 @@ class Config(AppConfig):
     def ready(self):
         from django.utils.module_loading import autodiscover_modules
         autodiscover_modules('dashboard', register_to=self.module.components)
-        autodiscover_modules('blueprints', register_to=self.module.blueprints)
 
         from . import signals
         signals.connect_model_signal_handlers()

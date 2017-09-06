@@ -1,8 +1,6 @@
 from django.conf import settings
 from django.utils.module_loading import import_string
 
-from .blueprints import ProjectBlueprint
-from .blueprints import blueprints
 from .components import DashboardComponent
 from .components import components
 from .components.forms import ModuleFormComponent
@@ -10,8 +8,7 @@ from .components.forms import ModuleFormSetComponent
 from .components.forms import ProjectFormComponent
 
 
-__all__ = ['blueprints', 'ProjectBlueprint',
-           'components', 'DashboardComponent',
+__all__ = ['components', 'DashboardComponent',
            'ModuleFormComponent', 'ModuleFormSetComponent',
            'ProjectFormComponent',
            'get_project_dashboard']

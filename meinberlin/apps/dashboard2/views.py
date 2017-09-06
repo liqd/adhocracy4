@@ -50,14 +50,10 @@ class ProjectListView(mixins.DashboardBaseMixin,
 
 class BlueprintListView(mixins.DashboardBaseMixin,
                         generic.TemplateView):
+    blueprints = blueprints.blueprints
     template_name = 'meinberlin_dashboard2/blueprint_list.html'
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['blueprints'] = list(blueprints.blueprints)
-        return context
 
 
 class ProjectCreateView(mixins.DashboardBaseMixin,
