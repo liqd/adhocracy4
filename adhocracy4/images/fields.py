@@ -67,8 +67,8 @@ class ConfiguredImageField(models.ImageField):
 
         help_text = format_lazy(
             _(
-                '{help_prefix} It must be min. {min_resolution[0]} pixel wide and '
-                '{min_resolution[1]} pixel tall. Allowed file formats are '
+                '{help_prefix} It must be min. {min_resolution[0]} pixel wide '
+                'and {min_resolution[1]} pixel tall. Allowed file formats are '
                 '{fileformats_str}. The file size should be max. '
                 '{max_size_mb} MB.'
             ),
@@ -80,3 +80,16 @@ class ConfiguredImageField(models.ImageField):
             **config
         )
         return help_text
+
+
+class ImageCopyrightField(models.CharField):
+
+    def __init__(self, *args, image_name='image', **kwargs):
+        defaults = {
+            'verbose_name': _('{} copyright'.format(image_name).capitalize()),
+            'help_text': _('Copyright shown in the {}'.format(image_name)),
+            'max_length': 120,
+            'blank':  True,
+        }
+        defaults.update(kwargs)
+        super().__init__(*args, **defaults)
