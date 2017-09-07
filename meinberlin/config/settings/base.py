@@ -325,6 +325,7 @@ A4_RATEABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_maptopicprio', 'maptopic'),
     ('meinberlin_kiezkasse', 'proposal'),
 )
 
@@ -336,6 +337,7 @@ A4_COMMENTABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_maptopicprio', 'maptopic'),
     ('meinberlin_polls', 'poll'),
     ('meinberlin_kiezkasse', 'proposal'),
 )
@@ -346,6 +348,7 @@ A4_REPORTABLES = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_maptopicprio', 'maptopic'),
     ('meinberlin_kiezkasse', 'proposal'),
 )
 
