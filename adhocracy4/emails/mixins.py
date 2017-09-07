@@ -16,8 +16,14 @@ class PlatformEmailMixin:
             or finders.find('images/email_logo.svg')
         )
         if filename:
+            if filename.endswith('.png'):
+                imagetype = 'png'
+            else:
+                imagetype = 'svg+xml'
+
             with open(filename, 'rb') as f:
-                logo = MIMEImage(f.read())
+                logo = MIMEImage(f.read(), imagetype)
+
             logo.add_header('Content-ID', '<{}>'.format('logo'))
             return attachments + [logo]
         return attachments
