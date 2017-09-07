@@ -5,13 +5,15 @@ from adhocracy4.modules import predicates as module_predicates
 
 @rules.predicate
 def content_object_allows_comment(user, comment):
-    content_object = comment.content_object
-    content_type = comment.content_type
-    perm_name = '{app_label}.comment_{model}'.format(
-        app_label=content_type.app_label,
-        model=content_type.model
-    )
-    return user.has_perm(perm_name, content_object)
+    if comment:
+        content_object = comment.content_object
+        content_type = comment.content_type
+        perm_name = '{app_label}.comment_{model}'.format(
+            app_label=content_type.app_label,
+            model=content_type.model
+        )
+        return user.has_perm(perm_name, content_object)
+    return False
 
 
 rules.add_perm(
