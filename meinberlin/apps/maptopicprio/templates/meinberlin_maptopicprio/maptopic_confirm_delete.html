@@ -1,0 +1,19 @@
+{% extends "meinberlin_dashboard2/base_dashboard_project.html" %}
+{% load i18n item_tags %}
+
+{% block title %}{% trans 'Confirm Topic Deletion' %} &mdash; {{ block.super }}{% endblock %}
+
+{% block dashboard_project_content %}
+<div class="l-wrapper">
+    <h1 class="u-first-heading">{% trans 'Are you sure you want to delete the topic?' %}</h1>
+
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn--primary" value="{% trans 'Yes'%}" />
+
+        <a href="{% url 'a4dashboard:maptopic-list' module.slug %}" class="btn btn--light">
+            {% trans 'Cancel'%}
+        </a>
+    </form>
+</div>
+{% endblock %}

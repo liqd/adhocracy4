@@ -1,0 +1,12 @@
+{% extends "meinberlin_dashboard2/base_dashboard_project.html" %}
+{% load i18n %}
+
+{% block title %}Edit {{object.name}} &mdash; {{ block.super }}{% endblock %}
+{% block dashboard_project_content %}
+<div class="l-wrapper">
+    <h1 class="u-first-heading">{% trans 'Edit topic' %}</h1>
+
+    {% url 'a4dashboard:maptopic-list' module_slug=module.slug as cancel %}
+    {% include "meinberlin_topicprio/includes/topic_form.html" with cancel=cancel %}
+</div>
+{% endblock %}

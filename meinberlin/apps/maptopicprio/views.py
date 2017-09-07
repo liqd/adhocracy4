@@ -87,7 +87,7 @@ class MapTopicListDashboardView(mixins.DashboardComponentMixin,
                                 mixins.DashboardContextMixin,
                                 filter_views.FilteredListView):
     model = models.MapTopic
-    template_name = 'meinberlin_topicprio/topic_dashboard_list.html'
+    template_name = 'meinberlin_maptopicprio/maptopic_dashboard_list.html'
     filter_set = MapTopicCreateFilterSet
     permission_required = 'a4projects.add_project'
     module_url_kwarg = 'module_slug'
@@ -107,7 +107,7 @@ class MapTopicCreateView(mixins.DashboardComponentMixin,
     model = models.MapTopic
     form_class = forms.MapTopicForm
     permission_required = 'meinberlin_topicprio.add_topic'
-    template_name = 'meinberlin_topicprio/topic_create_form.html'
+    template_name = 'meinberlin_maptopicprio/maptopic_create_form.html'
     module_url_kwarg = 'module_slug'
 
     def get_success_url(self):
@@ -123,7 +123,7 @@ class MapTopicUpdateView(mixins.DashboardComponentMixin,
     model = models.MapTopic
     form_class = forms.MapTopicForm
     permission_required = 'meinberlin_topicprio.change_topic'
-    template_name = 'meinberlin_topicprio/topic_update_form.html'
+    template_name = 'meinberlin_maptopicprio/maptopic_update_form.html'
 
     @property
     def organisation(self):
@@ -142,7 +142,7 @@ class MapTopicDeleteView(mixins.DashboardComponentMixin,
     model = models.MapTopic
     success_message = _('The topic has been deleted')
     permission_required = 'meinberlin_topicprio.change_topic'
-    template_name = 'meinberlin_topicprio/topic_confirm_delete.html'
+    template_name = 'meinberlin_maptopicprio/maptopic_confirm_delete.html'
 
     @property
     def organisation(self):

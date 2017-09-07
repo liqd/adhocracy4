@@ -1,0 +1,30 @@
+{% extends "meinberlin_dashboard2/base_dashboard_project.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Topics" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block dashboard_project_content %}
+    <div class="lr-bar lr-bar--with-margin">
+        <h1 class="u-first-heading lr-bar__left">
+            {% trans 'Topics' %}
+        </h1>
+        <div class="lr-bar__right">
+            <a href="{% url 'a4dashboard:maptopic-create' module_slug=module.slug %}" class="btn">
+                {% trans 'Add Topic' %}
+            </a>
+        </div>
+    </div>
+    {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+
+    {% if object_list.count > 0 %}
+        <ul class="u-list-reset">
+            {% for object in object_list %}
+                {% include "meinberlin_topicprio/includes/topic_dashboard_list_item.html" with object=object %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% trans "Nothing to show" %}
+    {% endif %}
+
+    {% include "meinberlin_contrib/includes/pagination.html" %}
+{% endblock %}
