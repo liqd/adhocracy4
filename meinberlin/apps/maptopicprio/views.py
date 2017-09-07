@@ -57,7 +57,7 @@ class MapTopicDetailView(idea_views.AbstractIdeaDetailView):
     model = models.MapTopic
     queryset = models.MapTopic.objects.annotate_positive_rating_count()\
         .annotate_negative_rating_count()
-    permission_required = 'meinberlin_topicprio.view_topic'
+    permission_required = 'meinberlin_maptopicprio.view_maptopic'
 
 
 class MapTopicExportView(export_views.ItemExportView,
@@ -119,7 +119,7 @@ class MapTopicCreateView(mixins.DashboardComponentMixin,
                          idea_views.AbstractIdeaCreateView):
     model = models.MapTopic
     form_class = forms.MapTopicForm
-    permission_required = 'meinberlin_topicprio.add_topic'
+    permission_required = 'meinberlin_maptopicprio.add_maptopic'
     template_name = 'meinberlin_maptopicprio/maptopic_create_form.html'
     module_url_kwarg = 'module_slug'
 
@@ -135,7 +135,7 @@ class MapTopicUpdateView(mixins.DashboardComponentMixin,
                          idea_views.AbstractIdeaUpdateView):
     model = models.MapTopic
     form_class = forms.MapTopicForm
-    permission_required = 'meinberlin_topicprio.change_topic'
+    permission_required = 'meinberlin_maptopicprio.change_maptopic'
     template_name = 'meinberlin_maptopicprio/maptopic_update_form.html'
 
     @property
@@ -154,7 +154,7 @@ class MapTopicDeleteView(mixins.DashboardComponentMixin,
                          idea_views.AbstractIdeaDeleteView):
     model = models.MapTopic
     success_message = _('The topic has been deleted')
-    permission_required = 'meinberlin_topicprio.change_topic'
+    permission_required = 'meinberlin_maptopicprio.change_maptopic'
     template_name = 'meinberlin_maptopicprio/maptopic_confirm_delete.html'
 
     @property
