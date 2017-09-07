@@ -19,7 +19,7 @@
     {% if object_list.count > 0 %}
         <ul class="u-list-reset">
             {% for object in object_list %}
-                {% include "meinberlin_topicprio/includes/topic_dashboard_list_item.html" with object=object %}
+                {% include "meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html" with object=object %}
             {% endfor %}
         </ul>
     {% else %}

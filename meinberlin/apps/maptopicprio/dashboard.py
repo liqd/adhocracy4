@@ -23,7 +23,7 @@ class MapTopicEditComponent(DashboardComponent):
         return 0, 1
 
     def get_base_url(self, module):
-        return reverse('a4dashboard:topic-list', kwargs={
+        return reverse('a4dashboard:maptopic-list', kwargs={
             'module_slug': module.slug
         })
 

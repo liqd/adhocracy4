@@ -112,7 +112,7 @@ class MapTopicCreateView(mixins.DashboardComponentMixin,
 
     def get_success_url(self):
         return reverse(
-            'a4dashboard:topic-list',
+            'a4dashboard:maptopic-list',
             kwargs={'module_slug': self.module.slug})
 
 
@@ -131,7 +131,7 @@ class MapTopicUpdateView(mixins.DashboardComponentMixin,
 
     def get_success_url(self):
         return reverse(
-            'a4dashboard:topic-list',
+            'a4dashboard:maptopic-list',
             kwargs={'module_slug': self.module.slug})
 
 
@@ -150,5 +150,5 @@ class MapTopicDeleteView(mixins.DashboardComponentMixin,
 
     def get_success_url(self):
         return reverse(
-            'a4dashboard:topic-list',
+            'a4dashboard:maptopic-list',
             kwargs={'module_slug': self.module.slug})

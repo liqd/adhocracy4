@@ -7,6 +7,6 @@
     <h1 class="u-first-heading">{% trans 'Edit topic' %}</h1>
 
     {% url 'a4dashboard:maptopic-list' module_slug=module.slug as cancel %}
-    {% include "meinberlin_topicprio/includes/topic_form.html" with cancel=cancel %}
+    {% include "meinberlin_maptopicprio/includes/maptopic_form.html" with cancel=cancel %}
 </div>
 {% endblock %}
