@@ -1,16 +1,18 @@
 import rules
 
 from adhocracy4.modules import predicates as module_predicates
-from adhocracy4.phases import predicates as phase_predicates
 
 
 @rules.predicate
 def content_object_allows_comment(user, comment):
     if comment:
         content_object = comment.content_object
-        return phase_predicates.has_feature_active(
-            content_object.module, content_object.__class__, 'comment'
+        content_type = comment.content_type
+        perm_name = '{app_label}.comment_{model}'.format(
+            app_label=content_type.app_label,
+            model=content_type.model
         )
+        return user.has_perm(perm_name, content_object)
     return False
 
 
