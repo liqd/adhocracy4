@@ -41,5 +41,5 @@ class MapTopic(AbstractMapIdea, category_models.Categorizable):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('meinberlin_maptopicprio:topic-detail',
+        return reverse('meinberlin_maptopicprio:maptopic-detail',
                        args=[str(self.slug)])

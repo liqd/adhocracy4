@@ -72,6 +72,8 @@ urlpatterns = [
                                 namespace='meinberlin_budgeting')),
     url(r'^topicprio/', include('meinberlin.apps.topicprio.urls',
                                 namespace='meinberlin_topicprio')),
+    url(r'^maptopicprio/', include('meinberlin.apps.maptopicprio.urls',
+                                   namespace='meinberlin_maptopicprio')),
     url(r'^offlineevents/', include('meinberlin.apps.offlineevents.urls',
                                     namespace='meinberlin_offlineevents')),
     url(r'^newsletters/', include('meinberlin.apps.newsletters.urls',

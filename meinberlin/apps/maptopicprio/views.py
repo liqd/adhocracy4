@@ -53,6 +53,13 @@ class MapTopicCreateFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
+class MapTopicDetailView(idea_views.AbstractIdeaDetailView):
+    model = models.MapTopic
+    queryset = models.MapTopic.objects.annotate_positive_rating_count()\
+        .annotate_negative_rating_count()
+    permission_required = 'meinberlin_topicprio.view_topic'
+
+
 class MapTopicExportView(export_views.ItemExportView,
                          export_views.ItemExportWithRatesMixin,
                          export_views.ItemExportWithCommentCountMixin,
@@ -73,6 +80,12 @@ class MapTopicListView(idea_views.AbstractIdeaListView):
     model = models.MapTopic
     filter_set = MapTopicFilterSet
     exports = [(_('Topics with comments'), MapTopicExportView)]
+
+    def dispatch(self, request, **kwargs):
+        self.mode = request.GET.get('mode', 'map')
+        if self.mode == 'map':
+            self.paginate_by = 0
+        return super().dispatch(request, **kwargs)
 
     def get_queryset(self):
         return super().get_queryset()\
