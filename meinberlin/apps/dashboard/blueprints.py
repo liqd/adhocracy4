@@ -8,6 +8,7 @@ from meinberlin.apps.extprojects import phases as extprojects_phases
 from meinberlin.apps.ideas import phases as ideas_phases
 from meinberlin.apps.kiezkasse import phases as kiezkasse_phases
 from meinberlin.apps.mapideas import phases as mapideas_phases
+from meinberlin.apps.maptopicprio import phases as maptopicprio_phases
 from meinberlin.apps.polls import phases as poll_phases
 from meinberlin.apps.topicprio import phases as topicprio_phases
 
@@ -127,6 +128,18 @@ blueprints = [
          ],
          image='images/priorization.svg',
          settings_model=None,
+     )),
+    ('map-topic-prioritization',
+     ProjectBlueprint(
+         title=_('Spatial Topic Prioritization'),
+         description=_(
+             'Comment and prioritize topics located on a map.'
+         ),
+         content=[
+             maptopicprio_phases.MapPrioritizePhase(),
+         ],
+         image='images/priorization.svg',
+         settings_model=('a4maps', 'AreaSettings'),
      )),
     ('bplan',
      ProjectBlueprint(
