@@ -4,37 +4,14 @@
 {% block title %}{% trans "New Project" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_content %}
-    <div class="l-menu">
-        <nav class="l-menu__menu" aria-label="{% trans 'Participation projects' %}">
-            <div class="dashboard-nav">
-                <div class="dashboard-nav__dropdown">
-                    <div class="dashboard-nav__item">{% trans 'Participation projects' %}</div>
-                </div>
-                <ul class="dashboard-nav__pages">
-                    <li class="dashboard-nav__page">
-                        <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
-                           class="dashboard-nav__item dashboard-nav__item--interactive">
-                            {% trans 'Active participation projects' %}
-                        </a>
-                    </li>
-                </ul>
-            </div>
+<h1>{% trans "New Project" %}</h1>
 
-            <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}" class="btn btn--full">
-                {% trans 'New participation project' %}
-            </a>
-        </nav>
+<ul class="l-tiles-3">
+    {% for blueprint_slug, blueprint in view.blueprints %}
+        {% include "meinberlin_dashboard2/includes/blueprint_list_tile.html" with blueprint=blueprint %}
+    {% endfor %}
+</ul>
 
-        <div class="l-menu__content">
-            <h1 class="u-first-heading">{% trans "New Project" %}</h1>
-
-            <ul class="l-tiles-3">
-                {% for blueprint_slug, blueprint in view.blueprints %}
-                    {% include "meinberlin_dashboard2/includes/blueprint_list_tile.html" with blueprint=blueprint %}
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
 {% endblock %}
 
 {% block extra_js %}
