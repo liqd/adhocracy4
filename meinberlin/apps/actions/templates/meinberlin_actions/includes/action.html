@@ -25,7 +25,7 @@
             {% blocktrans with url=action.project.get_absolute_url name=action.project.name %}on <a href="{{ url }}">{{ name }}</a>{% endblocktrans %}
         </div>
         <div class="action__date">
-            <time datetime="{{ action.timestamp|date:'Y-m-d h:i' }}"
+            <time datetime="{{ action.timestamp|date:'Y-m-d H:i' }}"
                   title="{{ action.timestamp|date:'DATETIME_FORMAT' }}"
                   class="relative">
                 {{ action.timestamp|date:'d.m.Y' }}
