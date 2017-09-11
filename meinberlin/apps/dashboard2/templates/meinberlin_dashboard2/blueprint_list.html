@@ -4,14 +4,15 @@
 {% block title %}{% trans "New Project" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_content %}
-<h1>{% trans "New Project" %}</h1>
+<div class="l-center-8">
+    <h1>{% trans "New Project" %}</h1>
 
-<ul class="l-tiles-3">
-    {% for blueprint_slug, blueprint in view.blueprints %}
-        {% include "meinberlin_dashboard2/includes/blueprint_list_tile.html" with blueprint=blueprint %}
-    {% endfor %}
-</ul>
-
+    <ul class="l-tiles-3">
+        {% for blueprint_slug, blueprint in view.blueprints %}
+            {% include "meinberlin_dashboard2/includes/blueprint_list_tile.html" with blueprint=blueprint %}
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
 
 {% block extra_js %}
