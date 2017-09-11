@@ -11,7 +11,7 @@ from . import views
 class ExportModuleComponent(DashboardComponent):
     identifier = 'module_export'
     weight = 50
-    label = _('Export')
+    label = _('Export Excel')
 
     def is_effective(self, module):
         return not module.project.is_draft and get_exports(module)
