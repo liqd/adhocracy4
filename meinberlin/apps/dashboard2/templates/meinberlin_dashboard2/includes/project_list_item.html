@@ -47,7 +47,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="project-actions">
                             <li>
-                                <form method="post" class="list-item__action" role="presentation">
+                                <form method="post" class="list-item__action">
                                     {% csrf_token %}
                                     <input type="hidden" name="project_pk" value="{{ project.pk }}">
                                     <button type="submit" name="duplicate" value="{{ project }}"
