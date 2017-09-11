@@ -4,43 +4,31 @@
 {% block title %}{% trans "Projects" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_content %}
-     <div class="l-menu">
-        <nav class="l-menu__menu" aria-label="{% trans 'Participation projects' %}">
-            <div class="dashboard-nav">
-                <div class="dashboard-nav__dropdown">
-                    <div class="dashboard-nav__item">{% trans 'Participation projects' %}</div>
-                </div>
-                <ul class="dashboard-nav__pages">
-                    <li class="dashboard-nav__page">
-                        <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
-                           class="dashboard-nav__item dashboard-nav__item--interactive {% ifequal view.menu_item 'project' %}is-active{% endifequal %}">
-                            {% trans 'Active participation projects' %}
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}" class="btn btn--full">
-                {% trans 'New participation project' %}
+<div>
+    <div class="lr-bar lr-bar--with-margin">
+        <h1 class="lr-bar__left">
+            {% trans 'Projects' %}
+        </h1>
+        <div class="lr-bar__right">
+            <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}" class="btn">
+                {% trans 'New Project' %}
             </a>
-        </nav>
-
-        <div class="l-menu__content">
-            <h1 class="u-first-heading">{% trans 'Projects' %}</h1>
-
-            {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
-
-            {% if project_list|length > 0 %}
-                <ul class="u-list-reset">
-                    {% for project in project_list %}
-                        {% include "meinberlin_dashboard2/includes/project_list_item.html" with project=project %}
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>{% trans 'We could not find any projects.' %}</p>
-            {% endif %}
-
-            {% include "meinberlin_contrib/includes/pagination.html" %}
         </div>
-     </div>
+    </div>
+
+    {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+
+    {% if project_list|length > 0 %}
+        <ul class="u-list-reset">
+            {% for project in project_list %}
+                {% include "meinberlin_dashboard2/includes/project_list_item.html" with project=project %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{% trans 'We could not find any projects.' %}</p>
+    {% endif %}
+
+    {% include "meinberlin_contrib/includes/pagination.html" %}
+
+</div>
 {% endblock %}
