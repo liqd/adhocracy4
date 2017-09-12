@@ -75,7 +75,7 @@ class Project(base.TimeStampedModel):
         ),
         upload_to='projects/backgrounds',
         blank=True)
-    image_copyright = fields.ImageCopyrightField(image_name='header image')
+    image_copyright = fields.ImageCopyrightField(image_name=_('header image'))
     tile_image = fields.ConfiguredImageField(
         'tileimage',
         verbose_name=_('Tile image'),
@@ -84,7 +84,8 @@ class Project(base.TimeStampedModel):
         ),
         upload_to='projects/tiles',
         blank=True)
-    tile_image_copyright = fields.ImageCopyrightField(image_name='tile image')
+    tile_image_copyright = fields.ImageCopyrightField(
+        image_name=_('tile image'))
     participants = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         related_name='project_participant',
