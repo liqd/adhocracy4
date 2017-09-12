@@ -4,7 +4,7 @@
 
 {% block title %}{% trans 'Your user profile' %} &mdash; {{ block.super }}{% endblock %}
 {% block dashboard_content %}
-<h1>{% trans 'Your profile' %}</h1>
+<h1 class="u-first-heading">{% trans 'Your profile' %}</h1>
 
 <div class="general-form">
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post" class="l-col-2">
