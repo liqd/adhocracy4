@@ -1,8 +1,8 @@
 {% load i18n %}
 <div class="upload-wrapper form-control-upload">
     <div class="upload-wrapper__fields input-group">
-        {{ text_input }}
         {{ file_input }}
+        {{ text_input }}
         {% if has_image_set and not is_required %}
             <label for="{{ checkbox_id }}"
                 class="upload-wrapper__action input-group__after btn btn--danger"

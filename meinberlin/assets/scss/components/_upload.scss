@@ -11,6 +11,10 @@
         opacity: 0;
         top: 0;
     }
+
+    .form-control-file:focus + .form-control {
+        border-color: $brand-secondary;
+    }
 }
 
 .upload-wrapper__fields,
