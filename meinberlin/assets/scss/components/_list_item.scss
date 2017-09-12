@@ -18,7 +18,7 @@
 }
 
 .list-item--has-image {
-    padding: 0 $padding 0 0;
+    padding: 0;
 }
 
 .list-item--has-image__wrapper {
@@ -28,7 +28,6 @@
 .list-item--has-image__image {
     height: 7.5em;
     width: 7.5em;
-    margin-right: $padding;
 
     background-size: cover;
     background-position: 50%;
@@ -37,7 +36,7 @@
 }
 
 .list-item--has-image__body {
-    padding: 0.7em 0;
+    padding: 0.7em $padding;
     flex: 1 0 auto;
 }
 
