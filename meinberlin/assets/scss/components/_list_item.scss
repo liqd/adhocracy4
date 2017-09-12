@@ -21,11 +21,11 @@
     padding: 0 $padding 0 0;
 }
 
-.list-item__image-body {
+.list-item--has-image__wrapper {
     display: flex;
 }
 
-.list-item__image {
+.list-item--has-image__image {
     height: 7.5em;
     width: 7.5em;
     margin-right: $padding;
@@ -36,7 +36,7 @@
     background-color: $brand-secondary;
 }
 
-.list-item__body {
+.list-item--has-image__body {
     padding: 0.7em 0;
     flex: 1 0 auto;
 }

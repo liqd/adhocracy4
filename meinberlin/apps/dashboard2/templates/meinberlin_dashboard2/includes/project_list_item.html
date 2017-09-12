@@ -1,9 +1,9 @@
 {% load i18n project_tags extproject_tags dashboard_tags thumbnail contrib_tags %}
 {% project_tile_image project as project_image %}
 <li class="list-item list-item--has-image">
-    <div class="list-item__image-body">
-        <div class="list-item__image" style="background-image: url({% thumbnail project_image '170x170' crop %})"></div>
-        <div class="lr-bar list-item__body">
+    <div class="list-item--has-image__wrapper">
+        <div class="list-item--has-image__image" style="background-image: url({% thumbnail project_image '170x170' crop %})"></div>
+        <div class="lr-bar list-item--has-image__body">
             <div class="lr-bar__left">
                 <p class="list-item__subtitle">{{ project.typ|get_blueprint_title }}</p>
                 <h2 class="list-item__title">
