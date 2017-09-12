@@ -23,6 +23,11 @@
 
 .list-item--has-image__wrapper {
     display: flex;
+    flex-direction: column;
+
+    @media (min-width: 30em) {
+        flex-direction: row;
+    }
 }
 
 .list-item--has-image__image {
