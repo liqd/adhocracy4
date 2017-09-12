@@ -7,7 +7,7 @@
     top: 45%;
     z-index: 1;
 
-    @media (min-width: $breakpoint) {
+    @media (min-width: ($wrapper-width + 4rem)) {
         display: block;
     }
 }

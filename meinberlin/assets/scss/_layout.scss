@@ -23,7 +23,7 @@
     @include clearfix;
     position: relative;
     width: 100%;  // required when used in a flex container
-    max-width: 81rem;
+    max-width: $wrapper-width;
     margin: 0 auto;
     padding: 0 $padding;
 }
