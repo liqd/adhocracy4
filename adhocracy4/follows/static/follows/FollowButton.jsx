@@ -67,7 +67,7 @@ class FollowButton extends React.Component {
               {this.state.followed ? <i className="fa fa-check select-item-indicator" aria-hidden="true" /> : null}
               {django.gettext('Following')}
               <span className="select-item-desc">
-                {django.gettext('Be notified if something happens in the project.')}
+                {django.gettext('Receive email notifications about this project.')}
               </span>
             </button>
           </span>
