@@ -31,6 +31,7 @@
 }
 
 .list-item--has-image__image {
+    position: relative;
     min-height: 7.5em;
     flex: 0 0 7.5em;
 
@@ -38,6 +39,11 @@
     background-position: 50%;
     background-repeat: no-repeat;
     background-color: $brand-secondary;
+}
+
+.list-item--has-image__copyright {
+    position: absolute;
+    bottom: 0;
 }
 
 .list-item--has-image__body {

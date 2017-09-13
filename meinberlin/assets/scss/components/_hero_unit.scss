@@ -41,6 +41,12 @@
     font-size: $font-size-xl;
 }
 
+.hero-unit__copyright {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 @media print {
     .hero-unit {
         background-image: none !important;
