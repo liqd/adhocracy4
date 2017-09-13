@@ -24,7 +24,7 @@ class ExternalProjectCreateForm(ProjectCreateForm):
 
     class Meta:
         model = extproject_models.ExternalProject
-        fields = ['name', 'description', 'tile_image', ]
+        fields = ['name', 'description', 'tile_image', 'tile_image_copyright']
 
 
 class ExternalProjectForm(ProjectDashboardForm):
@@ -44,7 +44,8 @@ class ExternalProjectForm(ProjectDashboardForm):
 
     class Meta:
         model = extproject_models.ExternalProject
-        fields = ['name', 'url', 'description', 'tile_image', 'is_archived']
+        fields = ['name', 'url', 'description', 'tile_image',
+                  'tile_image_copyright', 'is_archived']
         required_for_project_publish = ['name', 'url', 'description']
 
     def __init__(self, *args, **kwargs):
@@ -75,14 +76,14 @@ class BplanProjectCreateForm(ExternalProjectCreateForm):
 
     class Meta:
         model = bplan_models.Bplan
-        fields = ['name', 'description', 'tile_image', ]
+        fields = ['name', 'description', 'tile_image', 'tile_image_copyright']
 
 
 class BplanProjectForm(ExternalProjectForm):
 
     class Meta:
         model = bplan_models.Bplan
-        fields = ['name', 'url', 'description', 'tile_image', 'is_archived',
-                  'office_worker_email']
+        fields = ['name', 'url', 'description', 'tile_image',
+                  'tile_image_copyright', 'is_archived', 'office_worker_email']
         required_for_project_publish = ['name', 'url', 'description',
                                         'office_worker_email']
