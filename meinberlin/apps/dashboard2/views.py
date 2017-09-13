@@ -12,12 +12,14 @@ from django.utils.translation import ungettext
 from django.views import generic
 from django.views.generic.detail import SingleObjectMixin
 
+from adhocracy4.filters import views as filter_views
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.projects.emails import InviteParticipantEmail
 
 from . import blueprints
+from . import filter
 from . import forms
 from . import get_project_dashboard
 from . import mixins
@@ -35,12 +37,13 @@ def get_object_or_none(*args, **kwargs):
 
 class ProjectListView(mixins.DashboardBaseMixin,
                       mixins.DashboardProjectDuplicateMixin,
-                      generic.ListView):
+                      filter_views.FilteredListView):
     model = project_models.Project
     paginate_by = 12
     template_name = 'meinberlin_dashboard2/project_list.html'
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
+    filter_set = filter.ProjectFilterSet
 
     def get_queryset(self):
         return super().get_queryset().filter(
