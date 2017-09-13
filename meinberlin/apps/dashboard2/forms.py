@@ -25,7 +25,7 @@ class ProjectCreateForm(forms.ModelForm):
 
     class Meta:
         model = project_models.Project
-        fields = ['name', 'description', 'image', ]
+        fields = ['name', 'description', 'image', 'image_copyright']
 
     def __init__(self, type, organisation, creator,
                  *args, **kwargs):
@@ -53,7 +53,8 @@ class ProjectBasicForm(ProjectDashboardForm):
 
     class Meta:
         model = project_models.Project
-        fields = ['name', 'description', 'image', 'tile_image',
+        fields = ['name', 'description', 'image', 'image_copyright',
+                  'tile_image', 'tile_image_copyright',
                   'is_archived', 'is_public']
         required_for_project_publish = ['name', 'description']
 

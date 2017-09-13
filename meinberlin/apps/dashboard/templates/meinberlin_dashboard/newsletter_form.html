@@ -4,35 +4,37 @@
 {% block title %}{% trans "Newsletter" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_content %}
+<div class="l-center-8">
     <h1>{% trans "Create Newsletter" %}</h1>
 
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
-                 <div class="form-group--double">
-                <div class="l-col-2">
-                    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender_name %}
-                </div>
-                <div class="l-col-2">
-                    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender %}
-                </div>
+        <div class="form-group--double">
+            <div class="l-col-2">
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender_name %}
             </div>
+            <div class="l-col-2">
+                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender %}
+            </div>
+        </div>
 
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.subject %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.subject %}
 
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.body %}
-            <div id="receiver-selection">
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.body %}
+        <div id="receiver-selection">
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.receivers %}
-            </div>
-            <div id="selection-project">
+        </div>
+        <div id="selection-project">
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project %}
-            </div>
+        </div>
 
-            <input type="hidden" id="{{ form.organisation.id_for_label}}" name="{{form.organisation.html_name}}" value="{{view.organisation.id}}" />
+        <input type="hidden" id="{{ form.organisation.id_for_label}}" name="{{form.organisation.html_name}}" value="{{view.organisation.id}}" />
 
-            <div class="u-spacer-bottom">
-                <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send'%}" />
-                <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--light">{% trans 'Cancel'%}</a>
-            </div>
+        <div class="u-spacer-bottom">
+            <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send'%}" />
+            <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--light">{% trans 'Cancel'%}</a>
+        </div>
     </form>
     {{ form.media }}
+</div>
 {% endblock %}

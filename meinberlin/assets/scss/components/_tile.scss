@@ -42,6 +42,12 @@
     }
 }
 
+.tile__image__copyright {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 .tile__body {
     flex: 1 0 auto;
     display: flex;

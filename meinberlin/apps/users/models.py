@@ -55,7 +55,8 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         verbose_name=_('Send me email notifications'),
         default=True,
         help_text=_(
-            'Designates whether you want to receive notifications. '
+            'Designates whether you want to receive notifications about '
+            'content you follow. '
             'Unselect if you do not want to receive notifications.')
     )
 
