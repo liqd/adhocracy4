@@ -18,6 +18,7 @@
             <h1 class="hero-unit__title">{{ self.title }}</h1>
             <div class="hero-unit__subtitle">{{ self.subtitle }}</div>
         </div>
+        <div class="hero-unit__copyright copyright">© {{ self.header_image.copyright }}</div>
     </div>
 
     {% for block in self.body %}
