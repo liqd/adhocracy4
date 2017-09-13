@@ -13,6 +13,9 @@
             <p class="project-header__description">{{ project.description }}</p>
         </div>
     </div>
+    {% if project.image_copyright %}
+        <div class="project-header__copyright copyright">© {{ project.image_copyright }}</div>
+    {% endif %}
 </div>
 
 <div class="tablist tablist--left">
