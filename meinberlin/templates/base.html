@@ -43,7 +43,7 @@
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}
-            <li class="alert alert--dialog-box {{ message.tags }}">
+            <li class="alert alert--dialog-box {{ message.tags }}" role="alert">
                 <div class="l-wrapper">
                     {{ message }}
                 </div>
