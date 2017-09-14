@@ -138,7 +138,7 @@ blueprints = [
          content=[
              maptopicprio_phases.MapPrioritizePhase(),
          ],
-         image='images/priorization.svg',
+         image='images/place-priotization.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
     ('bplan',
