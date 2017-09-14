@@ -1,5 +1,5 @@
 {% extends "meinberlin_dashboard2/base_dashboard.html" %}
-{% load i18n static %}
+{% load i18n static extproject_tags %}
 
 {% block dashboard_content %}
     <div class="l-menu">
@@ -51,6 +51,17 @@
 
         <div class="l-menu__aside">
             {% include "meinberlin_dashboard2/includes/progress.html" with value=project_progress.valid max=project_progress.required project=project %}
+
+            <a href="{% extproject_url project 'project-detail' %}"
+               target="{{ project|is_external|yesno:"_blank,_self" }}"
+               class="btn btn--light btn--full">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                {% if project.is_draft %}
+                {% trans 'Preview' %}
+                {% else %}
+                {% trans 'View' %}
+                {% endif %}
+            </a>
         </div>
     </div>
 {% endblock %}
