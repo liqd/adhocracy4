@@ -131,9 +131,9 @@ blueprints = [
      )),
     ('map-topic-prioritization',
      ProjectBlueprint(
-         title=_('Spatial Topic Prioritization'),
+         title=_('Place Prioritization'),
          description=_(
-             'Comment and prioritize topics located on a map.'
+             'Comment and prioritize places located on a map.'
          ),
          content=[
              maptopicprio_phases.MapPrioritizePhase(),

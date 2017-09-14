@@ -19,3 +19,7 @@ class MapTopicForm(category_forms.CategorizableForm):
     class Meta:
         model = models.MapTopic
         fields = ['name', 'description', 'category', 'point', 'point_label']
+        labels = {
+            'point': _('Locate the place on a map'),
+            'point_label': _('Place label'),
+        }

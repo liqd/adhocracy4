@@ -79,7 +79,7 @@ class MapTopicExportView(export_views.ItemExportView,
 class MapTopicListView(idea_views.AbstractIdeaListView):
     model = models.MapTopic
     filter_set = MapTopicFilterSet
-    exports = [(_('Topics with comments'), MapTopicExportView)]
+    exports = [(_('Places with comments'), MapTopicExportView)]
 
     def dispatch(self, request, **kwargs):
         self.mode = request.GET.get('mode', 'map')
@@ -153,7 +153,7 @@ class MapTopicDeleteView(mixins.DashboardComponentMixin,
                          mixins.DashboardContextMixin,
                          idea_views.AbstractIdeaDeleteView):
     model = models.MapTopic
-    success_message = _('The topic has been deleted')
+    success_message = _('The place has been deleted')
     permission_required = 'meinberlin_maptopicprio.change_maptopic'
     template_name = 'meinberlin_maptopicprio/maptopic_confirm_delete.html'
 

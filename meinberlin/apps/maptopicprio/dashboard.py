@@ -11,7 +11,7 @@ from . import views
 class MapTopicEditComponent(DashboardComponent):
     identifier = 'map_topic_edit'
     weight = 20
-    label = _('Topics')
+    label = _('Places')
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
