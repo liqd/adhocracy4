@@ -1,0 +1,35 @@
+{% load i18n module_tags item_tags %}
+
+<li class="list-item list-item--squashed">
+    <div class="list-item__stats">
+        {% spaceless %}
+        {% if object|has_feature:"rate" %}
+            <span class="rating">
+                <span class="rating-button rating-up is-read-only" title="{% trans 'Positive Ratings' %}">
+                    {{ object.positive_rating_count }}
+                    <i class="fa fa-chevron-up" aria-label="{% trans 'Positive Ratings' %}"></i>
+                </span>
+                <span class="rating-button rating-down is-read-only" title="{% trans 'Negative Ratings' %}">
+                    {{ object.negative_rating_count }}
+                    <i class="fa fa-chevron-down" aria-label="{% trans 'Negative Ratings' %}"></i>
+                </span>
+            </span>
+        {% endif %}
+        <span title="{% trans 'Comments' %}">
+            {{ object.comment_count }}
+            <i class="fa fa-comment-o" aria-label="{% trans 'Comments' %}"></i>
+        </span>
+        {% endspaceless %}
+    </div>
+    <h3 class="list-item__title">
+        {% get_item_detail_url object as detail_url %}
+        <a href="{{ detail_url }}">
+        {{ object.name }}
+        </a>
+    </h3>
+    {% if object.category %}
+        <div class="list-item__labels">
+            <span class="label label--big">{{ object.category }}</span>
+        </div>
+    {% endif %}
+</li>

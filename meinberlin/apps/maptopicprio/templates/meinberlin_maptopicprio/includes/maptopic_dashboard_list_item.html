@@ -1,0 +1,20 @@
+{% load i18n %}
+
+<li class="list-item">
+    <div class="lr-bar">
+        <div class="lr-bar__left">
+            <h3 class="list-item__title">
+                <a href="{% url 'a4dashboard:maptopic-update' slug=object.slug %}">
+                {{ object.name }}
+                </a>
+            </h3>
+        </div>
+        <div class="lr-bar__right">
+            <a href="{% url 'a4dashboard:maptopic-delete' slug=object.slug %}"
+               class="btn btn--light">
+                <i class="fa fa-remove" aria-hidden="true"></i>
+                {% trans 'Delete'%}
+            </a>
+        </div>
+    </div>
+</li>
