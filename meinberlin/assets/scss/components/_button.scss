@@ -143,11 +143,19 @@
     > *,
     .dropdown-toggle {
         border-radius: 0;
+        margin-left: -1px;
+
+        &:focus {
+            // highlighted border should be on top
+            z-index: 1;
+            position: relative;
+        }
     }
 
     > :first-child {
         border-top-left-radius: 0.3em;
         border-bottom-left-radius: 0.3em;
+        margin-left: 0;
     }
 
     > :last-child,
