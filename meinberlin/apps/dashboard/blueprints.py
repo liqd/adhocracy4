@@ -136,7 +136,7 @@ blueprints = [
              'Comment and prioritize places located on a map.'
          ),
          content=[
-             maptopicprio_phases.MapPrioritizePhase(),
+             maptopicprio_phases.PrioritizePhase(),
          ],
          image='images/place-priotization.svg',
          settings_model=('a4maps', 'AreaSettings'),

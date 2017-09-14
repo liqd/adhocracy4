@@ -7,7 +7,7 @@ from . import models
 from . import views
 
 
-class MapPrioritizePhase(phases.PhaseContent):
+class PrioritizePhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'prioritize'
     weight = 20
@@ -23,4 +23,4 @@ class MapPrioritizePhase(phases.PhaseContent):
     }
 
 
-phases.content.register(MapPrioritizePhase())
+phases.content.register(PrioritizePhase())
