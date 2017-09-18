@@ -6,7 +6,7 @@ django-capture-tag==1.0
 git+git://github.com/encolpe/django-multiform.git@django-1.9#egg=django-multiform
 html5lib==0.999999999
 wagtail==1.12.1
-XlsxWriter==0.9.8
+XlsxWriter==1.0.0
 zeep==2.4.0
 
 # Inherited a4-core requirements
