@@ -1,7 +1,7 @@
 -r base.txt
 django-autofixture==0.12.1
 django-debug-toolbar==1.8
-factory-boy==2.8.1
+factory-boy==2.9.2
 Faker==0.8.1
 flake8-docstrings==1.1.0
 flake8==3.4.1
