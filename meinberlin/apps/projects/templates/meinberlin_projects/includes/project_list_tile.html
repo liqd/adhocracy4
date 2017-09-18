@@ -17,7 +17,7 @@
         {% if project|is_external %}
             <img src="{% static 'images/external_project.svg' %}" alt="{% trans 'External project' %}" class="tile__badge">
         {% else %}
-            <img src="{% static 'images/meinberlin.svg' %}" alt="Mein Berlin" class="tile__badge">
+            <img src="{% static 'images/meinberlin.svg' %}" alt="{% trans 'Project on meinBerlin' %}" class="tile__badge">
         {% endif %}
 
         <div class="tile__labels">

@@ -19,7 +19,7 @@ class ChoiceForm extends React.Component {
         <label
           className="sr-only"
           htmlFor={'id_choices-' + this.props.index + '-name'}>
-          {django.gettext('Choice') + ` #${this.props.index}`}
+          {django.gettext('Choice') + ` #${this.props.index + 1}`}
         </label>
         <div className="input-group">
           <input

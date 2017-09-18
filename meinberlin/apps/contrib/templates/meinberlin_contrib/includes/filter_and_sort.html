@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="control-bar">
+<div class="control-bar" role="group" aria-label="{% trans 'Filter bar '%}">
     {% for field in filter.form %}
         {% if field.name != 'ordering' %}
             {{ field }}
