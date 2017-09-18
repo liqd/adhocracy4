@@ -11,7 +11,7 @@ from . import views
 class PollComponent(DashboardComponent):
     identifier = 'polls'
     weight = 20
-    label = _('Polls')
+    label = _('Poll')
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
