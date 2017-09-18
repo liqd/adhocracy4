@@ -86,8 +86,12 @@ class ImageCopyrightField(models.CharField):
 
     def __init__(self, *args, image_name='image', **kwargs):
         defaults = {
-            'verbose_name': _('{} copyright'.format(image_name).capitalize()),
-            'help_text': _('Copyright shown in the {}'.format(image_name)),
+            'verbose_name': format_lazy(
+                _('{image_name} copyright'),
+                image_name=image_name),
+            'help_text': format_lazy(
+                _('Copyright shown in the {image_name}.'),
+                image_name=image_name),
             'max_length': 120,
             'blank':  True,
         }
