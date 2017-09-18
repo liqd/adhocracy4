@@ -89,13 +89,13 @@ msgstr ""
 #: adhocracy4/images/fields.py:90
 #, python-brace-format
 msgid "{image_name} copyright"
-msgstr "{image_name} Quellenangabe"
+msgstr "{image_name} Uhrheberrecht"
 
 #: adhocracy4/images/fields.py:93
 #: adhocracy4/images/fields.py:93
 #, python-brace-format
 msgid "Copyright shown in the {image_name}."
-msgstr "Quellenangabe die für das {image_name} angezeigt wird."
+msgstr "Informationen zur Uhrheber*in für das {image_name}."
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
@@ -1116,11 +1116,11 @@ msgstr "Phaseneinstellungen bearbeiten"
 
 #: meinberlin/apps/dashboard2/dashboard.py:74
 msgid "Areasettings"
-msgstr "Bereich"
+msgstr "Karte"
 
 #: meinberlin/apps/dashboard2/dashboard.py:75
 msgid "Edit areasettings"
-msgstr "Bereich bearbeiten"
+msgstr "Kartenbereich bearbeiten"
 
 #: meinberlin/apps/dashboard2/dashboard.py:94
 msgid "Categories"
