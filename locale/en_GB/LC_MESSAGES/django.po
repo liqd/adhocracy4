@@ -1617,8 +1617,8 @@ msgid "Prioritize phase"
 msgstr "Prioritize phase"
 
 #: meinberlin/apps/maptopicprio/phases.py:17
-msgid "Prioritize and comment palces located on a map."
-msgstr "Prioritize and comment palces located on a map."
+msgid "Prioritize and comment places located on a map."
+msgstr "Prioritize and comment places located on a map."
 
 #: meinberlin/apps/maptopicprio/phases.py:18
 msgid "place prioritization"

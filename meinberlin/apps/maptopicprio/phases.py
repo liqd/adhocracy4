@@ -14,7 +14,7 @@ class PrioritizePhase(phases.PhaseContent):
     view = views.MapTopicListView
 
     name = _('Prioritize phase')
-    description = _('Prioritize and comment palces located on a map.')
+    description = _('Prioritize and comment places located on a map.')
     module_name = _('place prioritization')
 
     features = {
