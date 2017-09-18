@@ -2026,7 +2026,7 @@ msgstr "Themen priorisieren und kommentieren"
 
 #: meinberlin/apps/topicprio/phases.py:18
 msgid "topic prioritization"
-msgstr "Priorisierung von Themen"
+msgstr "Themenpriorisierung"
 
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:4
 msgid "Confirm Topic Deletion"
