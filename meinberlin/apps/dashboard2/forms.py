@@ -198,4 +198,5 @@ CategoryFormSet = inlineformset_factory(module_models.Module,
                                         category_models.Category,
                                         form=CategoryForm,
                                         formset=ModuleDashboardFormSet,
+                                        extra=0,
                                         )
