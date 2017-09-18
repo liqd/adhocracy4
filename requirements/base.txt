@@ -11,7 +11,7 @@ zeep==2.4.0
 
 # Inherited a4-core requirements
 bleach==2.0.0
-Django==1.11.4
+Django==1.11.5
 django-allauth==0.33.0
 django-autoslug==1.9.3
 django-background-tasks==1.1.11
