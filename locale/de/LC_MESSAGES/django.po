@@ -948,6 +948,7 @@ msgstr ""
 "meinBerlin verlinkt."
 
 #: meinberlin/apps/dashboard/blueprints.py:109
+#: meinberlin/apps/polls/dashboard.py:14
 msgid "Poll"
 msgstr "Umfrage"
 
@@ -1847,10 +1848,6 @@ msgstr "Logo"
 #: meinberlin/apps/organisations/models.py:21
 msgid "The image will be shown in the newsletter in the banner."
 msgstr "Das Bild wird in der Kopfzeile von Newslettern angezeigt."
-
-#: meinberlin/apps/polls/dashboard.py:14
-msgid "Polls"
-msgstr ""
 
 #: meinberlin/apps/polls/phases.py:16
 msgid "Voting phase"
