@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-18 14:33+0200\n"
-"PO-Revision-Date: 2017-08-28 15:59+0200\n"
+"POT-Creation-Date: 2017-09-18 15:45+0200\n"
+"PO-Revision-Date: 2017-09-18 15:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.1\n"
 
 #: adhocracy4/comments/models.py:35
 #: adhocracy4/comments/models.py:35
@@ -88,12 +88,12 @@ msgstr ""
 #: adhocracy4/images/fields.py:89
 #: adhocracy4/images/fields.py:89
 msgid "{} copyright"
-msgstr ""
+msgstr "{} Quellenangabe"
 
 #: adhocracy4/images/fields.py:90
 #: adhocracy4/images/fields.py:90
 msgid "Copyright shown in the {}"
-msgstr ""
+msgstr "Quellenangabe die für {} angezeigt wird"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
@@ -331,7 +331,7 @@ msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 #: adhocracy4/projects/models.py:78
 #: adhocracy4/projects/models.py:78
 msgid "header image"
-msgstr ""
+msgstr "Headerbild"
 
 #: adhocracy4/projects/models.py:81
 #: adhocracy4/projects/models.py:81
@@ -346,7 +346,7 @@ msgstr "Das Bild wird in der Projekt-Kachel angezeigt."
 #: adhocracy4/projects/models.py:88
 #: adhocracy4/projects/models.py:88
 msgid "tile image"
-msgstr ""
+msgstr "Kachel-Bild"
 
 #: adhocracy4/projects/models.py:101
 #: adhocracy4/projects/models.py:101
@@ -757,7 +757,7 @@ msgstr "Vorschlag moderieren"
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:24
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:24
 msgid "Edit proposal"
-msgstr "Vorschlag editieren"
+msgstr "Vorschlag bearbeiten"
 
 #: meinberlin/apps/budgeting/views.py:15
 #: meinberlin/apps/dashboard/filtersets.py:23 meinberlin/apps/ideas/views.py:24
@@ -1006,19 +1006,19 @@ msgstr ""
 
 #: meinberlin/apps/dashboard/dashboard.py:15
 msgid "External project settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: meinberlin/apps/dashboard/dashboard.py:17
 msgid "Edit external project settings"
-msgstr ""
+msgstr "Externes Projekt bearbeiten"
 
 #: meinberlin/apps/dashboard/dashboard.py:57
 msgid "Development plan settings"
-msgstr ""
+msgstr "Einstellungen"
 
 #: meinberlin/apps/dashboard/dashboard.py:59
 msgid "Edit development plan settings"
-msgstr ""
+msgstr "Bebauungsplan bearbeiten"
 
 #: meinberlin/apps/dashboard/forms.py:19
 msgid "Organisation name"
@@ -1027,12 +1027,12 @@ msgstr "Organisationsname"
 #: meinberlin/apps/dashboard/forms.py:36
 #: meinberlin/apps/dashboard2/forms.py:108
 msgid "Start time"
-msgstr ""
+msgstr "Anfangszeit"
 
 #: meinberlin/apps/dashboard/forms.py:42
 #: meinberlin/apps/dashboard2/forms.py:102
 msgid "End time"
-msgstr ""
+msgstr "Endzeit"
 
 #: meinberlin/apps/dashboard/forms.py:62
 msgid "End date can not be smaller than the start date."
@@ -1120,11 +1120,11 @@ msgstr "Phaseneinstellungen bearbeiten"
 
 #: meinberlin/apps/dashboard2/dashboard.py:74
 msgid "Areasettings"
-msgstr ""
+msgstr "Bereich"
 
 #: meinberlin/apps/dashboard2/dashboard.py:75
 msgid "Edit areasettings"
-msgstr ""
+msgstr "Bereich bearbeiten"
 
 #: meinberlin/apps/dashboard2/dashboard.py:94
 msgid "Categories"
@@ -1132,7 +1132,7 @@ msgstr "Kategorien"
 
 #: meinberlin/apps/dashboard2/dashboard.py:96
 msgid "Edit categories"
-msgstr ""
+msgstr "Kategorien bearbeiten"
 
 #: meinberlin/apps/dashboard2/dashboard.py:113
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_participants.html:4
@@ -1253,10 +1253,14 @@ msgid ""
 "After saving the draft project you can further customize and edit your "
 "project and eventually publish it."
 msgstr ""
+"Nachdem der Projektentwurf gespeichert wurde können in einem weiteren "
+"Schritt Einstellungen angepasst und zusätzliche Informationen angegeben "
+"werden. Wenn alle benötigten Informationen eingegeben sind kann das Projekt "
+"veröffentlicht werden."
 
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_create_form.html:28
 msgid "Create draft"
-msgstr ""
+msgstr "Projektentwurf anlegen"
 
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_list.html:4
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_list.html:10
@@ -1288,7 +1292,7 @@ msgstr ""
 
 #: meinberlin/apps/dashboard2/views.py:180
 msgid "Project cannot be published."
-msgstr ""
+msgstr "Das Projekt kann nicht veröffentlicht werden."
 
 #: meinberlin/apps/dashboard2/views.py:189
 msgid "Project successfully published."
@@ -1325,11 +1329,11 @@ msgstr "Nutzer*in erfolgreich entfernt."
 #: meinberlin/apps/datetimefield/fields.py:18
 #, python-format
 msgid "Time of %(date_label)s"
-msgstr ""
+msgstr "Uhrzeit für %(date_label)s"
 
 #: meinberlin/apps/documents/dashboard.py:14
 msgid "Document"
-msgstr ""
+msgstr "Dokument"
 
 #: meinberlin/apps/documents/phases.py:16
 msgid "Comment phase"
@@ -1357,7 +1361,7 @@ msgstr[1] "%(count)s Kommentare"
 
 #: meinberlin/apps/documents/templates/meinberlin_documents/document_dashboard.html:5
 msgid "Edit document"
-msgstr ""
+msgstr "Dokument bearbeiten"
 
 #: meinberlin/apps/documents/templates/meinberlin_documents/includes/nextprev.html:9
 #: meinberlin/apps/documents/templates/meinberlin_documents/includes/nextprev.html:14
@@ -1375,15 +1379,15 @@ msgstr "Zurück zum Kapitel"
 
 #: meinberlin/apps/documents/views.py:44
 msgid "Chapter"
-msgstr ""
+msgstr "Kapitel"
 
 #: meinberlin/apps/documents/views.py:44
 msgid "Paragraph"
-msgstr ""
+msgstr "Absatz"
 
 #: meinberlin/apps/documents/views.py:65
 msgid "Documents with comments"
-msgstr ""
+msgstr "Dokument mit Kommentaren"
 
 #: meinberlin/apps/documents/views.py:73
 msgid "Document has no chapters defined."
@@ -1432,7 +1436,7 @@ msgstr "Code zum Einbetten des Projekts"
 
 #: meinberlin/apps/exports/dashboard.py:14
 msgid "Export Excel"
-msgstr ""
+msgstr "Excel exportieren"
 
 #: meinberlin/apps/exports/views.py:179
 msgid "Link"
@@ -1877,7 +1881,7 @@ msgstr ""
 
 #: meinberlin/apps/polls/templates/meinberlin_polls/poll_dashboard.html:5
 msgid "Edit poll"
-msgstr ""
+msgstr "Umfrage bearbeiten"
 
 #: meinberlin/apps/polls/validators.py:15
 #, python-format
@@ -1894,7 +1898,7 @@ msgstr "Die Auswahl muss zu der richtigen Frage gehören."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:20
 msgid "Project on meinBerlin"
-msgstr ""
+msgstr "Projekt auf meinBerlin"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:46
 #, python-format
@@ -2132,6 +2136,9 @@ msgid ""
 "Designates whether you want to receive notifications about content you "
 "follow. Unselect if you do not want to receive notifications."
 msgstr ""
+"Bitte setzen Sie einen Haken, falls Sie für Inhalte denen Sie folgen "
+"Benachrichtigungen per E-Mail erhalten möchten. Nehmen Sie den Haken raus, "
+"falls Sie keine Benachrichtigungen per E-Mail erhalten möchten."
 
 #: meinberlin/apps/users/models.py:64
 msgid "Send me newsletters"
