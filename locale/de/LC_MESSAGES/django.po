@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-18 15:45+0200\n"
+"POT-Creation-Date: 2017-09-18 16:33+0200\n"
 "PO-Revision-Date: 2017-09-18 15:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -85,15 +85,17 @@ msgstr ""
 "{min_resolution[1]} Pixel hoch sein. Erlaubte Dateiformate: "
 "{fileformats_str}. Die maximale Dateigröße beträgt {max_size_mb} MB."
 
-#: adhocracy4/images/fields.py:89
-#: adhocracy4/images/fields.py:89
-msgid "{} copyright"
-msgstr "{} Quellenangabe"
+#: adhocracy4/images/fields.py:90
+#: adhocracy4/images/fields.py:90
+#, python-brace-format
+msgid "{image_name} copyright"
+msgstr "{image_name} Quellenangabe"
 
-#: adhocracy4/images/fields.py:90
-#: adhocracy4/images/fields.py:90
-msgid "Copyright shown in the {}"
-msgstr "Quellenangabe die für {} angezeigt wird"
+#: adhocracy4/images/fields.py:93
+#: adhocracy4/images/fields.py:93
+#, python-brace-format
+msgid "Copyright shown in the {image_name}."
+msgstr "Quellenangabe die für das {image_name} angezeigt wird."
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
@@ -319,7 +321,9 @@ msgid ""
 msgstr "Bitte gib an, wer auf dein Projekt Zugriff haben soll."
 
 #: adhocracy4/projects/models.py:72
+#: adhocracy4/projects/models.py:78
 #: adhocracy4/projects/models.py:72
+#: adhocracy4/projects/models.py:78
 msgid "Header image"
 msgstr "Headerbild"
 
@@ -328,13 +332,10 @@ msgstr "Headerbild"
 msgid "The image will be shown as a decorative background image."
 msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 
-#: adhocracy4/projects/models.py:78
-#: adhocracy4/projects/models.py:78
-msgid "header image"
-msgstr "Headerbild"
-
 #: adhocracy4/projects/models.py:81
+#: adhocracy4/projects/models.py:88
 #: adhocracy4/projects/models.py:81
+#: adhocracy4/projects/models.py:88
 msgid "Tile image"
 msgstr "Kachel-Bild"
 
@@ -342,11 +343,6 @@ msgstr "Kachel-Bild"
 #: adhocracy4/projects/models.py:83
 msgid "The image will be shown in the project tile."
 msgstr "Das Bild wird in der Projekt-Kachel angezeigt."
-
-#: adhocracy4/projects/models.py:88
-#: adhocracy4/projects/models.py:88
-msgid "tile image"
-msgstr "Kachel-Bild"
 
 #: adhocracy4/projects/models.py:101
 #: adhocracy4/projects/models.py:101

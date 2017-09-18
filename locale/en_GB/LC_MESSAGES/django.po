@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-18 14:33+0200\n"
+"POT-Creation-Date: 2017-09-18 16:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,13 +77,15 @@ msgstr ""
 "{min_resolution[1]} pixel tall. Allowed file formats are {fileformats_str}. "
 "The file size should be max. {max_size_mb} MB."
 
-#: adhocracy4/images/fields.py:89
-msgid "{} copyright"
-msgstr "{} copyright"
-
 #: adhocracy4/images/fields.py:90
-msgid "Copyright shown in the {}"
-msgstr "Copyright shown in the {}"
+#, python-brace-format
+msgid "{image_name} copyright"
+msgstr "{image_name} copyright"
+
+#: adhocracy4/images/fields.py:93
+#, python-brace-format
+msgid "Copyright shown in the {image_name}."
+msgstr "Copyright shown in the {image_name}."
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
 #: meinberlin/templates/a4images/image_upload_widget.html:9
@@ -275,7 +277,7 @@ msgstr ""
 "for your project including title and short description will always be "
 "visible to everyone"
 
-#: adhocracy4/projects/models.py:72
+#: adhocracy4/projects/models.py:72 adhocracy4/projects/models.py:78
 msgid "Header image"
 msgstr "Header image"
 
@@ -283,21 +285,13 @@ msgstr "Header image"
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
-#: adhocracy4/projects/models.py:78
-msgid "header image"
-msgstr "header image"
-
-#: adhocracy4/projects/models.py:81
+#: adhocracy4/projects/models.py:81 adhocracy4/projects/models.py:88
 msgid "Tile image"
 msgstr "Tile image"
 
 #: adhocracy4/projects/models.py:83
 msgid "The image will be shown in the project tile."
 msgstr "The image will be shown in the project tile."
-
-#: adhocracy4/projects/models.py:88
-msgid "tile image"
-msgstr "tile image"
 
 #: adhocracy4/projects/models.py:101
 msgid "Project is archived"
