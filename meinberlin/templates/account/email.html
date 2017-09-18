@@ -6,7 +6,7 @@
 {% block title %}{% trans 'Email Addresses' %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
-<h1>{% trans 'Email Addresses' %}</h1>
+<h1 class="u-first-heading">{% trans 'Email Addresses' %}</h1>
 
 <form class="multiform" action="{% url 'account_email' %}?next={{ request.path }}" method="post">
     {% csrf_token %}
