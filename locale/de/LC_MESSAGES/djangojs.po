@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-18 14:33+0200\n"
+"POT-Creation-Date: 2017-09-18 15:59+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,11 +154,13 @@ msgstr "Schließen"
 
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
 msgid "close"
-msgstr ""
+msgstr "Schließen"
 
 #: meinberlin/apps/contrib/static/js/unload_warning.js:8
 msgid "If you leave this page changes you made will not be saved."
 msgstr ""
+"Wenn Sie diese Seite verlassen ohne zu speichern, gehen die von Ihnen "
+"vorgenommenen Änderungen verloren."
 
 #: meinberlin/apps/documents/assets/ChapterForm.jsx:18
 msgid "Chapter title"
