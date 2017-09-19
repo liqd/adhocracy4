@@ -1,15 +1,12 @@
-from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories.models import Categorizable
 
-from . import DashboardComponent
 from . import ModuleFormComponent
 from . import ModuleFormSetComponent
 from . import ProjectFormComponent
 from . import components
 from . import forms
-from . import views
 
 
 class ProjectBasicComponent(ProjectFormComponent):
@@ -107,54 +104,10 @@ class ModuleCategoriesComponent(ModuleFormSetComponent):
         return False
 
 
-class ParticipantsComponent(DashboardComponent):
-    identifier = 'participants'
-    weight = 30
-    label = _('Participants')
-
-    def is_effective(self, project):
-        return project.is_private
-
-    def get_base_url(self, project):
-        return reverse('a4dashboard:dashboard-participants-edit', kwargs={
-            'project_slug': project.slug
-        })
-
-    def get_urls(self):
-        return [(
-            r'^projects/(?P<project_slug>[-\w_]+)/participants/$',
-            views.DashboardProjectParticipantsView.as_view(component=self),
-            'dashboard-participants-edit'
-        )]
-
-
-class ModeratorsComponent(DashboardComponent):
-    identifier = 'moderators'
-    weight = 31
-    label = _('Moderators')
-
-    def is_effective(self, project):
-        return True
-
-    def get_base_url(self, project):
-        return reverse('a4dashboard:dashboard-moderators-edit', kwargs={
-            'project_slug': project.slug
-        })
-
-    def get_urls(self):
-        return [(
-            r'^projects/(?P<project_slug>[-\w_]+)/moderators/$',
-            views.DashboardProjectModeratorsView.as_view(component=self),
-            'dashboard-moderators-edit'
-        )]
-
-
 components.register_module(ModuleAreaSettingsComponent())
 components.register_module(ModuleBasicComponent())
 components.register_module(ModuleCategoriesComponent())
 components.register_module(ModulePhasesComponent())
-components.register_project(ModeratorsComponent())
-components.register_project(ParticipantsComponent())
 components.register_project(ProjectBasicComponent())
 components.register_project(ProjectResultComponent())
 components.register_project(ProjectInformationComponent())

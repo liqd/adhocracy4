@@ -6,9 +6,7 @@ from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
-from django.utils.translation import ungettext
 from django.views import generic
 from django.views.generic.detail import SingleObjectMixin
 
@@ -16,7 +14,6 @@ from adhocracy4.filters import views as filter_views
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.projects.emails import InviteParticipantEmail
 
 from . import blueprints
 from . import filter
@@ -198,101 +195,3 @@ class ProjectPublishView(mixins.DashboardBaseMixin,
         signals.project_unpublished.send(sender=None, project=self.project)
         messages.success(self.request,
                          _('Project successfully unpublished.'))
-
-
-class AbstractProjectUserListView(mixins.DashboardComponentMixin,
-                                  mixins.DashboardBaseMixin,
-                                  mixins.DashboardContextMixin,
-                                  generic.base.TemplateResponseMixin,
-                                  generic.edit.FormMixin,
-                                  generic.detail.SingleObjectMixin,
-                                  generic.edit.ProcessFormView):
-
-    form_class = forms.AddUsersFromEmailForm
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        return super().get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        if 'submit_action' in request.POST and (
-                request.POST['submit_action'] == 'remove_user'):
-            pk = int(request.POST['user_pk'])
-            user = get_object_or_404(User, pk=pk)
-
-            if request.POST['submit_action'] == 'remove_user':
-                related_users = getattr(self.object, self.related_users_field)
-                related_users.remove(user)
-                messages.success(request, self.success_message_removal)
-
-            return redirect(self.get_success_url())
-        else:
-            return super().post(request, *args, **kwargs)
-
-    def form_valid(self, form):
-        if form.missing:
-            messages.error(
-                self.request,
-                _('Following emails are not registered: ') + ', '.join(
-                    form.missing)
-            )
-
-        if form.cleaned_data['add_users']:
-            users = form.cleaned_data['add_users']
-            related_users = getattr(self.object,
-                                    self.related_users_field)
-            related_users.add(*users)
-
-            messages.success(
-                self.request,
-                ungettext(self.success_message[0], self.success_message[1],
-                          len(users)).format(len(users))
-            )
-
-        return redirect(self.get_success_url())
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['label'] = self.add_user_field_label
-        return kwargs
-
-
-class DashboardProjectModeratorsView(AbstractProjectUserListView):
-
-    model = project_models.Project
-    slug_url_kwarg = 'project_slug'
-    template_name = 'meinberlin_dashboard2/project_moderators.html'
-    permission_required = 'a4projects.add_project'
-    menu_item = 'project'
-
-    related_users_field = 'moderators'
-    add_user_field_label = _('Add moderators via email')
-    success_message = ('{} moderator added.', '{} moderators added.')
-    success_message_removal = _('Moderator successfully removed.')
-
-
-class DashboardProjectParticipantsView(AbstractProjectUserListView):
-
-    model = project_models.Project
-    slug_url_kwarg = 'project_slug'
-    template_name = 'meinberlin_dashboard2/project_participants.html'
-    permission_required = 'a4projects.add_project'
-    menu_item = 'project'
-
-    related_users_field = 'participants'
-    add_user_field_label = _('Add users via email')
-    success_message = ('{} user added.', '{} users added.')
-    success_message_removal = _('User successfully removed.')
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-
-        # Send invitation mails to the new participants
-        users = form.cleaned_data.get('add_users', None)
-        if users:
-            participant_ids = [user.id for user in users]
-            InviteParticipantEmail.send(self.object,
-                                        participant_ids=participant_ids)
-
-        return response
