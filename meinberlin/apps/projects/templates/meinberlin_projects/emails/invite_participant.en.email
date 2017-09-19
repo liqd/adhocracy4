@@ -5,9 +5,11 @@
 
 {% block headline %}Invitation to the private project {{ project.name }}{% endblock  %}
 
-{% block content %}Visit the private project's webpage on {{ site.name }} by clicking the {% if part_type == 'txt' %}link{% else %}button{% endif %} below to participate.{% endblock %}
+{% block content %}
+You were invited as a member of this private project by the user <i>{{ invite.creator.username }}</i>. Private projects allow participants to discuss and decide on topics in an invite-only group of people.  Please accept or decline the invitation by clicking the {% if part_type == "txt" %}link{% else %}button{% endif %} below.
+{% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
-{% block cta_label %}Visit the project{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ invite.get_absolute_url }}{% endblock %}
+{% block cta_label %}Accept/Decline invitation{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you are invited to a project.{% endblock %}

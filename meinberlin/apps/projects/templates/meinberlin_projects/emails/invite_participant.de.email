@@ -5,9 +5,9 @@
 
 {% block headline %}Einladung zum privaten Projekt  {{ project.name }}{% endblock  %}
 
-{% block content %}Besuchen Sie die Webseite des privaten Projekts auf {{ site.name }} um sich zu beteiligen.{% endblock %}
+{% block content %}Sie wurden zum privaten Projekt auf {{ site.name }} eingeladen. Sie können diese Einladung über den {% if part_type == "txt" %}Link{% else %}Knopf{% endif %} unten akzeptieren oder ablehnen.{% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
-{% block cta_label %}Projekt anzeigen{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ participantinvite.get_absolute_url }}{% endblock %}
+{% block cta_label %}Einladung annhemen/ablehnen{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie zu einem privaten Projekt eingeladen wurden.{% endblock %}
