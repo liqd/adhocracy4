@@ -1,10 +1,4 @@
-var example = { 'type': 'FeatureCollection', 'count': 6, 'next': null, 'previous': null, 'features': [ { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [ 13.47477240708322, 52.5014732657076 ] }, 'properties': { 'strname': 'Hauptstraße', 'hsnr': '3', 'plz': '10317', 'bezirk_name': 'Lichtenberg' } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [ 13.359589931630357, 52.49008194823388 ] }, 'properties': { 'strname': 'Hauptstraße', 'hsnr': '3', 'plz': '10827', 'bezirk_name': 'Tempelhof-Schöneberg' } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [ 13.431013026636759, 52.60269551910352 ] }, 'properties': { 'strname': 'Hauptstraße', 'hsnr': '3', 'plz': '13127', 'bezirk_name': 'Pankow' } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [ 13.366162828729282, 52.584292375802704 ] }, 'properties': { 'strname': 'Hauptstraße', 'hsnr': '3', 'plz': '13158', 'bezirk_name': 'Pankow' } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [ 13.386506977652546, 52.61771816185583 ] }, 'properties': { 'strname': 'Hauptstraße', 'hsnr': '3', 'plz': '13159', 'bezirk_name': 'Pankow' } }, { 'type': 'Feature', 'geometry': { 'type': 'Point', 'coordinates': [ 13.143751928723624, 52.52922828118691 ] }, 'properties': { 'strname': 'Hauptstraße', 'hsnr': '3', 'plz': '13591', 'bezirk_name': 'Spandau' } } ] }
-
-var mockAjax = function (config) {
-  setTimeout(function () {
-    config.success(example)
-  }, 400)
-}
+var apiUrl = 'https://bplan-stage.liqd.net/api/addresses/'
 
 var setBusy = function ($group, busy) {
   $group.attr('aria-busy', busy)
@@ -22,9 +16,9 @@ var setBusy = function ($group, busy) {
 }
 
 var getPoints = function (address, cb) {
-  // TODO: enable once API is available
-  // $.ajax('/geocoding', {
-  mockAjax({
+  var $ = window.jQuery
+
+  $.ajax(apiUrl, {
     data: {address: address},
     success: function (geojson) {
       // TODO: filter by polygon
