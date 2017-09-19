@@ -1,0 +1,32 @@
+{% load i18n %}
+
+{% if invites|length %}
+    <table>
+        <thead>
+        <tr>
+            <th>{% trans 'Email' %}</th>
+            <th>{% trans 'Date' %}</th>
+            <th><span class="sr-only">{% trans 'Remove' %}</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for invite in invites %}
+            <tr>
+                <td>{{ invite.email }}</td>
+                <td>{{ invite.created }}</td>
+                <td class="td--action">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="invite_pk" value="{{ invite.pk }}">
+                        <button type="submit" name="submit_action" value="remove_invite" title="{% trans 'Remove' %}">
+                            <i class="fa fa-times" aria-label="{% trans 'Remove' %}"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    None
+{% endif %}

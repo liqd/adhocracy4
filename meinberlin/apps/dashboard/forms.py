@@ -1,4 +1,6 @@
 from django import forms
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
@@ -8,6 +10,9 @@ from meinberlin.apps.dashboard2.forms import ProjectDashboardForm
 from meinberlin.apps.datetimefield import fields as datetime_fields
 from meinberlin.apps.extprojects import models as extproject_models
 from meinberlin.apps.organisations.models import Organisation
+from meinberlin.apps.users.fields import CommaSeparatedEmailField
+
+User = get_user_model()
 
 
 class OrganisationForm(forms.ModelForm):
@@ -87,3 +92,42 @@ class BplanProjectForm(ExternalProjectForm):
                   'tile_image_copyright', 'is_archived', 'office_worker_email']
         required_for_project_publish = ['name', 'url', 'description',
                                         'office_worker_email']
+
+
+class AddUsersFromEmailForm(forms.Form):
+    add_users = CommaSeparatedEmailField()
+
+    def __init__(self, *args, **kwargs):
+        # Store the label for the CommaSeparatedEmailField
+        label = kwargs.pop('label', None)
+
+        super().__init__(*args, **kwargs)
+
+        if label:
+            self.fields['add_users'].label = label
+
+    def clean_add_users(self):
+        users = []
+        missing = []
+        for email in self.cleaned_data['add_users']:
+            try:
+                user = User.objects.get(email__exact=email)
+                users.append(user)
+            except ObjectDoesNotExist:
+                missing.append(email)
+
+        self.missing = missing
+        return users
+
+
+class InviteUsersFromEmailForm(forms.Form):
+    add_users = CommaSeparatedEmailField(
+        label=_('Invite users via email')
+    )
+
+    def __init__(self, *args, **kwargs):
+        label = kwargs.pop('label', None)
+        super().__init__(*args, **kwargs)
+
+        if label:
+            self.fields['add_users'].label = label
