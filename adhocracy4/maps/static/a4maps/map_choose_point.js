@@ -62,7 +62,7 @@ function isMarkerInsidePolygon (marker, poly) {
   var inside = false
 
   // FIXME: getLatLngs does not return holes. Maybe use toGetJson instead?
-  for (let line of getLines(poly.getLatLngs())) {
+  getLines(poly.getLatLngs()).forEach(function (line) {
     var xi = line[0].lat
     var yi = line[0].lng
     var xj = line[1].lat
@@ -79,7 +79,7 @@ function isMarkerInsidePolygon (marker, poly) {
     var intersect = ((yi > y) !== (yj > y)) &&
         (x < (xj - xi) * (y - yi) / (yj - yi) + xi)
     if (intersect) inside = !inside
-  }
+  })
   return inside
 }
 
