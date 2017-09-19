@@ -1,0 +1,22 @@
+{% load i18n static %}
+
+<div class="form-group">
+    <div class="input-group" data-map="address" data-name="{{ name }}">
+        <input class="input-group__input" name="address" type="text" placeholder="Hauptstraße 1" />
+        <button type="button" class="btn btn--secondary input-group__after" title="{% trans 'Search' %}">
+            <i class="fa fa-search" aria-label="{% trans 'Search' %}"></i>
+        </button>
+    </div>
+</div>
+
+<div
+    style="height: 300px;"
+    data-map="choose_point"
+    data-baseurl="{{ baseurl }}"
+    data-attribution="{{ attribution }}"
+    data-name="{{ name }}"
+    {% if point %}data-point="{{ point }}"{% endif %}
+    data-polygon="{{ polygon }}"
+></div>
+
+<input id="id_{{ name }}" type="hidden" name="{{ name }}" {% if point %}value="{{ point }}"{% endif %}>
