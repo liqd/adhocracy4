@@ -128,6 +128,18 @@ var init = function () {
         $('#id_' + name).val(JSON.stringify(shape))
       }
     })
+
+    $('#id_' + name).on('change', function (event) {
+      if (!this.value) return
+      var shape = L.geoJSON(JSON.parse(this.value))
+      var point = shape.getLayers()[0]
+      var latlng = point.getLatLng()
+      if (typeof marker === 'undefined') {
+        marker = createMarker($, L, latlng, null, basePolygon, map, name)
+      } else {
+        marker.setLatLng(latlng)
+      }
+    })
   })
 }
 
