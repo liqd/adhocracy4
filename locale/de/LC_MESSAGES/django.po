@@ -89,13 +89,13 @@ msgstr ""
 #: adhocracy4/images/fields.py:90
 #, python-brace-format
 msgid "{image_name} copyright"
-msgstr "{image_name} Uhrheberrecht"
+msgstr "{image_name} Urheber*in"
 
 #: adhocracy4/images/fields.py:93
 #: adhocracy4/images/fields.py:93
 #, python-brace-format
 msgid "Copyright shown in the {image_name}."
-msgstr "Informationen zur Uhrheber*in für das {image_name}."
+msgstr "Urheber*in die im {image_name} angezeigt wird."
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
@@ -969,11 +969,14 @@ msgstr ""
 
 #: meinberlin/apps/dashboard/blueprints.py:134
 msgid "Place Prioritization"
-msgstr ""
+msgstr "Ortspriorisierung"
 
 #: meinberlin/apps/dashboard/blueprints.py:136
 msgid "Comment and prioritize places located on a map."
 msgstr ""
+"Legen Sie Orte auf einer Karte an, welche dann von den Nutzerinnen und "
+"Nutzern bewertet und kommentiert werden können."
+
 
 #: meinberlin/apps/dashboard/blueprints.py:146
 msgid "Development Plan"
@@ -1675,15 +1678,15 @@ msgstr "Sie können einen vordefinierten Bereich auswählen."
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_dashboard_list.html:4
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_dashboard_list.html:9
 msgid "Places"
-msgstr ""
+msgstr "Orte"
 
 #: meinberlin/apps/maptopicprio/forms.py:23
 msgid "Locate the place on a map"
-msgstr ""
+msgstr "Verortung auf der Karte"
 
 #: meinberlin/apps/maptopicprio/forms.py:24
 msgid "Place label"
-msgstr ""
+msgstr "Ortsbezeichnung"
 
 #: meinberlin/apps/maptopicprio/phases.py:16
 #: meinberlin/apps/topicprio/phases.py:16
@@ -1692,32 +1695,32 @@ msgstr "Phasen priorisieren"
 
 #: meinberlin/apps/maptopicprio/phases.py:17
 msgid "Prioritize and comment places located on a map."
-msgstr ""
+msgstr "Orte priorisieren und kommentieren"
 
 #: meinberlin/apps/maptopicprio/phases.py:18
 msgid "place prioritization"
-msgstr ""
+msgstr "Ortspriorisierung"
 
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:4
 msgid "Confirm Place Deletion"
-msgstr ""
+msgstr "Bestätigung der Löschung des Ortes"
 
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:8
 msgid "Are you sure you want to delete the place?"
-msgstr ""
+msgstr "Sind Sie sicher, dass Sie den Ort löschen möchten?"
 
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_create_form.html:4
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_create_form.html:8
 msgid "Add a new place"
-msgstr ""
+msgstr "Neuen Ort hinzufügen"
 
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_dashboard_list.html:13
 msgid "Add Place"
-msgstr ""
+msgstr "Ort hinzufügen"
 
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_update_form.html:7
 msgid "Edit place"
-msgstr ""
+msgstr "Ort bearbeiten"
 
 #: meinberlin/apps/maptopicprio/views.py:47
 #: meinberlin/apps/topicprio/views.py:28 meinberlin/apps/topicprio/views.py:88
@@ -1726,11 +1729,11 @@ msgstr "Alphabetisch"
 
 #: meinberlin/apps/maptopicprio/views.py:82
 msgid "Places with comments"
-msgstr ""
+msgstr "Orte mit Kommentaren"
 
 #: meinberlin/apps/maptopicprio/views.py:156
 msgid "The place has been deleted"
-msgstr ""
+msgstr "Ort wurde gelöscht"
 
 #: meinberlin/apps/moderatorfeedback/fields.py:6
 msgid "Moderator feedback for items with fixed feedback choices"
