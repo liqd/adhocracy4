@@ -38,12 +38,12 @@
 
 @media (min-width: $breakpoint) {
     .l-center-8 {
-        @include grid-width(8);
+        @include grid-width(10);
         margin: 0 auto;
     }
 
     .l-center-6 {
-        @include grid-width(6);
+        @include grid-width(8);
         margin: 0 auto;
     }
 
@@ -73,6 +73,14 @@
 }
 
 @media (min-width: $breakpoint-md) {
+    .l-center-8 {
+        @include grid-width(8);
+    }
+
+    .l-center-6 {
+        @include grid-width(6);
+    }
+
     .l-tiles-4 {
         @include grid-tiles(4);
     }
