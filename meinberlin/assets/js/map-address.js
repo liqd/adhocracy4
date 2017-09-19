@@ -86,7 +86,17 @@ var init = function () {
 
     $group.on('click', '[data-map-point]', function (event) {
       var data = $(event.target).attr('data-map-point')
+      $group.find('.complete').empty()
+      // NOTE that the text may not be a valid search query
+      $group.find('input').val($(event.target).text())
       $input.val(data).change()
+    })
+
+    $(document).on('focusout', function (event) {
+      if (!$.contains($group.get(0), event.relatedTarget)) {
+        $group.find('.complete').empty()
+      }
+    })
   })
 }
 
