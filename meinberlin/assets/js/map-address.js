@@ -1,3 +1,5 @@
+/* global $,django */
+
 var apiUrl = 'https://bplan-stage.liqd.net/api/addresses/'
 
 var setBusy = function ($group, busy) {
@@ -31,6 +33,29 @@ var getPoints = function (address, cb) {
   })
 }
 
+var renderPoints = function (points) {
+  if (points.length === 0) {
+    return $('<span class="complete__warning">')
+      .text(django.gettext('No matches found'))
+  } else {
+    var $list = $('<ul class="complete__list">')
+      .text(django.gettext('Did you mean:'))
+    points.forEach(function (point) {
+      var text = point.properties.strname + ' ' +
+        point.properties.hsnr + ', ' +
+        point.properties.plz + ' ' +
+        point.properties.bezirk_name
+      $list.append($('<li>')
+        .append($('<button type="button" class="complete__item">')
+          .text(text)
+          .attr('data-map-point', JSON.stringify(point))
+        )
+      )
+    })
+    return $list
+  }
+}
+
 var init = function () {
   var $ = window.jQuery
 
@@ -44,9 +69,9 @@ var init = function () {
       var address = $group.find('input').val()
       getPoints(address, function (points) {
         setBusy($group, false)
-        // TODO: show error if no results
-        // TODO: allow user to pick if more than one result
-        $input.val(JSON.stringify(points[0])).change()
+        $group.find('.complete')
+          .empty()
+          .append(renderPoints(points))
       })
     }
 
@@ -58,6 +83,10 @@ var init = function () {
         onSubmit(event)
       }
     })
+
+    $group.on('click', '[data-map-point]', function (event) {
+      var data = $(event.target).attr('data-map-point')
+      $input.val(data).change()
   })
 }
 
