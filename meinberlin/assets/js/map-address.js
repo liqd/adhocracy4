@@ -58,6 +58,7 @@ var init = function () {
 
     // simulate a nested form
     $group.find('button').click(onSubmit)
+    $group.find('input').on('change', onSubmit)
     $group.find('input').on('keydown', function (event) {
       if (event.keyCode === 13) {
         onSubmit(event)
