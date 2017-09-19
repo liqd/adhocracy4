@@ -35,20 +35,22 @@ function createMarker ($, L, newlatln, oldlatln, basePolygon, map, name) {
   return marker
 }
 
-function * getLines (array) {
+function getLines (array) {
+  var output = []
   if (array.length) {
     if ('lat' in array[0]) {
-      for (let i = 0, j = array.length - 1; i < array.length; j = i++) {
-        yield [array[i], array[j]]
+      for (var i = 0, j = array.length - 1; i < array.length; j = i++) {
+        output.push([array[i], array[j]])
       }
     } else {
-      for (let a of array) {
-        for (let line of getLines(a)) {
-          yield line
-        }
-      }
+      array.forEach(function (a) {
+        getLines(a).forEach(function (line) {
+          output.push(line)
+        })
+      })
     }
   }
+  return output
 }
 
 function isMarkerInsidePolygon (marker, poly) {
