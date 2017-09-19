@@ -3,6 +3,7 @@
 test_db.sqlite3
 db.sqlite3*
 node_modules/
+package-lock.json
 meinberlin/config/settings/local.py
 .env/
 .idea/
