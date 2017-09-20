@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
+from rules.contrib.views import LoginRequiredMixin
 
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
@@ -146,7 +147,7 @@ class ParticipantInviteDetailView(generic.DetailView):
             return super().dispatch(request, *args, **kwargs)
 
 
-class ParticipantInviteUpdateView(generic.UpdateView):
+class ParticipantInviteUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = models.ParticipantInvite
     form_class = forms.ParticipantInviteForm
     slug_field = 'token'
@@ -176,7 +177,7 @@ class ModeratorInviteDetailView(generic.DetailView):
             return super().dispatch(request, *args, **kwargs)
 
 
-class ModeratorInviteUpdateView(generic.UpdateView):
+class ModeratorInviteUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = models.ModeratorInvite
     form_class = forms.ModeratorInviteForm
     slug_field = 'token'
