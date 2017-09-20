@@ -10,10 +10,7 @@ ProjectBlueprint = namedtuple(
 )
 
 
-def _get_blueprints():
+def get_blueprints():
     key = 'BLUEPRINTS'
     dashboard_settings = settings.A4_DASHBOARD
     return import_string(dashboard_settings[key])
-
-
-blueprints = _get_blueprints()

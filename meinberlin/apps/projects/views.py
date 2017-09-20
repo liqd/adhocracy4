@@ -12,7 +12,7 @@ from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.dashboard2 import blueprints
+from meinberlin.apps.dashboard2.blueprints import get_blueprints
 
 
 class OrderingWidget(DropdownLinkWidget):
@@ -61,7 +61,8 @@ class TypeWidget(DropdownLinkWidget):
 
     def __init__(self, attrs=None):
         choices = (('', _('Any')),)
-        sorted_blueprints = sorted(blueprints.blueprints, key=lambda a: a[1])
+        blueprints = get_blueprints()
+        sorted_blueprints = sorted(blueprints, key=lambda a: a[1])
         for blueprint_key, blueprint in sorted_blueprints:
             choices += (blueprint_key, blueprint.title),
         super().__init__(attrs, choices)

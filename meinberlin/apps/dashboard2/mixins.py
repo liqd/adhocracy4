@@ -56,8 +56,8 @@ class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
 class BlueprintMixin:
     @property
     def blueprint(self):
-        from .blueprints import blueprints
-        return dict(blueprints)[self.blueprint_key]
+        from .blueprints import get_blueprints
+        return dict(get_blueprints())[self.blueprint_key]
 
     @property
     def blueprint_key(self):
