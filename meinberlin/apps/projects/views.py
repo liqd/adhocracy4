@@ -4,7 +4,9 @@ import django_filters
 from django.apps import apps
 from django.conf import settings
 from django.db.models import Q
+from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
+from django.views import generic
 
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
@@ -13,6 +15,9 @@ from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.dashboard2 import blueprints
+
+from . import forms
+from . import models
 
 
 class OrderingWidget(DropdownLinkWidget):
@@ -124,3 +129,63 @@ class ProjectListView(filter_views.FilteredListView):
               organisation__initiators__pk=self.request.user.pk) |
             Q(is_draft=False, is_public=True)
         ).distinct()
+
+
+class ParticipantInviteDetailView(generic.DetailView):
+    model = models.ParticipantInvite
+    slug_field = 'token'
+    slug_url_kwarg = 'invite_token'
+
+    def dispatch(self, request, invite_token, *args, **kwargs):
+        if request.user.is_authenticated():
+            return redirect(
+                'project-participant-invite-update',
+                invite_token=invite_token
+            )
+        else:
+            return super().dispatch(request, *args, **kwargs)
+
+
+class ParticipantInviteUpdateView(generic.UpdateView):
+    model = models.ParticipantInvite
+    form_class = forms.ParticipantInviteForm
+    slug_field = 'token'
+    slug_url_kwarg = 'invite_token'
+
+    def form_valid(self, form):
+        if form.is_accepted():
+            form.instance.accept(self.request.user)
+            return redirect(form.instance.project.get_absolute_url())
+        else:
+            form.instance.reject()
+            return redirect('/')
+
+
+class ModeratorInviteDetailView(generic.DetailView):
+    model = models.ModeratorInvite
+    slug_field = 'token'
+    slug_url_kwarg = 'invite_token'
+
+    def dispatch(self, request, invite_token, *args, **kwargs):
+        if request.user.is_authenticated():
+            return redirect(
+                'project-moderator-invite-update',
+                invite_token=invite_token
+            )
+        else:
+            return super().dispatch(request, *args, **kwargs)
+
+
+class ModeratorInviteUpdateView(generic.UpdateView):
+    model = models.ModeratorInvite
+    form_class = forms.ModeratorInviteForm
+    slug_field = 'token'
+    slug_url_kwarg = 'invite_token'
+
+    def form_valid(self, form):
+        if form.is_accepted():
+            form.instance.accept(self.request.user)
+            return redirect(form.instance.project.get_absolute_url())
+        else:
+            form.instance.reject()
+            return redirect('/')
