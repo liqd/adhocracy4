@@ -33,6 +33,7 @@ var ReactDocuments = require('../../apps/documents/assets/react_documents.jsx')
 var ReactPolls = require('../../apps/polls/assets/react_polls.jsx')
 
 var relativeTimestamps = require('../../apps/actions/assets/timestamps.js')
+var mapAddress = require('./map-address.js')
 
 var dynamicFields = require('../../apps/contrib/assets/dynamic_fields.js')
 // This function is overwritten with custom behavior in embed.js.

@@ -1,0 +1,33 @@
+.complete {
+    border: 1px solid $border-color;
+    padding: $padding / 2;
+
+    &:empty {
+        display: none;
+    }
+}
+
+.complete__warning {
+    color: $brand-warning;
+}
+
+.complete__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    > * + * {
+        border-top: 1px solid $border-color;
+    }
+}
+
+.complete__item {
+    display: block;
+    width: 100%;
+    padding: $padding / 2 0;
+
+    &:hover,
+    &:focus {
+        color: $link-color;
+    }
+}
