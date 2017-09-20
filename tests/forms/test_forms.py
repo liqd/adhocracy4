@@ -3,7 +3,7 @@ from dateutil.parser import parse
 
 from django import forms
 
-from adhocracy4.datetimefield.fields import DateTimeField
+from adhocracy4.forms.fields import DateTimeField
 
 
 class DateTimeForm(forms.Form):
