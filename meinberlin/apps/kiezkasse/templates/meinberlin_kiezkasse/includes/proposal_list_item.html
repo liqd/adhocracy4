@@ -1,4 +1,4 @@
-{% load i18n item_tags moderatorfeedback_tags humanize %}
+{% load i18n item_tags moderatorfeedback_tags humanize contrib_tags %}
 
 <li class="list-item list-item--squashed">
     <div class="list-item__stats">
@@ -44,7 +44,5 @@
     <span class="list-item__author">
         {{ object.creator.username }}
     </span>
-    <span class="list-item__date">
-        {{ object.created | date }}
-    </span>
+    {% html_date object.created class='list-item__date' %}
 </li>

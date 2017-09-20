@@ -1,5 +1,8 @@
 from django import template
+from django.forms.utils import flatatt
+from django.template import defaultfilters
 from django.template.loader import render_to_string
+from django.utils.safestring import mark_safe
 
 register = template.Library()
 
@@ -48,3 +51,18 @@ def project_tile_image_copyright(project):
         return project.image_copyright
     else:
         return None
+
+
+@register.simple_tag()
+def html_date(value, displayfmt=None, datetimefmt='c', **kwargs):
+    """Format a date and wrap it in a html <time> element.
+
+    Additional html attributes may be provided as kwargs (e.g. 'class').
+    """
+    displaydate = defaultfilters.date(value, displayfmt)
+    datetime = defaultfilters.date(value, datetimefmt)
+    attribs = flatatt(kwargs)
+    result = '<time %s datetime="%s">%s</time>' % (attribs,
+                                                   datetime,
+                                                   displaydate)
+    return mark_safe(result)

@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n contrib_tags %}
 
 <div class="action">
     <i class="fa fa-{{ action.icon }} action__icon" aria-hidden="true"></i>
@@ -25,11 +25,7 @@
             {% blocktrans with url=action.project.get_absolute_url name=action.project.name %}on <a href="{{ url }}">{{ name }}</a>{% endblocktrans %}
         </div>
         <div class="action__date">
-            <time datetime="{{ action.timestamp|date:'Y-m-d H:i' }}"
-                  title="{{ action.timestamp|date:'DATETIME_FORMAT' }}"
-                  class="relative">
-                {{ action.timestamp|date:'d.m.Y' }}
-            </time>
+            {% html_date action.timestamp 'd.m.Y' class='relative' title=action.timestamp|date:'DATETIME_FORMAT' %}
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags %}
+{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags contrib_tags %}
 
 {% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
 {% block content %}
@@ -34,7 +34,7 @@
 
             <div class="item-detail__meta">
                 <strong class="item-detail__creator">{{ object.creator.username }}</strong>
-                {{ object.created|date }}
+                {% html_date object.created %}
             </div>
 
             <div class="item-detail__actions lr-bar">

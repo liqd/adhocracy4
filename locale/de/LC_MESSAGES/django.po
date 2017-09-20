@@ -1899,25 +1899,15 @@ msgstr "Die Auswahl muss zu der richtigen Frage gehören."
 msgid "Project on meinBerlin"
 msgstr "Projekt auf meinBerlin"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:46
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:47
 #, python-format
-msgid ""
-"\n"
-"                    Participation possible until %(date)s\n"
-"                "
-msgstr ""
-"\n"
-"Beteiligung möglich bis zum %(date)s"
+msgid "Participation possible until %(date)s"
+msgstr "Beteiligung möglich bis zum %(date)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:52
 #, python-format
-msgid ""
-"\n"
-"                    Participation starting from %(date)s\n"
-"                "
-msgstr ""
-"\n"
-"Beteiligung fängt ab dem %(date)s an"
+msgid "Participation starting from %(date)s"
+msgstr "Beteiligung fängt am %(date)s an"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:7
 msgid "Timeline"

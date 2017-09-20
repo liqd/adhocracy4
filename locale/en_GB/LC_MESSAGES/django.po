@@ -1814,27 +1814,15 @@ msgstr "Choice has to belong to the question set in the url."
 msgid "Project on meinBerlin"
 msgstr "Project on meinBerlin"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:46
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:47
 #, python-format
-msgid ""
-"\n"
-"                    Participation possible until %(date)s\n"
-"                "
-msgstr ""
-"\n"
-"                    Participation possible until %(date)s\n"
-"                "
+msgid "Participation possible until %(date)s"
+msgstr "Participation possible until %(date)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:52
 #, python-format
-msgid ""
-"\n"
-"                    Participation starting from %(date)s\n"
-"                "
-msgstr ""
-"\n"
-"                    Participation starting from %(date)s\n"
-"                "
+msgid "Participation starting from %(date)s"
+msgstr "Participation starting from %(date)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:7
 msgid "Timeline"
