@@ -2,6 +2,57 @@
 
 var apiUrl = 'https://bplan-stage.liqd.net/api/addresses/'
 
+function pointInPolygon (point, polygon) {
+  var x = point[0]
+  var y = point[1]
+
+  // Algorithm comes from:
+  // https://github.com/substack/point-in-polygon/blob/master/index.js
+  var inside = false
+
+  for (var p = 0; p < polygon.length; p++) {
+    var ring = polygon[p]
+
+    for (var i = 0; i < ring.length - 1; i++) {
+      var xi = ring[i][0]
+      var yi = ring[i][1]
+      var xj = ring[i + 1][0]
+      var yj = ring[i + 1][1]
+
+      //      *
+      //     /
+      // *--/----------->>
+      //   *
+      // Check that
+      //
+      // 1.  yi and yj are on opposite sites of a ray to the right
+      // 2.  the intersection of the ray and the segment is right of x
+      var intersect = ((yi > y) !== (yj > y)) &&
+          (x < (xj - xi) * (y - yi) / (yj - yi) + xi)
+      if (intersect) inside = !inside
+    }
+  }
+  return inside
+}
+
+var pointInObject = function (point, geojson, failByDefault) {
+  if (geojson.type === 'MultiPolygon') {
+    return geojson.coordinates.some(function (polygon) {
+      return pointInPolygon(point, polygon)
+    })
+  } else if (geojson.type === 'Polygon') {
+    return pointInPolygon(point, geojson.coordinates)
+  } else if (geojson.type === 'Feature') {
+    return pointInObject(point, geojson.geometry, failByDefault)
+  } else if (geojson.type === 'FeatureCollection') {
+    return geojson.features.some(function (feature) {
+      return pointInObject(point, feature, true)
+    })
+  } else {
+    return !failByDefault
+  }
+}
+
 var setBusy = function ($group, busy) {
   $group.attr('aria-busy', busy)
   $group.find('input').attr('disabled', busy)
@@ -23,7 +74,6 @@ var getPoints = function (address, cb) {
   $.ajax(apiUrl, {
     data: {address: address},
     success: function (geojson) {
-      // TODO: filter by polygon
       cb(geojson.features)
     },
     error: function () {
@@ -61,7 +111,10 @@ var init = function () {
 
   $('[data-map="address"]').each(function (i, e) {
     var $group = $(e)
-    var $input = $('#id_' + $group.data('name'))
+    var name = $group.data('name')
+    var $input = $('#id_' + name)
+    var $map = $('[data-map="choose_point"][data-name="' + name + '"]')
+    var polygon = $map.data('polygon')
 
     var onSubmit = function (event) {
       event.preventDefault()
@@ -71,7 +124,9 @@ var init = function () {
         setBusy($group, false)
         $group.find('.complete')
           .empty()
-          .append(renderPoints(points))
+          .append(renderPoints(points.filter(function (point) {
+            return pointInObject(point.geometry.coordinates, polygon)
+          })))
       })
     }
 
