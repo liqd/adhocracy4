@@ -8,6 +8,7 @@ install:
   - pip install -r requirements/dev.txt
 script:
   - py.test --cov
+  - python manage.py makemigrations --dry-run --check --noinput
   - ./node_modules/.bin/polylint -F
 deploy:
   - provider: script
