@@ -86,7 +86,7 @@ var getPoints = function (address, cb) {
 var renderPoints = function (points) {
   if (points.length === 0) {
     return $('<span class="complete__warning">')
-      .text(django.gettext('No matches found'))
+      .text(django.gettext('No matches found within the project area'))
   } else {
     var $list = $('<ul class="complete__list">')
       .text(django.gettext('Did you mean:'))
