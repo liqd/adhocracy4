@@ -1,5 +1,5 @@
 {% extends "meinberlin_mapideas/mapidea_detail.html" %}
-{% load rules item_tags moderatorfeedback_tags i18n humanize %}
+{% load rules item_tags moderatorfeedback_tags i18n humanize contrib_tags %}
 
 {% block additional_labels %}
     {{ block.super }}
@@ -22,9 +22,7 @@
                         <strong class="moderator-statement__organisation">
                             {{ proposal.module.project.organisation.name }}
                         </strong>
-                        <span class="moderator-statement__date">
-                            {{ proposal.moderator_statement.created | date }}
-                        </span>
+                        {% html_date proposal.moderator_statement.created class='moderator-statement__date' %}
                     </div>
                     <div class="moderator-statement__body">
                         {{ proposal.moderator_statement.statement | safe }}

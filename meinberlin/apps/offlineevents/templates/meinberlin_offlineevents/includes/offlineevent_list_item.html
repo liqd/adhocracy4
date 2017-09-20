@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n contrib_tags %}
 
 <li class="list-item">
     <div class="lr-bar">
@@ -8,9 +8,7 @@
                 {{ object.name }}
                 </a>
             </h3>
-            <span class="list-item__date">
-                {{ object.date | date }}
-            </span>
+            {% html_date object.date class='list-item__date' %}
         </div>
         <div class="lr-bar__right">
             <a href="{% url 'a4dashboard:offlineevent-delete' slug=object.slug %}"

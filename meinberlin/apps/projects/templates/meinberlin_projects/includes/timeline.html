@@ -48,11 +48,14 @@
                         <strong>
                             {% trans 'Participation is not possible at the moment.' %}
                             {% if not module.past_phases %}
-                                {% blocktrans with module.future_phases.first.start_date|date:'DATE_FORMAT' as date %}It starts on {{ date }}.{% endblocktrans%}
+                                {% html_date module.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
+                                {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
                             {% elif module.future_phases %}
-                                {% blocktrans with module.future_phases.first.start_date|date:'DATE_FORMAT' as date %}It continues on {{ date }}.{% endblocktrans%}
+                                {% html_date module.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
+                                {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
                             {% else %}
-                                {% blocktrans with module.past_phases.last.end_date|date:'DATE_FORMAT' as date %}It ended on {{ date }}.{% endblocktrans%}
+                                {% html_date module.past_phases.last.end_date 'DATE_FORMAT' as end_date %}
+                                {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
                             {% endif %}
                         </strong>
                     </div>
@@ -75,8 +78,8 @@
                                 {% endif %}
                             </div>
                             <div class="phase-info__item__subtitle">
-                                {{ phase.start_date|date:'DATE_FORMAT' }}
-                                &ndash; {{ phase.end_date|date:'DATE_FORMAT' }}
+                                {% html_date phase.start_date 'DATE_FORMAT' %}
+                                &ndash; {% html_date phase.end_date 'DATE_FORMAT' %}
                             </div>
                             <div class="phase-info__item__description">
                                 {{ phase.description }}
@@ -93,7 +96,8 @@
                 <div class="item-detail__meta">
                     <strong>
                         {% trans 'Participation is not possible at the moment.' %}
-                        {% blocktrans with project.future_phases.first.start_date|date:'DATE_FORMAT' as date %}It starts on {{ date }}.{% endblocktrans%}
+                        {% html_date project.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
+                        {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
                     </strong>
                 </div>
             {% endif %}
