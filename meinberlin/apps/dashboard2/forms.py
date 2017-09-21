@@ -5,11 +5,11 @@ from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import models as category_models
+from adhocracy4.forms.fields import DateTimeField
 from adhocracy4.maps import models as map_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.datetimefield import fields as datetime_fields
 from meinberlin.apps.maps.widgets import MapChoosePolygonWithPresetWidget
 from meinberlin.apps.users.fields import CommaSeparatedEmailField
 
@@ -95,13 +95,13 @@ class ModuleBasicForm(ModuleDashboardForm):
 
 
 class PhaseForm(forms.ModelForm):
-    end_date = datetime_fields.DateTimeField(
+    end_date = DateTimeField(
         time_format='%H:%M',
         required=False,
         require_all_fields=False,
         label=(_('End date'), _('End time'))
     )
-    start_date = datetime_fields.DateTimeField(
+    start_date = DateTimeField(
         time_format='%H:%M',
         required=False,
         require_all_fields=False,

@@ -2,10 +2,10 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.forms.fields import DateTimeField
 from meinberlin.apps.bplan import models as bplan_models
 from meinberlin.apps.dashboard2.forms import ProjectCreateForm
 from meinberlin.apps.dashboard2.forms import ProjectDashboardForm
-from meinberlin.apps.datetimefield import fields as datetime_fields
 from meinberlin.apps.extprojects import models as extproject_models
 from meinberlin.apps.organisations.models import Organisation
 
@@ -29,13 +29,13 @@ class ExternalProjectCreateForm(ProjectCreateForm):
 
 class ExternalProjectForm(ProjectDashboardForm):
 
-    start_date = datetime_fields.DateTimeField(
+    start_date = DateTimeField(
         time_format='%H:%M',
         required=False,
         require_all_fields=False,
         label=(_('Start date'), _('Start time'))
     )
-    end_date = datetime_fields.DateTimeField(
+    end_date = DateTimeField(
         time_format='%H:%M',
         required=False,
         require_all_fields=False,
