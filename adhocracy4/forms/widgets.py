@@ -45,7 +45,7 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
             time = value[1] if value else None
 
         return render_to_string(
-            'a4datetimefield/datetime_input.html', {
+            'a4forms/datetime_input.html', {
                 'date': self.widgets[0].render(
                     name + '_0',
                     date,
