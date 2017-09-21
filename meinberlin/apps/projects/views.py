@@ -199,15 +199,17 @@ class ModeratorInviteUpdateView(LoginRequiredMixin, generic.UpdateView):
             return redirect('/')
 
 
-class AbstractProjectUserListView(a4dashboard_mixins.DashboardComponentMixin,
-                                  a4dashboard_mixins.DashboardBaseMixin,
-                                  a4dashboard_mixins.DashboardContextMixin,
-                                  generic.base.TemplateResponseMixin,
-                                  generic.edit.FormMixin,
-                                  generic.detail.SingleObjectMixin,
-                                  generic.edit.ProcessFormView):
+class AbstractProjectUserInviteListView(
+        a4dashboard_mixins.DashboardComponentMixin,
+        a4dashboard_mixins.DashboardBaseMixin,
+        a4dashboard_mixins.DashboardContextMixin,
+        generic.base.TemplateResponseMixin,
+        generic.edit.FormMixin,
+        generic.detail.SingleObjectMixin,
+        generic.edit.ProcessFormView):
 
-    form_class = forms.AddUsersFromEmailForm
+    form_class = forms.InviteUsersFromEmailForm
+    invite_model = None
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -219,58 +221,18 @@ class AbstractProjectUserListView(a4dashboard_mixins.DashboardComponentMixin,
             if request.POST['submit_action'] == 'remove_user':
                 pk = int(request.POST['user_pk'])
                 user = get_object_or_404(User, pk=pk)
-
-                if request.POST['submit_action'] == 'remove_user':
-                    related_users = getattr(self.object,
-                                            self.related_users_field)
-                    related_users.remove(user)
-                    messages.success(request, self.success_message_removal)
+                related_users = getattr(self.object, self.related_users_field)
+                related_users.remove(user)
+                messages.success(request, self.success_message_removal)
+            elif request.POST['submit_action'] == 'remove_invite':
+                pk = int(request.POST['invite_pk'])
+                invite = self.invite_model.objects.get(pk=pk)
+                invite.delete()
+                messages.success(request, _('Invitation succesfully removed.'))
 
             return redirect(self.get_success_url())
         else:
             return super().post(request, *args, **kwargs)
-
-    def form_valid(self, form):
-        if form.missing:
-            messages.error(
-                self.request,
-                _('Following emails are not registered: ') + ', '.join(
-                    form.missing)
-            )
-
-        if form.cleaned_data['add_users']:
-            users = form.cleaned_data['add_users']
-            related_users = getattr(self.object,
-                                    self.related_users_field)
-            related_users.add(*users)
-
-            messages.success(
-                self.request,
-                ungettext(self.success_message[0], self.success_message[1],
-                          len(users)).format(len(users))
-            )
-
-        return redirect(self.get_success_url())
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['label'] = self.add_user_field_label
-        return kwargs
-
-
-class AbstractProjectUserInviteListView(AbstractProjectUserListView):
-    form_class = forms.InviteUsersFromEmailForm
-    invite_model = None
-
-    def post(self, request, *args, **kwargs):
-
-        if 'submit_action' in request.POST and (
-                request.POST['submit_action'] == 'remove_invite'):
-            pk = int(request.POST['invite_pk'])
-            invite = self.invite_model.objects.get(pk=pk)
-            invite.delete()
-            messages.success(request, _('Invitation succesfully removed.'))
-        return super().post(request, *args, **kwargs)
 
     def filter_existing(self, emails):
         related_users = getattr(self.object, self.related_users_field)
@@ -327,6 +289,11 @@ class AbstractProjectUserInviteListView(AbstractProjectUserListView):
         )
 
         return redirect(self.get_success_url())
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['label'] = self.add_user_field_label
+        return kwargs
 
 
 class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
