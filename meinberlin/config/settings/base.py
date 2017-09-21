@@ -99,9 +99,10 @@ INSTALLED_APPS = (
     'meinberlin.apps.ideas.apps.Config',
     'meinberlin.apps.kiezkasse.apps.Config',
     'meinberlin.apps.mapideas.apps.Config',
-    'meinberlin.apps.polls.apps.Config',
-    'meinberlin.apps.topicprio.apps.Config',
     'meinberlin.apps.maptopicprio.apps.Config',
+    'meinberlin.apps.polls.apps.Config',
+    'meinberlin.apps.projectcontainers.apps.Config',
+    'meinberlin.apps.topicprio.apps.Config',
 )
 
 MIDDLEWARE = (
