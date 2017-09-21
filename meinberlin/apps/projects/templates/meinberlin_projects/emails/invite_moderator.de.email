@@ -1,13 +1,13 @@
 {% extends 'email_base.'|add:part_type %}
 {% load verbose_name %}
 
-{% block subject %}Einladung zum Moderieren des Projekts {{ project.name }}{% endblock %}
+{% block subject %}Einladung zum Moderieren des Projekts {{ moderatorinvite.project.name }}{% endblock %}
 
-{% block headline %}Einladung zum Moderieren des Projekts  {{ project.name }}{% endblock  %}
+{% block headline %}Einladung zum Moderieren des Projekts {{ moderatorinvite.project.name }}{% endblock  %}
 
 {% block content %}Sie wurden als Moderator*in zum Projekt auf {{ site.name }} eingeladen. Sie können diese Einladung über den {% if part_type == "txt" %}Link{% else %}Knopf{% endif %} unten akzeptieren oder ablehnen.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Einladung annhemen/ablehnen{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie zu als Moderator*in zum Projekt eingeladen wurden.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ moderatorinvite.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie als Moderator*in zum Projekt eingeladen wurden.{% endblock %}

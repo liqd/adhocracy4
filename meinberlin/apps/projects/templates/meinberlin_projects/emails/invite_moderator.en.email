@@ -1,15 +1,15 @@
 {% extends 'email_base.'|add:part_type %}
 {% load verbose_name %}
 
-{% block subject %}Invitation to moderate the project {{ project.name }}{% endblock %}
+{% block subject %}Invitation to moderate the project {{ moderatorinvite.project.name }}{% endblock %}
 
-{% block headline %}Invitation to the moderate project {{ project.name }}{% endblock  %}
+{% block headline %}Invitation to the moderate project {{ moderatorinvite.project.name }}{% endblock  %}
 
 {% block content %}
-You were invited as a moderator of this project by the user <i>{{ invite.creator.username }}</i>. Please accept or decline the invitation by clicking the {% if part_type == "txt" %}link{% else %}button{% endif %} below.
+You were invited as a moderator of this project by the user <i>{{ moderatorinvite.creator.username }}</i>. Please accept or decline the invitation by clicking the {% if part_type == "txt" %}link{% else %}button{% endif %} below.
 {% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ invite.get_absolute_url }}{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Accept/Decline invitation{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you are invited to moderate a project.{% endblock %}
+{% block reason %}This email was sent to {{ email }}. This email was sent to you because you are invited to moderate a project.{% endblock %}
