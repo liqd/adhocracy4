@@ -12,4 +12,4 @@ You were invited as a moderator of this project by the user <i>{{ moderatorinvit
 {% block cta_url %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Accept/Decline invitation{% endblock %}
 
-{% block reason %}This email was sent to {{ email }}. This email was sent to you because you are invited to moderate a project.{% endblock %}
+{% block reason %}This email was sent to {{ moderatorinvite.email }}. This email was sent to you because you are invited to moderate a project.{% endblock %}
