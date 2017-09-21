@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-18 16:01+0200\n"
+"POT-Creation-Date: 2017-09-21 09:43+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -315,6 +315,14 @@ msgid ""
 msgstr ""
 "Sie haben Third Party Cookies deaktiviert. Sie können sich dieses Projekt "
 "zwar anschauen, werden sich aber nicht anmelden können."
+
+#: meinberlin/assets/js/map-address.js:89
+msgid "No matches found within the project area"
+msgstr ""
+
+#: meinberlin/assets/js/map-address.js:92
+msgid "Did you mean:"
+msgstr ""
 
 #~ msgid "Your document has been updated."
 #~ msgstr "Ihr Dokument wurde aktualisiert."
