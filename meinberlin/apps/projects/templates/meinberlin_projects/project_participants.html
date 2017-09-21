@@ -5,10 +5,10 @@
 
 {% block dashboard_project_content %}
     <h1 class="u-first-heading">{% trans 'Edit Participants' %}</h1>
-    {% include 'meinberlin_dashboard/includes/users_from_email_form.html' %}
+    {% include 'meinberlin_projects/includes/users_from_email_form.html' %}
 
     <h2>{% trans 'Pending Invitations' %}</h2>
-    {% include 'meinberlin_dashboard/includes/removeable_invite_list.html' with invites=project.participantinvite_set.all %}
+    {% include 'meinberlin_projects/includes/removeable_invite_list.html' with invites=project.participantinvite_set.all %}
     <h2>{% trans 'Participants' %}</h2>
-    {% include 'meinberlin_dashboard/includes/removeable_user_list.html' with users=project.participants.all %}
+    {% include 'meinberlin_projects/includes/removeable_user_list.html' with users=project.participants.all %}
 {% endblock %}
