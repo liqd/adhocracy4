@@ -9,8 +9,10 @@ from meinberlin.apps.ideas import models as idea_models
 class AbstractMapIdea(idea_models.AbstractIdea):
     point = map_fields.PointField(
         verbose_name=_('Where can your idea be located on a map?'),
-        help_text=_('Click inside marked area to set a marker. '
-                    'Drag and drop marker to change place.'))
+        help_text=_('Click inside marked area on the map to set a marker. '
+                    'Drag and drop the marker to change its place. '
+                    'Alternatively you can use the search field to search '
+                    'for an address.'))
 
     point_label = models.CharField(
         blank=True,

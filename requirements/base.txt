@@ -6,12 +6,12 @@ django-capture-tag==1.0
 git+git://github.com/encolpe/django-multiform.git@django-1.9#egg=django-multiform
 html5lib==0.999999999
 wagtail==1.12.1
-XlsxWriter==0.9.8
+XlsxWriter==1.0.0
 zeep==2.4.0
 
 # Inherited a4-core requirements
 bleach==2.0.0
-Django==1.11.4
+Django==1.11.5
 django-allauth==0.33.0
 django-autoslug==1.9.3
 django-background-tasks==1.1.11
@@ -19,7 +19,7 @@ django-ckeditor==5.3.0
 django-filter==1.0.4
 django-widget-tweaks==1.4.1
 djangorestframework==3.6.4
-easy-thumbnails==2.4.1
+easy-thumbnails==2.4.2
 jsonfield==2.0.2
 python-dateutil==2.6.1
 python-magic==0.4.13

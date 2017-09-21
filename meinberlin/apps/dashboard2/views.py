@@ -15,12 +15,12 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 
-from . import blueprints
 from . import filter
 from . import forms
 from . import get_project_dashboard
 from . import mixins
 from . import signals
+from .blueprints import get_blueprints
 
 User = get_user_model()
 
@@ -50,10 +50,13 @@ class ProjectListView(mixins.DashboardBaseMixin,
 
 class BlueprintListView(mixins.DashboardBaseMixin,
                         generic.TemplateView):
-    blueprints = blueprints.blueprints
     template_name = 'meinberlin_dashboard2/blueprint_list.html'
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
+
+    @property
+    def blueprints(self):
+        return get_blueprints()
 
 
 class ProjectCreateView(mixins.DashboardBaseMixin,
