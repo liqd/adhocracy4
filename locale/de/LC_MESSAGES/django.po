@@ -1430,7 +1430,7 @@ msgstr "Externes Projekt"
 
 #: meinberlin/apps/ideas/models.py:25
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: meinberlin/apps/ideas/phases.py:16 meinberlin/apps/mapideas/phases.py:16
 msgid "Issue phase"
