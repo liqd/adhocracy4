@@ -76,7 +76,6 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['type'] = self.blueprint_key
         kwargs['organisation'] = self.organisation
         kwargs['creator'] = self.request.user
         return kwargs

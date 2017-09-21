@@ -12,7 +12,6 @@ from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.dashboard2.blueprints import get_blueprints
 
 
 class OrderingWidget(DropdownLinkWidget):
@@ -56,18 +55,6 @@ class YearWidget(DropdownLinkWidget):
         super().__init__(attrs, choices)
 
 
-class TypeWidget(DropdownLinkWidget):
-    label = _('Project Type')
-
-    def __init__(self, attrs=None):
-        choices = (('', _('Any')),)
-        blueprints = get_blueprints()
-        sorted_blueprints = sorted(blueprints, key=lambda a: a[1])
-        for blueprint_key, blueprint in sorted_blueprints:
-            choices += (blueprint_key, blueprint.title),
-        super().__init__(attrs, choices)
-
-
 class ProjectFilterSet(DefaultsFilterSet):
 
     defaults = {
@@ -103,13 +90,9 @@ class ProjectFilterSet(DefaultsFilterSet):
         widget=YearWidget,
     )
 
-    typ = django_filters.CharFilter(
-        widget=TypeWidget,
-    )
-
     class Meta:
         model = project_models.Project
-        fields = ['search', 'organisation', 'is_archived', 'created', 'typ']
+        fields = ['search', 'organisation', 'is_archived', 'created']
 
 
 class ProjectListView(filter_views.FilteredListView):
