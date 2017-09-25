@@ -170,7 +170,7 @@ msgstr "Polygon"
 
 #: adhocracy4/maps/models.py:12
 msgid "Please draw an area on the map."
-msgstr "Bitte zeichnen Sie einen Bereich auf der Karte ein."
+msgstr "Bitte zeichnen Sie einen Bereich auf der Karte ein, in dem Ihr Projekt stattfindet und Ideen verortet werden sollen."
 
 #: adhocracy4/modules/models.py:14
 msgid "Title of the module"
@@ -202,7 +202,7 @@ msgstr ""
 #: meinberlin/apps/newsletters/models.py:29
 #: meinberlin/apps/offlineevents/models.py:14
 msgid "Name"
-msgstr "Name"
+msgstr "Titel der Veranstaltung"
 
 #: adhocracy4/phases/models.py:66
 #: meinberlin/apps/ideas/models.py:26
@@ -861,7 +861,7 @@ msgid ""
 "statements. Afterwards anyone can comment and rate on different topics."
 msgstr ""
 "Mit \"Agenda festlegen\" ist es möglich, Themen zu identifizieren und "
-"Mission Statements zu definieren. Im Anschluss können die Themen bewertet "
+"Leitbilder zu definieren. Im Anschluss können diese bewertet "
 "und kommentiert werden."
 
 #: meinberlin/apps/dashboard/blueprints.py:70
