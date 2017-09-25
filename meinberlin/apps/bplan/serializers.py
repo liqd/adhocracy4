@@ -26,7 +26,6 @@ BPLAN_EMBED = '<iframe height="500" style="width: 100%; min-height: 300px; ' \
 
 class BplanSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
-    typ = serializers.HiddenField(default='Bplan')
 
     # make write_only for consistency  reasons
     start_date = serializers.DateTimeField(write_only=True)
@@ -36,7 +35,7 @@ class BplanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bplan
         fields = (
-            'id', 'name', 'description', 'url', 'office_worker_email', 'typ',
+            'id', 'name', 'description', 'url', 'office_worker_email',
             'is_draft', 'start_date', 'end_date', 'image_url'
         )
         extra_kwargs = {

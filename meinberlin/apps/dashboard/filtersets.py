@@ -41,10 +41,6 @@ class DashboardProjectFilterSet(DefaultsFilterSet):
         widget=views.YearWidget,
     )
 
-    typ = django_filters.CharFilter(
-        widget=views.TypeWidget,
-    )
-
     class Meta:
         model = Project
-        fields = ['search', 'is_archived', 'created', 'typ']
+        fields = ['search', 'is_archived', 'created']
