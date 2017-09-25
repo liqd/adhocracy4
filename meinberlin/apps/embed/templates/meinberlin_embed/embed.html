@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static i18n extproject_tags %}
-<html class="embed">
+{% get_current_language as LANGUAGE_CODE %}
+<html class="embed" lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
