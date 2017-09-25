@@ -773,7 +773,7 @@ msgstr "Sortierung"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/filter_and_sort.html:3
 msgid "Filter bar "
-msgstr ""
+msgstr "Filterleiste"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/inline_form.html:11
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/inline_form.html:12
