@@ -25,17 +25,15 @@ class ProjectCreateForm(forms.ModelForm):
         model = project_models.Project
         fields = ['name', 'description', 'image', 'image_copyright']
 
-    def __init__(self, type, organisation, creator,
+    def __init__(self, organisation, creator,
                  *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.type = type
         self.organisation = organisation
         self.creator = creator
 
     def save(self, commit=True):
         project = super().save(commit=False)
 
-        project.typ = self.type
         project.organisation = self.organisation
         project.creator = self.creator
 

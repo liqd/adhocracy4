@@ -1,4 +1,4 @@
-{% load i18n project_tags extproject_tags dashboard_tags thumbnail contrib_tags %}
+{% load i18n project_tags extproject_tags thumbnail contrib_tags %}
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 
@@ -11,7 +11,6 @@
         </div>
         <div class="lr-bar list-item--has-image__body">
             <div class="lr-bar__left">
-                <p class="list-item__subtitle">{{ project.typ|get_blueprint_title }}</p>
                 <h2 class="list-item__title">
                     {{ project.name }}
                     {% if project.has_finished %}
