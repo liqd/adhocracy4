@@ -1,17 +1,18 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from adhocracy4.forms.widgets import DateTimeInput
+from adhocracy4.forms.fields import DateTimeField
 
 from . import models
 
 
 class OfflineEventForm(forms.ModelForm):
 
-    date = forms.SplitDateTimeField(
-        widget=DateTimeInput(time_format='%H:%M'),
-        require_all_fields=True,
-        label=_('Date')
+    date = DateTimeField(
+        time_format='%H:%M',
+        required=True,
+        require_all_fields=False,
+        label=(_('Date'), _('Time'))
     )
 
     class Meta:
