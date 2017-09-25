@@ -13,11 +13,14 @@
     color: $text-color-inverted;
 
     @media (min-width: $breakpoint) {
-        min-height: ($hero-height-mobile + $hero-height) / 2;
+        // HACK: We would prefer to use min-height to allow extremly long
+        // content.  However, in IE, flex is buggy when used with min-height.
+        // We expect the content to be short, so this should be fine.
+        height: ($hero-height-mobile + $hero-height) / 2;
     }
 
     @media (min-width: $breakpoint-md) {
-        min-height: $hero-height;
+        height: $hero-height;
     }
 
     &:before {
