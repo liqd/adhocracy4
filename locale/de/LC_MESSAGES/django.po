@@ -115,12 +115,12 @@ msgstr ""
 #: adhocracy4/images/fields.py:90
 #, python-brace-format
 msgid "{image_name} copyright"
-msgstr "{image_name} Urheber*in"
+msgstr "{image_name} *in"
 
 #: adhocracy4/images/fields.py:93
 #, python-brace-format
 msgid "Copyright shown in the {image_name}."
-msgstr "Urheber*in die im {image_name} angezeigt wird."
+msgstr "Urheber*in, die im {image_name} angezeigt wird."
 
 #: adhocracy4/images/validators.py:20
 msgid "Unsupported file format. Supported formats are {}."
@@ -261,7 +261,7 @@ msgid ""
 "the „Info“ tab on your project’s page."
 msgstr ""
 "Die Beschreibung verdeutlicht Nutzerinnen und Nutzern was das Ziel des "
-"Projekts ist und wie die Beteiligung von statten gehen wird. Sie wird im "
+"Projekts ist und wie die Beteiligung vonstatten gehen wird. Sie wird im "
 "Info-Tab der Projektseite angezeigt werden."
 
 #: adhocracy4/projects/models.py:56
@@ -287,7 +287,8 @@ msgid ""
 "Please indicate who should be able to participate in your project. Teasers "
 "for your project including title and short description will always be "
 "visible to everyone"
-msgstr "Bitte gib an, wer auf dein Projekt Zugriff haben soll."
+msgstr "Bitte geben Sie an, ob das Projekt öffentlich zugänglich sein soll "
+"oder ob nur eingeladene Nutzer*innen teilnehmen können."
 
 #: adhocracy4/projects/models.py:72
 #: adhocracy4/projects/models.py:78
@@ -1208,9 +1209,9 @@ msgid ""
 "After saving the draft project you can further customize and edit your "
 "project and eventually publish it."
 msgstr ""
-"Nachdem der Projektentwurf gespeichert wurde können in einem weiteren "
+"Nachdem der Projektentwurf gespeichert wurde, können in einem weiteren "
 "Schritt Einstellungen angepasst und zusätzliche Informationen angegeben "
-"werden. Wenn alle benötigten Informationen eingegeben sind kann das Projekt "
+"werden. Wenn alle benötigten Informationen eingegeben sind, kann das Projekt "
 "veröffentlicht werden."
 
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_create_form.html:28
