@@ -17,7 +17,7 @@ const ChapterForm = (props) => {
           <label>
             {django.gettext('Chapter title')}
             <input
-              ref={props.titleRef}
+              ref={props.inputRef}
               type="text"
               value={props.chapter.name}
               onChange={(e) => handleChapterNameChange(props, e)} />
@@ -43,6 +43,7 @@ const ChapterForm = (props) => {
                 onNameChange={(name) => { props.onParagraphNameChange(index, name) }}
                 onTextChange={(text) => { props.onParagraphTextChange(index, text) }}
                 errors={props.errors && props.errors.paragraphs ? props.errors.paragraphs[index] : {}}
+                inputRef={props.lastParagraphInputRef}
               />
             )
           })

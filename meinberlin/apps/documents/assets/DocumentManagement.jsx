@@ -96,10 +96,13 @@ class DocumentManagement extends React.Component {
 
   handleChapterAppend () {
     const newChapter = this.getNewChapter(django.gettext('new chapter'))
+    const newChapterIndex = this.state.chapters.length
+
     const diff = {$push: [newChapter]}
     this.setState({
-      chapters: update(this.state.chapters, diff)
-    })
+      chapters: update(this.state.chapters, diff),
+      editChapterIndex: newChapterIndex
+    }, this.focusLastChapter.bind(this))
   }
 
   handleChapterNameChange (index, name) {
@@ -117,9 +120,12 @@ class DocumentManagement extends React.Component {
   handleChapterEdit (index) {
     this.setState({
       editChapterIndex: index
-    })
-    if (this.titleInput) {
-      this.titleInput.focus()
+    }, this.focusLastChapter.bind(this))
+  }
+
+  focusLastChapter () {
+    if (this.lastChapterTitleInput) {
+      this.lastChapterTitleInput.focus()
     }
   }
 
@@ -147,7 +153,7 @@ class DocumentManagement extends React.Component {
     }
     this.setState({
       chapters: update(this.state.chapters, diff)
-    })
+    }, this.focusLastParagraph.bind(this))
   }
 
   handleParagraphMoveUp (chapterIndex, paragraphIndex) {
@@ -212,6 +218,12 @@ class DocumentManagement extends React.Component {
     this.setState({
       chapters: update(this.state.chapters, diff)
     })
+  }
+
+  focusLastParagraph () {
+    if (this.lastParagraphTitleInput) {
+      this.lastParagraphTitleInput.focus()
+    }
   }
 
   removeAlert () {
@@ -281,11 +293,12 @@ class DocumentManagement extends React.Component {
 
         <h2>{django.gettext('Edit chapter')}</h2>
         <ChapterForm
-          titleRef={(el) => { this.titleInput = el }}
+          inputRef={(el) => { this.lastChapterTitleInput = el }}
+          lastParagraphInputRef={(el) => { this.lastParagraphTitleInput = el }}
           onChapterNameChange={(name) => { this.handleChapterNameChange(chapterIndex, name) }}
           onParagraphNameChange={(paragraphIndex, name) => { this.handleParagraphNameChange(chapterIndex, paragraphIndex, name) }}
           onParagraphTextChange={(paragraphIndex, text) => { this.handleParagraphTextChange(chapterIndex, paragraphIndex, text) }}
-          onParagraphAppend={(paragraphIndex) => { this.handleParagraphAppend(chapterIndex, paragraphIndex) }}
+          onParagraphAppend={() => { this.handleParagraphAppend(chapterIndex) }}
           onParagraphMoveUp={(paragraphIndex) => { this.handleParagraphMoveUp(chapterIndex, paragraphIndex) }}
           onParagraphMoveDown={(paragraphIndex) => { this.handleParagraphMoveDown(chapterIndex, paragraphIndex) }}
           onParagraphDelete={(paragraphIndex) => { this.handleParagraphDelete(chapterIndex, paragraphIndex) }}
