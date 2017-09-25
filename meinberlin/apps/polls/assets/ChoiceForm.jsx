@@ -23,6 +23,7 @@ class ChoiceForm extends React.Component {
         </label>
         <div className="input-group">
           <input
+            ref={this.props.inputRef}
             id={'id_choices-' + this.props.index + '-name'}
             name={'choices-' + this.props.index + '-name'}
             type="text"

@@ -86,7 +86,7 @@ class PollManagement extends React.Component {
 
     this.setState({
       questions: update(this.state.questions, diff)
-    })
+    }, this.focusLastQuestion.bind(this))
   }
 
   handleDeleteQuestion (index) {
@@ -95,6 +95,12 @@ class PollManagement extends React.Component {
     this.setState({
       questions: update(this.state.questions, diff)
     })
+  }
+
+  focusLastQuestion () {
+    if (this.lastQuestionInput) {
+      this.lastQuestionInput.focus()
+    }
   }
 
   /*
@@ -127,7 +133,7 @@ class PollManagement extends React.Component {
 
     this.setState({
       questions: update(this.state.questions, diff)
-    })
+    }, this.focusLastChoice.bind(this))
   }
 
   handleDeleteChoice (questionIndex, choiceIndex) {
@@ -137,6 +143,12 @@ class PollManagement extends React.Component {
     this.setState({
       questions: update(this.state.questions, diff)
     })
+  }
+
+  focusLastChoice () {
+    if (this.lastChoiceInput) {
+      this.lastChoiceInput.focus()
+    }
   }
 
   /*
@@ -200,11 +212,13 @@ class PollManagement extends React.Component {
                   key={key}
                   index={index}
                   question={question}
+                  inputRef={(el) => { this.lastQuestionInput = el }}
                   updateQuestionLabel={this.handleUpdateQuestionLabel.bind(this)}
                   moveQuestionUp={index !== 0 ? this.handleMoveQuestionUp.bind(this) : null}
                   moveQuestionDown={index < this.state.questions.length - 1 ? this.handleMoveQuestionDown.bind(this) : null}
                   deleteQuestion={this.handleDeleteQuestion.bind(this)}
                   errors={errors}
+                  lastChoiceInputRef={(el) => { this.lastChoiceInput = el }}
                   updateChoiceLabel={this.handleUpdateChoiceLabel.bind(this)}
                   deleteChoice={this.handleDeleteChoice.bind(this)}
                   appendChoice={this.handleAppendChoice.bind(this)}

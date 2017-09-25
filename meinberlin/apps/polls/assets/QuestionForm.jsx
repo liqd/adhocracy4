@@ -56,6 +56,7 @@ class QuestionForm extends React.Component {
               {django.gettext('Question')}
             </label>
             <textarea
+              ref={this.props.inputRef}
               id={'id_questions-' + this.props.key + '-name'}
               name={'questions-' + this.props.key + '-name'}
               value={this.props.question.label}
@@ -74,6 +75,7 @@ class QuestionForm extends React.Component {
                     key={key}
                     index={index}
                     choice={choice}
+                    inputRef={this.props.lastChoiceInputRef}
                     updateChoiceLabel={this.handleUpdateChoiceLabel.bind(this)}
                     deleteChoice={this.handleDeleteChoice.bind(this)}
                     errors={errors}
