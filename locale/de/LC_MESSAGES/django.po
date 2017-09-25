@@ -195,7 +195,7 @@ msgid ""
 "chars."
 msgstr ""
 "Die Kurzbeschreibung des Moduls erscheint auf der Projektseite. Sie sollte "
-"in maximal 250 Wörtern das Ziel des Moduls beschreiben."
+"in maximal 250 Zeichen das Ziel des Moduls beschreiben."
 
 #: adhocracy4/phases/models.py:64
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/removeable_user_list.html:7
