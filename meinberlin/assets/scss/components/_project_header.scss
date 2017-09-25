@@ -18,6 +18,10 @@
     color: contrast-color($brand-secondary);
 
     @media (min-width: $breakpoint) {
+        min-height: ($hero-height-mobile + $hero-height-secondary) / 2;
+    }
+
+    @media (min-width: $breakpoint-md) {
         min-height: $hero-height-secondary;
     }
 
