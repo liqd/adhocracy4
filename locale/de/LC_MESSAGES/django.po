@@ -202,7 +202,7 @@ msgstr ""
 #: meinberlin/apps/newsletters/models.py:29
 #: meinberlin/apps/offlineevents/models.py:14
 msgid "Name"
-msgstr "Titel der Veranstaltung"
+msgstr "Titel"
 
 #: adhocracy4/phases/models.py:66
 #: meinberlin/apps/ideas/models.py:26
