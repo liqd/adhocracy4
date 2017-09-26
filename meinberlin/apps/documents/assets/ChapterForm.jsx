@@ -4,11 +4,6 @@ var ErrorList = require('../../contrib/assets/ErrorList')
 var ParagraphForm = require('./ParagraphForm')
 var FlipMove = require('react-flip-move')
 
-function handleChapterNameChange (props, e) {
-  var name = e.target.value
-  props.onChapterNameChange(name)
-}
-
 const ChapterForm = (props) => {
   return (
     <section className="commenting-form">
@@ -21,7 +16,7 @@ const ChapterForm = (props) => {
               name={'chapters-' + props.id + '-name'}
               type="text"
               value={props.chapter.name}
-              onChange={(e) => handleChapterNameChange(props, e)} />
+              onChange={(e) => { props.onChapterNameChange(e.target.value) }} />
           </label>
           <ErrorList errors={props.errors} field="name" />
         </div>
@@ -30,10 +25,11 @@ const ChapterForm = (props) => {
       <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
         {
           props.chapter.paragraphs.map(function (paragraph, index, arr) {
+            var key = paragraph.id || paragraph.key
             return (
               <ParagraphForm
-                id={paragraph.id || paragraph.key}
-                key={paragraph.id || paragraph.key}
+                id={key}
+                key={key}
                 index={index}
                 paragraph={paragraph}
                 config={props.config}
