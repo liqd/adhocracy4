@@ -115,7 +115,7 @@ msgstr ""
 #: adhocracy4/images/fields.py:90
 #, python-brace-format
 msgid "{image_name} copyright"
-msgstr "{image_name} *in"
+msgstr "{image_name} Urheber*in"
 
 #: adhocracy4/images/fields.py:93
 #, python-brace-format
