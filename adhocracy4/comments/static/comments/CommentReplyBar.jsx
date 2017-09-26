@@ -1,4 +1,5 @@
 var React = require('react')
+var PropTypes = require('prop-types')
 var django = require('django')
 
 function pluralizeString (number) {
@@ -43,9 +44,9 @@ const CommentReplyBar = (props) => {
 }
 
 CommentReplyBar.propTypes = {
-  childCommentsLength: React.PropTypes.number,
-  showComments: React.PropTypes.func,
-  allowForm: React.PropTypes.bool
+  childCommentsLength: PropTypes.number,
+  showComments: PropTypes.func,
+  allowForm: PropTypes.bool
 }
 
 module.exports = CommentReplyBar

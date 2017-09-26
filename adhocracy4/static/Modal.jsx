@@ -1,4 +1,5 @@
 let React = require('react')
+let PropTypes = require('prop-types')
 let django = require('django')
 
 export const Modal = (props) => {
@@ -39,8 +40,8 @@ export const Modal = (props) => {
 }
 
 Modal.propTypes = {
-  submitHandler: React.PropTypes.func,
-  closeHandler: React.PropTypes.func
+  submitHandler: PropTypes.func,
+  closeHandler: PropTypes.func
 }
 
 Modal.defaultProps = {
