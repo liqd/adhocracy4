@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% blocktrans with project=moderatorinvite.project.name %} Invitation to {{ project }}{% endblocktrans %}{% endblock %}
+{% block title %}{% blocktrans with project=moderatorinvite.project.name %}Invitation to {{ project }}{% endblocktrans %}{% endblock %}
 {% block content %}
-    <div class="container">
-        <div class="l-wrapper">
-            <h1>{% blocktrans with project=moderatorinvite.project.name %} Moderation invitation for {{ project }}{% endblocktrans %}</h1>
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            <h1>{% blocktrans with project=moderatorinvite.project.name %}Moderation invitation for {{ project }}{% endblocktrans %}</h1>
             {{ form.non_field_errors }}
             <p>
-                {% trans "Please login to procceed. If you do not have an account, register and revisit the invitation link. "%}
+                {% trans "Please login to procceed. If you do not have an account, register and revisit the invitation link." %}
             </p>
-            <a class="btn" href="{% url 'account_login' %}?next={% url 'project-moderator-invite-detail' invite_token=moderatorinvite.token %}">{% trans "Proceed to login" %}</a>
-            <a class="btn" href="{% url 'account_signup' %}">{% trans "Register" %}</a>
+            <a class="btn btn--primary" href="{% url 'account_login' %}?next={% url 'project-moderator-invite-detail' invite_token=moderatorinvite.token %}">{% trans "Proceed to login" %}</a>
+            <a class="btn btn--light" href="{% url 'account_signup' %}">{% trans "Register" %}</a>
         </div>
     </div>
 {% endblock %}

@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% blocktrans with project=participantinvite.project.name %} Project: {{ project }}{% endblocktrans %}{% endblock %}
+{% block title %}{% blocktrans with project=participantinvite.project.name %}Project: {{ project }}{% endblocktrans %}{% endblock %}
 {% block content %}
-    <div class="container">
-        <div class="l-wrapper">
-            <h1>{% blocktrans with project=participantinvite.project.name %} Do you want to join {{ project }}?{% endblocktrans %}</h1>
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            <h1>{% blocktrans with project=participantinvite.project.name %}Do you want to join {{ project }}?{% endblocktrans %}</h1>
             {{ form.non_field_errors }}
             <p>
                 {% trans "You were invited by the initiator of the project. If you accept you will be able to participate in the project." %}
             </p>
             <form method="POST">
                 {% csrf_token %}
-                <button type="submit" name="accept" class="btn">{% trans 'Accept' %}</button>
-                <button type="submit" name="reject" class="btn btn--danger">{% trans 'Decline' %}</button>
+                <button type="submit" name="accept" class="btn btn--primary">{% trans 'Accept' %}</button>
+                <button type="submit" name="reject" class="btn btn--light">{% trans 'Decline' %}</button>
             </form>
         </div>
     </div>
