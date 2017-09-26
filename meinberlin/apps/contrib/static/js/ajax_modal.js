@@ -1,7 +1,7 @@
 /* globals $ django */
 $(function () {
   var modalHTML = (
-    '<div class="modal">' +
+    '<div class="modal" tabindex="-1" role="dialog">' +
       '<div class="modal-dialog modal-lg" role="document">' +
         '<div class="modal-content">' +
           '<div class="modal-header"><h2 class="modal-title u-first-heading"></h2>' +
@@ -12,7 +12,6 @@ $(function () {
       '</div>' +
     '</div>'
   )
-  var $backdrop = $('<div class="modal-backdrop" />')
 
   var extractScripts = function ($root, selector, attr) {
     var $existingValues = $('head').find(selector).map(function (i, e) {
@@ -36,19 +35,20 @@ $(function () {
     var $newModal = $(modalHTML)
     var _this = this
 
-    $newModal.find('.close').on('click', function () {
+    $newModal.on('hidden.bs.modal', function () {
       $newModal.remove()
-      $backdrop.remove()
     })
 
     $newModal.find('.modal-body').load(target, function (html) {
       var $root = $('<div>').html(html)
       var title = $root.find('h1').text()
       $newModal.find('.modal-title').text(title)
+      $newModal.attr('aria-label', title)
       extractScripts($root, 'script[src]', 'src')
       extractScripts($root, 'link[rel="stylesheet"]', 'href')
-      $backdrop.appendTo(document.documentElement)
-      $newModal.insertAfter(_this).show()
+
+      $newModal.insertAfter(_this)
+      $newModal.modal()
     })
   })
 })
