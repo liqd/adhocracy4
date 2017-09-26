@@ -30,7 +30,7 @@
 
     "adhocracy4": "liqd/adhocracy4#master",
     "bootstrap": "4.0.0-alpha.6",
-    "datepicker": "git+https://github.com/vellip/datePicker.git",
+    "datepicker": "git+https://github.com/liqd/datePicker.git",
     "font-awesome": "4.7.0",
     "leaflet": "1.2.0",
     "leaflet-draw": "0.4.10",
