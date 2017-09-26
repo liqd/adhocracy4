@@ -1,6 +1,8 @@
 from copy import deepcopy
 from datetime import datetime
 
+from django.apps import apps
+from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import PermissionDenied
@@ -13,9 +15,10 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import ProjectContextDispatcher
-from meinberlin.apps.organisations import models as org_models
 
 from . import get_project_dashboard
+
+Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 
 
 class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
@@ -24,7 +27,7 @@ class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
     def organisation(self):
         if 'organisation_slug' in self.kwargs:
             slug = self.kwargs['organisation_slug']
-            return get_object_or_404(org_models.Organisation, slug=slug)
+            return get_object_or_404(Organisation, slug=slug)
 
         if 'project_slug' in self.kwargs:
             slug = self.kwargs['project_slug']
