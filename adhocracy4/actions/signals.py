@@ -43,7 +43,6 @@ def _add_action(sender, instance, created, **kwargs):
         target=target,
     )
 
-    # TODO: this could be extended
     if hasattr(instance, 'project'):
         action.project = instance.project
 
