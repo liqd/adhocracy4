@@ -12,7 +12,6 @@ $(function () {
       '</div>' +
     '</div>'
   )
-  var $backdrop = $('<div class="modal-backdrop" />')
 
   var extractScripts = function ($root, selector, attr) {
     var $existingValues = $('head').find(selector).map(function (i, e) {
@@ -34,11 +33,9 @@ $(function () {
     e.preventDefault()
     var target = this.href + ' ' + this.dataset.targetSelector
     var $newModal = $(modalHTML)
-    var _this = this
 
-    $newModal.find('.close').on('click', function () {
+    $newModal.on('hidden.bs.modal', function () {
       $newModal.remove()
-      $backdrop.remove()
     })
 
     $newModal.find('.modal-body').load(target, function (html) {
@@ -47,8 +44,9 @@ $(function () {
       $newModal.find('.modal-title').text(title)
       extractScripts($root, 'script[src]', 'src')
       extractScripts($root, 'link[rel="stylesheet"]', 'href')
-      $backdrop.appendTo(document.documentElement)
-      $newModal.insertAfter(_this).show()
+
+      $newModal.appendTo('body')
+      $newModal.modal()
     })
   })
 })
