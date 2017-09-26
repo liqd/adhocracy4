@@ -33,6 +33,7 @@ $(function () {
     e.preventDefault()
     var target = this.href + ' ' + this.dataset.targetSelector
     var $newModal = $(modalHTML)
+    var _this = this
 
     $newModal.on('hidden.bs.modal', function () {
       $newModal.remove()
@@ -46,7 +47,7 @@ $(function () {
       extractScripts($root, 'script[src]', 'src')
       extractScripts($root, 'link[rel="stylesheet"]', 'href')
 
-      $newModal.appendTo('body')
+      $newModal.insertAfter(_this)
       $newModal.modal()
     })
   })
