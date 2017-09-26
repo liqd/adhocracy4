@@ -1,11 +1,11 @@
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
+from meinberlin.apps.dashboard import get_project_type
 from meinberlin.apps.dashboard2 import ProjectFormComponent
 from meinberlin.apps.dashboard2 import components
 
 from . import forms
-from . import get_project_type
 from . import views
 
 

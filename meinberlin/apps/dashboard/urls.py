@@ -1,5 +1,6 @@
 from django.conf.urls import url
 
+from meinberlin.apps.bplan.views import BplanProjectCreateView
 from meinberlin.apps.dashboard2.urls import \
     urlpatterns as a4dashboard_urlpatterns
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
@@ -23,6 +24,6 @@ urlpatterns = [
         name='external-project-create'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
         r'bplan/$',
-        views.BplanProjectCreateView.as_view(),
+        BplanProjectCreateView.as_view(),
         name='bplan-project-create'),
 ] + a4dashboard_urlpatterns
