@@ -126,7 +126,23 @@ msgstr[1] "%s Antworten sehen"
 msgid "Answer"
 msgstr "Antworten"
 
-#: adhocracy4/follows/static/follows/FollowButton.jsx:55
+#: adhocracy4/follows/static/follows/FollowButton.jsx:50
+msgid "Not following"
+msgstr "Nicht folgen"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:51
+msgid "Never be notified."
+msgstr "Sie werden nie benachrichtigt"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:52
+msgid "Following"
+msgstr "Folgen"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:53
+msgid "Receive email notifications about this project."
+msgstr "Sie erhalten E-Mail Benachrichtigungen über dieses Projekt"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:60
 #: adhocracy4/follows/static/follows/FollowButton.jsx:55
 msgid "Unfollow"
 msgstr "Entfolgen"
