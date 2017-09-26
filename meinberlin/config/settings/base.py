@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+from django.utils.translation import ugettext_lazy as _
+
 CONFIG_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(CONFIG_DIR)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -269,6 +271,7 @@ CKEDITOR_ALLOW_NONIMAGE_FILES = True
 CKEDITOR_CONFIGS = {
     'default': {
         'width': '100%',
+        'title': _('Rich text editor'),
         'toolbar': 'Custom',
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
@@ -278,6 +281,7 @@ CKEDITOR_CONFIGS = {
     },
     'image-editor': {
         'width': '100%',
+        'title': _('Rich text editor'),
         'toolbar': 'Custom',
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
