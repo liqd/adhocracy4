@@ -1,7 +1,7 @@
 /* globals $ django */
 $(function () {
   var modalHTML = (
-    '<div class="modal" tabindex="-1">' +
+    '<div class="modal" tabindex="-1" role="dialog">' +
       '<div class="modal-dialog modal-lg" role="document">' +
         '<div class="modal-content">' +
           '<div class="modal-header"><h2 class="modal-title u-first-heading"></h2>' +
@@ -42,6 +42,7 @@ $(function () {
       var $root = $('<div>').html(html)
       var title = $root.find('h1').text()
       $newModal.find('.modal-title').text(title)
+      $newModal.attr('aria-label', title)
       extractScripts($root, 'script[src]', 'src')
       extractScripts($root, 'link[rel="stylesheet"]', 'href')
 
