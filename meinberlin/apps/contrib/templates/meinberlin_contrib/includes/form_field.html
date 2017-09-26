@@ -3,14 +3,18 @@
 <div class="form-group">
     <label for="{{ field.id_for_label }}">
         {{ field.label }}
+        {% block after_label %}
+        {% endblock %}
     </label>
     {% if field.help_text %}
     <div class="form-hint">
         {{ field.help_text }}
     </div>
     {% endif %}
-    <div class="widget widget--{{ field|widget_type }}">
-        {{ field }}
-    </div>
+    {% block field %}
+        <div class="widget widget--{{ field|widget_type }}">
+            {{ field }}
+        </div>
+    {% endblock %}
     {{ field.errors }}
 </div>
