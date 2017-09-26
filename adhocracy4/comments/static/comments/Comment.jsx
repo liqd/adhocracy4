@@ -7,6 +7,7 @@ var CommentReplyBar = require('./CommentReplyBar')
 var CommentManageDropdown = require('./CommentManageDropdown')
 
 var React = require('react')
+var PropTypes = require('prop-types')
 var django = require('django')
 
 var safeHtml = function (text) {
@@ -174,11 +175,11 @@ class Comment extends React.Component {
 }
 
 Comment.contextTypes = {
-  comments_contenttype: React.PropTypes.number,
-  isAuthenticated: React.PropTypes.bool,
-  isModerator: React.PropTypes.bool,
-  user_name: React.PropTypes.string,
-  contentType: React.PropTypes.number
+  comments_contenttype: PropTypes.number,
+  isAuthenticated: PropTypes.bool,
+  isModerator: PropTypes.bool,
+  user_name: PropTypes.string,
+  contentType: PropTypes.number
 }
 
 module.exports = Comment

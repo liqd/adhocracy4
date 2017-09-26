@@ -19,6 +19,7 @@
     "react": "15.6.1",
     "immutability-helper": "^2.3.0",
     "react-dom": "15.6.1",
+    "prop-types": "15.6.0",
     "leaflet": "^1.0.3",
     "leaflet-draw": "^0.4.2"
   },

@@ -1,4 +1,5 @@
 var React = require('react')
+var PropTypes = require('prop-types')
 var django = require('django')
 
 class CommentEditForm extends React.Component {
@@ -41,7 +42,7 @@ class CommentEditForm extends React.Component {
 }
 
 CommentEditForm.contextTypes = {
-  isAuthenticated: React.PropTypes.bool
+  isAuthenticated: PropTypes.bool
 }
 
 module.exports = CommentEditForm
