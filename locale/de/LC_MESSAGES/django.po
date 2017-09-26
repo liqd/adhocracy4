@@ -170,7 +170,9 @@ msgstr "Polygon"
 
 #: adhocracy4/maps/models.py:12
 msgid "Please draw an area on the map."
-msgstr "Bitte zeichnen Sie einen Bereich auf der Karte ein, in dem Ihr Projekt stattfindet und Ideen verortet werden sollen."
+msgstr ""
+"Bitte zeichnen Sie einen Bereich auf der Karte ein, in dem Ihr Projekt "
+"stattfindet und Ideen verortet werden sollen."
 
 #: adhocracy4/modules/models.py:14
 msgid "Title of the module"
@@ -287,8 +289,9 @@ msgid ""
 "Please indicate who should be able to participate in your project. Teasers "
 "for your project including title and short description will always be "
 "visible to everyone"
-msgstr "Bitte geben Sie an, ob das Projekt öffentlich zugänglich sein soll "
-"oder ob nur eingeladene Nutzer*innen teilnehmen können."
+msgstr ""
+"Bitte geben Sie an, ob das Projekt öffentlich zugänglich sein soll oder ob "
+"nur eingeladene Nutzer*innen teilnehmen können."
 
 #: adhocracy4/projects/models.py:72
 #: adhocracy4/projects/models.py:78
