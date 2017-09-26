@@ -204,24 +204,24 @@ class PollManagement extends React.Component {
       <form onSubmit={this.handleSubmit.bind(this)} onChange={this.removeAlert.bind(this)}>
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
-            this.state.questions.map((question, index) => {
+            this.state.questions.map((question, index, arr) => {
               var key = question.id || question.key
               var errors = this.state.errors && this.state.errors[index] ? this.state.errors[index] : {}
               return (
-                <QuestionForm
-                  key={key}
-                  id={key}
-                  index={index}
-                  question={question}
-                  updateQuestionLabel={this.handleUpdateQuestionLabel.bind(this)}
-                  moveQuestionUp={index !== 0 ? this.handleMoveQuestionUp.bind(this) : null}
-                  moveQuestionDown={index < this.state.questions.length - 1 ? this.handleMoveQuestionDown.bind(this) : null}
-                  deleteQuestion={this.handleDeleteQuestion.bind(this)}
-                  errors={errors}
-                  updateChoiceLabel={this.handleUpdateChoiceLabel.bind(this)}
-                  deleteChoice={this.handleDeleteChoice.bind(this)}
-                  appendChoice={this.handleAppendChoice.bind(this)}
-                />
+                <div key={key}>
+                  <QuestionForm
+                    id={key}
+                    question={question}
+                    onLabelChange={(label) => { this.handleUpdateQuestionLabel(index, label) }}
+                    onMoveUp={index !== 0 ? () => { this.handleMoveQuestionUp(index) } : null}
+                    onMoveDown={index < arr.length - 1 ? () => { this.handleMoveQuestionDown(index) } : null}
+                    onDelete={() => { this.handleDeleteQuestion(index) }}
+                    errors={errors}
+                    onChoiceLabelChange={(choiceIndex, label) => { this.handleUpdateChoiceLabel(index, choiceIndex, label) }}
+                    onDeleteChoice={(choiceIndex) => { this.handleDeleteChoice(index, choiceIndex) }}
+                    onAppendChoice={() => { this.handleAppendChoice(index) }}
+                  />
+                </div>
               )
             })
           }
