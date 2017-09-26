@@ -47,6 +47,12 @@ class FollowButton extends React.Component {
       })
   }
   render () {
+    // FIXME: string extraction seems to be broken with JSX
+    var notFollowingLabel = django.gettext('Not following')
+    var notFollowingHelp = django.gettext('Never be notified.')
+    var followingLabel = django.gettext('Following')
+    var followingHelp = django.gettext('Receive email notifications about this project.')
+
     return (
       <span className="btngroup btngroup-gray">
         <span className="dropdown">
@@ -58,16 +64,16 @@ class FollowButton extends React.Component {
           <span className="dropdown-menu" aria-labelledby="follow-dropdown">
             <button className="dropdown-item select-item" onClick={this.disableFollow.bind(this)}>
               {!this.state.followed ? <i className="fa fa-check select-item-indicator" aria-hidden="true" /> : null}
-              {django.gettext('Not following')}
+              {notFollowingLabel}
               <span className="select-item-desc">
-                {django.gettext('Never be notified.')}
+                {notFollowingHelp}
               </span>
             </button>
             <button className="dropdown-item select-item" onClick={this.enableFollow.bind(this)}>
               {this.state.followed ? <i className="fa fa-check select-item-indicator" aria-hidden="true" /> : null}
-              {django.gettext('Following')}
+              {followingLabel}
               <span className="select-item-desc">
-                {django.gettext('Receive email notifications about this project.')}
+                {followingHelp}
               </span>
             </button>
           </span>
