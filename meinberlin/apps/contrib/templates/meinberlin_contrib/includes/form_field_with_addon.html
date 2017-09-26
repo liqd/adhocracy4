@@ -1,14 +1,6 @@
-{% load widget_tweaks %}
+{% extends "meinberlin_contrib/includes/form_field.html" %}
 
-<div class="form-group">
-    <label for="{{ field.id_for_label }}">
-        {{ field.label }}
-    </label>
-    {% if field.help_text %}
-    <div class="form-hint">
-        {{ field.help_text }}
-    </div>
-    {% endif %}
+{% block field %}
     <div class="widget widget--{{ field|widget_type }} input-group">
         {% if before %}
             <span class="input-group__before addon">{{ before }}</span>
@@ -18,5 +10,4 @@
             <span class="input-group__after addon">{{ after }}</span>
         {% endif %}
     </div>
-    {{ field.errors }}
-</div>
+{% endblock %}
