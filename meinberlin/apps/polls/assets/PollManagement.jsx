@@ -86,7 +86,7 @@ class PollManagement extends React.Component {
 
     this.setState({
       questions: update(this.state.questions, diff)
-    }, this.focusLastQuestion.bind(this))
+    }, () => { this.focusOnQuestion(newQuestion) })
   }
 
   handleDeleteQuestion (index) {
@@ -97,10 +97,10 @@ class PollManagement extends React.Component {
     })
   }
 
-  focusLastQuestion () {
-    if (this.lastQuestionInput) {
-      this.lastQuestionInput.focus()
-    }
+  focusOnQuestion (question) {
+    const key = question.id || question.key
+    const id = 'id_questions-' + key + '-name'
+    window.document.getElementById(id).focus()
   }
 
   /*
@@ -133,7 +133,7 @@ class PollManagement extends React.Component {
 
     this.setState({
       questions: update(this.state.questions, diff)
-    }, this.focusLastChoice.bind(this))
+    }, () => { this.focusOnChoice(newChoice) })
   }
 
   handleDeleteChoice (questionIndex, choiceIndex) {
@@ -145,10 +145,10 @@ class PollManagement extends React.Component {
     })
   }
 
-  focusLastChoice () {
-    if (this.lastChoiceInput) {
-      this.lastChoiceInput.focus()
-    }
+  focusOnChoice (choice) {
+    const key = choice.id || choice.key
+    const id = 'id_choices-' + key + '-name'
+    window.document.getElementById(id).focus()
   }
 
   /*
@@ -210,15 +210,14 @@ class PollManagement extends React.Component {
               return (
                 <QuestionForm
                   key={key}
+                  id={key}
                   index={index}
                   question={question}
-                  inputRef={(el) => { this.lastQuestionInput = el }}
                   updateQuestionLabel={this.handleUpdateQuestionLabel.bind(this)}
                   moveQuestionUp={index !== 0 ? this.handleMoveQuestionUp.bind(this) : null}
                   moveQuestionDown={index < this.state.questions.length - 1 ? this.handleMoveQuestionDown.bind(this) : null}
                   deleteQuestion={this.handleDeleteQuestion.bind(this)}
                   errors={errors}
-                  lastChoiceInputRef={(el) => { this.lastChoiceInput = el }}
                   updateChoiceLabel={this.handleUpdateChoiceLabel.bind(this)}
                   deleteChoice={this.handleDeleteChoice.bind(this)}
                   appendChoice={this.handleAppendChoice.bind(this)}

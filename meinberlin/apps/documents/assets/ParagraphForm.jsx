@@ -71,7 +71,6 @@ class Paragraph extends React.Component {
               </label>
               <input
                 className="form-control"
-                ref={this.props.inputRef}
                 id={'id_paragraphs-' + this.props.id + '-name'}
                 name={'paragraphs-' + this.props.id + '-name'}
                 type="text"
