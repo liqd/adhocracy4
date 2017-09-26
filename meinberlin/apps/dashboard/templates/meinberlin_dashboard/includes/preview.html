@@ -1,0 +1,12 @@
+{% load i18n extproject_tags %}
+
+<a href="{% extproject_url project 'project-detail' %}"
+   target="{{ project|is_external|yesno:"_blank,_self" }}"
+   class="btn btn--light btn--full">
+    <i class="fa fa-eye" aria-hidden="true"></i>
+    {% if project.is_draft %}
+    {% trans 'Preview' %}
+    {% else %}
+    {% trans 'View' %}
+    {% endif %}
+</a>
