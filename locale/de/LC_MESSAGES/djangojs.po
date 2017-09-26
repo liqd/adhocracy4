@@ -318,11 +318,11 @@ msgstr ""
 
 #: meinberlin/assets/js/map-address.js:89
 msgid "No matches found within the project area"
-msgstr ""
+msgstr "Keine Treffer im Bereich des Projekts gefunden"
 
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
-msgstr ""
+msgstr "Meinten Sie:"
 
 #~ msgid "Your document has been updated."
 #~ msgstr "Ihr Dokument wurde aktualisiert."
