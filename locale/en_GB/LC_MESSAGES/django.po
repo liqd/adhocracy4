@@ -1131,6 +1131,15 @@ msgid "Missing field for publication"
 msgstr "Missing field for publication"
 
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/module_categories_form.html:16
+msgid ""
+"In this section, you can create\n"
+"categories. If you create any, users must assign their contributions\n"
+"to one of them. This way, content can be classified."
+msgstr ""
+"In this section, you can create\n"
+"categories. If you create any, users must assign their contributions\n"
+"to one of them. This way, content can be classified."
+
 msgid "Add category"
 msgstr "Add category"
 
