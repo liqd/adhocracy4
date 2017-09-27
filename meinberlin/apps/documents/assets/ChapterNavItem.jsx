@@ -19,7 +19,7 @@ const ChapterNavItem = (props) => {
         type="button"
         className={classNames('commenting__content', 'commenting--toc__button', 'btn btn--light', 'btn--small', {'active': props.active})}
         onClick={props.onClick}>
-        {props.index}. {props.name}
+        {props.index + 1}. {props.name}
         {getErrorCount(props)}
       </button>
 

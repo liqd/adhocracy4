@@ -15,7 +15,7 @@ const ChapterNav = (props) => {
               <li key={key}>
                 <ChapterNavItem
                   name={chapter.name}
-                  index={index + 1}
+                  index={index}
                   onMoveUp={index !== 0 ? () => { props.onMoveUp(index) } : null}
                   onMoveDown={index < arr.length - 1 ? () => { props.onMoveDown(index) } : null}
                   onDelete={arr.length > 1 ? () => { props.onDelete(index) } : null}

@@ -231,6 +231,12 @@ class DocumentManagement extends React.Component {
     window.document.getElementById(id).focus()
   }
 
+  /*
+  |--------------------------------------------------------------------------
+  | Document form and submit logic
+  |--------------------------------------------------------------------------
+  */
+
   removeAlert () {
     this.setState({
       alert: null
