@@ -25,7 +25,7 @@ const QuestionForm = (props) => {
           {
             props.question.choices.map((choice, index) => {
               var key = choice.id || choice.key
-              var label = django.gettext('Choice') + ` #${props.index + 1}`
+              var label = django.gettext('Choice') + ` #${index + 1}`
               var errors = props.errors && props.errors.choices
                 ? props.errors.choices[index] : {}
               return (
