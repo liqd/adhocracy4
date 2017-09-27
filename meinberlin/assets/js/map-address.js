@@ -1,6 +1,6 @@
 /* global $,django */
 
-var apiUrl = 'https://bplan-stage.liqd.net/api/addresses/'
+var apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
 
 function pointInPolygon (point, polygon) {
   var x = point[0]
