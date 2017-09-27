@@ -86,7 +86,7 @@ class PollManagement extends React.Component {
 
     this.setState({
       questions: update(this.state.questions, diff)
-    })
+    }, () => { this.focusOnQuestion(newQuestion) })
   }
 
   handleDeleteQuestion (index) {
@@ -95,6 +95,12 @@ class PollManagement extends React.Component {
     this.setState({
       questions: update(this.state.questions, diff)
     })
+  }
+
+  focusOnQuestion (question) {
+    const key = question.id || question.key
+    const id = 'id_questions-' + key + '-name'
+    window.document.getElementById(id).focus()
   }
 
   /*
@@ -127,7 +133,7 @@ class PollManagement extends React.Component {
 
     this.setState({
       questions: update(this.state.questions, diff)
-    })
+    }, () => { this.focusOnChoice(newChoice) })
   }
 
   handleDeleteChoice (questionIndex, choiceIndex) {
@@ -137,6 +143,12 @@ class PollManagement extends React.Component {
     this.setState({
       questions: update(this.state.questions, diff)
     })
+  }
+
+  focusOnChoice (choice) {
+    const key = choice.id || choice.key
+    const id = 'id_choices-' + key + '-name'
+    window.document.getElementById(id).focus()
   }
 
   /*
@@ -198,6 +210,7 @@ class PollManagement extends React.Component {
               return (
                 <QuestionForm
                   key={key}
+                  id={key}
                   index={index}
                   question={question}
                   updateQuestionLabel={this.handleUpdateQuestionLabel.bind(this)}

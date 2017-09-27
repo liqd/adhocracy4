@@ -96,10 +96,13 @@ class DocumentManagement extends React.Component {
 
   handleChapterAppend () {
     const newChapter = this.getNewChapter(django.gettext('new chapter'))
+    const newChapterIndex = this.state.chapters.length
+
     const diff = {$push: [newChapter]}
     this.setState({
-      chapters: update(this.state.chapters, diff)
-    })
+      chapters: update(this.state.chapters, diff),
+      editChapterIndex: newChapterIndex
+    }, () => { this.focusOnChapter(newChapter) })
   }
 
   handleChapterNameChange (index, name) {
@@ -115,12 +118,16 @@ class DocumentManagement extends React.Component {
   }
 
   handleChapterEdit (index) {
+    const chapter = this.state.chapters[index]
     this.setState({
       editChapterIndex: index
-    })
-    if (this.titleInput) {
-      this.titleInput.focus()
-    }
+    }, () => { this.focusOnChapter(chapter) })
+  }
+
+  focusOnChapter (chapter) {
+    const key = chapter.id || chapter.key
+    const id = 'id_chapters-' + key + '-name'
+    window.document.getElementById(id).focus()
   }
 
   /*
@@ -139,15 +146,17 @@ class DocumentManagement extends React.Component {
 
   handleParagraphAppend (chapterIndex) {
     const newParagraph = this.getNewParagraph()
+
     const diff = {}
     diff[chapterIndex] = {
       paragraphs: {
         $push: [newParagraph]
       }
     }
+
     this.setState({
       chapters: update(this.state.chapters, diff)
-    })
+    }, () => { this.focusOnParagraph(newParagraph) })
   }
 
   handleParagraphMoveUp (chapterIndex, paragraphIndex) {
@@ -214,6 +223,12 @@ class DocumentManagement extends React.Component {
     })
   }
 
+  focusOnParagraph (paragraph) {
+    const key = paragraph.id || paragraph.key
+    const id = 'id_paragraphs-' + key + '-name'
+    window.document.getElementById(id).focus()
+  }
+
   removeAlert () {
     this.setState({
       alert: null
@@ -263,6 +278,8 @@ class DocumentManagement extends React.Component {
   render () {
     const chapterIndex = this.state.editChapterIndex
     const chapterErrors = this.state.errors && this.state.errors[chapterIndex] ? this.state.errors[chapterIndex] : {}
+    const chapter = this.state.chapters[chapterIndex]
+    const key = chapter.id || chapter.key
 
     return (
       <form onSubmit={this.handleSubmit.bind(this)} onChange={this.removeAlert.bind(this)}>
@@ -281,16 +298,16 @@ class DocumentManagement extends React.Component {
 
         <h2>{django.gettext('Edit chapter')}</h2>
         <ChapterForm
-          titleRef={(el) => { this.titleInput = el }}
+          id={key}
           onChapterNameChange={(name) => { this.handleChapterNameChange(chapterIndex, name) }}
           onParagraphNameChange={(paragraphIndex, name) => { this.handleParagraphNameChange(chapterIndex, paragraphIndex, name) }}
           onParagraphTextChange={(paragraphIndex, text) => { this.handleParagraphTextChange(chapterIndex, paragraphIndex, text) }}
-          onParagraphAppend={(paragraphIndex) => { this.handleParagraphAppend(chapterIndex, paragraphIndex) }}
+          onParagraphAppend={() => { this.handleParagraphAppend(chapterIndex) }}
           onParagraphMoveUp={(paragraphIndex) => { this.handleParagraphMoveUp(chapterIndex, paragraphIndex) }}
           onParagraphMoveDown={(paragraphIndex) => { this.handleParagraphMoveDown(chapterIndex, paragraphIndex) }}
           onParagraphDelete={(paragraphIndex) => { this.handleParagraphDelete(chapterIndex, paragraphIndex) }}
           config={this.props.config}
-          chapter={this.state.chapters[chapterIndex]}
+          chapter={chapter}
           errors={chapterErrors}
         />
 

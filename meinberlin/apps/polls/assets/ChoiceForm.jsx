@@ -18,13 +18,13 @@ class ChoiceForm extends React.Component {
       <div className="form-group form-group--narrow">
         <label
           className="sr-only"
-          htmlFor={'id_choices-' + this.props.index + '-name'}>
+          htmlFor={'id_choices-' + this.props.id + '-name'}>
           {django.gettext('Choice') + ` #${this.props.index + 1}`}
         </label>
         <div className="input-group">
           <input
-            id={'id_choices-' + this.props.index + '-name'}
-            name={'choices-' + this.props.index + '-name'}
+            id={'id_choices-' + this.props.id + '-name'}
+            name={'choices-' + this.props.id + '-name'}
             type="text"
             className="input-group__input"
             value={this.props.choice.label}

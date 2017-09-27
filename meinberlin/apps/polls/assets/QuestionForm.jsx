@@ -52,12 +52,12 @@ class QuestionForm extends React.Component {
         <div className="commenting__content commenting__content--border">
           <div className="form-group">
             <label
-              htmlFor={'id_questions-' + this.props.key + '-name'}>
+              htmlFor={'id_questions-' + this.props.id + '-name'}>
               {django.gettext('Question')}
             </label>
             <textarea
-              id={'id_questions-' + this.props.key + '-name'}
-              name={'questions-' + this.props.key + '-name'}
+              id={'id_questions-' + this.props.id + '-name'}
+              name={'questions-' + this.props.id + '-name'}
               value={this.props.question.label}
               onChange={this.handleLabelChange.bind(this)} />
             <ErrorList errors={this.props.errors} field="label" />
@@ -72,6 +72,7 @@ class QuestionForm extends React.Component {
                 return (
                   <ChoiceForm
                     key={key}
+                    id={key}
                     index={index}
                     choice={choice}
                     updateChoiceLabel={this.handleUpdateChoiceLabel.bind(this)}

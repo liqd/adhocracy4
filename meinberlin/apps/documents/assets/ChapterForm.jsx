@@ -17,7 +17,8 @@ const ChapterForm = (props) => {
           <label>
             {django.gettext('Chapter title')}
             <input
-              ref={props.titleRef}
+              id={'id_chapters-' + props.id + '-name'}
+              name={'chapters-' + props.id + '-name'}
               type="text"
               value={props.chapter.name}
               onChange={(e) => handleChapterNameChange(props, e)} />
