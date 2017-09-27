@@ -1159,12 +1159,12 @@ msgstr "Benötigtes Feld zur Veröffentlichung"
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/module_categories_form.html:3
 msgid ""
 "In this section, you can create\n"
-"categories. Users can assign their contributions to a category. This way,\n"
-"content can be classified."
+"categories. If you create any, users must assign their contributions\n"
+"to one of them. This way, content can be classified.\n"
 msgstr ""
-"Hier können Sie Kategorien anlegen. Nutzerinnen und Nutzer können ihre "
-"Beiträge einer Kategorie zuordnen. Dadurch können Inhalte strukturiert "
-"werden."
+"Hier können Sie Kategorien anlegen. Falls Sie dies tun werden Nutzerinnen "
+"und Nutzer aufgefordert, ihre Beiträge einer Kategorie zuordnen. "
+"Dadurch können Inhalte strukturiert werden."
 
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/module_categories_form.html:20
 msgid "Add category"
