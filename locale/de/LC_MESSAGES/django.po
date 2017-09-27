@@ -1156,7 +1156,17 @@ msgstr "Auswählen"
 msgid "Missing field for publication"
 msgstr "Benötigtes Feld zur Veröffentlichung"
 
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/module_categories_form.html:16
+#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/module_categories_form.html:3
+msgid ""
+"In this section, you can create\n"
+"categories. Users can assign their contributions to a category. This way,\n"
+"content can be classified."
+msgstr ""
+"Hier können Sie Kategorien anlegen. Nutzerinnen und Nutzer können ihre "
+"Beiträge einer Kategorie zuordnen. Dadurch können Inhalte strukturiert "
+"werden."
+
+#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/module_categories_form.html:20
 msgid "Add category"
 msgstr "Kategorie hinzufügen"
 
@@ -1793,6 +1803,14 @@ msgstr "Veranstaltungen"
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html:13
 msgid "Add offline event"
 msgstr "Veranstaltung hinzufügen"
+
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html:18
+msgid ""
+"Here, you can include events that take place as part of the participation "
+"project."
+msgstr ""
+"Hier können Sie Veranstaltungen eintragen, die als Teil des "
+"Beteiligungsprojekts stattfinden."
 
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_update_form.html:7
 msgid "Edit offline event"
