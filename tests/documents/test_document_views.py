@@ -10,7 +10,8 @@ from adhocracy4.test.helpers import redirect_target
 @pytest.mark.django_db
 def test_chapter_detail_view(client, chapter_factory, phase_factory):
     phase = phase_factory()
-    chapter = chapter_factory(module=phase.module)
+    chapter_factory(module=phase.module, weight=0)
+    chapter = chapter_factory(module=phase.module, weight=1)
 
     url = reverse(
         'meinberlin_documents:chapter-detail',
@@ -22,10 +23,26 @@ def test_chapter_detail_view(client, chapter_factory, phase_factory):
 
 
 @pytest.mark.django_db
+def test_chapter_detail_view_redirect_first_chapter(client, chapter_factory,
+                                                    phase_factory):
+    phase = phase_factory()
+    chapter = chapter_factory(module=phase.module)
+
+    url = reverse(
+        'meinberlin_documents:chapter-detail',
+        kwargs={'pk': chapter.pk}
+    )
+
+    response = client.get(url)
+    assert redirect_target(response) == 'project-detail'
+
+
+@pytest.mark.django_db
 def test_chapter_private_detail_view(client, chapter_factory, user,
                                      phase_factory):
     phase = phase_factory(module__project__is_public=False)
-    chapter = chapter_factory(module=phase.module)
+    chapter_factory(module=phase.module, weight=0)
+    chapter = chapter_factory(module=phase.module, weight=1)
 
     url = reverse(
         'meinberlin_documents:chapter-detail',
@@ -48,7 +65,8 @@ def test_chapter_private_detail_view(client, chapter_factory, user,
 def test_chapter_pre_phase_detail_view(client, chapter_factory, user,
                                        phase_factory):
     phase = phase_factory()
-    chapter = chapter_factory(module=phase.module)
+    chapter_factory(module=phase.module, weight=0)
+    chapter = chapter_factory(module=phase.module, weight=1)
 
     url = reverse(
         'meinberlin_documents:chapter-detail',

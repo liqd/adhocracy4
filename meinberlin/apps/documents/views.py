@@ -1,4 +1,5 @@
 from django.http import Http404
+from django.http.response import HttpResponseRedirect
 from django.utils.html import strip_tags
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
@@ -24,6 +25,16 @@ class ChapterDetailView(ProjectContextDispatcher,
                         generic.DetailView):
     model = models.Chapter
     permission_required = 'meinberlin_documents.view_chapter'
+
+    def dispatch(self, request, *args, **kwargs):
+        # Redirect first chapter view to the project detail page
+        res = super().dispatch(request, *args, **kwargs)
+        chapter = self.get_object()
+        if self.request.path == chapter.get_absolute_url() \
+                and chapter == self.chapter_list.first():
+            return HttpResponseRedirect(self.project.get_absolute_url())
+        else:
+            return res
 
     def get_context_data(self, **kwargs):
         context = super(ChapterDetailView, self).get_context_data(**kwargs)

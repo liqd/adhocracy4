@@ -19,12 +19,12 @@ def react_documents(context, module, reload_on_success=False):
 
     widget = CKEditorUploadingWidget(config_name='image-editor')
     widget._set_config()
-    config = widget.config
+    config = JSONRenderer().render(widget.config)
 
     context = {
         'chapters': chapters_json,
         'module': module.pk,
-        'config': json.dumps(config),
+        'config': config,
         'id': 'document-' + str(module.id),
         'reload_on_success': json.dumps(reload_on_success),
     }
