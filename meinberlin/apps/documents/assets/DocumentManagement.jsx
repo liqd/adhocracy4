@@ -210,7 +210,9 @@ class DocumentManagement extends React.Component {
       }
     }
     this.setState({
-      chapters: update(this.state.chapters, diff)
+      chapters: update(this.state.chapters, diff),
+      // Workaround missing change events when using CKEDITOR
+      alert: null
     })
   }
 
