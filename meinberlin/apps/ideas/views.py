@@ -10,7 +10,7 @@ from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
-from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.exports import views as export_views
 
 from . import forms
@@ -47,7 +47,7 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['search', 'category']
 
 
-class AbstractIdeaListView(ProjectContextDispatcher,
+class AbstractIdeaListView(ProjectContextMixin,
                            filter_views.FilteredListView):
     paginate_by = 15
 
@@ -80,7 +80,7 @@ class IdeaListView(AbstractIdeaListView):
             .annotate_comment_count()
 
 
-class AbstractIdeaDetailView(ProjectContextDispatcher,
+class AbstractIdeaDetailView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.DetailView):
     pass
@@ -93,7 +93,7 @@ class IdeaDetailView(AbstractIdeaDetailView):
     permission_required = 'meinberlin_ideas.view_idea'
 
 
-class AbstractIdeaCreateView(ProjectContextDispatcher,
+class AbstractIdeaCreateView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.CreateView):
     """Create an idea in the context of a module."""
@@ -121,7 +121,7 @@ class IdeaCreateView(AbstractIdeaCreateView):
     template_name = 'meinberlin_ideas/idea_create_form.html'
 
 
-class AbstractIdeaUpdateView(ProjectContextDispatcher,
+class AbstractIdeaUpdateView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.UpdateView):
 
@@ -142,7 +142,7 @@ class IdeaUpdateView(AbstractIdeaUpdateView):
     template_name = 'meinberlin_ideas/idea_update_form.html'
 
 
-class AbstractIdeaDeleteView(ProjectContextDispatcher,
+class AbstractIdeaDeleteView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.DeleteView):
 

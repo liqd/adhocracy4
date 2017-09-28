@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.views import generic
 
-from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2.components.forms.views import \
     ProjectComponentFormView
 from meinberlin.apps.dashboard2.views import ProjectCreateView
@@ -10,7 +10,7 @@ from . import forms
 from . import models
 
 
-class ExternalProjectRedirectView(ProjectContextDispatcher,
+class ExternalProjectRedirectView(ProjectContextMixin,
                                   generic.RedirectView):
     permanent = True
 
@@ -32,16 +32,12 @@ class ExternalProjectCreateView(ProjectCreateView):
 class ExternalProjectUpdateView(ProjectComponentFormView):
 
     model = models.ExternalProject
+    module = None
 
-    def get_project(self, *args, **kwargs):
-        project = super().get_project(*args, **kwargs)
+    @property
+    def project(self):
+        project = super().project
         return project.externalproject
 
     def get_object(self, queryset=None):
         return self.project
-
-    def validate_object_project(self):
-        return True
-
-    def validate_object_module(self):
-        return True

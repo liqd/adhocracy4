@@ -7,6 +7,7 @@ from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
 from meinberlin.apps.contrib import filters
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins
 from meinberlin.apps.exports import views as export_views
 from meinberlin.apps.ideas import views as idea_views
@@ -95,9 +96,9 @@ class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class TopicListDashboardView(mixins.DashboardComponentMixin,
+class TopicListDashboardView(ProjectContextMixin,
                              mixins.DashboardBaseMixin,
-                             mixins.DashboardContextMixin,
+                             mixins.DashboardComponentMixin,
                              filter_views.FilteredListView):
     model = models.Topic
     template_name = 'meinberlin_topicprio/topic_dashboard_list.html'
@@ -112,9 +113,8 @@ class TopicListDashboardView(mixins.DashboardComponentMixin,
             .annotate_comment_count()
 
 
-class TopicCreateView(mixins.DashboardComponentMixin,
-                      mixins.DashboardBaseMixin,
-                      mixins.DashboardContextMixin,
+class TopicCreateView(mixins.DashboardBaseMixin,
+                      mixins.DashboardComponentMixin,
                       idea_views.AbstractIdeaCreateView):
     model = models.Topic
     form_class = forms.TopicForm
@@ -127,9 +127,8 @@ class TopicCreateView(mixins.DashboardComponentMixin,
             kwargs={'module_slug': self.module.slug})
 
 
-class TopicUpdateView(mixins.DashboardComponentMixin,
-                      mixins.DashboardBaseMixin,
-                      mixins.DashboardContextMixin,
+class TopicUpdateView(mixins.DashboardBaseMixin,
+                      mixins.DashboardComponentMixin,
                       idea_views.AbstractIdeaUpdateView):
     model = models.Topic
     form_class = forms.TopicForm
@@ -146,9 +145,8 @@ class TopicUpdateView(mixins.DashboardComponentMixin,
             kwargs={'module_slug': self.module.slug})
 
 
-class TopicDeleteView(mixins.DashboardComponentMixin,
-                      mixins.DashboardBaseMixin,
-                      mixins.DashboardContextMixin,
+class TopicDeleteView(mixins.DashboardBaseMixin,
+                      mixins.DashboardComponentMixin,
                       idea_views.AbstractIdeaDeleteView):
     model = models.Topic
     success_message = _('The topic has been deleted')

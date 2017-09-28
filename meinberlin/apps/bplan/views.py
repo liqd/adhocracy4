@@ -5,7 +5,7 @@ from django.views import generic
 from django.views.generic import TemplateView
 
 from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2.components.forms.views import \
     ProjectComponentFormView
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
@@ -14,7 +14,7 @@ from . import forms
 from . import models
 
 
-class BplanStatementFormView(ProjectContextDispatcher,
+class BplanStatementFormView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.CreateView):
     model = models.Statement
@@ -57,16 +57,12 @@ class BplanProjectCreateView(ExternalProjectCreateView):
 class BplanProjectUpdateView(ProjectComponentFormView):
 
     model = models.Bplan
+    module = None
 
-    def get_project(self, *args, **kwargs):
-        project = super().get_project(*args, **kwargs)
+    @property
+    def project(self):
+        project = super().project
         return project.externalproject.bplan
 
     def get_object(self, queryset=None):
         return self.project
-
-    def validate_object_project(self):
-        return True
-
-    def validate_object_module(self):
-        return True

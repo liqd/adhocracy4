@@ -5,22 +5,22 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins as dashboard_mixins
 from meinberlin.apps.exports import views as export_views
 
 from . import models
 
 
-class DocumentDashboardView(dashboard_mixins.DashboardComponentMixin,
+class DocumentDashboardView(ProjectContextMixin,
                             dashboard_mixins.DashboardBaseMixin,
-                            dashboard_mixins.DashboardContextMixin,
+                            dashboard_mixins.DashboardComponentMixin,
                             generic.TemplateView):
     template_name = 'meinberlin_documents/document_dashboard.html'
     permission_required = 'a4projects.add_project'
 
 
-class ChapterDetailView(ProjectContextDispatcher,
+class ChapterDetailView(ProjectContextMixin,
                         rules_mixins.PermissionRequiredMixin,
                         generic.DetailView):
     model = models.Chapter
@@ -85,7 +85,7 @@ class DocumentDetailView(ChapterDetailView):
         return first_chapter
 
 
-class ParagraphDetailView(ProjectContextDispatcher,
+class ParagraphDetailView(ProjectContextMixin,
                           rules_mixins.PermissionRequiredMixin,
                           generic.DetailView):
     model = models.Paragraph

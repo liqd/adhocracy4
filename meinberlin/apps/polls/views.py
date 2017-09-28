@@ -4,13 +4,13 @@ from django.shortcuts import render_to_response
 from django.views import generic
 
 from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins as dashboard_mixins
 
 from . import models
 
 
-class PollDetailView(ProjectContextDispatcher,
+class PollDetailView(ProjectContextMixin,
                      rules_mixins.PermissionRequiredMixin,
                      generic.DetailView):
     model = models.Poll
@@ -38,9 +38,9 @@ class PollDetailView(ProjectContextDispatcher,
         return self.module
 
 
-class PollDashboardView(dashboard_mixins.DashboardComponentMixin,
+class PollDashboardView(ProjectContextMixin,
                         dashboard_mixins.DashboardBaseMixin,
-                        dashboard_mixins.DashboardContextMixin,
+                        dashboard_mixins.DashboardComponentMixin,
                         generic.TemplateView):
     template_name = 'meinberlin_polls/poll_dashboard.html'
     permission_required = 'a4projects.add_project'
