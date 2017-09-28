@@ -127,6 +127,9 @@ class ProjectListView(filter_views.FilteredListView):
                 Q(participants__pk=self.request.user.pk) |
                 Q(organisation__initiators__pk=self.request.user.pk) |
                 Q(moderators__pk=self.request.user.pk)
+            ) & (
+                Q(is_archived=False) |
+                Q(externalproject__bplan=None)
             )
         ).distinct()
 
