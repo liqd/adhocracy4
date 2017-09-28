@@ -53,7 +53,5 @@ class ProjectMixin(generic.base.ContextMixin):
         self.project = kwargs['project']
         self.module = kwargs['module']
         self.phase = self.module.last_active_phase if self.module else None
-        # Workaround for filters
-        self.request.module = self.module
 
         return super(ProjectMixin, self).dispatch(*args, **kwargs)

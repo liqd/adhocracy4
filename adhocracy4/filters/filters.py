@@ -5,7 +5,19 @@ from functools import reduce
 import operator
 
 
-class PagedFilterSet(django_filters.FilterSet):
+class ClassBasedViewFilterSet(django_filters.FilterSet):
+    """Passes the view instance through to the filters of the set."""
+
+    def __init__(self, *args, view, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.view = view
+
+        # analogous to what happens with model and parent in standard filterset
+        for filter_ in self.filters.values():
+            filter_.view = view
+
+
+class PagedFilterSet(ClassBasedViewFilterSet):
     """Removes page parameters from the query when applying filters."""
 
     page_kwarg = 'page'
