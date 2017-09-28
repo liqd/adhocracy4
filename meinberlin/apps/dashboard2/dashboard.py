@@ -1,6 +1,5 @@
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-
-from adhocracy4.categories.models import Categorizable
 
 from . import ModuleFormComponent
 from . import ModuleFormSetComponent
@@ -86,6 +85,7 @@ class ModuleAreaSettingsComponent(ModuleFormComponent):
 
 
 class ModuleCategoriesComponent(ModuleFormSetComponent):
+    # TODO: Move to categories app
     identifier = 'categories'
     weight = 13
     label = _('Categories')
@@ -96,11 +96,10 @@ class ModuleCategoriesComponent(ModuleFormSetComponent):
                          '/module_categories_form.html'
 
     def is_effective(self, module):
-        for phase in module.phases:
-            for models in phase.content().features.values():
-                for model in models:
-                    if Categorizable.is_categorizable(model):
-                        return True
+        module_app = module.phases[0].content().app
+        for app, name in settings.A4_CATEGORIZABLE:
+            if app == module_app:
+                return True
         return False
 
 

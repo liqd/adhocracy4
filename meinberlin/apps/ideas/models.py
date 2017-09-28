@@ -6,7 +6,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
-from adhocracy4.categories import models as category_models
+from adhocracy4.categories.fields import CategoryField
 from adhocracy4.comments import models as comment_models
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
@@ -17,7 +17,7 @@ class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
     pass
 
 
-class AbstractIdea(module_models.Item, category_models.Categorizable):
+class AbstractIdea(module_models.Item):
     item_ptr = models.OneToOneField(to=module_models.Item,
                                     parent_link=True,
                                     related_name='%(app_label)s_%(class)s')
@@ -30,6 +30,7 @@ class AbstractIdea(module_models.Item, category_models.Categorizable):
     comments = GenericRelation(comment_models.Comment,
                                related_query_name='idea',
                                object_id_field='object_pk')
+    category = CategoryField()
 
     objects = IdeaQuerySet.as_manager()
 
