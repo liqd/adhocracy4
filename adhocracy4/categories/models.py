@@ -15,20 +15,3 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Categorizable(models.Model):
-    category = models.ForeignKey(
-        Category,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='+',
-    )
-
-    class Meta:
-        abstract = True
-
-    @staticmethod
-    def is_categorizable(item_class):
-        return issubclass(item_class, Categorizable)
