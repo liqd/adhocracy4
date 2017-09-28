@@ -18,14 +18,14 @@ class ExportsRegistry:
         app_exports.append((description, cls))
         self._registry[app_name] = sorted(app_exports, key=lambda e: e[1])
 
-    def __getitem__(self, project_or_module):
-        phase_content = project_or_module.phases.first().content()
+    def __getitem__(self, module):
+        phase_content = module.phases.first().content()
         app_config = django_apps.get_app_config(phase_content.app)
         return self._registry[app_config.name]
 
-    def __contains__(self, project_or_module):
+    def __contains__(self, module):
         try:
-            self[project_or_module]
+            self[module]
             return True
         except AttributeError:
             return False
