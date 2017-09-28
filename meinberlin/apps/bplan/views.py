@@ -37,7 +37,7 @@ class BplanStatementFormView(ProjectContextDispatcher,
         return super().form_valid(form)
 
 
-class BplanStatemenSentView(TemplateView):
+class BplanStatementSentView(TemplateView):
     template_name = 'meinberlin_bplan/statement_sent.html'
 
 
