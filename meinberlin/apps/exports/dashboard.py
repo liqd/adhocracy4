@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from meinberlin.apps.dashboard2 import DashboardComponent
 from meinberlin.apps.dashboard2 import components
 
-from . import get_exports
+from . import exports
 from . import views
 
 
@@ -14,7 +14,7 @@ class ExportModuleComponent(DashboardComponent):
     label = _('Export Excel')
 
     def is_effective(self, module):
-        return not module.project.is_draft and get_exports(module)
+        return not module.project.is_draft and module in exports
 
     def get_progress(self, module):
         return 0, 0

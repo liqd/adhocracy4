@@ -18,7 +18,7 @@ from adhocracy4.projects.models import Project
 from adhocracy4.ratings.models import Rating
 from adhocracy4.rules import mixins as rules_mixins
 
-from . import get_exports
+from . import exports
 
 
 class ExportProjectDispatcher(rules_mixins.PermissionRequiredMixin,
@@ -37,11 +37,11 @@ class ExportProjectDispatcher(rules_mixins.PermissionRequiredMixin,
         module = project.module_set.first()
 
         # Currently only exactly one export view per project is allowed
-        exports = get_exports(project)
-        assert len(exports) <= 1
+        project_exports = exports[project]
+        assert len(project_exports) <= 1
 
         # Return a 404 response if no exports are available
-        if len(exports) == 0:
+        if len(project_exports) == 0:
             return HttpResponseNotFound()
 
         # Redirect directly to the export page of the only export
@@ -69,11 +69,11 @@ class ExportModuleDispatcher(rules_mixins.PermissionRequiredMixin,
         if not self.has_permission():
             return self.handle_no_permission()
 
-        exports = get_exports(module)
-        assert len(exports) > export_id
+        module_exports = exports[module]
+        assert len(module_exports) > export_id
 
         # Dispatch the request to the export view
-        view = exports[export_id][1].as_view()
+        view = module_exports[export_id][1].as_view()
         return view(request, module=module, *args, **kwargs)
 
     def get_permission_object(self):

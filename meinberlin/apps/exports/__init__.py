@@ -1,15 +1,34 @@
-from functools import lru_cache
+from django.apps import apps as django_apps
 
 
-@lru_cache()
-def get_exports(project_or_module):
-    exports = []
-    existing_views = set()
-    for phase in project_or_module.phases:
-        phase_view = phase.content().view
-        if hasattr(phase_view, 'exports'):
-            for name, view in phase_view.exports:
-                if view not in existing_views:
-                    existing_views.add(view)
-                    exports.append((name, view))
-    return exports
+def register_export(description):
+    def export_view_decorator(view_cls):
+        exports.register(description, view_cls)
+        return lambda cls: cls
+    return export_view_decorator
+
+
+class ExportsRegistry:
+    _registry = {}
+
+    def register(self, description, cls):
+        app_config = django_apps.get_containing_app_config(cls.__module__)
+        app_name = app_config.name
+        app_exports = self._registry.get(app_name, [])
+        app_exports.append((description, cls))
+        self._registry[app_name] = sorted(app_exports, key=lambda e: e[1])
+
+    def __getitem__(self, project_or_module):
+        phase_content = project_or_module.phases.first().content()
+        app_config = django_apps.get_app_config(phase_content.app)
+        return self._registry[app_config.name]
+
+    def __contains__(self, project_or_module):
+        try:
+            self[project_or_module]
+            return True
+        except AttributeError:
+            return False
+
+
+exports = ExportsRegistry()
