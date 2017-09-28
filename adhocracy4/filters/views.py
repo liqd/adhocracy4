@@ -19,7 +19,8 @@ class FilteredListView(generic.ListView):
         default_kwargs = {
             'data': self.request.GET,
             'request': self.request,
-            'queryset': super().get_queryset()
+            'queryset': super().get_queryset(),
+            'view': self
         }
 
         return default_kwargs
