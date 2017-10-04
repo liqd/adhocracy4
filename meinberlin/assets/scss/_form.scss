@@ -36,6 +36,12 @@ select {
     }
 }
 
+input[type="checkbox"],
+input[type="radio"] {
+    padding: 0;
+    border: 0;
+}
+
 div.cke_focus {
     border-color: $brand-secondary;
 }
