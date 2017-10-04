@@ -128,6 +128,7 @@ class ProjectListView(filter_views.FilteredListView):
                 Q(organisation__initiators__pk=self.request.user.pk) |
                 Q(moderators__pk=self.request.user.pk)
             ) & (
+                # Do not include archived bplan projects
                 Q(is_archived=False) |
                 Q(externalproject__bplan=None)
             )
