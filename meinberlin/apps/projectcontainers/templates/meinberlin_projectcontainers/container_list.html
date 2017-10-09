@@ -9,7 +9,7 @@
             {% trans 'Containers' %}
         </h1>
         <div class="lr-bar__right">
-            <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}" class="btn">
+            <a href="{% url 'a4dashboard:container-create' organisation_slug=view.organisation.slug %}" class="btn">
                 {% trans 'New Container' %}
             </a>
         </div>

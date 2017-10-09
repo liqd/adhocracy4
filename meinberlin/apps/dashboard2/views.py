@@ -20,6 +20,7 @@ from . import forms
 from . import get_project_dashboard
 from . import mixins
 from . import signals
+from .blueprints import ProjectBlueprint
 from .blueprints import get_blueprints
 
 User = get_user_model()
@@ -115,6 +116,18 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
                 module=module,
             )
             phase.save()
+
+
+class ContainerCreateView(ProjectCreateView):
+    blueprint = ProjectBlueprint(
+        title=_('Container'),
+        description=_(
+            'A container contains multiple projects.'
+        ),
+        content=[],
+        image='images/container.svg',
+        settings_model=None,
+    )
 
 
 class ProjectUpdateView(generic.RedirectView):

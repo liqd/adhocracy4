@@ -13,6 +13,10 @@ urlpatterns = [
         views.BlueprintListView.as_view(),
         name='blueprint-list'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
+        r'container/$',
+        views.ContainerCreateView.as_view(),
+        name='container-create'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
         r'(?P<blueprint_slug>[-\w_]+)/$',
         views.ProjectCreateView.as_view(),
         name='project-create'),
