@@ -1,12 +1,13 @@
+from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from adhocracy4.categories import forms as category_forms
+from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.maps import widgets as maps_widgets
 
 from . import models
 
 
-class MapIdeaForm(category_forms.CategorizableForm):
+class MapIdeaForm(CategorizableFieldMixin, forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         self.settings = kwargs.pop('settings_instance')
