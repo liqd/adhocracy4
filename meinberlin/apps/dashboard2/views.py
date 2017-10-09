@@ -48,6 +48,22 @@ class ProjectListView(mixins.DashboardBaseMixin,
         )
 
 
+class ContainerListView(mixins.DashboardBaseMixin,
+                        mixins.DashboardProjectDuplicateMixin,
+                        filter_views.FilteredListView):
+    model = project_models.Project
+    paginate_by = 12
+    template_name = 'meinberlin_dashboard2/container_list.html'
+    permission_required = 'a4projects.add_project'
+    menu_item = 'project'
+    filter_set = filter.ProjectFilterSet
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            organisation=self.organisation
+        )
+
+
 class BlueprintListView(mixins.DashboardBaseMixin,
                         generic.TemplateView):
     template_name = 'meinberlin_dashboard2/blueprint_list.html'

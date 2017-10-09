@@ -1,0 +1,31 @@
+{% extends "meinberlin_dashboard2/base_project_list.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Containers" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block project_list %}
+    <div class="lr-bar lr-bar--with-margin">
+        <h1 class="lr-bar__left">
+            {% trans 'Containers' %}
+        </h1>
+        <div class="lr-bar__right">
+            <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}" class="btn">
+                {% trans 'New Container' %}
+            </a>
+        </div>
+    </div>
+
+    {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+
+    {% if project_list|length > 0 %}
+        <ul class="u-list-reset">
+            {% for project in project_list %}
+                {% include "meinberlin_dashboard2/includes/project_list_item.html" with project=project %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{% trans 'We could not find any containers.' %}</p>
+    {% endif %}
+
+    {% include "meinberlin_contrib/includes/pagination.html" %}
+{% endblock %}
