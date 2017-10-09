@@ -1,0 +1,32 @@
+{% extends "meinberlin_dashboard2/base_dashboard.html" %}
+{% load i18n %}
+
+{% block dashboard_content %}
+<div class="l-menu">
+    <nav class="l-menu__menu" aria-label="{% trans 'Participation projects' %}">
+        <div class="dashboard-nav">
+            <div class="dashboard-nav__dropdown">
+                <div class="dashboard-nav__item">{% trans "Participation projects" %}</div>
+            </div>
+            <ul class="dashboard-nav__pages">
+                <li class="dashboard-nav__page">
+                    <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
+                        class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'project-list' %}is-active{% endif %}">
+                        {% trans "Projects" %}
+                    </a>
+                </li>
+                <li class="dashboard-nav__page">
+                    <a href="{% url 'a4dashboard:container-list' organisation_slug=view.organisation.slug %}"
+                        class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'container-list' %}is-active{% endif %}">
+                        {% trans "Containers" %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="l-menu__content">
+        {% block project_list %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

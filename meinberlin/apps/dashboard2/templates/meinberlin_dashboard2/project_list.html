@@ -1,10 +1,9 @@
-{% extends "meinberlin_dashboard2/base_dashboard.html" %}
+{% extends "meinberlin_dashboard2/base_project_list.html" %}
 {% load i18n %}
 
 {% block title %}{% trans "Projects" %} &mdash; {{ block.super }}{% endblock%}
 
-{% block dashboard_content %}
-<div class="l-center-8">
+{% block project_list %}
     <div class="lr-bar lr-bar--with-margin">
         <h1 class="lr-bar__left">
             {% trans 'Projects' %}
@@ -29,6 +28,4 @@
     {% endif %}
 
     {% include "meinberlin_contrib/includes/pagination.html" %}
-
-</div>
 {% endblock %}
