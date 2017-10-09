@@ -7,10 +7,12 @@ from meinberlin.apps.dashboard2.components.forms.views import \
     ProjectComponentFormView
 from meinberlin.apps.dashboard2.views import ProjectCreateView
 
+from . import forms
 from . import models
 
 
 class ContainerCreateView(ProjectCreateView):
+    form_class = forms.ContainerCreateForm
     blueprint = ProjectBlueprint(
         title=_('Container'),
         description=_(
