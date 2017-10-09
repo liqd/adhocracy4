@@ -103,11 +103,6 @@ class Project(base.TimeStampedModel):
         help_text=_('Exclude this project from all listings by default. '
                     'You can still access this project by using filters.'),
     )
-    typ = models.CharField(
-        max_length=120,
-        verbose_name=_('Type of the project'),
-        blank=True,
-    )
 
     objects = ProjectManager()
 
