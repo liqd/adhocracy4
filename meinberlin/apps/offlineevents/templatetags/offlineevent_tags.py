@@ -18,15 +18,20 @@ def offlineevents_and_modules_sorted(project):
 
 
 def _cmp(x, y):
-    x = x.first_phase_start_date if isinstance(x, Module) else x.date
-    if x is None:
+    x_date = x.first_phase_start_date if isinstance(x, Module) else x.date
+    if x_date is None:
         return 1
 
-    y = y.first_phase_start_date if isinstance(y, Module) else y.date
-    if y is None:
+    y_date = y.first_phase_start_date if isinstance(y, Module) else y.date
+    if y_date is None:
         return -1
 
-    return (x > y) - (y < x)
+    if x_date > y_date:
+        return 1
+    elif x_date == y_date:
+        return 0
+    else:
+        return -1
 
 
 @register.filter
