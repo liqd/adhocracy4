@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 from meinberlin.apps.dashboard2.forms import ProjectCreateForm
@@ -38,6 +39,20 @@ class ContainerBasicForm(ProjectDashboardForm):
 
 
 class ContainerProjectsForm(ProjectDashboardForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # We tried to find a good balance between a short list and
+        # all necessary projects. The details may change over time.
+        # Projects that are already selected should remain in the queryset.
+        self.fields['projects'].queryset = self.fields['projects'].queryset \
+            .filter(projectcontainer=None)\
+            .filter(Q(containers=self.instance) |
+                    (Q(containers=None) &
+                     Q(is_archived=False) &
+                     Q(is_public=True)))\
+            .order_by('name')
 
     class Meta:
         model = models.ProjectContainer
