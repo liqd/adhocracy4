@@ -11,6 +11,8 @@ def get_project_type(project):
         return 'bplan'
     elif hasattr(project, 'externalproject'):
         return 'external'
+    elif hasattr(project, 'projectcontainer'):
+        return 'container'
     else:
         return 'default'
 
@@ -22,6 +24,8 @@ class TypedProjectDashboard(ProjectDashboard):
             project = project.externalproject.bplan
         elif self.project_type == 'external':
             project = project.externalproject
+        elif self.project_type == 'container':
+            project = project.projectcontainer
         super().__init__(project)
 
     def get_project_components(self):
@@ -29,6 +33,8 @@ class TypedProjectDashboard(ProjectDashboard):
             return [components.projects.get('bplan')]
         elif self.project_type == 'external':
             return [components.projects.get('external')]
+        elif self.project_type == 'container':
+            return [components.projects.get('container-basic')]
 
         return [component for component in components.get_project_components()
                 if component.is_effective(self.project)]
@@ -37,6 +43,8 @@ class TypedProjectDashboard(ProjectDashboard):
         if self.project_type == 'bplan':
             return []
         elif self.project_type == 'external':
+            return []
+        elif self.project_type == 'container':
             return []
 
         return components.get_module_components()
