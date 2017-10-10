@@ -14,7 +14,7 @@ class ContainerProjectComponent(ProjectFormComponent):
     weight = 10
     label = _('Basic settings')
 
-    form_title = _('Edit container project settings')
+    form_title = _('Edit container settings')
     form_class = forms.ContainerProjectForm
     form_template_name = 'meinberlin_projectcontainers/includes' \
                          '/container_project_basic_form.html'
@@ -41,4 +41,40 @@ class ContainerProjectComponent(ProjectFormComponent):
         )]
 
 
+class ContainerProjectsComponent(ProjectFormComponent):
+    identifier = 'container-projects'
+    weight = 20
+    label = _('Projects')
+
+    form_title = _('Select projects')
+    form_class = forms.ContainerProjectsForm
+    form_template_name = 'meinberlin_projectcontainers/includes' \
+                         '/container_projects_form.html'
+
+    def is_effective(self, project):
+        project_type = get_project_type(project)
+        return project_type == 'container'
+
+    def get_base_url(self, project):
+        return reverse('a4dashboard:dashboard-container-projects', kwargs={
+            'project_slug': project.slug
+        })
+
+    def get_urls(self):
+        return [(
+            r'^projects/(?P<project_slug>[-\w_]+)/container-projects/$',
+            views.ContainerProjectsView.as_view(
+                component=self,
+                title=self.form_title,
+                form_class=self.form_class,
+                form_template_name=self.form_template_name
+            ),
+            'dashboard-container-projects'
+        )]
+
+    def get_progress(self, project):
+        return (1, 1)
+
+
 components.register_project(ContainerProjectComponent())
+components.register_project(ContainerProjectsComponent())

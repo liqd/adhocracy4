@@ -47,6 +47,23 @@ class ContainerProjectUpdateView(ProjectComponentFormView):
         return True
 
 
+class ContainerProjectsView(ProjectComponentFormView):
+    model = models.ProjectContainer
+
+    def get_project(self, *args, **kwargs):
+        project = super().get_project(*args, **kwargs)
+        return project.projectcontainer
+
+    def get_object(self, queryset=None):
+        return self.project
+
+    def validate_object_project(self):
+        return True
+
+    def validate_object_module(self):
+        return True
+
+
 class ContainerListView(dashboard_mixins.DashboardBaseMixin,
                         generic.ListView):
     model = models.ProjectContainer
