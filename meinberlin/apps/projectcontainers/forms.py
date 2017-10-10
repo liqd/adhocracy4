@@ -8,8 +8,11 @@ from . import models
 
 class ContainerCreateForm(ProjectCreateForm):
 
-    class Meta(ProjectCreateForm.Meta):
-        fields = ['name', 'description']
+    class Meta:
+        model = models.ProjectContainer
+        fields = ['name', 'description',
+                  'tile_image', 'tile_image_copyright']
+
         labels = {
             'name': _('Title of your container'),
             'description': _('Short description of your container'),

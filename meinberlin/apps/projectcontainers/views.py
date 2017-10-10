@@ -12,7 +12,12 @@ from . import models
 
 
 class ContainerCreateView(ProjectCreateView):
+    model = models.ProjectContainer
+    slug_url_kwarg = 'project_slug'
     form_class = forms.ContainerCreateForm
+    template_name = 'meinberlin_projectcontainers/container_create_form.html'
+    success_message = _('Container succesfully created.')
+
     blueprint = ProjectBlueprint(
         title=_('Container'),
         description=_(

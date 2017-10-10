@@ -17,10 +17,10 @@
 
     {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
-    {% if project_list|length > 0 %}
+    {% if projectcontainer_list|length > 0 %}
         <ul class="u-list-reset">
-            {% for project in project_list %}
-                {% include "meinberlin_dashboard2/includes/project_list_item.html" with project=project %}
+            {% for container in projectcontainer_list %}
+                {% include "meinberlin_dashboard2/includes/project_list_item.html" with project=container %}
             {% endfor %}
         </ul>
     {% else %}
