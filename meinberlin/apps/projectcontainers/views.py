@@ -1,10 +1,25 @@
+from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from meinberlin.apps.dashboard2 import mixins as dashboard_mixins
+from meinberlin.apps.dashboard2.blueprints import ProjectBlueprint
 from meinberlin.apps.dashboard2.components.forms.views import \
     ProjectComponentFormView
+from meinberlin.apps.dashboard2.views import ProjectCreateView
 
 from . import models
+
+
+class ContainerCreateView(ProjectCreateView):
+    blueprint = ProjectBlueprint(
+        title=_('Container'),
+        description=_(
+            'A container contains multiple projects.'
+        ),
+        content=[],
+        image='',
+        settings_model=None,
+    )
 
 
 class ContainerProjectUpdateView(ProjectComponentFormView):

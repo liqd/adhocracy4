@@ -4,6 +4,7 @@ from meinberlin.apps.bplan.views import BplanProjectCreateView
 from meinberlin.apps.dashboard2.urls import \
     urlpatterns as a4dashboard_urlpatterns
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
+from meinberlin.apps.projectcontainers.views import ContainerCreateView
 from meinberlin.apps.projectcontainers.views import ContainerListView
 
 from . import views
@@ -30,4 +31,8 @@ urlpatterns = [
         r'bplan/$',
         BplanProjectCreateView.as_view(),
         name='bplan-project-create'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
+        r'container/$',
+        ContainerCreateView.as_view(),
+        name='container-create'),
 ] + a4dashboard_urlpatterns
