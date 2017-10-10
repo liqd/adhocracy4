@@ -34,6 +34,10 @@ select {
     &:focus {
         border-color: $brand-secondary;
     }
+
+    &::placeholder {
+        opacity: 0.5;
+    }
 }
 
 input[type="checkbox"],
