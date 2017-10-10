@@ -9,15 +9,15 @@ from . import forms
 from . import views
 
 
-class ContainerProjectComponent(ProjectFormComponent):
+class ContainerBasicComponent(ProjectFormComponent):
     identifier = 'container-basic'
     weight = 10
     label = _('Basic settings')
 
     form_title = _('Edit container settings')
-    form_class = forms.ContainerProjectForm
+    form_class = forms.ContainerBasicForm
     form_template_name = 'meinberlin_projectcontainers/includes' \
-                         '/container_project_basic_form.html'
+                         '/container_basic_form.html'
 
     def is_effective(self, project):
         project_type = get_project_type(project)
@@ -31,7 +31,7 @@ class ContainerProjectComponent(ProjectFormComponent):
     def get_urls(self):
         return [(
             r'^projects/(?P<project_slug>[-\w_]+)/container/$',
-            views.ContainerProjectUpdateView.as_view(
+            views.ContainerBasicFormView.as_view(
                 component=self,
                 title=self.form_title,
                 form_class=self.form_class,
@@ -76,5 +76,5 @@ class ContainerProjectsComponent(ProjectFormComponent):
         return (1, 1)
 
 
-components.register_project(ContainerProjectComponent())
+components.register_project(ContainerBasicComponent())
 components.register_project(ContainerProjectsComponent())

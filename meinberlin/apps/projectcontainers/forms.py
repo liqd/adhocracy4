@@ -28,7 +28,7 @@ class ContainerCreateForm(ProjectCreateForm):
         }
 
 
-class ContainerProjectForm(ProjectDashboardForm):
+class ContainerBasicForm(ProjectDashboardForm):
 
     class Meta:
         model = models.ProjectContainer

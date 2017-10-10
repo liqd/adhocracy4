@@ -29,7 +29,7 @@ class ContainerCreateView(ProjectCreateView):
     )
 
 
-class ContainerProjectUpdateView(ProjectComponentFormView):
+class ContainerBasicFormView(ProjectComponentFormView):
 
     model = models.ProjectContainer
 
