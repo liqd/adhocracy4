@@ -12,6 +12,14 @@
                        {% endif %}">
             <div class="l-wrapper">
                 <div class="l-center-6">
+                    {% with container=project.containers.first %}
+                        {% if container %}
+                            <a href="{{ container.get_absolute_url }}" class="project-header__link">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                {% blocktrans with name=container.name %}back to {{ name }}{% endblocktrans %}
+                            </a>
+                        {% endif %}
+                    {% endwith %}
                     <h1 class="project-header__title">{{ project.name }}</h1>
                     <p class="project-header__description">{{ project.description }}</p>
                 </div>
