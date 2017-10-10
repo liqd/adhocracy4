@@ -62,9 +62,10 @@ class Project(base.TimeStampedModel):
     is_public = models.BooleanField(
         default=True,
         verbose_name=_('Access to the project'),
-        help_text=_('Please indicate who should be able to participate in '
-                    'your project. Teasers for your project including title '
-                    'and short description will always be visible to everyone')
+        help_text=_('Please indicate whether this project should be public '
+                    'or restricted to invited users. Teasers for your project '
+                    'including title and short description will always be '
+                    'visible to everyone')
     )
     is_draft = models.BooleanField(default=True)
     image = fields.ConfiguredImageField(
@@ -99,7 +100,8 @@ class Project(base.TimeStampedModel):
     is_archived = models.BooleanField(
         default=False,
         verbose_name=_('Project is archived'),
-        help_text=_('Set to archive the project'),
+        help_text=_('Exclude this project from all listings by default. '
+                    'You can still access this project by using filters.'),
     )
 
     objects = ProjectManager()
