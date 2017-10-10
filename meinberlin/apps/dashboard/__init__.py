@@ -34,7 +34,8 @@ class TypedProjectDashboard(ProjectDashboard):
         elif self.project_type == 'external':
             return [components.projects.get('external')]
         elif self.project_type == 'container':
-            return [components.projects.get('container-basic')]
+            return [components.projects.get('container-basic'),
+                    components.projects.get('container-projects')]
 
         return [component for component in components.get_project_components()
                 if component.is_effective(self.project)]

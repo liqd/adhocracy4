@@ -6,6 +6,10 @@
     page-break-inside: avoid;
 }
 
+.tile--container {
+    background-color: $bg-secondary;
+}
+
 .tile__head {
     position: relative;
 

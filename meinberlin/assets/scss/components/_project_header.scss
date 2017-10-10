@@ -62,3 +62,16 @@
     bottom: 0;
     right: 0;
 }
+
+.project-header__link {
+    text-decoration: none;
+    color: inherit;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: $font-size-sm;
+
+    &:focus,
+    &:hover {
+        color: inherit;
+    }
+}

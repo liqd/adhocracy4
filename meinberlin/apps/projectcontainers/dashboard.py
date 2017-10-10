@@ -9,15 +9,15 @@ from . import forms
 from . import views
 
 
-class ContainerProjectComponent(ProjectFormComponent):
+class ContainerBasicComponent(ProjectFormComponent):
     identifier = 'container-basic'
     weight = 10
     label = _('Basic settings')
 
-    form_title = _('Edit container project settings')
-    form_class = forms.ContainerProjectForm
+    form_title = _('Edit container settings')
+    form_class = forms.ContainerBasicForm
     form_template_name = 'meinberlin_projectcontainers/includes' \
-                         '/container_project_basic_form.html'
+                         '/container_basic_form.html'
 
     def is_effective(self, project):
         project_type = get_project_type(project)
@@ -31,7 +31,7 @@ class ContainerProjectComponent(ProjectFormComponent):
     def get_urls(self):
         return [(
             r'^projects/(?P<project_slug>[-\w_]+)/container/$',
-            views.ContainerProjectUpdateView.as_view(
+            views.ContainerBasicFormView.as_view(
                 component=self,
                 title=self.form_title,
                 form_class=self.form_class,
@@ -41,4 +41,42 @@ class ContainerProjectComponent(ProjectFormComponent):
         )]
 
 
-components.register_project(ContainerProjectComponent())
+class ContainerProjectsComponent(ProjectFormComponent):
+    identifier = 'container-projects'
+    weight = 20
+    label = _('Projects')
+
+    form_title = _('Select projects')
+    form_class = forms.ContainerProjectsForm
+    form_template_name = 'meinberlin_projectcontainers/includes' \
+                         '/container_projects_form.html'
+
+    def is_effective(self, project):
+        project_type = get_project_type(project)
+        return project_type == 'container'
+
+    def get_base_url(self, project):
+        return reverse('a4dashboard:dashboard-container-projects', kwargs={
+            'project_slug': project.slug
+        })
+
+    def get_urls(self):
+        return [(
+            r'^projects/(?P<project_slug>[-\w_]+)/container-projects/$',
+            views.ContainerProjectsView.as_view(
+                component=self,
+                title=self.form_title,
+                form_class=self.form_class,
+                form_template_name=self.form_template_name
+            ),
+            'dashboard-container-projects'
+        )]
+
+    def get_progress(self, project):
+        if project.projectcontainer.projects.all().exists():
+            return 1, 1
+        return 0, 1
+
+
+components.register_project(ContainerBasicComponent())
+components.register_project(ContainerProjectsComponent())
