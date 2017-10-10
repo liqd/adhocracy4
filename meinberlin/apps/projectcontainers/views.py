@@ -16,7 +16,7 @@ class ContainerCreateView(ProjectCreateView):
     slug_url_kwarg = 'project_slug'
     form_class = forms.ContainerCreateForm
     template_name = 'meinberlin_projectcontainers/container_create_form.html'
-    success_message = _('Container succesfully created.')
+    success_message = _('Container successfully created.')
 
     blueprint = ProjectBlueprint(
         title=_('Container'),

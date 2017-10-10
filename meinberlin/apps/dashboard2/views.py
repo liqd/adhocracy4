@@ -61,15 +61,15 @@ class BlueprintListView(mixins.DashboardBaseMixin,
 
 class ProjectCreateView(mixins.DashboardBaseMixin,
                         mixins.BlueprintMixin,
-                        generic.CreateView,
-                        SuccessMessageMixin):
+                        SuccessMessageMixin,
+                        generic.CreateView):
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
     form_class = forms.ProjectCreateForm
     template_name = 'meinberlin_dashboard2/project_create_form.html'
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
-    success_message = _('Project succesfully created.')
+    success_message = _('Project successfully created.')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
