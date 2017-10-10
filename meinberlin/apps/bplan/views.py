@@ -51,7 +51,7 @@ class BplanProjectCreateView(ExternalProjectCreateView):
     slug_url_kwarg = 'project_slug'
     blueprint_key = 'bplan'
     form_class = forms.BplanProjectCreateForm
-    template_name = 'meinberlin_dashboard/external_project_create_form.html'
+    template_name = 'meinberlin_extprojects/external_project_create_form.html'
 
 
 class BplanProjectUpdateView(ProjectComponentFormView):

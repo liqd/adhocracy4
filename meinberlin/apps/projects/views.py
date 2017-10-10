@@ -131,6 +131,9 @@ class ProjectListView(filter_views.FilteredListView):
                 # Do not include archived bplan projects
                 Q(is_archived=False) |
                 Q(externalproject__bplan=None)
+            ) & (
+                # Do not include projects belonging to containers
+                Q(containers=None)
             )
         ).distinct()
 

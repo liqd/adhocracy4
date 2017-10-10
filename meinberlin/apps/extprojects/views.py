@@ -26,7 +26,7 @@ class ExternalProjectCreateView(ProjectCreateView):
     slug_url_kwarg = 'project_slug'
     blueprint_key = 'external-project'
     form_class = forms.ExternalProjectCreateForm
-    template_name = 'meinberlin_dashboard/external_project_create_form.html'
+    template_name = 'meinberlin_extprojects/external_project_create_form.html'
 
 
 class ExternalProjectUpdateView(ProjectComponentFormView):
