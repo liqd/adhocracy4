@@ -1,4 +1,6 @@
 from django.core.urlresolvers import reverse_lazy
+from django.http.response import HttpResponseRedirect
+from django.urls import reverse
 from django.views import generic
 from django.views.generic import TemplateView
 
@@ -21,6 +23,12 @@ class BplanStatementFormView(ProjectContextDispatcher,
     template_name = 'meinberlin_bplan/statement_create_form.html'
     success_url = reverse_lazy('meinberlin_bplan:statement-sent')
 
+    def dispatch(self, request, *args, **kwargs):
+        project = self.get_project(*args, **kwargs)
+        if project.has_finished:
+            return HttpResponseRedirect(reverse('meinberlin_bplan:finished'))
+        return super().dispatch(request, *args, **kwargs)
+
     def get_permission_object(self, *args, **kwargs):
         return self.module
 
@@ -31,6 +39,10 @@ class BplanStatementFormView(ProjectContextDispatcher,
 
 class BplanStatemenSentView(TemplateView):
     template_name = 'meinberlin_bplan/statement_sent.html'
+
+
+class BplanFinishedView(TemplateView):
+    template_name = 'meinberlin_bplan/bplan_finished.html'
 
 
 class BplanProjectCreateView(ExternalProjectCreateView):
