@@ -84,7 +84,8 @@ class ProjectFilterSet(DefaultsFilterSet):
 
     search = FreeTextFilter(
         widget=FreeTextFilterWidget,
-        fields=['name', 'description']
+        fields=['name', 'description',
+                'projectcontainer__projects__name']
     )
 
     organisation = django_filters.ModelChoiceFilter(
