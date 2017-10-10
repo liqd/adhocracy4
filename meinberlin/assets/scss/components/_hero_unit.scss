@@ -19,15 +19,12 @@
     }
 
     @media (min-width: $breakpoint) {
-        // HACK: We would prefer to use min-height to allow extremly long
-        // content.  However, in IE, flex is buggy when used with min-height.
-        // We expect the content to be short, so this should be fine.
-        height: ($hero-height-mobile + $hero-height) / 2;
+        min-height: ($hero-height-mobile + $hero-height) / 2;
         font-size: ($font-size-lg + 3.5rem) / 2;
     }
 
     @media (min-width: $breakpoint-md) {
-        height: $hero-height;
+        min-height: $hero-height;
         font-size: 3.5rem;
     }
 }
