@@ -2,7 +2,7 @@
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 
-<li class="tile">
+<li class="tile {% if project.projectcontainer %}tile--container{% endif %}">
     <div class="tile__head">
         <a tabindex="-1" class="tile__image tile__image--shadowed"
            aria-labelledby="project-title-{{ project.pk }}"
@@ -14,24 +14,26 @@
         {% if project_image_copyright %}
             <div class="tile__image__copyright copyright">© {{ project_image_copyright }}</div>
         {% endif %}
-        {% if project|is_external %}
-            <img src="{% static 'images/external_project.svg' %}" alt="{% trans 'External project' %}" class="tile__badge">
-        {% else %}
-            <img src="{% static 'images/meinberlin.svg' %}" alt="{% trans 'Project on meinBerlin' %}" class="tile__badge">
+        {% if not project.projectcontainer %}
+            {% if project|is_external %}
+                <img src="{% static 'images/external_project.svg' %}" alt="{% trans 'External project' %}" class="tile__badge">
+            {% else %}
+                <img src="{% static 'images/meinberlin.svg' %}" alt="{% trans 'Project on meinBerlin' %}" class="tile__badge">
+            {% endif %}
+
+            <div class="tile__labels">
+                {% get_days project.days_left as days %}
+                {% if project.has_finished %}
+                    <span class="label label--primary">{% trans "Finished" %}</span>
+                {% elif days %}
+                    <span class="label label--primary">{{ days }}</span>
+                {% endif %}
+
+                {% if not project.is_public %}
+                    <span class="label label--secondary">{% trans 'private' %}</span>
+                {% endif %}
+            </div>
         {% endif %}
-
-        <div class="tile__labels">
-            {% get_days project.days_left as days %}
-            {% if project.has_finished %}
-                <span class="label label--primary">{% trans "Finished" %}</span>
-            {% elif days %}
-                <span class="label label--primary">{{ days }}</span>
-            {% endif %}
-
-            {% if not project.is_public %}
-                <span class="label label--secondary">{% trans 'private' %}</span>
-            {% endif %}
-        </div>
     </div>
 
     <div class="tile__body">
@@ -41,16 +43,22 @@
 
         <p class="tile__text">{{ project.description }}</p>
 
-        {% if project.active_phase %}
+        {% if project.projectcontainer %}
             <p class="tile__hint">
-            {% html_date project.last_active_phase.end_date 'd.m.Y' as end_date %}
-            {% blocktrans with date=end_date %}Participation possible until {{ date }}{% endblocktrans %}
+                {% blocktrans with count=project.projectcontainer.projects.count active_count=project.projectcontainer.active_projects.count %}Currently {{ active_count }} of {{ count }} projects are active.{% endblocktrans %}
             </p>
-        {% elif project.future_phases %}
-            <p class="tile__hint">
-                {% html_date project.future_phases.first.start_date 'd.m.Y' as start_date %}
-                {% blocktrans with date=start_date %}Participation starting from {{ date }}{% endblocktrans %}
-            </p>
+        {% else %}
+            {% if project.active_phase %}
+                <p class="tile__hint">
+                    {% html_date project.last_active_phase.end_date 'd.m.Y' as end_date %}
+                    {% blocktrans with date=end_date %}Participation possible until {{ date }}{% endblocktrans %}
+                </p>
+            {% elif project.future_phases %}
+                <p class="tile__hint">
+                    {% html_date project.future_phases.first.start_date 'd.m.Y' as start_date %}
+                    {% blocktrans with date=start_date %}Participation starting from {{ date }}{% endblocktrans %}
+                </p>
+            {% endif %}
         {% endif %}
     </div>
 </li>
