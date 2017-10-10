@@ -1,8 +1,9 @@
 .hero-unit {
     min-height: $hero-height-mobile;
+    font-size: $font-size-lg;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
 
     position: relative;
 
@@ -10,42 +11,27 @@
     background-position: center;
     background-size: cover;
 
-    color: $text-color-inverted;
+    color: $brand-secondary;
 
     @media (min-width: $breakpoint) {
         // HACK: We would prefer to use min-height to allow extremly long
         // content.  However, in IE, flex is buggy when used with min-height.
         // We expect the content to be short, so this should be fine.
         height: ($hero-height-mobile + $hero-height) / 2;
+        font-size: ($font-size-lg + 3.5rem) / 2;
     }
 
     @media (min-width: $breakpoint-md) {
         height: $hero-height;
-    }
-
-    &:before {
-        content: "";
-        width: 100%;
-        height: 14em;
-        max-height: 100%;
-
-        position: absolute;
-        bottom: 0;
-
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8));
+        font-size: 3.5rem;
     }
 }
 
 .hero-unit__wrapper {
-    overflow: hidden;  // clear margins
-}
-
-.hero-unit__subtitle {
+    width: 45%;
+    padding: 1em 1.5em;
+    text-align: center;
     line-height: 1.2;
-    margin-top: 0.3em;
-    margin-bottom: 0.8rem;
-    font-weight: normal;
-    font-size: $font-size-xl;
 }
 
 .hero-unit__copyright {
