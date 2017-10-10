@@ -73,7 +73,9 @@ class ContainerProjectsComponent(ProjectFormComponent):
         )]
 
     def get_progress(self, project):
-        return (1, 1)
+        if project.projectcontainer.projects.all().exists():
+            return 1, 1
+        return 0, 1
 
 
 components.register_project(ContainerBasicComponent())

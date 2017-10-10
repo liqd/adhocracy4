@@ -57,3 +57,4 @@ class ContainerProjectsForm(ProjectDashboardForm):
     class Meta:
         model = models.ProjectContainer
         fields = ['projects']
+        required_for_project_publish = ['projects']
