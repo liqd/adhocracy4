@@ -13,6 +13,11 @@
 
     color: $brand-secondary;
 
+    // after dialogue box
+    &:first-child {
+        padding-top: 16px;
+    }
+
     @media (min-width: $breakpoint) {
         // HACK: We would prefer to use min-height to allow extremly long
         // content.  However, in IE, flex is buggy when used with min-height.
