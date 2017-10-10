@@ -11,6 +11,10 @@ class ProjectContainer(project_models.Project):
     )
 
     @property
+    def not_archived_projects(self):
+        return self.projects.filter(is_archived=False)
+
+    @property
     def active_projects(self):
         now = timezone.now()
         return self.projects.filter(
