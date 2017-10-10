@@ -16,7 +16,7 @@ class BplanProjectComponent(ProjectFormComponent):
 
     form_title = _('Edit development plan settings')
     form_class = forms.BplanProjectForm
-    form_template_name = 'meinberlin_dashboard/includes' \
+    form_template_name = 'meinberlin_bplan/includes' \
                          '/bplan_project_form.html'
 
     def is_effective(self, project):

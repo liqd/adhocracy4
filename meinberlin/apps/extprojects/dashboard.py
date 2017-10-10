@@ -16,7 +16,7 @@ class ExternalProjectComponent(ProjectFormComponent):
 
     form_title = _('Edit external project settings')
     form_class = forms.ExternalProjectForm
-    form_template_name = 'meinberlin_dashboard/includes' \
+    form_template_name = 'meinberlin_extprojects/includes' \
                          '/external_project_form.html'
 
     def is_effective(self, project):
