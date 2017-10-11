@@ -1,6 +1,6 @@
-{% load i18n extproject_tags %}
+{% load i18n meinberlin_project_tags %}
 
-<a href="{% extproject_url project 'project-detail' %}"
+<a href="{{ project|project_url }}"
    target="{{ project|is_external|yesno:"_blank,_self" }}"
    class="btn btn--light btn--full">
     <i class="fa fa-eye" aria-hidden="true"></i>
