@@ -1,14 +1,13 @@
-<div class="l-wrapper">
-    <div class="project-header u-after-dialogue-box">
-        <div class="l-wrapper">
-            <div class="l-center-6">
-                <h1 class="project-header__title">{{ container.name }}</h1>
-                <p class="project-header__description">{{ container.description }}</p>
-            </div>
+<div class="project-header u-after-dialogue-box">
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            <h1 class="project-header__title">{{ container.name }}</h1>
+            <p class="project-header__description">{{ container.description }}</p>
         </div>
     </div>
+</div>
 
-
+<div class="l-wrapper">
     <ul class="l-tiles-4">
         {% for project in container.not_archived_projects.all %}
             {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
