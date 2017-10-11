@@ -1,11 +1,21 @@
 {% extends "base.html" %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags meinberlin_project_tags %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags meinberlin_project_tags contrib_tags %}
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
     {% if project|is_container %}
-       {% include 'meinberlin_projectcontainers/includes/container_detail.html' with container=project.projectcontainer %}
+        {% include 'meinberlin_projectcontainers/includes/container_detail.html' with container=project.projectcontainer %}
+    {% elif project|project_type == 'bplan' %}
+        <div class="l-wrapper">
+            <div class="l-center-6">
+                <h1 class="u-first-heading">{% trans 'Participation is not possible at the moment.' %}</h1>
+                <p>
+                    {% html_date project.modules.first.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
+                    {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                </p>
+            </div>
+        </div>
     {% else %}
         <div class="project-header{% if project.image %} project-header--image{% endif %} u-after-dialogue-box" style="{% if view.project.image %}
                        background-image: url({{ project.image |thumbnail_url:'heroimage' }});
