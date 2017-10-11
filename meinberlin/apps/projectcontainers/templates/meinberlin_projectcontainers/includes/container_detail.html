@@ -1,17 +1,72 @@
-<div class="l-wrapper">
-    <div class="project-header u-after-dialogue-box">
-        <div class="l-wrapper">
-            <div class="l-center-6">
-                <h1 class="project-header__title">{{ container.name }}</h1>
-                <p class="project-header__description">{{ container.description }}</p>
-            </div>
+{% load i18n rules wagtailcore_tags %}
+
+<div class="project-header u-after-dialogue-box">
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            <h1 class="project-header__title">{{ container.name }}</h1>
+            <p class="project-header__description">{{ container.description }}</p>
         </div>
     </div>
+</div>
 
+<div class="tablist tablist--left">
+    <div class="l-wrapper">
+        <div class="tablist__right">
+            {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
+            {% if user_may_change %}
+                <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small">{% trans 'Edit' %}</a>
+            {% endif %}
+        </div>
 
-    <ul class="l-tiles-4">
-        {% for project in container.not_archived_projects.all %}
-            {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
-        {% endfor %}
-    </ul>
+        <nav role="tablist">
+            <a
+                id="tab-project-{{ project.pk }}-information"
+                class="tab"
+                data-toggle="tab"
+                href="#tabpanel-project-{{ project.pk }}-information"
+                role="tab"
+                aria-controls="tabpanel-project-{{ project.pk }}-information"
+                aria-expanded="false">
+                {% trans 'Information' %}
+            </a>
+            <a
+                id="tab-project-{{ project.pk }}-participation"
+                class="tab active"
+                data-toggle="tab"
+                href="#tabpanel-project-{{ project.pk }}-participation"
+                role="tab"
+                aria-controls="tabpanel-project-{{ project.pk }}-participation"
+                aria-expanded="true">
+                {% trans 'Participation' %}
+            </a>
+        </nav>
+    </div>
+</div>
+
+<div
+    class="tabpanel"
+    id="tabpanel-project-{{ project.pk }}-information"
+    role="tabpanel"
+    aria-labelledby="tab-project-{{ project.pk }}-information"
+    aria-expanded="false">
+    <div class="l-wrapper">
+        <div class="l-center-8">
+            {{ project.information | richtext }}
+        </div>
+    </div>
+</div>
+
+<div
+    class="tabpanel active"
+    id="tabpanel-project-{{ project.pk }}-participation"
+    role="tabpanel"
+    aria-labelledby="tab-project-{{ project.pk }}-participation"
+    aria-expanded="true">
+    <div class="l-wrapper">
+        <ul class="l-tiles-4">
+            {% for project in container.not_archived_projects.all %}
+                {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
+            {% endfor %}
+        </ul>
+    </div>
 </div>
