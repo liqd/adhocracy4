@@ -3,7 +3,7 @@ from tests.apps.questions import models as question_models
 from adhocracy4.filters.filters import PagedFilterSet
 
 
-class TextFilter(PagedFilterSet):
+class TextFilterSet(PagedFilterSet):
 
     class Meta:
         model = question_models.Question
@@ -15,5 +15,5 @@ def test_page_clean_query(rf):
         'page': 1
     })
 
-    filterset = TextFilter(data=request.GET, request=request)
+    filterset = TextFilterSet(data=request.GET, request=request, view=None)
     assert 'page' not in filterset.data
