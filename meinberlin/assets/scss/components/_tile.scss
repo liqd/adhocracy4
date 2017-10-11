@@ -75,10 +75,22 @@
 .tile__badge {
     height: 3.4em;
     width: 3.4em;
+    text-align: center;
+    border-radius: 50%;
 
     position: absolute;
     bottom: 0.8em;
     right: 0.8em;
+
+    i {
+        font-size: 1.7em;
+        line-height: 2;
+    }
+}
+
+.tile__badge--external {
+    background-color: $bg-secondary;
+    color: $brand-primary;
 }
 
 .tile__labels {

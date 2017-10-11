@@ -16,7 +16,9 @@
         {% endif %}
         {% if not project|is_container %}
             {% if project|is_external %}
-                <img src="{% static 'images/external_project.svg' %}" alt="{% trans 'External project' %}" class="tile__badge">
+                <div class="tile__badge tile__badge--external">
+                    <i class="fa fa-mail-forward" aria-label="{% trans 'External Project' %}"></i>
+                </div>
             {% else %}
                 <img src="{% static 'images/meinberlin.svg' %}" alt="{% trans 'Project on meinBerlin' %}" class="tile__badge">
             {% endif %}
