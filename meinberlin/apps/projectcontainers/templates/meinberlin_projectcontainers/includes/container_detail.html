@@ -13,6 +13,16 @@
     <div class="l-wrapper">
         <nav role="tablist">
             <a
+                id="tab-project-{{ project.pk }}-information"
+                class="tab"
+                data-toggle="tab"
+                href="#tabpanel-project-{{ project.pk }}-information"
+                role="tab"
+                aria-controls="tabpanel-project-{{ project.pk }}-information"
+                aria-expanded="false">
+                {% trans 'Information' %}
+            </a>
+            <a
                 id="tab-project-{{ project.pk }}-participation"
                 class="tab active"
                 data-toggle="tab"
@@ -23,6 +33,19 @@
                 {% trans 'Participation' %}
             </a>
         </nav>
+    </div>
+</div>
+
+<div
+    class="tabpanel"
+    id="tabpanel-project-{{ project.pk }}-information"
+    role="tabpanel"
+    aria-labelledby="tab-project-{{ project.pk }}-information"
+    aria-expanded="false">
+    <div class="l-wrapper">
+        <div class="l-center-8">
+            {{ project.information | richtext }}
+        </div>
     </div>
 </div>
 
