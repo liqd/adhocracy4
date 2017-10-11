@@ -48,6 +48,16 @@ class ContainerBasicForm(ProjectDashboardForm):
         help_texts = HELP_TEXTS
 
 
+class ContainerInformationForm(ProjectDashboardForm):
+
+    class Meta:
+        model = models.ProjectContainer
+        fields = ['information']
+        required_for_project_publish = ['information']
+        labels = LABELS
+        help_texts = HELP_TEXTS
+
+
 class ContainerProjectsForm(ProjectDashboardForm):
 
     def __init__(self, *args, **kwargs):
