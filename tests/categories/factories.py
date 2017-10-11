@@ -9,4 +9,5 @@ class CategoryFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Category
 
+    name = factory.Faker('job')
     module = factory.SubFactory(ModuleFactory)
