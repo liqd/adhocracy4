@@ -40,13 +40,13 @@ class Command(BaseCommand):
 
     def _import_regions(self):
         url = 'http://fbinter.stadt-berlin.de/fb/' \
-              'wfs/geometry/senstadt/re_bezirksregion'
+              'wfs/geometry/senstadt/re_bezirksregion/'
         tmpfile = '/tmp/bezirksregions.json'
         self._download_geodata(tmpfile, url,
                                'fis:re_bezirksregion')
         data = json.load(open(tmpfile, 'r'))
         for feature in data['features']:
-            district = feature['properties']['BEZIRK']
+            district = feature['properties']['BEZNAME']
             region = feature['properties']['BZR_NAME']
             category = self._preset_category(district)
             if not map_models.MapPreset.objects.filter(name=region).exists():
@@ -78,7 +78,7 @@ class Command(BaseCommand):
 
         src = 'WFS:{}{}'.format(
             url,
-            '?TYPENAMES=GML2' if self.is_gdal_legacy else ''
+            '?VERSION=1.1.0' if self.is_gdal_legacy else ''
         )
         try:
             print('Trying to download file from {}'.format(url))
