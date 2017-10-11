@@ -93,6 +93,11 @@
     color: $brand-primary;
 }
 
+.tile__badge--container {
+    background-color: $brand-secondary;
+    color: $bg-secondary;
+}
+
 .tile__labels {
     position: absolute;
     bottom: 0.8em;

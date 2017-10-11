@@ -14,15 +14,20 @@
         {% if project_image_copyright %}
             <div class="tile__image__copyright copyright">© {{ project_image_copyright }}</div>
         {% endif %}
-        {% if not project|is_container %}
-            {% if project|is_external %}
-                <div class="tile__badge tile__badge--external">
-                    <i class="fa fa-mail-forward" aria-label="{% trans 'External Project' %}"></i>
-                </div>
-            {% else %}
-                <img src="{% static 'images/meinberlin.svg' %}" alt="{% trans 'Project on meinBerlin' %}" class="tile__badge">
-            {% endif %}
 
+        {% if project|is_container %}
+            <div class="tile__badge tile__badge--container">
+                <i class="fa fa-folder-open" aria-label="{% trans 'Container' %}"></i>
+            </div>
+        {% elif project|is_external %}
+            <div class="tile__badge tile__badge--external">
+                <i class="fa fa-mail-forward" aria-label="{% trans 'External Project' %}"></i>
+            </div>
+        {% else %}
+            <img src="{% static 'images/meinberlin.svg' %}" alt="{% trans 'Project on meinBerlin' %}" class="tile__badge">
+        {% endif %}
+
+        {% if not project|is_container %}
             <div class="tile__labels">
                 {% get_days project.days_left as days %}
                 {% if project.has_finished %}
