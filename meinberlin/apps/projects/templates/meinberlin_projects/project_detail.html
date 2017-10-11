@@ -7,6 +7,8 @@
     {% if project|is_container %}
         {% include 'meinberlin_projectcontainers/includes/container_detail.html' with container=project.projectcontainer %}
     {% elif project|project_type == 'bplan' %}
+        {# As bplan projects don't set the information and the result field, the default project detail, which is shown prior to the first phase, looks bad. #}
+        {# This replaces the default project detail by a simple notice that the participation has not started yet. #}
         <div class="l-wrapper">
             <div class="l-center-6">
                 <h1 class="u-first-heading">{% trans 'Participation is not possible at the moment.' %}</h1>
