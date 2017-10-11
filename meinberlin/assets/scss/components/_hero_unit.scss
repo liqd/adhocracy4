@@ -2,21 +2,12 @@
     min-height: $hero-height-mobile;
     font-size: $font-size-lg;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
 
     position: relative;
 
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-
     color: $brand-secondary;
-
-    // after dialogue box
-    &:first-child {
-        padding-top: 16px;
-    }
 
     @media (min-width: $breakpoint) {
         min-height: ($hero-height-mobile + $hero-height) / 2;
@@ -30,13 +21,27 @@
 }
 
 .hero-unit__wrapper {
-    width: 45%;
+    flex: 1 0 40%;
     padding: $padding;
     line-height: 1.2;
+
+    // after dialogue box
+    .hero-unit:first-child & {
+        margin-top: 16px;
+    }
 
     @media (min-width: $breakpoint) {
         padding-left: 1em;
     }
+}
+
+.hero-unit__img {
+    flex: 0 1 100%;
+    align-self: stretch;
+
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: cover;
 }
 
 .hero-unit__copyright {
