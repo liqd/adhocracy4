@@ -1,8 +1,9 @@
-{% load i18n rules wagtailcore_tags %}
+{% load i18n rules thumbnail wagtailcore_tags %}
 
 <div class="project-header u-after-dialogue-box">
     <div class="l-wrapper">
         <div class="l-center-6">
+            <img class="project-header__logo" src="{% thumbnail container.tile_image 'logo' %}" alt="" />
             <h1 class="project-header__title">{{ container.name }}</h1>
             <p class="project-header__description">{{ container.description }}</p>
         </div>
