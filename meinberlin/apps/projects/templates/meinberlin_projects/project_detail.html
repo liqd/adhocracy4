@@ -1,111 +1,123 @@
 {% extends "base.html" %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags meinberlin_project_tags %}
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-<div class="project-header{% if project.image %} project-header--image{% endif %} u-after-dialogue-box" style="{% if view.project.image %}
-               background-image: url({{ project.image |thumbnail_url:'heroimage' }});
-               {% endif %}">
-    <div class="l-wrapper">
-        <div class="l-center-6">
-            <h1 class="project-header__title">{{ project.name }}</h1>
-            <p class="project-header__description">{{ project.description }}</p>
+    {% if project|is_container %}
+       {% include 'meinberlin_projectcontainers/includes/container_detail.html' with container=project.projectcontainer %}
+    {% else %}
+        <div class="project-header{% if project.image %} project-header--image{% endif %} u-after-dialogue-box" style="{% if view.project.image %}
+                       background-image: url({{ project.image |thumbnail_url:'heroimage' }});
+                       {% endif %}">
+            <div class="l-wrapper">
+                <div class="l-center-6">
+                    {% with container=project.containers.first %}
+                        {% if container %}
+                            <a href="{{ container.get_absolute_url }}" class="project-header__link">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                {% blocktrans with name=container.name %}back to {{ name }}{% endblocktrans %}
+                            </a>
+                        {% endif %}
+                    {% endwith %}
+                    <h1 class="project-header__title">{{ project.name }}</h1>
+                    <p class="project-header__description">{{ project.description }}</p>
+                </div>
+            </div>
+            {% if project.image_copyright %}
+                <div class="project-header__copyright copyright">© {{ project.image_copyright }}</div>
+            {% endif %}
         </div>
-    </div>
-    {% if project.image_copyright %}
-        <div class="project-header__copyright copyright">© {{ project.image_copyright }}</div>
+
+        <div class="tablist tablist--left">
+            <div class="l-wrapper">
+                <div class="tablist__right">
+                    {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
+                    {% if user_may_change %}
+                        <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small">{% trans 'Edit' %}</a>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                        {% react_follows project %}
+                    {% endif %}
+                </div>
+
+                <nav role="tablist">
+                    <a
+                        id="tab-project-{{ project.pk }}-information"
+                        class="tab{% if not project.has_started %} active{% endif %}"
+                        data-toggle="tab"
+                        href="#tabpanel-project-{{ project.pk }}-information"
+                        role="tab"
+                        aria-controls="tabpanel-project-{{ project.pk }}-information"
+                        aria-expanded="false">
+                        {% trans 'Information' %}
+                    </a>
+                    <a
+                        id="tab-project-{{ project.pk }}-participation"
+                        class="tab{% if project.has_started %} active{% endif %}"
+                        data-toggle="tab"
+                        href="#tabpanel-project-{{ project.pk }}-participation"
+                        role="tab"
+                        aria-controls="tabpanel-project-{{ project.pk }}-participation"
+                        aria-expanded="true">
+                        {% trans 'Participation' %}
+                    </a>
+                    <a
+                        id="tab-project-{{ project.pk }}-result"
+                        class="tab"
+                        data-toggle="tab"
+                        href="#tabpanel-project-{{ project.pk }}-result"
+                        role="tab"
+                        aria-controls="tabpanel-project-{{ project.pk }}-result"
+                        aria-expanded="false">
+                        {% trans 'Result' %}
+                    </a>
+                </nav>
+            </div>
+        </div>
+
+        <div
+            class="tabpanel{% if not project.has_started %} active{% endif %}"
+            id="tabpanel-project-{{ project.pk }}-information"
+            role="tabpanel"
+            aria-labelledby="tab-project-{{ project.pk }}-information"
+            aria-expanded="false">
+            <div class="l-wrapper">
+                <div class="l-center-8">
+                    {{ project.information | richtext }}
+                </div>
+            </div>
+        </div>
+        <div
+            class="tabpanel{% if project.has_started %} active{% endif %}"
+            id="tabpanel-project-{{ project.pk }}-participation"
+            role="tabpanel"
+            aria-labelledby="tab-project-{{ project.pk }}-participation"
+            aria-expanded="true">
+            <div class="l-wrapper">
+                {% include "meinberlin_projects/includes/timeline.html" with project=project %}
+
+                <div class="l-center-6">
+                    {% block project_action %}{% endblock %}
+                </div>
+            </div>
+            {% block phase_content %}{% endblock %}
+        </div>
+        <div
+            class="tabpanel"
+            id="tabpanel-project-{{ project.pk }}-result"
+            role="tabpanel"
+            aria-labelledby="tab-project-{{ project.pk }}-result"
+            aria-expanded="false">
+            <div class="l-wrapper">
+                <div class="l-center-8">
+                    {% if project.result %}
+                        {{ project.result | richtext }}
+                    {% else %}
+                        {% trans 'No results yet.' %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     {% endif %}
-</div>
-
-<div class="tablist tablist--left">
-    <div class="l-wrapper">
-        <div class="tablist__right">
-            {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
-            {% if user_may_change %}
-                <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small">{% trans 'Edit' %}</a>
-            {% endif %}
-            {% if request.user.is_authenticated %}
-                {% react_follows project %}
-            {% endif %}
-        </div>
-
-        <nav role="tablist">
-            <a
-                id="tab-project-{{ project.pk }}-information"
-                class="tab{% if not project.has_started %} active{% endif %}"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ project.pk }}-information"
-                role="tab"
-                aria-controls="tabpanel-project-{{ project.pk }}-information"
-                aria-expanded="false">
-                {% trans 'Information' %}
-            </a>
-            <a
-                id="tab-project-{{ project.pk }}-participation"
-                class="tab{% if project.has_started %} active{% endif %}"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ project.pk }}-participation"
-                role="tab"
-                aria-controls="tabpanel-project-{{ project.pk }}-participation"
-                aria-expanded="true">
-                {% trans 'Participation' %}
-            </a>
-            <a
-                id="tab-project-{{ project.pk }}-result"
-                class="tab"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ project.pk }}-result"
-                role="tab"
-                aria-controls="tabpanel-project-{{ project.pk }}-result"
-                aria-expanded="false">
-                {% trans 'Result' %}
-            </a>
-        </nav>
-    </div>
-</div>
-
-<div
-    class="tabpanel{% if not project.has_started %} active{% endif %}"
-    id="tabpanel-project-{{ project.pk }}-information"
-    role="tabpanel"
-    aria-labelledby="tab-project-{{ project.pk }}-information"
-    aria-expanded="false">
-    <div class="l-wrapper">
-        <div class="l-center-8">
-            {{ project.information | richtext }}
-        </div>
-    </div>
-</div>
-<div
-    class="tabpanel{% if project.has_started %} active{% endif %}"
-    id="tabpanel-project-{{ project.pk }}-participation"
-    role="tabpanel"
-    aria-labelledby="tab-project-{{ project.pk }}-participation"
-    aria-expanded="true">
-    <div class="l-wrapper">
-        {% include "meinberlin_projects/includes/timeline.html" with project=project %}
-
-        <div class="l-center-6">
-            {% block project_action %}{% endblock %}
-        </div>
-    </div>
-    {% block phase_content %}{% endblock %}
-</div>
-<div
-    class="tabpanel"
-    id="tabpanel-project-{{ project.pk }}-result"
-    role="tabpanel"
-    aria-labelledby="tab-project-{{ project.pk }}-result"
-    aria-expanded="false">
-    <div class="l-wrapper">
-        <div class="l-center-8">
-            {% if project.result %}
-                {{ project.result | richtext }}
-            {% else %}
-                {% trans 'No results yet.' %}
-            {% endif %}
-        </div>
-    </div>
-</div>
 {% endblock %}

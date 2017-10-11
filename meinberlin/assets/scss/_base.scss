@@ -96,7 +96,8 @@ a:not([href]) {
     }
 }
 
-textarea {
+textarea,
+select[multiple] {
     resize: vertical;
 }
 

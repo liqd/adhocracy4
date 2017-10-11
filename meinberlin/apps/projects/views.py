@@ -84,7 +84,8 @@ class ProjectFilterSet(DefaultsFilterSet):
 
     search = FreeTextFilter(
         widget=FreeTextFilterWidget,
-        fields=['name', 'description']
+        fields=['name', 'description',
+                'projectcontainer__projects__name']
     )
 
     organisation = django_filters.ModelChoiceFilter(
@@ -114,12 +115,27 @@ class ProjectListView(filter_views.FilteredListView):
     filter_set = ProjectFilterSet
 
     def get_queryset(self):
+        # FIXME: has to be in sync with a4projects.view_project and should
+        #        be implemented on the ProjectQueryManager in core
+
+        q_false = Q(pk=None)
+        is_superuser = ~q_false if self.request.user.is_superuser else q_false
+
         return super().get_queryset().filter(
-            Q(is_draft=False, is_public=False,
-              participants__pk=self.request.user.pk) |
-            Q(is_draft=False, is_public=False,
-              organisation__initiators__pk=self.request.user.pk) |
-            Q(is_draft=False, is_public=True)
+            Q(is_draft=False) & (
+                Q(is_public=True) |
+                is_superuser |
+                Q(participants__pk=self.request.user.pk) |
+                Q(organisation__initiators__pk=self.request.user.pk) |
+                Q(moderators__pk=self.request.user.pk)
+            ) & (
+                # Do not include archived bplan projects
+                Q(is_archived=False) |
+                Q(externalproject__bplan=None)
+            ) & (
+                # Do not include projects belonging to containers
+                Q(containers=None)
+            )
         ).distinct()
 
 

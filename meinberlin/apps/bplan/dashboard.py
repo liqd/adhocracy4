@@ -1,9 +1,9 @@
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
-from meinberlin.apps.dashboard import get_project_type
 from meinberlin.apps.dashboard2 import ProjectFormComponent
 from meinberlin.apps.dashboard2 import components
+from meinberlin.apps.projects import get_project_type
 
 from . import forms
 from . import views
@@ -16,7 +16,7 @@ class BplanProjectComponent(ProjectFormComponent):
 
     form_title = _('Edit development plan settings')
     form_class = forms.BplanProjectForm
-    form_template_name = 'meinberlin_dashboard/includes' \
+    form_template_name = 'meinberlin_bplan/includes' \
                          '/bplan_project_form.html'
 
     def is_effective(self, project):

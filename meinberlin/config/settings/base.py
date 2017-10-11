@@ -99,9 +99,10 @@ INSTALLED_APPS = (
     'meinberlin.apps.ideas.apps.Config',
     'meinberlin.apps.kiezkasse.apps.Config',
     'meinberlin.apps.mapideas.apps.Config',
-    'meinberlin.apps.polls.apps.Config',
-    'meinberlin.apps.topicprio.apps.Config',
     'meinberlin.apps.maptopicprio.apps.Config',
+    'meinberlin.apps.polls.apps.Config',
+    'meinberlin.apps.projectcontainers.apps.Config',
+    'meinberlin.apps.topicprio.apps.Config',
 )
 
 MIDDLEWARE = (
@@ -373,6 +374,14 @@ A4_AUTO_FOLLOWABLES = (
     ('meinberlin_kiezkasse', 'proposal'),
     ('meinberlin_polls', 'vote'),  # TODO: really?
 )
+
+A4_CATEGORIZABLE = (
+    ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_kiezkasse', 'proposal'),
+)
+
 
 A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'

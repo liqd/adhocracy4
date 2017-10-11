@@ -13,12 +13,14 @@
 {% block content %}
     {% image self.header_image fill-1920x560-c100 as header_image %}
 
-    <div class="hero-unit" style="background-image: url({{ header_image.url }})">
+    <div class="hero-unit" {% if header_image.url %}style="background-image: url({{ header_image.url }})"{% endif %}>
         <div class="l-wrapper hero-unit__wrapper">
             <h1 class="hero-unit__title">{{ self.title }}</h1>
             <div class="hero-unit__subtitle">{{ self.subtitle }}</div>
         </div>
-        <div class="hero-unit__copyright copyright">© {{ self.header_image.copyright }}</div>
+        {% if self.header_image.copyright %}
+            <div class="hero-unit__copyright copyright">© {{ self.header_image.copyright }}</div>
+        {% endif %}
     </div>
 
     {% for block in self.body %}
