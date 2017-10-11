@@ -11,6 +11,13 @@
 
 <div class="tablist tablist--left">
     <div class="l-wrapper">
+        <div class="tablist__right">
+            {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
+            {% if user_may_change %}
+                <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small">{% trans 'Edit' %}</a>
+            {% endif %}
+        </div>
+
         <nav role="tablist">
             <a
                 id="tab-project-{{ project.pk }}-information"
