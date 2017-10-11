@@ -9,6 +9,8 @@ from . import models
 LABELS = {
     'name': _('Title of your container'),
     'description': _('Short description of your container'),
+    'information': _('Description of your container'),
+    'tile_image': _('Logo'),
 }
 
 HELP_TEXTS = {
@@ -18,7 +20,10 @@ HELP_TEXTS = {
     'description': _('This short description will appear on '
                      'the header of the container and in the teaser. '
                      'It should briefly state the goal of the '
-                     'projects in max. 250 chars.')
+                     'projects in max. 250 chars.'),
+    'tile_image': _(
+        'The image will be shown in the container tile.'
+    ),
 }
 
 
