@@ -31,9 +31,12 @@
 
 .hero-unit__wrapper {
     width: 45%;
-    padding: 1em 1.5em;
-    text-align: center;
+    padding: $padding;
     line-height: 1.2;
+
+    @media (min-width: $breakpoint) {
+        padding-left: 1em;
+    }
 }
 
 .hero-unit__copyright {
