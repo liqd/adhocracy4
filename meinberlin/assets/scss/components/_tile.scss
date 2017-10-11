@@ -113,3 +113,12 @@
         color: $text-muted;
     }
 }
+
+.tile__hint--container {
+    color: $text-color;
+}
+
+.tile__hint__big {
+    font-size: 1rem;
+    font-weight: bold;
+}
