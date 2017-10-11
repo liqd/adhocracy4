@@ -20,8 +20,10 @@ class FilteredListView(generic.ListView):
             'data': self.request.GET,
             'request': self.request,
             'queryset': super().get_queryset(),
-            'view': self
         }
+
+        if getattr(self.filter_set, 'class_based_filterset', False):
+            default_kwargs['view'] = self
 
         return default_kwargs
 

@@ -8,6 +8,8 @@ import operator
 class ClassBasedViewFilterSet(django_filters.FilterSet):
     """Passes the view instance through to the filters of the set."""
 
+    class_based_filterset = True
+
     def __init__(self, *args, view, **kwargs):
         super().__init__(*args, **kwargs)
         self.view = view
