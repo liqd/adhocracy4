@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags meinberlin_project_tags %}
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-    {% if project.projectcontainer %}
+    {% if project|is_container %}
        {% include 'meinberlin_projectcontainers/includes/container_detail.html' with container=project.projectcontainer %}
     {% else %}
         <div class="project-header{% if project.image %} project-header--image{% endif %} u-after-dialogue-box" style="{% if view.project.image %}

@@ -1,20 +1,6 @@
-from functools import lru_cache
-
 from meinberlin.apps.dashboard2 import components
 from meinberlin.apps.dashboard2 import ProjectDashboard
-
-
-@lru_cache(maxsize=8)
-def get_project_type(project):
-    if (hasattr(project, 'externalproject') and
-            hasattr(project.externalproject, 'bplan')):
-        return 'bplan'
-    elif hasattr(project, 'externalproject'):
-        return 'external'
-    elif hasattr(project, 'projectcontainer'):
-        return 'container'
-    else:
-        return 'default'
+from meinberlin.apps.projects import get_project_type
 
 
 class TypedProjectDashboard(ProjectDashboard):

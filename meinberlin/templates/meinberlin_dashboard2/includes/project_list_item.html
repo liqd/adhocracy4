@@ -1,4 +1,4 @@
-{% load i18n project_tags extproject_tags thumbnail contrib_tags %}
+{% load i18n project_tags meinberlin_project_tags thumbnail contrib_tags %}
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 
@@ -24,7 +24,7 @@
             <div class="lr-bar__right">
                 <div class="btn-group">
                 {% spaceless %}
-                    <a href="{% extproject_url project 'project-detail' %}"
+                    <a href="{{ project|project_url }}"
                        target="{{ project|is_external|yesno:"_blank,_self" }}"
                        class="btn btn--light btn--small">
                         <i class="fa fa-eye" aria-hidden="true"></i>
