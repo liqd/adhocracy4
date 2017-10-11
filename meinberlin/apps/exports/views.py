@@ -97,7 +97,10 @@ class AbstractXlsxExportView(generic.View):
         response['Content-Disposition'] = \
             'attachment; filename="%s"' % self.get_filename()
 
-        workbook = xlsxwriter.Workbook(response, {'in_memory': True})
+        workbook = xlsxwriter.Workbook(response, {
+            'in_memory': True,
+            'strings_to_formulas': False
+        })
         worksheet = workbook.add_worksheet()
 
         for colnum, field in enumerate(self.get_header()):

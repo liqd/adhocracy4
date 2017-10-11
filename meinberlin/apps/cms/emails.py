@@ -20,7 +20,10 @@ class XlsxFormEmail(FormEmail):
 
     def _generate_xlsx(self):
         stream = io.BytesIO()
-        workbook = xlsxwriter.Workbook(stream, {'in_memory': True})
+        workbook = xlsxwriter.Workbook(stream, {
+            'in_memory': True,
+            'strings_to_formulas': False
+        })
         worksheet = workbook.add_worksheet()
 
         worksheet.write(0, 0, _('Form Field'))
