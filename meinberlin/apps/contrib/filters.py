@@ -11,7 +11,7 @@ class OrderingWidget(DropdownLinkWidget):
     right = True
 
 
-class OrderingFilter(mixins.ChoicesRequestMixin,
+class OrderingFilter(mixins.DynamicChoicesMixin,
                      django_filters.OrderingFilter):
 
     def __init__(self, *args, **kwargs):

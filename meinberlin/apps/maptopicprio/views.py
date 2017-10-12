@@ -13,9 +13,9 @@ from . import forms
 from . import models
 
 
-def get_ordering_choices(request):
+def get_ordering_choices(view):
     choices = (('-created', _('Most recent')),)
-    if request.module.has_feature('rate', models.MapTopic):
+    if view.module.has_feature('rate', models.MapTopic):
         choices += ('-positive_rating_count', _('Most popular')),
     choices += ('-comment_count', _('Most commented')),
     return choices
