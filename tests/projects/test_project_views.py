@@ -76,7 +76,6 @@ def test_project_context_kwargs(rf, project):
 
     assert response.content == b'project_context'
     assert view.project == project
-    assert request.project == project
 
 
 @pytest.mark.django_db
@@ -87,7 +86,6 @@ def test_project_context_url(rf, project):
 
     assert response.content == b'project_context'
     assert view.project == project
-    assert request.project == project
 
 
 @pytest.mark.django_db
@@ -102,7 +100,6 @@ def test_project_context_url_overwrite(rf, project):
 
     assert response.content == b'project_context'
     assert view.project == project
-    assert request.project == project
 
 
 @pytest.mark.django_db
@@ -116,7 +113,6 @@ def test_project_context_object(rf, project):
 
     assert response.content == b'project_context'
     assert view.project == project
-    assert request.project == project
 
 
 @pytest.mark.django_db
@@ -130,7 +126,6 @@ def test_project_context_project_object(rf, project):
 
     assert response.content == b'project_context'
     assert view.project == project
-    assert request.project == project
 
 
 @pytest.mark.django_db
@@ -145,7 +140,6 @@ def test_project_context_overwrite(rf, project):
 
     assert response.content == b'project_context'
     assert view.project == project
-    assert request.project == project
 
 
 @pytest.mark.django_db

@@ -112,11 +112,9 @@ class ProjectContextDispatcher(generic.base.ContextMixin, generic.View):
         """Get this contexts project and module and validate them."""
         module = self.get_module(*args, **kwargs)
         self.module = module
-        self.request.module = module
 
         project = self.get_project(*args, **kwargs)
         self.project = project
-        self.request.project = project
 
         if not project:
             raise Http404()
