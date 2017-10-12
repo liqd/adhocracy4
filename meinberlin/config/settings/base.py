@@ -354,8 +354,6 @@ A4_REPORTABLES = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
-    ('meinberlin_topicprio', 'topic'),
-    ('meinberlin_maptopicprio', 'maptopic'),
     ('meinberlin_kiezkasse', 'proposal'),
 )
 
