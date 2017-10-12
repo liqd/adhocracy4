@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
+from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
@@ -32,7 +33,7 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {
         'ordering': '-created'
     }
-    category = filters.CategoryFilter()
+    category = category_filters.CategoryFilter()
     ordering = filters.OrderingFilter(
         choices=get_ordering_choices
     )

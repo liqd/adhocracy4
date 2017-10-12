@@ -1,5 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
 from meinberlin.apps.contrib import filters
 from meinberlin.apps.exports import views as export_views
@@ -21,7 +22,7 @@ class MapIdeaFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {
         'ordering': '-created'
     }
-    category = filters.CategoryFilter()
+    category = category_filters.CategoryFilter()
     ordering = filters.OrderingFilter(
         choices=get_ordering_choices
     )
