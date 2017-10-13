@@ -27,6 +27,11 @@ class PhaseContents():
     def register(self, phase):
         self._registry[phase.identifier] = phase
 
+    def app_phases(self, app_label):
+        return [identifier for identifier
+                in self._registry.keys()
+                if identifier.startswith('{}:'.format(app_label))]
+
     def as_choices(self):
         return [(identifier, str(phase))
                 for identifier, phase in self._registry.items()]

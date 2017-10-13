@@ -32,3 +32,8 @@ def test_phase_content(dummy_phase):
     assert dummy_phase.identifier == 'dummy:999:phase'
     assert str(dummy_phase) == 'DummyPhase (dummy:phase)'
     assert dummy_phase.has_feature('comment', models.Question)
+
+
+def test_app_phases():
+    assert (sorted(content.app_phases('a4test_questions'))
+            == ['a4test_questions:020:ask', 'a4test_questions:030:rate'])
