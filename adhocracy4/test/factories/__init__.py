@@ -60,7 +60,7 @@ class ProjectFactory(factory.django.DjangoModelFactory):
     slug = factory.Faker('slug')
     organisation = factory.SubFactory(ORGANISATION_FACTORY)
     description = factory.Faker('text', max_nb_chars=120)
-    information = factory.Faker('paragraphs')
+    information = factory.Faker('text')
     is_public = True
     is_draft = False
 
