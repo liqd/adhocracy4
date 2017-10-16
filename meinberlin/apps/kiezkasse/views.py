@@ -5,6 +5,7 @@ from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.ideas import views as idea_views
 
 from . import forms
@@ -79,12 +80,14 @@ class ProposalDeleteView(idea_views.AbstractIdeaDeleteView):
     template_name = 'meinberlin_kiezkasse/proposal_confirm_delete.html'
 
 
-class ProposalModerateView(rules_mixins.PermissionRequiredMixin,
+class ProposalModerateView(ProjectContextMixin,
+                           rules_mixins.PermissionRequiredMixin,
                            generic.UpdateView):
     model = models.Proposal
     form_class = forms.ProposalModerateForm
     permission_required = 'meinberlin_kiezkasse.moderate_proposal'
     template_name = 'meinberlin_kiezkasse/proposal_moderate_form.html'
+    get_context_from_object = True
 
     def get_success_url(self):
         return self.get_object().get_absolute_url()

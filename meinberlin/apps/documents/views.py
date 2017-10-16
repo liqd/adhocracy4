@@ -23,6 +23,7 @@ class ChapterDetailView(ProjectContextMixin,
                         generic.DetailView):
     model = models.Chapter
     permission_required = 'meinberlin_documents.view_chapter'
+    get_context_from_object = True
 
     def dispatch(self, request, *args, **kwargs):
         # Redirect first chapter view to the project detail page
@@ -45,6 +46,7 @@ class ChapterDetailView(ProjectContextMixin,
 
 
 class DocumentDetailView(ChapterDetailView):
+    get_context_from_object = False
 
     def get_object(self):
         first_chapter = models.Chapter.objects \

@@ -24,8 +24,7 @@ class BplanStatementFormView(ProjectContextMixin,
     success_url = reverse_lazy('meinberlin_bplan:statement-sent')
 
     def dispatch(self, request, *args, **kwargs):
-        project = self.get_project(*args, **kwargs)
-        if project.has_finished:
+        if self.project.has_finished:
             return HttpResponseRedirect(reverse('meinberlin_bplan:finished'))
         return super().dispatch(request, *args, **kwargs)
 

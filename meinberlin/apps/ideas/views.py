@@ -66,7 +66,7 @@ class IdeaListView(AbstractIdeaListView):
 class AbstractIdeaDetailView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.DetailView):
-    pass
+    get_context_from_object = True
 
 
 class IdeaDetailView(AbstractIdeaDetailView):
@@ -107,6 +107,7 @@ class IdeaCreateView(AbstractIdeaCreateView):
 class AbstractIdeaUpdateView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.UpdateView):
+    get_context_from_object = True
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()

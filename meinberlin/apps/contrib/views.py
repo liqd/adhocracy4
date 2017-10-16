@@ -11,16 +11,24 @@ class ProjectContextMixin(generic.base.ContextMixin):
 
     This acts as a replacement of ProjectMixin and
     is a counterpart to the PhaseDispatcher logic.
+
+    To consider the object context from get_object() set the
+    get_context_from_object attribute. Enable this only if get_object() does
+    not access the project and module properties.
     """
 
     project_lookup_field = 'slug'
     project_url_kwarg = 'project_slug'
     module_lookup_field = 'slug'
     module_url_kwarg = 'module_slug'
+    get_context_from_object = False
 
     @property
     def module(self):
-        """Get the module from the kwargs, url or current object."""
+        """Get the module from the current object, kwargs or url."""
+        if self.get_context_from_object:
+            return self._get_object(Module, 'module')
+
         if 'module' in self.kwargs \
                 and isinstance(self.kwargs['module'], Module):
             return self.kwargs['module']
@@ -31,13 +39,14 @@ class ProjectContextMixin(generic.base.ContextMixin):
             }
             return get_object_or_404(Module, **lookup)
 
-        return self._get_object(Module, 'module')
-
     @property
     def project(self):
         """Get the project from the module, kwargs, url or current object."""
         if self.module:
             return self.module.project
+
+        if self.get_context_from_object:
+            return self._get_object(Project, 'project')
 
         if 'project' in self.kwargs \
                 and isinstance(self.kwargs['project'], Project):
@@ -48,8 +57,6 @@ class ProjectContextMixin(generic.base.ContextMixin):
                 self.project_lookup_field: self.kwargs[self.project_url_kwarg]
             }
             return get_object_or_404(Project, **lookup)
-
-        return self._get_object(Project, 'project')
 
     def _get_object(self, cls, attr):
         # CreateView supplies a defect get_object method and has to be excluded
