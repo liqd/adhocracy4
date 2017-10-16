@@ -18,9 +18,9 @@ class AreaSettingsAdmin(admin.ModelAdmin):
         (None, {'fields': ('module',)}),
         (_('Polygon'), {
             'fields': ('polygon',),
-            'description': _('Enter a valid GeoJSON object. An empty string is'
-                             ' not valid. To initialize a new areasetting'
-                             ' enter "" or {}.')
+            'description': _('Enter a valid GeoJSON object. '
+                             'To initialize a new areasetting enter the '
+                             'string "false" without quotation marks.')
         })
     )
 
