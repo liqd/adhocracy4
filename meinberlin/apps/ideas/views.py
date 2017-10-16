@@ -98,8 +98,6 @@ class AbstractIdeaCreateView(ProjectContextDispatcher,
                              generic.CreateView):
     """Create an idea in the context of a module."""
 
-    module_url_kwarg = 'slug'
-
     def get_permission_object(self, *args, **kwargs):
         return self.module
 

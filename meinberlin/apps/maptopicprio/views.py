@@ -104,7 +104,6 @@ class MapTopicListDashboardView(mixins.DashboardComponentMixin,
     template_name = 'meinberlin_maptopicprio/maptopic_dashboard_list.html'
     filter_set = MapTopicCreateFilterSet
     permission_required = 'a4projects.add_project'
-    module_url_kwarg = 'module_slug'
 
     def get_queryset(self):
         return super().get_queryset()\
@@ -122,7 +121,6 @@ class MapTopicCreateView(mixins.DashboardComponentMixin,
     form_class = forms.MapTopicForm
     permission_required = 'meinberlin_maptopicprio.add_maptopic'
     template_name = 'meinberlin_maptopicprio/maptopic_create_form.html'
-    module_url_kwarg = 'module_slug'
 
     def get_success_url(self):
         return reverse(

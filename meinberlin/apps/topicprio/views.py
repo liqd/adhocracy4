@@ -103,7 +103,6 @@ class TopicListDashboardView(mixins.DashboardComponentMixin,
     template_name = 'meinberlin_topicprio/topic_dashboard_list.html'
     filter_set = TopicCreateFilterSet
     permission_required = 'a4projects.add_project'
-    module_url_kwarg = 'module_slug'
 
     def get_queryset(self):
         return super().get_queryset()\
@@ -121,7 +120,6 @@ class TopicCreateView(mixins.DashboardComponentMixin,
     form_class = forms.TopicForm
     permission_required = 'meinberlin_topicprio.add_topic'
     template_name = 'meinberlin_topicprio/topic_create_form.html'
-    module_url_kwarg = 'module_slug'
 
     def get_success_url(self):
         return reverse(

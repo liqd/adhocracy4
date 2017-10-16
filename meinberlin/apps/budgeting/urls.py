@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     url(r'^(?P<slug>[-\w_]+)/$',
         views.ProposalDetailView.as_view(), name='proposal-detail'),
-    url(r'create/module/(?P<slug>[-\w_]+)/$',
+    url(r'create/module/(?P<module_slug>[-\w_]+)/$',
         views.ProposalCreateView.as_view(), name='proposal-create'),
     url(r'^(?P<slug>[-\w_]+)/update/$',
         views.ProposalUpdateView.as_view(), name='proposal-update'),
