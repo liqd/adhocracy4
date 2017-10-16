@@ -9,7 +9,6 @@ from . import models
 LABELS = {
     'name': _('Title of your container'),
     'description': _('Short description of your container'),
-    'information': _('Description of your container'),
     'tile_image': _('Logo'),
 }
 
@@ -54,8 +53,9 @@ class ContainerInformationForm(ProjectDashboardForm):
         model = models.ProjectContainer
         fields = ['information']
         required_for_project_publish = ['information']
-        labels = LABELS
-        help_texts = HELP_TEXTS
+        labels = {
+            'information': _('Description of your container'),
+        }
 
 
 class ContainerProjectsForm(ProjectDashboardForm):
