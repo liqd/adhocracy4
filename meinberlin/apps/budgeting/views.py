@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
+from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
@@ -10,9 +11,9 @@ from . import forms
 from . import models
 
 
-def get_ordering_choices(request):
+def get_ordering_choices(view):
     choices = (('-created', _('Most recent')),)
-    if request.module.has_feature('rate', models.Proposal):
+    if view.module.has_feature('rate', models.Proposal):
         choices += ('-positive_rating_count', _('Most popular')),
     choices += ('-comment_count', _('Most commented')),
     return choices
@@ -22,7 +23,7 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {
         'ordering': '-created'
     }
-    category = filters.CategoryFilter()
+    category = category_filters.CategoryFilter()
     ordering = filters.OrderingFilter(
         choices=get_ordering_choices
     )

@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
@@ -21,7 +22,7 @@ class TopicFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {
         'ordering': 'name'
     }
-    category = filters.CategoryFilter()
+    category = category_filters.CategoryFilter()
     ordering = filters.OrderingFilter(
         choices=(
             ('name', _('Alphabetical')),
@@ -64,7 +65,7 @@ class TopicCreateFilterSet(a4_filters.DefaultsFilterSet):
         'ordering': 'name'
     }
 
-    category = filters.CategoryFilter()
+    category = category_filters.CategoryFilter()
 
     ordering = filters.OrderingFilter(
         choices=(

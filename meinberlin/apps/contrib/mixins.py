@@ -1,37 +1,31 @@
-class ChoicesRequestMixin(object):
+class DynamicChoicesMixin(object):
     """Dynamic choices mixin.
 
     Add callable functionality to filters that support the ``choices``
     argument. If the ``choices`` is callable, then it **must** accept the
-    ``request`` object as a single argument.
+    ``view`` object as a single argument.
+    The ``view`` object may be None if the parent FilterSet is not class based.
 
     This is useful for dymanic ``choices`` determined properties on the
-    ``request`` object.
+    ``view`` object.
     """
 
     def __init__(self, *args, **kwargs):
         self.choices = kwargs.pop('choices')
         super().__init__(*args, **kwargs)
 
-    def get_request(self):
-        try:
-            return self.parent.request
-        except AttributeError:
-            return None
-
-    def get_choices(self, request):
+    def get_choices(self, view):
         choices = self.choices
 
         if callable(choices):
-            return choices(request)
+            return choices(view)
         return choices
 
     @property
     def field(self):
-        request = self.get_request()
-        choices = self.get_choices(request)
+        choices = self.get_choices(getattr(self, 'view', None))
 
         if choices is not None:
             self.extra['choices'] = choices
 
-        return super(ChoicesRequestMixin, self).field
+        return super(DynamicChoicesMixin, self).field
