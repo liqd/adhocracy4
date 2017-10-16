@@ -4,9 +4,7 @@ from collections import OrderedDict
 import xlsxwriter
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import FieldError
-from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.http import HttpResponseNotFound
 from django.utils import timezone
 from django.utils.html import strip_tags
 from django.utils.translation import ugettext as _
@@ -14,43 +12,10 @@ from django.views import generic
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.modules import models as module_models
-from adhocracy4.projects.models import Project
 from adhocracy4.ratings.models import Rating
 from adhocracy4.rules import mixins as rules_mixins
 
-from . import get_exports
-
-
-class ExportProjectDispatcher(rules_mixins.PermissionRequiredMixin,
-                              generic.RedirectView,
-                              generic.detail.SingleObjectMixin):
-    permanent = False
-    model = Project
-    slug_url_kwarg = 'project_slug'
-    permission_required = 'a4projects.add_project'
-
-    def get_redirect_url(self, *args, **kwargs):
-        project = self.get_object()
-
-        # Currently only exactly one module per project ist allowed
-        assert project.module_set.count() == 1
-        module = project.module_set.first()
-
-        # Currently only exactly one export view per project is allowed
-        exports = get_exports(project)
-        assert len(exports) <= 1
-
-        # Return a 404 response if no exports are available
-        if len(exports) == 0:
-            return HttpResponseNotFound()
-
-        # Redirect directly to the export page of the only export
-        return reverse('export-module',
-                       kwargs={'module_slug': module.slug, 'export_id': 0})
-
-    def get_permission_object(self):
-        project = self.get_object()
-        return project.organisation
+from . import exports
 
 
 class ExportModuleDispatcher(rules_mixins.PermissionRequiredMixin,
@@ -69,11 +34,11 @@ class ExportModuleDispatcher(rules_mixins.PermissionRequiredMixin,
         if not self.has_permission():
             return self.handle_no_permission()
 
-        exports = get_exports(module)
-        assert len(exports) > export_id
+        module_exports = exports[module]
+        assert len(module_exports) > export_id
 
         # Dispatch the request to the export view
-        view = exports[export_id][1].as_view()
+        view = module_exports[export_id][1].as_view()
         return view(request, module=module, *args, **kwargs)
 
     def get_permission_object(self):
@@ -132,7 +97,10 @@ class AbstractXlsxExportView(generic.View):
         response['Content-Disposition'] = \
             'attachment; filename="%s"' % self.get_filename()
 
-        workbook = xlsxwriter.Workbook(response, {'in_memory': True})
+        workbook = xlsxwriter.Workbook(response, {
+            'in_memory': True,
+            'strings_to_formulas': False
+        })
         worksheet = workbook.add_worksheet()
 
         for colnum, field in enumerate(self.get_header()):

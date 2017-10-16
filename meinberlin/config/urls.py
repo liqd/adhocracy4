@@ -56,7 +56,6 @@ urlpatterns = [
     url(r'^documents/', include('wagtail.wagtaildocs.urls')),
     url(r'^projects/', include('meinberlin.apps.projects.urls')),
     url(r'^modules/', include('adhocracy4.modules.urls')),
-    url(r'^exports/', include('meinberlin.apps.exports.urls')),
 
     url(r'^ideas/', include('meinberlin.apps.ideas.urls',
                             namespace='meinberlin_ideas')),

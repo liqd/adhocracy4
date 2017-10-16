@@ -4,7 +4,6 @@ from django.views import generic
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
-from meinberlin.apps.exports import views as export_views
 from meinberlin.apps.ideas import views as idea_views
 
 from . import forms
@@ -33,27 +32,9 @@ class ProposalFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['category']
 
 
-class ProposalExportView(export_views.ItemExportView,
-                         export_views.ItemExportWithRatesMixin,
-                         export_views.ItemExportWithCommentCountMixin,
-                         export_views.ItemExportWithCommentsMixin,
-                         export_views.ItemExportWithLocationMixin,
-                         export_views.ItemExportWithModeratorFeedback):
-    model = models.Proposal
-    fields = ['name', 'description', 'creator', 'created', 'budget']
-
-    def get_queryset(self):
-        return super().get_queryset() \
-            .filter(module=self.module)\
-            .annotate_comment_count()\
-            .annotate_positive_rating_count()\
-            .annotate_negative_rating_count()
-
-
 class ProposalListView(idea_views.AbstractIdeaListView):
     model = models.Proposal
     filter_set = ProposalFilterSet
-    exports = [(_('Proposals with comments'), ProposalExportView)]
 
     def dispatch(self, request, **kwargs):
         self.mode = request.GET.get('mode', 'map')
