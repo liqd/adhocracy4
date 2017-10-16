@@ -79,3 +79,20 @@
 .project-header__logo {
     border: 1px solid $border-color;
 }
+
+@media (min-width: $breakpoint) {
+    .project-header__logo-wrapper {
+        display: flex;
+        align-items: center;
+        text-align: left;
+    }
+
+    .project-header__logo {
+        flex: 0 0 auto;
+        margin-right: $padding;
+    }
+
+    .project-header__logo-body {
+        flex: 1 1 auto;
+    }
+}
