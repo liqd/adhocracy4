@@ -73,7 +73,8 @@ class CommentBox extends React.Component {
       isAuthenticated: this.props.isAuthenticated,
       isModerator: this.props.isModerator,
       comments_contenttype: this.props.comments_contenttype,
-      user_name: this.props.user_name
+      user_name: this.props.user_name,
+      would_comment_perm: this.props.would_comment_perm
     }
   }
   render () {
@@ -99,7 +100,8 @@ CommentBox.childContextTypes = {
   isAuthenticated: PropTypes.bool,
   isModerator: PropTypes.bool,
   comments_contenttype: PropTypes.number,
-  user_name: PropTypes.string
+  user_name: PropTypes.string,
+  would_comment_perm: PropTypes.bool
 }
 
 module.exports = CommentBox
