@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.forms import RadioSelect
 from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
@@ -53,6 +54,14 @@ class ProjectBasicForm(ProjectDashboardForm):
                   'tile_image', 'tile_image_copyright',
                   'is_archived', 'is_public']
         required_for_project_publish = ['name', 'description']
+        widgets = {
+            'is_public': RadioSelect(
+                choices=[
+                    (True, _('All users can participate (public).')),
+                    (False, _('Only invited users can participate (private).'))
+                ]
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
