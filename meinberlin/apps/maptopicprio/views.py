@@ -7,7 +7,6 @@ from adhocracy4.filters import views as filter_views
 from meinberlin.apps.contrib import filters
 from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins
-from meinberlin.apps.exports import views as export_views
 from meinberlin.apps.ideas import views as idea_views
 
 from . import forms
@@ -62,26 +61,9 @@ class MapTopicDetailView(idea_views.AbstractIdeaDetailView):
     permission_required = 'meinberlin_maptopicprio.view_maptopic'
 
 
-class MapTopicExportView(export_views.ItemExportView,
-                         export_views.ItemExportWithRatesMixin,
-                         export_views.ItemExportWithCommentCountMixin,
-                         export_views.ItemExportWithCommentsMixin,
-                         export_views.ItemExportWithLocationMixin):
-    model = models.MapTopic
-    fields = ['name', 'description', 'creator', 'created']
-
-    def get_queryset(self):
-        return super().get_queryset() \
-            .filter(module=self.module)\
-            .annotate_comment_count()\
-            .annotate_positive_rating_count()\
-            .annotate_negative_rating_count()
-
-
 class MapTopicListView(idea_views.AbstractIdeaListView):
     model = models.MapTopic
     filter_set = MapTopicFilterSet
-    exports = [(_('Places with comments'), MapTopicExportView)]
 
     def dispatch(self, request, **kwargs):
         self.mode = request.GET.get('mode', 'map')
