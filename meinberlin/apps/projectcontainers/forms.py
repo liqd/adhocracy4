@@ -6,6 +6,25 @@ from meinberlin.apps.dashboard2.forms import ProjectDashboardForm
 
 from . import models
 
+LABELS = {
+    'name': _('Title of your container'),
+    'description': _('Short description of your container'),
+    'tile_image': _('Logo'),
+}
+
+HELP_TEXTS = {
+    'name': _('This title will appear on the '
+              'teaser card and on top of the container '
+              'detail page. It should be max. 120 characters long'),
+    'description': _('This short description will appear on '
+                     'the header of the container and in the teaser. '
+                     'It should briefly state the goal of the '
+                     'projects in max. 250 chars.'),
+    'tile_image': _(
+        'The image will be shown in the container tile.'
+    ),
+}
+
 
 class ContainerCreateForm(ProjectCreateForm):
 
@@ -13,20 +32,8 @@ class ContainerCreateForm(ProjectCreateForm):
         model = models.ProjectContainer
         fields = ['name', 'description',
                   'tile_image', 'tile_image_copyright']
-
-        labels = {
-            'name': _('Title of your container'),
-            'description': _('Short description of your container'),
-        }
-        help_texts = {
-            'name': _('This title will appear on the '
-                      'teaser card and on top of the container '
-                      'detail page. It should be max. 120 characters long'),
-            'description': _('This short description will appear on '
-                             'the header of the container and in the teaser. '
-                             'It should briefly state the goal of the '
-                             'projects in max. 250 chars.')
-        }
+        labels = LABELS
+        help_texts = HELP_TEXTS
 
 
 class ContainerBasicForm(ProjectDashboardForm):
@@ -36,6 +43,19 @@ class ContainerBasicForm(ProjectDashboardForm):
         fields = ['name', 'description', 'tile_image',
                   'tile_image_copyright', 'is_archived']
         required_for_project_publish = ['name', 'description']
+        labels = LABELS
+        help_texts = HELP_TEXTS
+
+
+class ContainerInformationForm(ProjectDashboardForm):
+
+    class Meta:
+        model = models.ProjectContainer
+        fields = ['information']
+        required_for_project_publish = ['information']
+        labels = {
+            'information': _('Description of your container'),
+        }
 
 
 class ContainerProjectsForm(ProjectDashboardForm):

@@ -41,6 +41,21 @@ class ContainerBasicComponent(ProjectFormComponent):
         )]
 
 
+class ContainerInformationComponent(ProjectFormComponent):
+    identifier = 'container-information'
+    weight = 11
+    label = _('Information')
+
+    form_title = _('Edit project information')
+    form_class = forms.ContainerInformationForm
+    form_template_name = 'meinberlin_dashboard2' \
+                         '/includes/project_information_form.html'
+
+    def is_effective(self, project):
+        project_type = get_project_type(project)
+        return project_type == 'container'
+
+
 class ContainerProjectsComponent(ProjectFormComponent):
     identifier = 'container-projects'
     weight = 20
@@ -79,4 +94,5 @@ class ContainerProjectsComponent(ProjectFormComponent):
 
 
 components.register_project(ContainerBasicComponent())
+components.register_project(ContainerInformationComponent())
 components.register_project(ContainerProjectsComponent())
