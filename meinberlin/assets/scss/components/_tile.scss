@@ -8,6 +8,7 @@
 
 .tile--container {
     background-color: $bg-secondary;
+    border-color: $text-color;
 }
 
 .tile__head {
@@ -75,10 +76,27 @@
 .tile__badge {
     height: 3.4em;
     width: 3.4em;
+    text-align: center;
+    border-radius: 50%;
 
     position: absolute;
     bottom: 0.8em;
     right: 0.8em;
+
+    i {
+        font-size: 1.7em;
+        line-height: 2;
+    }
+}
+
+.tile__badge--external {
+    background-color: $bg-secondary;
+    color: $brand-primary;
+}
+
+.tile__badge--container {
+    background-color: $brand-secondary;
+    color: $bg-secondary;
 }
 
 .tile__labels {
@@ -94,4 +112,13 @@
     @media print {
         color: $text-muted;
     }
+}
+
+.tile__hint--container {
+    color: $text-color;
+}
+
+.tile__hint__big {
+    font-size: 1rem;
+    font-weight: bold;
 }
