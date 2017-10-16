@@ -12,7 +12,6 @@ admin.site.register(models.MapPresetCategory, admin.ModelAdmin)
 
 @admin.register(AreaSettings)
 class AreaSettingsAdmin(admin.ModelAdmin):
-    description = 'Foo'
     list_display = ('module_name', 'project_name')
 
     fieldsets = (
@@ -21,7 +20,7 @@ class AreaSettingsAdmin(admin.ModelAdmin):
             'fields': ('polygon',),
             'description': _('Enter a valid GeoJSON object. An empty string is'
                              ' not valid. To initialize a new areasetting'
-                             ' enter "" or false.')
+                             ' enter "" or {}.')
         })
     )
 
