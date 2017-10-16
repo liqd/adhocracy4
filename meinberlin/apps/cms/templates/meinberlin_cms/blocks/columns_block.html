@@ -1,7 +1,5 @@
-<div class="block">
+<div class="block l-tiles-{{ value.columns_count }}">
     {% for column in value.columns %}
-        <div class="l-col-{{ value.columns_count }}">
-            {{ column }}
-        </div>
+        {{ column }}
     {% endfor %}
 </div>

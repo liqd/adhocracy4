@@ -10,10 +10,10 @@
     <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
         {% csrf_token %}
         <div class="form-group--double">
-            <div class="l-col-2">
+            <div class="l-tiles-2">
                 {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender_name %}
             </div>
-            <div class="l-col-2">
+            <div class="l-tiles-2">
                 {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender %}
             </div>
         </div>
