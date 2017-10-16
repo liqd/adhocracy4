@@ -40,7 +40,7 @@ class CommentForm extends React.Component {
           <input type="submit" value={django.gettext('post')} className="submit-button" />
         </form>
       )
-    } else if (!this.context.isAuthenticated) {
+    } else if (this.context.would_comment_perm) {
       return (
         <div className="comments_login">
           <a href={config.loginUrl}>{django.gettext('Please login to comment')}</a>
@@ -57,7 +57,8 @@ class CommentForm extends React.Component {
 }
 
 CommentForm.contextTypes = {
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
+  would_comment_perm: PropTypes.bool
 }
 
 module.exports = CommentForm
