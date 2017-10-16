@@ -55,7 +55,7 @@ urlpatterns = [
     url(r'^accounts/social/', include('allauth.socialaccount.urls')),
     url(r'^documents/', include('wagtail.wagtaildocs.urls')),
     url(r'^projects/', include('meinberlin.apps.projects.urls')),
-    url(r'^modules/', include('meinberlin.apps.modules.urls')),
+    url(r'^modules/', include('adhocracy4.modules.urls')),
 
     url(r'^ideas/', include('meinberlin.apps.ideas.urls',
                             namespace='meinberlin_ideas')),
