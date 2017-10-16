@@ -75,7 +75,7 @@ def test_create_view(client, phase, user):
         count = models.Idea.objects.all().count()
         assert count == 0
         url = reverse('meinberlin_ideas:idea-create',
-                      kwargs={'slug': module.slug})
+                      kwargs={'module_slug': module.slug})
         response = client.get(url)
         assert response.status_code == 302
         assert redirect_target(response) == 'account_login'
@@ -97,7 +97,7 @@ def test_create_view_wrong_phase(client, phase, user):
     module = phase.module
     with freeze_time(phase.start_date):
         url = reverse('meinberlin_ideas:idea-create',
-                      kwargs={'slug': module.slug})
+                      kwargs={'module_slug': module.slug})
         response = client.get(url)
         assert response.status_code == 302
         client.login(username=user.email, password='password')
