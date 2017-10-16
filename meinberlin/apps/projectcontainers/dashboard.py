@@ -4,7 +4,6 @@ from django.utils.translation import ugettext_lazy as _
 from meinberlin.apps.dashboard import get_project_type
 from meinberlin.apps.dashboard2 import ProjectFormComponent
 from meinberlin.apps.dashboard2 import components
-from meinberlin.apps.dashboard2.dashboard import ProjectInformationComponent
 
 from . import forms
 from . import views
@@ -42,9 +41,15 @@ class ContainerBasicComponent(ProjectFormComponent):
         )]
 
 
-class ContainerInformationComponent(ProjectInformationComponent):
+class ContainerInformationComponent(ProjectFormComponent):
     identifier = 'container-information'
+    weight = 11
+    label = _('Information')
+
+    form_title = _('Edit project information')
     form_class = forms.ContainerInformationForm
+    form_template_name = 'meinberlin_dashboard2' \
+                         '/includes/project_information_form.html'
 
     def is_effective(self, project):
         project_type = get_project_type(project)
