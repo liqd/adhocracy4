@@ -14,7 +14,6 @@ from django.views.generic import base
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.contrib.views import ProjectContextDispatcher
 
 from . import get_project_dashboard
 
@@ -67,16 +66,14 @@ class BlueprintMixin:
         return self.kwargs['blueprint_slug']
 
 
-class DashboardComponentMixin(ProjectContextDispatcher):
-    menu_item = 'project'
-    component = None
-
-
-class DashboardContextMixin(base.ContextMixin):
-    """Add dashboard information to the context data.
+class DashboardComponentMixin(base.ContextMixin):
+    """Set the menu_item and add dashboard information to the context data.
 
     Assumes self.project, self.module and self.component are set.
     """
+
+    menu_item = 'project'
+    component = None
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
