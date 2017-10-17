@@ -1,11 +1,15 @@
+from django.db import transaction
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.contrib import forms as contrib_forms
 from meinberlin.apps.contrib import filters
 from meinberlin.apps.ideas import views as idea_views
+from meinberlin.apps.moderatorfeedback.forms import ModeratorStatementForm
+from meinberlin.apps.moderatorfeedback.models import ModeratorStatement
 
 from . import forms
 from . import models
@@ -80,17 +84,50 @@ class ProposalDeleteView(idea_views.AbstractIdeaDeleteView):
 
 
 class ProposalModerateView(rules_mixins.PermissionRequiredMixin,
-                           generic.UpdateView):
+                           generic.detail.SingleObjectMixin,
+                           generic.detail.SingleObjectTemplateResponseMixin,
+                           contrib_forms.BaseMultiModelFormView):
     model = models.Proposal
-    form_class = forms.ProposalModerateForm
     permission_required = 'meinberlin_kiezkasse.moderate_proposal'
     template_name = 'meinberlin_kiezkasse/proposal_moderate_form.html'
+
+    forms = {
+        'proposal': {
+            'model': models.Proposal,
+            'form_class': forms.ProposalModerateForm
+        },
+        'statement': {
+            'model': ModeratorStatement,
+            'form_class': ModeratorStatementForm
+        }
+    }
+
+    def dispatch(self, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(*args, **kwargs)
 
     def get_success_url(self):
         return self.get_object().get_absolute_url()
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs['item'] = self.object
-        kwargs['creator'] = self.request.user
-        return kwargs
+    def forms_save(self, forms, commit=True):
+        objects = super().forms_save(forms, commit=False)
+        proposal = objects['proposal']
+        statement = objects['statement']
+
+        if not statement.pk:
+            statement.creator = self.request.user
+
+        with transaction.atomic():
+            statement.save()
+            proposal.moderator_statement = statement
+            proposal.save()
+        return objects
+
+    def get_instance(self, name):
+        if name == 'proposal':
+            return self.object
+        elif name == 'statement':
+            statement = self.object.moderator_statement
+            if statement:
+                return statement
+            return ModeratorStatement()

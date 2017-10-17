@@ -1,5 +1,6 @@
+from django import forms
+
 from meinberlin.apps.mapideas.forms import MapIdeaForm
-from meinberlin.apps.moderatorfeedback.forms import item_moderate_form_factory
 
 from . import models
 
@@ -12,4 +13,7 @@ class ProposalForm(MapIdeaForm):
                   'creator_contribution', 'point', 'point_label']
 
 
-ProposalModerateForm = item_moderate_form_factory(models.Proposal)
+class ProposalModerateForm(forms.ModelForm):
+    class Meta:
+        model = models.Proposal
+        fields = ['moderator_feedback']
