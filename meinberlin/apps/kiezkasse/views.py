@@ -7,6 +7,7 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import forms as contrib_forms
 from meinberlin.apps.contrib import filters
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.ideas import views as idea_views
 from meinberlin.apps.moderatorfeedback.forms import ModeratorStatementForm
 from meinberlin.apps.moderatorfeedback.models import ModeratorStatement
@@ -83,13 +84,16 @@ class ProposalDeleteView(idea_views.AbstractIdeaDeleteView):
     template_name = 'meinberlin_kiezkasse/proposal_confirm_delete.html'
 
 
-class ProposalModerateView(rules_mixins.PermissionRequiredMixin,
+class ProposalModerateView(ProjectContextMixin,
+                           rules_mixins.PermissionRequiredMixin,
                            generic.detail.SingleObjectMixin,
                            generic.detail.SingleObjectTemplateResponseMixin,
                            contrib_forms.BaseMultiModelFormView):
+
     model = models.Proposal
     permission_required = 'meinberlin_kiezkasse.moderate_proposal'
     template_name = 'meinberlin_kiezkasse/proposal_moderate_form.html'
+    get_context_from_object = True
 
     forms = {
         'proposal': {

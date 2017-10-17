@@ -5,6 +5,7 @@ from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from meinberlin.apps.contrib import filters
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins
 from meinberlin.apps.ideas import views as idea_views
 
@@ -78,15 +79,14 @@ class MapTopicListView(idea_views.AbstractIdeaListView):
             .annotate_comment_count()
 
 
-class MapTopicListDashboardView(mixins.DashboardComponentMixin,
+class MapTopicListDashboardView(ProjectContextMixin,
                                 mixins.DashboardBaseMixin,
-                                mixins.DashboardContextMixin,
+                                mixins.DashboardComponentMixin,
                                 filter_views.FilteredListView):
     model = models.MapTopic
     template_name = 'meinberlin_maptopicprio/maptopic_dashboard_list.html'
     filter_set = MapTopicCreateFilterSet
     permission_required = 'a4projects.add_project'
-    module_url_kwarg = 'module_slug'
 
     def get_queryset(self):
         return super().get_queryset()\
@@ -96,15 +96,13 @@ class MapTopicListDashboardView(mixins.DashboardComponentMixin,
             .annotate_comment_count()
 
 
-class MapTopicCreateView(mixins.DashboardComponentMixin,
-                         mixins.DashboardBaseMixin,
-                         mixins.DashboardContextMixin,
+class MapTopicCreateView(mixins.DashboardBaseMixin,
+                         mixins.DashboardComponentMixin,
                          idea_views.AbstractIdeaCreateView):
     model = models.MapTopic
     form_class = forms.MapTopicForm
     permission_required = 'meinberlin_maptopicprio.add_maptopic'
     template_name = 'meinberlin_maptopicprio/maptopic_create_form.html'
-    module_url_kwarg = 'module_slug'
 
     def get_success_url(self):
         return reverse(
@@ -112,9 +110,8 @@ class MapTopicCreateView(mixins.DashboardComponentMixin,
             kwargs={'module_slug': self.module.slug})
 
 
-class MapTopicUpdateView(mixins.DashboardComponentMixin,
-                         mixins.DashboardBaseMixin,
-                         mixins.DashboardContextMixin,
+class MapTopicUpdateView(mixins.DashboardBaseMixin,
+                         mixins.DashboardComponentMixin,
                          idea_views.AbstractIdeaUpdateView):
     model = models.MapTopic
     form_class = forms.MapTopicForm
@@ -131,9 +128,8 @@ class MapTopicUpdateView(mixins.DashboardComponentMixin,
             kwargs={'module_slug': self.module.slug})
 
 
-class MapTopicDeleteView(mixins.DashboardComponentMixin,
-                         mixins.DashboardBaseMixin,
-                         mixins.DashboardContextMixin,
+class MapTopicDeleteView(mixins.DashboardBaseMixin,
+                         mixins.DashboardComponentMixin,
                          idea_views.AbstractIdeaDeleteView):
     model = models.MapTopic
     success_message = _('The place has been deleted')
