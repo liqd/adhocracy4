@@ -290,8 +290,8 @@ msgid ""
 "invited users. Teasers for your project including title and short "
 "description will always be visible to everyone"
 msgstr ""
-"Bitte geben Sie an, ob dieses Projekt öffentlich oder beschränkt auf "
-"eingeladene Teilnehmerinnen und Teinehmer sein soll. Kacheln für Ihr Projekt "
+"Bitte geben Sie an, ob dieses Projekt öffentlich oder auf eingeladene "
+"Teilnehmerinnen und Teinehmer beschränkt sein soll. Kacheln für Ihr Projekt "
 "mit Titel und Kurzbeschreibung werden immer für alle sichtbar sein."
 
 #: adhocracy4/projects/models.py:73
