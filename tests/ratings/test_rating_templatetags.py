@@ -50,7 +50,8 @@ def test_react_rating_anonymous(rf, question):
         'positiveRatings': 0,
         'style': 'ideas',
         'userRating': None,
-        'userRatingId': -1
+        'userRatingId': -1,
+        'would_have_perm': False,
     }
 
 
@@ -66,4 +67,5 @@ def test_react_rating_user(rf, user, question, rating):
         'style': 'ideas',
         'userRating': rating.value,
         'userRatingId': rating.id,
+        'would_have_perm': False,
     }
