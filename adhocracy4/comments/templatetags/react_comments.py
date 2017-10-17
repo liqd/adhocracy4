@@ -29,7 +29,9 @@ def react_comments(context, obj):
     permission = '{ct.app_label}.comment_{ct.model}'.format(ct=contenttype)
     has_comment_permission = user.has_perm(permission, obj)
 
-    would_comment_permission = NormalUser().would_perm(permission, obj)
+    would_have_comment_permission = NormalUser().would_have_perm(
+        permission, obj
+    )
 
     comments_contenttype = ContentType.objects.get_for_model(Comment)
     pk = obj.pk
@@ -47,7 +49,7 @@ def react_comments(context, obj):
         'isModerator': is_moderator,
         'user_name': user_name,
         'isReadOnly': not has_comment_permission,
-        'would_comment_perm': would_comment_permission,
+        'would_have_perm': would_have_comment_permission,
     }
 
     return format_html(
