@@ -12,6 +12,13 @@ class Proposal(mapidea_models.AbstractMapIdea, Moderateable):
         help_text=_('Required Budget')
     )
 
+    is_archived = models.BooleanField(
+        default=False,
+        verbose_name=_('Proposal is archived'),
+        help_text=_('Exclude this proposal from all listings by default. '
+                    'You can still access this proposal by using filters.'),
+    )
+
     def get_absolute_url(self):
         return reverse('meinberlin_budgeting:proposal-detail',
                        args=[str(self.slug)])
