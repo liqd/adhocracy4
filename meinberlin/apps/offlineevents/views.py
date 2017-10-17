@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins
 from meinberlin.apps.ideas import views as idea_views
 
@@ -15,9 +16,9 @@ class OfflineEventDetailView(idea_views.AbstractIdeaDetailView):
     permission_required = 'meinberlin_offlineevents.view_offlineevent'
 
 
-class OfflineEventListView(mixins.DashboardComponentMixin,
+class OfflineEventListView(ProjectContextMixin,
                            mixins.DashboardBaseMixin,
-                           mixins.DashboardContextMixin,
+                           mixins.DashboardComponentMixin,
                            generic.ListView):
     model = models.OfflineEvent
     template_name = 'meinberlin_offlineevents/offlineevent_list.html'
@@ -27,9 +28,9 @@ class OfflineEventListView(mixins.DashboardComponentMixin,
         return super().get_queryset().filter(project=self.project)
 
 
-class OfflineEventCreateView(mixins.DashboardComponentMixin,
+class OfflineEventCreateView(ProjectContextMixin,
                              mixins.DashboardBaseMixin,
-                             mixins.DashboardContextMixin,
+                             mixins.DashboardComponentMixin,
                              generic.CreateView):
     model = models.OfflineEvent
     form_class = forms.OfflineEventForm
@@ -47,9 +48,9 @@ class OfflineEventCreateView(mixins.DashboardComponentMixin,
             kwargs={'project_slug': self.project.slug})
 
 
-class OfflineEventUpdateView(mixins.DashboardComponentMixin,
+class OfflineEventUpdateView(ProjectContextMixin,
                              mixins.DashboardBaseMixin,
-                             mixins.DashboardContextMixin,
+                             mixins.DashboardComponentMixin,
                              generic.UpdateView):
     model = models.OfflineEvent
     form_class = forms.OfflineEventForm
@@ -66,9 +67,9 @@ class OfflineEventUpdateView(mixins.DashboardComponentMixin,
         return self.project.organisation
 
 
-class OfflineEventDeleteView(mixins.DashboardComponentMixin,
+class OfflineEventDeleteView(ProjectContextMixin,
                              mixins.DashboardBaseMixin,
-                             mixins.DashboardContextMixin,
+                             mixins.DashboardComponentMixin,
                              generic.DeleteView):
     model = models.OfflineEvent
     success_message = _('The offline event has been deleted')

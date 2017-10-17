@@ -19,6 +19,7 @@ from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
 
 from . import forms
@@ -200,9 +201,9 @@ class ModeratorInviteUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 
 class AbstractProjectUserInviteListView(
-        a4dashboard_mixins.DashboardComponentMixin,
+        ProjectContextMixin,
         a4dashboard_mixins.DashboardBaseMixin,
-        a4dashboard_mixins.DashboardContextMixin,
+        a4dashboard_mixins.DashboardComponentMixin,
         generic.base.TemplateResponseMixin,
         generic.edit.FormMixin,
         generic.detail.SingleObjectMixin,

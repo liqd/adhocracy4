@@ -10,7 +10,7 @@ from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
-from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.contrib.views import ProjectContextMixin
 
 from . import forms
 from . import models
@@ -46,7 +46,7 @@ class IdeaFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['search', 'category']
 
 
-class AbstractIdeaListView(ProjectContextDispatcher,
+class AbstractIdeaListView(ProjectContextMixin,
                            filter_views.FilteredListView):
     paginate_by = 15
 
@@ -63,10 +63,10 @@ class IdeaListView(AbstractIdeaListView):
             .annotate_comment_count()
 
 
-class AbstractIdeaDetailView(ProjectContextDispatcher,
+class AbstractIdeaDetailView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.DetailView):
-    pass
+    get_context_from_object = True
 
 
 class IdeaDetailView(AbstractIdeaDetailView):
@@ -76,12 +76,10 @@ class IdeaDetailView(AbstractIdeaDetailView):
     permission_required = 'meinberlin_ideas.view_idea'
 
 
-class AbstractIdeaCreateView(ProjectContextDispatcher,
+class AbstractIdeaCreateView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.CreateView):
     """Create an idea in the context of a module."""
-
-    module_url_kwarg = 'slug'
 
     def get_permission_object(self, *args, **kwargs):
         return self.module
@@ -106,9 +104,10 @@ class IdeaCreateView(AbstractIdeaCreateView):
     template_name = 'meinberlin_ideas/idea_create_form.html'
 
 
-class AbstractIdeaUpdateView(ProjectContextDispatcher,
+class AbstractIdeaUpdateView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.UpdateView):
+    get_context_from_object = True
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -127,7 +126,7 @@ class IdeaUpdateView(AbstractIdeaUpdateView):
     template_name = 'meinberlin_ideas/idea_update_form.html'
 
 
-class AbstractIdeaDeleteView(ProjectContextDispatcher,
+class AbstractIdeaDeleteView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.DeleteView):
 
