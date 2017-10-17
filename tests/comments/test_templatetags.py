@@ -56,7 +56,7 @@ def test_react_rating_anonymous(rf, question, comment):
             'isModerator': False,
             'isReadOnly': True,
             'user_name': '',
-            'would_comment_perm': False,
+            'would_have_perm': False,
         }
 
 
@@ -79,5 +79,5 @@ def test_react_rating_user(rf, user, phase, question, comment):
             'isModerator': False,
             'isReadOnly': False,
             'user_name': user.username,
-            'would_comment_perm': True,
+            'would_have_perm': True,
         }

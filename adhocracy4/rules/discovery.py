@@ -18,5 +18,5 @@ class NormalUser():
     def is_authenticated(self):
         return True
 
-    def would_perm(self, perm, obj):
+    def would_have_perm(self, perm, obj):
         return rules.has_perm(perm, self, obj)
