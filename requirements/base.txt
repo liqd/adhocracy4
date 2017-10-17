@@ -1,9 +1,6 @@
 git+git://github.com/liqd/adhocracy4.git@master#egg=adhocracy4
 bcrypt==3.1.3
 django-capture-tag==1.0
-# django multiform (released version 0.1 was too old)
-# commit points to PR with 1.9 compatibility
-git+git://github.com/encolpe/django-multiform.git@django-1.9#egg=django-multiform
 html5lib==0.999999999
 wagtail==1.12.2
 XlsxWriter==1.0.0
