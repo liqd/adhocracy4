@@ -1,3 +1,4 @@
+import django_filters
 from django.db import transaction
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
@@ -10,6 +11,7 @@ from meinberlin.apps.contrib import filters
 from meinberlin.apps.ideas import views as idea_views
 from meinberlin.apps.moderatorfeedback.forms import ModeratorStatementForm
 from meinberlin.apps.moderatorfeedback.models import ModeratorStatement
+from meinberlin.apps.projects.views import ArchivedWidget
 
 from . import forms
 from . import models
@@ -25,16 +27,20 @@ def get_ordering_choices(view):
 
 class ProposalFilterSet(a4_filters.DefaultsFilterSet):
     defaults = {
-        'ordering': '-created'
+        'ordering': '-created',
+        'is_archived': 'false'
     }
     category = category_filters.CategoryFilter()
     ordering = filters.OrderingFilter(
         choices=get_ordering_choices
     )
+    is_archived = django_filters.BooleanFilter(
+        widget=ArchivedWidget
+    )
 
     class Meta:
         model = models.Proposal
-        fields = ['category']
+        fields = ['category', 'is_archived']
 
 
 class ProposalListView(idea_views.AbstractIdeaListView):
