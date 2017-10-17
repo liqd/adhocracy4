@@ -291,8 +291,7 @@ msgid ""
 "description will always be visible to everyone"
 msgstr ""
 "Bitte geben Sie an, ob dieses Projekt öffentlich oder auf eingeladene "
-"Teilnehmerinnen und Teinehmer beschränkt sein soll. Kacheln für Ihr Projekt "
-"mit Titel und Kurzbeschreibung werden immer für alle sichtbar sein."
+"Teilnehmerinnen und Teinehmer beschränkt sein soll."
 
 #: adhocracy4/projects/models.py:73
 #: adhocracy4/projects/models.py:79
