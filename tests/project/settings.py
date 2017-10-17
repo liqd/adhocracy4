@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.filters.apps.FiltersConfig',
     'adhocracy4.forms.apps.FormsConfig',
+    'adhocracy4.rules.apps.RulesConfig',
 
     # adhocrayc4 generic apps
     'adhocracy4.ratings.apps.RatingsConfig',
