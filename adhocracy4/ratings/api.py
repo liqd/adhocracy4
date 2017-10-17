@@ -1,6 +1,7 @@
 from django.conf import settings
 
-from rest_framework import filters, mixins, viewsets
+from django_filters import rest_framework as filters
+from rest_framework import mixins, viewsets
 from rest_framework.response import Response
 
 from adhocracy4.api.mixins import ContentTypeMixin
