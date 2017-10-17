@@ -31,7 +31,6 @@ class ContainerCreateView(ProjectCreateView):
 
 class ContainerBasicFormView(ProjectComponentFormView):
     model = models.ProjectContainer
-    get_context_from_object = False
 
     @property
     def project(self):
@@ -44,7 +43,6 @@ class ContainerBasicFormView(ProjectComponentFormView):
 
 class ContainerProjectsView(ProjectComponentFormView):
     model = models.ProjectContainer
-    get_context_from_object = False
 
     @property
     def project(self):

@@ -32,7 +32,6 @@ class ExternalProjectCreateView(ProjectCreateView):
 class ExternalProjectUpdateView(ProjectComponentFormView):
 
     model = models.ExternalProject
-    get_context_from_object = False
 
     @property
     def project(self):

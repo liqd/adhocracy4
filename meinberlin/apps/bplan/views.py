@@ -56,7 +56,6 @@ class BplanProjectCreateView(ExternalProjectCreateView):
 class BplanProjectUpdateView(ProjectComponentFormView):
 
     model = models.Bplan
-    get_context_from_object = False
 
     @property
     def project(self):
