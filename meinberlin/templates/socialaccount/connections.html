@@ -5,9 +5,8 @@
 {% block title %}{% trans "Account Connections" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
-<h1>{% trans "Account Connections" %}</h1>
+    <h1 class="u-first-heading">{% trans "Account Connections" %}</h1>
 
-<div class="general-form">
     {% if form.accounts %}
         <p>{% blocktrans %}Your account is connected to the following services:{% endblocktrans %}</p>
         <form class="multiform" method="post" action="{% url 'socialaccount_connections' %}">
@@ -35,7 +34,7 @@
         <p>{% trans 'You can connect your account to the following services:' %}</p>
         {% include "socialaccount/snippets/provider_list.html" with process="connect" %}
     {% endif %}
-</div>
-{% include "socialaccount/snippets/login_extra.html" %}
+
+    {% include "socialaccount/snippets/login_extra.html" %}
 {% endblock %}
 
