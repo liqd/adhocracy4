@@ -1,19 +1,17 @@
 import rules
+from django.contrib.auth.models import AnonymousUser
 
 
-class NormalUser():
+class NormalUser(AnonymousUser):
     """
     Fake user with same state as freshly registerted user.
     This fake user object is used to check wether a login would help
     to enable an action. This user doesn't have any previliges granted
     except that it is authenticated.
     """
-    username = 'NormalUser'
-    email = 'noreply@liqd.net'
-    password = ''
-    is_staff = False
-    is_active = True
-    is_superuser = False
+
+    def __str__(self):
+        return 'NormalUser'
 
     def is_authenticated(self):
         return True
