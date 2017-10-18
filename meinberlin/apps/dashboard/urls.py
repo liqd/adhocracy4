@@ -6,6 +6,7 @@ from meinberlin.apps.dashboard2.urls import \
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
 from meinberlin.apps.projectcontainers.views import ContainerCreateView
 from meinberlin.apps.projectcontainers.views import ContainerListView
+from meinberlin.apps.projects.views import DashboardProjectListView
 
 from . import views
 
@@ -35,4 +36,7 @@ urlpatterns = [
         r'container/$',
         ContainerCreateView.as_view(),
         name='container-create'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/projects/$',
+        DashboardProjectListView.as_view(),
+        name='project-list'),
 ] + a4dashboard_urlpatterns
