@@ -108,6 +108,7 @@ class MultiModelFormMixin(MultiFormMixin):
         If all forms are valid, save the associated models.
         """
         self.objects = self.forms_save(forms)
+        self.forms_save_m2m(forms)
         return super().forms_valid(forms)
 
     def forms_save(self, forms, commit=True):
@@ -120,6 +121,15 @@ class MultiModelFormMixin(MultiFormMixin):
                 if hasattr(forms[name], 'save'):
                     objects[name] = forms[name].save(commit)
         return objects
+
+    def forms_save_m2m(self, forms):
+        """
+        Calls save_m2m on every form where it is available.
+        Has to be called after the forms have been saved.
+        """
+        for form in forms.values():
+            if hasattr(form, 'save_m2m'):
+                form.save_m2m()
 
     def get_form_class(self, name):
         """
