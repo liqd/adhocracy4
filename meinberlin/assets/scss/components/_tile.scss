@@ -33,6 +33,11 @@
     background-size: contain;
 }
 
+.tile__image--logo {
+    background-color: $body-bg;
+    border-bottom: 1px solid $border-color;
+}
+
 .tile__image--shadowed {
     &:before {
         content: ' ';
