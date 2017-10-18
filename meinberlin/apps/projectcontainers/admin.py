@@ -10,3 +10,9 @@ class ProjectContainerAdmin(admin.ModelAdmin):
               'is_draft', 'is_archived',
               'projects',
               )
+    list_display = (
+        '__str__', 'organisation', 'is_draft', 'is_archived', 'created'
+    )
+    list_filter = ('is_draft', 'is_archived', 'organisation')
+    search_fields = ('name',)
+    date_hierarchy = 'created'

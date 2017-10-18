@@ -10,6 +10,7 @@ admin.site.register(models.MapPreset, admin.ModelAdmin)
 admin.site.register(models.MapPresetCategory, admin.ModelAdmin)
 
 
+# FIXME: remove this once it is available in core
 @admin.register(AreaSettings)
 class AreaSettingsAdmin(admin.ModelAdmin):
     list_display = ('module_name', 'project_name')

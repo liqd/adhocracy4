@@ -4,6 +4,7 @@ from . import models
 
 
 class OrganisationAdmin(admin.ModelAdmin):
+    search_fields = ('name',)
     raw_id_fields = ('initiators', )
 
 

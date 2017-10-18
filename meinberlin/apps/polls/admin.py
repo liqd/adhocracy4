@@ -12,3 +12,8 @@ class QuestionAdmin(admin.ModelAdmin):
     inlines = [
         ChoiceInline
     ]
+    list_filter = (
+        'poll__module__project__organisation', 'poll__module__project'
+    )
+    date_hierarchy = 'poll__created'
+    search_fields = ('label',)
