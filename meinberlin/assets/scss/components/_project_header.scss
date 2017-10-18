@@ -83,7 +83,7 @@
 @media (min-width: $breakpoint) {
     .project-header__logo-wrapper {
         display: flex;
-        align-items: center;
+        align-items: start;
         text-align: left;
     }
 
@@ -94,5 +94,6 @@
 
     .project-header__logo-body {
         flex: 1 1 auto;
+        align-self: center;
     }
 }
