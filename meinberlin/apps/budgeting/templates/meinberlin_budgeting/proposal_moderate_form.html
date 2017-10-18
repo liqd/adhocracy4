@@ -22,7 +22,23 @@
         </nav>
 
         <h1>{% trans 'Moderate proposal' %}</h1>
-        {% include "meinberlin_moderatorfeedback/includes/item_moderate_form.html" with cancel=detail_url %}
+
+        <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+            {% csrf_token %}
+            {% for form in forms.values %}
+                {{ form.media }}
+            {% endfor %}
+
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.proposal.moderator_feedback %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=forms.statement.statement %}
+            {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=forms.proposal.is_archived %}
+
+            <div class="u-spacer-bottom">
+                <input type="submit" class="btn btn--primary" value="{% trans 'Save' %}" />
+                <a href="{{ detail_url }}" class="btn btn--light">{% trans 'Cancel' %}</a>
+            </div>
+        </form>
+
     </div>
 </div>
 {% endblock %}
