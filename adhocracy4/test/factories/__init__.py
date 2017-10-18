@@ -44,7 +44,7 @@ USER_FACTORY = getattr(settings, 'A4_USER_FACTORY', UserFactory)
 class OrganisationFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Organisation
-    name = factory.Faker('text', max_nb_chars=120)
+    name = factory.Faker('company')
 
 
 ORGANISATION_FACTORY = getattr(settings,
@@ -56,7 +56,7 @@ class ProjectFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Project
 
-    name = factory.Faker('text', max_nb_chars=120)
+    name = factory.Faker('sentence')
     slug = factory.Faker('slug')
     organisation = factory.SubFactory(ORGANISATION_FACTORY)
     description = factory.Faker('text', max_nb_chars=120)
@@ -81,7 +81,7 @@ class ModuleFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Module
 
-    name = factory.Faker('name')
+    name = factory.Faker('sentence')
     slug = factory.Faker('slug')
     description = factory.Faker('text')
     weight = random.randint(1, 1000)
