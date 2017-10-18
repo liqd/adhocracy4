@@ -47,18 +47,6 @@
         margin: 0 auto;
     }
 
-    .l-col-4 {
-        @include grid-same-width(4);
-    }
-
-    .l-col-3 {
-        @include grid-same-width(3);
-    }
-
-    .l-col-2 {
-        @include grid-same-width(2);
-    }
-
     .l-tiles-2 {
         @include grid-tiles(2);
     }

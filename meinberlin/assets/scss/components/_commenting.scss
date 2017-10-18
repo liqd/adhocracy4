@@ -4,6 +4,7 @@
 }
 
 .commenting__content--border {
+    margin-bottom: $spacer / 2;
     padding: $padding;
     border: 1px solid $border-color;
     border-radius: ($padding / 2);
