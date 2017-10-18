@@ -13,7 +13,7 @@ class ProposalFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Proposal
 
-    name = factory.Faker('name')
+    name = factory.Faker('sentence')
     description = 'Description'
     creator = factory.SubFactory(UserFactory)
     module = factory.SubFactory(ModuleFactory)
