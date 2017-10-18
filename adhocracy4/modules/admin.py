@@ -3,10 +3,15 @@ from django.contrib import admin
 from adhocracy4.phases import admin as phase_admin
 
 from . import models
+from adhocracy4.projects.admin import ProjectAdminFilter
+
+
+class ProjectFilter(ProjectAdminFilter):
+    project_key = 'module__project'
 
 
 class ItemAdmin(admin.ModelAdmin):
-    list_filter = ('module__project', 'module')
+    list_filter = ('module__project__organisation', ProjectFilter)
     readonly_fields = ('creator', )
 
 
