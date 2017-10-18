@@ -158,6 +158,8 @@ class MultiModelFormMixin(MultiFormMixin):
     def get_instance(self, name):
         """
         Returns the instance object used for instantiating the named form.
+        If no instance (None) is returned the django BaseModelForm
+        creates a default instance of the provided model.
         """
         pass
 

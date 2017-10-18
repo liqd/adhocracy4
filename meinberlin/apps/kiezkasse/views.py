@@ -111,7 +111,7 @@ class ProposalModerateView(ProjectContextMixin,
         return super().dispatch(*args, **kwargs)
 
     def get_success_url(self):
-        return self.get_object().get_absolute_url()
+        return self.object.get_absolute_url()
 
     def forms_save(self, forms, commit=True):
         objects = super().forms_save(forms, commit=False)
@@ -131,7 +131,4 @@ class ProposalModerateView(ProjectContextMixin,
         if name == 'proposal':
             return self.object
         elif name == 'statement':
-            statement = self.object.moderator_statement
-            if statement:
-                return statement
-            return ModeratorStatement()
+            return self.object.moderator_statement
