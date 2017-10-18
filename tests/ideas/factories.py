@@ -10,7 +10,7 @@ class IdeaFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = idea_models.Idea
 
-    name = factory.Faker('name')
+    name = factory.Faker('sentence')
     description = '<script>alert("hello");</script>Description'
     creator = factory.SubFactory(UserFactory)
     module = factory.SubFactory(ModuleFactory)
