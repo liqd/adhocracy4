@@ -5,7 +5,7 @@ from django.views import generic
 from django.views.generic import TemplateView
 
 from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.contrib.views import ProjectContextDispatcher
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2.components.forms.views import \
     ProjectComponentFormView
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
@@ -14,7 +14,7 @@ from . import forms
 from . import models
 
 
-class BplanStatementFormView(ProjectContextDispatcher,
+class BplanStatementFormView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.CreateView):
     model = models.Statement
@@ -24,8 +24,7 @@ class BplanStatementFormView(ProjectContextDispatcher,
     success_url = reverse_lazy('meinberlin_bplan:statement-sent')
 
     def dispatch(self, request, *args, **kwargs):
-        project = self.get_project(*args, **kwargs)
-        if project.has_finished:
+        if self.project.has_finished:
             return HttpResponseRedirect(reverse('meinberlin_bplan:finished'))
         return super().dispatch(request, *args, **kwargs)
 
@@ -37,7 +36,7 @@ class BplanStatementFormView(ProjectContextDispatcher,
         return super().form_valid(form)
 
 
-class BplanStatemenSentView(TemplateView):
+class BplanStatementSentView(TemplateView):
     template_name = 'meinberlin_bplan/statement_sent.html'
 
 
@@ -58,15 +57,10 @@ class BplanProjectUpdateView(ProjectComponentFormView):
 
     model = models.Bplan
 
-    def get_project(self, *args, **kwargs):
-        project = super().get_project(*args, **kwargs)
+    @property
+    def project(self):
+        project = super().project
         return project.externalproject.bplan
 
     def get_object(self, queryset=None):
         return self.project
-
-    def validate_object_project(self):
-        return True
-
-    def validate_object_module(self):
-        return True

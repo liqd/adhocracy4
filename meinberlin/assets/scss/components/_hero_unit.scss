@@ -52,11 +52,11 @@
 
 @media print {
     .hero-unit {
-        background-image: none !important;
+        text-align: center;
         color: $print-black;
+    }
 
-        &:before {
-            content: none;
-        }
+    .hero-unit__img {
+        display: none;
     }
 }

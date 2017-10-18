@@ -4,13 +4,14 @@ from django.views import generic
 
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.contrib.views import ProjectContextMixin
 
 from ... import mixins
 
 
-class ProjectComponentFormView(mixins.DashboardComponentMixin,
+class ProjectComponentFormView(ProjectContextMixin,
                                mixins.DashboardBaseMixin,
-                               mixins.DashboardContextMixin,
+                               mixins.DashboardComponentMixin,
                                SuccessMessageMixin,
                                generic.UpdateView):
 
@@ -29,9 +30,9 @@ class ProjectComponentFormView(mixins.DashboardComponentMixin,
         return self.project
 
 
-class ModuleComponentFormView(mixins.DashboardComponentMixin,
+class ModuleComponentFormView(ProjectContextMixin,
                               mixins.DashboardBaseMixin,
-                              mixins.DashboardContextMixin,
+                              mixins.DashboardComponentMixin,
                               SuccessMessageMixin,
                               generic.UpdateView):
 
