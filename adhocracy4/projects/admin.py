@@ -11,10 +11,17 @@ class ProjectAdminFilter(admin.SimpleListFilter):
 
     def lookups(self, request, model_admin):
         projects = models.Project.objects.all()
+
         organisation_param = self.project_key + '__organisation__id__exact'
         org = request.GET.get(organisation_param)
         if org is not None:
             projects = projects.filter(organisation=org)
+
+        archived_param = self.project_key + '__is_archived__exact'
+        is_archived = request.GET.get(archived_param)
+        if is_archived is not None:
+            projects = projects.filter(is_archived=is_archived)
+
         return ((p.pk, str(p)) for p in projects)
 
     def queryset(self, request, queryset):

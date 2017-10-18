@@ -11,7 +11,11 @@ class ProjectFilter(ProjectAdminFilter):
 
 
 class ItemAdmin(admin.ModelAdmin):
-    list_filter = ('module__project__organisation', ProjectFilter)
+    list_filter = (
+        'module__project__organisation',
+        'module__project__is_archived',
+        ProjectFilter
+    )
     readonly_fields = ('creator', )
 
 
