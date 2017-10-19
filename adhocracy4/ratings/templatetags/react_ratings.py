@@ -48,9 +48,9 @@ def react_ratings(context, obj):
         'negativeRatings': obj.negative_rating_count,
         'userRating': user_rating_value,
         'userRatingId': user_rating_id,
-        'isReadOnly': not has_rate_permission,
+        'isReadOnly': (not has_rate_permission and
+                       not would_have_rate_permission),
         'style': 'ideas',
-        'would_have_perm': would_have_rate_permission,
     }
 
     return format_html(
