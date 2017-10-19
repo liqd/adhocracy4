@@ -85,9 +85,10 @@ def _unstash_state(request):
 
 def _get_service_konto_user_data_xml(request, token):
     transport = None
-    if settings.SERVICE_KONTO_CERT:
+    cert = getattr(settings, 'SERVICE_KONTO_CERT', None)
+    if cert:
         session = requests.Session()
-        session.cert = settings.SERVICE_KONTO_CERT
+        session.cert = cert
         transport = zeep.transports.Transport(session=session)
     service_konto = zeep.Client(settings.SERVICE_KONTO_API_URL,
                                 transport=transport)
