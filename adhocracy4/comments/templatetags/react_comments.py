@@ -48,8 +48,8 @@ def react_comments(context, obj):
         'isAuthenticated': is_authenticated,
         'isModerator': is_moderator,
         'user_name': user_name,
-        'isReadOnly': not has_comment_permission,
-        'would_have_perm': would_have_comment_permission,
+        'isReadOnly': (not has_comment_permission and
+                       not would_have_comment_permission),
     }
 
     return format_html(
