@@ -21,7 +21,6 @@ from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
-from meinberlin.apps.dashboard2 import views as a4dashboard_views
 
 from . import forms
 from . import models
@@ -328,8 +327,3 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
     success_message_removal = _('Participant successfully removed.')
 
     invite_model = models.ParticipantInvite
-
-
-class DashboardProjectListView(a4dashboard_views.ProjectListView):
-    def get_queryset(self):
-        return super().get_queryset().filter(projectcontainer=None)
