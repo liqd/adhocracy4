@@ -15,6 +15,12 @@
                         {% trans "Projects" %}
                     </a>
                 </li>
+                <li class="dashboard-nav__page">
+                    <a href="{% url 'a4dashboard:container-list' organisation_slug=view.organisation.slug %}"
+                        class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'container-list' %}is-active{% endif %}">
+                        {% trans "Containers" %}
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>

@@ -43,9 +43,7 @@ class ProjectListView(mixins.DashboardBaseMixin,
     filter_set = filter.ProjectFilterSet
 
     def get_queryset(self):
-        return super().get_queryset()\
-            .filter(organisation=self.organisation)\
-            .filter(projectcontainer=None)
+        return super().get_queryset().filter(organisation=self.organisation)
 
 
 class BlueprintListView(mixins.DashboardBaseMixin,
