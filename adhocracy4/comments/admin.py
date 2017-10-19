@@ -5,4 +5,13 @@ from .models import Comment
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    readonly_fields = ('creator',)
+    fields = (
+        'content_type', 'content_object', 'comment', 'is_removed',
+        'is_censored', 'creator'
+    )
+    readonly_fields = ('creator', 'content_type', 'content_object')
+    list_display = (
+        '__str__', 'creator', 'is_removed', 'is_censored', 'created'
+    )
+    search_fields = ('comment',)
+    date_hierarchy = 'created'

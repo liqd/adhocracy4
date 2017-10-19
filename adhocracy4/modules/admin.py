@@ -16,14 +16,17 @@ class ItemAdmin(admin.ModelAdmin):
         'module__project__is_archived',
         ProjectFilter
     )
+    list_display = ('__str__', 'creator', 'created')
     readonly_fields = ('creator', )
+    date_hierarchy = 'created'
 
 
 class ModuleAdmin(admin.ModelAdmin):
     inlines = [
         phase_admin.PhaseInline
     ]
-    list_filter = ('project', 'project__organisation')
+    list_filter = ('project__organisation', 'project')
+    list_display = ('__str__', 'name')
 
 
 admin.site.register(models.Module, ModuleAdmin)

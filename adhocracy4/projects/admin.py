@@ -33,6 +33,12 @@ class ProjectAdminFilter(admin.SimpleListFilter):
 
 class ProjectAdmin(admin.ModelAdmin):
     filter_horizontal = ('moderators', 'participants')
+    list_display = (
+        '__str__', 'organisation', 'is_draft', 'is_archived', 'created'
+    )
+    list_filter = ('is_draft', 'is_archived', 'organisation')
+    search_fields = ('name',)
+    date_hierarchy = 'created'
 
 
 admin.site.register(models.Project, ProjectAdmin)
