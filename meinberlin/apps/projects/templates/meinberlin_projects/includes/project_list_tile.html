@@ -4,10 +4,10 @@
 
 <li class="tile {% if project|is_container %}tile--container{% endif %}">
     <div class="tile__head">
-        <a tabindex="-1" class="tile__image tile__image--shadowed"
+        <a tabindex="-1" class="tile__image tile__image--shadowed {% if project|is_container %}tile__image--contained tile__image--logo{% endif %}"
            aria-labelledby="project-title-{{ project.pk }}"
            {% if project_image %}
-               style="background-image: url({{ project_image|thumbnail_url:'project_thumbnail' }})"
+                style="background-image: url({{ project_image|thumbnail_url:'project_thumbnail' }})"
            {% endif %}
            href="{{ project|project_url }}" target="{{ project|is_external|yesno:"_blank,_self" }}">
         </a>
