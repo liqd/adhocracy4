@@ -1,5 +1,3 @@
-from django import forms
-
 from adhocracy4.categories import models as category_models
 
 
@@ -9,13 +7,16 @@ class CategorizableFieldMixin:
     def __init__(self, *args, **kwargs):
         module = kwargs.pop('module')
         super().__init__(*args, **kwargs)
-        queryset = category_models.Category.objects.filter(module=module)
-        self.fields[self.category_field_name] = forms.ModelChoiceField(
-            queryset=queryset,
-            empty_label=None,
-            required=False,
-        )
+
+        field = self.fields[self.category_field_name]
+        field.queryset = category_models.Category.objects.filter(module=module)
+
+        required = field.queryset.exists()
+        field.empty_label = None
+        field.required = required
+        field.widget.is_required = required
 
     def show_categories(self):
-        module_has_categories = len(self.fields['category'].queryset) > 0
+        field = self.fields[self.category_field_name]
+        module_has_categories = field.queryset.exists()
         return module_has_categories
