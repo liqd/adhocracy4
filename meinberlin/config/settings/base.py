@@ -204,8 +204,8 @@ IMAGE_ALIASES = {
 
 THUMBNAIL_ALIASES = {
     '': {
-        'heroimage': {'size': (1500, 500), 'crop': 'smart'},
-        'project_thumbnail': {'size': (520, 330), 'crop': 'smart'},
+        'heroimage': {'size': (1500, 500)},
+        'project_thumbnail': {'size': (520, 330)},
         'logo': {'size': (160, 160), 'background': 'white'},
     }
 }
