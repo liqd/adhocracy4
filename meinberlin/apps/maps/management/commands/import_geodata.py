@@ -73,7 +73,7 @@ class Command(BaseCommand):
     def _download_geodata(self, filename: str, url: str, layer: str):
         try:
             os.remove(filename)
-        except:
+        except OSError:
             pass
 
         src = 'WFS:{}{}'.format(
