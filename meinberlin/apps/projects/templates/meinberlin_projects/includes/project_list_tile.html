@@ -7,9 +7,7 @@
         <a tabindex="-1" class="tile__image tile__image--shadowed {% if project|is_container %}tile__image--contained tile__image--logo{% endif %}"
            aria-labelledby="project-title-{{ project.pk }}"
            {% if project_image %}
-                {% with project|is_container|yesno:'logo,project_thumbnail' as format %}
-                    style="background-image: url({{ project_image|thumbnail_url:format }})"
-                {% endwith %}
+                style="background-image: url({{ project_image|thumbnail_url:'project_thumbnail' }})"
            {% endif %}
            href="{{ project|project_url }}" target="{{ project|is_external|yesno:"_blank,_self" }}">
         </a>
