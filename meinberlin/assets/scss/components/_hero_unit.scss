@@ -1,5 +1,4 @@
 .hero-unit {
-    min-height: $hero-height-mobile;
     font-size: $font-size-lg;
     display: flex;
     flex-direction: row;
@@ -8,16 +7,6 @@
     position: relative;
 
     color: $brand-secondary;
-
-    @media (min-width: $breakpoint) {
-        min-height: ($hero-height-mobile + $hero-height) / 2;
-        font-size: ($font-size-lg + 3.5rem) / 2;
-    }
-
-    @media (min-width: $breakpoint-md) {
-        min-height: $hero-height;
-        font-size: 3.5rem;
-    }
 }
 
 .hero-unit__wrapper {
@@ -32,6 +21,11 @@
 
     @media (min-width: $breakpoint) {
         padding-left: 1em;
+        font-size: ($font-size-lg + 3.5rem) / 2;
+    }
+
+    @media (min-width: $breakpoint-md) {
+        font-size: 3.5rem;
     }
 }
 
@@ -42,6 +36,18 @@
     background-repeat: no-repeat;
     background-position: left;
     background-size: cover;
+
+    // HACK: IE has a bug where min-height is ignored on elements with
+    // `display: flex`. So we apply the it here instead of on .hero-unit.
+    min-height: $hero-height-mobile;
+
+    @media (min-width: $breakpoint) {
+        min-height: ($hero-height-mobile + $hero-height) / 2;
+    }
+
+    @media (min-width: $breakpoint-md) {
+        min-height: $hero-height;
+    }
 }
 
 .hero-unit__copyright {
