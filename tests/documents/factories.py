@@ -10,7 +10,7 @@ class ChapterFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = document_models.Chapter
 
-    name = factory.Faker('name')
+    name = factory.Faker('sentence')
     creator = factory.SubFactory(UserFactory)
     module = factory.SubFactory(factories.ModuleFactory)
     weight = factory.Faker('random_number')
@@ -21,7 +21,7 @@ class ParagraphFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = document_models.Paragraph
 
-    name = factory.Faker('name')
+    name = factory.Faker('sentence')
     text = 'text'
     weight = factory.Faker('random_number')
     chapter = factory.SubFactory(ChapterFactory)

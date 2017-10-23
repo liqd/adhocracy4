@@ -35,4 +35,7 @@ urlpatterns = [
         r'container/$',
         ContainerCreateView.as_view(),
         name='container-create'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/projects/$',
+        views.DashboardProjectListView.as_view(),
+        name='project-list'),
 ] + a4dashboard_urlpatterns

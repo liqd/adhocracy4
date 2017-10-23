@@ -86,16 +86,6 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
                 self.initiators.add(user)
 
 
-class ContentTypeFactory(factory.django.DjangoModelFactory):
-
-    class Meta:
-        model = 'contenttypes.ContentType'
-
-    app_label = factory.Faker('name')
-    model = factory.Faker('name')
-    name = factory.Faker('name')
-
-
 class ImageFactory():
     """Create a django file object containg an image."""
 

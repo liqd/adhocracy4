@@ -1,5 +1,6 @@
 from xml.etree import ElementTree
 
+import requests
 import zeep
 from allauth.socialaccount import providers
 from allauth.socialaccount.helpers import complete_social_login
@@ -83,7 +84,14 @@ def _unstash_state(request):
 
 
 def _get_service_konto_user_data_xml(request, token):
-    service_konto = zeep.Client(settings.SERVICE_KONTO_API_URL)
+    transport = None
+    cert = getattr(settings, 'SERVICE_KONTO_CERT', None)
+    if cert:
+        session = requests.Session()
+        session.cert = cert
+        transport = zeep.transports.Transport(session=session)
+    service_konto = zeep.Client(settings.SERVICE_KONTO_API_URL,
+                                transport=transport)
 
     result = service_konto.service.GetUserData(token)
     if not result.GetUserDataResult == SERVICE_KONTO_GET_USER_DATA_SUCCESS:
