@@ -23,6 +23,7 @@ register(factories.PhaseFactory)
 register(factories.CommentFactory)
 register(factories.RatingFactory)
 register(factories.ModeratorStatementFactory)
+register(factories.CategoryFactory)
 
 register(a4_factories.ProjectFactory)
 register(a4_factories.ModuleFactory)
