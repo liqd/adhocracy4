@@ -109,6 +109,9 @@ class MapTopicCreateView(mixins.DashboardBaseMixin,
             'a4dashboard:maptopic-list',
             kwargs={'module_slug': self.module.slug})
 
+    def get_permission_object(self):
+        return self.module
+
 
 class MapTopicUpdateView(mixins.DashboardBaseMixin,
                          mixins.DashboardComponentMixin,
@@ -127,6 +130,9 @@ class MapTopicUpdateView(mixins.DashboardBaseMixin,
             'a4dashboard:maptopic-list',
             kwargs={'module_slug': self.module.slug})
 
+    def get_permission_object(self):
+        return self.get_object()
+
 
 class MapTopicDeleteView(mixins.DashboardBaseMixin,
                          mixins.DashboardComponentMixin,
@@ -144,3 +150,6 @@ class MapTopicDeleteView(mixins.DashboardBaseMixin,
         return reverse(
             'a4dashboard:maptopic-list',
             kwargs={'module_slug': self.module.slug})
+
+    def get_permission_object(self):
+        return self.get_object()
