@@ -80,16 +80,19 @@ var init = function () {
       drawnItems.addLayer(layer)
       var shape = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(shape))
+      $('#id_' + name).trigger('change')
     })
 
     map.on(L.Draw.Event.EDITED, function (event) {
       var shape = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(shape))
+      $('#id_' + name).trigger('change')
     })
 
     map.on(L.Draw.Event.DELETED, function (event) {
       var shape = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(shape))
+      $('#id_' + name).trigger('change')
     })
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
