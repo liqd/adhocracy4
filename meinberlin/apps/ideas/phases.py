@@ -70,27 +70,10 @@ class FeedbackPhase(phases.PhaseContent):
     }
 
 
-class UniversalPhase(phases.PhaseContent):
-    app = apps.Config.label
-    phase = 'universal'
-    weight = 50
-    view = views.IdeaListView
-
-    name = _('Universal phase')
-    module_name = _('ideas collection')
-    description = _('Use all features of the idea collection.')
-
-    features = {
-        'crud': (models.Idea,),
-        'comment': (models.Idea,),
-        'rate': (models.Idea,),
-    }
-
-
 class CollectFeedbackPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'collect_feedback'
-    weight = 60
+    weight = 50
     view = views.IdeaListView
 
     name = _('Collect ideas and get feedback')
@@ -108,5 +91,4 @@ phases.content.register(IssuePhase())
 phases.content.register(CollectPhase())
 phases.content.register(RatingPhase())
 phases.content.register(FeedbackPhase())
-phases.content.register(UniversalPhase())
 phases.content.register(CollectFeedbackPhase())
