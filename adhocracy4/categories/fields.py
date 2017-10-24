@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from .models import Category
 
@@ -7,6 +8,7 @@ class CategoryField(models.ForeignKey):
 
     def __init__(self, *args, **kwargs):
         defaults = {
+            'verbose_name': _('Category'),
             'to': Category,
             'on_delete': models.SET_NULL,
             'null': True,
