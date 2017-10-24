@@ -5,7 +5,6 @@
 var $ = window.jQuery = window.$ = require('jquery')
 window.Tether = require('tether/dist/js/tether.js')
 
-// social share
 var Shariff = require('shariff')
 
 ;(function (init) {
@@ -13,6 +12,7 @@ var Shariff = require('shariff')
   $(document).on('a4.embed.ready', init)
 })(function () {
   new Shariff($('.shariff'))
+  $('select[multiple]').select2()
 })
 
 // load bootstrap components
