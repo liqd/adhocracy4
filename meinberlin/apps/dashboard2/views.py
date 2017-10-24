@@ -14,6 +14,7 @@ from adhocracy4.filters import views as filter_views
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.contrib.views import ProjectContextMixin
 
 from . import filter
 from . import forms
@@ -133,16 +134,15 @@ class ProjectUpdateView(generic.RedirectView):
         return component.get_base_url(project)
 
 
-class ProjectPublishView(mixins.DashboardBaseMixin,
+class ProjectPublishView(ProjectContextMixin,
+                         mixins.DashboardBaseMixin,
                          SingleObjectMixin,
                          generic.View):
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
 
     def post(self, request, *args, **kwargs):
-        self.project = self.get_object()
-
         action = request.POST.get('action', None)
         if action == 'publish':
             self.publish_project()
@@ -164,11 +164,12 @@ class ProjectPublishView(mixins.DashboardBaseMixin,
         })
 
     def publish_project(self):
-        if not self.project.is_draft:
+        project = self.project
+        if not project.is_draft:
             messages.info(self.request, _('Project is already published'))
             return
 
-        dashboard = get_project_dashboard(self.project)
+        dashboard = get_project_dashboard(project)
 
         num_valid, num_required = dashboard.get_progress()
         is_complete = (num_valid == num_required)
@@ -180,27 +181,28 @@ class ProjectPublishView(mixins.DashboardBaseMixin,
             return
 
         responses = signals.project_pre_publish.send(sender=None,
-                                                     project=self.project)
+                                                     project=project)
         errors = [str(msg) for func, msg in responses if msg]
         if errors:
             msg = _('Project cannot be published.') + ' \n' + '\n'.join(errors)
             messages.error(self.request, msg)
             return
 
-        self.project.is_draft = False
-        self.project.save()
-        signals.project_published.send(sender=None, project=self.project)
+        project.is_draft = False
+        project.save()
+        signals.project_published.send(sender=None, project=project)
 
         messages.success(self.request,
                          _('Project successfully published.'))
 
     def unpublish_project(self):
-        if self.project.is_draft:
+        project = self.project
+        if project.is_draft:
             messages.info(self.request, _('Project is already unpublished'))
             return
 
-        self.project.is_draft = True
-        self.project.save()
-        signals.project_unpublished.send(sender=None, project=self.project)
+        project.is_draft = True
+        project.save()
+        signals.project_unpublished.send(sender=None, project=project)
         messages.success(self.request,
                          _('Project successfully unpublished.'))
