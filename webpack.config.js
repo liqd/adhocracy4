@@ -19,9 +19,11 @@ module.exports = {
       'immutability-helper',
       'react-dom',
       'react-flip-move',
-      'select2',
       'shariff',
       'shariff/build/shariff.min.css'
+    ],
+    select2: [
+      'select2'
     ],
     leaflet: [
       'leaflet',

@@ -12,7 +12,10 @@ var Shariff = require('shariff')
   $(document).on('a4.embed.ready', init)
 })(function () {
   new Shariff($('.shariff'))
-  $('select[multiple]').select2()
+
+  if ($.fn.select2) {
+    $('.js-select2').select2()
+  }
 })
 
 // load bootstrap components
