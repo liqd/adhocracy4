@@ -14,10 +14,3 @@ class ProjectDetailView(rules_views.PermissionRequiredMixin,
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated()
-
-    @property
-    def project(self):
-        """
-        Emulate ProjectMixin interface for template sharing.
-        """
-        return self.get_object()
