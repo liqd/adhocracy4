@@ -61,6 +61,19 @@ class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
             kwargs={'organisation_slug': self.organisation.slug})
 
 
+class ModuleBlueprintListView(a4dashboard_mixins.DashboardBaseMixin,
+                              generic.DetailView):
+    template_name = 'meinberlin_dashboard/module_blueprint_list.html'
+    permission_required = 'a4projects.add_project'
+    model = project_models.Project
+    slug_url_kwarg = 'project_slug'
+    menu_item = 'project'
+
+    @property
+    def blueprints(self):
+        return get_blueprints()
+
+
 class ModuleCreateView(a4dashboard_mixins.DashboardBaseMixin,
                        a4dashboard_mixins.BlueprintMixin,
                        SingleObjectMixin,
