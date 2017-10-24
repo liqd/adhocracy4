@@ -142,6 +142,9 @@ class ProjectPublishView(ProjectContextMixin,
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
 
+    def get_permission_object(self):
+        return self.project
+
     def post(self, request, *args, **kwargs):
         action = request.POST.get('action', None)
         if action == 'publish':

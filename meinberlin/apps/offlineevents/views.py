@@ -27,6 +27,9 @@ class OfflineEventListView(ProjectContextMixin,
     def get_queryset(self):
         return super().get_queryset().filter(project=self.project)
 
+    def get_permission_object(self):
+        return self.project
+
 
 class OfflineEventCreateView(ProjectContextMixin,
                              mixins.DashboardBaseMixin,
@@ -47,6 +50,9 @@ class OfflineEventCreateView(ProjectContextMixin,
             'a4dashboard:offlineevent-list',
             kwargs={'project_slug': self.project.slug})
 
+    def get_permission_object(self):
+        return self.project
+
 
 class OfflineEventUpdateView(ProjectContextMixin,
                              mixins.DashboardBaseMixin,
@@ -66,6 +72,9 @@ class OfflineEventUpdateView(ProjectContextMixin,
     @property
     def organisation(self):
         return self.project.organisation
+
+    def get_permission_object(self):
+        return self.project
 
 
 class OfflineEventDeleteView(ProjectContextMixin,
@@ -90,3 +99,6 @@ class OfflineEventDeleteView(ProjectContextMixin,
     @property
     def organisation(self):
         return self.project.organisation
+
+    def get_permission_object(self):
+        return self.project

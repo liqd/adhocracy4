@@ -29,6 +29,9 @@ class DashboardOrganisationUpdateView(a4dashboard_mixins.DashboardBaseMixin,
     permission_required = 'meinberlin_organisations.change_organisation'
     menu_item = 'organisation'
 
+    def get_permission_object(self):
+        return self.organisation
+
 
 class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
                                     NewsletterCreateView):

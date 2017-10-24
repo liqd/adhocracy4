@@ -86,7 +86,7 @@ class TopicListDashboardView(ProjectContextMixin,
     model = models.Topic
     template_name = 'meinberlin_topicprio/topic_dashboard_list.html'
     filter_set = TopicCreateFilterSet
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
 
     def get_queryset(self):
         return super().get_queryset()\
@@ -96,7 +96,7 @@ class TopicListDashboardView(ProjectContextMixin,
             .annotate_comment_count()
 
     def get_permission_object(self):
-        return self.module
+        return self.project
 
 
 class TopicCreateView(mixins.DashboardBaseMixin,
@@ -111,6 +111,9 @@ class TopicCreateView(mixins.DashboardBaseMixin,
         return reverse(
             'a4dashboard:topic-list',
             kwargs={'module_slug': self.module.slug})
+
+    def get_permission_object(self):
+        return self.module
 
 
 class TopicUpdateView(mixins.DashboardBaseMixin,

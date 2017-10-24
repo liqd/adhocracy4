@@ -29,6 +29,9 @@ class ProjectComponentFormView(ProjectContextMixin,
     def get_object(self, queryset=None):
         return self.project
 
+    def get_permission_object(self):
+        return self.project
+
 
 class ModuleComponentFormView(ProjectContextMixin,
                               mixins.DashboardBaseMixin,
@@ -49,3 +52,6 @@ class ModuleComponentFormView(ProjectContextMixin,
 
     def get_object(self, queryset=None):
         return self.module
+
+    def get_permission_object(self):
+        return self.project

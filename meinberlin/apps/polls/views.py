@@ -58,3 +58,6 @@ class PollDashboardView(ProjectContextMixin,
                               creator=self.request.user)
             obj.save()
         return obj
+
+    def get_permission_object(self):
+        return self.project

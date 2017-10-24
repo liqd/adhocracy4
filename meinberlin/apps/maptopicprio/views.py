@@ -95,6 +95,9 @@ class MapTopicListDashboardView(ProjectContextMixin,
             .annotate_negative_rating_count() \
             .annotate_comment_count()
 
+    def get_permission_object(self):
+        return self.project
+
 
 class MapTopicCreateView(mixins.DashboardBaseMixin,
                          mixins.DashboardComponentMixin,

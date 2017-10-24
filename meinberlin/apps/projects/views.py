@@ -312,6 +312,9 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
 
     invite_model = models.ModeratorInvite
 
+    def get_permission_object(self):
+        return self.project
+
 
 class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
 
@@ -327,3 +330,6 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
     success_message_removal = _('Participant successfully removed.')
 
     invite_model = models.ParticipantInvite
+
+    def get_permission_object(self):
+        return self.project
