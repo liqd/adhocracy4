@@ -38,4 +38,8 @@ urlpatterns = [
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/projects/$',
         views.DashboardProjectListView.as_view(),
         name='project-list'),
+    url(r'^projects/(?P<project_slug>[-\w_]+)/blueprints/'
+        '(?P<blueprint_slug>[-\w_]+)/$',
+        views.ModuleCreateView.as_view(),
+        name='module-create'),
 ] + a4dashboard_urlpatterns
