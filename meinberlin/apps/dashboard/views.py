@@ -71,7 +71,10 @@ class ModuleBlueprintListView(a4dashboard_mixins.DashboardBaseMixin,
 
     @property
     def blueprints(self):
-        return get_blueprints()
+        return [
+            (key, data) for key, data in get_blueprints()
+            if key not in ['bplan', 'external-project']
+        ]
 
 
 class ModuleCreateView(a4dashboard_mixins.DashboardBaseMixin,
