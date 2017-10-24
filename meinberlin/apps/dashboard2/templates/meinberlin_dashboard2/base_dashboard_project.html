@@ -43,6 +43,10 @@
                     </ul>
                 </div>
             {% endfor %}
+
+            {% if request.user.is_superuser %}
+                <a class="btn btn--secondary btn--full" href="{% url 'a4dashboard:module-blueprint-list' project_slug=project.slug %}">{% trans 'Add Module' %}</a>
+            {% endif %}
         </nav>
 
         <div class="l-menu__content l-menu__content--aside">
