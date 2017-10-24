@@ -67,3 +67,12 @@ def patch_background_task_decorator(*decorated_modules):
         importlib.reload(module)
 
     return patcher, mocked_decorator
+
+
+def dispatch_view(view_class, request, *args, **kwargs):
+    """Mimic as_view() and dispatch() but returns view instance in addition."""
+    view = view_class()
+    view.request = request
+    view.args = args
+    view.kwargs = kwargs
+    return view.dispatch(request, *args, **kwargs), view
