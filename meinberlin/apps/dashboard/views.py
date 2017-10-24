@@ -85,9 +85,8 @@ class ModuleCreateView(a4dashboard_mixins.DashboardBaseMixin,
     def post(self, request, *args, **kwargs):
         project = self.get_object()
         module = module_models.Module(
-            name='Onlinebeteiligung',
-            description=project.description,
-            weight=1,
+            name=self.blueprint.title,
+            weight=len(project.modules) + 1,
             project=project,
         )
         module.save()
