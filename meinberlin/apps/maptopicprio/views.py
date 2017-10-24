@@ -86,7 +86,7 @@ class MapTopicListDashboardView(ProjectContextMixin,
     model = models.MapTopic
     template_name = 'meinberlin_maptopicprio/maptopic_dashboard_list.html'
     filter_set = MapTopicCreateFilterSet
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
 
     def get_queryset(self):
         return super().get_queryset()\
@@ -109,6 +109,9 @@ class MapTopicCreateView(mixins.DashboardBaseMixin,
             'a4dashboard:maptopic-list',
             kwargs={'module_slug': self.module.slug})
 
+    def get_permission_object(self):
+        return self.module
+
 
 class MapTopicUpdateView(mixins.DashboardBaseMixin,
                          mixins.DashboardComponentMixin,
@@ -127,6 +130,9 @@ class MapTopicUpdateView(mixins.DashboardBaseMixin,
             'a4dashboard:maptopic-list',
             kwargs={'module_slug': self.module.slug})
 
+    def get_permission_object(self):
+        return self.get_object()
+
 
 class MapTopicDeleteView(mixins.DashboardBaseMixin,
                          mixins.DashboardComponentMixin,
@@ -144,3 +150,6 @@ class MapTopicDeleteView(mixins.DashboardBaseMixin,
         return reverse(
             'a4dashboard:maptopic-list',
             kwargs={'module_slug': self.module.slug})
+
+    def get_permission_object(self):
+        return self.get_object()

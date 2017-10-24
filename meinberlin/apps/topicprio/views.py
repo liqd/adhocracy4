@@ -95,6 +95,9 @@ class TopicListDashboardView(ProjectContextMixin,
             .annotate_negative_rating_count() \
             .annotate_comment_count()
 
+    def get_permission_object(self):
+        return self.module
+
 
 class TopicCreateView(mixins.DashboardBaseMixin,
                       mixins.DashboardComponentMixin,
@@ -127,6 +130,9 @@ class TopicUpdateView(mixins.DashboardBaseMixin,
             'a4dashboard:topic-list',
             kwargs={'module_slug': self.module.slug})
 
+    def get_permission_object(self):
+        return self.get_object()
+
 
 class TopicDeleteView(mixins.DashboardBaseMixin,
                       mixins.DashboardComponentMixin,
@@ -144,3 +150,6 @@ class TopicDeleteView(mixins.DashboardBaseMixin,
         return reverse(
             'a4dashboard:topic-list',
             kwargs={'module_slug': self.module.slug})
+
+    def get_permission_object(self):
+        return self.get_object()

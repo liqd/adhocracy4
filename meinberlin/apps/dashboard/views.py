@@ -52,3 +52,6 @@ class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
         return reverse(
             'a4dashboard:newsletter-create',
             kwargs={'organisation_slug': self.organisation.slug})
+
+    def get_permission_object(self):
+        return self.organisation

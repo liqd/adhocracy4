@@ -56,6 +56,7 @@ class OfflineEventUpdateView(ProjectContextMixin,
     form_class = forms.OfflineEventForm
     permission_required = 'meinberlin_offlineevents.change_offlineevent'
     template_name = 'meinberlin_offlineevents/offlineevent_update_form.html'
+    get_context_from_object = True
 
     def get_success_url(self):
         return reverse(
@@ -75,6 +76,7 @@ class OfflineEventDeleteView(ProjectContextMixin,
     success_message = _('The offline event has been deleted')
     permission_required = 'meinberlin_offlineevents.change_offlineevent'
     template_name = 'meinberlin_offlineevents/offlineevent_confirm_delete.html'
+    get_context_from_object = True
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
