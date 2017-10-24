@@ -52,6 +52,5 @@ class ProjectMixin(generic.base.ContextMixin):
     def dispatch(self, *args, **kwargs):
         self.project = kwargs['project']
         self.module = kwargs['module']
-        self.phase = self.module.last_active_phase if self.module else None
 
         return super(ProjectMixin, self).dispatch(*args, **kwargs)

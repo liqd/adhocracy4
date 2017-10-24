@@ -60,7 +60,6 @@ def test_project_mixin(rf, question_list_view, phase):
     view_data = response.context_data['view']
     assert view_data.project == project
     assert view_data.module == module
-    assert view_data.phase == phase
 
 
 @pytest.mark.django_db
@@ -82,4 +81,3 @@ def test_project_inject_phase_after_finish(rf, phase_factory,
     view_data = response.context_data['view']
     assert view_data.project == project
     assert view_data.module == module
-    assert view_data.phase == phase
