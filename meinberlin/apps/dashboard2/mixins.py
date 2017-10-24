@@ -49,7 +49,7 @@ class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
             return None
 
     def get_permission_object(self):
-        return self.organisation
+        return self.project
 
     def get_success_url(self):
         return self.request.path

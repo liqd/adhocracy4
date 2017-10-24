@@ -45,6 +45,9 @@ class ProjectListView(mixins.DashboardBaseMixin,
     def get_queryset(self):
         return super().get_queryset().filter(organisation=self.organisation)
 
+    def get_permission_object(self):
+        return self.organisation
+
 
 class BlueprintListView(mixins.DashboardBaseMixin,
                         generic.TemplateView):
@@ -55,6 +58,9 @@ class BlueprintListView(mixins.DashboardBaseMixin,
     @property
     def blueprints(self):
         return get_blueprints()
+
+    def get_permission_object(self):
+        return self.organisation
 
 
 class ProjectCreateView(mixins.DashboardBaseMixin,
@@ -68,6 +74,9 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
     success_message = _('Project successfully created.')
+
+    def get_permission_object(self):
+        return self.organisation
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
