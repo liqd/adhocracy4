@@ -1,8 +1,10 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n rules %}
 
 {% block content %}
 
+{% has_perm 'a4projects.add_project' request.user view.project as user_may_add %}
+{% if user_may_add %}
 <div class="tablist tablist--right tablist--background u-after-dialogue-box">
     <div class="l-wrapper">
         <div class="tablist__left dropdown">
@@ -52,6 +54,7 @@
         </nav>
     </div>
 </div>
+{% endif %}
 
 <div class="l-wrapper">
     {% block dashboard_content %}{% endblock %}
