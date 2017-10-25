@@ -86,7 +86,7 @@ class MapTopicListDashboardView(ProjectContextMixin,
     model = models.MapTopic
     template_name = 'meinberlin_maptopicprio/maptopic_dashboard_list.html'
     filter_set = MapTopicCreateFilterSet
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
 
     def get_queryset(self):
         return super().get_queryset()\
@@ -94,6 +94,9 @@ class MapTopicListDashboardView(ProjectContextMixin,
             .annotate_positive_rating_count() \
             .annotate_negative_rating_count() \
             .annotate_comment_count()
+
+    def get_permission_object(self):
+        return self.project
 
 
 class MapTopicCreateView(mixins.DashboardBaseMixin,

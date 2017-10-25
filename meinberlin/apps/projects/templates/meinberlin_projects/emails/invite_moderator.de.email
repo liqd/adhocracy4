@@ -5,7 +5,7 @@
 
 {% block headline %}Einladung zum Moderieren des Projekts {{ moderatorinvite.project.name }}{% endblock  %}
 
-{% block content %}Sie wurden als Moderator*in zum Projekt auf {{ site.name }} eingeladen. Sie können diese Einladung über den {% if part_type == "txt" %}Link{% else %}Knopf{% endif %} unten akzeptieren oder ablehnen.{% endblock %}
+{% block content %}Sie wurden als Moderator*in zu einem Projekt auf {{ site.name }} eingeladen. Sie können diese Einladung über den {% if part_type == "txt" %}Link{% else %}Knopf{% endif %} unten akzeptieren oder ablehnen.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Einladung annehmen/ablehnen{% endblock %}

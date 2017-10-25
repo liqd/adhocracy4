@@ -65,3 +65,6 @@ class ContainerListView(dashboard_mixins.DashboardBaseMixin,
         return super().get_queryset().filter(
             organisation=self.organisation
         )
+
+    def get_permission_object(self):
+        return self.organisation

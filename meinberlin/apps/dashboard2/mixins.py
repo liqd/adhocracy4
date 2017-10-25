@@ -4,14 +4,12 @@ from datetime import datetime
 from django.apps import apps
 from django.conf import settings
 from django.contrib import messages
-from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import base
 
-from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 
@@ -21,24 +19,20 @@ Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 
 
 class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
+    organisation_lookup_field = 'slug'
+    organisation_url_kwarg = 'organisation_slug'
 
     @property
     def organisation(self):
-        if 'organisation_slug' in self.kwargs:
-            slug = self.kwargs['organisation_slug']
-            return get_object_or_404(Organisation, slug=slug)
+        if self.organisation_url_kwarg \
+                and self.organisation_url_kwarg in self.kwargs:
+            lookup = {
+                self.organisation_lookup_field:
+                    self.kwargs[self.organisation_url_kwarg]
+            }
+            return get_object_or_404(Organisation, **lookup)
 
-        if 'project_slug' in self.kwargs:
-            slug = self.kwargs['project_slug']
-            project = get_object_or_404(project_models.Project, slug=slug)
-            return project.organisation
-
-        if 'module_slug' in self.kwargs:
-            slug = self.kwargs['module_slug']
-            module = get_object_or_404(module_models.Module, slug=slug)
-            return module.project.organisation
-
-        raise ObjectDoesNotExist()
+        return self.project.organisation
 
     @property
     def other_organisations_of_user(self):
@@ -49,7 +43,7 @@ class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
             return None
 
     def get_permission_object(self):
-        return self.organisation
+        raise NotImplementedError('Set permission object.')
 
     def get_success_url(self):
         return self.request.path

@@ -43,7 +43,7 @@ class PollDashboardView(ProjectContextMixin,
                         dashboard_mixins.DashboardComponentMixin,
                         generic.TemplateView):
     template_name = 'meinberlin_polls/poll_dashboard.html'
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -58,3 +58,6 @@ class PollDashboardView(ProjectContextMixin,
                               creator=self.request.user)
             obj.save()
         return obj
+
+    def get_permission_object(self):
+        return self.project

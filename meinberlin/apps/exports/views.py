@@ -20,7 +20,7 @@ from . import exports
 
 class ExportModuleDispatcher(rules_mixins.PermissionRequiredMixin,
                              generic.View):
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
 
     def dispatch(self, request, *args, **kwargs):
         export_id = int(kwargs.pop('export_id'))
@@ -42,7 +42,7 @@ class ExportModuleDispatcher(rules_mixins.PermissionRequiredMixin,
         return view(request, module=module, *args, **kwargs)
 
     def get_permission_object(self):
-        return self.project.organisation
+        return self.project
 
 
 class AbstractCSVExportView(generic.View):

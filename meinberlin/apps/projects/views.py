@@ -302,7 +302,7 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
     template_name = 'meinberlin_projects/project_moderators.html'
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
     menu_item = 'project'
 
     related_users_field = 'moderators'
@@ -312,13 +312,16 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
 
     invite_model = models.ModeratorInvite
 
+    def get_permission_object(self):
+        return self.project
+
 
 class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
 
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
     template_name = 'meinberlin_projects/project_participants.html'
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
     menu_item = 'project'
 
     related_users_field = 'participants'
@@ -327,3 +330,6 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
     success_message_removal = _('Participant successfully removed.')
 
     invite_model = models.ParticipantInvite
+
+    def get_permission_object(self):
+        return self.project
