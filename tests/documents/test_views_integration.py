@@ -1,0 +1,45 @@
+import pytest
+
+from meinberlin.apps.documents import phases
+from tests.helpers import freeze_phase
+from tests.helpers import setup_phase
+
+
+@pytest.mark.django_db
+def test_document_detail_view(client, phase_factory, chapter_factory):
+    phase, module, project, item = setup_phase(
+        phase_factory, chapter_factory, phases.CommentPhase)
+    url = project.get_absolute_url()
+    with freeze_phase(phase):
+        response = client.get(url)
+        assert response.status_code == 200
+        assert response.template_name == \
+            ['meinberlin_documents/chapter_detail.html']
+
+
+@pytest.mark.django_db
+def test_chapter_detail_view(client, phase_factory, chapter_factory):
+    phase, module, project, item = setup_phase(
+        phase_factory, None, phases.CommentPhase)
+    chapter_factory(module=module, weight=0)
+    chapter = chapter_factory(module=module, weight=1)
+    url = chapter.get_absolute_url()
+    with freeze_phase(phase):
+        response = client.get(url)
+        assert response.status_code == 200
+        assert response.template_name == \
+            ['meinberlin_documents/chapter_detail.html']
+
+
+@pytest.mark.django_db
+def test_paragraph_detail_view(client, phase_factory, chapter_factory,
+                               paragraph_factory):
+    phase, module, project, item = setup_phase(
+        phase_factory, chapter_factory, phases.CommentPhase)
+    paragraph = paragraph_factory(chapter=item)
+    url = paragraph.get_absolute_url()
+    with freeze_phase(phase):
+        response = client.get(url)
+        assert response.status_code == 200
+        assert response.template_name == \
+            ['meinberlin_documents/paragraph_detail.html']
