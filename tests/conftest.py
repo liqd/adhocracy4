@@ -6,6 +6,7 @@ from rest_framework.test import APIClient
 
 from adhocracy4.test import factories as a4_factories
 from adhocracy4.test import helpers
+from adhocracy4.test.factories.maps import AreaSettingsFactory
 
 from . import factories
 
@@ -27,6 +28,7 @@ register(factories.CategoryFactory)
 
 register(a4_factories.ProjectFactory)
 register(a4_factories.ModuleFactory)
+register(AreaSettingsFactory)
 
 
 @pytest.fixture
