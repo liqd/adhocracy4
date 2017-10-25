@@ -1,6 +1,5 @@
 import re
 
-from django.core.validators import RegexValidator
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
@@ -8,13 +7,11 @@ from django.forms import widgets
 from django.utils.translation import ugettext_lazy as _
 
 
-    default_validators = [RegexValidator(
-        # a list of emails, separated by commas with optional space after
-        regex=r'^([^@]+@[^@\s]+\.[^@\s,]+((,\s?)|$))+$',
 class CommaSeparatedEmailField(forms.Field):
+    email_validator = EmailValidator(
         message=_('Please enter correct email addresses, separated by '
                   'commas.')
-    )]
+    )
 
     widget = widgets.TextInput(attrs={
         'placeholder': 'maria@example.com, peter@example.com, '
@@ -22,8 +19,16 @@ class CommaSeparatedEmailField(forms.Field):
     })
 
     def to_python(self, value):
-        emails_str = value.strip(' ,')
-        return re.split(r',\s?', emails_str)
+        if not value:
+            return []
+
+        emails = []
+        for email in value.split(','):
+            email = email.strip()
+            self.email_validator(email)
+            emails.append(email)
+
+        return emails
 
 
 class EmailFileField(forms.FileField):
