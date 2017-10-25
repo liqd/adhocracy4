@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-16 14:05+0200\n"
+"POT-Creation-Date: 2017-10-25 10:27+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:97
+#: adhocracy4/comments/static/comments/Comment.jsx:96
 #: adhocracy4/comments/static/comments/Comment.jsx:97
 msgid "Do you really want to delete this comment?"
 msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:99
+#: adhocracy4/comments/static/comments/Comment.jsx:98
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
 #: adhocracy4/comments/static/comments/Comment.jsx:99
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
@@ -36,84 +36,84 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 msgid "Delete"
 msgstr "Löschen"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:100
-#: adhocracy4/static/Modal.jsx:49
+#: adhocracy4/comments/static/comments/Comment.jsx:99
+#: adhocracy4/static/Modal.jsx:48
 #: adhocracy4/comments/static/comments/Comment.jsx:100
 #: adhocracy4/static/Modal.jsx:49
 msgid "Abort"
 msgstr "Abbrechen"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:113
+#: adhocracy4/comments/static/comments/Comment.jsx:112
 #: adhocracy4/comments/static/comments/Comment.jsx:113
 msgid "Latest edit on"
 msgstr "Letzte Änderung am"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:118
+#: adhocracy4/comments/static/comments/Comment.jsx:117
 #: adhocracy4/comments/static/comments/Comment.jsx:118
 msgid "Moderator"
 msgstr "Moderator"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:125
+#: adhocracy4/comments/static/comments/Comment.jsx:124
 #: adhocracy4/reports/static/reports/react_reports.jsx:21
 #: adhocracy4/comments/static/comments/Comment.jsx:125
 #: adhocracy4/reports/static/reports/react_reports.jsx:21
 msgid "Are you sure you want to report this item?"
 msgstr "Sind Sie sicher, dass Sie diesen Beitrag melden möchten?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:167
+#: adhocracy4/comments/static/comments/Comment.jsx:166
 #: adhocracy4/comments/static/comments/Comment.jsx:167
 msgid "Your reply here"
 msgstr "Ihre Antwort hier"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:82
+#: adhocracy4/comments/static/comments/CommentBox.jsx:81
 #: adhocracy4/comments/static/comments/CommentBox.jsx:82
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "Kommentar"
 msgstr[1] "Kommentare"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:85
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
-#: adhocracy4/comments/static/comments/CommentForm.jsx:37
+#: adhocracy4/comments/static/comments/CommentBox.jsx:84
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:32
+#: adhocracy4/comments/static/comments/CommentForm.jsx:36
 #: adhocracy4/comments/static/comments/CommentBox.jsx:85
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
 #: adhocracy4/comments/static/comments/CommentForm.jsx:37
 msgid "Your comment here"
 msgstr "Ihr Kommentar hier"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:36
-#: adhocracy4/comments/static/comments/CommentForm.jsx:40
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:35
+#: adhocracy4/comments/static/comments/CommentForm.jsx:39
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:36
 #: adhocracy4/comments/static/comments/CommentForm.jsx:40
 msgid "post"
 msgstr "Senden"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:37
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:36
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:37
 msgid "cancel"
 msgstr "Abbrechen"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:46
+#: adhocracy4/comments/static/comments/CommentForm.jsx:45
 #: adhocracy4/comments/static/comments/CommentForm.jsx:46
 msgid "Please login to comment"
 msgstr "Bitte melden Sie sich zum Kommentieren an."
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:52
+#: adhocracy4/comments/static/comments/CommentForm.jsx:51
 #: adhocracy4/comments/static/comments/CommentForm.jsx:52
 msgid "The currently active phase doesn't allow to comment."
 msgstr "Die aktuell laufende Phase erlaubt keine Kommentare."
 
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:16
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:15
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:16
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:23
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
 msgid "Report"
 msgstr "Melden"
 
-#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:6
+#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:5
 #: adhocracy4/comments/static/comments/CommentReplyBar.jsx:6
 #, javascript-format
 msgid "view %s reply"
@@ -121,37 +121,17 @@ msgid_plural "view %s replies"
 msgstr[0] "%s Antwort sehen"
 msgstr[1] "%s Antworten sehen"
 
-#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:26
+#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:25
 #: adhocracy4/comments/static/comments/CommentReplyBar.jsx:26
 msgid "Answer"
 msgstr "Antworten"
 
-#: adhocracy4/follows/static/follows/FollowButton.jsx:51
-#: adhocracy4/follows/static/follows/FollowButton.jsx:51
-msgid "Not following"
-msgstr "Nicht folgen"
-
-#: adhocracy4/follows/static/follows/FollowButton.jsx:52
-#: adhocracy4/follows/static/follows/FollowButton.jsx:52
-msgid "Never be notified."
-msgstr "Sie werden nie benachrichtigt"
-
-#: adhocracy4/follows/static/follows/FollowButton.jsx:53
-#: adhocracy4/follows/static/follows/FollowButton.jsx:53
-msgid "Following"
-msgstr "Folgen"
-
-#: adhocracy4/follows/static/follows/FollowButton.jsx:54
-#: adhocracy4/follows/static/follows/FollowButton.jsx:54
-msgid "Receive email notifications about this project."
-msgstr "Sie erhalten E-Mail Benachrichtigungen über dieses Projekt"
-
-#: adhocracy4/follows/static/follows/FollowButton.jsx:61
+#: adhocracy4/follows/static/follows/FollowButton.jsx:55
 #: adhocracy4/follows/static/follows/FollowButton.jsx:61
 msgid "Unfollow"
 msgstr "Entfolgen"
 
-#: adhocracy4/follows/static/follows/FollowButton.jsx:61
+#: adhocracy4/follows/static/follows/FollowButton.jsx:55
 #: adhocracy4/follows/static/follows/FollowButton.jsx:61
 msgid "Follow"
 msgstr "Folgen"
@@ -165,6 +145,22 @@ msgstr "Ihre Nachricht hier"
 #: adhocracy4/reports/static/reports/ReportModal.jsx:77
 msgid "Send Report"
 msgstr "Meldung senden"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:51
+msgid "Not following"
+msgstr "Nicht folgen"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:52
+msgid "Never be notified."
+msgstr "Sie werden nie benachrichtigt"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:53
+msgid "Following"
+msgstr "Folgen"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:54
+msgid "Receive email notifications about this project."
+msgstr "Sie erhalten E-Mail Benachrichtigungen über dieses Projekt"
 
 #: meinberlin/apps/contrib/assets/Alert.jsx:10
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
@@ -250,7 +246,7 @@ msgstr "Überschrift"
 msgid "Paragraph"
 msgstr "Absatz"
 
-#: meinberlin/apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:108
+#: meinberlin/apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:111
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr ""
 "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
