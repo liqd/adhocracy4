@@ -540,13 +540,15 @@ msgstr "Notwendiges Budget"
 
 #: meinberlin/apps/budgeting/models.py:17
 msgid "Proposal is archived"
-msgstr ""
+msgstr "Vorschlag ist archiviert"
 
 #: meinberlin/apps/budgeting/models.py:18
 msgid ""
 "Exclude this proposal from all listings by default. You can still access "
 "this proposal by using filters."
 msgstr ""
+"Diesen Vorschlag standardmäßig von allen Listen ausschließen. Sie können den "
+"Vorschlag weiterhin über die Filter erreichen."
 
 #: meinberlin/apps/budgeting/phases.py:16
 #: meinberlin/apps/kiezkasse/phases.py:16
@@ -1105,11 +1107,11 @@ msgstr "Nein"
 
 #: meinberlin/apps/dashboard2/forms.py:60
 msgid "All users can participate (public)."
-msgstr ""
+msgstr "Alle Nutzer können sich beteiligen (öffentlich)."
 
 #: meinberlin/apps/dashboard2/forms.py:61
 msgid "Only invited users can participate (private)."
-msgstr ""
+msgstr "Nur eingeladene Nutzer können sich beteiligen (privat)."
 
 #: meinberlin/apps/dashboard2/forms.py:107
 #: meinberlin/apps/extprojects/forms.py:29
@@ -1525,11 +1527,13 @@ msgstr ""
 
 #: meinberlin/apps/ideas/phases.py:79 meinberlin/apps/mapideas/phases.py:79
 msgid "Collect ideas and get feedback"
-msgstr ""
+msgstr "Lassen Sie Ideen bewerten und kommentieren."
 
 #: meinberlin/apps/ideas/phases.py:80
 msgid "Create new ideas and get feedback through rates and comments."
 msgstr ""
+"Sammeln Sie Ideen zu einem bestimmten Thema und lassen Sie diese "
+"kommentieren und bewerten."
 
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:4
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:4
@@ -1676,6 +1680,8 @@ msgid ""
 "Create new ideas located on a map and get feedback through rates and "
 "comments."
 msgstr ""
+"Anlegen neuer Ideen, verortet auf einer Karte, diese können kommentiert "
+"und bewertet werden."
 
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:18
 msgid "Submit Idea"
@@ -1686,6 +1692,8 @@ msgid ""
 "Enter a valid GeoJSON object. To initialize a new areasetting enter the "
 "string \"false\" without quotation marks."
 msgstr ""
+"Ein valides GeoJSON object eingeben. Zur Initialisierung \"false\" ohne "
+"Anführungszeichen eingeben."
 
 #: meinberlin/apps/maps/templates/meinberlin_maps/map_choose_polygon_with_preset_widget.html:6
 msgid "You can choose a preset for further customization."
