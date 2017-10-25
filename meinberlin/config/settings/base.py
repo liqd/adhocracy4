@@ -391,5 +391,5 @@ A4_DASHBOARD = {
 }
 
 CONTACT_EMAIL = 'support-berlin@liqd.net'
-SUPERVISOR_EMAIL = 'supervisor-berlin@liqd.net'
+SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 EMAIL_DEFAULT_LANGUAGE = 'de'
