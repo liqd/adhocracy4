@@ -1,3 +1,4 @@
+import itertools
 from datetime import datetime
 
 import django_filters
@@ -210,6 +211,7 @@ class AbstractProjectUserInviteListView(
         generic.edit.ProcessFormView):
 
     form_class = forms.InviteUsersFromEmailForm
+    upload_form_class = forms.InviteUsersFromEmailForm
     invite_model = None
 
     def get(self, request, *args, **kwargs):
@@ -258,7 +260,9 @@ class AbstractProjectUserInviteListView(
         return filtered_emails, pending
 
     def form_valid(self, form):
-        emails = form.cleaned_data['add_users']
+        emails = list(set(
+            itertools.chain(form.cleaned_data['add_users'],
+                            form.cleaned_data['add_users_upload'])))
 
         emails, existing = self.filter_existing(emails)
         if existing:
@@ -293,7 +297,8 @@ class AbstractProjectUserInviteListView(
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['label'] = self.add_user_field_label
+        kwargs['labels'] = (self.add_user_field_label,
+                            self.add_user_upload_field_label)
         return kwargs
 
 
@@ -307,6 +312,7 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
 
     related_users_field = 'moderators'
     add_user_field_label = _('Invite moderators via email')
+    add_user_upload_field_label = _('Invite moderators via file upload')
     success_message = ('{} moderator invited.', '{} moderators invited.')
     success_message_removal = _('Moderator successfully removed.')
 
@@ -323,6 +329,7 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
 
     related_users_field = 'participants'
     add_user_field_label = _('Invite users via email')
+    add_user_upload_field_label = _('Invite users via file upload')
     success_message = ('{} participant invited.', '{} participants invited.')
     success_message_removal = _('Participant successfully removed.')
 
