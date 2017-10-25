@@ -21,8 +21,15 @@ urlpatterns = [
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/containers/$',
         ContainerListView.as_view(),
         name='container-list'),
+    url(r'^projects/(?P<project_slug>[-\w_]+)/blueprints/$',
+        views.ModuleBlueprintListView.as_view(),
+        name='module-blueprint-list'),
+    url(r'^projects/(?P<project_slug>[-\w_]+)/blueprints/'
+        '(?P<blueprint_slug>[-\w_]+)/$',
+        views.ModuleCreateView.as_view(),
+        name='module-create'),
 
-    # Overwrite the ProjectUpdateView with meinBerlin urls
+    # Overwrite adhocracy4 core urls with meinBerlin urls
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
         r'external-project/$',
         ExternalProjectCreateView.as_view(),
@@ -38,11 +45,4 @@ urlpatterns = [
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/projects/$',
         views.DashboardProjectListView.as_view(),
         name='project-list'),
-    url(r'^projects/(?P<project_slug>[-\w_]+)/blueprints/$',
-        views.ModuleBlueprintListView.as_view(),
-        name='module-blueprint-list'),
-    url(r'^projects/(?P<project_slug>[-\w_]+)/blueprints/'
-        '(?P<blueprint_slug>[-\w_]+)/$',
-        views.ModuleCreateView.as_view(),
-        name='module-create'),
 ] + a4dashboard_urlpatterns
