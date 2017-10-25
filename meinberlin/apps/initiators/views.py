@@ -12,7 +12,7 @@ class InitiatorRequestView(rules_mixins.PermissionRequiredMixin,
                            FormView):
 
     template_name = 'meinberlin_initiators/request.html'
-    permission_required = 'is_authenticated'
+    permission_required = 'meinberlin_initiators.request'
     form_class = forms.InitiatorRequestForm
     success_url = '/'
 

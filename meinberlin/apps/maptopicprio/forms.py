@@ -1,3 +1,4 @@
+from ckeditor_uploader import fields
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
@@ -8,6 +9,9 @@ from . import models
 
 
 class MapTopicForm(CategorizableFieldMixin, forms.ModelForm):
+
+    description = fields.RichTextUploadingFormField(
+        config_name='image-editor', required=True)
 
     def __init__(self, *args, **kwargs):
         self.settings = kwargs.pop('settings_instance')
