@@ -34,7 +34,7 @@ class ModeratorsComponent(DashboardComponent):
     label = _('Moderators')
 
     def is_effective(self, project):
-        return not project.is_draft
+        return True
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-moderators-edit', kwargs={

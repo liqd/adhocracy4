@@ -9,6 +9,7 @@ from django.views.generic.detail import SingleObjectMixin
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
 from meinberlin.apps.dashboard2 import views as a4dashboard_views
 from meinberlin.apps.dashboard2.blueprints import get_blueprints
@@ -36,6 +37,9 @@ class DashboardOrganisationUpdateView(a4dashboard_mixins.DashboardBaseMixin,
     permission_required = 'meinberlin_organisations.change_organisation'
     menu_item = 'organisation'
 
+    def get_permission_object(self):
+        return self.organisation
+
 
 class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
                                     NewsletterCreateView):
@@ -60,8 +64,12 @@ class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
             'a4dashboard:newsletter-create',
             kwargs={'organisation_slug': self.organisation.slug})
 
+    def get_permission_object(self):
+        return self.organisation
 
-class ModuleBlueprintListView(a4dashboard_mixins.DashboardBaseMixin,
+
+class ModuleBlueprintListView(ProjectContextMixin,
+                              a4dashboard_mixins.DashboardBaseMixin,
                               generic.DetailView):
     template_name = 'meinberlin_dashboard/module_blueprint_list.html'
     permission_required = 'a4projects.add_project'
@@ -76,8 +84,12 @@ class ModuleBlueprintListView(a4dashboard_mixins.DashboardBaseMixin,
             if key not in ['bplan', 'external-project']
         ]
 
+    def get_permission_object(self):
+        return self.organisation
 
-class ModuleCreateView(a4dashboard_mixins.DashboardBaseMixin,
+
+class ModuleCreateView(ProjectContextMixin,
+                       a4dashboard_mixins.DashboardBaseMixin,
                        a4dashboard_mixins.BlueprintMixin,
                        SingleObjectMixin,
                        generic.View):
@@ -120,3 +132,6 @@ class ModuleCreateView(a4dashboard_mixins.DashboardBaseMixin,
         return reverse('a4dashboard:dashboard-module_basic-edit', kwargs={
             'module_slug': module.slug
         })
+
+    def get_permission_object(self):
+        return self.organisation

@@ -15,7 +15,7 @@ class ProjectComponentFormView(ProjectContextMixin,
                                SuccessMessageMixin,
                                generic.UpdateView):
 
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
     model = project_models.Project
     template_name = 'meinberlin_dashboard2/base_form_project.html'
     success_message = _('Project successfully updated.')
@@ -29,6 +29,9 @@ class ProjectComponentFormView(ProjectContextMixin,
     def get_object(self, queryset=None):
         return self.project
 
+    def get_permission_object(self):
+        return self.project
+
 
 class ModuleComponentFormView(ProjectContextMixin,
                               mixins.DashboardBaseMixin,
@@ -36,7 +39,7 @@ class ModuleComponentFormView(ProjectContextMixin,
                               SuccessMessageMixin,
                               generic.UpdateView):
 
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
     model = module_models.Module
     template_name = 'meinberlin_dashboard2/base_form_module.html'
     success_message = _('Module successfully updated.')
@@ -49,3 +52,6 @@ class ModuleComponentFormView(ProjectContextMixin,
 
     def get_object(self, queryset=None):
         return self.module
+
+    def get_permission_object(self):
+        return self.project

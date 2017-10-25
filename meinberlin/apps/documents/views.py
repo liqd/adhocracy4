@@ -15,7 +15,10 @@ class DocumentDashboardView(ProjectContextMixin,
                             dashboard_mixins.DashboardComponentMixin,
                             generic.TemplateView):
     template_name = 'meinberlin_documents/document_dashboard.html'
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
+
+    def get_permission_object(self):
+        return self.project
 
 
 class ChapterDetailView(ProjectContextMixin,

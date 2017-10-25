@@ -70,7 +70,26 @@ class FeedbackPhase(phases.PhaseContent):
     }
 
 
+class CollectFeedbackPhase(phases.PhaseContent):
+    app = apps.Config.label
+    phase = 'collect_feedback'
+    weight = 50
+    view = views.MapIdeaListView
+
+    name = _('Collect ideas and get feedback')
+    description = _('Create new ideas located on a map and get feedback '
+                    'through rates and comments.')
+    module_name = _('ideas collection')
+
+    features = {
+        'crud': (models.MapIdea,),
+        'comment': (models.MapIdea,),
+        'rate': (models.MapIdea,)
+    }
+
+
 phases.content.register(IssuePhase())
 phases.content.register(CollectPhase())
 phases.content.register(RatingPhase())
 phases.content.register(FeedbackPhase())
+phases.content.register(CollectFeedbackPhase())

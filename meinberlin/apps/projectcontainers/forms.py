@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
+from meinberlin.apps.contrib.widgets import Select2MultipleWidget
 from meinberlin.apps.dashboard2.forms import ProjectCreateForm
 from meinberlin.apps.dashboard2.forms import ProjectDashboardForm
 
@@ -78,3 +79,6 @@ class ContainerProjectsForm(ProjectDashboardForm):
         model = models.ProjectContainer
         fields = ['projects']
         required_for_project_publish = ['projects']
+        widgets = {
+            'projects': Select2MultipleWidget,
+        }

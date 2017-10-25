@@ -22,6 +22,9 @@ module.exports = {
       'shariff',
       'shariff/build/shariff.min.css'
     ],
+    select2: [
+      'select2'
+    ],
     leaflet: [
       'leaflet',
       'leaflet/dist/leaflet.css'
