@@ -26,6 +26,7 @@ function createMarker ($, L, newlatln, oldlatln, basePolygon, map, name) {
         oldlatln = marker.getLatLng()
         var shape = marker.toGeoJSON()
         $('#id_' + name).val(JSON.stringify(shape))
+        $('#id_' + name).trigger('change')
       }
     })
     if (!markerInsidePolygon) {
@@ -128,6 +129,7 @@ var init = function () {
         marker = createMarker($, L, event.latlng, oldlatlng, basePolygon, map, name)
         var shape = marker.toGeoJSON()
         $('#id_' + name).val(JSON.stringify(shape))
+        $('#id_' + name).trigger('change')
       }
     })
 
