@@ -15,6 +15,8 @@ def test_list_view(client, phase_factory, proposal_factory):
     with freeze_phase(phase):
         response = client.get(url)
         assert response.status_code == 200
+        assert response.template_name == \
+            ['meinberlin_budgeting/proposal_list.html']
 
 
 @pytest.mark.django_db
@@ -25,6 +27,8 @@ def test_detail_view(client, phase_factory, proposal_factory):
     with freeze_phase(phase):
         response = client.get(url)
         assert response.status_code == 200
+        assert response.template_name == \
+            ['meinberlin_budgeting/proposal_detail.html']
 
 
 @pytest.mark.django_db
