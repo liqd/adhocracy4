@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.projects import models as project_models
 
@@ -8,6 +9,7 @@ class ProjectContainer(project_models.Project):
     projects = models.ManyToManyField(
         project_models.Project,
         related_name='containers',
+        verbose_name=_('Projects')
     )
 
     @property
