@@ -1,0 +1,21 @@
+{% load i18n static %}
+
+<li class="tile">
+    <div class="tile__image tile__image--contained" style="background-image: url({% static blueprint.image %})"></div>
+    <form class="tile__body" action="{% url 'a4dashboard:module-create' project_slug=project.slug blueprint_slug=blueprint_slug %}" method="POST">
+        {% csrf_token %}
+
+        <h3 class="tile__title">{{ blueprint.title }}</h3>
+        <div class="tile__text">
+            {{ blueprint.description | linebreaks }}
+
+            <ul>
+                {% for phase_content in blueprint.content %}
+                    <li><strong>{% trans 'Phase' %} {{ forloop.counter }}</strong>: {{ phase_content.description }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <input type="submit" class="btn" />
+    </form>
+</li>
