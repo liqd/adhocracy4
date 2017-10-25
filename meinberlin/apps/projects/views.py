@@ -211,7 +211,6 @@ class AbstractProjectUserInviteListView(
         generic.edit.ProcessFormView):
 
     form_class = forms.InviteUsersFromEmailForm
-    upload_form_class = forms.InviteUsersFromEmailForm
     invite_model = None
 
     def get(self, request, *args, **kwargs):
