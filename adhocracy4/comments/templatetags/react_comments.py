@@ -36,10 +36,6 @@ def react_comments(context, obj):
     comments_contenttype = ContentType.objects.get_for_model(Comment)
     pk = obj.pk
 
-    mountpoint = 'comments_for_{contenttype}_{pk}'.format(
-        contenttype=contenttype.pk,
-        pk=pk
-    )
     attributes = {
         'comments': comments,
         'comments_contenttype': comments_contenttype.pk,
@@ -53,10 +49,6 @@ def react_comments(context, obj):
     }
 
     return format_html(
-        (
-            '<div id="{mountpoint}" data-attributes="{attributes}"></div>'
-            "<script>window.adhocracy4.renderComment('{mountpoint}')</script>"
-        ),
-        attributes=json.dumps(attributes),
-        mountpoint=mountpoint
+        '<div data-a4-widget="comment" data-attributes="{attributes}"></div>',
+        attributes=json.dumps(attributes)
     )

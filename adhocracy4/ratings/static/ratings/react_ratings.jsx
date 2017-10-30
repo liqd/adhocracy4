@@ -126,8 +126,7 @@ class RatingBox extends React.Component {
 
 module.exports.RatingBox = RatingBox
 
-module.exports.renderRatings = function (mountpoint) {
-  let el = document.getElementById(mountpoint)
+module.exports.renderRatings = function (el) {
   let props = JSON.parse(el.getAttribute('data-attributes'))
   ReactDOM.render(<RatingBox {...props} />, el)
 }
