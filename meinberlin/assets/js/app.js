@@ -58,11 +58,12 @@ var initialiseWidget = function (namespace, name, fn) {
   initialiseWidget('a4', 'follows', ReactFollows.renderFollow)
   initialiseWidget('a4', 'ratings', ReactRatings.renderRatings)
   initialiseWidget('a4', 'reports', ReactReports.renderReports)
+
+  initialiseWidget('mb', 'document-management', ReactDocuments.renderDocumentManagement)
+  initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
+  initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)
 })
 
 module.exports = {
-  'renderDocumentManagement': ReactDocuments.renderDocumentManagement,
-  'renderPolls': ReactPolls.renderPolls,
-  'renderPollManagement': ReactPolls.renderPollManagement,
   'getCurrentHref': getCurrentHref
 }

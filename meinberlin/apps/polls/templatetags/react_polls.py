@@ -27,12 +27,7 @@ def react_polls(context, question):
     }
 
     return format_html(
-        (
-            '<div id="{id}" data-question="{question}"></div>'
-            '<script>window.adhocracy4.renderPolls("{id}")</script>'
-        ),
-        module=question.poll.module.pk,
-        id='question-%s' % (question.pk,),
+        '<div data-mb-widget="polls" data-question="{question}"></div>',
         question=json.dumps(data)
     )
 
@@ -45,12 +40,11 @@ def react_poll_form(poll, reload_on_success=False):
 
     return format_html(
         (
-            '<div id="{id}" data-module="{module}" data-poll="{poll}"'
-            ' data-reloadOnSuccess="{reload_on_success}"></div>'
-            '<script>window.adhocracy4.renderPollManagement("{id}")</script>'
+            '<div data-mb-widget="poll-management" data-module="{module}" '
+            ' data-poll="{poll}"  data-reloadOnSuccess="{reload_on_success}">'
+            '</div>'
         ),
         module=poll.module.pk,
-        id='question-%s' % (poll.pk,),
         poll=data_poll,
         reload_on_success=reload_on_success,
     )
