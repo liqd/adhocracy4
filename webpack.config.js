@@ -40,6 +40,9 @@ module.exports = {
     ],
     embed: [
       './meinberlin/assets/js/embed.js'
+    ],
+    'popup-close': [
+      './meinberlin/assets/js/popup-close.js'
     ]
   },
   devtool: 'eval',
