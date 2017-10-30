@@ -9,4 +9,5 @@ class BplanFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = bplan_models.Bplan
 
+    name = factory.Faker('sentence')
     organisation = factory.SubFactory(OrganisationFactory)
