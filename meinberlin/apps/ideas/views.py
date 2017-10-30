@@ -129,6 +129,7 @@ class IdeaUpdateView(AbstractIdeaUpdateView):
 class AbstractIdeaDeleteView(ProjectContextMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.DeleteView):
+    get_context_from_object = True
 
     def get_success_url(self):
         return reverse(

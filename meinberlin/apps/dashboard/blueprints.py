@@ -44,8 +44,7 @@ blueprints = [
              'Collect location specific ideas that can be rated and commented.'
          ),
          content=[
-             mapideas_phases.CollectPhase(),
-             mapideas_phases.RatingPhase()
+             mapideas_phases.CollectFeedbackPhase(),
          ],
          image='images/map-idea-collection.svg',
          settings_model=('a4maps', 'AreaSettings'),
@@ -59,8 +58,7 @@ blueprints = [
              'rate on different topics.'
          ),
          content=[
-             ideas_phases.CollectPhase(),
-             ideas_phases.RatingPhase(),
+             ideas_phases.CollectFeedbackPhase(),
          ],
          image='images/agenda-setting.svg',
          settings_model=None,

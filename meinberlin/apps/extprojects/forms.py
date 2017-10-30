@@ -42,8 +42,8 @@ class ExternalProjectForm(ProjectDashboardForm):
         self.initial['end_date'] = self.instance.phase.end_date
 
     def clean_end_date(self, *args, **kwargs):
-        start_date = self.cleaned_data['start_date']
-        end_date = self.cleaned_data['end_date']
+        start_date = self.cleaned_data.get('start_date')
+        end_date = self.cleaned_data.get('end_date')
         if start_date and end_date and end_date < start_date:
             raise ValidationError(
                 _('End date can not be smaller than the start date.'))

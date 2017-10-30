@@ -71,6 +71,7 @@ INSTALLED_APPS = (
     'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.filters.apps.FiltersConfig',
     'adhocracy4.forms.apps.FormsConfig',
+    'adhocracy4.rules.apps.RulesConfig',
 
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.cms.apps.Config',
@@ -203,12 +204,9 @@ IMAGE_ALIASES = {
 
 THUMBNAIL_ALIASES = {
     '': {
-        'heroimage': {'size': (1500, 500), 'crop': 'smart'},
-        'heroimage_preview': {'size': (880, 220), 'crop': 'smart'},
-        'project_thumbnail': {'size': (520, 330), 'crop': 'smart'},
-        'idea_image': {'size': (800, 0), 'crop': 'scale'},
-        'idea_thumbnail': {'size': (240, 240), 'crop': 'smart'},
-        'logo': {'size': (120, 120), 'background': 'white'},
+        'heroimage': {'size': (1500, 500)},
+        'project_thumbnail': {'size': (520, 330)},
+        'logo': {'size': (160, 160), 'background': 'white'},
     }
 }
 
@@ -393,5 +391,5 @@ A4_DASHBOARD = {
 }
 
 CONTACT_EMAIL = 'support-berlin@liqd.net'
-SUPERVISOR_EMAIL = 'supervisor-berlin@liqd.net'
+SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 EMAIL_DEFAULT_LANGUAGE = 'de'
