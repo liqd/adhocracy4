@@ -3,6 +3,20 @@
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
+{% block extra_messages %}
+    {{ block.super }}
+
+    {% if project.is_draft %}
+        <ul class="messages">
+            <li class="alert alert--dialog-box warning" role="alert">
+                <div class="l-wrapper">
+                    {% trans 'This project is in not published yet.' %}
+                </div>
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     {% if project|is_container %}
         {% include 'meinberlin_projectcontainers/includes/container_detail.html' with container=project.projectcontainer %}
