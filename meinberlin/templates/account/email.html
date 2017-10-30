@@ -8,7 +8,7 @@
 {% block dashboard_content %}
 <h1 class="u-first-heading">{% trans 'Email Addresses' %}</h1>
 
-<form class="multiform" action="{% url 'account_email' %}?next={{ request.path }}" method="post">
+<form class="multiform" action="{% url 'account_email' %}?next={{ request.path|urlencode }}" method="post">
     {% csrf_token %}
     {% for emailaddress in user.emailaddress_set.all %}
     <div class="form-check">
