@@ -28,7 +28,7 @@ def test_detail_view(client, phase_factory, proposal_factory):
         response = client.get(url)
         assert response.status_code == 200
         assert response.template_name == \
-            ['meinberlin_kiezkasse/proposal_list.html']
+            ['meinberlin_kiezkasse/proposal_detail.html']
 
 
 @pytest.mark.django_db
