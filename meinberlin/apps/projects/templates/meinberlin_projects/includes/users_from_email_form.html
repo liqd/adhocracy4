@@ -2,6 +2,14 @@
 
 <form method="POST">
     {% csrf_token %}
+    {% if form.non_field_errors %}
+    <div class="form-errors">
+        {% for error in form.non_field_errors %}
+        <p class="alert danger">{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="form-group">
         <label for="{{ form.add_users.id_for_label }}">
             {{ form.add_users.label }}
@@ -13,10 +21,29 @@
         {% endif %}
         <div class="input-group">
             <div class="input-group__input widget widget--{{ form.add_users|widget_type }}">
-                {{ form.add_users }}
+                {{ form.add_users|attr:'required' }}
             </div>
             <input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Add' %}"/>
         </div>
         {{ form.add_users.errors }}
+    </div>
+</form>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="{{ form.add_users_upload.id_for_label }}">
+            {{ form.add_users_upload.label }}
+        </label>
+        <div class="form-hint">
+            {{ form.add_users_upload.help_text }}
+        </div>
+        <div class="widget widget--{{ form.add_users_upload|widget_type }}">
+            <div class="input-group">
+                {{ form.add_users_upload|attr:'required'|add_class:'input-group__input' }}
+                <input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Upload' %}"/>
+            </div>
+        </div>
+        {{ form.add_users_upload.errors }}
     </div>
 </form>

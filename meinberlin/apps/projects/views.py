@@ -1,3 +1,4 @@
+import itertools
 from datetime import datetime
 
 import django_filters
@@ -258,7 +259,9 @@ class AbstractProjectUserInviteListView(
         return filtered_emails, pending
 
     def form_valid(self, form):
-        emails = form.cleaned_data['add_users']
+        emails = list(set(
+            itertools.chain(form.cleaned_data['add_users'],
+                            form.cleaned_data['add_users_upload'])))
 
         emails, existing = self.filter_existing(emails)
         if existing:
@@ -293,7 +296,8 @@ class AbstractProjectUserInviteListView(
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
-        kwargs['label'] = self.add_user_field_label
+        kwargs['labels'] = (self.add_user_field_label,
+                            self.add_user_upload_field_label)
         return kwargs
 
 
@@ -302,15 +306,19 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
     template_name = 'meinberlin_projects/project_moderators.html'
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
     menu_item = 'project'
 
     related_users_field = 'moderators'
     add_user_field_label = _('Invite moderators via email')
+    add_user_upload_field_label = _('Invite moderators via file upload')
     success_message = ('{} moderator invited.', '{} moderators invited.')
     success_message_removal = _('Moderator successfully removed.')
 
     invite_model = models.ModeratorInvite
+
+    def get_permission_object(self):
+        return self.project
 
 
 class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
@@ -318,12 +326,16 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
     template_name = 'meinberlin_projects/project_participants.html'
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
     menu_item = 'project'
 
     related_users_field = 'participants'
     add_user_field_label = _('Invite users via email')
+    add_user_upload_field_label = _('Invite users via file upload')
     success_message = ('{} participant invited.', '{} participants invited.')
     success_message_removal = _('Participant successfully removed.')
 
     invite_model = models.ParticipantInvite
+
+    def get_permission_object(self):
+        return self.project
