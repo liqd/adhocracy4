@@ -52,6 +52,8 @@
         </ul>
         {% endif %}
 
+        {% block extra_messages %}{% endblock %}
+
         {% block super_content %}
             {% block content %}{% endblock %}
         {% endblock %}
