@@ -7,6 +7,10 @@ $messages-margin-bottom: 25px;
     li {
         display: block;
     }
+
+    + .messages {
+        margin-top: -$messages-margin-bottom;
+    }
 }
 
 .alert {
@@ -40,12 +44,10 @@ $messages-margin-bottom: 25px;
     padding: 0.5em;
 }
 
-.alert--dialog-box {
-    // If this directly follows the dialog box (see header.scss), add 16px
-    // additional padding to the default value (see above).
-    &:first-child {
-        padding-top: calc(16px + #{$padding * 1.2});
-    }
+// If this directly follows the dialog box (see header.scss), add 16px
+// additional padding to the default value (see above).
+.messages:first-child > :first-child {
+    padding-top: calc(16px + #{$padding * 1.2});
 }
 
 // compensate for margin-bottom on messages
