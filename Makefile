@@ -28,6 +28,9 @@ install:
 webpack: $(SCSS_FILES) $(JS_FILES)
 	$(NODE_BIN)/webpack
 
+webpack-prod: $(SCSS_FILES) $(JS_FILES)
+	$(NODE_BIN)/webpack --define process.env.NODE_ENV="'production'" --optimize-minimize --devtool none
+
 makemessages:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs
