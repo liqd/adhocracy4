@@ -43,6 +43,9 @@ var dynamicFields = require('../../apps/contrib/assets/dynamic_fields.js')
 var getCurrentHref = function () {
   return location.href
 }
+var getCurrentPath = function () {
+  return location.pathname
+}
 
 module.exports = {
   'renderComment': ReactComments.renderComment,
@@ -52,5 +55,6 @@ module.exports = {
   'renderPollManagement': ReactPolls.renderPollManagement,
   'renderReports': ReactReports.renderReports,
   'renderFollow': ReactFollows.renderFollow,
-  'getCurrentHref': getCurrentHref
+  'getCurrentHref': getCurrentHref,
+  'getCurrentPath': getCurrentPath
 }

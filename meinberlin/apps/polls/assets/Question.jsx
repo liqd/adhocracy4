@@ -121,7 +121,7 @@ class Question extends React.Component {
       )
     } else {
       let loginUrl = '/accounts/login/?next=' +
-        encodeURIComponent(window.adhocracy4.getCurrentHref())
+        encodeURIComponent(window.adhocracy4.getCurrentPath())
 
       return (
         <a href={loginUrl} className="btn btn--primary">
