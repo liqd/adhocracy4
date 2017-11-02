@@ -125,7 +125,7 @@ class Question extends React.Component {
 
       return (
         <a href={loginUrl} className="btn btn--primary">
-          { django.gettext('Vote') }
+          { django.gettext('Please login to vote') }
         </a>
       )
     }
@@ -201,6 +201,7 @@ class Question extends React.Component {
                       value={i}
                       checked={checked}
                       onChange={this.handleOnChange.bind(this)}
+                      disabled={!this.props.question.authenticated}
                     />
                     <span className="radio__text">{ choice.label }</span>
                   </label>

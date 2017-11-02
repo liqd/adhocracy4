@@ -1,6 +1,10 @@
 
 .radio__input {
     @include sr-only;
+
+    &:disabled + .radio__text {
+        cursor: not-allowed;
+    }
 }
 
 // use pixels here because otherwise the icon in the :after
