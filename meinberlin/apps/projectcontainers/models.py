@@ -21,7 +21,7 @@ class ProjectContainer(project_models.Project):
         now = timezone.now()
         return self.projects.filter(
             module__phase__start_date__lte=now,
-            module__phase__end_date__gt=now)
+            module__phase__end_date__gt=now).distinct()
 
     @property
     def phases(self):
