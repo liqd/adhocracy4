@@ -252,7 +252,8 @@ class AbstractProjectUserInviteListView(
         pending = []
         filtered_emails = []
         for email in emails:
-            if self.invite_model.objects.filter(email=email).exists():
+            if self.invite_model.objects.filter(email=email,
+                                                project=self.project).exists():
                 pending.append(email)
             else:
                 filtered_emails.append(email)
