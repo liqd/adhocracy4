@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from meinberlin.apps.contrib.views import ProjectContextMixin
+from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 from meinberlin.apps.dashboard2 import mixins
 from meinberlin.apps.ideas import views as idea_views
 
@@ -34,6 +35,7 @@ class OfflineEventListView(ProjectContextMixin,
 class OfflineEventCreateView(ProjectContextMixin,
                              mixins.DashboardBaseMixin,
                              mixins.DashboardComponentMixin,
+                             mixins.DashboardComponentUpdateSignalMixin,
                              generic.CreateView):
     model = models.OfflineEvent
     form_class = forms.OfflineEventForm
@@ -57,6 +59,7 @@ class OfflineEventCreateView(ProjectContextMixin,
 class OfflineEventUpdateView(ProjectContextMixin,
                              mixins.DashboardBaseMixin,
                              mixins.DashboardComponentMixin,
+                             mixins.DashboardComponentUpdateSignalMixin,
                              generic.UpdateView):
     model = models.OfflineEvent
     form_class = forms.OfflineEventForm
@@ -89,7 +92,13 @@ class OfflineEventDeleteView(ProjectContextMixin,
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
-        return super().delete(request, *args, **kwargs)
+        response = super().delete(request, *args, **kwargs)
+        a4dashboard_signals.project_component_updated.send(
+            sender=None,
+            project=self.project,
+            component=self.component,
+            user=self.request.user)
+        return response
 
     def get_success_url(self):
         return reverse(

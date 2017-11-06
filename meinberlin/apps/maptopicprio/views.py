@@ -6,6 +6,7 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from meinberlin.apps.contrib import filters
 from meinberlin.apps.contrib.views import ProjectContextMixin
+from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 from meinberlin.apps.dashboard2 import mixins
 from meinberlin.apps.ideas import views as idea_views
 
@@ -101,6 +102,7 @@ class MapTopicListDashboardView(ProjectContextMixin,
 
 class MapTopicCreateView(mixins.DashboardBaseMixin,
                          mixins.DashboardComponentMixin,
+                         mixins.DashboardComponentUpdateSignalMixin,
                          idea_views.AbstractIdeaCreateView):
     model = models.MapTopic
     form_class = forms.MapTopicForm
@@ -118,6 +120,7 @@ class MapTopicCreateView(mixins.DashboardBaseMixin,
 
 class MapTopicUpdateView(mixins.DashboardBaseMixin,
                          mixins.DashboardComponentMixin,
+                         mixins.DashboardComponentUpdateSignalMixin,
                          idea_views.AbstractIdeaUpdateView):
     model = models.MapTopic
     form_class = forms.MapTopicForm
@@ -156,3 +159,12 @@ class MapTopicDeleteView(mixins.DashboardBaseMixin,
 
     def get_permission_object(self):
         return self.get_object()
+
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        a4dashboard_signals.module_component_updated.send(
+            sender=None,
+            module=self.module,
+            component=self.component,
+            user=self.request.user)
+        return response
