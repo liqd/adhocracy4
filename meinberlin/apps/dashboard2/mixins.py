@@ -14,6 +14,7 @@ from django.views.generic.edit import FormMixin
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 
+from . import components
 from . import get_project_dashboard
 from . import signals
 
@@ -99,7 +100,6 @@ class DashboardComponentMixin(base.ContextMixin):
 
 class DashboardComponentUpdateSignalMixin(FormMixin):
     def form_valid(self, form):
-        from . import components
         response = super().form_valid(form)
 
         if self.component.identifier in components.projects:
