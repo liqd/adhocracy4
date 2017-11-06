@@ -1,4 +1,4 @@
-{% load i18n rules thumbnail wagtailcore_tags %}
+{% load i18n rules thumbnail wagtailcore_tags contrib_tags %}
 
 <div class="project-header u-after-dialogue-box">
     <div class="l-wrapper">
@@ -10,7 +10,7 @@
                     <div class="project-header__description">
                         <p>{{ container.description }}</p>
                         <p>
-                            {% blocktrans with count=project.projectcontainer.projects.count active_count=project.projectcontainer.active_projects.count %}{{ active_count }} of {{ count }}{% endblocktrans %}
+                            {% blocktrans with count=project.projectcontainer.total_project_count active_count=project.projectcontainer.active_project_count %}{{ active_count }} of {{ count }}{% endblocktrans %}
                             {% trans 'projects are currently active.' %}
                         </p>
                     </div>
@@ -74,10 +74,15 @@
     aria-labelledby="tab-project-{{ project.pk }}-participation"
     aria-expanded="true">
     <div class="l-wrapper">
-        <ul class="l-tiles-4">
-            {% for project in container.not_archived_projects.all %}
-                {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
-            {% endfor %}
-        </ul>
+        {% filter_has_perm 'a4projects.view_project' request.user container.published_not_archived_projects.all as filtered_projects %}
+        {% if filtered_projects|length > 0 %}
+            <ul class="l-tiles-4">
+                {% for project in filtered_projects %}
+                    {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>{% trans 'We could not find any projects.' %}</p>
+        {% endif %}
     </div>
 </div>
