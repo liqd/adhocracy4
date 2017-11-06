@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Plans" %} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="l-wrapper">
+        <div class="l-center-8">
+            <h1 class="u-first-heading lr-bar__left">
+                {% trans 'Plans' %}
+            </h1>
+
+            {% if object_list.count > 0 %}
+                <ul class="u-list-reset">
+                    {% for plan in object_list %}
+                        <li class="list-item">
+                            <h3 class="list-item__title">
+                                <a href="{% url 'meinberlin_plans:plan-detail' slug=plan.slug %}">
+                                    {{ plan }}
+                                </a>
+                            </h3>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {% trans "Nothing to show" %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

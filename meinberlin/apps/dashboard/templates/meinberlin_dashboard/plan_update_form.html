@@ -1,0 +1,12 @@
+{% extends "meinberlin_dashboard2/base_project_list.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Plans" %} &mdash; {{ block.super }}{% endblock %}
+
+{% block project_list %}
+    <h1 class="u-first-heading">{% trans 'Edit a new plan' %}</h1>
+
+    {% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug as cancel %}
+    {% include "meinberlin_dashboard/includes/plan_form.html" with cancel=cancel %}
+
+{% endblock %}
