@@ -7,12 +7,12 @@ from adhocracy4.projects import models as project_models
 from meinberlin.apps.contrib.views import ProjectContextMixin
 
 from ... import mixins
-from ... import signals
 
 
 class ProjectComponentFormView(ProjectContextMixin,
                                mixins.DashboardBaseMixin,
                                mixins.DashboardComponentMixin,
+                               mixins.DashboardComponentUpdateSignalMixin,
                                SuccessMessageMixin,
                                generic.UpdateView):
 
@@ -33,18 +33,11 @@ class ProjectComponentFormView(ProjectContextMixin,
     def get_permission_object(self):
         return self.project
 
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        signals.project_component_updated.send(sender=None,
-                                               project=self.project,
-                                               component=self.component,
-                                               user=self.request.user)
-        return response
-
 
 class ModuleComponentFormView(ProjectContextMixin,
                               mixins.DashboardBaseMixin,
                               mixins.DashboardComponentMixin,
+                              mixins.DashboardComponentUpdateSignalMixin,
                               SuccessMessageMixin,
                               generic.UpdateView):
 
@@ -64,11 +57,3 @@ class ModuleComponentFormView(ProjectContextMixin,
 
     def get_permission_object(self):
         return self.project
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        signals.module_component_updated.send(sender=None,
-                                              module=self.module,
-                                              component=self.component,
-                                              user=self.request.user)
-        return response

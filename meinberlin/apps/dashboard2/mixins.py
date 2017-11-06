@@ -9,11 +9,13 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import base
+from django.views.generic.edit import FormMixin
 
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
 
 from . import get_project_dashboard
+from . import signals
 
 Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 
@@ -93,6 +95,24 @@ class DashboardComponentMixin(base.ContextMixin):
         }
 
         return context
+
+
+class DashboardComponentUpdateSignalMixin(FormMixin):
+    def form_valid(self, form):
+        from . import components
+        response = super().form_valid(form)
+
+        if self.component.identifier in components.projects:
+            signals.project_component_updated.send(sender=None,
+                                                   project=self.project,
+                                                   component=self.component,
+                                                   user=self.request.user)
+        else:
+            signals.module_component_updated.send(sender=None,
+                                                  module=self.module,
+                                                  component=self.component,
+                                                  user=self.request.user)
+        return response
 
 
 class DashboardProjectDuplicateMixin:
