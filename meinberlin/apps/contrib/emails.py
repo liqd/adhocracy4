@@ -9,4 +9,4 @@ class Email(a4_emails.Email):
     fallback_language = 'en'
 
     def get_languages(self, receiver):
-        return [settings.EMAIL_DEFAULT_LANGUAGE, self.fallback_language]
+        return [settings.DEFAULT_LANGUAGE, self.fallback_language]
