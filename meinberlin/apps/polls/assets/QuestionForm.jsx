@@ -21,6 +21,19 @@ const QuestionForm = (props) => {
           <ErrorList errors={props.errors} field="label" />
         </div>
 
+        <div className="form-check">
+          <label className="form-check__label">
+            <input
+              type="checkbox"
+              id={'id_questions-' + props.id + '-multiple_choice'}
+              name={'questions-' + props.id + '-multiple_choice'}
+              checked={props.question.multiple_choice}
+              onChange={(e) => { props.onMultipleChoiceChange(e.target.checked) }}
+            />
+            {django.gettext('Multiple choice poll')}
+          </label>
+        </div>
+
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
             props.question.choices.map((choice, index) => {
