@@ -4,12 +4,13 @@ python:
 cache: pip
 install:
   - nvm install 6
-  - npm install --only=dev
+  - npm install
   - pip install -r requirements/dev.txt
 script:
   - py.test --cov
   - python manage.py makemigrations --dry-run --check --noinput
   - ./node_modules/.bin/polylint -F
+  - make webpack
 deploy:
   - provider: script
     script: scripts/deploy.sh
