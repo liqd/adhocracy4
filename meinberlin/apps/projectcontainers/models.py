@@ -13,15 +13,35 @@ class ProjectContainer(project_models.Project):
     )
 
     @property
-    def not_archived_projects(self):
-        return self.projects.filter(is_archived=False)
+    def published_not_archived_projects(self):
+        return self.projects \
+            .filter(is_draft=False, is_archived=False)
 
     @property
-    def active_projects(self):
+    def active_project_count(self):
+        """Return the number of active projects within the container.
+
+        If a container is public (default) only public projects are counted.
+        For future private containers all projects should be counted.
+        """
         now = timezone.now()
-        return self.projects.filter(
-            module__phase__start_date__lte=now,
-            module__phase__end_date__gt=now).distinct()
+        return self.projects\
+            .filter(is_public=True, is_draft=False, is_archived=False)\
+            .filter(module__phase__start_date__lte=now,
+                    module__phase__end_date__gt=now)\
+            .distinct()\
+            .count()
+
+    @property
+    def total_project_count(self):
+        """Return the number of total projects within the container.
+
+        If a container is public (default) only public projects are counted.
+        For future private containers all projects should be counted.
+        """
+        return self.projects \
+            .filter(is_public=True, is_draft=False, is_archived=False)\
+            .count()
 
     @property
     def phases(self):

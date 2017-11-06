@@ -40,7 +40,7 @@
                 <div class="l-center-6">
                     {% with container=project.containers.first %}
                         {% if container %}
-                            <a href="{{ container.get_absolute_url }}" class="project-header__link">
+                            <a href="{{ container.get_absolute_url }}" class="project-header__link" data-embed-target="external">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
                                 {% blocktrans with name=container.name %}back to {{ name }}{% endblocktrans %}
                             </a>

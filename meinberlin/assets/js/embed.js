@@ -6,8 +6,7 @@ $(document).ready(function () {
   var patternsForPopup = /\/accounts\b/
   var $top = $('<div tabindex="-1">')
 
-  // FIXME: use consistent wording (URL/href/path)
-  window.adhocracy4.getCurrentHref = function () {
+  window.adhocracy4.getCurrentPath = function () {
     return currentPath
   }
 
@@ -94,16 +93,16 @@ $(document).ready(function () {
     createAlert(text, 'danger', 6000)
   }
 
-  var getEmbedTarget = function ($element, url) {
+  var getEmbedTarget = function ($element, href) {
     var embedTarget = $element.data('embedTarget')
 
     if (embedTarget) {
       return embedTarget
-    } else if (!url || url[0] === '#' || $element.attr('target')) {
+    } else if (!href || href[0] === '#' || $element.attr('target')) {
       return 'ignore'
     } else if ($element.is('.rich-text a')) {
       return 'external'
-    } else if (patternsForPopup.test(url)) {
+    } else if (patternsForPopup.test(href)) {
       return 'popup'
     } else {
       return 'internal'
@@ -112,19 +111,19 @@ $(document).ready(function () {
 
   $(document).on('click', 'a[href]', function (event) {
     // NOTE: event.target.href is resolved against /embed/
-    var url = event.target.getAttribute('href')
+    var href = event.target.getAttribute('href')
     var $link = $(event.target)
-    var embedTarget = getEmbedTarget($link, url)
+    var embedTarget = getEmbedTarget($link, href)
 
     if (embedTarget === 'internal') {
       event.preventDefault()
 
-      if (url[0] === '?') {
-        url = currentPath + url
+      if (href[0] === '?') {
+        href = currentPath + href
       }
 
       $.ajax({
-        url: url,
+        url: href,
         headers: headers,
         success: loadHtml,
         error: onAjaxError
@@ -132,7 +131,7 @@ $(document).ready(function () {
     } else if (embedTarget === 'popup') {
       event.preventDefault()
       popup = window.open(
-        url,
+        href,
         'embed_popup',
         'height=650,width=500,location=yes,menubar=no,toolbar=no,status=no'
       )

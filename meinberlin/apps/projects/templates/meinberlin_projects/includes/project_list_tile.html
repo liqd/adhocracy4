@@ -53,7 +53,7 @@
         {% if project|is_container %}
             <p class="tile__hint tile__hint--container">
                 <span class="tile__hint__big">
-                    {% blocktrans with count=project.projectcontainer.projects.count active_count=project.projectcontainer.active_projects.count %}{{ active_count }} of {{ count }}{% endblocktrans %}
+                    {% blocktrans with count=project.projectcontainer.total_project_count active_count=project.projectcontainer.active_project_count %}{{ active_count }} of {{ count }}{% endblocktrans %}
                 </span>
                 <br/>
                 {% trans 'projects are currently active.' %}
