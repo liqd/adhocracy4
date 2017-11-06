@@ -6,8 +6,7 @@ $(document).ready(function () {
   var patternsForPopup = /\/accounts\b/
   var $top = $('<div tabindex="-1">')
 
-  // FIXME: use consistent wording (URL/href/path)
-  window.adhocracy4.getCurrentHref = function () {
+  window.adhocracy4.getCurrentPath = function () {
     return currentPath
   }
 

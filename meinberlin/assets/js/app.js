@@ -39,10 +39,8 @@ var relativeTimestamps = require('../../apps/actions/assets/timestamps.js')
 var mapAddress = require('./map-address.js')
 
 var dynamicFields = require('../../apps/contrib/assets/dynamic_fields.js')
+
 // This function is overwritten with custom behavior in embed.js.
-var getCurrentHref = function () {
-  return location.href
-}
 var getCurrentPath = function () {
   return location.pathname
 }
@@ -55,6 +53,5 @@ module.exports = {
   'renderPollManagement': ReactPolls.renderPollManagement,
   'renderReports': ReactReports.renderReports,
   'renderFollow': ReactFollows.renderFollow,
-  'getCurrentHref': getCurrentHref,
   'getCurrentPath': getCurrentPath
 }
