@@ -1,7 +1,10 @@
 language: python
 python:
   - "3.4"
-cache: pip
+cache:
+  pip: true
+  directories:
+    - node_modules
 install:
   - nvm install 6
   - npm install
