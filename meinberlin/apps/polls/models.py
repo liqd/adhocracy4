@@ -20,6 +20,7 @@ class Poll(module_models.Item):
 class Question(models.Model):
     label = models.CharField(max_length=255)
     weight = models.SmallIntegerField()
+    multiple_choice = models.BooleanField(default=False)
 
     poll = models.ForeignKey(
         'Poll',
