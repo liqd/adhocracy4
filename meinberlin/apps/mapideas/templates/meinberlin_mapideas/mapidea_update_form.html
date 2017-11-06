@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n item_tags %}
 
-{% block title %}{% blocktrans %}Edit {{object.name}}{% endblocktrans %} &mdash; {{ block.super }}{% endblock %}
+{% block title %}{% blocktrans with title=object.name %}Edit {{ title }}{% endblocktrans %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
 <div class="l-wrapper">
