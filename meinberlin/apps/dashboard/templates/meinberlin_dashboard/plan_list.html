@@ -1,7 +1,7 @@
 {% extends "meinberlin_dashboard2/base_project_list.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Plans" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% trans "Plans" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block project_list %}
     <div class="lr-bar lr-bar--with-margin">
@@ -31,7 +31,7 @@
                             <a href="{% url 'a4dashboard:plan-delete' organisation_slug=view.organisation.slug slug=plan.slug %}"
                                class="btn btn--light">
                                 <i class="fa fa-remove" aria-hidden="true"></i>
-                                {% trans 'Delete'%}
+                                {% trans 'Delete' %}
                             </a>
                         </div>
                     </div>

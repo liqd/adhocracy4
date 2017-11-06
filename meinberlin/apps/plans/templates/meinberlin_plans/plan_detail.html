@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Plans" %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{% trans "Plans" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
     <div class="l-wrapper">
@@ -9,6 +9,6 @@
             <h1 class="u-first-heading lr-bar__left">
                 {% trans  object.title %}
             </h1>
+        </div>
     </div>
-
 {% endblock %}
