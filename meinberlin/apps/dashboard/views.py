@@ -160,6 +160,7 @@ class PlanCreateView(a4dashboard_mixins.DashboardBaseMixin,
     form_class = PlanForm
     permission_required = 'meinberlin_plans.add_plan'
     template_name = 'meinberlin_dashboard/plan_create_form.html'
+    menu_item = 'project'
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
@@ -181,6 +182,7 @@ class PlanUpdateView(a4dashboard_mixins.DashboardBaseMixin,
     form_class = PlanForm
     permission_required = 'meinberlin_plans.add_plan'
     template_name = 'meinberlin_dashboard/plan_update_form.html'
+    menu_item = 'project'
 
     def get_permission_object(self):
         return self.organisation
@@ -197,6 +199,7 @@ class PlanDeleteView(a4dashboard_mixins.DashboardBaseMixin,
     success_message = _('The plan has been deleted')
     permission_required = 'meinberlin_plans.change_plan'
     template_name = 'meinberlin_dashboard/plan_confirm_delete.html'
+    menu_item = 'project'
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
