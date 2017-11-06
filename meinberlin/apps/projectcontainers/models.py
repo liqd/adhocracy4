@@ -15,7 +15,8 @@ class ProjectContainer(project_models.Project):
     @property
     def published_not_archived_projects(self):
         return self.projects \
-            .filter(is_draft=False, is_archived=False)
+            .filter(is_draft=False, is_archived=False) \
+            .order_by('name')
 
     @property
     def active_project_count(self):
