@@ -1,6 +1,8 @@
 from rest_framework import serializers
 
 from adhocracy4.modules.models import Module
+from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
+from meinberlin.apps.dashboard2 import components
 
 from .models import Chapter
 from .models import Paragraph
@@ -84,6 +86,11 @@ class DocumentSerializer(serializers.Serializer):
     def create(self, validated_data):
         chapters_data = validated_data['chapters']
         chapters = list(self._create_or_update(chapters_data))
+
+        # Send the component updated signal
+        # (the serializer is only used from within the dashboard)
+        self._send_component_updated_signal()
+
         return {
             'chapters': chapters
         }
@@ -108,3 +115,11 @@ class DocumentSerializer(serializers.Serializer):
                 yield chapter_serializer.update(instance, chapter_data)
             else:
                 yield chapter_serializer.create(chapter_data)
+
+    def _send_component_updated_signal(self):
+        a4dashboard_signals.module_component_updated.send(
+            sender=None,
+            module=Module.objects.get(id=self.context['module_pk']),
+            component=components.modules['document_settings'],
+            user=self.context['request'].user
+        )
