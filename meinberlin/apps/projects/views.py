@@ -25,6 +25,7 @@ from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
 
 from . import forms
 from . import models
+from . import query
 
 User = get_user_model()
 
@@ -117,28 +118,21 @@ class ProjectListView(filter_views.FilteredListView):
     filter_set = ProjectFilterSet
 
     def get_queryset(self):
-        # FIXME: has to be in sync with a4projects.view_project and should
-        #        be implemented on the ProjectQueryManager in core
-
-        q_false = Q(pk=None)
-        is_superuser = ~q_false if self.request.user.is_superuser else q_false
-
-        return super().get_queryset().filter(
-            Q(is_draft=False) & (
-                Q(is_public=True) |
-                is_superuser |
-                Q(participants__pk=self.request.user.pk) |
-                Q(organisation__initiators__pk=self.request.user.pk) |
-                Q(moderators__pk=self.request.user.pk)
-            ) & (
+        queryset = super().get_queryset()\
+            .filter(
+                # Show only published projects
+                is_draft=False)\
+            .filter(
                 # Do not include archived bplan projects
                 Q(is_archived=False) |
-                Q(externalproject__bplan=None)
-            ) & (
+                Q(externalproject__bplan=None))\
+            .filter(
                 # Do not include projects belonging to containers
-                Q(containers=None)
-            )
-        ).distinct()
+                containers=None)
+        # Show only projects viewable by the current user
+        queryset = query.filter_viewable(queryset, self.request.user)
+        # List every project at most once
+        return queryset.distinct()
 
 
 class ParticipantInviteDetailView(generic.DetailView):
