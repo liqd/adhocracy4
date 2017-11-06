@@ -22,6 +22,7 @@ from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
+from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 
 from . import forms
 from . import models
@@ -232,9 +233,12 @@ class AbstractProjectUserInviteListView(
                 invite.delete()
                 messages.success(request, _('Invitation succesfully removed.'))
 
-            return redirect(self.get_success_url())
+            response = redirect(self.get_success_url())
         else:
-            return super().post(request, *args, **kwargs)
+            response = super().post(request, *args, **kwargs)
+
+        self._send_component_updated_signal()
+        return response
 
     def filter_existing(self, emails):
         related_users = getattr(self.object, self.related_users_field)
@@ -300,6 +304,14 @@ class AbstractProjectUserInviteListView(
         kwargs['labels'] = (self.add_user_field_label,
                             self.add_user_upload_field_label)
         return kwargs
+
+    def _send_component_updated_signal(self):
+        a4dashboard_signals.project_component_updated.send(
+            sender=None,
+            module=self.project,
+            component=self.component,
+            user=self.request.user
+        )
 
 
 class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
