@@ -78,8 +78,8 @@
                                 {% endif %}
                             </div>
                             <div class="phase-info__item__subtitle">
-                                {% html_date phase.start_date 'DATE_FORMAT' %}
-                                &ndash; {% html_date phase.end_date 'DATE_FORMAT' %}
+                                {% html_date phase.start_date 'DATETIME_FORMAT' %}
+                                &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
                             </div>
                             <div class="phase-info__item__description">
                                 {{ phase.description }}
