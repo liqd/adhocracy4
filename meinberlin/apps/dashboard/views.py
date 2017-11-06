@@ -11,6 +11,7 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
+from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 from meinberlin.apps.dashboard2 import views as a4dashboard_views
 from meinberlin.apps.dashboard2.blueprints import get_blueprints
 from meinberlin.apps.newsletters.forms import NewsletterForm
@@ -105,6 +106,9 @@ class ModuleCreateView(ProjectContextMixin,
             project=project,
         )
         module.save()
+        a4dashboard_signals.module_created.send(sender=None,
+                                                module=module,
+                                                user=self.request.user)
 
         self._create_module_settings(module)
         self._create_phases(module, self.blueprint.content)

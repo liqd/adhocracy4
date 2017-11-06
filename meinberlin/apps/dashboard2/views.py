@@ -91,6 +91,10 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
 
     def form_valid(self, form):
         response = super().form_valid(form)
+        signals.project_created.send(sender=None,
+                                     project=self.object,
+                                     user=self.request.user)
+
         self._create_modules_and_phases(self.object)
 
         return response
@@ -103,6 +107,9 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
             project=project,
         )
         module.save()
+        signals.module_created.send(sender=None,
+                                    module=module,
+                                    user=self.request.user)
 
         self._create_module_settings(module)
         self._create_phases(module, self.blueprint.content)
@@ -184,7 +191,8 @@ class ProjectPublishView(ProjectContextMixin,
             return
 
         responses = signals.project_pre_publish.send(sender=None,
-                                                     project=project)
+                                                     project=project,
+                                                     user=self.request.user)
         errors = [str(msg) for func, msg in responses if msg]
         if errors:
             msg = _('Project cannot be published.') + ' \n' + '\n'.join(errors)
@@ -193,7 +201,9 @@ class ProjectPublishView(ProjectContextMixin,
 
         project.is_draft = False
         project.save()
-        signals.project_published.send(sender=None, project=project)
+        signals.project_published.send(sender=None,
+                                       project=project,
+                                       user=self.request.user)
 
         messages.success(self.request,
                          _('Project successfully published.'))
@@ -206,6 +216,8 @@ class ProjectPublishView(ProjectContextMixin,
 
         project.is_draft = True
         project.save()
-        signals.project_unpublished.send(sender=None, project=project)
+        signals.project_unpublished.send(sender=None,
+                                         project=project,
+                                         user=self.request.user)
         messages.success(self.request,
                          _('Project successfully unpublished.'))
