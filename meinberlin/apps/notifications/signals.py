@@ -6,6 +6,7 @@ from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
 from adhocracy4.follows.models import Follow
 from adhocracy4.projects.models import Project
+from meinberlin.apps.dashboard2 import signals as dashboard_signals
 
 from . import emails
 
@@ -27,6 +28,14 @@ def send_notifications(instance, created, **kwargs):
 
     elif action.type == 'phase' and verb == Verbs.SCHEDULE:
         emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
+
+
+@receiver(dashboard_signals.project_created)
+def send_project_created_notifications(**kwargs):
+    project = kwargs.get('project')
+    creator = kwargs.get('user')
+    emails.NotifyInitiatorsOnProjectCreatedEmail.send(
+        project, creator_pk=creator.pk)
 
 
 @receiver(signals.m2m_changed, sender=Project.moderators.through)
