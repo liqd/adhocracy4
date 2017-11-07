@@ -5,7 +5,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
-from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 from meinberlin.apps.dashboard2 import views as a4dashboard_views
 from meinberlin.apps.newsletters.forms import NewsletterForm
 from meinberlin.apps.newsletters.views import NewsletterCreateView
