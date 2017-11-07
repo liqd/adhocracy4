@@ -101,6 +101,7 @@ class TopicListDashboardView(ProjectContextMixin,
 
 class TopicCreateView(mixins.DashboardBaseMixin,
                       mixins.DashboardComponentMixin,
+                      mixins.DashboardComponentFormSignalMixin,
                       idea_views.AbstractIdeaCreateView):
     model = models.Topic
     form_class = forms.TopicForm
@@ -118,6 +119,7 @@ class TopicCreateView(mixins.DashboardBaseMixin,
 
 class TopicUpdateView(mixins.DashboardBaseMixin,
                       mixins.DashboardComponentMixin,
+                      mixins.DashboardComponentFormSignalMixin,
                       idea_views.AbstractIdeaUpdateView):
     model = models.Topic
     form_class = forms.TopicForm
@@ -139,6 +141,7 @@ class TopicUpdateView(mixins.DashboardBaseMixin,
 
 class TopicDeleteView(mixins.DashboardBaseMixin,
                       mixins.DashboardComponentMixin,
+                      mixins.DashboardComponentDeleteSignalMixin,
                       idea_views.AbstractIdeaDeleteView):
     model = models.Topic
     success_message = _('The topic has been deleted')

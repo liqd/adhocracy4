@@ -34,6 +34,7 @@ class OfflineEventListView(ProjectContextMixin,
 class OfflineEventCreateView(ProjectContextMixin,
                              mixins.DashboardBaseMixin,
                              mixins.DashboardComponentMixin,
+                             mixins.DashboardComponentFormSignalMixin,
                              generic.CreateView):
     model = models.OfflineEvent
     form_class = forms.OfflineEventForm
@@ -57,6 +58,7 @@ class OfflineEventCreateView(ProjectContextMixin,
 class OfflineEventUpdateView(ProjectContextMixin,
                              mixins.DashboardBaseMixin,
                              mixins.DashboardComponentMixin,
+                             mixins.DashboardComponentFormSignalMixin,
                              generic.UpdateView):
     model = models.OfflineEvent
     form_class = forms.OfflineEventForm
@@ -80,6 +82,7 @@ class OfflineEventUpdateView(ProjectContextMixin,
 class OfflineEventDeleteView(ProjectContextMixin,
                              mixins.DashboardBaseMixin,
                              mixins.DashboardComponentMixin,
+                             mixins.DashboardComponentDeleteSignalMixin,
                              generic.DeleteView):
     model = models.OfflineEvent
     success_message = _('The offline event has been deleted')

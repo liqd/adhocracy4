@@ -101,6 +101,7 @@ class MapTopicListDashboardView(ProjectContextMixin,
 
 class MapTopicCreateView(mixins.DashboardBaseMixin,
                          mixins.DashboardComponentMixin,
+                         mixins.DashboardComponentFormSignalMixin,
                          idea_views.AbstractIdeaCreateView):
     model = models.MapTopic
     form_class = forms.MapTopicForm
@@ -118,6 +119,7 @@ class MapTopicCreateView(mixins.DashboardBaseMixin,
 
 class MapTopicUpdateView(mixins.DashboardBaseMixin,
                          mixins.DashboardComponentMixin,
+                         mixins.DashboardComponentFormSignalMixin,
                          idea_views.AbstractIdeaUpdateView):
     model = models.MapTopic
     form_class = forms.MapTopicForm
@@ -139,6 +141,7 @@ class MapTopicUpdateView(mixins.DashboardBaseMixin,
 
 class MapTopicDeleteView(mixins.DashboardBaseMixin,
                          mixins.DashboardComponentMixin,
+                         mixins.DashboardComponentDeleteSignalMixin,
                          idea_views.AbstractIdeaDeleteView):
     model = models.MapTopic
     success_message = _('The place has been deleted')

@@ -12,6 +12,7 @@ from ... import mixins
 class ProjectComponentFormView(ProjectContextMixin,
                                mixins.DashboardBaseMixin,
                                mixins.DashboardComponentMixin,
+                               mixins.DashboardComponentFormSignalMixin,
                                SuccessMessageMixin,
                                generic.UpdateView):
 
@@ -36,6 +37,7 @@ class ProjectComponentFormView(ProjectContextMixin,
 class ModuleComponentFormView(ProjectContextMixin,
                               mixins.DashboardBaseMixin,
                               mixins.DashboardComponentMixin,
+                              mixins.DashboardComponentFormSignalMixin,
                               SuccessMessageMixin,
                               generic.UpdateView):
 

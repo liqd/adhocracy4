@@ -12,7 +12,6 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.maps.widgets import MapChoosePolygonWithPresetWidget
 
-from . import signals
 from .components.forms import ModuleDashboardForm
 from .components.forms import ModuleDashboardFormSet
 from .components.forms import ProjectDashboardForm
@@ -62,17 +61,6 @@ class ProjectBasicForm(ProjectDashboardForm):
                 ]
             ),
         }
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        instance = kwargs.get('instance', None)
-        self._project_was_archived = instance and instance.is_archived
-
-    def save(self, commit=True):
-        project = super().save(commit)
-        if not self._project_was_archived and project.is_archived:
-            signals.project_archived.send(sender=None, project=project)
-        return project
 
 
 class ProjectInformationForm(ProjectDashboardForm):
