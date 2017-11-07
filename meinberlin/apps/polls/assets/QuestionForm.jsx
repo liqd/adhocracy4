@@ -30,7 +30,8 @@ const QuestionForm = (props) => {
               checked={props.question.multiple_choice}
               onChange={(e) => { props.onMultipleChoiceChange(e.target.checked) }}
             />
-            {django.gettext('Multiple choice poll')}
+            &nbsp;
+            {django.gettext('Users can select more than one answer.')}
           </label>
         </div>
 
