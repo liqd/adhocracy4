@@ -2,6 +2,7 @@ import pytest
 
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.bplan import phases
+from tests.helpers import assert_template_response
 from tests.helpers import freeze_phase
 
 
@@ -14,9 +15,8 @@ def test_statement_form_view(client, phase_factory, bplan_factory,
     url = bplan.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
-        assert response.status_code == 200
-        assert response.template_name == \
-            ['meinberlin_bplan/statement_create_form.html']
+        assert_template_response(
+            response, 'meinberlin_bplan/statement_create_form.html')
 
         statement = {
             'name': 'User',

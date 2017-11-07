@@ -1,6 +1,7 @@
 import pytest
 
 from meinberlin.apps.topicprio import phases
+from tests.helpers import assert_template_response
 from tests.helpers import freeze_phase
 from tests.helpers import setup_phase
 
@@ -12,9 +13,8 @@ def test_list_view(client, phase_factory, topic_factory):
     url = project.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
-        assert response.status_code == 200
-        assert response.template_name == \
-            ['meinberlin_topicprio/topic_list.html']
+        assert_template_response(
+            response, 'meinberlin_topicprio/topic_list.html')
 
 
 @pytest.mark.django_db
@@ -24,6 +24,5 @@ def test_detail_view(client, phase_factory, topic_factory):
     url = item.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
-        assert response.status_code == 200
-        assert response.template_name == \
-            ['meinberlin_topicprio/topic_detail.html']
+        assert_template_response(
+            response, 'meinberlin_topicprio/topic_detail.html')

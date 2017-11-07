@@ -1,6 +1,7 @@
 import pytest
 
 from meinberlin.apps.documents import phases
+from tests.helpers import assert_template_response
 from tests.helpers import freeze_phase
 from tests.helpers import setup_phase
 
@@ -12,9 +13,8 @@ def test_document_detail_view(client, phase_factory, chapter_factory):
     url = project.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
-        assert response.status_code == 200
-        assert response.template_name == \
-            ['meinberlin_documents/chapter_detail.html']
+        assert_template_response(
+            response, 'meinberlin_documents/chapter_detail.html')
 
 
 @pytest.mark.django_db
@@ -26,9 +26,8 @@ def test_chapter_detail_view(client, phase_factory, chapter_factory):
     url = chapter.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
-        assert response.status_code == 200
-        assert response.template_name == \
-            ['meinberlin_documents/chapter_detail.html']
+        assert_template_response(
+            response, 'meinberlin_documents/chapter_detail.html')
 
 
 @pytest.mark.django_db
@@ -40,6 +39,5 @@ def test_paragraph_detail_view(client, phase_factory, chapter_factory,
     url = paragraph.get_absolute_url()
     with freeze_phase(phase):
         response = client.get(url)
-        assert response.status_code == 200
-        assert response.template_name == \
-            ['meinberlin_documents/paragraph_detail.html']
+        assert_template_response(
+            response, 'meinberlin_documents/paragraph_detail.html')
