@@ -86,6 +86,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.offlineevents.apps.Config',
     'meinberlin.apps.newsletters.apps.Config',
     'meinberlin.apps.plans.apps.Config',
+    'meinberlin.apps.adminlog.apps.Config',
 
     'meinberlin.apps.account.apps.Config',
     'meinberlin.apps.dashboard.apps.Config',
