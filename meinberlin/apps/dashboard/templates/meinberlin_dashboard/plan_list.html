@@ -21,18 +21,28 @@
                 <li class="list-item">
                     <div class="lr-bar">
                         <div class="lr-bar__left">
-                            <h3 class="list-item__title">
-                                <a href="{% url 'a4dashboard:plan-update' organisation_slug=view.organisation.slug slug=plan.slug %}">
-                                    {{ plan.title }}
-                                </a>
-                            </h3>
+                            <h3 class="list-item__title">{{ plan.title }}</h3>
                         </div>
                         <div class="lr-bar__right">
-                            <a href="{% url 'a4dashboard:plan-delete' organisation_slug=view.organisation.slug slug=plan.slug %}"
-                               class="btn btn--light">
-                                <i class="fa fa-remove" aria-hidden="true"></i>
-                                {% trans 'Delete' %}
-                            </a>
+                            <div class="btn-group">
+                                {% spaceless %}
+                                    <a href="{% url 'meinberlin_plans:plan-detail' slug=plan.slug %}"
+                                       class="btn btn--small btn--light">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        {% trans 'View' %}
+                                    </a>
+                                    <a href="{% url 'a4dashboard:plan-update' organisation_slug=view.organisation.slug slug=plan.slug %}"
+                                       class="btn btn--small btn--light">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        {% trans 'Edit'%}
+                                    </a>
+                                    <a href="{% url 'a4dashboard:plan-delete' organisation_slug=view.organisation.slug slug=plan.slug %}"
+                                       class="btn btn--small btn--light">
+                                        <i class="fa fa-remove" aria-hidden="true"></i>
+                                        {% trans 'Delete' %}
+                                    </a>
+                                {% endspaceless %}
+                            </div>
                         </div>
                     </div>
                 </li>

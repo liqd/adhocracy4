@@ -5,6 +5,6 @@ from . import views
 urlpatterns = [
     url(r'^(?P<slug>[-\w_]+)/$',
         views.PlanDetailView.as_view(), name='plan-detail'),
-    url('',
+    url('^$',
         views.PlanListView.as_view(), name='plan-list'),
 ]
