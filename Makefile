@@ -1,8 +1,5 @@
 VIRTUAL_ENV ?= .env
 NODE_BIN = node_modules/.bin
-SCSS_FILES := $(shell find 'meinberlin/assets/scss' -name '*.scss')
-JS_FILES := $(shell find 'meinberlin/assets/js' | grep '\.jsx\?$$')
-PO_FILES := $(shell find . -name '*.po')
 
 help:
 	@echo mein.berlin development tools
@@ -25,10 +22,10 @@ install:
 	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
 
-webpack: $(SCSS_FILES) $(JS_FILES)
+webpack:
 	$(NODE_BIN)/webpack
 
-webpack-prod: $(SCSS_FILES) $(JS_FILES)
+webpack-prod:
 	$(NODE_BIN)/webpack --define process.env.NODE_ENV="'production'" --optimize-minimize --devtool none
 
 makemessages:
@@ -38,7 +35,7 @@ makemessages:
 	msgen locale/en_GB/LC_MESSAGES/django.po -o locale/en_GB/LC_MESSAGES/django.po
 	msgen locale/en_GB/LC_MESSAGES/djangojs.po -o locale/en_GB/LC_MESSAGES/djangojs.po
 
-compilemessages: $(PO_FILES)
+compilemessages:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
 build: webpack compilemessages
