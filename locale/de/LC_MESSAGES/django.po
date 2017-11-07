@@ -2022,7 +2022,7 @@ msgstr "%(active_count)s von %(count)s"
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:14
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:59
 msgid "projects are currently active."
-msgstr "Projekte sind aktuell aktiv."
+msgstr "Projekten sind aktuell aktiv."
 
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:75
