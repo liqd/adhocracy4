@@ -1,9 +1,9 @@
 VIRTUAL_ENV ?= .env
 NODE_BIN = node_modules/.bin
-SCSS_FILES := $(shell find 'meinberlin/assets/scss' -name '*.scss')
-JS_FILES := $(shell find 'meinberlin/assets/js' | grep '\.jsx\?$$')
-PO_FILES := $(shell find . -name '*.po')
 
+all: help
+
+.PHONY: help
 help:
 	@echo mein.berlin development tools
 	@echo
@@ -19,18 +19,22 @@ help:
 	@echo "  make watch        -- start a dev server and rebuild js and css files on changes"
 	@echo
 
+.PHONY: install
 install:
 	npm install --no-save
 	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
 	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
 
-webpack: $(SCSS_FILES) $(JS_FILES)
+.PHONY: webpack
+webpack:
 	$(NODE_BIN)/webpack
 
-webpack-prod: $(SCSS_FILES) $(JS_FILES)
+.PHONY: webpack-prod
+webpack-prod:
 	$(NODE_BIN)/webpack --define process.env.NODE_ENV="'production'" --optimize-minimize --devtool none
 
+.PHONY: makemessages
 makemessages:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs
@@ -38,29 +42,38 @@ makemessages:
 	msgen locale/en_GB/LC_MESSAGES/django.po -o locale/en_GB/LC_MESSAGES/django.po
 	msgen locale/en_GB/LC_MESSAGES/djangojs.po -o locale/en_GB/LC_MESSAGES/djangojs.po
 
-compilemessages: $(PO_FILES)
+.PHONY: makemessages
+compilemessages:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
+.PHONY: build
 build: webpack compilemessages
 
+.PHONY: server
 server:
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8000
 
+.PHONY: watch
 watch:
 	$(NODE_BIN)/webpack --watch & \
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8000
 
+.PHONY: lint
 lint:
 	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint
 
+.PHONY: lint-quick
 lint-quick:
 	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint -SF
 
+.PHONY: test
 test:
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db
 
+.PHONY: test-lastfailed
 test-lastfailed:
 	$(VIRTUAL_ENV)/bin/py.test --reuse-db --last-failed
 
+.PHONY: test-clean
 test-clean:
 	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
