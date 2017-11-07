@@ -117,9 +117,10 @@ class DocumentSerializer(serializers.Serializer):
                 yield chapter_serializer.create(chapter_data)
 
     def _send_component_updated_signal(self):
+        component = components.modules['document_settings']
         a4dashboard_signals.module_component_updated.send(
-            sender=None,
+            sender=component.__class__,
             module=Module.objects.get(id=self.context['module_pk']),
-            component=components.modules['document_settings'],
+            component=component,
             user=self.context['request'].user
         )

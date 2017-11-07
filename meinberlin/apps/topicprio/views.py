@@ -8,7 +8,6 @@ from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
 from meinberlin.apps.contrib import filters
 from meinberlin.apps.contrib.views import ProjectContextMixin
-from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 from meinberlin.apps.dashboard2 import mixins
 from meinberlin.apps.ideas import views as idea_views
 
@@ -102,7 +101,7 @@ class TopicListDashboardView(ProjectContextMixin,
 
 class TopicCreateView(mixins.DashboardBaseMixin,
                       mixins.DashboardComponentMixin,
-                      mixins.DashboardComponentUpdateSignalMixin,
+                      mixins.DashboardComponentFormSignalMixin,
                       idea_views.AbstractIdeaCreateView):
     model = models.Topic
     form_class = forms.TopicForm
@@ -120,7 +119,7 @@ class TopicCreateView(mixins.DashboardBaseMixin,
 
 class TopicUpdateView(mixins.DashboardBaseMixin,
                       mixins.DashboardComponentMixin,
-                      mixins.DashboardComponentUpdateSignalMixin,
+                      mixins.DashboardComponentFormSignalMixin,
                       idea_views.AbstractIdeaUpdateView):
     model = models.Topic
     form_class = forms.TopicForm
@@ -142,6 +141,7 @@ class TopicUpdateView(mixins.DashboardBaseMixin,
 
 class TopicDeleteView(mixins.DashboardBaseMixin,
                       mixins.DashboardComponentMixin,
+                      mixins.DashboardComponentDeleteSignalMixin,
                       idea_views.AbstractIdeaDeleteView):
     model = models.Topic
     success_message = _('The topic has been deleted')
@@ -159,12 +159,3 @@ class TopicDeleteView(mixins.DashboardBaseMixin,
 
     def get_permission_object(self):
         return self.get_object()
-
-    def delete(self, request, *args, **kwargs):
-        response = super().delete(request, *args, **kwargs)
-        a4dashboard_signals.module_component_updated.send(
-            sender=None,
-            module=self.module,
-            component=self.component,
-            user=self.request.user)
-        return response

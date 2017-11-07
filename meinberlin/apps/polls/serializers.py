@@ -77,10 +77,11 @@ class PollSerializer(serializers.ModelSerializer):
             )
 
     def _send_component_updated_signal(self, question_instance):
+        component = components.modules['polls']
         a4dashboard_signals.module_component_updated.send(
             sender=None,
             module=question_instance.module,
-            component=components.modules['polls'],
+            component=component.__class__,
             user=self.context['request'].user
         )
 

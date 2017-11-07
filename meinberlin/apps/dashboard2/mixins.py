@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import base
-from django.views.generic.edit import FormMixin
+from django.views.generic import edit
 
 from adhocracy4.projects import models as project_models
 from adhocracy4.rules import mixins as rules_mixins
@@ -98,19 +98,43 @@ class DashboardComponentMixin(base.ContextMixin):
         return context
 
 
-class DashboardComponentUpdateSignalMixin(FormMixin):
+class DashboardComponentFormSignalMixin(edit.FormMixin):
     def form_valid(self, form):
         response = super().form_valid(form)
 
-        if self.component.identifier in components.projects:
-            signals.project_component_updated.send(sender=None,
+        component = self.component
+        if component.identifier in components.projects:
+            signals.project_component_updated.send(sender=component.__class__,
                                                    project=self.project,
-                                                   component=self.component,
+                                                   component=component,
                                                    user=self.request.user)
         else:
-            signals.module_component_updated.send(sender=None,
+            signals.module_component_updated.send(sender=component.__class__,
                                                   module=self.module,
-                                                  component=self.component,
+                                                  component=component,
+                                                  user=self.request.user)
+        return response
+
+
+class DashboardComponentDeleteSignalMixin(edit.DeletionMixin):
+    def delete(self, request, *args, **kwargs):
+        # Project and module have to be stored before delete is called as
+        # they may rely on the still existing db object.
+        project = self.project
+        module = self.module
+
+        response = super().delete(request, *args, **kwargs)
+
+        component = self.component
+        if component.identifier in components.projects:
+            signals.project_component_updated.send(sender=component.__class__,
+                                                   project=project,
+                                                   component=component,
+                                                   user=self.request.user)
+        else:
+            signals.module_component_updated.send(sender=component.__class__,
+                                                  module=module,
+                                                  component=component,
                                                   user=self.request.user)
         return response
 
