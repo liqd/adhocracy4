@@ -15,7 +15,12 @@ class MapTopicEditComponent(DashboardComponent):
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
-        return module_app == 'meinberlin_maptopicprio'
+        if module_app != 'meinberlin_maptopicprio':
+            return False
+        elif module.settings_instance.polygon == '':
+            return False
+        else:
+            return True
 
     def get_progress(self, module):
         if models.MapTopic.objects.filter(module=module).exists():

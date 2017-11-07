@@ -22,5 +22,12 @@ urlpatterns = [
     url(r'^publish/project/(?P<project_slug>[-\w_]+)/$',
         views.ProjectPublishView.as_view(),
         name='project-publish'),
+    url(r'^projects/(?P<project_slug>[-\w_]+)/blueprints/$',
+        views.ModuleBlueprintListView.as_view(),
+        name='module-blueprint-list'),
+    url(r'^projects/(?P<project_slug>[-\w_]+)/blueprints/'
+        '(?P<blueprint_slug>[-\w_]+)/$',
+        views.ModuleCreateView.as_view(),
+        name='module-create'),
     url(r'', include(components.get_urls())),
 ]

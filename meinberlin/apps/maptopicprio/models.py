@@ -19,6 +19,19 @@ class MapTopicQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
 
 
 class MapTopic(module_models.Item):
+    item_ptr = models.OneToOneField(to=module_models.Item,
+                                    parent_link=True,
+                                    related_name='%(app_label)s_%(class)s')
+    slug = AutoSlugField(populate_from='name', unique=True)
+    name = models.CharField(max_length=120, verbose_name=_('Title'))
+    description = RichTextUploadingField(config_name='image-editor')
+    ratings = GenericRelation(rating_models.Rating,
+                              related_query_name='idea',
+                              object_id_field='object_pk')
+    comments = GenericRelation(comment_models.Comment,
+                               related_query_name='idea',
+                               object_id_field='object_pk')
+    category = CategoryField()
     point = map_fields.PointField(
         verbose_name=_('Where can your idea be located on a map?'),
         help_text=_('Click inside marked area on the map to set a marker. '
@@ -33,19 +46,6 @@ class MapTopic(module_models.Item):
         verbose_name=_('Label of the ideas location'),
         help_text=_('This could be an address or the name of a landmark.'),
     )
-    item_ptr = models.OneToOneField(to=module_models.Item,
-                                    parent_link=True,
-                                    related_name='%(app_label)s_%(class)s')
-    slug = AutoSlugField(populate_from='name', unique=True)
-    name = models.CharField(max_length=120, verbose_name=_('Title'))
-    description = RichTextUploadingField(config_name='image-editor')
-    ratings = GenericRelation(rating_models.Rating,
-                              related_query_name='idea',
-                              object_id_field='object_pk')
-    comments = GenericRelation(comment_models.Comment,
-                               related_query_name='idea',
-                               object_id_field='object_pk')
-    category = CategoryField()
 
     objects = MapTopicQuerySet.as_manager()
 

@@ -8,15 +8,15 @@ zeep==2.4.0
 
 # Inherited a4-core requirements
 bleach==2.1.1
-Django==1.11.6
+Django==1.11.7
 django-allauth==0.34.0
 django-autoslug==1.9.3
 django-background-tasks==1.1.11
 django-ckeditor==5.3.1
 django-filter==1.1.0
 django-widget-tweaks==1.4.1
-djangorestframework==3.7.1
-easy-thumbnails==2.4.2
+djangorestframework==3.7.2
+easy-thumbnails==2.5
 jsonfield==2.0.2
 python-dateutil==2.6.1
 python-magic==0.4.13

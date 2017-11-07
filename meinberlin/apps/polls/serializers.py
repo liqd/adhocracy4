@@ -21,7 +21,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Question
-        fields = ('id', 'label', 'choices')
+        fields = ('id', 'label', 'choices', 'multiple_choice')
 
 
 class PollSerializer(serializers.ModelSerializer):
@@ -47,6 +47,7 @@ class PollSerializer(serializers.ModelSerializer):
                 defaults={
                     'poll': instance,
                     'label': question['label'],
+                    'multiple_choice': question['multiple_choice'],
                     'weight': weight
                 })
 

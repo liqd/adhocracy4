@@ -16,7 +16,7 @@ class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = settings.AUTH_USER_MODEL
 
-    username = factory.Faker('name')
+    username = factory.Sequence(lambda n: 'user%d' % n)
     password = make_password('password')
     email = factory.Faker('email')
 
