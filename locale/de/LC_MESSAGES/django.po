@@ -469,39 +469,33 @@ msgstr "Projekt veröffentlicht"
 msgid "Project unpublished"
 msgstr "Projekt depubliziert"
 
-# Already translated in django-core
 #: meinberlin/apps/adminlog/models.py:28
 msgid "action time"
-msgstr ""
+msgstr "Zeitpunkt der Aktion"
 
-# Already translated in django-core
 #: meinberlin/apps/adminlog/models.py:32
 msgid "User"
-msgstr ""
+msgstr "Benutzer"
 
 #: meinberlin/apps/adminlog/models.py:41
 msgid "Module"
 msgstr "Modul"
 
-# Already translated in django-core
 #: meinberlin/apps/adminlog/models.py:45
 msgid "Message"
-msgstr ""
+msgstr "Eintrag"
 
-# Already translated in a4-core
 #: meinberlin/apps/adminlog/models.py:47
 msgid "Action"
-msgstr ""
+msgstr "Aktion"
 
-# Already translated in django-core
 #: meinberlin/apps/adminlog/models.py:50
 msgid "log entry"
-msgstr ""
+msgstr "Logeintrag"
 
-# Already translated in django-core
 #: meinberlin/apps/adminlog/models.py:51
 msgid "log entries"
-msgstr ""
+msgstr "Logeinträge"
 
 #: meinberlin/apps/adminlog/signals.py:15
 #, python-brace-format
