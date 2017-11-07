@@ -41,6 +41,12 @@ def test_create_view(client, phase_factory, idea_factory, user,
                   kwargs={'module_slug': module.slug})
     with freeze_phase(phase):
         client.login(username=user.email, password='password')
+
+        response = client.get(url)
+        assert response.status_code == 200
+        assert response.template_name == \
+            ['meinberlin_ideas/idea_create_form.html']
+
         idea = {
             'name': 'Idea',
             'description': 'description',

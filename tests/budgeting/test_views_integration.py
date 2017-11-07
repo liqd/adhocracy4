@@ -42,6 +42,12 @@ def test_create_view(client, phase_factory, proposal_factory, user,
                   kwargs={'module_slug': module.slug})
     with freeze_phase(phase):
         client.login(username=user.email, password='password')
+
+        response = client.get(url)
+        assert response.status_code == 200
+        assert response.template_name == \
+            ['meinberlin_budgeting/proposal_create_form.html']
+
         data = {
             'name': 'Idea',
             'description': 'description',
@@ -65,6 +71,12 @@ def test_moderate_view(client, phase_factory, proposal_factory, user,
     project.moderators = [user]
     with freeze_phase(phase):
         client.login(username=user.email, password='password')
+
+        response = client.get(url)
+        assert response.status_code == 200
+        assert response.template_name == \
+            ['meinberlin_budgeting/proposal_moderate_form.html']
+
         data = {
             'moderator_feedback': 'test',
             'is_archived': False,

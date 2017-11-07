@@ -13,6 +13,11 @@ def test_statement_form_view(client, phase_factory, bplan_factory,
     phase = phase_factory(phase_content=phases.StatementPhase(), module=module)
     url = bplan.get_absolute_url()
     with freeze_phase(phase):
+        response = client.get(url)
+        assert response.status_code == 200
+        assert response.template_name == \
+            ['meinberlin_bplan/statement_create_form.html']
+
         statement = {
             'name': 'User',
             'email': 'user@foo.bar',

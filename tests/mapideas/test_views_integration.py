@@ -42,6 +42,12 @@ def test_create_view(client, phase_factory, map_idea_factory, user,
                   kwargs={'module_slug': module.slug})
     with freeze_phase(phase):
         client.login(username=user.email, password='password')
+
+        response = client.get(url)
+        assert response.status_code == 200
+        assert response.template_name == \
+            ['meinberlin_mapideas/mapidea_create_form.html']
+
         data = {
             'name': 'Idea',
             'description': 'description',

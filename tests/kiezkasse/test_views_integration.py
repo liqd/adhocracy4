@@ -66,6 +66,12 @@ def test_moderate_view(client, phase_factory, proposal_factory, user,
     project.moderators = [user]
     with freeze_phase(phase):
         client.login(username=user.email, password='password')
+
+        response = client.get(url)
+        assert response.status_code == 200
+        assert response.template_name == \
+            ['meinberlin_kiezkasse/proposal_moderate_form.html']
+
         data = {
             'moderator_feedback': 'test',
             'statement': 'its a statement'
