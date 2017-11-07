@@ -15,9 +15,7 @@ def test_list_view(client, plan_factory):
 
 @pytest.mark.django_db
 def test_detail_view(client, plan):
-    url = reverse('meinberlin_plans:plan-detail', kwargs={
-        'slug': plan.slug
-    })
+    url = plan.get_absolute_url()
     response = client.get(url)
     assert_template_response(
         response, 'meinberlin_plans/plan_detail.html')

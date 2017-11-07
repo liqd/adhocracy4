@@ -30,5 +30,5 @@ class Plan(UserGeneratedContentModel):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('meinberlin_offlineevents:offlineevent-detail',
+        return reverse('meinberlin_plans:plan-detail',
                        args=[str(self.slug)])
