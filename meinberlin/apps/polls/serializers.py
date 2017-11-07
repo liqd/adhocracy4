@@ -1,5 +1,8 @@
 from rest_framework import serializers
 
+from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
+from meinberlin.apps.dashboard2 import components
+
 from . import models
 from . import validators
 
@@ -18,7 +21,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Question
-        fields = ('id', 'label', 'choices')
+        fields = ('id', 'label', 'choices', 'multiple_choice')
 
 
 class PollSerializer(serializers.ModelSerializer):
@@ -44,10 +47,15 @@ class PollSerializer(serializers.ModelSerializer):
                 defaults={
                     'poll': instance,
                     'label': question['label'],
+                    'multiple_choice': question['multiple_choice'],
                     'weight': weight
                 })
 
             self._update_choices(question, question_instance)
+
+        # Send the component updated signal
+        # (the serializer is only used from within the dashboard)
+        self._send_component_updated_signal(instance)
 
         return instance
 
@@ -68,6 +76,15 @@ class PollSerializer(serializers.ModelSerializer):
                     'label': choice['label']
                 }
             )
+
+    def _send_component_updated_signal(self, question_instance):
+        component = components.modules['polls']
+        a4dashboard_signals.module_component_updated.send(
+            sender=component.__class__,
+            module=question_instance.module,
+            component=component.__class__,
+            user=self.context['request'].user
+        )
 
 
 class VoteSerializer(serializers.ModelSerializer):

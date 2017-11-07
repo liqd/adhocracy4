@@ -22,9 +22,11 @@ from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
+from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 
 from . import forms
 from . import models
+from . import query
 
 User = get_user_model()
 
@@ -117,28 +119,21 @@ class ProjectListView(filter_views.FilteredListView):
     filter_set = ProjectFilterSet
 
     def get_queryset(self):
-        # FIXME: has to be in sync with a4projects.view_project and should
-        #        be implemented on the ProjectQueryManager in core
-
-        q_false = Q(pk=None)
-        is_superuser = ~q_false if self.request.user.is_superuser else q_false
-
-        return super().get_queryset().filter(
-            Q(is_draft=False) & (
-                Q(is_public=True) |
-                is_superuser |
-                Q(participants__pk=self.request.user.pk) |
-                Q(organisation__initiators__pk=self.request.user.pk) |
-                Q(moderators__pk=self.request.user.pk)
-            ) & (
+        queryset = super().get_queryset()\
+            .filter(
+                # Show only published projects
+                is_draft=False)\
+            .filter(
                 # Do not include archived bplan projects
                 Q(is_archived=False) |
-                Q(externalproject__bplan=None)
-            ) & (
+                Q(externalproject__bplan=None))\
+            .filter(
                 # Do not include projects belonging to containers
-                Q(containers=None)
-            )
-        ).distinct()
+                containers=None)
+        # Show only projects viewable by the current user
+        queryset = query.filter_viewable(queryset, self.request.user)
+        # List every project at most once
+        return queryset.distinct()
 
 
 class ParticipantInviteDetailView(generic.DetailView):
@@ -232,9 +227,12 @@ class AbstractProjectUserInviteListView(
                 invite.delete()
                 messages.success(request, _('Invitation succesfully removed.'))
 
-            return redirect(self.get_success_url())
+            response = redirect(self.get_success_url())
         else:
-            return super().post(request, *args, **kwargs)
+            response = super().post(request, *args, **kwargs)
+
+        self._send_component_updated_signal()
+        return response
 
     def filter_existing(self, emails):
         related_users = getattr(self.object, self.related_users_field)
@@ -252,7 +250,8 @@ class AbstractProjectUserInviteListView(
         pending = []
         filtered_emails = []
         for email in emails:
-            if self.invite_model.objects.filter(email=email).exists():
+            if self.invite_model.objects.filter(email=email,
+                                                project=self.project).exists():
                 pending.append(email)
             else:
                 filtered_emails.append(email)
@@ -299,6 +298,14 @@ class AbstractProjectUserInviteListView(
         kwargs['labels'] = (self.add_user_field_label,
                             self.add_user_upload_field_label)
         return kwargs
+
+    def _send_component_updated_signal(self):
+        a4dashboard_signals.project_component_updated.send(
+            sender=self.component.__class__,
+            module=self.project,
+            component=self.component,
+            user=self.request.user
+        )
 
 
 class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):

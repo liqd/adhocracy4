@@ -1,0 +1,55 @@
+{% extends "meinberlin_dashboard2/base_project_list.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Plans" %} &mdash; {{ block.super }}{% endblock %}
+
+{% block project_list %}
+    <div class="lr-bar lr-bar--with-margin">
+        <h1 class="u-first-heading lr-bar__left">
+            {% trans 'Plans' %}
+        </h1>
+        <div class="lr-bar__right">
+            <a href="{% url 'a4dashboard:plan-create' organisation_slug=view.organisation.slug %}" class="btn">
+                {% trans 'Add Plan' %}
+            </a>
+        </div>
+    </div>
+
+    {% if object_list.count > 0 %}
+        <ul class="u-list-reset">
+            {% for plan in object_list %}
+                <li class="list-item">
+                    <div class="lr-bar">
+                        <div class="lr-bar__left">
+                            <h3 class="list-item__title">{{ plan.title }}</h3>
+                        </div>
+                        <div class="lr-bar__right">
+                            <div class="btn-group">
+                                {% spaceless %}
+                                    <a href="{% url 'meinberlin_plans:plan-detail' slug=plan.slug %}"
+                                       class="btn btn--small btn--light">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        {% trans 'View' %}
+                                    </a>
+                                    <a href="{% url 'a4dashboard:plan-update' organisation_slug=view.organisation.slug slug=plan.slug %}"
+                                       class="btn btn--small btn--light">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        {% trans 'Edit'%}
+                                    </a>
+                                    <a href="{% url 'a4dashboard:plan-delete' organisation_slug=view.organisation.slug slug=plan.slug %}"
+                                       class="btn btn--small btn--light">
+                                        <i class="fa fa-remove" aria-hidden="true"></i>
+                                        {% trans 'Delete' %}
+                                    </a>
+                                {% endspaceless %}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% trans "Nothing to show" %}
+    {% endif %}
+
+{% endblock %}

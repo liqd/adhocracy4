@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ object.title }} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="l-wrapper">
+        <div class="l-center-8">
+            <h1 class="u-first-heading lr-bar__left">
+                {% trans  object.title %}
+            </h1>
+        </div>
+    </div>
+{% endblock %}

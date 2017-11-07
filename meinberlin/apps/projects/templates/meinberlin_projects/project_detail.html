@@ -3,6 +3,20 @@
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
+{% block extra_messages %}
+    {{ block.super }}
+
+    {% if project.is_draft %}
+        <ul class="messages">
+            <li class="alert alert--dialog-box warning" role="alert">
+                <div class="l-wrapper">
+                    {% trans 'This project is in not published yet.' %}
+                </div>
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     {% if project|is_container %}
         {% include 'meinberlin_projectcontainers/includes/container_detail.html' with container=project.projectcontainer %}
@@ -26,7 +40,7 @@
                 <div class="l-center-6">
                     {% with container=project.containers.first %}
                         {% if container %}
-                            <a href="{{ container.get_absolute_url }}" class="project-header__link">
+                            <a href="{{ container.get_absolute_url }}" class="project-header__link" data-embed-target="external">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
                                 {% blocktrans with name=container.name %}back to {{ name }}{% endblocktrans %}
                             </a>
@@ -46,7 +60,7 @@
                 <div class="tablist__right">
                     {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
                     {% if user_may_change %}
-                        <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small">{% trans 'Edit' %}</a>
+                        <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
                     {% endif %}
                     {% if request.user.is_authenticated %}
                         {% react_follows project %}

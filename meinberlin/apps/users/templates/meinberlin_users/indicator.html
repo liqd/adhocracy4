@@ -58,10 +58,10 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="login-register">
         <li>
-            <a class="dropdown-item" href="{% url 'account_login' %}?next={{ redirect_field_value }}">{% trans "Login" %}</a>
+            <a class="dropdown-item" href="{% url 'account_login' %}?next={{ redirect_field_value|urlencode }}">{% trans "Login" %}</a>
         </li>
         <li>
-            <a class="dropdown-item" href="{% url 'account_signup' %}?next={{ redirect_field_value }}">{% trans "Register" %}</a>
+            <a class="dropdown-item" href="{% url 'account_signup' %}?next={{ redirect_field_value|urlencode }}">{% trans "Register" %}</a>
         </li>
     </ul>
 

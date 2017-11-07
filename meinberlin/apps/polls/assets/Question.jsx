@@ -8,13 +8,13 @@ class Question extends React.Component {
     super(props)
 
     const choices = this.props.question.choices
-    const hasFinished = this.props.question.hasFinished
+    const isReadOnly = this.props.question.isReadOnly
     const ownChoice = this.findOwnChoice(choices)
     this.state = {
       counts: choices.map(o => o.count),
       ownChoice: ownChoice,
       selectedChoice: ownChoice,
-      showResult: !(ownChoice === null) || hasFinished,
+      showResult: !(ownChoice === null) || isReadOnly,
       alert: null
     }
   }
@@ -49,7 +49,7 @@ class Question extends React.Component {
   handleSubmit (event) {
     event.preventDefault()
 
-    if (this.props.question.hasFinished) {
+    if (this.props.question.isReadOnly) {
       return false
     }
 
@@ -106,7 +106,7 @@ class Question extends React.Component {
   }
 
   getVoteButton () {
-    if (this.props.question.hasFinished) {
+    if (this.props.question.isReadOnly) {
       return null
     }
 
@@ -121,11 +121,11 @@ class Question extends React.Component {
       )
     } else {
       let loginUrl = '/accounts/login/?next=' +
-        encodeURIComponent(window.adhocracy4.getCurrentHref())
+        encodeURIComponent(window.adhocracy4.getCurrentPath())
 
       return (
         <a href={loginUrl} className="btn btn--primary">
-          { django.gettext('Vote') }
+          { django.gettext('Please login to vote') }
         </a>
       )
     }
@@ -149,7 +149,7 @@ class Question extends React.Component {
         <div className="poll__actions">
           { totalString }
           &nbsp;
-          {!this.props.question.hasFinished &&
+          {!this.props.question.isReadOnly &&
             <button type="button" className="btn btn--link" onClick={this.toggleShowResult.bind(this)}>
               { django.gettext('To poll') }
             </button>
@@ -201,6 +201,7 @@ class Question extends React.Component {
                       value={i}
                       checked={checked}
                       onChange={this.handleOnChange.bind(this)}
+                      disabled={!this.props.question.authenticated}
                     />
                     <span className="radio__text">{ choice.label }</span>
                   </label>

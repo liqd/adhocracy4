@@ -20,7 +20,7 @@ module.exports = {
       'react-dom',
       'react-flip-move',
       'shariff',
-      'shariff/build/shariff.min.css'
+      'shariff/dist/shariff.min.css'
     ],
     select2: [
       'select2'
@@ -58,7 +58,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!adhocracy4|bootstrap)/, // exclude all dependencies but adhocracy4 and bootstrap
+        exclude: /node_modules\/(?!adhocracy4|bootstrap|shariff)/, // exclude most dependencies
         loader: 'babel-loader',
         options: {
           presets: ['babel-preset-es2015', 'babel-preset-react'].map(require.resolve)

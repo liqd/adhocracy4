@@ -21,13 +21,20 @@ urlpatterns = [
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/containers/$',
         ContainerListView.as_view(),
         name='container-list'),
-    url(r'^projects/(?P<project_slug>[-\w_]+)/blueprints/$',
-        views.ModuleBlueprintListView.as_view(),
-        name='module-blueprint-list'),
-    url(r'^projects/(?P<project_slug>[-\w_]+)/blueprints/'
-        '(?P<blueprint_slug>[-\w_]+)/$',
-        views.ModuleCreateView.as_view(),
-        name='module-create'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/plans/$',
+        views.PlanListView.as_view(),
+        name='plan-list'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/plans/create/$',
+        views.PlanCreateView.as_view(),
+        name='plan-create'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)'
+        r'/plans/(?P<slug>[-\w_]+)/$',
+        views.PlanUpdateView.as_view(),
+        name='plan-update'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)'
+        r'/plans/(?P<slug>[-\w_]+)/delete/$',
+        views.PlanDeleteView.as_view(),
+        name='plan-delete'),
 
     # Overwrite adhocracy4 core urls with meinBerlin urls
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'

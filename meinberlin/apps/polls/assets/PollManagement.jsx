@@ -45,6 +45,7 @@ class PollManagement extends React.Component {
   getNewQuestion (label = '') {
     return {
       label: label,
+      multiple_choice: false,
       key: this.getNextLocalKey(),
       choices: [
         this.getNewChoice(),
@@ -56,6 +57,15 @@ class PollManagement extends React.Component {
   handleUpdateQuestionLabel (index, label) {
     var diff = {}
     diff[index] = {$merge: {label: label}}
+
+    this.setState({
+      questions: update(this.state.questions, diff)
+    })
+  }
+
+  handleUpdateMultipleChoice (index, multipleChoice) {
+    var diff = {}
+    diff[index] = {$merge: {multiple_choice: multipleChoice}}
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -213,6 +223,7 @@ class PollManagement extends React.Component {
                     id={key}
                     question={question}
                     onLabelChange={(label) => { this.handleUpdateQuestionLabel(index, label) }}
+                    onMultipleChoiceChange={(multipleChoice) => { this.handleUpdateMultipleChoice(index, multipleChoice) }}
                     onMoveUp={index !== 0 ? () => { this.handleMoveQuestionUp(index) } : null}
                     onMoveDown={index < arr.length - 1 ? () => { this.handleMoveQuestionDown(index) } : null}
                     onDelete={() => { this.handleDeleteQuestion(index) }}

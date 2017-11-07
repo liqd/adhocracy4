@@ -19,9 +19,10 @@ class UserAdmin(auth.admin.UserAdmin):
     )
     readonly_fields = ('date_joined', 'last_login')
     list_display = (
-        'username', 'email', 'date_joined', 'is_staff', 'is_superuser'
+        'username', 'email', 'date_joined', 'last_login', 'is_staff',
+        'is_superuser'
     )
-    list_filter = ('is_staff', 'is_superuser')
+    list_filter = ('is_staff', 'is_superuser', 'last_login')
     search_fields = ('username', 'email')
 
 

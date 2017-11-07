@@ -59,6 +59,25 @@ class NotifyModeratorsEmail(Email):
         return receivers
 
 
+class NotifyInitiatorsOnProjectCreatedEmail(Email):
+    template_name = \
+        'meinberlin_notifications/emails/notify_initiators_project_created'
+
+    def get_receivers(self):
+        project = self.object
+        creator = User.objects.get(pk=self.kwargs['creator_pk'])
+        receivers = project.organisation.initiators.all()
+        receivers = _exclude_actor(receivers, creator)
+        receivers = _exclude_notifications_disabled(receivers)
+        return receivers
+
+    def get_context(self):
+        context = super().get_context()
+        creator = User.objects.get(pk=self.kwargs['creator_pk'])
+        context['creator'] = creator
+        return context
+
+
 class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
     template_name = 'meinberlin_notifications/emails' \
                     '/notify_followers_over_soon'
