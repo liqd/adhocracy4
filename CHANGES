@@ -5,4 +5,6 @@ Development
 -----------
 
  - First preview release
-
+ - All inline scripts were removed. Instead, we now use placeholder elements
+   with a `data-a4-widget' attribute that you should use to manually initialize
+   comment, follow, rating, and report widgets.
