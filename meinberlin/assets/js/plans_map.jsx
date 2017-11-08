@@ -105,6 +105,18 @@ class PlansMap extends React.Component {
       }
     }
 
+    // filter markers
+    if (prevState.filters !== this.state.filters) {
+      this.props.items.forEach((item, i) => {
+        let marker = this.markers[i]
+        if (this.isInFilter(item)) {
+          marker.addTo(this.map)
+        } else {
+          marker.remove()
+        }
+      })
+    }
+
     // scroll list
     if (prevState.selected !== this.state.selected || prevState.filters !== this.state.filters) {
       if (this.state.selected !== null && this.isInFilter(this.props.items[this.state.selected])) {
