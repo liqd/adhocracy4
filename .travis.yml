@@ -9,6 +9,7 @@ install:
   - nvm install 6
   - npm install
   - pip install -r requirements/dev.txt
+  - pip install coveralls
 script:
   - py.test --cov
   - python manage.py makemigrations --dry-run --check --noinput
