@@ -63,3 +63,11 @@ $checkbox-size: 20px;
 .radio__input:focus + .radio__text:before {
     @include fake-focus-shadow;
 }
+
+.radio__input:disabled + .radio__text {
+    &:before,
+    &:after {
+        background-color: $border-color;
+        cursor: not-allowed;
+    }
+}
