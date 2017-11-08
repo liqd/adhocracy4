@@ -32,6 +32,7 @@
     "bootstrap": "4.0.0-alpha.6",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
     "font-awesome": "4.7.0",
+    "jquery.scrollintoview": "^1.9.4",
     "leaflet": "1.2.0",
     "leaflet-draw": "0.4.12",
     "react-flip-move": "2.9.17",

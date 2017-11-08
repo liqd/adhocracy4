@@ -14,6 +14,7 @@ module.exports = {
       'classnames',
       'font-awesome/scss/font-awesome.scss',
       'jquery',
+      'jquery.scrollintoview',
       'js-cookie',
       'react',
       'immutability-helper',

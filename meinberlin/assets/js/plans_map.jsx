@@ -39,6 +39,10 @@ class PlansMap extends React.Component {
     }
   }
 
+  bindList (element) {
+    this.listElement = element
+  }
+
   bindMap (element) {
     this.mapElement = element
   }
@@ -100,13 +104,22 @@ class PlansMap extends React.Component {
         this.markers[this.state.selected].setIcon(activeIcon)
       }
     }
+
+    // scroll list
+    if (prevState.selected !== this.state.selected || prevState.filters !== this.state.filters) {
+      if (this.state.selected !== null && this.isInFilter(this.props.items[this.state.selected])) {
+        $(this.listElement).find('.selected').scrollintoview()
+      } else {
+        this.listElement.scrollTo(0, 0)
+      }
+    }
   }
 
   render () {
     return (
       <div className="map-list-combined">
         <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
-        <ul className="u-list-reset map-list-combined__list">
+        <ul className="u-list-reset map-list-combined__list" ref={this.bindList.bind(this)}>
           {
             this.props.items.map((item, i) => {
               if (this.isInFilter(item)) {
