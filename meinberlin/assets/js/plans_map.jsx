@@ -1,12 +1,55 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
 const $ = require('jquery')
+const L = require('leaflet')
+
+const icon = L.icon({
+  iconUrl: '/static/images/map_pin_01_2x.png',
+  shadowUrl: '/static/images/map_shadow_01_2x.png',
+  iconSize: [30, 45],
+  iconAnchor: [15, 45],
+  shadowSize: [40, 54],
+  shadowAnchor: [20, 54]
+})
+
+const pointToLatLng = function (point) {
+  return {
+    lat: point.geometry.coordinates[1],
+    lng: point.geometry.coordinates[0]
+  }
+}
 
 class PlansMap extends React.Component {
+  bindMap (element) {
+    this.mapElement = element
+  }
+
+  createMap () {
+    var basemap = this.props.baseurl + '{z}/{x}/{y}.png'
+    var baselayer = L.tileLayer(basemap, {
+      attribution: this.props.attribution
+    })
+    var map = new L.Map(this.mapElement, { scrollWheelZoom: false })
+    baselayer.addTo(map)
+
+    map.fitBounds(this.props.bounds)
+    map.options.minZoom = map.getZoom()
+
+    return map
+  }
+
+  componentDidMount () {
+    this.map = this.createMap()
+    this.markers = this.props.items.map((item, i) => {
+      let marker = L.marker(pointToLatLng(item.point), {icon: icon}).addTo(this.map)
+      return marker
+    })
+  }
+
   render () {
     return (
       <div className="map-list-combined">
-        <div className="map-list-combined__map" />
+        <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
         <ul className="u-list-reset map-list-combined__list">
           {
             this.props.items.map((item, i) => {
