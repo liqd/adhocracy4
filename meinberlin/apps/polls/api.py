@@ -1,9 +1,8 @@
-from django.http import Http404
+from django.db import transaction
 from django.shortcuts import get_object_or_404
 from rest_framework import mixins
 from rest_framework import status
 from rest_framework import viewsets
-from rest_framework.request import clone_request
 from rest_framework.response import Response
 
 from adhocracy4.api.permissions import ViewSetRulesPermission
@@ -26,79 +25,50 @@ class PollViewSet(mixins.UpdateModelMixin,
         return poll.module
 
 
-class VoteViewSetRulesPermission(ViewSetRulesPermission):
-    """Ensures the permission object is returned on update."""
+class VoteViewSet(viewsets.ViewSet):
 
-    non_object_actions = ['list', 'create', 'update']
-
-
-class VoteViewSet(viewsets.GenericViewSet):
-    queryset = Vote.objects.all()
     serializer_class = VoteSerializer
-    permission_classes = (VoteViewSetRulesPermission,)
+    permission_classes = (ViewSetRulesPermission,)
 
-    def dispatch(self, request, *args, **kwargs):
-        self.question_pk = int(kwargs['pk'])
-        return super().dispatch(request, *args, **kwargs)
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+
+        with transaction.atomic():
+            self.clear_current_choices()
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def clear_current_choices(self):
+        Vote.objects\
+            .filter(choice__question_id=self.question.id,
+                    creator=self.request.user)\
+            .delete()
 
     @property
     def question(self):
         return get_object_or_404(
             Question,
-            pk=self.question_pk
+            pk=self.kwargs['question_pk']
         )
 
-    def get_object(self):
-        return get_object_or_404(
-            Vote,
-            creator=self.request.user,
-            choice__question=self.question_pk
-        )
+    def get_queryset(self):
+        return Vote.objects.filter(
+            choice__question_id=self.kwargs['question_pk'])
 
     def get_permission_object(self):
         return self.question.poll.module
 
+    def get_serializer(self, *args, **kwargs):
+        kwargs['context'] = self.get_serializer_context()
+        return self.serializer_class(*args, **kwargs)
+
     def get_serializer_context(self):
-        context = super(VoteViewSet, self).get_serializer_context()
-        context.update({
-            'question_pk': self.question_pk,
-        })
-        return context
-
-    def update(self, request, *args, **kwargs):
-        # Based on the a4-opin AllowPUTAsCreateMixin.
-        #
-        # Since this view has a mismatch between its pk (which is
-        # related to questions) and its serializer (which is related to votes)
-        # the AllowPUTAsCreateMixin won't work correctly, as it sets the pk
-        # on the serializer object which obviously results in faulty database
-        # operations.
-        partial = kwargs.pop('partial', False)
-
-        instance = self.get_object_or_none()
-        serializer = self.get_serializer(instance,
-                                         data=request.data,
-                                         partial=partial)
-        serializer.is_valid(raise_exception=True)
-
-        if instance is None:
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-        serializer.save()
-        return Response(serializer.data)
-
-    def get_object_or_none(self):
-        try:
-            return self.get_object()
-        except Http404:
-            if self.request.method == 'PUT':
-                # For PUT-as-create operation, we need to ensure that we have
-                # relevant permissions, as if this was a POST request.  This
-                # will either raise a PermissionDenied exception, or simply
-                # return None.
-                self.check_permissions(clone_request(self.request, 'POST'))
-            else:
-                # PATCH requests where the object does not exist should still
-                # return a 404 response.
-                raise
+        return {
+            # Copied from GenericAPIView#get_serializer_context
+            'request': self.request,
+            'format': self.format_kwarg,
+            'view': self,
+            'question_pk': self.question.pk
+        }
