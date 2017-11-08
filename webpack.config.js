@@ -78,9 +78,7 @@ module.exports = {
               options: {
                 ident: 'postcss',
                 plugins: (loader) => [
-                  autoprefixer({
-                    browsers: ['last 3 versions', 'ie >= 10']
-                  })
+                  autoprefixer()
                 ]
               }
             },
