@@ -445,6 +445,92 @@ msgstr "Beteiligungsphase endet bald:"
 msgid "on <a href=\"%(url)s\">%(name)s</a>"
 msgstr "in <a href=\"%(url)s\">%(name)s</a>"
 
+#: meinberlin/apps/adminlog/admin.py:13 meinberlin/apps/adminlog/admin.py:58
+msgid "Component"
+msgstr "Bereich"
+
+#: meinberlin/apps/adminlog/models.py:17
+msgid "Project updated"
+msgstr "Projekt aktualisiert"
+
+#: meinberlin/apps/adminlog/models.py:18
+msgid "Module updated"
+msgstr "Modul aktualisiert"
+
+#: meinberlin/apps/adminlog/models.py:19
+msgid "Project created"
+msgstr "Projekt erstellt"
+
+#: meinberlin/apps/adminlog/models.py:20
+msgid "Project published"
+msgstr "Projekt veröffentlicht"
+
+#: meinberlin/apps/adminlog/models.py:21
+msgid "Project unpublished"
+msgstr "Projekt depubliziert"
+
+#: meinberlin/apps/adminlog/models.py:28
+msgid "action time"
+msgstr "Zeitpunkt der Aktion"
+
+#: meinberlin/apps/adminlog/models.py:32
+msgid "User"
+msgstr "Benutzer"
+
+#: meinberlin/apps/adminlog/models.py:41
+msgid "Module"
+msgstr "Modul"
+
+#: meinberlin/apps/adminlog/models.py:45
+msgid "Message"
+msgstr "Eintrag"
+
+#: meinberlin/apps/adminlog/models.py:47
+msgid "Action"
+msgstr "Aktion"
+
+#: meinberlin/apps/adminlog/models.py:50
+msgid "log entry"
+msgstr "Logeintrag"
+
+#: meinberlin/apps/adminlog/models.py:51
+msgid "log entries"
+msgstr "Logeinträge"
+
+#: meinberlin/apps/adminlog/signals.py:15
+#, python-brace-format
+msgid ""
+"\"{username}\" modified the component \"{component_label}\" in the module "
+"\"{module_name}\" of the project \"{project_name}\"."
+msgstr ""
+"\"{username}\" hat im Projekt \"{project_name}\""
+" Änderungen am Modul \"{module_name}\""
+" im Bereich \"{component_label}\" vorgenommen."
+
+#: meinberlin/apps/adminlog/signals.py:37
+#, python-brace-format
+msgid ""
+"\"{username}\" modified the component \"{component_label}\" of the project "
+"\"{project_name}\"."
+msgstr ""
+"\"{username}\" hat im Projekt \"{project_name}\""
+" Änderungen im Bereich \"{component_label}\" vorgenommen."
+
+#: meinberlin/apps/adminlog/signals.py:57
+#, python-brace-format
+msgid "\"{username}\" created the project \"{project_name}\"."
+msgstr "\"{username}\" hat das Projekt \"{project_name}\" erstellt."
+
+#: meinberlin/apps/adminlog/signals.py:75
+#, python-brace-format
+msgid "\"{username}\" published the project \"{project_name}\"."
+msgstr "\"{username}\" hat das Projekt \"{project_name}\" veröffentlicht."
+
+#: meinberlin/apps/adminlog/signals.py:93
+#, python-brace-format
+msgid "\"{username}\" depublished the project \"{project_name}\"."
+msgstr "\"{username}\" hat das Projekt \"{project_name}\" depubliziert."
+
 #: meinberlin/apps/bplan/dashboard.py:15
 msgid "Development plan settings"
 msgstr "Einstellungen"
