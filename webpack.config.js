@@ -19,7 +19,7 @@ module.exports = {
       'immutability-helper',
       'react-dom',
       'react-flip-move',
-      'shariff',
+      'shariff/dist/shariff.complete.js',
       'shariff/dist/shariff.min.css'
     ],
     select2: [
@@ -61,7 +61,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!adhocracy4|bootstrap|shariff)/, // exclude most dependencies
+        exclude: /node_modules\/(?!adhocracy4|bootstrap)/, // exclude most dependencies
         loader: 'babel-loader',
         options: {
           presets: ['babel-preset-es2015', 'babel-preset-react'].map(require.resolve)
