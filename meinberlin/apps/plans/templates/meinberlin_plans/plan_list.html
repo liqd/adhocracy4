@@ -1,7 +1,17 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block title %}{% trans "Plans" %} &mdash; {{ block.super }}{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script src="{% static 'leaflet.js' %}"></script>
+{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'leaflet.css' %}" />
+{% endblock %}
 
 {% block content %}
     <div class="l-wrapper">
@@ -9,23 +19,9 @@
             <h1 class="u-first-heading lr-bar__left">
                 {% trans 'Plans' %}
             </h1>
-
-            {% if object_list.count > 0 %}
-                <ul class="u-list-reset">
-                    {% for plan in object_list %}
-                        <li class="list-item">
-                            <h3 class="list-item__title">
-                                <a href="{% url 'meinberlin_plans:plan-detail' slug=plan.slug %}">
-                                    {{ plan }}
-                                </a>
-                            </h3>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                {% trans "Nothing to show" %}
-            {% endif %}
         </div>
     </div>
+
+    <div data-map="plans" data-items="{{ items }}" data-attribution="{{ attribution }}" data-baseurl="{{ baseurl }}" data-bounds="{{ bounds }}"></div>
 
 {% endblock %}
