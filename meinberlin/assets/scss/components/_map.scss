@@ -29,3 +29,43 @@
     left: 0;
     padding: $padding 0;
 }
+
+/* On large screens, map and list are next to each other. The list should
+ * maintain a width of 30em as long as possible.
+ *
+ * On small screens, map and list are one below the other. The map should
+ * maintain a hight of 36vh as long as possible.
+ *
+ * In both cases, the complete component should fit on the screen (max-height
+ * of 80vh).
+ *
+ * The size of the map should not change depending on the number of items in
+ * the list.
+ */
+.map-list-combined {
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+
+    @media (min-width: $breakpoint) {
+        flex-direction: row;
+        height: 36em;
+    }
+}
+
+.map-list-combined__map {
+    flex: 0 1 36vh;
+
+    @media (min-width: $breakpoint) {
+        flex: 1 1 auto;
+    }
+}
+
+.map-list-combined__list {
+    overflow-y: auto;
+    flex: 0 1 44vh;
+
+    @media (min-width: $breakpoint) {
+        flex: 0 1 30em;
+    }
+}
