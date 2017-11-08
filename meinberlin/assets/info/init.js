@@ -1,0 +1,3 @@
+smoothScroll.init({
+  selectorHeader: '#header',
+});

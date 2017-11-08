@@ -7,17 +7,6 @@ window.Tether = require('tether/dist/js/tether.js')
 
 var Shariff = require('shariff')
 
-;(function (init) {
-  $(init)
-  $(document).on('a4.embed.ready', init)
-})(function () {
-  new Shariff($('.shariff'))
-
-  if ($.fn.select2) {
-    $('.js-select2').select2()
-  }
-})
-
 // load bootstrap components
 var dropdown = require('bootstrap/js/src/dropdown.js')
 var modal = require('bootstrap/js/src/modal.js')
@@ -45,12 +34,35 @@ var getCurrentPath = function () {
   return location.pathname
 }
 
+var initialiseWidget = function (namespace, name, fn) {
+  var key = 'data-' + namespace + '-widget'
+  var selector = '[' + key + '=' + name + ']'
+  $(selector).each(function (i, el) {
+    fn(el)
+
+    // avoid double-initialisation
+    el.removeAttribute(key)
+  })
+}
+
+var init = function () {
+  new Shariff($('.shariff'))
+
+  if ($.fn.select2) {
+    $('.js-select2').select2()
+  }
+
+  initialiseWidget('mb', 'document-management', ReactDocuments.renderDocumentManagement)
+  initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
+  initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)
+}
+
+$(init)
+$(document).on('a4.embed.ready', init)
+
 module.exports = {
   'renderComment': ReactComments.renderComment,
   'renderRatings': ReactRatings.renderRatings,
-  'renderDocumentManagement': ReactDocuments.renderDocumentManagement,
-  'renderPolls': ReactPolls.renderPolls,
-  'renderPollManagement': ReactPolls.renderPollManagement,
   'renderReports': ReactReports.renderReports,
   'renderFollow': ReactFollows.renderFollow,
   'getCurrentPath': getCurrentPath
