@@ -62,6 +62,10 @@ class PlansMap extends React.Component {
     return map
   }
 
+  isInFilter (item) {
+    return true
+  }
+
   componentDidMount () {
     this.map = this.createMap()
     this.markers = this.props.items.map((item, i) => {
@@ -92,14 +96,16 @@ class PlansMap extends React.Component {
         <ul className="u-list-reset map-list-combined__list">
           {
             this.props.items.map((item, i) => {
-              let className = 'list-item'
-              if (i === this.state.selected) {
-                className += ' selected'
-              }
+              if (this.isInFilter(item)) {
+                let className = 'list-item'
+                if (i === this.state.selected) {
+                  className += ' selected'
+                }
 
-              return (
-                <li className={className} key={i}>{ item.title }</li>
-              )
+                return (
+                  <li className={className} key={i}>{ item.title }</li>
+                )
+              }
             })
           }
         </ul>
