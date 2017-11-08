@@ -124,3 +124,12 @@ class ModeratorStatementFactory(factory.django.DjangoModelFactory):
 
     statement = factory.Faker('text')
     creator = factory.SubFactory(UserFactory)
+
+
+class CategoryFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'a4categories.Category'
+
+    name = factory.Faker('job')
+    module = factory.SubFactory(factories.ModuleFactory)

@@ -6,6 +6,7 @@ from rest_framework.test import APIClient
 
 from adhocracy4.test import factories as a4_factories
 from adhocracy4.test import helpers
+from adhocracy4.test.factories.maps import AreaSettingsFactory
 
 from . import factories
 
@@ -13,6 +14,16 @@ from . import factories
 def pytest_configure(config):
     # Patch email background_task decorators for all tests
     helpers.patch_background_task_decorator('adhocracy4.emails.tasks')
+
+
+@pytest.fixture(scope='function', autouse=True)
+def clear_caches():
+    # Clears the project_type lru_cache
+    # lru_cache uses hash to identify objects and django models are
+    # returning the object.pk as the hash. As the database is reset on
+    # every function test every projects pk is 1 and the cache is invalid.
+    from meinberlin.apps.dashboard import get_project_type
+    get_project_type.cache_clear()
 
 
 register(factories.UserFactory)
@@ -23,9 +34,11 @@ register(factories.PhaseFactory)
 register(factories.CommentFactory)
 register(factories.RatingFactory)
 register(factories.ModeratorStatementFactory)
+register(factories.CategoryFactory)
 
 register(a4_factories.ProjectFactory)
 register(a4_factories.ModuleFactory)
+register(AreaSettingsFactory)
 
 
 @pytest.fixture
