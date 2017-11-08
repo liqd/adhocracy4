@@ -12,6 +12,15 @@ const icon = L.icon({
   shadowAnchor: [20, 54]
 })
 
+const activeIcon = L.icon({
+  iconUrl: '/static/images/map_pin_active_01_2x.png',
+  shadowUrl: '/static/images/map_shadow_01_2x.png',
+  iconSize: [30, 45],
+  iconAnchor: [15, 45],
+  shadowSize: [40, 54],
+  shadowAnchor: [20, 54]
+})
+
 const pointToLatLng = function (point) {
   return {
     lat: point.geometry.coordinates[1],
@@ -20,8 +29,23 @@ const pointToLatLng = function (point) {
 }
 
 class PlansMap extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      selected: null,
+      filters: {}
+    }
+  }
+
   bindMap (element) {
     this.mapElement = element
+  }
+
+  onSelect (i) {
+    this.setState({
+      selected: i
+    })
   }
 
   createMap () {
@@ -42,8 +66,23 @@ class PlansMap extends React.Component {
     this.map = this.createMap()
     this.markers = this.props.items.map((item, i) => {
       let marker = L.marker(pointToLatLng(item.point), {icon: icon}).addTo(this.map)
+      marker.on('click', () => {
+        this.onSelect(i)
+      })
       return marker
     })
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    // selected marker icon
+    if (prevState.selected !== this.state.selected) {
+      if (prevState.selected !== null) {
+        this.markers[prevState.selected].setIcon(icon)
+      }
+      if (this.state.selected !== null) {
+        this.markers[this.state.selected].setIcon(activeIcon)
+      }
+    }
   }
 
   render () {
@@ -54,6 +93,9 @@ class PlansMap extends React.Component {
           {
             this.props.items.map((item, i) => {
               let className = 'list-item'
+              if (i === this.state.selected) {
+                className += ' selected'
+              }
 
               return (
                 <li className={className} key={i}>{ item.title }</li>

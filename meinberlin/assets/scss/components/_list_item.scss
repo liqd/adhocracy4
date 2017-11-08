@@ -6,6 +6,10 @@
     background-color: $body-bg;
     margin-bottom: $spacer;
     page-break-inside: avoid;
+
+    &.selected {
+        @include fake-focus;
+    }
 }
 
 .list-item--squashed {
