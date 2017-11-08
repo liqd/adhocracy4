@@ -1,5 +1,6 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
+const update = require('immutability-helper')
 const $ = require('jquery')
 const L = require('leaflet')
 
@@ -42,6 +43,14 @@ class PlansMap extends React.Component {
     this.mapElement = element
   }
 
+  onBoundsChange (event) {
+    this.setState({
+      filters: update(this.state.filters, {
+        $merge: {bounds: event.target.getBounds()}
+      })
+    })
+  }
+
   onSelect (i) {
     this.setState({
       selected: i
@@ -63,7 +72,8 @@ class PlansMap extends React.Component {
   }
 
   isInFilter (item) {
-    return true
+    let filters = this.state.filters
+    return !filters.bounds || filters.bounds.contains(pointToLatLng(item.point))
   }
 
   componentDidMount () {
@@ -75,6 +85,9 @@ class PlansMap extends React.Component {
       })
       return marker
     })
+
+    this.map.on('zoomend', this.onBoundsChange.bind(this))
+    this.map.on('moveend', this.onBoundsChange.bind(this))
   }
 
   componentDidUpdate (prevProps, prevState) {
