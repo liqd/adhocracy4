@@ -11,6 +11,7 @@ class OfflineEventFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.OfflineEvent
 
+    name = factory.Faker('sentence')
     creator = factory.SubFactory(UserFactory)
     project = factory.SubFactory(ProjectFactory)
     date = parse('2013-01-02 00:00:00 UTC')
