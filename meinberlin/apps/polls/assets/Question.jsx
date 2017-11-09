@@ -56,10 +56,11 @@ class Question extends React.Component {
     let newChoice = this.state.selectedChoice
 
     let submitData = {
-      choice: this.props.question.choices[newChoice].id
+      choice: this.props.question.choices[newChoice].id,
+      urlReplaces: {questionId: this.props.question.id}
     }
 
-    api.poll.vote(submitData, this.props.question.id)
+    api.poll.vote(submitData)
       .done((data) => {
         let newChoice = this.findIndexForChoiceId(data.choice)
 
