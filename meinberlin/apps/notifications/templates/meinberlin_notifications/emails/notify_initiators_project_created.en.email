@@ -7,7 +7,7 @@
 
 {% block content %}{{ creator.username }} has created the project {{ project.name }} for {{ project.organisation.name }}{% endblock %}
 
-{% block cta_url %}{{ project.get_absolute_url }}{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
 {% block cta_label %}Show project{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you are an intiator of {{ project.organisation.name }}. If you don’t want to receive these notifications anymore, you can disable notifications completely in your account settings.{% endblock %}
