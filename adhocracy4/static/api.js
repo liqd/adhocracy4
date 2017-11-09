@@ -17,7 +17,7 @@ var api = (function () {
     report: baseURL + 'reports/',
     document: baseURL + 'modules/$moduleId/documents/',
     poll: baseURL + 'polls/',
-    pollvote: baseURL + 'pollvotes/',
+    pollvote: baseURL + 'polls/question/$questionId/vote/',
     follow: baseURL + 'follows/',
     comment: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comments/',
     rating: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/ratings/'
@@ -140,9 +140,9 @@ var api = (function () {
           type: 'PUT'
         }, data)
       },
-      vote: function (data, questionId) {
-        return _sendRequest('pollvote', questionId, {
-          type: 'PUT'
+      vote: function (data) {
+        return _sendRequest('pollvote', {
+          type: 'POST'
         }, data)
       }
     }
