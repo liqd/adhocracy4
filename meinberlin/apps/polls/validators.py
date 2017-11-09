@@ -32,7 +32,7 @@ def single_vote_per_user(user, choice, pk=None):
     if pk:
         qs = qs.exclude(pk=pk)
 
-    if len(qs) > 0:
+    if qs.exists():
         raise ValidationError({
             NON_FIELD_ERRORS: [
                 _('Only one vote per question is allowed per user.'),

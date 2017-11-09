@@ -87,7 +87,7 @@ class Vote(UserGeneratedContentModel):
     def validate_unique(self, exclude=None):
         super(Vote, self).validate_unique(exclude)
         validators.single_vote_per_user(self.creator,
-                                        self.choice.question,
+                                        self.choice,
                                         self.pk)
 
     # Make Vote instances behave like items for rule checking
