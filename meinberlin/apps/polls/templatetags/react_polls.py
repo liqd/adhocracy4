@@ -29,6 +29,7 @@ def react_polls(context, question):
         'label': question.label,
         'isReadOnly': (not has_poll_permission and
                        not would_have_poll_permission),
+        'multipleChoice': question.multiple_choice,
         'choices': [{
             'id': choice.id,
             'label': choice.label,

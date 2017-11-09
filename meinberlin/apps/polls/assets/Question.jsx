@@ -2,6 +2,7 @@ var api = require('adhocracy4').api
 var React = require('react')
 var django = require('django')
 var Alert = require('../../contrib/assets/Alert')
+var update = require('immutability-helper')
 
 class Question extends React.Component {
   constructor (props) {
@@ -9,39 +10,37 @@ class Question extends React.Component {
 
     const choices = this.props.question.choices
     const isReadOnly = this.props.question.isReadOnly
-    const ownChoice = this.findOwnChoice(choices)
+    const ownChoices = this.findOwnChoices(choices)
     this.state = {
       counts: choices.map(o => o.count),
-      ownChoice: ownChoice,
-      selectedChoice: ownChoice,
-      showResult: !(ownChoice === null) || isReadOnly,
+      ownChoices: ownChoices,
+      selectedChoices: ownChoices,
+      showResult: !(ownChoices.length === 0) || isReadOnly,
       alert: null
     }
   }
 
-  findOwnChoice (choices) {
-    let ownChoice = null
-    choices.forEach(function (choice, i) {
+  findOwnChoices (choices) {
+    let ownChoices = []
+    choices.forEach(function (choice) {
       if (choice.ownChoice) {
-        ownChoice = i
+        ownChoices.push(choice.id)
       }
     })
-    return ownChoice
+    return ownChoices
   }
 
-  findIndexForChoiceId (id) {
-    let index = null
-    this.props.question.choices.forEach(function (choice, i) {
-      if (choice.id === id) {
-        index = i
-      }
-    })
-    return index
+  countChoices (choices) {
+    let counts = {}
+    for (const choice in choices) {
+      counts[choice] = choice.count
+    }
+    return counts
   }
 
   toggleShowResult () {
     this.setState({
-      selectedChoice: this.state.ownChoice,
+      selectedChoices: this.state.ownChoices,
       showResult: !this.state.showResult
     })
   }
@@ -53,29 +52,31 @@ class Question extends React.Component {
       return false
     }
 
-    let newChoice = this.state.selectedChoice
+    let newChoices = this.state.selectedChoices
 
     let submitData = {
-      choice: this.props.question.choices[newChoice].id,
+      choices: newChoices,
       urlReplaces: {questionId: this.props.question.id}
     }
 
     api.poll.vote(submitData)
       .done((data) => {
-        let newChoice = this.findIndexForChoiceId(data.choice)
+        let newChoices = data.choices
 
+        /*
         let counts = this.state.counts
         counts[newChoice]++
 
         if (this.state.ownChoice !== null) {
           counts[this.state.ownChoice]--
         }
+        */
 
         this.setState({
           showResult: true,
-          ownChoice: newChoice,
-          selectedChoice: newChoice,
-          counts: counts,
+          ownChoices: newChoices,
+          selectedChoices: newChoices,
+          counts: [],
           alert: {
             type: 'success',
             message: django.gettext('Vote counted')
@@ -85,7 +86,7 @@ class Question extends React.Component {
       .fail((xhr, status, err) => {
         this.setState({
           showResult: false,
-          selectedChoice: newChoice,
+          selectedChoices: newChoices,
           alert: {
             type: 'danger',
             message: django.gettext('Vote has not been counted due to a server error.')
@@ -101,8 +102,24 @@ class Question extends React.Component {
   }
 
   handleOnChange (event) {
+    var diff = {'$set': [parseInt(event.target.value)]}
+
     this.setState({
-      selectedChoice: parseInt(event.target.value)
+      selectedChoices: update(this.state.selectedChoices, diff)
+    })
+  }
+
+  handleOnMultiChange (event) {
+    var diff = {}
+    if (event.target.checked) {
+      diff = {'$push': [parseInt(event.target.value)]}
+    } else {
+      var index = this.state.selectedChoices.indexOf(parseInt(event.target.value))
+      diff = {'$splice': [[index, 1]]}
+    }
+
+    this.setState({
+      selectedChoices: update(this.state.selectedChoices, diff)
     })
   }
 
@@ -116,7 +133,7 @@ class Question extends React.Component {
         <button
           type="submit"
           className="btn btn--primary"
-          disabled={this.state.selectedChoice === this.state.ownChoice}>
+          disabled={this.state.selectedChoices === this.state.ownChoices}>
           { django.gettext('Vote') }
         </button>
       )
@@ -176,8 +193,8 @@ class Question extends React.Component {
         <div className="poll__rows">
           {
             this.props.question.choices.map((choice, i) => {
-              let checked = this.state.selectedChoice === i
-              let chosen = this.state.ownChoice === i
+              let checked = this.state.selectedChoices.indexOf(choice.id) !== -1
+              let chosen = this.state.ownChoices.indexOf(choice.id) !== -1
               let count = this.state.counts[i]
               let percent = total === 0 ? 0 : Math.round(count / total * 100)
               let highlight = count === max && max > 0
@@ -193,20 +210,37 @@ class Question extends React.Component {
                   </div>
                 )
               } else {
-                return (
-                  <label className="poll-row radio" key={choice.id}>
-                    <input
-                      className="poll-row__radio radio__input"
-                      type="radio"
-                      name="question"
-                      value={i}
-                      checked={checked}
-                      onChange={this.handleOnChange.bind(this)}
-                      disabled={!this.props.question.authenticated}
-                    />
-                    <span className="radio__text">{ choice.label }</span>
-                  </label>
-                )
+                if (!this.props.question.multipleChoice) {
+                  return (
+                    <label className="poll-row radio" key={choice.id}>
+                      <input
+                        className="poll-row__radio radio__input"
+                        type="radio"
+                        name="question"
+                        value={choice.id}
+                        checked={checked}
+                        onChange={this.handleOnChange.bind(this)}
+                        disabled={!this.props.question.authenticated}
+                      />
+                      <span className="radio__text">{ choice.label }</span>
+                    </label>
+                  )
+                } else {
+                  return (
+                    <label className="poll-row checkbox" key={choice.id}>
+                      <input
+                        className="poll-row__checkbox checkbox__input"
+                        type="checkbox"
+                        name="question"
+                        value={choice.id}
+                        checked={checked}
+                        onChange={this.handleOnMultiChange.bind(this)}
+                        disabled={!this.props.question.authenticated}
+                      />
+                      <span className="checkbox__text">{ choice.label }</span>
+                    </label>
+                  )
+                }
               }
             })
           }

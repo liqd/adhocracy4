@@ -4,7 +4,6 @@ from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 from meinberlin.apps.dashboard2 import components
 
 from . import models
-from . import validators
 
 
 class ChoiceSerializer(serializers.ModelSerializer):
@@ -85,24 +84,3 @@ class PollSerializer(serializers.ModelSerializer):
             component=component.__class__,
             user=self.context['request'].user
         )
-
-
-class VoteSerializer(serializers.ModelSerializer):
-
-    creator = serializers.HiddenField(
-        default=serializers.CurrentUserDefault()
-    )
-
-    class Meta:
-        model = models.Vote
-        fields = ['choice', 'creator']
-
-    def validate(self, data):
-        pk = self.instance.pk if self.instance else None
-        validators.single_vote_per_user(data['creator'], data['choice'], pk)
-
-        question_pk = self._context.get('question_pk', None)
-        if question_pk:
-            validators.choice_belongs_to_question(data['choice'], question_pk)
-
-        return data
