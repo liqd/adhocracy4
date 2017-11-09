@@ -302,7 +302,7 @@ class AbstractProjectUserInviteListView(
     def _send_component_updated_signal(self):
         a4dashboard_signals.project_component_updated.send(
             sender=self.component.__class__,
-            module=self.project,
+            project=self.project,
             component=self.component,
             user=self.request.user
         )
