@@ -41,11 +41,12 @@ def delete_images_cascaded(sender, instance, **kwargs):
 
 # Setup signals for all ConfiguredImageFields
 for model in apps.get_models():
-    for field in model._meta.get_fields():
+    for field in model._meta.get_fields(include_parents=False):
         if isinstance(field, ConfiguredImageField):
             image_fields = getattr(model, _IMAGE_FIELDS_ATTR, [])
-            image_fields.append(field.attname)
-            setattr(model, _IMAGE_FIELDS_ATTR, image_fields)
+            if field.attname not in image_fields:
+                image_fields.append(field.attname)
+                setattr(model, _IMAGE_FIELDS_ATTR, image_fields)
 
     if hasattr(model, _IMAGE_FIELDS_ATTR):
         post_init.connect(backup_images_path_on_init, sender=model)
