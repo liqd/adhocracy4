@@ -70,7 +70,7 @@
                 <nav role="tablist">
                     <a
                         id="tab-project-{{ project.pk }}-information"
-                        class="tab{% if not project.has_started %} active{% endif %}"
+                        class="tab"
                         data-toggle="tab"
                         href="#tabpanel-project-{{ project.pk }}-information"
                         role="tab"
@@ -80,7 +80,7 @@
                     </a>
                     <a
                         id="tab-project-{{ project.pk }}-participation"
-                        class="tab{% if project.has_started %} active{% endif %}"
+                        class="tab active"
                         data-toggle="tab"
                         href="#tabpanel-project-{{ project.pk }}-participation"
                         role="tab"
@@ -103,7 +103,7 @@
         </div>
 
         <div
-            class="tabpanel{% if not project.has_started %} active{% endif %}"
+            class="tabpanel"
             id="tabpanel-project-{{ project.pk }}-information"
             role="tabpanel"
             aria-labelledby="tab-project-{{ project.pk }}-information"
@@ -115,7 +115,7 @@
             </div>
         </div>
         <div
-            class="tabpanel{% if project.has_started %} active{% endif %}"
+            class="tabpanel active"
             id="tabpanel-project-{{ project.pk }}-participation"
             role="tabpanel"
             aria-labelledby="tab-project-{{ project.pk }}-participation"
