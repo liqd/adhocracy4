@@ -16,7 +16,11 @@ class FormEmail(Email):
         return [x.strip() for x in self.kwargs.get('to_addresses')]
 
 
-class XlsxFormEmail(FormEmail):
+class FormEmailAttached(FormEmail):
+    template_name = 'meinberlin_cms/emails/form_submission_attached'
+
+
+class XlsxFormEmail(FormEmailAttached):
 
     def _generate_xlsx(self):
         stream = io.BytesIO()
@@ -59,7 +63,7 @@ class XlsxFormEmail(FormEmail):
         return attachments + [mime_doc]
 
 
-class TextFormEmail(FormEmail):
+class TextFormEmail(FormEmailAttached):
 
     def get_attachments(self):
         attachments = super().get_attachments()

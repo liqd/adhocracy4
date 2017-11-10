@@ -162,6 +162,8 @@ class EmailFormPage(AbstractEmailForm):
             emails.XlsxFormEmail.send(self, **kwargs)
         elif self.attach_as == 'txt':
             emails.TextFormEmail.send(self, **kwargs)
+        else:
+            emails.FormEmail.send(self, **kwargs)
 
     def get_field_values(self, form):
         fields = {}
