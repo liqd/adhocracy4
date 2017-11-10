@@ -68,4 +68,12 @@ class TextFormEmail(FormEmail):
         for field, value in field_values.items():
             text += '{}:\n{}\n\n'.format(field, value)
         mime_doc = MIMEText(_text=text, _charset='utf-8')
+        timestamp = timezone.now().strftime("%Y-%m-%d")
+        form_title = self.kwargs.get('title')
+        submission_pk = self.kwargs.get('submission_pk')
+        filename = '{}_{}_{}.txt'.format(timestamp, form_title, submission_pk)
+        mime_doc.add_header(
+            'Content-Disposition',
+            'attachment; filename="{}"'.format(filename)
+        )
         return attachments + [mime_doc]
