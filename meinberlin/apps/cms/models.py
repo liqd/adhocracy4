@@ -130,9 +130,10 @@ class EmailFormPage(AbstractEmailForm):
         max_length=3,
         choices=(
             ('xls', 'XLSX Document'),
-            ('txt', 'Text'),
+            ('txt', 'Text File'),
         ),
-        default='xls',
+        blank=True,
+        null=True,
         help_text='Form results are send in this document format',
     )
 
