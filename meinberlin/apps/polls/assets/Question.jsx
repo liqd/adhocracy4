@@ -42,17 +42,13 @@ class Question extends React.Component {
       .done((data) => {
         this.setState({
           showResult: true,
-          selectedChoices: data.choices,
+          selectedChoices: data.question.userChoices,
+          question: data.question,
           alert: {
             type: 'success',
             message: django.gettext('Vote counted')
           }
         })
-        this.setState(update(this.state, {
-          question: {
-            userChoices: {$set: data.choices}
-          }
-        }))
       })
       .fail((xhr, status, err) => {
         this.setState({
@@ -128,7 +124,10 @@ class Question extends React.Component {
   }
 
   render () {
-    const total = this.state.question.totalVoteCount
+    let total = this.state.question.totalVoteCount
+    if (this.state.question.multiple_choice) {
+      total = total * this.state.question.choices.length
+    }
     const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
 
     let footer

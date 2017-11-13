@@ -13,6 +13,7 @@ from .models import Poll
 from .models import Question
 from .models import Vote
 from .serializers import PollSerializer
+from .serializers import QuestionSerializer
 from .validators import choice_belongs_to_question
 
 
@@ -44,7 +45,8 @@ class VoteViewSet(viewsets.ViewSet):
                     creator=self.request.user
                 )
 
-        return Response({'choices': [choice.id for choice in choices]},
+        question_serializer = self.get_question_serializer()
+        return Response({'question': question_serializer.data},
                         status=status.HTTP_201_CREATED)
 
     def get_data(self, request):
@@ -82,6 +84,18 @@ class VoteViewSet(viewsets.ViewSet):
         return get_object_or_404(
             Question,
             pk=self.kwargs['question_pk']
+        )
+
+    def get_question_serializer(self):
+        question = Question.objects\
+            .annotate_vote_count()\
+            .get(pk=self.kwargs['question_pk'])
+
+        return QuestionSerializer(
+            question,
+            context={
+                'request': self.request
+            }
         )
 
     def get_queryset(self):

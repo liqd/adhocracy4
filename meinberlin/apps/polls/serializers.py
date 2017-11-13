@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from adhocracy4.rules.discovery import NormalUser
 from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 from meinberlin.apps.dashboard2 import components
 
@@ -41,10 +42,20 @@ class QuestionSerializer(serializers.ModelSerializer):
             return user.is_authenticated()
         return False
 
-    def get_is_read_only(self, _):
-        if 'read_only' in self.context:
-            return self.context['read_only']
-        return False
+    def get_is_read_only(self, question):
+        if 'request' in self.context:
+            user = self.context['request'].user
+            has_poll_permission = user.has_perm(
+                'meinberlin_polls.add_vote',
+                question.poll.module
+            )
+            would_have_poll_permission = NormalUser().would_have_perm(
+                'meinberlin_polls.add_vote',
+                question.poll.module
+            )
+            return not has_poll_permission and not would_have_poll_permission
+
+        return True
 
     def get_user_choices(self, question):
         if 'request' in self.context:
