@@ -26,12 +26,6 @@ class ChoiceQuerySet(models.QuerySet):
         )
 
 
-class ChoiceQueryManager(models.Manager.from_queryset(ChoiceQuerySet)):
-    def get_queryset(self):
-        return super().get_queryset()\
-            .annotate_vote_count()
-
-
 class Poll(module_models.Item):
     comments = GenericRelation(comment_models.Comment,
                                related_query_name='poll',
@@ -81,7 +75,7 @@ class Choice(models.Model):
         related_name='choices',
     )
 
-    objects = ChoiceQueryManager()
+    objects = ChoiceQuerySet.as_manager()
 
     def get_absolute_url(self):
         return self.question.poll.get_absolute_url()

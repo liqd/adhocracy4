@@ -17,8 +17,10 @@ class ChoiceSerializer(serializers.ModelSerializer):
         fields = ('id', 'label', 'count')
 
     def get_count(self, choice):
-        # return choice.votes.all().count()
-        return getattr(choice, 'vote_count', -1)
+        if hasattr(choice, 'vote_count'):
+            return getattr(choice, 'vote_count', -1)
+        else:
+            return choice.votes.all().count()
 
 
 class QuestionSerializer(serializers.ModelSerializer):
