@@ -2,7 +2,8 @@ import factory
 
 from adhocracy4.test import factories
 from meinberlin.apps.documents import models as document_models
-from tests.factories import UserFactory
+
+from . import UserFactory
 
 
 class ChapterFactory(factory.django.DjangoModelFactory):

@@ -2,7 +2,8 @@ import factory
 
 from adhocracy4.test.factories import ModuleFactory
 from meinberlin.apps.topicprio import models
-from tests.factories import UserFactory
+
+from . import UserFactory
 
 
 class TopicFactory(factory.django.DjangoModelFactory):

@@ -2,8 +2,9 @@ import factory
 
 from adhocracy4.test.factories import ProjectFactory
 from meinberlin.apps.plans import models as plan_models
-from tests.factories import OrganisationFactory
-from tests.factories import UserFactory
+
+from . import OrganisationFactory
+from . import UserFactory
 
 
 class PlanFactory(factory.django.DjangoModelFactory):

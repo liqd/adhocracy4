@@ -1,26 +1,20 @@
 import factory
 
 from adhocracy4.test.factories import ModuleFactory
-from meinberlin.apps.kiezkasse import models
-from meinberlin.apps.moderatorfeedback import \
-    models as moderatorfeedback_models
-from tests.factories import ModeratorStatementFactory
-from tests.factories import UserFactory
+from meinberlin.apps.maptopicprio import models
+
+from . import UserFactory
 
 
-class ProposalFactory(factory.django.DjangoModelFactory):
+class MaptopicFactory(factory.django.DjangoModelFactory):
 
     class Meta:
-        model = models.Proposal
+        model = models.MapTopic
 
     name = factory.Faker('sentence')
     description = 'Description'
     creator = factory.SubFactory(UserFactory)
     module = factory.SubFactory(ModuleFactory)
-
-    moderator_statement = factory.SubFactory(ModeratorStatementFactory)
-    moderator_feedback = moderatorfeedback_models.DEFAULT_CHOICES[0][0]
-
     point_label = factory.Faker('address')
     point = {
         'type': 'Feature',

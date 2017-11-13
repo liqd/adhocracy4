@@ -1,7 +1,6 @@
-
 from pytest_factoryboy import register
 
-from . import factories
+from meinberlin.apps.test.factories import newsletters
 
-register(factories.FollowFactory)
-register(factories.NewsletterFactory)
+register(newsletters.FollowFactory)
+register(newsletters.NewsletterFactory)

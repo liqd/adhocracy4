@@ -1,8 +1,8 @@
 from pytest_factoryboy import register
 
-from . import factories
+from meinberlin.apps.test.factories import polls
 
-register(factories.PollFactory)
-register(factories.QuestionFactory)
-register(factories.ChoiceFactory)
-register(factories.VoteFactory)
+register(polls.PollFactory)
+register(polls.QuestionFactory)
+register(polls.ChoiceFactory)
+register(polls.VoteFactory)

@@ -1,5 +1,5 @@
 from pytest_factoryboy import register
 
-from . import factories
+from meinberlin.apps.test.factories import topicprio
 
-register(factories.TopicFactory)
+register(topicprio.TopicFactory)

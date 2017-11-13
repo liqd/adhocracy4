@@ -2,7 +2,8 @@ import factory
 from allauth.socialaccount.models import SocialAccount
 
 from meinberlin.apps.servicekonto.provider import ServiceKontoProvider
-from tests.factories import UserFactory
+
+from . import UserFactory
 
 
 class SocialAccountFactory(factory.DjangoModelFactory):

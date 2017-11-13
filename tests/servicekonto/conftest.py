@@ -1,5 +1,5 @@
 from pytest_factoryboy import register
 
-from . import factories
+from meinberlin.apps.test.factories import servicekonto
 
-register(factories.SocialAccountFactory)
+register(servicekonto.SocialAccountFactory)

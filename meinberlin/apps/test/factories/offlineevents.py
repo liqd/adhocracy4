@@ -3,7 +3,8 @@ from dateutil.parser import parse
 
 from adhocracy4.test.factories import ProjectFactory
 from meinberlin.apps.offlineevents import models
-from tests.factories import UserFactory
+
+from . import UserFactory
 
 
 class OfflineEventFactory(factory.django.DjangoModelFactory):

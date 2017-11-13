@@ -2,7 +2,8 @@ import factory
 
 from adhocracy4.test.factories import ModuleFactory
 from meinberlin.apps.ideas import models as idea_models
-from tests.factories import UserFactory
+
+from . import UserFactory
 
 
 class IdeaFactory(factory.django.DjangoModelFactory):

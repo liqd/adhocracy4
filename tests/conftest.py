@@ -7,8 +7,7 @@ from rest_framework.test import APIClient
 from adhocracy4.test import factories as a4_factories
 from adhocracy4.test import helpers
 from adhocracy4.test.factories.maps import AreaSettingsFactory
-
-from . import factories
+from meinberlin.apps.test import factories
 
 
 def pytest_configure(config):
