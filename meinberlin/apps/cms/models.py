@@ -129,11 +129,11 @@ class EmailFormPage(AbstractEmailForm):
     attach_as = models.CharField(
         max_length=3,
         choices=(
+            ('inc', 'Include in Email'),
             ('xls', 'XLSX Document'),
             ('txt', 'Text File'),
         ),
-        blank=True,
-        null=True,
+        default='inc',
         help_text='Form results are send in this document format',
     )
 
