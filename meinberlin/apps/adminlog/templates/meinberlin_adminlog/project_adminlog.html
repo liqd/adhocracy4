@@ -1,0 +1,17 @@
+{% extends "meinberlin_dashboard2/base_dashboard_project.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Project Edit Log" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block dashboard_project_content %}
+    <h1 class="u-first-heading lr-bar__left">
+        {% trans 'Project Edit Log' %}
+    </h1>
+
+    <ul class="u-list-reset">
+        {% for object in object_list %}
+            {% include "meinberlin_adminlog/includes/logentry_list_item.html" with object=object %}
+        {% endfor %}
+    </ul>
+    {% include "meinberlin_contrib/includes/pagination.html" %}
+{% endblock %}
