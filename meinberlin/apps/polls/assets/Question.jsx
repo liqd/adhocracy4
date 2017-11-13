@@ -10,37 +10,29 @@ class Question extends React.Component {
 
     const choices = this.props.question.choices
     const isReadOnly = this.props.question.isReadOnly
-    const ownChoices = this.findOwnChoices(choices)
+    const userChoices = this.props.question.userChoices
     this.state = {
-      counts: choices.map(o => o.count),
-      ownChoices: ownChoices,
-      selectedChoices: ownChoices,
-      showResult: !(ownChoices.length === 0) || isReadOnly,
+      totalCount: this.props.question.totalVoteCount,
+      counts: this.countChoices(choices),
+      userChoices: userChoices,
+      selectedChoices: userChoices,
+      showResult: !(userChoices.length === 0) || isReadOnly,
       alert: null
     }
   }
 
-  findOwnChoices (choices) {
-    let ownChoices = []
-    choices.forEach(function (choice) {
-      if (choice.ownChoice) {
-        ownChoices.push(choice.id)
-      }
-    })
-    return ownChoices
-  }
-
   countChoices (choices) {
     let counts = {}
-    for (const choice in choices) {
-      counts[choice] = choice.count
+    for (const index in choices) {
+      const choice = choices[index]
+      counts[choice.id] = choice.count
     }
     return counts
   }
 
   toggleShowResult () {
     this.setState({
-      selectedChoices: this.state.ownChoices,
+      selectedChoices: this.state.userChoices,
       showResult: !this.state.showResult
     })
   }
@@ -74,7 +66,7 @@ class Question extends React.Component {
 
         this.setState({
           showResult: true,
-          ownChoices: newChoices,
+          userChoices: newChoices,
           selectedChoices: newChoices,
           counts: [],
           alert: {
@@ -133,7 +125,7 @@ class Question extends React.Component {
         <button
           type="submit"
           className="btn btn--primary"
-          disabled={this.state.selectedChoices === this.state.ownChoices}>
+          disabled={this.state.selectedChoices === this.state.userChoices}>
           { django.gettext('Vote') }
         </button>
       )
@@ -156,9 +148,13 @@ class Question extends React.Component {
   }
 
   render () {
-    let counts = this.state.counts
-    let total = counts.reduce((sum, c) => sum + c, 0)
-    let max = Math.max.apply(null, counts)
+    const total = this.state.totalCount
+    let max = 0
+    for (const choiceId in this.state.counts) {
+      if (this.state.counts[choiceId] > max) {
+        max = this.state.counts[choiceId]
+      }
+    }
 
     let footer
     let totalString = `${total} ${django.ngettext('vote', 'votes', total)}`
@@ -194,8 +190,8 @@ class Question extends React.Component {
           {
             this.props.question.choices.map((choice, i) => {
               let checked = this.state.selectedChoices.indexOf(choice.id) !== -1
-              let chosen = this.state.ownChoices.indexOf(choice.id) !== -1
-              let count = this.state.counts[i]
+              let chosen = this.state.userChoices.indexOf(choice.id) !== -1
+              let count = this.state.counts[choice.id]
               let percent = total === 0 ? 0 : Math.round(count / total * 100)
               let highlight = count === max && max > 0
 
@@ -210,7 +206,7 @@ class Question extends React.Component {
                   </div>
                 )
               } else {
-                if (!this.props.question.multipleChoice) {
+                if (!this.props.question.multiple_choice) {
                   return (
                     <label className="poll-row radio" key={choice.id}>
                       <input

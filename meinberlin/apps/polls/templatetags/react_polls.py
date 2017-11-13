@@ -14,7 +14,6 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def react_polls(context, question):
     user = context['request'].user
-    user_choices = question.user_choices_list(user)
     has_poll_permission = user.has_perm(
         'meinberlin_polls.add_vote',
         question.poll.module
@@ -24,24 +23,18 @@ def react_polls(context, question):
         question.poll.module
     )
 
-    data = {
-        'id': question.id,
-        'label': question.label,
-        'isReadOnly': (not has_poll_permission and
-                       not would_have_poll_permission),
-        'multipleChoice': question.multiple_choice,
-        'choices': [{
-            'id': choice.id,
-            'label': choice.label,
-            'count': choice.vote_count,
-            'ownChoice': (choice.pk in user_choices)
-        } for choice in question.choices.annotate_vote_count()],
-        'authenticated': user.is_authenticated()
-    }
+    question_serializer = serializers.QuestionSerializer(
+        question,
+        context={
+            'request': context['request'],
+            'isReadOnly': (not has_poll_permission and
+                           not would_have_poll_permission),
+        }
+    )
 
     return format_html(
         '<div data-mb-widget="polls" data-question="{question}"></div>',
-        question=json.dumps(data)
+        question=JSONRenderer().render(question_serializer.data)
     )
 
 

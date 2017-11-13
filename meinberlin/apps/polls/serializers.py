@@ -9,18 +9,51 @@ from . import models
 class ChoiceSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
 
+    count = serializers.SerializerMethodField()
+
     class Meta:
         model = models.Choice
-        fields = ('id', 'label')
+        fields = ('id', 'label', 'count')
+
+    def get_count(self, choice):
+        # return choice.votes.all().count()
+        return getattr(choice, 'vote_count', -1)
 
 
 class QuestionSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
     choices = ChoiceSerializer(many=True)
 
+    authenticated = serializers.SerializerMethodField()
+    isReadOnly = serializers.SerializerMethodField('get_is_read_only')
+    userChoices = serializers.SerializerMethodField('get_user_choices')
+    totalVoteCount = serializers.SerializerMethodField('get_total_vote_count')
+
     class Meta:
         model = models.Question
-        fields = ('id', 'label', 'choices', 'multiple_choice')
+        fields = ('id', 'label', 'choices', 'multiple_choice',
+                  'isReadOnly', 'authenticated', 'userChoices',
+                  'totalVoteCount')
+
+    def get_authenticated(self, _):
+        if 'request' in self.context:
+            user = self.context['request'].user
+            return user.is_authenticated()
+        return False
+
+    def get_is_read_only(self, _):
+        if 'read_only' in self.context:
+            return self.context['read_only']
+        return False
+
+    def get_user_choices(self, question):
+        if 'request' in self.context:
+            user = self.context['request'].user
+            return question.user_choices_list(user)
+        return []
+
+    def get_total_vote_count(self, question):
+        return getattr(question, 'vote_count', -1)
 
 
 class PollSerializer(serializers.ModelSerializer):
