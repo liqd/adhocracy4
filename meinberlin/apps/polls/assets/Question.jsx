@@ -125,10 +125,7 @@ class Question extends React.Component {
   }
 
   render () {
-    let total = this.state.question.totalVoteCount
-    if (this.state.question.multiple_choice) {
-      total = total * this.state.question.choices.length
-    }
+    const total = this.state.question.totalVoteCount
     const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
 
     let footer
