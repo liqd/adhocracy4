@@ -32,7 +32,8 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
             'class': 'timepicker',
             'placeholder': self.widgets[1].format_value(
                 self.get_default_time()),
-            'id': attrs['id'] + '_time'
+            'id': attrs['id'] + '_time',
+            'required': False
         })
 
         if isinstance(value, datetime.datetime):
