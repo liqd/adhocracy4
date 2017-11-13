@@ -8,31 +8,18 @@ class Question extends React.Component {
   constructor (props) {
     super(props)
 
-    const choices = this.props.question.choices
-    const isReadOnly = this.props.question.isReadOnly
-    const userChoices = this.props.question.userChoices
+    const question = this.props.question
     this.state = {
-      totalCount: this.props.question.totalVoteCount,
-      counts: this.countChoices(choices),
-      userChoices: userChoices,
-      selectedChoices: userChoices,
-      showResult: !(userChoices.length === 0) || isReadOnly,
+      question: question,
+      selectedChoices: question.userChoices,
+      showResult: !(question.userChoices.length === 0) || question.isReadOnly,
       alert: null
     }
   }
 
-  countChoices (choices) {
-    let counts = {}
-    for (const index in choices) {
-      const choice = choices[index]
-      counts[choice.id] = choice.count
-    }
-    return counts
-  }
-
   toggleShowResult () {
     this.setState({
-      selectedChoices: this.state.userChoices,
+      selectedChoices: this.state.question.userChoices,
       showResult: !this.state.showResult
     })
   }
@@ -40,7 +27,7 @@ class Question extends React.Component {
   handleSubmit (event) {
     event.preventDefault()
 
-    if (this.props.question.isReadOnly) {
+    if (this.state.question.isReadOnly) {
       return false
     }
 
@@ -48,32 +35,24 @@ class Question extends React.Component {
 
     let submitData = {
       choices: newChoices,
-      urlReplaces: {questionId: this.props.question.id}
+      urlReplaces: {questionId: this.state.question.id}
     }
 
     api.poll.vote(submitData)
       .done((data) => {
-        let newChoices = data.choices
-
-        /*
-        let counts = this.state.counts
-        counts[newChoice]++
-
-        if (this.state.ownChoice !== null) {
-          counts[this.state.ownChoice]--
-        }
-        */
-
         this.setState({
           showResult: true,
-          userChoices: newChoices,
-          selectedChoices: newChoices,
-          counts: [],
+          selectedChoices: data.choices,
           alert: {
             type: 'success',
             message: django.gettext('Vote counted')
           }
         })
+        this.setState(update(this.state, {
+          question: {
+            userChoices: {$set: data.choices}
+          }
+        }))
       })
       .fail((xhr, status, err) => {
         this.setState({
@@ -94,19 +73,20 @@ class Question extends React.Component {
   }
 
   handleOnChange (event) {
-    var diff = {'$set': [parseInt(event.target.value)]}
-
+    const choiceId = parseInt(event.target.value)
     this.setState({
-      selectedChoices: update(this.state.selectedChoices, diff)
+      selectedChoices: [choiceId]
     })
   }
 
   handleOnMultiChange (event) {
+    const choiceId = parseInt(event.target.value)
+    const index = this.state.selectedChoices.indexOf(choiceId)
+
     var diff = {}
-    if (event.target.checked) {
-      diff = {'$push': [parseInt(event.target.value)]}
+    if (index === -1) {
+      diff = {'$push': [choiceId]}
     } else {
-      var index = this.state.selectedChoices.indexOf(parseInt(event.target.value))
       diff = {'$splice': [[index, 1]]}
     }
 
@@ -116,16 +96,16 @@ class Question extends React.Component {
   }
 
   getVoteButton () {
-    if (this.props.question.isReadOnly) {
+    if (this.state.question.isReadOnly) {
       return null
     }
 
-    if (this.props.question.authenticated) {
+    if (this.state.question.authenticated) {
       return (
         <button
           type="submit"
           className="btn btn--primary"
-          disabled={this.state.selectedChoices === this.state.userChoices}>
+          disabled={this.state.selectedChoices === this.state.question.userChoices}>
           { django.gettext('Vote') }
         </button>
       )
@@ -148,13 +128,8 @@ class Question extends React.Component {
   }
 
   render () {
-    const total = this.state.totalCount
-    let max = 0
-    for (const choiceId in this.state.counts) {
-      if (this.state.counts[choiceId] > max) {
-        max = this.state.counts[choiceId]
-      }
-    }
+    const total = this.state.question.totalVoteCount
+    const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
 
     let footer
     let totalString = `${total} ${django.ngettext('vote', 'votes', total)}`
@@ -163,7 +138,7 @@ class Question extends React.Component {
         <div className="poll__actions">
           { totalString }
           &nbsp;
-          {!this.props.question.isReadOnly &&
+          {!this.state.question.isReadOnly &&
             <button type="button" className="btn btn--link" onClick={this.toggleShowResult.bind(this)}>
               { django.gettext('To poll') }
             </button>
@@ -184,16 +159,15 @@ class Question extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit.bind(this)} className="poll">
-        <h2>{ this.props.question.label }</h2>
+        <h2>{ this.state.question.label }</h2>
 
         <div className="poll__rows">
           {
-            this.props.question.choices.map((choice, i) => {
+            this.state.question.choices.map((choice, i) => {
               let checked = this.state.selectedChoices.indexOf(choice.id) !== -1
-              let chosen = this.state.userChoices.indexOf(choice.id) !== -1
-              let count = this.state.counts[choice.id]
-              let percent = total === 0 ? 0 : Math.round(count / total * 100)
-              let highlight = count === max && max > 0
+              let chosen = this.state.question.userChoices.indexOf(choice.id) !== -1
+              let percent = total === 0 ? 0 : Math.round(choice.count / total * 100)
+              let highlight = choice.count === max && max > 0
 
               if (this.state.showResult) {
                 return (
@@ -206,7 +180,7 @@ class Question extends React.Component {
                   </div>
                 )
               } else {
-                if (!this.props.question.multiple_choice) {
+                if (!this.state.question.multiple_choice) {
                   return (
                     <label className="poll-row radio" key={choice.id}>
                       <input
@@ -216,7 +190,7 @@ class Question extends React.Component {
                         value={choice.id}
                         checked={checked}
                         onChange={this.handleOnChange.bind(this)}
-                        disabled={!this.props.question.authenticated}
+                        disabled={!this.state.question.authenticated}
                       />
                       <span className="radio__text">{ choice.label }</span>
                     </label>
@@ -231,7 +205,7 @@ class Question extends React.Component {
                         value={choice.id}
                         checked={checked}
                         onChange={this.handleOnMultiChange.bind(this)}
-                        disabled={!this.props.question.authenticated}
+                        disabled={!this.state.question.authenticated}
                       />
                       <span className="checkbox__text">{ choice.label }</span>
                     </label>
