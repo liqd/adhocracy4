@@ -1,0 +1,73 @@
+
+.checkbox__input {
+    @include sr-only;
+}
+
+// use pixels here because otherwise the icon in the :after
+// could not have a smaller fontsize
+$checkbox-size: 20px;
+
+.checkbox__text {
+    display: block;
+    padding-left: $checkbox-size + 7px;
+
+    position: relative;
+
+    &:before,
+    &:after {
+        content: "";
+    }
+
+    &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: $checkbox-size;
+        height: $checkbox-size;
+
+        background-color: $bg-secondary;
+        border: 1px solid $border-color;
+        border-radius: 0.3em;
+    }
+
+    &:after {
+        transition: transform 0.3s, opacity 0.3s;
+        transform: scale(1.3);
+        opacity: 0;
+    }
+}
+
+.checkbox__input:checked + .checkbox__text:after {
+    content: '\f00c';
+    font-family: 'FontAwesome';
+    color: contrast-color($brand-primary);
+    text-align: center;
+    font-size: $font-size-sm;
+
+    width: $checkbox-size;
+    height: $checkbox-size;
+    padding-top: 2px;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    background-color: $brand-primary;
+    border-radius: 0.3em;
+
+    transform: scale(1);
+    opacity: 1;
+}
+
+.checkbox__input:focus + .checkbox__text:before {
+    @include fake-focus-shadow;
+}
+
+.checkbox__input:disabled + .checkbox__text {
+    &:before,
+    &:after {
+        background-color: $border-color;
+        cursor: not-allowed;
+    }
+}
