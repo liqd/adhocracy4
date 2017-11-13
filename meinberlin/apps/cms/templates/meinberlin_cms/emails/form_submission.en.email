@@ -11,7 +11,6 @@
     {% for key, value in field_values.items %}
 
         {{key}}:
-
         {{value}}
     {% endfor %}
 
