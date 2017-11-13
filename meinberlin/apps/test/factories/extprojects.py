@@ -2,7 +2,7 @@ import factory
 
 from meinberlin.apps.extprojects import models as extproject_models
 
-from . import OrganisationFactory
+from .organisations import OrganisationFactory
 
 
 class ExternalProjectFactory(factory.django.DjangoModelFactory):

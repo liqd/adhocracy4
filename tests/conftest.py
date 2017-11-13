@@ -8,6 +8,7 @@ from adhocracy4.test import factories as a4_factories
 from adhocracy4.test import helpers
 from adhocracy4.test.factories.maps import AreaSettingsFactory
 from meinberlin.apps.test import factories
+from meinberlin.apps.test.factories.organisations import OrganisationFactory
 
 
 def pytest_configure(config):
@@ -28,7 +29,7 @@ def clear_caches():
 register(factories.UserFactory)
 register(factories.UserFactory, 'user2')
 register(factories.AdminFactory, 'admin')
-register(factories.OrganisationFactory)
+register(OrganisationFactory)
 register(factories.PhaseFactory)
 register(factories.CommentFactory)
 register(factories.RatingFactory)

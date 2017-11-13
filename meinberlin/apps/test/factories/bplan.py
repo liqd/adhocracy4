@@ -2,7 +2,7 @@ import factory
 
 from meinberlin.apps.bplan import models as bplan_models
 
-from . import OrganisationFactory
+from .organisations import OrganisationFactory
 
 
 class BplanFactory(factory.django.DjangoModelFactory):

@@ -4,8 +4,8 @@ from adhocracy4.follows import models as follow_models
 from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.newsletters import models
 
-from . import OrganisationFactory
 from . import UserFactory
+from .organisations import OrganisationFactory
 
 
 # FIXME: copied from core
