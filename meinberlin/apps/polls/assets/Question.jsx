@@ -97,11 +97,12 @@ class Question extends React.Component {
     }
 
     if (this.state.question.authenticated) {
+      const disabled = this.state.selectedChoices === this.state.question.userChoices || this.state.selectedChoices.length === 0
       return (
         <button
           type="submit"
           className="btn btn--primary"
-          disabled={this.state.selectedChoices === this.state.question.userChoices}>
+          disabled={disabled}>
           { django.gettext('Vote') }
         </button>
       )
