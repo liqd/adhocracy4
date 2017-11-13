@@ -1,9 +1,7 @@
 import factory
 
-from adhocracy4.test.factories import ModuleFactory
+from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.topicprio import models
-
-from . import UserFactory
 
 
 class TopicFactory(factory.django.DjangoModelFactory):
@@ -11,5 +9,5 @@ class TopicFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Topic
 
-    creator = factory.SubFactory(UserFactory)
-    module = factory.SubFactory(ModuleFactory)
+    creator = factory.SubFactory(a4_factories.USER_FACTORY)
+    module = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)

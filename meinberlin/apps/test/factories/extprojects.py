@@ -1,8 +1,7 @@
 import factory
 
+from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.extprojects import models as extproject_models
-
-from .organisations import OrganisationFactory
 
 
 class ExternalProjectFactory(factory.django.DjangoModelFactory):
@@ -11,4 +10,4 @@ class ExternalProjectFactory(factory.django.DjangoModelFactory):
         model = extproject_models.ExternalProject
 
     name = factory.Faker('sentence')
-    organisation = factory.SubFactory(OrganisationFactory)
+    organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)

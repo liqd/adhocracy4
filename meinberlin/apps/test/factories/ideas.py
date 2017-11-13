@@ -1,9 +1,7 @@
 import factory
 
-from adhocracy4.test.factories import ModuleFactory
+from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.ideas import models as idea_models
-
-from . import UserFactory
 
 
 class IdeaFactory(factory.django.DjangoModelFactory):
@@ -13,5 +11,5 @@ class IdeaFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker('sentence')
     description = '<script>alert("hello");</script>Description'
-    creator = factory.SubFactory(UserFactory)
-    module = factory.SubFactory(ModuleFactory)
+    creator = factory.SubFactory(a4_factories.USER_FACTORY)
+    module = factory.SubFactory(a4_factories.ModuleFactory)
