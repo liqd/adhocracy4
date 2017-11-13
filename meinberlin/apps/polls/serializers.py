@@ -1,27 +1,70 @@
 from rest_framework import serializers
 
+from adhocracy4.rules.discovery import NormalUser
 from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 from meinberlin.apps.dashboard2 import components
 
 from . import models
-from . import validators
 
 
 class ChoiceSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
 
+    count = serializers.SerializerMethodField()
+
     class Meta:
         model = models.Choice
-        fields = ('id', 'label')
+        fields = ('id', 'label', 'count')
+
+    def get_count(self, choice):
+        # return choice.votes.all().count()
+        return getattr(choice, 'vote_count', -1)
 
 
 class QuestionSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
     choices = ChoiceSerializer(many=True)
 
+    authenticated = serializers.SerializerMethodField()
+    isReadOnly = serializers.SerializerMethodField('get_is_read_only')
+    userChoices = serializers.SerializerMethodField('get_user_choices')
+    totalVoteCount = serializers.SerializerMethodField('get_total_vote_count')
+
     class Meta:
         model = models.Question
-        fields = ('id', 'label', 'choices', 'multiple_choice')
+        fields = ('id', 'label', 'choices', 'multiple_choice',
+                  'isReadOnly', 'authenticated', 'userChoices',
+                  'totalVoteCount')
+
+    def get_authenticated(self, _):
+        if 'request' in self.context:
+            user = self.context['request'].user
+            return user.is_authenticated()
+        return False
+
+    def get_is_read_only(self, question):
+        if 'request' in self.context:
+            user = self.context['request'].user
+            has_poll_permission = user.has_perm(
+                'meinberlin_polls.add_vote',
+                question.poll.module
+            )
+            would_have_poll_permission = NormalUser().would_have_perm(
+                'meinberlin_polls.add_vote',
+                question.poll.module
+            )
+            return not has_poll_permission and not would_have_poll_permission
+
+        return True
+
+    def get_user_choices(self, question):
+        if 'request' in self.context:
+            user = self.context['request'].user
+            return question.user_choices_list(user)
+        return []
+
+    def get_total_vote_count(self, question):
+        return getattr(question, 'vote_count', -1)
 
 
 class PollSerializer(serializers.ModelSerializer):
@@ -85,24 +128,3 @@ class PollSerializer(serializers.ModelSerializer):
             component=component.__class__,
             user=self.context['request'].user
         )
-
-
-class VoteSerializer(serializers.ModelSerializer):
-
-    creator = serializers.HiddenField(
-        default=serializers.CurrentUserDefault()
-    )
-
-    class Meta:
-        model = models.Vote
-        fields = ['choice', 'creator']
-
-    def validate(self, data):
-        pk = self.instance.pk if self.instance else None
-        validators.single_vote_per_user(data['creator'], data['choice'], pk)
-
-        question_pk = self._context.get('question_pk', None)
-        if question_pk:
-            validators.choice_belongs_to_question(data['choice'], question_pk)
-
-        return data

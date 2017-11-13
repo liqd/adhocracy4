@@ -8,6 +8,30 @@ from adhocracy4.modules import models as module_models
 from . import validators
 
 
+class QuestionQuerySet(models.QuerySet):
+    def annotate_vote_count(self):
+        return self.annotate(
+            vote_count=models.Count(
+                'choices__votes__creator_id',
+                distinct=True)
+        )
+
+
+class ChoiceQuerySet(models.QuerySet):
+    def annotate_vote_count(self):
+        return self.annotate(
+            vote_count=models.Count(
+                'votes'
+            )
+        )
+
+
+class ChoiceQueryManager(models.Manager.from_queryset(ChoiceQuerySet)):
+    def get_queryset(self):
+        return super().get_queryset()\
+            .annotate_vote_count()
+
+
 class Poll(module_models.Item):
     comments = GenericRelation(comment_models.Comment,
                                related_query_name='poll',
@@ -28,6 +52,8 @@ class Question(models.Model):
         related_name='questions'
     )
 
+    objects = QuestionQuerySet.as_manager()
+
     def user_choices_list(self, user):
         if not user.is_authenticated():
             return []
@@ -46,16 +72,6 @@ class Question(models.Model):
         ordering = ['weight']
 
 
-class ChoiceQuerySet(models.QuerySet):
-
-    def annotate_vote_count(self):
-        return self.annotate(
-            vote_count=models.Count(
-                'votes'
-            )
-        )
-
-
 class Choice(models.Model):
     label = models.CharField(max_length=255)
 
@@ -65,7 +81,7 @@ class Choice(models.Model):
         related_name='choices',
     )
 
-    objects = ChoiceQuerySet.as_manager()
+    objects = ChoiceQueryManager()
 
     def get_absolute_url(self):
         return self.question.poll.get_absolute_url()
