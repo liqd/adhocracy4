@@ -36,10 +36,6 @@ def react_ratings(context, obj):
         user_rating_value = None
         user_rating_id = -1
 
-    mountpoint = 'ratings_for_{contenttype}_{pk}'.format(
-        contenttype=contenttype.pk,
-        pk=obj.pk
-    )
     attributes = {
         'contentType': contenttype.pk,
         'objectId': obj.pk,
@@ -54,10 +50,6 @@ def react_ratings(context, obj):
     }
 
     return format_html(
-        (
-            '<div id="{mountpoint}" data-attributes="{attributes}"></div>'
-            "<script>window.adhocracy4.renderRatings('{mountpoint}')</script>"
-        ),
-        attributes=json.dumps(attributes),
-        mountpoint=mountpoint
+        '<div data-a4-widget="ratings" data-attributes="{attributes}"></div>',
+        attributes=json.dumps(attributes)
     )

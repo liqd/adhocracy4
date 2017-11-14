@@ -34,12 +34,10 @@ def react_reports(obj, text=None, **kwargs):
 
     return format_html(
         (
-            '<a href="#{modal_name}" id="{mountpoint}"'
+            '<a href="#{modal_name}" data-a4-widget="reports"'
             ' data-attributes="{attributes}" class="{class_names}">{text}</a>'
-            "<script>window.adhocracy4.renderReports('{mountpoint}')</script>"
         ),
         attributes=json.dumps(attributes),
-        mountpoint=mountpoint,
         modal_name=modal_name,
         class_names=class_names,
         text=text,

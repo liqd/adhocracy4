@@ -5,8 +5,7 @@ let django = require('django')
 
 module.exports.ReportModal = ReportModal
 
-module.exports.renderReports = function (mountpoint) {
-  let el = document.getElementById(mountpoint)
+module.exports.renderReports = function (el) {
   let props = JSON.parse(el.getAttribute('data-attributes'))
 
   el.setAttribute('href', '#' + props.modalName)

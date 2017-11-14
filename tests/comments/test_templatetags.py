@@ -19,11 +19,9 @@ def react_comment_render_for_props(rf, user, question):
 
     content_type = ContentType.objects.get_for_model(question)
     expected = (
-        r'^<div id=\"comments_for_{ct}_{pk}\" data-attributes='
-        r'\"(?P<props>{{.+}})\"><\/div>\s*'
-        r'<script>\s*window\.adhocracy4\.renderComment\('
-        r'\'comments_for_{ct}_{pk}\'\)\s*<\/script>$'
-    ).format(ct=content_type.id, pk=question.id)
+        r'^<div data-a4-widget=\"comment\" data-attributes='
+        r'\"(?P<props>{.+})\"><\/div>$'
+    )
 
     match = re.match(expected, helpers.render_template(template, context))
     assert match
