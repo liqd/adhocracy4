@@ -1,7 +1,6 @@
 from email.mime.image import MIMEImage
 
 from django.contrib.staticfiles import finders
-from .base import EmailBase
 
 
 class PlatformEmailMixin:
@@ -29,7 +28,7 @@ class PlatformEmailMixin:
         return attachments
 
 
-class SyncEmailMixin(EmailBase):
+class SyncEmailMixin:
     """Send Emails synchronously."""
 
     @classmethod
