@@ -20,7 +20,7 @@ from meinberlin.apps.notifications import emails as notification_emails
 User = get_user_model()
 
 
-class TestEmail(Email, SyncEmailMixin):
+class TestEmail(SyncEmailMixin, Email):
     def get_receivers(self):
         return self.kwargs['receiver']
 
