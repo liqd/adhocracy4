@@ -54,6 +54,13 @@ $checkbox-size: 20px;
     opacity: 1;
 }
 
+.radio__text--checkbox {
+    &:before,
+    &:after {
+        border-radius: 0.3em;
+    }
+}
+
 .radio__input:focus + .radio__text:before {
     @include fake-focus-shadow;
 }

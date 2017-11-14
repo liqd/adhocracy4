@@ -194,9 +194,9 @@ class Question extends React.Component {
                   )
                 } else {
                   return (
-                    <label className="poll-row checkbox" key={choice.id}>
+                    <label className="poll-row radio" key={choice.id}>
                       <input
-                        className="poll-row__checkbox checkbox__input"
+                        className="poll-row__radio radio__input"
                         type="checkbox"
                         name="question"
                         value={choice.id}
@@ -204,7 +204,7 @@ class Question extends React.Component {
                         onChange={this.handleOnMultiChange.bind(this)}
                         disabled={!this.state.question.authenticated}
                       />
-                      <span className="checkbox__text">{ choice.label }</span>
+                      <span className="radio__text radio__text--checkbox">{ choice.label }</span>
                     </label>
                   )
                 }
