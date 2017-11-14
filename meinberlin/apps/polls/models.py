@@ -5,8 +5,6 @@ from adhocracy4.comments import models as comment_models
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.modules import models as module_models
 
-from . import validators
-
 
 class QuestionQuerySet(models.QuerySet):
     def annotate_vote_count(self):
@@ -93,12 +91,6 @@ class Vote(UserGeneratedContentModel):
         on_delete=models.CASCADE,
         related_name='votes'
     )
-
-    def validate_unique(self, exclude=None):
-        super(Vote, self).validate_unique(exclude)
-        validators.single_vote_per_user(self.creator,
-                                        self.choice,
-                                        self.pk)
 
     # Make Vote instances behave like items for rule checking
     @property
