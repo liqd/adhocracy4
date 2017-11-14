@@ -55,6 +55,7 @@ $(document).ready(function () {
   var loadHtml = function (html, textStatus, xhr) {
     var $root = $('<div>').html(html)
     var nextPath = xhr.getResponseHeader('x-ajax-path')
+    var isInitial = !currentPath
 
     if (patternsForPopup.test(nextPath)) {
       $('#embed-confirm').modal('show')
@@ -71,8 +72,10 @@ $(document).ready(function () {
     $main.append($root.find('main').children())
     $(document).trigger('a4.embed.ready')
 
-    // jump to top after navigation
-    $top.focus()
+    // jump to top after navigation, but not on inital load
+    if (!isInitial) {
+      $top.focus()
+    }
   }
 
   var onAjaxError = function (jqxhr) {
