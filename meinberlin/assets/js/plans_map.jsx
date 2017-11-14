@@ -75,13 +75,6 @@ class PlansMap extends React.Component {
     return map
   }
 
-  createClusterGroup () {
-    var markers = L.markerClusterGroup({
-      showCoverageOnHover: false
-    })
-    return markers
-  }
-
   isInFilter (item) {
     let filters = this.state.filters
     return !filters.bounds || filters.bounds.contains(pointToLatLng(item.point))
@@ -89,8 +82,10 @@ class PlansMap extends React.Component {
 
   componentDidMount () {
     this.map = this.createMap()
-    this.cluster = this.createClusterGroup()
-    this.selectedMarkers = L.layerGroup()
+    this.cluster = L.markerClusterGroup({
+      showCoverageOnHover: false
+    }).addTo(this.map)
+    this.selectedMarkers = L.layerGroup().addTo(this.map)
 
     this.markers = this.props.items.map((item, i) => {
       let marker = L.marker(pointToLatLng(item.point), {icon: icon})
@@ -100,9 +95,6 @@ class PlansMap extends React.Component {
       })
       return marker
     })
-
-    this.cluster.addTo(this.map)
-    this.selectedMarkers.addTo(this.map)
 
     this.map.on('zoomend', this.onBoundsChange.bind(this))
     this.map.on('moveend', this.onBoundsChange.bind(this))
