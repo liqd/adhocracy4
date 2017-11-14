@@ -1,6 +1,6 @@
 from pytest_factoryboy import register
 
-from meinberlin.apps.test.factories import polls
+from meinberlin.test.factories import polls
 
 register(polls.PollFactory)
 register(polls.QuestionFactory)
