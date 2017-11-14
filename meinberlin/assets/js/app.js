@@ -52,6 +52,11 @@ var init = function () {
     $('.js-select2').select2()
   }
 
+  initialiseWidget('a4', 'comment', ReactComments.renderComment)
+  initialiseWidget('a4', 'follows', ReactFollows.renderFollow)
+  initialiseWidget('a4', 'ratings', ReactRatings.renderRatings)
+  initialiseWidget('a4', 'reports', ReactReports.renderReports)
+
   initialiseWidget('mb', 'document-management', ReactDocuments.renderDocumentManagement)
   initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
   initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)
@@ -61,9 +66,5 @@ $(init)
 $(document).on('a4.embed.ready', init)
 
 module.exports = {
-  'renderComment': ReactComments.renderComment,
-  'renderRatings': ReactRatings.renderRatings,
-  'renderReports': ReactReports.renderReports,
-  'renderFollow': ReactFollows.renderFollow,
   'getCurrentPath': getCurrentPath
 }
