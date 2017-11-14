@@ -29,6 +29,9 @@ module.exports = {
     leaflet: [
       'leaflet',
       'leaflet/dist/leaflet.css',
+      'leaflet.markercluster',
+      'leaflet.markercluster/dist/MarkerCluster.css',
+      'leaflet.markercluster/dist/MarkerCluster.Default.css',
       './meinberlin/assets/js/plans_map.jsx'
     ],
     datepicker: [
