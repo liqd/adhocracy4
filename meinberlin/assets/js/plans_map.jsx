@@ -90,6 +90,7 @@ class PlansMap extends React.Component {
   componentDidMount () {
     this.map = this.createMap()
     this.cluster = this.createClusterGroup()
+    this.selectedMarkers = L.layerGroup()
 
     this.markers = this.props.items.map((item, i) => {
       let marker = L.marker(pointToLatLng(item.point), {icon: icon})
@@ -101,6 +102,7 @@ class PlansMap extends React.Component {
     })
 
     this.cluster.addTo(this.map)
+    this.selectedMarkers.addTo(this.map)
 
     this.map.on('zoomend', this.onBoundsChange.bind(this))
     this.map.on('moveend', this.onBoundsChange.bind(this))
@@ -117,20 +119,23 @@ class PlansMap extends React.Component {
       }
     }
 
-    // filter markers
-    if (prevState.filters !== this.state.filters) {
+    if (prevState.selected !== this.state.selected || prevState.filters !== this.state.filters) {
+      // filter markers
       this.props.items.forEach((item, i) => {
         let marker = this.markers[i]
-        if (this.isInFilter(item)) {
-          this.cluster.addLayer(marker)
-        } else {
+        if (!this.isInFilter(item)) {
           this.cluster.removeLayer(marker)
+          this.selectedMarkers.removeLayer(marker)
+        } else if (i === this.state.selected) {
+          this.cluster.removeLayer(marker)
+          this.selectedMarkers.addLayer(marker)
+        } else {
+          this.selectedMarkers.removeLayer(marker)
+          this.cluster.addLayer(marker)
         }
       })
-    }
 
-    // scroll list
-    if (prevState.selected !== this.state.selected || prevState.filters !== this.state.filters) {
+      // scroll list
       if (this.state.selected !== null && this.isInFilter(this.props.items[this.state.selected])) {
         $(this.listElement).find('.selected').scrollintoview()
       } else {
