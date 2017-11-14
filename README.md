@@ -1,5 +1,7 @@
 # Participation platform mein.berlin
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/liqd/a4-meinberlin.svg)](https://greenkeeper.io/)
+
 mein.berlin is a participation platform for the city of berlin, germany. It is
 based on [adhocracy 4](https://github.com/liqd/adhocracy4).
 
