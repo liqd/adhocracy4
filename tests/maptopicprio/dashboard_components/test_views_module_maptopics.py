@@ -7,8 +7,8 @@ from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.dashboard2 import components
 from meinberlin.apps.maptopicprio.models import MapTopic
 from meinberlin.apps.maptopicprio.phases import PrioritizePhase
-from tests.helpers import assert_template_response
-from tests.helpers import setup_phase
+from meinberlin.test.helpers import assert_template_response
+from meinberlin.test.helpers import setup_phase
 
 component = components.modules.get('map_topic_edit')
 

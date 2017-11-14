@@ -1,7 +1,7 @@
 import pytest
 
 from meinberlin.apps.users.decorators import _user_is_project_admin
-from tests.helpers import setup_users
+from meinberlin.test.helpers import setup_users
 
 
 @pytest.mark.django_db

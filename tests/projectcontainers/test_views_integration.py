@@ -1,6 +1,6 @@
 import pytest
 
-from tests.helpers import assert_template_response
+from meinberlin.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db
