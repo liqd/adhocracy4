@@ -11,7 +11,7 @@ class PlanForm(forms.ModelForm):
 
     class Meta:
         model = models.Plan
-        fields = ['title', 'contact', 'point', 'point_label', 'budget',
+        fields = ['title', 'contact', 'point', 'point_label', 'cost',
                   'description', 'category', 'status', 'participation',
                   'project']
         widgets = {
