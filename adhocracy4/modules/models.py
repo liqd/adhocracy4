@@ -36,7 +36,7 @@ class Module(models.Model):
         return "{} ({})".format(self.project, self.weight)
 
     def get_absolute_url(self):
-        return reverse('module-detail', args=[str(self.slug)])
+        return reverse('module-detail', kwargs=dict(slug=self.slug))
 
     @property
     def settings_instance(self):
