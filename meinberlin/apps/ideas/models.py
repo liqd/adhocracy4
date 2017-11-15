@@ -49,7 +49,8 @@ class AbstractIdea(module_models.Item):
 class Idea(AbstractIdea):
 
     def get_absolute_url(self):
-        return reverse('meinberlin_ideas:idea-detail', args=[str(self.slug)])
+        return reverse('meinberlin_ideas:idea-detail',
+                       kwargs=dict(slug=self.slug))
 
     class Meta:
         ordering = ['-created']
