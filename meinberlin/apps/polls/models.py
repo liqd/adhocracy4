@@ -5,7 +5,23 @@ from adhocracy4.comments import models as comment_models
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.modules import models as module_models
 
-from . import validators
+
+class QuestionQuerySet(models.QuerySet):
+    def annotate_vote_count(self):
+        return self.annotate(
+            vote_count=models.Count(
+                'choices__votes__creator_id',
+                distinct=True)
+        )
+
+
+class ChoiceQuerySet(models.QuerySet):
+    def annotate_vote_count(self):
+        return self.annotate(
+            vote_count=models.Count(
+                'votes'
+            )
+        )
 
 
 class Poll(module_models.Item):
@@ -28,6 +44,8 @@ class Question(models.Model):
         related_name='questions'
     )
 
+    objects = QuestionQuerySet.as_manager()
+
     def user_choices_list(self, user):
         if not user.is_authenticated():
             return []
@@ -44,16 +62,6 @@ class Question(models.Model):
 
     class Meta:
         ordering = ['weight']
-
-
-class ChoiceQuerySet(models.QuerySet):
-
-    def annotate_vote_count(self):
-        return self.annotate(
-            vote_count=models.Count(
-                'votes'
-            )
-        )
 
 
 class Choice(models.Model):
@@ -83,12 +91,6 @@ class Vote(UserGeneratedContentModel):
         on_delete=models.CASCADE,
         related_name='votes'
     )
-
-    def validate_unique(self, exclude=None):
-        super(Vote, self).validate_unique(exclude)
-        validators.single_vote_per_user(self.creator,
-                                        self.choice,
-                                        self.pk)
 
     # Make Vote instances behave like items for rule checking
     @property

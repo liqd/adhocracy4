@@ -34,6 +34,12 @@ class PollDetailView(ProjectContextMixin,
     def get_object(self):
         return get_object_or_404(models.Poll, module=self.module)
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['question_list'] = \
+            self.object.questions.annotate_vote_count().all()
+        return context
+
     def get_permission_object(self):
         return self.module
 

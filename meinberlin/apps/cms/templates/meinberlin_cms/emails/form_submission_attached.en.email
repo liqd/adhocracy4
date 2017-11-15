@@ -7,11 +7,4 @@
 
 {% block content %}
     {{ emailformpage.email_content }}
-
-    {% for key, value in field_values.items %}
-
-        {{key}}:
-        {{value}}
-    {% endfor %}
-
 {% endblock %}

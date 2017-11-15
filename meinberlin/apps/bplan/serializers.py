@@ -16,6 +16,8 @@ from adhocracy4.images.validators import validate_image
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
+from meinberlin.apps.dashboard2 import components
 
 from .models import Bplan
 from .phases import StatementPhase
@@ -63,6 +65,7 @@ class BplanSerializer(serializers.ModelSerializer):
 
         bplan = super().create(validated_data)
         self._create_module_and_phase(bplan, start_date, end_date)
+        self._send_project_created_signal(bplan)
         return bplan
 
     def _create_module_and_phase(self, bplan, start_date, end_date):
@@ -93,7 +96,9 @@ class BplanSerializer(serializers.ModelSerializer):
             validated_data['tile_image'] = \
                 self._download_image_from_url(image_url)
 
-        return super().update(instance, validated_data)
+        instance = super().update(instance, validated_data)
+        self._send_component_updated_signal(instance)
+        return instance
 
     def _update_phase(self, bplan, start_date, end_date):
         module = module_models.Module.objects.get(project=bplan)
@@ -162,3 +167,19 @@ class BplanSerializer(serializers.ModelSerializer):
         dirname = datetime.datetime.now().strftime(self._image_upload_to)
         filename = posixpath.join(dirname, filename)
         return self._image_storage.get_available_name(filename)
+
+    def _send_project_created_signal(self, bplan):
+        a4dashboard_signals.project_created.send(
+            sender=self.__class__,
+            project=bplan,
+            user=self.context['request'].user
+        )
+
+    def _send_component_updated_signal(self, bplan):
+        component = components.projects['bplan']
+        a4dashboard_signals.project_component_updated.send(
+            sender=self.__class__,
+            project=bplan,
+            component=component,
+            user=self.context['request'].user
+        )

@@ -4,8 +4,6 @@ from django import template
 from django.utils.html import format_html
 from rest_framework.renderers import JSONRenderer
 
-from adhocracy4.rules.discovery import NormalUser
-
 from .. import serializers
 
 register = template.Library()
@@ -13,34 +11,14 @@ register = template.Library()
 
 @register.simple_tag(takes_context=True)
 def react_polls(context, question):
-    user = context['request'].user
-    user_choices = question.user_choices_list(user)
-    has_poll_permission = user.has_perm(
-        'meinberlin_polls.add_vote',
-        question.poll.module
+    question_serializer = serializers.QuestionSerializer(
+        question,
+        context={'request': context['request']}
     )
-    would_have_poll_permission = NormalUser().would_have_perm(
-        'meinberlin_polls.add_vote',
-        question.poll.module
-    )
-
-    data = {
-        'id': question.id,
-        'label': question.label,
-        'isReadOnly': (not has_poll_permission and
-                       not would_have_poll_permission),
-        'choices': [{
-            'id': choice.id,
-            'label': choice.label,
-            'count': choice.vote_count,
-            'ownChoice': (choice.pk in user_choices)
-        } for choice in question.choices.annotate_vote_count()],
-        'authenticated': user.is_authenticated()
-    }
 
     return format_html(
         '<div data-mb-widget="polls" data-question="{question}"></div>',
-        question=json.dumps(data)
+        question=JSONRenderer().render(question_serializer.data)
     )
 
 

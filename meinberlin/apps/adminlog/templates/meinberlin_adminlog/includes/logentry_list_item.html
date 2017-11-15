@@ -1,0 +1,13 @@
+{% load i18n contrib_tags adminlog_tags %}
+
+<div class="action">
+    <i class="fa fa-{% logentry_icon object %} action__icon" aria-hidden="true"></i>
+    <div class="action__main">
+        <div class="action__line">
+            {{ object.message }}
+        </div>
+        <div class="action__date">
+            {% html_date object.timestamp 'd.m.Y' class='relative' title=object.timestamp|date:'DATETIME_FORMAT' %}
+        </div>
+    </div>
+</div>
