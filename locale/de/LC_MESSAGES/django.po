@@ -2376,7 +2376,7 @@ msgstr ""
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:13
 msgid "This project is in not published yet."
-msgstr "Dieses Projekt ist noch nicht voröffentlicht."
+msgstr "Dieses Projekt ist noch nicht veröffentlicht."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:45
 #, python-format
