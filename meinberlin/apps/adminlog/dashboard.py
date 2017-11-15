@@ -26,7 +26,7 @@ class AdminLogComponent(DashboardComponent):
     def get_urls(self):
         return [
             (r'^projects/(?P<project_slug>[-\w_]+)/log/$',
-             views.AdminLogProjectDashboardView.as_view(),
+             views.AdminLogProjectDashboardView.as_view(component=self),
              'adminlog'),
         ]
 
