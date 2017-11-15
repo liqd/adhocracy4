@@ -6,6 +6,7 @@ from django.db import models
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4 import transforms
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects.models import Project
 
@@ -73,3 +74,7 @@ class Newsletter(UserGeneratedContentModel):
         pattern = re.compile(r'([\s="\'])(%s)' % re.escape(settings.MEDIA_URL))
         text = re.sub(pattern, r'\1%s\2' % settings.BASE_URL, text)
         return text
+
+    def save(self, *args, **kwargs):
+        self.body = transforms.clean_html_field(self.body, 'image-editor')
+        super().save(*args, **kwargs)

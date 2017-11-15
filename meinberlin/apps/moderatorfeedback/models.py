@@ -2,6 +2,7 @@ from ckeditor.fields import RichTextField
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4 import transforms
 from adhocracy4.models.base import UserGeneratedContentModel
 
 from . import fields
@@ -15,6 +16,10 @@ DEFAULT_CHOICES = (
 
 class ModeratorStatement(UserGeneratedContentModel):
     statement = RichTextField(blank=True)
+
+    def save(self, *args, **kwargs):
+        self.statement = transforms.clean_html_field(self.statement)
+        super().save(*args, **kwargs)
 
 
 class Moderateable(models.Model):
