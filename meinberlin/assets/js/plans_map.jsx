@@ -105,9 +105,11 @@ class PlansMap extends React.Component {
     if (prevState.selected !== this.state.selected) {
       if (prevState.selected !== null) {
         this.markers[prevState.selected].setIcon(icon)
+        this.markers[prevState.selected].setZIndexOffset(0)
       }
       if (this.state.selected !== null) {
         this.markers[this.state.selected].setIcon(activeIcon)
+        this.markers[this.state.selected].setZIndexOffset(1000)
       }
     }
 
