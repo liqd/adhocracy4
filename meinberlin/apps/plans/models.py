@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4 import transforms
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects import models as project_models
@@ -67,3 +68,7 @@ class Plan(UserGeneratedContentModel):
     def get_absolute_url(self):
         return reverse('meinberlin_plans:plan-detail',
                        args=[str(self.slug)])
+
+    def save(self, *args, **kwargs):
+        self.description = transforms.clean_html_field(self.description)
+        super().save(*args, **kwargs)
