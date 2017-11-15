@@ -152,7 +152,7 @@ class PlansMap extends React.Component {
   }
 
   renderListItem (item, i) {
-    let className = 'list-item'
+    let className = 'list-item list-item--squashed'
     if (i === this.state.selected) {
       className += ' selected'
     }
