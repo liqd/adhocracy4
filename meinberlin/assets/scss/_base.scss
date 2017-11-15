@@ -106,6 +106,16 @@ ul {
     padding-left: 1.5rem;
 }
 
+dd {
+    margin: 0;
+}
+
+dt {
+    font-weight: bold;
+    margin-bottom: $spacer / 2;
+    margin-top: $spacer;
+}
+
 button,
 [type="submit"] {
     appearance: none;
