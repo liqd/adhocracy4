@@ -120,7 +120,7 @@ class Project(base.TimeStampedModel):
         super(Project, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('project-detail', args=[str(self.slug)])
+        return reverse('project-detail', kwargs=dict(slug=self.slug))
 
     def has_member(self, user):
         """
