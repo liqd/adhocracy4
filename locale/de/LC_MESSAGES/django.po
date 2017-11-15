@@ -465,7 +465,7 @@ msgstr "Bereich"
 
 #: meinberlin/apps/adminlog/dashboard.py:13
 msgid "Log"
-msgstr "Log"
+msgstr "Änderungsprotokoll"
 
 #: meinberlin/apps/adminlog/models.py:17
 msgid "Project updated"
@@ -509,11 +509,11 @@ msgstr "Aktion"
 
 #: meinberlin/apps/adminlog/models.py:50
 msgid "log entry"
-msgstr "Logeintrag"
+msgstr "Protokolleintrag"
 
 #: meinberlin/apps/adminlog/models.py:51
 msgid "log entries"
-msgstr "Logeinträge"
+msgstr "Protokolleinträge"
 
 #: meinberlin/apps/adminlog/signals.py:15
 #, python-brace-format
@@ -551,7 +551,7 @@ msgstr "\"{username}\" hat das Projekt \"{project_name}\" depubliziert."
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:4
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:8
 msgid "Project Edit Log"
-msgstr "Projekt-Bearbeitungs-Log"
+msgstr "Änderungsprotokoll des Projekts"
 
 #: meinberlin/apps/bplan/dashboard.py:15
 msgid "Development plan settings"
