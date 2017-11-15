@@ -22,7 +22,7 @@ $(document).ready(function () {
   }
 
   var createAlert = function (text, state, timeout) {
-    var $alert = $('<p class="alert ' + state + ' alert--small" role="alert">' + text + '</p>')
+    var $alert = $('<p class="alert alert--' + state + ' alert--small" role="alert">' + text + '</p>')
     var $close = $('<button class="alert__close"><i class="fa fa-times"></i></button>')
 
     $alert.append($close)
