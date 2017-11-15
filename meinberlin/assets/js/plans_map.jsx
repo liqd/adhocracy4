@@ -151,6 +151,29 @@ class PlansMap extends React.Component {
     }
   }
 
+  renderListItem (item, i) {
+    let className = 'list-item'
+    if (i === this.state.selected) {
+      className += ' selected'
+    }
+
+    return (
+      <li className={className} key={i}>
+        <div className="list-item__subtitle">{item.organisation}</div>
+        <h3 className="list-item__title"><a href={item.url}>{item.title}</a></h3>
+        <div className="list-item__labels">
+          {
+            <span className="label label--secondary">{item.status_display}</span>
+          } {item.category &&
+            <span className="label">{item.category}</span>
+          } {item.point_label &&
+            <span className="label"><i className="fa fa-map-marker" aria-hidden="true" /> {item.point_label}</span>
+          }
+        </div>
+      </li>
+    )
+  }
+
   render () {
     return (
       <div className="map-list-combined">
@@ -159,14 +182,7 @@ class PlansMap extends React.Component {
           {
             this.props.items.map((item, i) => {
               if (this.isInFilter(item)) {
-                let className = 'list-item'
-                if (i === this.state.selected) {
-                  className += ' selected'
-                }
-
-                return (
-                  <li className={className} key={i}>{ item.title }</li>
-                )
+                return this.renderListItem(item, i)
               }
             })
           }
