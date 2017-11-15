@@ -493,7 +493,7 @@ msgstr "Zeitpunkt der Aktion"
 
 #: meinberlin/apps/adminlog/models.py:32
 msgid "User"
-msgstr "Benutzer"
+msgstr "Nutzer*innen"
 
 #: meinberlin/apps/adminlog/models.py:41
 msgid "Module"
