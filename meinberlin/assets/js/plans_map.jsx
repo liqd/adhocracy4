@@ -80,6 +80,34 @@ class PlansMap extends React.Component {
     return !filters.bounds || filters.bounds.contains(pointToLatLng(item.point))
   }
 
+  setMarkerSelected (marker) {
+    if (!this.selectedMarkers.hasLayer(marker)) {
+      this.cluster.removeLayer(marker)
+
+      // Removing a marker from the cluster resets its zIndexOffset,
+      // thus the zIndexOffset of the selected marker has to be set
+      // after it is removed from the cluster to rise it to the front.
+      marker.setZIndexOffset(1000)
+      marker.setIcon(activeIcon)
+      this.selectedMarkers.addLayer(marker)
+    }
+  }
+
+  setMarkerDefault (marker) {
+    if (!this.cluster.hasLayer(marker)) {
+      this.selectedMarkers.removeLayer(marker)
+
+      marker.setZIndexOffset(0)
+      marker.setIcon(icon)
+      this.cluster.addLayer(marker)
+    }
+  }
+
+  setMarkerFiltered (marker) {
+    this.cluster.removeLayer(marker)
+    this.selectedMarkers.removeLayer(marker)
+  }
+
   componentDidMount () {
     this.map = this.createMap()
     this.cluster = L.markerClusterGroup({
@@ -101,36 +129,16 @@ class PlansMap extends React.Component {
   }
 
   componentDidUpdate (prevProps, prevState) {
-    // selected marker icon
-    if (prevState.selected !== this.state.selected) {
-      if (prevState.selected !== null) {
-        this.markers[prevState.selected].setIcon(icon)
-      }
-      if (this.state.selected !== null) {
-        this.markers[this.state.selected].setIcon(activeIcon)
-      }
-    }
-
     if (prevState.selected !== this.state.selected || prevState.filters !== this.state.filters) {
       // filter markers
       this.props.items.forEach((item, i) => {
         let marker = this.markers[i]
         if (!this.isInFilter(item)) {
-          this.cluster.removeLayer(marker)
-          this.selectedMarkers.removeLayer(marker)
+          this.setMarkerFiltered(marker)
         } else if (i === this.state.selected) {
-          this.cluster.removeLayer(marker)
-          // Removing a marker from the cluster resets its zIndexOffset,
-          // thus the zIndexOffset of the selected marker has to be set
-          // after it is removed from the cluster to rise it to the front.
-          marker.setZIndexOffset(1000)
-          this.selectedMarkers.addLayer(marker)
-          console.log(marker)
+          this.setMarkerSelected(marker)
         } else {
-          this.selectedMarkers.removeLayer(marker)
-          this.cluster.addLayer(marker)
-          // Reset the markers default zIndexOffset.
-          marker.setZIndexOffset(0)
+          this.setMarkerDefault(marker)
         }
       })
 
