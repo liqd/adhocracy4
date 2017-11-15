@@ -465,7 +465,7 @@ msgstr "Bereich"
 
 #: meinberlin/apps/adminlog/dashboard.py:13
 msgid "Log"
-msgstr ""
+msgstr "Log"
 
 #: meinberlin/apps/adminlog/models.py:17
 msgid "Project updated"
@@ -551,7 +551,7 @@ msgstr "\"{username}\" hat das Projekt \"{project_name}\" depubliziert."
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:4
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:8
 msgid "Project Edit Log"
-msgstr ""
+msgstr "Projekt-Bearbeitungs-Log"
 
 #: meinberlin/apps/bplan/dashboard.py:15
 msgid "Development plan settings"
@@ -1157,16 +1157,16 @@ msgstr "Organisationsinformationen bearbeiten"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/plan_confirm_delete.html:4
 msgid "Confirm Plan Deletion"
-msgstr ""
+msgstr "Bestätigung der Vorhabenlöschung"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/plan_confirm_delete.html:7
 msgid "Are you sure you want to delete the plan?"
-msgstr ""
+msgstr "Sind Sie sicher, dass Sie dieses Vorhaben löschen möchten?"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/plan_create_form.html:4
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/plan_create_form.html:7
 msgid "Add a new plan"
-msgstr ""
+msgstr "Vorhaben hinzufügen"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/plan_list.html:4
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/plan_list.html:9
@@ -1174,15 +1174,15 @@ msgstr ""
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:20
 #: meinberlin/templates/meinberlin_dashboard2/base_project_list.html:27
 msgid "Plans"
-msgstr ""
+msgstr "Vorhaben"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/plan_list.html:13
 msgid "Add Plan"
-msgstr ""
+msgstr "Vorhaben hinzufügen"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/plan_update_form.html:7
 msgid "Edit plan"
-msgstr ""
+msgstr "Vorhaben bearbeiten"
 
 #: meinberlin/apps/dashboard/views.py:31
 msgid "Organisation successfully updated."
@@ -1190,7 +1190,7 @@ msgstr "Organisation erfolgreich aktualisiert"
 
 #: meinberlin/apps/dashboard/views.py:122
 msgid "The plan has been deleted"
-msgstr ""
+msgstr "Vorhaben wurde gelöscht"
 
 #: meinberlin/apps/dashboard2/components/forms/views.py:22
 msgid "Project successfully updated."
@@ -1315,7 +1315,7 @@ msgstr "Benötigte Felder zur Veröffentlichung"
 
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_dashboard_project.html:48
 msgid "Add Module"
-msgstr ""
+msgstr "Modul hinzufügen"
 
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_project_list.html:15
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_list.html:4
@@ -1428,7 +1428,7 @@ msgstr "Hinzufügen"
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/module_blueprint_list.html:4
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/module_blueprint_list.html:8
 msgid "New Module"
-msgstr ""
+msgstr "Neues Modul"
 
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_create_form.html:4
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_create_form.html:9
@@ -2059,11 +2059,11 @@ msgstr "Das Bild wird in der Kopfzeile von Newslettern angezeigt."
 
 #: meinberlin/apps/plans/forms.py:21
 msgid "Please locate the plan on the map."
-msgstr ""
+msgstr "Bitte verorten Sie das Vorhaben auf der Karte."
 
 #: meinberlin/apps/plans/models.py:20
 msgid "Where can the plan be located on a map?"
-msgstr ""
+msgstr "Wo kann das Vorhaben auf der Karte verortet werden?"
 
 #: meinberlin/apps/polls/phases.py:16
 msgid "Voting phase"
@@ -2222,15 +2222,15 @@ msgstr "Nutzer*innen via E-Mail einladen"
 
 #: meinberlin/apps/projects/forms.py:51 meinberlin/apps/projects/views.py:341
 msgid "Invite users via file upload"
-msgstr ""
+msgstr "Nutzer*innen aus Datei einladen"
 
 #: meinberlin/apps/projects/forms.py:52
 msgid "Upload a csv file containing email addresses."
-msgstr ""
+msgstr "Laden Sie eine CSV-Datei hoch, die E-Mail Adressen beinhaltet."
 
 #: meinberlin/apps/projects/forms.py:69
 msgid "Please enter email addresses or upload a file"
-msgstr ""
+msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:24
 msgid "External Project"
@@ -2298,7 +2298,7 @@ msgstr "Phasen verstecken"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/users_from_email_form.html:44
 msgid "Upload"
-msgstr ""
+msgstr "Hochladen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/moderatorinvite_detail.html:4
 #: meinberlin/apps/projects/templates/meinberlin_projects/moderatorinvite_form.html:4
@@ -2376,7 +2376,7 @@ msgstr ""
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:13
 msgid "This project is in not published yet."
-msgstr ""
+msgstr "Dieses Projekt ist noch nicht voröffentlicht."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:45
 #, python-format
@@ -2427,7 +2427,7 @@ msgstr "Moderator*innen via E-Mail einladen"
 
 #: meinberlin/apps/projects/views.py:321
 msgid "Invite moderators via file upload"
-msgstr ""
+msgstr "Moderator*innen aus Datei einladen"
 
 #: meinberlin/apps/projects/views.py:323
 msgid "Moderator successfully removed."
@@ -2534,7 +2534,7 @@ msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
 
 #: meinberlin/apps/users/fields.py:48
 msgid "Invalid file format. Only text files are allowed."
-msgstr ""
+msgstr "Ungültiges Dateiformat. Nur Textdateien sind erlaubt."
 
 #: meinberlin/apps/users/forms.py:10 meinberlin/templates/email_base.html:56
 #: meinberlin/templates/email_base.txt:14

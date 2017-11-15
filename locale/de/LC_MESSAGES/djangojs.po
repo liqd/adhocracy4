@@ -287,7 +287,7 @@ msgstr "Stimme abgeben"
 
 #: meinberlin/apps/polls/assets/Question.jsx:115
 msgid "Please login to vote"
-msgstr ""
+msgstr "Bitte melden Sie sich zum Abstimmen an."
 
 #: meinberlin/apps/polls/assets/Question.jsx:132
 msgid "vote"
@@ -313,7 +313,7 @@ msgstr "Frage"
 
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:34
 msgid "Users can select more than one answer."
-msgstr ""
+msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
 
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:42
 msgid "Choice"
