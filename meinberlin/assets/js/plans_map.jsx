@@ -105,11 +105,9 @@ class PlansMap extends React.Component {
     if (prevState.selected !== this.state.selected) {
       if (prevState.selected !== null) {
         this.markers[prevState.selected].setIcon(icon)
-        this.markers[prevState.selected].setZIndexOffset(0)
       }
       if (this.state.selected !== null) {
         this.markers[this.state.selected].setIcon(activeIcon)
-        this.markers[this.state.selected].setZIndexOffset(1000)
       }
     }
 
@@ -122,10 +120,17 @@ class PlansMap extends React.Component {
           this.selectedMarkers.removeLayer(marker)
         } else if (i === this.state.selected) {
           this.cluster.removeLayer(marker)
+          // Removing a marker from the cluster resets its zIndexOffset,
+          // thus the zIndexOffset of the selected marker has to be set
+          // after it is removed from the cluster to rise it to the front.
+          marker.setZIndexOffset(1000)
           this.selectedMarkers.addLayer(marker)
+          console.log(marker)
         } else {
           this.selectedMarkers.removeLayer(marker)
           this.cluster.addLayer(marker)
+          // Reset the markers default zIndexOffset.
+          marker.setZIndexOffset(0)
         }
       })
 
