@@ -83,3 +83,7 @@ class ProjectContextMixin(generic.base.ContextMixin):
         if 'module' not in kwargs:
             kwargs['module'] = self.module
         return super(ProjectContextMixin, self).get_context_data(**kwargs)
+
+
+class ComponentLibraryView(generic.base.TemplateView):
+    template_name = 'meinberlin_contrib/component_library.html'
