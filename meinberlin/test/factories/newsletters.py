@@ -3,7 +3,6 @@ import factory
 from adhocracy4.follows import models as follow_models
 from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.newsletters import models
-from tests import factories
 
 
 # FIXME: copied from core
@@ -12,7 +11,7 @@ class FollowFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = follow_models.Follow
 
-    creator = factory.SubFactory(factories.UserFactory)
+    creator = factory.SubFactory(a4_factories.USER_FACTORY)
     project = factory.SubFactory(a4_factories.ProjectFactory)
 
 
@@ -28,6 +27,6 @@ class NewsletterFactory(factory.django.DjangoModelFactory):
 
     receivers = models.PROJECT
 
-    creator = factory.SubFactory(factories.UserFactory)
+    creator = factory.SubFactory(a4_factories.USER_FACTORY)
     project = factory.SubFactory(a4_factories.ProjectFactory)
-    organisation = factory.SubFactory(factories.OrganisationFactory)
+    organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)
