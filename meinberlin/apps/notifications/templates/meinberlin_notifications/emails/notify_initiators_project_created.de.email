@@ -11,4 +11,4 @@
 {% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
 {% block cta_label %}Projekt anzeigen{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie Initiator der Organisation {{ project.organisation.name }} sind. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie Benachrichtigungen in Ihren Benutzerkonto Einstellungen komplett deaktivieren.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie Initiator der Organisation {{ project.organisation.name }} sind. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie Benachrichtigungen in Ihren Benutzerkonto-Einstellungen komplett deaktivieren.{% endblock %}

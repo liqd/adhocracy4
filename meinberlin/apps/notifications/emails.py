@@ -75,6 +75,7 @@ class NotifyInitiatorsOnProjectCreatedEmail(Email):
         context = super().get_context()
         creator = User.objects.get(pk=self.kwargs['creator_pk'])
         context['creator'] = creator
+        context['project'] = self.object
         return context
 
 
