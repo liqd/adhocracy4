@@ -1,8 +1,7 @@
 import factory
 
-from adhocracy4.test import factories
+from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.documents import models as document_models
-from tests.factories import UserFactory
 
 
 class ChapterFactory(factory.django.DjangoModelFactory):
@@ -11,8 +10,8 @@ class ChapterFactory(factory.django.DjangoModelFactory):
         model = document_models.Chapter
 
     name = factory.Faker('sentence')
-    creator = factory.SubFactory(UserFactory)
-    module = factory.SubFactory(factories.ModuleFactory)
+    creator = factory.SubFactory(a4_factories.USER_FACTORY)
+    module = factory.SubFactory(a4_factories.ModuleFactory)
     weight = factory.Faker('random_number')
 
 

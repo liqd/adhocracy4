@@ -2,7 +2,8 @@ import factory
 
 from adhocracy4.test import factories
 from meinberlin.apps.polls import models
-from tests.factories import UserFactory
+
+from . import UserFactory
 
 
 class PollFactory(factory.django.DjangoModelFactory):

@@ -1,9 +1,7 @@
 import factory
 
-from adhocracy4.test.factories import ProjectFactory
+from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.plans import models as plan_models
-from tests.factories import OrganisationFactory
-from tests.factories import UserFactory
 
 
 class PlanFactory(factory.django.DjangoModelFactory):
@@ -12,9 +10,9 @@ class PlanFactory(factory.django.DjangoModelFactory):
         model = plan_models.Plan
 
     title = factory.Faker('sentence')
-    creator = factory.SubFactory(UserFactory)
-    organisation = factory.SubFactory(OrganisationFactory)
-    project = factory.SubFactory(ProjectFactory)
+    creator = factory.SubFactory(a4_factories.USER_FACTORY)
+    organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)
+    project = factory.SubFactory(a4_factories.ProjectFactory)
     point = {
         'type': 'Feature',
         'properties': {},

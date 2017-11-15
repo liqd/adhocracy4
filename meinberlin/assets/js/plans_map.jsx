@@ -80,10 +80,44 @@ class PlansMap extends React.Component {
     return !filters.bounds || filters.bounds.contains(pointToLatLng(item.point))
   }
 
+  setMarkerSelected (marker) {
+    if (!this.selectedMarkers.hasLayer(marker)) {
+      this.cluster.removeLayer(marker)
+
+      // Removing a marker from the cluster resets its zIndexOffset,
+      // thus the zIndexOffset of the selected marker has to be set
+      // after it is removed from the cluster to rise it to the front.
+      marker.setZIndexOffset(1000)
+      marker.setIcon(activeIcon)
+      this.selectedMarkers.addLayer(marker)
+    }
+  }
+
+  setMarkerDefault (marker) {
+    if (!this.cluster.hasLayer(marker)) {
+      this.selectedMarkers.removeLayer(marker)
+
+      marker.setZIndexOffset(0)
+      marker.setIcon(icon)
+      this.cluster.addLayer(marker)
+    }
+  }
+
+  setMarkerFiltered (marker) {
+    this.cluster.removeLayer(marker)
+    this.selectedMarkers.removeLayer(marker)
+  }
+
   componentDidMount () {
     this.map = this.createMap()
+    this.cluster = L.markerClusterGroup({
+      showCoverageOnHover: false
+    }).addTo(this.map)
+    this.selectedMarkers = L.layerGroup().addTo(this.map)
+
     this.markers = this.props.items.map((item, i) => {
-      let marker = L.marker(pointToLatLng(item.point), {icon: icon}).addTo(this.map)
+      let marker = L.marker(pointToLatLng(item.point), {icon: icon})
+      this.cluster.addLayer(marker)
       marker.on('click', () => {
         this.onSelect(i)
       })
@@ -95,30 +129,20 @@ class PlansMap extends React.Component {
   }
 
   componentDidUpdate (prevProps, prevState) {
-    // selected marker icon
-    if (prevState.selected !== this.state.selected) {
-      if (prevState.selected !== null) {
-        this.markers[prevState.selected].setIcon(icon)
-      }
-      if (this.state.selected !== null) {
-        this.markers[this.state.selected].setIcon(activeIcon)
-      }
-    }
-
-    // filter markers
-    if (prevState.filters !== this.state.filters) {
+    if (prevState.selected !== this.state.selected || prevState.filters !== this.state.filters) {
+      // filter markers
       this.props.items.forEach((item, i) => {
         let marker = this.markers[i]
-        if (this.isInFilter(item)) {
-          marker.addTo(this.map)
+        if (!this.isInFilter(item)) {
+          this.setMarkerFiltered(marker)
+        } else if (i === this.state.selected) {
+          this.setMarkerSelected(marker)
         } else {
-          marker.remove()
+          this.setMarkerDefault(marker)
         }
       })
-    }
 
-    // scroll list
-    if (prevState.selected !== this.state.selected || prevState.filters !== this.state.filters) {
+      // scroll list
       if (this.state.selected !== null && this.isInFilter(this.props.items[this.state.selected])) {
         $(this.listElement).find('.selected').scrollintoview()
       } else {

@@ -3,9 +3,9 @@ from django.core.urlresolvers import reverse
 
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.ideas import phases
-from tests.helpers import assert_template_response
-from tests.helpers import freeze_phase
-from tests.helpers import setup_phase
+from meinberlin.test.helpers import assert_template_response
+from meinberlin.test.helpers import freeze_phase
+from meinberlin.test.helpers import setup_phase
 
 
 @pytest.mark.django_db

@@ -1,8 +1,7 @@
 import factory
 
-from adhocracy4.test.factories import ModuleFactory
+from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.maptopicprio import models
-from tests.factories import UserFactory
 
 
 class MaptopicFactory(factory.django.DjangoModelFactory):
@@ -12,8 +11,8 @@ class MaptopicFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker('sentence')
     description = 'Description'
-    creator = factory.SubFactory(UserFactory)
-    module = factory.SubFactory(ModuleFactory)
+    creator = factory.SubFactory(a4_factories.USER_FACTORY)
+    module = factory.SubFactory(a4_factories.ModuleFactory)
     point_label = factory.Faker('address')
     point = {
         'type': 'Feature',
