@@ -3,19 +3,29 @@
 <li class="list-item">
     <div class="lr-bar">
         <div class="lr-bar__left">
-            <h3 class="list-item__title">
-                <a href="{% url 'a4dashboard:offlineevent-update' slug=object.slug %}">
-                {{ object.name }}
-                </a>
-            </h3>
+            <h3 class="list-item__title">{{ object.name }}</h3>
             {% html_date object.date class='list-item__date' %}
         </div>
         <div class="lr-bar__right">
-            <a href="{% url 'a4dashboard:offlineevent-delete' slug=object.slug %}"
-               class="btn btn--light">
-                <i class="fa fa-remove" aria-hidden="true"></i>
-                {% trans 'Delete'%}
-            </a>
+            <div class="btn-group">
+                {% spaceless %}
+                    <a href="{% url 'meinberlin_offlineevents:offlineevent-detail' slug=object.slug %}"
+                       class="btn btn--small btn--light">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        {% trans 'View' %}
+                    </a>
+                    <a href="{% url 'a4dashboard:offlineevent-update' slug=object.slug %}"
+                       class="btn btn--small btn--light">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        {% trans 'Edit'%}
+                    </a>
+                    <a href="{% url 'a4dashboard:offlineevent-delete' slug=object.slug %}"
+                       class="btn btn--small btn--light">
+                        <i class="fa fa-remove" aria-hidden="true"></i>
+                        {% trans 'Delete'%}
+                    </a>
+                {% endspaceless %}
+            </div>
         </div>
     </div>
 </li>
