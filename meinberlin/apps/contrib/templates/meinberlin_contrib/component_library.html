@@ -4,41 +4,59 @@
 
 {% block content %}
     <div class="l-wrapper">
-        <h1 id="cl-alerts">Alerts</h1>
+        <div class="l-menu">
+            <div class="l-menu__menu">
+                <nav class="dashboard-nav">
+                    <div class="dashboard-nav__dropdown">
+                        <div class="dashboard-nav__item">Content</div>
+                    </div>
+                    <ul class="dashboard-nav__pages">
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-alerts" class="dashboard-nav__item dashboard-nav__item--interactive">Alerts</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="l-menu__content">
+                <h1 class="u-first-heading">Component Library</h1>
 
-        <div class="cl-example">
-            <span title="`messages` behaves differently if it is the first child in a block"></span>
-            <ul class="messages">
-                <li class="alert success" role="alert">
-                    <div class="l-wrapper">
-                        Success
-                        <button class="alert__close">X</button>
-                    </div>
-                </li>
-                <li class="alert info" role="alert">
-                    <div class="l-wrapper">
-                        Info
-                        <button class="alert__close">X</button>
-                    </div>
-                </li>
-                <li class="alert warning" role="alert">
-                    <div class="l-wrapper">
-                        Warning
-                        <button class="alert__close">X</button>
-                    </div>
-                </li>
-                <li class="alert danger" role="alert">
-                    <div class="l-wrapper">
-                        Danger
-                        <button class="alert__close">X</button>
-                    </div>
-                </li>
-            </ul>
+                <h2 id="cl-alerts">Alerts</h2>
 
-            <p class="alert alert--small" role="alert">
-                Small
-                <button class="alert__close">X</button>
-            </p>
+                <div class="cl-example">
+                    <span title="`messages` behaves differently if it is the first child in a block"></span>
+                    <ul class="messages">
+                        <li class="alert success" role="alert">
+                            <div class="l-wrapper">
+                                Success
+                                <button class="alert__close">X</button>
+                            </div>
+                        </li>
+                        <li class="alert info" role="alert">
+                            <div class="l-wrapper">
+                                Info
+                                <button class="alert__close">X</button>
+                            </div>
+                        </li>
+                        <li class="alert warning" role="alert">
+                            <div class="l-wrapper">
+                                Warning
+                                <button class="alert__close">X</button>
+                            </div>
+                        </li>
+                        <li class="alert danger" role="alert">
+                            <div class="l-wrapper">
+                                Danger
+                                <button class="alert__close">X</button>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <p class="alert alert--small" role="alert">
+                        Small
+                        <button class="alert__close">X</button>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
