@@ -1,7 +1,7 @@
 import pytest
 import rules
 
-from tests.helpers import setup_users
+from meinberlin.test.helpers import setup_users
 
 perm_name = 'meinberlin_plans.list_plan'
 

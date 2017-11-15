@@ -1,11 +1,11 @@
 import factory
 
-from adhocracy4.test.factories import ModuleFactory
-from meinberlin.apps.kiezkasse import models
+from adhocracy4.test import factories as a4_factories
+from meinberlin.apps.budgeting import models
 from meinberlin.apps.moderatorfeedback import \
     models as moderatorfeedback_models
-from tests.factories import ModeratorStatementFactory
-from tests.factories import UserFactory
+
+from . import ModeratorStatementFactory
 
 
 class ProposalFactory(factory.django.DjangoModelFactory):
@@ -15,8 +15,8 @@ class ProposalFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker('sentence')
     description = 'Description'
-    creator = factory.SubFactory(UserFactory)
-    module = factory.SubFactory(ModuleFactory)
+    creator = factory.SubFactory(a4_factories.USER_FACTORY)
+    module = factory.SubFactory(a4_factories.ModuleFactory)
 
     moderator_statement = factory.SubFactory(ModeratorStatementFactory)
     moderator_feedback = moderatorfeedback_models.DEFAULT_CHOICES[0][0]

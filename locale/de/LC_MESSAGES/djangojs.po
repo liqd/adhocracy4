@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-25 10:27+0200\n"
+"POT-Creation-Date: 2017-11-15 11:44+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:96
+#: adhocracy4/comments/static/comments/Comment.jsx:97
 #: adhocracy4/comments/static/comments/Comment.jsx:97
 msgid "Do you really want to delete this comment?"
 msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:98
+#: adhocracy4/comments/static/comments/Comment.jsx:99
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
 #: adhocracy4/comments/static/comments/Comment.jsx:99
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
@@ -31,89 +31,89 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:52
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:125
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:76
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:79
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:90
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:93
 msgid "Delete"
 msgstr "Löschen"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:99
-#: adhocracy4/static/Modal.jsx:48
+#: adhocracy4/comments/static/comments/Comment.jsx:100
+#: adhocracy4/static/Modal.jsx:49
 #: adhocracy4/comments/static/comments/Comment.jsx:100
 #: adhocracy4/static/Modal.jsx:49
 msgid "Abort"
 msgstr "Abbrechen"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:112
+#: adhocracy4/comments/static/comments/Comment.jsx:113
 #: adhocracy4/comments/static/comments/Comment.jsx:113
 msgid "Latest edit on"
 msgstr "Letzte Änderung am"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:117
+#: adhocracy4/comments/static/comments/Comment.jsx:118
 #: adhocracy4/comments/static/comments/Comment.jsx:118
 msgid "Moderator"
 msgstr "Moderator"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:124
-#: adhocracy4/reports/static/reports/react_reports.jsx:21
 #: adhocracy4/comments/static/comments/Comment.jsx:125
-#: adhocracy4/reports/static/reports/react_reports.jsx:21
+#: adhocracy4/reports/static/reports/react_reports.jsx:20
+#: adhocracy4/comments/static/comments/Comment.jsx:125
+#: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid "Are you sure you want to report this item?"
 msgstr "Sind Sie sicher, dass Sie diesen Beitrag melden möchten?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:166
+#: adhocracy4/comments/static/comments/Comment.jsx:167
 #: adhocracy4/comments/static/comments/Comment.jsx:167
 msgid "Your reply here"
 msgstr "Ihre Antwort hier"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:81
+#: adhocracy4/comments/static/comments/CommentBox.jsx:82
 #: adhocracy4/comments/static/comments/CommentBox.jsx:82
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "Kommentar"
 msgstr[1] "Kommentare"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:84
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:32
-#: adhocracy4/comments/static/comments/CommentForm.jsx:36
+#: adhocracy4/comments/static/comments/CommentBox.jsx:85
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
+#: adhocracy4/comments/static/comments/CommentForm.jsx:37
 #: adhocracy4/comments/static/comments/CommentBox.jsx:85
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
 #: adhocracy4/comments/static/comments/CommentForm.jsx:37
 msgid "Your comment here"
 msgstr "Ihr Kommentar hier"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:35
-#: adhocracy4/comments/static/comments/CommentForm.jsx:39
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:36
+#: adhocracy4/comments/static/comments/CommentForm.jsx:40
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:36
 #: adhocracy4/comments/static/comments/CommentForm.jsx:40
 msgid "post"
 msgstr "Senden"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:36
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:37
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:37
 msgid "cancel"
 msgstr "Abbrechen"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:45
+#: adhocracy4/comments/static/comments/CommentForm.jsx:46
 #: adhocracy4/comments/static/comments/CommentForm.jsx:46
 msgid "Please login to comment"
 msgstr "Bitte melden Sie sich zum Kommentieren an."
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:51
+#: adhocracy4/comments/static/comments/CommentForm.jsx:52
 #: adhocracy4/comments/static/comments/CommentForm.jsx:52
 msgid "The currently active phase doesn't allow to comment."
 msgstr "Die aktuell laufende Phase erlaubt keine Kommentare."
 
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:15
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:16
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:16
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:23
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
 msgid "Report"
 msgstr "Melden"
 
-#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:5
+#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:6
 #: adhocracy4/comments/static/comments/CommentReplyBar.jsx:6
 #, javascript-format
 msgid "view %s reply"
@@ -121,17 +121,37 @@ msgid_plural "view %s replies"
 msgstr[0] "%s Antwort sehen"
 msgstr[1] "%s Antworten sehen"
 
-#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:25
+#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:26
 #: adhocracy4/comments/static/comments/CommentReplyBar.jsx:26
 msgid "Answer"
 msgstr "Antworten"
 
-#: adhocracy4/follows/static/follows/FollowButton.jsx:55
+#: adhocracy4/follows/static/follows/FollowButton.jsx:51
+#: adhocracy4/follows/static/follows/FollowButton.jsx:51
+msgid "Not following"
+msgstr "Nicht folgen"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:52
+#: adhocracy4/follows/static/follows/FollowButton.jsx:52
+msgid "Never be notified."
+msgstr "Sie werden nie benachrichtigt"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:53
+#: adhocracy4/follows/static/follows/FollowButton.jsx:53
+msgid "Following"
+msgstr "Folgen"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:54
+#: adhocracy4/follows/static/follows/FollowButton.jsx:54
+msgid "Receive email notifications about this project."
+msgstr "Sie erhalten E-Mail Benachrichtigungen über dieses Projekt"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:61
 #: adhocracy4/follows/static/follows/FollowButton.jsx:61
 msgid "Unfollow"
 msgstr "Entfolgen"
 
-#: adhocracy4/follows/static/follows/FollowButton.jsx:55
+#: adhocracy4/follows/static/follows/FollowButton.jsx:61
 #: adhocracy4/follows/static/follows/FollowButton.jsx:61
 msgid "Follow"
 msgstr "Folgen"
@@ -146,26 +166,10 @@ msgstr "Ihre Nachricht hier"
 msgid "Send Report"
 msgstr "Meldung senden"
 
-#: adhocracy4/follows/static/follows/FollowButton.jsx:51
-msgid "Not following"
-msgstr "Nicht folgen"
-
-#: adhocracy4/follows/static/follows/FollowButton.jsx:52
-msgid "Never be notified."
-msgstr "Sie werden nie benachrichtigt"
-
-#: adhocracy4/follows/static/follows/FollowButton.jsx:53
-msgid "Following"
-msgstr "Folgen"
-
-#: adhocracy4/follows/static/follows/FollowButton.jsx:54
-msgid "Receive email notifications about this project."
-msgstr "Sie erhalten E-Mail Benachrichtigungen über dieses Projekt"
-
 #: meinberlin/apps/contrib/assets/Alert.jsx:10
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
-#: meinberlin/assets/js/embed.js:30 meinberlin/assets/js/embed.js:31
+#: meinberlin/assets/js/embed.js:29 meinberlin/assets/js/embed.js:30
 msgid "Close"
 msgstr "Schließen"
 
@@ -195,8 +199,8 @@ msgstr "Neues Kapitel hinzufügen"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:34
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:105
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:108
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:59
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:62
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:73
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:76
 msgid "Move up"
 msgstr "nach oben"
 
@@ -204,8 +208,8 @@ msgstr "nach oben"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:43
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:114
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:117
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:68
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:71
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:82
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:85
 msgid "Move down"
 msgstr "nach unten"
 
@@ -234,7 +238,7 @@ msgid "Edit chapter"
 msgstr "Kapitel bearbeiten"
 
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:324
-#: meinberlin/apps/polls/assets/PollManagement.jsx:241
+#: meinberlin/apps/polls/assets/PollManagement.jsx:252
 msgid "Save"
 msgstr "Speichern"
 
@@ -257,46 +261,49 @@ msgstr ""
 msgid "remove"
 msgstr "entfernen"
 
-#: meinberlin/apps/polls/assets/PollManagement.jsx:178
+#: meinberlin/apps/polls/assets/PollManagement.jsx:188
 msgid "The poll has been updated."
 msgstr "Die Umfrage wurde aktualisiert."
 
-#: meinberlin/apps/polls/assets/PollManagement.jsx:195
+#: meinberlin/apps/polls/assets/PollManagement.jsx:205
 msgid "The poll could not be updated."
 msgstr "Die Umfrage konnte nicht aktualisiert werden."
 
-#: meinberlin/apps/polls/assets/PollManagement.jsx:235
+#: meinberlin/apps/polls/assets/PollManagement.jsx:246
 msgid "Add a new question"
 msgstr "Neue Frage"
 
-#: meinberlin/apps/polls/assets/Question.jsx:80
+#: meinberlin/apps/polls/assets/Question.jsx:49
 msgid "Vote counted"
 msgstr "Ihre Stimme wurde gezählt."
 
-#: meinberlin/apps/polls/assets/Question.jsx:90
+#: meinberlin/apps/polls/assets/Question.jsx:59
 msgid "Vote has not been counted due to a server error."
 msgstr "Ihre Stimme konnte aufgrund eines Serverfehlers nicht gezählt werden."
 
-#: meinberlin/apps/polls/assets/Question.jsx:119
-#: meinberlin/apps/polls/assets/Question.jsx:128
+#: meinberlin/apps/polls/assets/Question.jsx:106
 msgid "Vote"
 msgstr "Stimme abgeben"
 
-#: meinberlin/apps/polls/assets/Question.jsx:146
+#: meinberlin/apps/polls/assets/Question.jsx:115
+msgid "Please login to vote"
+msgstr "Bitte melden Sie sich zum Abstimmen an."
+
+#: meinberlin/apps/polls/assets/Question.jsx:132
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "Stimme"
 msgstr[1] "Stimmen"
 
-#: meinberlin/apps/polls/assets/Question.jsx:154
+#: meinberlin/apps/polls/assets/Question.jsx:140
 msgid "To poll"
 msgstr "Zur Umfrage"
 
-#: meinberlin/apps/polls/assets/Question.jsx:165
+#: meinberlin/apps/polls/assets/Question.jsx:151
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
-#: meinberlin/apps/polls/assets/Question.jsx:189
+#: meinberlin/apps/polls/assets/Question.jsx:174
 msgid "Your choice"
 msgstr "Ihre Wahl"
 
@@ -304,27 +311,31 @@ msgstr "Ihre Wahl"
 msgid "Question"
 msgstr "Frage"
 
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:28
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:34
+msgid "Users can select more than one answer."
+msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
+
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:42
 msgid "Choice"
 msgstr "Auswahl"
 
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:50
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:64
 msgid "Add a new choice"
 msgstr "Neue Antwort"
 
-#: meinberlin/assets/js/embed.js:83
+#: meinberlin/assets/js/embed.js:82
 msgid "We couldn't find what you were looking for."
 msgstr "Wir konnten diese Seite nicht finden."
 
-#: meinberlin/assets/js/embed.js:87
+#: meinberlin/assets/js/embed.js:86
 msgid "You don't have the permission to view this page."
 msgstr "Sie haben nicht die nötigen Rechte, um diese Seite anzuschauen."
 
-#: meinberlin/assets/js/embed.js:90
+#: meinberlin/assets/js/embed.js:89
 msgid "Something went wrong!"
 msgstr "Etwas ging schief!"
 
-#: meinberlin/assets/js/embed.js:189
+#: meinberlin/assets/js/embed.js:188
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."

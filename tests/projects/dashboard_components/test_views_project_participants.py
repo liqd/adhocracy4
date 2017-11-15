@@ -4,8 +4,8 @@ from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.dashboard2 import components
 from meinberlin.apps.ideas.phases import CollectFeedbackPhase
 from meinberlin.apps.projects.models import ParticipantInvite
-from tests.helpers import assert_template_response
-from tests.helpers import setup_phase
+from meinberlin.test.helpers import assert_template_response
+from meinberlin.test.helpers import setup_phase
 
 component = components.projects.get('participants')
 

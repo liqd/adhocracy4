@@ -1,8 +1,8 @@
 import pytest
 
 from meinberlin.apps.dashboard2 import components
-from tests.helpers import assert_dashboard_form_component_edited
-from tests.helpers import assert_dashboard_form_component_response
+from meinberlin.test.helpers import assert_dashboard_form_component_edited
+from meinberlin.test.helpers import assert_dashboard_form_component_response
 
 component = components.projects.get('container-basic')
 

@@ -19,22 +19,22 @@ $messages-margin-bottom: 25px;
     background-color: contrast-stretch($brand-info, $brand-info, 7);
     color: $brand-info;
     text-align: center;
+}
 
-    &.success {
-        background-color: contrast-stretch($brand-success, $brand-success);
-        color: $brand-success;
-    }
+.alert--success {
+    background-color: contrast-stretch($brand-success, $brand-success);
+    color: $brand-success;
+}
 
-    &.error,
-    &.danger {
-        background-color: contrast-stretch($brand-danger, $brand-danger);
-        color: $brand-danger;
-    }
+.alert--error,
+.alert--danger {
+    background-color: contrast-stretch($brand-danger, $brand-danger);
+    color: $brand-danger;
+}
 
-    &.warning {
-        background-color: $brand-warning;
-        color: contrast-stretch($brand-warning, $brand-warning, 7);
-    }
+.alert--warning {
+    background-color: $brand-warning;
+    color: contrast-stretch($brand-warning, $brand-warning, 7);
 }
 
 .alert__close {

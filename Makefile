@@ -12,11 +12,14 @@ help:
 	@echo
 	@echo usage:
 	@echo
-	@echo "  make install      -- install dev setup"
-	@echo "  make build        -- build js and css and create new po and mo files"
-	@echo "  make lint         -- lint all project files"
-	@echo "  make server       -- start a dev server"
-	@echo "  make watch        -- start a dev server and rebuild js and css files on changes"
+	@echo "  make install         -- install dev setup"
+	@echo "  make build           -- build js and css and create new po and mo files"
+	@echo "  make lint            -- lint all project files"
+	@echo "  make server          -- start a dev server"
+	@echo "  make watch           -- start a dev server and rebuild js and css files on changes"
+	@echo "  make test            -- run all test cases with pytest"
+	@echo "  make makemessages    -- create new po files from the source"
+	@echo "  make compilemessages -- create new mo files from the translated po files"
 	@echo
 
 .PHONY: install
