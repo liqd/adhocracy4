@@ -64,6 +64,7 @@
 .map-list-combined__list {
     overflow-y: auto;
     flex: 0 1 44vh;
+    background-color: $bg-secondary;
 
     @media (min-width: $breakpoint) {
         flex: 0 1 30em;
