@@ -23,6 +23,7 @@ project:
 -   *start_date*: Start date of the participation
 -   *end_date*: End date of the participation
 -   *image_url*: URL of the image that is used in the project tile
+-   *image_copyright*: Copyright shown for the image
 
 API endpoint for POST requests:
 
@@ -43,6 +44,7 @@ Example:
         "start_date": "2017-01-01 00:00",
         "end_date": "2018-01-01 00:00",
         "image_url": "http://berlin.de/bplan-123.jpg",
+        "image_copyright": "John Doe",
     }
     res = POST(https://mein.berlin.de/api/organisations/5/bplan/, data)
     print(res)
