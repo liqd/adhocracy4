@@ -158,7 +158,7 @@ class PlansMap extends React.Component {
     }
 
     return (
-      <li className={className} key={i}>
+      <li className={className} key={i} onClick={(e) => { this.onSelect(i) }}>
         <div className="list-item__subtitle">{item.organisation}</div>
         <h3 className="list-item__title"><a href={item.url}>{item.title}</a></h3>
         <div className="list-item__labels">
