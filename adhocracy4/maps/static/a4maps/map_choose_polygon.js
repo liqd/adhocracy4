@@ -70,6 +70,7 @@ var init = function () {
           shapeOptions: polygonStyle
         },
         marker: false,
+        circlemarker: false,
         polyline: false,
         circle: false
       }
