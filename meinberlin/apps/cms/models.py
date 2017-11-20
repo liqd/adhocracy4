@@ -173,3 +173,21 @@ class EmailFormPage(AbstractEmailForm):
                 value = ', '.join(value)
             fields[field.label] = value
         return fields
+
+
+class DocsPage(Page):
+    body = fields.StreamField([
+        ('documents_list', cms_blocks.DocsBlock())
+    ])
+
+    description = fields.RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        edit_handlers.FieldPanel('description'),
+        edit_handlers.StreamFieldPanel('body'),
+    ]
+
+    class Meta:
+        verbose_name = 'Documents'
+
+    subpage_types = []

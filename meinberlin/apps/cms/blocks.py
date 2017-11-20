@@ -64,3 +64,11 @@ class ColumnsBlock(blocks.StructBlock):
 
     class Meta:
         template = 'meinberlin_cms/blocks/columns_block.html'
+
+
+class DocsBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    body = blocks.RichTextBlock(required=False)
+
+    class Meta:
+        template = 'meinberlin_cms/blocks/docs_block.html'
