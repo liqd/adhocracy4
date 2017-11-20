@@ -2,21 +2,20 @@
 
 <div class="docs-block">
     <a
-        class="docs-block__title"
+        id="docs-block-{{ index }}-title"
         href="#docs-block-{{ index }}-body"
+        class="docs-block__title collapsed"
+        aria-haspopup="true"
+        aria-expanded="false"
         data-toggle="collapse">
-        <h2
-            id="docs-block-{{ index }}-title"
-            aria-haspopup="true"
-            aria-expanded="false"
-        >
+        <h2>
             {{ value.title }}
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
         </h2>
     </a>
 
     <div
-        class="docs-block__body"
+        class="docs-block__body collapse"
         id="docs-block-{{ index }}-body"
         aria-labelledby="docs-block-{{ index }}-title">
         {% if value.images %}
