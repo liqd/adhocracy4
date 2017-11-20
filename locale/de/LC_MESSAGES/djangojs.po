@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-15 11:44+0100\n"
+"POT-Creation-Date: 2017-11-20 17:32+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,7 +39,6 @@ msgstr "Löschen"
 #: adhocracy4/comments/static/comments/Comment.jsx:100
 #: adhocracy4/static/Modal.jsx:49
 #: adhocracy4/comments/static/comments/Comment.jsx:100
-#: adhocracy4/static/Modal.jsx:49
 msgid "Abort"
 msgstr "Abbrechen"
 
@@ -54,9 +53,9 @@ msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:125
-#: adhocracy4/reports/static/reports/react_reports.jsx:20
+#: adhocracy4/reports/static/reports/react_reports.jsx:21
 #: adhocracy4/comments/static/comments/Comment.jsx:125
-#: adhocracy4/reports/static/reports/react_reports.jsx:20
+#: adhocracy4/reports/static/reports/react_reports.jsx:21
 msgid "Are you sure you want to report this item?"
 msgstr "Sind Sie sicher, dass Sie diesen Beitrag melden möchten?"
 
@@ -289,7 +288,7 @@ msgstr "Stimme abgeben"
 msgid "Please login to vote"
 msgstr "Bitte melden Sie sich zum Abstimmen an."
 
-#: meinberlin/apps/polls/assets/Question.jsx:132
+#: meinberlin/apps/polls/assets/Question.jsx:137
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "Stimme"
@@ -299,11 +298,15 @@ msgstr[1] "Stimmen"
 msgid "To poll"
 msgstr "Zur Umfrage"
 
-#: meinberlin/apps/polls/assets/Question.jsx:151
+#: meinberlin/apps/polls/assets/Question.jsx:144
+msgid "Change vote"
+msgstr ""
+
+#: meinberlin/apps/polls/assets/Question.jsx:155
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
-#: meinberlin/apps/polls/assets/Question.jsx:174
+#: meinberlin/apps/polls/assets/Question.jsx:184
 msgid "Your choice"
 msgstr "Ihre Wahl"
 
@@ -323,19 +326,19 @@ msgstr "Auswahl"
 msgid "Add a new choice"
 msgstr "Neue Antwort"
 
-#: meinberlin/assets/js/embed.js:82
+#: meinberlin/assets/js/embed.js:85
 msgid "We couldn't find what you were looking for."
 msgstr "Wir konnten diese Seite nicht finden."
 
-#: meinberlin/assets/js/embed.js:86
+#: meinberlin/assets/js/embed.js:89
 msgid "You don't have the permission to view this page."
 msgstr "Sie haben nicht die nötigen Rechte, um diese Seite anzuschauen."
 
-#: meinberlin/assets/js/embed.js:89
+#: meinberlin/assets/js/embed.js:92
 msgid "Something went wrong!"
 msgstr "Etwas ging schief!"
 
-#: meinberlin/assets/js/embed.js:188
+#: meinberlin/assets/js/embed.js:191
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
