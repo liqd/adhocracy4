@@ -31,7 +31,6 @@ module.exports = {
       'leaflet/dist/leaflet.css',
       'leaflet.markercluster',
       'leaflet.markercluster/dist/MarkerCluster.css',
-      'leaflet.markercluster/dist/MarkerCluster.Default.css',
       './meinberlin/assets/js/plans_map.jsx'
     ],
     datepicker: [
@@ -110,7 +109,8 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
-      'jquery$': 'jquery/dist/jquery.min.js'
+      'jquery$': 'jquery/dist/jquery.min.js',
+      'shariff$': 'shariff/dist/shariff.complete.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.

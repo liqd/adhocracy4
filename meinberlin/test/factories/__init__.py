@@ -17,8 +17,8 @@ class UserFactory(factory.django.DjangoModelFactory):
         model = settings.AUTH_USER_MODEL
 
     username = factory.Sequence(lambda n: 'user%d' % n)
+    email = factory.Sequence(lambda n: 'user%d@liqd.net' % n)
     password = make_password('password')
-    email = factory.Faker('email')
 
 
 class AdminFactory(factory.django.DjangoModelFactory):
@@ -26,7 +26,8 @@ class AdminFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = settings.AUTH_USER_MODEL
 
-    username = factory.Faker('name')
+    username = factory.Sequence(lambda n: 'admin%d' % n)
+    email = factory.Sequence(lambda n: 'admin%d@liqd.net' % n)
     password = make_password('password')
     is_superuser = True
 
