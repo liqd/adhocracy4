@@ -300,7 +300,7 @@ msgstr "Zur Umfrage"
 
 #: meinberlin/apps/polls/assets/Question.jsx:144
 msgid "Change vote"
-msgstr ""
+msgstr "Stimme ändern"
 
 #: meinberlin/apps/polls/assets/Question.jsx:155
 msgid "Show preliminary results"
