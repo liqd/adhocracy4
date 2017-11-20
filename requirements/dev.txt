@@ -1,6 +1,6 @@
 -r base.txt
 django-autofixture==0.12.1
-django-debug-toolbar==1.8
+django-debug-toolbar==1.9.1
 factory-boy==2.8.1 # pyup: ignore # disable until pytest-factoryboy updates
 Faker==0.8.6
 flake8-docstrings==1.1.0
