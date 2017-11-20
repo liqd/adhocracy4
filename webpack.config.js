@@ -110,8 +110,7 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
-      'jquery$': 'jquery/dist/jquery.min.js',
-      'shariff$': 'shariff/dist/shariff.complete.js'
+      'jquery$': 'jquery/dist/jquery.min.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.
