@@ -1,3 +1,5 @@
+/* global django */
+
 const React = require('react')
 const ReactDOM = require('react-dom')
 const update = require('immutability-helper')
@@ -35,7 +37,9 @@ class PlansMap extends React.Component {
 
     this.state = {
       selected: null,
-      filters: {}
+      filters: {
+        status: -1
+      }
     }
   }
 
@@ -51,6 +55,14 @@ class PlansMap extends React.Component {
     this.setState({
       filters: update(this.state.filters, {
         $merge: {bounds: event.target.getBounds()}
+      })
+    })
+  }
+
+  onStatusFilterChange (event) {
+    this.setState({
+      filters: update(this.state.filters, {
+        $merge: {status: parseInt(event.target.value, 10)}
       })
     })
   }
@@ -77,7 +89,8 @@ class PlansMap extends React.Component {
 
   isInFilter (item) {
     let filters = this.state.filters
-    return !filters.bounds || filters.bounds.contains(pointToLatLng(item.point))
+    return (filters.status === -1 || filters.status === item.status) &&
+      (!filters.bounds || filters.bounds.contains(pointToLatLng(item.point)))
   }
 
   setMarkerSelected (marker) {
@@ -187,6 +200,15 @@ class PlansMap extends React.Component {
             })
           }
         </ul>
+
+        <select onChange={this.onStatusFilterChange.bind(this)}>
+          <option value="-1">{django.gettext('Status')}: {django.gettext('All')}</option>
+          <option value="0">{django.gettext('Status')}: {django.gettext('Idea')}</option>
+          <option value="1">{django.gettext('Status')}: {django.gettext('Planning')}</option>
+          <option value="2">{django.gettext('Status')}: {django.gettext('Implementation')}</option>
+          <option value="3">{django.gettext('Status')}: {django.gettext('Done')}</option>
+          <option value="4">{django.gettext('Status')}: {django.gettext('Stopped')}</option>
+        </select>
       </div>
     )
   }
