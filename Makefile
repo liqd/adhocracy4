@@ -35,7 +35,7 @@ webpack:
 
 .PHONY: webpack-prod
 webpack-prod:
-	$(NODE_BIN)/webpack
+	$(NODE_BIN)/webpack --define process.env.NODE_ENV="'production'" --optimize-minimize --devtool none
 
 .PHONY: makemessages
 makemessages:
