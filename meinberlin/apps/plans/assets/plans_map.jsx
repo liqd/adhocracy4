@@ -1,3 +1,5 @@
+/* global django */
+
 const React = require('react')
 const ReactDOM = require('react-dom')
 const update = require('immutability-helper')
@@ -29,13 +31,23 @@ const pointToLatLng = function (point) {
   }
 }
 
+const checkQueryMatch = function (str, q) {
+  const s = str.toLowerCase()
+  return !q || q.split(/\s+/g).every(word => {
+    return s.indexOf(word.toLowerCase()) !== -1
+  })
+}
+
 class PlansMap extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
       selected: null,
-      filters: {}
+      filters: {
+        status: -1,
+        participation: -1
+      }
     }
   }
 
@@ -51,6 +63,32 @@ class PlansMap extends React.Component {
     this.setState({
       filters: update(this.state.filters, {
         $merge: {bounds: event.target.getBounds()}
+      })
+    })
+  }
+
+  onStatusFilterChange (event) {
+    this.setState({
+      filters: update(this.state.filters, {
+        $merge: {status: parseInt(event.target.value, 10)}
+      })
+    })
+  }
+
+  onParticipationFilterChange (event) {
+    this.setState({
+      filters: update(this.state.filters, {
+        $merge: {status: parseInt(event.target.value, 10)}
+      })
+    })
+  }
+
+  onFreeTextFilterSubmit (event) {
+    event.preventDefault()
+
+    this.setState({
+      filters: update(this.state.filters, {
+        $merge: {q: event.target.search.value}
       })
     })
   }
@@ -77,7 +115,10 @@ class PlansMap extends React.Component {
 
   isInFilter (item) {
     let filters = this.state.filters
-    return !filters.bounds || filters.bounds.contains(pointToLatLng(item.point))
+    return (filters.status === -1 || filters.status === item.status) &&
+      (filters.participation === -1 || filters.participation === item.participation) &&
+      checkQueryMatch(item.title, filters.q) &&
+      (!filters.bounds || filters.bounds.contains(pointToLatLng(item.point)))
   }
 
   setMarkerSelected (marker) {
@@ -174,19 +215,55 @@ class PlansMap extends React.Component {
     )
   }
 
+  renderList () {
+    const items = this.props.items.filter(this.isInFilter.bind(this))
+    if (items.length > 0) {
+      return (
+        <ul className="u-list-reset">
+          { items.map(this.renderListItem.bind(this)) }
+        </ul>
+      )
+    } else {
+      return (
+        <div className="list-item-empty">{django.gettext('Nothing to show')}</div>
+      )
+    }
+  }
+
   render () {
     return (
-      <div className="map-list-combined">
-        <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
-        <ul className="u-list-reset map-list-combined__list" ref={this.bindList.bind(this)}>
-          {
-            this.props.items.map((item, i) => {
-              if (this.isInFilter(item)) {
-                return this.renderListItem(item, i)
-              }
-            })
-          }
-        </ul>
+      <div>
+        <div className="l-wrapper">
+          <div className="control-bar" role="group" aria-label={django.gettext('Filter bar')}>
+            <form onSubmit={this.onFreeTextFilterSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group u-inline-flex">
+              <input className="input-group__input" name="search" type="search" placeholder={django.gettext('Search')} />
+              <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Search')}>
+                <i className="fa fa-search" aria-label={django.gettext('Search')} />
+              </button>
+            </form>
+            &nbsp;
+            <select onChange={this.onStatusFilterChange.bind(this)} className="u-inline">
+              <option value="-1">{django.gettext('Status')}: {django.gettext('All')}</option>
+              <option value="0">{django.gettext('Status')}: {django.gettext('Idea')}</option>
+              <option value="1">{django.gettext('Status')}: {django.gettext('Planning')}</option>
+              <option value="2">{django.gettext('Status')}: {django.gettext('Implementation')}</option>
+              <option value="3">{django.gettext('Status')}: {django.gettext('Done')}</option>
+              <option value="4">{django.gettext('Status')}: {django.gettext('Stopped')}</option>
+            </select>
+            &nbsp;
+            <select onChange={this.onParticipationFilterChange.bind(this)} className="u-inline">
+              <option value="-1">{django.gettext('Participation')}: {django.gettext('All')}</option>
+              <option value="1">{django.gettext('Participation')}: {django.gettext('Planned')}</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="map-list-combined">
+          <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
+          <div className="map-list-combined__list" ref={this.bindList.bind(this)}>
+            {this.renderList()}
+          </div>
+        </div>
       </div>
     )
   }
