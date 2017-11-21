@@ -15,7 +15,7 @@ def test_rule(plan, user):
     project = plan.project
     anonymous, moderator, initiator = setup_users(project)
 
-    assert rules.has_perm(perm_name, anonymous, plan.organisation)
-    assert rules.has_perm(perm_name, user, plan.organisation)
-    assert rules.has_perm(perm_name, moderator, plan.organisation)
-    assert rules.has_perm(perm_name, initiator, plan.organisation)
+    assert rules.has_perm(perm_name, anonymous, None)
+    assert rules.has_perm(perm_name, user, None)
+    assert rules.has_perm(perm_name, moderator, None)
+    assert rules.has_perm(perm_name, initiator, None)

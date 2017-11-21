@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="item-detail__actions lr-bar">
-                    {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
+                    {% has_perm 'meinberlin_plans.change_plan' request.user object.organisation as user_may_change %}
                     {% if user_may_change %}
                         <div class="dropdown dropdown--right lr-bar__right">
                             <button

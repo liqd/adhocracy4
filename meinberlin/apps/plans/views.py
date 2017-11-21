@@ -55,7 +55,7 @@ class DashboardPlanListView(a4dashboard_mixins.DashboardBaseMixin,
                             generic.ListView):
     model = Plan
     template_name = 'meinberlin_plans/plan_dashboard_list.html'
-    permission_required = 'a4projects.add_project'
+    permission_required = 'meinberlin_plans.add_plan'
     menu_item = 'project'
 
     def get_permission_object(self):
@@ -91,7 +91,7 @@ class DashboardPlanUpdateView(a4dashboard_mixins.DashboardBaseMixin,
                               generic.UpdateView):
     model = Plan
     form_class = PlanForm
-    permission_required = 'meinberlin_plans.add_plan'
+    permission_required = 'meinberlin_plans.change_plan'
     template_name = 'meinberlin_plans/plan_update_form.html'
     menu_item = 'project'
 
