@@ -216,11 +216,16 @@ class PlansMap extends React.Component {
   }
 
   renderList () {
-    const items = this.props.items.filter(this.isInFilter.bind(this))
-    if (items.length > 0) {
+    let list = this.props.items.map((item, i) => {
+      if (this.isInFilter(item)) {
+        return this.renderListItem(item, i)
+      }
+    })
+
+    if (list.length > 0) {
       return (
         <ul className="u-list-reset">
-          { items.map(this.renderListItem.bind(this)) }
+          {list}
         </ul>
       )
     } else {
