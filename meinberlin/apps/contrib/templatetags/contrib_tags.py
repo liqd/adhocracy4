@@ -5,6 +5,7 @@ from django import template
 from django.forms.utils import flatatt
 from django.template import defaultfilters
 from django.template.loader import render_to_string
+from django.utils import timezone
 from django.utils.encoding import force_text
 from django.utils.safestring import mark_safe
 
@@ -62,9 +63,13 @@ def html_date(value, displayfmt=None, datetimefmt='c', **kwargs):
     """Format a date and wrap it in a html <time> element.
 
     Additional html attributes may be provided as kwargs (e.g. 'class').
+
+    Note: Converts the value to localtime as we loose the expects_localtime
+    flag functionality by directly calling the date filter from django.
     """
-    displaydate = defaultfilters.date(value, displayfmt)
-    datetime = defaultfilters.date(value, datetimefmt)
+    localtime_value = timezone.localtime(value)
+    displaydate = defaultfilters.date(localtime_value, displayfmt)
+    datetime = defaultfilters.date(localtime_value, datetimefmt)
     attribs = flatatt(kwargs)
     result = '<time %s datetime="%s">%s</time>' % (attribs,
                                                    datetime,
