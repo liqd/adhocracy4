@@ -4,6 +4,7 @@ from meinberlin.apps.bplan.views import BplanProjectCreateView
 from meinberlin.apps.dashboard2.urls import \
     urlpatterns as a4dashboard_urlpatterns
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
+from meinberlin.apps.newsletters import views as newsletter_views
 from meinberlin.apps.organisations import views as organisation_views
 from meinberlin.apps.plans import views as plan_views
 from meinberlin.apps.projectcontainers.views import ContainerCreateView
@@ -18,7 +19,7 @@ urlpatterns = [
         organisation_views.DashboardOrganisationUpdateView.as_view(),
         name='organisation-edit'),
     url(r'^newsletters/(?P<organisation_slug>[-\w_]+)/create/$',
-        views.DashboardNewsletterCreateView.as_view(),
+        newsletter_views.DashboardNewsletterCreateView.as_view(),
         name='newsletter-create'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/containers/$',
         ContainerListView.as_view(),
