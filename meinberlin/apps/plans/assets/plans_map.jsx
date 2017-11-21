@@ -189,26 +189,32 @@ class PlansMap extends React.Component {
 
   render () {
     return (
-      <div className="map-list-combined">
-        <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
-        <ul className="u-list-reset map-list-combined__list" ref={this.bindList.bind(this)}>
-          {
-            this.props.items.map((item, i) => {
-              if (this.isInFilter(item)) {
-                return this.renderListItem(item, i)
-              }
-            })
-          }
-        </ul>
+      <div>
+        <div className="l-wrapper">
+          <div className="control-bar" role="group" aria-label={django.gettext('Filter bar')}>
+            <select onChange={this.onStatusFilterChange.bind(this)}>
+              <option value="-1">{django.gettext('Status')}: {django.gettext('All')}</option>
+              <option value="0">{django.gettext('Status')}: {django.gettext('Idea')}</option>
+              <option value="1">{django.gettext('Status')}: {django.gettext('Planning')}</option>
+              <option value="2">{django.gettext('Status')}: {django.gettext('Implementation')}</option>
+              <option value="3">{django.gettext('Status')}: {django.gettext('Done')}</option>
+              <option value="4">{django.gettext('Status')}: {django.gettext('Stopped')}</option>
+            </select>
+          </div>
+        </div>
 
-        <select onChange={this.onStatusFilterChange.bind(this)}>
-          <option value="-1">{django.gettext('Status')}: {django.gettext('All')}</option>
-          <option value="0">{django.gettext('Status')}: {django.gettext('Idea')}</option>
-          <option value="1">{django.gettext('Status')}: {django.gettext('Planning')}</option>
-          <option value="2">{django.gettext('Status')}: {django.gettext('Implementation')}</option>
-          <option value="3">{django.gettext('Status')}: {django.gettext('Done')}</option>
-          <option value="4">{django.gettext('Status')}: {django.gettext('Stopped')}</option>
-        </select>
+        <div className="map-list-combined">
+          <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
+          <ul className="u-list-reset map-list-combined__list" ref={this.bindList.bind(this)}>
+            {
+              this.props.items.map((item, i) => {
+                if (this.isInFilter(item)) {
+                  return this.renderListItem(item, i)
+                }
+              })
+            }
+          </ul>
+        </div>
       </div>
     )
   }
