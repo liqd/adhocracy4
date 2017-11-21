@@ -4,7 +4,8 @@ from meinberlin.apps.bplan.views import BplanProjectCreateView
 from meinberlin.apps.dashboard2.urls import \
     urlpatterns as a4dashboard_urlpatterns
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
-from meinberlin.apps.plans import views as plans_views
+from meinberlin.apps.organisations import views as organisation_views
+from meinberlin.apps.plans import views as plan_views
 from meinberlin.apps.projectcontainers.views import ContainerCreateView
 from meinberlin.apps.projectcontainers.views import ContainerListView
 
@@ -14,7 +15,7 @@ app_name = 'a4dashboard'
 
 urlpatterns = [
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/settings/$',
-        views.DashboardOrganisationUpdateView.as_view(),
+        organisation_views.DashboardOrganisationUpdateView.as_view(),
         name='organisation-edit'),
     url(r'^newsletters/(?P<organisation_slug>[-\w_]+)/create/$',
         views.DashboardNewsletterCreateView.as_view(),
@@ -23,18 +24,18 @@ urlpatterns = [
         ContainerListView.as_view(),
         name='container-list'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/plans/$',
-        plans_views.DashboardPlanListView.as_view(),
+        plan_views.DashboardPlanListView.as_view(),
         name='plan-list'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/plans/create/$',
-        plans_views.DashboardPlanCreateView.as_view(),
+        plan_views.DashboardPlanCreateView.as_view(),
         name='plan-create'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)'
         r'/plans/(?P<slug>[-\w_]+)/$',
-        plans_views.DashboardPlanUpdateView.as_view(),
+        plan_views.DashboardPlanUpdateView.as_view(),
         name='plan-update'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)'
         r'/plans/(?P<slug>[-\w_]+)/delete/$',
-        plans_views.DashboardPlanDeleteView.as_view(),
+        plan_views.DashboardPlanDeleteView.as_view(),
         name='plan-delete'),
 
     # Overwrite adhocracy4 core urls with meinBerlin urls
