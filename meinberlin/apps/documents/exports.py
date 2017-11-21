@@ -1,6 +1,8 @@
+from django.utils import timezone
 from django.utils.html import strip_tags
 from django.utils.translation import ugettext_lazy as _
 
+from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.exports import views as export_views
 from meinberlin.apps.exports import register_export
 
@@ -8,10 +10,15 @@ from . import models
 
 
 @register_export(_('Documents with comments'))
-class DocumentExportView(export_views.AbstractXlsxExportView,
-                         export_views.ItemExportWithCommentsMixin):
+class DocumentExportView(ProjectContextMixin,
+                         export_views.ItemExportWithCommentsMixin,
+                         export_views.AbstractXlsxExportView):
 
     PARAGRAPH_TEXT_LIMIT = 100
+
+    def get_base_filename(self):
+        return '%s_%s' % (self.project.slug,
+                          timezone.now().strftime('%Y%m%dT%H%M%S'))
 
     def get_header(self):
         return map(str, [_('Chapter'), _('Paragraph'), _('Comments')])
