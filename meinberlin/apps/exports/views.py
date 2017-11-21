@@ -86,11 +86,16 @@ class AbstractXlsxExportView(generic.View):
 
         for rownum, row in enumerate(self.export_rows(), start=1):
             for colnum, field in enumerate(row):
-                worksheet.write(rownum, colnum, field)
+                worksheet.write(rownum, colnum, self._clean_field(field))
 
         workbook.close()
 
         return response
+
+    def _clean_field(self, field):
+        if isinstance(field, str):
+            return field.replace('\r', '')
+        return field
 
 
 class VirtualFieldMixin:
