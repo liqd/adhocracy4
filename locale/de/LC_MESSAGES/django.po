@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-15 11:44+0100\n"
+"POT-Creation-Date: 2017-11-20 17:32+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -214,7 +214,7 @@ msgstr ""
 
 #: adhocracy4/phases/models.py:64
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/removeable_user_list.html:7
-#: meinberlin/apps/newsletters/models.py:29
+#: meinberlin/apps/newsletters/models.py:30
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:7
 msgid "Name"
 msgstr "Name"
@@ -222,6 +222,7 @@ msgstr "Name"
 #: adhocracy4/phases/models.py:66
 #: meinberlin/apps/ideas/models.py:26
 #: meinberlin/apps/offlineevents/models.py:17
+#: meinberlin/apps/plans/models.py:47
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -597,8 +598,8 @@ msgstr "Stellungnahme per E-Mail an Verwaltung senden."
 msgid "bplan"
 msgstr "Bebauungsplan"
 
-#: meinberlin/apps/bplan/serializers.py:80
-#: meinberlin/apps/bplan/serializers.py:81
+#: meinberlin/apps/bplan/serializers.py:86
+#: meinberlin/apps/bplan/serializers.py:87
 msgid "Bplan statement phase"
 msgstr "Bebauungsplan Stellungnahmephase"
 
@@ -676,7 +677,7 @@ msgstr "Bürgerhaushalt"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:21
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:37
-#: meinberlin/apps/dashboard/templates/meinberlin_dashboard/includes/plan_form.html:11
+#: meinberlin/apps/dashboard/templates/meinberlin_dashboard/includes/plan_form.html:27
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_form_module.html:19
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_form_project.html:19
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_form.html:15
@@ -692,7 +693,7 @@ msgstr "Speichern"
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:22
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:16
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:38
-#: meinberlin/apps/dashboard/templates/meinberlin_dashboard/includes/plan_form.html:12
+#: meinberlin/apps/dashboard/templates/meinberlin_dashboard/includes/plan_form.html:28
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/newsletter_form.html:31
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/plan_confirm_delete.html:14
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_create_form.html:30
@@ -764,7 +765,7 @@ msgstr "Sind Sie sicher, dass Sie diesen Vorschlag löschen möchten?"
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:13
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:12
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
-#: meinberlin/apps/projects/views.py:54
+#: meinberlin/apps/plans/models.py:57 meinberlin/apps/projects/views.py:54
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
 msgid "Yes"
 msgstr "Ja"
@@ -789,6 +790,7 @@ msgstr "Anlegen eines neuen Vorschlags"
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:8
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:9
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:17
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:9
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:8
 msgid "breadcrumbs"
 msgstr "breadcrumbs"
@@ -958,6 +960,7 @@ msgstr "Listenansicht"
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/preview.html:9
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/project_list_item.html:33
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:14
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:15
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:14
 #: meinberlin/templates/meinberlin_dashboard2/includes/preview.html:10
 #: meinberlin/templates/meinberlin_dashboard2/includes/project_list_item.html:36
@@ -981,6 +984,7 @@ msgstr "Aktionen"
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/plan_list.html:37
 #: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/project_list_item.html:39
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:28
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:63
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:19
@@ -991,7 +995,7 @@ msgstr "Bearbeiten"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:71
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/plan_list.html:42
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:24
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:17
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:25
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:24
 msgid "Delete"
 msgstr "Löschen"
@@ -1266,7 +1270,8 @@ msgstr "Kategorien bearbeiten"
 msgid "Archived"
 msgstr "Archiviert"
 
-#: meinberlin/apps/dashboard2/filter.py:20 meinberlin/apps/projects/views.py:53
+#: meinberlin/apps/dashboard2/filter.py:20 meinberlin/apps/plans/models.py:58
+#: meinberlin/apps/projects/views.py:53
 msgid "No"
 msgstr "Nein"
 
@@ -1656,7 +1661,7 @@ msgstr "Ideen mit Kommentaren"
 
 #: meinberlin/apps/ideas/models.py:25 meinberlin/apps/maptopicprio/models.py:26
 #: meinberlin/apps/offlineevents/models.py:14
-#: meinberlin/apps/plans/models.py:14 meinberlin/apps/topicprio/models.py:25
+#: meinberlin/apps/plans/models.py:26 meinberlin/apps/topicprio/models.py:25
 msgid "Title"
 msgstr "Titel"
 
@@ -1823,7 +1828,7 @@ msgid "Where can your idea be located on a map?"
 msgstr "Wo kann ihre Idee auf der Karte verortet werden?"
 
 #: meinberlin/apps/mapideas/models.py:12
-#: meinberlin/apps/maptopicprio/models.py:37 meinberlin/apps/plans/models.py:21
+#: meinberlin/apps/maptopicprio/models.py:37 meinberlin/apps/plans/models.py:33
 msgid ""
 "Click inside marked area on the map to set a marker. Drag and drop the "
 "marker to change its place. Alternatively you can use the search field to "
@@ -1839,7 +1844,7 @@ msgid "Label of the ideas location"
 msgstr "Bezeichnung des markierten Ortes"
 
 #: meinberlin/apps/mapideas/models.py:22
-#: meinberlin/apps/maptopicprio/models.py:47
+#: meinberlin/apps/maptopicprio/models.py:47 meinberlin/apps/plans/models.py:42
 msgid "This could be an address or the name of a landmark."
 msgstr "Dies kann sowohl eine Adresse als auch eine Ortsbezeichnung sein."
 
@@ -1934,52 +1939,52 @@ msgstr "Ort wurde gelöscht"
 msgid "Moderator feedback for items with fixed feedback choices"
 msgstr "Rückmeldung der Moderation für Beiträge mit festen Rückmelde-Optionen"
 
-#: meinberlin/apps/moderatorfeedback/models.py:10
+#: meinberlin/apps/moderatorfeedback/models.py:11
 msgid "Under consideration"
 msgstr "wird geprüft"
 
-#: meinberlin/apps/moderatorfeedback/models.py:11
+#: meinberlin/apps/moderatorfeedback/models.py:12
 msgid "Rejected"
 msgstr "nicht umgesetzt"
 
-#: meinberlin/apps/moderatorfeedback/models.py:12
+#: meinberlin/apps/moderatorfeedback/models.py:13
 msgid "Accepted"
 msgstr "wird umgesetzt"
 
 #: meinberlin/apps/newsletters/forms.py:25
-#: meinberlin/apps/newsletters/models.py:42
+#: meinberlin/apps/newsletters/models.py:43
 msgid "Receivers"
 msgstr "Empfänger*innen"
 
-#: meinberlin/apps/newsletters/models.py:18
+#: meinberlin/apps/newsletters/models.py:19
 msgid "Users following a specific project"
 msgstr "Nutzer*innen die einem bestimmten Projekt folgen"
 
-#: meinberlin/apps/newsletters/models.py:19
+#: meinberlin/apps/newsletters/models.py:20
 msgid "Users following your organisation"
 msgstr "Nutzer*innen die Ihrer Organisation folgen"
 
-#: meinberlin/apps/newsletters/models.py:20
+#: meinberlin/apps/newsletters/models.py:21
 msgid "Every initiator of your organisation"
 msgstr "Initiator*innen Ihrer Organisation"
 
-#: meinberlin/apps/newsletters/models.py:21
+#: meinberlin/apps/newsletters/models.py:22
 msgid "Every user of the platform"
 msgstr "Alle Nutzer*innen der Plattform"
 
-#: meinberlin/apps/newsletters/models.py:31
+#: meinberlin/apps/newsletters/models.py:32
 msgid "Sender"
 msgstr "Absender"
 
-#: meinberlin/apps/newsletters/models.py:33
+#: meinberlin/apps/newsletters/models.py:34
 msgid "Subject"
 msgstr "Betreff"
 
-#: meinberlin/apps/newsletters/models.py:36
+#: meinberlin/apps/newsletters/models.py:37
 msgid "Email body"
 msgstr "Inhalt der E-Mail"
 
-#: meinberlin/apps/newsletters/models.py:39
+#: meinberlin/apps/newsletters/models.py:40
 msgid "Sent"
 msgstr "Senden"
 
@@ -2057,13 +2062,71 @@ msgstr "Logo"
 msgid "The image will be shown in the newsletter in the banner."
 msgstr "Das Bild wird in der Kopfzeile von Newslettern angezeigt."
 
-#: meinberlin/apps/plans/forms.py:21
+#: meinberlin/apps/plans/forms.py:23
 msgid "Please locate the plan on the map."
 msgstr "Bitte verorten Sie das Vorhaben auf der Karte."
 
-#: meinberlin/apps/plans/models.py:20
+#: meinberlin/apps/plans/models.py:32
 msgid "Where can the plan be located on a map?"
 msgstr "Wo kann das Vorhaben auf der Karte verortet werden?"
+
+#: meinberlin/apps/plans/models.py:41
+msgid "Label of the location"
+msgstr ""
+
+#: meinberlin/apps/plans/models.py:44
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:46
+#: meinberlin/templates/email_base.html:55
+#: meinberlin/templates/email_base.txt:13
+#: meinberlin/templates/newsletter_base.html:51
+#: meinberlin/templates/newsletter_base.txt:13
+msgid "Contact"
+msgstr "Kontakt"
+
+#: meinberlin/apps/plans/models.py:46
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:42
+msgid "Cost"
+msgstr ""
+
+#: meinberlin/apps/plans/models.py:48
+msgid "Type of plan"
+msgstr ""
+
+#: meinberlin/apps/plans/models.py:50
+msgid "Idea"
+msgstr ""
+
+#: meinberlin/apps/plans/models.py:51
+msgid "Planning"
+msgstr ""
+
+#: meinberlin/apps/plans/models.py:52
+msgid "Implementation"
+msgstr ""
+
+#: meinberlin/apps/plans/models.py:53
+msgid "Done"
+msgstr ""
+
+#: meinberlin/apps/plans/models.py:54
+msgid "Stopped"
+msgstr ""
+
+#: meinberlin/apps/plans/models.py:59
+msgid "Still undecided"
+msgstr ""
+
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:14
+msgid "back to list of plans"
+msgstr ""
+
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:51
+msgid "Go to participation"
+msgstr ""
+
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:53
+msgid "Participation is planned, but has not started yet."
+msgstr ""
 
 #: meinberlin/apps/polls/phases.py:16
 msgid "Voting phase"
@@ -2613,8 +2676,8 @@ msgstr ""
 msgid "Account Settings"
 msgstr "Nutzerkonto Einstellungen"
 
-#: meinberlin/config/settings/base.py:275
-#: meinberlin/config/settings/base.py:285
+#: meinberlin/config/settings/base.py:278
+#: meinberlin/config/settings/base.py:288
 msgid "Rich text editor"
 msgstr "Rich Text Editor"
 
@@ -2827,13 +2890,6 @@ msgstr "Fehler"
 #: meinberlin/templates/newsletter_base.txt:10
 msgid "meinBerlin is a participation platform operated by"
 msgstr "meinBerlin ist die Plattform für Beteiligung, betrieben durch"
-
-#: meinberlin/templates/email_base.html:55
-#: meinberlin/templates/email_base.txt:13
-#: meinberlin/templates/newsletter_base.html:51
-#: meinberlin/templates/newsletter_base.txt:13
-msgid "Contact"
-msgstr "Kontakt"
 
 #: meinberlin/templates/header.html:12
 msgid "Menu"
