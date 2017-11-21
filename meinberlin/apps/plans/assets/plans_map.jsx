@@ -215,6 +215,21 @@ class PlansMap extends React.Component {
     )
   }
 
+  renderList () {
+    const items = this.props.items.filter(this.isInFilter.bind(this))
+    if (items.length > 0) {
+      return (
+        <ul className="u-list-reset">
+          { items.map(this.renderListItem.bind(this)) }
+        </ul>
+      )
+    } else {
+      return (
+        <div className="list-item-empty">{django.gettext('Nothing to show')}</div>
+      )
+    }
+  }
+
   render () {
     return (
       <div>
@@ -245,15 +260,9 @@ class PlansMap extends React.Component {
 
         <div className="map-list-combined">
           <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
-          <ul className="u-list-reset map-list-combined__list" ref={this.bindList.bind(this)}>
-            {
-              this.props.items.map((item, i) => {
-                if (this.isInFilter(item)) {
-                  return this.renderListItem(item, i)
-                }
-              })
-            }
-          </ul>
+          <div className="map-list-combined__list" ref={this.bindList.bind(this)}>
+            {this.renderList()}
+          </div>
         </div>
       </div>
     )
