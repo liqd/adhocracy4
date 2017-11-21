@@ -6,6 +6,14 @@ const update = require('immutability-helper')
 const $ = require('jquery')
 const L = require('leaflet')
 
+const statusNames = [
+  django.gettext('Idea'),
+  django.gettext('Planning'),
+  django.gettext('Implementation'),
+  django.gettext('Done'),
+  django.gettext('Stopped')
+]
+
 const icon = L.icon({
   iconUrl: '/static/images/map_pin_01_2x.png',
   shadowUrl: '/static/images/map_shadow_01_2x.png',
@@ -249,11 +257,13 @@ class PlansMap extends React.Component {
             &nbsp;
             <select onChange={this.onStatusFilterChange.bind(this)} className="u-inline">
               <option value="-1">{django.gettext('Status')}: {django.gettext('All')}</option>
-              <option value="0">{django.gettext('Status')}: {django.gettext('Idea')}</option>
-              <option value="1">{django.gettext('Status')}: {django.gettext('Planning')}</option>
-              <option value="2">{django.gettext('Status')}: {django.gettext('Implementation')}</option>
-              <option value="3">{django.gettext('Status')}: {django.gettext('Done')}</option>
-              <option value="4">{django.gettext('Status')}: {django.gettext('Stopped')}</option>
+              {
+                statusNames.map((name, i) => {
+                  return (
+                    <option value={i}>{django.gettext('Status')}: {name}</option>
+                  )
+                })
+              }
             </select>
             &nbsp;
             <select onChange={this.onParticipationFilterChange.bind(this)} className="u-inline">
