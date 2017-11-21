@@ -12,13 +12,130 @@
                     </div>
                     <ul class="dashboard-nav__pages">
                         <li class="dashboard-nav__page">
+                            <a href="#cl-errorlist" class="dashboard-nav__item dashboard-nav__item--interactive">Errorlist</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-formgroup" class="dashboard-nav__item dashboard-nav__item--interactive">Formgroup</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-formcheck" class="dashboard-nav__item dashboard-nav__item--interactive">Formcheck</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-actions" class="dashboard-nav__item dashboard-nav__item--interactive">Actions</a>
+                        </li>
+                        <li class="dashboard-nav__page">
                             <a href="#cl-alerts" class="dashboard-nav__item dashboard-nav__item--interactive">Alerts</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-blocks" class="dashboard-nav__item dashboard-nav__item--interactive">Blocks</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-breadcrumbs" class="dashboard-nav__item dashboard-nav__item--interactive">Breadcrumbs</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-buttons" class="dashboard-nav__item dashboard-nav__item--interactive">Buttons</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Commenting</a>
                         </li>
                     </ul>
                 </nav>
             </div>
             <div class="l-menu__content">
                 <h1 class="u-first-heading">Component Library</h1>
+
+                <h2 id="cl-errorlist">Errorlist</h2>
+
+                <div class="cl-example">
+                    <ul class="errorlist">
+                        <li>Error Message 1</li>
+                        <li>Error Message 2</li>
+                    </ul>
+                </div>
+
+                <h2 id="cl-formgroup">Formgroup</h2>
+
+                <div class="cl-example">
+                    <div class="form-group">
+                        <label for="id_field">
+                            Label
+                        </label>
+                        <div class="form-hint">
+                            Help text
+                        </div>
+                        <div class="widget widget--textinput">
+                            <input type="text" name="name" value="" id="id_field">
+                        </div>
+                        <ul class="errorlist">
+                            <li>Error Message</li>
+                        </ul>
+                    </div>
+                    <div class="form-group form-group--narrow">
+                        <label for="id_narrowfield">
+                            Label for narrow formgroup
+                        </label>
+                        <div class="form-hint">
+                            Help text
+                        </div>
+                        <div class="widget widget--textinput">
+                            <input type="text" name="name" value="" id="id_narrowfield">
+                        </div>
+                        <ul class="errorlist">
+                            <li>Error Message</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2 id="cl-formcheck">Formcheck</h2>
+
+                <div class="cl-example">
+                    <div class="form-check">
+                        <label class="form-check__label">
+                            <input type="checkbox">
+                            Label
+                        </label>
+                        <div class="form-hint">
+                            Help text
+                        </div>
+                        <ul class="errorlist">
+                            <li>Error Message</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2 id="cl-actions">Actions</h2>
+
+                <div class="cl-example">
+                    <div class="action">
+                        <i class="fa fa-clock-o action__icon" aria-hidden="true"></i>
+                        <div class="action__main">
+                            <div class="action__line">
+                                Action of type schedule
+                            </div>
+                            <div class="action__line">
+                                on <a href="#">Project</a>
+                            </div>
+                            <div class="action__date">
+                                03.11.2017
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action">
+                        <i class="fa fa-comment action__icon" aria-hidden="true"></i>
+                        <div class="action__main">
+                            <div class="action__line">
+                                Action of type comment.
+                                Impedit dolorem nihil blanditiis est. Expedita voluptas aperiam consequatur quia exercitationem ipsa ab explicabo. Aperiam ut odio ab eveniet minima. Eos beatae dicta quae. Sed eum mollitia corporis reiciendis consectetur totam doloribus. Saepe ea cumque dicta officiis.
+                            </div>
+                            <div class="action__line">
+                                on <a href="#">Project</a>
+                            </div>
+                            <div class="action__date">
+                                03.11.2017
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <h2 id="cl-alerts">Alerts</h2>
 
@@ -56,6 +173,137 @@
                         <button class="alert__close">X</button>
                     </p>
                 </div>
+
+                <h2 id="cl-blocks">Blocks</h2>
+
+                <div class="cl-example">
+                    <div class="block">
+                        <h2>Block content</h2>
+                        <p>
+                            Impedit dolorem nihil blanditiis est. Expedita voluptas aperiam consequatur quia exercitationem ipsa ab explicabo. Aperiam ut odio ab eveniet minima. Eos beatae dicta quae. Sed eum mollitia corporis reiciendis consectetur totam doloribus. Saepe ea cumque dicta officiis.
+                        </p>
+                    </div>
+                    <div class="block block--cta">
+                        <div class="l-wrapper">
+                            <div class="rich-text">
+                                <h2>Call to action block</h2>
+                                <p>
+                                    Impedit dolorem nihil blanditiis est. Expedita voluptas aperiam consequatur quia exercitationem ipsa ab explicabo. Aperiam ut odio ab eveniet minima. Eos beatae dicta quae. Sed eum mollitia corporis reiciendis consectetur totam doloribus. Saepe ea cumque dicta officiis.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block block--bordered">
+                        <h2>Bordered block</h2>
+                        <p>
+                            Impedit dolorem nihil blanditiis est. Expedita voluptas aperiam consequatur quia exercitationem ipsa ab explicabo. Aperiam ut odio ab eveniet minima. Eos beatae dicta quae. Sed eum mollitia corporis reiciendis consectetur totam doloribus. Saepe ea cumque dicta officiis.
+                        </p>
+                    </div>
+                </div>
+
+                <h2 id="cl-breadcrumbs">Breadcrumbs</h2>
+
+                <div class="cl-example">
+                    <nav class="breadcrumbs" aria-label="Breadcrumbs (label required for landmarks)">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                    First breadcrumb
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                    Second breadcrumb
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <h2 id="cl-buttons">Buttons</h2>
+
+                <div class="cl-example">
+                    <p>
+                        <button class="btn" type="button">Button</button>
+                        <input class="btn" type="button" value="Input Button"/>
+                        <a class="btn" href="#">Link as Button</a>
+                    </p>
+                    <p>
+                        <button class="btn btn--light" type="button">Light Button</button>
+                        <button class="btn btn--primary" type="button">Primary Button</button>
+                        <button class="btn btn--secondary" type="button">Secondary Button</button>
+                        <button class="btn btn--link" type="button">Button as Link</button>
+                        <button class="btn btn--none" type="button">No Button</button>
+                    </p>
+                    <p>
+                        <button class="btn btn--select" type="button">Select Button <i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                        <button class="btn btn--small" type="button">Small Button</button>
+                        <button class="btn btn--huge" type="button">Huge Button</button>
+                        <button class="btn btn--attached-top" type="button">Top Button</button>
+                    </p>
+                    <p>
+                        <button class="btn btn--full" type="button">Full Button</button>
+                    </p>
+                    <div class="btn-group" role="group">
+                        <button class="btn" type="button">But</button><button class="btn" type="button">ton</button><button class="btn" type="button">group</button>
+                    </div>
+                </div>
+
+                <h2 id="cl-commenting">Commenting</h2>
+
+                <div class="cl-example">
+                    <div class="commenting">
+                        <div class="commenting__content">
+                            Impedit dolorem nihil blanditiis est. Expedita voluptas aperiam consequatur quia exercitationem ipsa ab explicabo. Aperiam ut odio ab eveniet minima. Eos beatae dicta quae. Sed eum mollitia corporis reiciendis consectetur totam doloribus. Saepe ea cumque dicta officiis.
+                        </div>
+                        {% spaceless %}
+                            <div class="commenting__actions btn-group" role="group">
+                                <button class="btn btn--light btn--small" title="Move up" type="button">
+                                    <i class="fa fa-chevron-up" aria-label="Move up"></i>
+                                </button>
+                                <button class="btn btn--light btn--small" title="Move down" type="button">
+                                    <i class="fa fa-chevron-down" aria-label="Move down"></i>
+                                </button>
+                                <button class="btn btn--light btn--small" title="Delete" type="button">
+                                    <i class="fa fa-trash" aria-label="Delete"></i>
+                                </button>
+                            </div>
+                        {% endspaceless %}
+                    </div>
+                    <div class="commenting">
+                        <div class="commenting__content commenting__content--border">
+                            Impedit dolorem nihil blanditiis est. Expedita voluptas aperiam consequatur quia exercitationem ipsa ab explicabo. Aperiam ut odio ab eveniet minima. Eos beatae dicta quae. Sed eum mollitia corporis reiciendis consectetur totam doloribus. Saepe ea cumque dicta officiis.
+                        </div>
+                        <div class="commenting__actions">
+                            <button class="btn btn--light btn--small" title="Delete" type="button">
+                                <i class="fa fa-trash" aria-label="Delete"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="commenting commenting--toc">
+                        <button type="button" class="commenting__content commenting--toc__button btn btn--light btn--small">
+                            1. Title
+                        </button>
+                        <div class="commenting__actions">
+                            <button class="btn btn--light btn--small" title="Delete" type="button">
+                                <i class="fa fa-trash" aria-label="Delete"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="commenting commenting--toc">
+                        <button type="button" class="commenting__content commenting--toc__button btn btn--light btn--small active">
+                            2. Title (active)
+                        </button>
+                        <div class="commenting__actions">
+                            <button class="btn btn--light btn--small" title="Delete" type="button">
+                                <i class="fa fa-trash" aria-label="Delete"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
