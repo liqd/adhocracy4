@@ -14,14 +14,17 @@ const statusNames = [
   django.gettext('Stopped')
 ]
 
-const icon = L.icon({
-  iconUrl: '/static/images/map_pin_01_2x.png',
-  shadowUrl: '/static/images/map_shadow_01_2x.png',
-  iconSize: [30, 45],
-  iconAnchor: [15, 45],
-  shadowSize: [40, 54],
-  shadowAnchor: [20, 54]
-})
+const icons = [
+  'lightbulb-o',
+  'cog',
+  'play',
+  'check',
+  'pause'
+].map((cls, i) => L.divIcon({
+  className: 'map-list-combined__icon',
+  html: `<i class="fa fa-${cls}" title="${statusNames[i]}" aria-hidden="true"></i>`,
+  iconSize: [20, 20]
+}))
 
 const activeIcon = L.icon({
   iconUrl: '/static/images/map_pin_active_01_2x.png',
@@ -142,12 +145,12 @@ class PlansMap extends React.Component {
     }
   }
 
-  setMarkerDefault (marker) {
+  setMarkerDefault (marker, item) {
     if (!this.cluster.hasLayer(marker)) {
       this.selectedMarkers.removeLayer(marker)
 
       marker.setZIndexOffset(0)
-      marker.setIcon(icon)
+      marker.setIcon(icons[item.status])
       this.cluster.addLayer(marker)
     }
   }
@@ -165,7 +168,7 @@ class PlansMap extends React.Component {
     this.selectedMarkers = L.layerGroup().addTo(this.map)
 
     this.markers = this.props.items.map((item, i) => {
-      let marker = L.marker(pointToLatLng(item.point), {icon: icon})
+      let marker = L.marker(pointToLatLng(item.point), {icon: icons[item.status]})
       this.cluster.addLayer(marker)
       marker.on('click', () => {
         this.onSelect(i)
@@ -187,7 +190,7 @@ class PlansMap extends React.Component {
         } else if (i === this.state.selected) {
           this.setMarkerSelected(marker)
         } else {
-          this.setMarkerDefault(marker)
+          this.setMarkerDefault(marker, item)
         }
       })
 
