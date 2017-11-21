@@ -26,15 +26,6 @@
     text-align: right;
 }
 
-.commenting__title {
-    margin-top: 0;
-    font-size: $font-size-lg;
-}
-
-.commenting-form {
-    margin-bottom: 2 * $spacer;
-}
-
 @media (min-width: $breakpoint) {
     .commenting {
         @include clearfix;
