@@ -27,7 +27,7 @@ const icons = [
 }))
 
 const activeIcon = L.icon({
-  iconUrl: '/static/images/map_pin_active_01_2x.png',
+  iconUrl: '/static/images/map_pin_01_2x.png',
   shadowUrl: '/static/images/map_shadow_01_2x.png',
   iconSize: [30, 45],
   iconAnchor: [15, 45],
