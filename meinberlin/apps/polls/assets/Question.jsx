@@ -128,38 +128,31 @@ class Question extends React.Component {
     const total = this.state.question.totalVoteCount
     const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
 
-    let showResultOrVote
+    let showTotalOrVoteButton
     let toggleShowResultButton
     let toggleShowResultButtonText
 
     if (this.state.showResult) {
-      showResultOrVote = (
+      showTotalOrVoteButton = (
         `${total} ${django.ngettext('vote', 'votes', total)}`
       )
-      toggleShowResultButtonText = (
-        `${django.gettext('To poll')}`
-      )
+      toggleShowResultButtonText = django.gettext('To poll')
+
       if (this.state.selectedChoices.length !== 0) {
-        toggleShowResultButtonText = (
-          `${django.gettext('Change vote')}`
-        )
+        toggleShowResultButtonText =
+          django.gettext('Change vote')
       }
     } else {
-      showResultOrVote = (
-        <span>
-          {this.getVoteButton()}
-        </span>
-      )
+      showTotalOrVoteButton = this.getVoteButton()
 
-      toggleShowResultButtonText = (
-        `${django.gettext('Show preliminary results')}`
-      )
+      toggleShowResultButtonText =
+        django.gettext('Show preliminary results')
     }
 
     if (!this.state.question.isReadOnly) {
       toggleShowResultButton = (
         <button type="button" className="btn btn--link" onClick={this.toggleShowResult.bind(this)}>
-          { toggleShowResultButtonText }
+          {toggleShowResultButtonText}
         </button>
       )
     }
@@ -225,9 +218,9 @@ class Question extends React.Component {
 
         <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
         <div className="poll__actions">
-          { showResultOrVote }
+          {showTotalOrVoteButton}
           &nbsp;
-          { toggleShowResultButton }
+          {toggleShowResultButton}
         </div>
       </form>
     )
