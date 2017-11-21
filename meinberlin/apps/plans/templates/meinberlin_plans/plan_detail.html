@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n wagtailcore_tags %}
+{% load i18n rules wagtailcore_tags %}
 
 {% block title %}{{ object.title }} &mdash; {{ block.super }}{% endblock %}
 
@@ -51,6 +51,34 @@
                         <a href="{{ object.project.get_absolute_url }}">{% trans 'Go to participation' %}</a>
                     {% elif object.participation == 1 %}
                         <p>{% trans 'Participation is planned, but has not started yet.' %}</p>
+                    {% endif %}
+                </div>
+
+                <div class="item-detail__actions lr-bar">
+                    {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
+                    {% if user_may_change %}
+                        <div class="dropdown dropdown--right lr-bar__right">
+                            <button
+                                    title="{% trans 'Actions' %}"
+                                    type="button"
+                                    class="dropdown-toggle btn btn--light btn--small"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    id="idea-{{ object.pk }}-actions"
+                            >
+                                <i class="fa fa-ellipsis-h" aria-label="{% trans 'Actions' %}"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="idea-{{ object.pk }}-actions">
+                                <li>
+                                    <a
+                                        href="{% url 'a4dashboard:plan-update' organisation_slug=object.organisation.slug slug=object.slug %}"
+                                        class="dropdown-item"
+                                        data-embed-target="external"
+                                    >{% trans 'Edit' %}</a>
+                                </li>
+                            </ul>
+                        </div>
                     {% endif %}
                 </div>
             </div>
