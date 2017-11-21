@@ -45,7 +45,8 @@ class PlansMap extends React.Component {
     this.state = {
       selected: null,
       filters: {
-        status: -1
+        status: -1,
+        participation: -1
       }
     }
   }
@@ -67,6 +68,14 @@ class PlansMap extends React.Component {
   }
 
   onStatusFilterChange (event) {
+    this.setState({
+      filters: update(this.state.filters, {
+        $merge: {status: parseInt(event.target.value, 10)}
+      })
+    })
+  }
+
+  onParticipationFilterChange (event) {
     this.setState({
       filters: update(this.state.filters, {
         $merge: {status: parseInt(event.target.value, 10)}
@@ -107,6 +116,7 @@ class PlansMap extends React.Component {
   isInFilter (item) {
     let filters = this.state.filters
     return (filters.status === -1 || filters.status === item.status) &&
+      (filters.participation === -1 || filters.participation === item.participation) &&
       checkQueryMatch(item.title, filters.q) &&
       (!filters.bounds || filters.bounds.contains(pointToLatLng(item.point)))
   }
@@ -224,6 +234,11 @@ class PlansMap extends React.Component {
               <option value="2">{django.gettext('Status')}: {django.gettext('Implementation')}</option>
               <option value="3">{django.gettext('Status')}: {django.gettext('Done')}</option>
               <option value="4">{django.gettext('Status')}: {django.gettext('Stopped')}</option>
+            </select>
+            &nbsp;
+            <select onChange={this.onParticipationFilterChange.bind(this)} className="u-inline">
+              <option value="-1">{django.gettext('Participation')}: {django.gettext('All')}</option>
+              <option value="1">{django.gettext('Participation')}: {django.gettext('Planned')}</option>
             </select>
           </div>
         </div>
