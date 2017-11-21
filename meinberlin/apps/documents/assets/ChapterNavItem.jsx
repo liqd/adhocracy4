@@ -8,7 +8,7 @@ function getErrorCount (props) {
     if (props.errors['paragraphs']) {
       errorCount = errorCount - 1 + Object.keys(props.errors['paragraphs']).length
     }
-    return <span className="errorcount"> ({errorCount})</span>
+    return <span className="u-danger"> ({errorCount})</span>
   }
 }
 
