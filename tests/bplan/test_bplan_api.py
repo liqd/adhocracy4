@@ -76,6 +76,7 @@ def test_initiator_update_bplan(apiclient, bplan, phase):
         "is_draft": "true",
         "start_date": "2013-01-01 18:00",
         "end_date": "2021-01-01 18:00",
+        "image_copyright": "do not copy",
     }
     user = bplan.organisation.initiators.first()
     apiclient.force_authenticate(user=user)
@@ -83,6 +84,7 @@ def test_initiator_update_bplan(apiclient, bplan, phase):
     assert response.status_code == status.HTTP_200_OK
     bplan = bplan_models.Bplan.objects.first()
     assert bplan.is_draft is True
+    assert bplan.tile_image_copyright == data.get('image_copyright')
 
 
 @pytest.mark.django_db

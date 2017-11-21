@@ -1,9 +1,8 @@
 import factory
 from dateutil.parser import parse
 
-from adhocracy4.test.factories import ProjectFactory
+from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.offlineevents import models
-from tests.factories import UserFactory
 
 
 class OfflineEventFactory(factory.django.DjangoModelFactory):
@@ -12,6 +11,6 @@ class OfflineEventFactory(factory.django.DjangoModelFactory):
         model = models.OfflineEvent
 
     name = factory.Faker('sentence')
-    creator = factory.SubFactory(UserFactory)
-    project = factory.SubFactory(ProjectFactory)
+    creator = factory.SubFactory(a4_factories.USER_FACTORY)
+    project = factory.SubFactory(a4_factories.ProjectFactory)
     date = parse('2013-01-02 00:00:00 UTC')

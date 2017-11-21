@@ -5,7 +5,8 @@
 var $ = window.jQuery = window.$ = require('jquery')
 window.Tether = require('tether/dist/js/tether.js')
 
-var Shariff = require('shariff')
+require('shariff')
+var Shariff = window.Shariff
 
 // load bootstrap components
 var dropdown = require('bootstrap/js/src/dropdown.js')

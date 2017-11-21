@@ -33,12 +33,18 @@ class BplanSerializer(serializers.ModelSerializer):
     start_date = serializers.DateTimeField(write_only=True)
     end_date = serializers.DateTimeField(write_only=True)
     image_url = serializers.URLField(required=False, write_only=True)
+    image_copyright = serializers.CharField(required=False, write_only=True,
+                                            source='tile_image_copyright',
+                                            allow_blank=True,
+                                            max_length=120)
+    embed_code = serializers.SerializerMethodField()
 
     class Meta:
         model = Bplan
         fields = (
             'id', 'name', 'description', 'url', 'office_worker_email',
-            'is_draft', 'start_date', 'end_date', 'image_url'
+            'is_draft', 'start_date', 'end_date', 'image_url',
+            'image_copyright', 'embed_code'
         )
         extra_kwargs = {
             # write_only for constency reasons
@@ -109,12 +115,7 @@ class BplanSerializer(serializers.ModelSerializer):
             phase.end_date = end_date
         phase.save()
 
-    def to_representation(self, instance):
-        dict = super().to_representation(instance)
-        dict['embed_code'] = self._response_embed_code(instance)
-        return dict
-
-    def _response_embed_code(self, bplan):
+    def get_embed_code(self, bplan):
         url = self._get_absolute_url(bplan)
         embed = BPLAN_EMBED.format(url)
         return embed

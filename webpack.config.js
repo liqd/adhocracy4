@@ -20,7 +20,7 @@ module.exports = {
       'immutability-helper',
       'react-dom',
       'react-flip-move',
-      'shariff',
+      'shariff/dist/shariff.complete.js',
       'shariff/dist/shariff.min.css'
     ],
     select2: [
@@ -29,7 +29,9 @@ module.exports = {
     leaflet: [
       'leaflet',
       'leaflet/dist/leaflet.css',
-      './meinberlin/assets/js/plans_map.jsx'
+      'leaflet.markercluster',
+      'leaflet.markercluster/dist/MarkerCluster.css',
+      './meinberlin/apps/plans/assets/plans_map.jsx'
     ],
     datepicker: [
       './meinberlin/assets/js/init-picker.js',
@@ -63,10 +65,10 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!adhocracy4|bootstrap|shariff)/, // exclude most dependencies
+        exclude: /node_modules\/(?!adhocracy4|bootstrap)/, // exclude most dependencies
         loader: 'babel-loader',
         options: {
-          presets: ['babel-preset-es2015', 'babel-preset-react'].map(require.resolve)
+          presets: ['babel-preset-env', 'babel-preset-react'].map(require.resolve)
         }
       },
       {
@@ -80,9 +82,7 @@ module.exports = {
               options: {
                 ident: 'postcss',
                 plugins: (loader) => [
-                  autoprefixer({
-                    browsers: ['last 3 versions', 'ie >= 10']
-                  })
+                  autoprefixer()
                 ]
               }
             },
@@ -109,7 +109,8 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
-      'jquery$': 'jquery/dist/jquery.min.js'
+      'jquery$': 'jquery/dist/jquery.min.js',
+      'shariff$': 'shariff/dist/shariff.complete.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.

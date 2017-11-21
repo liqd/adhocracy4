@@ -17,8 +17,8 @@ class UserFactory(factory.django.DjangoModelFactory):
         model = settings.AUTH_USER_MODEL
 
     username = factory.Sequence(lambda n: 'user%d' % n)
+    email = factory.Sequence(lambda n: 'user%d@liqd.net' % n)
     password = make_password('password')
-    email = factory.Faker('email')
 
 
 class AdminFactory(factory.django.DjangoModelFactory):
@@ -26,7 +26,8 @@ class AdminFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = settings.AUTH_USER_MODEL
 
-    username = factory.Faker('name')
+    username = factory.Sequence(lambda n: 'admin%d' % n)
+    email = factory.Sequence(lambda n: 'admin%d@liqd.net' % n)
     password = make_password('password')
     is_superuser = True
 
@@ -64,26 +65,6 @@ class PhaseFactory(factories.PhaseFactory):
         phase_content = PhaseContentFactory()
 
     type = factory.LazyAttribute(lambda f: f.phase_content.identifier)
-
-
-class OrganisationFactory(factory.django.DjangoModelFactory):
-
-    class Meta:
-        model = 'meinberlin_organisations.Organisation'
-        django_get_or_create = ('name',)
-
-    name = factory.Faker('company')
-
-    @factory.post_generation
-    def initiators(self, create, extracted, **kwargs):
-        if not extracted:
-            user = UserFactory()
-            self.initiators.add(user)
-            return
-
-        if extracted:
-            for user in extracted:
-                self.initiators.add(user)
 
 
 class ImageFactory():

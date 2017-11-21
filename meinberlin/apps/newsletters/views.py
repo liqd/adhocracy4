@@ -3,14 +3,16 @@ from django.conf import settings
 from django.contrib import auth
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
-from django.core.urlresolvers import reverse
 from django.http.response import HttpResponseRedirect
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.follows.models import Follow
 from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
+from meinberlin.apps.newsletters.forms import NewsletterForm
 
 from . import emails
 from . import forms
@@ -95,3 +97,30 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
                            'will be sent to the recipients.'))
 
         return HttpResponseRedirect(self.get_success_url())
+
+
+class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
+                                    NewsletterCreateView):
+    template_name = 'meinberlin_newsletters/newsletter_dashboard_form.html'
+    menu_item = 'newsletter'
+    form_class = NewsletterForm
+    permission_required = 'a4projects.add_project'
+
+    def get_email_kwargs(self):
+        kwargs = {}
+        kwargs.update({'organisation_pk': self.organisation.pk})
+        return kwargs
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['organisation'] = self.organisation
+        kwargs.pop('user')
+        return kwargs
+
+    def get_success_url(self):
+        return reverse(
+            'a4dashboard:newsletter-create',
+            kwargs={'organisation_slug': self.organisation.slug})
+
+    def get_permission_object(self):
+        return self.organisation

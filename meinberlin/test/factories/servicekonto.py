@@ -1,8 +1,8 @@
 import factory
 from allauth.socialaccount.models import SocialAccount
 
+from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.servicekonto.provider import ServiceKontoProvider
-from tests.factories import UserFactory
 
 
 class SocialAccountFactory(factory.DjangoModelFactory):
@@ -10,6 +10,6 @@ class SocialAccountFactory(factory.DjangoModelFactory):
     class Meta:
         model = SocialAccount
 
-    user = factory.SubFactory(UserFactory)
+    user = factory.SubFactory(a4_factories.USER_FACTORY)
     uid = '1'
     provider = ServiceKontoProvider.id

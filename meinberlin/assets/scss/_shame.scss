@@ -55,10 +55,3 @@ input[type="search"] {
 .map-list [data-map] {
     min-height: 500px;
 }
-
-// This icon looks like an open folder with a blip to the right. When
-// centering, you would expect the basic folder to be centered. However, it is
-// a bit farther left because of the blip.
-.fa-folder-open {
-    margin-left: 0.2em;
-}

@@ -128,29 +128,28 @@ class Question extends React.Component {
     const total = this.state.question.totalVoteCount
     const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
 
-    let footer
-    let totalString = `${total} ${django.ngettext('vote', 'votes', total)}`
+    let showTotalOrVoteButton
+    let toggleShowResultButton
+    let toggleShowResultButtonText
+
     if (this.state.showResult) {
-      footer = (
-        <div className="poll__actions">
-          { totalString }
-          &nbsp;
-          {!this.state.question.isReadOnly &&
-            <button type="button" className="btn btn--link" onClick={this.toggleShowResult.bind(this)}>
-              { django.gettext('To poll') }
-            </button>
-          }
-        </div>
-      )
+      showTotalOrVoteButton =
+        `${total} ${django.ngettext('vote', 'votes', total)}`
+      toggleShowResultButtonText = django.gettext('To poll')
+
+      if (this.state.selectedChoices.length !== 0) {
+        toggleShowResultButtonText = django.gettext('Change vote')
+      }
     } else {
-      footer = (
-        <div className="poll__actions">
-          {this.getVoteButton()}
-          &nbsp;
-          <button type="button" className="btn btn--link" onClick={this.toggleShowResult.bind(this)}>
-            { django.gettext('Show preliminary results') }
-          </button>
-        </div>
+      showTotalOrVoteButton = this.getVoteButton()
+      toggleShowResultButtonText = django.gettext('Show preliminary results')
+    }
+
+    if (!this.state.question.isReadOnly) {
+      toggleShowResultButton = (
+        <button type="button" className="btn btn--link" onClick={this.toggleShowResult.bind(this)}>
+          {toggleShowResultButtonText}
+        </button>
       )
     }
 
@@ -214,7 +213,11 @@ class Question extends React.Component {
         </div>
 
         <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
-        { footer }
+        <div className="poll__actions">
+          {showTotalOrVoteButton}
+          &nbsp;
+          {toggleShowResultButton}
+        </div>
       </form>
     )
   }

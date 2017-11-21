@@ -75,6 +75,7 @@ function getBaseBounds (L, polygon, bbox) {
           shapeOptions: polygonStyle
         },
         marker: false,
+        circlemarker: false,
         polyline: false,
         circle: false
       }
