@@ -7,8 +7,7 @@ from meinberlin.apps.extprojects.views import ExternalProjectCreateView
 from meinberlin.apps.newsletters import views as newsletter_views
 from meinberlin.apps.organisations import views as organisation_views
 from meinberlin.apps.plans import views as plan_views
-from meinberlin.apps.projectcontainers.views import ContainerCreateView
-from meinberlin.apps.projectcontainers.views import ContainerListView
+from meinberlin.apps.projectcontainers import views as container_views
 
 from . import views
 
@@ -22,7 +21,7 @@ urlpatterns = [
         newsletter_views.DashboardNewsletterCreateView.as_view(),
         name='newsletter-create'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/containers/$',
-        ContainerListView.as_view(),
+        container_views.ContainerListView.as_view(),
         name='container-list'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/plans/$',
         plan_views.DashboardPlanListView.as_view(),
@@ -50,7 +49,7 @@ urlpatterns = [
         name='bplan-project-create'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
         r'container/$',
-        ContainerCreateView.as_view(),
+        container_views.ContainerCreateView.as_view(),
         name='container-create'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/projects/$',
         views.DashboardProjectListView.as_view(),
