@@ -36,7 +36,7 @@ class EmailFileField(forms.FileField):
 
     widget = widgets.FileInput
     # Find possible email strings. Emails may be quoted and separated by
-    # whitespaces, commas or semicolons.
+    # whitespaces, commas, semicolons or < and >.
     email_regex = re.compile(r'[^\s;,"\'<]+@[^\s;,"\'>]+\.[a-z]{2,}')
     email_validator = EmailValidator()
 
