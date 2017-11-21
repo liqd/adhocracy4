@@ -22,18 +22,18 @@ urlpatterns = [
         ContainerListView.as_view(),
         name='container-list'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/plans/$',
-        views.PlanListView.as_view(),
+        views.DashboardPlanListView.as_view(),
         name='plan-list'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/plans/create/$',
-        views.PlanCreateView.as_view(),
+        views.DashboardPlanCreateView.as_view(),
         name='plan-create'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)'
         r'/plans/(?P<slug>[-\w_]+)/$',
-        views.PlanUpdateView.as_view(),
+        views.DashboardPlanUpdateView.as_view(),
         name='plan-update'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)'
         r'/plans/(?P<slug>[-\w_]+)/delete/$',
-        views.PlanDeleteView.as_view(),
+        views.DashboardPlanDeleteView.as_view(),
         name='plan-delete'),
 
     # Overwrite adhocracy4 core urls with meinBerlin urls

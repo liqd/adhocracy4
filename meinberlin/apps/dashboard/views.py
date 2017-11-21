@@ -63,8 +63,8 @@ class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
         return self.organisation
 
 
-class PlanListView(a4dashboard_mixins.DashboardBaseMixin,
-                   generic.ListView):
+class DashboardPlanListView(a4dashboard_mixins.DashboardBaseMixin,
+                            generic.ListView):
     model = Plan
     template_name = 'meinberlin_dashboard/plan_list.html'
     permission_required = 'a4projects.add_project'
@@ -77,8 +77,8 @@ class PlanListView(a4dashboard_mixins.DashboardBaseMixin,
         return super().get_queryset().filter(organisation=self.organisation)
 
 
-class PlanCreateView(a4dashboard_mixins.DashboardBaseMixin,
-                     generic.CreateView):
+class DashboardPlanCreateView(a4dashboard_mixins.DashboardBaseMixin,
+                              generic.CreateView):
     model = Plan
     form_class = PlanForm
     permission_required = 'meinberlin_plans.add_plan'
@@ -99,8 +99,8 @@ class PlanCreateView(a4dashboard_mixins.DashboardBaseMixin,
             kwargs={'organisation_slug': self.organisation.slug})
 
 
-class PlanUpdateView(a4dashboard_mixins.DashboardBaseMixin,
-                     generic.UpdateView):
+class DashboardPlanUpdateView(a4dashboard_mixins.DashboardBaseMixin,
+                              generic.UpdateView):
     model = Plan
     form_class = PlanForm
     permission_required = 'meinberlin_plans.add_plan'
@@ -116,8 +116,8 @@ class PlanUpdateView(a4dashboard_mixins.DashboardBaseMixin,
             kwargs={'organisation_slug': self.organisation.slug})
 
 
-class PlanDeleteView(a4dashboard_mixins.DashboardBaseMixin,
-                     generic.DeleteView):
+class DashboardPlanDeleteView(a4dashboard_mixins.DashboardBaseMixin,
+                              generic.DeleteView):
     model = Plan
     success_message = _('The plan has been deleted')
     permission_required = 'meinberlin_plans.change_plan'
