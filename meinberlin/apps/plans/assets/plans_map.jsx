@@ -31,6 +31,13 @@ const pointToLatLng = function (point) {
   }
 }
 
+const checkQueryMatch = function (str, q) {
+  const s = str.toLowerCase()
+  return !q || q.split(/\s+/g).every(word => {
+    return s.indexOf(word.toLowerCase()) !== -1
+  })
+}
+
 class PlansMap extends React.Component {
   constructor (props) {
     super(props)
@@ -67,6 +74,16 @@ class PlansMap extends React.Component {
     })
   }
 
+  onFreeTextFilterSubmit (event) {
+    event.preventDefault()
+
+    this.setState({
+      filters: update(this.state.filters, {
+        $merge: {q: event.target.search.value}
+      })
+    })
+  }
+
   onSelect (i) {
     this.setState({
       selected: i
@@ -90,6 +107,7 @@ class PlansMap extends React.Component {
   isInFilter (item) {
     let filters = this.state.filters
     return (filters.status === -1 || filters.status === item.status) &&
+      checkQueryMatch(item.title, filters.q) &&
       (!filters.bounds || filters.bounds.contains(pointToLatLng(item.point)))
   }
 
@@ -192,7 +210,14 @@ class PlansMap extends React.Component {
       <div>
         <div className="l-wrapper">
           <div className="control-bar" role="group" aria-label={django.gettext('Filter bar')}>
-            <select onChange={this.onStatusFilterChange.bind(this)}>
+            <form onSubmit={this.onFreeTextFilterSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group u-inline-flex">
+              <input className="input-group__input" name="search" type="search" placeholder={django.gettext('Search')} />
+              <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Search')}>
+                <i className="fa fa-search" aria-label={django.gettext('Search')} />
+              </button>
+            </form>
+            &nbsp;
+            <select onChange={this.onStatusFilterChange.bind(this)} className="u-inline">
               <option value="-1">{django.gettext('Status')}: {django.gettext('All')}</option>
               <option value="0">{django.gettext('Status')}: {django.gettext('Idea')}</option>
               <option value="1">{django.gettext('Status')}: {django.gettext('Planning')}</option>
