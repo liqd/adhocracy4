@@ -65,7 +65,7 @@ def html_date(value, displayfmt=None, datetimefmt='c', **kwargs):
     Additional html attributes may be provided as kwargs (e.g. 'class').
 
     Note: Converts the value to localtime as we loose the expects_localtime
-    flag functionality by directly calling the date flag.
+    flag functionality by directly calling the date filter from django.
     """
     localtime_value = timezone.localtime(value)
     displaydate = defaultfilters.date(localtime_value, displayfmt)
