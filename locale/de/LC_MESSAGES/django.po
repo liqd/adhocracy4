@@ -1042,8 +1042,8 @@ msgid ""
 "statements. Anyone can submit topics that can be commented and rated."
 msgstr ""
 "Mit \"Agenda festlegen\" ist es möglich, Themen zu identifizieren und "
-"Leitbilder zu definieren. Nutzer können Themen vorschlagen, die bewertet und "
-"kommentiert werden können."
+"Leitbilder zu definieren. Nutzerinnen und Nutzer können Themen vorschlagen, "
+"die bewertet und kommentiert werden können."
 
 #: meinberlin/apps/dashboard/blueprints.py:68
 msgid "Text Review"
