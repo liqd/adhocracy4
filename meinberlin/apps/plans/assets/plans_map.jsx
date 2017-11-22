@@ -273,7 +273,7 @@ class PlansMap extends React.Component {
               {
                 statusNames.map((name, i) => {
                   return (
-                    <option value={i}>{django.gettext('Status')}: {name}</option>
+                    <option key={i} value={i}>{django.gettext('Status')}: {name}</option>
                   )
                 })
               }
