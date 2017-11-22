@@ -1,6 +1,7 @@
 from django import forms
 from django.utils.functional import cached_property
 from wagtail.wagtailcore import blocks
+from wagtail.wagtailimages.blocks import ImageChooserBlock
 
 from adhocracy4.projects.models import Project
 
@@ -49,6 +50,17 @@ class CallToActionBlock(blocks.StructBlock):
 
     class Meta:
         template = 'meinberlin_cms/blocks/cta_block.html'
+
+
+class ImageCallToActionBlock(blocks.StructBlock):
+    image = ImageChooserBlock()
+    title = blocks.CharBlock(max_length=80)
+    body = blocks.RichTextBlock()
+    link = blocks.CharBlock()
+    link_text = blocks.CharBlock(max_length=50, label='Link Text')
+
+    class Meta:
+        template = 'meinberlin_cms/blocks/image_cta_block.html'
 
 
 class ColumnsBlock(blocks.StructBlock):
