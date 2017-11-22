@@ -16,7 +16,7 @@ const statusNames = [
 
 const icons = [
   'lightbulb-o',
-  'cog',
+  'cogs',
   'play',
   'check',
   'pause'
