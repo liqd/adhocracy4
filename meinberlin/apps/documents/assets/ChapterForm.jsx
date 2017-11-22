@@ -6,7 +6,7 @@ var FlipMove = require('react-flip-move')
 
 const ChapterForm = (props) => {
   return (
-    <section className="commenting-form">
+    <section className="u-spacer-bottom-double">
       <div className="commenting">
         <div className="form-group commenting__content">
           <label>
