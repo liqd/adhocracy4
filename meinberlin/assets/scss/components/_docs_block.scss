@@ -1,0 +1,52 @@
+.docs-block {
+    border: solid 1px $border-color;
+    border-radius: 5px;
+
+    // make border-radius work with contents
+    overflow: hidden;
+}
+
+.docs-block__title {
+    display: block;
+    position: relative;
+    padding: $padding / 2;
+    text-decoration: none;
+    color: inherit;
+    background-color: $bg-secondary;
+    padding-right: 1em;
+
+    h2 {
+        font-size: $font-size-lg;
+        margin: 0;
+    }
+
+    i {
+        position: absolute;
+        right: $padding / 2;
+        transition: transform 0.3s;
+    }
+
+    &[aria-expanded="true"] i {
+        transform: rotate(180deg);
+    }
+}
+
+.docs-block__body {
+    padding: $padding / 2;
+
+    ul {
+        list-style: none;
+        margin-left: 0;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 0.2em;
+    }
+
+    a[href^="/documents"]:before {
+        content: '\f016';
+        font-family: 'FontAwesome';
+        margin-right: 0.3em;
+    }
+}
