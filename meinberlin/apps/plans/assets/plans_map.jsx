@@ -81,7 +81,7 @@ class PlansMap extends React.Component {
   onStatusFilterChange (event) {
     this.setState({
       filters: update(this.state.filters, {
-        $merge: {status: parseInt(event.target.value, 10)}
+        $merge: {status: parseInt(event.currentTarget.value, 10)}
       })
     })
   }
