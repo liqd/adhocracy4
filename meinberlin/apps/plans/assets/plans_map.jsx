@@ -248,9 +248,10 @@ class PlansMap extends React.Component {
   }
 
   renderList () {
-    let list = this.props.items.map((item, i) => {
+    let list = []
+    this.props.items.forEach((item, i) => {
       if (this.isInFilter(item)) {
-        return this.renderListItem(item, i)
+        list.push(this.renderListItem(item, i))
       }
     })
 
