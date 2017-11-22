@@ -275,7 +275,7 @@ class PlansMap extends React.Component {
               </ul>
             </div>
             &nbsp;
-            <select onChange={this.onParticipationFilterChange.bind(this)} className="u-inline">
+            <select onChange={this.onParticipationFilterChange.bind(this)} className="u-inline btn btn--light">
               <option value="-1">{django.gettext('Participation')}: {django.gettext('All')}</option>
               <option value="1">{django.gettext('Participation')}: {django.gettext('Planned')}</option>
             </select>
