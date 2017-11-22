@@ -135,8 +135,18 @@ class PlansMap extends React.Component {
 
   setMarkerSelected (i, item) {
     let activeMarker = this.activeMarkers[i]
+    let marker = this.markers[i]
+
     if (!this.selected.hasLayer(activeMarker)) {
+      this.cluster.removeLayer(marker)
       this.selected.clearLayers()
+
+      // Removing a marker from a layer resets its zIndexOffset,
+      // thus the zIndexOffset of the selected marker has to be set
+      // after it is removed from the cluster to rise it to the front.
+      marker.setZIndexOffset(1000)
+      activeMarker.setZIndexOffset(1001)
+      this.selected.addLayer(marker)
       this.selected.addLayer(activeMarker)
     }
   }
@@ -144,15 +154,19 @@ class PlansMap extends React.Component {
   setMarkerDefault (i, item) {
     let marker = this.markers[i]
     if (!this.cluster.hasLayer(marker)) {
+      this.selected.removeLayer(marker)
+      this.selected.removeLayer(this.activeMarkers[i])
+
+      marker.setZIndexOffset(0)
       this.cluster.addLayer(marker)
     }
   }
 
   setMarkerFiltered (i) {
+    // Remove the items markers from every possible layer.
     this.cluster.removeLayer(this.markers[i])
-    if (i === this.state.selected) {
-      this.selected.removeLayer(this.activeMarkers[i])
-    }
+    this.selected.removeLayer(this.markers[i])
+    this.selected.removeLayer(this.activeMarkers[i])
   }
 
   componentDidMount () {
