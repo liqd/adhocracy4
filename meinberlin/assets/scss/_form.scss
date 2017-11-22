@@ -81,10 +81,6 @@ div.cke_focus {
     }
 }
 
-.form-group--double {
-    @include clearfix;
-}
-
 .form-group--narrow {
     @include grid-width(9);
 }
@@ -117,8 +113,4 @@ div.cke_focus {
     label {
         @extend .form-check__label;
     }
-}
-
-.errorcount {
-    color: $brand-danger;
 }
