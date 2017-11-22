@@ -79,6 +79,15 @@
     }
 }
 
+.map-list-combined__icon {
+    background-color: $brand-secondary;
+    color: contrast-color($brand-secondary);
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(contrast-color($brand-secondary), 0.8);
+}
+
 .marker-cluster {
     background-clip: padding-box;
     border-radius: 20px;
