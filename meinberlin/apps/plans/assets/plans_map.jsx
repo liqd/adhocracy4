@@ -94,13 +94,18 @@ class PlansMap extends React.Component {
     })
   }
 
-  onFreeTextFilterSubmit (event) {
-    event.preventDefault()
-
+  onFreeTextFilterChange (event) {
     this.setState({
       filters: update(this.state.filters, {
-        $merge: {q: event.target.search.value}
+        $merge: {q: event.target.value}
       })
+    })
+  }
+
+  onFreeTextFilterSubmit (event) {
+    event.preventDefault()
+    this.onFreeTextFilterChange({
+      target: event.target.search
     })
   }
 
@@ -252,7 +257,12 @@ class PlansMap extends React.Component {
         <div className="l-wrapper">
           <div className="control-bar" role="group" aria-label={django.gettext('Filter bar')}>
             <form onSubmit={this.onFreeTextFilterSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group u-inline-flex">
-              <input className="input-group__input" name="search" type="search" placeholder={django.gettext('Search')} />
+              <input
+                onChange={this.onFreeTextFilterChange.bind(this)}
+                className="input-group__input"
+                name="search"
+                type="search"
+                placeholder={django.gettext('Search')} />
               <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Search')}>
                 <i className="fa fa-search" aria-label={django.gettext('Search')} />
               </button>
@@ -263,7 +273,7 @@ class PlansMap extends React.Component {
               {
                 statusNames.map((name, i) => {
                   return (
-                    <option value={i}>{django.gettext('Status')}: {name}</option>
+                    <option key={i} value={i}>{django.gettext('Status')}: {name}</option>
                   )
                 })
               }
