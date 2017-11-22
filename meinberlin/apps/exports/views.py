@@ -14,6 +14,7 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings.models import Rating
 from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.contrib.views import ProjectContextMixin
 
 from . import exports
 
@@ -46,20 +47,8 @@ class ExportModuleDispatcher(rules_mixins.PermissionRequiredMixin,
 
 
 class AbstractCSVExportView(generic.View):
-    def dispatch(self, request, *args, **kwargs):
-        if 'module' in kwargs:
-            self.module = kwargs['module']
-        else:
-            self.module = \
-                module_models.Module.objects.get(slug=kwargs['module_slug'])
-
-        return super().dispatch(request, *args, **kwargs)
-
     def get_filename(self):
-        project = self.module.project
-        filename = '%s_%s.csv' % (project.slug,
-                                  timezone.now().strftime('%Y%m%dT%H%M%S'))
-        return filename
+        return '%s.csv' % (self.get_base_filename())
 
     def get(self, request, *args, **kwargs):
         response = HttpResponse(content_type='text/csv; charset=utf-8')
@@ -75,20 +64,9 @@ class AbstractCSVExportView(generic.View):
 
 
 class AbstractXlsxExportView(generic.View):
-    def dispatch(self, request, *args, **kwargs):
-        if 'module' in kwargs:
-            self.module = kwargs['module']
-        else:
-            self.module = \
-                module_models.Module.objects.get(slug=kwargs['module_slug'])
-
-        return super().dispatch(request, *args, **kwargs)
 
     def get_filename(self):
-        project = self.module.project
-        filename = '%s_%s.xlsx' % (project.slug,
-                                   timezone.now().strftime('%Y%m%dT%H%M%S'))
-        return filename
+        return '%s.xlsx' % (self.get_base_filename())
 
     def get(self, request, *args, **kwargs):
         response = HttpResponse(
@@ -108,11 +86,16 @@ class AbstractXlsxExportView(generic.View):
 
         for rownum, row in enumerate(self.export_rows(), start=1):
             for colnum, field in enumerate(row):
-                worksheet.write(rownum, colnum, field)
+                worksheet.write(rownum, colnum, self._clean_field(field))
 
         workbook.close()
 
         return response
+
+    def _clean_field(self, field):
+        if isinstance(field, str):
+            return field.replace('\r', '')
+        return field
 
 
 class VirtualFieldMixin:
@@ -120,9 +103,10 @@ class VirtualFieldMixin:
         return virtual
 
 
-class ItemExportView(AbstractXlsxExportView,
+class ItemExportView(ProjectContextMixin,
                      VirtualFieldMixin,
-                     generic.list.MultipleObjectMixin):
+                     generic.list.MultipleObjectMixin,
+                     AbstractXlsxExportView,):
     fields = None
     exclude = None
     model = None
@@ -151,7 +135,6 @@ class ItemExportView(AbstractXlsxExportView,
                     and not (field.one_to_one and field.rel.parent_link) \
                     and field.name not in exclude \
                     and field.name not in names:
-
                 names.append(field.name)
                 header.append(str(field.verbose_name))
 
@@ -167,6 +150,10 @@ class ItemExportView(AbstractXlsxExportView,
 
     def get_queryset(self):
         return super().get_queryset().filter(module=self.module)
+
+    def get_base_filename(self):
+        return '%s_%s' % (self.project.slug,
+                          timezone.now().strftime('%Y%m%dT%H%M%S'))
 
     def get_header(self):
         return self._header
@@ -191,6 +178,12 @@ class ItemExportView(AbstractXlsxExportView,
                 return item['name']
         except TypeError:
             pass
+
+        # Return the get_field_display value for choice fields
+        get_field_display_method = getattr(
+            item, 'get_{}_display'.format(name), None)
+        if get_field_display_method and callable(get_field_display_method):
+            return get_field_display_method()
 
         # Finally try to get the fields data as a property
         return getattr(item, name, '')

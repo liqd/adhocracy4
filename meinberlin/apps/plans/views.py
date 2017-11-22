@@ -3,11 +3,14 @@ import json
 from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse
+from django.utils import timezone
+from django.utils.html import strip_tags
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
+from meinberlin.apps.exports import views as export_views
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
 
@@ -49,6 +52,33 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         context['bounds'] = json.dumps(settings.A4_MAP_BOUNDING_BOX)
 
         return context
+
+
+class PlanExportView(rules_mixins.PermissionRequiredMixin,
+                     export_views.ItemExportWithLocationMixin,
+                     export_views.ItemExportView):
+
+    permission_required = 'meinberlin_plans.list_plan'
+    model = models.Plan
+    fields = ['title', 'organisation', 'project', 'contact', 'cost',
+              'description', 'category', 'status', 'participation']
+
+    def get_queryset(self):
+        return models.Plan.objects.all()
+
+    def get_base_filename(self):
+        return 'plans_%s' % timezone.now().strftime('%Y%m%dT%H%M%S')
+
+    def get_organisation_data(self, item):
+        return item.organisation.name
+
+    def get_project_data(self, item):
+        if item.project:
+            return item.project.name
+        return ''
+
+    def get_contact_data(self, item):
+        return strip_tags(item.contact).strip()
 
 
 class DashboardPlanListView(a4dashboard_mixins.DashboardBaseMixin,
