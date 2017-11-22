@@ -1,8 +1,9 @@
 import datetime
 import posixpath
-from urllib import request
+import tempfile
 from urllib.parse import urlparse
 
+import requests
 from django.apps import apps
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -10,6 +11,7 @@ from django.core.exceptions import ValidationError
 from django.core.files.images import ImageFile
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
+from PIL import Image
 from rest_framework import serializers
 
 from adhocracy4.images.validators import validate_image
@@ -24,6 +26,7 @@ from .phases import StatementPhase
 
 BPLAN_EMBED = '<iframe height="500" style="width: 100%; min-height: 300px; ' \
               'max-height: 100vh" src="{}" frameborder="0"></iframe>'
+DOWNLOAD_IMAGE_SIZE_LIMIT_BYTES = 10 * 1024 * 1024
 
 
 class BplanSerializer(serializers.ModelSerializer):
@@ -128,13 +131,23 @@ class BplanSerializer(serializers.ModelSerializer):
 
     def _download_image_from_url(self, url):
         parsed_url = urlparse(url)
-        file_name = self._generate_image_filename(
-            posixpath.basename(parsed_url.path))
+        file_name = None
         try:
-            with request.urlopen(url) as f:
-                file_name = self._image_storage.save(file_name, f)
+            r = requests.get(url, stream=True, timeout=10)
+            downloaded_bytes = 0
+            with tempfile.TemporaryFile() as f:
+                for chunk in r.iter_content(chunk_size=1024):
+                    downloaded_bytes += len(chunk)
+                    if downloaded_bytes > DOWNLOAD_IMAGE_SIZE_LIMIT_BYTES:
+                        raise serializers.ValidationError(
+                            'Image too large to download {}'.format(url))
+                    if chunk:
+                        f.write(chunk)
+                file_name = self._generate_image_filename(parsed_url.path, f)
+                self._image_storage.save(file_name, f)
         except Exception as e:
-            self._image_storage.delete(file_name)
+            if file_name:
+                self._image_storage.delete(file_name)
             raise serializers.ValidationError(
                 'Failed to download image {}'.format(url))
 
@@ -161,13 +174,19 @@ class BplanSerializer(serializers.ModelSerializer):
     def _image_upload_to(self):
         return project_models.Project._meta.get_field('tile_image').upload_to
 
-    def _generate_image_filename(self, filename):
+    def _generate_image_filename(self, url_path, file):
         if callable(self._image_upload_to):
             raise Exception('Callable upload_to fields are not supported')
 
+        filename = posixpath.basename(url_path)
         dirname = datetime.datetime.now().strftime(self._image_upload_to)
         filename = posixpath.join(dirname, filename)
-        return self._image_storage.get_available_name(filename)
+        filename = self._image_storage.get_available_name(filename)
+        _, extension = posixpath.splitext(filename)
+        if not extension and file:
+            image = Image.open(file)
+            filename = filename + '.' + image.format.lower()
+        return filename
 
     def _send_project_created_signal(self, bplan):
         a4dashboard_signals.project_created.send(
