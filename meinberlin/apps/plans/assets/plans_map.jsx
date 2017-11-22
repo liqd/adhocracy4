@@ -258,16 +258,22 @@ class PlansMap extends React.Component {
               </button>
             </form>
             &nbsp;
-            <select onChange={this.onStatusFilterChange.bind(this)} className="u-inline">
-              <option value="-1">{django.gettext('Status')}: {django.gettext('All')}</option>
-              {
-                statusNames.map((name, i) => {
-                  return (
-                    <option value={i}>{django.gettext('Status')}: {name}</option>
-                  )
-                })
-              }
-            </select>
+            <div className="dropdown ">
+              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_status">
+                {django.gettext('Status')}: {statusNames[this.state.filters.status] || django.gettext('All')}
+                <i className="fa fa-caret-down" aria-hidden="true" />
+              </button>
+              <ul aria-labelledby="id_filter_status" className="dropdown-menu">
+                <li><button type="button" value="-1" onClick={this.onStatusFilterChange.bind(this)}>{django.gettext('All')}</button></li>
+                {
+                  statusNames.map((name, i) => {
+                    return (
+                      <button key={i} type="button" value={i} onClick={this.onStatusFilterChange.bind(this)}>{name}</button>
+                    )
+                  })
+                }
+              </ul>
+            </div>
             &nbsp;
             <select onChange={this.onParticipationFilterChange.bind(this)} className="u-inline">
               <option value="-1">{django.gettext('Participation')}: {django.gettext('All')}</option>
