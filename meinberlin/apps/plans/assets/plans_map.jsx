@@ -32,7 +32,8 @@ const activeIcon = L.icon({
   iconSize: [30, 45],
   iconAnchor: [15, 45],
   shadowSize: [40, 54],
-  shadowAnchor: [20, 54]
+  shadowAnchor: [20, 54],
+  zIndexOffset: 1000
 })
 
 const pointToLatLng = function (point) {
@@ -132,32 +133,26 @@ class PlansMap extends React.Component {
       (!filters.bounds || filters.bounds.contains(pointToLatLng(item.point)))
   }
 
-  setMarkerSelected (marker) {
-    if (!this.selectedMarkers.hasLayer(marker)) {
-      this.cluster.removeLayer(marker)
-
-      // Removing a marker from the cluster resets its zIndexOffset,
-      // thus the zIndexOffset of the selected marker has to be set
-      // after it is removed from the cluster to rise it to the front.
-      marker.setZIndexOffset(1000)
-      marker.setIcon(activeIcon)
-      this.selectedMarkers.addLayer(marker)
+  setMarkerSelected (i, item) {
+    let activeMarker = this.activeMarkers[i]
+    if (!this.selected.hasLayer(activeMarker)) {
+      this.selected.clearLayers()
+      this.selected.addLayer(activeMarker)
     }
   }
 
-  setMarkerDefault (marker, item) {
+  setMarkerDefault (i, item) {
+    let marker = this.markers[i]
     if (!this.cluster.hasLayer(marker)) {
-      this.selectedMarkers.removeLayer(marker)
-
-      marker.setZIndexOffset(0)
-      marker.setIcon(icons[item.status])
       this.cluster.addLayer(marker)
     }
   }
 
-  setMarkerFiltered (marker) {
-    this.cluster.removeLayer(marker)
-    this.selectedMarkers.removeLayer(marker)
+  setMarkerFiltered (i) {
+    this.cluster.removeLayer(this.markers[i])
+    if (i === this.state.selected) {
+      this.selected.removeLayer(this.activeMarkers[i])
+    }
   }
 
   componentDidMount () {
@@ -165,11 +160,19 @@ class PlansMap extends React.Component {
     this.cluster = L.markerClusterGroup({
       showCoverageOnHover: false
     }).addTo(this.map)
-    this.selectedMarkers = L.layerGroup().addTo(this.map)
+    this.selected = L.layerGroup().addTo(this.map)
 
     this.markers = this.props.items.map((item, i) => {
       let marker = L.marker(pointToLatLng(item.point), {icon: icons[item.status]})
       this.cluster.addLayer(marker)
+      marker.on('click', () => {
+        this.onSelect(i)
+      })
+      return marker
+    })
+
+    this.activeMarkers = this.props.items.map((item, i) => {
+      let marker = L.marker(pointToLatLng(item.point), {icon: activeIcon})
       marker.on('click', () => {
         this.onSelect(i)
       })
@@ -184,13 +187,12 @@ class PlansMap extends React.Component {
     if (prevState.selected !== this.state.selected || prevState.filters !== this.state.filters) {
       // filter markers
       this.props.items.forEach((item, i) => {
-        let marker = this.markers[i]
         if (!this.isInFilter(item)) {
-          this.setMarkerFiltered(marker)
+          this.setMarkerFiltered(i)
         } else if (i === this.state.selected) {
-          this.setMarkerSelected(marker)
+          this.setMarkerSelected(i, item)
         } else {
-          this.setMarkerDefault(marker, item)
+          this.setMarkerDefault(i, item)
         }
       })
 
