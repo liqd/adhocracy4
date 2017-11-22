@@ -14,13 +14,15 @@ const statusNames = [
   django.gettext('Stopped')
 ]
 
-const icons = [
+const statusIconNames = [
   'lightbulb-o',
   'cogs',
   'play',
   'check',
   'pause'
-].map((cls, i) => L.divIcon({
+]
+
+const icons = statusIconNames.map((cls, i) => L.divIcon({
   className: 'map-list-combined__icon',
   html: `<i class="fa fa-${cls}" title="${statusNames[i]}" aria-hidden="true"></i>`,
   iconSize: [20, 20]
@@ -264,11 +266,28 @@ class PlansMap extends React.Component {
                 <i className="fa fa-caret-down" aria-hidden="true" />
               </button>
               <ul aria-labelledby="id_filter_status" className="dropdown-menu">
-                <li><button type="button" value="-1" onClick={this.onStatusFilterChange.bind(this)}>{django.gettext('All')}</button></li>
+                <li>
+                  <button
+                    type="button"
+                    className="dropdown-item select-item"
+                    value="-1"
+                    onClick={this.onStatusFilterChange.bind(this)}>
+                    {django.gettext('All')}
+                  </button>
+                </li>
                 {
                   statusNames.map((name, i) => {
                     return (
-                      <button key={i} type="button" value={i} onClick={this.onStatusFilterChange.bind(this)}>{name}</button>
+                      <li key={i}>
+                        <button
+                          type="button"
+                          className="dropdown-item select-item"
+                          value={i}
+                          onClick={this.onStatusFilterChange.bind(this)}>
+                          <i className={`select-item-indicator fa fa-${statusIconNames[i]}`} aria-hidden="true" />
+                          {name}
+                        </button>
+                      </li>
                     )
                   })
                 }
