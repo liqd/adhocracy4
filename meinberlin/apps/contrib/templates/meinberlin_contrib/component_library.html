@@ -38,6 +38,12 @@
                         <li class="dashboard-nav__page">
                             <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Commenting</a>
                         </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Comments</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-complete" class="dashboard-nav__item dashboard-nav__item--interactive">Complete</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -302,6 +308,123 @@
                             </button>
                         </div>
                     </div>
+                </div>
+
+                <h2 id="cl-commenting">Comments</h2>
+
+                <div class="cl-example">
+                    <div class="comments">
+                        <p>The markup (and classnames) for the comments come from A4 React. Here's our styling</p>
+                        <div class="black-divider">This is the black divider showing the number of comments</div>
+                        <div class="comment-box">
+                            <form class="general-form">
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Your comment here"></textarea>
+                                </div>
+                                <input value="post" class="submit-button" type="submit">
+                            </form>
+                            <div class="comment-list">
+                                <div>
+                                    <div class="comment">
+                                        <h3 class="comment-author">
+                                            <a href="#" data-embed-target="external">Comment Author</a>
+                                        </h3>
+                                        <span class="comment-submission-date">11/23/2017, 2:24:21 PM</span>
+                                        <div class="comment-text">
+                                            This is the comment text.
+                                            Click the ... button below to see the comment-dropdown.
+                                        </div>
+                                        <div class="action-bar">
+                                            <nav class="navbar navbar-default navbar-static">
+                                                <div class="rating">
+                                                    <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true">12</i></button>
+                                                    <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true">3</i></button>
+                                                </div>
+                                                <ul class="nav navbar-nav">
+                                                    <li class="dropdown">
+                                                        <button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><button type="button">Edit</button></li>
+                                                            <li class="divider"></li><li><a href="#">Delete</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#">Report</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                        <div class="action-bar">
+                                            <div class="navbar">
+                                                <button class="comment-reply-button" type="button">View 1 reply</button>
+                                                <div class="navbar-right">
+                                                    <button class="comment-reply-button" type="button"><i class="fa fa-reply" aria-hidden="true"></i>Answer</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="comment-child-list">
+                                            <div>
+                                                <div class="comment">
+                                                    <h3 class="comment-author">
+                                                        <a href="#" data-embed-target="external">Answer comment author</a>
+                                                    </h3>
+                                                    <span class="comment-submission-date">11/23/2017, 2:24:34 PM</span>
+                                                    <div class="comment-text">
+                                                    This is the answer text to the other comment.
+                                                    </div>
+                                                    <div class="action-bar">
+                                                        <nav class="navbar navbar-default navbar-static">
+                                                            <div class="rating">
+                                                                <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button>
+                                                                <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button>
+                                                            </div>
+                                                            <ul class="nav navbar-nav"><li class="dropdown"><button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <form class="general-form">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" placeholder="Your comment here"></textarea>
+                                                </div>
+                                                <input value="post" class="submit-button" type="submit">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-complete">Complete</h2>
+
+                <div class="cl-example">
+                    <div class="complete">
+                        <span class="complete__warning">
+                            Complete Warning - shown on the address search for the point choser map thingy.
+                        </span>
+                    </div>
+                    <div class="complete">
+                        <ul class="complete__list">
+                            The search for an address produces the hits as list:
+                            <li>
+                                <button type="button" class="complete__item">
+                                    Petersburger Str. , 10247 Friedrichshain
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="complete__item">
+                                    Petersburger Str. , 10249 Friedrichshain
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2 id="cl-"></h2>
+
+                <div class="cl-example">
                 </div>
 
             </div>
