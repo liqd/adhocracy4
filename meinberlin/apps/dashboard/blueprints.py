@@ -54,8 +54,8 @@ blueprints = [
          title=_('Agenda Setting'),
          description=_(
              'With Agenda-Setting it’s possible to identify topics and to '
-             'define mission statements. Afterwards anyone can comment and '
-             'rate on different topics.'
+             'define mission statements. Anyone can submit topics that can be '
+             'commented and rated.'
          ),
          content=[
              ideas_phases.CollectFeedbackPhase(),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-20 17:32+0100\n"
+"POT-Creation-Date: 2017-11-22 16:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,7 +47,7 @@ msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:125
-#: adhocracy4/reports/static/reports/react_reports.jsx:21
+#: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid "Are you sure you want to report this item?"
 msgstr "Are you sure you want to report this item?"
 
@@ -217,9 +217,62 @@ msgstr "Headline"
 msgid "Paragraph"
 msgstr "Paragraph"
 
-#: meinberlin/apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:111
+#: meinberlin/apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:112
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:10
+msgid "Idea"
+msgstr "Idea"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:11
+msgid "Planning"
+msgstr "Planning"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:12
+msgid "Implementation"
+msgstr "Implementation"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:13
+msgid "Done"
+msgstr "Done"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:14
+msgid "Stopped"
+msgstr "Stopped"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:265
+msgid "Nothing to show"
+msgstr "Nothing to show"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:274
+msgid "Filter bar"
+msgstr "Filter bar"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:281
+#: meinberlin/apps/plans/assets/plans_map.jsx:282
+#: meinberlin/apps/plans/assets/plans_map.jsx:283
+msgid "Search"
+msgstr "Search"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:288
+#: meinberlin/apps/plans/assets/plans_map.jsx:292
+msgid "Status"
+msgstr "Status"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:288
+#: meinberlin/apps/plans/assets/plans_map.jsx:299
+msgid "All"
+msgstr "All"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:299
+#: meinberlin/apps/plans/assets/plans_map.jsx:300
+msgid "Participation"
+msgstr "Participation"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:300
+msgid "Planned"
+msgstr "Planned"
 
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:24
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:27
@@ -260,19 +313,19 @@ msgid_plural "votes"
 msgstr[0] "vote"
 msgstr[1] "votes"
 
-#: meinberlin/apps/polls/assets/Question.jsx:140
+#: meinberlin/apps/polls/assets/Question.jsx:138
 msgid "To poll"
 msgstr "To poll"
 
-#: meinberlin/apps/polls/assets/Question.jsx:144
+#: meinberlin/apps/polls/assets/Question.jsx:141
 msgid "Change vote"
 msgstr "Change vote"
 
-#: meinberlin/apps/polls/assets/Question.jsx:155
+#: meinberlin/apps/polls/assets/Question.jsx:145
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
-#: meinberlin/apps/polls/assets/Question.jsx:184
+#: meinberlin/apps/polls/assets/Question.jsx:173
 msgid "Your choice"
 msgstr "Your choice"
 
