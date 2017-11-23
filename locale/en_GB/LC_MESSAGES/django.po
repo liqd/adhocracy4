@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-22 16:11+0100\n"
+"POT-Creation-Date: 2017-11-23 10:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -506,35 +506,35 @@ msgstr "log entries"
 #: meinberlin/apps/adminlog/signals.py:15
 #, python-brace-format
 msgid ""
-"\"{username}\" modified the component \"{component_label}\" in the module "
-"\"{module_name}\" of the project \"{project_name}\"."
+"The component \"{component_label}\" in the module \"{module_name}\" of the "
+"project \"{project_name}\" has been modified."
 msgstr ""
-"\"{username}\" modified the component \"{component_label}\" in the module "
-"\"{module_name}\" of the project \"{project_name}\"."
+"The component \"{component_label}\" in the module \"{module_name}\" of the "
+"project \"{project_name}\" has been modified."
 
-#: meinberlin/apps/adminlog/signals.py:37
+#: meinberlin/apps/adminlog/signals.py:36
 #, python-brace-format
 msgid ""
-"\"{username}\" modified the component \"{component_label}\" of the project "
-"\"{project_name}\"."
+"The component \"{component_label}\" of the project \"{project_name}\" has "
+"been modified."
 msgstr ""
-"\"{username}\" modified the component \"{component_label}\" of the project "
-"\"{project_name}\"."
+"The component \"{component_label}\" of the project \"{project_name}\" has "
+"been modified."
 
-#: meinberlin/apps/adminlog/signals.py:57
+#: meinberlin/apps/adminlog/signals.py:55
 #, python-brace-format
-msgid "\"{username}\" created the project \"{project_name}\"."
-msgstr "\"{username}\" created the project \"{project_name}\"."
+msgid "The project \"{project_name}\" has been created."
+msgstr "The project \"{project_name}\" has been created."
 
-#: meinberlin/apps/adminlog/signals.py:75
+#: meinberlin/apps/adminlog/signals.py:72
 #, python-brace-format
-msgid "\"{username}\" published the project \"{project_name}\"."
-msgstr "\"{username}\" published the project \"{project_name}\"."
+msgid "The project \"{project_name}\" has been published."
+msgstr "The project \"{project_name}\" has been published."
 
-#: meinberlin/apps/adminlog/signals.py:93
+#: meinberlin/apps/adminlog/signals.py:89
 #, python-brace-format
-msgid "\"{username}\" depublished the project \"{project_name}\"."
-msgstr "\"{username}\" depublished the project \"{project_name}\"."
+msgid "The project \"{project_name}\" has been unpublished."
+msgstr "The project \"{project_name}\" has been unpublished."
 
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:4
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:8
@@ -2946,6 +2946,29 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid ""
+#~ "\"{username}\" modified the component \"{component_label}\" in the module "
+#~ "\"{module_name}\" of the project \"{project_name}\"."
+#~ msgstr ""
+#~ "\"{username}\" modified the component \"{component_label}\" in the module "
+#~ "\"{module_name}\" of the project \"{project_name}\"."
+
+#~ msgid ""
+#~ "\"{username}\" modified the component \"{component_label}\" of the "
+#~ "project \"{project_name}\"."
+#~ msgstr ""
+#~ "\"{username}\" modified the component \"{component_label}\" of the "
+#~ "project \"{project_name}\"."
+
+#~ msgid "\"{username}\" created the project \"{project_name}\"."
+#~ msgstr "\"{username}\" created the project \"{project_name}\"."
+
+#~ msgid "\"{username}\" published the project \"{project_name}\"."
+#~ msgstr "\"{username}\" published the project \"{project_name}\"."
+
+#~ msgid "\"{username}\" depublished the project \"{project_name}\"."
+#~ msgstr "\"{username}\" depublished the project \"{project_name}\"."
 
 #~ msgid ""
 #~ "With Agenda-Setting it’s possible to identify topics and to define "
