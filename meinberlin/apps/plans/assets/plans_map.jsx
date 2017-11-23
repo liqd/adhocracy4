@@ -90,7 +90,7 @@ class PlansMap extends React.Component {
   onParticipationFilterChange (event) {
     this.setState({
       filters: update(this.state.filters, {
-        $merge: {status: parseInt(event.target.value, 10)}
+        $merge: {participation: parseInt(event.target.value, 10)}
       })
     })
   }
@@ -248,9 +248,10 @@ class PlansMap extends React.Component {
   }
 
   renderList () {
-    let list = this.props.items.map((item, i) => {
+    let list = []
+    this.props.items.forEach((item, i) => {
       if (this.isInFilter(item)) {
-        return this.renderListItem(item, i)
+        list.push(this.renderListItem(item, i))
       }
     })
 
