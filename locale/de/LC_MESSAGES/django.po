@@ -522,6 +522,8 @@ msgid ""
 "The component \"{component_label}\" in the module \"{module_name}\" of the "
 "project \"{project_name}\" has been modified."
 msgstr ""
+"Änderungen im Projekt \"{project_name}\" am Modul "
+"\"{module_name}\" im Bereich \"{component_label}\"."
 
 #: meinberlin/apps/adminlog/signals.py:36
 #, python-brace-format
@@ -529,21 +531,22 @@ msgid ""
 "The component \"{component_label}\" of the project \"{project_name}\" has "
 "been modified."
 msgstr ""
+"Änderungen im Projekt \"{project_name}\" im Bereich \"{component_label}\"."
 
 #: meinberlin/apps/adminlog/signals.py:55
 #, python-brace-format
 msgid "The project \"{project_name}\" has been created."
-msgstr ""
+msgstr "Das Projekt \"{project_name}\" wurde erstellt."
 
 #: meinberlin/apps/adminlog/signals.py:72
 #, python-brace-format
 msgid "The project \"{project_name}\" has been published."
-msgstr ""
+msgstr "Das Projekt \"{project_name}\" wurde publiziert."
 
 #: meinberlin/apps/adminlog/signals.py:89
 #, python-brace-format
 msgid "The project \"{project_name}\" has been unpublished."
-msgstr ""
+msgstr "Das Projekt \"{project_name}\" wurde depubliziert."
 
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:4
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:8
@@ -2983,40 +2986,3 @@ msgstr ""
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
 
-#~ msgid ""
-#~ "\"{username}\" modified the component \"{component_label}\" in the module "
-#~ "\"{module_name}\" of the project \"{project_name}\"."
-#~ msgstr ""
-#~ "\"{username}\" hat im Projekt \"{project_name}\" Änderungen am Modul "
-#~ "\"{module_name}\" im Bereich \"{component_label}\" vorgenommen."
-
-#~ msgid ""
-#~ "\"{username}\" modified the component \"{component_label}\" of the "
-#~ "project \"{project_name}\"."
-#~ msgstr ""
-#~ "\"{username}\" hat im Projekt \"{project_name}\" Änderungen im Bereich "
-#~ "\"{component_label}\" vorgenommen."
-
-#~ msgid "\"{username}\" created the project \"{project_name}\"."
-#~ msgstr "\"{username}\" hat das Projekt \"{project_name}\" erstellt."
-
-#~ msgid "\"{username}\" published the project \"{project_name}\"."
-#~ msgstr "\"{username}\" hat das Projekt \"{project_name}\" veröffentlicht."
-
-#~ msgid "\"{username}\" depublished the project \"{project_name}\"."
-#~ msgstr "\"{username}\" hat das Projekt \"{project_name}\" depubliziert."
-
-#~ msgid ""
-#~ "With Agenda-Setting it’s possible to identify topics and to define "
-#~ "mission statements. Afterwards anyone can comment and rate on different "
-#~ "topics."
-#~ msgstr ""
-#~ "Mit \"Agenda festlegen\" ist es möglich, Themen zu identifizieren und "
-#~ "Leitbilder zu definieren. Im Anschluss können diese bewertet und "
-#~ "kommentiert werden."
-
-#~ msgid "Universal phase"
-#~ msgstr "Universelle Phase"
-
-#~ msgid "Use all features of the idea collection."
-#~ msgstr "Anlegen, bewerten und kommentieren von Ideen."
