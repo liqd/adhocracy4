@@ -1,5 +1,6 @@
 {% load i18n %}{% block headline %}{% endblock %}
 
+{% trans 'Hello' %},
 {% block content %}{% endblock %}
 
 {% block cta %}{% block cta_label %}{% endblock %}: {% block cta_url %}{% endblock %}{% endblock %}
