@@ -5,11 +5,9 @@
 
 {% block headline %}Invitation to the private project {{ participantinvite.project.name }}{% endblock  %}
 
-{% block content %}
-You were invited as a member of this private project by the user <i>{{ participantinvite.creator.username }}</i>. Private projects allow participants to discuss and decide on topics in an invite-only group of people.  Please accept or decline the invitation by clicking the {% if part_type == "txt" %}link{% else %}button{% endif %} below.
-{% endblock %}
+{% block content %}You are invited to participate in the private project "{{ participantinvite.project.name }}" on the participation platform  {{ site.name }}. To participate click on "Accepct invitation."{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ participantinvite.get_absolute_url }}{% endblock %}
-{% block cta_label %}Accept/Decline invitation{% endblock %}
+{% block cta_label %}Accept invitation{% endblock %}
 
-{% block reason %}This email was sent to {{ participantinvite.email }}. This email was sent to you because you are invited to a project.{% endblock %}
+{% block reason %}This email was sent to {{ participantinvite.email }}. This email was sent to you because you are invited to participate in a private project.{% endblock %}
