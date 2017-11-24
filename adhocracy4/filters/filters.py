@@ -71,7 +71,8 @@ class FreeTextFilter(django_filters.CharFilter):
         return q_objects
 
     def __init__(self, *args, **kwargs):
-        kwargs['method'] = self.multi_filter
+        if 'method' not in kwargs:
+            kwargs['method'] = self.multi_filter
 
         if 'fields' in kwargs:
             self.fields = kwargs.pop('fields')
