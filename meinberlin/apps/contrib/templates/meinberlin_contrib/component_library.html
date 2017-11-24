@@ -44,6 +44,18 @@
                         <li class="dashboard-nav__page">
                             <a href="#cl-complete" class="dashboard-nav__item dashboard-nav__item--interactive">Complete</a>
                         </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-component-library" class="dashboard-nav__item dashboard-nav__item--interactive">Component Library</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-copyright" class="dashboard-nav__item dashboard-nav__item--interactive">Coyright</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-dashboard-nav" class="dashboard-nav__item dashboard-nav__item--interactive">Dashboard Nav</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-datepicker" class="dashboard-nav__item dashboard-nav__item--interactive">Datepicker</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -419,6 +431,68 @@
                                 </button>
                             </li>
                         </ul>
+                    </div>
+                </div>
+
+                <h2 id="cl-component-library">Component library</h2>
+
+                <div class="cl-example">
+                    <div class="cl-example">
+                        Every component in the component library has a border and some padding.
+                    </div>
+                </div>
+
+                <h2 id="cl-copyright">Copyright</h2>
+
+                <div class="cl-example">
+                    <div class="copyright">
+                        The copyright class is used wherever an image has a copyright.
+                    </div>
+                </div>
+
+                <h2 id="cl-dashboard-nav">Dashboard Nav</h2>
+
+                <div class="cl-example">
+                    <nav class="dashboard-nav">
+                        <div class="dashboard-nav__dropdown">
+                            <div class="dashboard-nav__item">Dashboard nav item (in a dashboard-nav__dropwown, which is not used as dropdown)</div>
+                        </div>
+                        <ul class="dashboard-nav__pages">
+                            <li class="dashboard-nav__page">
+                                <a href="#"
+                                    class="dashboard-nav__item dashboard-nav__item--interactive">
+                                    Interactive Dashboard nav item
+                                </a>
+                            </li>
+                            <li class="dashboard-nav__page">
+                                <a href="#"
+                                    class="dashboard-nav__item dashboard-nav__item--interactive">
+                                    These interactive items are shown in a list
+                                </a>
+                            </li><li class="dashboard-nav__page">
+                                <a href="#"
+                                    class="dashboard-nav__item dashboard-nav__item--interactive is-active">
+                                    The active item is marked
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <h2 id="cl-datepicker">Datepicker</h2>
+
+                <div class="cl-example">
+                    <div class="widget widget--datetimeinput">
+                        <div class="l-tiles-2">
+                            <div class="widget--datetimeinput__date">
+                                <input name="name_start_date" value="2017-11-22" placeholder="2017-11-24" id="id_start_date" class="datepicker" type="text">
+                                <a href="#" class="date-picker-control date-picker-dateval" title="Show Calendar" role="button" aria-haspopup="true" tabindex="0"><span>&nbsp;</span><span class="fd-screen-reader">Show Calendar</span></a>
+                            </div>
+                            <div>
+                                <label class="sr-only" for="id_start_date_time">Start time</label>
+                                <input name="name_start_date_time" value="00:00" placeholder="00:00" id="id_start_date_time" class="timepicker" type="text">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
