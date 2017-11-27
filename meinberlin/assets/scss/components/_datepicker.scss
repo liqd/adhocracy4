@@ -45,7 +45,7 @@
 
     &:before {
         content: '\f133';
-        font-family: 'FontAwesome';
+        font-family: 'FontAwesome', sans-serif;
     }
 }
 
@@ -71,7 +71,7 @@
         font-size: 0;
 
         &:before {
-            font-family: 'FontAwesome';
+            font-family: 'FontAwesome', sans-serif;
             font-size: $font-size-lg;
             vertical-align: bottom;
         }
