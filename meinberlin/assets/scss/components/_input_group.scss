@@ -17,11 +17,6 @@
 .input-group__before,
 .input-group__after {
     border-radius: 0;
-
-    &:focus {
-        // highlighted border should be on top
-        z-index: 1;
-    }
 }
 
 .input-group__before {
@@ -40,6 +35,13 @@
         border-top-right-radius: 0.3em;
         border-bottom-right-radius: 0.3em;
     }
+}
+
+.input-group__input:focus,
+.input-group__before:focus,
+.input-group__after:focus {
+    // highlighted border should be on top
+    z-index: 1;
 }
 
 .addon {

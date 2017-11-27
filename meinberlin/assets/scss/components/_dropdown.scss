@@ -6,11 +6,6 @@
 
 .dropdown--right {
     text-align: right;
-
-    .dropdown-menu {
-        left: auto;
-        right: 0;
-    }
 }
 
 .dropdown-toggle {
@@ -80,6 +75,11 @@
     li:last-child > a,
     li:last-child > button {
         border-bottom: 0;
+    }
+
+    .dropdown-right & {
+        left: auto;
+        right: 0;
     }
 
     .dropdown.show & {

@@ -20,15 +20,15 @@
 .formset__delete {
     @include sr-only();
 
-    &:focus ~ .formset__delete-label {
-        @include fake-focus;
-    }
-
     & ~ .formset__delete-label {
         position: absolute;
         right: 0.5em;
         top: 0.6em;
         color: $gray;
+    }
+
+    &:focus ~ .formset__delete-label {
+        @include fake-focus;
     }
 
     &:checked ~ label {
