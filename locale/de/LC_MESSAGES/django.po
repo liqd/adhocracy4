@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-22 16:11+0100\n"
+"POT-Creation-Date: 2017-11-23 10:00+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -519,35 +519,34 @@ msgstr "Protokolleinträge"
 #: meinberlin/apps/adminlog/signals.py:15
 #, python-brace-format
 msgid ""
-"\"{username}\" modified the component \"{component_label}\" in the module "
-"\"{module_name}\" of the project \"{project_name}\"."
+"The component \"{component_label}\" in the module \"{module_name}\" of the "
+"project \"{project_name}\" has been modified."
 msgstr ""
-"\"{username}\" hat im Projekt \"{project_name}\" Änderungen am Modul "
-"\"{module_name}\" im Bereich \"{component_label}\" vorgenommen."
+"Änderungen im Projekt \"{project_name}\" am Modul "
+"\"{module_name}\" im Bereich \"{component_label}\"."
 
-#: meinberlin/apps/adminlog/signals.py:37
+#: meinberlin/apps/adminlog/signals.py:36
 #, python-brace-format
 msgid ""
-"\"{username}\" modified the component \"{component_label}\" of the project "
-"\"{project_name}\"."
+"The component \"{component_label}\" of the project \"{project_name}\" has "
+"been modified."
 msgstr ""
-"\"{username}\" hat im Projekt \"{project_name}\" Änderungen im Bereich "
-"\"{component_label}\" vorgenommen."
+"Änderungen im Projekt \"{project_name}\" im Bereich \"{component_label}\"."
 
-#: meinberlin/apps/adminlog/signals.py:57
+#: meinberlin/apps/adminlog/signals.py:55
 #, python-brace-format
-msgid "\"{username}\" created the project \"{project_name}\"."
-msgstr "\"{username}\" hat das Projekt \"{project_name}\" erstellt."
+msgid "The project \"{project_name}\" has been created."
+msgstr "Das Projekt \"{project_name}\" wurde erstellt."
 
-#: meinberlin/apps/adminlog/signals.py:75
+#: meinberlin/apps/adminlog/signals.py:72
 #, python-brace-format
-msgid "\"{username}\" published the project \"{project_name}\"."
-msgstr "\"{username}\" hat das Projekt \"{project_name}\" veröffentlicht."
+msgid "The project \"{project_name}\" has been published."
+msgstr "Das Projekt \"{project_name}\" wurde publiziert."
 
-#: meinberlin/apps/adminlog/signals.py:93
+#: meinberlin/apps/adminlog/signals.py:89
 #, python-brace-format
-msgid "\"{username}\" depublished the project \"{project_name}\"."
-msgstr "\"{username}\" hat das Projekt \"{project_name}\" depubliziert."
+msgid "The project \"{project_name}\" has been unpublished."
+msgstr "Das Projekt \"{project_name}\" wurde depubliziert."
 
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:4
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:8
@@ -2987,17 +2986,3 @@ msgstr ""
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
 
-#~ msgid ""
-#~ "With Agenda-Setting it’s possible to identify topics and to define "
-#~ "mission statements. Afterwards anyone can comment and rate on different "
-#~ "topics."
-#~ msgstr ""
-#~ "Mit \"Agenda festlegen\" ist es möglich, Themen zu identifizieren und "
-#~ "Leitbilder zu definieren. Im Anschluss können diese bewertet und "
-#~ "kommentiert werden."
-
-#~ msgid "Universal phase"
-#~ msgstr "Universelle Phase"
-
-#~ msgid "Use all features of the idea collection."
-#~ msgstr "Anlegen, bewerten und kommentieren von Ideen."
