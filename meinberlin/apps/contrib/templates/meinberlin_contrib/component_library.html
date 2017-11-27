@@ -56,6 +56,12 @@
                         <li class="dashboard-nav__page">
                             <a href="#cl-datepicker" class="dashboard-nav__item dashboard-nav__item--interactive">Datepicker</a>
                         </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-docs-block" class="dashboard-nav__item dashboard-nav__item--interactive">Docs Block</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Document</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -440,6 +446,9 @@
                     <div class="cl-example">
                         Every component in the component library has a border and some padding.
                     </div>
+                    <div class="cl-example cl-example--grey">
+                        And some have the same background as the module pages.
+                    </div>
                 </div>
 
                 <h2 id="cl-copyright">Copyright</h2>
@@ -496,9 +505,103 @@
                     </div>
                 </div>
 
-                <h2 id="cl-"></h2>
+                <h2 id="cl-docs-block">Docs Block</h2>
 
                 <div class="cl-example">
+                    <div class="docs-block">
+                        <a
+                            id="docs-block-{{ index }}-title"
+                            href="#docs-block-{{ index }}-body"
+                            class="docs-block__title collapsed"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            data-toggle="collapse">
+                            <h2>
+                                Docs Block Title
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </h2>
+                        </a>
+
+                        <div
+                            class="docs-block__body collapse"
+                            id="docs-block-{{ index }}-body"
+                            aria-labelledby="docs-block-{{ index }}-title">
+                            This is the body of the docs block,
+                            This block is used in wagtail pages.
+                            <ul>
+                                <li>Why is the list-styling turned off?</li>
+                            </ul>
+                            And why is there a margin-bottom with the list-styling that is otherwise not there? Is wagtail's richtext given as list elements?
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-document">Document</h2>
+
+                <div class="cl-example cl-example--grey">
+                    <nav class="doc-toc" aria-label="Table of Contents">
+                        <button
+                            class="doc-toc__toggle collapsed"
+                            data-toggle="collapse"
+                            data-target="#doc-toc__content"
+                            aria-expanded="true"
+                            aria-controls="doc-toc__content">
+                            <h2 class="doc-toc__title">Table of Contents</h2>
+                            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                        </button>
+                        <div class="doc-toc__content collapse" id="doc-toc__content">
+                            <ol>
+                                <li>
+                                    <a href="#" class="doc-toc__link">
+                                        Chapter 1
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="doc-toc__link active">
+                                        Chapter 2
+                                    </a>
+                                </li>
+                            </ol>
+                        </div>
+                    </nav>
+
+                    <h2 class="chapter-title">Chapter 2</h2>
+
+                    <section class="paragraph" id="id-paragraph">
+                        <div class="paragraph__content">
+                            <h3 class="paragraph__title">
+                                Paragraph Title/Name
+                            </h3>
+                            Why is the Table of contents expanded when we are in the first chapter and collapsed in the following ones?
+                        </div>
+                        <div class="paragraph__actions">
+                            <a
+                                    class="btn"
+                                    href="#"
+                            >
+                                <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                10 Comments
+                            </a>
+                        </div>
+                    </section>
+
+                    <section class="paragraph" id="id-paragraph">
+                        <div class="paragraph__content">
+                            <h3 class="paragraph__title">
+                                One more Paragraph Title/Name
+                            </h3>
+                            It looks a bit different with the grey background (from module-content), so I added it, even though it doesn't belong to this component. Oh, but that looks weird again. What should I do? Ah! I know, but now I'll have to add another variant to the Component Library section.
+                        </div>
+                        <div class="paragraph__actions">
+                            <a
+                                    class="btn"
+                                    href="#"
+                            >
+                                <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                1 Comment
+                            </a>
+                        </div>
+                    </section>
                 </div>
 
             </div>
