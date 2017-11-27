@@ -14,13 +14,15 @@ const statusNames = [
   django.gettext('Stopped')
 ]
 
-const icons = [
+const statusIconNames = [
   'lightbulb-o',
   'cogs',
   'play',
   'check',
   'pause'
-].map((cls, i) => L.divIcon({
+]
+
+const icons = statusIconNames.map((cls, i) => L.divIcon({
   className: 'map-list-combined__icon',
   html: `<i class="fa fa-${cls}" title="${statusNames[i]}" aria-hidden="true"></i>`,
   iconSize: [20, 20]
@@ -82,7 +84,7 @@ class PlansMap extends React.Component {
   onStatusFilterChange (event) {
     this.setState({
       filters: update(this.state.filters, {
-        $merge: {status: parseInt(event.target.value, 10)}
+        $merge: {status: parseInt(event.currentTarget.value, 10)}
       })
     })
   }
@@ -285,18 +287,41 @@ class PlansMap extends React.Component {
               </button>
             </form>
             &nbsp;
-            <select onChange={this.onStatusFilterChange.bind(this)} className="u-inline">
-              <option value="-1">{django.gettext('Status')}: {django.gettext('All')}</option>
-              {
-                statusNames.map((name, i) => {
-                  return (
-                    <option key={i} value={i}>{django.gettext('Status')}: {name}</option>
-                  )
-                })
-              }
-            </select>
+            <div className="dropdown ">
+              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_status">
+                {django.gettext('Status')}: {statusNames[this.state.filters.status] || django.gettext('All')}
+                <i className="fa fa-caret-down" aria-hidden="true" />
+              </button>
+              <ul aria-labelledby="id_filter_status" className="dropdown-menu">
+                <li>
+                  <button
+                    type="button"
+                    className="dropdown-item select-item"
+                    value="-1"
+                    onClick={this.onStatusFilterChange.bind(this)}>
+                    {django.gettext('All')}
+                  </button>
+                </li>
+                {
+                  statusNames.map((name, i) => {
+                    return (
+                      <li key={i}>
+                        <button
+                          type="button"
+                          className="dropdown-item select-item"
+                          value={i}
+                          onClick={this.onStatusFilterChange.bind(this)}>
+                          <i className={`select-item-indicator fa fa-${statusIconNames[i]}`} aria-hidden="true" />
+                          {name}
+                        </button>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
             &nbsp;
-            <select onChange={this.onParticipationFilterChange.bind(this)} className="u-inline">
+            <select onChange={this.onParticipationFilterChange.bind(this)} className="u-inline btn btn--light">
               <option value="-1">{django.gettext('Participation')}: {django.gettext('All')}</option>
               <option value="1">{django.gettext('Participation')}: {django.gettext('Planned')}</option>
             </select>
