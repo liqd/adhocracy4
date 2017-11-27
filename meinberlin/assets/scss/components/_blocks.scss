@@ -38,3 +38,27 @@
 .block__actions {
     text-align: center;
 }
+
+.block--image-cta {
+    border: 1px solid $border-color;
+}
+
+.block--image-cta__img {
+    display: block;
+    position: relative;
+    min-height: 11.8em;
+    background-size: stretch;
+    background-position: center;
+    margin-bottom: $spacer;
+}
+
+.block--image-cta__body {
+    padding: $padding;
+    text-align: center;
+}
+
+.block--image-cta__copyright {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
