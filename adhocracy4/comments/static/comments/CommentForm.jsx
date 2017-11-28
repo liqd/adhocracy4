@@ -25,8 +25,9 @@ class CommentForm extends React.Component {
         objectPk: this.props.subjectId,
         contentTypeId: this.props.subjectType
       }
-    }, this.props.parentIndex)
-    this.setState({comment: ''})
+    }, this.props.parentIndex).then(() => {
+      this.setState({comment: ''})
+    })
   }
   render () {
     if (this.context.isAuthenticated && !this.props.isReadOnly) {

@@ -28,7 +28,7 @@ class CommentBox extends React.Component {
     this.setState({ comments: comments })
   }
   handleCommentSubmit (comment, parentIndex) {
-    api.comments.add(comment)
+    return api.comments.add(comment)
       .done(function (comment) {
         var comments = this.state.comments
         var diff = {}
@@ -49,7 +49,7 @@ class CommentBox extends React.Component {
       comment = comments[parentIndex].child_comments[index]
     }
 
-    api.comments.change(modifiedComment, comment.id)
+    return api.comments.change(modifiedComment, comment.id)
       .done(this.updateStateComment.bind(this, index, parentIndex))
   }
   handleCommentDelete (index, parentIndex) {
@@ -65,7 +65,7 @@ class CommentBox extends React.Component {
         objectPk: comment.object_pk
       }
     }
-    api.comments.delete(data, comment.id)
+    return api.comments.delete(data, comment.id)
       .done(this.updateStateComment.bind(this, index, parentIndex))
   }
   getChildContext () {

@@ -79,7 +79,11 @@ class Comment extends React.Component {
           handleCancel={this.toggleEdit.bind(this)}
           onCommentSubmit={newComment => {
             this.props.handleCommentModify(newComment, this.props.index, this.props.parentIndex)
-            this.state.edit = false
+              .then(() => {
+                this.setState({
+                  edit: false
+                })
+              })
           }}
         />
       )
