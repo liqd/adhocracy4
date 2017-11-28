@@ -42,6 +42,23 @@ class CommentBox extends React.Component {
         this.setState({
           comments: update(comments, diff)
         })
+
+        if (typeof parentIndex !== 'undefined') {
+          this.updateStateComment(parentIndex, undefined, {replyError: false})
+        } else {
+          this.setState({
+            error: false
+          })
+        }
+      })
+      .fail(respone => {
+        if (typeof parentIndex !== 'undefined') {
+          this.updateStateComment(parentIndex, undefined, {replyError: true})
+        } else {
+          this.setState({
+            error: true
+          })
+        }
       })
   }
 
@@ -53,7 +70,13 @@ class CommentBox extends React.Component {
     }
 
     return api.comments.change(modifiedComment, comment.id)
-      .done(this.updateStateComment.bind(this, index, parentIndex))
+      .done(changed => {
+        this.updateStateComment(index, parentIndex, changed)
+        this.updateStateComment(index, parentIndex, {editError: false})
+      })
+      .fail(respone => {
+        this.updateStateComment(index, parentIndex, {editError: true})
+      })
   }
 
   handleCommentDelete (index, parentIndex) {
