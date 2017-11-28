@@ -38,7 +38,7 @@ class CommentForm extends React.Component {
       return (
         <form className="general-form" onSubmit={this.handleSubmit.bind(this)}>
           {this.props.error &&
-            <Alert type="danger" message={django.gettext('Error!')} onClick={this.props.handleErrorClick} />
+            <Alert type="danger" message={django.gettext('Error while submitting your comment!')} onClick={this.props.handleErrorClick} />
           }
           <div className="form-group">
             <textarea rows={this.props.rows} className="form-control"
