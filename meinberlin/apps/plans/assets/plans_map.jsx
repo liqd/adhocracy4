@@ -336,7 +336,7 @@ class PlansMap extends React.Component {
                 <li>
                   <button
                     type="button"
-                    className="dropdown-item select-item"
+                    className="dropdown-item"
                     value="-1"
                     onClick={this.onParticipationFilterChange.bind(this)}>
                     {django.gettext('All')}
@@ -348,7 +348,7 @@ class PlansMap extends React.Component {
                       <li key={i}>
                         <button
                           type="button"
-                          className="dropdown-item select-item"
+                          className="dropdown-item"
                           value={i}
                           onClick={this.onParticipationFilterChange.bind(this)}>
                           {name}
