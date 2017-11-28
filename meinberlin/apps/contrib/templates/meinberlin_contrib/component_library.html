@@ -38,6 +38,9 @@
                         <li class="dashboard-nav__page">
                             <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Commenting</a>
                         </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Control Bar</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -304,7 +307,109 @@
                     </div>
                 </div>
 
+
+                <h2 id="cl-control_bar">Control Bar</h2>
+                <p>Control Bars are intended to be used atop of lists of elements or maps.</p>
+                <p>Control Bars may only contain <a href="#cl-buttons">Buttons</a>, <a href="#cl-dropdowns">Dropdowns</a>
+                    and <code>.input-groups</code>.</p>
+                <p>Note that they are somehow located within the <code>_filter_bar.scss</code> file.</p>
+
+                <div class="cl-example">
+                    <div class="control-bar" role="group" aria-label="Filter bar">
+                        <a class="btn btn--light" href="#" aria-label="View as map">
+                            <i class="fa fa-map" aria-hidden="true"></i>
+                            View
+                        </a>
+
+                        <form class="input-group form-group u-inline-flex" method="get">
+                            <input class="input-group__input" type="search" name="search" placeholder="Search" value="">
+                            <button class="input-group__after btn btn--light" type="submit" title="Search">
+                                <i class="fa fa-search" aria-label="Search"></i>
+                            </button>
+                        </form>
+
+                        <div class="dropdown">
+                            <button type="button" class="dropdown-toggle btn btn--light btn--select">
+                                Category: All
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </button>
+                        </div>
+
+                        <div class="control-bar__right">
+                            <div class="dropdown">
+                                <button type="button" class="dropdown-toggle btn btn--light btn--select">
+                                    Ordering: Most recent
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="module-content">
+                        <div class="l-wrapper">
+                            <ul class="u-list-reset">
+                                <li class="list-item list-item--squashed">
+                                    {% lorem 20 w random %}
+                                </li>
+                                <li class="list-item list-item--squashed">
+                                    {% lorem 20 w random %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Overlapping Control Bars</h3>
+                <div class="cl-example">
+                    <div class="control-bar__top-overlap">
+                        <div class="control-bar" role="group" aria-label="Filter bar">
+                            <a class="btn btn--light" href="#" aria-label="View as map">
+                                <i class="fa fa-map" aria-hidden="true"></i>
+                                View
+                            </a>
+
+                            <form class="input-group form-group u-inline-flex">
+                                <input class="input-group__input" type="search" name="search" placeholder="Search" value="">
+                                <button class="input-group__after btn btn--light" type="submit" title="Search">
+                                    <i class="fa fa-search" aria-label="Search"></i>
+                                </button>
+                            </form>
+
+                            <div class="dropdown">
+                                <button type="button" class="dropdown-toggle btn btn--light btn--select">
+                                    Category: All
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </button>
+                            </div>
+
+                            <div class="control-bar__right">
+                                <div class="dropdown ">
+                                    <button type="button" class="dropdown-toggle btn btn--light btn--select">
+                                        Ordering: Most recent
+                                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="module-content">
+                        <div class="l-wrapper">
+                            <ul class="u-list-reset">
+                                <li class="list-item list-item--squashed">
+                                    {% lorem 20 w random %}
+                                </li>
+                                <li class="list-item list-item--squashed">
+                                    {% lorem 20 w random %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 {% endblock %}
