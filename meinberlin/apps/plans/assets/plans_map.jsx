@@ -23,7 +23,9 @@ const statusIconNames = [
 ]
 
 const participationNames = [
-  django.gettext('Planned')
+  django.gettext('No'),
+  django.gettext('Yes'),
+  django.gettext('Still undecided')
 ]
 
 const icons = statusIconNames.map((cls, i) => L.divIcon({
