@@ -28,6 +28,10 @@ var CommentList = (props) => {
             userRating={comment.ratings.current_user_rating_value}
             userRatingId={comment.ratings.current_user_rating_id}
             isReadOnly={props.isReadOnly}
+            replyError={comment.replyError}
+            handleReplyErrorClick={props.handleReplyErrorClick}
+            editError={comment.editError}
+            handleEditErrorClick={props.handleEditErrorClick}
           >{comment.comment}</Comment>
         })
       }

@@ -126,7 +126,7 @@ class CommentBox extends React.Component {
         <div className="comment-box">
           <CommentForm subjectType={this.props.subjectType} subjectId={this.props.subjectId}
             onCommentSubmit={this.handleCommentSubmit.bind(this)} placeholder={django.gettext('Your comment here')}
-            rows="5" isReadOnly={this.props.isReadOnly} />
+            rows="5" isReadOnly={this.props.isReadOnly} error={this.state.error} handleErrorClick={this.hideNewError.bind(this)} />
           <div className="comment-list">
             <CommentList
               comments={this.state.comments}
@@ -134,6 +134,8 @@ class CommentBox extends React.Component {
               handleCommentSubmit={this.handleCommentSubmit.bind(this)}
               handleCommentModify={this.handleCommentModify.bind(this)}
               isReadOnly={this.props.isReadOnly}
+              handleReplyErrorClick={this.hideReplyError.bind(this)}
+              handleEditErrorClick={this.hideEditError.bind(this)}
             />
           </div>
         </div>
