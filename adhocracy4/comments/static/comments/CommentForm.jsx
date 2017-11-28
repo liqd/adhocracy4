@@ -1,4 +1,5 @@
 var config = require('../../../static/config')
+var Alert = require('../../../static/Alert')
 
 var React = require('react')
 var PropTypes = require('prop-types')
@@ -36,6 +37,9 @@ class CommentForm extends React.Component {
     if (this.context.isAuthenticated && !this.props.isReadOnly) {
       return (
         <form className="general-form" onSubmit={this.handleSubmit.bind(this)}>
+          {this.props.error &&
+            <Alert type="danger" message={django.gettext('Error!')} onClick={this.props.handleErrorClick} />
+          }
           <div className="form-group">
             <textarea rows={this.props.rows} className="form-control"
               placeholder={django.gettext('Your comment here')}
