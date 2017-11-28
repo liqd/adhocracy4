@@ -15,6 +15,7 @@ class CommentBox extends React.Component {
       comments: this.props.comments
     }
   }
+
   updateStateComment (index, parentIndex, updatedComment) {
     var comments = this.state.comments
     var diff = {}
@@ -27,9 +28,10 @@ class CommentBox extends React.Component {
     comments = update(comments, diff)
     this.setState({ comments: comments })
   }
+
   handleCommentSubmit (comment, parentIndex) {
     return api.comments.add(comment)
-      .done(function (comment) {
+      .done(comment => {
         var comments = this.state.comments
         var diff = {}
         if (typeof parentIndex !== 'undefined') {
@@ -40,8 +42,9 @@ class CommentBox extends React.Component {
         this.setState({
           comments: update(comments, diff)
         })
-      }.bind(this))
+      })
   }
+
   handleCommentModify (modifiedComment, index, parentIndex) {
     var comments = this.state.comments
     var comment = comments[index]
@@ -52,6 +55,7 @@ class CommentBox extends React.Component {
     return api.comments.change(modifiedComment, comment.id)
       .done(this.updateStateComment.bind(this, index, parentIndex))
   }
+
   handleCommentDelete (index, parentIndex) {
     var comments = this.state.comments
     var comment = comments[index]
@@ -68,6 +72,7 @@ class CommentBox extends React.Component {
     return api.comments.delete(data, comment.id)
       .done(this.updateStateComment.bind(this, index, parentIndex))
   }
+
   getChildContext () {
     return {
       isAuthenticated: this.props.isAuthenticated,
@@ -76,6 +81,7 @@ class CommentBox extends React.Component {
       user_name: this.props.user_name
     }
   }
+
   render () {
     return (
       <div>
@@ -85,9 +91,13 @@ class CommentBox extends React.Component {
             onCommentSubmit={this.handleCommentSubmit.bind(this)} placeholder={django.gettext('Your comment here')}
             rows="5" isReadOnly={this.props.isReadOnly} />
           <div className="comment-list">
-            <CommentList comments={this.state.comments} handleCommentDelete={this.handleCommentDelete.bind(this)}
-              handleCommentSubmit={this.handleCommentSubmit.bind(this)} handleCommentModify={this.handleCommentModify.bind(this)}
-              isReadOnly={this.props.isReadOnly} />
+            <CommentList
+              comments={this.state.comments}
+              handleCommentDelete={this.handleCommentDelete.bind(this)}
+              handleCommentSubmit={this.handleCommentSubmit.bind(this)}
+              handleCommentModify={this.handleCommentModify.bind(this)}
+              isReadOnly={this.props.isReadOnly}
+            />
           </div>
         </div>
       </div>

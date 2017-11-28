@@ -10,9 +10,11 @@ class CommentForm extends React.Component {
 
     this.state = {comment: ''}
   }
+
   handleTextChange (e) {
     this.setState({comment: e.target.value})
   }
+
   handleSubmit (e) {
     e.preventDefault()
     var comment = this.state.comment.trim()
@@ -29,6 +31,7 @@ class CommentForm extends React.Component {
       this.setState({comment: ''})
     })
   }
+
   render () {
     if (this.context.isAuthenticated && !this.props.isReadOnly) {
       return (
