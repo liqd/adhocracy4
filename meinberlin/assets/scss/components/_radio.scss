@@ -37,7 +37,7 @@ $checkbox-size: 20px;
         opacity: 0;
 
         padding-top: 2px;
-        font-family: 'FontAwesome';
+        font-family: 'FontAwesome', sans-serif;
         background-color: $brand-primary;
         color: contrast-color($brand-primary);
         text-align: center;
