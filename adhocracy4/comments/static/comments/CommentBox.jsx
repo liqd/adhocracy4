@@ -96,6 +96,20 @@ class CommentBox extends React.Component {
       .done(this.updateStateComment.bind(this, index, parentIndex))
   }
 
+  hideNewError () {
+    this.setState({
+      error: false
+    })
+  }
+
+  hideReplyError (index, parentIndex) {
+    this.updateStateComment(index, parentIndex, {replyError: false})
+  }
+
+  hideEditError (index, parentIndex) {
+    this.updateStateComment(index, parentIndex, {editError: false})
+  }
+
   getChildContext () {
     return {
       isAuthenticated: this.props.isAuthenticated,
