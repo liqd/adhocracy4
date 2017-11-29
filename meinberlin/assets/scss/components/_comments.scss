@@ -77,12 +77,23 @@
 
 .comment-author {
     display: inline;
+    margin-right: 0.4em;
     font-size: inherit;
-    font-weight: inherit;
-    color: inherit;
+    font-weight: bold;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
 
     .label {
         margin-left: 0.2em;
+        font-weight: normal;
     }
 }
 
