@@ -42,11 +42,7 @@ class EmailFileField(forms.FileField):
 
     def clean(self, data, initial=None):
         file = super().clean(data, initial)
-        try:
-            return self._extract_emails(file)
-        except UnicodeDecodeError:
-            raise ValidationError(_('Invalid file format.'
-                                    ' Only text files are allowed.'))
+        return self._extract_emails(file)
 
     def _extract_emails(self, file):
         if not file:
@@ -54,7 +50,11 @@ class EmailFileField(forms.FileField):
 
         emails = []
         for byteline in file:
-            line = byteline.decode('utf-8')
+            # As it is difficult to guess the correct encoding of a file,
+            # email addresses are restricted to contain only ascii letters.
+            # This works for every encoding which is a superset of ascii like
+            # utf-8 and latin-1. Non ascii chars are simply ignored.
+            line = byteline.decode('ascii', 'ignore')
             for match in self.email_regex.finditer(line):
                 email = match.group(0)
                 if self.is_valid_email(email):
