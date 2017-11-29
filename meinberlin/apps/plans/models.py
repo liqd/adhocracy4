@@ -72,7 +72,3 @@ class Plan(UserGeneratedContentModel):
     def save(self, *args, **kwargs):
         self.description = transforms.clean_html_field(self.description)
         super().save(*args, **kwargs)
-
-    @property
-    def polygon(self):
-        return settings.BERLIN_POLYGON
