@@ -2178,7 +2178,7 @@ msgstr "Umfrage bearbeiten"
 #: meinberlin/apps/polls/validators.py:15
 #, python-format
 msgid "Item of type %(item)s for that module already exists"
-msgstr "Item des Typs %(item)s für dieses Modul existiert bereits."
+msgstr "Beitrag des Typs %(item)s für dieses Modul existiert bereits."
 
 #: meinberlin/apps/polls/validators.py:38
 msgid "Only one vote per question is allowed per user."
@@ -2760,7 +2760,7 @@ msgid ""
 "            email address for user %(user_display)s."
 msgstr ""
 "Bitte bestätigen Sie, dass <a href=\"mailto:%(email)s\">%(email)s</a> eine E-"
-"Mail Adresse des Nutzers %(user_display)s ist."
+"Mail Adresse der Nutzer*in %(user_display)s ist."
 
 #: meinberlin/templates/account/email_confirm.html:17
 msgid "Confirm"
