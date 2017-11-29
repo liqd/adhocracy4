@@ -1,7 +1,16 @@
 {% extends "base.html" %}
-{% load i18n rules wagtailcore_tags %}
+{% load i18n static rules wagtailcore_tags maps_tags %}
 
 {% block title %}{{ object.title }} &mdash; {{ block.super }}{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
+    <script type="text/javascript" src="{% static 'a4maps/map_display_point.js' %}"></script>
+{% endblock %}
+
+{% block extra_css %}
+    <link type="text/css" href="{% static 'leaflet.css'%}" rel="stylesheet" />
+{% endblock %}
 
 {% block content %}
     <div class="l-wrapper">
@@ -48,10 +57,12 @@
                     </dl>
 
                     {% if object.project and not object.project.is_draft and object.project.is_public %}
-                        <a href="{{ object.project.get_absolute_url }}">{% trans 'Go to participation' %}</a>
+                        <p><a href="{{ object.project.get_absolute_url }}">{% trans 'Go to participation' %}</a></p>
                     {% elif object.participation == 1 %}
                         <p>{% trans 'Participation is planned, but has not started yet.' %}</p>
                     {% endif %}
+
+                    {% map_display_point object.point object.polygon %}
                 </div>
 
                 <div class="item-detail__actions lr-bar">
