@@ -1,4 +1,5 @@
 import datetime
+import imghdr
 import posixpath
 import tempfile
 from urllib.parse import urlparse
@@ -11,7 +12,6 @@ from django.core.exceptions import ValidationError
 from django.core.files.images import ImageFile
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
-from PIL import Image
 from rest_framework import serializers
 
 from adhocracy4.images.validators import validate_image
@@ -178,15 +178,20 @@ class BplanSerializer(serializers.ModelSerializer):
         if callable(self._image_upload_to):
             raise Exception('Callable upload_to fields are not supported')
 
-        filename = posixpath.basename(url_path)
+        root_path, extension = posixpath.splitext(url_path)
+        if file:
+            # Workaround: imghdr expects the files position on 0
+            file.seek(0)
+            extension = imghdr.what(file) or 'jpeg'
+
+        basename = posixpath.basename(root_path)
+        if not basename:
+            basename = 'bplan'
+
         dirname = datetime.datetime.now().strftime(self._image_upload_to)
-        filename = posixpath.join(dirname, filename)
-        filename = self._image_storage.get_available_name(filename)
-        _, extension = posixpath.splitext(filename)
-        if not extension and file:
-            image = Image.open(file)
-            filename = filename + '.' + image.format.lower()
-        return filename
+        filename = posixpath.join(dirname, basename + '.' + extension)
+
+        return self._image_storage.get_available_name(filename)
 
     def _send_project_created_signal(self, bplan):
         a4dashboard_signals.project_created.send(
