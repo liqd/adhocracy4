@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.staticfiles.storage import staticfiles_storage
+from django.template.loader import render_to_string
 
 
 class Select2Mixin:
@@ -24,3 +25,17 @@ class Select2Widget(Select2Mixin, forms.Select):
 
 class Select2MultipleWidget(Select2Mixin, forms.SelectMultiple):
     pass
+
+
+class TextWithDatalistWidget(forms.TextInput):
+    def render(self, name, value, attrs=None):
+        attrs = self.build_attrs(self.attrs, attrs)
+        options = attrs.pop('options', {})
+        if 'list' not in attrs:
+            attrs['list'] = attrs['id'] + '_datalist'
+
+        return render_to_string('meinberlin_contrib/text_with_datalist.html', {
+            'text_input': super().render(name, value, attrs),
+            'id_for_datalist': attrs['list'],
+            'options': options
+        })
