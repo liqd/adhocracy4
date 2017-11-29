@@ -142,7 +142,11 @@ class PlansMap extends React.Component {
     let filters = this.state.filters
     return (filters.status === -1 || filters.status === item.status) &&
       (filters.participation === -1 || filters.participation === item.participation) &&
-      checkQueryMatch(item.title, filters.q) &&
+      (
+        checkQueryMatch(item.title, filters.q) ||
+        checkQueryMatch(item.organisation, filters.q) ||
+        checkQueryMatch(item.category, filters.q)
+      ) &&
       (!filters.bounds || filters.bounds.contains(pointToLatLng(item.point)))
   }
 
