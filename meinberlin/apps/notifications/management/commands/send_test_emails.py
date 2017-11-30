@@ -29,6 +29,9 @@ class TestEmail(Email, SyncEmailMixin):
 
     def dispatch(self, object, *args, **kwargs):
         self.template_name = kwargs.pop('template_name')
+        print('Sending template: {} with object "{}"'.format(
+            self.template_name,
+            str(object)))
         super().dispatch(object, *args, **kwargs)
 
     def get_context(self):
