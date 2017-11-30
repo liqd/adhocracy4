@@ -1,11 +1,11 @@
 {% extends 'email_base.'|add:part_type %}
 {% load wagtailcore_tags %}
 
-{% block subject %}Neue Stellungnahme zum {{ project.name }} von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
+{% block subject %}Neue Stellungnahme zum Bebauungsplan "{{ project.name }}" von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
 
-{% block headline %}Neue Stellungnahme zum {{ project.name }} von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
+{% block headline %}Neue Stellungnahme zum Bebauungsplan "{{ project.name }}" von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
 
-{% block content %}es wurde eine neue Stellungnahme für den "{{ project.name }}" von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }} abgegeben.
+{% block content %}es wurde eine neue Stellungnahme für den Bebauungsplan "{{ project.name }}" von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }} abgegeben.
 
 Angaben in der Übersicht:
 
