@@ -1,10 +1,10 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Die Beteiligungsphase für ein Projekt auf {{ site.name }} endet bald{% endblock %}
+{% block subject %}Es bleiben nur noch wenige Stunden zur Beteiligung an dem Projekt "{{ action.project.name }}"{% endblock %}
 
-{% block headline %}Es bleiben nur noch wenige Stunden zur Beteiligung an "{{ action.project.name }}"{% endblock %}
+{% block headline %}Es bleiben nur noch wenige Stunden zur Beteiligung an dem Projekt "{{ action.project.name }}"{% endblock %}
 
-{% block content %}Die aktuelle Beteiligungsphase für das Projekt "{{ action.project.name }}" endet am {{ action.obj.end_date }}. Wenn Sie sich noch beteiligen möchten, besuchen Sie die Projektseite.{% endblock %}
+{% block content %}die aktuelle Beteiligungsphase für das Projekt "{{ action.project.name }}" endet am {{ action.obj.end_date }}. Wenn Sie sich noch beteiligen möchten, besuchen Sie jetzt die Projektseite.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
 {% block cta_label %}Projekt anzeigen{% endblock %}
