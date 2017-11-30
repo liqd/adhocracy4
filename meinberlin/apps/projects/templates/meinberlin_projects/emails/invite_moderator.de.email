@@ -5,7 +5,7 @@
 
 {% block headline %}Einladung zum Moderieren des Projekts {{ moderatorinvite.project.name }}{% endblock  %}
 
-{% block content %}Sie wurden als Moderator*in im Projekt "{{ moderatorinvite.project.name }}" auf der Beteiligungsplattform {{ site.name }} eingeladen. Um das Projekt modefieren zu können, klicken Sie auf "Einladung annehmen". {% endblock %}
+{% block content %}Sie wurden als Moderator*in im Projekt "{{ moderatorinvite.project.name }}" auf der Beteiligungsplattform {{ site.name }} eingeladen. Um das Projekt modifizieren zu können, klicken Sie auf "Einladung annehmen". {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Einladung annehmen{% endblock %}

@@ -4,7 +4,7 @@
 
 {% block headline %}Your registration on {{ site.name }}{% endblock %}
 
-{% block content %}You have registered with this email and the username "{{ receiver.username }}" on "{{ site.name }}". To finish the registration and activate your account, please confirm your email. If you did not register on "{{ site.name }}" using this email address, you can ignore this email. We will not send you any further emails.{% endblock %}
+{% block content %}you have registered with this email and the username "{{ receiver.username }}" on "{{ site.name }}". To finish the registration and activate your account, please confirm your email. If you did not register on "{{ site.name }}" using this email address, you can ignore this email. We will not send you any further emails.{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}Confirm your email address{% endblock %}

@@ -5,8 +5,7 @@
 
 {% block headline %}Neue Stellungnahme zum {{ project.name }} von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
 
-{% block content %}
-es wurde eine neue Stellungnahme für den "{{ project.name }}" von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }} abgegeben.
+{% block content %}es wurde eine neue Stellungnahme für den "{{ project.name }}" von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }} abgegeben.
 
 Angaben in der Übersicht:
 

@@ -5,7 +5,7 @@
 
 {% block headline %}Invitation to the private project {{ participantinvite.project.name }}{% endblock  %}
 
-{% block content %}You are invited to participate in the private project "{{ participantinvite.project.name }}" on the participation platform  {{ site.name }}. To participate click on "Accepct invitation."{% endblock %}
+{% block content %}you are invited to participate in the private project "{{ participantinvite.project.name }}" on the participation platform  {{ site.name }}. To participate click on "Accepct invitation."{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ participantinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Accept invitation{% endblock %}

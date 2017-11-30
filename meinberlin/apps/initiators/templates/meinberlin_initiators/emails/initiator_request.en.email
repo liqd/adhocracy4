@@ -5,8 +5,7 @@
 
 {% block headline %}New initiator request by {{ user.username }}{% endblock %}
 
-{% block content %}
-{{ user.username }} wants to become an initiator.
+{% block content %}{{ user.username }} wants to become an initiator.
 
 Name
 {{ user.username }}
