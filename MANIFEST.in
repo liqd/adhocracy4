@@ -1,5 +1,5 @@
 include LICENSE
 include README.md
-recursive-include meinberlin/apps/*/static/ *
-recursive-include meinberlin/apps/*/templates/ *
+recursive-include meinberlin/apps/*/static *
+recursive-include meinberlin/apps/*/templates *
 
