@@ -2821,6 +2821,11 @@ msgstr "Feedback"
 msgid "Error"
 msgstr "Fehler"
 
+#: meinberlin/templates/email_base.html:24
+#: meinberlin/templates/email_base.txt:3
+msgid "Hello"
+msgstr "Guten Tag"
+
 #: meinberlin/templates/email_base.html:51
 #: meinberlin/templates/email_base.txt:10
 #: meinberlin/templates/newsletter_base.html:47
