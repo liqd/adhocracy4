@@ -5,7 +5,7 @@
 
 {% block headline %}Neuer Beitrag im Projekt {{ action.project.name }}{% endblock  %}
 
-{% block content %}{{ action.actor.username }} hat einen neuen Beitrag im Projekt {{ action.project.name }} erstellt. Schauen Sie nach was in dem Projekt aktuell passiert.{% endblock %}
+{% block content %}{{ action.actor.username }} hat einen neuen Beitrag im Projekt {{ action.project.name }} erstellt. Schauen Sie nach, was in dem Projekt aktuell passiert.{% endblock %}
 
 
 {% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}

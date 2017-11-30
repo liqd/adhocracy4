@@ -5,11 +5,10 @@
 
 {% block headline %}Invitation to the moderate project {{ moderatorinvite.project.name }}{% endblock  %}
 
-{% block content %}
-You were invited as a moderator of this project by the user <i>{{ moderatorinvite.creator.username }}</i>. Please accept or decline the invitation by clicking the {% if part_type == "txt" %}link{% else %}button{% endif %} below.
+{% block content %}you are invited  to moderate the private project "{{ participantinvite.project.name }}" on the participation platform  {{ site.name }}. To moderate click on "Accepct invitation."
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endblock %}
-{% block cta_label %}Accept/Decline invitation{% endblock %}
+{% block cta_label %}Accept invitation{% endblock %}
 
 {% block reason %}This email was sent to {{ moderatorinvite.email }}. This email was sent to you because you are invited to moderate a project.{% endblock %}

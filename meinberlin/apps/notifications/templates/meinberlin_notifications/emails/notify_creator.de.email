@@ -5,7 +5,7 @@
 
 {% block headline %}{{ action.actor.username }} hat auf Ihren Beitrag reagiert{% endblock  %}
 
-{% block content %}{{ action.actor.username }} hat auf Ihren Beitrag reagiert. Schauen Sie nach was in Ihrem Beitrag aktuell passiert.{% endblock %}
+{% block content %}{{ action.actor.username }} hat auf Ihren Beitrag reagiert. Schauen Sie nach, was in Ihrem Beitrag aktuell passiert.{% endblock %}
 
 {% block cta_url %}{% if action.target.get_absolute_url %}{{ email.get_host }}{{ action.target.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
 {% block cta_label %}{% if action.target.get_absolute_url %}Beitrag anzeigen{% else %}Projekt anzeigen{% endif %}{% endblock %}

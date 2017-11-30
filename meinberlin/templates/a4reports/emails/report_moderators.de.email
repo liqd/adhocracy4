@@ -4,9 +4,9 @@
 
 {% block subject %}Moderationsanfrage im Projekt {{ report.project }} auf {{ site.name }}{% endblock %}
 
-{% block headline %}Ein Benutzer hat einen Beitrag in Ihrem Projekt als unangebracht gemeldet{% endblock %}
+{% block headline %}Moderationsanfrage im Projekt {{ report.project }}{% endblock %}
 
-{% block content %}{{ report.creator.username }} hat einen Beitrag in Ihrem Projekt gemeldet. Der Grund dafür könnte Spam sein. Es wurde folgende Begründung angegeben:
+{% block content %}Benutzer*in {{ report.creator.username }} hat einen Beitrag in Ihrem Projekt "{{ report.project }}" gemeldet. Gegebenenfalls könnte die Nachricht auch Spam sein. Als Moderator können Sie den Beitrag prüfen und ggf. löschen. Es wurde folgende Begründung angegeben:
 
 {{ report.description }}
 {% endblock %}
@@ -14,4 +14,4 @@
 {% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}
 {% block cta_label %}Beitrag prüfen{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie Moderator des Projekts sind. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie Benachrichtigungen in Ihren Benutzerkonto Einstellungen komplett deaktivieren.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie Moderator des Projekts sind. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie die Benachrichtigungen in den Einstellungen Ihres Benutzerkontos deaktivieren.{% endblock %}

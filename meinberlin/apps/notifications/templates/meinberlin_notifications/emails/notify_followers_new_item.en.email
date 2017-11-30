@@ -5,7 +5,7 @@
 
 {% block headline %}A new {{ action.obj | verbose_name }} was added to {{ action.project.name }}{% endblock %}
 
-{% block content %}A {{ action.obj | verbose_name }} was added to project "{{ action.project.name }}" by "{{ action.project.organisation.name }}".{% endblock %}
+{% block content %}a {{ action.obj | verbose_name }} was added to project "{{ action.project.name }}" by "{{ action.project.organisation.name }}".{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
 {% block cta_label %}Visit the project{% endblock %}

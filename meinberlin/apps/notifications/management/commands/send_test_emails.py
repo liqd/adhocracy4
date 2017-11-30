@@ -13,9 +13,12 @@ from adhocracy4.reports import emails as reports_emails
 from adhocracy4.reports.models import Report
 from meinberlin.apps.bplan import emails as bplan_emails
 from meinberlin.apps.bplan.models import Statement
+from meinberlin.apps.cms.models import EmailFormPage
 from meinberlin.apps.contrib.emails import Email
 from meinberlin.apps.ideas.models import Idea
 from meinberlin.apps.notifications import emails as notification_emails
+from meinberlin.apps.organisations.models import Organisation
+from meinberlin.apps.projects import models as project_models
 
 User = get_user_model()
 
@@ -47,6 +50,7 @@ class Command(BaseCommand):
         self._send_notifications_create_idea()
         self._send_notifications_comment_idea()
         self._send_notification_phase()
+        self._send_notification_project_created()
         self._send_bplan_statement()
 
         self._send_report_mails()
@@ -55,6 +59,10 @@ class Command(BaseCommand):
         self._send_allauth_password_reset()
 
         self._send_invitation_private_project()
+        self._send_invitation_moderator()
+        self._send_initiator_request()
+
+        self._send_form_mail()
 
     def _send_notifications_create_idea(self):
         # Send notification for a newly created item
@@ -107,6 +115,17 @@ class Command(BaseCommand):
             receiver=[self.user],
             template_name=notification_emails.
             NotifyFollowersOnPhaseIsOverSoonEmail.template_name
+        )
+
+    def _send_notification_project_created(self):
+        project = Project.objects.first()
+        TestEmail.send(
+            project,
+            project=project,
+            creator=self.user,
+            receiver=[self.user],
+            template_name=notification_emails.
+            NotifyInitiatorsOnProjectCreatedEmail.template_name
         )
 
     def _send_bplan_statement(self):
@@ -179,9 +198,51 @@ class Command(BaseCommand):
         )
 
     def _send_invitation_private_project(self):
-        project = Project.objects.first()
+        invite = project_models.ParticipantInvite.objects.first()
+        if not invite:
+            raise CommandError('At least one participant request is required')
         TestEmail.send(
-            project,
+            invite,
             receiver=[self.user],
             template_name='meinberlin_projects/emails/invite_participant'
+        )
+
+    def _send_invitation_moderator(self):
+        invite = project_models.ModeratorInvite.objects.first()
+        if not invite:
+            raise CommandError('At least one moderator request is required')
+        TestEmail.send(
+            invite,
+            receiver=[self.user],
+            template_name='meinberlin_projects/emails/invite_moderator'
+        )
+
+    def _send_initiator_request(self):
+        organisation = Organisation.objects.first()
+        TestEmail.send(
+            self.user,
+            organisation=organisation,
+            phone='01234567',
+            receiver=[self.user],
+            template_name='meinberlin_initiators/emails/initiator_request'
+        )
+
+    def _send_form_mail(self):
+        emailformpage = EmailFormPage.objects.first()
+        if not emailformpage:
+            raise CommandError('At least one emailformpage obj is required')
+        fields = {
+            'Multi': 'some text with \n'
+                     'newlines and \n'
+                     'such things',
+            'Single': 'just a single line of text that was entered',
+            'More fields': 'more text',
+            'No more fields': 'more text',
+        }
+
+        TestEmail.send(
+            emailformpage,
+            field_values=fields,
+            receiver=[self.user],
+            template_name='meinberlin_cms/emails/form_submission'
         )

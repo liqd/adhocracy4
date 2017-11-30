@@ -1,13 +1,12 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Bitte bestätigen Sie ihre E-Mail Adresse auf {{ site.name }}{% endblock %}
+{% block subject %}Bitte bestätigen Sie Ihre E-Mail Adresse auf {{ site.name }}{% endblock %}
 
 {% block headline %}Ihre E-Mail Adresse auf {{ site.name }}{% endblock %}
 
-{% block content %}
-Ihre E-Mail Adresse wurde zum Benutzernamen "{{ receiver.username }}" auf {{ site.name }} hinzugefügt. Bitte bestätigen Sie die E-Mail Adresse.{% endblock %}
+{% block content %}diese E-Mail Adresse soll dem Benutzerkonto "{{ receiver.username }}" auf der Beteiligungsplattform {{ site.name }} hinzugefügt werden. Bitte bestätigen Sie dazu Ihre E-Mail Adresse. Wenn Sie diese E-Mail Adresse nicht angelegt haben, können Sie diese Nachricht ignorieren. Wir werden Ihnen keine weiteren E-Mails senden.{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}Bestätigen Sie Ihre E-Mail Adresse{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Wenn Sie keine neue E-Mail Adresse angelegt haben können Sie diese E-Mail ignorieren. Wir werden Ihnen keine weiteren E-Mail senden. Falls Sie weitere Fragen haben, wenden Sie sich bitte an uns unter {{ contact_email }}{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Bei Fragen können Sie sich gerne unter {{ contact_email }} an uns wenden{% endblock %}

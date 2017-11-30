@@ -4,9 +4,9 @@
 
 {% block headline %}Your registration on {{ site.name }}{% endblock %}
 
-{% block content %}Your email address has been used to register on "{{ site.name }}" with the username "{{ receiver.username }}". Please click on the {% if part_type == 'txt' %}link{% else %}button{% endif %} below to confirm your email address and activate your account.{% endblock %}
+{% block content %}you have registered with this email and the username "{{ receiver.username }}" on "{{ site.name }}". To finish the registration and activate your account, please confirm your email. If you did not register on "{{ site.name }}" using this email address, you can ignore this email. We will not send you any further emails.{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}Confirm your email address{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. If you think this email was sent to you by mistake, you can ignore it. We will not send you any further emails. If you have any further questions, please contact us via {{ contact_email }}{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. If you have any further questions, please contact us via {{ contact_email }}{% endblock %}

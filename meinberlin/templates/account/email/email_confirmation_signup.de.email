@@ -1,12 +1,12 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Bitte bestätigen Sie ihre Registrierung auf {{ site.name }}{% endblock %}
+{% block subject %}Bitte bestätigen Sie Ihre Registrierung auf {{ site.name }}{% endblock %}
 
 {% block headline %}Ihre Registrierung auf {{ site.name }}{% endblock %}
 
-{% block content %}Ihre E-Mail Adresse mit dem Benutzernamen "{{ receiver.username }}" wurde zur Registrierung auf "{{ site.name }}" genutzt. Bitte bestätigen Sie Ihre E-Mail Adresse, um Ihr Benutzerkonto zu aktivieren.{% endblock %}
+{% block content %}Sie haben sich mit dieser E-Mail adresse und dem Benutzernamen "{{ receiver.username }}" auf der Beteiligungsplattform "{{ site.name }}" registriert. Um die Registrierung abzuschließen und Ihr Benutzerkonto zu aktivieren, bestätigen Sie bitte Ihre E-Mail Adresse. Wenn Sie diese E-Mail Adresse nicht zur Registrierung auf "{{ site.name }}" verwendet haben, können Sie diese Nachricht ignorieren. Wir werden Ihnen keine weiteren E-Mails senden.{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}Bestätigen Sie Ihre E-Mail Adresse{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Wenn Sie sich nicht registriert haben können Sie diese E-Mail ignorieren. Wir werden Ihnen keine weiteren E-Mail senden. Falls Sie weitere Fragen haben, wenden Sie sich bitte an uns unter {{ contact_email }}{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Bei Fragen können Sie sich gerne unter {{ contact_email }} an uns wenden{% endblock %}
