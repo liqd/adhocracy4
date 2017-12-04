@@ -1,6 +1,5 @@
 import datetime
 
-from django.contrib.staticfiles.storage import staticfiles_storage
 from django.forms import widgets as form_widgets
 from django.template.loader import render_to_string
 from django.utils.timezone import localtime
@@ -14,10 +13,10 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
 
     class Media:
         js = (
-            staticfiles_storage.url('datepicker.js'),
+            'datepicker.js',
         )
         css = {'all': [
-            staticfiles_storage.url('datepicker.css'),
+            'datepicker.css',
         ]}
 
     def render(self, name, value, attrs=None):
