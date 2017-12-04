@@ -12,7 +12,7 @@
             confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an
             email address for user {{ user_display }}.{% endblocktrans %}</p>
 
-        <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+        <form method="post">
             {% csrf_token %}
             <button class="btn btn--primary" type="submit">{% trans 'Confirm' %}</button>
         </form>
