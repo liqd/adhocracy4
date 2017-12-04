@@ -2,8 +2,10 @@
     @include clearfix;
     font-size: $font-size-sm;
 
+    select,
     .dropdown {
         display: inline-block;
+        vertical-align: top;
     }
 
     @media (max-width: $breakpoint) {

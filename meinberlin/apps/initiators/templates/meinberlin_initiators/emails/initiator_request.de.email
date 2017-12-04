@@ -5,8 +5,7 @@
 
 {% block headline %}Neue Initiatorenanfrage von {{ user.username }}{% endblock %}
 
-{% block content %}
-{{ user.username }} möchte zur Initator*in gemacht werden.
+{% block content %}{{ user.username }} möchte zur Initator*in gemacht werden.
 
 Name
 {{ user.username }}

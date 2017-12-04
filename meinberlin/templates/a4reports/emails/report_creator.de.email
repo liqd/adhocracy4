@@ -1,11 +1,11 @@
 {% extends 'email_base.'|add:part_type %}
 {% load reports_tags %}
 
-{% block subject %}Ihr Beitrag auf {{ site.name }} wurde als unangebracht gemeldet.{% endblock %}
+{% block subject %}Ihr Beitrag auf {{ site.name }}{% endblock %}
 
 {% block headline %}Ein Benutzer hat Ihren Beitrag als unangebracht gemeldet{% endblock %}
 
-{% block content %}Ihr Beitrag im  Projekt {{ report.project }} auf {{ site.name }} wurde als unangebracht gemeldet und wird von einem Moderator geprüft. Es wurde folgende Begründung angegeben:
+{% block content %}eine Benutzer*in hat Ihren Beitrag im Projekt "{{ report.project }}" auf {{ site.name }} als unangebracht gemeldet. Ihr Beitrag wird nun von der Moderation geprüft und ggf. entfernt. Es wurde folgende Begründung angegeben:
 
 {{ report.description }}
 {% endblock %}
@@ -13,4 +13,4 @@
 {% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}
 {% block cta_label %}Beitrag anzeigen{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie einen Beitrag in einem Projekt erstellt haben. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie Benachrichtigungen in Ihren Benutzerkonto Einstellungen komplett deaktivieren.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie einen Beitrag in einem Projekt erstellt haben. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie die Benachrichtigungen in den Einstellungen Ihres Benutzerkontos deaktivieren.{% endblock %}

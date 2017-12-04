@@ -2,7 +2,7 @@
 
 {% load verbose_name %}
 
-{% block headline %}{{ newsletter.subject }} {% endblock %}
+{% block headline %}{{ newsletter.subject }}{% endblock %}
 
 {% block subject %}{{ newsletter.subject }}{% endblock %}
 

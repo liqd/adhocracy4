@@ -20,11 +20,16 @@
                 </tr>
                 <tr>
                     <td>
-                        {% block content_html %}
-                            {% load capture_tags %}
-                            {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
-                            {{ content|linebreaks }}
-                        {% endblock %}
+                        <p>
+                            {% trans 'Hello' %},
+                        </p>
+                        <p>
+                            {% block content_html %}
+                                {% load capture_tags %}
+                                {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
+                                {{ content|linebreaks }}
+                            {% endblock %}
+                        </p>
                     </td>
                 </tr>
                 {% block cta %}

@@ -55,6 +55,7 @@ class HomePage(Page):
             template='meinberlin_cms/blocks/richtext_block.html'
         )),
         ('call_to_action', cms_blocks.CallToActionBlock()),
+        ('image_call_to_action', cms_blocks.ImageCallToActionBlock()),
         ('columns_text', cms_blocks.ColumnsBlock()),
         ('projects', cms_blocks.ProjectsWrapperBlock()),
         ('activities', actions_blocks.PlatformActivityBlock()),

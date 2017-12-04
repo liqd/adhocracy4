@@ -1,11 +1,10 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Participation in a project you follow will be over soon{% endblock %}
+{% block subject %}Only a few hours left to participate in the project {{ action.project.name }}{% endblock %}
 
-{% block headline %}Only a few hours left to participate in {{ action.project.name }}{% endblock %}
+{% block headline %}Only a few hours left to participate in the project {{ action.project.name }}{% endblock %}
 
-{% block content %}The current participation phase of the project "{{ action.project.name }}" by "{{ action.project.organisation.name }}" will be over at {{ action.obj.end_date }}. If you want to participate, visit the project page soon.
-{% endblock %}
+{% block content %}the current participation phase of the project "{{ action.project.name }}" by "{{ action.project.organisation.name }}" will be over at {{ action.obj.end_date }}. If you want to participate, visit the project page now.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
 {% block cta_label %}Visit the project{% endblock %}

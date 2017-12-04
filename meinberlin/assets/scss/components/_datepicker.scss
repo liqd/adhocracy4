@@ -21,6 +21,15 @@
     @extend .btn;
     @extend .btn--light;
 
+    span:first-child {
+        display: inline;
+
+        &:before {
+            content: '\f133';
+            font-family: 'FontAwesome', sans-serif;
+        }
+    }
+
     &:focus {
         outline: 2px solid Highlight !important;
         outline: 5px auto -webkit-focus-ring-color !important;
@@ -39,15 +48,6 @@
     }
 }
 // stylelint-enable
-
-.date-picker-control span:first-child {
-    display: inline;
-
-    &:before {
-        content: '\f133';
-        font-family: 'FontAwesome';
-    }
-}
 
 .date-picker {
     font-family: $font-family-sans-serif;
@@ -71,7 +71,7 @@
         font-size: 0;
 
         &:before {
-            font-family: 'FontAwesome';
+            font-family: 'FontAwesome', sans-serif;
             font-size: $font-size-lg;
             vertical-align: bottom;
         }
