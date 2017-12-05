@@ -9,7 +9,7 @@ from meinberlin.apps.users import USERNAME_INVALID_MESSAGE
 from meinberlin.apps.users import USERNAME_REGEX
 
 
-class UserAccountEmail(Email, SyncEmailMixin):
+class UserAccountEmail(SyncEmailMixin, Email):
     def get_receivers(self):
         return [self.object]
 

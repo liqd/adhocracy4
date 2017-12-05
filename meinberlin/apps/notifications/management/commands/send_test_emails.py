@@ -23,7 +23,7 @@ from meinberlin.apps.projects import models as project_models
 User = get_user_model()
 
 
-class TestEmail(Email, SyncEmailMixin):
+class TestEmail(SyncEmailMixin, Email):
     def get_receivers(self):
         return self.kwargs['receiver']
 
