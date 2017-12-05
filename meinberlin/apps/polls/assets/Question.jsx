@@ -1,8 +1,10 @@
-var api = require('adhocracy4').api
 var React = require('react')
 var django = require('django')
 var Alert = require('../../contrib/assets/Alert')
 var update = require('immutability-helper')
+
+var api = require('adhocracy4').api
+var config = require('adhocarcy4').config
 
 class Question extends React.Component {
   constructor (props) {
@@ -107,11 +109,8 @@ class Question extends React.Component {
         </button>
       )
     } else {
-      let loginUrl = '/accounts/login/?next=' +
-        encodeURIComponent(window.adhocracy4.getCurrentPath())
-
       return (
-        <a href={loginUrl} className="btn btn--primary">
+        <a href={config.getLoginUrl()} className="btn btn--primary">
           { django.gettext('Please login to vote') }
         </a>
       )
