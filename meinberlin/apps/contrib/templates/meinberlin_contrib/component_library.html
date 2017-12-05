@@ -39,6 +39,30 @@
                             <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Commenting</a>
                         </li>
                         <li class="dashboard-nav__page">
+                            <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Comments</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-complete" class="dashboard-nav__item dashboard-nav__item--interactive">Complete</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-component-library" class="dashboard-nav__item dashboard-nav__item--interactive">Component Library</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-copyright" class="dashboard-nav__item dashboard-nav__item--interactive">Coyright</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-dashboard-nav" class="dashboard-nav__item dashboard-nav__item--interactive">Dashboard Nav</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-datepicker" class="dashboard-nav__item dashboard-nav__item--interactive">Datepicker</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-docs-block" class="dashboard-nav__item dashboard-nav__item--interactive">Docs Block</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Document</a>
+                        </li>
+                        <li class="dashboard-nav__page">
                             <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Control Bar</a>
                         </li>
                     </ul>
@@ -308,6 +332,290 @@
                     </div>
                 </div>
 
+                <h2 id="cl-commenting">Comments</h2>
+
+                <div class="cl-example">
+                    <div class="comments">
+                        <p>The markup (and classnames) for the comments come from A4 React. Here's our styling</p>
+                        <div class="black-divider">This is the black divider showing the number of comments</div>
+                        <div class="comment-box">
+                            <form class="general-form">
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Your comment here"></textarea>
+                                </div>
+                                <input value="post" class="submit-button" type="submit">
+                            </form>
+                            <div class="comment-list">
+                                <div>
+                                    <div class="comment">
+                                        <h3 class="comment-author">
+                                            <a href="#" data-embed-target="external">Comment Author</a>
+                                        </h3>
+                                        <span class="comment-submission-date">11/23/2017, 2:24:21 PM</span>
+                                        <div class="comment-text">
+                                            This is the comment text.
+                                            Click the ... button below to see the comment-dropdown.
+                                        </div>
+                                        <div class="action-bar">
+                                            <nav class="navbar navbar-default navbar-static">
+                                                <div class="rating">
+                                                    <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true">12</i></button>
+                                                    <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true">3</i></button>
+                                                </div>
+                                                <ul class="nav navbar-nav">
+                                                    <li class="dropdown">
+                                                        <button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+                                                        <ul class="dropdown-menu">
+                                                            <li><button type="button">Edit</button></li>
+                                                            <li class="divider"></li><li><a href="#">Delete</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#">Report</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                        <div class="action-bar">
+                                            <div class="navbar">
+                                                <button class="comment-reply-button" type="button">View 1 reply</button>
+                                                <div class="navbar-right">
+                                                    <button class="comment-reply-button" type="button"><i class="fa fa-reply" aria-hidden="true"></i>Answer</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="comment-child-list">
+                                            <div>
+                                                <div class="comment">
+                                                    <h3 class="comment-author">
+                                                        <a href="#" data-embed-target="external">Answer comment author</a>
+                                                    </h3>
+                                                    <span class="comment-submission-date">11/23/2017, 2:24:34 PM</span>
+                                                    <div class="comment-text">
+                                                    This is the answer text to the other comment.
+                                                    </div>
+                                                    <div class="action-bar">
+                                                        <nav class="navbar navbar-default navbar-static">
+                                                            <div class="rating">
+                                                                <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button>
+                                                                <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button>
+                                                            </div>
+                                                            <ul class="nav navbar-nav"><li class="dropdown"><button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+                                                            </ul>
+                                                        </nav>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <form class="general-form">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" placeholder="Your comment here"></textarea>
+                                                </div>
+                                                <input value="post" class="submit-button" type="submit">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-complete">Complete</h2>
+
+                <div class="cl-example">
+                    <div class="complete">
+                        <span class="complete__warning">
+                            Complete Warning - shown on the address search for the point choser map thingy.
+                        </span>
+                    </div>
+                    <div class="complete">
+                        <ul class="complete__list">
+                            The search for an address produces the hits as list:
+                            <li>
+                                <button type="button" class="complete__item">
+                                    Petersburger Str. , 10247 Friedrichshain
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="complete__item">
+                                    Petersburger Str. , 10249 Friedrichshain
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2 id="cl-component-library">Component library</h2>
+
+                <div class="cl-example">
+                    <div class="cl-example">
+                        Every component in the component library has a border and some padding.
+                    </div>
+                </div>
+
+                <h2 id="cl-copyright">Copyright</h2>
+
+                <div class="cl-example">
+                    <div class="copyright">
+                        The copyright class is used wherever an image has a copyright.
+                    </div>
+                </div>
+
+                <h2 id="cl-dashboard-nav">Dashboard Nav</h2>
+
+                <div class="cl-example">
+                    <nav class="dashboard-nav">
+                        <div class="dashboard-nav__dropdown">
+                            <div class="dashboard-nav__item">Dashboard nav item (in a dashboard-nav__dropwown, which is not used as dropdown)</div>
+                        </div>
+                        <ul class="dashboard-nav__pages">
+                            <li class="dashboard-nav__page">
+                                <a href="#"
+                                    class="dashboard-nav__item dashboard-nav__item--interactive">
+                                    Interactive Dashboard nav item
+                                </a>
+                            </li>
+                            <li class="dashboard-nav__page">
+                                <a href="#"
+                                    class="dashboard-nav__item dashboard-nav__item--interactive">
+                                    These interactive items are shown in a list
+                                </a>
+                            </li>
+                            <li class="dashboard-nav__page">
+                                <a href="#"
+                                    class="dashboard-nav__item dashboard-nav__item--interactive is-active">
+                                    The active item is marked
+                                </a>
+                            </li>
+                            <li class="dashboard-nav__page">
+                                <a href="#"
+                                    class="dashboard-nav__item dashboard-nav__item--interactive">
+                                    If there is information missing, a red exclamation mark is shown
+                                    <i class="fa fa-exclamation-circle u-danger" title="Missing fields for publication" aria-label="Missing fields for publication"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <h2 id="cl-datepicker">Datepicker</h2>
+
+                <div class="cl-example">
+                    <div class="form-group">
+                        <div class="widget widget--datetimeinput">
+                            <div class="l-tiles-2">
+                                <div class="widget--datetimeinput__date">
+                                    <input name="name_start_date" value="2017-11-22" placeholder="2017-11-24" id="id_start_date" class="datepicker" type="text">
+                                    <a href="#" class="date-picker-control date-picker-dateval" title="Show Calendar" role="button" aria-haspopup="true" tabindex="0"><span>&nbsp;</span><span class="fd-screen-reader">Show Calendar</span></a>
+                                </div>
+                                <div>
+                                    <label class="sr-only" for="id_start_date_time">Start time</label>
+                                    <input name="name_start_date_time" value="00:00" placeholder="00:00" id="id_start_date_time" class="timepicker" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-docs-block">Docs Block</h2>
+
+                <div class="cl-example">
+                    <div class="docs-block">
+                        <a
+                            id="docs-block-{{ index }}-title"
+                            href="#docs-block-{{ index }}-body"
+                            class="docs-block__title collapsed"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            data-toggle="collapse">
+                            <h2>
+                                Docs Block Title
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </h2>
+                        </a>
+
+                        <div
+                            class="docs-block__body collapse"
+                            id="docs-block-{{ index }}-body"
+                            aria-labelledby="docs-block-{{ index }}-title">
+                            This is the body of the docs block,
+                            This block is used in wagtail pages.
+                            <ul>
+                                <li>Why is the list-styling turned off?</li>
+                            </ul>
+                            And why is there a margin-bottom with the list-styling that is otherwise not there? Is wagtail's richtext given as list elements?
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-document">Document</h2>
+
+                <div class="cl-example">
+                    <div class="module-content">
+                        <nav class="doc-toc" aria-label="Table of Contents">
+                            <button
+                                class="doc-toc__toggle collapsed"
+                                data-toggle="collapse"
+                                data-target="#doc-toc__content"
+                                aria-expanded="true"
+                                aria-controls="doc-toc__content">
+                                <h2 class="doc-toc__title">Table of Contents</h2>
+                                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                            </button>
+                            <div class="doc-toc__content collapse" id="doc-toc__content">
+                                <ol>
+                                    <li>
+                                        <a href="#" class="doc-toc__link">
+                                            Chapter 1
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="doc-toc__link active">
+                                            Chapter 2
+                                        </a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </nav>
+
+                        <h2 class="chapter-title">Chapter 2</h2>
+
+                        <section class="paragraph" id="id-paragraph">
+                            <div class="paragraph__content">
+                                <h3 class="paragraph__title">
+                                    Paragraph Title/Name
+                                </h3>
+                                Why is the Table of contents expanded when we are in the first chapter and collapsed in the following ones?
+                            </div>
+                            <div class="paragraph__actions">
+                                <a
+                                        class="btn"
+                                        href="#"
+                                >
+                                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                    10 Comments
+                                </a>
+                            </div>
+                        </section>
+
+                        <section class="paragraph" id="id-paragraph">
+                            <div class="paragraph__content">
+                                <h3 class="paragraph__title">
+                                    One more Paragraph Title/Name
+                                </h3>
+                                It looks a bit different with the grey background (from module-content), so I added it, even though it doesn't belong to this component. Oh, but that looks weird again. Normally it should also have grey padding/be surrounded by grey.
+                            </div>
+                            <div class="paragraph__actions">
+                                <a
+                                        class="btn"
+                                        href="#"
+                                >
+                                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                    1 Comment
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+                </div>
 
                 <h2 id="cl-control_bar">Control Bar</h2>
                 <p>Control Bars are intended to be used atop of lists of elements or maps.</p>
@@ -409,6 +717,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
