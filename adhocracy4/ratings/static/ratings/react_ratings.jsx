@@ -56,7 +56,7 @@ class RatingBox extends React.Component {
   ratingUp (e) {
     e.preventDefault()
     if (this.props.authenticatedAs === null) {
-      window.location.href = config.loginUrl
+      window.location.href = config.getLoginUrl()
       return
     }
     if (this.props.isReadOnly) {
@@ -77,7 +77,7 @@ class RatingBox extends React.Component {
   ratingDown (e) {
     e.preventDefault()
     if (this.props.authenticatedAs === null) {
-      window.location.href = config.loginUrl
+      window.location.href = config.getLoginUrl()
       return
     }
     if (this.props.isReadOnly) {

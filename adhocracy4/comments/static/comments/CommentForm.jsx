@@ -43,7 +43,7 @@ class CommentForm extends React.Component {
     } else if (!this.props.isReadOnly) {
       return (
         <div className="comments_login">
-          <a href={config.loginUrl}>{django.gettext('Please login to comment')}</a>
+          <a href={config.getLoginUrl()}>{django.gettext('Please login to comment')}</a>
         </div>
       )
     } else {
