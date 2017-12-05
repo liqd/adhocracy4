@@ -46,7 +46,7 @@ $checkbox-size: 20px;
 }
 
 .radio__input:checked + .radio__text:after {
-    content: '\f00c';
+    content: '\f00c'; // check
     transform: scale(1);
     opacity: 1;
 }

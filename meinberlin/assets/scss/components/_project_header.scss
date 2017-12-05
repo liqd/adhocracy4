@@ -15,7 +15,7 @@
 .project-header--image {
     min-height: $hero-height-mobile;
     background-size: cover;
-    color: contrast-color($brand-secondary);
+    color: contrast-color(#000);
 
     @media (min-width: $breakpoint) {
         min-height: ($hero-height-mobile + $hero-height-secondary) / 2;
