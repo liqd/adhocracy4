@@ -1,6 +1,5 @@
 from os.path import basename
 
-from django.contrib.staticfiles.storage import staticfiles_storage
 from django.forms import widgets
 from django.template import loader
 from django.utils.html import conditional_escape
@@ -16,7 +15,7 @@ class ImageInputWidget(widgets.ClearableFileInput):
     using the positional `attrs` argument and hard codes css files.
     """
     class Media:
-        js = (staticfiles_storage.url('a4images/imageUploader.js'),)
+        js = ('a4images/imageUploader.js'),
 
     def render(self, name, value, attrs=None):
         html_id = attrs and attrs.get('id', name) or name
