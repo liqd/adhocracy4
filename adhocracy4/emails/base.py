@@ -1,3 +1,5 @@
+import re
+
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites import models as site_models
@@ -102,8 +104,10 @@ class EmailBase:
             else:
                 to_address = receiver
 
+            subject_clean = re.sub(r'[\r\n]', '', subject).strip()
+
             mail = EmailMultiAlternatives(
-                subject=subject.strip(),
+                subject=subject_clean,
                 body=text,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 to=[to_address],
