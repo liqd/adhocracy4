@@ -4,7 +4,7 @@ var Alert = require('../../contrib/assets/Alert')
 var update = require('immutability-helper')
 
 var api = require('adhocracy4').api
-var config = require('adhocarcy4').config
+var config = require('adhocracy4').config
 
 class Question extends React.Component {
   constructor (props) {
