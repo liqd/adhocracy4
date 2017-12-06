@@ -1,51 +1,51 @@
 // subset of bootstrap variables
 
-$brand-primary: #cd0055;
-$brand-primary-tint: #f5ccdd;
-$brand-secondary: #253276;
-$brand-success: #0a820a;
-$brand-info: $brand-secondary;
-$brand-warning: #faee9e;
-$brand-danger: #a72b1e;
+$brand-primary: #cd0055 !default;
+$brand-primary-tint: #f5ccdd !default;
+$brand-secondary: #253276 !default;
+$brand-success: #0a820a !default;
+$brand-info: $brand-secondary !default;
+$brand-warning: #faee9e !default;
+$brand-danger: #a72b1e !default;
 
-$body-bg: #fff;
-$bg-secondary: #f6f6f6;
-$bg-tertiary: #e6e6e6;
-$text-color: #333;
-$text-color-inverted: $body-bg;
-$shadow: rgba(#000, 0.25);
+$body-bg: #fff !default;
+$bg-secondary: #f6f6f6 !default;
+$bg-tertiary: #e6e6e6 !default;
+$text-color: #333 !default;
+$text-color-inverted: $body-bg !default;
+$shadow: rgba(#000, 0.25) !default;
 
-$print-black: #000;
-$print-link: #005cb4;
+$print-black: #000 !default;
+$print-link: #005cb4 !default;
 
-$link-color: $brand-primary;
-$link-hover-color: darken($link-color, 15%);
+$link-color: $brand-primary !default;
+$link-hover-color: darken($link-color, 15%) !default;
 
-$border-color: #ccc;
-$input-border-color: $border-color;
+$border-color: #ccc !default;
+$input-border-color: $border-color !default;
 
-$feedback-color-accepted: #0a820a;
-$feedback-color-rejected: #dc3818;
-$feedback-color-consideration: #ffae00;
+$feedback-color-accepted: #0a820a !default;
+$feedback-color-rejected: #dc3818 !default;
+$feedback-color-consideration: #ffae00 !default;
 
-$spacer: 1em;
-$padding: 1rem;
+$spacer: 1em !default;
+$padding: 1rem !default;
 
-$font-family-sans-serif: "Arial", "Helvetica", sans-serif;
+$font-family-sans-serif: "Arial", "Helvetica", sans-serif !default;
 
-$font-size-xxl: 1.95rem;
-$font-size-xl: 1.56rem;
-$font-size-lg: 1.25rem;
-$font-size-sm: 0.8rem;
-$font-size-xs: 0.64rem;
+$font-size-xxl: 1.95rem !default;
+$font-size-xl: 1.56rem !default;
+$font-size-lg: 1.25rem !default;
+$font-size-sm: 0.8rem !default;
+$font-size-xs: 0.64rem !default;
 
-$breakpoint: 50em;
-$breakpoint-md: 64em;
-$wrapper-width: 81rem;
+$breakpoint: 50em !default;
+$breakpoint-md: 64em !default;
+$wrapper-width: 81rem !default;
 
-$hero-height: 41rem;
-$hero-height-secondary: 30rem;
-$hero-height-mobile: 10.4rem;
+$hero-height: 41rem !default;
+$hero-height-secondary: 30rem !default;
+$hero-height-mobile: 10.4rem !default;
 
 @include grid-set('gutter', $padding);
 $planifolia-contrast-dark-default: $text-color;
