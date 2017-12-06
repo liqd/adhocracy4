@@ -38,6 +38,10 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        items = sorted(context['object_list'],
+                       key=lambda x: x.modified or x.created,
+                       reverse=True)
+
         context['items'] = json.dumps([{
             'title': item.title,
             'url': item.get_absolute_url(),
@@ -50,7 +54,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             'status_display': item.get_status_display(),
             'participation': item.participation,
             'participation_display': item.get_participation_display(),
-        } for item in context['object_list']])
+        } for item in items])
 
         context['baseurl'] = settings.A4_MAP_BASEURL
         context['attribution'] = settings.A4_MAP_ATTRIBUTION
