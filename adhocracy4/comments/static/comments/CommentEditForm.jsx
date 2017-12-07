@@ -38,7 +38,8 @@ class CommentEditForm extends React.Component {
             placeholder={django.gettext('Your comment here')}
             onChange={this.handleTextChange.bind(this)} required="required" defaultValue={this.state.comment} />
         </div>
-        <input type="submit" value={django.gettext('post')} className="submit-button" />
+        <input type="submit" value={django.gettext('save changes')} className="submit-button" />
+        &nbsp;
         <input type="submit" value={django.gettext('cancel')} className="cancel-button"
           onClick={this.props.handleCancel} />
       </form>
