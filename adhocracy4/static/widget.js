@@ -17,6 +17,6 @@ var initialise = function (namespace, name, fn) {
   })
 }
 
-exports = {
+module.exports = {
   initialise: initialise
 }
