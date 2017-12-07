@@ -1,4 +1,5 @@
 var config = require('../../../static/config')
+var Alert = require('../../../static/Alert')
 
 var React = require('react')
 var PropTypes = require('prop-types')
@@ -10,9 +11,11 @@ class CommentForm extends React.Component {
 
     this.state = {comment: ''}
   }
+
   handleTextChange (e) {
     this.setState({comment: e.target.value})
   }
+
   handleSubmit (e) {
     e.preventDefault()
     var comment = this.state.comment.trim()
@@ -25,13 +28,18 @@ class CommentForm extends React.Component {
         objectPk: this.props.subjectId,
         contentTypeId: this.props.subjectType
       }
-    }, this.props.parentIndex)
-    this.setState({comment: ''})
+    }, this.props.parentIndex).then(() => {
+      this.setState({comment: ''})
+    })
   }
+
   render () {
     if (this.context.isAuthenticated && !this.props.isReadOnly) {
       return (
         <form className="general-form" onSubmit={this.handleSubmit.bind(this)}>
+          {this.props.error &&
+            <Alert type="danger" message={django.gettext('Error while submitting your comment!')} onClick={this.props.handleErrorClick} />
+          }
           <div className="form-group">
             <textarea rows={this.props.rows} className="form-control"
               placeholder={django.gettext('Your comment here')}

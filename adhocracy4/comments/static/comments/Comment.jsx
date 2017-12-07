@@ -75,11 +75,17 @@ class Comment extends React.Component {
           subjectType={this.props.content_type}
           subjectId={this.props.object_pk}
           comment={this.props.children}
+          error={this.props.editError}
+          handleErrorClick={() => this.props.handleEditErrorClick(this.props.index, this.props.parentIndex)}
           rows="5"
           handleCancel={this.toggleEdit.bind(this)}
           onCommentSubmit={newComment => {
             this.props.handleCommentModify(newComment, this.props.index, this.props.parentIndex)
-            this.state.edit = false
+              .then(() => {
+                this.setState({
+                  edit: false
+                })
+              })
           }}
         />
       )
@@ -158,6 +164,7 @@ class Comment extends React.Component {
               handleCommentDelete={this.props.handleCommentDelete}
               handleCommentModify={this.props.handleCommentModify}
               isReadOnly={this.props.isReadOnly}
+              handleEditErrorClick={this.props.handleEditErrorClick}
             />
             <CommentForm
               subjectType={this.context.comments_contenttype}
@@ -165,6 +172,8 @@ class Comment extends React.Component {
               onCommentSubmit={this.props.handleCommentSubmit}
               parentIndex={this.props.index}
               placeholder={django.gettext('Your reply here')}
+              error={this.props.replyError}
+              handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
               rows="3"
             />
           </div> : null

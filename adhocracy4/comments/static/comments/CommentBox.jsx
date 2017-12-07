@@ -15,6 +15,7 @@ class CommentBox extends React.Component {
       comments: this.props.comments
     }
   }
+
   updateStateComment (index, parentIndex, updatedComment) {
     var comments = this.state.comments
     var diff = {}
@@ -27,9 +28,10 @@ class CommentBox extends React.Component {
     comments = update(comments, diff)
     this.setState({ comments: comments })
   }
+
   handleCommentSubmit (comment, parentIndex) {
-    api.comments.add(comment)
-      .done(function (comment) {
+    return api.comments.add(comment)
+      .done(comment => {
         var comments = this.state.comments
         var diff = {}
         if (typeof parentIndex !== 'undefined') {
@@ -40,8 +42,26 @@ class CommentBox extends React.Component {
         this.setState({
           comments: update(comments, diff)
         })
-      }.bind(this))
+
+        if (typeof parentIndex !== 'undefined') {
+          this.updateStateComment(parentIndex, undefined, {replyError: false})
+        } else {
+          this.setState({
+            error: false
+          })
+        }
+      })
+      .fail(respone => {
+        if (typeof parentIndex !== 'undefined') {
+          this.updateStateComment(parentIndex, undefined, {replyError: true})
+        } else {
+          this.setState({
+            error: true
+          })
+        }
+      })
   }
+
   handleCommentModify (modifiedComment, index, parentIndex) {
     var comments = this.state.comments
     var comment = comments[index]
@@ -49,9 +69,16 @@ class CommentBox extends React.Component {
       comment = comments[parentIndex].child_comments[index]
     }
 
-    api.comments.change(modifiedComment, comment.id)
-      .done(this.updateStateComment.bind(this, index, parentIndex))
+    return api.comments.change(modifiedComment, comment.id)
+      .done(changed => {
+        this.updateStateComment(index, parentIndex, changed)
+        this.updateStateComment(index, parentIndex, {editError: false})
+      })
+      .fail(respone => {
+        this.updateStateComment(index, parentIndex, {editError: true})
+      })
   }
+
   handleCommentDelete (index, parentIndex) {
     var comments = this.state.comments
     var comment = comments[index]
@@ -65,9 +92,24 @@ class CommentBox extends React.Component {
         objectPk: comment.object_pk
       }
     }
-    api.comments.delete(data, comment.id)
+    return api.comments.delete(data, comment.id)
       .done(this.updateStateComment.bind(this, index, parentIndex))
   }
+
+  hideNewError () {
+    this.setState({
+      error: false
+    })
+  }
+
+  hideReplyError (index, parentIndex) {
+    this.updateStateComment(index, parentIndex, {replyError: false})
+  }
+
+  hideEditError (index, parentIndex) {
+    this.updateStateComment(index, parentIndex, {editError: false})
+  }
+
   getChildContext () {
     return {
       isAuthenticated: this.props.isAuthenticated,
@@ -76,6 +118,7 @@ class CommentBox extends React.Component {
       user_name: this.props.user_name
     }
   }
+
   render () {
     return (
       <div>
@@ -83,11 +126,17 @@ class CommentBox extends React.Component {
         <div className="comment-box">
           <CommentForm subjectType={this.props.subjectType} subjectId={this.props.subjectId}
             onCommentSubmit={this.handleCommentSubmit.bind(this)} placeholder={django.gettext('Your comment here')}
-            rows="5" isReadOnly={this.props.isReadOnly} />
+            rows="5" isReadOnly={this.props.isReadOnly} error={this.state.error} handleErrorClick={this.hideNewError.bind(this)} />
           <div className="comment-list">
-            <CommentList comments={this.state.comments} handleCommentDelete={this.handleCommentDelete.bind(this)}
-              handleCommentSubmit={this.handleCommentSubmit.bind(this)} handleCommentModify={this.handleCommentModify.bind(this)}
-              isReadOnly={this.props.isReadOnly} />
+            <CommentList
+              comments={this.state.comments}
+              handleCommentDelete={this.handleCommentDelete.bind(this)}
+              handleCommentSubmit={this.handleCommentSubmit.bind(this)}
+              handleCommentModify={this.handleCommentModify.bind(this)}
+              isReadOnly={this.props.isReadOnly}
+              handleReplyErrorClick={this.hideReplyError.bind(this)}
+              handleEditErrorClick={this.hideEditError.bind(this)}
+            />
           </div>
         </div>
       </div>
