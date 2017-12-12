@@ -133,7 +133,7 @@
                 <h2 id="cl-actions">Actions</h2>
 
                 <div class="cl-example">
-                    <div class="action">
+                    <div class="action action--withdate">
                         <i class="fa fa-clock-o action__icon" aria-hidden="true"></i>
                         <div class="action__main">
                             <div class="action__line">
@@ -147,11 +147,26 @@
                             </div>
                         </div>
                     </div>
+                    <div class="action action--withdate">
+                        <i class="fa fa-comment action__icon" aria-hidden="true"></i>
+                        <div class="action__main">
+                            <div class="action__line">
+                                Action of type comment
+                                {% lorem random %}
+                            </div>
+                            <div class="action__line">
+                                on <a href="#">Project</a>
+                            </div>
+                            <div class="action__date">
+                                03.11.2017
+                            </div>
+                        </div>
+                    </div>
                     <div class="action">
                         <i class="fa fa-comment action__icon" aria-hidden="true"></i>
                         <div class="action__main">
                             <div class="action__line">
-                                Action of type comment.
+                                Action of type comment without a date<br>
                                 {% lorem random %}
                             </div>
                             <div class="action__line">
