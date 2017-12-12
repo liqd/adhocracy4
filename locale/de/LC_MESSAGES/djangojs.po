@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-23 10:00+0100\n"
+"POT-Creation-Date: 2017-12-12 09:47+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,7 +39,6 @@ msgstr "Löschen"
 #: adhocracy4/comments/static/comments/Comment.jsx:100
 #: adhocracy4/static/Modal.jsx:49
 #: adhocracy4/comments/static/comments/Comment.jsx:100
-#: adhocracy4/static/Modal.jsx:49
 msgid "Abort"
 msgstr "Abbrechen"
 
@@ -276,37 +275,45 @@ msgstr ""
 msgid "Stopped"
 msgstr ""
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:265
+#: meinberlin/apps/plans/assets/plans_map.jsx:26
+msgid "No"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:27
+msgid "Yes"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:28
+msgid "Still undecided"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:278
 msgid "Nothing to show"
 msgstr ""
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:274
+#: meinberlin/apps/plans/assets/plans_map.jsx:287
 msgid "Filter bar"
 msgstr ""
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:281
-#: meinberlin/apps/plans/assets/plans_map.jsx:282
-#: meinberlin/apps/plans/assets/plans_map.jsx:283
+#: meinberlin/apps/plans/assets/plans_map.jsx:294
+#: meinberlin/apps/plans/assets/plans_map.jsx:295
+#: meinberlin/apps/plans/assets/plans_map.jsx:296
 msgid "Search"
 msgstr ""
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:288
-#: meinberlin/apps/plans/assets/plans_map.jsx:292
+#: meinberlin/apps/plans/assets/plans_map.jsx:302
 msgid "Status"
 msgstr ""
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:288
-#: meinberlin/apps/plans/assets/plans_map.jsx:299
+#: meinberlin/apps/plans/assets/plans_map.jsx:302
+#: meinberlin/apps/plans/assets/plans_map.jsx:312
+#: meinberlin/apps/plans/assets/plans_map.jsx:336
+#: meinberlin/apps/plans/assets/plans_map.jsx:346
 msgid "All"
 msgstr ""
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:299
-#: meinberlin/apps/plans/assets/plans_map.jsx:300
+#: meinberlin/apps/plans/assets/plans_map.jsx:336
 msgid "Participation"
-msgstr ""
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:300
-msgid "Planned"
 msgstr ""
 
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:24
@@ -326,41 +333,41 @@ msgstr "Die Umfrage konnte nicht aktualisiert werden."
 msgid "Add a new question"
 msgstr "Neue Frage"
 
-#: meinberlin/apps/polls/assets/Question.jsx:49
+#: meinberlin/apps/polls/assets/Question.jsx:51
 msgid "Vote counted"
 msgstr "Ihre Stimme wurde gezählt."
 
-#: meinberlin/apps/polls/assets/Question.jsx:59
+#: meinberlin/apps/polls/assets/Question.jsx:61
 msgid "Vote has not been counted due to a server error."
 msgstr "Ihre Stimme konnte aufgrund eines Serverfehlers nicht gezählt werden."
 
-#: meinberlin/apps/polls/assets/Question.jsx:106
+#: meinberlin/apps/polls/assets/Question.jsx:108
 msgid "Vote"
 msgstr "Stimme abgeben"
 
-#: meinberlin/apps/polls/assets/Question.jsx:115
+#: meinberlin/apps/polls/assets/Question.jsx:114
 msgid "Please login to vote"
 msgstr "Bitte melden Sie sich zum Abstimmen an."
 
-#: meinberlin/apps/polls/assets/Question.jsx:137
+#: meinberlin/apps/polls/assets/Question.jsx:136
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "Stimme"
 msgstr[1] "Stimmen"
 
-#: meinberlin/apps/polls/assets/Question.jsx:138
+#: meinberlin/apps/polls/assets/Question.jsx:137
 msgid "To poll"
 msgstr "Zur Umfrage"
 
-#: meinberlin/apps/polls/assets/Question.jsx:141
+#: meinberlin/apps/polls/assets/Question.jsx:140
 msgid "Change vote"
 msgstr "Stimme ändern"
 
-#: meinberlin/apps/polls/assets/Question.jsx:145
+#: meinberlin/apps/polls/assets/Question.jsx:144
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
-#: meinberlin/apps/polls/assets/Question.jsx:173
+#: meinberlin/apps/polls/assets/Question.jsx:172
 msgid "Your choice"
 msgstr "Ihre Wahl"
 

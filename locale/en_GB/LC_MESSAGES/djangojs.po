@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-23 10:00+0100\n"
+"POT-Creation-Date: 2017-12-12 09:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -241,38 +241,46 @@ msgstr "Done"
 msgid "Stopped"
 msgstr "Stopped"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:265
+#: meinberlin/apps/plans/assets/plans_map.jsx:26
+msgid "No"
+msgstr "No"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:27
+msgid "Yes"
+msgstr "Yes"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:28
+msgid "Still undecided"
+msgstr "Still undecided"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:278
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:274
+#: meinberlin/apps/plans/assets/plans_map.jsx:287
 msgid "Filter bar"
 msgstr "Filter bar"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:281
-#: meinberlin/apps/plans/assets/plans_map.jsx:282
-#: meinberlin/apps/plans/assets/plans_map.jsx:283
+#: meinberlin/apps/plans/assets/plans_map.jsx:294
+#: meinberlin/apps/plans/assets/plans_map.jsx:295
+#: meinberlin/apps/plans/assets/plans_map.jsx:296
 msgid "Search"
 msgstr "Search"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:288
-#: meinberlin/apps/plans/assets/plans_map.jsx:292
+#: meinberlin/apps/plans/assets/plans_map.jsx:302
 msgid "Status"
 msgstr "Status"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:288
-#: meinberlin/apps/plans/assets/plans_map.jsx:299
+#: meinberlin/apps/plans/assets/plans_map.jsx:302
+#: meinberlin/apps/plans/assets/plans_map.jsx:312
+#: meinberlin/apps/plans/assets/plans_map.jsx:336
+#: meinberlin/apps/plans/assets/plans_map.jsx:346
 msgid "All"
 msgstr "All"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:299
-#: meinberlin/apps/plans/assets/plans_map.jsx:300
+#: meinberlin/apps/plans/assets/plans_map.jsx:336
 msgid "Participation"
 msgstr "Participation"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:300
-msgid "Planned"
-msgstr "Planned"
 
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:24
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:27
@@ -291,41 +299,41 @@ msgstr "The poll could not be updated."
 msgid "Add a new question"
 msgstr "Add a new question"
 
-#: meinberlin/apps/polls/assets/Question.jsx:49
+#: meinberlin/apps/polls/assets/Question.jsx:51
 msgid "Vote counted"
 msgstr "Vote counted"
 
-#: meinberlin/apps/polls/assets/Question.jsx:59
+#: meinberlin/apps/polls/assets/Question.jsx:61
 msgid "Vote has not been counted due to a server error."
 msgstr "Vote has not been counted due to a server error."
 
-#: meinberlin/apps/polls/assets/Question.jsx:106
+#: meinberlin/apps/polls/assets/Question.jsx:108
 msgid "Vote"
 msgstr "Vote"
 
-#: meinberlin/apps/polls/assets/Question.jsx:115
+#: meinberlin/apps/polls/assets/Question.jsx:114
 msgid "Please login to vote"
 msgstr "Please login to vote"
 
-#: meinberlin/apps/polls/assets/Question.jsx:137
+#: meinberlin/apps/polls/assets/Question.jsx:136
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "vote"
 msgstr[1] "votes"
 
-#: meinberlin/apps/polls/assets/Question.jsx:138
+#: meinberlin/apps/polls/assets/Question.jsx:137
 msgid "To poll"
 msgstr "To poll"
 
-#: meinberlin/apps/polls/assets/Question.jsx:141
+#: meinberlin/apps/polls/assets/Question.jsx:140
 msgid "Change vote"
 msgstr "Change vote"
 
-#: meinberlin/apps/polls/assets/Question.jsx:145
+#: meinberlin/apps/polls/assets/Question.jsx:144
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
-#: meinberlin/apps/polls/assets/Question.jsx:173
+#: meinberlin/apps/polls/assets/Question.jsx:172
 msgid "Your choice"
 msgstr "Your choice"
 
@@ -372,6 +380,9 @@ msgstr "No matches found within the project area"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Did you mean:"
+
+#~ msgid "Planned"
+#~ msgstr "Planned"
 
 #~ msgid "Your document has been updated."
 #~ msgstr "Your document has been updated."
