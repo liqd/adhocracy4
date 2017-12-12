@@ -12,9 +12,10 @@ from . import models
 def log_module_component_changes(sender, module, component, user, **kwargs):
     with translation.override(settings.DEFAULT_LANGUAGE):
         message = _(
-            'The component "{component_label}"'
+            '"{username}" modified the component "{component_label}"'
             ' in the module "{module_name}"'
-            ' of the project "{project_name}" has been modified.').format(
+            ' of the project "{project_name}".').format(
+                username=user.username,
                 project_name=module.project.name,
                 module_name=module.name,
                 component_label=component.label)
@@ -33,8 +34,9 @@ def log_module_component_changes(sender, module, component, user, **kwargs):
 def log_project_component_changes(sender, project, component, user, **kwargs):
     with translation.override(settings.DEFAULT_LANGUAGE):
         message = _(
-            'The component "{component_label}"'
-            ' of the project "{project_name}" has been modified.').format(
+            '"{username}" modified the component "{component_label}"'
+            ' of the project "{project_name}".').format(
+                username=user.username,
                 project_name=project.name,
                 component_label=component.label)
 
@@ -52,7 +54,8 @@ def log_project_component_changes(sender, project, component, user, **kwargs):
 def log_project_created(sender, project, user, **kwargs):
     with translation.override(settings.DEFAULT_LANGUAGE):
         message = _(
-            'The project "{project_name}" has been created.').format(
+            '"{username}" created the project "{project_name}".').format(
+                username=user.username,
                 project_name=project.name)
 
     models.LogEntry.objects.create(
@@ -69,8 +72,9 @@ def log_project_created(sender, project, user, **kwargs):
 def log_project_published(sender, project, user, **kwargs):
     with translation.override(settings.DEFAULT_LANGUAGE):
         message = _(
-            'The project "{project_name}" has been published.').format(
-                project_name=project.name)
+            '"{username}" published the project "{project_name}".') \
+            .format(username=user.username,
+                    project_name=project.name)
 
     models.LogEntry.objects.create(
         message=message,
@@ -86,8 +90,9 @@ def log_project_published(sender, project, user, **kwargs):
 def log_project_unpublished(sender, project, user, **kwargs):
     with translation.override(settings.DEFAULT_LANGUAGE):
         message = _(
-            'The project "{project_name}" has been unpublished.').format(
-                project_name=project.name)
+            '"{username}" depublished the project "{project_name}".') \
+            .format(username=user.username,
+                    project_name=project.name)
 
     models.LogEntry.objects.create(
         message=message,
