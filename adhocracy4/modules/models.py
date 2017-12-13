@@ -19,11 +19,11 @@ class Module(models.Model):
     description = models.CharField(
         null=True,
         blank=True,
-        max_length=250,
+        max_length=512,
         verbose_name=_('Short description of the module'),
         help_text=_('This short description will appear on the header of the '
                     'module and project detail pages. It should briefly state '
-                    'the goal of the module in max. 250 chars.')
+                    'the goal of the module in max. 512 chars.')
     )
     weight = models.PositiveIntegerField()
     project = models.ForeignKey(
