@@ -20,7 +20,10 @@ class ExternalProjectForm(ProjectDashboardForm):
         time_format='%H:%M',
         required=False,
         require_all_fields=False,
-        label=(_('Start date'), _('Start time'))
+        label=(_('Start date'), _('Start time')),
+        help_text=_('Provide start and end dates if the external project '
+                    'allows participation. Either both, start and end date, '
+                    'have to be provided or none of them.')
     )
     end_date = DateTimeField(
         time_format='%H:%M',
@@ -44,6 +47,12 @@ class ExternalProjectForm(ProjectDashboardForm):
     def clean_end_date(self, *args, **kwargs):
         start_date = self.cleaned_data.get('start_date')
         end_date = self.cleaned_data.get('end_date')
+
+        if start_date and not end_date or not start_date and end_date:
+            raise ValidationError(
+                _('Either both start and end date have to be provided '
+                  'or none of them.'))
+
         if start_date and end_date and end_date < start_date:
             raise ValidationError(
                 _('End date can not be smaller than the start date.'))

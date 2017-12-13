@@ -58,7 +58,8 @@
                 <br/>
                 {% trans 'projects are currently active.' %}
             </p>
-        {% else %}
+        {% elif not project|is_external or project.externalproject.phase.start_date %}
+            {# Don't show for external projects without participation #}
             {% if project.active_phase %}
                 <p class="tile__hint">
                     {% html_date project.last_active_phase.end_date 'd.m.Y' as end_date %}
