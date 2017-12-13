@@ -86,6 +86,10 @@ class ModuleBasicForm(ModuleDashboardForm):
         fields = ['name', 'description']
         required_for_project_publish = '__all__'
 
+        widgets = {
+            'description': forms.Textarea,
+        }
+
 
 class PhaseForm(forms.ModelForm):
     end_date = DateTimeField(
