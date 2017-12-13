@@ -168,11 +168,11 @@ msgstr "Meldung senden"
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:34
 #: adhocracy4/comments/static/comments/CommentForm.jsx:41
 msgid "Error while submitting your comment!"
-msgstr ""
+msgstr "Fehler beim Speichern Ihres Kommentars!"
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:41
 msgid "save changes"
-msgstr ""
+msgstr "Änderungen speichern"
 
 #: adhocracy4/static/Alert.jsx:10
 #: adhocracy4/static/Alert.jsx:11

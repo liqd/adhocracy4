@@ -2333,7 +2333,7 @@ msgstr "Beteiligung fängt am %(date)s an"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:29
 msgid "None"
-msgstr ""
+msgstr "Keine Einträge"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:7
 msgid "Timeline"
