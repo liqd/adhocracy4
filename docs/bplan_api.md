@@ -20,8 +20,8 @@ project:
 -   *description*: Description of the BPLAN shown in the project tile
 -   *url*: URL of the external site the BPLAN is embedded on
 -   *office_worker_email*: Email of the office worker to receive the statement emails
--   *start_date*: Start date of the participation
--   *end_date*: End date of the participation
+-   *start_date*: Start date of the participation [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601) (if no time zone is  defined,german time zones UTC+1 and UTC+2 are used)
+-   *end_date*: End date of the participation in [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601) (if no time zone is  defined,  german time zones UTC+1 and UTC+2 are used)
 -   *image_url*: URL of the image that is used in the project tile
 -   *image_copyright*: Copyright shown for the image
 
@@ -37,14 +37,14 @@ The response will contain the following fields:
 Example:
 
     data = {
-        "name":"bplan-123",
-        "description": "blan-123",
-        "url": "https://example.com/embed",
+        "name":"Luisenblock Ost - Bebauungsplan 1-70",
+        "description": "Der Luisenblock Ost soll städtebaulich neu geordnet werden. Nutzungen des Deutschen Bundestages sollen in einem Sondergebiet als Auftakt des 'Band des Bundes' zusammengefasst werden.",
+        "url": "https://berlin.de/ba-marzahn-hellersdorf/.../bebauungsplan.649020.php",
         "office_worker_email": "test@example.com",
-        "start_date": "2017-01-01 00:00",
-        "end_date": "2018-01-01 00:00",
-        "image_url": "http://berlin.de/bplan-123.jpg",
-        "image_copyright": "John Doe",
+        "start_date": "2017-01-01T00:00",
+        "end_date": "2018-01-01T00:00",
+        "image_url": "http://berlin.de/images/.../bebauungsplan.649020.png",
+        "image_copyright": "BA Marzahn-Hellersdorf",
     }
     res = POST(https://mein.berlin.de/api/organisations/5/bplan/, data)
     print(res)
@@ -54,7 +54,7 @@ Example:
             "<iframe
                 height="500"
                 style="width: 100%; min-height: 300px; max-height: 100vh"
-                src="https://mein.berlin.de/embed/projects/bplan-123/"
+                src="https://mein.berlin.de/embed/projects/luisenblock-ost-bebauungsplan-1-70/"
                 frameborder="0">
             </iframe>"
     }
@@ -73,7 +73,7 @@ API endpoint for PATCH:
 Example:
 
     data = {
-        "end_date": "2019-01-01 00:00",
+        "end_date": "2019-01-01T00:00",
     }
     res = PATCH(https://mein.berlin.de/api/organisations/5/bplan/36/, data)
 
