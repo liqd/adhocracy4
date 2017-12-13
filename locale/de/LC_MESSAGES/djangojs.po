@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-12 09:47+0100\n"
+"POT-Creation-Date: 2017-12-13 09:37+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,13 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:97
-#: adhocracy4/comments/static/comments/Comment.jsx:97
+#: adhocracy4/comments/static/comments/Comment.jsx:103
 msgid "Do you really want to delete this comment?"
 msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:99
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
-#: adhocracy4/comments/static/comments/Comment.jsx:99
+#: adhocracy4/comments/static/comments/Comment.jsx:105
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:52
@@ -38,34 +38,35 @@ msgstr "Löschen"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:100
 #: adhocracy4/static/Modal.jsx:49
-#: adhocracy4/comments/static/comments/Comment.jsx:100
+#: adhocracy4/comments/static/comments/Comment.jsx:106
+#: adhocracy4/static/Modal.jsx:49
 msgid "Abort"
 msgstr "Abbrechen"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:113
-#: adhocracy4/comments/static/comments/Comment.jsx:113
+#: adhocracy4/comments/static/comments/Comment.jsx:119
 msgid "Latest edit on"
 msgstr "Letzte Änderung am"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:118
-#: adhocracy4/comments/static/comments/Comment.jsx:118
+#: adhocracy4/comments/static/comments/Comment.jsx:124
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:125
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
-#: adhocracy4/comments/static/comments/Comment.jsx:125
+#: adhocracy4/comments/static/comments/Comment.jsx:131
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid "Are you sure you want to report this item?"
 msgstr "Sind Sie sicher, dass Sie diesen Beitrag melden möchten?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:167
-#: adhocracy4/comments/static/comments/Comment.jsx:167
+#: adhocracy4/comments/static/comments/Comment.jsx:174
 msgid "Your reply here"
 msgstr "Ihre Antwort hier"
 
 #: adhocracy4/comments/static/comments/CommentBox.jsx:82
-#: adhocracy4/comments/static/comments/CommentBox.jsx:82
+#: adhocracy4/comments/static/comments/CommentBox.jsx:125
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "Kommentar"
@@ -74,31 +75,30 @@ msgstr[1] "Kommentare"
 #: adhocracy4/comments/static/comments/CommentBox.jsx:85
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
 #: adhocracy4/comments/static/comments/CommentForm.jsx:37
-#: adhocracy4/comments/static/comments/CommentBox.jsx:85
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
-#: adhocracy4/comments/static/comments/CommentForm.jsx:37
+#: adhocracy4/comments/static/comments/CommentBox.jsx:128
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:38
+#: adhocracy4/comments/static/comments/CommentForm.jsx:45
 msgid "Your comment here"
 msgstr "Ihr Kommentar hier"
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:36
 #: adhocracy4/comments/static/comments/CommentForm.jsx:40
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:36
-#: adhocracy4/comments/static/comments/CommentForm.jsx:40
+#: adhocracy4/comments/static/comments/CommentForm.jsx:48
 msgid "post"
 msgstr "Senden"
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:37
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:37
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:43
 msgid "cancel"
 msgstr "Abbrechen"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:46
-#: adhocracy4/comments/static/comments/CommentForm.jsx:46
+#: adhocracy4/comments/static/comments/CommentForm.jsx:54
 msgid "Please login to comment"
 msgstr "Bitte melden Sie sich zum Kommentieren an."
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:52
-#: adhocracy4/comments/static/comments/CommentForm.jsx:52
+#: adhocracy4/comments/static/comments/CommentForm.jsx:60
 msgid "The currently active phase doesn't allow to comment."
 msgstr "Die aktuell laufende Phase erlaubt keine Kommentare."
 
@@ -165,6 +165,17 @@ msgstr "Ihre Nachricht hier"
 msgid "Send Report"
 msgstr "Meldung senden"
 
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:34
+#: adhocracy4/comments/static/comments/CommentForm.jsx:41
+msgid "Error while submitting your comment!"
+msgstr ""
+
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:41
+msgid "save changes"
+msgstr ""
+
+#: adhocracy4/static/Alert.jsx:10
+#: adhocracy4/static/Alert.jsx:11
 #: meinberlin/apps/contrib/assets/Alert.jsx:10
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
