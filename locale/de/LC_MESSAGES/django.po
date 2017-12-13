@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-13 09:37+0100\n"
+"POT-Creation-Date: 2017-12-13 14:37+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2533,23 +2533,20 @@ msgid ""
 "            <p>To sign in via Service-Konto on meinBerlin you will be "
 "redirected to the Service-Konto.</p>\n"
 "            <p>\n"
-"                There you have to sign in with your credentials first, then "
-"navigate to\n"
-"                <strong>Dienste nach Zielgruppen</strong>, choose "
-"<strong>mein.Berlin</strong> and finally\n"
-"                click on <strong>weiter</strong> to return to the meinBerlin "
-"platform.\n"
+"                There you have to sign in with your credentials first, find "
+"the Service <strong>mein.Berlin</strong> and\n"
+"                finally click on <strong>Hier starten</strong> to return to "
+"the meinBerlin platform.\n"
 "            </p>\n"
 "        "
 msgstr ""
 "\n"
 "<p>Um sich mit dem Service-Konto bei meinBerlin anzumelden, werden Sie auf "
 "die Service-Konto Seite weitergeleitet.</p><p>Dort müssen Sie sich anmelden, "
-"dann unter <strong>Dienste nach Zielgruppen</strong> den Dienst <strong>mein."
-"Berlin</strong> auswählen und auf <strong>weiter</strong> klicken um zur "
-"meinBerlin-Platform zurückzukehren.</p>"
+"den Dienst <strong>mein.Berlin</strong> auswählen und auf <strong>Hier "
+"starten</strong> klicken um zur meinBerlin-Platform zurückzukehren.</p>"
 
-#: meinberlin/apps/servicekonto/templates/meinberlin_servicekonto/login.html:20
+#: meinberlin/apps/servicekonto/templates/meinberlin_servicekonto/login.html:19
 msgid "Service-Konto Login"
 msgstr "Service-Konto Login"
 
@@ -2694,8 +2691,8 @@ msgstr ""
 msgid "Account Settings"
 msgstr "Nutzerkonto Einstellungen"
 
-#: meinberlin/config/settings/base.py:278
-#: meinberlin/config/settings/base.py:288
+#: meinberlin/config/settings/base.py:277
+#: meinberlin/config/settings/base.py:287
 msgid "Rich text editor"
 msgstr "Rich Text Editor"
 

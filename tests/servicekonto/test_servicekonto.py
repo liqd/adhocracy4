@@ -104,8 +104,8 @@ def test_connect_account(monkeypatch, client, user):
     )
     _mock_servicekonto_response(monkeypatch, service_konto)
 
-    response = client.get(reverse('servicekonto_callback'),
-                          {'Token': '1234567'})
+    response = client.post(reverse('servicekonto_callback'),
+                           {'Token': '1234567'})
     assert response.status_code == 302
 
     account = SocialAccount.objects.get(
@@ -127,8 +127,8 @@ def test_login(monkeypatch, client, social_account):
     )
     _mock_servicekonto_response(monkeypatch, service_konto)
 
-    response = client.get(reverse('servicekonto_callback'),
-                          {'Token': '1234567'})
+    response = client.post(reverse('servicekonto_callback'),
+                           {'Token': '1234567'})
     assert response.status_code == 302
 
     response_url = urlparse(response.url)
@@ -149,8 +149,8 @@ def test_login_without_session(monkeypatch, client, social_account, settings):
     )
     _mock_servicekonto_response(monkeypatch, service_konto)
 
-    response = client.get(reverse('servicekonto_callback'),
-                          {'Token': '1234567'})
+    response = client.post(reverse('servicekonto_callback'),
+                           {'Token': '1234567'})
     assert response.status_code == 302
 
     response_url = urlparse(response.url)
@@ -167,8 +167,8 @@ def test_create_account_on_login(monkeypatch, client, settings):
     service_konto = ServiceKontoResponse()
     _mock_servicekonto_response(monkeypatch, service_konto)
 
-    response = client.get(reverse('servicekonto_callback'),
-                          {'Token': '1234567'})
+    response = client.post(reverse('servicekonto_callback'),
+                           {'Token': '1234567'})
     assert response.status_code == 302
 
     response_url = urlparse(response.url)
@@ -198,8 +198,8 @@ def test_create_account_on_login_with_existing_username(monkeypatch,
         hhgw={'firstname': 'first', 'lastname': 'last'})
     _mock_servicekonto_response(monkeypatch, service_konto)
 
-    response = client.get(reverse('servicekonto_callback'),
-                          {'Token': '1234567'})
+    response = client.post(reverse('servicekonto_callback'),
+                           {'Token': '1234567'})
     assert response.status_code == 302
 
     response_url = urlparse(response.url)
@@ -219,8 +219,8 @@ def test_skip_create_if_exists(monkeypatch, client, user_factory, settings):
     service_konto = ServiceKontoResponse(hhgw={'email': email_address})
     _mock_servicekonto_response(monkeypatch, service_konto)
 
-    response = client.get(reverse('servicekonto_callback'),
-                          {'Token': '1234567'})
+    response = client.post(reverse('servicekonto_callback'),
+                           {'Token': '1234567'})
     assert response.status_code == 302
 
     response_url = urlparse(response.url)
@@ -243,8 +243,8 @@ def test_invalid_token(monkeypatch, client, user):
         auth_denied
     )
 
-    response = client.get(reverse('servicekonto_callback'),
-                          {'Token': 'invalidtoken'})
+    response = client.post(reverse('servicekonto_callback'),
+                           {'Token': 'invalidtoken'})
 
     # unfortunately allauth returns a 200 (OK) status code in case of an
     # AuthError instead of a 4xx or 5xx
@@ -255,8 +255,8 @@ def test_invalid_token(monkeypatch, client, user):
 @pytest.mark.django_db
 def test_invalid_response(monkeypatch, client):
     _mock_servicekonto_response(monkeypatch, '<invalid>xml response')
-    response = client.get(reverse('servicekonto_callback'),
-                          {'Token': '1234567'})
+    response = client.post(reverse('servicekonto_callback'),
+                           {'Token': '1234567'})
 
     # unfortunately allauth returns a 200 (OK) status code in case of an
     # AuthError instead of a 4xx or 5xx
