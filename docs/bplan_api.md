@@ -17,20 +17,22 @@ The following data fields are posted as JSON to create and publish a BPLAN
 project:
 
 -   *name*: Name of the BPLAN (e.g. used as the title of the project tile)
-    - maximum length of 120 chars
+    -   maximum length of 120 chars
 -   *description*: Description of the BPLAN shown in the project tile
-    - maximum length of 250 chars
+    -   maximum length of 250 chars
 -   *url*: URL of the external site the BPLAN is embedded on
 -   *office_worker_email*: Email of the office worker to receive the statement emails
--   *start_date*: Start date of the participation 
-    - [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601) (if no time zone is  defined,german time zones UTC+01 and UTC+02 are used)
--   *end_date*: End date of the participation in 
-    - [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601) (if no time zone is  defined,  german time zones UTC+01 and UTC+02 are used)
+-   *start_date*: Start date of the participation
+    -   [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)
+        (if no time zone is  defined, german time zones UTC+01 and UTC+02 are used)
+-   *end_date*: End date of the participation in
+    -   [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)
+        (if no time zone is  defined,  german time zones UTC+01 and UTC+02 are used)
 -   *image_url*: URL of the image that is used in the project tile
-    - minimal resolution 500x300 px (width x height)
-    - maximum file size 10MB
+    -   minimal resolution 500x300 px (width x height)
+    -   maximum file size 10MB
 -   *image_copyright*: Copyright shown for the image
-    - maximum length of 120 chars
+    -   maximum length of 120 chars
 
 API endpoint for POST requests:
 
@@ -45,7 +47,9 @@ Example:
 
     data = {
         "name":"Luisenblock Ost - Bebauungsplan 1-70",
-        "description": "Der Luisenblock Ost soll städtebaulich neu geordnet werden. Nutzungen des Deutschen Bundestages sollen in einem Sondergebiet als Auftakt des 'Band des Bundes' zusammengefasst werden.",
+        "description": "Der Luisenblock Ost soll städtebaulich neu geordnet
+          werden. Nutzungen des Deutschen Bundestages sollen in einem Sondergebiet
+          als Auftakt des 'Band des Bundes' zusammengefasst werden.",
         "url": "https://berlin.de/ba-marzahn-hellersdorf/.../bebauungsplan.649020.php",
         "office_worker_email": "test@example.com",
         "start_date": "2017-01-01T00:00",
