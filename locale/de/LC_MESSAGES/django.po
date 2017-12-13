@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-13 14:37+0100\n"
+"POT-Creation-Date: 2017-12-13 15:25+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -234,7 +234,7 @@ msgstr "Anfangsdatum"
 
 #: adhocracy4/phases/models.py:72
 #: meinberlin/apps/dashboard2/forms.py:95
-#: meinberlin/apps/extprojects/forms.py:29
+#: meinberlin/apps/extprojects/forms.py:32
 msgid "End date"
 msgstr "Enddatum"
 
@@ -1233,7 +1233,7 @@ msgstr ""
 "Nur eingeladene Nutzerinnen und Nutzer können sich beteiligen (privat)."
 
 #: meinberlin/apps/dashboard2/forms.py:95
-#: meinberlin/apps/extprojects/forms.py:29
+#: meinberlin/apps/extprojects/forms.py:32
 msgid "End time"
 msgstr "Endzeit"
 
@@ -1587,7 +1587,22 @@ msgstr "Einstellungen"
 msgid "Edit external project settings"
 msgstr "Externes Projekt bearbeiten"
 
-#: meinberlin/apps/extprojects/forms.py:49
+#: meinberlin/apps/extprojects/forms.py:24
+msgid ""
+"Provide start and end dates if the external project allows participation. "
+"Either both, start and end date, have to be provided or none of them."
+msgstr ""
+"Geben Sie das Start- und Enddatum an, wenn das externe Projekt Beteiligung "
+"ermöglicht. Es muss entweder das Start- und das Enddatum oder keines der "
+"beiden angegeben werden."
+
+#: meinberlin/apps/extprojects/forms.py:53
+msgid "Either both start and end date have to be provided or none of them."
+msgstr ""
+"Entweder muss das Start- und das Enddatum oder keines der beiden angegeben "
+"werden."
+
+#: meinberlin/apps/extprojects/forms.py:58
 msgid "End date can not be smaller than the start date."
 msgstr "Das Enddatum kann nicht kleiner als das Startdatum sein."
 
@@ -2321,12 +2336,12 @@ msgstr "Externes Projekt"
 msgid "Project on meinBerlin"
 msgstr "Projekt auf meinBerlin"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:65
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:66
 #, python-format
 msgid "Participation possible until %(date)s"
 msgstr "Beteiligung möglich bis zum %(date)s"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:70
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:71
 #, python-format
 msgid "Participation starting from %(date)s"
 msgstr "Beteiligung fängt am %(date)s an"
