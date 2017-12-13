@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-13 14:37+0100\n"
+"POT-Creation-Date: 2017-12-13 15:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -223,7 +223,7 @@ msgid "Start date"
 msgstr "Start date"
 
 #: adhocracy4/phases/models.py:72 meinberlin/apps/dashboard2/forms.py:95
-#: meinberlin/apps/extprojects/forms.py:29
+#: meinberlin/apps/extprojects/forms.py:32
 msgid "End date"
 msgstr "End date"
 
@@ -1204,7 +1204,7 @@ msgid "Only invited users can participate (private)."
 msgstr "Only invited users can participate (private)."
 
 #: meinberlin/apps/dashboard2/forms.py:95
-#: meinberlin/apps/extprojects/forms.py:29
+#: meinberlin/apps/extprojects/forms.py:32
 msgid "End time"
 msgstr "End time"
 
@@ -1554,7 +1554,19 @@ msgstr "External project settings"
 msgid "Edit external project settings"
 msgstr "Edit external project settings"
 
-#: meinberlin/apps/extprojects/forms.py:49
+#: meinberlin/apps/extprojects/forms.py:24
+msgid ""
+"Provide start and end dates if the external project allows participation. "
+"Either both, start and end date, have to be provided or none of them."
+msgstr ""
+"Provide start and end dates if the external project allows participation. "
+"Either both, start and end date, have to be provided or none of them."
+
+#: meinberlin/apps/extprojects/forms.py:53
+msgid "Either both start and end date have to be provided or none of them."
+msgstr "Either both start and end date have to be provided or none of them."
+
+#: meinberlin/apps/extprojects/forms.py:58
 msgid "End date can not be smaller than the start date."
 msgstr "End date can not be smaller than the start date."
 
@@ -2282,12 +2294,12 @@ msgstr "External Project"
 msgid "Project on meinBerlin"
 msgstr "Project on meinBerlin"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:65
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:66
 #, python-format
 msgid "Participation possible until %(date)s"
 msgstr "Participation possible until %(date)s"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:70
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:71
 #, python-format
 msgid "Participation starting from %(date)s"
 msgstr "Participation starting from %(date)s"
