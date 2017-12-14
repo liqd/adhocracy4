@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-23 10:00+0100\n"
+"POT-Creation-Date: 2017-12-13 15:25+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -150,7 +150,7 @@ msgstr "Das Bild muss mindestens {min_height} Pixel hoch sein."
 msgid "Image aspect ratio should be {aspect_width}:{aspect_height}"
 msgstr "Das Seitenverhältnis muss {aspect_width}:{aspect_height} entsprechen."
 
-#: adhocracy4/images/widgets.py:26
+#: adhocracy4/images/widgets.py:25
 msgid "Select a picture from your local folder."
 msgstr "Ein Bild aus einem lokalen Ordner auswählen."
 
@@ -234,7 +234,7 @@ msgstr "Anfangsdatum"
 
 #: adhocracy4/phases/models.py:72
 #: meinberlin/apps/dashboard2/forms.py:95
-#: meinberlin/apps/extprojects/forms.py:29
+#: meinberlin/apps/extprojects/forms.py:32
 msgid "End date"
 msgstr "Enddatum"
 
@@ -519,34 +519,35 @@ msgstr "Protokolleinträge"
 #: meinberlin/apps/adminlog/signals.py:15
 #, python-brace-format
 msgid ""
-"The component \"{component_label}\" in the module \"{module_name}\" of the "
-"project \"{project_name}\" has been modified."
+"\"{username}\" modified the component \"{component_label}\" in the module "
+"\"{module_name}\" of the project \"{project_name}\"."
 msgstr ""
-"Änderungen im Projekt \"{project_name}\" am Modul "
-"\"{module_name}\" im Bereich \"{component_label}\"."
+"\"{username}\" hat im Projekt \"{project_name}\" Änderungen am Modul "
+"\"{module_name}\" im Bereich \"{component_label}\" vorgenommen."
 
-#: meinberlin/apps/adminlog/signals.py:36
+#: meinberlin/apps/adminlog/signals.py:37
 #, python-brace-format
 msgid ""
-"The component \"{component_label}\" of the project \"{project_name}\" has "
-"been modified."
+"\"{username}\" modified the component \"{component_label}\" of the project "
+"\"{project_name}\"."
 msgstr ""
-"Änderungen im Projekt \"{project_name}\" im Bereich \"{component_label}\"."
+"\"{username}\" hat im Projekt \"{project_name}\" Änderungen im Bereich "
+"\"{component_label}\" vorgenommen."
 
-#: meinberlin/apps/adminlog/signals.py:55
+#: meinberlin/apps/adminlog/signals.py:57
 #, python-brace-format
-msgid "The project \"{project_name}\" has been created."
-msgstr "Das Projekt \"{project_name}\" wurde erstellt."
+msgid "\"{username}\" created the project \"{project_name}\"."
+msgstr "\"{username}\" hat das Projekt \"{project_name}\" erstellt."
 
-#: meinberlin/apps/adminlog/signals.py:72
+#: meinberlin/apps/adminlog/signals.py:75
 #, python-brace-format
-msgid "The project \"{project_name}\" has been published."
-msgstr "Das Projekt \"{project_name}\" wurde publiziert."
+msgid "\"{username}\" published the project \"{project_name}\"."
+msgstr "\"{username}\" hat das Projekt \"{project_name}\" veröffentlicht."
 
-#: meinberlin/apps/adminlog/signals.py:89
+#: meinberlin/apps/adminlog/signals.py:93
 #, python-brace-format
-msgid "The project \"{project_name}\" has been unpublished."
-msgstr "Das Projekt \"{project_name}\" wurde depubliziert."
+msgid "\"{username}\" depublished the project \"{project_name}\"."
+msgstr "\"{username}\" hat das Projekt \"{project_name}\" depubliziert."
 
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:4
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:8
@@ -597,8 +598,8 @@ msgstr "Stellungnahme per E-Mail an Verwaltung senden."
 msgid "bplan"
 msgstr "Bebauungsplan"
 
-#: meinberlin/apps/bplan/serializers.py:86
-#: meinberlin/apps/bplan/serializers.py:87
+#: meinberlin/apps/bplan/serializers.py:89
+#: meinberlin/apps/bplan/serializers.py:90
 msgid "Bplan statement phase"
 msgstr "Bebauungsplan Stellungnahmephase"
 
@@ -790,7 +791,7 @@ msgstr "Anlegen eines neuen Vorschlags"
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:8
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:9
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:17
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:9
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:18
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:8
 msgid "breadcrumbs"
 msgstr "breadcrumbs"
@@ -977,8 +978,8 @@ msgstr "Seitennummerierung"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:53
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:61
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:62
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:70
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:73
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:81
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -987,7 +988,7 @@ msgstr "Aktionen"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:37
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:78
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:89
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:28
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:63
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:19
@@ -1232,7 +1233,7 @@ msgstr ""
 "Nur eingeladene Nutzerinnen und Nutzer können sich beteiligen (privat)."
 
 #: meinberlin/apps/dashboard2/forms.py:95
-#: meinberlin/apps/extprojects/forms.py:29
+#: meinberlin/apps/extprojects/forms.py:32
 msgid "End time"
 msgstr "Endzeit"
 
@@ -1285,12 +1286,12 @@ msgstr "Projekte"
 msgid "New Project"
 msgstr "Neues Projekt"
 
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/blueprint_list_tile.html:12
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/module_blueprint_list_tile.html:14
+#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/blueprint_list_tile.html:14
+#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/module_blueprint_list_tile.html:16
 msgid "Phase"
 msgstr "Phase"
 
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/blueprint_list_tile.html:19
+#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/blueprint_list_tile.html:21
 msgid "Select"
 msgstr "Auswählen"
 
@@ -1476,7 +1477,7 @@ msgstr "Kommentieren von Text und einzelnen Absätzen."
 msgid "Table of Contents"
 msgstr "Inhaltsverzeichnis"
 
-#: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:57
+#: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:58
 #, python-format
 msgid "%(count)s Comment"
 msgid_plural "%(count)s Comments"
@@ -1586,7 +1587,22 @@ msgstr "Einstellungen"
 msgid "Edit external project settings"
 msgstr "Externes Projekt bearbeiten"
 
-#: meinberlin/apps/extprojects/forms.py:49
+#: meinberlin/apps/extprojects/forms.py:24
+msgid ""
+"Provide start and end dates if the external project allows participation. "
+"Either both, start and end date, have to be provided or none of them."
+msgstr ""
+"Geben Sie das Start- und Enddatum an, wenn das externe Projekt Beteiligung "
+"ermöglicht. Es muss entweder das Start- und das Enddatum oder keines der "
+"beiden angegeben werden."
+
+#: meinberlin/apps/extprojects/forms.py:53
+msgid "Either both start and end date have to be provided or none of them."
+msgstr ""
+"Entweder muss das Start- und das Enddatum oder keines der beiden angegeben "
+"werden."
+
+#: meinberlin/apps/extprojects/forms.py:58
 msgid "End date can not be smaller than the start date."
 msgstr "Das Enddatum kann nicht kleiner als das Startdatum sein."
 
@@ -2045,16 +2061,16 @@ msgid "Label of the location"
 msgstr ""
 
 #: meinberlin/apps/plans/models.py:44
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:46
-#: meinberlin/templates/email_base.html:55
-#: meinberlin/templates/email_base.txt:13
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:55
+#: meinberlin/templates/email_base.html:60
+#: meinberlin/templates/email_base.txt:14
 #: meinberlin/templates/newsletter_base.html:51
 #: meinberlin/templates/newsletter_base.txt:13
 msgid "Contact"
 msgstr "Kontakt"
 
 #: meinberlin/apps/plans/models.py:46
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:42
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:51
 msgid "Cost"
 msgstr ""
 
@@ -2111,15 +2127,15 @@ msgstr "Vorhaben"
 msgid "Add Plan"
 msgstr "Vorhaben hinzufügen"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:14
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:23
 msgid "back to list of plans"
 msgstr ""
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:51
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:60
 msgid "Go to participation"
 msgstr ""
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:53
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:62
 msgid "Participation is planned, but has not started yet."
 msgstr ""
 
@@ -2141,7 +2157,7 @@ msgstr ""
 msgid "Edit plan"
 msgstr "Vorhaben bearbeiten"
 
-#: meinberlin/apps/plans/views.py:140
+#: meinberlin/apps/plans/views.py:149
 msgid "The plan has been deleted"
 msgstr "Vorhaben wurde gelöscht"
 
@@ -2320,15 +2336,19 @@ msgstr "Externes Projekt"
 msgid "Project on meinBerlin"
 msgstr "Projekt auf meinBerlin"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:65
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:66
 #, python-format
 msgid "Participation possible until %(date)s"
 msgstr "Beteiligung möglich bis zum %(date)s"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:70
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:71
 #, python-format
 msgid "Participation starting from %(date)s"
 msgstr "Beteiligung fängt am %(date)s an"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:29
+msgid "None"
+msgstr "Keine Einträge"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:7
 msgid "Timeline"
@@ -2528,23 +2548,20 @@ msgid ""
 "            <p>To sign in via Service-Konto on meinBerlin you will be "
 "redirected to the Service-Konto.</p>\n"
 "            <p>\n"
-"                There you have to sign in with your credentials first, then "
-"navigate to\n"
-"                <strong>Dienste nach Zielgruppen</strong>, choose "
-"<strong>mein.Berlin</strong> and finally\n"
-"                click on <strong>weiter</strong> to return to the meinBerlin "
-"platform.\n"
+"                There you have to sign in with your credentials first, find "
+"the Service <strong>mein.Berlin</strong> and\n"
+"                finally click on <strong>Hier starten</strong> to return to "
+"the meinBerlin platform.\n"
 "            </p>\n"
 "        "
 msgstr ""
 "\n"
 "<p>Um sich mit dem Service-Konto bei meinBerlin anzumelden, werden Sie auf "
 "die Service-Konto Seite weitergeleitet.</p><p>Dort müssen Sie sich anmelden, "
-"dann unter <strong>Dienste nach Zielgruppen</strong> den Dienst <strong>mein."
-"Berlin</strong> auswählen und auf <strong>weiter</strong> klicken um zur "
-"meinBerlin-Platform zurückzukehren.</p>"
+"den Dienst <strong>mein.Berlin</strong> auswählen und auf <strong>Hier "
+"starten</strong> klicken um zur meinBerlin-Platform zurückzukehren.</p>"
 
-#: meinberlin/apps/servicekonto/templates/meinberlin_servicekonto/login.html:20
+#: meinberlin/apps/servicekonto/templates/meinberlin_servicekonto/login.html:19
 msgid "Service-Konto Login"
 msgstr "Service-Konto Login"
 
@@ -2612,12 +2629,8 @@ msgstr "Wichtige Daten"
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
 
-#: meinberlin/apps/users/fields.py:48
-msgid "Invalid file format. Only text files are allowed."
-msgstr "Ungültiges Dateiformat. Nur Textdateien sind erlaubt."
-
-#: meinberlin/apps/users/forms.py:10 meinberlin/templates/email_base.html:56
-#: meinberlin/templates/email_base.txt:14
+#: meinberlin/apps/users/forms.py:10 meinberlin/templates/email_base.html:61
+#: meinberlin/templates/email_base.txt:15
 #: meinberlin/templates/newsletter_base.html:52
 #: meinberlin/templates/newsletter_base.txt:14
 msgid "Terms of use"
@@ -2693,8 +2706,8 @@ msgstr ""
 msgid "Account Settings"
 msgstr "Nutzerkonto Einstellungen"
 
-#: meinberlin/config/settings/base.py:278
-#: meinberlin/config/settings/base.py:288
+#: meinberlin/config/settings/base.py:277
+#: meinberlin/config/settings/base.py:287
 msgid "Rich text editor"
 msgstr "Rich Text Editor"
 
@@ -2906,8 +2919,8 @@ msgstr "Fehler"
 msgid "Hello"
 msgstr "Guten Tag"
 
-#: meinberlin/templates/email_base.html:51
-#: meinberlin/templates/email_base.txt:10
+#: meinberlin/templates/email_base.html:56
+#: meinberlin/templates/email_base.txt:11
 #: meinberlin/templates/newsletter_base.html:47
 #: meinberlin/templates/newsletter_base.txt:10
 msgid "meinBerlin is a participation platform operated by"
@@ -2991,3 +3004,27 @@ msgstr ""
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
 
+#~ msgid ""
+#~ "The component \"{component_label}\" in the module \"{module_name}\" of "
+#~ "the project \"{project_name}\" has been modified."
+#~ msgstr ""
+#~ "Änderungen im Projekt \"{project_name}\" am Modul \"{module_name}\" im "
+#~ "Bereich \"{component_label}\"."
+
+#~ msgid ""
+#~ "The component \"{component_label}\" of the project \"{project_name}\" has "
+#~ "been modified."
+#~ msgstr ""
+#~ "Änderungen im Projekt \"{project_name}\" im Bereich \"{component_label}\"."
+
+#~ msgid "The project \"{project_name}\" has been created."
+#~ msgstr "Das Projekt \"{project_name}\" wurde erstellt."
+
+#~ msgid "The project \"{project_name}\" has been published."
+#~ msgstr "Das Projekt \"{project_name}\" wurde publiziert."
+
+#~ msgid "The project \"{project_name}\" has been unpublished."
+#~ msgstr "Das Projekt \"{project_name}\" wurde depubliziert."
+
+#~ msgid "Invalid file format. Only text files are allowed."
+#~ msgstr "Ungültiges Dateiformat. Nur Textdateien sind erlaubt."

@@ -1,7 +1,9 @@
 {% load i18n static %}
 
 <li class="tile">
-    <div class="tile__image tile__image--contained" style="background-image: url({% static blueprint.image %})"></div>
+    <div class="tile__head">
+        <div class="tile__image tile__image--contained" style="background-image: url({% static blueprint.image %})"></div>
+    </div>
     <form class="tile__body" action="{% url 'a4dashboard:module-create' project_slug=project.slug blueprint_slug=blueprint_slug %}" method="POST">
         {% csrf_token %}
 

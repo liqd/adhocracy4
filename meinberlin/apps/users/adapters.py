@@ -1,7 +1,9 @@
 import re
+from urllib.parse import quote
 
 from allauth.account.adapter import DefaultAccountAdapter
 from django.conf import settings
+from django.utils.http import is_safe_url
 
 from adhocracy4.emails.mixins import SyncEmailMixin
 from meinberlin.apps.contrib.emails import Email
@@ -9,7 +11,7 @@ from meinberlin.apps.users import USERNAME_INVALID_MESSAGE
 from meinberlin.apps.users import USERNAME_REGEX
 
 
-class UserAccountEmail(Email, SyncEmailMixin):
+class UserAccountEmail(SyncEmailMixin, Email):
     def get_receivers(self):
         return [self.object]
 
@@ -30,6 +32,13 @@ class AccountAdapter(DefaultAccountAdapter):
         invalid_username=USERNAME_INVALID_MESSAGE
     )
 
+    def get_email_confirmation_url(self, request, emailconfirmation):
+        url = super().get_email_confirmation_url(request, emailconfirmation)
+        if 'next' in request.POST and is_safe_url(request.POST['next']):
+            return '{}?next={}'.format(url, quote(request.POST['next']))
+        else:
+            return url
+
     def send_mail(self, template_prefix, email, context):
         user = context['user']
         return UserAccountEmail.send(
@@ -37,3 +46,9 @@ class AccountAdapter(DefaultAccountAdapter):
             template_name=template_prefix,
             **context
         )
+
+    def get_email_confirmation_redirect_url(self, request):
+        if 'next' in request.GET and is_safe_url(request.GET['next']):
+            return request.GET['next']
+        else:
+            return super().get_email_confirmation_redirect_url(request)

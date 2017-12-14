@@ -40,15 +40,5 @@ class ExternalProjectComponent(ProjectFormComponent):
             'dashboard-external-project-edit'
         )]
 
-    def get_progress(self, project):
-        project = project.externalproject
-
-        num_valid, num_required = super().get_progress(project)
-        phase_num_valid, phase_num_required = \
-            self._get_progress_for_object(project.phase,
-                                          ['start_date', 'end_date'])
-
-        return num_valid + phase_num_valid, num_required + phase_num_required
-
 
 components.register_project(ExternalProjectComponent())

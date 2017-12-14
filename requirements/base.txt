@@ -1,24 +1,24 @@
 git+git://github.com/liqd/adhocracy4.git@master#egg=adhocracy4
 bcrypt==3.1.4
 django-capture-tag==1.0
-html5lib==0.999999999
+html5lib==1.0.1
 requests==2.18.4
 wagtail==1.13.1
 XlsxWriter==1.0.2
 zeep==2.4.0
 
 # Inherited a4-core requirements
-bleach==2.1.1
-Django==1.11.7
+bleach==2.1.2
+Django==1.11.8 # pyup: <2.0
 django-allauth==0.34.0
 django-autoslug==1.9.3
 django-background-tasks==1.1.12
-django-ckeditor==5.3.1
+django-ckeditor==5.4.0
 django-filter==1.1.0
 django-widget-tweaks==1.4.1
 djangorestframework==3.7.3
 easy-thumbnails==2.5
 jsonfield==2.0.2
 python-dateutil==2.6.1
-python-magic==0.4.13
+python-magic==0.4.15
 rules==1.2.1

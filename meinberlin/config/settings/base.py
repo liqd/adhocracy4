@@ -262,8 +262,7 @@ PASSWORD_HASHERS = [
 ]
 
 # Service Konto
-SERVICE_KONTO_LOGIN_URL = 'https://skbref.verwalt-berlin.de/skb/FVS/Login/Anmeldung.aspx'
-SERVICE_KONTO_HELP_URL = 'https://skbref.verwalt-berlin.de/skb/FVP/FV/BasisHilfe/HilfeIndex.aspx'
+SERVICE_KONTO_LOGIN_URL = 'https://skbref.verwalt-berlin.de/skb/Account/Login?ReturnUrl=%2fskb%2fService%2fEntry%2f6'
 SERVICE_KONTO_API_URL = 'https://skbref.verwalt-berlin.de/HHGWUserData/HHGWUserData.asmx?wsdl'
 
 # ckeditor

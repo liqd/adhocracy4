@@ -25,7 +25,7 @@
         display: inline;
 
         &:before {
-            content: '\f133';
+            content: '\f133'; // calender-o
             font-family: 'FontAwesome', sans-serif;
         }
     }
@@ -38,7 +38,7 @@
     &:focus,
     &:hover {
         span:first-child:before {
-            content: '\f073';
+            content: '\f073'; // calendar
         }
 
         span {
@@ -78,19 +78,19 @@
     }
 
     .prev-but:before {
-        content: '\f104';
+        content: '\f104'; // angle-left
     }
 
     .prev-year:before {
-        content: '\f100';
+        content: '\f100'; // angle-double-left
     }
 
     .next-but:before {
-        content: '\f105';
+        content: '\f105'; // angle-right
     }
 
     .next-year:before {
-        content: '\f101';
+        content: '\f101'; // angle-double-right
     }
 
     .date-picker-hover {

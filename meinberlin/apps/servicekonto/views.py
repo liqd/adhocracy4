@@ -43,7 +43,7 @@ def login_redirect(request):
 
 @csrf_exempt
 def callback(request):
-    token = request.GET.get('Token', '')
+    token = request.POST.get('Token', '')
     if not token:
         return render_authentication_error(
             request, ServiceKontoProvider.id, error=AuthError.UNKNOWN)

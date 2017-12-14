@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.staticfiles.storage import staticfiles_storage
 from django.template.loader import render_to_string
 
 
@@ -15,7 +14,7 @@ class Select2Mixin:
 
     class Media:
         js = (
-            staticfiles_storage.url('select2.js'),
+            'select2.js',
         )
 
 

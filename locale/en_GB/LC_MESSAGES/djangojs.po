@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-23 10:00+0100\n"
+"POT-Creation-Date: 2017-12-13 09:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:97
+#: adhocracy4/comments/static/comments/Comment.jsx:103
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:99
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
+#: adhocracy4/comments/static/comments/Comment.jsx:105
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:52
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
@@ -35,27 +37,33 @@ msgstr "Delete"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:100
 #: adhocracy4/static/Modal.jsx:49
+#: adhocracy4/comments/static/comments/Comment.jsx:106
 msgid "Abort"
 msgstr "Abort"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:113
+#: adhocracy4/comments/static/comments/Comment.jsx:119
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:118
+#: adhocracy4/comments/static/comments/Comment.jsx:124
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:125
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
+#: adhocracy4/comments/static/comments/Comment.jsx:131
 msgid "Are you sure you want to report this item?"
 msgstr "Are you sure you want to report this item?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:167
+#: adhocracy4/comments/static/comments/Comment.jsx:174
 msgid "Your reply here"
 msgstr "Your reply here"
 
 #: adhocracy4/comments/static/comments/CommentBox.jsx:82
+#: adhocracy4/comments/static/comments/CommentBox.jsx:125
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "comment"
@@ -64,23 +72,30 @@ msgstr[1] "comments"
 #: adhocracy4/comments/static/comments/CommentBox.jsx:85
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
 #: adhocracy4/comments/static/comments/CommentForm.jsx:37
+#: adhocracy4/comments/static/comments/CommentBox.jsx:128
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:38
+#: adhocracy4/comments/static/comments/CommentForm.jsx:45
 msgid "Your comment here"
 msgstr "Your comment here"
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:36
 #: adhocracy4/comments/static/comments/CommentForm.jsx:40
+#: adhocracy4/comments/static/comments/CommentForm.jsx:48
 msgid "post"
 msgstr "post"
 
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:37
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:43
 msgid "cancel"
 msgstr "cancel"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:46
+#: adhocracy4/comments/static/comments/CommentForm.jsx:54
 msgid "Please login to comment"
 msgstr "Please login to comment"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:52
+#: adhocracy4/comments/static/comments/CommentForm.jsx:60
 msgid "The currently active phase doesn't allow to comment."
 msgstr "The currently active phase doesn't allow to comment."
 
@@ -135,6 +150,16 @@ msgstr "Your message here"
 msgid "Send Report"
 msgstr "Send Report"
 
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:34
+#: adhocracy4/comments/static/comments/CommentForm.jsx:41
+msgid "Error while submitting your comment!"
+msgstr "Error while submitting your comment!"
+
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:41
+msgid "save changes"
+msgstr "save changes"
+
+#: adhocracy4/static/Alert.jsx:10 adhocracy4/static/Alert.jsx:11
 #: meinberlin/apps/contrib/assets/Alert.jsx:10
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
@@ -241,38 +266,46 @@ msgstr "Done"
 msgid "Stopped"
 msgstr "Stopped"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:265
+#: meinberlin/apps/plans/assets/plans_map.jsx:26
+msgid "No"
+msgstr "No"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:27
+msgid "Yes"
+msgstr "Yes"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:28
+msgid "Still undecided"
+msgstr "Still undecided"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:278
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:274
+#: meinberlin/apps/plans/assets/plans_map.jsx:287
 msgid "Filter bar"
 msgstr "Filter bar"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:281
-#: meinberlin/apps/plans/assets/plans_map.jsx:282
-#: meinberlin/apps/plans/assets/plans_map.jsx:283
+#: meinberlin/apps/plans/assets/plans_map.jsx:294
+#: meinberlin/apps/plans/assets/plans_map.jsx:295
+#: meinberlin/apps/plans/assets/plans_map.jsx:296
 msgid "Search"
 msgstr "Search"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:288
-#: meinberlin/apps/plans/assets/plans_map.jsx:292
+#: meinberlin/apps/plans/assets/plans_map.jsx:302
 msgid "Status"
 msgstr "Status"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:288
-#: meinberlin/apps/plans/assets/plans_map.jsx:299
+#: meinberlin/apps/plans/assets/plans_map.jsx:302
+#: meinberlin/apps/plans/assets/plans_map.jsx:312
+#: meinberlin/apps/plans/assets/plans_map.jsx:336
+#: meinberlin/apps/plans/assets/plans_map.jsx:346
 msgid "All"
 msgstr "All"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:299
-#: meinberlin/apps/plans/assets/plans_map.jsx:300
+#: meinberlin/apps/plans/assets/plans_map.jsx:336
 msgid "Participation"
 msgstr "Participation"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:300
-msgid "Planned"
-msgstr "Planned"
 
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:24
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:27
@@ -291,41 +324,41 @@ msgstr "The poll could not be updated."
 msgid "Add a new question"
 msgstr "Add a new question"
 
-#: meinberlin/apps/polls/assets/Question.jsx:49
+#: meinberlin/apps/polls/assets/Question.jsx:51
 msgid "Vote counted"
 msgstr "Vote counted"
 
-#: meinberlin/apps/polls/assets/Question.jsx:59
+#: meinberlin/apps/polls/assets/Question.jsx:61
 msgid "Vote has not been counted due to a server error."
 msgstr "Vote has not been counted due to a server error."
 
-#: meinberlin/apps/polls/assets/Question.jsx:106
+#: meinberlin/apps/polls/assets/Question.jsx:108
 msgid "Vote"
 msgstr "Vote"
 
-#: meinberlin/apps/polls/assets/Question.jsx:115
+#: meinberlin/apps/polls/assets/Question.jsx:114
 msgid "Please login to vote"
 msgstr "Please login to vote"
 
-#: meinberlin/apps/polls/assets/Question.jsx:137
+#: meinberlin/apps/polls/assets/Question.jsx:136
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "vote"
 msgstr[1] "votes"
 
-#: meinberlin/apps/polls/assets/Question.jsx:138
+#: meinberlin/apps/polls/assets/Question.jsx:137
 msgid "To poll"
 msgstr "To poll"
 
-#: meinberlin/apps/polls/assets/Question.jsx:141
+#: meinberlin/apps/polls/assets/Question.jsx:140
 msgid "Change vote"
 msgstr "Change vote"
 
-#: meinberlin/apps/polls/assets/Question.jsx:145
+#: meinberlin/apps/polls/assets/Question.jsx:144
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
-#: meinberlin/apps/polls/assets/Question.jsx:173
+#: meinberlin/apps/polls/assets/Question.jsx:172
 msgid "Your choice"
 msgstr "Your choice"
 
@@ -372,6 +405,9 @@ msgstr "No matches found within the project area"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Did you mean:"
+
+#~ msgid "Planned"
+#~ msgstr "Planned"
 
 #~ msgid "Your document has been updated."
 #~ msgstr "Your document has been updated."
