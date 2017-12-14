@@ -16,9 +16,9 @@
     "classnames": "^2.2.5",
     "jquery": "^3.2.1",
     "js-cookie": "^2.1.2",
-    "react": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "immutability-helper": "^2.3.0",
-    "react-dom": "^15.6.1",
     "prop-types": "^15.6.0",
     "leaflet": "^1.0.3",
     "leaflet-draw": "^0.4.2"
