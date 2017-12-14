@@ -29,7 +29,8 @@ class Select2MultipleWidget(Select2Mixin, forms.SelectMultiple):
 class TextWithDatalistWidget(forms.TextInput):
     def render(self, name, value, attrs=None):
         attrs = self.build_attrs(self.attrs, attrs)
-        options = attrs.pop('options', {})
+        options = self.get_options(attrs.pop('options'))
+
         if 'list' not in attrs:
             attrs['list'] = attrs['id'] + '_datalist'
 
@@ -38,3 +39,10 @@ class TextWithDatalistWidget(forms.TextInput):
             'id_for_datalist': attrs['list'],
             'options': options
         })
+
+    def get_options(self, options):
+        if callable(options):
+            return options()
+        if options:
+            return options
+        return {}

@@ -28,7 +28,7 @@ class PlanForm(forms.ModelForm):
             'point': maps_widgets.MapChoosePointWidget(
                 polygon=settings.BERLIN_POLYGON),
             'category': contrib_widgets.TextWithDatalistWidget(attrs={
-                'options': get_category_options()
+                'options': get_category_options
             })
         }
         error_messages = {
