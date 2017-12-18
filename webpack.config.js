@@ -61,7 +61,6 @@ module.exports = {
     'django': 'django'
   },
   module: {
-    noParse: /\.min\.js$/,
     rules: [
       {
         test: /\.jsx?$/,
