@@ -21,4 +21,4 @@ easy-thumbnails==2.5
 jsonfield==2.0.2
 python-dateutil==2.6.1
 python-magic==0.4.15
-rules==1.2.1
+rules==1.3
