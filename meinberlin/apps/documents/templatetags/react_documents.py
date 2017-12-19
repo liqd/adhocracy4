@@ -27,6 +27,7 @@ def react_documents(context, module, reload_on_success=False):
         'config': config,
         'id': 'document-' + str(module.id),
         'reload_on_success': json.dumps(reload_on_success),
+        'ckeditor_media': widget.media
     }
 
     return context
