@@ -3,7 +3,6 @@ var RatingBox = require('../../../ratings/static/ratings/react_ratings').RatingB
 var Modal = require('../../../static/Modal')
 var CommentEditForm = require('./CommentEditForm')
 var CommentForm = require('./CommentForm')
-var CommentReplyBar = require('./CommentReplyBar')
 var CommentManageDropdown = require('./CommentManageDropdown')
 
 var React = require('react')
@@ -16,6 +15,11 @@ var safeHtml = function (text) {
 
 var localeDate = function (dateStr) {
   return new Date(dateStr).toLocaleString(document.documentElement.lang)
+}
+
+var getViewRepliesText = function (number) {
+  let fmts = django.ngettext('view %s reply', 'view %s replies', number)
+  return django.interpolate(fmts, [number])
 }
 
 class Comment extends React.Component {
@@ -145,6 +149,11 @@ class Comment extends React.Component {
         <div className="action-bar">
           <nav className="navbar navbar-default navbar-static">
             {this.renderRatingBox()}
+            {this.allowForm() &&
+              <button className="btn" type="button" onClick={this.showComments.bind(this)}>
+                <i className="fa fa-reply" aria-hidden="true" /> {django.gettext('Answer')}
+              </button>
+            }
             {this.context.isAuthenticated && !this.props.is_deleted &&
               <CommentManageDropdown
                 id={this.props.id}
@@ -154,8 +163,17 @@ class Comment extends React.Component {
             }
           </nav>
         </div>
-        <CommentReplyBar allowForm={this.allowForm()} showComments={this.showComments.bind(this)}
-          childCommentsLength={this.props.child_comments ? this.props.child_comments.length : 0} />
+
+        {this.props.child_comments && this.props.child_comments.length > 0 &&
+          <div className="action-bar">
+            <div className="navbar">
+              <button className="comment-reply-button" type="button" onClick={this.showComments.bind(this)}>
+                {getViewRepliesText(this.props.child_comments.length)}
+              </button>
+            </div>
+          </div>
+        }
+
         {this.state.showChildComments
           ? <div className="comment-child-list">
             <CommentList
