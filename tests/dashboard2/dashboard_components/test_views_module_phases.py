@@ -31,8 +31,7 @@ def test_edit_view(client, phase_factory):
         'phase_set-0-start_date_1': '18:00',
         'phase_set-0-end_date_0': '2013-01-10',
         'phase_set-0-end_date_1': '18:00',
-        'phase_set-0-type': 'meinberlin_ideas:050:collect_feedback',
-
+        'phase_set-0-type': phase.content().identifier,
     }
     response = client.post(url, data)
     phase.refresh_from_db()
