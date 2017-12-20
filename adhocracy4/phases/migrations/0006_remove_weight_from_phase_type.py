@@ -16,7 +16,7 @@ def add_weight_from_type_string(apps, schema_editor):
     Phase = apps.get_model('a4phases', 'Phase')
     for phase in Phase.objects.all():
         parts = phase.type.split(':')
-        phase.type = ':'.join([parts[0], phase.weight, parts[1]])
+        phase.type = ':'.join([parts[0], str(phase.weight), parts[1]])
         phase.save()
 
 class Migration(migrations.Migration):
