@@ -7,7 +7,6 @@ class AskPhase(phases.PhaseContent):
     app = apps.QuestionsConfig.label
     phase = 'ask'
     view = views.QuestionList
-    weight = 20
 
     features = {
          'crud': (models.Question, ),
@@ -21,7 +20,6 @@ class RatePhase(phases.PhaseContent):
     app = apps.QuestionsConfig.label
     phase = 'ask'
     view = views.QuestionList
-    weight = 30
 
     features = {
          'rate': (models.Question, ),

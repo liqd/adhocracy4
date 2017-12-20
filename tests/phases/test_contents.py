@@ -10,7 +10,6 @@ def dummy_phase():
     class DummyPhase(PhaseContent):
         app = 'dummy'
         phase = 'phase'
-        weight = 9999
         features = {
             'comment': (models.Question,)
         }

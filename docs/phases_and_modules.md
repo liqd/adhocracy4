@@ -45,8 +45,8 @@ way with the participation project's content.
     -   phase-type reference
     -   weight
 -   phases are ordered by weight
-    -   given by blueprint
-    -   developer defined phase order doesn't really exist anymore
+    -   weights are usually initialised from the position of the phase type in
+        the blueprint
 -   no checking of start and end dates between phases (if set or overlap)
 -   view of phase displayed from start date to start date of next phase / or indefinitely
 -   permissions are only set for participants
@@ -65,7 +65,7 @@ modules may overlap.
 
 -   each module belongs to a project
 -   each module only has phases from one app
--   modules have a developer-defined order called weight
+-   modules have are ordered by weight
 -   a project defines a "last active" module as
     -   the module of the last active phase
     -   the last active phase is defined as the last starting phase out of all past
