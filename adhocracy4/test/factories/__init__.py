@@ -104,7 +104,7 @@ class PhaseFactory(factory.django.DjangoModelFactory):
 
     name = factory.Sequence(lambda n: '{}. phase'.format(n))
     description = factory.Faker('text')
-    type = 'a4test_questions:020:ask'
+    type = 'a4test_questions:ask'
     module = factory.SubFactory(ModuleFactory)
     start_date = parse('2013-01-02 00:00:00 UTC')
     end_date = parse('2013-01-03 00:00:00 UTC')

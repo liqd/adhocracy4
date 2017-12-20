@@ -18,9 +18,9 @@ def dummy_phase():
 
 
 def test_registry_with_questions_app():
-    assert 'a4test_questions:020:ask' in content
-    assert content['a4test_questions:020:ask'].__class__ is AskPhase
-    choice = ('a4test_questions:020:ask', 'AskPhase (a4test_questions:ask)')
+    assert 'a4test_questions:ask' in content
+    assert content['a4test_questions:ask'].__class__ is AskPhase
+    choice = ('a4test_questions:ask', 'AskPhase (a4test_questions:ask)')
     assert choice in content.as_choices()
 
     with pytest.raises(TypeError):
@@ -28,6 +28,6 @@ def test_registry_with_questions_app():
 
 
 def test_phase_content(dummy_phase):
-    assert dummy_phase.identifier == 'dummy:999:phase'
+    assert dummy_phase.identifier == 'dummy:phase'
     assert str(dummy_phase) == 'DummyPhase (dummy:phase)'
     assert dummy_phase.has_feature('comment', models.Question)

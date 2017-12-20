@@ -125,7 +125,7 @@ def test_questionsapp_phase_feature(phase):
 
 @pytest.mark.django_db
 def test_questionsapp_phase_content(phase):
-    assert phase.content() is content['a4test_questions:020:ask']
+    assert phase.content() is content['a4test_questions:ask']
 
 
 @pytest.mark.django_db
@@ -138,7 +138,7 @@ def test_is_over_property(phase):
 
 @pytest.mark.django_db
 def test_str(phase):
-    str(phase) == "AskPhase (a4test_questions:020:ask)"
+    str(phase) == "AskPhase (a4test_questions:ask)"
 
 
 @pytest.mark.django_db

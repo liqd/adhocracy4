@@ -18,7 +18,7 @@ phases.content.register(AskPhase())
 
 class RatePhase(phases.PhaseContent):
     app = apps.QuestionsConfig.label
-    phase = 'ask'
+    phase = 'rate'
     view = views.QuestionList
 
     features = {
