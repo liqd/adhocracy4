@@ -17,8 +17,13 @@ var localeDate = function (dateStr) {
   return new Date(dateStr).toLocaleString(document.documentElement.lang)
 }
 
-var getViewRepliesText = function (number) {
-  let fmts = django.ngettext('view %s reply', 'view %s replies', number)
+var getViewRepliesText = function (number, hide) {
+  var fmts
+  if (hide) {
+    fmts = django.ngettext('hide one reply', 'hide %s replies', number)
+  } else {
+    fmts = django.ngettext('view one reply', 'view %s replies', number)
+  }
   return django.interpolate(fmts, [number])
 }
 
@@ -28,7 +33,8 @@ class Comment extends React.Component {
 
     this.state = {
       edit: false,
-      showChildComments: false
+      showChildComments: false,
+      replyFormHasFocus: false
     }
   }
 
@@ -40,10 +46,21 @@ class Comment extends React.Component {
     this.setState({edit: newEdit})
   }
 
-  showComments (e) {
+  toggleShowComments (e) {
     e.preventDefault()
     var newShowChildComment = !this.state.showChildComments
-    this.setState({showChildComments: newShowChildComment})
+    this.setState({
+      showChildComments: newShowChildComment,
+      replyFormHasFocus: false
+    })
+  }
+
+  replyComments (e) {
+    e.preventDefault()
+    this.setState({
+      showChildComments: true,
+      replyFormHasFocus: true
+    })
   }
 
   allowForm () {
@@ -150,9 +167,13 @@ class Comment extends React.Component {
           <nav className="navbar navbar-default navbar-static">
             {this.renderRatingBox()}
             {this.allowForm() &&
-              <button className="btn" type="button" onClick={this.showComments.bind(this)}>
-                <i className="fa fa-reply" aria-hidden="true" /> {django.gettext('Answer')}
-              </button>
+            <button
+              disabled={this.state.showChildComments}
+              className="btn comment-anwser-button"
+              type="button"
+              onClick={this.replyComments.bind(this)}>
+              <i className="fa fa-reply" aria-hidden="true" /> {django.gettext('Answer')}
+            </button>
             }
             {this.context.isAuthenticated && !this.props.is_deleted &&
               <CommentManageDropdown
@@ -167,8 +188,9 @@ class Comment extends React.Component {
         {this.props.child_comments && this.props.child_comments.length > 0 &&
           <div className="action-bar">
             <div className="navbar">
-              <button className="comment-reply-button" type="button" onClick={this.showComments.bind(this)}>
-                {getViewRepliesText(this.props.child_comments.length)}
+              <button className="comment-reply-button" type="button" onClick={this.toggleShowComments.bind(this)}>
+                <i className={this.state.showChildComments ? 'fa fa-minus' : 'fa fa-plus'} aria-hidden="true" />
+                {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
               </button>
             </div>
           </div>
@@ -193,6 +215,7 @@ class Comment extends React.Component {
               error={this.props.replyError}
               handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
               rows="3"
+              grabFocus={this.state.replyFormHasFocus}
             />
           </div> : null
         }

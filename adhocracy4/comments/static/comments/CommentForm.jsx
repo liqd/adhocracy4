@@ -41,7 +41,10 @@ class CommentForm extends React.Component {
             <Alert type="danger" message={django.gettext('Error while submitting your comment!')} onClick={this.props.handleErrorClick} />
           }
           <div className="form-group">
-            <textarea rows={this.props.rows} className="form-control"
+            <textarea
+              autoFocus={this.props.grabFocus}
+              rows={this.props.rows}
+              className="form-control"
               placeholder={django.gettext('Your comment here')}
               onChange={this.handleTextChange.bind(this)} required="required" value={this.state.comment} />
           </div>
