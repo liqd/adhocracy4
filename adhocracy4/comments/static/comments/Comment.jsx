@@ -169,7 +169,7 @@ class Comment extends React.Component {
             {this.allowForm() &&
             <button
               disabled={this.state.showChildComments}
-              className="btn comment-anwser-button"
+              className="btn comment-answer-button"
               type="button"
               onClick={this.replyComments.bind(this)}>
               <i className="fa fa-reply" aria-hidden="true" /> {django.gettext('Answer')}
