@@ -31,11 +31,11 @@ install:
 
 .PHONY: webpack
 webpack:
-	$(NODE_BIN)/webpack
+	$(NODE_BIN)/webpack --config webpack.dev.js
 
 .PHONY: webpack-prod
 webpack-prod:
-	$(NODE_BIN)/webpack --define process.env.NODE_ENV="'production'" --optimize-minimize --devtool none
+	$(NODE_BIN)/webpack --config webpack.prod.js
 
 .PHONY: makemessages
 makemessages:
@@ -58,7 +58,7 @@ server:
 
 .PHONY: watch
 watch:
-	$(NODE_BIN)/webpack --watch & \
+	$(NODE_BIN)/webpack --config webpack.dev.js --watch & \
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8000
 
 .PHONY: lint
