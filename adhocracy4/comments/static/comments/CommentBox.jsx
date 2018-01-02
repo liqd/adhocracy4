@@ -51,12 +51,14 @@ class CommentBox extends React.Component {
           })
         }
       })
-      .fail(respone => {
+      .fail(response => {
+        var errorMessage = JSON.parse(response.responseText).comment[0];
         if (typeof parentIndex !== 'undefined') {
           this.updateStateComment(parentIndex, undefined, {replyError: true})
         } else {
           this.setState({
-            error: true
+            error: true,
+            errorMessage: errorMessage
           })
         }
       })
@@ -126,7 +128,7 @@ class CommentBox extends React.Component {
         <div className="comment-box">
           <CommentForm subjectType={this.props.subjectType} subjectId={this.props.subjectId}
             onCommentSubmit={this.handleCommentSubmit.bind(this)} placeholder={django.gettext('Your comment here')}
-            rows="5" isReadOnly={this.props.isReadOnly} error={this.state.error} handleErrorClick={this.hideNewError.bind(this)} />
+            rows="5" isReadOnly={this.props.isReadOnly} error={this.state.error} errorMessage={this.state.errorMessage} handleErrorClick={this.hideNewError.bind(this)} />
           <div className="comment-list">
             <CommentList
               comments={this.state.comments}
