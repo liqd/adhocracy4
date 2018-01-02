@@ -16,7 +16,7 @@ django-background-tasks==1.1.12
 django-ckeditor==5.4.0
 django-filter==1.1.0
 django-widget-tweaks==1.4.1
-djangorestframework==3.7.3
+djangorestframework==3.7.7
 easy-thumbnails==2.5
 jsonfield==2.0.2
 python-dateutil==2.6.1
