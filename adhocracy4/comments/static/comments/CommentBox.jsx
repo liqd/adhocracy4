@@ -52,9 +52,11 @@ class CommentBox extends React.Component {
         }
       })
       .fail(response => {
-        var errorMessage = JSON.parse(response.responseText).comment[0];
+        var errorMessage = JSON.parse(response.responseText).comment[0]
         if (typeof parentIndex !== 'undefined') {
-          this.updateStateComment(parentIndex, undefined, {replyError: true})
+          this.updateStateComment(
+            parentIndex,
+            undefined, {replyError: true, errorMessage: errorMessage})
         } else {
           this.setState({
             error: true,
@@ -76,8 +78,9 @@ class CommentBox extends React.Component {
         this.updateStateComment(index, parentIndex, changed)
         this.updateStateComment(index, parentIndex, {editError: false})
       })
-      .fail(respone => {
-        this.updateStateComment(index, parentIndex, {editError: true})
+      .fail(response => {
+        var errorMessage = JSON.parse(response.responseText).comment[0]
+        this.updateStateComment(index, parentIndex, {editError: true, errorMessage: errorMessage})
       })
   }
 

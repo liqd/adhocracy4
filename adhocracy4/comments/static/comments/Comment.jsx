@@ -97,6 +97,7 @@ class Comment extends React.Component {
           subjectId={this.props.object_pk}
           comment={this.props.children}
           error={this.props.editError}
+          errorMessage={this.props.errorMessage}
           handleErrorClick={() => this.props.handleEditErrorClick(this.props.index, this.props.parentIndex)}
           rows="5"
           handleCancel={this.toggleEdit.bind(this)}
@@ -213,6 +214,7 @@ class Comment extends React.Component {
               parentIndex={this.props.index}
               placeholder={django.gettext('Your reply here')}
               error={this.props.replyError}
+              errorMessage={this.props.errorMessage}
               handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
               rows="3"
               grabFocus={this.state.replyFormHasFocus}
