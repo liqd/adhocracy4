@@ -3,14 +3,14 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.views import generic
 
+from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins as dashboard_mixins
 
 from . import models
 
 
-class PollDetailView(ProjectContextMixin,
+class PollDetailView(ProjectMixin,
                      rules_mixins.PermissionRequiredMixin,
                      generic.DetailView):
     model = models.Poll
@@ -44,7 +44,7 @@ class PollDetailView(ProjectContextMixin,
         return self.module
 
 
-class PollDashboardView(ProjectContextMixin,
+class PollDashboardView(ProjectMixin,
                         dashboard_mixins.DashboardBaseMixin,
                         dashboard_mixins.DashboardComponentMixin,
                         generic.TemplateView):

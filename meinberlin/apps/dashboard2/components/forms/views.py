@@ -4,12 +4,12 @@ from django.views import generic
 
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.contrib.views import ProjectContextMixin
+from adhocracy4.projects.mixins import ProjectMixin
 
 from ... import mixins
 
 
-class ProjectComponentFormView(ProjectContextMixin,
+class ProjectComponentFormView(ProjectMixin,
                                mixins.DashboardBaseMixin,
                                mixins.DashboardComponentMixin,
                                mixins.DashboardComponentFormSignalMixin,
@@ -34,7 +34,7 @@ class ProjectComponentFormView(ProjectContextMixin,
         return self.project
 
 
-class ModuleComponentFormView(ProjectContextMixin,
+class ModuleComponentFormView(ProjectMixin,
                               mixins.DashboardBaseMixin,
                               mixins.DashboardComponentMixin,
                               mixins.DashboardComponentFormSignalMixin,

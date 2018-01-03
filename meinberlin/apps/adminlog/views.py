@@ -1,12 +1,12 @@
 from django.views import generic
 
-from meinberlin.apps.contrib.views import ProjectContextMixin
+from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.dashboard2 import mixins
 
 from . import models
 
 
-class AdminLogProjectDashboardView(ProjectContextMixin,
+class AdminLogProjectDashboardView(ProjectMixin,
                                    mixins.DashboardBaseMixin,
                                    mixins.DashboardComponentMixin,
                                    generic.ListView):
