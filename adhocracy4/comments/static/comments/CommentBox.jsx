@@ -44,10 +44,17 @@ class CommentBox extends React.Component {
         })
 
         if (typeof parentIndex !== 'undefined') {
-          this.updateStateComment(parentIndex, undefined, {replyError: false})
+          this.updateStateComment(
+            parentIndex,
+            undefined,
+            {
+              replyError: false,
+              errorMessage: undefined
+            })
         } else {
           this.setState({
-            error: false
+            error: false,
+            errorMessage: undefined
           })
         }
       })
@@ -56,7 +63,10 @@ class CommentBox extends React.Component {
         if (typeof parentIndex !== 'undefined') {
           this.updateStateComment(
             parentIndex,
-            undefined, {replyError: true, errorMessage: errorMessage})
+            undefined, {
+              replyError: true,
+              errorMessage: errorMessage
+            })
         } else {
           this.setState({
             error: true,
@@ -76,11 +86,23 @@ class CommentBox extends React.Component {
     return api.comments.change(modifiedComment, comment.id)
       .done(changed => {
         this.updateStateComment(index, parentIndex, changed)
-        this.updateStateComment(index, parentIndex, {editError: false})
+        this.updateStateComment(
+          index,
+          parentIndex, {
+            editError: false,
+            errorMessage: undefined
+          }
+        )
       })
       .fail((xhr, status, err) => {
         var errorMessage = xhr.responseJSON.comment[0]
-        this.updateStateComment(index, parentIndex, {editError: true, errorMessage: errorMessage})
+        this.updateStateComment(
+          index,
+          parentIndex,
+          {
+            editError: true,
+            errorMessage: errorMessage
+          })
       })
   }
 
@@ -103,16 +125,31 @@ class CommentBox extends React.Component {
 
   hideNewError () {
     this.setState({
-      error: false
+      error: false,
+      errorMessage: undefined
     })
   }
 
   hideReplyError (index, parentIndex) {
-    this.updateStateComment(index, parentIndex, {replyError: false})
+    this.updateStateComment(
+      index,
+      parentIndex,
+      {
+        replyError: false,
+        errorMessage: undefined
+      }
+    )
   }
 
   hideEditError (index, parentIndex) {
-    this.updateStateComment(index, parentIndex, {editError: false})
+    this.updateStateComment(
+      index,
+      parentIndex,
+      {
+        editError: false,
+        errorMessage: undefined
+      }
+    )
   }
 
   getChildContext () {
