@@ -49,7 +49,6 @@ module.exports = {
       './meinberlin/assets/js/popup-close.js'
     ]
   },
-  devtool: 'eval',
   output: {
     libraryTarget: 'this',
     library: '[name]',
