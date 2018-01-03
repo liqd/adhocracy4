@@ -51,8 +51,8 @@ class CommentBox extends React.Component {
           })
         }
       })
-      .fail(response => {
-        var errorMessage = JSON.parse(response.responseText).comment[0]
+      .fail((xhr, status, err) => {
+        var errorMessage = xhr.responseJSON.comment[0]
         if (typeof parentIndex !== 'undefined') {
           this.updateStateComment(
             parentIndex,
@@ -78,8 +78,8 @@ class CommentBox extends React.Component {
         this.updateStateComment(index, parentIndex, changed)
         this.updateStateComment(index, parentIndex, {editError: false})
       })
-      .fail(response => {
-        var errorMessage = JSON.parse(response.responseText).comment[0]
+      .fail((xhr, status, err) => {
+        var errorMessage = xhr.responseJSON.comment[0]
         this.updateStateComment(index, parentIndex, {editError: true, errorMessage: errorMessage})
       })
   }
