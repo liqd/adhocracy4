@@ -23,7 +23,7 @@ class UserAdmin(auth.admin.UserAdmin):
         'is_superuser'
     )
     list_filter = ('is_staff', 'is_superuser', 'last_login')
-    search_fields = ('username', 'email')
+    search_fields = ('username', 'email', 'id')
 
 
 admin.site.register(models.User, UserAdmin)
