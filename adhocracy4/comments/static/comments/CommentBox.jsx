@@ -44,19 +44,33 @@ class CommentBox extends React.Component {
         })
 
         if (typeof parentIndex !== 'undefined') {
-          this.updateStateComment(parentIndex, undefined, {replyError: false})
+          this.updateStateComment(
+            parentIndex,
+            undefined,
+            {
+              replyError: false,
+              errorMessage: undefined
+            })
         } else {
           this.setState({
-            error: false
+            error: false,
+            errorMessage: undefined
           })
         }
       })
-      .fail(respone => {
+      .fail((xhr, status, err) => {
+        var errorMessage = xhr.responseJSON.comment[0]
         if (typeof parentIndex !== 'undefined') {
-          this.updateStateComment(parentIndex, undefined, {replyError: true})
+          this.updateStateComment(
+            parentIndex,
+            undefined, {
+              replyError: true,
+              errorMessage: errorMessage
+            })
         } else {
           this.setState({
-            error: true
+            error: true,
+            errorMessage: errorMessage
           })
         }
       })
@@ -72,10 +86,23 @@ class CommentBox extends React.Component {
     return api.comments.change(modifiedComment, comment.id)
       .done(changed => {
         this.updateStateComment(index, parentIndex, changed)
-        this.updateStateComment(index, parentIndex, {editError: false})
+        this.updateStateComment(
+          index,
+          parentIndex, {
+            editError: false,
+            errorMessage: undefined
+          }
+        )
       })
-      .fail(respone => {
-        this.updateStateComment(index, parentIndex, {editError: true})
+      .fail((xhr, status, err) => {
+        var errorMessage = xhr.responseJSON.comment[0]
+        this.updateStateComment(
+          index,
+          parentIndex,
+          {
+            editError: true,
+            errorMessage: errorMessage
+          })
       })
   }
 
@@ -98,16 +125,31 @@ class CommentBox extends React.Component {
 
   hideNewError () {
     this.setState({
-      error: false
+      error: false,
+      errorMessage: undefined
     })
   }
 
   hideReplyError (index, parentIndex) {
-    this.updateStateComment(index, parentIndex, {replyError: false})
+    this.updateStateComment(
+      index,
+      parentIndex,
+      {
+        replyError: false,
+        errorMessage: undefined
+      }
+    )
   }
 
   hideEditError (index, parentIndex) {
-    this.updateStateComment(index, parentIndex, {editError: false})
+    this.updateStateComment(
+      index,
+      parentIndex,
+      {
+        editError: false,
+        errorMessage: undefined
+      }
+    )
   }
 
   getChildContext () {
@@ -126,7 +168,7 @@ class CommentBox extends React.Component {
         <div className="comment-box">
           <CommentForm subjectType={this.props.subjectType} subjectId={this.props.subjectId}
             onCommentSubmit={this.handleCommentSubmit.bind(this)} placeholder={django.gettext('Your comment here')}
-            rows="5" isReadOnly={this.props.isReadOnly} error={this.state.error} handleErrorClick={this.hideNewError.bind(this)} />
+            rows="5" isReadOnly={this.props.isReadOnly} error={this.state.error} errorMessage={this.state.errorMessage} handleErrorClick={this.hideNewError.bind(this)} />
           <div className="comment-list">
             <CommentList
               comments={this.state.comments}

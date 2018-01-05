@@ -21,7 +21,7 @@ class Comment(base.UserGeneratedContentModel):
     object_pk = models.PositiveIntegerField()
     content_object = GenericForeignKey(
         ct_field="content_type", fk_field="object_pk")
-    comment = models.TextField(max_length=1024)
+    comment = models.TextField(max_length=2048)
     is_removed = models.BooleanField(default=False)
     is_censored = models.BooleanField(default=False)
     ratings = GenericRelation(rating_models.Rating,
