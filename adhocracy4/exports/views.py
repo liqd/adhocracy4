@@ -2,15 +2,12 @@ from collections import OrderedDict
 import xlsxwriter
 
 from django.views import generic
-from django.core.exceptions import FieldError
 from django.http import HttpResponse
 from django.utils import timezone
 from django.utils.html import strip_tags
 from django.utils.translation import ugettext as _
 
 from .mixins import VirtualFieldMixin
-
-
 
 
 class AbstractXlsxExportView(generic.View):
@@ -20,10 +17,12 @@ class AbstractXlsxExportView(generic.View):
         if hasattr(self, 'module') and self.module:
             project = self.module.project
             filename = '%s_%s.xlsx' % (project.slug,
-                                   timezone.now().strftime('%Y%m%dT%H%M%S'))
+                                       timezone.now()
+                                       .strftime('%Y%m%dT%H%M%S'))
         else:
             filename = '%s_%s.xlsx' % ('download',
-                                   timezone.now().strftime('%Y%m%dT%H%M%S'))
+                                       timezone.now()
+                                       .strftime('%Y%m%dT%H%M%S'))
 
         return filename
 
