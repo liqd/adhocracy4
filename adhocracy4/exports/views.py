@@ -16,9 +16,15 @@ from .mixins import VirtualFieldMixin
 class AbstractXlsxExportView(generic.View):
 
     def get_filename(self):
-        project = self.module.project
-        filename = '%s_%s.xlsx' % (project.slug,
+        filename = ''
+        if hasattr(self, 'module') and self.module:
+            project = self.module.project
+            filename = '%s_%s.xlsx' % (project.slug,
                                    timezone.now().strftime('%Y%m%dT%H%M%S'))
+        else:
+            filename = '%s_%s.xlsx' % ('download',
+                                   timezone.now().strftime('%Y%m%dT%H%M%S'))
+
         return filename
 
     def get(self, request, *args, **kwargs):
