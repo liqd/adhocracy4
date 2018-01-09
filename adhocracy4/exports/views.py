@@ -49,8 +49,53 @@ class AbstractXlsxExportView(generic.View):
         return response
 
 
-class ItemExportView(AbstractXlsxExportView,
-                     VirtualFieldMixin,
+class SimpleItemExportView(AbstractXlsxExportView,
+                           VirtualFieldMixin):
+
+    def __init__(self):
+        super().__init__()
+        self._header, self._names = self._setup_fields()
+
+    def _setup_fields(self):
+        raise NotImplementedError
+
+    def get_header(self):
+        return self._header
+
+    def export_rows(self):
+        raise NotImplementedError
+
+    def get_field_data(self, item, name):
+        # Use custom getters if they are defined
+        get_field_attr_name = 'get_%s_data' % name
+        if hasattr(self, get_field_attr_name):
+            get_field_attr = getattr(self, get_field_attr_name)
+
+            if hasattr(get_field_attr, '__call__'):
+                return get_field_attr(item)
+            return get_field_attr
+
+        # If item is a dict, return the fields data by key
+        try:
+            if name in item:
+                return item['name']
+        except TypeError:
+            pass
+
+        # Finally try to get the fields data as a property
+        return str(getattr(item, name, ''))
+
+    def get_link_data(self, item):
+        return self.request.build_absolute_uri(item.get_absolute_url())
+
+    def get_description_data(self, item):
+        return strip_tags(item.description).strip()
+
+    def get_creator_data(self, item):
+        return item.creator.username
+
+    def get_created_data(self, item):
+        return item.created.isoformat()
                      generic.list.MultipleObjectMixin):
     fields = None
     exclude = None
