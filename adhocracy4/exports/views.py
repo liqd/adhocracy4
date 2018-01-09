@@ -96,16 +96,13 @@ class SimpleItemExportView(AbstractXlsxExportView,
 
     def get_created_data(self, item):
         return item.created.isoformat()
+
+
+class ItemExportView(SimpleItemExportView,
                      generic.list.MultipleObjectMixin):
     fields = None
     exclude = None
     model = None
-
-    def __init__(self):
-        super().__init__()
-        if self.fields and self.exclude:
-            raise FieldError()
-        self._header, self._names = self._setup_fields()
 
     def _setup_fields(self):
         meta = self.model._meta
@@ -140,43 +137,11 @@ class SimpleItemExportView(AbstractXlsxExportView,
         return header, names
 
     def get_queryset(self):
-        return super().get_queryset().filter(module=self.module)
-
-    def get_header(self):
-        return self._header
+        qs = super().get_queryset()
+        if hasattr(self, 'module') and self.module:
+            qs = qs.filter(module=self.module)
+        return qs
 
     def export_rows(self):
         for item in self.get_queryset().all():
             yield [self.get_field_data(item, name) for name in self._names]
-
-    def get_field_data(self, item, name):
-        # Use custom getters if they are defined
-        get_field_attr_name = 'get_%s_data' % name
-        if hasattr(self, get_field_attr_name):
-            get_field_attr = getattr(self, get_field_attr_name)
-
-            if hasattr(get_field_attr, '__call__'):
-                return get_field_attr(item)
-            return get_field_attr
-
-        # If item is a dict, return the fields data by key
-        try:
-            if name in item:
-                return item['name']
-        except TypeError:
-            pass
-
-        # Finally try to get the fields data as a property
-        return getattr(item, name, '')
-
-    def get_link_data(self, item):
-        return self.request.build_absolute_uri(item.get_absolute_url())
-
-    def get_description_data(self, item):
-        return strip_tags(item.description).strip()
-
-    def get_creator_data(self, item):
-        return item.creator.username
-
-    def get_created_data(self, item):
-        return item.created.isoformat()
