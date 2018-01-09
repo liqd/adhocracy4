@@ -12,19 +12,9 @@ from .mixins import VirtualFieldMixin
 
 class AbstractXlsxExportView(generic.View):
 
-    def get_filename(self):
-        filename = ''
-        if hasattr(self, 'module') and self.module:
-            project = self.module.project
-            filename = '%s_%s.xlsx' % (project.slug,
-                                       timezone.now()
-                                       .strftime('%Y%m%dT%H%M%S'))
-        else:
-            filename = '%s_%s.xlsx' % ('download',
-                                       timezone.now()
-                                       .strftime('%Y%m%dT%H%M%S'))
 
-        return filename
+    def get_filename(self):
+        return '%s.xlsx' % (self.get_base_filename())
 
     def get(self, request, *args, **kwargs):
         response = HttpResponse(
@@ -33,19 +23,28 @@ class AbstractXlsxExportView(generic.View):
         response['Content-Disposition'] = \
             'attachment; filename="%s"' % self.get_filename()
 
-        workbook = xlsxwriter.Workbook(response, {'in_memory': True})
+        workbook = xlsxwriter.Workbook(response, {
+            'in_memory': True,
+            'strings_to_formulas': False
+        })
         worksheet = workbook.add_worksheet()
 
-        for col, field in enumerate(self.get_header()):
-            worksheet.write(0, col, field)
+        for colnum, field in enumerate(self.get_header()):
+            worksheet.write(0, colnum, field)
 
         for rownum, row in enumerate(self.export_rows(), start=1):
-            for col, field in enumerate(row):
-                worksheet.write(rownum, col, field)
+            for colnum, field in enumerate(row):
+                worksheet.write(rownum, colnum, self._clean_field(field))
 
         workbook.close()
 
         return response
+
+
+    def _clean_field(self, field):
+        if isinstance(field, str):
+            return field.replace('\r', '')
+        return field
 
 
 class SimpleItemExportView(AbstractXlsxExportView,
@@ -63,6 +62,10 @@ class SimpleItemExportView(AbstractXlsxExportView,
 
     def export_rows(self):
         raise NotImplementedError
+
+    def get_base_filename(self):
+        return '%s_%s' % ('download',
+                          timezone.now().strftime('%Y%m%dT%H%M%S'))
 
     def get_field_data(self, item, name):
         # Use custom getters if they are defined
@@ -134,6 +137,10 @@ class ItemExportView(SimpleItemExportView,
                 header.append(head)
 
         return header, names
+
+    def get_base_filename(self):
+        return '%s_%s' % (self.project.slug,
+                          timezone.now().strftime('%Y%m%dT%H%M%S'))
 
     def get_queryset(self):
         qs = super().get_queryset()
