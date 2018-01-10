@@ -1,13 +1,47 @@
 import pytest
 from django.utils.translation import ugettext as _
 
-from adhocracy4.ratings.models import Rating
 from adhocracy4.exports.views import ItemExportView
-from adhocracy4.exports.mixins import ItemExportWithRatesMixin
-from adhocracy4.exports.mixins import ItemExportWithCommentCountMixin
-from adhocracy4.exports.mixins import ItemExportWithCommentsMixin
-from adhocracy4.exports.mixins import ItemExportWithLocationMixin
+from adhocracy4.exports.views import SimpleItemExportView
+
 from tests.apps.ideas.models import Idea
+
+
+def test_simple_item_export_without_setup_fields():
+
+    class SimpleExportView(SimpleItemExportView):
+        pass
+
+    with pytest.raises(NotImplementedError):
+        SimpleExportView()
+
+
+def test_simple_item_export_without_export_rows():
+
+    class SimpleExportView(SimpleItemExportView):
+
+        def _setup_fields(self):
+            return [], []
+
+    view = SimpleExportView()
+
+    with pytest.raises(NotImplementedError):
+        view.export_rows()
+
+
+def test_simple_item_export_filename():
+
+    class SimpleExportView(SimpleItemExportView):
+
+        def _setup_fields(self):
+            return [], []
+
+        def export_rows(self):
+            return []
+
+    view = SimpleExportView()
+
+    assert view.get_base_filename().startswith('download')
 
 
 @pytest.mark.django_db
