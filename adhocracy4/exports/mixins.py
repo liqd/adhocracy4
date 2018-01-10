@@ -41,7 +41,10 @@ class ItemExportWithRatesMixin(VirtualFieldMixin):
 
     def _count_ratings(self, item, value):
         ct = ContentType.objects.get_for_model(item)
-        return Rating.objects.filter(content_type=ct, value=value).count()
+        return Rating.objects.filter(
+            content_type=ct,
+            object_pk=item.pk,
+            value=value).count()
 
 
 class ItemExportWithCommentCountMixin(VirtualFieldMixin):
