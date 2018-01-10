@@ -79,8 +79,7 @@ def test_item_comments_mixin(idea, comment_factory):
 
 
 @pytest.mark.django_db
-def test_item_categories_mixin(idea, category_factory):
-    category = category_factory(module=idea.module)
+def test_item_categories_mixin(idea, category):
 
     idea.category = category
     idea.save()
