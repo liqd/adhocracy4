@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     # test apps
     'tests.apps.questions.apps.QuestionsConfig',
     'tests.apps.locations.apps.LocationsConfig',
+    'tests.apps.ideas.apps.IdeasConfig',
 
     # mandatory third party apps
     'easy_thumbnails',
