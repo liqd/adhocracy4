@@ -4,6 +4,7 @@ from adhocracy4.exports.mixins import ItemExportWithRatesMixin
 from adhocracy4.exports.mixins import ItemExportWithCommentCountMixin
 from adhocracy4.exports.mixins import ItemExportWithCommentsMixin
 from adhocracy4.exports.mixins import ItemExportWithLocationMixin
+from adhocracy4.exports.mixins import ItemExportWithCategoriesMixin
 
 from tests.apps.ideas.models import Idea
 from adhocracy4.ratings.models import Rating
@@ -75,6 +76,23 @@ def test_item_comments_mixin(idea, comment_factory):
     assert 'comment2' in data
     assert '<i>comment</i>' not in data
     assert '2   ' not in data
+
+
+@pytest.mark.django_db
+def test_item_categories_mixin(idea, category_factory):
+    category = category_factory(module=idea.module)
+
+    idea.category = category
+    idea.save()
+
+    mixin = ItemExportWithCategoriesMixin()
+
+    virtual = mixin.get_virtual_fields({})
+    assert 'category' in virtual
+
+    data = mixin.get_category_data(idea)
+
+    assert category.name in data
 
 
 @pytest.mark.django_db
