@@ -101,4 +101,4 @@ def test_item_text_cleanup(idea_factory, module, rf):
 
     view = IdeaExportView()
     rows = list(view.export_rows())
-    assert rows[0][1] == 'description'
+    assert rows[0][1] == 'description '
