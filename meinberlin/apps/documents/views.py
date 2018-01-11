@@ -3,14 +3,14 @@ from django.http.response import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
+from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins as dashboard_mixins
 
 from . import models
 
 
-class DocumentDashboardView(ProjectContextMixin,
+class DocumentDashboardView(ProjectMixin,
                             dashboard_mixins.DashboardBaseMixin,
                             dashboard_mixins.DashboardComponentMixin,
                             generic.TemplateView):
@@ -21,7 +21,7 @@ class DocumentDashboardView(ProjectContextMixin,
         return self.project
 
 
-class ChapterDetailView(ProjectContextMixin,
+class ChapterDetailView(ProjectMixin,
                         rules_mixins.PermissionRequiredMixin,
                         generic.DetailView):
     model = models.Chapter
@@ -61,7 +61,7 @@ class DocumentDetailView(ChapterDetailView):
         return first_chapter
 
 
-class ParagraphDetailView(ProjectContextMixin,
+class ParagraphDetailView(ProjectMixin,
                           rules_mixins.PermissionRequiredMixin,
                           generic.DetailView):
     model = models.Paragraph

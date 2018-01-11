@@ -12,9 +12,9 @@ from django.views import generic
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.modules import models as module_models
+from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.ratings.models import Rating
 from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.contrib.views import ProjectContextMixin
 
 from . import exports
 
@@ -103,7 +103,7 @@ class VirtualFieldMixin:
         return virtual
 
 
-class ItemExportView(ProjectContextMixin,
+class ItemExportView(ProjectMixin,
                      VirtualFieldMixin,
                      generic.list.MultipleObjectMixin,
                      AbstractXlsxExportView,):

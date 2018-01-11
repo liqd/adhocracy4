@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
-from meinberlin.apps.contrib.views import ProjectContextMixin
+from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.dashboard2 import mixins
 from meinberlin.apps.ideas import views as idea_views
 
@@ -16,7 +16,7 @@ class OfflineEventDetailView(idea_views.AbstractIdeaDetailView):
     permission_required = 'meinberlin_offlineevents.view_offlineevent'
 
 
-class OfflineEventListView(ProjectContextMixin,
+class OfflineEventListView(ProjectMixin,
                            mixins.DashboardBaseMixin,
                            mixins.DashboardComponentMixin,
                            generic.ListView):
@@ -31,7 +31,7 @@ class OfflineEventListView(ProjectContextMixin,
         return self.project
 
 
-class OfflineEventCreateView(ProjectContextMixin,
+class OfflineEventCreateView(ProjectMixin,
                              mixins.DashboardBaseMixin,
                              mixins.DashboardComponentMixin,
                              mixins.DashboardComponentFormSignalMixin,
@@ -55,7 +55,7 @@ class OfflineEventCreateView(ProjectContextMixin,
         return self.project
 
 
-class OfflineEventUpdateView(ProjectContextMixin,
+class OfflineEventUpdateView(ProjectMixin,
                              mixins.DashboardBaseMixin,
                              mixins.DashboardComponentMixin,
                              mixins.DashboardComponentFormSignalMixin,
@@ -79,7 +79,7 @@ class OfflineEventUpdateView(ProjectContextMixin,
         return self.project
 
 
-class OfflineEventDeleteView(ProjectContextMixin,
+class OfflineEventDeleteView(ProjectMixin,
                              mixins.DashboardBaseMixin,
                              mixins.DashboardComponentMixin,
                              mixins.DashboardComponentDeleteSignalMixin,
