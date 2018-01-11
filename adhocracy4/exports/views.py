@@ -7,11 +7,11 @@ from django.utils import timezone
 from django.utils.html import strip_tags
 from django.utils.translation import ugettext as _
 
+from adhocracy4.projects.mixins import ProjectMixin
 from .mixins import VirtualFieldMixin
 
 
 class AbstractXlsxExportView(generic.View):
-
 
     def get_filename(self):
         return '%s.xlsx' % (self.get_base_filename())
@@ -39,7 +39,6 @@ class AbstractXlsxExportView(generic.View):
         workbook.close()
 
         return response
-
 
     def _clean_field(self, field):
         if isinstance(field, str):
@@ -101,6 +100,7 @@ class SimpleItemExportView(AbstractXlsxExportView,
 
 
 class ItemExportView(SimpleItemExportView,
+                     ProjectMixin,
                      generic.list.MultipleObjectMixin):
     fields = None
     exclude = None
