@@ -1,10 +1,11 @@
+import lxml.html
+
 from collections import OrderedDict
 import xlsxwriter
 
 from django.views import generic
 from django.http import HttpResponse
 from django.utils import timezone
-from django.utils.html import strip_tags
 from django.utils.translation import ugettext as _
 
 from adhocracy4.projects.mixins import ProjectMixin
@@ -56,6 +57,10 @@ class SimpleItemExportView(AbstractXlsxExportView,
     def _setup_fields(self):
         raise NotImplementedError
 
+    def _get_field_type(self, item, name):
+        if hasattr(item, name):
+            return item._meta.get_field(name).__class__.__name__
+
     def get_header(self):
         return self._header
 
@@ -67,6 +72,7 @@ class SimpleItemExportView(AbstractXlsxExportView,
                           timezone.now().strftime('%Y%m%dT%H%M%S'))
 
     def get_field_data(self, item, name):
+
         # Use custom getters if they are defined
         get_field_attr_name = 'get_%s_data' % name
         if hasattr(self, get_field_attr_name):
@@ -88,14 +94,22 @@ class SimpleItemExportView(AbstractXlsxExportView,
             item, 'get_{}_display'.format(name), None)
         if get_field_display_method and callable(get_field_display_method):
             return get_field_display_method()
+
+        fieldtype = self._get_field_type(item, name)
+
+        if fieldtype and fieldtype == 'RichTextField':
+            text = getattr(item, name, '')
+            return self.get_rich_text_field_data(text)
+
         # Finally try to get the fields data as a property
         return str(getattr(item, name, ''))
 
     def get_link_data(self, item):
         return self.request.build_absolute_uri(item.get_absolute_url())
 
-    def get_description_data(self, item):
-        return strip_tags(item.description).strip()
+    def get_rich_text_field_data(self, text):
+        html = lxml.html.fromstring(text)
+        return html.text_content()
 
     def get_creator_data(self, item):
         return item.creator.username
