@@ -83,6 +83,11 @@ class SimpleItemExportView(AbstractXlsxExportView,
         except TypeError:
             pass
 
+        # Return the get_field_display value for choice fields
+        get_field_display_method = getattr(
+            item, 'get_{}_display'.format(name), None)
+        if get_field_display_method and callable(get_field_display_method):
+            return get_field_display_method()
         # Finally try to get the fields data as a property
         return str(getattr(item, name, ''))
 
