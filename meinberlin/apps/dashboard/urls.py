@@ -30,11 +30,11 @@ urlpatterns = [
         plan_views.DashboardPlanCreateView.as_view(),
         name='plan-create'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)'
-        r'/plans/(?P<slug>[-\w_]+)/$',
+        r'/plans/(?P<pk>\d+)/$',
         plan_views.DashboardPlanUpdateView.as_view(),
         name='plan-update'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)'
-        r'/plans/(?P<slug>[-\w_]+)/delete/$',
+        r'/plans/(?P<pk>\d+)/delete/$',
         plan_views.DashboardPlanDeleteView.as_view(),
         name='plan-delete'),
 
