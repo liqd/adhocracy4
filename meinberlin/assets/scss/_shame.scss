@@ -29,10 +29,6 @@ input[type="search"] {
     @extend .btn--light;
 }
 
-.comment .rating-button {
-    @extend .btn--small;
-}
-
 // used by adhocracy4 for the follow button, long-term we'd like
 // our own classes.
 .btngroup .btn {
