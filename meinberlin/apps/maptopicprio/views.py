@@ -4,8 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
+from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.contrib import filters
-from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2 import mixins
 from meinberlin.apps.ideas import views as idea_views
 
@@ -79,7 +79,7 @@ class MapTopicListView(idea_views.AbstractIdeaListView):
             .annotate_comment_count()
 
 
-class MapTopicListDashboardView(ProjectContextMixin,
+class MapTopicListDashboardView(ProjectMixin,
                                 mixins.DashboardBaseMixin,
                                 mixins.DashboardComponentMixin,
                                 filter_views.FilteredListView):

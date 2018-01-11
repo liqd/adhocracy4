@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404
 from django.views import generic
 
-from meinberlin.apps.contrib.views import ProjectContextMixin
+from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.dashboard2.components.forms.views import \
     ProjectComponentFormView
 from meinberlin.apps.dashboard2.views import ProjectCreateView
@@ -10,7 +10,7 @@ from . import forms
 from . import models
 
 
-class ExternalProjectRedirectView(ProjectContextMixin,
+class ExternalProjectRedirectView(ProjectMixin,
                                   generic.RedirectView):
     permanent = True
 

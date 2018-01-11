@@ -47,6 +47,9 @@
                     {% endif %}
 
                     <dl>
+                        <dt>{% trans 'Reference Number' %}</dt>
+                        <dd>{{ object.reference_number }}</dd>
+
                         {% if object.cost %}
                             <dt>{% trans 'Cost' %}</dt>
                             <dd>{{ object.cost }}€</dd>
@@ -83,7 +86,7 @@
                             <ul class="dropdown-menu" aria-labelledby="idea-{{ object.pk }}-actions">
                                 <li>
                                     <a
-                                        href="{% url 'a4dashboard:plan-update' organisation_slug=object.organisation.slug slug=object.slug %}"
+                                        href="{% url 'a4dashboard:plan-update' organisation_slug=object.organisation.slug pk=object.pk %}"
                                         class="dropdown-item"
                                         data-embed-target="external"
                                     >{% trans 'Edit' %}</a>

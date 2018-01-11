@@ -4,14 +4,14 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.exports import mixins as export_mixins
 from adhocracy4.exports import views as export_views
-from meinberlin.apps.contrib.views import ProjectContextMixin
+from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.exports import register_export
 
 from . import models
 
 
 @register_export(_('Documents with comments'))
-class DocumentExportView(ProjectContextMixin,
+class DocumentExportView(ProjectMixin,
                          export_mixins.ItemExportWithCommentsMixin,
                          export_views.AbstractXlsxExportView):
 

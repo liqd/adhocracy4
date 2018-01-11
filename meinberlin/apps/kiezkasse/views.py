@@ -4,10 +4,10 @@ from django.views import generic
 
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
+from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import forms as contrib_forms
 from meinberlin.apps.contrib import filters
-from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.ideas import views as idea_views
 from meinberlin.apps.moderatorfeedback.forms import ModeratorStatementForm
 from meinberlin.apps.moderatorfeedback.models import ModeratorStatement
@@ -84,7 +84,7 @@ class ProposalDeleteView(idea_views.AbstractIdeaDeleteView):
     template_name = 'meinberlin_kiezkasse/proposal_confirm_delete.html'
 
 
-class ProposalModerateView(ProjectContextMixin,
+class ProposalModerateView(ProjectMixin,
                            rules_mixins.PermissionRequiredMixin,
                            generic.detail.SingleObjectMixin,
                            generic.detail.SingleObjectTemplateResponseMixin,

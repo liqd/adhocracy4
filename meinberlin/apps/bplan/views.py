@@ -4,8 +4,8 @@ from django.urls import reverse
 from django.views import generic
 from django.views.generic import TemplateView
 
+from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
-from meinberlin.apps.contrib.views import ProjectContextMixin
 from meinberlin.apps.dashboard2.components.forms.views import \
     ProjectComponentFormView
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
@@ -14,7 +14,7 @@ from . import forms
 from . import models
 
 
-class BplanStatementFormView(ProjectContextMixin,
+class BplanStatementFormView(ProjectMixin,
                              rules_mixins.PermissionRequiredMixin,
                              generic.CreateView):
     model = models.Statement
