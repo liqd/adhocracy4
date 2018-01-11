@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
 from meinberlin.apps.exports import views as export_views
 from meinberlin.apps.plans.forms import PlanForm
@@ -18,7 +19,7 @@ from . import models
 
 
 class PlanDetailView(rules_mixins.PermissionRequiredMixin,
-                     generic.DetailView):
+                     CanonicalURLDetailView):
     model = models.Plan
     template_name = 'meinberlin_plans/plan_detail.html'
     permission_required = 'meinberlin_plans.view_plan'
