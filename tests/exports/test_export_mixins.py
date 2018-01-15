@@ -5,6 +5,7 @@ from adhocracy4.exports.mixins import ItemExportWithCommentCountMixin
 from adhocracy4.exports.mixins import ItemExportWithCommentsMixin
 from adhocracy4.exports.mixins import ItemExportWithLocationMixin
 from adhocracy4.exports.mixins import ItemExportWithCategoriesMixin
+from adhocracy4.exports.views import SimpleItemExportView
 
 from tests.apps.ideas.models import Idea
 from adhocracy4.ratings.models import Rating
@@ -64,7 +65,14 @@ def test_item_comments_mixin(idea, comment_factory):
     comment_factory(comment='reply to comment', content_object=comment)
     comment_factory(comment='<i>comment</i>2   ', content_object=idea)
 
-    mixin = ItemExportWithCommentsMixin()
+    class TestCommentExportMixin(
+          SimpleItemExportView,
+          ItemExportWithCommentsMixin):
+
+        def _setup_fields(self):
+            return [], []
+
+    mixin = TestCommentExportMixin()
 
     virtual = mixin.get_virtual_fields({})
     assert 'comments' in virtual
