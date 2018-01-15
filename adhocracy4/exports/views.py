@@ -1,4 +1,4 @@
-import lxml.html
+import html
 
 from collections import OrderedDict
 import xlsxwriter
@@ -6,6 +6,7 @@ import xlsxwriter
 from django.views import generic
 from django.http import HttpResponse
 from django.utils import timezone
+from django.utils.html import strip_tags
 from django.utils.translation import ugettext as _
 
 from adhocracy4.projects.mixins import ProjectMixin
@@ -57,10 +58,6 @@ class SimpleItemExportView(AbstractXlsxExportView,
     def _setup_fields(self):
         raise NotImplementedError
 
-    def _get_field_type(self, item, name):
-        if hasattr(item, name):
-            return item._meta.get_field(name).__class__.__name__
-
     def get_header(self):
         return self._header
 
@@ -70,6 +67,10 @@ class SimpleItemExportView(AbstractXlsxExportView,
     def get_base_filename(self):
         return '%s_%s' % ('download',
                           timezone.now().strftime('%Y%m%dT%H%M%S'))
+
+    def strip_and_unescape_html(self, text):
+        text = strip_tags(text).strip()
+        return html.unescape(text)
 
     def get_field_data(self, item, name):
 
@@ -107,9 +108,8 @@ class SimpleItemExportView(AbstractXlsxExportView,
     def get_link_data(self, item):
         return self.request.build_absolute_uri(item.get_absolute_url())
 
-    def get_rich_text_field_data(self, text):
-        html = lxml.html.fromstring(text)
-        return html.text_content()
+    def get_description_data(self, item):
+        return self.strip_and_unescape_html(item.description)
 
     def get_creator_data(self, item):
         return item.creator.username
