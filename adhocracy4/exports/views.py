@@ -82,25 +82,6 @@ class SimpleItemExportView(AbstractXlsxExportView,
                 return get_field_attr(item)
             return get_field_attr
 
-        # If item is a dict, return the fields data by key
-        try:
-            if name in item:
-                return item['name']
-        except TypeError:
-            pass
-
-        # Return the get_field_display value for choice fields
-        get_field_display_method = getattr(
-            item, 'get_{}_display'.format(name), None)
-        if get_field_display_method and callable(get_field_display_method):
-            return get_field_display_method()
-
-        fieldtype = self._get_field_type(item, name)
-
-        if fieldtype and fieldtype == 'RichTextField':
-            text = getattr(item, name, '')
-            return self.get_rich_text_field_data(text)
-
         # Finally try to get the fields data as a property
         return str(getattr(item, name, ''))
 
