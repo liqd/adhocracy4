@@ -13,4 +13,3 @@ python-dateutil==2.6.1
 python-magic==0.4.15
 rules==1.2.1
 XlsxWriter==1.0.2
-lxml==4.1.1
