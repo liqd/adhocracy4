@@ -5,7 +5,7 @@ html5lib==1.0.1
 requests==2.18.4
 wagtail==1.13.1
 XlsxWriter==1.0.2
-zeep==2.4.0
+zeep==2.5.0
 
 # Inherited a4-core requirements
 bleach==2.1.2
