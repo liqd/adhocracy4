@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'adhocracy4.categories.apps.CategoriesConfig',
 
     # adhocracy4 helper apps
+    'adhocracy4.ckeditor.apps.CKEditorConfig',
     'adhocracy4.images.apps.ImagesConfig',
 
     # test apps
@@ -171,6 +172,25 @@ BLEACH_LIST = {
         'attributes': {
             'a': ['href', 'rel'],
             'img': ['src', 'alt', 'style']
+        },
+        'styles': [
+            'float',
+            'margin',
+            'padding',
+            'width',
+            'height',
+            'margin-bottom',
+            'margin-top',
+            'margin-left',
+            'margin-right',
+        ],
+    },
+    'collapsible-image-editor': {
+        'tags': ['p','strong','em','u','ol','li','ul','a','img','div'],
+        'attributes': {
+            'a': ['href', 'rel'],
+            'img': ['src', 'alt', 'style'],
+            'div': ['class'],
         },
         'styles': [
             'float',
