@@ -1,6 +1,4 @@
-
 from django.contrib.contenttypes.models import ContentType
-from django.utils.html import strip_tags
 from django.utils.translation import ugettext as _
 
 from adhocracy4.comments.models import Comment
@@ -87,14 +85,14 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
             yield self.COMMENT_FMT.format(
                 date=comment.created.isoformat(),
                 username=comment.creator.username,
-                text=strip_tags(comment.comment).strip()
+                text=self.strip_and_unescape_html(comment.comment)
             )
 
             for reply in comment.child_comments.all():
                 yield self.REPLY_FMT.format(
                     date=reply.created.isoformat(),
                     username=reply.creator.username,
-                    text=strip_tags(reply.comment).strip()
+                    text=self.strip_and_unescape_html(reply.comment).strip()
                 )
 
 
