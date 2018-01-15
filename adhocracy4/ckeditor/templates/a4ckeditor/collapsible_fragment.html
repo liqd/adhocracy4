@@ -1,0 +1,20 @@
+<div>
+    <a
+        id="{{ id }}-title"
+        href="#{{ id }}-body"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="{{ id }}-body"
+        data-toggle="collapse">
+        <h2>
+            {{ title|safe }}
+        </h2>
+    </a>
+
+    <div
+        class="collapse"
+        id="{{ id }}-body"
+        aria-labelledby="{{ id }}-title">
+        {{ body|safe }}
+    </div>
+</div>
