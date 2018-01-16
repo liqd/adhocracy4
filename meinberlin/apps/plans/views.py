@@ -91,6 +91,12 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
     def get_contact_data(self, item):
         return unescape_and_strip_html(item.contact)
 
+    def get_status_data(self, item):
+        return item.get_status_display()
+
+    def get_participation_data(self, item):
+        return item.get_participation_display()
+
 
 class DashboardPlanListView(a4dashboard_mixins.DashboardBaseMixin,
                             generic.ListView):
