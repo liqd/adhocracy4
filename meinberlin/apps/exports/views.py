@@ -1,6 +1,3 @@
-import csv
-
-from django.http import HttpResponse
 from django.utils.translation import ugettext as _
 from django.views import generic
 
@@ -36,23 +33,6 @@ class ExportModuleDispatcher(rules_mixins.PermissionRequiredMixin,
 
     def get_permission_object(self):
         return self.project
-
-
-class AbstractCSVExportView(generic.View):
-    def get_filename(self):
-        return '%s.csv' % (self.get_base_filename())
-
-    def get(self, request, *args, **kwargs):
-        response = HttpResponse(content_type='text/csv; charset=utf-8')
-        response['Content-Disposition'] = \
-            'attachment; filename="%s"' % self.get_filename()
-
-        writer = csv.writer(response, lineterminator='\n',
-                            quotechar='"', quoting=csv.QUOTE_ALL)
-        writer.writerow(self.get_header())
-        writer.writerows(self.export_rows())
-
-        return response
 
 
 class ItemExportWithModeratorFeedback(VirtualFieldMixin):
