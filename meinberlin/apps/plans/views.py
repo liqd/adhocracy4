@@ -67,7 +67,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
 class PlanExportView(rules_mixins.PermissionRequiredMixin,
                      export_mixins.ItemExportWithLocationMixin,
-                     export_views.ItemExportView):
+                     export_views.MultipleObjectExport,
+                     export_views.AbstractXlsxExportView):
 
     permission_required = 'meinberlin_plans.list_plan'
     model = models.Plan
@@ -96,6 +97,9 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
 
     def get_participation_data(self, item):
         return item.get_participation_display()
+
+    def get_description_data(self, item):
+        return unescape_and_strip_html(item.description)
 
 
 class DashboardPlanListView(a4dashboard_mixins.DashboardBaseMixin,

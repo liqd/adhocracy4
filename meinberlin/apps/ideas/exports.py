@@ -8,13 +8,14 @@ from . import models
 
 
 @register_export(_('Ideas with comments'))
-class IdeaExportView(export_views.ItemExportView,
-                     export_mixins.ItemExportWithRatesMixin,
+class IdeaExportView(export_mixins.ItemExportWithRatesMixin,
                      export_mixins.ItemExportWithCommentCountMixin,
                      export_mixins.ItemExportWithCategoriesMixin,
-                     export_mixins.ItemExportWithCommentsMixin):
+                     export_mixins.ItemExportWithCommentsMixin,
+                     export_mixins.UserGeneratedContentExportMixin,
+                     export_views.BaseItemExportView):
     model = models.Idea
-    fields = ['name', 'description', 'creator', 'created']
+    fields = ['name', 'description']
 
     def get_queryset(self):
         return super().get_queryset() \
