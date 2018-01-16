@@ -4,12 +4,12 @@ from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.html import strip_tags
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.exports import mixins as export_mixins
 from adhocracy4.exports import views as export_views
+from adhocracy4.exports import unescape_and_strip_html
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
@@ -89,7 +89,7 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
         return ''
 
     def get_contact_data(self, item):
-        return strip_tags(item.contact).strip()
+        return unescape_and_strip_html(item.contact)
 
 
 class DashboardPlanListView(a4dashboard_mixins.DashboardBaseMixin,

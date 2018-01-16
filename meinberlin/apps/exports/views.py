@@ -1,7 +1,7 @@
 from django.utils.translation import ugettext as _
 from django.views import generic
 
-from adhocracy4.exports.views import SimpleItemExportView
+from adhocracy4.exports import unescape_and_strip_html
 from adhocracy4.exports.views import VirtualFieldMixin
 from adhocracy4.modules import models as module_models
 from adhocracy4.rules import mixins as rules_mixins
@@ -49,8 +49,5 @@ class ItemExportWithModeratorFeedback(VirtualFieldMixin):
 
     def get_moderator_statement_data(self, item):
         if item.moderator_statement:
-            # FIXME: would prefer to have a helper function instead of a class
-            # method for unescape_and_strip
-            return SimpleItemExportView.unescape_and_strip_html(
-                self, item.moderator_statement.statement)
+            return unescape_and_strip_html(item.moderator_statement.statement)
         return ''
