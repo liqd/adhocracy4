@@ -70,7 +70,7 @@ class BaseExport(VirtualFieldMixin):
     def export_rows(self):
         names, _ = self.get_fields()
 
-        for item in self.get_queryset().all():
+        for item in self.get_object_list():
             yield [self.get_field_data(item, name) for name in names]
 
     def get_field_data(self, item, name):
@@ -115,7 +115,6 @@ class MultipleObjectExport(BaseExport,
                 names.append(field.name)
                 header.append(str(field.verbose_name))
 
-        # base_names, base_header = super(BaseExport, self).get_fields()
         base_names, base_header = super().get_fields()
         for name, head in zip(base_names, base_header):
             if name not in names:
@@ -123,6 +122,9 @@ class MultipleObjectExport(BaseExport,
                 header.append(head)
 
         return names, header
+
+    def get_object_list(self):
+        return self.get_queryset().all()
 
     def get_link_data(self, item):
         return self.request.build_absolute_uri(item.get_absolute_url())
