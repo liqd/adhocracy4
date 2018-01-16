@@ -4,6 +4,8 @@ from django.utils.translation import ugettext as _
 from adhocracy4.comments.models import Comment
 from adhocracy4.ratings.models import Rating
 
+from . import unescape_and_strip_html
+
 
 class VirtualFieldMixin:
     def get_virtual_fields(self, virtual):
@@ -85,14 +87,14 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
             yield self.COMMENT_FMT.format(
                 date=comment.created.isoformat(),
                 username=comment.creator.username,
-                text=self.unescape_and_strip_html(comment.comment)
+                text=unescape_and_strip_html(comment.comment)
             )
 
             for reply in comment.child_comments.all():
                 yield self.REPLY_FMT.format(
                     date=reply.created.isoformat(),
                     username=reply.creator.username,
-                    text=self.unescape_and_strip_html(reply.comment)
+                    text=unescape_and_strip_html(reply.comment)
                 )
 
 

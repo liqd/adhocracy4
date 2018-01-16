@@ -1,15 +1,14 @@
-import html
-
 from collections import OrderedDict
-import xlsxwriter
 
-from django.views import generic
+import xlsxwriter
 from django.http import HttpResponse
 from django.utils import timezone
-from django.utils.html import strip_tags
 from django.utils.translation import ugettext as _
+from django.views import generic
 
 from adhocracy4.projects.mixins import ProjectMixin
+
+from . import unescape_and_strip_html
 from .mixins import VirtualFieldMixin
 
 
@@ -68,10 +67,6 @@ class SimpleItemExportView(AbstractXlsxExportView,
         return '%s_%s' % ('download',
                           timezone.now().strftime('%Y%m%dT%H%M%S'))
 
-    def unescape_and_strip_html(self, text):
-        text = html.unescape(text)
-        return strip_tags(text).strip()
-
     def get_field_data(self, item, name):
 
         # Use custom getters if they are defined
@@ -90,7 +85,7 @@ class SimpleItemExportView(AbstractXlsxExportView,
         return self.request.build_absolute_uri(item.get_absolute_url())
 
     def get_description_data(self, item):
-        return self.unescape_and_strip_html(item.description)
+        return unescape_and_strip_html(item.description)
 
     def get_creator_data(self, item):
         return item.creator.username
