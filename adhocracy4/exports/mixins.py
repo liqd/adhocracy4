@@ -92,7 +92,6 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
                 yield self.REPLY_FMT.format(
                     date=reply.created.isoformat(),
                     username=reply.creator.username,
-                    text=self.strip_and_unescape_html(reply.comment).strip()
                     text=self.unescape_and_strip_html(reply.comment)
                 )
 
