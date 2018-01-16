@@ -5,7 +5,7 @@ from adhocracy4.exports.mixins import ItemExportWithCommentCountMixin
 from adhocracy4.exports.mixins import ItemExportWithCommentsMixin
 from adhocracy4.exports.mixins import ItemExportWithLocationMixin
 from adhocracy4.exports.mixins import ItemExportWithCategoriesMixin
-from adhocracy4.exports.views import SimpleItemExportView
+from adhocracy4.exports.mixins import UserGeneratedContentExportMixin
 
 from tests.apps.ideas.models import Idea
 from adhocracy4.ratings.models import Rating
@@ -65,14 +65,7 @@ def test_item_comments_mixin(idea, comment_factory):
     comment_factory(comment='reply to comment', content_object=comment)
     comment_factory(comment='<i>comment</i>2   ', content_object=idea)
 
-    class TestCommentExportMixin(
-          SimpleItemExportView,
-          ItemExportWithCommentsMixin):
-
-        def _setup_fields(self):
-            return [], []
-
-    mixin = TestCommentExportMixin()
+    mixin = ItemExportWithCommentsMixin()
 
     virtual = mixin.get_virtual_fields({})
     assert 'comments' in virtual
@@ -116,3 +109,15 @@ def test_item_location_mixin(idea):
     lon, lat = idea.point['geometry']['coordinates']
     assert mixin.get_location_data(idea) == '%s, %s' % (lon, lat)
     assert mixin.get_location_label_data(idea) == idea.point_label
+
+
+@pytest.mark.django_db
+def test_user_generated_content_mixin(idea):
+    mixin = UserGeneratedContentExportMixin()
+
+    virtual = mixin.get_virtual_fields({})
+    assert 'creator' in virtual
+    assert 'created' in virtual
+
+    assert idea.creator.username == mixin.get_creator_data(idea)
+    assert idea.created.isoformat() == mixin.get_created_data(idea)
