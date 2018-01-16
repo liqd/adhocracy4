@@ -1,12 +1,3 @@
-# a4 classes need to be imported here as # noqa isort:skip
-# otherwise the export register would not work # noqa isort:skip
-
-from adhocracy4.exports.mixins import ItemExportWithCommentCountMixin  # noqa isort:skip
-from adhocracy4.exports.mixins import ItemExportWithCommentsMixin  # noqa isort:skip
-from adhocracy4.exports.mixins import ItemExportWithLocationMixin  # noqa isort:skip
-from adhocracy4.exports.mixins import ItemExportWithRatesMixin  # noqa isort:skip
-from adhocracy4.exports.views import ItemExportView  # noqa isort:skip
-
 import csv
 
 from django.http import HttpResponse
