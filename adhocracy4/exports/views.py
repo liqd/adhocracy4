@@ -67,9 +67,9 @@ class SimpleItemExportView(AbstractXlsxExportView,
         return '%s_%s' % ('download',
                           timezone.now().strftime('%Y%m%dT%H%M%S'))
 
-    def strip_and_unescape_html(self, text):
-        text = strip_tags(text).strip()
-        return html.unescape(text)
+    def unescape_and_strip_html(self, text):
+        text = html.unescape(text)
+        return strip_tags(text).strip()
 
     def get_field_data(self, item, name):
 
@@ -89,7 +89,7 @@ class SimpleItemExportView(AbstractXlsxExportView,
         return self.request.build_absolute_uri(item.get_absolute_url())
 
     def get_description_data(self, item):
-        return self.strip_and_unescape_html(item.description)
+        return self.unescape_and_strip_html(item.description)
 
     def get_creator_data(self, item):
         return item.creator.username
