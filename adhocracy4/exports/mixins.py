@@ -132,9 +132,9 @@ class ItemExportWithLocationMixin(VirtualFieldMixin):
 
 class UserGeneratedContentExportMixin(VirtualFieldMixin):
     def get_virtual_fields(self, virtual):
-        if 'location' not in virtual:
+        if 'creator' not in virtual:
             virtual['creator'] = _('Creator')
-        if 'location_label' not in virtual:
+        if 'created' not in virtual:
             virtual['created'] = _('Created')
         return super().get_virtual_fields(virtual)
 
