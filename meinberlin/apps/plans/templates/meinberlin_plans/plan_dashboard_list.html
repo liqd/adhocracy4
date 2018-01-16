@@ -26,17 +26,17 @@
                         <div class="lr-bar__right">
                             <div class="btn-group">
                                 {% spaceless %}
-                                    <a href="{% url 'meinberlin_plans:plan-detail' slug=plan.slug %}"
+                                    <a href="{{ plan.get_absolute_url }}"
                                        class="btn btn--small btn--light">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                         {% trans 'View' %}
                                     </a>
-                                    <a href="{% url 'a4dashboard:plan-update' organisation_slug=view.organisation.slug slug=plan.slug %}"
+                                    <a href="{% url 'a4dashboard:plan-update' organisation_slug=view.organisation.slug pk=plan.pk %}"
                                        class="btn btn--small btn--light">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                         {% trans 'Edit'%}
                                     </a>
-                                    <a href="{% url 'a4dashboard:plan-delete' organisation_slug=view.organisation.slug slug=plan.slug %}"
+                                    <a href="{% url 'a4dashboard:plan-delete' organisation_slug=view.organisation.slug pk=plan.pk %}"
                                        class="btn btn--small btn--light">
                                         <i class="fa fa-remove" aria-hidden="true"></i>
                                         {% trans 'Delete' %}

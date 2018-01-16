@@ -1,4 +1,3 @@
-from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -22,7 +21,6 @@ PARTICIPATION_UNDECIDED = 2
 
 
 class Plan(UserGeneratedContentModel):
-    slug = AutoSlugField(populate_from='title', unique=True)
     title = models.CharField(max_length=120, verbose_name=_('Title'))
     organisation = models.ForeignKey(
         settings.A4_ORGANISATIONS_MODEL,
@@ -62,12 +60,16 @@ class Plan(UserGeneratedContentModel):
     class Meta:
         ordering = ['-created']
 
+    @property
+    def reference_number(self):
+        return '{:d}-{:05d}'.format(self.created.year, self.pk)
+
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('meinberlin_plans:plan-detail',
-                       args=[str(self.slug)])
+                       kwargs=dict(pk=self.pk, year=self.created.year))
 
     def save(self, *args, **kwargs):
         self.description = transforms.clean_html_field(self.description)

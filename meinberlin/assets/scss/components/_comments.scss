@@ -23,6 +23,13 @@
         margin-bottom: $spacer * 2;
     }
 
+    .action-bar {
+        margin-bottom: 0.5em;
+    }
+
+    // SHAME: this is styling the adhocracy4 comments which are using different classes
+    // Note this should be in _shame.scss but as the whole comment markup has to be styled shamefully it was decided
+    // to keep it in one place for better readability.
     .nav {
         margin: 0;
         padding: 0;
@@ -37,15 +44,14 @@
 
         > * {
             display: inline-block;
+            margin-right: 0.5em;
         }
     }
 
-    .action-bar {
-        margin-bottom: 0.5em;
-    }
-
-    .dropdown {
-        margin-left: 0.5em;
+    .rating-button {
+        @extend .btn--small;
+        vertical-align: baseline;
+        line-height: inherit;
     }
 
     .dropdown-toggle {
@@ -56,8 +62,11 @@
         line-height: inherit;
     }
 
-    .navbar-right {
-        float: right;
+    .comment-answer-button {
+        @extend .btn--light;
+        @extend .btn--small;
+        vertical-align: baseline;
+        line-height: inherit;
     }
 }
 

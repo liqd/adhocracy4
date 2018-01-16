@@ -14,7 +14,7 @@ from adhocracy4.filters import views as filter_views
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.contrib.views import ProjectContextMixin
+from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 
 from . import filter
@@ -142,7 +142,7 @@ class ProjectUpdateView(generic.RedirectView):
         return component.get_base_url(project)
 
 
-class ProjectPublishView(ProjectContextMixin,
+class ProjectPublishView(ProjectMixin,
                          mixins.DashboardBaseMixin,
                          SingleObjectMixin,
                          generic.View):
@@ -224,7 +224,7 @@ class ProjectPublishView(ProjectContextMixin,
                          _('Project successfully unpublished.'))
 
 
-class ModuleBlueprintListView(ProjectContextMixin,
+class ModuleBlueprintListView(ProjectMixin,
                               mixins.DashboardBaseMixin,
                               generic.DetailView):
     template_name = 'meinberlin_dashboard2/module_blueprint_list.html'
@@ -244,7 +244,7 @@ class ModuleBlueprintListView(ProjectContextMixin,
         return self.organisation
 
 
-class ModuleCreateView(ProjectContextMixin,
+class ModuleCreateView(ProjectMixin,
                        mixins.DashboardBaseMixin,
                        mixins.BlueprintMixin,
                        SingleObjectMixin,
