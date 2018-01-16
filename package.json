@@ -32,7 +32,7 @@
     "bootstrap": "4.0.0-alpha.6",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
     "font-awesome": "4.7.0",
-    "immutability-helper": "2.6.3",
+    "immutability-helper": "2.6.4",
     "jquery.scrollintoview": "^1.9.4",
     "leaflet": "1.2.0",
     "leaflet-draw": "0.4.13",
