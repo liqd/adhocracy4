@@ -1,7 +1,6 @@
 import csv
 
 from django.http import HttpResponse
-from django.utils.html import strip_tags
 from django.utils.translation import ugettext as _
 from django.views import generic
 
@@ -69,5 +68,8 @@ class ItemExportWithModeratorFeedback(VirtualFieldMixin):
 
     def get_moderator_statement_data(self, item):
         if item.moderator_statement:
-            return strip_tags(item.moderator_statement.statement).strip()
+            # FIXME: would prefer to have a helper function instead of a class
+            # method for unescape_and_strip
+            return self.unescape_and_strip_html(
+                item.moderator_statement.statement)
         return ''
