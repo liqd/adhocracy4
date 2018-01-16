@@ -2,8 +2,9 @@ from django.utils import timezone
 from django.utils.html import strip_tags
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.exports import mixins as export_mixins
+from adhocracy4.exports import views as export_views
 from adhocracy4.projects.mixins import ProjectMixin
-from meinberlin.apps.exports import views as export_views
 from meinberlin.apps.exports import register_export
 
 from . import models
@@ -11,7 +12,7 @@ from . import models
 
 @register_export(_('Documents with comments'))
 class DocumentExportView(ProjectMixin,
-                         export_views.ItemExportWithCommentsMixin,
+                         export_mixins.ItemExportWithCommentsMixin,
                          export_views.AbstractXlsxExportView):
 
     PARAGRAPH_TEXT_LIMIT = 100
