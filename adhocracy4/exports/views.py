@@ -47,28 +47,33 @@ class AbstractXlsxExportView(generic.View):
         return field
 
 
-class SimpleItemExportView(AbstractXlsxExportView,
-                           VirtualFieldMixin):
+class BaseExport(VirtualFieldMixin):
 
-    def __init__(self):
-        super().__init__()
-        self._header, self._names = self._setup_fields()
+    def get_fields(self):
+        # Get virtual fields in their order from the Mixins
+        header = []
+        names = []
 
-    def _setup_fields(self):
-        raise NotImplementedError
+        virtual = OrderedDict()
+        virtual = self.get_virtual_fields(virtual)
+        for name, head in virtual.items():
+            if name not in names:
+                names.append(name)
+                header.append(head)
+
+        return names, header
 
     def get_header(self):
-        return self._header
+        _, header = self.get_fields()
+        return header
 
     def export_rows(self):
-        raise NotImplementedError
+        names, _ = self.get_fields()
 
-    def get_base_filename(self):
-        return '%s_%s' % ('download',
-                          timezone.now().strftime('%Y%m%dT%H%M%S'))
+        for item in self.get_queryset().all():
+            yield [self.get_field_data(item, name) for name in names]
 
     def get_field_data(self, item, name):
-
         # Use custom getters if they are defined
         get_field_attr_name = 'get_%s_data' % name
         if hasattr(self, get_field_attr_name):
@@ -81,27 +86,14 @@ class SimpleItemExportView(AbstractXlsxExportView,
         # Finally try to get the fields data as a property
         return str(getattr(item, name, ''))
 
-    def get_link_data(self, item):
-        return self.request.build_absolute_uri(item.get_absolute_url())
 
-    def get_description_data(self, item):
-        return unescape_and_strip_html(item.description)
-
-    def get_creator_data(self, item):
-        return item.creator.username
-
-    def get_created_data(self, item):
-        return item.created.isoformat()
-
-
-class ItemExportView(SimpleItemExportView,
-                     ProjectMixin,
-                     generic.list.MultipleObjectMixin):
+class MultipleObjectExport(BaseExport,
+                           generic.list.MultipleObjectMixin):
     fields = None
     exclude = None
     model = None
 
-    def _setup_fields(self):
+    def get_fields(self):
         meta = self.model._meta
         exclude = self.exclude if self.exclude else []
 
@@ -123,19 +115,22 @@ class ItemExportView(SimpleItemExportView,
                 names.append(field.name)
                 header.append(str(field.verbose_name))
 
-        # Get virtual fields in their order from the Mixins
-        virtual = OrderedDict()
-        virtual = self.get_virtual_fields(virtual)
-        for name, head in virtual.items():
+        # base_names, base_header = super(BaseExport, self).get_fields()
+        base_names, base_header = super().get_fields()
+        for name, head in zip(base_names, base_header):
             if name not in names:
                 names.append(name)
                 header.append(head)
 
-        return header, names
+        return names, header
 
-    def get_base_filename(self):
-        return '%s_%s' % (self.project.slug,
-                          timezone.now().strftime('%Y%m%dT%H%M%S'))
+    def get_link_data(self, item):
+        return self.request.build_absolute_uri(item.get_absolute_url())
+
+
+class BaseItemExportView(MultipleObjectExport,
+                         ProjectMixin,
+                         AbstractXlsxExportView):
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -143,6 +138,9 @@ class ItemExportView(SimpleItemExportView,
             qs = qs.filter(module=self.module)
         return qs
 
-    def export_rows(self):
-        for item in self.get_queryset().all():
-            yield [self.get_field_data(item, name) for name in self._names]
+    def get_base_filename(self):
+        return '%s_%s' % (self.project.slug,
+                          timezone.now().strftime('%Y%m%dT%H%M%S'))
+
+    def get_description_data(self, item):
+        return unescape_and_strip_html(item.description)
