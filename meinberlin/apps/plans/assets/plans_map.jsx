@@ -44,6 +44,13 @@ const activeIcon = L.icon({
   zIndexOffset: 1000
 })
 
+const districtStyle = {
+  'color': '#253276',
+  'weight': 1,
+  'opacity': 1,
+  'fillOpacity': 0
+}
+
 const pointToLatLng = function (point) {
   return {
     lat: point.geometry.coordinates[1],
@@ -122,6 +129,10 @@ class PlansMap extends React.Component {
     })
   }
 
+  onDistrictFilterChange (event) {
+    event.preventDefault()
+  }
+
   onSelect (i) {
     this.setState({
       selected: i
@@ -193,6 +204,8 @@ class PlansMap extends React.Component {
     }).addTo(this.map)
     this.selected = L.layerGroup().addTo(this.map)
 
+    this.districtLayer = L.geoJSON().addTo(this.map)
+
     this.markers = this.props.items.map((item, i) => {
       let marker = L.marker(pointToLatLng(item.point), {icon: icons[item.status]})
       this.cluster.addLayer(marker)
@@ -200,6 +213,11 @@ class PlansMap extends React.Component {
         this.onSelect(i)
       })
       return marker
+    })
+
+    this.districts = this.props.districts.forEach((district, i) => {
+      let dl = this.districtLayer.addData(district)
+      dl.setStyle(districtStyle)
     })
 
     this.activeMarkers = this.props.items.map((item, i) => {
@@ -363,6 +381,38 @@ class PlansMap extends React.Component {
                 }
               </ul>
             </div>
+            <div className="dropdown ">
+              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_district">
+                {django.gettext('District')}: {participationNames[this.state.filters.district] || django.gettext('All')}
+                <i className="fa fa-caret-down" aria-hidden="true" />
+              </button>
+              <ul aria-labelledby="id_filter_district" className="dropdown-menu">
+                <li>
+                  <button
+                    type="button"
+                    className="dropdown-item"
+                    value="-1"
+                    onClick={this.onDistrictFilterChange.bind(this)}>
+                    {django.gettext('All')}
+                  </button>
+                </li>
+                {
+                  participationNames.map((name, i) => {
+                    return (
+                      <li key={i}>
+                        <button
+                          type="button"
+                          className="dropdown-item"
+                          value={i}
+                          onClick={this.onParticipationFilterChange.bind(this)}>
+                          {name}
+                        </button>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -383,8 +433,9 @@ const init = function () {
     let attribution = element.getAttribute('data-attribution')
     let baseurl = element.getAttribute('data-baseurl')
     let bounds = JSON.parse(element.getAttribute('data-bounds'))
+    let districts = JSON.parse(element.getAttribute('data-districts'))
 
-    ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} />, element)
+    ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} />, element)
   })
 }
 
