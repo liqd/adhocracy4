@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 
-from meinberlin.apps.exports import views as export_views
+from adhocracy4.exports import mixins as export_mixins
+from adhocracy4.exports import views as export_views
 from meinberlin.apps.exports import register_export
 
 from . import models
@@ -8,10 +9,11 @@ from . import models
 
 @register_export(_('Places with comments'))
 class MapTopicExportView(export_views.ItemExportView,
-                         export_views.ItemExportWithRatesMixin,
-                         export_views.ItemExportWithCommentCountMixin,
-                         export_views.ItemExportWithCommentsMixin,
-                         export_views.ItemExportWithLocationMixin):
+                         export_mixins.ItemExportWithRatesMixin,
+                         export_mixins.ItemExportWithCommentCountMixin,
+                         export_mixins.ItemExportWithCommentsMixin,
+                         export_mixins.ItemExportWithCategoriesMixin,
+                         export_mixins.ItemExportWithLocationMixin):
     model = models.MapTopic
     fields = ['name', 'description', 'creator', 'created']
 

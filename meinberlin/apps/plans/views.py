@@ -8,10 +8,11 @@ from django.utils.html import strip_tags
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
+from adhocracy4.exports import mixins as export_mixins
+from adhocracy4.exports import views as export_views
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
-from meinberlin.apps.exports import views as export_views
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
 
@@ -65,7 +66,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
 
 class PlanExportView(rules_mixins.PermissionRequiredMixin,
-                     export_views.ItemExportWithLocationMixin,
+                     export_mixins.ItemExportWithLocationMixin,
                      export_views.ItemExportView):
 
     permission_required = 'meinberlin_plans.list_plan'

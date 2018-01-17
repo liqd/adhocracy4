@@ -1,14 +1,14 @@
-git+git://github.com/liqd/adhocracy4.git@5c5a5f5a811c37410e683941673a3712564ea019#egg=adhocracy4
+git+git://github.com/liqd/adhocracy4.git@0432f796118d2fe918e6851f64916bae18e4c8e3#egg=adhocracy4
 bcrypt==3.1.4
 django-capture-tag==1.0
 requests==2.18.4
 wagtail==1.13.1
 XlsxWriter==1.0.2
-zeep==2.4.0
+zeep==2.5.0
 
 # Inherited a4-core requirements
 bleach==2.1.2
-Django==1.11.8 # pyup: <2.0
+Django==1.11.9 # pyup: <2.0
 django-allauth==0.34.0
 django-autoslug==1.9.3
 django-background-tasks==1.1.12
