@@ -8,6 +8,7 @@ django-filter==1.1.0
 django-widget-tweaks==1.4.1
 djangorestframework==3.7.3
 easy-thumbnails==2.5
+html5lib==1.0.1
 jsonfield==2.0.2
 python-dateutil==2.6.1
 python-magic==0.4.15
