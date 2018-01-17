@@ -2,6 +2,7 @@ import factory
 
 from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.plans import models as plan_models
+from meinberlin.test.factories.maps import MapPresetFactory
 
 
 class PlanFactory(factory.django.DjangoModelFactory):
@@ -13,6 +14,7 @@ class PlanFactory(factory.django.DjangoModelFactory):
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)
     project = factory.SubFactory(a4_factories.ProjectFactory)
+    district = factory.SubFactory(MapPresetFactory)
     point = {
         'type': 'Feature',
         'properties': {},
