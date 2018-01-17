@@ -57,7 +57,7 @@
                             <a href="#cl-datepicker" class="dashboard-nav__item dashboard-nav__item--interactive">Datepicker</a>
                         </li>
                         <li class="dashboard-nav__page">
-                            <a href="#cl-docs-block" class="dashboard-nav__item dashboard-nav__item--interactive">Docs Block</a>
+                            <a href="#cl-accordion" class="dashboard-nav__item dashboard-nav__item--interactive">Accordion</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Document</a>
@@ -531,14 +531,14 @@
                     </div>
                 </div>
 
-                <h2 id="cl-docs-block">Docs Block</h2>
+                <h2 id="cl-accordion">Accordion</h2>
 
                 <div class="cl-example">
-                    <div class="docs-block">
+                    <div class="accordion">
                         <a
-                            id="docs-block-{{ index }}-title"
-                            href="#docs-block-{{ index }}-body"
-                            class="docs-block__title collapsed"
+                            id="accordion-{{ index }}-title"
+                            href="#accordion-{{ index }}-body"
+                            class="accordion__title collapsed"
                             aria-haspopup="true"
                             aria-expanded="false"
                             data-toggle="collapse">
@@ -549,9 +549,9 @@
                         </a>
 
                         <div
-                            class="docs-block__body collapse"
-                            id="docs-block-{{ index }}-body"
-                            aria-labelledby="docs-block-{{ index }}-title">
+                            class="accordion__body collapse"
+                            id="accordion-{{ index }}-body"
+                            aria-labelledby="accordion-{{ index }}-title">
                             This is the body of the docs block,
                             This block is used in wagtail pages.
                             <ul>

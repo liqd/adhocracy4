@@ -1,4 +1,4 @@
-{% load i18n rules thumbnail wagtailcore_tags contrib_tags %}
+{% load i18n rules thumbnail wagtailcore_tags contrib_tags ckeditor_tags %}
 
 <div class="project-header u-after-dialogue-box">
     <div class="l-wrapper">
@@ -62,7 +62,7 @@
     aria-expanded="false">
     <div class="l-wrapper">
         <div class="l-center-8">
-            {{ project.information | richtext }}
+            {{ project.information | transform_collapsibles | richtext }}
         </div>
     </div>
 </div>
