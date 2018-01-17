@@ -1,4 +1,4 @@
-/* global django $ */
+/* global django $ Blob */
 
 function createMap (L, baseurl, attribution, e) {
   var basemap = baseurl + '{z}/{x}/{y}.png'
@@ -126,5 +126,27 @@ function getBaseBounds (L, polygon, bbox) {
         $('#id_' + name).trigger('change')
       }
     })
+
+    var ExportControl = L.Control.extend({
+      options: {
+        position: 'topright'
+      },
+      onAdd: function (map) {
+        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom')
+        var exportLink = L.DomUtil.create('a', '', container)
+        var exportIcon = L.DomUtil.create('i', 'fa fa-download', exportLink)
+        exportLink.setAttribute('title', django.gettext('Export as GeoJSON'))
+        exportIcon.setAttribute('aria-label', django.gettext('Export as GeoJSON'))
+
+        exportLink.onclick = function () {
+          var shape = drawnItems.toGeoJSON()
+          var blob = new Blob([JSON.stringify(shape)], {type: 'application/json'})
+          window['leaflet.draw'].saveAs(blob, 'export.geojson')
+        }
+
+        return container
+      }
+    })
+    map.addControl(new ExportControl())
   })
 })

@@ -40,7 +40,8 @@ module.exports = {
     'leaflet.draw': [
       'leaflet-draw',
       'leaflet-draw/dist/leaflet.draw.css',
-      './meinberlin/assets/js/i18n-leaflet-draw.js'
+      './meinberlin/assets/js/i18n-leaflet-draw.js',
+      'file-saver'
     ],
     embed: [
       './meinberlin/assets/js/embed.js'
