@@ -8,7 +8,7 @@ def test_transform_collapsibles(project_factory):
     project = project_factory(information='<div class="collapsible-item">'
                               '<div class="collapsible-item-title">Title</div>'
                               '<div class="collapsible-item-body">Body</div>'
-                              '</div')
+                              '</div>')
 
     template = '{% load ckeditor_tags %}' + \
                '{{ project.information|transform_collapsibles|safe }}'
