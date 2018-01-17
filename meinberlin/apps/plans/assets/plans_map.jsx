@@ -77,7 +77,8 @@ class PlansMap extends React.Component {
       selected: null,
       filters: {
         status: -1,
-        participation: -1
+        participation: -1,
+        district: -1
       }
     }
   }
@@ -130,7 +131,11 @@ class PlansMap extends React.Component {
   }
 
   onDistrictFilterChange (event) {
-    event.preventDefault()
+    this.setState({
+      filters: update(this.state.filters, {
+        $merge: {district: parseInt(event.currentTarget.value, 10)}
+      })
+    })
   }
 
   onSelect (i) {
@@ -156,6 +161,7 @@ class PlansMap extends React.Component {
   isInFilter (item) {
     let filters = this.state.filters
     return (filters.status === -1 || filters.status === item.status) &&
+      (filters.district === -1 || this.props.districtnames[filters.district] === item.district) &&
       (filters.participation === -1 || filters.participation === item.participation) &&
       checkQueryMatch(item, filters.q) &&
       (!filters.bounds || filters.bounds.contains(pointToLatLng(item.point)))
@@ -204,7 +210,7 @@ class PlansMap extends React.Component {
     }).addTo(this.map)
     this.selected = L.layerGroup().addTo(this.map)
 
-    this.districtLayer = L.geoJSON().addTo(this.map)
+    L.geoJSON(this.props.districts, {style: districtStyle}).addTo(this.map)
 
     this.markers = this.props.items.map((item, i) => {
       let marker = L.marker(pointToLatLng(item.point), {icon: icons[item.status]})
@@ -213,11 +219,6 @@ class PlansMap extends React.Component {
         this.onSelect(i)
       })
       return marker
-    })
-
-    this.districts = this.props.districts.forEach((district, i) => {
-      let dl = this.districtLayer.addData(district)
-      dl.setStyle(districtStyle)
     })
 
     this.activeMarkers = this.props.items.map((item, i) => {
@@ -381,9 +382,10 @@ class PlansMap extends React.Component {
                 }
               </ul>
             </div>
+            &nbsp;
             <div className="dropdown ">
               <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_district">
-                {django.gettext('District')}: {participationNames[this.state.filters.district] || django.gettext('All')}
+                {django.gettext('District')}: {this.props.districtnames[this.state.filters.district] || django.gettext('All')}
                 <i className="fa fa-caret-down" aria-hidden="true" />
               </button>
               <ul aria-labelledby="id_filter_district" className="dropdown-menu">
@@ -397,14 +399,14 @@ class PlansMap extends React.Component {
                   </button>
                 </li>
                 {
-                  participationNames.map((name, i) => {
+                  this.props.districtnames.map((name, i) => {
                     return (
                       <li key={i}>
                         <button
                           type="button"
                           className="dropdown-item"
                           value={i}
-                          onClick={this.onParticipationFilterChange.bind(this)}>
+                          onClick={this.onDistrictFilterChange.bind(this)}>
                           {name}
                         </button>
                       </li>
@@ -434,8 +436,9 @@ const init = function () {
     let baseurl = element.getAttribute('data-baseurl')
     let bounds = JSON.parse(element.getAttribute('data-bounds'))
     let districts = JSON.parse(element.getAttribute('data-districts'))
+    let districtnames = JSON.parse(element.getAttribute('data-district-names'))
 
-    ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} />, element)
+    ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} />, element)
   })
 }
 

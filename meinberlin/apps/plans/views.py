@@ -45,25 +45,23 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             berlin = MapPresetCategory.objects.get(name='Berlin')
             return MapPreset.objects.filter(category=berlin)
         except ObjectDoesNotExist:
-            return None
-
-    def get_district_dict_with_name(self, district):
-        district_location = district.polygon
-        return district_location
+            return []
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         districts = self.get_districts()
 
+        district_list = json.dumps([district.polygon
+                                    for district in districts])
+        district_names = json.dumps([district.name
+                                     for district in districts])
+        context['districts'] = district_list
+        context['district_names'] = district_names
+
         items = sorted(context['object_list'],
                        key=lambda x: x.modified or x.created,
                        reverse=True)
-
-        district_list = json.dumps([self.get_district_dict_with_name(district)
-                                    for district in districts])
-
-        context['districts'] = district_list
 
         context['items'] = json.dumps([{
             'title': item.title,
@@ -72,6 +70,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             'point': item.point,
             'point_label': item.point_label,
             'cost': item.cost,
+            'district': item.district.name,
             'category': item.category,
             'status': item.status,
             'status_display': item.get_status_display(),
