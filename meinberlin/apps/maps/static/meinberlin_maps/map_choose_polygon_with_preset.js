@@ -1,4 +1,4 @@
-/* global django $ Blob */
+/* global django $ */
 
 function createMap (L, baseurl, attribution, e) {
   var basemap = baseurl + '{z}/{x}/{y}.png'
@@ -140,8 +140,56 @@ function getBaseBounds (L, polygon, bbox) {
 
         exportLink.onclick = function () {
           var shape = drawnItems.toGeoJSON()
-          var blob = new Blob([JSON.stringify(shape)], {type: 'application/json'})
+          var blob = new window.Blob([JSON.stringify(shape)], {type: 'application/json'})
+
+          // FIXME: weird webpack hack
           window['leaflet.draw'].saveAs(blob, 'export.geojson')
+        }
+
+        var importInput = L.DomUtil.create('input', 'sr-only', container)
+        importInput.setAttribute('type', 'file')
+
+        var importLink = L.DomUtil.create('a', '', container)
+        var importIcon = L.DomUtil.create('i', 'fa fa-upload', importLink)
+        importLink.setAttribute('title', django.gettext('Import GeoJSON'))
+        importIcon.setAttribute('aria-label', django.gettext('Import GeoJSON'))
+
+        importLink.onclick = function (e) {
+          e.preventDefault()
+          e.stopPropagation()
+          importInput.click()
+        }
+
+        importInput.onchange = function (e) {
+          e.preventDefault()
+          e.stopPropagation()
+          var reader = new window.FileReader()
+          reader.onload = function (e) {
+            var buffer = e.target.result
+            var decodedString = String.fromCharCode.apply(null, new Uint8Array(buffer))
+            var geoJson = decodedString
+
+            // FIXME: unify with preset select code
+            var isEmpty = drawnItems.getLayers().length === 0
+            var msg = django.gettext('Do you want to load this preset and delete all the existing polygons?')
+
+            if (isEmpty || window.confirm(msg)) {
+              drawnItems.clearLayers()
+              if (geoJson) {
+                var group = L.geoJson(JSON.parse(geoJson), {
+                  style: polygonStyle
+                })
+                group.eachLayer(function (layer) {
+                  drawnItems.addLayer(layer)
+                })
+                map.fitBounds(group.getBounds())
+              }
+
+              $('#id_' + name).val(geoJson)
+              $('#id_' + name).trigger('change')
+            }
+          }
+          reader.readAsArrayBuffer(e.target.files[0])
         }
 
         return container
