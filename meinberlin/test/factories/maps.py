@@ -8,8 +8,6 @@ class MapPresetCategoryFactory(factory.DjangoModelFactory):
     class Meta:
         model = map_models.MapPresetCategory
 
-    name = factory.Faker('sentence')
-
 
 class MapPresetFactory(factory.DjangoModelFactory):
 
