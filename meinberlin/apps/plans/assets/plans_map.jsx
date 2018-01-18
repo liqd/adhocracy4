@@ -1,5 +1,6 @@
 /* global django */
 
+const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
 const React = require('react')
 const ReactDOM = require('react-dom')
 const update = require('immutability-helper')
@@ -74,7 +75,11 @@ class PlansMap extends React.Component {
     super(props)
 
     this.state = {
+      searchResults: null,
+      address: null,
       selected: null,
+      displayError: false,
+      displayResults: false,
       filters: {
         status: -1,
         participation: -1,
@@ -136,6 +141,71 @@ class PlansMap extends React.Component {
         $merge: {district: parseInt(event.currentTarget.value, 10)}
       })
     })
+  }
+
+  onAddressFilterChange (event) {
+    if (event.target.value === '' && this.state.address) {
+      this.map.removeLayer(this.state.address)
+      this.setState({
+        'address': null
+      })
+    }
+  }
+
+  onAddressSearchSubmit (event) {
+    event.preventDefault()
+    let address = event.target.search.value
+    $.ajax(apiUrl, {
+      data: {address: address},
+      context: this,
+      success: function (geojson) {
+        let count = geojson.count
+        if (count === 0) {
+          this.displayErrorMessage()
+        } else if (count === 1) {
+          this.displayAdressMarker(geojson)
+        } else {
+          this.displayResults(geojson)
+        }
+      }
+    })
+  }
+
+  displayResults (geojson) {
+    this.setState(
+      {'displayResults': true,
+        'searchResults': geojson.features}
+    )
+  }
+
+  selectSearchResult (event) {
+    let index = parseInt(event.target.value)
+    let address = this.state.searchResults[index]
+    this.displayAdressMarker(address)
+    this.setState(
+      {'displayResults': false}
+    )
+  }
+
+  displayAdressMarker (geojson) {
+    if (this.state.address) {
+      this.map.removeLayer(this.state.address)
+    }
+    let addressMarker = L.geoJSON(geojson).addTo(this.map)
+    this.map.flyToBounds(addressMarker.getBounds(), {'maxZoom': 13})
+    this.setState(
+      {'address': addressMarker}
+    )
+  }
+
+  displayErrorMessage () {
+    this.setState(
+      {'displayError': true}
+    )
+    setTimeout(function () {
+      this.setState(
+        {'displayError': false})
+    }.bind(this), 2000)
   }
 
   onSelect (i) {
@@ -304,6 +374,36 @@ class PlansMap extends React.Component {
       <div>
         <div className="l-wrapper">
           <div className="control-bar" role="group" aria-label={django.gettext('Filter bar')}>
+            <form onSubmit={this.onAddressSearchSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group u-inline-flex u-position-relative">
+              <input
+                onChange={this.onAddressFilterChange.bind(this)}
+                className="input-group__input"
+                name="search"
+                type="search"
+                placeholder={django.gettext('Address Search')} />
+              <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Search')}>
+                <i className="fa fa-search" aria-label={django.gettext('Search')} />
+              </button>
+              {this.state.displayResults &&
+              <ul aria-labelledby="id_filter_address" className="map-list-combined__dropdown-menu">
+                { this.state.searchResults.map((name, i) => {
+                  return (
+                    <li key={i}>
+                      <button
+                        type="button"
+                        className="dropdown-item"
+                        value={i}
+                        onClick={this.selectSearchResult.bind(this)}>
+                        {name.properties.strname} {name.properties.hsnr} in {name.properties.plz} {name.properties.bezirk_name}
+                      </button>
+                    </li>
+                  )
+                })
+                }
+              </ul>
+              }
+            </form>
+            &nbsp;
             <form onSubmit={this.onFreeTextFilterSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group u-inline-flex">
               <input
                 onChange={this.onFreeTextFilterChange.bind(this)}
@@ -419,6 +519,9 @@ class PlansMap extends React.Component {
         </div>
 
         <div className="map-list-combined">
+          {this.state.displayError &&
+            <div className="alert alert-error map-list-combined__alert">{django.gettext('Address could not be found')}</div>
+          }
           <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
           <div className="map-list-combined__list" ref={this.bindList.bind(this)}>
             {this.renderList()}
@@ -437,7 +540,6 @@ const init = function () {
     let bounds = JSON.parse(element.getAttribute('data-bounds'))
     let districts = JSON.parse(element.getAttribute('data-districts'))
     let districtnames = JSON.parse(element.getAttribute('data-district-names'))
-
     ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} />, element)
   })
 }
