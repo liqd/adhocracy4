@@ -143,7 +143,7 @@ class PlansMap extends React.Component {
     })
   }
 
-  onAddressFilterChange (event) {
+  onAddressSearchChange (event) {
     if (event.target.value === '' && this.state.address) {
       this.map.removeLayer(this.state.address)
       this.setState({
@@ -179,7 +179,7 @@ class PlansMap extends React.Component {
   }
 
   selectSearchResult (event) {
-    let index = parseInt(event.target.value)
+    let index = parseInt(event.target.value, 10)
     let address = this.state.searchResults[index]
     this.displayAdressMarker(address)
     this.setState(
@@ -376,7 +376,7 @@ class PlansMap extends React.Component {
           <div className="control-bar" role="group" aria-label={django.gettext('Filter bar')}>
             <form onSubmit={this.onAddressSearchSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group u-inline-flex u-position-relative">
               <input
-                onChange={this.onAddressFilterChange.bind(this)}
+                onChange={this.onAddressSearchChange.bind(this)}
                 className="input-group__input"
                 name="search"
                 type="search"
