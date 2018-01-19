@@ -8,6 +8,7 @@ from adhocracy4 import transforms
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.maps.models import MapPreset
 
 STATUS_TODO = 0
 STATUS_PLANNING = 1
@@ -39,6 +40,10 @@ class Plan(UserGeneratedContentModel):
         verbose_name=_('Label of the location'),
         help_text=_('This could be an address or the name of a landmark.'),
     )
+    district = models.ForeignKey(
+        MapPreset,
+        null=True,
+        limit_choices_to={'category__name': 'Berlin'})
     contact = models.TextField(max_length=255, verbose_name=_('Contact'))
     cost = models.PositiveIntegerField(blank=True, null=True,
                                        verbose_name=_('Cost'))
