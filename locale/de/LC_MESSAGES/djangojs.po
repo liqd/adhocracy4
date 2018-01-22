@@ -36,7 +36,7 @@ msgstr "Textkörper"
 #: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:37
 #: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:37
 msgid "Collapsible element"
-msgstr "Auflappbares Element"
+msgstr "Aufklappbares Element"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:23
 #: adhocracy4/comments/static/comments/Comment.jsx:23
