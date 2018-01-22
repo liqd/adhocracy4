@@ -272,6 +272,8 @@ msgid ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 msgstr ""
+"Die Kurzbeschreibung des Moduls erscheint auf der Projektseite. Sie "
+"sollte in maximal 512 Zeichen das Ziel des Moduls beschreiben."
 
 #: adhocracy4/phases/models.py:64
 #: adhocracy4/phases/models.py:64

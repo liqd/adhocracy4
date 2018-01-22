@@ -21,7 +21,7 @@ msgstr ""
 #: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:12
 #: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:12
 msgid "Insert Collapsible Item"
-msgstr ""
+msgstr "Aufklappbares Element einfügen"
 
 #: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:14
 #: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:14
@@ -31,28 +31,28 @@ msgstr "Titel"
 #: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:15
 #: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:15
 msgid "Body text"
-msgstr ""
+msgstr "Textkörper"
 
 #: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:37
 #: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:37
 msgid "Collapsible element"
-msgstr ""
+msgstr "Auflappbares Element"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:23
 #: adhocracy4/comments/static/comments/Comment.jsx:23
 #, javascript-format
 msgid "hide one reply"
 msgid_plural "hide %s replies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Antwort ausblenden"
+msgstr[1] "%s Antworten ausblenden"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:25
 #: adhocracy4/comments/static/comments/Comment.jsx:25
 #, javascript-format
 msgid "view one reply"
 msgid_plural "view %s replies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Antwort einblenden"
+msgstr[1] "%s Antworten einblenden"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:125
 #: adhocracy4/comments/static/comments/Comment.jsx:125
