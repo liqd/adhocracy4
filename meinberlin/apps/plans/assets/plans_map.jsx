@@ -1,5 +1,6 @@
 /* global django */
 
+const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
 const React = require('react')
 const ReactDOM = require('react-dom')
 const update = require('immutability-helper')
@@ -44,6 +45,23 @@ const activeIcon = L.icon({
   zIndexOffset: 1000
 })
 
+const addressIcon = L.icon({
+  iconUrl: '/static/images/address_search_marker.png',
+  shadowUrl: '/static/images/map_shadow_01_2x.png',
+  iconSize: [30, 45],
+  iconAnchor: [15, 45],
+  shadowSize: [40, 54],
+  shadowAnchor: [20, 54],
+  zIndexOffset: 1000
+})
+
+const districtStyle = {
+  'color': '#253276',
+  'weight': 1,
+  'opacity': 1,
+  'fillOpacity': 0
+}
+
 const pointToLatLng = function (point) {
   return {
     lat: point.geometry.coordinates[1],
@@ -67,10 +85,15 @@ class PlansMap extends React.Component {
     super(props)
 
     this.state = {
+      searchResults: null,
+      address: null,
       selected: null,
+      displayError: false,
+      displayResults: false,
       filters: {
         status: -1,
-        participation: -1
+        participation: -1,
+        district: -1
       }
     }
   }
@@ -122,6 +145,83 @@ class PlansMap extends React.Component {
     })
   }
 
+  onDistrictFilterChange (event) {
+    this.setState({
+      filters: update(this.state.filters, {
+        $merge: {district: parseInt(event.currentTarget.value, 10)}
+      })
+    })
+  }
+
+  onAddressSearchChange (event) {
+    if (event.target.value === '' && this.state.address) {
+      this.map.removeLayer(this.state.address)
+      this.setState({
+        'address': null
+      })
+    }
+  }
+
+  onAddressSearchSubmit (event) {
+    event.preventDefault()
+    let address = event.target.search.value
+    $.ajax(apiUrl, {
+      data: {address: address},
+      context: this,
+      success: function (geojson) {
+        let count = geojson.count
+        if (count === 0) {
+          this.displayErrorMessage()
+        } else if (count === 1) {
+          this.displayAdressMarker(geojson)
+        } else {
+          this.displayResults(geojson)
+        }
+      }
+    })
+  }
+
+  displayResults (geojson) {
+    this.setState(
+      {'displayResults': true,
+        'searchResults': geojson.features}
+    )
+  }
+
+  selectSearchResult (event) {
+    let index = parseInt(event.target.value, 10)
+    let address = this.state.searchResults[index]
+    this.displayAdressMarker(address)
+    this.setState(
+      {'displayResults': false}
+    )
+  }
+
+  displayAdressMarker (geojson) {
+    if (this.state.address) {
+      this.map.removeLayer(this.state.address)
+    }
+    let addressMarker = L.geoJSON(geojson, {
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, {icon: addressIcon})
+      }
+    }).addTo(this.map)
+    this.map.flyToBounds(addressMarker.getBounds(), {'maxZoom': 13})
+    this.setState(
+      {'address': addressMarker}
+    )
+  }
+
+  displayErrorMessage () {
+    this.setState(
+      {'displayError': true}
+    )
+    setTimeout(function () {
+      this.setState(
+        {'displayError': false})
+    }.bind(this), 2000)
+  }
+
   onSelect (i) {
     this.setState({
       selected: i
@@ -145,6 +245,7 @@ class PlansMap extends React.Component {
   isInFilter (item) {
     let filters = this.state.filters
     return (filters.status === -1 || filters.status === item.status) &&
+      (filters.district === -1 || this.props.districtnames[filters.district] === item.district) &&
       (filters.participation === -1 || filters.participation === item.participation) &&
       checkQueryMatch(item, filters.q) &&
       (!filters.bounds || filters.bounds.contains(pointToLatLng(item.point)))
@@ -192,6 +293,8 @@ class PlansMap extends React.Component {
       showCoverageOnHover: false
     }).addTo(this.map)
     this.selected = L.layerGroup().addTo(this.map)
+
+    L.geoJSON(this.props.districts, {style: districtStyle}).addTo(this.map)
 
     this.markers = this.props.items.map((item, i) => {
       let marker = L.marker(pointToLatLng(item.point), {icon: icons[item.status]})
@@ -285,6 +388,36 @@ class PlansMap extends React.Component {
       <div>
         <div className="l-wrapper">
           <div className="control-bar" role="group" aria-label={django.gettext('Filter bar')}>
+            <form onSubmit={this.onAddressSearchSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group u-inline-flex u-position-relative">
+              <input
+                onChange={this.onAddressSearchChange.bind(this)}
+                className="input-group__input"
+                name="search"
+                type="search"
+                placeholder={django.gettext('Address Search')} />
+              <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Search')}>
+                <i className="fa fa-search" aria-label={django.gettext('Search')} />
+              </button>
+              {this.state.displayResults &&
+              <ul aria-labelledby="id_filter_address" className="map-list-combined__dropdown-menu">
+                { this.state.searchResults.map((name, i) => {
+                  return (
+                    <li key={i}>
+                      <button
+                        type="button"
+                        className="dropdown-item"
+                        value={i}
+                        onClick={this.selectSearchResult.bind(this)}>
+                        {name.properties.strname} {name.properties.hsnr} in {name.properties.plz} {name.properties.bezirk_name}
+                      </button>
+                    </li>
+                  )
+                })
+                }
+              </ul>
+              }
+            </form>
+            &nbsp;
             <form onSubmit={this.onFreeTextFilterSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group u-inline-flex">
               <input
                 onChange={this.onFreeTextFilterChange.bind(this)}
@@ -363,10 +496,46 @@ class PlansMap extends React.Component {
                 }
               </ul>
             </div>
+            &nbsp;
+            <div className="dropdown ">
+              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_district">
+                {django.gettext('District')}: {this.props.districtnames[this.state.filters.district] || django.gettext('All')}
+                <i className="fa fa-caret-down" aria-hidden="true" />
+              </button>
+              <ul aria-labelledby="id_filter_district" className="dropdown-menu">
+                <li>
+                  <button
+                    type="button"
+                    className="dropdown-item"
+                    value="-1"
+                    onClick={this.onDistrictFilterChange.bind(this)}>
+                    {django.gettext('All')}
+                  </button>
+                </li>
+                {
+                  this.props.districtnames.map((name, i) => {
+                    return (
+                      <li key={i}>
+                        <button
+                          type="button"
+                          className="dropdown-item"
+                          value={i}
+                          onClick={this.onDistrictFilterChange.bind(this)}>
+                          {name}
+                        </button>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
           </div>
         </div>
 
         <div className="map-list-combined">
+          {this.state.displayError &&
+            <div className="alert alert-error map-list-combined__alert">{django.gettext('Address could not be found')}</div>
+          }
           <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
           <div className="map-list-combined__list" ref={this.bindList.bind(this)}>
             {this.renderList()}
@@ -383,8 +552,9 @@ const init = function () {
     let attribution = element.getAttribute('data-attribution')
     let baseurl = element.getAttribute('data-baseurl')
     let bounds = JSON.parse(element.getAttribute('data-bounds'))
-
-    ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} />, element)
+    let districts = JSON.parse(element.getAttribute('data-districts'))
+    let districtnames = JSON.parse(element.getAttribute('data-district-names'))
+    ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} />, element)
   })
 }
 

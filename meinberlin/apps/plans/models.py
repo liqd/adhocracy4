@@ -2,12 +2,14 @@ from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.maps.models import MapPreset
 
 STATUS_TODO = 0
 STATUS_PLANNING = 1
@@ -39,6 +41,9 @@ class Plan(UserGeneratedContentModel):
         verbose_name=_('Label of the location'),
         help_text=_('This could be an address or the name of a landmark.'),
     )
+    district = models.ForeignKey(
+        MapPreset,
+        limit_choices_to=Q(category__name='Berlin') & ~Q(name='Berlin'))
     contact = models.TextField(max_length=255, verbose_name=_('Contact'))
     cost = models.PositiveIntegerField(blank=True, null=True,
                                        verbose_name=_('Cost'))

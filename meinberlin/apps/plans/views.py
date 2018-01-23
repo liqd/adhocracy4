@@ -2,6 +2,7 @@ import json
 
 from django.conf import settings
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.html import strip_tags
@@ -13,6 +14,8 @@ from adhocracy4.exports import views as export_views
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
+from meinberlin.apps.maps.models import MapPreset
+from meinberlin.apps.maps.models import MapPresetCategory
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
 
@@ -37,8 +40,26 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
     template_name = 'meinberlin_plans/plan_list.html'
     permission_required = 'meinberlin_plans.list_plan'
 
+    def get_districts(self):
+        try:
+            berlin = MapPresetCategory.objects.get(name='Berlin')
+            return MapPreset.objects\
+                .filter(category=berlin)\
+                .exclude(name='Berlin')
+        except ObjectDoesNotExist:
+            return []
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        districts = self.get_districts()
+
+        district_list = json.dumps([district.polygon
+                                    for district in districts])
+        district_names = json.dumps([district.name
+                                     for district in districts])
+        context['districts'] = district_list
+        context['district_names'] = district_names
 
         items = sorted(context['object_list'],
                        key=lambda x: x.modified or x.created,
@@ -51,6 +72,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             'point': item.point,
             'point_label': item.point_label,
             'cost': item.cost,
+            'district': item.district.name,
             'category': item.category,
             'status': item.status,
             'status_display': item.get_status_display(),
