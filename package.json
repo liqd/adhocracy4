@@ -43,7 +43,8 @@
     "select2": "4.0.5",
     "shariff": "2.1.1",
     "tether": "1.4.3",
-    "timeago.js": "3.0.2"
+    "timeago.js": "3.0.2",
+    "shpjs": "3.4.2"
   },
   "devDependencies": {
     "eslint": "^4.5.0",

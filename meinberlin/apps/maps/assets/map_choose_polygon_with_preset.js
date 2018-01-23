@@ -3,6 +3,7 @@
 const $ = require('jquery')
 // const L = require('leaflet')
 const FileSaver = require('file-saver')
+const shp = require('shpjs')
 
 function createMap (L, baseurl, attribution, e) {
   var basemap = baseurl + '{z}/{x}/{y}.png'
@@ -158,8 +159,8 @@ function loadShape (map, group, shape, msg, $input) {
 
         var importLink = L.DomUtil.create('a', '', container)
         var importIcon = L.DomUtil.create('i', 'fa fa-upload', importLink)
-        importLink.setAttribute('title', django.gettext('Import GeoJSON'))
-        importIcon.setAttribute('aria-label', django.gettext('Import GeoJSON'))
+        importLink.setAttribute('title', django.gettext('Import shapefile or GeoJSON file'))
+        importIcon.setAttribute('aria-label', django.gettext('Import shapefile or GeoJSON file'))
 
         importLink.onclick = function (e) {
           e.preventDefault()
@@ -175,10 +176,29 @@ function loadShape (map, group, shape, msg, $input) {
           var file = e.target.files[0]
 
           if (file.name.slice(-3) === 'zip') {
-
-          } else if (file.name.slice(-4) === 'json') {
-            var reader = new window.FileReader()
+            let reader = new window.FileReader()
             reader.onload = function (e) {
+              shp(e.target.result).then(function (geoJson) {
+                try {
+                  var shape = L.geoJson(geoJson, {
+                    style: polygonStyle
+                  })
+                } catch (e) {
+                  window.alert(django.gettext('The uploaded file is not a valid shapefile.'))
+                  return
+                }
+
+                var msg = django.gettext('Do you want to import this file and delete all the existing polygons?')
+                loadShape(map, drawnItems, shape, msg, $('#id_' + name))
+              }, function (e) {
+                window.alert(django.gettext('The uploaded file is not a valid shapefile.'))
+              })
+            }
+            reader.readAsArrayBuffer(file)
+          } else if (file.name.slice(-4) === 'json') {
+            let reader = new window.FileReader()
+            reader.onload = function (e) {
+              // FIXME: what about errors?
               var buffer = e.target.result
               var decodedString = String.fromCharCode.apply(null, new Uint8Array(buffer))
               try {

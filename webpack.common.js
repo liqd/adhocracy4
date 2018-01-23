@@ -49,6 +49,7 @@ module.exports = {
       'leaflet-draw/dist/leaflet.draw.css',
       './meinberlin/assets/js/i18n-leaflet-draw.js',
       'file-saver',
+      'shpjs'
     ]
   },
   output: {
