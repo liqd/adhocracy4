@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 ? 0 : 1);\n"
 
 #: adhocracy4/categories/fields.py:11 adhocracy4/categories/filters.py:10
 #: adhocracy4/exports/mixins.py:103 meinberlin/apps/dashboard2/forms.py:154
