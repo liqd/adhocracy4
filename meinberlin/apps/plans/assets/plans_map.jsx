@@ -45,6 +45,16 @@ const activeIcon = L.icon({
   zIndexOffset: 1000
 })
 
+const addressIcon = L.icon({
+  iconUrl: '/static/images/address_search_marker.png',
+  shadowUrl: '/static/images/map_shadow_01_2x.png',
+  iconSize: [30, 45],
+  iconAnchor: [15, 45],
+  shadowSize: [40, 54],
+  shadowAnchor: [20, 54],
+  zIndexOffset: 1000
+})
+
 const districtStyle = {
   'color': '#253276',
   'weight': 1,
@@ -191,7 +201,11 @@ class PlansMap extends React.Component {
     if (this.state.address) {
       this.map.removeLayer(this.state.address)
     }
-    let addressMarker = L.geoJSON(geojson).addTo(this.map)
+    let addressMarker = L.geoJSON(geojson, {
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, {icon: addressIcon})
+      }
+    }).addTo(this.map)
     this.map.flyToBounds(addressMarker.getBounds(), {'maxZoom': 13})
     this.setState(
       {'address': addressMarker}
