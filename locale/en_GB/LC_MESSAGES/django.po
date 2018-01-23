@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-22 17:09+0100\n"
+"POT-Creation-Date: 2018-01-23 13:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2123,7 +2123,7 @@ msgstr ""
 msgid "Edit plan"
 msgstr "Edit plan"
 
-#: meinberlin/apps/plans/views.py:171
+#: meinberlin/apps/plans/views.py:173
 msgid "The plan has been deleted"
 msgstr "The plan has been deleted"
 
