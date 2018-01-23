@@ -1,4 +1,8 @@
-/* global django $ */
+/* global django */
+
+const $ = require('jquery')
+// const L = require('leaflet')
+const FileSaver = require('file-saver')
 
 function createMap (L, baseurl, attribution, e) {
   var basemap = baseurl + '{z}/{x}/{y}.png'
@@ -23,7 +27,7 @@ function getBaseBounds (L, polygon, bbox) {
   $(init)
   $(document).on('a4.embed.ready', init)
 })(function () {
-  var $ = window.jQuery
+  // Prevent from including leaflet in this bundle
   var L = window.L
 
   $('[data-map="choose_polygon"]').each(function (i, e) {
@@ -141,9 +145,7 @@ function getBaseBounds (L, polygon, bbox) {
         exportLink.onclick = function () {
           var shape = drawnItems.toGeoJSON()
           var blob = new window.Blob([JSON.stringify(shape)], {type: 'application/json'})
-
-          // FIXME: weird webpack hack
-          window['leaflet.draw'].saveAs(blob, 'export.geojson')
+          FileSaver.saveAs(blob, 'export.geojson')
         }
 
         var importInput = L.DomUtil.create('input', 'sr-only', container)
