@@ -43,7 +43,9 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
     def get_districts(self):
         try:
             berlin = MapPresetCategory.objects.get(name='Berlin')
-            return MapPreset.objects.filter(category=berlin)
+            return MapPreset.objects\
+                .filter(category=berlin)\
+                .exclude(name='Berlin')
         except ObjectDoesNotExist:
             return []
 
