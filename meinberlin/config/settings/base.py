@@ -433,3 +433,9 @@ SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 # The default language is used for emails and strings
 # that are stored translated to the database.
 DEFAULT_LANGUAGE = 'de'
+
+SECURE_BROWSER_XSS_FILTER = True
+SESSION_COOKIE_HTTPONLY = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_SECONDS = 3600
