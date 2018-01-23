@@ -2,6 +2,7 @@ from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
@@ -42,7 +43,7 @@ class Plan(UserGeneratedContentModel):
     )
     district = models.ForeignKey(
         MapPreset,
-        limit_choices_to={'category__name': 'Berlin'})
+        limit_choices_to=Q(category__name='Berlin') & ~Q(name='Berlin'))
     contact = models.TextField(max_length=255, verbose_name=_('Contact'))
     cost = models.PositiveIntegerField(blank=True, null=True,
                                        verbose_name=_('Cost'))
