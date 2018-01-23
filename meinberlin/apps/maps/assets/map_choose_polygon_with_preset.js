@@ -23,6 +23,21 @@ function getBaseBounds (L, polygon, bbox) {
   }
 }
 
+function loadShape (map, group, shape, msg, $input) {
+  var isEmpty = group.getLayers().length === 0
+
+  if (isEmpty || window.confirm(msg)) {
+    group.clearLayers()
+    shape.eachLayer(function (layer) {
+      group.addLayer(layer)
+    })
+    map.fitBounds(group.getBounds())
+
+    $input.val(JSON.stringify(group.toGeoJSON()))
+    $input.trigger('change')
+  }
+}
+
 (function (init) {
   $(init)
   $(document).on('a4.embed.ready', init)
@@ -111,23 +126,13 @@ function getBaseBounds (L, polygon, bbox) {
 
     $('#select_' + name).on('change', function (event) {
       var geoJson = event.target.value
+      if (geoJson) {
+        var shape = L.geoJson(JSON.parse(geoJson), {
+          style: polygonStyle
+        })
 
-      var isEmpty = drawnItems.getLayers().length === 0
-      var msg = django.gettext('Do you want to load this preset and delete all the existing polygons?')
-
-      if (isEmpty || window.confirm(msg)) {
-        drawnItems.clearLayers()
-        if (geoJson) {
-          var group = L.geoJson(JSON.parse(geoJson), {
-            style: polygonStyle
-          })
-          group.eachLayer(function (layer) {
-            drawnItems.addLayer(layer)
-          })
-          map.fitBounds(group.getBounds())
-        }
-        $('#id_' + name).val(geoJson)
-        $('#id_' + name).trigger('change')
+        var msg = django.gettext('Do you want to load this preset and delete all the existing polygons?')
+        loadShape(map, drawnItems, shape, msg, $('#id_' + name))
       }
     })
 
@@ -165,33 +170,34 @@ function getBaseBounds (L, polygon, bbox) {
         importInput.onchange = function (e) {
           e.preventDefault()
           e.stopPropagation()
-          var reader = new window.FileReader()
-          reader.onload = function (e) {
-            var buffer = e.target.result
-            var decodedString = String.fromCharCode.apply(null, new Uint8Array(buffer))
-            var geoJson = decodedString
 
-            // FIXME: unify with preset select code
-            var isEmpty = drawnItems.getLayers().length === 0
-            var msg = django.gettext('Do you want to load this preset and delete all the existing polygons?')
+          // FIXME: need to check if there is a file?
+          var file = e.target.files[0]
 
-            if (isEmpty || window.confirm(msg)) {
-              drawnItems.clearLayers()
-              if (geoJson) {
-                var group = L.geoJson(JSON.parse(geoJson), {
+          if (file.name.slice(-3) === 'zip') {
+
+          } else if (file.name.slice(-4) === 'json') {
+            var reader = new window.FileReader()
+            reader.onload = function (e) {
+              var buffer = e.target.result
+              var decodedString = String.fromCharCode.apply(null, new Uint8Array(buffer))
+              try {
+                var geoJson = JSON.parse(decodedString)
+                var shape = L.geoJson(geoJson, {
                   style: polygonStyle
                 })
-                group.eachLayer(function (layer) {
-                  drawnItems.addLayer(layer)
-                })
-                map.fitBounds(group.getBounds())
+              } catch (e) {
+                window.alert(django.gettext('The uploaded file is not a valid geojson file.'))
+                return
               }
 
-              $('#id_' + name).val(geoJson)
-              $('#id_' + name).trigger('change')
+              var msg = django.gettext('Do you want to import this file and delete all the existing polygons?')
+              loadShape(map, drawnItems, shape, msg, $('#id_' + name))
             }
+            reader.readAsArrayBuffer(file)
+          } else {
+            window.alert(django.gettext('Invalid file format. Only shapefiles (.zip) and geojson (.geojson or .json) are supported.'))
           }
-          reader.readAsArrayBuffer(e.target.files[0])
         }
 
         return container
