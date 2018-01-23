@@ -35,26 +35,18 @@ msgid "Collapsible element"
 msgstr "Collapsible element"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:26
-#, fuzzy
-#| msgid "hide one reply"
-#| msgid_plural "hide %s replies"
 msgid "hide one reply"
 msgstr "hide one reply"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:26
-#, javascript-format
 msgid "hide %s replies"
 msgstr "hide %s replies"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:28
-#, fuzzy
-#| msgid "view one reply"
-#| msgid_plural "view %s replies"
 msgid "view one reply"
 msgstr "view one reply"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:28
-#, javascript-format
 msgid "view %s replies"
 msgstr "view %s replies"
 

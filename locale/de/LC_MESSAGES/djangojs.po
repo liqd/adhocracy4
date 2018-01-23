@@ -40,31 +40,23 @@ msgstr "Aufklappbares Element"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:26
 #: adhocracy4/comments/static/comments/Comment.jsx:26
-#, fuzzy
-#| msgid "hide one reply"
-#| msgid_plural "hide %s replies"
 msgid "hide one reply"
 msgstr "Antwort ausblenden"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:26
 #: adhocracy4/comments/static/comments/Comment.jsx:26
-#, javascript-format
 msgid "hide %s replies"
-msgstr ""
+msgstr "%s Antworten ausblenden"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:28
 #: adhocracy4/comments/static/comments/Comment.jsx:28
-#, fuzzy
-#| msgid "view one reply"
-#| msgid_plural "view %s replies"
 msgid "view one reply"
 msgstr "Antwort einblenden"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:28
 #: adhocracy4/comments/static/comments/Comment.jsx:28
-#, javascript-format
 msgid "view %s replies"
-msgstr ""
+msgstr "%s Antworten einblenden"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:128
 #: adhocracy4/comments/static/comments/Comment.jsx:128
