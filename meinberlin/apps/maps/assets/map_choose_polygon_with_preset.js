@@ -6,9 +6,9 @@ const FileSaver = require('file-saver')
 const shp = require('shpjs')
 
 function createMap (L, baseurl, attribution, e) {
-  var basemap = baseurl + '{z}/{x}/{y}.png'
-  var baselayer = L.tileLayer(basemap, { maxZoom: 18, attribution: attribution })
-  var map = new L.Map(e, {scrollWheelZoom: false, zoomControl: true, minZoom: 2})
+  const basemap = baseurl + '{z}/{x}/{y}.png'
+  const baselayer = L.tileLayer(basemap, { maxZoom: 18, attribution: attribution })
+  const map = new L.Map(e, {scrollWheelZoom: false, zoomControl: true, minZoom: 2})
   baselayer.addTo(map)
   return map
 }
@@ -24,8 +24,8 @@ function getBaseBounds (L, polygon, bbox) {
   }
 }
 
-function loadShape (map, group, shape, msg, $input) {
-  var isEmpty = group.getLayers().length === 0
+function loadShape (map, group, shape, $input, msg) {
+  const isEmpty = group.getLayers().length === 0
 
   if (isEmpty || window.confirm(msg)) {
     group.clearLayers()
@@ -55,10 +55,10 @@ function loadShape (map, group, shape, msg, $input) {
     },
 
     onAdd: function () {
-      var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom')
+      const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom')
 
-      var exportLink = L.DomUtil.create('a', '', container)
-      var exportIcon = L.DomUtil.create('i', 'fa fa-download', exportLink)
+      const exportLink = L.DomUtil.create('a', '', container)
+      const exportIcon = L.DomUtil.create('i', 'fa fa-download', exportLink)
       exportLink.setAttribute('title', django.gettext('Export as GeoJSON'))
       exportIcon.setAttribute('aria-label', django.gettext('Export as GeoJSON'))
 
@@ -66,15 +66,17 @@ function loadShape (map, group, shape, msg, $input) {
         exportLink.onclick = this.options.onExportLinkClick
       }
 
-      var importInput = L.DomUtil.create('input', 'sr-only', container)
+      // FIXME: is this accessible doe we need a label or something?
+      const importInput = L.DomUtil.create('input', 'sr-only', container)
       importInput.setAttribute('type', 'file')
 
-      var importLink = L.DomUtil.create('a', '', container)
-      var importIcon = L.DomUtil.create('i', 'fa fa-upload', importLink)
+      const importLink = L.DomUtil.create('a', '', container)
+      const importIcon = L.DomUtil.create('i', 'fa fa-upload', importLink)
       importLink.setAttribute('title', django.gettext('Import shapefile or GeoJSON file'))
       importIcon.setAttribute('aria-label', django.gettext('Import shapefile or GeoJSON file'))
 
       importLink.onclick = function (e) {
+        // FIXME: is preventing the default event required?
         e.preventDefault()
         e.stopPropagation()
         importInput.click()
@@ -89,22 +91,22 @@ function loadShape (map, group, shape, msg, $input) {
   })
 
   $('[data-map="choose_polygon"]').each(function (i, e) {
-    var name = e.getAttribute('data-name')
-    var polygon = JSON.parse(e.getAttribute('data-polygon'))
-    var bbox = JSON.parse(e.getAttribute('data-bbox'))
-    var baseurl = e.getAttribute('data-baseurl')
-    var attribution = e.getAttribute('data-attribution')
+    const name = e.getAttribute('data-name')
+    const polygon = JSON.parse(e.getAttribute('data-polygon'))
+    const bbox = JSON.parse(e.getAttribute('data-bbox'))
+    const baseurl = e.getAttribute('data-baseurl')
+    const attribution = e.getAttribute('data-attribution')
 
-    var map = createMap(L, baseurl, attribution, e)
+    const map = createMap(L, baseurl, attribution, e)
 
-    var polygonStyle = {
+    const polygonStyle = {
       'color': '#0076ae',
       'weight': 2,
       'opacity': 1,
       'fillOpacity': 0.2
     }
 
-    var drawnItems
+    let drawnItems
     if (polygon) {
       drawnItems = L.geoJson(polygon, {
         style: polygonStyle
@@ -144,21 +146,21 @@ function loadShape (map, group, shape, msg, $input) {
     }))
 
     map.on(L.Draw.Event.CREATED, function (event) {
-      var layer = event.layer
+      const layer = event.layer
       drawnItems.addLayer(layer)
-      var shape = drawnItems.toGeoJSON()
+      const shape = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(shape))
       $('#id_' + name).trigger('change')
     })
 
     map.on(L.Draw.Event.EDITED, function (event) {
-      var shape = drawnItems.toGeoJSON()
+      const shape = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(shape))
       $('#id_' + name).trigger('change')
     })
 
     map.on(L.Draw.Event.DELETED, function (event) {
-      var shape = drawnItems.toGeoJSON()
+      const shape = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(shape))
       $('#id_' + name).trigger('change')
     })
@@ -168,45 +170,49 @@ function loadShape (map, group, shape, msg, $input) {
     })
 
     $('#select_' + name).on('change', function (event) {
-      var geoJson = event.target.value
+      const geoJson = event.target.value
       if (geoJson) {
-        var shape = L.geoJson(JSON.parse(geoJson), {
+        const shape = L.geoJson(JSON.parse(geoJson), {
           style: polygonStyle
         })
 
-        var msg = django.gettext('Do you want to load this preset and delete all the existing polygons?')
-        loadShape(map, drawnItems, shape, msg, $('#id_' + name))
+        loadShape(map, drawnItems, shape, $('#id_' + name),
+          django.gettext('Do you want to load this preset and delete all the existing polygons?'))
       }
     })
 
     map.addControl(new ExportControl({
       onExportLinkClick: function (e) {
-        var shape = drawnItems.toGeoJSON()
-        var blob = new window.Blob([JSON.stringify(shape)], {type: 'application/json'})
+        const shape = drawnItems.toGeoJSON()
+        const blob = new window.Blob([JSON.stringify(shape)], {type: 'application/json'})
         FileSaver.saveAs(blob, 'export.geojson')
       },
+
       onImportFileChange: function (e) {
         e.preventDefault()
         e.stopPropagation()
 
-        // FIXME: need to check if there is a file?
-        var file = e.target.files[0]
+        if (e.target.files.length < 1) {
+          return
+        }
+        const file = e.target.files[0]
 
         if (file.name.slice(-3) === 'zip') {
-          let reader = new window.FileReader()
+          const reader = new window.FileReader()
           reader.onload = function (e) {
-            shp(e.target.result).then(function (geoJson) {
+            const buffer = e.target.result
+            shp(buffer).then(function (geoJson) {
+              let shape
               try {
-                var shape = L.geoJson(geoJson, {
+                shape = L.geoJson(geoJson, {
                   style: polygonStyle
                 })
               } catch (e) {
                 window.alert(django.gettext('The uploaded file is not a valid shapefile.'))
                 return
               }
-
-              var msg = django.gettext('Do you want to import this file and delete all the existing polygons?')
-              loadShape(map, drawnItems, shape, msg, $('#id_' + name))
+              loadShape(map, drawnItems, shape, $('#id_' + name),
+                django.gettext('Do you want to import this file and delete all the existing polygons?'))
             }, function (e) {
               window.alert(django.gettext('The uploaded file is not a valid shapefile.'))
             })
@@ -215,21 +221,21 @@ function loadShape (map, group, shape, msg, $input) {
         } else if (file.name.slice(-4) === 'json') {
           let reader = new window.FileReader()
           reader.onload = function (e) {
-            // FIXME: what about errors?
-            var buffer = e.target.result
-            var decodedString = String.fromCharCode.apply(null, new Uint8Array(buffer))
+            const buffer = e.target.result
+            const decodedString = String.fromCharCode.apply(null, new Uint8Array(buffer))
+
+            let shape
             try {
-              var geoJson = JSON.parse(decodedString)
-              var shape = L.geoJson(geoJson, {
+              const geoJson = JSON.parse(decodedString)
+              shape = L.geoJson(geoJson, {
                 style: polygonStyle
               })
             } catch (e) {
               window.alert(django.gettext('The uploaded file is not a valid geojson file.'))
               return
             }
-
-            var msg = django.gettext('Do you want to import this file and delete all the existing polygons?')
-            loadShape(map, drawnItems, shape, msg, $('#id_' + name))
+            loadShape(map, drawnItems, shape, $('#id_' + name),
+              django.gettext('Do you want to import this file and delete all the existing polygons?'))
           }
           reader.readAsArrayBuffer(file)
         } else {
