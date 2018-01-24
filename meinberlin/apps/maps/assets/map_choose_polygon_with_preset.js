@@ -50,11 +50,11 @@ function loadShape (map, group, shape, $input, msg) {
     // Options
     options: {
       position: 'topright',
-      onImportFileChange: null,
-      onExportLinkClick: null
+      onImport: null,
+      onExport: null
     },
 
-    onAdd: function () {
+    onAdd: function (map) {
       const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom')
 
       const exportLink = L.DomUtil.create('a', '', container)
@@ -62,11 +62,11 @@ function loadShape (map, group, shape, $input, msg) {
       exportLink.setAttribute('title', django.gettext('Export as GeoJSON'))
       exportIcon.setAttribute('aria-label', django.gettext('Export as GeoJSON'))
 
-      if (this.options.onExportLinkClick) {
-        exportLink.onclick = this.options.onExportLinkClick
+      if (this.options.onExport) {
+        exportLink.onclick = () => this.options.onExport(map)
       }
 
-      // FIXME: is this accessible doe we need a label or something?
+      // FIXME: is this accessible or do we need a label or something?
       const importInput = L.DomUtil.create('input', 'sr-only', container)
       importInput.setAttribute('type', 'file')
 
@@ -82,8 +82,17 @@ function loadShape (map, group, shape, $input, msg) {
         importInput.click()
       }
 
-      if (this.options.onImportFileChange) {
-        importInput.onchange = this.options.onImportFileChange
+      if (this.options.onImport) {
+        importInput.onchange = (e) => {
+          // FIXME: is preventing the default event required?
+          e.preventDefault()
+          e.stopPropagation()
+
+          if (e.target.files.length < 1) {
+            return
+          }
+          return this.options.onImport(map, e.target.files[0])
+        }
       }
 
       return container
@@ -182,21 +191,13 @@ function loadShape (map, group, shape, $input, msg) {
     })
 
     map.addControl(new ExportControl({
-      onExportLinkClick: function (e) {
+      onExport: function (map) {
         const shape = drawnItems.toGeoJSON()
         const blob = new window.Blob([JSON.stringify(shape)], {type: 'application/json'})
         FileSaver.saveAs(blob, 'export.geojson')
       },
 
-      onImportFileChange: function (e) {
-        e.preventDefault()
-        e.stopPropagation()
-
-        if (e.target.files.length < 1) {
-          return
-        }
-        const file = e.target.files[0]
-
+      onImport: function (map, file) {
         if (file.name.slice(-3) === 'zip') {
           const reader = new window.FileReader()
           reader.onload = function (e) {
