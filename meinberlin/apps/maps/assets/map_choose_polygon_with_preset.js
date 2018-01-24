@@ -44,7 +44,49 @@ function loadShape (map, group, shape, msg, $input) {
   $(document).on('a4.embed.ready', init)
 })(function () {
   // Prevent from including leaflet in this bundle
-  var L = window.L
+  const L = window.L
+
+  const ExportControl = L.Control.extend({
+    // Options
+    options: {
+      position: 'topright',
+      onImportFileChange: null,
+      onExportLinkClick: null
+    },
+
+    onAdd: function () {
+      var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom')
+
+      var exportLink = L.DomUtil.create('a', '', container)
+      var exportIcon = L.DomUtil.create('i', 'fa fa-download', exportLink)
+      exportLink.setAttribute('title', django.gettext('Export as GeoJSON'))
+      exportIcon.setAttribute('aria-label', django.gettext('Export as GeoJSON'))
+
+      if (this.options.onExportLinkClick) {
+        exportLink.onclick = this.options.onExportLinkClick
+      }
+
+      var importInput = L.DomUtil.create('input', 'sr-only', container)
+      importInput.setAttribute('type', 'file')
+
+      var importLink = L.DomUtil.create('a', '', container)
+      var importIcon = L.DomUtil.create('i', 'fa fa-upload', importLink)
+      importLink.setAttribute('title', django.gettext('Import shapefile or GeoJSON file'))
+      importIcon.setAttribute('aria-label', django.gettext('Import shapefile or GeoJSON file'))
+
+      importLink.onclick = function (e) {
+        e.preventDefault()
+        e.stopPropagation()
+        importInput.click()
+      }
+
+      if (this.options.onImportFileChange) {
+        importInput.onchange = this.options.onImportFileChange
+      }
+
+      return container
+    }
+  })
 
   $('[data-map="choose_polygon"]').each(function (i, e) {
     var name = e.getAttribute('data-name')
@@ -137,92 +179,63 @@ function loadShape (map, group, shape, msg, $input) {
       }
     })
 
-    var ExportControl = L.Control.extend({
-      options: {
-        position: 'topright'
+    map.addControl(new ExportControl({
+      onExportLinkClick: function (e) {
+        var shape = drawnItems.toGeoJSON()
+        var blob = new window.Blob([JSON.stringify(shape)], {type: 'application/json'})
+        FileSaver.saveAs(blob, 'export.geojson')
       },
-      onAdd: function (map) {
-        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom')
-        var exportLink = L.DomUtil.create('a', '', container)
-        var exportIcon = L.DomUtil.create('i', 'fa fa-download', exportLink)
-        exportLink.setAttribute('title', django.gettext('Export as GeoJSON'))
-        exportIcon.setAttribute('aria-label', django.gettext('Export as GeoJSON'))
+      onImportFileChange: function (e) {
+        e.preventDefault()
+        e.stopPropagation()
 
-        exportLink.onclick = function () {
-          var shape = drawnItems.toGeoJSON()
-          var blob = new window.Blob([JSON.stringify(shape)], {type: 'application/json'})
-          FileSaver.saveAs(blob, 'export.geojson')
-        }
+        // FIXME: need to check if there is a file?
+        var file = e.target.files[0]
 
-        var importInput = L.DomUtil.create('input', 'sr-only', container)
-        importInput.setAttribute('type', 'file')
-
-        var importLink = L.DomUtil.create('a', '', container)
-        var importIcon = L.DomUtil.create('i', 'fa fa-upload', importLink)
-        importLink.setAttribute('title', django.gettext('Import shapefile or GeoJSON file'))
-        importIcon.setAttribute('aria-label', django.gettext('Import shapefile or GeoJSON file'))
-
-        importLink.onclick = function (e) {
-          e.preventDefault()
-          e.stopPropagation()
-          importInput.click()
-        }
-
-        importInput.onchange = function (e) {
-          e.preventDefault()
-          e.stopPropagation()
-
-          // FIXME: need to check if there is a file?
-          var file = e.target.files[0]
-
-          if (file.name.slice(-3) === 'zip') {
-            let reader = new window.FileReader()
-            reader.onload = function (e) {
-              shp(e.target.result).then(function (geoJson) {
-                try {
-                  var shape = L.geoJson(geoJson, {
-                    style: polygonStyle
-                  })
-                } catch (e) {
-                  window.alert(django.gettext('The uploaded file is not a valid shapefile.'))
-                  return
-                }
-
-                var msg = django.gettext('Do you want to import this file and delete all the existing polygons?')
-                loadShape(map, drawnItems, shape, msg, $('#id_' + name))
-              }, function (e) {
-                window.alert(django.gettext('The uploaded file is not a valid shapefile.'))
-              })
-            }
-            reader.readAsArrayBuffer(file)
-          } else if (file.name.slice(-4) === 'json') {
-            let reader = new window.FileReader()
-            reader.onload = function (e) {
-              // FIXME: what about errors?
-              var buffer = e.target.result
-              var decodedString = String.fromCharCode.apply(null, new Uint8Array(buffer))
+        if (file.name.slice(-3) === 'zip') {
+          let reader = new window.FileReader()
+          reader.onload = function (e) {
+            shp(e.target.result).then(function (geoJson) {
               try {
-                var geoJson = JSON.parse(decodedString)
                 var shape = L.geoJson(geoJson, {
                   style: polygonStyle
                 })
               } catch (e) {
-                window.alert(django.gettext('The uploaded file is not a valid geojson file.'))
+                window.alert(django.gettext('The uploaded file is not a valid shapefile.'))
                 return
               }
 
               var msg = django.gettext('Do you want to import this file and delete all the existing polygons?')
               loadShape(map, drawnItems, shape, msg, $('#id_' + name))
-            }
-            reader.readAsArrayBuffer(file)
-          } else {
-            window.alert(django.gettext('Invalid file format. Only shapefiles (.zip) and geojson (.geojson or .json) are supported.'))
+            }, function (e) {
+              window.alert(django.gettext('The uploaded file is not a valid shapefile.'))
+            })
           }
-        }
+          reader.readAsArrayBuffer(file)
+        } else if (file.name.slice(-4) === 'json') {
+          let reader = new window.FileReader()
+          reader.onload = function (e) {
+            // FIXME: what about errors?
+            var buffer = e.target.result
+            var decodedString = String.fromCharCode.apply(null, new Uint8Array(buffer))
+            try {
+              var geoJson = JSON.parse(decodedString)
+              var shape = L.geoJson(geoJson, {
+                style: polygonStyle
+              })
+            } catch (e) {
+              window.alert(django.gettext('The uploaded file is not a valid geojson file.'))
+              return
+            }
 
-        return container
+            var msg = django.gettext('Do you want to import this file and delete all the existing polygons?')
+            loadShape(map, drawnItems, shape, msg, $('#id_' + name))
+          }
+          reader.readAsArrayBuffer(file)
+        } else {
+          window.alert(django.gettext('Invalid file format. Only shapefiles (.zip) and geojson (.geojson or .json) are supported.'))
+        }
       }
-    })
-    map.addControl(new ExportControl())
+    }))
   })
 })
