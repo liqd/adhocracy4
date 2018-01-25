@@ -45,11 +45,13 @@ function getBaseBounds (L, polygon, bbox) {
 
     onAdd: function (map) {
       const container = this._createControls()
+      document.body.appendChild(this._createModal())
 
       $(document).on('click', '#map-export-link', (e) => {
         e.preventDefault()
         this._export(map)
       })
+
       $(document).on('submit', '#map-import-form', (e) => {
         e.preventDefault()
 
@@ -59,15 +61,13 @@ function getBaseBounds (L, polygon, bbox) {
         }
         const file = fileInput.files[0]
 
-        $('#map-import-modal').modal('hide')
+        this._removeUploadError()
         fileInput.value = ''
 
         this._import(map, file)
       })
 
-      const modal = this._createModal()
-      window.document.body.appendChild(modal)
-
+      $('#map-import-modal').on('hidden.bs.modal', () => this._removeUploadError())
       return container
     },
 
@@ -93,20 +93,20 @@ function getBaseBounds (L, polygon, bbox) {
                 '<button class="close" aria-label="' + django.gettext('Close') + '" data-dismiss="modal"><i class="fa fa-times"></i></button>' +
               '</div>' +
               '<div class="modal-body">' +
-                '<form id="map-import-form">' +
+                '<form id="map-import-form" data-ignore-submit="true">' +
                   '<div class="form-group">' +
                     '<label for="map-import-file-input">' + django.gettext('Import shape via file upload') + '</label>' +
-                      '<div class="form-hint">' +
-                        django.gettext('Upload a shape from a GeoJSON (.geojson) or a zipped Shapefile (.zip).') + '<br>' +
-                        django.gettext('Note that uploading Shapefiles is not supported with Internet Explorer 10') + '<br>' +
-                        '<strong>' + django.gettext('Attention importing a file will delete all the existing shapes.') + '</strong>' +
+                    '<div class="form-hint">' +
+                      django.gettext('Upload a shape from a GeoJSON (.geojson) or a zipped Shapefile (.zip).') + '<br>' +
+                      django.gettext('Note that uploading Shapefiles is not supported with Internet Explorer 10') + '<br>' +
+                      '<strong>' + django.gettext('Attention importing a file will delete all the existing shapes.') + '</strong>' +
+                    '</div>' +
+                    '<div class="widget widget--fileinput">' +
+                      '<div class="input-group">' +
+                        '<input type="file" class="input-group__input" id="map-import-file-input" required>' +
+                        '<input type="submit" class="btn btn--primary input-group__after" value="' + django.gettext('Upload') + '">' +
                       '</div>' +
-                      '<div class="widget widget--fileinput">' +
-                        '<div class="input-group">' +
-                          '<input type="file" class="input-group__input" id="map-import-file-input" required>' +
-                          '<input type="submit" class="btn btn--primary input-group__after" value="' + django.gettext('Upload') + '">' +
-                        '</div>' +
-                      '</div>' +
+                    '</div>' +
                   '</div>' +
                 '</form>' +
               '</div>' +
@@ -117,6 +117,14 @@ function getBaseBounds (L, polygon, bbox) {
           '</div>' +
         '</div>'
       )[0]
+    },
+
+    _removeUploadError: function () {
+      $('#map-import-form .errorlist').remove()
+    },
+
+    _showUploadError: function (msg) {
+      $('#map-import-form .form-group').append('<ul class="errorlist"><li>' + msg + '</li>')
     },
 
     _export: function (map) {
@@ -137,11 +145,11 @@ function getBaseBounds (L, polygon, bbox) {
               })
               this._addToMap(map, shape)
             } catch (e) {
-              window.alert(django.gettext('The uploaded file is not a valid shapefile.'))
+              this._showUploadError(django.gettext('The uploaded file is not a valid shapefile.'))
             }
-          }, (e) => window.alert(django.gettext('The uploaded file is not a valid shapefile.'))
+          }, (e) => this._showUploadError(django.gettext('The uploaded file is not a valid shapefile.'))
           ).catch((e) => {
-            window.alert(django.gettext('The uploaded file could not be imported.'))
+            this._showUploadError(django.gettext('The uploaded file could not be imported.'))
           })
         }
         reader.readAsArrayBuffer(file)
@@ -158,17 +166,18 @@ function getBaseBounds (L, polygon, bbox) {
             })
             this._addToMap(map, shape)
           } catch (e) {
-            console.log(e)
-            window.alert(django.gettext('The uploaded file is not a valid geojson file.'))
+            this._showUploadError(django.gettext('The uploaded file is not a valid geojson file.'))
           }
         }
         reader.readAsArrayBuffer(file)
       } else {
-        window.alert(django.gettext('Invalid file format. Only shapefiles (.zip) and geojson (.geojson or .json) are supported.'))
+        this._showUploadError(django.gettext('Invalid file format.'))
       }
     },
 
     _addToMap: function (map, shape) {
+      $('#map-import-modal').modal('hide')
+
       this._layer.clearLayers()
       shape.eachLayer((layer) => {
         this._layer.addLayer(layer)
