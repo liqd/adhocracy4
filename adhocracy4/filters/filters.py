@@ -39,6 +39,9 @@ class DefaultsFilterSet(PagedFilterSet):
         defaults = {
             'is_archived': 'false'
         }
+
+    Make sure to use the DistinctOrderingFilter if the list needs to be
+    paginated and ordered with an OrderingFilter
     """
 
     defaults = None
@@ -52,6 +55,21 @@ class DefaultsFilterSet(PagedFilterSet):
                 data[key] = value
 
         super().__init__(data, *args, **kwargs)
+
+
+class DistinctOrderingFilter(django_filters.OrderingFilter):
+    """Makes sure, that every queryset gets a distinct ordering, even if
+    field to order by (e.g. comment count) would produce a non-distinct
+    odering.
+    """
+
+    def filter(self, qs, value):
+
+        if value in django_filters.constants.EMPTY_VALUES:
+            return qs.order_by('pk')
+
+        ordering = [self.get_ordering_value(param) for param in value] + ['pk']
+        return qs.order_by(*ordering)
 
 
 class FreeTextFilter(django_filters.CharFilter):
