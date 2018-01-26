@@ -58,7 +58,7 @@ class DefaultsFilterSet(PagedFilterSet):
 
 
 class DistinctOrderingFilter(django_filters.OrderingFilter):
-    """Makes sure, that every queryset gets a distict ordering, even if
+    """Makes sure, that every queryset gets a distinct ordering, even if
     field to order by (e.g. comment count) would produce a non-distinct
     odering.
     """
