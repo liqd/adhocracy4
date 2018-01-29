@@ -37,16 +37,19 @@ module.exports = {
       './meinberlin/assets/js/init-picker.js',
       'datepicker/css/datepicker.min.css'
     ],
-    'leaflet.draw': [
-      'leaflet-draw',
-      'leaflet-draw/dist/leaflet.draw.css',
-      './meinberlin/assets/js/i18n-leaflet-draw.js'
-    ],
     embed: [
       './meinberlin/assets/js/embed.js'
     ],
     'popup-close': [
       './meinberlin/assets/js/popup-close.js'
+    ],
+    'map_choose_polygon_with_preset': [
+      './meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js',
+      'leaflet-draw',
+      'leaflet-draw/dist/leaflet.draw.css',
+      './meinberlin/assets/js/i18n-leaflet-draw.js',
+      'file-saver',
+      'shpjs'
     ]
   },
   output: {
