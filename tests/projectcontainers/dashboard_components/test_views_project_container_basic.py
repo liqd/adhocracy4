@@ -1,6 +1,6 @@
 import pytest
 
-from meinberlin.apps.dashboard2 import components
+from adhocracy4.dashboard import components
 from meinberlin.test.helpers import assert_dashboard_form_component_edited
 from meinberlin.test.helpers import assert_dashboard_form_component_response
 
