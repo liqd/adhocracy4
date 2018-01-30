@@ -88,7 +88,6 @@ INSTALLED_APPS = (
     # General apps containing views
     'meinberlin.apps.account.apps.Config',
     'meinberlin.apps.adminlog.apps.Config',
-    'meinberlin.apps.dashboard2.apps.Config',
     'meinberlin.apps.dashboard.apps.Config',
     'meinberlin.apps.embed.apps.Config',
     'meinberlin.apps.exports.apps.Config',
