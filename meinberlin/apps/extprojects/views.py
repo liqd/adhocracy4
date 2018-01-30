@@ -1,10 +1,10 @@
 from django.shortcuts import get_object_or_404
 from django.views import generic
 
-from adhocracy4.projects.mixins import ProjectMixin
-from meinberlin.apps.dashboard2.components.forms.views import \
+from adhocracy4.dashboard.components.forms.views import \
     ProjectComponentFormView
-from meinberlin.apps.dashboard2.views import ProjectCreateView
+from adhocracy4.dashboard.views import ProjectCreateView
+from adhocracy4.projects.mixins import ProjectMixin
 
 from . import forms
 from . import models

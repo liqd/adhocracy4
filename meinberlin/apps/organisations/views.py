@@ -2,8 +2,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
+from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from meinberlin.apps.dashboard import forms
-from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
 from meinberlin.apps.organisations.models import Organisation
 
 

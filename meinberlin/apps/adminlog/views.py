@@ -1,7 +1,7 @@
 from django.views import generic
 
+from adhocracy4.dashboard import mixins
 from adhocracy4.projects.mixins import ProjectMixin
-from meinberlin.apps.dashboard2 import mixins
 
 from . import models
 

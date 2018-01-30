@@ -1,9 +1,9 @@
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.dashboard.forms import ProjectCreateForm
+from adhocracy4.dashboard.forms import ProjectDashboardForm
 from meinberlin.apps.contrib.widgets import Select2MultipleWidget
-from meinberlin.apps.dashboard2.forms import ProjectCreateForm
-from meinberlin.apps.dashboard2.forms import ProjectDashboardForm
 
 from . import models
 

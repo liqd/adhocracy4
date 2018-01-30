@@ -1,5 +1,5 @@
-from meinberlin.apps.dashboard2 import components
-from meinberlin.apps.dashboard2 import ProjectDashboard
+from adhocracy4.dashboard import components
+from adhocracy4.dashboard import ProjectDashboard
 from meinberlin.apps.projects import get_project_type
 
 

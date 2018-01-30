@@ -1,9 +1,9 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.dashboard.forms import ProjectCreateForm
+from adhocracy4.dashboard.forms import ProjectDashboardForm
 from adhocracy4.forms.fields import DateTimeField
-from meinberlin.apps.dashboard2.forms import ProjectCreateForm
-from meinberlin.apps.dashboard2.forms import ProjectDashboardForm
 from meinberlin.apps.extprojects import models as extproject_models
 
 

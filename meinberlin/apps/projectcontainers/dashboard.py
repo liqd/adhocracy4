@@ -1,9 +1,9 @@
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.dashboard import ProjectFormComponent
+from adhocracy4.dashboard import components
 from meinberlin.apps.dashboard import get_project_type
-from meinberlin.apps.dashboard2 import ProjectFormComponent
-from meinberlin.apps.dashboard2 import components
 
 from . import forms
 from . import views

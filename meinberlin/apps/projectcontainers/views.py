@@ -1,11 +1,11 @@
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
-from meinberlin.apps.dashboard2 import mixins as dashboard_mixins
-from meinberlin.apps.dashboard2.blueprints import ProjectBlueprint
-from meinberlin.apps.dashboard2.components.forms.views import \
+from adhocracy4.dashboard import mixins as dashboard_mixins
+from adhocracy4.dashboard.blueprints import ProjectBlueprint
+from adhocracy4.dashboard.components.forms.views import \
     ProjectComponentFormView
-from meinberlin.apps.dashboard2.views import ProjectCreateView
+from adhocracy4.dashboard.views import ProjectCreateView
 
 from . import forms
 from . import models

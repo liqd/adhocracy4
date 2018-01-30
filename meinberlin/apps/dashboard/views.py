@@ -1,4 +1,4 @@
-from meinberlin.apps.dashboard2 import views as a4dashboard_views
+from adhocracy4.dashboard import views as a4dashboard_views
 
 
 class DashboardProjectListView(a4dashboard_views.ProjectListView):

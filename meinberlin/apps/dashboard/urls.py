@@ -1,8 +1,7 @@
 from django.conf.urls import url
 
+from adhocracy4.dashboard.urls import urlpatterns as a4dashboard_urlpatterns
 from meinberlin.apps.bplan.views import BplanProjectCreateView
-from meinberlin.apps.dashboard2.urls import \
-    urlpatterns as a4dashboard_urlpatterns
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
 from meinberlin.apps.newsletters import views as newsletter_views
 from meinberlin.apps.organisations import views as organisation_views

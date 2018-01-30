@@ -4,9 +4,9 @@ from django.dispatch import receiver
 
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
+from adhocracy4.dashboard import signals as dashboard_signals
 from adhocracy4.follows.models import Follow
 from adhocracy4.projects.models import Project
-from meinberlin.apps.dashboard2 import signals as dashboard_signals
 
 from . import emails
 

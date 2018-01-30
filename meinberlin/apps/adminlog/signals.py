@@ -3,7 +3,7 @@ from django.dispatch import receiver
 from django.utils import translation
 from django.utils.translation import ugettext as _
 
-from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
+from adhocracy4.dashboard import signals as a4dashboard_signals
 
 from . import models
 
