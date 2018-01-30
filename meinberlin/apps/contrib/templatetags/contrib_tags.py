@@ -38,26 +38,6 @@ def filter_has_perm(perm, user, objects):
         return [obj for obj in objects if user.has_perm(perm, obj)]
 
 
-@register.filter
-def percentage(value, max_value):
-    return round(value / max_value * 100)
-
-
-@register.assignment_tag
-def project_tile_image(project):
-    return project.tile_image or project.image or None
-
-
-@register.assignment_tag
-def project_tile_image_copyright(project):
-    if project.tile_image:
-        return project.tile_image_copyright
-    elif project.image:
-        return project.image_copyright
-    else:
-        return None
-
-
 @register.simple_tag()
 def html_date(value, displayfmt=None, datetimefmt='c', **kwargs):
     """Format a date and wrap it in a html <time> element.
