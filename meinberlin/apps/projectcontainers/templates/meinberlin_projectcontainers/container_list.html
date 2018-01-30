@@ -1,4 +1,4 @@
-{% extends "meinberlin_dashboard2/base_project_list.html" %}
+{% extends "a4dashboard/base_project_list.html" %}
 {% load i18n %}
 
 {% block title %}{% trans "Containers" %} &mdash; {{ block.super }}{% endblock%}
@@ -20,7 +20,7 @@
     {% if projectcontainer_list|length > 0 %}
         <ul class="u-list-reset">
             {% for container in projectcontainer_list %}
-                {% include "meinberlin_dashboard2/includes/project_list_item.html" with project=container %}
+                {% include "a4dashboard/includes/project_list_item.html" with project=container %}
             {% endfor %}
         </ul>
     {% else %}

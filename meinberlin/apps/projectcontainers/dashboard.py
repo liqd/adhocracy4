@@ -48,8 +48,7 @@ class ContainerInformationComponent(ProjectFormComponent):
 
     form_title = _('Edit project information')
     form_class = forms.ContainerInformationForm
-    form_template_name = 'meinberlin_dashboard2' \
-                         '/includes/project_information_form.html'
+    form_template_name = 'a4dashboard/includes/project_information_form.html'
 
     def is_effective(self, project):
         project_type = get_project_type(project)
