@@ -1,0 +1,24 @@
+{% load i18n static %}
+
+<li class="tile">
+    <div class="tile__head">
+        <div class="tile__image tile__image--contained" style="background-image: url({% static blueprint.image %})"></div>
+    </div>
+    <div class="tile__body">
+        <h3 class="tile__title">{{ blueprint.title }}</h3>
+        <div class="tile__text">
+            {{ blueprint.description | linebreaks }}
+
+            <ul>
+                {% for phase_content in blueprint.content %}
+                    <li><strong>{% trans 'Phase' %} {{ forloop.counter }}</strong>: {{ phase_content.description }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <a href="{% url 'a4dashboard:project-create' organisation_slug=view.organisation.slug blueprint_slug=blueprint_slug %}"
+           class="btn" data-toggle="ajax-modal" data-target-selector="#project-create-form">
+            {% trans 'Select'%}
+        </a>
+    </div>
+</li>

@@ -1,0 +1,7 @@
+{% extends "a4dashboard/blueprint_list.html" %}
+{% load static %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script src="{% static 'js/ajax_modal.js' %}"></script>
+{% endblock %}
