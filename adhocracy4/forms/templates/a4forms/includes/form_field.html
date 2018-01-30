@@ -1,0 +1,20 @@
+{% load i18n widget_tweaks %}
+
+<div class="form-group">
+    <label for="{{ field.id_for_label }}">
+        {{ field.label }}{% if field.field.required %}<span role="presentation" title="{% trans 'This field is required' %}">*</span>{% endif %}
+        {% block after_label %}
+        {% endblock %}
+    </label>
+    {% if field.help_text %}
+    <div class="form-hint">
+        {{ field.help_text }}
+    </div>
+    {% endif %}
+    {% block field %}
+        <div class="widget widget--{{ field|widget_type }}">
+            {{ field }}
+        </div>
+    {% endblock %}
+    {{ field.errors }}
+</div>
