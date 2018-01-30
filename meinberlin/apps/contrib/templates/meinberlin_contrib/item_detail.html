@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags contrib_tags %}
+{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags contrib_tags %}
 
 {% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
 {% block content %}
@@ -44,8 +44,7 @@
                     </div>
                 {% endif %}
 
-                {% get_item_change_permission object as change_perm %}
-                {% has_perm change_perm request.user object as user_may_change %}
+                {% has_perm 'meinberlin_ideas.change_idea' request.user object as user_may_change %}
 
                 {% if request.user.is_authenticated %}
                     <div class="dropdown dropdown--right lr-bar__right">
@@ -63,11 +62,11 @@
                         <ul class="dropdown-menu" aria-labelledby="idea-{{ object.pk }}-actions">
                             {% if user_may_change %}
                                 <li>
-                                    {% get_item_update_url object as change_url %}
+                                    {% url 'meinberlin_ideas:idea-update' year=object.created.year pk=object.pk as change_url %}
                                     <a class="dropdown-item" href="{{ change_url }}">{% trans 'Edit' %}</a>
                                 </li>
                                 <li>
-                                    {% get_item_delete_url object as delete_url %}
+                                    {% url 'meinberlin_ideas:idea-delete' year=object.created.year pk=object.pk as delete_url %}
                                     <a class="dropdown-item" href="{{ delete_url }}">{% trans 'Delete' %}</a>
                                 </li>
                             {% endif %}
