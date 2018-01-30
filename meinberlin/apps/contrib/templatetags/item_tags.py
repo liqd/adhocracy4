@@ -62,5 +62,6 @@ def get_item_url(item, view):
     )
 
     return reverse(url_name, kwargs={
-        'slug': item.slug
+        'year': item.created.year,
+        'pk': item.pk
     })
