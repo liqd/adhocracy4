@@ -17,6 +17,7 @@ from rules.contrib.views import LoginRequiredMixin
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import DefaultsFilterSet
+from adhocracy4.filters.filters import DistinctOrderingFilter
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
@@ -78,7 +79,7 @@ class ProjectFilterSet(DefaultsFilterSet):
         'is_archived': 'false'
     }
 
-    ordering = django_filters.OrderingFilter(
+    ordering = DistinctOrderingFilter(
         choices=(
             ('-created', _('Most recent')),
         ),
