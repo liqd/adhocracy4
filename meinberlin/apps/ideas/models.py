@@ -54,7 +54,8 @@ class Idea(AbstractIdea):
 
     def get_absolute_url(self):
         return reverse('meinberlin_ideas:idea-detail',
-                       kwargs=dict(pk=self.pk, year=self.created.year))
+                       kwargs=dict(pk='{:05d}'.format(self.pk),
+                                   year=self.created.year))
 
     class Meta:
         ordering = ['-created']
