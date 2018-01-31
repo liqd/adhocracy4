@@ -5,7 +5,8 @@ from django.core.urlresolvers import reverse
 @pytest.mark.django_db
 def test_absolute_url(idea):
     url = reverse('meinberlin_ideas:idea-detail',
-                  kwargs={'pk': idea.pk, 'year': idea.created.year})
+                  kwargs={'pk': '{:05d}'.format(idea.pk),
+                          'year': idea.created.year})
     assert idea.get_absolute_url() == url
 
 
