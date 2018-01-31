@@ -11,9 +11,7 @@
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
             <input type="submit" class="btn btn--primary" value="{% trans 'Yes'%}" />
-
-            {% url 'meinberlin_budgeting:proposal-detail' year=object.created.year pk=object.pk as detail_url %}
-            <a href="{{ detail_url }}" class="btn btn--light">{% trans 'Cancel'%}</a>
+            <a href="{{ object.get_absolute_url }}" class="btn btn--light">{% trans 'Cancel'%}</a>
         </form>
     </div>
 </div>

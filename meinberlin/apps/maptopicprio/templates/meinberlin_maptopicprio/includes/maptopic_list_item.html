@@ -22,8 +22,7 @@
         {% endspaceless %}
     </div>
     <h3 class="list-item__title">
-        {% url 'meinberlin_maptopicprio:maptopic-detail' slug=object.slug as detail_url %}
-        <a href="{{ detail_url }}">
+        <a href="{{ object.get_absolute_url }}">
         {{ object.name }}
         </a>
     </h3>

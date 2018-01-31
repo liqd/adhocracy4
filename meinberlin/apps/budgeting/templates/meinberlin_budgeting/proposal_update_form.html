@@ -14,8 +14,7 @@
                         {% trans 'back to project' %}</a>
                 </li>
                 <li>
-                    {% url 'meinberlin_budgeting:proposal-detail' year=object.created.year pk=object.pk as detail_url %}
-                    <a href="{{ detail_url }}">
+                    <a href="{{ object.get_absolute_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                         {% trans 'back to proposal' %}</a>
                 </li>
@@ -24,7 +23,7 @@
 
         <h1>{% trans 'Edit proposal' %}</h1>
 
-        {% include "meinberlin_budgeting/includes/proposal_form.html" with proposal=proposal cancel=detail_url %}
+        {% include "meinberlin_budgeting/includes/proposal_form.html" with proposal=proposal cancel=object.get_absolute_url %}
     </div>
 </div>
 {% endblock %}

@@ -12,8 +12,7 @@
             {% csrf_token %}
             <input type="submit" class="btn btn--primary" value="{% trans 'Yes'%}" />
 
-            {% url 'meinberlin_ideas:idea-detail' year=object.created.year pk=object.pk as detail_url %}
-            <a href="{{ detail_url }}" class="btn btn--light">{% trans 'Cancel'%}</a>
+            <a href="{{ object.get_absolute_url }}" class="btn btn--light">{% trans 'Cancel'%}</a>
         </form>
     </div>
 </div>

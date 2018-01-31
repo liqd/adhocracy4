@@ -20,8 +20,7 @@
         {% endspaceless %}
     </div>
     <h3 class="list-item__title">
-        {% url 'meinberlin_budgeting:proposal-detail' year=object.created.year pk=object.pk as detail_url %}
-        <a href="{{ detail_url }}">
+        <a href="{{ object.get_absolute_url }}">
         {{ object.name }}
         </a>
     </h3>
