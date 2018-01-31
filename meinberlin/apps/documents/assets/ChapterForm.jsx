@@ -1,8 +1,9 @@
+import FlipMove from 'react-flip-move'
+
 var React = require('react')
 var django = require('django')
 var ErrorList = require('../../contrib/assets/ErrorList')
 var ParagraphForm = require('./ParagraphForm')
-var FlipMove = require('react-flip-move')
 
 const ChapterForm = (props) => {
   return (

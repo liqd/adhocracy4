@@ -1,7 +1,8 @@
+import FlipMove from 'react-flip-move'
+
 var React = require('react')
 var django = require('django')
 var ChapterNavItem = require('./ChapterNavItem')
-var FlipMove = require('react-flip-move')
 
 const ChapterNav = (props) => {
   const activeKey = props.activeChapter.id || props.activeChapter.key
