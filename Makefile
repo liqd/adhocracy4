@@ -1,6 +1,6 @@
 all: help
 
-VIRTUAL_ENV ?= .
+VIRTUAL_ENV ?= env
 SOURCE_DIRS = adhocracy4 tests
 
 help:
@@ -15,6 +15,7 @@ help:
 
 install:
 	npm install
+	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
 	$(VIRTUAL_ENV)/bin/pip install -r requirements/dev.txt
 
 lint:
