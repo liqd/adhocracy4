@@ -10,7 +10,7 @@ class ItemExportWithReferenceNumberMixin(VirtualFieldMixin):
             virtual['reference_number'] = _('Reference Number')
         return super().get_virtual_fields(virtual)
 
-    def get_category_data(self, item):
+    def get_reference_number_data(self, item):
         if hasattr(item, 'reference_number'):
             return item.reference_number
         return ''
