@@ -124,7 +124,8 @@ def _component_sort_key(component):
 
 
 class DashboardComponents:
-    _registry = {'projects': {}, 'modules': {}}
+    def __init__(self):
+        self._registry = {'projects': {}, 'modules': {}}
 
     @property
     def projects(self):
