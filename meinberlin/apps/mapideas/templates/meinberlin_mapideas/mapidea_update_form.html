@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n item_tags %}
+{% load i18n %}
 
 {% block title %}{% blocktrans with title=object.name %}Edit {{ title }}{% endblocktrans %} &mdash; {{ block.super }}{% endblock %}
 
@@ -14,8 +14,7 @@
                         {% trans 'back to project' %}</a>
                 </li>
                 <li>
-                    {% get_item_detail_url object as detail_url %}
-                    <a href="{{ detail_url }}">
+                    <a href="{{ object.get_absolute_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                         {% trans 'back to idea' %}</a>
                 </li>
@@ -24,7 +23,7 @@
 
         <h1>{% trans 'Edit idea' %}</h1>
 
-        {% include "meinberlin_mapideas/includes/mapidea_form.html" with cancel=detail_url %}
+        {% include "meinberlin_mapideas/includes/mapidea_form.html" with cancel=object.get_absolute_url %}
     </div>
 </div>
 {% endblock %}

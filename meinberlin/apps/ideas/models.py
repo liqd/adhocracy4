@@ -34,6 +34,10 @@ class AbstractIdea(module_models.Item):
 
     objects = IdeaQuerySet.as_manager()
 
+    @property
+    def reference_number(self):
+        return '{:d}-{:05d}'.format(self.created.year, self.pk)
+
     class Meta:
         abstract = True
 
@@ -50,7 +54,8 @@ class Idea(AbstractIdea):
 
     def get_absolute_url(self):
         return reverse('meinberlin_ideas:idea-detail',
-                       kwargs=dict(slug=self.slug))
+                       kwargs=dict(pk='{:05d}'.format(self.pk),
+                                   year=self.created.year))
 
     class Meta:
         ordering = ['-created']
