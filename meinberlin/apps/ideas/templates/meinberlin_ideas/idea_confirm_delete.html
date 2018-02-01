@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n item_tags %}
+{% load i18n %}
 
 {% block title %}{% trans 'Confirm Idea Deletion' %} &mdash; {{ block.super }}{% endblock %}
 
@@ -12,8 +12,7 @@
             {% csrf_token %}
             <input type="submit" class="btn btn--primary" value="{% trans 'Yes'%}" />
 
-            {% get_item_detail_url idea as detail_url %}
-            <a href="{{ detail_url }}" class="btn btn--light">{% trans 'Cancel'%}</a>
+            <a href="{{ object.get_absolute_url }}" class="btn btn--light">{% trans 'Cancel'%}</a>
         </form>
     </div>
 </div>

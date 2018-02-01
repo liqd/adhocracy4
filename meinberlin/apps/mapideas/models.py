@@ -30,7 +30,8 @@ class MapIdea(AbstractMapIdea):
 
     def get_absolute_url(self):
         return reverse('meinberlin_mapideas:mapidea-detail',
-                       args=[str(self.slug)])
+                       kwargs=dict(pk='{:05d}'.format(self.pk),
+                                   year=self.created.year))
 
     class Meta:
         ordering = ['-created']
