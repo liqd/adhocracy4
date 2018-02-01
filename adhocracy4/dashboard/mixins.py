@@ -148,7 +148,7 @@ class DashboardProjectDuplicateMixin:
                                             project)
 
             if not can_add:
-                raise PermissionDenied
+                raise PermissionDenied()
 
             project_clone = deepcopy(project)
             project_clone.pk = None
