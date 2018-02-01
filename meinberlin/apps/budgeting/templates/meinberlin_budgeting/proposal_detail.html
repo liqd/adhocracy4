@@ -37,8 +37,7 @@
     {% has_perm 'meinberlin_budgeting.moderate_proposal' request.user proposal as is_moderator %}
     {% if is_moderator %}
         <li>
-            {% url 'meinberlin_budgeting:proposal-moderate' year=object.created.year pk=object.pk as moderate_url %}
-            <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'Moderate' %}</a>
+            <a class="dropdown-item" href="{% url 'meinberlin_budgeting:proposal-moderate' year=object.created.year pk=object.pk %}">{% trans 'Moderate' %}</a>
         </li>
     {% endif %}
 {% endblock %}
