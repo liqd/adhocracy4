@@ -156,11 +156,8 @@ function getBaseBounds (L, polygon, bbox) {
       } else if (file.name.slice(-4) === 'json') {
         let reader = new window.FileReader()
         reader.onload = (e) => {
-          const buffer = e.target.result
-          const decodedString = String.fromCharCode.apply(null, new Uint8Array(buffer))
-
           try {
-            const geoJson = JSON.parse(decodedString)
+            const geoJson = JSON.parse(e.target.result)
             let shape = L.geoJson(geoJson, {
               style: this.options.polygonStyle
             })
@@ -169,7 +166,7 @@ function getBaseBounds (L, polygon, bbox) {
             this._showUploadError(django.gettext('The uploaded file is not a valid geojson file.'))
           }
         }
-        reader.readAsArrayBuffer(file)
+        reader.readAsText(file, 'utf-8')
       } else {
         this._showUploadError(django.gettext('Invalid file format.'))
       }
