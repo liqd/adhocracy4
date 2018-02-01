@@ -52,6 +52,10 @@ class MapTopic(module_models.Item):
     class Meta:
         ordering = ['-created']
 
+    @property
+    def reference_number(self):
+        return '{:d}-{:05d}'.format(self.created.year, self.pk)
+
     def __str__(self):
         return self.name
 
@@ -62,4 +66,6 @@ class MapTopic(module_models.Item):
 
     def get_absolute_url(self):
         return reverse('meinberlin_maptopicprio:maptopic-detail',
-                       args=[str(self.slug)])
+                       kwargs=dict(pk='{:05d}'.format(self.pk),
+                                   year=self.created.year)
+                       )
