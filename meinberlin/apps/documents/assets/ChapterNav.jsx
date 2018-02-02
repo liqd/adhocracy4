@@ -1,6 +1,5 @@
-import FlipMove from 'react-flip-move'
-
 var React = require('react')
+var FlipMove = require('react-flip-move').default
 var django = require('django')
 var ChapterNavItem = require('./ChapterNavItem')
 
