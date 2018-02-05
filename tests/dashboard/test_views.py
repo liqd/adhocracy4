@@ -183,3 +183,47 @@ def test_project_publish_redirect(client, project, staff_user):
 
     response = client.post(project_publish_url, {})
     assert redirect_target(response) == 'project-edit'
+
+
+@pytest.mark.django_db
+def test_project_duplicate(client, user, staff_user,
+                           area_settings, phase_factory):
+    module = area_settings.module
+    project = module.project
+    organisation = project.organisation
+    phase = phase_factory(module=module)
+
+    project_list_url = reverse('a4dashboard:project-list', kwargs={
+        'organisation_slug': organisation.slug})
+
+    client.login(username=staff_user, password='password')
+    response = client.post(project_list_url, {
+        'duplicate': '1',
+        'project_pk': project.pk
+    })
+    assert response.status_code == 302
+
+    assert Project.objects.all().count() == 2
+
+    project_clone = Project.objects.order_by('pk').last()
+    assert project_clone.pk != project.pk
+
+    assert project_clone.is_draft is True
+    assert project_clone.created > project.created
+    for attr in ('description', 'information', 'result'):
+        assert getattr(project_clone, attr) == getattr(project, attr)
+
+    module_clone = project_clone.module_set.first()
+    assert module_clone.pk != module.pk
+    for attr in ('name', 'description', 'weight'):
+        assert getattr(module_clone, attr) == getattr(module, attr)
+
+    phase_clone = module_clone.phase_set.first()
+    assert phase_clone.pk != phase.pk
+    for attr in ('name', 'description', 'type', 'start_date', 'end_date',
+                 'weight'):
+        assert getattr(phase_clone, attr) == getattr(phase, attr)
+
+    area_settings_clone = module_clone.settings_instance
+    assert area_settings_clone.pk != area_settings.pk
+    assert area_settings_clone.polygon == area_settings.polygon
