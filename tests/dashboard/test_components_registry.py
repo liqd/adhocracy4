@@ -1,5 +1,6 @@
 import pytest
 
+from adhocracy4.dashboard.components import DashboardComponent
 from adhocracy4.dashboard.components import DashboardComponents
 
 
@@ -56,3 +57,11 @@ def test_urls(dashboard_test_component_factory):
                    urlpatterns))
     assert any(map(lambda urlpattern: urlpattern.resolve('mc-url-pattern'),
                    urlpatterns))
+
+
+def test_component_interface():
+    component = DashboardComponent()
+    assert component.is_effective(None) is False
+    assert component.get_progress(None) == (0, 0)
+    assert component.get_urls() == []
+    assert component.get_base_url(None) == ''
