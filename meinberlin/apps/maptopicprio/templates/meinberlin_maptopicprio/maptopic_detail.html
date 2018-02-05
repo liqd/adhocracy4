@@ -48,6 +48,13 @@
                 {% endif %}
             </div>
 
+            <div class="item-detail__meta lr-bar">
+                <div class="lr-bar__right">
+                    <strong>{% trans 'Reference No.' %}:</strong>
+                    {{ object.reference_number }}
+                </div>
+            </div>
+
             <div class="item-detail__actions lr-bar">
                 {% if object|has_feature:"rate" %}
                     <div class="lr-bar__left">

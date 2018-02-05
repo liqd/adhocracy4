@@ -19,8 +19,6 @@
         <div class="item-detail">
             <h1 class="item-detail__title">{{ object.name }}</h1>
 
-            <div class="item-detail__reference"><strong>{% trans 'Reference Number' %}:</strong> {{ object.reference_number }}</div>
-
             <div class="item-detail__labels">
                 {% if object.category %}
                     <div class="label label--big">{{ object.category }}</div>
@@ -34,9 +32,15 @@
                 {% block additional_content %}{% endblock %}
             </div>
 
-            <div class="item-detail__meta">
-                <strong class="item-detail__creator">{{ object.creator.username }}</strong>
-                {% html_date object.created %}
+            <div class="item-detail__meta lr-bar">
+                <div class="lr-bar__left">
+                    <strong class="item-detail__creator">{{ object.creator.username }}</strong>
+                    {% html_date object.created %}
+                </div>
+                <div class="lr-bar__right">
+                    <strong>{% trans 'Reference No.' %}:</strong>
+                    {{ object.reference_number }}
+                </div>
             </div>
 
             <div class="item-detail__actions lr-bar">
