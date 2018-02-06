@@ -186,12 +186,15 @@ def test_project_publish_redirect(client, project, staff_user):
 
 
 @pytest.mark.django_db
-def test_project_duplicate(client, user, staff_user,
+def test_project_duplicate(client, staff_user,
                            area_settings, phase_factory):
     module = area_settings.module
     project = module.project
     organisation = project.organisation
     phase = phase_factory(module=module)
+
+    project.is_draft = False
+    project.is_archived = True
 
     project_list_url = reverse('a4dashboard:project-list', kwargs={
         'organisation_slug': organisation.slug})
@@ -209,8 +212,9 @@ def test_project_duplicate(client, user, staff_user,
     assert project_clone.pk != project.pk
 
     assert project_clone.is_draft is True
+    assert project_clone.is_archived is False
     assert project_clone.created > project.created
-    for attr in ('description', 'information', 'result'):
+    for attr in ('description', 'information', 'result', 'is_public'):
         assert getattr(project_clone, attr) == getattr(project, attr)
 
     module_clone = project_clone.module_set.first()
