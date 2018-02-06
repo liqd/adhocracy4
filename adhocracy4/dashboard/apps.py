@@ -8,3 +8,4 @@ class DashboardConfig(AppConfig):
     def ready(self):
         from django.utils.module_loading import autodiscover_modules
         autodiscover_modules('dashboard', register_to=self.module.components)
+        self.module.components.apply_replacements()
