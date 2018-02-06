@@ -1,10 +1,10 @@
 {% extends "a4dashboard/base_dashboard_project.html" %}
 {% load i18n static %}
 
-{% block title %} {{ view.title }}{% if project %} &mdash; {{ project.name }}{% endif %} &mdash; {{ block.super }}{% endblock%}
+{% block title %}{{ view.title }}{% if project %} &mdash; {{ project.name }}{% endif %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_project_content %}
-    <h1 class="u-first-heading">{{ view.title }}</h1>
+    <h1>{{ view.title }}</h1>
 
     {% for error in form.non_field_errors %}
         <span>{{ error }}</span>
@@ -15,9 +15,7 @@
 
         {% include view.form_template_name %}
 
-        <div class="u-spacer-bottom">
-            <input type="submit" class="btn btn--primary" name="save" value="{% trans 'Save' %}"/>
-        </div>
+        <input type="submit" class="btn btn--primary" name="save" value="{% trans 'Save' %}"/>
     </form>
 {% endblock %}
 
