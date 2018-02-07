@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-07 10:42+0100\n"
+"POT-Creation-Date: 2018-02-07 11:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -255,9 +255,6 @@ msgstr "Export polygon as GeoJSON"
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:76
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:86
-msgid "Import polygon from file"
-msgstr "Import polygon from file"
-
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:98
 msgid "Import polygon via file upload"
 msgstr "Import polygon via file upload"
