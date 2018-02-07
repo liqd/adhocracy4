@@ -73,7 +73,7 @@ function getBaseBounds (L, polygon, bbox) {
 
     _createControls: function () {
       const exportLabel = django.gettext('Export polygon as GeoJSON')
-      const importLabel = django.gettext('Import polygon from file')
+      const importLabel = django.gettext('Import polygon via file upload')
       return $.parseHTML(
         '<div class="leaflet-bar leaflet-control leaflet-control-custom">' +
           '<a href="#" id="map-export-link" title="' + exportLabel + '"><i class="fa fa-download" aria-label="' + exportLabel + '"></i></a>' +
@@ -83,7 +83,7 @@ function getBaseBounds (L, polygon, bbox) {
     },
 
     _createModal: function () {
-      const modalTitle = django.gettext('Import polygon from file')
+      const modalTitle = django.gettext('Import polygon via file upload')
       return $.parseHTML(
         '<div class="modal" id="map-import-modal" tabindex="-1" role="dialog" aria-label="' + modalTitle + '" aria-hidden="true">' +
           '<div class="modal-dialog modal-lg" role="document">' +
