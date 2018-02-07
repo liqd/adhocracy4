@@ -12,6 +12,40 @@ class VirtualFieldMixin:
         return virtual
 
 
+class ItemExportWithLinkMixin(VirtualFieldMixin):
+    def get_virtual_fields(self, virtual):
+        if 'link' not in virtual:
+            virtual['link'] = _('Link')
+        return super().get_virtual_fields(virtual)
+
+    def get_link_data(self, item):
+        return self.request.build_absolute_uri(item.get_absolute_url())
+
+
+class ExportModelFieldsMixin(VirtualFieldMixin):
+    # Requires self.model to be set
+    fields = None
+    exclude = None
+
+    def get_virtual_fields(self, virtual):
+        meta = self.model._meta
+        exclude = self.exclude if self.exclude else []
+
+        if self.fields:
+            fields = [meta.get_field(name) for name in self.fields]
+        else:
+            fields = meta.get_fields()
+
+        for field in fields:
+            if field.concrete \
+                    and not (field.one_to_one and field.rel.parent_link) \
+                    and field.name not in exclude \
+                    and field.name not in virtual:
+                virtual[field.name] = str(field.verbose_name)
+
+        return super().get_virtual_fields(virtual)
+
+
 class ItemExportWithRatesMixin(VirtualFieldMixin):
     def get_virtual_fields(self, virtual):
         if 'ratings_positive' not in virtual:

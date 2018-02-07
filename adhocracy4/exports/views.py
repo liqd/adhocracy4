@@ -1,9 +1,9 @@
 from collections import OrderedDict
+import numbers
 
 import xlsxwriter
 from django.http import HttpResponse
 from django.utils import timezone
-from django.utils.translation import ugettext as _
 from django.views import generic
 
 from adhocracy4.projects.mixins import ProjectMixin
@@ -87,51 +87,9 @@ class BaseExport(VirtualFieldMixin):
         return str(getattr(item, name, ''))
 
 
-class MultipleObjectExport(BaseExport,
-                           generic.list.MultipleObjectMixin):
-    fields = None
-    exclude = None
-    model = None
-
-    def get_fields(self):
-        meta = self.model._meta
-        exclude = self.exclude if self.exclude else []
-
-        if self.fields:
-            fields = [meta.get_field(name) for name in self.fields]
-        else:
-            fields = meta.get_fields()
-
-        # Ensure that link is the first row even though it's a virtual field
-        names = ['link']
-        header = [_('Link')]
-
-        for field in fields:
-            if field.concrete \
-                    and not (field.one_to_one and field.rel.parent_link) \
-                    and field.name not in exclude \
-                    and field.name not in names:
-
-                names.append(field.name)
-                header.append(str(field.verbose_name))
-
-        base_names, base_header = super().get_fields()
-        for name, head in zip(base_names, base_header):
-            if name not in names:
-                names.append(name)
-                header.append(head)
-
-        return names, header
-
-    def get_object_list(self):
-        return self.get_queryset().all()
-
-    def get_link_data(self, item):
-        return self.request.build_absolute_uri(item.get_absolute_url())
-
-
-class BaseItemExportView(MultipleObjectExport,
+class BaseItemExportView(BaseExport,
                          ProjectMixin,
+                         generic.list.MultipleObjectMixin,
                          AbstractXlsxExportView):
 
     def get_queryset(self):
@@ -139,6 +97,9 @@ class BaseItemExportView(MultipleObjectExport,
         if hasattr(self, 'module') and self.module:
             qs = qs.filter(module=self.module)
         return qs
+
+    def get_object_list(self):
+        return self.get_queryset().all()
 
     def get_base_filename(self):
         return '%s_%s' % (self.project.slug,
