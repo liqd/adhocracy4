@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.core.urlresolvers import reverse
+from django.db import transaction
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
@@ -10,8 +11,11 @@ from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.contrib import forms as contrib_forms
 from meinberlin.apps.contrib import filters
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
+from meinberlin.apps.moderatorfeedback.forms import ModeratorStatementForm
+from meinberlin.apps.moderatorfeedback.models import ModeratorStatement
 
 from . import forms
 from . import models
@@ -147,3 +151,52 @@ class IdeaDeleteView(AbstractIdeaDeleteView):
     success_message = _('Your Idea has been deleted')
     permission_required = 'meinberlin_ideas.change_idea'
     template_name = 'meinberlin_ideas/idea_confirm_delete.html'
+
+
+class AbstractIdeaModerateView(
+        ProjectMixin,
+        rules_mixins.PermissionRequiredMixin,
+        generic.detail.SingleObjectMixin,
+        generic.detail.SingleObjectTemplateResponseMixin,
+        contrib_forms.BaseMultiModelFormView):
+
+    get_context_from_object = True
+
+    def __init__(self):
+        self.forms = {
+            'moderateable': {
+                'model': self.model,
+                'form_class': self.moderateable_form_class
+            },
+            'statement': {
+                'model': ModeratorStatement,
+                'form_class': ModeratorStatementForm
+            }
+        }
+
+    def dispatch(self, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(*args, **kwargs)
+
+    def get_success_url(self):
+        return self.object.get_absolute_url()
+
+    def forms_save(self, forms, commit=True):
+        objects = super().forms_save(forms, commit=False)
+        moderateable = objects['moderateable']
+        statement = objects['statement']
+
+        if not statement.pk:
+            statement.creator = self.request.user
+
+        with transaction.atomic():
+            statement.save()
+            moderateable.moderator_statement = statement
+            moderateable.save()
+        return objects
+
+    def get_instance(self, name):
+        if name == 'moderateable':
+            return self.object
+        elif name == 'statement':
+            return self.object.moderator_statement
