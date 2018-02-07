@@ -84,7 +84,10 @@ class BaseExport(VirtualFieldMixin):
             return get_field_attr
 
         # Finally try to get the fields data as a property
-        return str(getattr(item, name, ''))
+        value = getattr(item, name, '')
+        if isinstance(value, numbers.Number):
+            return value
+        return str(value)
 
 
 class BaseItemExportView(BaseExport,
