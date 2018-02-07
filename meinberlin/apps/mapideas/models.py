@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.maps import fields as map_fields
 from meinberlin.apps.ideas import models as idea_models
+from meinberlin.apps.moderatorfeedback.models import Moderateable
 
 
 class AbstractMapIdea(idea_models.AbstractIdea):
@@ -26,7 +27,7 @@ class AbstractMapIdea(idea_models.AbstractIdea):
         abstract = True
 
 
-class MapIdea(AbstractMapIdea):
+class MapIdea(AbstractMapIdea, Moderateable):
 
     def get_absolute_url(self):
         return reverse('meinberlin_mapideas:mapidea-detail',

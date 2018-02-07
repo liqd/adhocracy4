@@ -11,6 +11,7 @@ from adhocracy4.comments import models as comment_models
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
+from meinberlin.apps.moderatorfeedback.models import Moderateable
 
 
 class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
@@ -50,7 +51,7 @@ class AbstractIdea(module_models.Item):
         super().save(*args, **kwargs)
 
 
-class Idea(AbstractIdea):
+class Idea(AbstractIdea, Moderateable):
 
     def get_absolute_url(self):
         return reverse('meinberlin_ideas:idea-detail',

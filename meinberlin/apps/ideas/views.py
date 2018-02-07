@@ -200,3 +200,10 @@ class AbstractIdeaModerateView(
             return self.object
         elif name == 'statement':
             return self.object.moderator_statement
+
+
+class IdeaModerateView(AbstractIdeaModerateView):
+    model = models.Idea
+    permission_required = 'meinberlin_ideas.moderate_idea'
+    template_name = 'meinberlin_ideas/idea_moderate_form.html'
+    moderateable_form_class = forms.IdeaModerateForm

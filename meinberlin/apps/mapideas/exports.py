@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.exports import mixins as a4_export_mixins
 from adhocracy4.exports import views as a4_export_views
 from meinberlin.apps.exports import mixins as export_mixins
+from meinberlin.apps.exports import views as export_views
 from meinberlin.apps.exports import register_export
 
 from . import models
@@ -15,7 +16,8 @@ class MapIdeaExportView(a4_export_views.ItemExportView,
                         a4_export_mixins.ItemExportWithCommentCountMixin,
                         a4_export_mixins.ItemExportWithCommentsMixin,
                         a4_export_mixins.ItemExportWithCategoriesMixin,
-                        a4_export_mixins.ItemExportWithLocationMixin):
+                        a4_export_mixins.ItemExportWithLocationMixin,
+                        export_views.ItemExportWithModeratorFeedback):
     model = models.MapIdea
     fields = ['name', 'description', 'creator', 'created']
 
