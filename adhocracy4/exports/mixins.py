@@ -157,17 +157,26 @@ class ItemExportWithCategoriesMixin(VirtualFieldMixin):
 
 class ItemExportWithLocationMixin(VirtualFieldMixin):
     def get_virtual_fields(self, virtual):
-        if 'location' not in virtual:
-            virtual['location'] = _('Location')
+        if 'location_lon' not in virtual:
+            virtual['location_lon'] = _('Location (Longitude)')
+        if 'location_lat' not in virtual:
+            virtual['location_lat'] = _('Location (Latitude)')
         if 'location_label' not in virtual:
             virtual['location_label'] = _('Location label')
         return super().get_virtual_fields(virtual)
 
-    def get_location_data(self, item):
+    def get_location_lon_data(self, item):
         if hasattr(item, 'point'):
             point = item.point
             if 'geometry' in point:
-                return ', '.join(map(str, point['geometry']['coordinates']))
+                return point['geometry']['coordinates'][0]
+        return ''
+
+    def get_location_lat_data(self, item):
+        if hasattr(item, 'point'):
+            point = item.point
+            if 'geometry' in point:
+                return point['geometry']['coordinates'][1]
         return ''
 
     def get_location_label_data(self, item):

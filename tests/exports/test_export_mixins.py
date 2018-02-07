@@ -150,12 +150,15 @@ def test_item_location_mixin(idea):
     mixin = ItemExportWithLocationMixin()
 
     virtual = mixin.get_virtual_fields({})
-    assert 'location' in virtual
+    assert 'location_lon' in virtual
+    assert 'location_lat' in virtual
     assert 'location_label' in virtual
 
-    assert mixin.get_location_data({}) == ''
+    assert mixin.get_location_lon_data({}) == ''
+    assert mixin.get_location_lat_data({}) == ''
     assert mixin.get_location_label_data({}) == ''
 
     lon, lat = idea.point['geometry']['coordinates']
-    assert mixin.get_location_data(idea) == '%s, %s' % (lon, lat)
+    assert mixin.get_location_lon_data(idea) == lon
+    assert mixin.get_location_lat_data(idea) == lat
     assert mixin.get_location_label_data(idea) == idea.point_label
