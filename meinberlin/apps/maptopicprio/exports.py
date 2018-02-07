@@ -10,6 +10,8 @@ from . import models
 
 @register_export(_('Places with comments'))
 class MapTopicExportView(export_mixins.ItemExportWithReferenceNumberMixin,
+                         a4_export_mixins.ItemExportWithLinkMixin,
+                         a4_export_mixins.ExportModelFieldsMixin,
                          a4_export_mixins.ItemExportWithRatesMixin,
                          a4_export_mixins.ItemExportWithCategoriesMixin,
                          a4_export_mixins.ItemExportWithCommentCountMixin,

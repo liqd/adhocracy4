@@ -10,6 +10,8 @@ from . import models
 
 @register_export(_('Ideas with comments'))
 class IdeaExportView(export_mixins.ItemExportWithReferenceNumberMixin,
+                     a4_export_mixins.ItemExportWithLinkMixin,
+                     a4_export_mixins.ExportModelFieldsMixin,
                      a4_export_mixins.ItemExportWithRatesMixin,
                      a4_export_mixins.ItemExportWithCategoriesMixin,
                      a4_export_mixins.ItemExportWithCommentCountMixin,

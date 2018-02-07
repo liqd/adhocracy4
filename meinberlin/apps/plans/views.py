@@ -88,8 +88,10 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
 
 class PlanExportView(rules_mixins.PermissionRequiredMixin,
+                     export_mixins.ItemExportWithLinkMixin,
+                     export_mixins.ExportModelFieldsMixin,
                      export_mixins.ItemExportWithLocationMixin,
-                     export_views.MultipleObjectExport,
+                     export_views.BaseExport,
                      export_views.AbstractXlsxExportView):
 
     permission_required = 'meinberlin_plans.list_plan'
@@ -97,7 +99,7 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
     fields = ['title', 'organisation', 'project', 'contact', 'cost',
               'description', 'category', 'status', 'participation']
 
-    def get_queryset(self):
+    def get_object_list(self):
         return models.Plan.objects.all()
 
     def get_base_filename(self):

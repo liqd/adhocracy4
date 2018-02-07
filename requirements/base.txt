@@ -1,10 +1,8 @@
-git+git://github.com/liqd/adhocracy4.git@709a85805f684e8310d53c454fc3a49078500196#egg=adhocracy4
+git+git://github.com/liqd/adhocracy4.git@4275370993987437292e04611ec5f7b45e73c082#egg=adhocracy4
 bcrypt==3.1.4
 django-capture-tag==1.0
-html5lib==1.0.1
 requests==2.18.4
 wagtail==1.13.1
-XlsxWriter==1.0.2
 zeep==2.5.0
 
 # Inherited a4-core requirements
@@ -18,7 +16,9 @@ django-filter==1.1.0
 django-widget-tweaks==1.4.1
 djangorestframework==3.7.7
 easy-thumbnails==2.5
+html5lib==1.0.1
 jsonfield==2.0.2
 python-dateutil==2.6.1
 python-magic==0.4.15
 rules==1.3
+XlsxWriter==1.0.2
