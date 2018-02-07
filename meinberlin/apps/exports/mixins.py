@@ -7,7 +7,7 @@ class ItemExportWithReferenceNumberMixin(VirtualFieldMixin):
 
     def get_virtual_fields(self, virtual):
         if 'reference_number' not in virtual:
-            virtual['reference_number'] = _('Reference Number')
+            virtual['reference_number'] = _('Reference No.')
         return super().get_virtual_fields(virtual)
 
     def get_reference_number_data(self, item):
