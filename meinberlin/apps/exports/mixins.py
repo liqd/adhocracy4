@@ -32,3 +32,18 @@ class ItemExportWithModeratorFeedback(VirtualFieldMixin):
         if item.moderator_statement:
             return unescape_and_strip_html(item.moderator_statement.statement)
         return ''
+
+
+class UserGeneratedContentExportMixin(VirtualFieldMixin):
+    def get_virtual_fields(self, virtual):
+        if 'creator' not in virtual:
+            virtual['creator'] = _('Creator')
+        if 'created' not in virtual:
+            virtual['created'] = _('Created')
+        return super().get_virtual_fields(virtual)
+
+    def get_creator_data(self, item):
+        return item.creator.username
+
+    def get_created_data(self, item):
+        return item.created.isoformat()

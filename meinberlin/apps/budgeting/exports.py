@@ -17,7 +17,7 @@ class ProposalExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                          a4_export_mixins.ItemExportWithCommentCountMixin,
                          a4_export_mixins.ItemExportWithCommentsMixin,
                          a4_export_mixins.ItemExportWithLocationMixin,
-                         a4_export_mixins.UserGeneratedContentExportMixin,
+                         export_mixins.UserGeneratedContentExportMixin,
                          export_mixins.ItemExportWithModeratorFeedback,
                          a4_export_views.BaseItemExportView):
     model = models.Proposal
