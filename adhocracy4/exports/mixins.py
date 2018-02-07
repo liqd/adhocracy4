@@ -178,21 +178,3 @@ class ItemExportWithLocationMixin(VirtualFieldMixin):
 
     def get_location_label_data(self, item):
         return getattr(item, 'point_label', '')
-
-
-class UserGeneratedContentExportMixin(VirtualFieldMixin):
-    def get_virtual_fields(self, virtual):
-        if 'creator' not in virtual:
-            virtual['creator'] = _('Creator')
-        if 'created' not in virtual:
-            virtual['created'] = _('Created')
-        return super().get_virtual_fields(virtual)
-
-    def get_creator_data(self, item):
-        # FIXME: we can not be sure if username is set but we don't
-        # want to use creator.get_username() as this would leak the email
-        # addresses on meinberlin. I'd propose to move this to meinBerlin, too
-        return item.creator.username
-
-    def get_created_data(self, item):
-        return item.created.isoformat()

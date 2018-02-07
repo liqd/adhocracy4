@@ -8,8 +8,7 @@ from adhocracy4.exports.mixins import (ExportModelFieldsMixin,
                                        ItemExportWithCommentsMixin,
                                        ItemExportWithLinkMixin,
                                        ItemExportWithLocationMixin,
-                                       ItemExportWithRatesMixin,
-                                       UserGeneratedContentExportMixin)
+                                       ItemExportWithRatesMixin)
 from adhocracy4.ratings.models import Rating
 from tests.apps.ideas.models import Idea
 
@@ -146,15 +145,3 @@ def test_item_location_mixin(idea):
     lon, lat = idea.point['geometry']['coordinates']
     assert mixin.get_location_data(idea) == '%s, %s' % (lon, lat)
     assert mixin.get_location_label_data(idea) == idea.point_label
-
-
-@pytest.mark.django_db
-def test_user_generated_content_mixin(idea):
-    mixin = UserGeneratedContentExportMixin()
-
-    virtual = mixin.get_virtual_fields({})
-    assert 'creator' in virtual
-    assert 'created' in virtual
-
-    assert idea.creator.username == mixin.get_creator_data(idea)
-    assert idea.created.isoformat() == mixin.get_created_data(idea)
