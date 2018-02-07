@@ -1,4 +1,4 @@
-git+git://github.com/liqd/adhocracy4.git@97b455395738b49a4f528e79aaffc45c0d4998d9#egg=adhocracy4
+git+git://github.com/liqd/adhocracy4.git@709a85805f684e8310d53c454fc3a49078500196#egg=adhocracy4
 bcrypt==3.1.4
 django-capture-tag==1.0
 html5lib==1.0.1
@@ -12,7 +12,7 @@ bleach==2.1.2
 Django==1.11.9 # pyup: <2.0
 django-allauth==0.34.0
 django-autoslug==1.9.3
-django-background-tasks==1.1.12
+django-background-tasks==1.1.13
 django-ckeditor==5.4.0
 django-filter==1.1.0
 django-widget-tweaks==1.4.1

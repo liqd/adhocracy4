@@ -21,9 +21,9 @@ class PlanForm(forms.ModelForm):
 
     class Meta:
         model = models.Plan
-        fields = ['title', 'contact', 'point', 'point_label', 'cost',
-                  'description', 'category', 'status', 'participation',
-                  'project']
+        fields = ['title', 'contact', 'point', 'point_label', 'district',
+                  'cost', 'description', 'category', 'status',
+                  'participation', 'project']
         widgets = {
             'point': maps_widgets.MapChoosePointWidget(
                 polygon=settings.BERLIN_POLYGON),

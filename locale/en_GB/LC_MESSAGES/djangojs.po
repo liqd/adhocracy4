@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-13 09:37+0100\n"
+"POT-Creation-Date: 2018-01-23 13:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,14 +18,44 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:97
-#: adhocracy4/comments/static/comments/Comment.jsx:103
+#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:12
+msgid "Insert Collapsible Item"
+msgstr "Insert Collapsible Item"
+
+#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:14
+msgid "Title"
+msgstr "Title"
+
+#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:15
+msgid "Body text"
+msgstr "Body text"
+
+#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:37
+msgid "Collapsible element"
+msgstr "Collapsible element"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:26
+msgid "hide one reply"
+msgstr "hide one reply"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:26
+msgid "hide %s replies"
+msgstr "hide %s replies"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:28
+msgid "view one reply"
+msgstr "view one reply"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:28
+msgid "view %s replies"
+msgstr "view %s replies"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:128
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:99
+#: adhocracy4/comments/static/comments/Comment.jsx:130
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
-#: adhocracy4/comments/static/comments/Comment.jsx:105
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:52
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
@@ -35,67 +65,61 @@ msgstr "Do you really want to delete this comment?"
 msgid "Delete"
 msgstr "Delete"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:100
+#: adhocracy4/comments/static/comments/Comment.jsx:131
 #: adhocracy4/static/Modal.jsx:49
-#: adhocracy4/comments/static/comments/Comment.jsx:106
 msgid "Abort"
 msgstr "Abort"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:113
-#: adhocracy4/comments/static/comments/Comment.jsx:119
+#: adhocracy4/comments/static/comments/Comment.jsx:144
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:118
-#: adhocracy4/comments/static/comments/Comment.jsx:124
+#: adhocracy4/comments/static/comments/Comment.jsx:149
 msgid "Moderator"
 msgstr "Moderator"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:125
+#: adhocracy4/comments/static/comments/Comment.jsx:156
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
-#: adhocracy4/comments/static/comments/Comment.jsx:131
 msgid "Are you sure you want to report this item?"
 msgstr "Are you sure you want to report this item?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:167
-#: adhocracy4/comments/static/comments/Comment.jsx:174
+#: adhocracy4/comments/static/comments/Comment.jsx:179
+msgid "Answer"
+msgstr "Answer"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:218
 msgid "Your reply here"
 msgstr "Your reply here"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:82
-#: adhocracy4/comments/static/comments/CommentBox.jsx:125
+#: adhocracy4/comments/static/comments/CommentBox.jsx:167
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "comment"
 msgstr[1] "comments"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:85
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
-#: adhocracy4/comments/static/comments/CommentForm.jsx:37
-#: adhocracy4/comments/static/comments/CommentBox.jsx:128
+#: adhocracy4/comments/static/comments/CommentBox.jsx:170
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:38
-#: adhocracy4/comments/static/comments/CommentForm.jsx:45
+#: adhocracy4/comments/static/comments/CommentForm.jsx:48
 msgid "Your comment here"
 msgstr "Your comment here"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:36
-#: adhocracy4/comments/static/comments/CommentForm.jsx:40
-#: adhocracy4/comments/static/comments/CommentForm.jsx:48
-msgid "post"
-msgstr "post"
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:41
+msgid "save changes"
+msgstr "save changes"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:37
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:43
 msgid "cancel"
 msgstr "cancel"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:46
-#: adhocracy4/comments/static/comments/CommentForm.jsx:54
+#: adhocracy4/comments/static/comments/CommentForm.jsx:51
+msgid "post"
+msgstr "post"
+
+#: adhocracy4/comments/static/comments/CommentForm.jsx:57
 msgid "Please login to comment"
 msgstr "Please login to comment"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:52
-#: adhocracy4/comments/static/comments/CommentForm.jsx:60
+#: adhocracy4/comments/static/comments/CommentForm.jsx:63
 msgid "The currently active phase doesn't allow to comment."
 msgstr "The currently active phase doesn't allow to comment."
 
@@ -106,17 +130,6 @@ msgstr "Edit"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
 msgid "Report"
 msgstr "Report"
-
-#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:6
-#, javascript-format
-msgid "view %s reply"
-msgid_plural "view %s replies"
-msgstr[0] "view %s reply"
-msgstr[1] "view %s replies"
-
-#: adhocracy4/comments/static/comments/CommentReplyBar.jsx:26
-msgid "Answer"
-msgstr "Answer"
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:51
 msgid "Not following"
@@ -149,15 +162,6 @@ msgstr "Your message here"
 #: adhocracy4/reports/static/reports/ReportModal.jsx:77
 msgid "Send Report"
 msgstr "Send Report"
-
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:34
-#: adhocracy4/comments/static/comments/CommentForm.jsx:41
-msgid "Error while submitting your comment!"
-msgstr "Error while submitting your comment!"
-
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:41
-msgid "save changes"
-msgstr "save changes"
 
 #: adhocracy4/static/Alert.jsx:10 adhocracy4/static/Alert.jsx:11
 #: meinberlin/apps/contrib/assets/Alert.jsx:10
@@ -246,66 +250,82 @@ msgstr "Paragraph"
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:10
+#: meinberlin/apps/plans/assets/plans_map.jsx:11
 msgid "Idea"
 msgstr "Idea"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:11
+#: meinberlin/apps/plans/assets/plans_map.jsx:12
 msgid "Planning"
 msgstr "Planning"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:12
+#: meinberlin/apps/plans/assets/plans_map.jsx:13
 msgid "Implementation"
 msgstr "Implementation"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:13
+#: meinberlin/apps/plans/assets/plans_map.jsx:14
 msgid "Done"
 msgstr "Done"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:14
+#: meinberlin/apps/plans/assets/plans_map.jsx:15
 msgid "Stopped"
 msgstr "Stopped"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:26
+#: meinberlin/apps/plans/assets/plans_map.jsx:27
 msgid "No"
 msgstr "No"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:27
+#: meinberlin/apps/plans/assets/plans_map.jsx:28
 msgid "Yes"
 msgstr "Yes"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:28
+#: meinberlin/apps/plans/assets/plans_map.jsx:29
 msgid "Still undecided"
 msgstr "Still undecided"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:278
+#: meinberlin/apps/plans/assets/plans_map.jsx:381
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:287
+#: meinberlin/apps/plans/assets/plans_map.jsx:390
 msgid "Filter bar"
 msgstr "Filter bar"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:294
-#: meinberlin/apps/plans/assets/plans_map.jsx:295
-#: meinberlin/apps/plans/assets/plans_map.jsx:296
+#: meinberlin/apps/plans/assets/plans_map.jsx:397
+msgid "Address Search"
+msgstr "Address Search"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:398
+#: meinberlin/apps/plans/assets/plans_map.jsx:399
+#: meinberlin/apps/plans/assets/plans_map.jsx:427
+#: meinberlin/apps/plans/assets/plans_map.jsx:428
+#: meinberlin/apps/plans/assets/plans_map.jsx:429
 msgid "Search"
 msgstr "Search"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:302
+#: meinberlin/apps/plans/assets/plans_map.jsx:435
 msgid "Status"
 msgstr "Status"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:302
-#: meinberlin/apps/plans/assets/plans_map.jsx:312
-#: meinberlin/apps/plans/assets/plans_map.jsx:336
-#: meinberlin/apps/plans/assets/plans_map.jsx:346
+#: meinberlin/apps/plans/assets/plans_map.jsx:435
+#: meinberlin/apps/plans/assets/plans_map.jsx:445
+#: meinberlin/apps/plans/assets/plans_map.jsx:469
+#: meinberlin/apps/plans/assets/plans_map.jsx:479
+#: meinberlin/apps/plans/assets/plans_map.jsx:502
+#: meinberlin/apps/plans/assets/plans_map.jsx:512
 msgid "All"
 msgstr "All"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:336
+#: meinberlin/apps/plans/assets/plans_map.jsx:469
 msgid "Participation"
 msgstr "Participation"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:502
+msgid "District"
+msgstr "District"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:537
+msgid "Address could not be found"
+msgstr "Address could not be found"
 
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:24
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:27
@@ -406,6 +426,14 @@ msgstr "No matches found within the project area"
 msgid "Did you mean:"
 msgstr "Did you mean:"
 
+#~ msgid "view %s reply"
+#~ msgid_plural "view %s replies"
+#~ msgstr[0] "view %s reply"
+#~ msgstr[1] "view %s replies"
+
+#~ msgid "Error while submitting your comment!"
+#~ msgstr "Error while submitting your comment!"
+
 #~ msgid "Planned"
 #~ msgstr "Planned"
 
@@ -414,6 +442,3 @@ msgstr "Did you mean:"
 
 #~ msgid "Your document has been saved."
 #~ msgstr "Your document has been saved."
-
-#~ msgid "Title"
-#~ msgstr "Title"

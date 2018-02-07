@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n item_tags %}
+{% load i18n %}
 
 {% block title %}{% trans 'Moderate' %} {{ object.name }} &mdash; {{ block.super }}{% endblock %}
 {% block content %}
@@ -13,8 +13,7 @@
                         {% trans 'back to project' %}</a>
                 </li>
                 <li>
-                    {% get_item_detail_url object as detail_url %}
-                    <a href="{{ detail_url }}">
+                    <a href="{{ object.get_absolute_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                         {% trans 'back to proposal' %}</a>
                 </li>
@@ -35,7 +34,7 @@
 
             <div class="u-spacer-bottom">
                 <input type="submit" class="btn btn--primary" value="{% trans 'Save' %}" />
-                <a href="{{ detail_url }}" class="btn btn--light">{% trans 'Cancel' %}</a>
+                <a href="{{ object.get_absolute_url }}" class="btn btn--light">{% trans 'Cancel' %}</a>
             </div>
         </form>
 

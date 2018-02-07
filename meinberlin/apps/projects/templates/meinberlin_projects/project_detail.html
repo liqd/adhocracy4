@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags meinberlin_project_tags contrib_tags %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags meinberlin_project_tags contrib_tags ckeditor_tags %}
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
@@ -110,7 +110,7 @@
             aria-expanded="false">
             <div class="l-wrapper">
                 <div class="l-center-8">
-                    {{ project.information | richtext }}
+                    {{ project.information | transform_collapsibles | richtext }}
                 </div>
             </div>
         </div>

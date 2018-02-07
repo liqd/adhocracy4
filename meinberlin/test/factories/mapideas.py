@@ -1,13 +1,13 @@
 import factory
 
 from adhocracy4.test import factories as a4_factories
-from meinberlin.apps.mapideas import models
+from meinberlin.apps.mapideas import models as mapidea_models
 
 
 class MapIdeaFactory(factory.django.DjangoModelFactory):
 
     class Meta:
-        model = models.MapIdea
+        model = mapidea_models.MapIdea
 
     name = factory.Faker('sentence')
     description = 'Description'

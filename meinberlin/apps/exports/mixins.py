@@ -1,0 +1,34 @@
+from django.utils.translation import ugettext as _
+
+from adhocracy4.exports import unescape_and_strip_html
+from adhocracy4.exports.mixins import VirtualFieldMixin
+
+
+class ItemExportWithReferenceNumberMixin(VirtualFieldMixin):
+
+    def get_virtual_fields(self, virtual):
+        if 'reference_number' not in virtual:
+            virtual['reference_number'] = _('Reference Number')
+        return super().get_virtual_fields(virtual)
+
+    def get_reference_number_data(self, item):
+        if hasattr(item, 'reference_number'):
+            return item.reference_number
+        return ''
+
+
+class ItemExportWithModeratorFeedback(VirtualFieldMixin):
+    def get_virtual_fields(self, virtual):
+        if 'moderator_feedback' not in virtual:
+            virtual['moderator_feedback'] = _('Moderator feedback')
+        if 'moderator_statement' not in virtual:
+            virtual['moderator_statement'] = _('Official Statement')
+        return super().get_virtual_fields(virtual)
+
+    def get_moderator_feedback_data(self, item):
+        return item.get_moderator_feedback_display()
+
+    def get_moderator_statement_data(self, item):
+        if item.moderator_statement:
+            return unescape_and_strip_html(item.moderator_statement.statement)
+        return ''

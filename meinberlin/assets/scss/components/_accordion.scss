@@ -1,29 +1,35 @@
-.docs-block {
+.accordion {
     border: solid 1px $border-color;
     border-radius: 5px;
 
     // make border-radius work with contents
     overflow: hidden;
+    margin-bottom: $padding * 1.8;
 }
 
-.docs-block__title {
+.accordion__title {
     display: block;
     position: relative;
-    padding: $padding / 2;
+    padding: $padding/2 1em $padding/2 1.2em;
     text-decoration: none;
     color: inherit;
-    background-color: $bg-secondary;
-    padding-right: 1em;
+    border-bottom: solid 1px $border-color;
+
+    &.collapsed {
+        border-bottom: none;
+    }
 
     h2 {
         font-size: $font-size-lg;
-        margin: 0;
+        margin-top: $spacer / 5;
+        margin-bottom: $spacer / 5;
     }
 
     i {
         position: absolute;
-        right: $padding / 2;
+        right: $padding;
         transition: transform 0.3s;
+        color: $brand-primary;
     }
 
     &[aria-expanded="true"] i {
@@ -31,7 +37,7 @@
     }
 }
 
-.docs-block__body {
+.accordion__body {
     padding: $padding / 2;
 
     ul {
