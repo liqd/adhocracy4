@@ -1,3 +1,5 @@
+from itertools import chain
+
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext as _
 
@@ -26,13 +28,16 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
     # Requires self.model to be set
     fields = None
     exclude = None
+    html_fields = None
 
     def get_virtual_fields(self, virtual):
         meta = self.model._meta
         exclude = self.exclude if self.exclude else []
 
-        if self.fields:
-            fields = [meta.get_field(name) for name in self.fields]
+        chained_fields = chain(getattr(self, 'fields', []) +
+                               getattr(self, 'html_fields', []))
+        if chained_fields:
+            fields = [meta.get_field(name) for name in set(chained_fields)]
         else:
             fields = meta.get_fields()
 
@@ -43,7 +48,15 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
                     and field.name not in virtual:
                 virtual[field.name] = str(field.verbose_name)
 
+        self._setup_html_fields()
+
         return super().get_virtual_fields(virtual)
+
+    def _setup_html_fields(self):
+        for field in getattr(self, 'html_fields', []):
+            get_field_attr_name = 'get_%s_data' % field
+            setattr(self, get_field_attr_name,
+                    lambda item: unescape_and_strip_html(getattr(item, field)))
 
 
 class ItemExportWithRatesMixin(VirtualFieldMixin):

@@ -25,11 +25,13 @@ def test_item_link_mixin(rf, idea):
     assert mixin.get_link_data(idea) == 'http://testserver' + absolute_url
 
 
-def test_model_fields_mixin():
+@pytest.mark.django_db
+def test_model_fields_mixin(idea):
     class Mixin(ExportModelFieldsMixin):
         model = Idea
-        fields = ['item_ptr', 'name', 'description', 'point']
+        fields = ['item_ptr', 'name', 'point']
         exclude = ['point']
+        html_fields = ['description']
 
     mixin = Mixin()
 
@@ -38,6 +40,10 @@ def test_model_fields_mixin():
         'description': 'Description',
         'name': 'name'
     }
+
+    idea.description = '&nbsp; &amp;&euro;&lt;&quot;&auml;&ouml;&uuml;' \
+                       '&#x1F4A9;&nbsp; '
+    assert mixin.get_description_data(idea) == '&€<"äöü💩'
 
 
 @pytest.mark.django_db
