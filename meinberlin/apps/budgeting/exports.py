@@ -22,6 +22,7 @@ class ProposalExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                          a4_export_views.BaseItemExportView):
     model = models.Proposal
     fields = ['name', 'description', 'budget']
+    html_fields = ['description']
 
     def get_queryset(self):
         return super().get_queryset() \

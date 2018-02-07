@@ -20,7 +20,8 @@ class IdeaExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                      a4_export_views.BaseItemExportView):
 
     model = models.Idea
-    fields = ['name', 'description']
+    fields = ['name']
+    html_fields = ['description']
 
     def get_queryset(self):
         return super().get_queryset() \
