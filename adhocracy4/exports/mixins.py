@@ -34,10 +34,13 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
         meta = self.model._meta
         exclude = self.exclude if self.exclude else []
 
-        chained_fields = chain(getattr(self, 'fields', []) +
-                               getattr(self, 'html_fields', []))
-        if chained_fields:
-            fields = [meta.get_field(name) for name in set(chained_fields)]
+        seen = set()
+        field_names = [x for x in chain(getattr(self, 'fields', []) +
+                                        getattr(self, 'html_fields', []))
+                       if not (x in seen or seen.add(x))]
+
+        if field_names:
+            fields = [meta.get_field(name) for name in field_names]
         else:
             fields = meta.get_fields()
 

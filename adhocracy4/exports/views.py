@@ -8,7 +8,6 @@ from django.views import generic
 
 from adhocracy4.projects.mixins import ProjectMixin
 
-from . import unescape_and_strip_html
 from .mixins import VirtualFieldMixin
 
 
@@ -107,6 +106,3 @@ class BaseItemExportView(BaseExport,
     def get_base_filename(self):
         return '%s_%s' % (self.project.slug,
                           timezone.now().strftime('%Y%m%dT%H%M%S'))
-
-    def get_description_data(self, item):
-        return unescape_and_strip_html(item.description)

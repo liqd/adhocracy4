@@ -1,5 +1,7 @@
 import pytest
 
+from collections import OrderedDict
+
 from adhocracy4.exports.mixins import (ExportModelFieldsMixin,
                                        ItemExportWithCategoriesMixin,
                                        ItemExportWithCommentCountMixin,
@@ -29,17 +31,17 @@ def test_item_link_mixin(rf, idea):
 def test_model_fields_mixin(idea):
     class Mixin(ExportModelFieldsMixin):
         model = Idea
-        fields = ['item_ptr', 'name', 'point']
+        fields = ['item_ptr', 'description', 'name', 'point']
         exclude = ['point']
         html_fields = ['description']
 
     mixin = Mixin()
 
-    virtual = mixin.get_virtual_fields({})
-    assert virtual == {
-        'description': 'Description',
-        'name': 'name'
-    }
+    virtual = mixin.get_virtual_fields(OrderedDict())
+    assert list(virtual.items()) == [
+        ('description', 'Description'),
+        ('name', 'name')
+    ]
 
     idea.description = '&nbsp; &amp;&euro;&lt;&quot;&auml;&ouml;&uuml;' \
                        '&#x1F4A9;&nbsp; '
