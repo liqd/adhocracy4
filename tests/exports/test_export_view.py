@@ -1,12 +1,6 @@
 import pytest
-from django.utils.translation import ugettext as _
 
-from adhocracy4.exports.views import AbstractXlsxExportView
-from adhocracy4.exports.views import BaseExport
-from adhocracy4.exports.views import MultipleObjectExport
-
-
-from tests.apps.ideas.models import Idea
+from adhocracy4.exports.views import AbstractXlsxExportView, BaseExport
 
 
 @pytest.mark.django_db
@@ -33,46 +27,6 @@ def test_base_export(idea_factory, module):
 
     assert rows[0][0] == idea0.name
     assert rows[1][0] == idea1.name
-
-
-@pytest.mark.django_db
-def test_multiple_object_export(idea_factory, module, rf):
-    class IdeaExport(MultipleObjectExport):
-        model = Idea
-        fields = ['description']
-
-        def get_queryset(self):
-            return Idea.objects.order_by('id')
-
-        def get_virtual_fields(self, virtual):
-            virtual['name'] = 'Name'
-            return super().get_virtual_fields(virtual)
-
-        def get_name_data(self, item):
-            return item.name
-
-        request = rf.get('/')
-
-    idea0 = idea_factory(module=module)
-    idea1 = idea_factory(module=module)
-
-    export = IdeaExport()
-
-    header = [_('Link'),
-              Idea._meta.get_field('description').verbose_name,
-              'Name']
-    assert export.get_header() == header
-
-    rows = list(export.export_rows())
-    assert len(rows) == 2
-
-    assert rows[0][0].endswith(idea0.get_absolute_url())
-    assert rows[0][1] == idea0.description
-    assert rows[0][2] == idea0.name
-
-    assert rows[1][0].endswith(idea1.get_absolute_url())
-    assert rows[1][1] == idea1.description
-    assert rows[1][2] == idea1.name
 
 
 def test_xlsx_export_view(rf):

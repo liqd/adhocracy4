@@ -1,14 +1,43 @@
 import pytest
 
-from adhocracy4.exports.mixins import ItemExportWithRatesMixin
-from adhocracy4.exports.mixins import ItemExportWithCommentCountMixin
-from adhocracy4.exports.mixins import ItemExportWithCommentsMixin
-from adhocracy4.exports.mixins import ItemExportWithLocationMixin
-from adhocracy4.exports.mixins import ItemExportWithCategoriesMixin
-from adhocracy4.exports.mixins import UserGeneratedContentExportMixin
-
-from tests.apps.ideas.models import Idea
+from adhocracy4.exports.mixins import (ExportModelFieldsMixin,
+                                       ItemExportWithCategoriesMixin,
+                                       ItemExportWithCommentCountMixin,
+                                       ItemExportWithCommentsMixin,
+                                       ItemExportWithLinkMixin,
+                                       ItemExportWithLocationMixin,
+                                       ItemExportWithRatesMixin,
+                                       UserGeneratedContentExportMixin)
 from adhocracy4.ratings.models import Rating
+from tests.apps.ideas.models import Idea
+
+
+@pytest.mark.django_db
+def test_item_link_mixin(rf, idea):
+    request = rf.get('/')
+    mixin = ItemExportWithLinkMixin()
+    mixin.request = request
+
+    virtual = mixin.get_virtual_fields({})
+    assert 'link' in virtual
+
+    absolute_url = idea.get_absolute_url()
+    assert mixin.get_link_data(idea) == 'http://testserver' + absolute_url
+
+
+def test_model_fields_mixin():
+    class Mixin(ExportModelFieldsMixin):
+        model = Idea
+        fields = ['item_ptr', 'name', 'description', 'point']
+        exclude = ['point']
+
+    mixin = Mixin()
+
+    virtual = mixin.get_virtual_fields({})
+    assert virtual == {
+        'description': 'Description',
+        'name': 'name'
+    }
 
 
 @pytest.mark.django_db
