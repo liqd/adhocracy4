@@ -19,7 +19,7 @@ class TopicExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                       export_mixins.UserGeneratedContentExportMixin,
                       a4_export_views.BaseItemExportView):
     model = models.Topic
-    fields = ['name']
+    fields = ['name', 'description']
     html_fields = ['description']
 
     def get_queryset(self):

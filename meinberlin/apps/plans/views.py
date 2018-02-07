@@ -98,6 +98,7 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
     model = models.Plan
     fields = ['title', 'organisation', 'project', 'contact', 'cost',
               'description', 'category', 'status', 'participation']
+    html_fields = ['description']
 
     def get_object_list(self):
         return models.Plan.objects.all()

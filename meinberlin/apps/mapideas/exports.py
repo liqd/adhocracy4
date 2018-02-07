@@ -20,7 +20,7 @@ class MapIdeaExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                         export_mixins.UserGeneratedContentExportMixin,
                         a4_export_views.BaseItemExportView):
     model = models.MapIdea
-    fields = ['name']
+    fields = ['name', 'description']
     html_fields = ['description']
 
     def get_queryset(self):
