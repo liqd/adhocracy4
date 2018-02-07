@@ -6,6 +6,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.models import base
 from adhocracy4 import transforms as html_transforms
 from adhocracy4.images import fields
@@ -41,9 +42,9 @@ class Project(base.TimeStampedModel):
                     'It should briefly state the goal of the project '
                     'in max. 250 chars.')
     )
-    information = RichTextUploadingField(
+    information = RichTextCollapsibleUploadingField(
         blank=True,
-        config_name='image-editor',
+        config_name='collapsible-image-editor',
         verbose_name=_('Description of your project'),
         help_text=_('This description should tell participants '
                     'what the goal of the project is, how the project’s '
@@ -114,7 +115,7 @@ class Project(base.TimeStampedModel):
 
     def save(self, *args, **kwargs):
         self.information = html_transforms.clean_html_field(
-            self.information, 'image-editor')
+            self.information, 'collapsible-image-editor')
         self.result = html_transforms.clean_html_field(
             self.result, 'image-editor')
         super(Project, self).save(*args, **kwargs)
