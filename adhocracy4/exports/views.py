@@ -95,10 +95,7 @@ class BaseItemExportView(BaseExport,
                          AbstractXlsxExportView):
 
     def get_queryset(self):
-        qs = super().get_queryset()
-        if hasattr(self, 'module') and self.module:
-            qs = qs.filter(module=self.module)
-        return qs
+        return super().get_queryset().filter(module=self.module)
 
     def get_object_list(self):
         return self.get_queryset().all()

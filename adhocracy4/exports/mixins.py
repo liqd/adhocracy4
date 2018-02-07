@@ -1,5 +1,3 @@
-from itertools import chain
-
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext as _
 
@@ -34,13 +32,8 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
         meta = self.model._meta
         exclude = self.exclude if self.exclude else []
 
-        seen = set()
-        field_names = [x for x in chain(getattr(self, 'fields', []) +
-                                        getattr(self, 'html_fields', []))
-                       if not (x in seen or seen.add(x))]
-
-        if field_names:
-            fields = [meta.get_field(name) for name in field_names]
+        if self.fields:
+            fields = [meta.get_field(name) for name in self.fields]
         else:
             fields = meta.get_fields()
 
@@ -56,7 +49,8 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
         return super().get_virtual_fields(virtual)
 
     def _setup_html_fields(self):
-        for field in getattr(self, 'html_fields', []):
+        html_fields = self.html_fields if self.html_fields else []
+        for field in html_fields:
             get_field_attr_name = 'get_%s_data' % field
             setattr(self, get_field_attr_name,
                     lambda item: unescape_and_strip_html(getattr(item, field)))

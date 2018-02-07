@@ -30,8 +30,7 @@ def test_item_link_mixin(rf, idea):
 def test_model_fields_mixin(idea):
     class Mixin(ExportModelFieldsMixin):
         model = Idea
-        fields = ['item_ptr', 'description', 'name', 'point']
-        exclude = ['point']
+        fields = ['description', 'name']
         html_fields = ['description']
 
     mixin = Mixin()
@@ -45,6 +44,21 @@ def test_model_fields_mixin(idea):
     idea.description = '&nbsp; &amp;&euro;&lt;&quot;&auml;&ouml;&uuml;' \
                        '&#x1F4A9;&nbsp; '
     assert mixin.get_description_data(idea) == '&€<"äöü💩'
+
+
+@pytest.mark.django_db
+def test_model_fields_mixin_exclude(idea):
+    class Mixin(ExportModelFieldsMixin):
+        model = Idea
+        exclude = ['point', 'point_label']
+
+    mixin = Mixin()
+
+    virtual = mixin.get_virtual_fields({})
+
+    assert sorted(virtual.keys()) == ['category', 'created', 'creator',
+                                      'description', 'id', 'modified',
+                                      'module', 'name']
 
 
 @pytest.mark.django_db
