@@ -28,3 +28,9 @@ class MapTopicForm(CategorizableFieldMixin, forms.ModelForm):
             'point': _('Locate the place on a map'),
             'point_label': _('Place label'),
         }
+
+
+class MapTopicModerateForm(forms.ModelForm):
+    class Meta:
+        model = models.MapTopic
+        fields = ['moderator_feedback']

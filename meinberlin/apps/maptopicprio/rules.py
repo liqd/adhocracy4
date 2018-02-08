@@ -29,3 +29,9 @@ rules.add_perm(
     'meinberlin_maptopicprio.comment_maptopic',
     module_predicates.is_allowed_comment_item
 )
+
+rules.add_perm(
+    'meinberlin_maptopicprio.moderate_topic',
+    module_predicates.is_context_moderator |
+    module_predicates.is_context_initiator
+)

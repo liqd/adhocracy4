@@ -7,4 +7,6 @@ urlpatterns = [
         views.MapTopicDetailView.as_view(), name='maptopic-detail'),
     url(r'^(?P<slug>[-\w_]+)/$',
         views.MapTopicDetailView.as_view(), name='maptopic-redirect'),
+    url(r'^(?P<year>\d{4})-(?P<pk>\d+)/moderate/$',
+        views.MapTopicModerateView.as_view(), name='maptopic-moderate'),
 ]

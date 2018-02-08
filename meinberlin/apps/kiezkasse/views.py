@@ -2,11 +2,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
-
 from meinberlin.apps.contrib import filters
-from meinberlin.apps.contrib import forms as contrib_forms
 from meinberlin.apps.ideas import views as idea_views
-from meinberlin.apps.ideas.views import AbstractIdeaModerateView
 
 from . import forms
 from . import models
@@ -80,7 +77,7 @@ class ProposalDeleteView(idea_views.AbstractIdeaDeleteView):
     template_name = 'meinberlin_kiezkasse/proposal_confirm_delete.html'
 
 
-class ProposalModerateView(AbstractIdeaModerateView):
+class ProposalModerateView(idea_views.AbstractIdeaModerateView):
     model = models.Proposal
     permission_required = 'meinberlin_kiezkasse.moderate_proposal'
     template_name = 'meinberlin_kiezkasse/proposal_moderate_form.html'
