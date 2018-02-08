@@ -2,6 +2,7 @@ import json
 
 from django import template
 from django.conf import settings
+from django.utils.html import escape
 from django.utils.html import format_html
 from easy_thumbnails.files import get_thumbnailer
 
@@ -31,7 +32,7 @@ def get_points(items):
             negative_rating_count = item.negative_rating_count
 
         properties = {
-            'name': item.name,
+            'name': escape(item.name),
             'slug': item.slug,
             'image':  image_url,
             'comments_count': comment_count,
