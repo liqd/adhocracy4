@@ -18,7 +18,7 @@ class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
     pass
 
 
-class AbstractIdea(module_models.Item):
+class AbstractIdea(module_models.Item, Moderateable):
     item_ptr = models.OneToOneField(to=module_models.Item,
                                     parent_link=True,
                                     related_name='%(app_label)s_%(class)s')
@@ -51,7 +51,7 @@ class AbstractIdea(module_models.Item):
         super().save(*args, **kwargs)
 
 
-class Idea(AbstractIdea, Moderateable):
+class Idea(AbstractIdea):
 
     def get_absolute_url(self):
         return reverse('meinberlin_ideas:idea-detail',
