@@ -15,12 +15,12 @@
                 <li>
                     <a href="{{ object.get_absolute_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'back to idea' %}</a>
+                        {% trans 'back to topic' %}</a>
                 </li>
             </ul>
         </nav>
 
-        <h1>{% trans 'Moderate idea' %}</h1>
+        <h1>{% trans 'Moderate topic' %}</h1>
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
             {% for form in forms.values %}

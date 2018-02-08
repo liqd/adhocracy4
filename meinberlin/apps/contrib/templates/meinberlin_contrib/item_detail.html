@@ -106,19 +106,17 @@
 
     {% block moderator_statement %}
         {% if object.moderator_statement.statement %}
-            <div class="l-wrapper">
-                <div class="l-center-8">
-                    <div class="moderator-statement">
-                        <h2 class="moderator-statement__title">{% trans 'Official Statement' %}</h2>
-                        <div class="moderator-statement__subtitle">
-                            <strong class="moderator-statement__organisation">
-                                {{ object.module.project.organisation.name }}
-                            </strong>
-                            {% html_date object.moderator_statement.created class='moderator-statement__date' %}
-                        </div>
-                        <div class="moderator-statement__body">
-                            {{ object.moderator_statement.statement | safe }}
-                        </div>
+            <div class="l-center-8">
+                <div class="moderator-statement">
+                    <h2 class="moderator-statement__title">{% trans 'Official Statement' %}</h2>
+                    <div class="moderator-statement__subtitle">
+                        <strong class="moderator-statement__organisation">
+                            {{ object.module.project.organisation.name }}
+                        </strong>
+                        {% html_date object.moderator_statement.created class='moderator-statement__date' %}
+                    </div>
+                    <div class="moderator-statement__body">
+                        {{ object.moderator_statement.statement | safe }}
                     </div>
                 </div>
             </div>

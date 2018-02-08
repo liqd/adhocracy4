@@ -11,13 +11,14 @@ from adhocracy4.comments import models as comment_models
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
+from meinberlin.apps.moderatorfeedback.models import Moderateable
 
 
 class TopicQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
     pass
 
 
-class Topic(module_models.Item):
+class Topic(module_models.Item, Moderateable):
     item_ptr = models.OneToOneField(to=module_models.Item,
                                     parent_link=True,
                                     related_name='%(app_label)s_%(class)s')
