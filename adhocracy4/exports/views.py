@@ -84,7 +84,7 @@ class BaseExport(VirtualFieldMixin):
 
         # Finally try to get the fields data as a property
         value = getattr(item, name, '')
-        if isinstance(value, numbers.Number):
+        if isinstance(value, numbers.Number) and not isinstance(value, bool):
             return value
         return str(value)
 
