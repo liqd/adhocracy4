@@ -5,12 +5,12 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.html import strip_tags
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.exports import mixins as export_mixins
 from adhocracy4.exports import views as export_views
+from adhocracy4.exports import unescape_and_strip_html
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
@@ -88,15 +88,19 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
 
 class PlanExportView(rules_mixins.PermissionRequiredMixin,
+                     export_mixins.ItemExportWithLinkMixin,
+                     export_mixins.ExportModelFieldsMixin,
                      export_mixins.ItemExportWithLocationMixin,
-                     export_views.ItemExportView):
+                     export_views.BaseExport,
+                     export_views.AbstractXlsxExportView):
 
     permission_required = 'meinberlin_plans.list_plan'
     model = models.Plan
     fields = ['title', 'organisation', 'project', 'contact', 'cost',
               'description', 'category', 'status', 'participation']
+    html_fields = ['description']
 
-    def get_queryset(self):
+    def get_object_list(self):
         return models.Plan.objects.all()
 
     def get_base_filename(self):
@@ -111,7 +115,16 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
         return ''
 
     def get_contact_data(self, item):
-        return strip_tags(item.contact).strip()
+        return unescape_and_strip_html(item.contact)
+
+    def get_status_data(self, item):
+        return item.get_status_display()
+
+    def get_participation_data(self, item):
+        return item.get_participation_display()
+
+    def get_description_data(self, item):
+        return unescape_and_strip_html(item.description)
 
 
 class DashboardPlanListView(a4dashboard_mixins.DashboardBaseMixin,

@@ -4,22 +4,25 @@ from adhocracy4.exports import mixins as a4_export_mixins
 from adhocracy4.exports import views as a4_export_views
 from meinberlin.apps.exports import mixins as export_mixins
 from meinberlin.apps.exports import register_export
-from meinberlin.apps.exports.views import ItemExportWithModeratorFeedback
 
 from . import models
 
 
 @register_export(_('Proposals with comments'))
-class ProposalExportView(a4_export_views.ItemExportView,
-                         export_mixins.ItemExportWithReferenceNumberMixin,
+class ProposalExportView(export_mixins.ItemExportWithReferenceNumberMixin,
+                         a4_export_mixins.ItemExportWithLinkMixin,
+                         a4_export_mixins.ExportModelFieldsMixin,
                          a4_export_mixins.ItemExportWithRatesMixin,
+                         a4_export_mixins.ItemExportWithCategoriesMixin,
                          a4_export_mixins.ItemExportWithCommentCountMixin,
                          a4_export_mixins.ItemExportWithCommentsMixin,
                          a4_export_mixins.ItemExportWithLocationMixin,
-                         a4_export_mixins.ItemExportWithCategoriesMixin,
-                         ItemExportWithModeratorFeedback):
+                         export_mixins.UserGeneratedContentExportMixin,
+                         export_mixins.ItemExportWithModeratorFeedback,
+                         a4_export_views.BaseItemExportView):
     model = models.Proposal
-    fields = ['name', 'description', 'creator', 'created', 'budget']
+    fields = ['name', 'description', 'budget']
+    html_fields = ['description']
 
     def get_queryset(self):
         return super().get_queryset() \
