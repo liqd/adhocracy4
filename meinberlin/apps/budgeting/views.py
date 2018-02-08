@@ -3,7 +3,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
+
 from meinberlin.apps.contrib import filters
+from meinberlin.apps.contrib import forms as contrib_forms
 from meinberlin.apps.ideas import views as idea_views
 from meinberlin.apps.ideas.views import AbstractIdeaModerateView
 from meinberlin.apps.projects.views import ArchivedWidget
