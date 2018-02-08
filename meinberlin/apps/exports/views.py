@@ -1,8 +1,5 @@
-from django.utils.translation import ugettext as _
 from django.views import generic
 
-from adhocracy4.exports.views import SimpleItemExportView
-from adhocracy4.exports.views import VirtualFieldMixin
 from adhocracy4.modules import models as module_models
 from adhocracy4.rules import mixins as rules_mixins
 
@@ -34,23 +31,3 @@ class ExportModuleDispatcher(rules_mixins.PermissionRequiredMixin,
 
     def get_permission_object(self):
         return self.project
-
-
-class ItemExportWithModeratorFeedback(VirtualFieldMixin):
-    def get_virtual_fields(self, virtual):
-        if 'moderator_feedback' not in virtual:
-            virtual['moderator_feedback'] = _('Moderator feedback')
-        if 'moderator_statement' not in virtual:
-            virtual['moderator_statement'] = _('Official Statement')
-        return super().get_virtual_fields(virtual)
-
-    def get_moderator_feedback_data(self, item):
-        return item.get_moderator_feedback_display()
-
-    def get_moderator_statement_data(self, item):
-        if item.moderator_statement:
-            # FIXME: would prefer to have a helper function instead of a class
-            # method for unescape_and_strip
-            return SimpleItemExportView.unescape_and_strip_html(
-                self, item.moderator_statement.statement)
-        return ''

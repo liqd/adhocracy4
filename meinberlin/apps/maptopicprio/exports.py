@@ -9,15 +9,19 @@ from . import models
 
 
 @register_export(_('Places with comments'))
-class MapTopicExportView(a4_export_views.ItemExportView,
-                         export_mixins.ItemExportWithReferenceNumberMixin,
+class MapTopicExportView(export_mixins.ItemExportWithReferenceNumberMixin,
+                         a4_export_mixins.ItemExportWithLinkMixin,
+                         a4_export_mixins.ExportModelFieldsMixin,
                          a4_export_mixins.ItemExportWithRatesMixin,
+                         a4_export_mixins.ItemExportWithCategoriesMixin,
                          a4_export_mixins.ItemExportWithCommentCountMixin,
                          a4_export_mixins.ItemExportWithCommentsMixin,
-                         a4_export_mixins.ItemExportWithCategoriesMixin,
-                         a4_export_mixins.ItemExportWithLocationMixin):
+                         a4_export_mixins.ItemExportWithLocationMixin,
+                         export_mixins.UserGeneratedContentExportMixin,
+                         a4_export_views.BaseItemExportView):
     model = models.MapTopic
-    fields = ['name', 'description', 'creator', 'created']
+    fields = ['name', 'description']
+    html_fields = ['description']
 
     def get_queryset(self):
         return super().get_queryset() \

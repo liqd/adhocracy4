@@ -9,14 +9,18 @@ from . import models
 
 
 @register_export(_('Topics with comments'))
-class TopicExportView(a4_export_views.ItemExportView,
-                      export_mixins.ItemExportWithReferenceNumberMixin,
+class TopicExportView(export_mixins.ItemExportWithReferenceNumberMixin,
+                      a4_export_mixins.ItemExportWithLinkMixin,
+                      a4_export_mixins.ExportModelFieldsMixin,
                       a4_export_mixins.ItemExportWithRatesMixin,
-                      a4_export_mixins.ItemExportWithCommentCountMixin,
                       a4_export_mixins.ItemExportWithCategoriesMixin,
-                      a4_export_mixins.ItemExportWithCommentsMixin):
+                      a4_export_mixins.ItemExportWithCommentCountMixin,
+                      a4_export_mixins.ItemExportWithCommentsMixin,
+                      export_mixins.UserGeneratedContentExportMixin,
+                      a4_export_views.BaseItemExportView):
     model = models.Topic
-    fields = ['name', 'description', 'creator', 'created']
+    fields = ['name', 'description']
+    html_fields = ['description']
 
     def get_queryset(self):
         return super().get_queryset() \
