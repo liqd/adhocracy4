@@ -9,8 +9,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.exports import mixins as export_mixins
-from adhocracy4.exports import views as export_views
 from adhocracy4.exports import unescape_and_strip_html
+from adhocracy4.exports import views as export_views
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
