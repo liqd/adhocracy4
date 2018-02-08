@@ -1,14 +1,64 @@
 import pytest
 
-from adhocracy4.exports.mixins import ItemExportWithRatesMixin
-from adhocracy4.exports.mixins import ItemExportWithCommentCountMixin
-from adhocracy4.exports.mixins import ItemExportWithCommentsMixin
-from adhocracy4.exports.mixins import ItemExportWithLocationMixin
-from adhocracy4.exports.mixins import ItemExportWithCategoriesMixin
-from adhocracy4.exports.views import SimpleItemExportView
+from collections import OrderedDict
 
-from tests.apps.ideas.models import Idea
+from adhocracy4.exports.mixins import (ExportModelFieldsMixin,
+                                       ItemExportWithCategoriesMixin,
+                                       ItemExportWithCommentCountMixin,
+                                       ItemExportWithCommentsMixin,
+                                       ItemExportWithLinkMixin,
+                                       ItemExportWithLocationMixin,
+                                       ItemExportWithRatesMixin)
 from adhocracy4.ratings.models import Rating
+from tests.apps.ideas.models import Idea
+
+
+@pytest.mark.django_db
+def test_item_link_mixin(rf, idea):
+    request = rf.get('/')
+    mixin = ItemExportWithLinkMixin()
+    mixin.request = request
+
+    virtual = mixin.get_virtual_fields({})
+    assert 'link' in virtual
+
+    absolute_url = idea.get_absolute_url()
+    assert mixin.get_link_data(idea) == 'http://testserver' + absolute_url
+
+
+@pytest.mark.django_db
+def test_model_fields_mixin(idea):
+    class Mixin(ExportModelFieldsMixin):
+        model = Idea
+        fields = ['description', 'name']
+        html_fields = ['description']
+
+    mixin = Mixin()
+
+    virtual = mixin.get_virtual_fields(OrderedDict())
+    assert list(virtual.items()) == [
+        ('description', 'Description'),
+        ('name', 'name')
+    ]
+
+    idea.description = '&nbsp; &amp;&euro;&lt;&quot;&auml;&ouml;&uuml;' \
+                       '&#x1F4A9;&nbsp; '
+    assert mixin.get_description_data(idea) == '&€<"äöü💩'
+
+
+@pytest.mark.django_db
+def test_model_fields_mixin_exclude(idea):
+    class Mixin(ExportModelFieldsMixin):
+        model = Idea
+        exclude = ['point', 'point_label']
+
+    mixin = Mixin()
+
+    virtual = mixin.get_virtual_fields({})
+
+    assert sorted(virtual.keys()) == ['category', 'created', 'creator',
+                                      'description', 'id', 'modified',
+                                      'module', 'name']
 
 
 @pytest.mark.django_db
@@ -65,14 +115,7 @@ def test_item_comments_mixin(idea, comment_factory):
     comment_factory(comment='reply to comment', content_object=comment)
     comment_factory(comment='<i>comment</i>2   ', content_object=idea)
 
-    class TestCommentExportMixin(
-          SimpleItemExportView,
-          ItemExportWithCommentsMixin):
-
-        def _setup_fields(self):
-            return [], []
-
-    mixin = TestCommentExportMixin()
+    mixin = ItemExportWithCommentsMixin()
 
     virtual = mixin.get_virtual_fields({})
     assert 'comments' in virtual
@@ -107,12 +150,15 @@ def test_item_location_mixin(idea):
     mixin = ItemExportWithLocationMixin()
 
     virtual = mixin.get_virtual_fields({})
-    assert 'location' in virtual
+    assert 'location_lon' in virtual
+    assert 'location_lat' in virtual
     assert 'location_label' in virtual
 
-    assert mixin.get_location_data({}) == ''
+    assert mixin.get_location_lon_data({}) == ''
+    assert mixin.get_location_lat_data({}) == ''
     assert mixin.get_location_label_data({}) == ''
 
     lon, lat = idea.point['geometry']['coordinates']
-    assert mixin.get_location_data(idea) == '%s, %s' % (lon, lat)
+    assert mixin.get_location_lon_data(idea) == lon
+    assert mixin.get_location_lat_data(idea) == lat
     assert mixin.get_location_label_data(idea) == idea.point_label

@@ -4,10 +4,56 @@ from django.utils.translation import ugettext as _
 from adhocracy4.comments.models import Comment
 from adhocracy4.ratings.models import Rating
 
+from . import unescape_and_strip_html
+
 
 class VirtualFieldMixin:
     def get_virtual_fields(self, virtual):
         return virtual
+
+
+class ItemExportWithLinkMixin(VirtualFieldMixin):
+    def get_virtual_fields(self, virtual):
+        if 'link' not in virtual:
+            virtual['link'] = _('Link')
+        return super().get_virtual_fields(virtual)
+
+    def get_link_data(self, item):
+        return self.request.build_absolute_uri(item.get_absolute_url())
+
+
+class ExportModelFieldsMixin(VirtualFieldMixin):
+    # Requires self.model to be set
+    fields = None
+    exclude = None
+    html_fields = None
+
+    def get_virtual_fields(self, virtual):
+        meta = self.model._meta
+        exclude = self.exclude if self.exclude else []
+
+        if self.fields:
+            fields = [meta.get_field(name) for name in self.fields]
+        else:
+            fields = meta.get_fields()
+
+        for field in fields:
+            if field.concrete \
+                    and not (field.one_to_one and field.rel.parent_link) \
+                    and field.name not in exclude \
+                    and field.name not in virtual:
+                virtual[field.name] = str(field.verbose_name)
+
+        self._setup_html_fields()
+
+        return super().get_virtual_fields(virtual)
+
+    def _setup_html_fields(self):
+        html_fields = self.html_fields if self.html_fields else []
+        for field in html_fields:
+            get_field_attr_name = 'get_%s_data' % field
+            setattr(self, get_field_attr_name,
+                    lambda item: unescape_and_strip_html(getattr(item, field)))
 
 
 class ItemExportWithRatesMixin(VirtualFieldMixin):
@@ -85,14 +131,14 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
             yield self.COMMENT_FMT.format(
                 date=comment.created.isoformat(),
                 username=comment.creator.username,
-                text=self.unescape_and_strip_html(comment.comment)
+                text=unescape_and_strip_html(comment.comment)
             )
 
             for reply in comment.child_comments.all():
                 yield self.REPLY_FMT.format(
                     date=reply.created.isoformat(),
                     username=reply.creator.username,
-                    text=self.unescape_and_strip_html(reply.comment)
+                    text=unescape_and_strip_html(reply.comment)
                 )
 
 
@@ -111,17 +157,26 @@ class ItemExportWithCategoriesMixin(VirtualFieldMixin):
 
 class ItemExportWithLocationMixin(VirtualFieldMixin):
     def get_virtual_fields(self, virtual):
-        if 'location' not in virtual:
-            virtual['location'] = _('Location')
+        if 'location_lon' not in virtual:
+            virtual['location_lon'] = _('Location (Longitude)')
+        if 'location_lat' not in virtual:
+            virtual['location_lat'] = _('Location (Latitude)')
         if 'location_label' not in virtual:
             virtual['location_label'] = _('Location label')
         return super().get_virtual_fields(virtual)
 
-    def get_location_data(self, item):
+    def get_location_lon_data(self, item):
         if hasattr(item, 'point'):
             point = item.point
             if 'geometry' in point:
-                return ', '.join(map(str, point['geometry']['coordinates']))
+                return point['geometry']['coordinates'][0]
+        return ''
+
+    def get_location_lat_data(self, item):
+        if hasattr(item, 'point'):
+            point = item.point
+            if 'geometry' in point:
+                return point['geometry']['coordinates'][1]
         return ''
 
     def get_location_label_data(self, item):

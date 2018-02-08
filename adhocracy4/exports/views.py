@@ -1,15 +1,13 @@
-import html
-
 from collections import OrderedDict
-import xlsxwriter
+import numbers
 
-from django.views import generic
+import xlsxwriter
 from django.http import HttpResponse
 from django.utils import timezone
-from django.utils.html import strip_tags
-from django.utils.translation import ugettext as _
+from django.views import generic
 
 from adhocracy4.projects.mixins import ProjectMixin
+
 from .mixins import VirtualFieldMixin
 
 
@@ -48,32 +46,33 @@ class AbstractXlsxExportView(generic.View):
         return field
 
 
-class SimpleItemExportView(AbstractXlsxExportView,
-                           VirtualFieldMixin):
+class BaseExport(VirtualFieldMixin):
 
-    def __init__(self):
-        super().__init__()
-        self._header, self._names = self._setup_fields()
+    def get_fields(self):
+        # Get virtual fields in their order from the Mixins
+        header = []
+        names = []
 
-    def _setup_fields(self):
-        raise NotImplementedError
+        virtual = OrderedDict()
+        virtual = self.get_virtual_fields(virtual)
+        for name, head in virtual.items():
+            if name not in names:
+                names.append(name)
+                header.append(head)
+
+        return names, header
 
     def get_header(self):
-        return self._header
+        _, header = self.get_fields()
+        return header
 
     def export_rows(self):
-        raise NotImplementedError
+        names, _ = self.get_fields()
 
-    def get_base_filename(self):
-        return '%s_%s' % ('download',
-                          timezone.now().strftime('%Y%m%dT%H%M%S'))
-
-    def unescape_and_strip_html(self, text):
-        text = html.unescape(text)
-        return strip_tags(text).strip()
+        for item in self.get_object_list():
+            yield [self.get_field_data(item, name) for name in names]
 
     def get_field_data(self, item, name):
-
         # Use custom getters if they are defined
         get_field_attr_name = 'get_%s_data' % name
         if hasattr(self, get_field_attr_name):
@@ -84,70 +83,23 @@ class SimpleItemExportView(AbstractXlsxExportView,
             return get_field_attr
 
         # Finally try to get the fields data as a property
-        return str(getattr(item, name, ''))
-
-    def get_link_data(self, item):
-        return self.request.build_absolute_uri(item.get_absolute_url())
-
-    def get_description_data(self, item):
-        return self.unescape_and_strip_html(item.description)
-
-    def get_creator_data(self, item):
-        return item.creator.username
-
-    def get_created_data(self, item):
-        return item.created.isoformat()
+        value = getattr(item, name, '')
+        if isinstance(value, numbers.Number):
+            return value
+        return str(value)
 
 
-class ItemExportView(SimpleItemExportView,
-                     ProjectMixin,
-                     generic.list.MultipleObjectMixin):
-    fields = None
-    exclude = None
-    model = None
+class BaseItemExportView(BaseExport,
+                         ProjectMixin,
+                         generic.list.MultipleObjectMixin,
+                         AbstractXlsxExportView):
 
-    def _setup_fields(self):
-        meta = self.model._meta
-        exclude = self.exclude if self.exclude else []
+    def get_queryset(self):
+        return super().get_queryset().filter(module=self.module)
 
-        if self.fields:
-            fields = [meta.get_field(name) for name in self.fields]
-        else:
-            fields = meta.get_fields()
-
-        # Ensure that link is the first row even though it's a virtual field
-        names = ['link']
-        header = [_('Link')]
-
-        for field in fields:
-            if field.concrete \
-                    and not (field.one_to_one and field.rel.parent_link) \
-                    and field.name not in exclude \
-                    and field.name not in names:
-
-                names.append(field.name)
-                header.append(str(field.verbose_name))
-
-        # Get virtual fields in their order from the Mixins
-        virtual = OrderedDict()
-        virtual = self.get_virtual_fields(virtual)
-        for name, head in virtual.items():
-            if name not in names:
-                names.append(name)
-                header.append(head)
-
-        return header, names
+    def get_object_list(self):
+        return self.get_queryset().all()
 
     def get_base_filename(self):
         return '%s_%s' % (self.project.slug,
                           timezone.now().strftime('%Y%m%dT%H%M%S'))
-
-    def get_queryset(self):
-        qs = super().get_queryset()
-        if hasattr(self, 'module') and self.module:
-            qs = qs.filter(module=self.module)
-        return qs
-
-    def export_rows(self):
-        for item in self.get_queryset().all():
-            yield [self.get_field_data(item, name) for name in self._names]
