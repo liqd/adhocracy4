@@ -18,8 +18,8 @@ from adhocracy4.images.validators import validate_image
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 from meinberlin.apps.dashboard2 import components
+from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 
 from .models import Bplan
 from .phases import StatementPhase

@@ -1,5 +1,5 @@
 {% extends "meinberlin_contrib/item_detail.html" %}
-{% load i18n rules react_comments module_tags react_ratings wagtailcore_tags item_tags maps_tags static %}
+{% load i18n rules react_comments module_tags react_ratings wagtailcore_tags maps_tags static %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
@@ -28,7 +28,6 @@
         <div class="item-detail">
             <h1 class="item-detail__title">{{ object.name }}</h1>
 
-
             <div class="item-detail__labels">
                 {% if object.category %}
                     <div class="label label--big">{{ object.category }}</div>
@@ -45,6 +44,13 @@
                 {% if object.point %}
                     {% map_display_point object.point object.module.areasettings_settings.polygon %}
                 {% endif %}
+            </div>
+
+            <div class="item-detail__meta lr-bar">
+                <div class="lr-bar__right">
+                    <strong>{% trans 'Reference No.' %}:</strong>
+                    {{ object.reference_number }}
+                </div>
             </div>
 
             <div class="item-detail__actions lr-bar">

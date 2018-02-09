@@ -21,7 +21,8 @@ class Proposal(mapidea_models.AbstractMapIdea, Moderateable):
 
     def get_absolute_url(self):
         return reverse('meinberlin_budgeting:proposal-detail',
-                       args=[str(self.slug)])
+                       kwargs=dict(pk='{:05d}'.format(self.pk),
+                                   year=self.created.year))
 
     class Meta:
         ordering = ['-created']

@@ -8,17 +8,17 @@
         <div class="lr-bar__right">
             <div class="btn-group">
                 {% spaceless %}
-                    <a href="{% url 'meinberlin_maptopicprio:maptopic-detail' slug=object.slug %}"
+                    <a href="{{ object.get_absolute_url }}"
                        class="btn btn--small btn--light">
                         <i class="fa fa-eye" aria-hidden="true"></i>
                         {% trans 'View' %}
                     </a>
-                    <a href="{% url 'a4dashboard:maptopic-update' slug=object.slug %}"
+                    <a href="{% url 'a4dashboard:maptopic-update' pk=object.pk year=object.created.year %}"
                        class="btn btn--small btn--light">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
                         {% trans 'Edit'%}
                     </a>
-                    <a href="{% url 'a4dashboard:maptopic-delete' slug=object.slug %}"
+                    <a href="{% url 'a4dashboard:maptopic-delete' pk=object.pk year=object.created.year %}"
                        class="btn btn--small btn--light">
                         <i class="fa fa-remove" aria-hidden="true"></i>
                         {% trans 'Delete'%}

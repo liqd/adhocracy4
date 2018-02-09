@@ -34,16 +34,6 @@ def get_item_permission(item, verb):
 
 
 @register.assignment_tag
-def get_item_detail_url(item):
-    return get_item_url(item, 'detail')
-
-
-@register.assignment_tag
-def get_item_create_url(item):
-    return get_item_url(item, 'create')
-
-
-@register.assignment_tag
 def get_item_update_url(item):
     return get_item_url(item, 'update')
 
@@ -62,5 +52,6 @@ def get_item_url(item, view):
     )
 
     return reverse(url_name, kwargs={
-        'slug': item.slug
+        'year': item.created.year,
+        'pk': '{:05d}'.format(item.pk)
     })

@@ -1,5 +1,5 @@
 {% extends "meinberlin_mapideas/mapidea_detail.html" %}
-{% load rules item_tags i18n humanize contrib_tags %}
+{% load rules i18n humanize contrib_tags %}
 
 {% block additional_labels %}
     {{ block.super }}
@@ -34,12 +34,10 @@
 {% endblock %}
 
 {% block dropdown_items %}
-    {% get_item_permission object 'moderate' as moderator_perm %}
-    {% has_perm moderator_perm request.user proposal as is_moderator %}
+    {% has_perm 'meinberlin_kiezkasse.moderate_proposal' request.user proposal as is_moderator %}
     {% if is_moderator %}
         <li>
-            {% get_item_url object 'moderate' as moderate_url %}
-            <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'Moderate' %}</a>
+            <a class="dropdown-item" href="{% url 'meinberlin_kiezkasse:proposal-moderate' year=object.created.year pk=object.pk %}">{% trans 'Moderate' %}</a>
         </li>
     {% endif %}
 {% endblock %}

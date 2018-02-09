@@ -32,9 +32,15 @@
                 {% block additional_content %}{% endblock %}
             </div>
 
-            <div class="item-detail__meta">
-                <strong class="item-detail__creator">{{ object.creator.username }}</strong>
-                {% html_date object.created %}
+            <div class="item-detail__meta lr-bar">
+                <div class="lr-bar__left">
+                    <strong class="item-detail__creator">{{ object.creator.username }}</strong>
+                    {% html_date object.created %}
+                </div>
+                <div class="lr-bar__right">
+                    <strong>{% trans 'Reference No.' %}:</strong>
+                    {{ object.reference_number }}
+                </div>
             </div>
 
             <div class="item-detail__actions lr-bar">
