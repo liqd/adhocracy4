@@ -74,7 +74,8 @@ class Plan(UserGeneratedContentModel):
 
     def get_absolute_url(self):
         return reverse('meinberlin_plans:plan-detail',
-                       kwargs=dict(pk=self.pk, year=self.created.year))
+                       kwargs=dict(pk='{:05d}'.format(self.pk),
+                                   year=self.created.year))
 
     def save(self, *args, **kwargs):
         self.description = transforms.clean_html_field(self.description)

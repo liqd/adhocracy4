@@ -1,4 +1,4 @@
-{% load i18n module_tags item_tags contrib_tags %}
+{% load i18n module_tags contrib_tags %}
 
 <li class="list-item list-item--squashed">
     <div class="list-item__stats">
@@ -22,8 +22,7 @@
         {% endspaceless %}
     </div>
     <h3 class="list-item__title">
-        {% get_item_detail_url object as detail_url %}
-        <a href="{{ detail_url }}">
+        <a href="{{ object.get_absolute_url }}">
         {{ object.name }}
         </a>
     </h3>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-23 13:34+0100\n"
+"POT-Creation-Date: 2018-02-07 11:05+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,6 +45,7 @@ msgstr "Antwort ausblenden"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:26
 #: adhocracy4/comments/static/comments/Comment.jsx:26
+#, javascript-format
 msgid "hide %s replies"
 msgstr "%s Antworten ausblenden"
 
@@ -55,6 +56,7 @@ msgstr "Antwort einblenden"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:28
 #: adhocracy4/comments/static/comments/Comment.jsx:28
+#, javascript-format
 msgid "view %s replies"
 msgstr "%s Antworten einblenden"
 
@@ -79,6 +81,7 @@ msgstr "Löschen"
 #: adhocracy4/comments/static/comments/Comment.jsx:131
 #: adhocracy4/static/Modal.jsx:49
 #: adhocracy4/comments/static/comments/Comment.jsx:131
+#: adhocracy4/static/Modal.jsx:49
 msgid "Abort"
 msgstr "Abbrechen"
 
@@ -202,9 +205,12 @@ msgstr "Meldung senden"
 
 #: adhocracy4/static/Alert.jsx:10
 #: adhocracy4/static/Alert.jsx:11
+#: adhocracy4/static/Alert.jsx:10
+#: adhocracy4/static/Alert.jsx:11
 #: meinberlin/apps/contrib/assets/Alert.jsx:10
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:93
 #: meinberlin/assets/js/embed.js:29 meinberlin/assets/js/embed.js:30
 msgid "Close"
 msgstr "Schließen"
@@ -286,7 +292,62 @@ msgstr "Überschrift"
 msgid "Paragraph"
 msgstr "Absatz"
 
-#: meinberlin/apps/maps/static/meinberlin_maps/map_choose_polygon_with_preset.js:112
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:75
+msgid "Export polygon as GeoJSON"
+msgstr "Polygon als GeoJSON exportierten"
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:76
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:86
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:98
+msgid "Import polygon via file upload"
+msgstr "Polygon aus Datei importieren"
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:100
+msgid ""
+"Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
+msgstr ""
+"Laden Sie eine GeoJSON Datei (.geojson) oder ein gepacktes Shapefile (.zip) "
+"hoch."
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:101
+msgid ""
+"Note that uploading Shapefiles is not supported with Internet Explorer 10"
+msgstr ""
+"Beachten Sie, dass der Import von Shapefiles mit dem Internet Explorer 10 "
+"nicht unterstützt wird"
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:102
+msgid "Attention importing a file will delete the existing polygons."
+msgstr ""
+"Achtung der Import einer Datei wird alle vorher ausgewählten Polygone "
+"entfernen."
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:107
+msgid "Upload"
+msgstr "Hochladen"
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:114
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:148
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:150
+msgid "The uploaded file is not a valid shapefile."
+msgstr "Die hochgeladene Datei ist kein gültiges Shapefile."
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:152
+msgid "The uploaded file could not be imported."
+msgstr "Die hochgeladene Datei kann nicht importiert werden."
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:166
+msgid "The uploaded file is not a valid geojson file."
+msgstr "Die hochgeladene Datei ist keine gültiges GeoJSON Datei."
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:171
+msgid "Invalid file format."
+msgstr "Ungültiges Dateiformat."
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:280
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr ""
 "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "

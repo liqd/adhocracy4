@@ -11,6 +11,7 @@ from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
+from meinberlin.apps.contrib.views import CanonicalURLDetailView
 
 from . import forms
 from . import models
@@ -65,7 +66,7 @@ class IdeaListView(AbstractIdeaListView):
 
 class AbstractIdeaDetailView(ProjectMixin,
                              rules_mixins.PermissionRequiredMixin,
-                             generic.DetailView):
+                             CanonicalURLDetailView):
     get_context_from_object = True
 
 

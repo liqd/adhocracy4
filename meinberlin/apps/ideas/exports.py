@@ -1,20 +1,27 @@
 from django.utils.translation import ugettext_lazy as _
 
-from adhocracy4.exports import mixins as export_mixins
-from adhocracy4.exports import views as export_views
+from adhocracy4.exports import mixins as a4_export_mixins
+from adhocracy4.exports import views as a4_export_views
+from meinberlin.apps.exports import mixins as export_mixins
 from meinberlin.apps.exports import register_export
 
 from . import models
 
 
 @register_export(_('Ideas with comments'))
-class IdeaExportView(export_views.ItemExportView,
-                     export_mixins.ItemExportWithRatesMixin,
-                     export_mixins.ItemExportWithCommentCountMixin,
-                     export_mixins.ItemExportWithCategoriesMixin,
-                     export_mixins.ItemExportWithCommentsMixin):
+class IdeaExportView(export_mixins.ItemExportWithReferenceNumberMixin,
+                     a4_export_mixins.ItemExportWithLinkMixin,
+                     a4_export_mixins.ExportModelFieldsMixin,
+                     a4_export_mixins.ItemExportWithRatesMixin,
+                     a4_export_mixins.ItemExportWithCategoriesMixin,
+                     a4_export_mixins.ItemExportWithCommentCountMixin,
+                     a4_export_mixins.ItemExportWithCommentsMixin,
+                     export_mixins.UserGeneratedContentExportMixin,
+                     a4_export_views.BaseItemExportView):
+
     model = models.Idea
-    fields = ['name', 'description', 'creator', 'created']
+    fields = ['name', 'description']
+    html_fields = ['description']
 
     def get_queryset(self):
         return super().get_queryset() \
