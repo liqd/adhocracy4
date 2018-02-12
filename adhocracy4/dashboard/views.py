@@ -121,12 +121,12 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
             module_settings.save()
 
     def _create_phases(self, module, blueprint_phases):
-        for phase_content in blueprint_phases:
+        for index, phase_content in enumerate(blueprint_phases):
             phase = phase_models.Phase(
                 type=phase_content.identifier,
                 name=phase_content.name,
                 description=phase_content.description,
-                weight=phase_content.weight,
+                weight=index,
                 module=module,
             )
             phase.save()
