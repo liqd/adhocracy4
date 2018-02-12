@@ -115,11 +115,11 @@ msgstr "Anzahl Kommentare"
 
 #: adhocracy4/exports/mixins.py:161
 msgid "Location (Longitude)"
-msgstr ""
+msgstr "Ort (Längengrad)"
 
 #: adhocracy4/exports/mixins.py:163
 msgid "Location (Latitude)"
-msgstr ""
+msgstr "Ort (Breitengrad)"
 
 #: adhocracy4/exports/mixins.py:165
 msgid "Location label"
@@ -1601,11 +1601,11 @@ msgstr "Rückmeldung der Moderation"
 
 #: meinberlin/apps/exports/mixins.py:40
 msgid "Creator"
-msgstr ""
+msgstr "Urheber"
 
 #: meinberlin/apps/exports/mixins.py:42
 msgid "Created"
-msgstr ""
+msgstr "Erstellt"
 
 #: meinberlin/apps/extprojects/dashboard.py:15
 msgid "External project settings"
@@ -1745,7 +1745,7 @@ msgstr "Zurück zur Idee"
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:23
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:23
 msgid "Moderate idea"
-msgstr ""
+msgstr "Idee moderieren"
 
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:24
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:24
