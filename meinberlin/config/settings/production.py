@@ -17,3 +17,5 @@ try:
     INSTALLED_APPS += tuple(ADDITIONAL_APPS)
 except NameError:
     pass
+
+CSP_REPORT_ONLY = False

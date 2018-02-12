@@ -126,6 +126,7 @@ MIDDLEWARE = (
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 
     'meinberlin.apps.embed.middleware.AjaxPathMiddleware',
+    'csp.middleware.CSPMiddleware'
 )
 
 SITE_ID = 1
@@ -433,3 +434,9 @@ SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 # The default language is used for emails and strings
 # that are stored translated to the database.
 DEFAULT_LANGUAGE = 'de'
+
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+CSP_IMG_SRC = ("'self'", "data:", "*.tile.openstreetmap.org", "https://maps.berlinonline.de")
+CSP_CONNECT_SRC = ("'self'", "https://bplan-prod.liqd.net")
+CSP_EXCLUDE_URL_PREFIXES = ("/admin", )
+CSP_REPORT_ONLY = True
