@@ -436,6 +436,6 @@ SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 DEFAULT_LANGUAGE = 'de'
 
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
-CSP_IMG_SRC = ("'self'", "data:", "*.tile.openstreetmap.org")
+CSP_IMG_SRC = ("'self'", "data:", "*.tile.openstreetmap.org", "https://maps.berlinonline.de")
 CSP_CONNECT_SRC = ("'self'", "https://bplan-prod.liqd.net")
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", )
