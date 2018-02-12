@@ -2,6 +2,14 @@ var init = function () {
   var $ = window.jQuery
   var L = window.L
 
+  var escapeHtml = function (unsafe) {
+    // jQuery.text() escapes special chars as is documented at http://api.jquery.com/text/#text-function
+    // Alternatively a custom unsafe.replace(/&/g, '&amp;')... solution as described
+    // at https://stackoverflow.com/a/6234804 may be used. for example underscore.js uses a regexp based unescape.
+    // FIXME: this method should be moved to a global scope or made importable if used more then once
+    return $('<div>').text(unsafe).html()
+  }
+
   $('[data-map="display_points"]').each(function (i, e) {
     var polygon = JSON.parse(e.getAttribute('data-polygon'))
     var points = JSON.parse(e.getAttribute('data-points'))
@@ -85,7 +93,9 @@ var init = function () {
                               feature.properties.comments_count + ' <i class="fa fa-comment-o" aria-hidden="true"></i>' +
                               '</span>' +
                               '</div>' +
-                          '<div class="maps-popups-popup-name"><a href="' + feature.properties.url + '">' + feature.properties.name + '</a></div>'
+                          '<div class="maps-popups-popup-name">' +
+                              '<a href="' + feature.properties.url + '">' + escapeHtml(feature.properties.name) + '</a>' +
+                          '</div>'
         marker.bindPopup(popupContent, customOptions)
         return marker
       }
