@@ -33,7 +33,7 @@ def get_points(items):
         properties = {
             'name': item.name,
             'slug': item.slug,
-            'image':  image_url,
+            'image': image_url,
             'comments_count': comment_count,
             'positive_rating_count': positive_rating_count,
             'negative_rating_count': negative_rating_count,
