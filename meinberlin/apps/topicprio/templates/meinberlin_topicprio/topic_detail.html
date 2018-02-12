@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n rules react_comments module_tags react_ratings wagtailcore_tags item_tags contrib_tags %}
+{% load i18n rules react_comments module_tags react_ratings wagtailcore_tags %}
 
 {% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
 {% block content %}
@@ -19,16 +19,11 @@
         <div class="item-detail">
             <h1 class="item-detail__title">{{ object.name }}</h1>
 
-            <div class="item-detail__labels">
-                {% if object.category %}
+            {% if object.category %}
+                <div class="item-detail__labels">
                     <div class="label label--big">{{ object.category }}</div>
-                {% endif %}
-                {% if object.moderator_feedback %}
-                    <span class="label label--big label--{{ object.moderator_feedback|classify }}">
-                        {{ object.get_moderator_feedback_display }}
-                    </span>
-                {% endif %}
-            </div>
+                </div>
+            {% endif %}
 
             <div class="item-detail__content">
                 {{ object.description | richtext }}
@@ -47,54 +42,9 @@
                         {% react_ratings object %}
                     </div>
                 {% endif %}
-
-                {% get_item_permission object 'moderate' as moderate_perm %}
-                {% has_perm moderate_perm request.user object as is_moderator %}
-                {% get_item_url object 'moderate' False as moderate_url %}
-                {% if is_moderator and moderate_url %}
-                    <div class="dropdown dropdown--right lr-bar__right">
-                        <button
-                                title="{% trans 'Actions' %}"
-                                type="button"
-                                class="dropdown-toggle btn btn--light btn--small"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                id="idea-{{ object.pk }}-actions"
-                        >
-                            <i class="fa fa-ellipsis-h" aria-label="{% trans 'Actions' %}"></i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="idea-{{ object.pk }}-actions">
-                            <li>
-                                <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'Moderate' %}</a>
-                            </li>
-                        </ul>
-                    </div>
-                {% endif %}
             </div>
+            {% react_comments object %}
         </div>
-    </div>
-
-    {% if object.moderator_statement.statement %}
-        <div class="l-center-8">
-            <div class="moderator-statement">
-                <h2 class="moderator-statement__title">{% trans 'Official Statement' %}</h2>
-                <div class="moderator-statement__subtitle">
-                    <strong class="moderator-statement__organisation">
-                        {{ object.module.project.organisation.name }}
-                    </strong>
-                    {% html_date object.moderator_statement.created class='moderator-statement__date' %}
-                </div>
-                <div class="moderator-statement__body">
-                    {{ object.moderator_statement.statement | safe }}
-                </div>
-            </div>
-        </div>
-    {% endif %}
-
-
-    <div class="l-center-6">
-        {% react_comments object %}
     </div>
 </div>
 {% endblock %}

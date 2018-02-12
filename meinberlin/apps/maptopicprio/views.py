@@ -159,10 +159,3 @@ class MapTopicDeleteView(mixins.DashboardBaseMixin,
 
     def get_permission_object(self):
         return self.get_object()
-
-
-class MapTopicModerateView(idea_views.AbstractIdeaModerateView):
-    model = models.MapTopic
-    permission_required = 'meinberlin_maptopicprio.moderate_topic'
-    template_name = 'meinberlin_maptopicprio/maptopic_moderate_form.html'
-    moderateable_form_class = forms.MapTopicModerateForm

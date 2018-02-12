@@ -159,10 +159,3 @@ class TopicDeleteView(mixins.DashboardBaseMixin,
 
     def get_permission_object(self):
         return self.get_object()
-
-
-class TopicModerateView(idea_views.AbstractIdeaModerateView):
-    model = models.Topic
-    permission_required = 'meinberlin_topicprio.moderate_topic'
-    template_name = 'meinberlin_topicprio/topic_moderate_form.html'
-    moderateable_form_class = forms.TopicModerateForm

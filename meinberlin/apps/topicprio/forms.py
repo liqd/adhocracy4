@@ -14,9 +14,3 @@ class TopicForm(CategorizableFieldMixin, forms.ModelForm):
     class Meta:
         model = models.Topic
         fields = ['name', 'description', 'category']
-
-
-class TopicModerateForm(forms.ModelForm):
-    class Meta:
-        model = models.Topic
-        fields = ['moderator_feedback']

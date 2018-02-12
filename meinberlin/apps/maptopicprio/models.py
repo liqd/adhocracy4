@@ -12,14 +12,13 @@ from adhocracy4.maps import fields as map_fields
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
-from meinberlin.apps.moderatorfeedback.models import Moderateable
 
 
 class MapTopicQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
     pass
 
 
-class MapTopic(module_models.Item, Moderateable):
+class MapTopic(module_models.Item):
     item_ptr = models.OneToOneField(to=module_models.Item,
                                     parent_link=True,
                                     related_name='%(app_label)s_%(class)s')

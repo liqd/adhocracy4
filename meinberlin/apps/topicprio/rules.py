@@ -29,9 +29,3 @@ rules.add_perm(
     'meinberlin_topicprio.comment_topic',
     module_predicates.is_allowed_comment_item
 )
-
-rules.add_perm(
-    'meinberlin_topicprio.moderate_topic',
-    module_predicates.is_context_moderator |
-    module_predicates.is_context_initiator
-)
