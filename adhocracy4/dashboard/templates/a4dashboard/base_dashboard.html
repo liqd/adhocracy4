@@ -4,9 +4,5 @@
 {% block title %}"{{ view.organisation.name }}" {% trans "Dashboard" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-
-<div class="l-wrapper">
     {% block dashboard_content %}{% endblock %}
-</div>
-
 {% endblock %}

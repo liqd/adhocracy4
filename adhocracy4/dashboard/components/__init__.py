@@ -125,7 +125,13 @@ def _component_sort_key(component):
 
 class DashboardComponents:
     def __init__(self):
-        self._registry = {'projects': {}, 'modules': {}}
+        self._registry = {
+            'projects': {},
+            'projects_replacements': {},
+            'modules': {},
+            'modules_replacements': {}
+        }
+        self._queue_replacements = True
 
     @property
     def projects(self):
@@ -146,6 +152,32 @@ class DashboardComponents:
             raise ValueError('Identifier ({}) is already registered'
                              .format(component.identifier))
         self._registry[section][component.identifier] = component
+
+    def replace_project(self, component):
+        self._replace('projects', component)
+
+    def replace_module(self, component):
+        self._replace('modules', component)
+
+    def _replace(self, section, component):
+        if self._queue_replacements:
+            replacement_key = '{}_replacements'.format(section)
+            self._registry[replacement_key][component.identifier] = component
+        else:
+            self._registry[section][component.identifier] = component
+
+    def apply_replacements(self):
+        if self._queue_replacements:
+            self._queue_replacements = False
+            for identifier, component \
+                    in self._registry['projects_replacements'].items():
+                self._registry['projects'][identifier] = component
+            del self._registry['projects_replacements']
+
+            for identifier, component \
+                    in self._registry['modules_replacements'].items():
+                self._registry['modules'][identifier] = component
+            del self._registry['modules_replacements']
 
     def get_project_components(self):
         return sorted(self._registry['projects'].values(),

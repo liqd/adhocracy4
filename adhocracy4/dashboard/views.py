@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
-from django.http import Http404
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
@@ -24,13 +23,6 @@ from . import signals
 from .blueprints import get_blueprints
 
 User = get_user_model()
-
-
-def get_object_or_none(*args, **kwargs):
-    try:
-        return get_object_or_404(*args, **kwargs)
-    except Http404:
-        return None
 
 
 class ProjectListView(mixins.DashboardBaseMixin,

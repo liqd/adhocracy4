@@ -7,7 +7,7 @@ register = template.Library()
 
 @register.assignment_tag
 def get_phase_name(type):
-    name = phases.content.__getitem__(type).name
+    name = phases.content[type].name
     return name
 
 

@@ -160,13 +160,20 @@ class DashboardProjectDuplicateMixin:
                                          project.image, False)
             project_clone.created = datetime.now()
             project_clone.is_draft = True
+            project_clone.is_archived = False
             project_clone.save()
+            signals.project_created.send(sender=None,
+                                         project=project_clone,
+                                         user=self.request.user)
 
             for module in project.module_set.all():
                 module_clone = deepcopy(module)
                 module_clone.project = project_clone
                 module_clone.pk = None
                 module_clone.save()
+                signals.module_created.send(sender=None,
+                                            module=module_clone,
+                                            user=self.request.user)
 
                 for phase in module.phase_set.all():
                     phase_clone = deepcopy(phase)
