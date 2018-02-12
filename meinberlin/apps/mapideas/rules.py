@@ -24,8 +24,13 @@ rules.add_perm(
     module_predicates.is_allowed_comment_item
 )
 
-
 rules.add_perm(
     'meinberlin_mapideas.change_mapidea',
     module_predicates.is_allowed_change_item
+)
+
+rules.add_perm(
+    'meinberlin_mapideas.moderate_mapidea',
+    module_predicates.is_context_moderator |
+    module_predicates.is_context_initiator
 )

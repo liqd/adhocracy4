@@ -17,6 +17,7 @@ class MapIdeaExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                         a4_export_mixins.ItemExportWithCommentCountMixin,
                         a4_export_mixins.ItemExportWithCommentsMixin,
                         a4_export_mixins.ItemExportWithLocationMixin,
+                        export_mixins.ItemExportWithModeratorFeedback,
                         export_mixins.UserGeneratedContentExportMixin,
                         a4_export_views.BaseItemExportView):
     model = models.MapIdea

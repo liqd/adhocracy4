@@ -4,40 +4,4 @@
 {% block additional_labels %}
     {{ block.super }}
     <span class="label label--big">{{ proposal.budget|intcomma }}€</span>
-
-    {% if proposal.moderator_feedback %}
-        <span class="label label--big label--{{proposal.moderator_feedback|classify }}">
-            {{ proposal.get_moderator_feedback_display }}
-        </span>
-    {% endif %}
-{% endblock %}
-
-{% block moderator_statement %}
-    {% if proposal.moderator_statement.statement %}
-        <div class="l-wrapper">
-            <div class="l-center-8">
-                <div class="moderator-statement">
-                    <h2 class="moderator-statement__title">{% trans 'Official Statement' %}</h2>
-                    <div class="moderator-statement__subtitle">
-                        <strong class="moderator-statement__organisation">
-                            {{ proposal.module.project.organisation.name }}
-                        </strong>
-                        {% html_date proposal.moderator_statement.created class='moderator-statement__date' %}
-                    </div>
-                    <div class="moderator-statement__body">
-                        {{ proposal.moderator_statement.statement | safe }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-{% endblock %}
-
-{% block dropdown_items %}
-    {% has_perm 'meinberlin_kiezkasse.moderate_proposal' request.user proposal as is_moderator %}
-    {% if is_moderator %}
-        <li>
-            <a class="dropdown-item" href="{% url 'meinberlin_kiezkasse:proposal-moderate' year=object.created.year pk=object.pk %}">{% trans 'Moderate' %}</a>
-        </li>
-    {% endif %}
 {% endblock %}

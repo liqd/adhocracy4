@@ -26,11 +26,17 @@
         {{ object.name }}
         </a>
     </h3>
-    {% if object.category %}
-        <div class="list-item__labels">
+    <div class="list-item__labels">
+        {% if object.category %}
             <span class="label label--big">{{ object.category }}</span>
-        </div>
-    {% endif %}
+        {% endif %}
+        {% if object.moderator_feedback %}
+            <span class="label label--big label--{{ object.moderator_feedback|classify }} list-item__label--moderator-feedback">
+                {{ object.get_moderator_feedback_display }}
+            </span>
+        {% endif %}
+    </div>
+
     <span class="list-item__author">
         {{ object.creator.username }}
     </span>

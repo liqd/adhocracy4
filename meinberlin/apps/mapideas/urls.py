@@ -13,4 +13,6 @@ urlpatterns = [
         views.MapIdeaUpdateView.as_view(), name='mapidea-update'),
     url(r'^(?P<year>\d{4})-(?P<pk>\d+)/delete/$',
         views.MapIdeaDeleteView.as_view(), name='mapidea-delete'),
+    url(r'^(?P<year>\d{4})-(?P<pk>\d+)/moderate/$',
+        views.MapIdeaModerateView.as_view(), name='mapidea-moderate'),
 ]
