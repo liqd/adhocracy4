@@ -10,7 +10,6 @@ from . import views
 class VotingPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'voting'
-    weight = 20
     view = views.PollDetailView
 
     name = _('Voting phase')

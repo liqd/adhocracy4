@@ -10,7 +10,6 @@ from . import views
 class RequestPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'submit'
-    weight = 20
     view = views.ProposalListView
 
     name = _('Request phase')
@@ -26,7 +25,6 @@ class RequestPhase(phases.PhaseContent):
 class FeedbackPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'feedback'
-    weight = 40
     view = views.ProposalListView
 
     name = _('Feedback phase')
@@ -43,7 +41,6 @@ class FeedbackPhase(phases.PhaseContent):
 class RequestFeedbackPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'request_feedback'
-    weight = 10
     view = views.ProposalListView
 
     name = _('Request and feedback phase')

@@ -6,9 +6,9 @@ from django.http import HttpResponseRedirect
 from django.views import generic
 from django.views.generic.detail import SingleObjectMixin
 
-from adhocracy4.dashboard import views as a4dashboard_views
 from adhocracy4.dashboard import mixins
 from adhocracy4.dashboard import signals
+from adhocracy4.dashboard import views as a4dashboard_views
 from adhocracy4.dashboard.blueprints import get_blueprints
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
@@ -69,12 +69,12 @@ class ModuleCreateView(ProjectMixin,
             module_settings.save()
 
     def _create_phases(self, module, blueprint_phases):
-        for phase_content in blueprint_phases:
+        for index, phase_content in enumerate(blueprint_phases):
             phase = phase_models.Phase(
                 type=phase_content.identifier,
                 name=phase_content.name,
                 description=phase_content.description,
-                weight=phase_content.weight,
+                weight=index,
                 module=module,
             )
             phase.save()
