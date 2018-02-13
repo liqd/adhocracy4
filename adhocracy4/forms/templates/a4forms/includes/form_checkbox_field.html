@@ -1,0 +1,14 @@
+{% load i18n %}
+
+<div class="form-check">
+    <label class="form-check__label">
+        {{ field }}
+        {{ field.label }}
+    </label>
+    {% if field.help_text %}
+    <div class="form-hint">
+        {{ field.help_text }}
+    </div>
+    {% endif %}
+    {{ field.errors }}
+</div>

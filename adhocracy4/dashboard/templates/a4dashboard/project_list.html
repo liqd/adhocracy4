@@ -1,0 +1,64 @@
+{% extends "a4dashboard/base_dashboard.html" %}
+{% load i18n project_tags thumbnail %}
+
+{% block title %}{% trans "Projects" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block dashboard_content %}
+    <h1>{% trans 'Projects' %}</h1>
+
+    <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}" class="btn">{% trans 'New Project' %}</a>
+
+    {# NOTE: missing filter #}
+
+    {% if project_list|length > 0 %}
+        <ul>
+            {% for project in project_list %}
+                {% project_tile_image project as project_image %}
+                {% project_tile_image_copyright project as project_image_copyright %}
+                <li>
+                    <h2>
+                        {{ project.name }}
+
+                        {% if project.has_finished %}
+                            ({% trans "Finished" %})
+                        {% endif %}
+                        {% if not project.is_public %}
+                            ({% trans 'private' %})
+                        {% endif %}
+                    </h2>
+                    <img src="{% thumbnail project_image '170x170' crop %}" title="© {{ project_image_copyright }}">
+
+                    <a href="{{ project.get_absolute_url }}"
+                       class="btn btn--light btn--small">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        {% if project.is_draft %}
+                            {% trans 'Preview' %}
+                        {% else %}
+                            {% trans 'View' %}
+                        {% endif %}
+                    </a>
+
+                    <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}"
+                       class="btn btn--light btn--small">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        {% trans 'Edit' %}
+                    </a>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="project_pk" value="{{ project.pk }}">
+                        <button type="submit" name="duplicate" value="{{ project }}"
+                                class="dropdown-item">
+                            <i class="fa fa-files-o" aria-hidden="true"></i>
+                            {% trans 'Duplicate' %}
+                        </button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{% trans 'We could not find any projects.' %}</p>
+    {% endif %}
+
+    {# NOTE: missing pagination #}
+{% endblock %}

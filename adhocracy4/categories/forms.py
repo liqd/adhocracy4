@@ -1,4 +1,10 @@
+from django import forms
+from django.forms import inlineformset_factory
+from django.utils.translation import ugettext_lazy as _
+
 from adhocracy4.categories import models as category_models
+from adhocracy4.dashboard.components.forms import ModuleDashboardFormSet
+from adhocracy4.modules import models as module_models
 
 
 class CategorizableFieldMixin:
@@ -20,3 +26,24 @@ class CategorizableFieldMixin:
         field = self.fields[self.category_field_name]
         module_has_categories = field.queryset.exists()
         return module_has_categories
+
+
+class CategoryForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': _('Category')}
+    ))
+
+    class Media:
+        js = ('js/formset.js',)
+
+    class Meta:
+        model = category_models.Category
+        fields = ['name']
+
+
+CategoryFormSet = inlineformset_factory(module_models.Module,
+                                        category_models.Category,
+                                        form=CategoryForm,
+                                        formset=ModuleDashboardFormSet,
+                                        extra=0,
+                                        )
