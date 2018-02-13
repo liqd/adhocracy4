@@ -13,4 +13,6 @@ urlpatterns = [
         views.IdeaUpdateView.as_view(), name='idea-update'),
     url(r'^(?P<year>\d{4})-(?P<pk>\d+)/delete/$',
         views.IdeaDeleteView.as_view(), name='idea-delete'),
+    url(r'^(?P<year>\d{4})-(?P<pk>\d+)/moderate/$',
+        views.IdeaModerateView.as_view(), name='idea-moderate'),
 ]

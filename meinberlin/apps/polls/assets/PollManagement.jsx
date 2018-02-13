@@ -3,7 +3,7 @@ var React = require('react')
 var django = require('django')
 var dashboard = require('adhocracy4/adhocracy4/dashboard/assets/dashboard')
 var update = require('immutability-helper')
-var FlipMove = require('react-flip-move')
+var FlipMove = require('react-flip-move').default
 var QuestionForm = require('./QuestionForm')
 var Alert = require('../../contrib/assets/Alert')
 

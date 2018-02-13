@@ -51,7 +51,8 @@ def test_topic_update_view(
         phase_factory, topic_factory, PrioritizePhase)
     initiator = module.project.organisation.initiators.first()
     category = category_factory(module=module)
-    url = reverse('a4dashboard:topic-update', kwargs={'slug': item.slug})
+    url = reverse('a4dashboard:topic-update',
+                  kwargs={'pk': item.pk, 'year': item.created.year})
     data = {
         'name': 'test',
         'description': 'test',
@@ -70,7 +71,8 @@ def test_topic_delete_view(client, phase_factory, topic_factory):
     phase, module, project, item = setup_phase(
         phase_factory, topic_factory, PrioritizePhase)
     initiator = module.project.organisation.initiators.first()
-    url = reverse('a4dashboard:topic-delete', kwargs={'slug': item.slug})
+    url = reverse('a4dashboard:topic-delete',
+                  kwargs={'pk': item.pk, 'year': item.created.year})
     client.login(username=initiator.email, password='password')
     response = client.delete(url)
     assert redirect_target(response) == 'topic-list'

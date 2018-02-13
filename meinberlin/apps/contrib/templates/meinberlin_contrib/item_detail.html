@@ -24,6 +24,11 @@
                     <div class="label label--big">{{ object.category }}</div>
                 {% endif %}
                 {% block additional_labels %}{% endblock %}
+                {% if object.moderator_feedback %}
+                    <span class="label label--big label--{{ object.moderator_feedback|classify }}">
+                        {{ object.get_moderator_feedback_display }}
+                    </span>
+                {% endif %}
             </div>
 
             <div class="item-detail__content">
@@ -32,9 +37,15 @@
                 {% block additional_content %}{% endblock %}
             </div>
 
-            <div class="item-detail__meta">
-                <strong class="item-detail__creator">{{ object.creator.username }}</strong>
-                {% html_date object.created %}
+            <div class="item-detail__meta lr-bar">
+                <div class="lr-bar__left">
+                    <strong class="item-detail__creator">{{ object.creator.username }}</strong>
+                    {% html_date object.created %}
+                </div>
+                <div class="lr-bar__right">
+                    <strong>{% trans 'Reference No.' %}:</strong>
+                    {{ object.reference_number }}
+                </div>
             </div>
 
             <div class="item-detail__actions lr-bar">
@@ -71,6 +82,16 @@
                                     <a class="dropdown-item" href="{{ delete_url }}">{% trans 'Delete' %}</a>
                                 </li>
                             {% endif %}
+
+                            {% get_item_permission object 'moderate' as moderate_perm %}
+                            {% has_perm moderate_perm request.user object as is_moderator %}
+                            {% get_item_url object 'moderate' False as moderate_url %}
+                            {% if is_moderator and moderate_url %}
+                                <li>
+                                    <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'Moderate' %}</a>
+                                </li>
+                            {% endif %}
+
                             {% block dropdown_items %}{% endblock %}
                             <li>
                                 {% trans 'Report' as report_text %}
@@ -83,7 +104,24 @@
         </div>
     </div>
 
-    {% block moderator_statement %}{% endblock %}
+    {% block moderator_statement %}
+        {% if object.moderator_statement.statement %}
+            <div class="l-center-8">
+                <div class="moderator-statement">
+                    <h2 class="moderator-statement__title">{% trans 'Official Statement' %}</h2>
+                    <div class="moderator-statement__subtitle">
+                        <strong class="moderator-statement__organisation">
+                            {{ object.module.project.organisation.name }}
+                        </strong>
+                        {% html_date object.moderator_statement.created class='moderator-statement__date' %}
+                    </div>
+                    <div class="moderator-statement__body">
+                        {{ object.moderator_statement.statement | safe }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endblock %}
 
     <div class="l-center-6">
         {% react_comments object %}

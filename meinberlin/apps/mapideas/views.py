@@ -75,3 +75,10 @@ class MapIdeaDeleteView(idea_views.AbstractIdeaDeleteView):
     success_message = _('Your Idea has been deleted')
     permission_required = 'meinberlin_mapideas.change_mapidea'
     template_name = 'meinberlin_mapideas/mapidea_confirm_delete.html'
+
+
+class MapIdeaModerateView(idea_views.AbstractIdeaModerateView):
+    model = models.MapIdea
+    permission_required = 'meinberlin_mapideas.moderate_idea'
+    template_name = 'meinberlin_mapideas/mapidea_moderate_form.html'
+    moderateable_form_class = forms.MapIdeaModerateForm

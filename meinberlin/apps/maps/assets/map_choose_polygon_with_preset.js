@@ -72,8 +72,8 @@ function getBaseBounds (L, polygon, bbox) {
     },
 
     _createControls: function () {
-      const exportLabel = django.gettext('Export shape as GeoJSON')
-      const importLabel = django.gettext('Import shape from file')
+      const exportLabel = django.gettext('Export polygon as GeoJSON')
+      const importLabel = django.gettext('Import polygon via file upload')
       return $.parseHTML(
         '<div class="leaflet-bar leaflet-control leaflet-control-custom">' +
           '<a href="#" id="map-export-link" title="' + exportLabel + '"><i class="fa fa-download" aria-label="' + exportLabel + '"></i></a>' +
@@ -83,7 +83,7 @@ function getBaseBounds (L, polygon, bbox) {
     },
 
     _createModal: function () {
-      const modalTitle = django.gettext('Import shape from file')
+      const modalTitle = django.gettext('Import polygon via file upload')
       return $.parseHTML(
         '<div class="modal" id="map-import-modal" tabindex="-1" role="dialog" aria-label="' + modalTitle + '" aria-hidden="true">' +
           '<div class="modal-dialog modal-lg" role="document">' +
@@ -95,11 +95,11 @@ function getBaseBounds (L, polygon, bbox) {
               '<div class="modal-body">' +
                 '<form id="map-import-form" data-ignore-submit="true">' +
                   '<div class="form-group">' +
-                    '<label for="map-import-file-input">' + django.gettext('Import shape via file upload') + '</label>' +
+                    '<label for="map-import-file-input">' + django.gettext('Import polygon via file upload') + '</label>' +
                     '<div class="form-hint">' +
-                      django.gettext('Upload a shape from a GeoJSON (.geojson) or a zipped Shapefile (.zip).') + '<br>' +
+                      django.gettext('Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip).') + '<br>' +
                       django.gettext('Note that uploading Shapefiles is not supported with Internet Explorer 10') + '<br>' +
-                      '<strong>' + django.gettext('Attention importing a file will delete all the existing shapes.') + '</strong>' +
+                      '<strong>' + django.gettext('Attention importing a file will delete the existing polygons.') + '</strong>' +
                     '</div>' +
                     '<div class="widget widget--fileinput">' +
                       '<div class="input-group">' +
@@ -156,11 +156,8 @@ function getBaseBounds (L, polygon, bbox) {
       } else if (file.name.slice(-4) === 'json') {
         let reader = new window.FileReader()
         reader.onload = (e) => {
-          const buffer = e.target.result
-          const decodedString = String.fromCharCode.apply(null, new Uint8Array(buffer))
-
           try {
-            const geoJson = JSON.parse(decodedString)
+            const geoJson = JSON.parse(e.target.result)
             let shape = L.geoJson(geoJson, {
               style: this.options.polygonStyle
             })
@@ -169,7 +166,7 @@ function getBaseBounds (L, polygon, bbox) {
             this._showUploadError(django.gettext('The uploaded file is not a valid geojson file.'))
           }
         }
-        reader.readAsArrayBuffer(file)
+        reader.readAsText(file, 'utf-8')
       } else {
         this._showUploadError(django.gettext('Invalid file format.'))
       }

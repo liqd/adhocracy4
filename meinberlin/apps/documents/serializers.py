@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.dashboard import components
+from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.modules.models import Module
 
 from .models import Chapter

@@ -10,3 +10,9 @@ class IdeaForm(CategorizableFieldMixin, forms.ModelForm):
     class Meta:
         model = models.Idea
         fields = ['name', 'description', 'category']
+
+
+class IdeaModerateForm(forms.ModelForm):
+    class Meta:
+        model = models.Idea
+        fields = ['moderator_feedback']

@@ -1,7 +1,8 @@
 from .base import *
 
 DEBUG = False
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+CSP_REPORT_ONLY = False
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 try:
     from .local import *

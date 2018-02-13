@@ -40,10 +40,10 @@ class MapTopicEditComponent(DashboardComponent):
             (r'^maptopics/create/module/(?P<module_slug>[-\w_]+)/$',
              views.MapTopicCreateView.as_view(component=self),
              'maptopic-create'),
-            (r'^maptopics/(?P<slug>[-\w_]+)/update/$',
+            (r'^maptopics/(?P<year>\d{4})-(?P<pk>\d+)/update/$',
              views.MapTopicUpdateView.as_view(component=self),
              'maptopic-update'),
-            (r'^maptopics/(?P<slug>[-\w_]+)/delete/$',
+            (r'^maptopics/(?P<year>\d{4})-(?P<pk>\d+)/delete/$',
              views.MapTopicDeleteView.as_view(component=self),
              'maptopic-delete')
         ]

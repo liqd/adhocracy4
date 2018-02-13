@@ -3,10 +3,9 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from meinberlin.apps.mapideas import models as mapidea_models
-from meinberlin.apps.moderatorfeedback.models import Moderateable
 
 
-class Proposal(mapidea_models.AbstractMapIdea, Moderateable):
+class Proposal(mapidea_models.AbstractMapIdea):
     budget = models.PositiveIntegerField(
         default=0,
         help_text=_('Required Budget')

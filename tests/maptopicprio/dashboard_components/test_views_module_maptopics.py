@@ -64,7 +64,8 @@ def test_maptopic_update_view(
     initiator = module.project.organisation.initiators.first()
     area_settings_factory(module=module)
     category = category_factory(module=module)
-    url = reverse('a4dashboard:maptopic-update', kwargs={'slug': item.slug})
+    url = reverse('a4dashboard:maptopic-update',
+                  kwargs={'pk': item.pk, 'year': item.created.year})
     data = {
         'name': 'name',
         'description': 'desc',
@@ -90,7 +91,8 @@ def test_maptopic_delete_view(
         phase_factory, maptopic_factory, PrioritizePhase)
     initiator = module.project.organisation.initiators.first()
     area_settings_factory(module=module)
-    url = reverse('a4dashboard:maptopic-delete', kwargs={'slug': item.slug})
+    url = reverse('a4dashboard:maptopic-delete',
+                  kwargs={'pk': item.pk, 'year': item.created.year})
     client.login(username=initiator.email, password='password')
     response = client.delete(url)
     assert redirect_target(response) == 'maptopic-list'
