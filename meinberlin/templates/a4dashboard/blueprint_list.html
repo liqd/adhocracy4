@@ -1,0 +1,21 @@
+{% extends "a4dashboard/base_dashboard.html" %}
+{% load i18n static %}
+
+{% block title %}{% trans "New Project" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block dashboard_content %}
+<div class="l-center-8">
+    <h1>{% trans "New Project" %}</h1>
+
+    <ul class="l-tiles-3">
+        {% for blueprint_slug, blueprint in view.blueprints %}
+            {% include "a4dashboard/includes/blueprint_list_tile.html" with blueprint=blueprint %}
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script src="{% static 'js/ajax_modal.js' %}"></script>
+{% endblock %}

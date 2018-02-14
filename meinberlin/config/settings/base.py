@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'adhocracy4.categories.apps.CategoriesConfig',
     'adhocracy4.ckeditor.apps.CKEditorConfig',
     'adhocracy4.comments.apps.CommentsConfig',
+    'adhocracy4.dashboard.apps.DashboardConfig',
     'adhocracy4.filters.apps.FiltersConfig',
     'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.forms.apps.FormsConfig',
@@ -87,7 +88,6 @@ INSTALLED_APPS = (
     # General apps containing views
     'meinberlin.apps.account.apps.Config',
     'meinberlin.apps.adminlog.apps.Config',
-    'meinberlin.apps.dashboard2.apps.Config',
     'meinberlin.apps.dashboard.apps.Config',
     'meinberlin.apps.embed.apps.Config',
     'meinberlin.apps.exports.apps.Config',

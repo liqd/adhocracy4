@@ -1,6 +1,6 @@
 import pytest
 
-from meinberlin.apps.dashboard2 import components
+from adhocracy4.dashboard import components
 from meinberlin.apps.polls.phases import VotingPhase
 from meinberlin.test.helpers import assert_template_response
 from meinberlin.test.helpers import setup_phase

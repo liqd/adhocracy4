@@ -3,8 +3,8 @@ from itertools import chain
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.dashboard import components
 from adhocracy4.projects.admin import ProjectAdminFilter
-from meinberlin.apps.dashboard2 import components
 
 from .models import LogEntry
 

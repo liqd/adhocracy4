@@ -1,8 +1,7 @@
 from django.conf.urls import url
 
+from adhocracy4.dashboard.urls import urlpatterns as a4dashboard_urlpatterns
 from meinberlin.apps.bplan.views import BplanProjectCreateView
-from meinberlin.apps.dashboard2.urls import \
-    urlpatterns as a4dashboard_urlpatterns
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
 from meinberlin.apps.newsletters import views as newsletter_views
 from meinberlin.apps.organisations import views as organisation_views
@@ -37,6 +36,13 @@ urlpatterns = [
         r'/plans/(?P<pk>\d+)/delete/$',
         plan_views.DashboardPlanDeleteView.as_view(),
         name='plan-delete'),
+    url(r'^projects/(?P<project_slug>[-\w_]+)/blueprints/$',
+        views.ModuleBlueprintListView.as_view(),
+        name='module-blueprint-list'),
+    url(r'^projects/(?P<project_slug>[-\w_]+)/blueprints/'
+        '(?P<blueprint_slug>[-\w_]+)/$',
+        views.ModuleCreateView.as_view(),
+        name='module-create'),
 
     # Overwrite adhocracy4 core urls with meinBerlin urls
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'

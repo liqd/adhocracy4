@@ -1,9 +1,9 @@
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.dashboard import ProjectFormComponent
+from adhocracy4.dashboard import components
 from meinberlin.apps.dashboard import get_project_type
-from meinberlin.apps.dashboard2 import ProjectFormComponent
-from meinberlin.apps.dashboard2 import components
 
 from . import forms
 from . import views
@@ -48,8 +48,7 @@ class ContainerInformationComponent(ProjectFormComponent):
 
     form_title = _('Edit project information')
     form_class = forms.ContainerInformationForm
-    form_template_name = 'meinberlin_dashboard2' \
-                         '/includes/project_information_form.html'
+    form_template_name = 'a4dashboard/includes/project_information_form.html'
 
     def is_effective(self, project):
         project_type = get_project_type(project)

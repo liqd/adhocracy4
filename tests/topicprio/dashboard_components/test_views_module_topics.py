@@ -1,8 +1,8 @@
 import pytest
 from django.core.urlresolvers import reverse
 
+from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
-from meinberlin.apps.dashboard2 import components
 from meinberlin.apps.topicprio.models import Topic
 from meinberlin.apps.topicprio.phases import PrioritizePhase
 from meinberlin.test.helpers import assert_template_response

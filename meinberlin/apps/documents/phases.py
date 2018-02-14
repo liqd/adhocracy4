@@ -11,7 +11,6 @@ class CommentPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'comment'
     view = views.DocumentDetailView
-    weight = 40
 
     name = _('Comment phase')
     module_name = _('commenting text')

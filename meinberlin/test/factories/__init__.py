@@ -39,7 +39,6 @@ class PhaseContentFactory(factory.Factory):
 
     app = 'phase_content_factory'
     phase = 'factory_phase'
-    weight = 10
     view = None
 
     name = 'Factory Phase'

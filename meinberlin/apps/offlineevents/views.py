@@ -3,8 +3,8 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
+from adhocracy4.dashboard import mixins
 from adhocracy4.projects.mixins import ProjectMixin
-from meinberlin.apps.dashboard2 import mixins
 from meinberlin.apps.ideas import views as idea_views
 
 from . import forms

@@ -10,7 +10,6 @@ from . import views
 class PrioritizePhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'prioritize'
-    weight = 20
     view = views.TopicListView
 
     name = _('Prioritize phase')

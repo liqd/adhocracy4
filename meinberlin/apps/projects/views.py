@@ -14,6 +14,8 @@ from django.utils.translation import ungettext
 from django.views import generic
 from rules.contrib.views import LoginRequiredMixin
 
+from adhocracy4.dashboard import mixins as a4dashboard_mixins
+from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import DefaultsFilterSet
@@ -22,8 +24,6 @@ from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import ProjectMixin
-from meinberlin.apps.dashboard2 import mixins as a4dashboard_mixins
-from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
 
 from . import forms
 from . import models

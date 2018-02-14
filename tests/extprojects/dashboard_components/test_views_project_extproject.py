@@ -1,8 +1,8 @@
 import pytest
 from dateutil.parser import parse
 
+from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
-from meinberlin.apps.dashboard2 import components
 from meinberlin.apps.extprojects.phases import ExternalPhase
 from meinberlin.test.helpers import assert_dashboard_form_component_response
 
