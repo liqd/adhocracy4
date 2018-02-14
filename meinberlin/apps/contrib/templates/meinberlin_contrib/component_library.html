@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Component Library &emdash; {{ block.super }}{% endblock %}
+{% block title %}Component Library &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
     <div class="l-wrapper">
@@ -8,7 +8,7 @@
             <div class="l-menu__menu">
                 <nav class="dashboard-nav">
                     <div class="dashboard-nav__dropdown">
-                        <div class="dashboard-nav__item">Content</div>
+                        <div class="dashboard-nav__item">Form</div>
                     </div>
                     <ul class="dashboard-nav__pages">
                         <li class="dashboard-nav__page">
@@ -19,6 +19,16 @@
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-formcheck" class="dashboard-nav__item dashboard-nav__item--interactive">Formcheck</a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav class="dashboard-nav">
+                    <div class="dashboard-nav__dropdown">
+                        <div class="dashboard-nav__item">Components</div>
+                    </div>
+                    <ul class="dashboard-nav__pages">
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-accordion" class="dashboard-nav__item dashboard-nav__item--interactive">Accordion</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-actions" class="dashboard-nav__item dashboard-nav__item--interactive">Actions</a>
@@ -48,7 +58,7 @@
                             <a href="#cl-component-library" class="dashboard-nav__item dashboard-nav__item--interactive">Component Library</a>
                         </li>
                         <li class="dashboard-nav__page">
-                            <a href="#cl-copyright" class="dashboard-nav__item dashboard-nav__item--interactive">Coyright</a>
+                            <a href="#cl-copyright" class="dashboard-nav__item dashboard-nav__item--interactive">Copyright</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-dashboard-nav" class="dashboard-nav__item dashboard-nav__item--interactive">Dashboard Nav</a>
@@ -57,13 +67,10 @@
                             <a href="#cl-datepicker" class="dashboard-nav__item dashboard-nav__item--interactive">Datepicker</a>
                         </li>
                         <li class="dashboard-nav__page">
-                            <a href="#cl-accordion" class="dashboard-nav__item dashboard-nav__item--interactive">Accordion</a>
-                        </li>
-                        <li class="dashboard-nav__page">
                             <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Document</a>
                         </li>
                         <li class="dashboard-nav__page">
-                            <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Control Bar</a>
+                            <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Bar</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-item_detail" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail</a>
@@ -133,6 +140,37 @@
                     </div>
                 </div>
 
+                <h2 id="cl-accordion">Accordion</h2>
+
+                <div class="cl-example">
+                    <div class="accordion">
+                        <a
+                            id="accordion-{{ index }}-title"
+                            href="#accordion-{{ index }}-body"
+                            class="accordion__title collapsed"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            data-toggle="collapse">
+                            <h2>
+                                Docs Block Title
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </h2>
+                        </a>
+
+                        <div
+                            class="accordion__body collapse"
+                            id="accordion-{{ index }}-body"
+                            aria-labelledby="accordion-{{ index }}-title">
+                            This is the body of the docs block,
+                            This block is used in wagtail pages.
+                            <ul>
+                                <li>Why is the list-styling turned off?</li>
+                            </ul>
+                            And why is there a margin-bottom with the list-styling that is otherwise not there? Is wagtail's richtext given as list elements?
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="cl-actions">Actions</h2>
 
                 <div class="cl-example">
@@ -174,9 +212,6 @@
                             </div>
                             <div class="action__line">
                                 on <a href="#">Project</a>
-                            </div>
-                            <div class="action__date">
-                                03.11.2017
                             </div>
                         </div>
                     </div>
@@ -534,37 +569,6 @@
                     </div>
                 </div>
 
-                <h2 id="cl-accordion">Accordion</h2>
-
-                <div class="cl-example">
-                    <div class="accordion">
-                        <a
-                            id="accordion-{{ index }}-title"
-                            href="#accordion-{{ index }}-body"
-                            class="accordion__title collapsed"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            data-toggle="collapse">
-                            <h2>
-                                Docs Block Title
-                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                            </h2>
-                        </a>
-
-                        <div
-                            class="accordion__body collapse"
-                            id="accordion-{{ index }}-body"
-                            aria-labelledby="accordion-{{ index }}-title">
-                            This is the body of the docs block,
-                            This block is used in wagtail pages.
-                            <ul>
-                                <li>Why is the list-styling turned off?</li>
-                            </ul>
-                            And why is there a margin-bottom with the list-styling that is otherwise not there? Is wagtail's richtext given as list elements?
-                        </div>
-                    </div>
-                </div>
-
                 <h2 id="cl-document">Document</h2>
 
                 <div class="cl-example">
@@ -635,8 +639,8 @@
                     </div>
                 </div>
 
-                <h2 id="cl-control_bar">Control Bar</h2>
-                <p>Control Bars are intended to be used atop of lists of elements or maps.</p>
+                <h2 id="cl-control_bar">Filter Bar</h2>
+                <p>Inside the component Filter Bar are the control-bar block elements. Control Bars are intended to be used atop of lists of elements or maps.</p>
                 <p>Control Bars may only contain <a href="#cl-buttons">Buttons</a>, <a href="#cl-dropdowns">Dropdowns</a>
                     and <code>.input-groups</code>.</p>
                 <p>Note that they are somehow located within the <code>_filter_bar.scss</code> file.</p>
