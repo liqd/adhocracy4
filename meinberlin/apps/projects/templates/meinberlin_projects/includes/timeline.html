@@ -36,15 +36,15 @@
 
 {% if not object|is_offlineevent %}
     <div class="l-center-6">
-        <div class="item-detail">
+        <div class="timeline-detail">
             {% if module %}
                 {% if module_event_count > 1 %}
-                    <h2 class="item-detail__title">
+                    <h2 class="timeline-detail__title">
                         {{ module.name }}
                     </h2>
                 {% endif %}
                 {% if not module.active_phase %}
-                    <div class="item-detail__meta">
+                    <div class="timeline-detail__meta">
                         <strong>
                             {% trans 'Participation is not possible at the moment.' %}
                             {% if not module.past_phases %}
@@ -61,7 +61,7 @@
                     </div>
                 {% endif %}
                 {% if module_event_count > 1 and  module.description %}
-                    <div class="item-detail__meta">
+                    <div class="timeline-detail__meta">
                         {{ module.description|linebreaksbr }}
                     </div>
                 {% endif %}
@@ -93,7 +93,7 @@
                     <span class="u-if-not-collapsed">{% trans 'Hide phase overview' %}</span>
                 </button>
             {% else %}
-                <div class="item-detail__meta">
+                <div class="timeline-detail__meta">
                     <strong>
                         {% trans 'Participation is not possible at the moment.' %}
                         {% html_date project.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
