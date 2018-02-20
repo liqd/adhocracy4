@@ -7,6 +7,9 @@
         {{ form.name.label }}
     </label>
     {{ form.name }}
+    {% if form.icon %}
+        {{ form.icon }}
+    {% endif %}
     {% if not form.name.value %}
         <button type="button" class="formset__delete-label js-remove-form" title="{% trans 'Remove category' %}">
             <i class="fa fa-times" aria-label="{% trans 'Remove category' %}"></i>

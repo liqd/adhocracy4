@@ -1,4 +1,5 @@
 from django import forms
+from django.conf import settings
 from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
@@ -33,12 +34,18 @@ class CategoryForm(forms.ModelForm):
         'placeholder': _('Category')}
     ))
 
+    if hasattr(settings, 'A4_CATEGORY_ICONS'):
+        icon = forms.ChoiceField(choices=settings.A4_CATEGORY_ICONS)
+
     class Media:
         js = ('js/formset.js',)
 
     class Meta:
         model = category_models.Category
-        fields = ['name']
+        if hasattr(settings, 'A4_CATEGORY_ICONS'):
+            fields = ['name', 'icon']
+        else:
+            fields = ['name']
 
 
 CategoryFormSet = inlineformset_factory(module_models.Module,
