@@ -1,0 +1,18 @@
+{% load i18n %}
+
+{% spaceless %}
+<div>
+  <div class="popover__input">
+     <input type="text"
+            name="remark"
+            {% if remark %}value="{{ remark }}"
+            {% else %}value="{% trans 'Write down your remark!' %}"
+            {% endif %}
+            id="idea--popover__input"
+      />
+  </div>
+  <div class="popover__hint">
+    <i class="fa fa-lock" aria-label="Private"></i>{% trans 'Remarks remain private.' %}
+  </div>
+</div>
+{% endspaceless %}

@@ -1,7 +1,12 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags contrib_tags %}
+{% load i18n static module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags contrib_tags %}
 
 {% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
+
+{% block extra_js %}
+  <script type="text/javascript" src="{% static 'js/popover.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="l-wrapper">
     <div class="l-center-6">
@@ -101,7 +106,8 @@
                     </div>
 
                     {% if is_moderator %}
-                      {% include "meinberlin_contrib/includes/remark.html" %}
+                    {% get_item_remark object as remark %}
+                    {% include 'meinberlin_moderatorremark/includes/remark.html' %}
                     {% endif %}
 
                 {% endif %}

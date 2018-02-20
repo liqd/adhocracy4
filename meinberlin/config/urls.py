@@ -17,6 +17,7 @@ from adhocracy4.reports.api import ReportViewSet
 from meinberlin.apps.bplan.api import BplanViewSet
 from meinberlin.apps.contrib import views as contrib_views
 from meinberlin.apps.documents.api import DocumentViewSet
+from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
 from meinberlin.apps.polls.api import PollViewSet
 from meinberlin.apps.polls.api import VoteViewSet
 from meinberlin.apps.polls.routers import QuestionDefaultRouter
@@ -30,6 +31,9 @@ router = routers.DefaultRouter()
 router.register(r'follows', FollowViewSet, base_name='follows')
 router.register(r'reports', ReportViewSet, base_name='reports')
 router.register(r'polls', PollViewSet, base_name='polls')
+router.register(r'moderatorremarks',
+                ModeratorRemarkViewSet,
+                base_name='moderatorremarks')
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'

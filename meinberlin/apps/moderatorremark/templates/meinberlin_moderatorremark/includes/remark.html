@@ -1,0 +1,21 @@
+<div className="dropdown dropdown--right lr-bar__right">
+    <button
+            type="button"
+            id="idea--popover__btn"
+            class="btn btn--light btn--small lr-bar__right"
+            data-toggle="popover"
+            data-container="body"
+            data-placement="bottom"
+            data-html="true"
+            data-slug={{ object.slug }}
+            data-content='{% include "meinberlin_moderatorremark/includes/remarkBox.html" %}'
+            data-template="<div class='popover' role='tooltip'><div class='popover-content'></div></div>"
+    >
+        <i class="fa fa-comment" aria-label="Remark"></i>
+
+        {% if remark %}
+          <i class="fa fa-check-circle item-detail__notify" aria-label="Remark-Notification"></i>
+        {% endif %}
+    </button>
+</div>
+

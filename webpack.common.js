@@ -17,6 +17,7 @@ module.exports = {
       'jquery.scrollintoview',
       'js-cookie',
       'react',
+      'bootstrap',
       'immutability-helper',
       'react-dom',
       'react-flip-move',
