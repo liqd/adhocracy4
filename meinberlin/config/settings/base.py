@@ -417,6 +417,12 @@ A4_CATEGORIZABLE = (
     ('meinberlin_maptopicprio', 'maptopic'),
 )
 
+A4_CATEGORY_ICONS = (
+    ('default', 'default'),
+    ('diamant', 'diamant'),
+    ('dreieck_oben', 'dreieck_oben')
+)
+
 
 A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
