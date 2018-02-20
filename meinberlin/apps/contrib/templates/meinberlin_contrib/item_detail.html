@@ -99,6 +99,11 @@
                             </li>
                         </ul>
                     </div>
+
+                    {% if is_moderator %}
+                      {% include "meinberlin_contrib/includes/remark.html" %}
+                    {% endif %}
+
                 {% endif %}
             </div>
         </div>
