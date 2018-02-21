@@ -69,4 +69,47 @@
       new DynamicFormSet($formsets.eq(i))
     )
   })
+
+  // Note: the template used for dynamically adding formsets is also captured by this
+  $('.select-icon').each(function () {
+    var $container = $(this)
+    var $select = $container.find('select')
+    var $button = $container.find('.select-icon__btn')
+    var $menu = $container.find('.select-icon__menu')
+
+    $select.find('option').each(function (i, option) {
+      var $option = $(option)
+      var label = $option.text()
+      var value = $option.attr('value')
+      var iconSrc = $option.data('icon-src')
+
+      var iconLabel = $('<span><img src="' + iconSrc + '" class="select-icon__img">' + label + '</span>').html()
+      var $item = $('<a class="dropdown-item select-icon__item" href="#">')
+      $item.html(iconLabel)
+
+      if ($option.is(':selected')) {
+        $button.html(iconLabel)
+      }
+
+      // data attributes set with jQuery won't be duplicated with the DOM node. Thus we have to use the native dataset
+      $item[0].dataset['value'] = value
+
+      $menu.append($item)
+    })
+  })
+
+  $(document).on('click', '.select-icon__item', function (e) {
+    e.preventDefault()
+
+    var $container = $(e.target).closest('.select-icon')
+    var $item = $(e.target).closest('.select-icon__item')
+
+    var $select = $container.find('select')
+
+    $container.find('.select-icon__item.selected').removeClass('selected')
+    $item.addClass('selected')
+
+    $select.val($item[0].dataset['value'])
+    $container.find('.select-icon__btn').html($item.html())
+  })
 })

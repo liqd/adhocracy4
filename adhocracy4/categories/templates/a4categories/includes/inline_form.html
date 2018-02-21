@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n widget_tweaks %}
 <div class="js-form formset__form form-group">
     {% if can_delete %}
         <input type="checkbox" name="{{ form.DELETE.html_name }}" id="{{ form.DELETE.id_for_label }}" class="formset__delete">
@@ -7,8 +7,17 @@
         {{ form.name.label }}
     </label>
     {{ form.name }}
+
+
     {% if form.icon %}
-        {{ form.icon }}
+        <div class="select-icon">
+            {{ form.icon|add_class:'u-hidden' }}
+
+            <div class="dropdown select_icon__dropdown">
+                <button class="btn select-icon__btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                <div class="dropdown-menu select-icon__menu"></div>
+            </div>
+        </div>
     {% endif %}
     {% if not form.name.value %}
         <button type="button" class="formset__delete-label js-remove-form" title="{% trans 'Remove category' %}">

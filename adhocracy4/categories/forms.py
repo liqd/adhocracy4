@@ -7,6 +7,8 @@ from adhocracy4.categories import models as category_models
 from adhocracy4.dashboard.components.forms import ModuleDashboardFormSet
 from adhocracy4.modules import models as module_models
 
+from .widgets import SelectWithIconWidget
+
 
 class CategorizableFieldMixin:
     category_field_name = 'category'
@@ -34,9 +36,6 @@ class CategoryForm(forms.ModelForm):
         'placeholder': _('Category')}
     ))
 
-    if hasattr(settings, 'A4_CATEGORY_ICONS'):
-        icon = forms.ChoiceField(choices=settings.A4_CATEGORY_ICONS)
-
     class Media:
         js = ('js/formset.js',)
 
@@ -46,6 +45,10 @@ class CategoryForm(forms.ModelForm):
             fields = ['name', 'icon']
         else:
             fields = ['name']
+
+        widgets = {
+            'icon': SelectWithIconWidget,
+        }
 
 
 CategoryFormSet = inlineformset_factory(module_models.Module,
