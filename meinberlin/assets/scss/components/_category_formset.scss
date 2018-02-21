@@ -1,10 +1,4 @@
-@media (min-width: $breakpoint) {
-    .formset {
-        @include grid-width(6);
-    }
-}
-
-.formset__form {
+.category-formset__form__category {
     position: relative;
 
     input {
@@ -39,4 +33,20 @@
         color: $brand-danger;
         text-decoration: line-through;
     }
+}
+
+// Shameful styles (should be in shame.scss to be sure it will be after every other css definition)
+.select-icon__btn {
+    @extend .btn--light;
+    @extend .btn--select;
+    text-align: left;
+}
+
+.select-icon__img {
+    height: 1.6em;
+    vertical-align: middle;
+}
+
+.category-formset__form {
+    @extend .l-tiles-2;
 }
