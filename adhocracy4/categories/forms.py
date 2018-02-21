@@ -10,6 +10,14 @@ from adhocracy4.modules import models as module_models
 from .widgets import SelectWithIconWidget
 
 
+def has_icons(module):
+    if not hasattr(settings, 'A4_CATEGORY_ICONS'):
+        return False
+
+    module_settings = module.settings_instance
+    return module_settings and hasattr(module_settings, 'polygon')
+
+
 class CategorizableFieldMixin:
     category_field_name = 'category'
 
@@ -32,6 +40,13 @@ class CategorizableFieldMixin:
 
 
 class CategoryForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        instance = kwargs.get('instance', None)
+        if not (instance and has_icons(instance.module)):
+            del self.fields['icon']
+
     name = forms.CharField(widget=forms.TextInput(attrs={
         'placeholder': _('Category')}
     ))
@@ -41,10 +56,7 @@ class CategoryForm(forms.ModelForm):
 
     class Meta:
         model = category_models.Category
-        if hasattr(settings, 'A4_CATEGORY_ICONS'):
-            fields = ['name', 'icon']
-        else:
-            fields = ['name']
+        fields = ['name', 'icon']
 
         widgets = {
             'icon': SelectWithIconWidget,
