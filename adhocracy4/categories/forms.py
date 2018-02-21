@@ -51,7 +51,7 @@ class CategoryForm(forms.ModelForm):
     ))
 
     class Media:
-        js = ('js/categories_formset.js',)
+        js = ('js/category_formset.js',)
 
     class Meta:
         model = category_models.Category
