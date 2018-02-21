@@ -40,11 +40,10 @@ class CategorizableFieldMixin:
 
 
 class CategoryForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, module, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        instance = kwargs.get('instance', None)
-        if not (instance and has_icons(instance.module)):
+        if not (module and has_icons(module)):
             del self.fields['icon']
 
     name = forms.CharField(widget=forms.TextInput(attrs={
@@ -63,9 +62,16 @@ class CategoryForm(forms.ModelForm):
         }
 
 
+class CategoryModuleDashboardFormSet(ModuleDashboardFormSet):
+    def get_form_kwargs(self, index):
+        form_kwargs = super().get_form_kwargs(index)
+        form_kwargs['module'] = self.instance
+        return form_kwargs
+
+
 CategoryFormSet = inlineformset_factory(module_models.Module,
                                         category_models.Category,
                                         form=CategoryForm,
-                                        formset=ModuleDashboardFormSet,
+                                        formset=CategoryModuleDashboardFormSet,
                                         extra=0,
                                         )
