@@ -74,7 +74,7 @@
   $('.select-icon').each(function () {
     var $container = $(this)
     var $select = $container.find('select')
-    var $button = $container.find('.select-icon__btn')
+    var $buttonLabel = $container.find('.select-icon__btn__label')
     var $menu = $container.find('.select-icon__menu')
 
     $select.find('option').each(function (i, option) {
@@ -88,7 +88,7 @@
       $item.html(iconLabel)
 
       if ($option.is(':selected')) {
-        $button.html(iconLabel)
+        $buttonLabel.html(iconLabel)
       }
 
       // data attributes set with jQuery won't be duplicated with the DOM node. Thus we have to use the native dataset
@@ -110,6 +110,6 @@
     $item.addClass('selected')
 
     $select.val($item[0].dataset['value'])
-    $container.find('.select-icon__btn').html($item.html())
+    $container.find('.select-icon__btn__label').html($item.html())
   })
 })
