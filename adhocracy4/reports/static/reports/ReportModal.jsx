@@ -54,7 +54,7 @@ class ReportModal extends React.Component {
   render () {
     let partials = {}
     if (this.state.showSuccessMessage) {
-      partials.title = (<span><i className="fa fa-check" /> Thank you! We are taking care of it.</span>)
+      partials.title = (<span><i className="fa fa-check" /> {django.gettext('Thank you! We are taking care of it.')}</span>)
       partials.hideFooter = true
       partials.bodyClass = 'success'
     } else if (this.state.showReportForm) {
