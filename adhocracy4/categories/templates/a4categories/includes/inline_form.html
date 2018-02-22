@@ -27,15 +27,7 @@
 
     {% if form.icon %}
         <div class="category-formset__form__icon select-icon">
-            {{ form.icon|add_class:'d-none' }}
-
-            <div class="dropdown select_icon__dropdown">
-                <button class="btn select-icon__btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="select-icon__btn__label"></span>
-                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                </button>
-                <div class="dropdown-menu select-icon__menu"></div>
-            </div>
+            {{ form.icon|add_class:'d-none category-select-icon' }}
         </div>
     {% endif %}
 </div>
