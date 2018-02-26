@@ -26,6 +26,10 @@
     .fa-ellipsis-h {
         vertical-align: middle;
     }
+
+    img {
+        display: none;
+    }
 }
 
 .dropdown-menu {
@@ -84,6 +88,12 @@
 
     .dropdown.show & {
         display: block;
+    }
+
+    img {
+        height: 1.6em;
+        vertical-align: middle;
+        margin-right: 0.6em;
     }
 
     @media print {

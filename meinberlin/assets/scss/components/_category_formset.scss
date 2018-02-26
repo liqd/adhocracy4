@@ -36,17 +36,27 @@
 }
 
 // Shameful styles (should be in shame.scss to be sure it will be after every other css definition)
-.select-icon__btn {
+.category-select-icon__btn {
     @extend .btn--light;
-    @extend .btn--select;
+
+    i {
+        position: absolute;
+        top: 0.8em;
+        right: 0.6em;
+    }
+
     text-align: left;
+    font-weight: normal;
 }
 
-.select-icon__img {
+.category-formset__form,
+.category-formset__btn {
+    @extend .l-tiles-2;
+}
+
+.select-dropdown__btn__label__icon,
+.select-dropdown__item__icon {
     height: 1.6em;
     vertical-align: middle;
-}
-
-.category-formset__form {
-    @extend .l-tiles-2;
+    margin-right: 0.6em;
 }
