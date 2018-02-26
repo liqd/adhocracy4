@@ -418,9 +418,21 @@ A4_CATEGORIZABLE = (
 )
 
 A4_CATEGORY_ICONS = (
-    ('default', 'default'),
-    ('diamant', 'diamant'),
-    ('dreieck_oben', 'dreieck_oben')
+    ('', _('Default pin')),
+    ('diamant', _('Diamond')),
+    ('dreieck_oben', _('Triangle up')),
+    ('dreieck_unten', _('Triangle down')),
+    ('ellipse', _('Ellipse')),
+    ('halbkreis', _('Semi circle')),
+    ('hexagon', _('Hexagon')),
+    ('parallelogramm', _('Rhomboid')),
+    ('pentagramm', _('Star')),
+    ('quadrat', _('Square')),
+    ('raute', _('Octothorpe')),
+    ('rechtecke', _('Rectangle')),
+    ('ring', _('Circle')),
+    ('rw_dreieck', _('Right triangle')),
+    ('zickzack', _('Zigzag'))
 )
 
 
