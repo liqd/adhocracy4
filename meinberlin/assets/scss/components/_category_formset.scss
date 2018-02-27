@@ -7,21 +7,26 @@
     }
 }
 
-.formset__template {
+.category-formset__form,
+.category-formset__btn {
+    @extend .l-tiles-2;
+}
+
+.category-formset__template {
     display: none;
 }
 
-.formset__delete {
+.category-formset__delete {
     @include sr-only();
 
-    & ~ .formset__delete-label {
+    & ~ .category-formset__delete-label {
         position: absolute;
         right: 0.5em;
         top: 0.6em;
         color: $gray;
     }
 
-    &:focus ~ .formset__delete-label {
+    &:focus ~ .category-formset__delete-label {
         @include fake-focus;
     }
 
@@ -33,30 +38,4 @@
         color: $brand-danger;
         text-decoration: line-through;
     }
-}
-
-// Shameful styles (should be in shame.scss to be sure it will be after every other css definition)
-.category-select-icon__btn {
-    @extend .btn--light;
-
-    i {
-        position: absolute;
-        top: 0.8em;
-        right: 0.6em;
-    }
-
-    text-align: left;
-    font-weight: normal;
-}
-
-.category-formset__form,
-.category-formset__btn {
-    @extend .l-tiles-2;
-}
-
-.select-dropdown__btn__label__icon,
-.select-dropdown__item__icon {
-    height: 1.6em;
-    vertical-align: middle;
-    margin-right: 0.6em;
 }
