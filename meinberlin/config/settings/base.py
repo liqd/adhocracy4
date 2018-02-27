@@ -418,7 +418,7 @@ A4_CATEGORIZABLE = (
 )
 
 A4_CATEGORY_ICONS = (
-    ('', _('Default pin')),
+    ('', _('Pin without icon')),
     ('diamant', _('Diamond')),
     ('dreieck_oben', _('Triangle up')),
     ('dreieck_unten', _('Triangle down')),
