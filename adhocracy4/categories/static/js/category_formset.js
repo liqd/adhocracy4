@@ -9,8 +9,8 @@
   var PLACEHOLDER = /__prefix__/g
   var dynamicFormSets = []
   var selectDropdownSettings = {
-    style: 'category-select-icon__btn',
-    styleDropdown: 'category-select-icon'
+    style: 'category-icon-select__btn',
+    styleDropdown: 'category-icon-select'
   }
 
   var DynamicFormSet = function ($formset) {
@@ -32,7 +32,7 @@
       var newForm = getNewForm(this.$formTemplate, this.total - 1)
       var $newForm = $(newForm).insertBefore(this.$formTemplate)
       if ($.fn.selectdropdown) {
-        $newForm.find('.category-select-icon').selectdropdown(selectDropdownSettings)
+        $newForm.find('.category-icon-select').selectdropdown(selectDropdownSettings)
       }
     }
   }
@@ -78,6 +78,6 @@
   })
 
   if ($.fn.selectdropdown) {
-    $('.category-select-icon').not('.js-form-template .category-select-icon').selectdropdown(selectDropdownSettings)
+    $('.category-icon-select').not('.js-form-template .category-icon-select').selectdropdown(selectDropdownSettings)
   }
 })
