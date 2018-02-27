@@ -26,6 +26,9 @@
     </div>
 
     {% if form.icon %}
+        <label for="{{ form.name.id_for_label }}" class="sr-only">
+            {{ form.name.label }}
+        </label>
         <div class="category-formset__form__icon select-icon">
             {{ form.icon|add_class:'d-none category-icon-select' }}
         </div>

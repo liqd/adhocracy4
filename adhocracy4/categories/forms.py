@@ -43,6 +43,9 @@ class CategoryForm(forms.ModelForm):
     def __init__(self, module, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self.fields['name'].label = _('Category name')
+        self.fields['icon'].label = _('Category icon')
+
         if not (module and has_icons(module)):
             del self.fields['icon']
 
