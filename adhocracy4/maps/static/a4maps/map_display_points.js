@@ -68,9 +68,9 @@ var init = function () {
       return '<div class="maps-popups-popup-image"></div>'
     }
 
-    var icon = L.icon({
-      iconUrl: '/static/images/map_pin_01_2x.png',
-      shadowUrl: '/static/images/map_shadow_01_2x.png',
+    var defaultIcon = L.icon({
+      iconUrl: '/static/images/map_pin_default.svg',
+      shadowUrl: '/static/images/map_shadow_01.svg',
       iconSize: [30, 45],
       iconAnchor: [15, 45],
       shadowSize: [40, 54],
@@ -80,6 +80,17 @@ var init = function () {
 
     L.geoJson(points, {
       pointToLayer: function (feature, latlng) {
+        var icon = defaultIcon
+        if (feature.properties.category_icon) {
+          icon = L.icon({
+            iconUrl: feature.properties.category_icon,
+            shadowUrl: '/static/images/map_shadow_01.svg',
+            iconSize: [30, 45],
+            iconAnchor: [15, 45],
+            popupAnchor: [0, 5]
+          })
+        }
+
         var marker = L.marker(latlng, {icon: icon}).addTo(map)
         var popupContent = getImage(feature) +
                           '<div class="maps-popups-popup-meta">' +

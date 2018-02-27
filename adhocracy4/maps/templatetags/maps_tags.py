@@ -2,6 +2,7 @@ import json
 
 from django import template
 from django.conf import settings
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.utils.html import format_html
 from easy_thumbnails.files import get_thumbnailer
 
@@ -30,6 +31,12 @@ def get_points(items):
         if hasattr(item, 'negative_rating_count'):
             negative_rating_count = item.negative_rating_count
 
+        if hasattr(item, 'category') and getattr(item.category, 'icon', None):
+            category_icon = static('category_icons/pins/{}_pin.svg'.
+                                   format(item.category.icon))
+        else:
+            category_icon = ''
+
         properties = {
             'name': item.name,
             'slug': item.slug,
@@ -37,7 +44,8 @@ def get_points(items):
             'comments_count': comment_count,
             'positive_rating_count': positive_rating_count,
             'negative_rating_count': negative_rating_count,
-            'url': item.get_absolute_url()
+            'url': item.get_absolute_url(),
+            'category_icon': category_icon
         }
         point_dict = item.point
         point_dict['properties'] = properties
