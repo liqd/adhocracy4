@@ -417,6 +417,24 @@ A4_CATEGORIZABLE = (
     ('meinberlin_maptopicprio', 'maptopic'),
 )
 
+A4_CATEGORY_ICONS = (
+    ('', _('Pin without icon')),
+    ('diamant', _('Diamond')),
+    ('dreieck_oben', _('Triangle up')),
+    ('dreieck_unten', _('Triangle down')),
+    ('ellipse', _('Ellipse')),
+    ('halbkreis', _('Semi circle')),
+    ('hexagon', _('Hexagon')),
+    ('parallelogramm', _('Rhomboid')),
+    ('pentagramm', _('Star')),
+    ('quadrat', _('Square')),
+    ('raute', _('Octothorpe')),
+    ('rechtecke', _('Rectangle')),
+    ('ring', _('Circle')),
+    ('rw_dreieck', _('Right triangle')),
+    ('zickzack', _('Zigzag'))
+)
+
 
 A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
