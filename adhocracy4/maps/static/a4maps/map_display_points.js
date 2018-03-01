@@ -78,6 +78,10 @@ var init = function () {
       popupAnchor: [0, 5]
     })
 
+    var cluster = L.markerClusterGroup({
+      showCoverageOnHover: false
+    })
+
     L.geoJson(points, {
       pointToLayer: function (feature, latlng) {
         var icon = defaultIcon
@@ -91,7 +95,8 @@ var init = function () {
           })
         }
 
-        var marker = L.marker(latlng, {icon: icon}).addTo(map)
+        var marker = L.marker(latlng, {icon: icon})
+        cluster.addLayer(marker)
         var popupContent = getImage(feature) +
                           '<div class="maps-popups-popup-meta">' +
                               '<span class="map-popup-upvotes">' +
@@ -111,6 +116,8 @@ var init = function () {
         return marker
       }
     })
+
+    map.addLayer(cluster)
 
     $('#zoom-in').click(function () {
       map.setZoom(map.getZoom() + 1)
