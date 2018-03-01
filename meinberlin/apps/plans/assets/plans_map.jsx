@@ -32,8 +32,8 @@ const participationNames = [
 const statusIconPins = statusIconNames.map((cls, i) => L.icon({
   iconUrl: `/static/plan_icons/pins/${cls}_pin.svg`,
   shadowUrl: '/static/images/map_shadow_01.svg',
-  iconSize: [30, 45],
-  iconAnchor: [15, 45],
+  iconSize: [30, 36],
+  iconAnchor: [15, 36],
   shadowSize: [40, 54],
   shadowAnchor: [20, 54],
   zIndexOffset: 1000
@@ -42,8 +42,8 @@ const statusIconPins = statusIconNames.map((cls, i) => L.icon({
 const activeIcon = L.icon({
   iconUrl: '/static/images/map_pin_active.svg',
   shadowUrl: '/static/images/map_shadow_01.svg',
-  iconSize: [30, 45],
-  iconAnchor: [15, 45],
+  iconSize: [30, 36],
+  iconAnchor: [15, 36],
   shadowSize: [40, 54],
   shadowAnchor: [20, 54],
   zIndexOffset: 1000
@@ -52,8 +52,8 @@ const activeIcon = L.icon({
 const addressIcon = L.icon({
   iconUrl: '/static/images/address_search_marker.svg',
   shadowUrl: '/static/images/map_shadow_01.svg',
-  iconSize: [30, 45],
-  iconAnchor: [15, 45],
+  iconSize: [30, 36],
+  iconAnchor: [15, 36],
   shadowSize: [40, 54],
   shadowAnchor: [20, 54],
   zIndexOffset: 1000
