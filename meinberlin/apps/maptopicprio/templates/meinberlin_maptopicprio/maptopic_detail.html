@@ -41,7 +41,12 @@
             <div class="item-detail__content">
                 {{ object.description | richtext }}
 
-                {% if object.point %}
+                {% if object.point and object.category %}
+                    {% with "category_icons/pins/"|add:object.category.icon|add:"_pin.svg" as pin_src %}
+                        {% static pin_src as static_pin_src %}
+                        {% map_display_point object.point object.module.areasettings_settings.polygon static_pin_src %}
+                    {% endwith %}
+                {% elif object.point %}
                     {% map_display_point object.point object.module.areasettings_settings.polygon %}
                 {% endif %}
             </div>
