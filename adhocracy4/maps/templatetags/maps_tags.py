@@ -76,7 +76,7 @@ def map_display_points(items, polygon):
 
 
 @register.simple_tag()
-def map_display_point(point, polygon):
+def map_display_point(point, polygon, category_icon=None):
     return format_html(
         (
             '<div'
@@ -86,10 +86,12 @@ def map_display_point(point, polygon):
             ' data-attribution="{attribution}"'
             ' data-point="{point}"'
             ' data-polygon="{polygon}"'
+            ' data-category-icon="{category_icon}"'
             '></div>'
         ),
         baseurl=settings.A4_MAP_BASEURL,
         attribution=settings.A4_MAP_ATTRIBUTION,
         point=json.dumps(point),
-        polygon=json.dumps(polygon)
+        polygon=json.dumps(polygon),
+        category_icon=json.dumps(category_icon)
     )
