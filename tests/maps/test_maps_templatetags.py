@@ -168,6 +168,7 @@ def test_map_display_point(area_settings):
         r' data-attribution="{attribution}"'
         r' data-point="(?P<point>{{.+}})"'
         r' data-polygon="(?P<polygon>{{.+}})"'
+        r' data-pin-src="null"'
         r'></div>$'
     ).format(baseurl=escape(settings.A4_MAP_BASEURL),
              attribution=escape(settings.A4_MAP_ATTRIBUTION))
