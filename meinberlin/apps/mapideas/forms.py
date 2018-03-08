@@ -5,6 +5,7 @@ from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.maps import widgets as maps_widgets
 
 from . import models
+from . import widgets
 
 
 class MapIdeaForm(CategorizableFieldMixin, forms.ModelForm):
@@ -16,10 +17,16 @@ class MapIdeaForm(CategorizableFieldMixin, forms.ModelForm):
             polygon=self.settings.polygon)
         self.fields['point'].error_messages['required'] = _(
             'Please locate your proposal on the map.')
+        self.fields['category'].widget = widgets.SelectCategoryWithIconWidget(
+            choices=self.fields['category'].choices,
+            attrs={'qs': self.fields['category'].queryset})
 
     class Meta:
         model = models.MapIdea
         fields = ['name', 'description', 'category', 'point', 'point_label']
+
+    class Media:
+        js = ('js/category_formset.js',)
 
 
 class MapIdeaModerateForm(forms.ModelForm):

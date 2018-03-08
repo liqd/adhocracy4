@@ -1,0 +1,8 @@
+{% extends "meinberlin_contrib/includes/form_field.html" %}
+{% load widget_tweaks %}
+
+{% block field %}
+    <div class="widget widget--{{ field|widget_type }}">
+        {{ field|add_class:'d-none category-icon-select' }}
+    </div>
+{% endblock %}
