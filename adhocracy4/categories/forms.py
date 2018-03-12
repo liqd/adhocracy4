@@ -38,7 +38,30 @@ class CategorizableFieldMixin:
         return module_has_categories
 
 
-class SelectWithIconWidget(widgets.Select):
+class CategorySelectWidget(widgets.Select):
+    def create_option(self, name, value, label, selected, index, **kwargs):
+        option = super().create_option(name, value, label, selected, index,
+                                       **kwargs)
+        if value and value in self.icons:
+            icon_name = self.icons[value]
+            option['attrs']['data-icon-src'] = \
+                static('category_icons/icons/{}_icon.svg'.format(icon_name))
+
+        return option
+
+
+class CategoryChoiceField(forms.ModelChoiceField):
+    widget = CategorySelectWidget
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.widget.icons = {
+            self.prepare_value(obj): getattr(obj, 'icon', None)
+            for obj in self.queryset.all()
+        }
+
+
+class IconSelectWidget(widgets.Select):
     def create_option(self, name, value, label, selected, index, **kwargs):
         option = super().create_option(name, value, label, selected, index,
                                        **kwargs)
@@ -48,6 +71,10 @@ class SelectWithIconWidget(widgets.Select):
             static('category_icons/icons/{}_icon.svg'.format(icon_name))
 
         return option
+
+
+class IconChoiceField(forms.TypedChoiceField):
+    widget = IconSelectWidget
 
 
 class CategoryForm(forms.ModelForm):
@@ -70,10 +97,6 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = category_models.Category
         fields = ['name', 'icon']
-
-        widgets = {
-            'icon': SelectWithIconWidget,
-        }
 
 
 class CategoryModuleDashboardFormSet(ModuleDashboardFormSet):

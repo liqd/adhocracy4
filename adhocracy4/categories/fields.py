@@ -17,3 +17,9 @@ class CategoryField(models.ForeignKey):
         }
         defaults.update(kwargs)
         super().__init__(**defaults)
+
+    def formfield(self, **kwargs):
+        from . import forms
+        form_class = kwargs.get('form_class', forms.CategoryChoiceField)
+        kwargs['form_class'] = form_class
+        return super().formfield(**kwargs)

@@ -21,6 +21,12 @@ class IconField(models.CharField):
         # Call the super method at last so that choices are already initialized
         super().contribute_to_class(cls, name, **kwargs)
 
+    def formfield(self, **kwargs):
+        from . import forms
+        form_class = kwargs.get('choices_form_class', forms.IconChoiceField)
+        kwargs['choices_form_class'] = form_class
+        return super().formfield(**kwargs)
+
 
 class Category(models.Model):
     name = models.CharField(max_length=120)
