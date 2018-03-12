@@ -1,9 +1,10 @@
 import django_filters
 from django.contrib.staticfiles.templatetags.staticfiles import static
-from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import force_text
-from django_filters.fields import ModelChoiceField
+from django.utils.html import escape
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext_lazy as _
+from django_filters.fields import ModelChoiceField
 
 from adhocracy4.filters.widgets import DropdownLinkWidget
 
@@ -14,12 +15,6 @@ from .forms import has_icons
 class CategoryFilterWidget(DropdownLinkWidget):
     label = _('Category')
 
-    def get_option_label(self, value, choices=()):
-        option_label = super().get_option_label(value, choices=())
-
-        # Probably not the best idea!
-        return mark_safe(option_label)
-
 
 class CategoryChoiceField(ModelChoiceField):
     def label_from_instance(self, obj):
@@ -29,23 +24,23 @@ class CategoryChoiceField(ModelChoiceField):
         Subclasses can override this method to customize the display of
         the choices.
         """
-        icon_name = (obj.icon
-                     if (hasattr(obj, 'icon') and obj.icon != '')
-                     else 'default')
         icon_label = ''
 
-        if (obj.module and has_icons(obj.module)):
+        if obj.module and has_icons(obj.module):
+            icon_name = (obj.icon
+                         if (hasattr(obj, 'icon') and obj.icon != '')
+                         else 'default')
             icon_src = static('category_icons/icons/{}_icon.svg'.
                               format(icon_name))
             icon_label += \
                 '<img class="dropdown-item__icon" src="{icon_src}">' \
-                .format(icon_src=icon_src)
+                .format(icon_src=force_text(icon_src))
 
         icon_label += \
             '<span class="dropdown-item__label">{label}</span>' \
-            .format(label=force_text(obj))
+            .format(label=escape(obj))
 
-        return icon_label
+        return mark_safe(icon_label)
 
 
 class CategoryFilter(django_filters.ModelChoiceFilter):
