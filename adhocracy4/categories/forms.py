@@ -1,13 +1,12 @@
 from django import forms
 from django.conf import settings
-from django.forms import inlineformset_factory
+from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.forms import inlineformset_factory, widgets
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import models as category_models
 from adhocracy4.dashboard.components.forms import ModuleDashboardFormSet
 from adhocracy4.modules import models as module_models
-
-from .widgets import SelectWithIconWidget
 
 
 def has_icons(module):
@@ -37,6 +36,18 @@ class CategorizableFieldMixin:
         field = self.fields[self.category_field_name]
         module_has_categories = field.queryset.exists()
         return module_has_categories
+
+
+class SelectWithIconWidget(widgets.Select):
+    def create_option(self, name, value, label, selected, index, **kwargs):
+        option = super().create_option(name, value, label, selected, index,
+                                       **kwargs)
+
+        icon_name = value if value else 'default'
+        option['attrs']['data-icon-src'] = \
+            static('category_icons/icons/{}_icon.svg'.format(icon_name))
+
+        return option
 
 
 class CategoryForm(forms.ModelForm):
