@@ -30,6 +30,18 @@ class CategoryIconDict(abc.Mapping):
 
 
 class CategorySelectWidget(widgets.Select):
+
+    class Media:
+        js = ('js/select_dropdown_init.js',)
+
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        current_class = context['widget']['attrs'].get('class', '')
+        new_class = current_class + ' select-dropdown'
+
+        context['widget']['attrs']['class'] = new_class
+        return context
+
     def create_option(self, name, value, label, selected, index, **kwargs):
         option = super().create_option(name, value, label, selected, index,
                                        **kwargs)
