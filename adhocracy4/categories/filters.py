@@ -1,5 +1,4 @@
 import django_filters
-from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.utils.encoding import force_text
 from django.utils.html import escape
 from django.utils.safestring import mark_safe
@@ -8,8 +7,7 @@ from django_filters.fields import ModelChoiceField
 
 from adhocracy4.filters.widgets import DropdownLinkWidget
 
-from . import models
-from .forms import has_icons
+from . import get_category_icon_url, has_icons, models
 
 
 class CategoryFilterWidget(DropdownLinkWidget):
@@ -27,14 +25,11 @@ class CategoryChoiceField(ModelChoiceField):
         icon_label = ''
 
         if obj.module and has_icons(obj.module):
-            icon_name = (obj.icon
-                         if (hasattr(obj, 'icon') and obj.icon != '')
-                         else 'default')
-            icon_src = static('category_icons/icons/{}_icon.svg'.
-                              format(icon_name))
+            icon_name = getattr(obj, 'icon', None)
+            icon_url = get_category_icon_url(icon_name)
             icon_label += \
                 '<img class="dropdown-item__icon" src="{icon_src}">' \
-                .format(icon_src=force_text(icon_src))
+                .format(icon_src=force_text(icon_url))
 
         icon_label += \
             '<span class="dropdown-item__label">{label}</span>' \

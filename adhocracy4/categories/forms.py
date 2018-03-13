@@ -1,5 +1,4 @@
 from django import forms
-from django.conf import settings
 from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
@@ -7,13 +6,7 @@ from adhocracy4.categories import models as category_models
 from adhocracy4.dashboard.components.forms import ModuleDashboardFormSet
 from adhocracy4.modules import models as module_models
 
-
-def has_icons(module):
-    if not hasattr(settings, 'A4_CATEGORY_ICONS'):
-        return False
-
-    module_settings = module.settings_instance
-    return module_settings and hasattr(module_settings, 'polygon')
+from . import has_icons
 
 
 class CategorizableFieldMixin:

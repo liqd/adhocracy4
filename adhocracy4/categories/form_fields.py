@@ -1,9 +1,10 @@
 from collections import abc
 
 from django import forms
-from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.forms import widgets
 from django.utils.functional import cached_property
+
+from adhocracy4.categories import get_category_icon_url
 
 
 class CategoryIconDict(abc.Mapping):
@@ -33,9 +34,8 @@ class CategorySelectWidget(widgets.Select):
         option = super().create_option(name, value, label, selected, index,
                                        **kwargs)
         if value and value in self.icons:
-            icon_name = self.icons[value]
-            option['attrs']['data-icon-src'] = \
-                static('category_icons/icons/{}_icon.svg'.format(icon_name))
+            icon_url = get_category_icon_url(self.icons[value])
+            option['attrs']['data-icon-src'] = icon_url
 
         return option
 
@@ -64,10 +64,8 @@ class IconSelectWidget(widgets.Select):
         option = super().create_option(name, value, label, selected, index,
                                        **kwargs)
 
-        icon_name = value if value else 'default'
-        option['attrs']['data-icon-src'] = \
-            static('category_icons/icons/{}_icon.svg'.format(icon_name))
-
+        icon_url = get_category_icon_url(value)
+        option['attrs']['data-icon-src'] = icon_url
         return option
 
 
