@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from .models import Category
+from adhocracy4.categories.form_fields import CategoryChoiceField
+from adhocracy4.categories.models import Category
 
 
 class CategoryField(models.ForeignKey):
@@ -19,7 +20,6 @@ class CategoryField(models.ForeignKey):
         super().__init__(**defaults)
 
     def formfield(self, **kwargs):
-        from . import forms
-        form_class = kwargs.get('form_class', forms.CategoryChoiceField)
+        form_class = kwargs.get('form_class', CategoryChoiceField)
         kwargs['form_class'] = form_class
         return super().formfield(**kwargs)
