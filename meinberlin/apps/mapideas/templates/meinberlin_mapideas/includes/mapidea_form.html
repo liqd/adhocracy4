@@ -1,4 +1,4 @@
-{% load i18n widget_tweaks %}
+{% load i18n %}
 <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
     {% csrf_token %}
     {{ form.media }}
@@ -12,7 +12,7 @@
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point_label %}
 
     {% if form.show_categories %}
-        {% include 'meinberlin_contrib/includes/form_select_with_icon.html' with field=form.category %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.category %}
     {% endif %}
 
     <div class="u-spacer-bottom">

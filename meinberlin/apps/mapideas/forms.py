@@ -21,9 +21,6 @@ class MapIdeaForm(CategorizableFieldMixin, forms.ModelForm):
         model = models.MapIdea
         fields = ['name', 'description', 'category', 'point', 'point_label']
 
-    class Media:
-        js = ('js/category_formset.js',)
-
 
 class MapIdeaModerateForm(forms.ModelForm):
     class Meta:
