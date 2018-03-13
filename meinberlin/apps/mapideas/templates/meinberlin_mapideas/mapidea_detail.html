@@ -1,5 +1,5 @@
 {% extends "meinberlin_contrib/item_detail.html" %}
-{% load static maps_tags %}
+{% load static maps_tags categories_tags %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
@@ -17,12 +17,8 @@
 {% endblock %}
 
 {% block additional_content %}
-    {% if object.point and object.category %}
-        {% with "category_icons/pins/"|add:object.category.icon|add:"_pin.svg" as pin_src %}
-            {% static pin_src as static_pin_src %}
-            {% map_display_point object.point object.module.areasettings_settings.polygon static_pin_src %}
-        {% endwith %}
-    {% elif object.point %}
-        {% map_display_point object.point object.module.areasettings_settings.polygon %}
+    {% if object.point %}
+        {% get_category_pin_url object as pin_url %}
+        {% map_display_point object.point object.module.areasettings_settings.polygon pin_url %}
     {% endif %}
 {% endblock %}
