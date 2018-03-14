@@ -30,14 +30,6 @@ install:
 	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
 
-.PHONY: webpack
-webpack:
-	npm run build:dev
-
-.PHONY: webpack-prod
-webpack-prod:
-	npm run build
-
 .PHONY: makemessages
 makemessages:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django
