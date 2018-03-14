@@ -71,11 +71,15 @@ var init = function () {
     var defaultIcon = L.icon({
       iconUrl: '/static/images/map_pin_default.svg',
       shadowUrl: '/static/images/map_shadow_01.svg',
-      iconSize: [30, 45],
-      iconAnchor: [15, 45],
+      iconSize: [30, 36],
+      iconAnchor: [15, 36],
       shadowSize: [40, 54],
       shadowAnchor: [20, 54],
       popupAnchor: [0, 5]
+    })
+
+    var cluster = L.markerClusterGroup({
+      showCoverageOnHover: false
     })
 
     L.geoJson(points, {
@@ -85,13 +89,14 @@ var init = function () {
           icon = L.icon({
             iconUrl: feature.properties.category_icon,
             shadowUrl: '/static/images/map_shadow_01.svg',
-            iconSize: [30, 45],
-            iconAnchor: [15, 45],
+            iconSize: [30, 36],
+            iconAnchor: [15, 36],
             popupAnchor: [0, 5]
           })
         }
 
-        var marker = L.marker(latlng, {icon: icon}).addTo(map)
+        var marker = L.marker(latlng, {icon: icon})
+        cluster.addLayer(marker)
         var popupContent = getImage(feature) +
                           '<div class="maps-popups-popup-meta">' +
                               '<span class="map-popup-upvotes">' +
@@ -111,6 +116,8 @@ var init = function () {
         return marker
       }
     })
+
+    map.addLayer(cluster)
 
     $('#zoom-in').click(function () {
       map.setZoom(map.getZoom() + 1)

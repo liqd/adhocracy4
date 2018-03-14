@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 
+from adhocracy4.categories.form_fields import IconChoiceField
 from adhocracy4.modules import models as module_models
 
 
@@ -20,6 +21,11 @@ class IconField(models.CharField):
 
         # Call the super method at last so that choices are already initialized
         super().contribute_to_class(cls, name, **kwargs)
+
+    def formfield(self, **kwargs):
+        form_class = kwargs.get('choices_form_class', IconChoiceField)
+        kwargs['choices_form_class'] = form_class
+        return super().formfield(**kwargs)
 
 
 class Category(models.Model):

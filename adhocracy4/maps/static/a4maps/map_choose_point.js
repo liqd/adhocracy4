@@ -10,8 +10,8 @@ function createMarker ($, L, newlatln, oldlatln, basePolygon, map, name) {
   var icon = L.icon({
     iconUrl: '/static/images/map_pin_default.svg',
     shadowUrl: '/static/images/map_shadow_01.svg',
-    iconSize: [30, 45],
-    iconAnchor: [15, 45],
+    iconSize: [30, 36],
+    iconAnchor: [15, 36],
     shadowSize: [40, 54],
     shadowAnchor: [20, 54],
     popupAnchor: [0, -45]

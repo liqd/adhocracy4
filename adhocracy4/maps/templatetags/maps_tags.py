@@ -2,9 +2,10 @@ import json
 
 from django import template
 from django.conf import settings
-from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.utils.html import format_html
 from easy_thumbnails.files import get_thumbnailer
+
+from adhocracy4.categories import get_category_pin_url
 
 register = template.Library()
 
@@ -32,8 +33,7 @@ def get_points(items):
             negative_rating_count = item.negative_rating_count
 
         if hasattr(item, 'category') and getattr(item.category, 'icon', None):
-            category_icon = static('category_icons/pins/{}_pin.svg'.
-                                   format(item.category.icon))
+            category_icon = get_category_pin_url(item.category.icon)
         else:
             category_icon = ''
 
@@ -76,7 +76,7 @@ def map_display_points(items, polygon):
 
 
 @register.simple_tag()
-def map_display_point(point, polygon):
+def map_display_point(point, polygon, pin_src=None):
     return format_html(
         (
             '<div'
@@ -86,10 +86,12 @@ def map_display_point(point, polygon):
             ' data-attribution="{attribution}"'
             ' data-point="{point}"'
             ' data-polygon="{polygon}"'
+            ' data-pin-src="{pin_src}"'
             '></div>'
         ),
         baseurl=settings.A4_MAP_BASEURL,
         attribution=settings.A4_MAP_ATTRIBUTION,
         point=json.dumps(point),
-        polygon=json.dumps(polygon)
+        polygon=json.dumps(polygon),
+        pin_src=json.dumps(pin_src)
     )
