@@ -30,10 +30,6 @@ class CategoryIconDict(abc.Mapping):
 
 
 class CategorySelectWidget(widgets.Select):
-
-    class Media:
-        js = ('js/select_dropdown_init.js',)
-
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
         current_class = context['widget']['attrs'].get('class', '')
