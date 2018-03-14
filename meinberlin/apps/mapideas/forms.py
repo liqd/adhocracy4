@@ -8,6 +8,8 @@ from . import models
 
 
 class MapIdeaForm(CategorizableFieldMixin, forms.ModelForm):
+    class Media:
+        js = ('js/select_dropdown_init.js',)
 
     def __init__(self, *args, **kwargs):
         self.settings = kwargs.pop('settings_instance')
