@@ -12,6 +12,7 @@ env/
 htmlcov/
 media/
 meinberlin/static/
+static/
 
 # setuptools
 /build

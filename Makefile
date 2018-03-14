@@ -13,8 +13,8 @@ help:
 	@echo usage:
 	@echo
 	@echo "  make install         -- install dev setup"
-	@echo "  make build           -- build js and css and create new po and mo files"
 	@echo "  make lint            -- lint all project files"
+	@echo "  make lint-quick      -- lint all files staged in git"
 	@echo "  make server          -- start a dev server"
 	@echo "  make watch           -- start a dev server and rebuild js and css files on changes"
 	@echo "  make test            -- run all test cases with pytest"
@@ -46,12 +46,9 @@ makemessages:
 	msgen locale/en_GB/LC_MESSAGES/django.po -o locale/en_GB/LC_MESSAGES/django.po
 	msgen locale/en_GB/LC_MESSAGES/djangojs.po -o locale/en_GB/LC_MESSAGES/djangojs.po
 
-.PHONY: makemessages
+.PHONY: compilemessages
 compilemessages:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
-
-.PHONY: build
-build: webpack compilemessages
 
 .PHONY: server
 server:
@@ -86,6 +83,6 @@ test-clean:
 release:
 	npm install --silent
 	npm run build
-	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements.txt
-	$(VIRTUAL_ENV)/bin/python3 manage.py compilemessages
+	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements.txt -q
+	$(VIRTUAL_ENV)/bin/python3 manage.py compilemessages -v0
 	$(VIRTUAL_ENV)/bin/python3 manage.py collectstatic --noinput -v0
