@@ -56,9 +56,9 @@
     "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-standard": "^3.0.1",
     "husky": "^0.14.3",
-    "markdownlint-cli": "^0.6.0",
+    "markdownlint-cli": "^0.7.1",
     "polylint.sh": "^0.0.4",
-    "stylelint": "^9.1.1",
+    "stylelint": "^9.1.2",
     "stylelint-config-standard": "^18.0.0",
     "stylelint-declaration-strict-value": "^1.0.3"
   },
