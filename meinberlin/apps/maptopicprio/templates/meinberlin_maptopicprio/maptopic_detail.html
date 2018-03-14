@@ -1,5 +1,5 @@
 {% extends "meinberlin_contrib/item_detail.html" %}
-{% load i18n rules react_comments module_tags react_ratings wagtailcore_tags maps_tags static %}
+{% load i18n rules react_comments module_tags react_ratings wagtailcore_tags maps_tags categories_tags static %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
@@ -42,7 +42,8 @@
                 {{ object.description | richtext }}
 
                 {% if object.point %}
-                    {% map_display_point object.point object.module.areasettings_settings.polygon %}
+                    {% get_category_pin_url object as pin_url %}
+                    {% map_display_point object.point object.module.areasettings_settings.polygon pin_url %}
                 {% endif %}
             </div>
 
