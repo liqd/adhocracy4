@@ -6,7 +6,6 @@ from . import apps, models, views
 class AskPhase(phases.PhaseContent):
     app = apps.QuestionsConfig.label
     phase = 'ask'
-    weight = 10
     view = views.QuestionList
 
     name = 'Asking Phase'
@@ -25,7 +24,6 @@ phases.content.register(AskPhase())
 class RatePhase(phases.PhaseContent):
     app = apps.QuestionsConfig.label
     phase = 'rate'
-    weight = 20
     view = views.QuestionList
 
     name = 'Rating Phase'
