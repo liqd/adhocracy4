@@ -43,6 +43,7 @@ def test_get_points_one(location_factory):
                 'slug': 'location',
                 'url': '/location/1/',
                 'image': '',
+                'category_icon': '',
                 'comments_count': '',
                 'positive_rating_count': '',
                 'negative_rating_count': ''
@@ -88,6 +89,7 @@ def test_get_points_with_properties(location_factory):
                 'slug': 'location',
                 'url': '/location/1/',
                 'image': '',
+                'category_icon': '',
                 'comments_count': 2,
                 'positive_rating_count': 3,
                 'negative_rating_count': 4
@@ -115,6 +117,7 @@ def test_map_display_points(area_settings, location_factory):
                     "positive_rating_count": "",
                     "slug": "location",
                     "image": "",
+                    "category_icon": "",
                     "negative_rating_count": ""},
                 "type": "Feature",
                 "geometry": {
@@ -165,6 +168,7 @@ def test_map_display_point(area_settings):
         r' data-attribution="{attribution}"'
         r' data-point="(?P<point>{{.+}})"'
         r' data-polygon="(?P<polygon>{{.+}})"'
+        r' data-pin-src="null"'
         r'></div>$'
     ).format(baseurl=escape(settings.A4_MAP_BASEURL),
              attribution=escape(settings.A4_MAP_ATTRIBUTION))

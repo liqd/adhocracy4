@@ -5,6 +5,8 @@ from django.conf import settings
 from django.utils.html import format_html
 from easy_thumbnails.files import get_thumbnailer
 
+from adhocracy4.categories import get_category_pin_url
+
 register = template.Library()
 
 
@@ -30,14 +32,20 @@ def get_points(items):
         if hasattr(item, 'negative_rating_count'):
             negative_rating_count = item.negative_rating_count
 
+        if hasattr(item, 'category') and getattr(item.category, 'icon', None):
+            category_icon = get_category_pin_url(item.category.icon)
+        else:
+            category_icon = ''
+
         properties = {
             'name': item.name,
             'slug': item.slug,
-            'image':  image_url,
+            'image': image_url,
             'comments_count': comment_count,
             'positive_rating_count': positive_rating_count,
             'negative_rating_count': negative_rating_count,
-            'url': item.get_absolute_url()
+            'url': item.get_absolute_url(),
+            'category_icon': category_icon
         }
         point_dict = item.point
         point_dict['properties'] = properties
@@ -68,7 +76,7 @@ def map_display_points(items, polygon):
 
 
 @register.simple_tag()
-def map_display_point(point, polygon):
+def map_display_point(point, polygon, pin_src=None):
     return format_html(
         (
             '<div'
@@ -78,10 +86,12 @@ def map_display_point(point, polygon):
             ' data-attribution="{attribution}"'
             ' data-point="{point}"'
             ' data-polygon="{polygon}"'
+            ' data-pin-src="{pin_src}"'
             '></div>'
         ),
         baseurl=settings.A4_MAP_BASEURL,
         attribution=settings.A4_MAP_ATTRIBUTION,
         point=json.dumps(point),
-        polygon=json.dumps(polygon)
+        polygon=json.dumps(polygon),
+        pin_src=json.dumps(pin_src)
     )

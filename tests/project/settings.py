@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'adhocracy4.filters.apps.FiltersConfig',
     'adhocracy4.forms.apps.FormsConfig',
     'adhocracy4.rules.apps.RulesConfig',
+    'adhocracy4.dashboard.apps.DashboardConfig',
 
     # adhocrayc4 generic apps
     'adhocracy4.ratings.apps.RatingsConfig',
@@ -157,6 +158,11 @@ A4_COMMENTABLES = (('a4test_questions', 'question'),
                    ('a4comments', 'comment'),)
 A4_ACTIONABLES = ()
 A4_AUTO_FOLLOWABLES = (('a4comments', 'comment'),)
+A4_CATEGORIZABLE = (('a4test_questions', 'question'),)
+A4_DASHBOARD = {
+    'BLUEPRINTS': 'tests.project.blueprints.blueprints'
+}
+
 
 # Rich text fields
 

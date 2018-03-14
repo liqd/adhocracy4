@@ -5,6 +5,7 @@ var init = function () {
   $('[data-map="display_point"]').each(function (i, e) {
     var polygon = JSON.parse(e.getAttribute('data-polygon'))
     var point = JSON.parse(e.getAttribute('data-point'))
+    var pinSrc = JSON.parse(e.getAttribute('data-pin-src'))
     var baseurl = e.getAttribute('data-baseurl')
     var attribution = e.getAttribute('data-attribution')
 
@@ -20,11 +21,11 @@ var init = function () {
       'fillOpacity': 0.2
     }
 
-    var icon = L.icon({
-      iconUrl: '/static/images/map_pin_01_2x.png',
-      shadowUrl: '/static/images/map_shadow_01_2x.png',
-      iconSize: [30, 45],
-      iconAnchor: [15, 45],
+    var defaultIcon = L.icon({
+      iconUrl: '/static/images/map_pin_default.svg',
+      shadowUrl: '/static/images/map_shadow_01.svg',
+      iconSize: [30, 36],
+      iconAnchor: [15, 36],
       shadowSize: [40, 54],
       shadowAnchor: [20, 54],
       popupAnchor: [0, -45]
@@ -39,6 +40,17 @@ var init = function () {
 
     L.geoJson(point, {
       pointToLayer: function (feature, latlng) {
+        var icon = defaultIcon
+        if (pinSrc) {
+          icon = L.icon({
+            iconUrl: pinSrc,
+            shadowUrl: '/static/images/map_shadow_01.svg',
+            iconSize: [30, 36],
+            iconAnchor: [15, 36],
+            popupAnchor: [0, 5]
+          })
+        }
+
         var marker = L.marker(latlng, {icon: icon}).addTo(map)
         return marker
       }

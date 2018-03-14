@@ -1,0 +1,51 @@
+{% extends "a4dashboard/base_dashboard.html" %}
+{% load i18n %}
+
+{% block dashboard_content %}
+    <nav aria-label="{% trans 'Project Settings' %}">
+        <div>
+            {{ project.name }}
+            <ul>
+                {% for item in dashboard_menu.project %}
+                    <li>
+                        <a href="{{ item.url }}"
+                           class="{{ item.is_active|yesno:"is-active," }}">
+                            {{ item.label }}
+                            {% if not item.is_complete %}
+                                <i class="fa fa-exclamation-circle u-danger" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
+                            {% endif %}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {% for module_menu in dashboard_menu.modules %}
+            <div>
+                {{ module_menu.module.name }}
+                <ul>
+                    {% for item in module_menu.menu %}
+                        <li>
+                            <a href="{{ item.url }}"
+                               class="{{ item.is_active|yesno:"is-active," }}">
+                                {{ item.label }}
+                                {% if not item.is_complete %}
+                                    <i class="fa fa-exclamation-circle u-danger" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
+                                {% endif %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </nav>
+
+    <div>
+        {% block dashboard_project_content %}{% endblock %}
+    </div>
+
+    <div>
+        {% include "a4dashboard/includes/progress.html" with value=project_progress.valid max=project_progress.required project=project %}
+        {% include "a4dashboard/includes/preview.html" with project=project %}
+    </div>
+{% endblock %}
