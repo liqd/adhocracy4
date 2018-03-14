@@ -30,4 +30,4 @@ Stellungnahme
 {% block cta_label %}Bebauungsplan anzeigen{% endblock %}
 {% block cta_url %}{{ project.externalproject.url }}{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet, da Sie als Sachbearbeiter*in des Projekts angegeben sind. Bei Fragen können Sie sich gerne unter {{ contact_email }} an uns wenden.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver }} gesendet, da Sie als Sachbearbeiter*in des Projekts angegeben sind. Bei Fragen können Sie sich gerne unter {{ contact_email }} an uns wenden.{% endblock %}
