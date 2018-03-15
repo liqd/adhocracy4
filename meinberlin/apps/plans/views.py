@@ -16,7 +16,6 @@ from adhocracy4.exports import views as export_views
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.maps.models import MapPreset
-from meinberlin.apps.maps.models import MapPresetCategory
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
 
@@ -43,10 +42,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
     def get_districts(self):
         try:
-            berlin = MapPresetCategory.objects.get(name='Berlin')
-            return MapPreset.objects\
-                .filter(category=berlin)\
-                .exclude(name='Berlin')
+            return MapPreset.objects.filter(
+                category__name='Bezirke - Berlin')
         except ObjectDoesNotExist:
             return []
 
