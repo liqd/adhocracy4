@@ -188,7 +188,7 @@ def test_project_mixin_module_object(rf, module):
 
 
 @pytest.mark.django_db
-def test_project_mixin_module_object(rf, module):
+def test_project_mixin_module_object_module(rf, module):
     class FakeProjectContextGetObjectView(FakeProjectContextView):
         get_context_from_object = True
 

@@ -72,7 +72,6 @@ class ModuleMixin:
         )
 
 
-
 class OrganisationMixin:
     """
     Should be used in combination with OrganisationRouter to fetch the
