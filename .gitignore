@@ -7,10 +7,7 @@
 /share
 
 # virtualenv
-/bin
-/lib
-/lib64
-/include
+/venv
 /pip-selfcheck.json
 
 # dev
@@ -21,3 +18,4 @@
 /htmlcov
 /db.sqlite3
 /media
+/.cache

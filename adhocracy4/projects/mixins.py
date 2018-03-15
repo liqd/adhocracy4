@@ -129,4 +129,3 @@ class ProjectMixin(generic.base.ContextMixin):
         if 'module' not in kwargs:
             kwargs['module'] = self.module
         return super().get_context_data(**kwargs)
-
