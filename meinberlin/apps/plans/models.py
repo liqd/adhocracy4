@@ -43,7 +43,7 @@ class Plan(UserGeneratedContentModel):
     )
     district = models.ForeignKey(
         MapPreset,
-        limit_choices_to=Q(category__name='Berlin') & ~Q(name='Berlin'))
+        limit_choices_to=Q(category__name='Bezirke - Berlin'))
     contact = models.TextField(max_length=255, verbose_name=_('Contact'))
     cost = models.PositiveIntegerField(blank=True, null=True,
                                        verbose_name=_('Cost'))
