@@ -1,4 +1,4 @@
-VIRTUAL_ENV ?= env
+VIRTUAL_ENV ?= venv
 NODE_BIN = node_modules/.bin
 
 all: help
