@@ -63,6 +63,9 @@
     "stylelint-declaration-strict-value": "^1.0.3"
   },
   "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "build:dev": "webpack --config webpack.dev.js",
+    "watch": "webpack --config webpack.dev.js --watch",
     "precommit": "make lint-quick"
   },
   "browserslist": "last 3 versions, ie >= 10"
