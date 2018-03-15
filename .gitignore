@@ -7,7 +7,7 @@
 /share
 
 # virtualenv
-/env
+/venv
 /pip-selfcheck.json
 
 # dev
