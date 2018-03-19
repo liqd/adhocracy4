@@ -47,6 +47,7 @@ INSTALLED_APPS = (
 
     # adhocracy4 helper apps
     'adhocracy4.ckeditor.apps.CKEditorConfig',
+    'adhocracy4.files.apps.FilesConfig',
     'adhocracy4.images.apps.ImagesConfig',
 
     # test apps
@@ -215,7 +216,17 @@ BLEACH_LIST = {
 LOGIN_URL = "/accounts/login"
 
 IMAGE_ALIASES = {
-    '*': {'max_size': 5*10**6, 'fileformats': ('image/png', 'image/jpeg', 'image/gif')},
+    '*': {'max_size': 5*10**6,
+          'fileformats': (('.png', 'image/png'),
+                          ('.jpeg', 'image/jpeg'),
+                          ('.gif', 'image/gif'))},
     'heroimage': {'min_resolution': (1300, 600)},
     'tileimage': {'min_resolution': (500, 300)},
+}
+
+FILE_ALIASES = {
+    '*': {'max_size': 5*10**6,
+          'fileformats': (('.txt', 'text/plain'),
+                          ('.jpeg', 'image/jpeg'))
+    }
 }

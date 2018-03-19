@@ -1,9 +1,9 @@
 from django.apps import AppConfig
 
 
-class ImagesConfig(AppConfig):
-    name = 'adhocracy4.images'
-    label = 'a4images'
+class FilesConfig(AppConfig):
+    name = 'adhocracy4.files'
+    label = 'a4files'
 
     def ready(self):
         import adhocracy4.files.signals  # noqa:F401

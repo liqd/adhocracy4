@@ -1,60 +1,36 @@
 from django.db import models
+from django.db.models.fields import files as django_fields
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from django.utils.functional import lazy
+from django.utils.text import format_lazy
+from easy_thumbnails.files import get_thumbnailer
 
+from adhocracy4.files.fields import ConfiguredFileField
 from . import forms, validators
 
 
-# FIXME: backportet from django 1.11. remove this after update
-def _format_lazy(format_string, *args, **kwargs):
-    return format_string.format(*args, **kwargs)
+class ConfiguredImageFieldFile(django_fields.ImageFieldFile):
+    def delete(self, save=True):
+        thumbnailer = get_thumbnailer(self)
+        thumbnailer.delete_thumbnails()
+        super().delete(save)
 
 
-format_lazy = lazy(_format_lazy, str)
-
-
-class ConfiguredImageField(models.ImageField):
-
-    def __init__(self, config_name, *args, **kwargs):
-        defaults = {}
-        self.config_name = config_name
-
-        if 'help_prefix' in kwargs:
-            self.help_prefix = kwargs['help_prefix']
-            del kwargs['help_prefix']
-            defaults['help_text'] = self._help_text
-        else:
-            self.help_prefix = None
-
-        defaults.update(kwargs)
-        super().__init__(*args, **defaults)
+class ConfiguredImageField(ConfiguredFileField):
+    attr_class = ConfiguredImageFieldFile
+    form_class = forms.ImageField
 
     @property
     def validators(self):
         default_validators = super().validators
         image_validators = [
-            lambda image: validators.validate_image(image, **self.image_config)
+            lambda image: validators.validate_image(image, self.file_config)
         ]
         image_validators.extend(default_validators)
         return image_validators
 
-    def deconstruct(self):
-        name, path, args, kwargs = super().deconstruct()
-
-        if self.help_prefix:
-            del kwargs['help_text']
-            kwargs['help_prefix'] = self.help_prefix
-
-        return (name, path, [self.config_name], kwargs)
-
-    def formfield(self, **kwargs):
-        defaults = {'form_class': forms.ImageField}
-        defaults.update(kwargs)
-        return super().formfield(**defaults)
-
     @property
-    def image_config(self):
+    def file_config(self):
         c = {}
         defaults = settings.IMAGE_ALIASES.get('*', {})
         c.update(defaults)
@@ -63,7 +39,7 @@ class ConfiguredImageField(models.ImageField):
 
     @property
     def _help_text(self):
-        config = self.image_config
+        config = self.file_config
 
         help_text = format_lazy(
             _(
@@ -73,9 +49,9 @@ class ConfiguredImageField(models.ImageField):
                 '{max_size_mb} MB.'
             ),
             help_prefix=self.help_prefix,
-            max_size_mb=int(self.image_config['max_size']/(10**6)),
+            max_size_mb=int(config['max_size']/(10**6)),
             fileformats_str=', '.join(
-                f.split('/')[1] for f in config['fileformats']
+                name for name, _ in config['fileformats']
             ),
             **config
         )

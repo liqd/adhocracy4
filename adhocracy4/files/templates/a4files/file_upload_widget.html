@@ -1,0 +1,23 @@
+{% load i18n %}
+<div class="upload-wrapper form-control-upload">
+    {{ text_input }}
+    <span class="input-group-btn">
+        {% if has_file_set and not is_required %}
+        <label for="{{ checkbox_id }}" class="btn btn-danger"
+               title="{% trans 'Remove the file' %}">
+            <i class="fa fa-trash"></i>
+        </label>
+        {% else %}
+        <label for="{{ id }}" class="btn btn-default" title="{% trans  'Upload a file' %}">
+            <i class="fa fa-cloud-upload"></i>
+        </label>
+        {% endif  %}
+    </span>
+    {{ file_input }}
+    <div class="alert alert-info" role="alert">
+        {% blocktrans %}
+        Your file will be uploaded/removed once you save your changes
+        at the end of this page.
+        {% endblocktrans %}
+    </div>
+</div>

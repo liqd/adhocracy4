@@ -5,7 +5,6 @@ import pytest
 from dateutil.parser import parse
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.test.utils import override_settings
 from freezegun import freeze_time
 
 from adhocracy4.projects import models
@@ -110,7 +109,6 @@ def test_other_projects(organisation, project_factory):
     assert list(project.other_projects) == [related_project]
 
 
-@override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
 @pytest.mark.django_db
 def test_image_validation_image_too_small(project_factory, image_factory):
     project = project_factory(image=image_factory((200, 200)))
@@ -119,14 +117,12 @@ def test_image_validation_image_too_small(project_factory, image_factory):
     assert 'Image must be at least 600 pixels high' in str(e)
 
 
-@override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
 @pytest.mark.django_db
 def test_image_big_enough(project_factory, image_factory):
     project = project_factory(image=image_factory((1400, 1400)))
     assert project.full_clean() is None
 
 
-@override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
 @pytest.mark.django_db
 def test_delete_project(project_factory, image_factory):
     project = project_factory(image=image_factory((1400, 1400), 'PNG'))
