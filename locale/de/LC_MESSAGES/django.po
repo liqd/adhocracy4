@@ -55,7 +55,7 @@ msgstr "Organisationsverwaltung"
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:6
 msgid "Project Settings"
-msgstr ""
+msgstr "Projekteinstellungen"
 
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
@@ -340,11 +340,11 @@ msgstr "Kategorie"
 
 #: adhocracy4/categories/forms.py:37
 msgid "Category name"
-msgstr ""
+msgstr "Kategoriename"
 
 #: adhocracy4/categories/forms.py:38
 msgid "Category icon"
-msgstr ""
+msgstr "Kategorieicon"
 
 #: adhocracy4/comments/models.py:35
 msgid "Comment"
@@ -2128,7 +2128,7 @@ msgstr "Wo kann das Vorhaben auf der Karte verortet werden?"
 
 #: meinberlin/apps/plans/models.py:41
 msgid "Label of the location"
-msgstr ""
+msgstr "Name des Ortes"
 
 #: meinberlin/apps/plans/models.py:47
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:58
@@ -2142,35 +2142,35 @@ msgstr "Kontakt"
 #: meinberlin/apps/plans/models.py:49
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:54
 msgid "Cost"
-msgstr ""
+msgstr "Kosten"
 
 #: meinberlin/apps/plans/models.py:51
 msgid "Type of plan"
-msgstr ""
+msgstr "Plantyp"
 
 #: meinberlin/apps/plans/models.py:53
 msgid "Idea"
-msgstr ""
+msgstr "Idee"
 
 #: meinberlin/apps/plans/models.py:54
 msgid "Planning"
-msgstr ""
+msgstr "Geplant"
 
 #: meinberlin/apps/plans/models.py:55
 msgid "Implementation"
-msgstr ""
+msgstr "in Umsetzung"
 
 #: meinberlin/apps/plans/models.py:56
 msgid "Done"
-msgstr ""
+msgstr "abgeschlossen"
 
 #: meinberlin/apps/plans/models.py:57
 msgid "Stopped"
-msgstr ""
+msgstr "angehalten"
 
 #: meinberlin/apps/plans/models.py:62
 msgid "Still undecided"
-msgstr ""
+msgstr "Noch nicht entschieden"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:4
 msgid "Confirm Plan Deletion"
@@ -2199,19 +2199,19 @@ msgstr "Vorhaben hinzufügen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:23
 msgid "back to list of plans"
-msgstr ""
+msgstr "Zurück zur Vorhabenliste"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:63
 msgid "Go to participation"
-msgstr ""
+msgstr "Zur Beteiligung"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:65
 msgid "Participation is planned, but has not started yet."
-msgstr ""
+msgstr "Beteiligung ist geplant, hat aber noch nicht begonnen."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:23
 msgid "Welcome to the list of plans for the state of Berlin!"
-msgstr ""
+msgstr "Willkommen auf der Vorhabenliste von Berlin!"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:24
 msgid ""
@@ -2222,6 +2222,11 @@ msgid ""
 "participation is planned. All currently active participation projects can "
 "also be found on <a href=\"/\" target=\"_blank\">mein.berlin.de</a>."
 msgstr ""
+"Auf dieser Karte finden Sie alle Vorhaben der Berliner Verwaltung, so z.B."
+"Entwicklungspläne und andere Projekte. Sie können den Zoom benutzen, um einen Überblick "
+"über die Vorhaben in Nachbarschaft zu erhalten. Weitere Informationen zu jedem Vorhaben sind "
+"in der Liste einsehbar. Alle im Augenblick aktiven Beteiligungsprojekte können unter "
+"<a href=\"/\" target=\"_blank\">mein.berlin.de</a> gefunden werden."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:7
 msgid "Edit plan"
