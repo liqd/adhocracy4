@@ -47,7 +47,7 @@ class Plan(UserGeneratedContentModel):
     contact = models.TextField(max_length=255, verbose_name=_('Contact'))
     cost = models.PositiveIntegerField(blank=True, null=True,
                                        verbose_name=_('Cost'))
-    description = RichTextField(verbose_name=_('Description'), blank=True)
+    description = RichTextField(verbose_name=_('Description'))
     category = models.CharField(max_length=255, verbose_name=_('Type of plan'))
     status = models.SmallIntegerField(choices=(
         (STATUS_TODO, _('Idea')),
