@@ -15,4 +15,4 @@ class ImageInputWidget(FileInputWidget):
         js = ('a4images/imageUploader.js',)
 
     file_placeholder = _('Select a picture from your local folder.')
-    template_name = 'a4images/image_upload_widget.html'
+    upload_template_name = 'a4images/image_upload_widget.html'

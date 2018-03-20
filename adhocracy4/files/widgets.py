@@ -15,7 +15,7 @@ class FileInputWidget(widgets.ClearableFileInput):
     using the positional `attrs` argument and hard codes css files.
     """
     file_placeholder = _('Select a file from your local folder.')
-    template_name = 'a4files/file_upload_widget.html'
+    upload_template_name = 'a4files/file_upload_widget.html'
 
     def render(self, name, value, attrs=None):
         html_id = attrs and attrs.get('id', name) or name
@@ -62,7 +62,7 @@ class FileInputWidget(widgets.ClearableFileInput):
         }
 
         return loader.render_to_string(
-            self.template_name,
+            self.upload_template_name,
             context
         )
 
