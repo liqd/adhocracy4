@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-20 15:15+0100\n"
+"POT-Creation-Date: 2018-03-20 16:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -403,7 +403,7 @@ msgstr "Archived"
 msgid "All"
 msgstr "All"
 
-#: adhocracy4/dashboard/filter.py:20 meinberlin/apps/plans/models.py:61
+#: adhocracy4/dashboard/filter.py:20 meinberlin/apps/plans/models.py:66
 #: meinberlin/apps/projects/views.py:54
 msgid "No"
 msgstr "No"
@@ -415,7 +415,7 @@ msgstr "No"
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:13
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:12
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
-#: meinberlin/apps/plans/models.py:60
+#: meinberlin/apps/plans/models.py:65
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
 #: meinberlin/apps/projects/views.py:55
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
@@ -627,7 +627,7 @@ msgstr "Name"
 
 #: adhocracy4/phases/models.py:66 meinberlin/apps/ideas/models.py:27
 #: meinberlin/apps/offlineevents/models.py:17
-#: meinberlin/apps/plans/models.py:50
+#: meinberlin/apps/plans/models.py:55
 msgid "Description"
 msgstr "Description"
 
@@ -636,7 +636,8 @@ msgid "End date can not be smallerthan the start date."
 msgstr "End date can not be smallerthan the start date."
 
 #: adhocracy4/projects/admin.py:8 meinberlin/apps/adminlog/models.py:36
-#: meinberlin/apps/newsletters/forms.py:35 meinberlin/apps/plans/views.py:109
+#: meinberlin/apps/newsletters/forms.py:35 meinberlin/apps/plans/models.py:33
+#: meinberlin/apps/plans/views.py:109
 msgid "Project"
 msgstr "Project"
 
@@ -1773,7 +1774,7 @@ msgid "Where can your idea be located on a map?"
 msgstr "Where can your idea be located on a map?"
 
 #: meinberlin/apps/mapideas/models.py:12
-#: meinberlin/apps/maptopicprio/models.py:37 meinberlin/apps/plans/models.py:33
+#: meinberlin/apps/maptopicprio/models.py:37 meinberlin/apps/plans/models.py:36
 msgid ""
 "Click inside marked area on the map to set a marker. Drag and drop the "
 "marker to change its place. Alternatively you can use the search field to "
@@ -1789,7 +1790,7 @@ msgid "Label of the ideas location"
 msgstr "Label of the ideas location"
 
 #: meinberlin/apps/mapideas/models.py:22
-#: meinberlin/apps/maptopicprio/models.py:47 meinberlin/apps/plans/models.py:42
+#: meinberlin/apps/maptopicprio/models.py:47 meinberlin/apps/plans/models.py:45
 msgid "This could be an address or the name of a landmark."
 msgstr "This could be an address or the name of a landmark."
 
@@ -2031,15 +2032,19 @@ msgstr "Organisation successfully updated."
 msgid "Please locate the plan on the map."
 msgstr "Please locate the plan on the map."
 
-#: meinberlin/apps/plans/models.py:32
+#: meinberlin/apps/plans/models.py:35
 msgid "Where can the plan be located on a map?"
 msgstr "Where can the plan be located on a map?"
 
-#: meinberlin/apps/plans/models.py:41
+#: meinberlin/apps/plans/models.py:44
 msgid "Label of the location"
 msgstr "Label of the location"
 
-#: meinberlin/apps/plans/models.py:47
+#: meinberlin/apps/plans/models.py:50
+msgid "District"
+msgstr "District"
+
+#: meinberlin/apps/plans/models.py:52
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:58
 #: meinberlin/templates/email_base.html:60
 #: meinberlin/templates/email_base.txt:14
@@ -2048,38 +2053,44 @@ msgstr "Label of the location"
 msgid "Contact"
 msgstr "Contact"
 
-#: meinberlin/apps/plans/models.py:49
+#: meinberlin/apps/plans/models.py:54
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:54
 msgid "Cost"
 msgstr "Cost"
 
-#: meinberlin/apps/plans/models.py:51
+#: meinberlin/apps/plans/models.py:56
 msgid "Type of plan"
 msgstr "Type of plan"
 
-#: meinberlin/apps/plans/models.py:53
+#: meinberlin/apps/plans/models.py:58
 msgid "Idea"
 msgstr "Idea"
 
-#: meinberlin/apps/plans/models.py:54
+#: meinberlin/apps/plans/models.py:59
 msgid "Planning"
 msgstr "Planning"
 
-#: meinberlin/apps/plans/models.py:55
+#: meinberlin/apps/plans/models.py:60
 msgid "Implementation"
 msgstr "Implementation"
 
-#: meinberlin/apps/plans/models.py:56
+#: meinberlin/apps/plans/models.py:61
 msgid "Done"
 msgstr "Done"
 
-#: meinberlin/apps/plans/models.py:57
+#: meinberlin/apps/plans/models.py:62
 msgid "Stopped"
 msgstr "Stopped"
 
-#: meinberlin/apps/plans/models.py:62
+#: meinberlin/apps/plans/models.py:67
 msgid "Still undecided"
 msgstr "Still undecided"
+
+#: meinberlin/apps/plans/models.py:68
+#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:89
+msgid "Participation"
+msgstr "Participation"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:4
 msgid "Confirm Plan Deletion"
@@ -2266,11 +2277,6 @@ msgstr "%(active_count)s of %(count)s"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:59
 msgid "projects are currently active."
 msgstr "projects are currently active."
-
-#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:89
-msgid "Participation"
-msgstr "Participation"
 
 #: meinberlin/apps/projectcontainers/views.py:19
 msgid "Container successfully created."
