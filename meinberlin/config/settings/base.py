@@ -457,3 +457,7 @@ CSP_IMG_SRC = ("'self'", "data:", "*.tile.openstreetmap.org", "https://maps.berl
 CSP_CONNECT_SRC = ("'self'", "https://bplan-prod.liqd.net")
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", )
 CSP_REPORT_ONLY = True
+
+SECURE_BROWSER_XSS_FILTER = True
+SESSION_COOKIE_HTTPONLY = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
