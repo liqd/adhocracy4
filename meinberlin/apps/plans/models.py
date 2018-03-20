@@ -27,7 +27,10 @@ class Plan(UserGeneratedContentModel):
     organisation = models.ForeignKey(
         settings.A4_ORGANISATIONS_MODEL,
         on_delete=models.CASCADE)
-    project = models.ForeignKey(project_models.Project, blank=True, null=True)
+    project = models.ForeignKey(
+        project_models.Project,
+        blank=True, null=True,
+        verbose_name=_('Project'))
     point = map_fields.PointField(
         verbose_name=_('Where can the plan be located on a map?'),
         help_text=_('Click inside marked area on the map to set a marker. '
@@ -43,7 +46,9 @@ class Plan(UserGeneratedContentModel):
     )
     district = models.ForeignKey(
         MapPreset,
-        limit_choices_to=Q(category__name='Bezirke - Berlin'))
+        limit_choices_to=Q(category__name='Bezirke - Berlin'),
+        verbose_name=_('District')
+    )
     contact = models.TextField(max_length=255, verbose_name=_('Contact'))
     cost = models.PositiveIntegerField(blank=True, null=True,
                                        verbose_name=_('Cost'))
@@ -60,7 +65,7 @@ class Plan(UserGeneratedContentModel):
         (PARTICIPATION_YES, _('Yes')),
         (PARTICIPATION_NO, _('No')),
         (PARTICIPATION_UNDECIDED, _('Still undecided')),
-    ))
+    ), verbose_name=_('Participation'))
 
     class Meta:
         ordering = ['-created']
