@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'adhocracy4.forms.apps.FormsConfig',
     'adhocracy4.rules.apps.RulesConfig',
     'adhocracy4.dashboard.apps.DashboardConfig',
+    'adhocracy4.offlineevents.apps.OfflineEventsConfig',
 
     # adhocrayc4 generic apps
     'adhocracy4.ratings.apps.RatingsConfig',
@@ -228,5 +229,8 @@ FILE_ALIASES = {
     '*': {'max_size': 5*10**6,
           'fileformats': (('.txt', 'text/plain'),
                           ('.jpeg', 'image/jpeg'))
+    },
+    'offlineevents': {
+
     }
 }
