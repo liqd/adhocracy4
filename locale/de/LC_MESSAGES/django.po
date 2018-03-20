@@ -2133,7 +2133,7 @@ msgstr "Name des Ortes"
 
 #: meinberlin/apps/plans/models.py:50
 msgid "District"
-msgstr ""
+msgstr "Bezirk"
 
 #: meinberlin/apps/plans/models.py:52
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:58
@@ -2246,7 +2246,7 @@ msgstr "Vorhaben bearbeiten"
 
 #: meinberlin/apps/plans/views.py:110
 msgid "Project Link"
-msgstr ""
+msgstr "Link zum Projekt"
 
 #: meinberlin/apps/plans/views.py:199
 msgid "The plan has been deleted"
@@ -2819,63 +2819,63 @@ msgstr "Rich Text Editor"
 
 #: meinberlin/config/settings/base.py:421
 msgid "Pin without icon"
-msgstr ""
+msgstr "Pin ohne Icon"
 
 #: meinberlin/config/settings/base.py:422
 msgid "Diamond"
-msgstr ""
+msgstr "Diamant"
 
 #: meinberlin/config/settings/base.py:423
 msgid "Triangle up"
-msgstr ""
+msgstr "Dreieck Spitze oben"
 
 #: meinberlin/config/settings/base.py:424
 msgid "Triangle down"
-msgstr ""
+msgstr "Dreieck Spitze unten"
 
 #: meinberlin/config/settings/base.py:425
 msgid "Ellipse"
-msgstr ""
+msgstr "Ellipse"
 
 #: meinberlin/config/settings/base.py:426
 msgid "Semi circle"
-msgstr ""
+msgstr "Halbkreis"
 
 #: meinberlin/config/settings/base.py:427
 msgid "Hexagon"
-msgstr ""
+msgstr "Sechseck"
 
 #: meinberlin/config/settings/base.py:428
 msgid "Rhomboid"
-msgstr ""
+msgstr "Parallelogramm"
 
 #: meinberlin/config/settings/base.py:429
 msgid "Star"
-msgstr ""
+msgstr "Stern"
 
 #: meinberlin/config/settings/base.py:430
 msgid "Square"
-msgstr ""
+msgstr "Quadrat"
 
 #: meinberlin/config/settings/base.py:431
 msgid "Octothorpe"
-msgstr ""
+msgstr "Raute"
 
 #: meinberlin/config/settings/base.py:432
 msgid "Rectangle"
-msgstr ""
+msgstr "Viereck"
 
 #: meinberlin/config/settings/base.py:433
 msgid "Circle"
-msgstr ""
+msgstr "Kreis"
 
 #: meinberlin/config/settings/base.py:434
 msgid "Right triangle"
-msgstr ""
+msgstr "Dreieck Spitze rechts"
 
 #: meinberlin/config/settings/base.py:435
 msgid "Zigzag"
-msgstr ""
+msgstr "ZickZack"
 
 #: meinberlin/templates/404.html:7
 msgid "This page could not be found."
