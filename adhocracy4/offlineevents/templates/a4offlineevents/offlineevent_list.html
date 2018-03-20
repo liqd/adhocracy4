@@ -1,0 +1,23 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Offline Events" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block dashboard_project_content %}
+    <h1>{% trans 'Offline Events' %}</h1>
+
+    <a href="{% url 'a4dashboard:offlineevent-create' project_slug=project.slug %}" class="btn">
+        {% trans 'Add offline event' %}
+    </a>
+
+
+    {% if object_list.count > 0 %}
+        <ul>
+            {% for object in object_list %}
+                {% include "a4offlineevents/includes/offlineevent_list_item.html" with object=object %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        {% trans "Nothing to show" %}
+    {% endif %}
+{% endblock %}

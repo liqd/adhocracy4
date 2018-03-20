@@ -1,0 +1,19 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
+{% load i18n %}
+
+{% block title %}{% blocktrans with title=object.name %}Edit {{ title }}{% endblocktrans %} &mdash; {{ block.super }}{% endblock %}
+
+{% block dashboard_project_content %}
+    <h1>{% trans 'Edit offline event'%}</h1>
+
+    {% url 'a4dashboard:offlineevent-list' project_slug=project.slug as cancel %}
+    {% include "a4offlineevents/includes/offlineevent_form.html" with cancel=cancel %}
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    {{ form.media.js }}
+{% endblock %}
+{% block extra_css %}
+    {{ form.media.css }}
+{% endblock %}

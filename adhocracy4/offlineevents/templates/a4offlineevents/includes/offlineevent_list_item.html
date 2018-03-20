@@ -1,0 +1,21 @@
+{% load i18n %}
+
+<li>
+    <h2>{{ object.name }}</h2>
+    <p>{{ object.date }}</p>
+
+    <div>
+        <a href="{% url 'offlineevent-detail' object.pk %}" type="button" class="btn btn-gray btn-sm">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            {% trans 'View' %}
+        </a>
+        <a href="{% url 'a4dashboard:offlineevent-update' object.slug %}"  class="btn">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+            {% trans 'Edit' %}
+        </a>
+        <a href="{% url 'a4dashboard:offlineevent-delete' object.slug %}" class="btn">
+            <i class="fa fa-remove" aria-hidden="true"></i>
+            {% trans 'Delete' %}
+        </a>
+    </div>
+</li>
