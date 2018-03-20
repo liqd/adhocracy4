@@ -13,7 +13,9 @@ def validate_file_type_and_size(file, config):
     names, mimetypes = zip(*fileformats)
     errors = []
 
+    close = file.closed
     file.open()
+
     filetype = magic.from_buffer(file.read(1024), mime=True)
     if filetype.lower() not in mimetypes:
         msg = _(
@@ -27,7 +29,11 @@ def validate_file_type_and_size(file, config):
         msg = _('File should be at most {} MB'.format(max_size_mb))
         errors.append(ValidationError(msg))
 
-    file.close()
+    if close:
+        file.close()
+    else:
+        file.seek(0)
+
     if errors:
         raise ValidationError(errors)
     return file
