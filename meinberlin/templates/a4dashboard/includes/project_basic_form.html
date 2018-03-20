@@ -1,0 +1,17 @@
+{% include 'a4dashboard/includes/form_field.html' with field=form.name %}
+
+{% include 'a4dashboard/includes/form_field.html' with field=form.image %}
+{% include 'a4dashboard/includes/form_field.html' with field=form.image_copyright %}
+
+{% include 'a4dashboard/includes/form_field.html' with field=form.tile_image %}
+{% include 'a4dashboard/includes/form_field.html' with field=form.tile_image_copyright %}
+
+{% include 'a4dashboard/includes/form_field.html' with field=form.description %}
+
+{% include 'a4dashboard/includes/form_field.html' with field=form.is_public %}
+
+{% include 'meinberlin_embed/includes/project_embed_code.html' with project=project %}
+
+{% if project.has_finished %}
+    {% include 'a4forms/includes/form_checkbox_field.html' with field=form.is_archived %}
+{% endif %}

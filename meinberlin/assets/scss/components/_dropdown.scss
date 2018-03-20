@@ -26,6 +26,10 @@
     .fa-ellipsis-h {
         vertical-align: middle;
     }
+
+    img {
+        display: none;
+    }
 }
 
 .dropdown-menu {
@@ -34,6 +38,7 @@
     position: absolute;
     left: 0;
     min-width: 100%;
+    width: max-content;
     max-width: none;
     padding: 0;
     margin: 0;
@@ -84,6 +89,14 @@
 
     .dropdown.show & {
         display: block;
+    }
+
+    img {
+        display: inline-block;
+        height: 1.6em;
+        width: auto;
+        vertical-align: middle;
+        margin-right: 0.6em;
     }
 
     @media print {

@@ -43,7 +43,7 @@ class Plan(UserGeneratedContentModel):
     )
     district = models.ForeignKey(
         MapPreset,
-        limit_choices_to=Q(category__name='Berlin') & ~Q(name='Berlin'))
+        limit_choices_to=Q(category__name='Bezirke - Berlin'))
     contact = models.TextField(max_length=255, verbose_name=_('Contact'))
     cost = models.PositiveIntegerField(blank=True, null=True,
                                        verbose_name=_('Cost'))
@@ -74,7 +74,8 @@ class Plan(UserGeneratedContentModel):
 
     def get_absolute_url(self):
         return reverse('meinberlin_plans:plan-detail',
-                       kwargs=dict(pk=self.pk, year=self.created.year))
+                       kwargs=dict(pk='{:05d}'.format(self.pk),
+                                   year=self.created.year))
 
     def save(self, *args, **kwargs):
         self.description = transforms.clean_html_field(self.description)

@@ -1,5 +1,6 @@
 from django import template
 from django.core.urlresolvers import reverse
+from django.urls import NoReverseMatch
 
 register = template.Library()
 
@@ -34,16 +35,6 @@ def get_item_permission(item, verb):
 
 
 @register.assignment_tag
-def get_item_detail_url(item):
-    return get_item_url(item, 'detail')
-
-
-@register.assignment_tag
-def get_item_create_url(item):
-    return get_item_url(item, 'create')
-
-
-@register.assignment_tag
 def get_item_update_url(item):
     return get_item_url(item, 'update')
 
@@ -54,13 +45,19 @@ def get_item_delete_url(item):
 
 
 @register.assignment_tag
-def get_item_url(item, view):
+def get_item_url(item, view, raises=True):
     url_name = '{app}:{name}-{view}'.format(
         app=item._meta.app_label,
         name=item._meta.model_name,
         view=view
     )
 
-    return reverse(url_name, kwargs={
-        'slug': item.slug
-    })
+    try:
+        return reverse(url_name, kwargs={
+            'year': item.created.year,
+            'pk': '{:05d}'.format(item.pk)
+        })
+    except NoReverseMatch:
+        if raises:
+            raise
+        return ''

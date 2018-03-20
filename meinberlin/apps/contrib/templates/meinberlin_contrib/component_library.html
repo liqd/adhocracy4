@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Component Library &emdash; {{ block.super }}{% endblock %}
+{% block title %}Component Library &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
     <div class="l-wrapper">
@@ -8,7 +8,7 @@
             <div class="l-menu__menu">
                 <nav class="dashboard-nav">
                     <div class="dashboard-nav__dropdown">
-                        <div class="dashboard-nav__item">Content</div>
+                        <div class="dashboard-nav__item">Form</div>
                     </div>
                     <ul class="dashboard-nav__pages">
                         <li class="dashboard-nav__page">
@@ -19,6 +19,16 @@
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-formcheck" class="dashboard-nav__item dashboard-nav__item--interactive">Formcheck</a>
+                        </li>
+                    </ul>
+                </nav>
+                <nav class="dashboard-nav">
+                    <div class="dashboard-nav__dropdown">
+                        <div class="dashboard-nav__item">Components</div>
+                    </div>
+                    <ul class="dashboard-nav__pages">
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-accordion" class="dashboard-nav__item dashboard-nav__item--interactive">Accordion</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-actions" class="dashboard-nav__item dashboard-nav__item--interactive">Actions</a>
@@ -48,7 +58,7 @@
                             <a href="#cl-component-library" class="dashboard-nav__item dashboard-nav__item--interactive">Component Library</a>
                         </li>
                         <li class="dashboard-nav__page">
-                            <a href="#cl-copyright" class="dashboard-nav__item dashboard-nav__item--interactive">Coyright</a>
+                            <a href="#cl-copyright" class="dashboard-nav__item dashboard-nav__item--interactive">Copyright</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-dashboard-nav" class="dashboard-nav__item dashboard-nav__item--interactive">Dashboard Nav</a>
@@ -57,13 +67,16 @@
                             <a href="#cl-datepicker" class="dashboard-nav__item dashboard-nav__item--interactive">Datepicker</a>
                         </li>
                         <li class="dashboard-nav__page">
-                            <a href="#cl-accordion" class="dashboard-nav__item dashboard-nav__item--interactive">Accordion</a>
-                        </li>
-                        <li class="dashboard-nav__page">
                             <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Document</a>
                         </li>
                         <li class="dashboard-nav__page">
-                            <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Control Bar</a>
+                            <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Bar</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-item_detail" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-timeline" class="dashboard-nav__item dashboard-nav__item--interactive">Timeline</a>
                         </li>
                     </ul>
                 </nav>
@@ -130,6 +143,37 @@
                     </div>
                 </div>
 
+                <h2 id="cl-accordion">Accordion</h2>
+
+                <div class="cl-example">
+                    <div class="accordion">
+                        <a
+                            id="accordion-{{ index }}-title"
+                            href="#accordion-{{ index }}-body"
+                            class="accordion__title collapsed"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            data-toggle="collapse">
+                            <h2>
+                                Docs Block Title
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </h2>
+                        </a>
+
+                        <div
+                            class="accordion__body collapse"
+                            id="accordion-{{ index }}-body"
+                            aria-labelledby="accordion-{{ index }}-title">
+                            This is the body of the docs block,
+                            This block is used in wagtail pages.
+                            <ul>
+                                <li>Why is the list-styling turned off?</li>
+                            </ul>
+                            And why is there a margin-bottom with the list-styling that is otherwise not there? Is wagtail's richtext given as list elements?
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="cl-actions">Actions</h2>
 
                 <div class="cl-example">
@@ -171,9 +215,6 @@
                             </div>
                             <div class="action__line">
                                 on <a href="#">Project</a>
-                            </div>
-                            <div class="action__date">
-                                03.11.2017
                             </div>
                         </div>
                     </div>
@@ -531,37 +572,6 @@
                     </div>
                 </div>
 
-                <h2 id="cl-accordion">Accordion</h2>
-
-                <div class="cl-example">
-                    <div class="accordion">
-                        <a
-                            id="accordion-{{ index }}-title"
-                            href="#accordion-{{ index }}-body"
-                            class="accordion__title collapsed"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            data-toggle="collapse">
-                            <h2>
-                                Docs Block Title
-                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                            </h2>
-                        </a>
-
-                        <div
-                            class="accordion__body collapse"
-                            id="accordion-{{ index }}-body"
-                            aria-labelledby="accordion-{{ index }}-title">
-                            This is the body of the docs block,
-                            This block is used in wagtail pages.
-                            <ul>
-                                <li>Why is the list-styling turned off?</li>
-                            </ul>
-                            And why is there a margin-bottom with the list-styling that is otherwise not there? Is wagtail's richtext given as list elements?
-                        </div>
-                    </div>
-                </div>
-
                 <h2 id="cl-document">Document</h2>
 
                 <div class="cl-example">
@@ -632,8 +642,8 @@
                     </div>
                 </div>
 
-                <h2 id="cl-control_bar">Control Bar</h2>
-                <p>Control Bars are intended to be used atop of lists of elements or maps.</p>
+                <h2 id="cl-control_bar">Filter Bar</h2>
+                <p>Inside the component Filter Bar are the control-bar block elements. Control Bars are intended to be used atop of lists of elements or maps.</p>
                 <p>Control Bars may only contain <a href="#cl-buttons">Buttons</a>, <a href="#cl-dropdowns">Dropdowns</a>
                     and <code>.input-groups</code>.</p>
                 <p>Note that they are somehow located within the <code>_filter_bar.scss</code> file.</p>
@@ -729,6 +739,105 @@
                                     {% lorem 20 w random %}
                                 </li>
                             </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 id="cl-item_detail">Item Detail</h2>
+
+                <div class="cl-example">
+                    <div class="item-detail">
+                        <h1 class="item-detail__title">Item Detail Title</h1>
+
+                        <div class="item-detail__labels">
+                                <div class="label label--big">Label</div>
+                        </div>
+
+                        <div class="item-detail__content">
+                            Here some richtext content. And maybe a map.
+
+                            Below under the grey line are the actions.
+                        </div>
+
+                        <div class="item-detail__meta lr-bar">
+                            <div class="lr-bar__left">
+                                <strong class="item-detail__creator">Creator</strong>
+                                Jan. 30, 2018
+                            </div>
+                            <div class="lr-bar__right">
+                                <strong>Reference No.:</strong>
+                                2018-00134
+                            </div>
+                        </div>
+
+                        <div class="item-detail__actions lr-bar">
+                            <div class="lr-bar__left">
+                                <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>12</button>
+                                <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button>
+                            </div>
+                            <div class="dropdown dropdown--right lr-bar__right">
+                                <button
+                                    class="dropdown-toggle btn btn--light btn--small"
+                                >
+                                <i class="fa fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <h2 id="cl-timeline">Timeline</h2>
+
+                <div class="cl-example">
+                    <nav class="timeline" aria-label="Timeline">
+                        <ul>
+                            <li>
+                                <a href="#" class="btn btn--light btn--small timeline__button ">
+                                    Past process
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn btn--light btn--small timeline__button is-selected">
+                                    Active process
+                                </a>
+                                <span class="timeline__active">active</span>
+                                <span class="sr-only">current page</span>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="l-center-6">
+                        <div class="timeline-detail">
+                            <h2 class="timeline-detail__title">Module Name</h2>
+                            <div class="timeline-detail__meta">
+                                <strong>
+                                    Some extra info like the start date might be here.
+                                </strong>
+                            </div>
+                            <div class="timeline-detail__meta">
+                                The module description is displayed here.
+                            </div>
+
+                            <div class="phase-info collapse" id="phase-overview">
+                                    <div class="phase-info__item">
+                                        <div class="phase-info__item__title lr-bar">
+                                            <span class="lr-bar__left">Phase name</span>
+                                                <span class="lr-bar__right phase-info__highlight">active</span>
+                                        </div>
+                                        <div class="phase-info__item__subtitle">
+                                            Feb. 16, 2018, midnight
+                                            &ndash; Feb. 28, 2018, midnight
+                                        </div>
+                                        <div class="phase-info__item__description">
+                                            This is the phase description
+                                        </div>
+                                    </div>
+                            </div>
+
+                            <button class="btn btn--link" type="button" data-toggle="collapse" data-target="#phase-overview" aria-expanded="false" aria-controls="phase-overview">
+                                <span class="u-if-collapsed">Show phase overview</span>
+                                <span class="u-if-not-collapsed">Hide phase overview</span>
+                            </button>
                         </div>
                     </div>
                 </div>

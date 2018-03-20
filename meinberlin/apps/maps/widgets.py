@@ -13,12 +13,11 @@ class MapChoosePolygonWithPresetWidget(Widget):
     class Media:
         js = (
             'leaflet.js',
-            'leaflet.draw.js',
-            'meinberlin_maps/map_choose_polygon_with_preset.js'
+            'map_choose_polygon_with_preset.js'
         )
         css = {'all': [
             'leaflet.css',
-            'leaflet.draw.css',
+            'map_choose_polygon_with_preset.css',
         ]}
 
     def get_presets(self, category):

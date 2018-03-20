@@ -1,7 +1,9 @@
 from .base import *
 
 DEBUG = False
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# Temporary disable CSP blocking due to CKEditor failures
+# CSP_REPORT_ONLY = False
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 try:
     from .local import *

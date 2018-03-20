@@ -10,7 +10,6 @@ from . import views
 class StatementPhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'statement'
-    weight = 10
     view = views.BplanStatementFormView
 
     name = _('Statement phase')

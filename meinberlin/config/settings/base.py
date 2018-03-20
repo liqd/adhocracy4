@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'adhocracy4.categories.apps.CategoriesConfig',
     'adhocracy4.ckeditor.apps.CKEditorConfig',
     'adhocracy4.comments.apps.CommentsConfig',
+    'adhocracy4.dashboard.apps.DashboardConfig',
     'adhocracy4.filters.apps.FiltersConfig',
     'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.forms.apps.FormsConfig',
@@ -87,7 +88,6 @@ INSTALLED_APPS = (
     # General apps containing views
     'meinberlin.apps.account.apps.Config',
     'meinberlin.apps.adminlog.apps.Config',
-    'meinberlin.apps.dashboard2.apps.Config',
     'meinberlin.apps.dashboard.apps.Config',
     'meinberlin.apps.embed.apps.Config',
     'meinberlin.apps.exports.apps.Config',
@@ -120,12 +120,12 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 
     'meinberlin.apps.embed.middleware.AjaxPathMiddleware',
+    'csp.middleware.CSPMiddleware'
 )
 
 SITE_ID = 1
@@ -172,7 +172,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'de-DE'
 
 TIME_ZONE = 'Europe/Berlin'
 
@@ -417,6 +417,24 @@ A4_CATEGORIZABLE = (
     ('meinberlin_maptopicprio', 'maptopic'),
 )
 
+A4_CATEGORY_ICONS = (
+    ('', _('Pin without icon')),
+    ('diamant', _('Diamond')),
+    ('dreieck_oben', _('Triangle up')),
+    ('dreieck_unten', _('Triangle down')),
+    ('ellipse', _('Ellipse')),
+    ('halbkreis', _('Semi circle')),
+    ('hexagon', _('Hexagon')),
+    ('parallelogramm', _('Rhomboid')),
+    ('pentagramm', _('Star')),
+    ('quadrat', _('Square')),
+    ('raute', _('Octothorpe')),
+    ('rechtecke', _('Rectangle')),
+    ('ring', _('Circle')),
+    ('rw_dreieck', _('Right triangle')),
+    ('zickzack', _('Zigzag'))
+)
+
 
 A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -433,6 +451,12 @@ SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 # The default language is used for emails and strings
 # that are stored translated to the database.
 DEFAULT_LANGUAGE = 'de'
+
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+CSP_IMG_SRC = ("'self'", "data:", "*.tile.openstreetmap.org", "https://maps.berlinonline.de")
+CSP_CONNECT_SRC = ("'self'", "https://bplan-prod.liqd.net")
+CSP_EXCLUDE_URL_PREFIXES = ("/admin", )
+CSP_REPORT_ONLY = True
 
 SECURE_BROWSER_XSS_FILTER = True
 SESSION_COOKIE_HTTPONLY = True

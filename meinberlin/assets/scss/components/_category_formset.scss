@@ -1,0 +1,41 @@
+.category-formset__form__category {
+    position: relative;
+
+    input {
+        padding-right: 1.5em;
+        width: 100%;
+    }
+}
+
+.category-formset__form,
+.category-formset__btn {
+    @extend .l-tiles-2;
+}
+
+.category-formset__template {
+    display: none;
+}
+
+.category-formset__delete {
+    @include sr-only();
+
+    & ~ .category-formset__delete-label {
+        position: absolute;
+        right: 0.5em;
+        top: 0.6em;
+        color: $gray;
+    }
+
+    &:focus ~ .category-formset__delete-label {
+        @include fake-focus;
+    }
+
+    &:checked ~ label {
+        color: $brand-danger;
+    }
+
+    &:checked ~ input {
+        color: $brand-danger;
+        text-decoration: line-through;
+    }
+}

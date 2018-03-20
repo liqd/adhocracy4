@@ -1,8 +1,8 @@
 from django.utils import timezone
-from django.utils.html import strip_tags
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.exports import mixins as export_mixins
+from adhocracy4.exports import unescape_and_strip_html
 from adhocracy4.exports import views as export_views
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.exports import register_export
@@ -28,15 +28,16 @@ class DocumentExportView(ProjectMixin,
         chapters = models.Chapter.objects.filter(module=self.module)
 
         for chapter in chapters:
-            yield [chapter.name, '', self.get_comments_data(chapter)]
+            chapter_name = unescape_and_strip_html(chapter.name)
+            yield [chapter_name, '', self.get_comments_data(chapter)]
             for paragraph in chapter.paragraphs.all():
-                yield [chapter.name,
+                yield [chapter_name,
                        self.get_paragraph_data(paragraph),
                        self.get_comments_data(paragraph)]
 
     def get_paragraph_data(self, paragraph):
         if paragraph.name:
-            return paragraph.name
+            return unescape_and_strip_html(paragraph.name)
 
-        text = strip_tags(paragraph.text).strip()
+        text = unescape_and_strip_html(paragraph.text)
         return text[0:self.PARAGRAPH_TEXT_LIMIT] + ' ...'

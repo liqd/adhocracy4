@@ -1,8 +1,0 @@
-{% extends "meinberlin_contrib/includes/form_field.html" %}
-{% load i18n %}
-
-{% block after_label %}
-    {% if field.field.required_for_publish and not field.value %}
-        <i class="fa fa-exclamation-circle u-danger" title="{% trans 'Missing field for publication' %}" aria-label="{% trans 'Missing field for publication' %}"></i>
-    {% endif %}
-{% endblock %}

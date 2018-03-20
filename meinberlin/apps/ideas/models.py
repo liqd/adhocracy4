@@ -11,13 +11,14 @@ from adhocracy4.comments import models as comment_models
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
+from meinberlin.apps.moderatorfeedback.models import Moderateable
 
 
 class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
     pass
 
 
-class AbstractIdea(module_models.Item):
+class AbstractIdea(module_models.Item, Moderateable):
     item_ptr = models.OneToOneField(to=module_models.Item,
                                     parent_link=True,
                                     related_name='%(app_label)s_%(class)s')
@@ -33,6 +34,10 @@ class AbstractIdea(module_models.Item):
     category = CategoryField()
 
     objects = IdeaQuerySet.as_manager()
+
+    @property
+    def reference_number(self):
+        return '{:d}-{:05d}'.format(self.created.year, self.pk)
 
     class Meta:
         abstract = True
@@ -50,7 +55,8 @@ class Idea(AbstractIdea):
 
     def get_absolute_url(self):
         return reverse('meinberlin_ideas:idea-detail',
-                       kwargs=dict(slug=self.slug))
+                       kwargs=dict(pk='{:05d}'.format(self.pk),
+                                   year=self.created.year))
 
     class Meta:
         ordering = ['-created']

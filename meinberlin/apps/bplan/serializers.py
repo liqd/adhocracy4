@@ -14,12 +14,12 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from rest_framework import serializers
 
+from adhocracy4.dashboard import components
+from adhocracy4.dashboard import signals as a4dashboard_signals
 from adhocracy4.images.validators import validate_image
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.dashboard2 import signals as a4dashboard_signals
-from meinberlin.apps.dashboard2 import components
 
 from .models import Bplan
 from .phases import StatementPhase

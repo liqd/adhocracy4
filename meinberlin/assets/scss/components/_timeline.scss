@@ -120,6 +120,18 @@ $circle-size: 0.8em;
     }
 }
 
+.timeline-detail {
+    margin-bottom: $spacer;
+}
+
+.timeline-detail__title {
+    font-size: $font-size-xl;
+}
+
+.timeline-detail__meta {
+    padding-bottom: 0.6em;
+}
+
 .phase-info__item {
     padding: $padding 0;
     border-bottom: 1px solid $border-color;

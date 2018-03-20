@@ -2,11 +2,11 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import filters as category_filters
+from adhocracy4.dashboard import mixins
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.contrib import filters
-from meinberlin.apps.dashboard2 import mixins
 from meinberlin.apps.ideas import views as idea_views
 
 from . import forms

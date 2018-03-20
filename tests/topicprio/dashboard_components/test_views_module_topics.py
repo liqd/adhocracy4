@@ -1,8 +1,8 @@
 import pytest
 from django.core.urlresolvers import reverse
 
+from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
-from meinberlin.apps.dashboard2 import components
 from meinberlin.apps.topicprio.models import Topic
 from meinberlin.apps.topicprio.phases import PrioritizePhase
 from meinberlin.test.helpers import assert_template_response
@@ -51,7 +51,8 @@ def test_topic_update_view(
         phase_factory, topic_factory, PrioritizePhase)
     initiator = module.project.organisation.initiators.first()
     category = category_factory(module=module)
-    url = reverse('a4dashboard:topic-update', kwargs={'slug': item.slug})
+    url = reverse('a4dashboard:topic-update',
+                  kwargs={'pk': item.pk, 'year': item.created.year})
     data = {
         'name': 'test',
         'description': 'test',
@@ -70,7 +71,8 @@ def test_topic_delete_view(client, phase_factory, topic_factory):
     phase, module, project, item = setup_phase(
         phase_factory, topic_factory, PrioritizePhase)
     initiator = module.project.organisation.initiators.first()
-    url = reverse('a4dashboard:topic-delete', kwargs={'slug': item.slug})
+    url = reverse('a4dashboard:topic-delete',
+                  kwargs={'pk': item.pk, 'year': item.created.year})
     client.login(username=initiator.email, password='password')
     response = client.delete(url)
     assert redirect_target(response) == 'topic-list'

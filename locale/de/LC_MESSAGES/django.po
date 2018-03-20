@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-23 13:34+0100\n"
+"POT-Creation-Date: 2018-03-15 15:30+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,90 +18,271 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.1\n"
 
-#: adhocracy4/categories/fields.py:11
-#: adhocracy4/categories/filters.py:10
-#: adhocracy4/exports/mixins.py:103
-#: adhocracy4/categories/fields.py:11
-#: adhocracy4/categories/filters.py:10
-#: adhocracy4/exports/mixins.py:103
-#: meinberlin/apps/dashboard2/forms.py:154
-msgid "Category"
-msgstr "Kategorie"
+#: adhocracy4/categories/templates/a4categories/includes/inline_form.html:14
+#: adhocracy4/categories/templates/a4categories/includes/inline_form.html:15
+#: adhocracy4/categories/templates/a4categories/includes/inline_form.html:18
+#: adhocracy4/categories/templates/a4categories/includes/inline_form.html:19
+#: adhocracy4/categories/templates/a4categories/includes/inline_form.html:14
+#: adhocracy4/categories/templates/a4categories/includes/inline_form.html:15
+#: adhocracy4/categories/templates/a4categories/includes/inline_form.html:18
+#: adhocracy4/categories/templates/a4categories/includes/inline_form.html:19
+msgid "Remove category"
+msgstr "Kategorie entfernen"
 
-#: adhocracy4/comments/models.py:35
-#: adhocracy4/comments/models.py:35
-msgid "Comment"
-msgstr "Kommentar"
+#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
+#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:3
+msgid ""
+"In this section, you can create\n"
+"categories. If you create any, users must assign their contributions\n"
+"to one of them. This way, content can be classified."
+msgstr ""
+"Hier können Sie Kategorien anlegen. Falls Sie dies tun werden Nutzerinnen "
+"und Nutzer aufgefordert, ihre Beiträge einer Kategorie zuordnen. Dadurch "
+"können Inhalte strukturiert werden."
 
-#: adhocracy4/comments/models.py:36
-#: adhocracy4/exports/mixins.py:75
-#: adhocracy4/comments/models.py:36
-#: adhocracy4/exports/mixins.py:75
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:16
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:17
-#: meinberlin/apps/documents/exports.py:25
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:18
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:19
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_list_item.html:16
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_list_item.html:17
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:18
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:20
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:18
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:20
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_list_item.html:18
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_list_item.html:20
-msgid "Comments"
-msgstr "Kommentare"
+#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
+#: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
+msgid "Add category"
+msgstr "Kategorie hinzufügen"
 
-#: adhocracy4/comments/models.py:55
-#: adhocracy4/comments/models.py:55
-msgid "deleted by creator"
-msgstr "Vom Ersteller gelöscht"
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard.html:4
+#: meinberlin/templates/a4dashboard/base_dashboard.html:41
+msgid "Dashboard"
+msgstr "Organisationsverwaltung"
 
-#: adhocracy4/comments/models.py:57
-#: adhocracy4/comments/models.py:57
-msgid "deleted by moderator"
-msgstr "Vom Moderator gelöscht"
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
+#: meinberlin/templates/a4dashboard/base_dashboard_project.html:6
+msgid "Project Settings"
+msgstr ""
 
-#: adhocracy4/comments/serializers.py:25
-#: adhocracy4/comments/serializers.py:25
-msgid "unknown user"
-msgstr "unbekannter Nutzer"
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
+#: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
+#: meinberlin/templates/a4dashboard/base_dashboard_project.html:18
+#: meinberlin/templates/a4dashboard/base_dashboard_project.html:38
+msgid "Missing fields for publication"
+msgstr "Benötigte Felder zur Veröffentlichung"
 
-#: adhocracy4/exports/mixins.py:16
-#: adhocracy4/exports/mixins.py:16
-msgid "Positive ratings"
-msgstr "Positive Bewertungen"
+#: adhocracy4/dashboard/templates/a4dashboard/base_form_module.html:18
+#: adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
+#: adhocracy4/dashboard/templates/a4dashboard/base_form_module.html:18
+#: adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:21
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:36
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:35
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_form.html:15
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_form.html:23
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:35
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_form.html:19
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:35
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_form.html:19
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:12
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:29
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:15
+#: meinberlin/templates/a4dashboard/base_form_module.html:19
+#: meinberlin/templates/a4dashboard/base_form_project.html:19
+msgid "Save"
+msgstr "Speichern"
 
-#: adhocracy4/exports/mixins.py:18
-#: adhocracy4/exports/mixins.py:18
-msgid "Negative ratings"
-msgstr "Negative Bewertungen"
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
+#: meinberlin/templates/a4dashboard/blueprint_list.html:4
+#: meinberlin/templates/a4dashboard/blueprint_list.html:8
+#: meinberlin/templates/a4dashboard/project_list.html:13
+msgid "New Project"
+msgstr "Neues Projekt"
 
-#: adhocracy4/exports/mixins.py:51
-#: adhocracy4/exports/mixins.py:51
-msgid "Comment count"
-msgstr "Anzahl Kommentare"
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
+#: meinberlin/apps/dashboard/templates/meinberlin_dashboard/includes/module_blueprint_list_tile.html:16
+#: meinberlin/templates/a4dashboard/includes/blueprint_list_tile.html:14
+msgid "Phase"
+msgstr "Phase"
 
-#: adhocracy4/exports/mixins.py:115
-#: adhocracy4/exports/mixins.py:115
-msgid "Location"
-msgstr "Ort"
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
+#: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
+#: meinberlin/templates/a4dashboard/includes/blueprint_list_tile.html:21
+msgid "Select"
+msgstr "Auswählen"
 
-#: adhocracy4/exports/mixins.py:117
-#: adhocracy4/exports/mixins.py:117
-msgid "Location label"
-msgstr "Ortsbezeichnung"
+#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
+#: adhocracy4/dashboard/templates/a4dashboard/includes/form_field.html:6
+msgid "Missing field for publication"
+msgstr "Benötigtes Feld zur Veröffentlichung"
 
-#: adhocracy4/exports/views.py:120
-#: adhocracy4/exports/views.py:120
-msgid "Link"
-msgstr "Link"
+#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:35
+#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:35
+#: meinberlin/templates/a4dashboard/includes/preview.html:8
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:34
+msgid "Preview"
+msgstr "Vorschau"
+
+#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:37
+#: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:37
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:8
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:14
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:14
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:15
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:32
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:14
+#: meinberlin/templates/a4dashboard/includes/preview.html:10
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:36
+msgid "View"
+msgstr "Ansicht"
+
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:15
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:15
+#, python-format
+msgid "%(value)s from %(max)s"
+msgstr "%(value)s von %(max)s"
+
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
+msgid "required fields for publication"
+msgstr "benötigte Felder zur Veröffentlichung"
+
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:26
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:26
+msgid "Publish"
+msgstr "Veröffentlichen"
+
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:30
+#: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:30
+msgid "Unpublish"
+msgstr "Depublizieren"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:7
+#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_form.html:4
+#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_form.html:9
+#: meinberlin/templates/a4dashboard/project_create_form.html:4
+#: meinberlin/templates/a4dashboard/project_create_form.html:9
+msgid "Create project based on"
+msgstr "Projekt anlegen basierend auf"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:23
+#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_form.html:25
+#: meinberlin/templates/a4dashboard/project_create_form.html:25
+msgid ""
+"After saving the draft project you can further customize and edit your "
+"project and eventually publish it."
+msgstr ""
+"Nachdem der Projektentwurf gespeichert wurde, können in einem weiteren "
+"Schritt Einstellungen angepasst und zusätzliche Informationen angegeben "
+"werden. Wenn alle benötigten Informationen eingegeben sind, kann das Projekt "
+"veröffentlicht werden."
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:25
+#: meinberlin/templates/a4dashboard/project_create_form.html:28
+msgid "Create draft"
+msgstr "Projektentwurf anlegen"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
+#: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:22
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:14
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:37
+#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:48
+#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_form.html:30
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:15
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:36
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_form.html:16
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_form.html:24
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:14
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:36
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_form.html:20
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:14
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:36
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_form.html:20
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:15
+#: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:31
+#: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_form.html:33
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:13
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:15
+#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:30
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:14
+#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_create_form.html:30
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:16
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:15
+#: meinberlin/templates/a4dashboard/project_create_form.html:30
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
+#: meinberlin/apps/projectcontainers/dashboard.py:61
+#: meinberlin/apps/projectcontainers/models.py:12
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_list.html:4
+#: meinberlin/templates/a4dashboard/base_project_list.html:15
+#: meinberlin/templates/a4dashboard/project_list.html:4
+#: meinberlin/templates/a4dashboard/project_list.html:9
+msgid "Projects"
+msgstr "Projekte"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:23
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:23
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:34
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:18
+msgid "Finished"
+msgstr "Abgeschlossen"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:26
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:26
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:40
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:21
+msgid "private"
+msgstr "privat"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:44
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:44
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:78
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:37
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:92
+#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:28
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:63
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:19
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:42
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:53
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:53
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:68
+msgid "Duplicate"
+msgstr "Duplizieren"
+
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:60
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:60
+#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:85
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_list.html:18
+#: meinberlin/templates/a4dashboard/project_list.html:27
+msgid "We could not find any projects."
+msgstr "Wir konnten keine Projekte finden."
 
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
+#: adhocracy4/dashboard/filter.py:11
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: meinberlin/apps/dashboard2/filter.py:11 meinberlin/apps/ideas/views.py:20
-#: meinberlin/apps/projects/views.py:44 meinberlin/apps/topicprio/views.py:19
+#: meinberlin/apps/ideas/views.py:25 meinberlin/apps/projects/views.py:45
+#: meinberlin/apps/topicprio/views.py:19
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:4
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:10
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:11
@@ -110,41 +291,11 @@ msgstr "Link"
 msgid "Search"
 msgstr "Suchen"
 
-#: adhocracy4/filters/widgets.py:32
-#: adhocracy4/filters/widgets.py:32
-#: meinberlin/apps/dashboard2/filter.py:19 meinberlin/apps/projects/views.py:52
-msgid "All"
-msgstr "Alle"
-
-#: adhocracy4/forms/fields.py:18
-#: adhocracy4/forms/fields.py:18
-#, python-format
-msgid "Time of %(date_label)s"
-msgstr "Uhrzeit für %(date_label)s"
-
-#: adhocracy4/images/fields.py:70
-#: adhocracy4/images/fields.py:70
-#, python-brace-format
-msgid ""
-"{help_prefix} It must be min. {min_resolution[0]} pixel wide and "
-"{min_resolution[1]} pixel tall. Allowed file formats are {fileformats_str}. "
-"The file size should be max. {max_size_mb} MB."
-msgstr ""
-"{help_prefix} Das Bild muss mindestens {min_resolution[0]} Pixel breit und "
-"{min_resolution[1]} Pixel hoch sein. Erlaubte Dateiformate: "
-"{fileformats_str}. Die maximale Dateigröße beträgt {max_size_mb} MB."
-
-#: adhocracy4/images/fields.py:90
-#: adhocracy4/images/fields.py:90
-#, python-brace-format
-msgid "{image_name} copyright"
-msgstr "{image_name} Urheber*in"
-
-#: adhocracy4/images/fields.py:93
-#: adhocracy4/images/fields.py:93
-#, python-brace-format
-msgid "Copyright shown in the {image_name}."
-msgstr "Urheber*in, die im {image_name} angezeigt wird."
+#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
+#: adhocracy4/forms/templates/a4forms/includes/form_field.html:5
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_field.html:5
+msgid "This field is required"
+msgstr "Dieses Feld muss ausgefüllt werden"
 
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
 #: adhocracy4/images/templates/a4images/image_upload_widget.html:8
@@ -172,48 +323,310 @@ msgstr ""
 "Ihr Bild wird hochgeladen sobald Sie Ihre Änderungen am Ende der Seite "
 "speichern."
 
-#: adhocracy4/images/validators.py:20
+#: adhocracy4/categories/dashboard.py:12
+msgid "Categories"
+msgstr "Kategorien"
+
+#: adhocracy4/categories/dashboard.py:14
+msgid "Edit categories"
+msgstr "Kategorien bearbeiten"
+
+#: adhocracy4/categories/fields.py:12
+#: adhocracy4/categories/filters.py:14
+#: adhocracy4/categories/forms.py:44
+#: adhocracy4/exports/mixins.py:149
+msgid "Category"
+msgstr "Kategorie"
+
+#: adhocracy4/categories/forms.py:37
+msgid "Category name"
+msgstr ""
+
+#: adhocracy4/categories/forms.py:38
+msgid "Category icon"
+msgstr ""
+
+#: adhocracy4/comments/models.py:35
+msgid "Comment"
+msgstr "Kommentar"
+
+#: adhocracy4/comments/models.py:36
+#: adhocracy4/exports/mixins.py:121
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:16
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:17
+#: meinberlin/apps/documents/exports.py:25
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:18
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:19
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_list_item.html:16
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_list_item.html:17
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:18
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:20
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:18
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:20
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_list_item.html:18
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_list_item.html:20
+msgid "Comments"
+msgstr "Kommentare"
+
+#: adhocracy4/comments/models.py:55
+msgid "deleted by creator"
+msgstr "Vom Ersteller gelöscht"
+
+#: adhocracy4/comments/models.py:57
+msgid "deleted by moderator"
+msgstr "Vom Moderator gelöscht"
+
+#: adhocracy4/comments/serializers.py:25
+msgid "unknown user"
+msgstr "unbekannter Nutzer"
+
+#: adhocracy4/dashboard/components/forms/views.py:22
+msgid "Project successfully updated."
+msgstr "Projekt erfolgreich aktualisiert."
+
+#: adhocracy4/dashboard/components/forms/views.py:47
+msgid "Module successfully updated."
+msgstr "Modul erfolgreich aktualisiert."
+
+#: adhocracy4/dashboard/dashboard.py:13
+#: meinberlin/apps/projectcontainers/dashboard.py:15
+msgid "Basic settings"
+msgstr "Grundeinstellungen"
+
+#: adhocracy4/dashboard/dashboard.py:15
+msgid "Edit basic settings"
+msgstr "Grundeinstellungen bearbeiten"
+
+#: adhocracy4/dashboard/dashboard.py:23
+#: meinberlin/apps/projectcontainers/dashboard.py:47
+#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:41
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:79
+msgid "Information"
+msgstr "Information"
+
+#: adhocracy4/dashboard/dashboard.py:25
+#: meinberlin/apps/projectcontainers/dashboard.py:49
+msgid "Edit project information"
+msgstr "Projektinformation bearbeiten"
+
+#: adhocracy4/dashboard/dashboard.py:33
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:99
+msgid "Result"
+msgstr "Ergebnis"
+
+#: adhocracy4/dashboard/dashboard.py:35
+msgid "Edit project result"
+msgstr "Projektresultat bearbeiten"
+
+#: adhocracy4/dashboard/dashboard.py:43
+msgid "Basic information"
+msgstr "Grundeinstellungen"
+
+#: adhocracy4/dashboard/dashboard.py:45
+msgid "Edit basic module information"
+msgstr "Moduleinstellungen bearbeiten"
+
+#: adhocracy4/dashboard/dashboard.py:53
+msgid "Phases"
+msgstr "Phasen"
+
+#: adhocracy4/dashboard/dashboard.py:55
+msgid "Edit phases information"
+msgstr "Phaseneinstellungen bearbeiten"
+
+#: adhocracy4/dashboard/dashboard.py:64
+msgid "Areasettings"
+msgstr "Karte"
+
+#: adhocracy4/dashboard/dashboard.py:65
+msgid "Edit areasettings"
+msgstr "Kartenbereich bearbeiten"
+
+#: adhocracy4/dashboard/filter.py:15
+#: meinberlin/apps/projects/views.py:49
+msgid "Archived"
+msgstr "Archiviert"
+
+#: adhocracy4/dashboard/filter.py:19
+#: adhocracy4/filters/widgets.py:32
+#: meinberlin/apps/projects/views.py:53
+msgid "All"
+msgstr "Alle"
+
+#: adhocracy4/dashboard/filter.py:20
+#: meinberlin/apps/plans/models.py:61 meinberlin/apps/projects/views.py:54
+msgid "No"
+msgstr "Nein"
+
+#: adhocracy4/dashboard/filter.py:21
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:13
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:13
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:13
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:13
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:12
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
+#: meinberlin/apps/plans/models.py:60
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
+#: meinberlin/apps/projects/views.py:55
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
+msgid "Yes"
+msgstr "Ja"
+
+#: adhocracy4/dashboard/forms.py:57
+msgid "All users can participate (public)."
+msgstr "Alle Nutzerinnen und Nutzer können sich beteiligen (öffentlich)."
+
+#: adhocracy4/dashboard/forms.py:58
+msgid "Only invited users can participate (private)."
+msgstr ""
+"Nur eingeladene Nutzerinnen und Nutzer können sich beteiligen (privat)."
+
+#: adhocracy4/dashboard/forms.py:97
+#: adhocracy4/phases/models.py:72
+#: meinberlin/apps/extprojects/forms.py:32
+msgid "End date"
+msgstr "Enddatum"
+
+#: adhocracy4/dashboard/forms.py:97
+#: meinberlin/apps/extprojects/forms.py:32
+msgid "End time"
+msgstr "Endzeit"
+
+#: adhocracy4/dashboard/forms.py:103
+#: adhocracy4/phases/models.py:70
+#: meinberlin/apps/extprojects/forms.py:23
+msgid "Start date"
+msgstr "Anfangsdatum"
+
+#: adhocracy4/dashboard/forms.py:103
+#: meinberlin/apps/extprojects/forms.py:23
+msgid "Start time"
+msgstr "Anfangszeit"
+
+#: adhocracy4/dashboard/mixins.py:192
+msgid "Project successfully duplicated."
+msgstr "Projekt erfolgreich dupliziert."
+
+#: adhocracy4/dashboard/views.py:69
+msgid "Project successfully created."
+msgstr "Projekt erfolgreich erstellt."
+
+#: adhocracy4/dashboard/views.py:154
+msgid "Invalid action"
+msgstr "Ungültige Aktion"
+
+#: adhocracy4/dashboard/views.py:171
+msgid "Project is already published"
+msgstr "Das Projekt wurde bereits veröffentlicht"
+
+#: adhocracy4/dashboard/views.py:181
+msgid "Project cannot be published. Required fields are missing."
+msgstr ""
+"Das Projekt kann nicht veröffentlicht werden. Es fehlen benötigte Felder."
+
+#: adhocracy4/dashboard/views.py:190
+msgid "Project cannot be published."
+msgstr "Das Projekt kann nicht veröffentlicht werden."
+
+#: adhocracy4/dashboard/views.py:201
+msgid "Project successfully published."
+msgstr "Projekt erfolgreich veröffentlicht"
+
+#: adhocracy4/dashboard/views.py:206
+msgid "Project is already unpublished"
+msgstr "Das Projekt wurde bereits depubliziert."
+
+#: adhocracy4/dashboard/views.py:215
+msgid "Project successfully unpublished."
+msgstr "Projekt erfolgreich depubliziert."
+
+#: adhocracy4/exports/mixins.py:18
+msgid "Link"
+msgstr "Link"
+
+#: adhocracy4/exports/mixins.py:62
+msgid "Positive ratings"
+msgstr "Positive Bewertungen"
+
+#: adhocracy4/exports/mixins.py:64
+msgid "Negative ratings"
+msgstr "Negative Bewertungen"
+
+#: adhocracy4/exports/mixins.py:97
+msgid "Comment count"
+msgstr "Anzahl Kommentare"
+
+#: adhocracy4/exports/mixins.py:161
+msgid "Location (Longitude)"
+msgstr "Ort (Längengrad)"
+
+#: adhocracy4/exports/mixins.py:163
+msgid "Location (Latitude)"
+msgstr "Ort (Breitengrad)"
+
+#: adhocracy4/exports/mixins.py:165
+msgid "Location label"
+msgstr "Ortsbezeichnung"
+
+#: adhocracy4/forms/fields.py:18
+#, python-format
+msgid "Time of %(date_label)s"
+msgstr "Uhrzeit für %(date_label)s"
+
+#: adhocracy4/images/fields.py:70
+#, python-brace-format
+msgid ""
+"{help_prefix} It must be min. {min_resolution[0]} pixel wide and "
+"{min_resolution[1]} pixel tall. Allowed file formats are {fileformats_str}. "
+"The file size should be max. {max_size_mb} MB."
+msgstr ""
+"{help_prefix} Das Bild muss mindestens {min_resolution[0]} Pixel breit und "
+"{min_resolution[1]} Pixel hoch sein. Erlaubte Dateiformate: "
+"{fileformats_str}. Die maximale Dateigröße beträgt {max_size_mb} MB."
+
+#: adhocracy4/images/fields.py:90
+#, python-brace-format
+msgid "{image_name} copyright"
+msgstr "{image_name} Urheber*in"
+
+#: adhocracy4/images/fields.py:93
+#, python-brace-format
+msgid "Copyright shown in the {image_name}."
+msgstr "Urheber*in, die im {image_name} angezeigt wird."
+
 #: adhocracy4/images/validators.py:20
 msgid "Unsupported file format. Supported formats are {}."
 msgstr "Dieses Dateiformat ist nicht unterstützt. Unterstützt werden: {}."
 
-#: adhocracy4/images/validators.py:27
 #: adhocracy4/images/validators.py:27
 #, python-brace-format
 msgid "Image should be at most {max_size} MB"
 msgstr "Das Bild darf höchstens {max_size} MB groß sein."
 
 #: adhocracy4/images/validators.py:30
-#: adhocracy4/images/validators.py:30
 #, python-brace-format
 msgid "Image must be at least {min_width} pixels wide"
 msgstr "Das Bild muss mindestens {min_width} Pixel breit sein."
 
-#: adhocracy4/images/validators.py:33
 #: adhocracy4/images/validators.py:33
 #, python-brace-format
 msgid "Image must be at least {min_height} pixels high"
 msgstr "Das Bild muss mindestens {min_height} Pixel hoch sein."
 
 #: adhocracy4/images/validators.py:43
-#: adhocracy4/images/validators.py:43
 #, python-brace-format
 msgid "Image aspect ratio should be {aspect_width}:{aspect_height}"
 msgstr "Das Seitenverhältnis muss {aspect_width}:{aspect_height} entsprechen."
 
-#: adhocracy4/images/widgets.py:25
 #: adhocracy4/images/widgets.py:25
 msgid "Select a picture from your local folder."
 msgstr "Ein Bild aus einem lokalen Ordner auswählen."
 
 #: adhocracy4/maps/admin.py:14
 #: adhocracy4/maps/models.py:11
-#: adhocracy4/maps/admin.py:14
-#: adhocracy4/maps/models.py:11
 msgid "Polygon"
 msgstr "Polygon"
 
-#: adhocracy4/maps/admin.py:16
 #: adhocracy4/maps/admin.py:16
 msgid ""
 "Enter a valid GeoJSON object. To initialize a new areasetting enter the "
@@ -223,16 +636,13 @@ msgstr ""
 "Anführungszeichen eingeben."
 
 #: adhocracy4/maps/fields.py:16
-#: adhocracy4/maps/fields.py:16
 msgid "Geometry as GeoJSON"
 msgstr "GeoJSON kodierte Koordinaten"
 
 #: adhocracy4/maps/fields.py:34
-#: adhocracy4/maps/fields.py:34
 msgid "Please add a Marker on the map"
 msgstr "Bitte setzen Sie einen Punkt auf der Karte."
 
-#: adhocracy4/maps/fields.py:39
 #: adhocracy4/maps/fields.py:39
 msgid "Please draw a Polygon on the map"
 msgstr ""
@@ -240,18 +650,15 @@ msgstr ""
 "vordefinierten Bereich aus"
 
 #: adhocracy4/maps/models.py:12
-#: adhocracy4/maps/models.py:12
 msgid "Please draw an area on the map."
 msgstr ""
 "Bitte zeichnen Sie einen Bereich auf der Karte ein, in dem Ihr Projekt "
 "stattfindet und Ideen verortet werden sollen."
 
 #: adhocracy4/modules/models.py:14
-#: adhocracy4/modules/models.py:14
 msgid "Title of the module"
 msgstr "Modultitel"
 
-#: adhocracy4/modules/models.py:15
 #: adhocracy4/modules/models.py:15
 msgid ""
 "This title will appear in the timeline and the header on the module and "
@@ -261,11 +668,9 @@ msgstr ""
 "Er sollte maximal 512 Zeichen lang sein."
 
 #: adhocracy4/modules/models.py:23
-#: adhocracy4/modules/models.py:23
 msgid "Short description of the module"
 msgstr "Kurzbeschreibung des Moduls"
 
-#: adhocracy4/modules/models.py:24
 #: adhocracy4/modules/models.py:24
 msgid ""
 "This short description will appear on the header of the module and project "
@@ -276,53 +681,32 @@ msgstr ""
 "in maximal 512 Zeichen das Ziel des Moduls beschreiben."
 
 #: adhocracy4/phases/models.py:64
-#: adhocracy4/phases/models.py:64
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/removeable_user_list.html:7
 #: meinberlin/apps/newsletters/models.py:30
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:7
 msgid "Name"
 msgstr "Name"
 
 #: adhocracy4/phases/models.py:66
-#: adhocracy4/phases/models.py:66
-#: meinberlin/apps/ideas/models.py:26
+#: meinberlin/apps/ideas/models.py:27
 #: meinberlin/apps/offlineevents/models.py:17
-#: meinberlin/apps/plans/models.py:49
+#: meinberlin/apps/plans/models.py:50
 msgid "Description"
 msgstr "Beschreibung"
 
-#: adhocracy4/phases/models.py:70
-#: adhocracy4/phases/models.py:70
-#: meinberlin/apps/dashboard2/forms.py:105
-#: meinberlin/apps/extprojects/forms.py:23
-msgid "Start date"
-msgstr "Anfangsdatum"
-
-#: adhocracy4/phases/models.py:72
-#: adhocracy4/phases/models.py:72
-#: meinberlin/apps/dashboard2/forms.py:99
-#: meinberlin/apps/extprojects/forms.py:32
-msgid "End date"
-msgstr "Enddatum"
-
-#: adhocracy4/phases/models.py:90
 #: adhocracy4/phases/models.py:90
 msgid "End date can not be smallerthan the start date."
 msgstr "Das Enddatum kann nicht vor dem Startdatum liegen."
 
 #: adhocracy4/projects/admin.py:8
-#: adhocracy4/projects/admin.py:8
 #: meinberlin/apps/adminlog/models.py:36
-#: meinberlin/apps/newsletters/forms.py:35
+#: meinberlin/apps/newsletters/forms.py:35 meinberlin/apps/plans/views.py:112
 msgid "Project"
 msgstr "Projekt"
 
 #: adhocracy4/projects/models.py:29
-#: adhocracy4/projects/models.py:29
 msgid "Title of your project"
 msgstr "Titel Ihres Projekts"
 
-#: adhocracy4/projects/models.py:30
 #: adhocracy4/projects/models.py:30
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
@@ -332,11 +716,9 @@ msgstr ""
 "darf maximal 120 Zeichen lang sein."
 
 #: adhocracy4/projects/models.py:39
-#: adhocracy4/projects/models.py:39
 msgid "Short description of your project"
 msgstr "Kurzbeschreibung Ihres Projekts"
 
-#: adhocracy4/projects/models.py:40
 #: adhocracy4/projects/models.py:40
 msgid ""
 "This short description will appear on the header of the project and in the "
@@ -346,11 +728,9 @@ msgstr ""
 "werden. Sie sollte das Ziel des Projekts in maximal 250 Zeichen beschreiben."
 
 #: adhocracy4/projects/models.py:48
-#: adhocracy4/projects/models.py:48
 msgid "Description of your project"
 msgstr "Beschreibung Ihres Projekts"
 
-#: adhocracy4/projects/models.py:49
 #: adhocracy4/projects/models.py:49
 msgid ""
 "This description should tell participants what the goal of the project is, "
@@ -362,11 +742,9 @@ msgstr ""
 "Tab der Projektseite angezeigt werden."
 
 #: adhocracy4/projects/models.py:57
-#: adhocracy4/projects/models.py:57
 msgid "Results of your project"
 msgstr "Ergebnisse Ihres Projekts"
 
-#: adhocracy4/projects/models.py:58
 #: adhocracy4/projects/models.py:58
 msgid ""
 "Here you should explain what the expected outcome of the project will be and "
@@ -378,11 +756,9 @@ msgstr ""
 "ist, sollten Sie hier eine Zusammenfassung der Resultate hinzufügen."
 
 #: adhocracy4/projects/models.py:65
-#: adhocracy4/projects/models.py:65
 msgid "Access to the project"
 msgstr "Zugang zum Projekt"
 
-#: adhocracy4/projects/models.py:66
 #: adhocracy4/projects/models.py:66
 msgid ""
 "Please indicate whether this project should be public or restricted to "
@@ -394,34 +770,26 @@ msgstr ""
 
 #: adhocracy4/projects/models.py:74
 #: adhocracy4/projects/models.py:80
-#: adhocracy4/projects/models.py:74
-#: adhocracy4/projects/models.py:80
 msgid "Header image"
 msgstr "Headerbild"
 
-#: adhocracy4/projects/models.py:76
 #: adhocracy4/projects/models.py:76
 msgid "The image will be shown as a decorative background image."
 msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 
 #: adhocracy4/projects/models.py:83
 #: adhocracy4/projects/models.py:90
-#: adhocracy4/projects/models.py:83
-#: adhocracy4/projects/models.py:90
 msgid "Tile image"
 msgstr "Kachel-Bild"
 
-#: adhocracy4/projects/models.py:85
 #: adhocracy4/projects/models.py:85
 msgid "The image will be shown in the project tile."
 msgstr "Das Bild wird in der Projekt-Kachel angezeigt."
 
 #: adhocracy4/projects/models.py:103
-#: adhocracy4/projects/models.py:103
 msgid "Project is archived"
 msgstr "Projekt ist archiviert."
 
-#: adhocracy4/projects/models.py:104
 #: adhocracy4/projects/models.py:104
 msgid ""
 "Exclude this project from all listings by default. You can still access this "
@@ -431,7 +799,6 @@ msgstr ""
 "Projekt weiterhin über die Filter erreichen."
 
 #: adhocracy4/projects/templatetags/project_tags.py:12
-#: adhocracy4/projects/templatetags/project_tags.py:12
 #, python-format
 msgid "%(number)d day left"
 msgid_plural "%(number)d days left"
@@ -439,13 +806,11 @@ msgstr[0] "noch %(number)d Tag"
 msgstr[1] "noch %(number)d Tage"
 
 #: adhocracy4/projects/templatetags/project_tags.py:19
-#: adhocracy4/projects/templatetags/project_tags.py:19
 msgid "a few hours left"
 msgstr "noch wenige Stunden"
 
 #: adhocracy4/reports/templatetags/react_reports.py:30
-#: adhocracy4/reports/templatetags/react_reports.py:30
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:76
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:97
 msgid "Report"
 msgstr "Melden"
 
@@ -676,15 +1041,15 @@ msgstr "Straße, Hausnummer"
 msgid "Postal code, City"
 msgstr "Postleitzahl, Stadt"
 
-#: meinberlin/apps/bplan/phases.py:16
+#: meinberlin/apps/bplan/phases.py:15
 msgid "Statement phase"
 msgstr "Beteiligungsphase"
 
-#: meinberlin/apps/bplan/phases.py:17
+#: meinberlin/apps/bplan/phases.py:16
 msgid "Send statement to the office workers per mail."
 msgstr "Stellungnahme per E-Mail an Verwaltung senden."
 
-#: meinberlin/apps/bplan/phases.py:18
+#: meinberlin/apps/bplan/phases.py:17
 msgid "bplan"
 msgstr "Bebauungsplan"
 
@@ -728,20 +1093,20 @@ msgstr ""
 "Mail."
 
 #: meinberlin/apps/budgeting/exports.py:11
-#: meinberlin/apps/kiezkasse/exports.py:10
+#: meinberlin/apps/kiezkasse/exports.py:11
 msgid "Proposals with comments"
 msgstr "Vorschläge mit Kommentaren"
 
-#: meinberlin/apps/budgeting/models.py:12
-#: meinberlin/apps/kiezkasse/models.py:12
+#: meinberlin/apps/budgeting/models.py:11
+#: meinberlin/apps/kiezkasse/models.py:11
 msgid "Required Budget"
 msgstr "Notwendiges Budget"
 
-#: meinberlin/apps/budgeting/models.py:17
+#: meinberlin/apps/budgeting/models.py:16
 msgid "Proposal is archived"
 msgstr "Vorschlag ist archiviert"
 
-#: meinberlin/apps/budgeting/models.py:18
+#: meinberlin/apps/budgeting/models.py:17
 msgid ""
 "Exclude this proposal from all listings by default. You can still access "
 "this proposal by using filters."
@@ -749,63 +1114,21 @@ msgstr ""
 "Diesen Vorschlag standardmäßig von allen Listen ausschließen. Sie können den "
 "Vorschlag weiterhin über die Filter erreichen."
 
-#: meinberlin/apps/budgeting/phases.py:16
-#: meinberlin/apps/kiezkasse/phases.py:16
+#: meinberlin/apps/budgeting/phases.py:15
+#: meinberlin/apps/kiezkasse/phases.py:15
 msgid "Request phase"
 msgstr "Vorschlagsphase"
 
-#: meinberlin/apps/budgeting/phases.py:17
-#: meinberlin/apps/kiezkasse/phases.py:50
+#: meinberlin/apps/budgeting/phases.py:16
+#: meinberlin/apps/kiezkasse/phases.py:47
 msgid "Request budgeting and get feedback through rates and comments."
 msgstr ""
 "Nutzerinnen und Nutzer können Vorschläge mit Budgetangabe machen und "
 "erhalten durch Bewertungen und Kommentare Rückmeldung."
 
-#: meinberlin/apps/budgeting/phases.py:19
+#: meinberlin/apps/budgeting/phases.py:18
 msgid "participatory budgeting"
 msgstr "Bürgerhaushalt"
-
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:21
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:37
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_form_module.html:19
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_form_project.html:19
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_form.html:15
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_form.html:23
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:36
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_form.html:19
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_form.html:19
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:12
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:29
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:15
-msgid "Save"
-msgstr "Speichern"
-
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:22
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:16
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:38
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_create_form.html:30
-#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:48
-#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_form.html:30
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:16
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_form.html:16
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_form.html:24
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:16
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:37
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_form.html:20
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:16
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_form.html:20
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:15
-#: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:31
-#: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_form.html:33
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:13
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:15
-#: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:30
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:14
-#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_create_form.html:30
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:16
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:15
-msgid "Cancel"
-msgstr "Abbrechen"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:7
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:8
@@ -847,20 +1170,6 @@ msgstr "Bestätigung der Vorschlagslöschung"
 msgid "Are you sure you want to delete the proposal?"
 msgstr "Sind Sie sicher, dass Sie diesen Vorschlag löschen möchten?"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:13
-#: meinberlin/apps/dashboard2/filter.py:21
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:13
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:13
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:13
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:12
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
-#: meinberlin/apps/plans/models.py:59
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
-#: meinberlin/apps/projects/views.py:54
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
-msgid "Yes"
-msgstr "Ja"
-
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:4
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:4
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:4
@@ -874,11 +1183,13 @@ msgstr "Anlegen eines neuen Vorschlags"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:8
 #: meinberlin/apps/documents/templates/meinberlin_documents/paragraph_detail.html:9
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:8
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:8
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:9
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:8
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:8
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:9
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:8
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:8
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:9
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:17
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:18
@@ -890,11 +1201,13 @@ msgstr "breadcrumbs"
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:13
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:14
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_create_form.html:13
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:13
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:14
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:13
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:13
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:14
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_create_form.html:13
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:13
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:14
 msgid "back to project"
 msgstr "Zurück zum Projekt"
@@ -903,18 +1216,6 @@ msgstr "Zurück zum Projekt"
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:18
 msgid "Submit a new proposal for this project"
 msgstr "Einen neuen Vorschlag für dieses Projekt anlegen"
-
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_detail.html:20
-#: meinberlin/apps/exports/views.py:44
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_detail.html:20
-msgid "Official Statement"
-msgstr "Offizielle Rückmeldung"
-
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_detail.html:42
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:4
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_detail.html:42
-msgid "Moderate"
-msgstr "Moderieren"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:18
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:18
@@ -948,15 +1249,20 @@ msgstr "auszoomen"
 msgid "Nothing to show"
 msgstr "Keine Einträge"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:19
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:20
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:19
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:20
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:4
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:91
+msgid "Moderate"
+msgstr "Moderieren"
+
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:18
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:19
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:18
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:19
 msgid "back to proposal"
 msgstr "Zurück zum Vorschlag"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:24
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:24
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:23
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:23
 msgid "Moderate proposal"
 msgstr "Vorschlag moderieren"
 
@@ -972,33 +1278,33 @@ msgstr "Vorschlag moderieren"
 msgid "Edit %(title)s"
 msgstr "%(title)s bearbeiten"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:25
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:25
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_update_form.html:24
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_update_form.html:24
 msgid "Edit proposal"
 msgstr "Vorschlag bearbeiten"
 
-#: meinberlin/apps/budgeting/views.py:22 meinberlin/apps/ideas/views.py:24
-#: meinberlin/apps/kiezkasse/views.py:20 meinberlin/apps/mapideas/views.py:13
+#: meinberlin/apps/budgeting/views.py:15 meinberlin/apps/ideas/views.py:29
+#: meinberlin/apps/kiezkasse/views.py:13 meinberlin/apps/mapideas/views.py:13
 #: meinberlin/apps/maptopicprio/views.py:17
-#: meinberlin/apps/projects/views.py:83
+#: meinberlin/apps/projects/views.py:84
 msgid "Most recent"
 msgstr "am aktuellsten"
 
-#: meinberlin/apps/budgeting/views.py:24 meinberlin/apps/ideas/views.py:26
-#: meinberlin/apps/kiezkasse/views.py:22 meinberlin/apps/mapideas/views.py:15
+#: meinberlin/apps/budgeting/views.py:17 meinberlin/apps/ideas/views.py:31
+#: meinberlin/apps/kiezkasse/views.py:15 meinberlin/apps/mapideas/views.py:15
 #: meinberlin/apps/maptopicprio/views.py:19
 #: meinberlin/apps/topicprio/views.py:30
 msgid "Most popular"
 msgstr "am beliebtesten"
 
-#: meinberlin/apps/budgeting/views.py:25 meinberlin/apps/ideas/views.py:27
-#: meinberlin/apps/kiezkasse/views.py:23 meinberlin/apps/mapideas/views.py:16
+#: meinberlin/apps/budgeting/views.py:18 meinberlin/apps/ideas/views.py:32
+#: meinberlin/apps/kiezkasse/views.py:16 meinberlin/apps/mapideas/views.py:16
 #: meinberlin/apps/maptopicprio/views.py:20
 #: meinberlin/apps/topicprio/views.py:31
 msgid "Most commented"
 msgstr "meist kommentiert"
 
-#: meinberlin/apps/budgeting/views.py:88 meinberlin/apps/kiezkasse/views.py:82
+#: meinberlin/apps/budgeting/views.py:81 meinberlin/apps/kiezkasse/views.py:75
 msgid "Your budget request has been deleted"
 msgstr "Ihr Vorschlag wurde gelöscht"
 
@@ -1022,7 +1328,7 @@ msgstr "Alle Projekte anzeigen"
 msgid "Send"
 msgstr "Senden"
 
-#: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:35
+#: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:36
 msgid "Ordering"
 msgstr "Sortierung"
 
@@ -1030,33 +1336,9 @@ msgstr "Sortierung"
 msgid "Filter bar "
 msgstr "Filterleiste"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/form_field.html:5
-msgid "This field is required"
-msgstr "Dieses Feld muss ausgefüllt werden"
-
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/inline_form.html:11
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/inline_form.html:12
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/inline_form.html:15
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/inline_form.html:16
-msgid "Remove category"
-msgstr "Kategorie entfernen"
-
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:6
 msgid "View as list"
 msgstr "Listenansicht"
-
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:8
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:14
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/preview.html:9
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/project_list_item.html:33
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:14
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:15
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:32
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:14
-#: meinberlin/templates/meinberlin_dashboard2/includes/preview.html:10
-#: meinberlin/templates/meinberlin_dashboard2/includes/project_list_item.html:36
-msgid "View"
-msgstr "Ansicht"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:12
 msgid "View as map"
@@ -1066,33 +1348,33 @@ msgstr "Kartenansicht"
 msgid "Page navigation"
 msgstr "Seitennummerierung"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:53
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:61
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:46
+#: meinberlin/apps/exports/mixins.py:11
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:52
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:50
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:34
+msgid "Reference No."
+msgstr "Referenznr."
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:64
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:72
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:76
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:84
 msgid "Actions"
 msgstr "Aktionen"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:67
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/project_list_item.html:39
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:37
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:92
-#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:28
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:63
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:19
-#: meinberlin/templates/meinberlin_dashboard2/includes/project_list_item.html:42
-msgid "Edit"
-msgstr "Bearbeiten"
-
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:71
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:82
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:24
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:25
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:42
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:24
 msgid "Delete"
 msgstr "Löschen"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:111
+#: meinberlin/apps/exports/mixins.py:25
+msgid "Official Statement"
+msgstr "Offizielle Rückmeldung"
 
 #: meinberlin/apps/dashboard/blueprints.py:18
 msgid "Brainstorming"
@@ -1234,305 +1516,10 @@ msgstr ""
 msgid "Organisation name"
 msgstr "Organisationsname"
 
-#: meinberlin/apps/dashboard2/components/forms/views.py:22
-msgid "Project successfully updated."
-msgstr "Projekt erfolgreich aktualisiert."
-
-#: meinberlin/apps/dashboard2/components/forms/views.py:47
-msgid "Module successfully updated."
-msgstr "Modul erfolgreich aktualisiert."
-
-#: meinberlin/apps/dashboard2/dashboard.py:14
-#: meinberlin/apps/projectcontainers/dashboard.py:15
-msgid "Basic settings"
-msgstr "Grundeinstellungen"
-
-#: meinberlin/apps/dashboard2/dashboard.py:16
-msgid "Edit basic settings"
-msgstr "Grundeinstellungen bearbeiten"
-
-#: meinberlin/apps/dashboard2/dashboard.py:25
-#: meinberlin/apps/projectcontainers/dashboard.py:47
-#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:41
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:79
-msgid "Information"
-msgstr "Information"
-
-#: meinberlin/apps/dashboard2/dashboard.py:27
-#: meinberlin/apps/projectcontainers/dashboard.py:49
-msgid "Edit project information"
-msgstr "Projektinformation bearbeiten"
-
-#: meinberlin/apps/dashboard2/dashboard.py:36
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:99
-msgid "Result"
-msgstr "Ergebnis"
-
-#: meinberlin/apps/dashboard2/dashboard.py:38
-msgid "Edit project result"
-msgstr "Projektresultat bearbeiten"
-
-#: meinberlin/apps/dashboard2/dashboard.py:47
-msgid "Basic information"
-msgstr "Grundeinstellungen"
-
-#: meinberlin/apps/dashboard2/dashboard.py:49
-msgid "Edit basic module information"
-msgstr "Moduleinstellungen bearbeiten"
-
-#: meinberlin/apps/dashboard2/dashboard.py:58
-msgid "Phases"
-msgstr "Phasen"
-
-#: meinberlin/apps/dashboard2/dashboard.py:60
-msgid "Edit phases information"
-msgstr "Phaseneinstellungen bearbeiten"
-
-#: meinberlin/apps/dashboard2/dashboard.py:70
-msgid "Areasettings"
-msgstr "Karte"
-
-#: meinberlin/apps/dashboard2/dashboard.py:71
-msgid "Edit areasettings"
-msgstr "Kartenbereich bearbeiten"
-
-#: meinberlin/apps/dashboard2/dashboard.py:91
-msgid "Categories"
-msgstr "Kategorien"
-
-#: meinberlin/apps/dashboard2/dashboard.py:93
-msgid "Edit categories"
-msgstr "Kategorien bearbeiten"
-
-#: meinberlin/apps/dashboard2/filter.py:15 meinberlin/apps/projects/views.py:48
-msgid "Archived"
-msgstr "Archiviert"
-
-#: meinberlin/apps/dashboard2/filter.py:20 meinberlin/apps/plans/models.py:60
-#: meinberlin/apps/projects/views.py:53
-msgid "No"
-msgstr "Nein"
-
-#: meinberlin/apps/dashboard2/forms.py:59
-msgid "All users can participate (public)."
-msgstr "Alle Nutzerinnen und Nutzer können sich beteiligen (öffentlich)."
-
-#: meinberlin/apps/dashboard2/forms.py:60
-msgid "Only invited users can participate (private)."
-msgstr ""
-"Nur eingeladene Nutzerinnen und Nutzer können sich beteiligen (privat)."
-
-#: meinberlin/apps/dashboard2/forms.py:99
-#: meinberlin/apps/extprojects/forms.py:32
-msgid "End time"
-msgstr "Endzeit"
-
-#: meinberlin/apps/dashboard2/forms.py:105
-#: meinberlin/apps/extprojects/forms.py:23
-msgid "Start time"
-msgstr "Anfangszeit"
-
-#: meinberlin/apps/dashboard2/mixins.py:185
-msgid "Project successfully duplicated."
-msgstr "Projekt erfolgreich dupliziert."
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_dashboard.html:4
-#: meinberlin/templates/meinberlin_dashboard2/base_dashboard.html:41
-msgid "Dashboard"
-msgstr "Organisationsverwaltung"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_dashboard_project.html:6
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_project_list.html:6
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_project_list.html:9
-#: meinberlin/templates/header.html:17
-#: meinberlin/templates/meinberlin_dashboard2/base_dashboard.html:44
-#: meinberlin/templates/meinberlin_dashboard2/base_project_list.html:6
-#: meinberlin/templates/meinberlin_dashboard2/base_project_list.html:9
-msgid "Participation projects"
-msgstr "Beteiligungsprojekte"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_dashboard_project.html:18
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_dashboard_project.html:38
-msgid "Missing fields for publication"
-msgstr "Benötigte Felder zur Veröffentlichung"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_dashboard_project.html:48
-msgid "Add Module"
-msgstr "Modul hinzufügen"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/base_project_list.html:15
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_list.html:4
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_list.html:9
-#: meinberlin/apps/projectcontainers/dashboard.py:62
-#: meinberlin/apps/projectcontainers/models.py:12
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_list.html:4
-#: meinberlin/templates/meinberlin_dashboard2/base_project_list.html:15
-msgid "Projects"
-msgstr "Projekte"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/blueprint_list.html:4
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/blueprint_list.html:8
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_list.html:13
-msgid "New Project"
-msgstr "Neues Projekt"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/blueprint_list_tile.html:14
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/module_blueprint_list_tile.html:16
-msgid "Phase"
-msgstr "Phase"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/blueprint_list_tile.html:21
-msgid "Select"
-msgstr "Auswählen"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/form_field.html:6
-msgid "Missing field for publication"
-msgstr "Benötigtes Feld zur Veröffentlichung"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/module_categories_form.html:3
-msgid ""
-"In this section, you can create\n"
-"categories. If you create any, users must assign their contributions\n"
-"to one of them. This way, content can be classified."
-msgstr ""
-"Hier können Sie Kategorien anlegen. Falls Sie dies tun werden Nutzerinnen "
-"und Nutzer aufgefordert, ihre Beiträge einer Kategorie zuordnen. Dadurch "
-"können Inhalte strukturiert werden."
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/module_categories_form.html:20
-msgid "Add category"
-msgstr "Kategorie hinzufügen"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/preview.html:7
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/project_list_item.html:31
-#: meinberlin/templates/meinberlin_dashboard2/includes/preview.html:8
-#: meinberlin/templates/meinberlin_dashboard2/includes/project_list_item.html:34
-msgid "Preview"
-msgstr "Vorschau"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/progress.html:15
-#, python-format
-msgid "%(value)s from %(max)s"
-msgstr "%(value)s von %(max)s"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/progress.html:16
-msgid "required fields for publication"
-msgstr "benötigte Felder zur Veröffentlichung"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/progress.html:26
-msgid "Publish"
-msgstr "Veröffentlichen"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/progress.html:30
-msgid "Unpublish"
-msgstr "Depublizieren"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/project_list_item.html:17
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:34
-#: meinberlin/templates/meinberlin_dashboard2/includes/project_list_item.html:18
-msgid "Finished"
-msgstr "Abgeschlossen"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/project_list_item.html:20
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:40
-#: meinberlin/templates/meinberlin_dashboard2/includes/project_list_item.html:21
-msgid "private"
-msgstr "privat"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/project_list_item.html:60
-#: meinberlin/templates/meinberlin_dashboard2/includes/project_list_item.html:68
-msgid "Duplicate"
-msgstr "Duplizieren"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/removeable_user_list.html:8
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:7
-msgid "Email"
-msgstr "E-Mail"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/removeable_user_list.html:9
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/removeable_user_list.html:21
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/removeable_user_list.html:22
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:9
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:21
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:22
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:8
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:19
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:20
-#: meinberlin/templates/account/email.html:35
-#: meinberlin/templates/socialaccount/connections.html:31
-msgid "Remove"
-msgstr "Entfernen"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/includes/users_from_email_form.html:18
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/users_from_email_form.html:26
-msgid "Add"
-msgstr "Hinzufügen"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/module_blueprint_list.html:4
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/module_blueprint_list.html:8
+#: meinberlin/apps/dashboard/templates/meinberlin_dashboard/module_blueprint_list.html:4
+#: meinberlin/apps/dashboard/templates/meinberlin_dashboard/module_blueprint_list.html:8
 msgid "New Module"
 msgstr "Neues Modul"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_create_form.html:4
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_create_form.html:9
-#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_form.html:4
-#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_form.html:9
-msgid "Create project based on"
-msgstr "Projekt anlegen basierend auf"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_create_form.html:25
-#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_form.html:25
-msgid ""
-"After saving the draft project you can further customize and edit your "
-"project and eventually publish it."
-msgstr ""
-"Nachdem der Projektentwurf gespeichert wurde, können in einem weiteren "
-"Schritt Einstellungen angepasst und zusätzliche Informationen angegeben "
-"werden. Wenn alle benötigten Informationen eingegeben sind, kann das Projekt "
-"veröffentlicht werden."
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_create_form.html:28
-msgid "Create draft"
-msgstr "Projektentwurf anlegen"
-
-#: meinberlin/apps/dashboard2/templates/meinberlin_dashboard2/project_list.html:27
-#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:85
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_list.html:18
-msgid "We could not find any projects."
-msgstr "Wir konnten keine Projekte finden."
-
-#: meinberlin/apps/dashboard2/views.py:78
-msgid "Project successfully created."
-msgstr "Projekt erfolgreich erstellt."
-
-#: meinberlin/apps/dashboard2/views.py:163
-msgid "Invalid action"
-msgstr "Ungültige Aktion"
-
-#: meinberlin/apps/dashboard2/views.py:180
-msgid "Project is already published"
-msgstr "Das Projekt wurde bereits veröffentlicht"
-
-#: meinberlin/apps/dashboard2/views.py:190
-msgid "Project cannot be published. Required fields are missing."
-msgstr ""
-"Das Projekt kann nicht veröffentlicht werden. Es fehlen benötigte Felder."
-
-#: meinberlin/apps/dashboard2/views.py:199
-msgid "Project cannot be published."
-msgstr "Das Projekt kann nicht veröffentlicht werden."
-
-#: meinberlin/apps/dashboard2/views.py:210
-msgid "Project successfully published."
-msgstr "Projekt erfolgreich veröffentlicht"
-
-#: meinberlin/apps/dashboard2/views.py:215
-msgid "Project is already unpublished"
-msgstr "Das Projekt wurde bereits depubliziert."
-
-#: meinberlin/apps/dashboard2/views.py:224
-msgid "Project successfully unpublished."
-msgstr "Projekt erfolgreich depubliziert."
 
 #: meinberlin/apps/documents/dashboard.py:14
 msgid "Document"
@@ -1550,15 +1537,15 @@ msgstr "Kapitel"
 msgid "Paragraph"
 msgstr "Absatz"
 
-#: meinberlin/apps/documents/phases.py:16
+#: meinberlin/apps/documents/phases.py:15
 msgid "Comment phase"
 msgstr "Kommentierphase"
 
-#: meinberlin/apps/documents/phases.py:17
+#: meinberlin/apps/documents/phases.py:16
 msgid "commenting text"
 msgstr "Text kommentieren"
 
-#: meinberlin/apps/documents/phases.py:18
+#: meinberlin/apps/documents/phases.py:17
 msgid "Collect comments for the text."
 msgstr "Kommentieren von Text und einzelnen Absätzen."
 
@@ -1641,9 +1628,17 @@ msgstr "Code zum Einbetten des Projekts"
 msgid "Export Excel"
 msgstr "Excel exportieren"
 
-#: meinberlin/apps/exports/views.py:42
+#: meinberlin/apps/exports/mixins.py:23
 msgid "Moderator feedback"
 msgstr "Rückmeldung der Moderation"
+
+#: meinberlin/apps/exports/mixins.py:40
+msgid "Creator"
+msgstr "Urheber"
+
+#: meinberlin/apps/exports/mixins.py:42
+msgid "Created"
+msgstr "Erstellt"
 
 #: meinberlin/apps/extprojects/dashboard.py:15
 msgid "External project settings"
@@ -1672,76 +1667,76 @@ msgstr ""
 msgid "End date can not be smaller than the start date."
 msgstr "Das Enddatum kann nicht kleiner als das Startdatum sein."
 
-#: meinberlin/apps/extprojects/phases.py:15
+#: meinberlin/apps/extprojects/phases.py:14
 msgid "External phase"
 msgstr "Externe Phase"
 
-#: meinberlin/apps/extprojects/phases.py:16
+#: meinberlin/apps/extprojects/phases.py:15
 msgid "External phase."
 msgstr "Externe Phase"
 
-#: meinberlin/apps/extprojects/phases.py:17
+#: meinberlin/apps/extprojects/phases.py:16
 msgid "external project"
 msgstr "Externes Projekt"
 
-#: meinberlin/apps/ideas/exports.py:10
+#: meinberlin/apps/ideas/exports.py:11
 msgid "Ideas with comments"
 msgstr "Ideen mit Kommentaren"
 
-#: meinberlin/apps/ideas/models.py:25 meinberlin/apps/maptopicprio/models.py:26
+#: meinberlin/apps/ideas/models.py:26 meinberlin/apps/maptopicprio/models.py:26
 #: meinberlin/apps/offlineevents/models.py:14
-#: meinberlin/apps/plans/models.py:25 meinberlin/apps/topicprio/models.py:25
+#: meinberlin/apps/plans/models.py:26 meinberlin/apps/topicprio/models.py:25
 msgid "Title"
 msgstr "Titel"
 
-#: meinberlin/apps/ideas/phases.py:16 meinberlin/apps/mapideas/phases.py:16
+#: meinberlin/apps/ideas/phases.py:15 meinberlin/apps/mapideas/phases.py:15
 msgid "Issue phase"
 msgstr "Phase zur Einreichung von Ideen"
 
-#: meinberlin/apps/ideas/phases.py:17
+#: meinberlin/apps/ideas/phases.py:16
 msgid "Create new ideas."
 msgstr "Anlegen von neuen Ideen."
 
-#: meinberlin/apps/ideas/phases.py:18 meinberlin/apps/ideas/phases.py:33
-#: meinberlin/apps/ideas/phases.py:49 meinberlin/apps/ideas/phases.py:65
-#: meinberlin/apps/mapideas/phases.py:18 meinberlin/apps/mapideas/phases.py:33
-#: meinberlin/apps/mapideas/phases.py:49 meinberlin/apps/mapideas/phases.py:65
-#: meinberlin/apps/mapideas/phases.py:82
+#: meinberlin/apps/ideas/phases.py:17 meinberlin/apps/ideas/phases.py:31
+#: meinberlin/apps/ideas/phases.py:46 meinberlin/apps/ideas/phases.py:61
+#: meinberlin/apps/mapideas/phases.py:17 meinberlin/apps/mapideas/phases.py:31
+#: meinberlin/apps/mapideas/phases.py:46 meinberlin/apps/mapideas/phases.py:61
+#: meinberlin/apps/mapideas/phases.py:77
 msgid "ideas collection"
 msgstr "Ideensammlung"
 
-#: meinberlin/apps/ideas/phases.py:31 meinberlin/apps/mapideas/phases.py:31
+#: meinberlin/apps/ideas/phases.py:29 meinberlin/apps/mapideas/phases.py:29
 msgid "Collect phase"
 msgstr "Phase zur Einreichung von Ideen"
 
-#: meinberlin/apps/ideas/phases.py:32
+#: meinberlin/apps/ideas/phases.py:30
 msgid "Create and comment new ideas."
 msgstr "Anlegen und Kommentieren neuer Ideen."
 
-#: meinberlin/apps/ideas/phases.py:47 meinberlin/apps/mapideas/phases.py:47
+#: meinberlin/apps/ideas/phases.py:44 meinberlin/apps/mapideas/phases.py:44
 msgid "Rating phase"
 msgstr "Bewertungsphase"
 
-#: meinberlin/apps/ideas/phases.py:48 meinberlin/apps/mapideas/phases.py:48
+#: meinberlin/apps/ideas/phases.py:45 meinberlin/apps/mapideas/phases.py:45
 msgid "Get quantative feeback by rating the collected ideas."
 msgstr "Erhalten Sie quantitative Rückmeldung mittels der Bewertung der Ideen."
 
-#: meinberlin/apps/ideas/phases.py:62 meinberlin/apps/kiezkasse/phases.py:32
-#: meinberlin/apps/mapideas/phases.py:62
+#: meinberlin/apps/ideas/phases.py:58 meinberlin/apps/kiezkasse/phases.py:30
+#: meinberlin/apps/mapideas/phases.py:58
 msgid "Feedback phase"
 msgstr "Rückmeldungsphase"
 
-#: meinberlin/apps/ideas/phases.py:63 meinberlin/apps/mapideas/phases.py:63
+#: meinberlin/apps/ideas/phases.py:59 meinberlin/apps/mapideas/phases.py:59
 msgid "Get feedback for collected ideas through rates and comments."
 msgstr ""
 "Erhalten Sie Rückmeldung für gesammelte Ideen in Form von Bewertungen und "
 "Kommentaren"
 
-#: meinberlin/apps/ideas/phases.py:79 meinberlin/apps/mapideas/phases.py:79
+#: meinberlin/apps/ideas/phases.py:74 meinberlin/apps/mapideas/phases.py:74
 msgid "Collect ideas and get feedback"
 msgstr "Lassen Sie Ideen bewerten und kommentieren."
 
-#: meinberlin/apps/ideas/phases.py:80
+#: meinberlin/apps/ideas/phases.py:75
 msgid "Create new ideas and get feedback through rates and comments."
 msgstr ""
 "Sammeln Sie Ideen zu einem bestimmten Thema und lassen Sie diese "
@@ -1766,22 +1761,36 @@ msgstr "Eine neue Idee für dieses Projekt anlegen"
 msgid "Submit idea"
 msgstr "Idee anlegen"
 
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:20
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:20
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:4
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:4
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:4
+#, python-format
+msgid "Moderate %(name)s"
+msgstr "%(name)s moderieren"
+
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:18
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:19
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:18
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:19
 msgid "back to idea"
 msgstr "Zurück zur Idee"
 
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:25
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:25
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:23
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:23
+msgid "Moderate idea"
+msgstr "Idee moderieren"
+
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:24
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:24
 msgid "Edit idea"
 msgstr "Idee bearbeiten"
 
-#: meinberlin/apps/ideas/views.py:146 meinberlin/apps/mapideas/views.py:75
+#: meinberlin/apps/ideas/views.py:151 meinberlin/apps/mapideas/views.py:75
 msgid "Your Idea has been deleted"
 msgstr "Ihre Idee wurde gelöscht"
 
 #: meinberlin/apps/initiators/forms.py:11
-#: meinberlin/apps/newsletters/forms.py:40 meinberlin/apps/projects/views.py:40
+#: meinberlin/apps/newsletters/forms.py:40 meinberlin/apps/projects/views.py:41
 msgid "Organisation"
 msgstr "Organisation"
 
@@ -1810,43 +1819,38 @@ msgstr "Anfrage senden"
 msgid "Request was send."
 msgstr "Initiatorenanfrage wurde gesendet."
 
-#: meinberlin/apps/kiezkasse/models.py:17
+#: meinberlin/apps/kiezkasse/models.py:16
 msgid "Own contribution to the proposal"
 msgstr "Eigene Beteiligung an dem Vorschlag"
 
-#: meinberlin/apps/kiezkasse/models.py:18
+#: meinberlin/apps/kiezkasse/models.py:17
 msgid "I want to contribute to the proposal myself."
 msgstr "Ich möchte mich an der Umsetzung des Vorschlags beteiligen."
 
-#: meinberlin/apps/kiezkasse/phases.py:17
+#: meinberlin/apps/kiezkasse/phases.py:16
 msgid "Request budgeting."
 msgstr "Nutzerinnen und Nutzer können Vorschläge mit Budgetangabe machen"
 
-#: meinberlin/apps/kiezkasse/phases.py:18
-#: meinberlin/apps/kiezkasse/phases.py:35
-#: meinberlin/apps/kiezkasse/phases.py:52
+#: meinberlin/apps/kiezkasse/phases.py:17
+#: meinberlin/apps/kiezkasse/phases.py:33
+#: meinberlin/apps/kiezkasse/phases.py:49
 msgid "kiezkasse"
 msgstr "Kiezkasse"
 
-#: meinberlin/apps/kiezkasse/phases.py:33
+#: meinberlin/apps/kiezkasse/phases.py:31
 msgid "Get feedback for budgeting requests through rates and comments."
 msgstr ""
 "Erhalten Sie durch Bewertungen und Kommentare Rückmeldung zu den Vorschlägen."
 
-#: meinberlin/apps/kiezkasse/phases.py:49
+#: meinberlin/apps/kiezkasse/phases.py:46
 msgid "Request and feedback phase"
 msgstr "Vorschlags- und Rückmeldungsphase"
 
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:4
-#, python-format
-msgid "Moderate %(name)s"
-msgstr "%(name)s moderieren"
-
-#: meinberlin/apps/mapideas/exports.py:10
+#: meinberlin/apps/mapideas/exports.py:11
 msgid "Ideas with location and comments"
 msgstr "Ideen mit Verortung und Kommentaren"
 
-#: meinberlin/apps/mapideas/forms.py:18
+#: meinberlin/apps/mapideas/forms.py:20
 #: meinberlin/apps/maptopicprio/forms.py:22
 msgid "Please locate your proposal on the map."
 msgstr "Bitte verorten Sie Ihren Vorschlag auf der Karte."
@@ -1857,7 +1861,7 @@ msgid "Where can your idea be located on a map?"
 msgstr "Wo kann ihre Idee auf der Karte verortet werden?"
 
 #: meinberlin/apps/mapideas/models.py:12
-#: meinberlin/apps/maptopicprio/models.py:37 meinberlin/apps/plans/models.py:32
+#: meinberlin/apps/maptopicprio/models.py:37 meinberlin/apps/plans/models.py:33
 msgid ""
 "Click inside marked area on the map to set a marker. Drag and drop the "
 "marker to change its place. Alternatively you can use the search field to "
@@ -1873,21 +1877,21 @@ msgid "Label of the ideas location"
 msgstr "Bezeichnung des markierten Ortes"
 
 #: meinberlin/apps/mapideas/models.py:22
-#: meinberlin/apps/maptopicprio/models.py:47 meinberlin/apps/plans/models.py:41
+#: meinberlin/apps/maptopicprio/models.py:47 meinberlin/apps/plans/models.py:42
 msgid "This could be an address or the name of a landmark."
 msgstr "Dies kann sowohl eine Adresse als auch eine Ortsbezeichnung sein."
 
-#: meinberlin/apps/mapideas/phases.py:17
+#: meinberlin/apps/mapideas/phases.py:16
 msgid "Create new ideas located on a map."
 msgstr "Anlegen neuer Ideen, verortet auf einer Karte."
 
-#: meinberlin/apps/mapideas/phases.py:32
+#: meinberlin/apps/mapideas/phases.py:30
 msgid "Create new ideas located on a map and comment them."
 msgstr ""
 "Anlegen neuer Ideen, verortet auf einer Karte, diese können kommentiert "
 "werden."
 
-#: meinberlin/apps/mapideas/phases.py:80
+#: meinberlin/apps/mapideas/phases.py:75
 msgid ""
 "Create new ideas located on a map and get feedback through rates and "
 "comments."
@@ -1909,7 +1913,7 @@ msgstr "Sie können einen vordefinierten Bereich auswählen."
 msgid "Places"
 msgstr "Orte"
 
-#: meinberlin/apps/maptopicprio/exports.py:10
+#: meinberlin/apps/maptopicprio/exports.py:11
 msgid "Places with comments"
 msgstr "Orte mit Kommentaren"
 
@@ -1921,16 +1925,16 @@ msgstr "Verortung auf der Karte"
 msgid "Place label"
 msgstr "Ortsbezeichnung"
 
-#: meinberlin/apps/maptopicprio/phases.py:16
-#: meinberlin/apps/topicprio/phases.py:16
+#: meinberlin/apps/maptopicprio/phases.py:15
+#: meinberlin/apps/topicprio/phases.py:15
 msgid "Prioritize phase"
 msgstr "Phasen priorisieren"
 
-#: meinberlin/apps/maptopicprio/phases.py:17
+#: meinberlin/apps/maptopicprio/phases.py:16
 msgid "Prioritize and comment places located on a map."
 msgstr "Orte priorisieren und kommentieren"
 
-#: meinberlin/apps/maptopicprio/phases.py:18
+#: meinberlin/apps/maptopicprio/phases.py:17
 msgid "place prioritization"
 msgstr "Ortspriorisierung"
 
@@ -2019,7 +2023,7 @@ msgstr "Senden"
 
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:4
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html:33
-#: meinberlin/templates/meinberlin_dashboard2/base_dashboard.html:52
+#: meinberlin/templates/a4dashboard/base_dashboard.html:52
 msgid "Newsletter"
 msgstr "Newsletter"
 
@@ -2102,7 +2106,7 @@ msgid "The image will be shown in the newsletter in the banner."
 msgstr "Das Bild wird in der Kopfzeile von Newslettern angezeigt."
 
 #: meinberlin/apps/organisations/templates/meinberlin_organisations/organisation_form.html:4
-#: meinberlin/templates/meinberlin_dashboard2/base_dashboard.html:48
+#: meinberlin/templates/a4dashboard/base_dashboard.html:48
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -2118,15 +2122,15 @@ msgstr "Organisation erfolgreich aktualisiert"
 msgid "Please locate the plan on the map."
 msgstr "Bitte verorten Sie das Vorhaben auf der Karte."
 
-#: meinberlin/apps/plans/models.py:31
+#: meinberlin/apps/plans/models.py:32
 msgid "Where can the plan be located on a map?"
 msgstr "Wo kann das Vorhaben auf der Karte verortet werden?"
 
-#: meinberlin/apps/plans/models.py:40
+#: meinberlin/apps/plans/models.py:41
 msgid "Label of the location"
 msgstr ""
 
-#: meinberlin/apps/plans/models.py:46
+#: meinberlin/apps/plans/models.py:47
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:58
 #: meinberlin/templates/email_base.html:60
 #: meinberlin/templates/email_base.txt:14
@@ -2135,36 +2139,36 @@ msgstr ""
 msgid "Contact"
 msgstr "Kontakt"
 
-#: meinberlin/apps/plans/models.py:48
+#: meinberlin/apps/plans/models.py:49
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:54
 msgid "Cost"
 msgstr ""
 
-#: meinberlin/apps/plans/models.py:50
+#: meinberlin/apps/plans/models.py:51
 msgid "Type of plan"
 msgstr ""
 
-#: meinberlin/apps/plans/models.py:52
+#: meinberlin/apps/plans/models.py:53
 msgid "Idea"
 msgstr ""
 
-#: meinberlin/apps/plans/models.py:53
+#: meinberlin/apps/plans/models.py:54
 msgid "Planning"
 msgstr ""
 
-#: meinberlin/apps/plans/models.py:54
+#: meinberlin/apps/plans/models.py:55
 msgid "Implementation"
 msgstr ""
 
-#: meinberlin/apps/plans/models.py:55
+#: meinberlin/apps/plans/models.py:56
 msgid "Done"
 msgstr ""
 
-#: meinberlin/apps/plans/models.py:56
+#: meinberlin/apps/plans/models.py:57
 msgid "Stopped"
 msgstr ""
 
-#: meinberlin/apps/plans/models.py:61
+#: meinberlin/apps/plans/models.py:62
 msgid "Still undecided"
 msgstr ""
 
@@ -2185,7 +2189,7 @@ msgstr "Vorhaben hinzufügen"
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:9
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:4
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:20
-#: meinberlin/templates/meinberlin_dashboard2/base_project_list.html:27
+#: meinberlin/templates/a4dashboard/base_project_list.html:27
 msgid "Plans"
 msgstr "Vorhaben"
 
@@ -2195,10 +2199,6 @@ msgstr "Vorhaben hinzufügen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:23
 msgid "back to list of plans"
-msgstr ""
-
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:50
-msgid "Reference Number"
 msgstr ""
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:63
@@ -2227,19 +2227,23 @@ msgstr ""
 msgid "Edit plan"
 msgstr "Vorhaben bearbeiten"
 
-#: meinberlin/apps/plans/views.py:173
+#: meinberlin/apps/plans/views.py:113
+msgid "Project Link"
+msgstr ""
+
+#: meinberlin/apps/plans/views.py:202
 msgid "The plan has been deleted"
 msgstr "Vorhaben wurde gelöscht"
 
-#: meinberlin/apps/polls/phases.py:16
+#: meinberlin/apps/polls/phases.py:15
 msgid "Voting phase"
 msgstr "Abstimmungsphase"
 
-#: meinberlin/apps/polls/phases.py:17
+#: meinberlin/apps/polls/phases.py:16
 msgid "Cast votes and discuss the poll."
 msgstr "Abgeben von Stimmen und kommentieren der Umfrage."
 
-#: meinberlin/apps/polls/phases.py:18
+#: meinberlin/apps/polls/phases.py:17
 msgid "polls"
 msgstr "Umfragen"
 
@@ -2278,7 +2282,7 @@ msgstr "Die Auswahl muss zu der richtigen Frage gehören."
 msgid "Edit container settings"
 msgstr "Projektsammlung bearbeiten"
 
-#: meinberlin/apps/projectcontainers/dashboard.py:64
+#: meinberlin/apps/projectcontainers/dashboard.py:63
 msgid "Select projects"
 msgstr "Projekte auswählen"
 
@@ -2329,7 +2333,7 @@ msgstr ""
 
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_list.html:4
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_list.html:9
-#: meinberlin/templates/meinberlin_dashboard2/base_project_list.html:21
+#: meinberlin/templates/a4dashboard/base_project_list.html:21
 msgid "Containers"
 msgstr "Projektsammlungen"
 
@@ -2382,11 +2386,11 @@ msgstr "Teilnehmer*innen"
 msgid "Moderators"
 msgstr "Moderator*innen"
 
-#: meinberlin/apps/projects/forms.py:46 meinberlin/apps/projects/views.py:340
+#: meinberlin/apps/projects/forms.py:46 meinberlin/apps/projects/views.py:341
 msgid "Invite users via email"
 msgstr "Nutzer*innen via E-Mail einladen"
 
-#: meinberlin/apps/projects/forms.py:51 meinberlin/apps/projects/views.py:341
+#: meinberlin/apps/projects/forms.py:51 meinberlin/apps/projects/views.py:342
 msgid "Invite users via file upload"
 msgstr "Nutzer*innen aus Datei einladen"
 
@@ -2415,6 +2419,21 @@ msgstr "Beteiligung möglich bis zum %(date)s"
 #, python-format
 msgid "Participation starting from %(date)s"
 msgstr "Beteiligung fängt am %(date)s an"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:7
+msgid "Email"
+msgstr "E-Mail"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:9
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:21
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:22
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:8
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:19
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:20
+#: meinberlin/templates/account/email.html:35
+#: meinberlin/templates/socialaccount/connections.html:31
+msgid "Remove"
+msgstr "Entfernen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:29
 msgid "None"
@@ -2465,6 +2484,10 @@ msgstr "Phasen anzeigen"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:93
 msgid "Hide phase overview"
 msgstr "Phasen verstecken"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/users_from_email_form.html:26
+msgid "Add"
+msgstr "Hinzufügen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/users_from_email_form.html:44
 msgid "Upload"
@@ -2570,40 +2593,40 @@ msgstr "Ausstehende Einladungen"
 msgid "Edit Participants"
 msgstr "Teilnehmer*innen bearbeiten"
 
-#: meinberlin/apps/projects/views.py:60
+#: meinberlin/apps/projects/views.py:61
 msgid "Year"
 msgstr "Jahr"
 
-#: meinberlin/apps/projects/views.py:63
+#: meinberlin/apps/projects/views.py:64
 msgid "Any"
 msgstr "Alle"
 
-#: meinberlin/apps/projects/views.py:228
+#: meinberlin/apps/projects/views.py:229
 msgid "Invitation succesfully removed."
 msgstr "Einladung erfolgreich entfernt."
 
-#: meinberlin/apps/projects/views.py:269
+#: meinberlin/apps/projects/views.py:270
 msgid "Following users already accepted an invitation: "
 msgstr ""
 "Die folgenden Nutzerinnen und Nutzer haben bereits eine Einladung angenommen:"
 
-#: meinberlin/apps/projects/views.py:277
+#: meinberlin/apps/projects/views.py:278
 msgid "Following users are already invited: "
 msgstr "Die folgenden Nutzerinnen und Nutzer wurden bereits eingeladen:"
 
-#: meinberlin/apps/projects/views.py:320
+#: meinberlin/apps/projects/views.py:321
 msgid "Invite moderators via email"
 msgstr "Moderator*innen via E-Mail einladen"
 
-#: meinberlin/apps/projects/views.py:321
+#: meinberlin/apps/projects/views.py:322
 msgid "Invite moderators via file upload"
 msgstr "Moderator*innen aus Datei einladen"
 
-#: meinberlin/apps/projects/views.py:323
+#: meinberlin/apps/projects/views.py:324
 msgid "Moderator successfully removed."
 msgstr "Moderator*in erfolgreich entfernt."
 
-#: meinberlin/apps/projects/views.py:343
+#: meinberlin/apps/projects/views.py:344
 msgid "Participant successfully removed."
 msgstr "Teilnehmer*in erfolgreich entfernt."
 
@@ -2641,15 +2664,15 @@ msgstr "Service-Konto Login"
 msgid "Topics"
 msgstr "Themen"
 
-#: meinberlin/apps/topicprio/exports.py:10
+#: meinberlin/apps/topicprio/exports.py:11
 msgid "Topics with comments"
 msgstr "Themen mit Kommentaren"
 
-#: meinberlin/apps/topicprio/phases.py:17
+#: meinberlin/apps/topicprio/phases.py:16
 msgid "Prioritize and comment topics."
 msgstr "Themen priorisieren und kommentieren"
 
-#: meinberlin/apps/topicprio/phases.py:18
+#: meinberlin/apps/topicprio/phases.py:17
 msgid "topic prioritization"
 msgstr "Themenpriorisierung"
 
@@ -2782,6 +2805,66 @@ msgstr "Nutzerkonto Einstellungen"
 msgid "Rich text editor"
 msgstr "Rich Text Editor"
 
+#: meinberlin/config/settings/base.py:421
+msgid "Pin without icon"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:422
+msgid "Diamond"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:423
+msgid "Triangle up"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:424
+msgid "Triangle down"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:425
+msgid "Ellipse"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:426
+msgid "Semi circle"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:427
+msgid "Hexagon"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:428
+msgid "Rhomboid"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:429
+msgid "Star"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:430
+msgid "Square"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:431
+msgid "Octothorpe"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:432
+msgid "Rectangle"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:433
+msgid "Circle"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:434
+msgid "Right triangle"
+msgstr ""
+
+#: meinberlin/config/settings/base.py:435
+msgid "Zigzag"
+msgstr ""
+
 #: meinberlin/templates/404.html:7
 msgid "This page could not be found."
 msgstr "Diese Seite konnte nicht gefunden werden."
@@ -2789,6 +2872,26 @@ msgstr "Diese Seite konnte nicht gefunden werden."
 #: meinberlin/templates/500.html:7
 msgid "Internal server error."
 msgstr "Interner Serverfehler."
+
+#: meinberlin/templates/a4dashboard/base_dashboard.html:13
+msgid "Organisations"
+msgstr "Organisationen"
+
+#: meinberlin/templates/a4dashboard/base_dashboard.html:44
+#: meinberlin/templates/a4dashboard/base_project_list.html:6
+#: meinberlin/templates/a4dashboard/base_project_list.html:9
+#: meinberlin/templates/header.html:17
+msgid "Participation projects"
+msgstr "Beteiligungsprojekte"
+
+#: meinberlin/templates/a4dashboard/base_dashboard_project.html:48
+msgid "Add Module"
+msgstr "Modul hinzufügen"
+
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:55
+#: meinberlin/templates/a4dashboard/includes/project_list_item.html:57
+msgid "more"
+msgstr "mehr"
 
 #: meinberlin/templates/a4images/image_upload_widget.html:29
 msgid ""
@@ -3001,15 +3104,6 @@ msgstr "meinBerlin ist die Plattform für Beteiligung, betrieben durch"
 msgid "Menu"
 msgstr "Menü"
 
-#: meinberlin/templates/meinberlin_dashboard2/base_dashboard.html:13
-msgid "Organisations"
-msgstr "Organisationen"
-
-#: meinberlin/templates/meinberlin_dashboard2/includes/project_list_item.html:55
-#: meinberlin/templates/meinberlin_dashboard2/includes/project_list_item.html:57
-msgid "more"
-msgstr "mehr"
-
 #: meinberlin/templates/portal_header.html:10
 msgid "Portal Navigation"
 msgstr "Navigation des Portals berlin.de"
@@ -3074,6 +3168,9 @@ msgstr ""
 "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem %(site_name)s "
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
+
+#~ msgid "Location"
+#~ msgstr "Ort"
 
 #~ msgid ""
 #~ "This short description will appear on the header of the module and "

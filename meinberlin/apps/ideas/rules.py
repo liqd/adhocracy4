@@ -24,8 +24,13 @@ rules.add_perm(
     module_predicates.is_allowed_comment_item
 )
 
-
 rules.add_perm(
     'meinberlin_ideas.change_idea',
     module_predicates.is_allowed_change_item
+)
+
+rules.add_perm(
+    'meinberlin_ideas.moderate_idea',
+    module_predicates.is_context_moderator |
+    module_predicates.is_context_initiator
 )
