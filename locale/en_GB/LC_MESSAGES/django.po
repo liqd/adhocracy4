@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-15 15:30+0100\n"
+"POT-Creation-Date: 2018-03-20 15:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -636,7 +636,7 @@ msgid "End date can not be smallerthan the start date."
 msgstr "End date can not be smallerthan the start date."
 
 #: adhocracy4/projects/admin.py:8 meinberlin/apps/adminlog/models.py:36
-#: meinberlin/apps/newsletters/forms.py:35 meinberlin/apps/plans/views.py:112
+#: meinberlin/apps/newsletters/forms.py:35 meinberlin/apps/plans/views.py:109
 msgid "Project"
 msgstr "Project"
 
@@ -2142,11 +2142,11 @@ msgstr ""
 msgid "Edit plan"
 msgstr "Edit plan"
 
-#: meinberlin/apps/plans/views.py:113
+#: meinberlin/apps/plans/views.py:110
 msgid "Project Link"
 msgstr "Project Link"
 
-#: meinberlin/apps/plans/views.py:202
+#: meinberlin/apps/plans/views.py:199
 msgid "The plan has been deleted"
 msgstr "The plan has been deleted"
 
