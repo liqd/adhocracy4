@@ -5,7 +5,7 @@
     <p>{{ object.date }}</p>
 
     <div>
-        <a href="{% url 'offlineevent-detail' object.pk %}" type="button" class="btn btn-gray btn-sm">
+        <a href="{{ object.get_absolute_url }}" type="button" class="btn btn-gray btn-sm">
             <i class="fa fa-eye" aria-hidden="true"></i>
             {% trans 'View' %}
         </a>

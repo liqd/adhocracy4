@@ -8,9 +8,19 @@ from django.views import generic
 from adhocracy4.dashboard import mixins
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.dashboard import signals as dashboard_signals
+from adhocracy4.rules import mixins as rules_mixins
 
 from . import forms, models
 from .mixins import OfflineEventFormMixin
+
+
+class OfflineEventDetailView(ProjectMixin,
+                             rules_mixins.PermissionRequiredMixin,
+                             generic.DetailView):
+    model = models.OfflineEvent
+    get_context_from_object = True
+    template_name = 'a4offlineevents/offlineevent_detail.html'
+    permission_required = 'a4offlineevents.view_offlineevent'
 
 
 class OfflineEventListView(ProjectMixin,

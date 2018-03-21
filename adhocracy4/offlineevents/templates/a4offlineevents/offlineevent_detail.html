@@ -1,0 +1,27 @@
+{% extends 'a4projects/project_detail.html' %}
+{% load i18n %}
+
+{% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
+
+{% block content %}
+    <h2>{{ object.name }}</h2>
+    <p>{{ object.date|date:"SHORT_DATETIME_FORMAT"}}</p>
+
+    {{ object.description|safe }}
+
+    {% if object.documents.count > 0 %}
+        <hr />
+        <h3>{% trans 'Downloads' %}</h3>
+        <ul>
+        {% for document in object.documents.all %}
+            <li>
+                <a href="{{ document.document.url }}" download>{{ document.title }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if object.description == '' and object.documents.count == 0 %}
+        <p>{% trans 'No documentation has been provided yet' %}</p>
+    {% endif %}
+{% endblock %}

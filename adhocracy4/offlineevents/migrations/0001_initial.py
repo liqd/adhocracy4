@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
                 ('modified', models.DateTimeField(blank=True, editable=False, null=True)),
                 ('title', models.CharField(max_length=256)),
                 ('document', adhocracy4.files.fields.ConfiguredFileField('offlineevents', help_prefix='The document may be downloaded from the event page.', upload_to='offlineevents/documents', verbose_name='Document')),
-                ('offlineevent', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='a4offlineevents.OfflineEvent')),
+                ('offlineevent', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='documents', to='a4offlineevents.OfflineEvent')),
             ],
             options={
                 'abstract': False,

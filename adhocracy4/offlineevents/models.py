@@ -1,6 +1,7 @@
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
@@ -29,6 +30,9 @@ class OfflineEvent(base.TimeStampedModel):
             self.description, 'image-editor')
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse('offlineevent-detail', kwargs=dict(slug=self.slug))
+
 
 class OfflineEventDocument(base.TimeStampedModel):
     title = models.CharField(max_length=256)
@@ -40,4 +44,5 @@ class OfflineEventDocument(base.TimeStampedModel):
         ),
         upload_to='offlineevents/documents',
     )
-    offlineevent = models.ForeignKey(OfflineEvent)
+    offlineevent = models.ForeignKey(OfflineEvent,
+                                     related_name='documents')
