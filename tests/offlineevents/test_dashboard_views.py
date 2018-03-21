@@ -33,7 +33,6 @@ def test_offlineevent_list(client, project, offline_event_factory,
 def test_offlineevent_create(client, project, user, staff_user):
     offline_event_create_url = reverse('a4dashboard:offlineevent-create',
                                        kwargs={'project_slug': project.slug})
-
     data = {
         'name': 'offlineevent name',
         'description': 'offlineevent description<script>',
@@ -53,6 +52,9 @@ def test_offlineevent_create(client, project, user, staff_user):
     assert response.status_code == 403
 
     client.login(username=staff_user, password='password')
+    response = client.get(offline_event_create_url)
+    assert response.status_code == 200
+
     response = client.post(offline_event_create_url, data)
     assert redirect_target(response) == 'offlineevent-list'
 
@@ -87,6 +89,9 @@ def test_offlineevent_update(client, offline_event, user, staff_user):
     assert response.status_code == 403
 
     client.login(username=staff_user, password='password')
+    response = client.get(offline_event_update_url)
+    assert response.status_code == 200
+
     response = client.post(offline_event_update_url, data)
     assert redirect_target(response) == 'offlineevent-list'
 
@@ -112,6 +117,9 @@ def test_offlineevent_delete(client, offline_event, user, staff_user):
     assert response.status_code == 403
 
     client.login(username=staff_user, password='password')
+    response = client.get(offline_event_delete_url)
+    assert response.status_code == 200
+
     response = client.post(offline_event_delete_url, data)
     assert redirect_target(response) == 'offlineevent-list'
 
