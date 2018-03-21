@@ -309,3 +309,28 @@ def test_last_active_module_property(project, module_factory, phase_factory):
     # Freeze after every phase
     with freeze_time(phase4.end_date):
         assert project.last_active_module == module2
+
+
+@pytest.mark.django_db
+def test_sorted_phases_with_offlineevents_property(module,
+                                                   phase_factory,
+                                                   offline_event_factory):
+    project = module.project
+    phase = phase_factory(
+        module=module, start_date=parse('2013-03-01 18:00:00 UTC'))
+    offline_event = offline_event_factory(
+        project=project, date=parse('2013-03-02 18:00:00 UTC'))
+
+    assert [phase, offline_event] == project.sorted_phases_with_offlineevents
+
+
+@pytest.mark.django_db
+def test_sorted_modules_with_offlineevents_property(module,
+                                                    phase_factory,
+                                                    offline_event_factory):
+    project = module.project
+    phase_factory(module=module, start_date=parse('2013-03-01 18:00:00 UTC'))
+    offline_event = offline_event_factory(
+        project=project, date=parse('2013-03-02 18:00:00 UTC'))
+
+    assert [module, offline_event] == project.sorted_modules_with_offlineevents

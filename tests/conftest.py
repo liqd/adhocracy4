@@ -5,6 +5,7 @@ from rest_framework.test import APIClient
 from tests.images import factories as img_factories
 from tests.apps.locations import factories as location_factories
 from tests.apps.questions import factories as q_factories
+from tests.offlineevents import factories as offlineevent_factories
 from adhocracy4.test import factories
 from adhocracy4.test import helpers
 
@@ -34,3 +35,4 @@ register(factories.ModuleFactory)
 register(factories.PhaseFactory)
 register(q_factories.QuestionFactory)
 register(location_factories.LocationFactory)
+register(offlineevent_factories.OfflineEventFactory)
