@@ -13,3 +13,5 @@ Development
    config to BLEACH_LIST and CKEDITOR_CONFIGS.
  - Introducing DistinctOrderingFilter to ensure that every queryset gets
    a distinct ordering
+ - Introduction of ConfiguredFileFields requires projects to update settings
+   FILE_ALIASES and IMAGE_ALIASES.
