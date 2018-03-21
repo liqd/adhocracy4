@@ -1,3 +1,6 @@
+from itertools import chain
+from functools import cmp_to_key
+
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
@@ -10,8 +13,9 @@ from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.models import base
 from adhocracy4 import transforms as html_transforms
 from adhocracy4.images import fields
-from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
+
+from adhocracy4.offlineevents import comparators
 
 
 class ProjectManager(models.Manager):
@@ -216,6 +220,20 @@ class Project(base.TimeStampedModel):
     @property
     def past_phases(self):
         return self.phases.past_phases()
+
+    @property
+    def sorted_phases_with_offlineevents(self):
+        phases = self.phases.all()
+        events = self.offlineevent_set.all()
+        return sorted(chain(phases, events),
+                      key=cmp_to_key(comparators.cmp_phase_offlineevent))
+
+    @property
+    def sorted_modules_with_offlineevents(self):
+        modules = self.module_set.all()
+        events = self.offlineevent_set.all()
+        return sorted(chain(modules, events),
+                      key=cmp_to_key(comparators.cmp_module_offlineevent))
 
     @property
     def has_started(self):
