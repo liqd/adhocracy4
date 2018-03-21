@@ -5,8 +5,6 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
-from adhocracy4.modules import models as modules_models
-
 from . import content
 from .validators import validate_content
 
@@ -65,7 +63,7 @@ class Phase(models.Model):
     description = models.TextField(max_length=300,
                                    verbose_name=_('Description'))
     type = models.CharField(max_length=128, validators=[validate_content])
-    module = models.ForeignKey(modules_models.Module, on_delete=models.CASCADE)
+    module = models.ForeignKey('a4modules.Module', on_delete=models.CASCADE)
     start_date = models.DateTimeField(blank=True, null=True,
                                       verbose_name=_('Start date'))
     end_date = models.DateTimeField(blank=True, null=True,

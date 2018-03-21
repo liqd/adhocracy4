@@ -10,6 +10,8 @@ from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.models import base
 from adhocracy4 import transforms as html_transforms
 from adhocracy4.images import fields
+from adhocracy4.modules.models import Module
+from adhocracy4.phases.models import Phase
 
 
 class ProjectManager(models.Manager):
@@ -205,8 +207,7 @@ class Project(base.TimeStampedModel):
 
     @property
     def phases(self):
-        from adhocracy4.phases import models as phase_models
-        return phase_models.Phase.objects.filter(module__project=self)
+        return Phase.objects.filter(module__project=self)
 
     @property
     def future_phases(self):

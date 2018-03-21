@@ -4,7 +4,6 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.models import base
-from adhocracy4.projects import models as project_models
 
 
 class Module(models.Model):
@@ -27,7 +26,7 @@ class Module(models.Model):
     )
     weight = models.PositiveIntegerField()
     project = models.ForeignKey(
-        project_models.Project, on_delete=models.CASCADE)
+        'a4projects.Project', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['weight']
