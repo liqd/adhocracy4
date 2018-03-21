@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-15 15:30+0100\n"
+"POT-Creation-Date: 2018-03-20 16:04+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -55,7 +55,7 @@ msgstr "Organisationsverwaltung"
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:6
 msgid "Project Settings"
-msgstr ""
+msgstr "Projekteinstellungen"
 
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
@@ -340,11 +340,11 @@ msgstr "Kategorie"
 
 #: adhocracy4/categories/forms.py:37
 msgid "Category name"
-msgstr ""
+msgstr "Kategoriename"
 
 #: adhocracy4/categories/forms.py:38
 msgid "Category icon"
-msgstr ""
+msgstr "Kategorieicon"
 
 #: adhocracy4/comments/models.py:35
 msgid "Comment"
@@ -454,7 +454,7 @@ msgid "All"
 msgstr "Alle"
 
 #: adhocracy4/dashboard/filter.py:20
-#: meinberlin/apps/plans/models.py:61 meinberlin/apps/projects/views.py:54
+#: meinberlin/apps/plans/models.py:66 meinberlin/apps/projects/views.py:54
 msgid "No"
 msgstr "Nein"
 
@@ -465,7 +465,7 @@ msgstr "Nein"
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:13
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:12
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
-#: meinberlin/apps/plans/models.py:60
+#: meinberlin/apps/plans/models.py:65
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
 #: meinberlin/apps/projects/views.py:55
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
@@ -689,7 +689,7 @@ msgstr "Name"
 #: adhocracy4/phases/models.py:66
 #: meinberlin/apps/ideas/models.py:27
 #: meinberlin/apps/offlineevents/models.py:17
-#: meinberlin/apps/plans/models.py:50
+#: meinberlin/apps/plans/models.py:55
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -699,7 +699,8 @@ msgstr "Das Enddatum kann nicht vor dem Startdatum liegen."
 
 #: adhocracy4/projects/admin.py:8
 #: meinberlin/apps/adminlog/models.py:36
-#: meinberlin/apps/newsletters/forms.py:35 meinberlin/apps/plans/views.py:112
+#: meinberlin/apps/newsletters/forms.py:35 meinberlin/apps/plans/models.py:33
+#: meinberlin/apps/plans/views.py:109
 msgid "Project"
 msgstr "Projekt"
 
@@ -1861,7 +1862,7 @@ msgid "Where can your idea be located on a map?"
 msgstr "Wo kann ihre Idee auf der Karte verortet werden?"
 
 #: meinberlin/apps/mapideas/models.py:12
-#: meinberlin/apps/maptopicprio/models.py:37 meinberlin/apps/plans/models.py:33
+#: meinberlin/apps/maptopicprio/models.py:37 meinberlin/apps/plans/models.py:36
 msgid ""
 "Click inside marked area on the map to set a marker. Drag and drop the "
 "marker to change its place. Alternatively you can use the search field to "
@@ -1877,7 +1878,7 @@ msgid "Label of the ideas location"
 msgstr "Bezeichnung des markierten Ortes"
 
 #: meinberlin/apps/mapideas/models.py:22
-#: meinberlin/apps/maptopicprio/models.py:47 meinberlin/apps/plans/models.py:42
+#: meinberlin/apps/maptopicprio/models.py:47 meinberlin/apps/plans/models.py:45
 msgid "This could be an address or the name of a landmark."
 msgstr "Dies kann sowohl eine Adresse als auch eine Ortsbezeichnung sein."
 
@@ -2122,15 +2123,19 @@ msgstr "Organisation erfolgreich aktualisiert"
 msgid "Please locate the plan on the map."
 msgstr "Bitte verorten Sie das Vorhaben auf der Karte."
 
-#: meinberlin/apps/plans/models.py:32
+#: meinberlin/apps/plans/models.py:35
 msgid "Where can the plan be located on a map?"
 msgstr "Wo kann das Vorhaben auf der Karte verortet werden?"
 
-#: meinberlin/apps/plans/models.py:41
+#: meinberlin/apps/plans/models.py:44
 msgid "Label of the location"
-msgstr ""
+msgstr "Name des Ortes"
 
-#: meinberlin/apps/plans/models.py:47
+#: meinberlin/apps/plans/models.py:50
+msgid "District"
+msgstr "Bezirk"
+
+#: meinberlin/apps/plans/models.py:52
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:58
 #: meinberlin/templates/email_base.html:60
 #: meinberlin/templates/email_base.txt:14
@@ -2139,38 +2144,44 @@ msgstr ""
 msgid "Contact"
 msgstr "Kontakt"
 
-#: meinberlin/apps/plans/models.py:49
+#: meinberlin/apps/plans/models.py:54
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:54
 msgid "Cost"
-msgstr ""
-
-#: meinberlin/apps/plans/models.py:51
-msgid "Type of plan"
-msgstr ""
-
-#: meinberlin/apps/plans/models.py:53
-msgid "Idea"
-msgstr ""
-
-#: meinberlin/apps/plans/models.py:54
-msgid "Planning"
-msgstr ""
-
-#: meinberlin/apps/plans/models.py:55
-msgid "Implementation"
-msgstr ""
+msgstr "Kosten"
 
 #: meinberlin/apps/plans/models.py:56
-msgid "Done"
-msgstr ""
+msgid "Type of plan"
+msgstr "Plantyp"
 
-#: meinberlin/apps/plans/models.py:57
-msgid "Stopped"
-msgstr ""
+#: meinberlin/apps/plans/models.py:58
+msgid "Idea"
+msgstr "Idee"
+
+#: meinberlin/apps/plans/models.py:59
+msgid "Planning"
+msgstr "Geplant"
+
+#: meinberlin/apps/plans/models.py:60
+msgid "Implementation"
+msgstr "in Umsetzung"
+
+#: meinberlin/apps/plans/models.py:61
+msgid "Done"
+msgstr "abgeschlossen"
 
 #: meinberlin/apps/plans/models.py:62
+msgid "Stopped"
+msgstr "angehalten"
+
+#: meinberlin/apps/plans/models.py:67
 msgid "Still undecided"
-msgstr ""
+msgstr "Noch nicht entschieden"
+
+#: meinberlin/apps/plans/models.py:68
+#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:89
+msgid "Participation"
+msgstr "Beteiligung"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:4
 msgid "Confirm Plan Deletion"
@@ -2199,19 +2210,19 @@ msgstr "Vorhaben hinzufügen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:23
 msgid "back to list of plans"
-msgstr ""
+msgstr "Zurück zur Vorhabenliste"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:63
 msgid "Go to participation"
-msgstr ""
+msgstr "Zur Beteiligung"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:65
 msgid "Participation is planned, but has not started yet."
-msgstr ""
+msgstr "Beteiligung ist geplant, hat aber noch nicht begonnen."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:23
 msgid "Welcome to the list of plans for the state of Berlin!"
-msgstr ""
+msgstr "Willkommen auf der Vorhabenliste von Berlin!"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:24
 msgid ""
@@ -2222,16 +2233,24 @@ msgid ""
 "participation is planned. All currently active participation projects can "
 "also be found on <a href=\"/\" target=\"_blank\">mein.berlin.de</a>."
 msgstr ""
+"Wo wird derzeit in Berlin was geplant und wo haben Bürger*innen die Möglichkeit, "
+"sich aktiv einzubringen? Die Vorhabenliste bietet eine Übersicht über die Vorhaben "
+"und Projekte des Landes Berlins. Die Symbole in der Karte geben einen Hinweis auf den "
+"Bearbeitungsstand des jeweiligen Vorhabens - von der Idee bis zur Umsetzung. Außerdem können "
+"Sie die Vorhabenliste filtern nach den Möglichkeiten, sich im Rahmen von Verfahren zur "
+"Bürger*innenbeteiligung aktiv einzubringen. Über den Bezirksfilter und den Zoom finden Sie "
+"die Vorhaben in Ihrer Nachbarschaft. Mit Klick auf die Vorhaben neben der Karte erhalten Sie "
+"weitere Informationen, z.B. zu den Zielen und Ansprechpartner*innen der jeweiligen Vorhaben."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:7
 msgid "Edit plan"
 msgstr "Vorhaben bearbeiten"
 
-#: meinberlin/apps/plans/views.py:113
+#: meinberlin/apps/plans/views.py:110
 msgid "Project Link"
-msgstr ""
+msgstr "Link zum Projekt"
 
-#: meinberlin/apps/plans/views.py:202
+#: meinberlin/apps/plans/views.py:199
 msgid "The plan has been deleted"
 msgstr "Vorhaben wurde gelöscht"
 
@@ -2355,11 +2374,6 @@ msgstr "%(active_count)s von %(count)s"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:59
 msgid "projects are currently active."
 msgstr "Projekten sind aktuell aktiv."
-
-#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:89
-msgid "Participation"
-msgstr "Beteiligung"
 
 #: meinberlin/apps/projectcontainers/views.py:19
 msgid "Container successfully created."
@@ -2807,63 +2821,63 @@ msgstr "Rich Text Editor"
 
 #: meinberlin/config/settings/base.py:421
 msgid "Pin without icon"
-msgstr ""
+msgstr "Pin ohne Icon"
 
 #: meinberlin/config/settings/base.py:422
 msgid "Diamond"
-msgstr ""
+msgstr "Diamant"
 
 #: meinberlin/config/settings/base.py:423
 msgid "Triangle up"
-msgstr ""
+msgstr "Dreieck Spitze oben"
 
 #: meinberlin/config/settings/base.py:424
 msgid "Triangle down"
-msgstr ""
+msgstr "Dreieck Spitze unten"
 
 #: meinberlin/config/settings/base.py:425
 msgid "Ellipse"
-msgstr ""
+msgstr "Ellipse"
 
 #: meinberlin/config/settings/base.py:426
 msgid "Semi circle"
-msgstr ""
+msgstr "Halbkreis"
 
 #: meinberlin/config/settings/base.py:427
 msgid "Hexagon"
-msgstr ""
+msgstr "Sechseck"
 
 #: meinberlin/config/settings/base.py:428
 msgid "Rhomboid"
-msgstr ""
+msgstr "Parallelogramm"
 
 #: meinberlin/config/settings/base.py:429
 msgid "Star"
-msgstr ""
+msgstr "Stern"
 
 #: meinberlin/config/settings/base.py:430
 msgid "Square"
-msgstr ""
+msgstr "Quadrat"
 
 #: meinberlin/config/settings/base.py:431
 msgid "Octothorpe"
-msgstr ""
+msgstr "Raute"
 
 #: meinberlin/config/settings/base.py:432
 msgid "Rectangle"
-msgstr ""
+msgstr "Viereck"
 
 #: meinberlin/config/settings/base.py:433
 msgid "Circle"
-msgstr ""
+msgstr "Kreis"
 
 #: meinberlin/config/settings/base.py:434
 msgid "Right triangle"
-msgstr ""
+msgstr "Dreieck Spitze rechts"
 
 #: meinberlin/config/settings/base.py:435
 msgid "Zigzag"
-msgstr ""
+msgstr "ZickZack"
 
 #: meinberlin/templates/404.html:7
 msgid "This page could not be found."
