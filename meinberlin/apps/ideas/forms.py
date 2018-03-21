@@ -6,10 +6,11 @@ from . import models
 
 
 class IdeaForm(CategorizableFieldMixin, forms.ModelForm):
+    right_of_use = forms.BooleanField()
 
     class Meta:
         model = models.Idea
-        fields = ['name', 'description', 'category']
+        fields = ['name', 'description', 'image', 'category']
 
 
 class IdeaModerateForm(forms.ModelForm):

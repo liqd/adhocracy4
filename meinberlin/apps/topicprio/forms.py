@@ -13,4 +13,4 @@ class TopicForm(CategorizableFieldMixin, forms.ModelForm):
 
     class Meta:
         model = models.Topic
-        fields = ['name', 'description', 'category']
+        fields = ['name', 'description', 'image', 'category']

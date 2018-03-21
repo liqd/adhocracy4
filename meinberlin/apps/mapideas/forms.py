@@ -21,7 +21,8 @@ class MapIdeaForm(CategorizableFieldMixin, forms.ModelForm):
 
     class Meta:
         model = models.MapIdea
-        fields = ['name', 'description', 'category', 'point', 'point_label']
+        fields = ['name', 'description', 'image', 'category',
+                  'point', 'point_label']
 
 
 class MapIdeaModerateForm(forms.ModelForm):

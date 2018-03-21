@@ -23,7 +23,8 @@ class MapTopicForm(CategorizableFieldMixin, forms.ModelForm):
 
     class Meta:
         model = models.MapTopic
-        fields = ['name', 'description', 'category', 'point', 'point_label']
+        fields = ['name', 'description', 'image', 'category',
+                  'point', 'point_label']
         labels = {
             'point': _('Locate the place on a map'),
             'point_label': _('Place label'),
