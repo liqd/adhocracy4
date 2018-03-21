@@ -400,12 +400,14 @@ A4_ACTIONABLES = (
 )
 
 A4_AUTO_FOLLOWABLES = (
-    ('a4comments', 'comment'),
-    ('meinberlin_ideas', 'idea'),
-    ('meinberlin_mapideas', 'mapidea'),
-    ('meinberlin_budgeting', 'proposal'),
-    ('meinberlin_kiezkasse', 'proposal'),
-    ('meinberlin_polls', 'vote'),  # TODO: really?
+    # Disabled to keep current behaviour: the auto follow functionality did
+    # not work until 2018/03/21 due to a adhocracy4 bug
+    # ('a4comments', 'comment'),
+    # ('meinberlin_ideas', 'idea'),
+    # ('meinberlin_mapideas', 'mapidea'),
+    # ('meinberlin_budgeting', 'proposal'),
+    # ('meinberlin_kiezkasse', 'proposal'),
+    # ('meinberlin_polls', 'vote'),
 )
 
 A4_CATEGORIZABLE = (
