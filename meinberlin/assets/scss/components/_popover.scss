@@ -10,7 +10,7 @@
     margin-right: 5px;
 }
 
-#idea--popover__input {
+.popover__input textarea {
     background-color: $popover-remark-bg;
     border: 0;
     font-style: italic;
@@ -21,6 +21,6 @@
     }
 }
 
-#idea--popover__btn {
+.item-detail__actions [data-toggle="popover"] {
     position: relative;
 }
