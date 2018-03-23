@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from meinberlin.apps.contrib.emails import Email
 
 
@@ -16,6 +18,7 @@ class OfficeWorkerNotification(Email):
         context = super().get_context()
         context['module'] = self.object.module
         context['project'] = self.object.module.project
+        context['contact_email'] = settings.CONTACT_EMAIL
         return context
 
 
@@ -29,4 +32,5 @@ class SubmitterConfirmation(Email):
         context = super().get_context()
         context['module'] = self.object.module
         context['project'] = self.object.module.project
+        context['contact_email'] = settings.CONTACT_EMAIL
         return context

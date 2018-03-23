@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n static module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags contrib_tags %}
+{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags contrib_tags thumbnail %}
 
 {% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
 
@@ -34,7 +34,10 @@
             </div>
 
             <div class="item-detail__content">
-                {{ object.description | richtext }}
+                <div class="item-detail__basic-content">
+                    <img class="item-detail__image" src="{% thumbnail object.image 'item_image' %}">
+                    {{ object.description | richtext }}
+                </div>
 
                 {% block additional_content %}{% endblock %}
             </div>

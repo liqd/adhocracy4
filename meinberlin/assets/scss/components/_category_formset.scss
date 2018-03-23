@@ -1,10 +1,4 @@
-@media (min-width: $breakpoint) {
-    .formset {
-        @include grid-width(6);
-    }
-}
-
-.formset__form {
+.category-formset__form__category {
     position: relative;
 
     input {
@@ -13,21 +7,26 @@
     }
 }
 
-.formset__template {
+.category-formset__form,
+.category-formset__btn {
+    @extend .l-tiles-2;
+}
+
+.category-formset__template {
     display: none;
 }
 
-.formset__delete {
+.category-formset__delete {
     @include sr-only();
 
-    & ~ .formset__delete-label {
+    & ~ .category-formset__delete-label {
         position: absolute;
         right: 0.5em;
         top: 0.6em;
         color: $gray;
     }
 
-    &:focus ~ .formset__delete-label {
+    &:focus ~ .category-formset__delete-label {
         @include fake-focus;
     }
 

@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.translation import ugettext
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
@@ -15,7 +16,6 @@ from adhocracy4.exports import views as export_views
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.maps.models import MapPreset
-from meinberlin.apps.maps.models import MapPresetCategory
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
 
@@ -42,10 +42,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
     def get_districts(self):
         try:
-            berlin = MapPresetCategory.objects.get(name='Berlin')
-            return MapPreset.objects\
-                .filter(category=berlin)\
-                .exclude(name='Berlin')
+            return MapPreset.objects.filter(
+                category__name='Bezirke - Berlin')
         except ObjectDoesNotExist:
             return []
 
@@ -96,7 +94,7 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
 
     permission_required = 'meinberlin_plans.list_plan'
     model = models.Plan
-    fields = ['title', 'organisation', 'project', 'contact', 'cost',
+    fields = ['title', 'organisation', 'contact', 'district', 'cost',
               'description', 'category', 'status', 'participation']
     html_fields = ['description']
 
@@ -106,13 +104,17 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
     def get_base_filename(self):
         return 'plans_%s' % timezone.now().strftime('%Y%m%dT%H%M%S')
 
+    def get_virtual_fields(self, virtual):
+        virtual = super().get_virtual_fields(virtual)
+        virtual['project'] = ugettext('Project')
+        virtual['project_link'] = ugettext('Project Link')
+        return virtual
+
     def get_organisation_data(self, item):
         return item.organisation.name
 
-    def get_project_data(self, item):
-        if item.project:
-            return item.project.name
-        return ''
+    def get_district_data(self, item):
+        return item.district.name
 
     def get_contact_data(self, item):
         return unescape_and_strip_html(item.contact)
@@ -125,6 +127,17 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
 
     def get_description_data(self, item):
         return unescape_and_strip_html(item.description)
+
+    def get_project_data(self, item):
+        if item.project:
+            return item.project.name
+        return ''
+
+    def get_project_link_data(self, item):
+        if item.project:
+            return self.request.build_absolute_uri(
+                item.project.get_absolute_url())
+        return ''
 
 
 class DashboardPlanListView(a4dashboard_mixins.DashboardBaseMixin,

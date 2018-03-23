@@ -1,0 +1,28 @@
+.select-dropdown__btn {
+    @extend .btn--light;
+
+    i {
+        position: absolute;
+        top: 0.8em;
+        right: 0.6em;
+    }
+
+    text-align: left;
+    font-weight: normal;
+}
+
+.select-dropdown__btn__label__icon,
+.select-dropdown__item__icon {
+    height: 1.6em;
+    vertical-align: middle;
+    margin-right: 0.6em;
+}
+
+.select-icon {
+    .select-dropdown__item:first-child {
+        padding-top: 0.8em;
+        padding-bottom: 0.8em;
+        color: $text-color-gray;
+        background-color: $bg-secondary;
+    }
+}

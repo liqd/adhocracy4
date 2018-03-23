@@ -16,10 +16,10 @@ const statusNames = [
 ]
 
 const statusIconNames = [
-  'lightbulb-o',
-  'cogs',
-  'play',
-  'check',
+  'idee',
+  'planung',
+  'implementiert',
+  'beendet',
   'pause'
 ]
 
@@ -29,27 +29,31 @@ const participationNames = [
   django.gettext('Still undecided')
 ]
 
-const icons = statusIconNames.map((cls, i) => L.divIcon({
-  className: 'map-list-combined__icon',
-  html: `<i class="fa fa-${cls}" title="${statusNames[i]}" aria-hidden="true"></i>`,
-  iconSize: [20, 20]
+const statusIconPins = statusIconNames.map((cls, i) => L.icon({
+  iconUrl: `/static/plan_icons/pins/${cls}_pin.svg`,
+  shadowUrl: '/static/images/map_shadow_01.svg',
+  iconSize: [30, 36],
+  iconAnchor: [15, 36],
+  shadowSize: [40, 54],
+  shadowAnchor: [20, 54],
+  zIndexOffset: 1000
 }))
 
 const activeIcon = L.icon({
-  iconUrl: '/static/images/map_pin_01_2x.png',
-  shadowUrl: '/static/images/map_shadow_01_2x.png',
-  iconSize: [30, 45],
-  iconAnchor: [15, 45],
+  iconUrl: '/static/images/map_pin_active.svg',
+  shadowUrl: '/static/images/map_shadow_01.svg',
+  iconSize: [30, 36],
+  iconAnchor: [15, 36],
   shadowSize: [40, 54],
   shadowAnchor: [20, 54],
   zIndexOffset: 1000
 })
 
 const addressIcon = L.icon({
-  iconUrl: '/static/images/address_search_marker.png',
-  shadowUrl: '/static/images/map_shadow_01_2x.png',
-  iconSize: [30, 45],
-  iconAnchor: [15, 45],
+  iconUrl: '/static/images/address_search_marker.svg',
+  shadowUrl: '/static/images/map_shadow_01.svg',
+  iconSize: [30, 36],
+  iconAnchor: [15, 36],
   shadowSize: [40, 54],
   shadowAnchor: [20, 54],
   zIndexOffset: 1000
@@ -297,7 +301,7 @@ class PlansMap extends React.Component {
     L.geoJSON(this.props.districts, {style: districtStyle}).addTo(this.map)
 
     this.markers = this.props.items.map((item, i) => {
-      let marker = L.marker(pointToLatLng(item.point), {icon: icons[item.status]})
+      let marker = L.marker(pointToLatLng(item.point), {icon: statusIconPins[item.status]})
       this.cluster.addLayer(marker)
       marker.on('click', () => {
         this.onSelect(i)
@@ -439,7 +443,7 @@ class PlansMap extends React.Component {
                 <li>
                   <button
                     type="button"
-                    className="dropdown-item select-item"
+                    className="dropdown-item"
                     value="-1"
                     onClick={this.onStatusFilterChange.bind(this)}>
                     {django.gettext('All')}
@@ -451,11 +455,13 @@ class PlansMap extends React.Component {
                       <li key={i}>
                         <button
                           type="button"
-                          className="dropdown-item select-item"
+                          className="dropdown-item"
                           value={i}
                           onClick={this.onStatusFilterChange.bind(this)}>
-                          <i className={`select-item-indicator fa fa-${statusIconNames[i]}`} aria-hidden="true" />
-                          {name}
+                          <img class="dropdown-item__icon" src={`/static/plan_icons/icons/${statusIconNames[i]}_icon.svg`} />
+                          <span class="dropdown-item__label">
+                            {name}
+                          </span>
                         </button>
                       </li>
                     )
@@ -529,6 +535,10 @@ class PlansMap extends React.Component {
                 }
               </ul>
             </div>
+            &nbsp;
+            <div className="control-bar__right">
+              <a href={this.props.exportUrl} title={django.gettext('Export Excel')} class="btn btn--light"><i class="fa fa-download" aria-label={django.gettext('Export Excel')} /></a>
+            </div>
           </div>
         </div>
 
@@ -554,7 +564,8 @@ const init = function () {
     let bounds = JSON.parse(element.getAttribute('data-bounds'))
     let districts = JSON.parse(element.getAttribute('data-districts'))
     let districtnames = JSON.parse(element.getAttribute('data-district-names'))
-    ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} />, element)
+    let exportUrl = element.getAttribute('data-export-url')
+    ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} exportUrl={exportUrl} />, element)
   })
 }
 

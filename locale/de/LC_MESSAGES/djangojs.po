@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 15:02+0100\n"
+"POT-Creation-Date: 2018-03-15 15:31+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -192,6 +192,11 @@ msgstr "Entfolgen"
 msgid "Follow"
 msgstr "Folgen"
 
+#: adhocracy4/reports/static/reports/ReportModal.jsx:57
+#: adhocracy4/reports/static/reports/ReportModal.jsx:57
+msgid "Thank you! We are taking care of it."
+msgstr ""
+
 #: adhocracy4/reports/static/reports/ReportModal.jsx:65
 #: adhocracy4/reports/static/reports/ReportModal.jsx:65
 msgid "Your message here"
@@ -352,80 +357,84 @@ msgstr ""
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:11
 msgid "Idea"
-msgstr ""
+msgstr "Idee"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:12
 msgid "Planning"
-msgstr ""
+msgstr "Geplant"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:13
 msgid "Implementation"
-msgstr ""
+msgstr "in Umsetzung"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:14
 msgid "Done"
-msgstr ""
+msgstr "abgeschlossen"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:15
 msgid "Stopped"
-msgstr ""
+msgstr "angehalten"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:27
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:28
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:29
 msgid "Still undecided"
-msgstr ""
+msgstr "Noch nicht entschieden"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:381
+#: meinberlin/apps/plans/assets/plans_map.jsx:385
 msgid "Nothing to show"
-msgstr ""
+msgstr "Keine Ergebnisse"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:390
+#: meinberlin/apps/plans/assets/plans_map.jsx:394
 msgid "Filter bar"
-msgstr ""
+msgstr "Filter Leiste"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:397
+#: meinberlin/apps/plans/assets/plans_map.jsx:401
 msgid "Address Search"
-msgstr ""
+msgstr "Adresssuche"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:398
-#: meinberlin/apps/plans/assets/plans_map.jsx:399
-#: meinberlin/apps/plans/assets/plans_map.jsx:427
-#: meinberlin/apps/plans/assets/plans_map.jsx:428
-#: meinberlin/apps/plans/assets/plans_map.jsx:429
+#: meinberlin/apps/plans/assets/plans_map.jsx:402
+#: meinberlin/apps/plans/assets/plans_map.jsx:403
+#: meinberlin/apps/plans/assets/plans_map.jsx:431
+#: meinberlin/apps/plans/assets/plans_map.jsx:432
+#: meinberlin/apps/plans/assets/plans_map.jsx:433
 msgid "Search"
-msgstr ""
+msgstr "Suche"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:435
+#: meinberlin/apps/plans/assets/plans_map.jsx:439
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:435
-#: meinberlin/apps/plans/assets/plans_map.jsx:445
-#: meinberlin/apps/plans/assets/plans_map.jsx:469
-#: meinberlin/apps/plans/assets/plans_map.jsx:479
-#: meinberlin/apps/plans/assets/plans_map.jsx:502
-#: meinberlin/apps/plans/assets/plans_map.jsx:512
+#: meinberlin/apps/plans/assets/plans_map.jsx:439
+#: meinberlin/apps/plans/assets/plans_map.jsx:449
+#: meinberlin/apps/plans/assets/plans_map.jsx:475
+#: meinberlin/apps/plans/assets/plans_map.jsx:485
+#: meinberlin/apps/plans/assets/plans_map.jsx:508
+#: meinberlin/apps/plans/assets/plans_map.jsx:518
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:469
+#: meinberlin/apps/plans/assets/plans_map.jsx:475
 msgid "Participation"
-msgstr ""
+msgstr "Beteiligung"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:502
+#: meinberlin/apps/plans/assets/plans_map.jsx:508
 msgid "District"
-msgstr ""
+msgstr "Bezirk"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:537
+#: meinberlin/apps/plans/assets/plans_map.jsx:540
+msgid "Export Excel"
+msgstr "Excel herunterladen"
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:547
 msgid "Address could not be found"
-msgstr ""
+msgstr "Keine Adresse gefunden"
 
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:24
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:27

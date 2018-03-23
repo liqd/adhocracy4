@@ -39,3 +39,15 @@
     top: -8px;
     right: -5px;
 }
+
+.item-detail__basic-content {
+    @include clearfix;
+    margin-bottom: 1em;
+}
+
+.item-detail__image {
+    display: inline-block;
+    float: right;
+    margin-bottom: 0.5em;
+    margin-left: 0.5em;
+}
