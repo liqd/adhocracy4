@@ -3,11 +3,13 @@
 {% spaceless %}
 <div>
   <div class="popover__input">
-     <input type="text"
+     <textarea type="text"
             name="remark"
-            {% if remark %}value="{{ remark }}"
-            {% else %}value="{% trans 'Write down your remark!' %}"
-            {% endif %}
+            role="textbox"
+            contenteditable="true"
+            aria-multiline="true"
+            max-length=200
+            placeholder="{% trans 'Write down your remark!' %}"
             id="idea--popover__input"
       />
   </div>
