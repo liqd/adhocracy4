@@ -1,9 +1,9 @@
 .popover-content {
-    background-color: #faf5d1;
+    background-color: $popover-remark-bg;
     font-style: italic;
     padding: 15px;
-    color: #999;
-    box-shadow: 0px 0px 40px 0px #999;
+    color: $popover-remark-color;
+    box-shadow: 0 0 40px 0 $shadow;
 }
 
 .popover__hint .fa {
@@ -11,8 +11,16 @@
 }
 
 #idea--popover__input {
-    background-color: #faf5d1;
+    background-color: $popover-remark-bg;
     border: 0;
     font-style: italic;
-    color: #999;
+    color: $popover-remark-color;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+#idea--popover__btn {
+    position: relative;
 }
