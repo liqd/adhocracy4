@@ -10,6 +10,7 @@ from .serializers import ModeratorRemarkSerializer
 
 class ModeratorRemarkViewSet(AllowPUTAsCreateMixin,
                              mixins.UpdateModelMixin,
+                             mixins.RetrieveModelMixin,
                              viewsets.GenericViewSet):
 
     queryset = ModeratorRemark.objects
