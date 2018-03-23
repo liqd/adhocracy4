@@ -11,7 +11,7 @@ class IdeaForm(CategorizableFieldMixin, forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.instance.name != '' and self.instance.image:
+        if self.instance.image:
             self.initial['right_of_use'] = True
 
     def clean(self):

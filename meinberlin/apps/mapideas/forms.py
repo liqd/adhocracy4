@@ -17,7 +17,7 @@ class MapIdeaForm(CategorizableFieldMixin, forms.ModelForm):
             polygon=self.settings.polygon)
         self.fields['point'].error_messages['required'] = _(
             'Please locate your proposal on the map.')
-        if self.instance.name != '' and self.instance.image:
+        if self.instance.image:
             self.initial['right_of_use'] = True
 
     def clean(self):
