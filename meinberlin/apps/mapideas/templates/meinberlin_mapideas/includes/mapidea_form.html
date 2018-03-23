@@ -7,13 +7,17 @@
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point %}
-
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point_label %}
-
     {% if form.show_categories %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.category %}
     {% endif %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
+
+    {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.right_of_use %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point_label %}
 
     <div class="u-spacer-bottom">
         <input type="submit" class="btn btn--primary" value="{% trans 'Save'%}" />
