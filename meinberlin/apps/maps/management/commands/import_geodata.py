@@ -26,7 +26,7 @@ class Command(BaseCommand):
         self._import_regions()
 
     def _import_districts(self):
-        category = self._preset_category('Berlin')
+        category = self._preset_category('Bezirke - Berlin')
         tmpfile = '/tmp/bezirke.json'
         url = 'http://fbinter.stadt-berlin.de/fb/' \
               'wfs/geometry/senstadt/re_bezirke/'

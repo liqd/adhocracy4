@@ -29,7 +29,7 @@
     "style-loader": "0.20.3",
     "webpack": "3.11.0",
     "webpack-merge": "4.1.2",
-    "adhocracy4": "liqd/adhocracy4#a6ed7d241a53844fd5338e84091697411b5d7e69",
+    "adhocracy4": "liqd/adhocracy4#f62d466610162729ade2f616f4881b669e0180d2",
     "bootstrap": "4.0.0-alpha.6",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
     "font-awesome": "4.7.0",
@@ -63,6 +63,9 @@
     "stylelint-declaration-strict-value": "^1.0.3"
   },
   "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "build:dev": "webpack --config webpack.dev.js",
+    "watch": "webpack --config webpack.dev.js --watch",
     "precommit": "make lint-quick"
   },
   "browserslist": "last 3 versions, ie >= 10"

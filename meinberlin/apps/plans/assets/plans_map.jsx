@@ -337,8 +337,6 @@ class PlansMap extends React.Component {
       // scroll list
       if (this.state.selected !== null && this.isInFilter(this.props.items[this.state.selected])) {
         $(this.listElement).find('.selected').scrollintoview()
-      } else {
-        this.listElement.scrollTo(0, 0)
       }
     }
   }
@@ -535,6 +533,10 @@ class PlansMap extends React.Component {
                 }
               </ul>
             </div>
+            &nbsp;
+            <div className="control-bar__right">
+              <a href={this.props.exportUrl} title={django.gettext('Export Excel')} class="btn btn--light"><i class="fa fa-download" aria-label={django.gettext('Export Excel')} /></a>
+            </div>
           </div>
         </div>
 
@@ -560,7 +562,8 @@ const init = function () {
     let bounds = JSON.parse(element.getAttribute('data-bounds'))
     let districts = JSON.parse(element.getAttribute('data-districts'))
     let districtnames = JSON.parse(element.getAttribute('data-district-names'))
-    ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} />, element)
+    let exportUrl = element.getAttribute('data-export-url')
+    ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} exportUrl={exportUrl} />, element)
   })
 }
 

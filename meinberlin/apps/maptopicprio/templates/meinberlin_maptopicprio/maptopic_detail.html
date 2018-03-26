@@ -1,5 +1,5 @@
 {% extends "meinberlin_contrib/item_detail.html" %}
-{% load i18n rules react_comments module_tags react_ratings wagtailcore_tags maps_tags categories_tags static %}
+{% load i18n rules react_comments module_tags react_ratings wagtailcore_tags maps_tags categories_tags static thumbnail %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
@@ -39,7 +39,10 @@
 
 
             <div class="item-detail__content">
-                {{ object.description | richtext }}
+                <div class="item-detail__basic-content">
+                    <img class="item-detail__image" src="{% thumbnail object.image 'item_image' %}">
+                    {{ object.description | richtext }}
+                </div>
 
                 {% if object.point %}
                     {% get_category_pin_url object as pin_url %}

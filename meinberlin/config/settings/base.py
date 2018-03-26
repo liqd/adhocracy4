@@ -205,7 +205,7 @@ IMAGE_ALIASES = {
     'tileimage': {'min_resolution': (500, 300)},
     'logo': {'min_resolution': (200, 50)},
     'avatar': {'min_resolution': (200, 200)},
-    'idea_image': {'min_resolution': (800, 200)},
+    'idea_image': {'min_resolution': (300, 200)},
 }
 
 THUMBNAIL_ALIASES = {
@@ -213,6 +213,8 @@ THUMBNAIL_ALIASES = {
         'heroimage': {'size': (1500, 500)},
         'project_thumbnail': {'size': (520, 330)},
         'logo': {'size': (160, 160), 'background': 'white'},
+        'item_image': {'size': (300, 0), 'crop': 'scale'},
+        'map_thumbnail': {'size': (200, 100), 'crop': 'smart'},
     }
 }
 
@@ -400,12 +402,14 @@ A4_ACTIONABLES = (
 )
 
 A4_AUTO_FOLLOWABLES = (
-    ('a4comments', 'comment'),
-    ('meinberlin_ideas', 'idea'),
-    ('meinberlin_mapideas', 'mapidea'),
-    ('meinberlin_budgeting', 'proposal'),
-    ('meinberlin_kiezkasse', 'proposal'),
-    ('meinberlin_polls', 'vote'),  # TODO: really?
+    # Disabled to keep current behaviour: the auto follow functionality did
+    # not work until 2018/03/21 due to a adhocracy4 bug
+    # ('a4comments', 'comment'),
+    # ('meinberlin_ideas', 'idea'),
+    # ('meinberlin_mapideas', 'mapidea'),
+    # ('meinberlin_budgeting', 'proposal'),
+    # ('meinberlin_kiezkasse', 'proposal'),
+    # ('meinberlin_polls', 'vote'),
 )
 
 A4_CATEGORIZABLE = (
@@ -457,3 +461,7 @@ CSP_IMG_SRC = ("'self'", "data:", "*.tile.openstreetmap.org", "https://maps.berl
 CSP_CONNECT_SRC = ("'self'", "https://bplan-prod.liqd.net")
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", )
 CSP_REPORT_ONLY = True
+
+SECURE_BROWSER_XSS_FILTER = True
+SESSION_COOKIE_HTTPONLY = True
+SECURE_CONTENT_TYPE_NOSNIFF = True

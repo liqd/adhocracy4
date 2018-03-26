@@ -1,4 +1,4 @@
-VIRTUAL_ENV ?= .env
+VIRTUAL_ENV ?= venv
 NODE_BIN = node_modules/.bin
 
 all: help
@@ -13,13 +13,14 @@ help:
 	@echo usage:
 	@echo
 	@echo "  make install         -- install dev setup"
-	@echo "  make build           -- build js and css and create new po and mo files"
 	@echo "  make lint            -- lint all project files"
+	@echo "  make lint-quick      -- lint all files staged in git"
 	@echo "  make server          -- start a dev server"
 	@echo "  make watch           -- start a dev server and rebuild js and css files on changes"
 	@echo "  make test            -- run all test cases with pytest"
 	@echo "  make makemessages    -- create new po files from the source"
 	@echo "  make compilemessages -- create new mo files from the translated po files"
+	@echo "  make release         -- build everything required for a release"
 	@echo
 
 .PHONY: install
@@ -29,14 +30,6 @@ install:
 	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
 
-.PHONY: webpack
-webpack:
-	$(NODE_BIN)/webpack --config webpack.dev.js
-
-.PHONY: webpack-prod
-webpack-prod:
-	$(NODE_BIN)/webpack --config webpack.prod.js
-
 .PHONY: makemessages
 makemessages:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django
@@ -45,21 +38,18 @@ makemessages:
 	msgen locale/en_GB/LC_MESSAGES/django.po -o locale/en_GB/LC_MESSAGES/django.po
 	msgen locale/en_GB/LC_MESSAGES/djangojs.po -o locale/en_GB/LC_MESSAGES/djangojs.po
 
-.PHONY: makemessages
+.PHONY: compilemessages
 compilemessages:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
-.PHONY: build
-build: webpack compilemessages
-
 .PHONY: server
 server:
-	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8000
+	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8003
 
 .PHONY: watch
 watch:
-	$(NODE_BIN)/webpack --config webpack.dev.js --watch & \
-	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8000
+	npm run watch & \
+	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8003
 
 .PHONY: lint
 lint:
@@ -80,3 +70,12 @@ test-lastfailed:
 .PHONY: test-clean
 test-clean:
 	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
+
+.PHONY: release
+release: export DJANGO_SETTINGS_MODULE ?= meinberlin.config.settings.build
+release:
+	npm install --silent
+	npm run build
+	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements.txt -q
+	$(VIRTUAL_ENV)/bin/python3 manage.py compilemessages -v0
+	$(VIRTUAL_ENV)/bin/python3 manage.py collectstatic --noinput -v0
