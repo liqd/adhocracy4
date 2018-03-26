@@ -4,60 +4,28 @@
     {% csrf_token %}
     {{ upload_forms.management_form }}
 
+
     {% include 'a4forms/includes/form_field.html' with field=form.name %}
     {% include 'a4forms/includes/form_field.html' with field=form.description %}
     {% include 'a4forms/includes/form_field.html' with field=form.date %}
 
     <hr />
 
-    {# FIXME: opin specific are classes below as the upload is not used in other projects yet #}
-    {% with upload_forms.max_num as fileupload_max %}
     <h3>{% trans 'Downloads' %}</h3>
-    <p>{% blocktrans %} You can upload a maximum of {{ fileupload_max }} documents. Allowed formats are {{ allowed_file_types }}. {% endblocktrans %}</p>
-    {% for form in upload_forms %}
-    <div class="well">
-        {% for field in form.visible_fields %}
-        {% if field.name == 'title' or field.name == 'document' %}
-            <div class="form-group {% if field.errors %} has-error{% endif %}">
-                <label>
-                    {{ field.label }}
-                </label>
-                {% if field.errors %}
-                    {{ field|add_class:"form-control form-error" }}
-                {% else %}
-                    {{ field|add_class:"form-control"}}
-                {% endif %}
-                {{ field.errors }}
-            </div>
-        {% endif %}
-        {% endfor %}
+    {% for upload_form in upload_forms %}
+        <div>
+            {% include 'a4forms/includes/form_field.html' with field=upload_form.title %}
+            {% include 'a4forms/includes/form_field.html' with field=upload_form.document %}
 
-        {% if form.instance.id %}
-        <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <div class="form-group {% if form.DELETE.errors %} has-error{% endif %}">
-                    <label>
-                        {{ form.DELETE.label }}
-                    </label>
-                    {% if form.DELETE.errors %}
-                        {{ form.DELETE|add_class:"form-control form-error" }}
-                    {% else %}
-                        {{ form.DELETE|add_class:"form-control"}}
-                    {% endif %}
-                    {{ form.DELETE.errors }}
-                </div>
-            </div>
+            {% if upload_forms.can_delete %}
+                {% include 'a4forms/includes/form_checkbox_field.html' with field=upload_form.DELETE %}
+            {% endif %}
         </div>
+
+        {% if forloop.last and forloop.counter < upload_forms.max_num %}
+            <p class='form-help-text'>{% trans 'You can add additional files after saving the current file.' %}</p>
         {% endif %}
-        {% if forloop.last and forloop.counter < fileupload_max %}
-        <p class='form-help-text'>{% trans 'You can add additional files after saving the current file.' %}</p>
-        {% endif %}
-        {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-        {% endfor %}
-    </div>
     {% endfor %}
-    {% endwith %}
 
     <input type="submit" class="btn btn--primary" value="{% trans 'Save'%}" />
     <a href="{{ cancel }}" class="btn btn--light">{% trans 'Cancel'%}</a>

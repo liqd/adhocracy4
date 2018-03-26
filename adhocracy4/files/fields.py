@@ -58,20 +58,26 @@ class ConfiguredFileField(django_fields.FileField):
         return c
 
     @property
-    def _help_text(self):
-        config = self.file_config
+    def allowed_file_types(self):
+        return ', '.join(name
+                         for name, _
+                         in self.file_config['fileformats'])
 
+    @property
+    def max_size_mb(self):
+        return int(self.file_config['max_size']/(10**6))
+
+    @property
+    def _help_text(self):
         help_text = format_lazy(
             _(
                 '{help_prefix} Allowed file formats are '
-                '{fileformats_str}. The file size should be max. '
+                '{allowed_file_types}. The file size should be max. '
                 '{max_size_mb} MB.'
             ),
             help_prefix=self.help_prefix,
-            max_size_mb=int(self.file_config['max_size']/(10**6)),
-            fileformats_str=', '.join(
-                name for name, _ in config['fileformats']
-            ),
-            **config
+            max_size_mb=self.max_size_mb,
+            allowed_file_types=self.allowed_file_types,
+            **self.file_config
         )
         return help_text
