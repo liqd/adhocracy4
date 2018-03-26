@@ -1,7 +1,7 @@
 git+git://github.com/liqd/adhocracy4.git@f62d466610162729ade2f616f4881b669e0180d2#egg=adhocracy4
 bcrypt==3.1.4
 django-capture-tag==1.0
-django_csp==3.3
+django_csp==3.4
 requests==2.18.4
 wagtail==1.13.1 # pyup: <2.0
 zeep==2.5.0
@@ -19,7 +19,7 @@ djangorestframework==3.7.7
 easy-thumbnails==2.5
 html5lib==1.0.1
 jsonfield==2.0.2
-python-dateutil==2.7.0
+python-dateutil==2.7.1
 python-magic==0.4.15
 rules==1.3
 XlsxWriter==1.0.2
