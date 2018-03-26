@@ -20,7 +20,8 @@ var api = (function () {
     pollvote: baseURL + 'polls/question/$questionId/vote/',
     follow: baseURL + 'follows/',
     comment: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comments/',
-    rating: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/ratings/'
+    rating: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/ratings/',
+    moderatorremark: baseURL + 'moderatorremarks/'
   }
 
   function _sendRequest (endpoint, id, options, data, contentType) {
@@ -145,7 +146,19 @@ var api = (function () {
           type: 'POST'
         }, data)
       }
-    }
+    },
+    moderatorremark: {
+      get: function (slug) {
+        return _sendRequest('moderatorremark', slug, {
+          type: 'GET'
+        }, {})
+      },
+      change: function (data, slug) {
+        return _sendRequest('moderatorremark', slug, {
+          type: 'PUT'
+        }, data)
+      }
+    },
   }
 }())
 module.exports = api
