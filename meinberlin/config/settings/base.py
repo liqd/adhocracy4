@@ -112,6 +112,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE = (
+    'django_cloudflare_push.middleware.push_middleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
