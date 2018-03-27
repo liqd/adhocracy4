@@ -13,6 +13,7 @@ from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
 from meinberlin.apps.moderatorfeedback.models import Moderateable
+from meinberlin.apps.moderatorremark import models as remark_models
 
 
 class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
@@ -38,6 +39,10 @@ class AbstractIdea(module_models.Item, Moderateable):
                                related_query_name='idea',
                                object_id_field='object_pk')
     category = CategoryField()
+    remark = GenericRelation(remark_models.ModeratorRemark,
+                             related_query_name='idea',
+                             content_type_field='item_content_type',
+                             object_id_field='item_object_id')
 
     objects = IdeaQuerySet.as_manager()
 
