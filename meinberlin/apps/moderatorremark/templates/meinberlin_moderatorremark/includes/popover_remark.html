@@ -33,9 +33,6 @@
             data-template="<div class='popover' role='tooltip'><div class='popover-content'></div></div>"
     >
         <i class="fa fa-comment" aria-label="Remark"></i>
-
-        {% if remark.remark %}
-          <i class="fa fa-check-circle item-detail__notify" aria-label="Remark-Notification"></i>
-        {% endif %}
+        <i class="fa fa-check-circle item-detail__notify {{ remark|yesno:",d-none" }}" aria-label="Remark-Notification"></i>
     </button>
 </div>

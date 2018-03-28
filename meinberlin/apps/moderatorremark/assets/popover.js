@@ -36,6 +36,7 @@ $(function () {
       response.done(remark => {
         remarkId = remark.id
         remarkVal = remark.remark
+        $btn.find('.item-detail__notify').show()
       })
     }
   })
