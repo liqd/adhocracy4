@@ -7,14 +7,17 @@ from adhocracy4.models.base import UserGeneratedContentModel
 
 
 class ModeratorRemark(UserGeneratedContentModel):
-    item_content_type = models.ForeignKey(ContentType, null=True,
-                                          blank=True)
+    item_content_type = models.ForeignKey(
+        ContentType,
+        on_delete=models.CASCADE
+    )
     item_object_id = models.PositiveIntegerField()
-    item = GenericForeignKey('item_content_type', 'item_object_id')
+    item = GenericForeignKey(
+        ct_field='item_content_type', fk_field='item_object_id')
 
     remark = models.CharField(max_length=200,
                               verbose_name=_('Remark'),
                               blank=True)
 
     class Meta:
-        unique_together = ('item_content_type', 'item_object_id', 'remark')
+        unique_together = ('item_content_type', 'item_object_id', 'id')

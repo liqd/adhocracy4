@@ -40,7 +40,6 @@ class AbstractIdea(module_models.Item, Moderateable):
                                object_id_field='object_pk')
     category = CategoryField()
     remark = GenericRelation(remark_models.ModeratorRemark,
-                             related_query_name='idea',
                              content_type_field='item_content_type',
                              object_id_field='item_object_id')
 
