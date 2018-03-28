@@ -61,11 +61,3 @@ def get_item_url(item, view, raises=True):
         if raises:
             raise
         return ''
-
-
-@register.simple_tag()
-def get_item_remark(item):
-    remark = item.moderatorremark_set.get_queryset().first()
-    if remark:
-        return remark.remark
-    return None

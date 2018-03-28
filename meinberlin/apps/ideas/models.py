@@ -1,6 +1,7 @@
 from autoslug import AutoSlugField
 from ckeditor.fields import RichTextField
 from django.contrib.contenttypes.fields import GenericRelation
+from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -39,15 +40,20 @@ class AbstractIdea(module_models.Item, Moderateable):
                                related_query_name='idea',
                                object_id_field='object_pk')
     category = CategoryField()
-    remark = GenericRelation(remark_models.ModeratorRemark,
-                             content_type_field='item_content_type',
-                             object_id_field='item_object_id')
 
     objects = IdeaQuerySet.as_manager()
 
     @property
     def reference_number(self):
         return '{:d}-{:05d}'.format(self.created.year, self.pk)
+
+    @property
+    def remark(self):
+        content_type = ContentType.objects.get_for_model(self)
+        return remark_models.ModeratorRemark.objects.get(
+            item_content_type=content_type,
+            item_object_id=self.id
+        )
 
     class Meta:
         abstract = True

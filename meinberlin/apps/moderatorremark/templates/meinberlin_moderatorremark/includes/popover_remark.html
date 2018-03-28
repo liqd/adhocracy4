@@ -1,0 +1,41 @@
+{% load i18n capture_tags %}
+
+{% capture as popover_content silent %}
+    <div>
+      <div class="popover__input">
+         <textarea type="text"
+                name="remark"
+                role="textbox"
+                contenteditable="true"
+                aria-multiline="true"
+                max-length=200
+                placeholder="{% trans 'Write down your remark!' %}"
+                id="idea--popover__input"
+          />
+      </div>
+      <div class="popover__hint">
+        <i class="fa fa-lock" aria-label="Private"></i>{% trans 'Remarks remain private.' %}
+      </div>
+    </div>
+{% endcapture %}
+
+<div className="dropdown dropdown--right lr-bar__right">
+    <button
+            type="button"
+            id="idea--popover__btn"
+            class="btn btn--light btn--small lr-bar__right"
+            data-toggle="popover"
+            data-container="body"
+            data-placement="bottom"
+            data-html="true"
+            data-attributes="{{ attributes }}"
+            data-content="{{ popover_content|force_escape }}"
+            data-template="<div class='popover' role='tooltip'><div class='popover-content'></div></div>"
+    >
+        <i class="fa fa-comment" aria-label="Remark"></i>
+
+        {% if remark.remark %}
+          <i class="fa fa-check-circle item-detail__notify" aria-label="Remark-Notification"></i>
+        {% endif %}
+    </button>
+</div>
