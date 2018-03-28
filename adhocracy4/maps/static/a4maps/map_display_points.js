@@ -65,7 +65,7 @@ var init = function () {
       if (feature.properties.image) {
         return '<div class="maps-popups-popup-image" style="background-image:url(' + feature.properties.image + ');"></div>'
       }
-      return '<div class="maps-popups-popup-image"></div>'
+      return '<div class="maps-popups-popup-image maps-popups-popup-no-image"></div>'
     }
 
     var defaultIcon = L.icon({
@@ -75,7 +75,7 @@ var init = function () {
       iconAnchor: [15, 36],
       shadowSize: [40, 54],
       shadowAnchor: [20, 54],
-      popupAnchor: [0, 5]
+      popupAnchor: [0, -10]
     })
 
     var cluster = L.markerClusterGroup({
@@ -91,26 +91,28 @@ var init = function () {
             shadowUrl: '/static/images/map_shadow_01.svg',
             iconSize: [30, 36],
             iconAnchor: [15, 36],
-            popupAnchor: [0, 5]
+            popupAnchor: [0, -10]
           })
         }
 
         var marker = L.marker(latlng, {icon: icon})
         cluster.addLayer(marker)
         var popupContent = getImage(feature) +
-                          '<div class="maps-popups-popup-meta">' +
-                              '<span class="map-popup-upvotes">' +
-                              feature.properties.positive_rating_count + ' <i class="fa fa-chevron-up" aria-hidden="true"></i>' +
-                              '</span>' +
-                              '<span class="map-popup-downvotes">' +
-                              feature.properties.negative_rating_count + ' <i class="fa fa-chevron-down" aria-hidden="true"></i>' +
-                              '</span>' +
-                              '<span class="map-popup-comments-count">' +
-                              feature.properties.comments_count + ' <i class="fa fa-comment-o" aria-hidden="true"></i>' +
-                              '</span>' +
-                              '</div>' +
-                          '<div class="maps-popups-popup-name">' +
-                              '<a href="' + feature.properties.url + '">' + escapeHtml(feature.properties.name) + '</a>' +
+                          '<div class="maps-popups-popup-text-content">' +
+                            '<div class="maps-popups-popup-meta">' +
+                                '<span class="map-popup-upvotes">' +
+                                feature.properties.positive_rating_count + ' <i class="fa fa-chevron-up" aria-hidden="true"></i>' +
+                                '</span>' +
+                                '<span class="map-popup-downvotes">' +
+                                feature.properties.negative_rating_count + ' <i class="fa fa-chevron-down" aria-hidden="true"></i>' +
+                                '</span>' +
+                                '<span class="map-popup-comments-count">' +
+                                feature.properties.comments_count + ' <i class="fa fa-comment-o" aria-hidden="true"></i>' +
+                                '</span>' +
+                            '</div>' +
+                            '<div class="maps-popups-popup-name">' +
+                                '<a href="' + feature.properties.url + '">' + escapeHtml(feature.properties.name) + '</a>' +
+                            '</div>' +
                           '</div>'
         marker.bindPopup(popupContent, customOptions)
         return marker
