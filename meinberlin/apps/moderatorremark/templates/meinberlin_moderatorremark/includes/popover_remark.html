@@ -19,20 +19,18 @@
     </div>
 {% endcapture %}
 
-<div className="dropdown dropdown--right lr-bar__right">
-    <button
-            type="button"
-            id="idea--popover__btn"
-            class="btn btn--light btn--small lr-bar__right"
-            data-toggle="popover"
-            data-container="body"
-            data-placement="bottom"
-            data-html="true"
-            data-attributes="{{ attributes }}"
-            data-content="{{ popover_content|force_escape }}"
-            data-template="<div class='popover' role='tooltip'><div class='popover-content'></div></div>"
-    >
-        <i class="fa fa-comment" aria-label="Remark"></i>
-        <i class="fa fa-check-circle item-detail__notify {{ remark|yesno:",d-none" }}" aria-label="Remark-Notification"></i>
-    </button>
-</div>
+<button
+        type="button"
+        id="idea--popover__btn"
+        class="btn btn--light btn--small popover__btn"
+        data-toggle="popover"
+        data-container="body"
+        data-placement="bottom"
+        data-html="true"
+        data-attributes="{{ attributes }}"
+        data-content="{{ popover_content|force_escape }}"
+        data-template="<div class='popover' role='tooltip'><div class='popover-content'></div></div>"
+>
+    <i class="fa fa-comment" aria-label="Remark"></i>
+    <i class="fa fa-check-circle popover__btn__notify {{ remark|yesno:",d-none" }}" aria-label="Remark-Notification"></i>
+</button>

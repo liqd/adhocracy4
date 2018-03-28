@@ -62,9 +62,17 @@
 
                 {% get_item_change_permission object as change_perm %}
                 {% has_perm change_perm request.user object as user_may_change %}
+                {% get_item_permission object 'moderate' as moderate_perm %}
+                {% has_perm moderate_perm request.user object as is_moderator %}
+
+
+                <div class="lr-bar__right">
+                {% if is_moderator %}
+                    {% popover_remark object %}
+                {% endif %}
 
                 {% if request.user.is_authenticated %}
-                    <div class="dropdown dropdown--right lr-bar__right">
+                    <div class="dropdown dropdown--right">
                         <button
                                 title="{% trans 'Actions' %}"
                                 type="button"
@@ -88,8 +96,6 @@
                                 </li>
                             {% endif %}
 
-                            {% get_item_permission object 'moderate' as moderate_perm %}
-                            {% has_perm moderate_perm request.user object as is_moderator %}
                             {% get_item_url object 'moderate' False as moderate_url %}
                             {% if is_moderator and moderate_url %}
                                 <li>
@@ -104,12 +110,8 @@
                             </li>
                         </ul>
                     </div>
-
-                    {% if is_moderator %}
-                        {% popover_remark object %}
-                    {% endif %}
-
                 {% endif %}
+                </div>
             </div>
         </div>
     </div>

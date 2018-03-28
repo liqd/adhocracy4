@@ -21,6 +21,14 @@
     }
 }
 
-.item-detail__actions [data-toggle="popover"] {
+.popover__btn {
     position: relative;
+    margin-right: 5px;
+}
+
+.popover__btn__notify {
+    color: $brand-primary;
+    position: absolute;
+    top: -8px;
+    right: -5px;
 }

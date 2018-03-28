@@ -33,13 +33,6 @@
     margin-bottom: 1em;
 }
 
-.item-detail__notify {
-    color: $brand-primary;
-    position: absolute;
-    top: -8px;
-    right: -5px;
-}
-
 .item-detail__basic-content {
     @include clearfix;
     margin-bottom: 1em;
