@@ -31,9 +31,6 @@ router = routers.DefaultRouter()
 router.register(r'follows', FollowViewSet, base_name='follows')
 router.register(r'reports', ReportViewSet, base_name='reports')
 router.register(r'polls', PollViewSet, base_name='polls')
-router.register(r'moderatorremarks',
-                ModeratorRemarkViewSet,
-                base_name='moderatorremarks')
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
@@ -45,6 +42,8 @@ orga_router.register(r'bplan', BplanViewSet, base_name='bplan')
 ct_router = a4routers.ContentTypeDefaultRouter()
 ct_router.register(r'comments', CommentViewSet, base_name='comments')
 ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
+ct_router.register(r'moderatorremarks', ModeratorRemarkViewSet,
+                   base_name='moderatorremarks')
 
 question_router = QuestionDefaultRouter()
 question_router.register(r'vote', VoteViewSet, base_name='vote')

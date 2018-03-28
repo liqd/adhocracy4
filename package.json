@@ -29,7 +29,7 @@
     "style-loader": "0.20.3",
     "webpack": "3.11.0",
     "webpack-merge": "4.1.2",
-    "adhocracy4": "liqd/adhocracy4#2c98f02d101d985594a6641b4260c803fce9fcb2",
+    "adhocracy4": "liqd/adhocracy4#b6adcd9c5e1ecc205ed7b83085fa9191c754e03f",
     "bootstrap": "4.0.0-alpha.6",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
     "font-awesome": "4.7.0",
