@@ -50,10 +50,10 @@ class AbstractIdea(module_models.Item, Moderateable):
     @property
     def remark(self):
         content_type = ContentType.objects.get_for_model(self)
-        return remark_models.ModeratorRemark.objects.get(
+        return remark_models.ModeratorRemark.objects.filter(
             item_content_type=content_type,
             item_object_id=self.id
-        )
+        ).first()
 
     class Meta:
         abstract = True
