@@ -21,7 +21,7 @@ var api = (function () {
     follow: baseURL + 'follows/',
     comment: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comments/',
     rating: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/ratings/',
-    moderatorremark: baseURL + 'moderatorremarks/'
+    moderatorremark: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/moderatorremarks/'
   }
 
   function _sendRequest (endpoint, id, options, data, contentType) {
@@ -148,17 +148,17 @@ var api = (function () {
       }
     },
     moderatorremark: {
-      get: function (slug) {
-        return _sendRequest('moderatorremark', slug, {
-          type: 'GET'
-        }, {})
+      add: function (data) {
+        return _sendRequest('moderatorremark', {
+          type: 'POST'
+        }, data)
       },
-      change: function (data, slug) {
-        return _sendRequest('moderatorremark', slug, {
+      change: function (data, id) {
+        return _sendRequest('moderatorremark', id, {
           type: 'PUT'
         }, data)
       }
-    },
+    }
   }
 }())
 module.exports = api
