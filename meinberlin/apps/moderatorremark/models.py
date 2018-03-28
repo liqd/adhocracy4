@@ -20,4 +20,4 @@ class ModeratorRemark(UserGeneratedContentModel):
                               blank=True)
 
     class Meta:
-        unique_together = ('item_content_type', 'item_object_id', 'id')
+        unique_together = ('item_content_type', 'item_object_id')
