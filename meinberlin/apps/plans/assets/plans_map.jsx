@@ -357,7 +357,7 @@ class PlansMap extends React.Component {
           } {item.category &&
             <span className="label">{item.category}</span>
           } {item.point_label &&
-            <span className="label"><i className="fa fa-map-marker" aria-hidden="true" /> {item.point_label}</span>
+            <span className="label"><i className="fas fa-map-marker-alt" aria-hidden="true" /> {item.point_label}</span>
           }
         </div>
       </li>

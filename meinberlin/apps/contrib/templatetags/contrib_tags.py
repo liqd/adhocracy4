@@ -74,3 +74,10 @@ def classify(value):
         .encode('ascii', 'ignore').decode('ascii')
     value = re.sub('[^\w\s-]', '', value).strip()
     return mark_safe(re.sub('[-\s]+', '-', value))
+
+
+@register.filter
+def fa_class(icon):
+    if hasattr(icon, 'startswith') and not icon.startswith('fa'):
+        return 'fas fa-{icon}'.format(icon=icon)
+    return icon

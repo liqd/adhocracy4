@@ -48,7 +48,7 @@ const ChapterNavItem = (props) => {
           disabled={!props.onDelete}
           title={django.gettext('Delete')}
           type="button">
-          <i className="fa fa-trash"
+          <i className="fas fa-trash-alt"
             aria-label={django.gettext('Delete')} />
         </button>
       </div>
