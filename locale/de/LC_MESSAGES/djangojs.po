@@ -195,7 +195,7 @@ msgstr "Folgen"
 #: adhocracy4/reports/static/reports/ReportModal.jsx:57
 #: adhocracy4/reports/static/reports/ReportModal.jsx:57
 msgid "Thank you! We are taking care of it."
-msgstr ""
+msgstr "Vielen Dank! Wir werden uns darum kümmern."
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:65
 #: adhocracy4/reports/static/reports/ReportModal.jsx:65

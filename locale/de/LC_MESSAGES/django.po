@@ -1339,12 +1339,18 @@ msgid ""
 "have received rights of use from the author. I also confirm that the privacy "
 "rights of depicted third persons are not violated. "
 msgstr ""
+"Hiermit bestätige ich, dass die Urheberrechte zu diesem Foto bei mir liegen "
+"bzw. ich vom Urheber/von der Urheberin entsprechende Nutzungsrechte erhalten "
+"habe. Ich bestätige außerdem, dass die Persönlichkeitsrechte abgebildeter "
+"dritter Personen nicht verletzt werden."
 
 #: meinberlin/apps/contrib/mixins.py:58
 msgid ""
 "You want to upload an image. Please check that you have the right of use for "
 "the image."
 msgstr ""
+"Sie wollen ein Bild hochladen. Bitte bestätigen Sie, dass Sie die "
+"entsprechenden Nutzungsrechte haben."
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/filter_and_sort.html:3
 msgid "Filter bar "
