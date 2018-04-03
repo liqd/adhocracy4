@@ -206,7 +206,7 @@ IMAGE_ALIASES = {
     'tileimage': {'min_resolution': (500, 300)},
     'logo': {'min_resolution': (200, 50)},
     'avatar': {'min_resolution': (200, 200)},
-    'idea_image': {'min_resolution': (300, 200)},
+    'idea_image': {'min_resolution': (600, 400)},
 }
 
 THUMBNAIL_ALIASES = {
