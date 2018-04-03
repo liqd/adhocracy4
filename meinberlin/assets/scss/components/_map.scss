@@ -1,5 +1,37 @@
+.leaflet-popup-content {
+    display: flex;
+    flex-direction: row-reverse;
+
+    min-height: 8em;
+    margin: 0;
+}
+
+.leaflet-popup-content-wrapper {
+    padding: 0;
+    border-radius: 0;
+}
+
+.maps-popups-popup-text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin: 0.5em;
+    width: 14.5em;
+}
+
 .maps-popups-popup-name {
-    @extend .list-item__title;
+    font-size: $font-size-lg;
+
+    line-height: normal;
+
+    a {
+        color: $link-color;
+    }
+}
+
+.maps-popups-popup-meta {
+    padding: 1em;
 }
 
 .map-popup-upvotes i {
@@ -13,13 +45,19 @@
 .map-popup-upvotes,
 .map-popup-downvotes,
 .map-popup-comments-count {
-    margin-right: 0.5em;
+    margin-right: 2em;
 }
 
 .maps-popups-popup-image {
-    height: 5em;
+    width: 8em;
+
     background-size: cover;
-    margin-bottom: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.maps-popups-popup-no-image {
+    display: none;
 }
 
 .map-list {

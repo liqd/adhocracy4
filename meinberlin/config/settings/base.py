@@ -206,7 +206,7 @@ IMAGE_ALIASES = {
     'tileimage': {'min_resolution': (500, 300)},
     'logo': {'min_resolution': (200, 50)},
     'avatar': {'min_resolution': (200, 200)},
-    'idea_image': {'min_resolution': (300, 200)},
+    'idea_image': {'min_resolution': (600, 400)},
 }
 
 THUMBNAIL_ALIASES = {
@@ -215,7 +215,7 @@ THUMBNAIL_ALIASES = {
         'project_thumbnail': {'size': (520, 330)},
         'logo': {'size': (160, 160), 'background': 'white'},
         'item_image': {'size': (330, 0), 'crop': 'scale'},
-        'map_thumbnail': {'size': (200, 100), 'crop': 'smart'},
+        'map_thumbnail': {'size': (200, 200), 'crop': 'smart'},
     }
 }
 
