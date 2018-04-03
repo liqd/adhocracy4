@@ -215,7 +215,7 @@ THUMBNAIL_ALIASES = {
         'project_thumbnail': {'size': (520, 330)},
         'logo': {'size': (160, 160), 'background': 'white'},
         'item_image': {'size': (330, 0), 'crop': 'scale'},
-        'map_thumbnail': {'size': (200, 100), 'crop': 'smart'},
+        'map_thumbnail': {'size': (200, 200), 'crop': 'smart'},
     }
 }
 
