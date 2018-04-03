@@ -1711,7 +1711,7 @@ msgstr "Titel"
 
 #: meinberlin/apps/ideas/models.py:34
 msgid "Visualize your idea."
-msgstr ""
+msgstr "Visualisieren Sie Ihre Idee."
 
 #: meinberlin/apps/ideas/phases.py:15 meinberlin/apps/mapideas/phases.py:15
 msgid "Issue phase"
