@@ -6,37 +6,37 @@ from django.core.urlresolvers import reverse
 
 from adhocracy4.comments import models as comments_models
 from adhocracy4.ratings import models as rating_models
-from meinberlin.apps.ideas import models as idea_models
+from meinberlin.apps.topicprio import models as idea_models
 from meinberlin.test.helpers import createThumbnail
 
 
 @pytest.mark.django_db
-def test_absolute_url(idea):
-    url = reverse('meinberlin_ideas:idea-detail',
-                  kwargs={'pk': '{:05d}'.format(idea.pk),
-                          'year': idea.created.year})
-    assert idea.get_absolute_url() == url
+def test_absolute_url(topic):
+    url = reverse('meinberlin_topicprio:topic-detail',
+                  kwargs={'pk': '{:05d}'.format(topic.pk),
+                          'year': topic.created.year})
+    assert topic.get_absolute_url() == url
 
 
 @pytest.mark.django_db
-def test_save(idea):
-    assert '<script>' not in idea.description
+def test_save(topic):
+    assert '<script>' not in topic.description
 
 
 @pytest.mark.django_db
-def test_str(idea):
-    idea_string = idea.__str__()
-    assert idea_string == idea.name
+def test_str(topic):
+    idea_string = topic.__str__()
+    assert idea_string == topic.name
 
 
 @pytest.mark.django_db
-def test_project(idea):
-    assert idea.module.project == idea.project
+def test_project(topic):
+    assert topic.module.project == topic.project
 
 
 @pytest.mark.django_db
-def test_delete_idea(idea_factory, comment_factory, rating_factory, ImagePNG):
-    idea = idea_factory(image=ImagePNG)
+def test_delete_idea(topic_factory, comment_factory, rating_factory, ImagePNG):
+    idea = topic_factory(image=ImagePNG)
     image_path = os.path.join(settings.MEDIA_ROOT, idea.image.path)
     thumbnail_path = createThumbnail(idea.image)
 
@@ -50,7 +50,7 @@ def test_delete_idea(idea_factory, comment_factory, rating_factory, ImagePNG):
 
     assert os.path.isfile(image_path)
     assert os.path.isfile(thumbnail_path)
-    count = idea_models.Idea.objects.all().count()
+    count = idea_models.Topic.objects.all().count()
     assert count == 1
     assert comment_count == 5
     assert rating_count == 1
@@ -58,17 +58,16 @@ def test_delete_idea(idea_factory, comment_factory, rating_factory, ImagePNG):
     idea.delete()
     assert not os.path.isfile(image_path)
     assert not os.path.isfile(thumbnail_path)
-    count = idea_models.Idea.objects.all().count()
+    count = idea_models.Topic.objects.all().count()
     comment_count = comments_models.Comment.objects.all().count()
     rating_count = rating_models.Rating.objects.all().count()
     assert count == 0
     assert comment_count == 0
-    assert rating_count == 0
 
 
 @pytest.mark.django_db
-def test_image_deleted_after_update(idea_factory, ImagePNG):
-    idea = idea_factory(image=ImagePNG)
+def test_image_deleted_after_update(topic_factory, ImagePNG):
+    idea = topic_factory(image=ImagePNG)
     image_path = os.path.join(settings.MEDIA_ROOT, idea.image.path)
     thumbnail_path = createThumbnail(idea.image)
 
