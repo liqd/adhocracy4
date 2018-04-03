@@ -337,8 +337,6 @@ class PlansMap extends React.Component {
       // scroll list
       if (this.state.selected !== null && this.isInFilter(this.props.items[this.state.selected])) {
         $(this.listElement).find('.selected').scrollintoview()
-      } else {
-        this.listElement.scrollTo(0, 0)
       }
     }
   }

@@ -112,6 +112,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE = (
+    'django_cloudflare_push.middleware.push_middleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -213,7 +214,7 @@ THUMBNAIL_ALIASES = {
         'heroimage': {'size': (1500, 500)},
         'project_thumbnail': {'size': (520, 330)},
         'logo': {'size': (160, 160), 'background': 'white'},
-        'item_image': {'size': (300, 0), 'crop': 'scale'},
+        'item_image': {'size': (330, 0), 'crop': 'scale'},
         'map_thumbnail': {'size': (200, 200), 'crop': 'smart'},
     }
 }

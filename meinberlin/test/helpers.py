@@ -1,10 +1,13 @@
+import os
 from contextlib import contextmanager
 from datetime import timedelta
 
 import factory
+from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.db.models.signals import post_save
 from django.utils.encoding import smart_text
+from easy_thumbnails.files import get_thumbnailer
 from freezegun import freeze_time
 
 from adhocracy4.test.helpers import redirect_target
@@ -68,3 +71,12 @@ def assert_dashboard_form_component_edited(
         attr = getattr(obj, key)
         value = data.get(key)
         assert attr == value, '{} != {}'.format(attr, value)
+
+
+def createThumbnail(imagefield):
+    thumbnailer = get_thumbnailer(imagefield)
+    thumbnail = thumbnailer.generate_thumbnail(
+        {'size': (800, 400), 'crop': 'smart'})
+    thumbnailer.save_thumbnail(thumbnail)
+    thumbnail_path = os.path.join(settings.MEDIA_ROOT, thumbnail.path)
+    return thumbnail_path
