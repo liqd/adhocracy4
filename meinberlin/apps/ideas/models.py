@@ -30,6 +30,9 @@ class AbstractIdea(module_models.Item, Moderateable):
         'idea_image',
         upload_to='ideas/images',
         blank=True,
+        help_prefix=_(
+            'Visualize your idea.'
+        ),
     )
     ratings = GenericRelation(rating_models.Rating,
                               related_query_name='idea',
