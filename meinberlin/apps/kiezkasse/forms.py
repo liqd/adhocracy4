@@ -1,15 +1,16 @@
 from django import forms
 
+from meinberlin.apps.contrib.mixins import ImageRightOfUseMixin
 from meinberlin.apps.mapideas.forms import MapIdeaForm
 
 from . import models
 
 
-class ProposalForm(MapIdeaForm):
+class ProposalForm(MapIdeaForm, ImageRightOfUseMixin):
 
     class Meta:
         model = models.Proposal
-        fields = ['name', 'description', 'category', 'budget',
+        fields = ['name', 'description', 'category', 'image', 'budget',
                   'creator_contribution', 'point', 'point_label']
 
 
