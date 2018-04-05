@@ -9,6 +9,7 @@ from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
 from adhocracy4.comments import models as comment_models
 from adhocracy4.images.fields import ConfiguredImageField
+from adhocracy4.labels import models as labels_models
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
@@ -38,6 +39,10 @@ class MapTopic(module_models.Item):
                                related_query_name='idea',
                                object_id_field='object_pk')
     category = CategoryField()
+    labels = models.ManyToManyField(labels_models.Label,
+                                    related_name=('%(app_label)s_'
+                                                  '%(class)s_label')
+                                    )
     point = map_fields.PointField(
         verbose_name=_('Where can your idea be located on a map?'),
         help_text=_('Click inside marked area on the map to set a marker. '
