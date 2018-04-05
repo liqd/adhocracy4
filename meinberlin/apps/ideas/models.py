@@ -9,6 +9,7 @@ from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
 from adhocracy4.comments import models as comment_models
 from adhocracy4.images.fields import ConfiguredImageField
+from adhocracy4.labels import models as labels_models
 from adhocracy4.models import query
 from adhocracy4.modules import models as module_models
 from adhocracy4.ratings import models as rating_models
@@ -41,6 +42,11 @@ class AbstractIdea(module_models.Item, Moderateable):
                                related_query_name='idea',
                                object_id_field='object_pk')
     category = CategoryField()
+
+    labels = models.ManyToManyField(labels_models.Label,
+                                    related_name=('%(app_label)s_'
+                                                  '%(class)s_label')
+                                    )
 
     objects = IdeaQuerySet.as_manager()
 
