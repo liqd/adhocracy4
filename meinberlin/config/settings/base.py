@@ -423,6 +423,15 @@ A4_CATEGORIZABLE = (
     ('meinberlin_maptopicprio', 'maptopic'),
 )
 
+A4_LABELS_ADDABLE = (
+    ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_kiezkasse', 'proposal'),
+    ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_maptopicprio', 'maptopic'),
+)
+
 A4_CATEGORY_ICONS = (
     ('', _('Pin without icon')),
     ('diamant', _('Diamond')),
