@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     # adhocrayc4 generic apps
     'adhocracy4.ratings.apps.RatingsConfig',
     'adhocracy4.categories.apps.CategoriesConfig',
+    'adhocracy4.labels.apps.LabelsConfig',
 
     # adhocracy4 helper apps
     'adhocracy4.ckeditor.apps.CKEditorConfig',
