@@ -2,13 +2,16 @@ from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories.forms import CategorizableFieldMixin
+from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from adhocracy4.maps import widgets as maps_widgets
 from meinberlin.apps.contrib.mixins import ImageRightOfUseMixin
 
 from . import models
 
 
-class MapIdeaForm(CategorizableFieldMixin, ImageRightOfUseMixin):
+class MapIdeaForm(CategorizableFieldMixin,
+                  LabelsAddableFieldMixin,
+                  ImageRightOfUseMixin):
 
     def __init__(self, *args, **kwargs):
         self.settings = kwargs.pop('settings_instance')
@@ -24,7 +27,7 @@ class MapIdeaForm(CategorizableFieldMixin, ImageRightOfUseMixin):
     class Meta:
         model = models.MapIdea
         fields = ['name', 'description', 'image', 'category',
-                  'point', 'point_label']
+                  'labels', 'point', 'point_label']
 
 
 class MapIdeaModerateForm(forms.ModelForm):
