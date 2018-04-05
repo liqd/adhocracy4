@@ -160,6 +160,7 @@ A4_COMMENTABLES = (('a4test_questions', 'question'),
 A4_ACTIONABLES = ()
 A4_AUTO_FOLLOWABLES = (('a4comments', 'comment'),)
 A4_CATEGORIZABLE = (('a4test_questions', 'question'),)
+A4_LABELS_ADDABLE = ()
 A4_DASHBOARD = {
     'BLUEPRINTS': 'tests.project.blueprints.blueprints'
 }
