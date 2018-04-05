@@ -155,6 +155,19 @@ class ItemExportWithCategoriesMixin(VirtualFieldMixin):
         return ''
 
 
+class ItemExportWithLabelsMixin(VirtualFieldMixin):
+
+    def get_virtual_fields(self, virtual):
+        if 'labels' not in virtual:
+            virtual['labels'] = _('Labels')
+        return super().get_virtual_fields(virtual)
+
+    def get_labels_data(self, item):
+        if hasattr(item, 'labels') and item.labels:
+            return ', '.join(item.labels.all().values_list('name', flat=True))
+        return ''
+
+
 class ItemExportWithLocationMixin(VirtualFieldMixin):
     def get_virtual_fields(self, virtual):
         if 'location_lon' not in virtual:
