@@ -1,4 +1,4 @@
-from django import forms
+from adhocracy4.forms import widgets
 from adhocracy4.labels import models as labels_models
 
 
@@ -13,9 +13,8 @@ class LabelsAddableFieldMixin:
         field = self.fields[self.labels_field_name]
         field.queryset = labels_models.Label.objects.filter(module=self.module)
         field.required = False
-        field.widget = forms.CheckboxSelectMultiple(
+        field.widget = widgets.CustomCheckboxSelectMultiple(
             choices=[(label.id, label.name) for label in field.queryset])
-
 
     def show_labels(self):
         field = self.fields[self.labels_field_name]

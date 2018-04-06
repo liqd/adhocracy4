@@ -76,3 +76,8 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
             return time_widget.format_value(self.time_default)
         else:
             return self.time_default
+
+
+class CustomCheckboxSelectMultiple(form_widgets.CheckboxSelectMultiple):
+    template_name = 'a4forms/multiple_input.html'
+    option_template_name = 'a4forms/checkbox_option.html'
