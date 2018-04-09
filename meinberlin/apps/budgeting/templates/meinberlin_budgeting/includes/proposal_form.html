@@ -11,6 +11,10 @@
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.category %}
     {% endif %}
 
+    {% if form.show_labels %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.labels %}
+    {% endif %}
+
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
 
     {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.right_of_use %}

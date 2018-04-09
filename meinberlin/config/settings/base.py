@@ -72,6 +72,7 @@ INSTALLED_APPS = (
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
     'adhocracy4.ratings.apps.RatingsConfig',
+    'adhocracy4.labels.apps.LabelsConfig',
     'adhocracy4.reports.apps.ReportsConfig',
     'adhocracy4.rules.apps.RulesConfig',
 
@@ -414,6 +415,15 @@ A4_AUTO_FOLLOWABLES = (
 )
 
 A4_CATEGORIZABLE = (
+    ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_kiezkasse', 'proposal'),
+    ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_maptopicprio', 'maptopic'),
+)
+
+A4_LABELS_ADDABLE = (
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
