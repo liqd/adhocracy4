@@ -13,11 +13,12 @@ class CategorizableFieldMixin:
     category_field_name = 'category'
 
     def __init__(self, *args, **kwargs):
-        module = kwargs.pop('module')
+        self.module = kwargs.pop('module')
         super().__init__(*args, **kwargs)
 
         field = self.fields[self.category_field_name]
-        field.queryset = category_models.Category.objects.filter(module=module)
+        field.queryset = category_models.Category.objects.filter(
+            module=self.module)
 
         required = field.queryset.exists()
         field.empty_label = None
