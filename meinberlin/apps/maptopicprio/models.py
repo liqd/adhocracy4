@@ -40,6 +40,7 @@ class MapTopic(module_models.Item):
                                object_id_field='object_pk')
     category = CategoryField()
     labels = models.ManyToManyField(labels_models.Label,
+                                    verbose_name=_('Labels'),
                                     related_name=('%(app_label)s_'
                                                   '%(class)s_label')
                                     )
