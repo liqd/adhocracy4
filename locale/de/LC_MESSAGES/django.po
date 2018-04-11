@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-11 11:47+0200\n"
+"POT-Creation-Date: 2018-04-11 13:49+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -58,6 +58,8 @@ msgid ""
 "categories. If you create any, each contribution has to be assigned\n"
 "to one of them. This way, content can be classified."
 msgstr ""
+"Hier können Sie Kategorien anlegen. Dadurch können alleBeiträge einer "
+"Kategorie zugeordnet und entsprechend gefiltert werden."
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
@@ -571,8 +573,10 @@ msgstr "Anzahl Kommentare"
 #: adhocracy4/labels/dashboard.py:12
 #: adhocracy4/exports/mixins.py:162
 #: adhocracy4/labels/dashboard.py:12
+#: meinberlin/apps/ideas/models.py:47 meinberlin/apps/maptopicprio/models.py:43
+#: meinberlin/apps/topicprio/models.py:43
 msgid "Labels"
-msgstr ""
+msgstr "Merkmale"
 
 #: adhocracy4/exports/mixins.py:174
 #: adhocracy4/exports/mixins.py:174
@@ -699,12 +703,12 @@ msgstr "Ein Bild aus einem lokalen Ordner auswählen."
 #: adhocracy4/labels/dashboard.py:14
 #: adhocracy4/labels/dashboard.py:14
 msgid "Edit labels"
-msgstr ""
+msgstr "Merkmale bearbeiten"
 
 #: adhocracy4/labels/forms.py:17
 #: adhocracy4/labels/forms.py:17
 msgid "Label"
-msgstr ""
+msgstr "Merkmal"
 
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:3
@@ -713,11 +717,13 @@ msgid ""
 "labels. If you create any, each contribution can be assigned\n"
 "to one or more of them. This way, content can be classified."
 msgstr ""
+"Hier können Sie Merkmale anlegen. Dadurch können alle Beiträge um ein oder "
+"mehrere Merkmale ergänzt werden."
 
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
 #: adhocracy4/labels/templates/a4labels/includes/module_labels_form.html:21
 msgid "Add label"
-msgstr ""
+msgstr "Merkmal hinzufügen"
 
 #: adhocracy4/maps/admin.py:14
 #: adhocracy4/maps/models.py:11
@@ -2013,12 +2019,12 @@ msgid "Please locate your proposal on the map."
 msgstr "Bitte verorten Sie Ihren Vorschlag auf der Karte."
 
 #: meinberlin/apps/mapideas/models.py:11
-#: meinberlin/apps/maptopicprio/models.py:47
+#: meinberlin/apps/maptopicprio/models.py:48
 msgid "Where can your idea be located on a map?"
 msgstr "Wo kann ihre Idee auf der Karte verortet werden?"
 
 #: meinberlin/apps/mapideas/models.py:12
-#: meinberlin/apps/maptopicprio/models.py:48 meinberlin/apps/plans/models.py:36
+#: meinberlin/apps/maptopicprio/models.py:49 meinberlin/apps/plans/models.py:36
 msgid ""
 "Click inside marked area on the map to set a marker. Drag and drop the "
 "marker to change its place. Alternatively you can use the search field to "
@@ -2029,12 +2035,12 @@ msgstr ""
 "auch das Suchfeld benutzen, um nach einer Adresse zu suchen."
 
 #: meinberlin/apps/mapideas/models.py:21
-#: meinberlin/apps/maptopicprio/models.py:57
+#: meinberlin/apps/maptopicprio/models.py:58
 msgid "Label of the ideas location"
 msgstr "Bezeichnung des markierten Ortes"
 
 #: meinberlin/apps/mapideas/models.py:22
-#: meinberlin/apps/maptopicprio/models.py:58 meinberlin/apps/plans/models.py:45
+#: meinberlin/apps/maptopicprio/models.py:59 meinberlin/apps/plans/models.py:45
 msgid "This could be an address or the name of a landmark."
 msgstr "Dies kann sowohl eine Adresse als auch eine Ortsbezeichnung sein."
 
