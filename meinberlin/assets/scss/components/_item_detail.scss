@@ -39,8 +39,13 @@
 }
 
 .item-detail__image {
-    display: inline-block;
-    float: right;
     margin-bottom: 0.5em;
-    margin-left: 0.5em;
+    width: 100%;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        display: inline-block;
+        float: right;
+        margin-left: 0.5em;
+        width: auto;
+    }
 }

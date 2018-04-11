@@ -10,4 +10,4 @@ class TopicFactory(factory.django.DjangoModelFactory):
         model = models.Topic
 
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
-    module = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)
+    module = factory.SubFactory(a4_factories.ModuleFactory)

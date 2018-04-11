@@ -25,6 +25,11 @@
                 {% if object.category %}
                     <div class="label label--big">{{ object.category }}</div>
                 {% endif %}
+                {% if object.labels %}
+                    {% for label in object.labels.all %}
+                        <div class="label label--big">{{ label.name }}</div>
+                    {% endfor %}
+                {% endif %}
                 {% block additional_labels %}{% endblock %}
                 {% if object.moderator_feedback %}
                     <span class="label label--big label--{{ object.moderator_feedback|classify }}">
@@ -35,7 +40,7 @@
 
             <div class="item-detail__content">
                 <div class="item-detail__basic-content">
-                    <img class="item-detail__image" src="{% thumbnail object.image 'item_image' %}">
+                    <img class="item-detail__image" src="{% thumbnail object.image 'item_image' %}" alt="">
                     {{ object.description | richtext }}
                 </div>
 
