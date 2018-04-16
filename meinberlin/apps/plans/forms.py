@@ -3,7 +3,9 @@ from django.conf import settings
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.dashboard.components.forms import ProjectDashboardForm
 from adhocracy4.maps import widgets as maps_widgets
+from adhocracy4.projects import models as project_models
 from meinberlin.apps.contrib import widgets as contrib_widgets
 
 from . import models
@@ -36,3 +38,31 @@ class PlanForm(forms.ModelForm):
                 'required': _('Please locate the plan on the map.')
             }
         }
+
+
+class CustomMultipleChoiceField(forms.ModelMultipleChoiceField):
+
+    def clean(self, value):
+        value = [value]
+        return super().clean(value)
+
+
+class ProjectPlansDashboardForm(ProjectDashboardForm):
+    plans = CustomMultipleChoiceField(
+        widget=forms.RadioSelect,
+        queryset=models.Plan.objects.all())
+
+    class Meta:
+        model = project_models.Project
+        fields = ['plans']
+        required_for_project_publish = ['plans']
+
+    def save(self, commit=False):
+        self.instance.plans.clear()
+        for plan in self.data['plans']:
+            self.instance.plans.add(plan)
+        self.instance.save()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.initial['plans'] = self.instance.plans.all()
