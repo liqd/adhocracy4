@@ -93,8 +93,12 @@ class ProjectFormComponent(DashboardComponent):
             field = object._meta.get_field(field_name)
             value = getattr(object, field_name, None)
 
-            if value is None or value in field.empty_values:
-                num_valid = num_valid - 1
+            if not field.many_to_many:
+                if value is None or value in field.empty_values:
+                    num_valid = num_valid - 1
+            else:
+                if not value.exists():
+                    num_valid = num_valid - 1
 
         return num_valid, num_required
 
