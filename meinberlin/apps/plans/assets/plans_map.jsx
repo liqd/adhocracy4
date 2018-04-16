@@ -150,11 +150,24 @@ class PlansMap extends React.Component {
   }
 
   onDistrictFilterChange (event) {
+    let currentDistrict = this.state.filters.district.toString()
+    if (currentDistrict !== '-1') {
+      let currentLayer = this.disctrictLayerLookup[currentDistrict]
+      currentLayer.setStyle({weight: 1})
+    }
+    let district = event.currentTarget.value
     this.setState({
       filters: update(this.state.filters, {
-        $merge: {district: parseInt(event.currentTarget.value, 10)}
+        $merge: {district: parseInt(district, 10)}
       })
     })
+    if (district === '-1') {
+      this.map.flyToBounds(this.disctrictLayers.getBounds())
+    } else {
+      let layer = this.disctrictLayerLookup[district]
+      this.map.flyToBounds(layer.getBounds())
+      layer.setStyle({weight: 3})
+    }
   }
 
   onAddressSearchChange (event) {
@@ -298,7 +311,12 @@ class PlansMap extends React.Component {
     }).addTo(this.map)
     this.selected = L.layerGroup().addTo(this.map)
 
-    L.geoJSON(this.props.districts, {style: districtStyle}).addTo(this.map)
+    this.disctrictLayers = L.geoJSON(this.props.districts, {style: districtStyle}).addTo(this.map)
+
+    this.disctrictLayerLookup = {}
+    this.disctrictLayers.getLayers().map((layer, i) => {
+      this.disctrictLayerLookup[i.toString()] = layer
+    })
 
     this.markers = this.props.items.map((item, i) => {
       let marker = L.marker(pointToLatLng(item.point), {icon: statusIconPins[item.status]})
