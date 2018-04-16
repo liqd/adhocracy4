@@ -27,10 +27,11 @@ class Plan(UserGeneratedContentModel):
     organisation = models.ForeignKey(
         settings.A4_ORGANISATIONS_MODEL,
         on_delete=models.CASCADE)
-    project = models.ForeignKey(
+    projects = models.ManyToManyField(
         project_models.Project,
-        blank=True, null=True,
-        verbose_name=_('Project'))
+        related_name='plans',
+        blank=True
+    )
     point = map_fields.PointField(
         verbose_name=_('Where can the plan be located on a map?'),
         help_text=_('Click inside marked area on the map to set a marker. '
