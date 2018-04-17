@@ -13,7 +13,6 @@ class PlanFactory(factory.django.DjangoModelFactory):
     title = factory.Faker('sentence')
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)
-    project = factory.SubFactory(a4_factories.ProjectFactory)
     district = factory.SubFactory(MapPresetFactory)
     point = {
         'type': 'Feature',
@@ -25,3 +24,12 @@ class PlanFactory(factory.django.DjangoModelFactory):
     category = ''
     status = plan_models.STATUS_TODO
     participation = plan_models.PARTICIPATION_UNDECIDED
+
+    @factory.post_generation
+    def projects(self, create, extracted, **kwargs):
+        if not create:
+            return
+
+        if extracted:
+            for project in extracted:
+                self.projects.add(project)
