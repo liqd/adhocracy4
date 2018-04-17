@@ -14,7 +14,7 @@ script:
   - py.test --cov
   - python manage.py makemigrations --dry-run --check --noinput
   - ./node_modules/.bin/polylint -F
-  - npm run build
+  - npm run build:dev
 after_success:
   - coveralls
 deploy:
