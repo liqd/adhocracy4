@@ -50,7 +50,7 @@ class CustomMultipleChoiceField(forms.ModelMultipleChoiceField):
 class ProjectPlansDashboardForm(ProjectDashboardForm):
     plans = CustomMultipleChoiceField(
         widget=forms.RadioSelect,
-        queryset=models.Plan.objects.all())
+        queryset=None)
 
     class Meta:
         model = project_models.Project
@@ -66,3 +66,5 @@ class ProjectPlansDashboardForm(ProjectDashboardForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.initial['plans'] = self.instance.plans.all()
+        self.fields['plans'
+                    ].queryset = self.instance.organisation.plan_set.all()
