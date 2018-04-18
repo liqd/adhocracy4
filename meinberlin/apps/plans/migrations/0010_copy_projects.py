@@ -11,7 +11,6 @@ def make_many_projects(apps, schema_editor):
     for plan in Plan.objects.all():
         if plan.project:
             plan.projects.add(plan.project)
-            plan.save()
 
 
 class Migration(migrations.Migration):
