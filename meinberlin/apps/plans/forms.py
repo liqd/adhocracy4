@@ -58,10 +58,8 @@ class ProjectPlansDashboardForm(ProjectDashboardForm):
         required_for_project_publish = ['plans']
 
     def save(self, commit=False):
-        self.instance.plans.clear()
-        for plan in self.data['plans']:
-            self.instance.plans.add(plan)
-        self.instance.save()
+        plans = self.data['plans']
+        self.instance.plans.set(plans)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
