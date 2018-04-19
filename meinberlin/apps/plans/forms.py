@@ -45,8 +45,9 @@ class CustomMultipleChoiceField(forms.ModelMultipleChoiceField):
     widget = forms.RadioSelect
 
     def clean(self, value):
-        value = [value]
-        return super().clean(value)
+        if value is None:
+            return super().clean([])
+        return super().clean([value])
 
 
 class ProjectPlansDashboardForm(ProjectDashboardForm):
