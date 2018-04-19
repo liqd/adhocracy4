@@ -42,15 +42,15 @@ class PlanForm(forms.ModelForm):
 
 class CustomMultipleChoiceField(forms.ModelMultipleChoiceField):
 
+    widget = forms.RadioSelect
+
     def clean(self, value):
         value = [value]
         return super().clean(value)
 
 
 class ProjectPlansDashboardForm(ProjectDashboardForm):
-    plans = CustomMultipleChoiceField(
-        widget=forms.RadioSelect,
-        queryset=None)
+    plans = CustomMultipleChoiceField(queryset=None)
 
     class Meta:
         model = project_models.Project
