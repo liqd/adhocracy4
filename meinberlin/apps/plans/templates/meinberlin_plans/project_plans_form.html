@@ -1,1 +1,12 @@
+{% load i18n %}
+{% if form.plans.field.choices %}
 {% include 'a4dashboard/includes/form_field.html' with field=form.plans %}
+{% else %}
+<p class="form-hint">
+  {% url 'a4dashboard:plan-create' form.instance.organisation as plan_create_url  %}
+  {% blocktrans %}
+  No plans for selection exist. You have to <a href="{{ plan_create_url }}">add a plan</a> first.
+  {% endblocktrans %}
+</p>
+{{ form.errors }}
+{% endif %}
