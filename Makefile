@@ -1,6 +1,7 @@
 VIRTUAL_ENV ?= venv
 NODE_BIN = node_modules/.bin
 
+.PHONY: all
 all: help
 
 .PHONY: help
