@@ -31,34 +31,14 @@ install:
 	$(VIRTUAL_ENV)/bin/python3 -m pip install --upgrade -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
 
-.PHONY: makemessages
-makemessages:
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django
-	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs
-	sed -i 's%#: .*/adhocracy4%#: adhocracy4%' locale/*/LC_MESSAGES/django*.po
-	msgen locale/en_GB/LC_MESSAGES/django.po -o locale/en_GB/LC_MESSAGES/django.po
-	msgen locale/en_GB/LC_MESSAGES/djangojs.po -o locale/en_GB/LC_MESSAGES/djangojs.po
-
-.PHONY: compilemessages
-compilemessages:
-	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
-
-.PHONY: server
-server:
-	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8003
-
 .PHONY: watch
 watch:
 	npm run watch & \
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8003
 
-.PHONY: lint
-lint:
-	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint
-
-.PHONY: lint-quick
-lint-quick:
-	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint -SF
+.PHONY: server
+server:
+	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8003
 
 .PHONY: test
 test:
@@ -71,6 +51,26 @@ test-lastfailed:
 .PHONY: test-clean
 test-clean:
 	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
+
+.PHONY: lint
+lint:
+	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint
+
+.PHONY: lint-quick
+lint-quick:
+	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint -SF
+
+.PHONY: makemessages
+makemessages:
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django
+	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs
+	sed -i 's%#: .*/adhocracy4%#: adhocracy4%' locale/*/LC_MESSAGES/django*.po
+	msgen locale/en_GB/LC_MESSAGES/django.po -o locale/en_GB/LC_MESSAGES/django.po
+	msgen locale/en_GB/LC_MESSAGES/djangojs.po -o locale/en_GB/LC_MESSAGES/djangojs.po
+
+.PHONY: compilemessages
+compilemessages:
+	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
 .PHONY: release
 release: export DJANGO_SETTINGS_MODULE ?= meinberlin.config.settings.build
