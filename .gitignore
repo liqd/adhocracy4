@@ -13,6 +13,7 @@ htmlcov/
 media/
 meinberlin/static/
 static/
+.pytest_cache
 
 # setuptools
 /build
