@@ -19,6 +19,8 @@ help:
 	@echo "  make watch           -- start a dev server and rebuild js and css files on changes"
 	@echo "  make background      -- start a dev server, rebuild js and css files on changes, and start background processes"
 	@echo "  make test            -- run all test cases with pytest"
+	@echo "  make test-lastfailed -- run test that failed last"
+	@echo "  make test-clean      -- test on new database"
 	@echo "  make makemessages    -- create new po files from the source"
 	@echo "  make compilemessages -- create new mo files from the translated po files"
 	@echo "  make release         -- build everything required for a release"
@@ -60,6 +62,7 @@ test-lastfailed:
 .PHONY: test-clean
 test-clean:
 	if [ -f test_db.sqlite3 ]; then rm test_db.sqlite3; fi
+	$(VIRTUAL_ENV)/bin/py.test
 
 .PHONY: lint
 lint:
