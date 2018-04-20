@@ -17,6 +17,7 @@ help:
 	@echo "  make lint-quick      -- lint all files staged in git"
 	@echo "  make server          -- start a dev server"
 	@echo "  make watch           -- start a dev server and rebuild js and css files on changes"
+	@echo "  make background      -- start a dev server, rebuild js and css files on changes, and start background processes"
 	@echo "  make test            -- run all test cases with pytest"
 	@echo "  make makemessages    -- create new po files from the source"
 	@echo "  make compilemessages -- create new mo files from the translated po files"
@@ -31,13 +32,21 @@ install:
 	$(VIRTUAL_ENV)/bin/python3 -m pip install --upgrade -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
 
+.PHONY: server
+server:
+	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8003
+
 .PHONY: watch
 watch:
+	trap 'kill %1' KILL; \
 	npm run watch & \
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8003
 
-.PHONY: server
-server:
+.PHONY: background
+background:
+	trap 'kill %1; kill %2' KILL; \
+	npm run watch & \
+	$(VIRTUAL_ENV)/bin/python3 manage.py process_tasks & \
 	$(VIRTUAL_ENV)/bin/python3 manage.py runserver 8003
 
 .PHONY: test
