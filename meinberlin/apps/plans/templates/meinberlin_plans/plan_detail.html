@@ -59,11 +59,15 @@
                         <dd class="u-whitespace-pre">{{ object.contact }}</dd>
                     </dl>
 
-                    {% if object.project and not object.project.is_draft and object.project.is_public %}
-                        <p><a href="{{ object.project.get_absolute_url }}">{% trans 'Go to participation' %}</a></p>
-                    {% elif object.participation == 1 %}
-                        <p>{% trans 'Participation is planned, but has not started yet.' %}</p>
-                    {% endif %}
+                    {% for project in object.projects.all %}
+                        {% if not project.is_draft and project.is_public %}
+                            <p><a href="{{ project.get_absolute_url }}">{% trans 'Go to participation in ' %}{{ project.name }}</a></p>
+                        {% endif %}
+                    {% empty %}
+                        {% if object.participation == 1 %}
+                            <p>{% trans 'Participation is planned, but has not started yet.' %}</p>
+                        {% endif %}
+                    {% endfor %}
 
                     {% map_display_point object.point berlin_polygon %}
                 </div>
