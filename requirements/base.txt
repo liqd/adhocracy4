@@ -15,7 +15,7 @@ django-background-tasks==1.1.13
 django-ckeditor==5.4.0
 django-cloudflare-push==0.2.0
 django-filter==1.1.0
-django-widget-tweaks==1.4.1
+django-widget-tweaks==1.4.2
 djangorestframework==3.7.7
 easy-thumbnails==2.5
 html5lib==1.0.1
