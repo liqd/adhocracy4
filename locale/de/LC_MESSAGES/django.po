@@ -2311,6 +2311,9 @@ msgid ""
 "Please select the plan your project belongs to. Your project will be shown "
 "in the list of plans accordingly.\n"
 msgstr ""
+"\n"
+"Bitte geben Sie an, zu welchem Vorhaben das Projekt gehört. Das Projekt "
+"wird entsprechend in der Vorhabenliste angezeigt.\n"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/project_plans_form.html:12
 #, python-format
@@ -2320,6 +2323,10 @@ msgid ""
 "\"%(plan_create_url)s\">here</a>.\n"
 "    "
 msgstr ""
+"\n"
+"    Es wurde noch kein Vorhaben angelegt, dies können Sie "
+"<a href=\"%(plan_create_url)s\">hier</a> tun.\n"
+"    "
 
 #: meinberlin/apps/plans/views.py:110
 msgid "Project Link"
