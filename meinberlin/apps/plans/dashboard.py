@@ -8,7 +8,7 @@ from . import forms
 
 class PlanComponent(ProjectFormComponent):
     identifier = 'plans'
-    weight = 10
+    weight = 33
     label = _('Plans')
 
     form_title = _('Edit Plan')
