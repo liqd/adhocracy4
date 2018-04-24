@@ -8,19 +8,19 @@ zeep==2.5.0
 
 # Inherited a4-core requirements
 bleach==2.1.3
-Django==1.11.11 # pyup: <2.0
+Django==1.11.12 # pyup: <2.0
 django-allauth==0.35.0
 django-autoslug==1.9.3
 django-background-tasks==1.1.13
 django-ckeditor==5.4.0
 django-cloudflare-push==0.2.0
 django-filter==1.1.0
-django-widget-tweaks==1.4.1
-djangorestframework==3.7.7
+django-widget-tweaks==1.4.2
+djangorestframework==3.8.2
 easy-thumbnails==2.5
 html5lib==1.0.1
 jsonfield==2.0.2
-python-dateutil==2.7.1
+python-dateutil==2.7.2
 python-magic==0.4.15
 rules==1.3
-XlsxWriter==1.0.2
+XlsxWriter==1.0.4
