@@ -5,6 +5,7 @@ from meinberlin.apps.bplan import phases as bplan_phases
 from meinberlin.apps.budgeting import phases as budgeting_phases
 from meinberlin.apps.documents import phases as documents_phases
 from meinberlin.apps.extprojects import phases as extprojects_phases
+from meinberlin.apps.facetoface import phases as facetoface_phases
 from meinberlin.apps.ideas import phases as ideas_phases
 from meinberlin.apps.kiezkasse import phases as kiezkasse_phases
 from meinberlin.apps.mapideas import phases as mapideas_phases
@@ -163,5 +164,17 @@ blueprints = [
          ],
          image='images/kiezkasse.svg',
          settings_model=('a4maps', 'AreaSettings'),
+     )),
+    ('facetoface',
+     ProjectBlueprint(
+         title=_('Face to Face Participation'),
+         description=_(
+             'Share info about a face to face participation event.'
+         ),
+         content=[
+             facetoface_phases.FaceToFacePhase(),
+         ],
+         image='images/kiezkasse.svg',
+         settings_model=None,
      )),
 ]
