@@ -1,0 +1,14 @@
+{% extends 'meinberlin_projects/project_detail.html' %}
+{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags contrib_tags thumbnail %}
+
+{% block phase_content %}
+    <div class="module-content">
+        <div class="l-wrapper">
+            <div class="l-center-8">
+                <h1>{{ object.name }}</h1>
+                <p>{{ object.highlight }}</p>
+                <p>{{ object.description | richtext }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
