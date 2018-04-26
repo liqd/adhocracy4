@@ -12,7 +12,7 @@ from . import models
 class FaceToFaceDashboardView(ProjectMixin,
                               dashboard_mixins.DashboardBaseMixin,
                               dashboard_mixins.DashboardComponentMixin,
-                              generic.CreateView):
+                              generic.UpdateView):
     model = models.Activity
     form_class = forms.ActivityForm
     template_name = 'meinberlin_facetoface/facetoface_dashboard.html'
@@ -25,6 +25,15 @@ class FaceToFaceDashboardView(ProjectMixin,
         form.instance.creator = self.request.user
         form.instance.module = self.module
         return super().form_valid(form)
+
+    def get_object(self, queryset=None):
+        try:
+            first_activity = models.Activity.objects \
+                .filter(module=self.module) \
+                .first()
+            return first_activity
+        except AttributeError:
+            return None
 
 
 class FaceToFaceView(ProjectMixin,
