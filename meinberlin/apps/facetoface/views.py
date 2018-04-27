@@ -16,10 +16,10 @@ class FaceToFaceDashboardView(ProjectMixin,
     model = models.Activity
     form_class = forms.ActivityForm
     template_name = 'meinberlin_facetoface/facetoface_dashboard.html'
-    permission_required = 'a4projects.change_project'
+    permission_required = 'meinberlin_facetoface.change_activity'
 
     def get_permission_object(self):
-        return self.project
+        return self.module
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
