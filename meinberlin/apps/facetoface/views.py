@@ -1,5 +1,3 @@
-from django.http import Http404
-from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 import adhocracy4.dashboard.mixins as dashboard_mixins
@@ -45,6 +43,4 @@ class FaceToFaceView(ProjectMixin,
             .filter(module=self.module) \
             .first()
 
-        if not first_activity:
-            raise Http404(_('No activity defined yet.'))
         return first_activity
