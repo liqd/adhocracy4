@@ -93,7 +93,7 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
 
     def _create_modules_and_phases(self, project):
         module = module_models.Module(
-            name='Onlinebeteiligung',
+            name=self.blueprint.title,
             description=project.description,
             weight=1,
             project=project,
