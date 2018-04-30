@@ -1,5 +1,5 @@
 {% extends 'meinberlin_projects/project_detail.html' %}
-{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags contrib_tags thumbnail %}
+{% load wagtailcore_tags ckeditor_tags %}
 
 {% block phase_content %}
     <div class="module-content">
@@ -7,7 +7,7 @@
             <div class="l-center-8">
                 <h1>{{ object.name }}</h1>
                 <p>{{ object.highlight }}</p>
-                <p>{{ object.description | richtext }}</p>
+                <p>{{ object.description | transform_collapsibles | richtext }}</p>
             </div>
         </div>
     </div>
