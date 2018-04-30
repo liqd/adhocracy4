@@ -9,7 +9,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meinberlin_facetoface', '0001_initial'),
+        ('meinberlin_activities', '0001_initial'),
     ]
 
     operations = [

@@ -7,14 +7,14 @@ from . import forms
 from . import models
 
 
-class FaceToFaceDashboardView(ProjectMixin,
-                              dashboard_mixins.DashboardBaseMixin,
-                              dashboard_mixins.DashboardComponentMixin,
-                              generic.UpdateView):
+class ActivityDashboardView(ProjectMixin,
+                            dashboard_mixins.DashboardBaseMixin,
+                            dashboard_mixins.DashboardComponentMixin,
+                            generic.UpdateView):
     model = models.Activity
     form_class = forms.ActivityForm
-    template_name = 'meinberlin_facetoface/facetoface_dashboard.html'
-    permission_required = 'meinberlin_facetoface.change_activity'
+    template_name = 'meinberlin_activities/activities_dashboard.html'
+    permission_required = 'meinberlin_activities.change_activity'
 
     def get_permission_object(self):
         return self.module
@@ -34,8 +34,8 @@ class FaceToFaceDashboardView(ProjectMixin,
             return None
 
 
-class FaceToFaceView(ProjectMixin,
-                     generic.DetailView):
+class ActivityView(ProjectMixin,
+                   generic.DetailView):
     model = models.Activity
 
     def get_object(self):

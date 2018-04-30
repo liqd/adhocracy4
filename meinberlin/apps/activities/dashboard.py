@@ -8,7 +8,7 @@ from . import models
 from . import views
 
 
-class FaceToFaceComponent(DashboardComponent):
+class ActivityComponent(DashboardComponent):
     identifier = 'facetoface'
     weight = 20
     label = _('Face to face')
@@ -22,16 +22,16 @@ class FaceToFaceComponent(DashboardComponent):
         return 0, 1
 
     def get_base_url(self, module):
-        return reverse('a4dashboard:facetoface-dashboard', kwargs={
+        return reverse('a4dashboard:activities-dashboard', kwargs={
             'module_slug': module.slug
         })
 
     def get_urls(self):
         return [(
-            r'^modules/(?P<module_slug>[-\w_]+)/facetoface/$',
-            views.FaceToFaceDashboardView.as_view(component=self),
-            'facetoface-dashboard'
+            r'^modules/(?P<module_slug>[-\w_]+)/activities/$',
+            views.ActivityDashboardView.as_view(component=self),
+            'activities-dashboard'
         )]
 
 
-components.register_module(FaceToFaceComponent())
+components.register_module(ActivityComponent())

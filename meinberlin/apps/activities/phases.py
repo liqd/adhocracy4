@@ -9,7 +9,7 @@ from . import views
 class FaceToFacePhase(phases.PhaseContent):
     app = apps.Config.label
     phase = 'facetoface'
-    view = views.FaceToFaceView
+    view = views.ActivityView
 
     name = _('Face to face phase')
     description = _('Take part in face to face participation')
