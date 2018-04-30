@@ -49,3 +49,23 @@
         width: auto;
     }
 }
+
+.item-detail__factsheet {
+    overflow: hidden;
+
+    dt {
+        width: 7em;
+        float: left;
+        clear: left;
+        margin: 0;
+    }
+
+    dd {
+        overflow: hidden;
+        margin-bottom: 0.2em;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}

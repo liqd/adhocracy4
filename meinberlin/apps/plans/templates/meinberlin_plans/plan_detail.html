@@ -14,7 +14,7 @@
 
 {% block content %}
     <div class="l-wrapper">
-        <div class="l-center-6">
+        <div class="">
             <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
                 <ul>
                     <li>
@@ -24,6 +24,8 @@
                     </li>
                 </ul>
             </nav>
+        </div>
+        <div class="l-center-6">
 
             <div class="item-detail">
                 <h1 class="item-detail__title">
@@ -37,41 +39,32 @@
                     {% endif %}
                 </div>
 
-                <table>
+                <div class="container" style="width: 41.7em; max-width: 100%;">
+                    <dl class="item-detail__factsheet">
 
-                    <tr>
-                    <td>{% trans 'Organisation' %}</td> <td>object.organisation.name</td>
-                    </tr>
+                        <dt>{% trans 'Organisation' %}</dt> <dd>object.organisation.name</dd>
 
-                    <tr>
-                    <td>{% trans 'Location' %}</td><td>{{ object.point_label }}</td>
-                    </tr>
+                        <dt>{% trans 'Location' %}</dt><dd>{{ object.point_label|default:'no val' }}</dd>
 
-                    <tr>
-                    <td>{% trans 'Plan type' %}</td><td>{{ object.category }}</td>
-                    </tr>
+                        <dt>{% trans 'Plan type' %}</dt><dd>{{ object.category }}</dd>
 
-                    <tr>
-                    <td>{% trans 'Participation' %}</td><td>
-                            {% if object.participation == object.PARTICIPATION_YES %}
-                                {% trans 'Yes, see detail (TODO: link)' %}</p>
-                            {% elif object.planned == object.PARTICIPATION_UNDECIDED %}
-                                {% trans 'TODO: undecided text' %}</p>
-                            {% elif object.planned == object.PARTICIPATION_YES %}
-                                {% trans 'TODO: participation yes text' %}</p>
-                            {% endif %}
-                    </td>
-                    </tr>
+                        <dt>{% trans 'Participation' %}</dt>
+                        <dd>
+                                {% if object.participation == object.PARTICIPATION_YES %}
+                                    {% trans 'Yes, see detail (TODO: link)' %}</p>
+                                {% elif object.planned == object.PARTICIPATION_UNDECIDED %}
+                                    {% trans 'TODO: undecided text' %}</p>
+                                {% elif object.planned == object.PARTICIPATION_YES %}
+                                    {% trans 'TODO: participation yes text' %}</p>
+                                {% endif %}
+                        </dd>
 
-                    <tr>
-                    <td>{% trans 'Planed cost' %}</td><td>{{ object.cost }}€</td>
-                    </tr>
+                        <dt>{% trans 'Planed cost' %}</dt><dd>{{ object.cost }}€</dd>
 
-                    <tr>
-                    <td>{% trans 'Reference No.' %}</td> <td>{{ object.reference_number }}</td>
-                    </tr>
+                        <dt>{% trans 'Reference No.' %}</dt> <dd>{{ object.reference_number }}</dd>
 
-                </table>
+                    </dl>
+                </div>
 
                 <hr />
 
