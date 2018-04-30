@@ -14,7 +14,8 @@ class ActivityComponent(DashboardComponent):
     label = _('Face to face')
 
     def is_effective(self, module):
-        return True
+        module_app = module.phases[0].content().app
+        return module_app == 'meinberlin_activities'
 
     def get_progress(self, module):
         if models.Activity.objects.filter(module=module).exists():
