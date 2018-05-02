@@ -46,6 +46,7 @@ clean:
 .PHONY: fixtures
 fixtures:
 	$(VIRTUAL_ENV)/bin/python3 manage.py import_geodata
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/site-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/users-dev.json
 
 .PHONY: server
