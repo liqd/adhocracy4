@@ -48,6 +48,7 @@ fixtures:
 	$(VIRTUAL_ENV)/bin/python3 manage.py import_geodata
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/site-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/users-dev.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/orga-dev.json
 
 .PHONY: server
 server:
