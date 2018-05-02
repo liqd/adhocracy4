@@ -75,6 +75,10 @@ class Plan(UserGeneratedContentModel):
     def reference_number(self):
         return '{:d}-{:05d}'.format(self.created.year, self.pk)
 
+    def published_projects(self):
+        return self.projects.filter(
+            is_draft=False, is_public=True, is_archived=False)
+
     def __str__(self):
         return self.title
 
