@@ -39,7 +39,7 @@
                     {% endif %}
                 </div>
 
-                <div class="container" style="width: 41.7em; max-width: 100%;">
+                <div class="container">
                     <dl class="item-detail__factsheet">
 
                         <dt>{% trans 'Organisation' %}</dt> <dd>object.organisation.name</dd>
@@ -66,20 +66,18 @@
                     </dl>
                 </div>
 
-                <hr />
-
+                <div class="item-detail__actions">
                 {% if object.description %}
                     {{ object.description|richtext }}
                 {% endif %}
+                </div>
 
-                <hr />
-
+                <div class="item-detail__actions">
                 <h5>{% trans 'Contact' %}</h5>
                 <p>{{ object.contact }}</p>
+                </div>
 
-                <hr />
-
-                <ul class="l-tiles-4">
+                <ul class="l-tiles-4 item-detail__actions">
                 {% for project in object.projects.all %}
                 {% if project and project.is_public and not project.is_draft %}
                 {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
