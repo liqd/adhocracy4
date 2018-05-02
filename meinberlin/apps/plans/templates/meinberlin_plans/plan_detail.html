@@ -73,17 +73,24 @@
                 </div>
 
                 <div class="item-detail__actions">
-                <h5>{% trans 'Contact' %}</h5>
-                <p>{{ object.contact }}</p>
+                    <strong>{% trans 'Contact' %}</strong>
+                    {{ object.contact|linebreaks }}
                 </div>
 
-                <ul class="l-tiles-4 item-detail__actions">
-                {% for project in object.projects.all %}
-                {% if project and project.is_public and not project.is_draft %}
-                {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
+                {% with object.projects.all as all_projects %} {# allow django to cache this query #}
+                {% if all_projects %}
+                <div class="item-detail__actions">
+                    <strong>{% trans 'Participation projects' %}</strong>
+                    <ul class="l-tiles-4">
+                    {% for project in all_projects %}
+                    {% if project and project.is_public and not project.is_draft %}
+                    {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
+                    {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
                 {% endif %}
-                {% endfor %}
-                </ul>
+                {% endwith %}
 
                 <div class="item-detail__actions lr-bar">
                     {% has_perm 'meinberlin_plans.change_plan' request.user object.organisation as user_may_change %}
