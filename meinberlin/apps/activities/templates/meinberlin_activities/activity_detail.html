@@ -2,9 +2,9 @@
 {% load wagtailcore_tags ckeditor_tags %}
 
 {% block phase_content %}
-    <div class="module-content">
-        <div class="l-wrapper">
-            <div class="l-center-8">
+    <div class="l-center-8">
+		<div class="l-wrapper">
+    		<div class="module-content--lite">
                 <h1>{{ object.name }}</h1>
                 <p>{{ object.highlight }}</p>
                 <p>{{ object.description | transform_collapsibles | richtext }}</p>
