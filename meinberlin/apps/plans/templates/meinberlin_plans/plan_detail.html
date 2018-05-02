@@ -73,11 +73,42 @@
                 </div>
 
                 <div class="item-detail__actions">
-                    <strong>{% trans 'Contact' %}</strong>
+                    <h3 class="item-detail__smalltitle">{% trans 'Contact' %}</h3>
                     {{ object.contact|linebreaks }}
                 </div>
 
+                <div class="item-detail__actions lr-bar">
+                    {% has_perm 'meinberlin_plans.change_plan' request.user object.organisation as user_may_change %}
+                    {% if user_may_change %}
+                        <div class="dropdown dropdown--right lr-bar__right">
+                            <button
+                                    title="{% trans 'Actions' %}"
+                                    type="button"
+                                    class="dropdown-toggle btn btn--light btn--small"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    id="idea-{{ object.pk }}-actions"
+                            >
+                                <i class="fa fa-ellipsis-h" aria-label="{% trans 'Actions' %}"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="idea-{{ object.pk }}-actions">
+                                <li>
+                                    <a
+                                        href="{% url 'a4dashboard:plan-update' organisation_slug=object.organisation.slug pk=object.pk %}"
+                                        class="dropdown-item"
+                                        data-embed-target="external"
+                                    >{% trans 'Edit' %}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+
             </div>
+
+        
+        <h3 class="item-detail__smalltitle item-detail__content">{% trans "Participation projects" %}</h3>
 
         {% if object.published_projects.count <= 2 %}
              <ul class="l-tiles-2">
@@ -100,36 +131,6 @@
          </ul>
     
         {% endif %}
-
-        <div class="l-center-6">
-            <div class="item-detail__actions lr-bar">
-                {% has_perm 'meinberlin_plans.change_plan' request.user object.organisation as user_may_change %}
-                {% if user_may_change %}
-                    <div class="dropdown dropdown--right lr-bar__right">
-                        <button
-                                title="{% trans 'Actions' %}"
-                                type="button"
-                                class="dropdown-toggle btn btn--light btn--small"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                                id="idea-{{ object.pk }}-actions"
-                        >
-                            <i class="fa fa-ellipsis-h" aria-label="{% trans 'Actions' %}"></i>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="idea-{{ object.pk }}-actions">
-                            <li>
-                                <a
-                                    href="{% url 'a4dashboard:plan-update' organisation_slug=object.organisation.slug pk=object.pk %}"
-                                    class="dropdown-item"
-                                    data-embed-target="external"
-                                >{% trans 'Edit' %}</a>
-                            </li>
-                        </ul>
-                    </div>
-                {% endif %}
-            </div>
-        </div
     
     </div>
 {% endblock %}
