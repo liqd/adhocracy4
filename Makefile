@@ -9,11 +9,12 @@ help:
 	@echo mein.berlin development tools
 	@echo
 	@echo It will either use an exisiting virtualenv if it was entered
-	@echo before or create a new one in the .env subdirectory.
+	@echo before or create a new one in the venv subdirectory.
 	@echo
 	@echo usage:
 	@echo
 	@echo "  make install         -- install dev setup"
+	@echo "  make clean           -- delete node modules and venv"
 	@echo "  make server          -- start a dev server"
 	@echo "  make watch           -- start a dev server and rebuild js and css files on changes"
 	@echo "  make background      -- start a dev server, rebuild js and css files on changes, and start background processes"
@@ -24,7 +25,7 @@ help:
 	@echo "  make lint            -- lint all project files"
 	@echo "  make lint-quick      -- lint all files staged in git"
 	@echo "  make po              -- create new po files from the source"
-	@echo "  make mo              -- create new mo files from the translated po files"
+	@echo "  make compilemessages -- create new mo files from the translated po files"
 	@echo "  make release         -- build everything required for a release"
 	@echo
 
@@ -35,6 +36,11 @@ install:
 	if [ ! -f $(VIRTUAL_ENV)/bin/python3 ]; then python3 -m venv $(VIRTUAL_ENV); fi
 	$(VIRTUAL_ENV)/bin/python3 -m pip install --upgrade -r requirements/dev.txt
 	$(VIRTUAL_ENV)/bin/python3 manage.py migrate
+
+.PHONY: clean
+clean:
+	if [ -d node_modules ]; then rm -r node_modules; fi
+	if [ -d venv ]; then rm -r venv; fi
 
 .PHONY: server
 server:
@@ -86,8 +92,8 @@ po:
 	msgen locale/en_GB/LC_MESSAGES/django.po -o locale/en_GB/LC_MESSAGES/django.po
 	msgen locale/en_GB/LC_MESSAGES/djangojs.po -o locale/en_GB/LC_MESSAGES/djangojs.po
 
-.PHONY: mo
-mo:
+.PHONY: compilemessages
+compilemessages:
 	$(VIRTUAL_ENV)/bin/python manage.py compilemessages
 
 .PHONY: release
