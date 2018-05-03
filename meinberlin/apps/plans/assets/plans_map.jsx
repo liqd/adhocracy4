@@ -378,7 +378,7 @@ class PlansMap extends React.Component {
           }
         </div>
         <h3 className="list-item__title"><a href={item.url}>{item.title}</a></h3>
-        <div className="list-item__subtitle"><b>{django.gettext('Initiator: ')}</b><span>{item.organisation}</span></div>
+        <div className="list-item__subtitle"><b>{django.gettext('Participation type: ')}</b><span>{item.category}</span></div>
         <div className="list-item__subtitle"><b>{django.gettext('Participation: ')}</b><span className={statusClass}>{item.participation_string}</span></div>
       </li>
     )
