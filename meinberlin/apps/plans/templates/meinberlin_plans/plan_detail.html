@@ -63,9 +63,11 @@
                             </dd>
                         </dl>
 
+                        {% if object.cost %}
                         <dl>
                             <dt>{% trans 'Planed cost' %}</dt><dd>{{ object.cost }}€</dd>
                         </dl>
+                        {% endif %}
 
                         <dl>
                             <dt>{% trans 'Reference No.' %}</dt> <dd>{{ object.reference_number }}</dd>
