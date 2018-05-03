@@ -40,26 +40,38 @@
                 </div>
 
                 <div class="container">
-                    <dl class="item-detail__factsheet">
+                    <ul class="item-detail__factsheet">
 
-                        <dt>{% trans 'Organisation' %}</dt> <dd>{{ object.organisation.name }}</dd>
+                        <dl>
+                            <dt>{% trans 'Organisation' %}</dt> <dd>{{ object.organisation.name }}</dd>
+                        </dl>
 
-                        <dt>{% trans 'Location' %}</dt><dd>{{ object.point_label|default:'no val' }}</dd>
+                        <dl>
+                            <dt>{% trans 'Location' %}</dt><dd>{{ object.point_label|default:'no val' }}</dd>
+                        </dl>
 
-                        <dt>{% trans 'Plan type' %}</dt><dd>{{ object.category }}</dd>
+                        <dl>
+                            <dt>{% trans 'Plan type' %}</dt><dd>{{ object.category }}</dd>
+                        </dl>
 
-                        <dt>{% trans 'Participation' %}</dt>
-                        <dd>
-                                {{ object.get_participation_display }}{% if object.participation == object.PARTICIPATION_YES and object.published_projects.count %},
-                                <a href='#participation-plans'>{% trans 'see participation plans' %}</a>
+                        <dl>
+                            <dt>{% trans 'Participation' %}</dt>
+                            <dd>
+                                    {{ object.get_participation_display }}{% if object.participation == object.PARTICIPATION_YES and object.published_projects.count %},
+                                    <a href='#participation-plans'>{% trans 'see participation plans' %}</a>
                                 {% endif%}
-                        </dd>
+                            </dd>
+                        </dl>
 
-                        <dt>{% trans 'Planed cost' %}</dt><dd>{{ object.cost }}€</dd>
+                        <dl>
+                            <dt>{% trans 'Planed cost' %}</dt><dd>{{ object.cost }}€</dd>
+                        </dl>
 
-                        <dt>{% trans 'Reference No.' %}</dt> <dd>{{ object.reference_number }}</dd>
+                        <dl>
+                            <dt>{% trans 'Reference No.' %}</dt> <dd>{{ object.reference_number }}</dd>
+                        </dl>
 
-                    </dl>
+                    </ul>
                 </div>
 
                 <div class="item-detail__actions">

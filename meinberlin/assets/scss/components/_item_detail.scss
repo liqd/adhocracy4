@@ -59,21 +59,18 @@
 }
 
 .item-detail__factsheet {
-    overflow: hidden;
+    display: table;
+
+    dl {
+        display: table-row;
+    }
 
     dt {
-        width: 7em; /* TODO: think about this hardcoded thing, maybe use different method for table */
-        float: left;
-        clear: left;
-        margin: 0;
+        display: table-cell;
+        border-right: 2em solid transparent;
     }
 
     dd {
-        overflow: hidden;
-        margin-bottom: 0.2em;
-    }
-
-    p {
-        margin-bottom: 0;
+        display: table-cell;
     }
 }
