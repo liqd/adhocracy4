@@ -174,7 +174,7 @@ blueprints = [
          content=[
              activities_phases.FaceToFacePhase(),
          ],
-         image='images/kiezkasse.svg',
+         image='images/facetoface.svg',
          settings_model=None,
      )),
 ]
