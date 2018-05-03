@@ -39,42 +39,40 @@
                     {% endif %}
                 </div>
 
-                <div class="container">
-                    <ul class="item-detail__factsheet">
+                <ul class="item-detail__factsheet">
 
-                        <dl>
-                            <dt>{% trans 'Organisation' %}</dt> <dd>{{ object.organisation.name }}</dd>
-                        </dl>
+                    <dl>
+                        <dt>{% trans 'Organisation' %}</dt> <dd>{{ object.organisation.name }}</dd>
+                    </dl>
 
-                        <dl>
-                            <dt>{% trans 'Location' %}</dt><dd>{{ object.point_label|default:'no val' }}</dd>
-                        </dl>
+                    <dl>
+                        <dt>{% trans 'Location' %}</dt><dd>{{ object.point_label|default:'no val' }}</dd>
+                    </dl>
 
-                        <dl>
-                            <dt>{% trans 'Plan type' %}</dt><dd>{{ object.category }}</dd>
-                        </dl>
+                    <dl>
+                        <dt>{% trans 'Plan type' %}</dt><dd>{{ object.category }}</dd>
+                    </dl>
 
-                        <dl>
-                            <dt>{% trans 'Participation' %}</dt>
-                            <dd>
-                                    {{ object.get_participation_display }}{% if object.participation == object.PARTICIPATION_YES and object.published_projects.count %},
-                                    <a href='#participation-plans'>{% trans 'see participation plans' %}</a>
-                                {% endif%}
-                            </dd>
-                        </dl>
+                    <dl>
+                        <dt>{% trans 'Participation' %}</dt>
+                        <dd>
+                                {{ object.get_participation_display }}{% if object.participation == object.PARTICIPATION_YES and object.published_projects.count %},
+                                <a href='#participation-plans'>{% trans 'see participation plans' %}</a>
+                            {% endif%}
+                        </dd>
+                    </dl>
 
-                        {% if object.cost %}
-                        <dl>
-                            <dt>{% trans 'Planed cost' %}</dt><dd>{{ object.cost }}€</dd>
-                        </dl>
-                        {% endif %}
+                    {% if object.cost %}
+                    <dl>
+                        <dt>{% trans 'Planed cost' %}</dt><dd>{{ object.cost }}€</dd>
+                    </dl>
+                    {% endif %}
 
-                        <dl>
-                            <dt>{% trans 'Reference No.' %}</dt> <dd>{{ object.reference_number }}</dd>
-                        </dl>
+                    <dl>
+                        <dt>{% trans 'Reference No.' %}</dt> <dd>{{ object.reference_number }}</dd>
+                    </dl>
 
-                    </ul>
-                </div>
+                </ul>
 
                 <div class="item-detail__actions">
                 {% if object.description %}
