@@ -8,7 +8,11 @@
     page-break-inside: avoid;
 
     &.selected {
-        @include fake-focus;
+        background-color: $gray-lighter;
+    }
+
+    &.selected:focus {
+        outline: none;
     }
 }
 
@@ -58,23 +62,10 @@
 .list-item__title {
     margin: 0 0 0.5rem;
     font-size: $font-size-lg;
-
-    a {
-        color: inherit;
-        text-decoration: none;
-
-        &:focus,
-        &:hover {
-            color: $brand-primary;
-        }
-    }
 }
 
 .list-item__subtitle {
     margin-bottom: 0.5em;
-
-    @include secondary-text;
-    color: contrast-color($body-bg, lighten($text-color, 25%));
     font-size: $font-size-sm;
 }
 
@@ -112,4 +103,8 @@
 .list-item-empty {
     padding: 0.7em $padding;
     text-align: center;
+}
+
+.list-item__status--active {
+    color: $brand-primary;
 }
