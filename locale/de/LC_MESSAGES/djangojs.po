@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-23 15:57+0200\n"
+"POT-Creation-Date: 2018-05-03 13:54+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -387,52 +387,60 @@ msgstr "Ja"
 msgid "Still undecided"
 msgstr "Noch nicht entschieden"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:401
+#: meinberlin/apps/plans/assets/plans_map.jsx:381
+msgid "Participation type: "
+msgstr ""
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:382
+msgid "Participation: "
+msgstr ""
+
+#: meinberlin/apps/plans/assets/plans_map.jsx:403
 msgid "Nothing to show"
 msgstr "Keine Ergebnisse"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:410
+#: meinberlin/apps/plans/assets/plans_map.jsx:412
 msgid "Filter bar"
 msgstr "Filter Leiste"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:417
+#: meinberlin/apps/plans/assets/plans_map.jsx:419
 msgid "Address Search"
 msgstr "Adresssuche"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:418
-#: meinberlin/apps/plans/assets/plans_map.jsx:419
-#: meinberlin/apps/plans/assets/plans_map.jsx:447
-#: meinberlin/apps/plans/assets/plans_map.jsx:448
+#: meinberlin/apps/plans/assets/plans_map.jsx:420
+#: meinberlin/apps/plans/assets/plans_map.jsx:421
 #: meinberlin/apps/plans/assets/plans_map.jsx:449
+#: meinberlin/apps/plans/assets/plans_map.jsx:450
+#: meinberlin/apps/plans/assets/plans_map.jsx:451
 msgid "Search"
 msgstr "Suche"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:455
+#: meinberlin/apps/plans/assets/plans_map.jsx:457
 msgid "Status"
 msgstr "Status"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:455
-#: meinberlin/apps/plans/assets/plans_map.jsx:465
-#: meinberlin/apps/plans/assets/plans_map.jsx:491
-#: meinberlin/apps/plans/assets/plans_map.jsx:501
-#: meinberlin/apps/plans/assets/plans_map.jsx:524
-#: meinberlin/apps/plans/assets/plans_map.jsx:534
+#: meinberlin/apps/plans/assets/plans_map.jsx:457
+#: meinberlin/apps/plans/assets/plans_map.jsx:467
+#: meinberlin/apps/plans/assets/plans_map.jsx:493
+#: meinberlin/apps/plans/assets/plans_map.jsx:503
+#: meinberlin/apps/plans/assets/plans_map.jsx:526
+#: meinberlin/apps/plans/assets/plans_map.jsx:536
 msgid "All"
 msgstr "Alle"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:491
+#: meinberlin/apps/plans/assets/plans_map.jsx:493
 msgid "Participation"
 msgstr "Beteiligung"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:524
+#: meinberlin/apps/plans/assets/plans_map.jsx:526
 msgid "District"
 msgstr "Bezirk"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:556
+#: meinberlin/apps/plans/assets/plans_map.jsx:558
 msgid "Export Excel"
 msgstr "Excel herunterladen"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:563
+#: meinberlin/apps/plans/assets/plans_map.jsx:565
 msgid "Address could not be found"
 msgstr "Keine Adresse gefunden"
 
