@@ -405,7 +405,7 @@ class PlansMap extends React.Component {
   render () {
     return (
       <div>
-        <div className="l-wrapper">
+        <div className="u-spacer-left u-spacer-right">
           <div className="control-bar" role="group" aria-label={django.gettext('Filter bar')}>
             <form onSubmit={this.onAddressSearchSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group u-inline-flex u-position-relative">
               <input
