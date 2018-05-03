@@ -389,11 +389,11 @@ msgstr "Noch nicht entschieden"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:381
 msgid "Participation type: "
-msgstr ""
+msgstr "Beteiligungstyp: "
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:382
 msgid "Participation: "
-msgstr ""
+msgstr "Beteiligung: "
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:403
 msgid "Nothing to show"
