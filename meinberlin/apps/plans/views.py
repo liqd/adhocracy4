@@ -67,7 +67,9 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
     def _get_participation_status(self, item):
         projects = item.projects.all()\
-            .filter(is_draft=False, is_archived=False)
+            .filter(is_draft=False,
+                    is_archived=False,
+                    is_public=True)
         if not projects:
             return item.get_participation_display()
         else:
