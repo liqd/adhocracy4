@@ -47,6 +47,36 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         except ObjectDoesNotExist:
             return []
 
+    def _get_status_string(self, projects):
+
+        future_phase = None
+        for project in projects:
+            phases = project.phases
+            if phases.active_phases():
+                return ugettext('running')
+            if phases.future_phases():
+                date = phases.future_phases().first().start_date
+                if not future_phase:
+                    future_phase = date
+                else:
+                    if date < future_phase:
+                        future_phase = date
+
+        if future_phase:
+            return ugettext('starts at {}').format(future_phase.date())
+
+    def _get_participation_status(self, item):
+        projects = item.projects.all()\
+            .filter(is_draft=False, is_archived=False)
+        if not projects:
+            return item.get_participation_display()
+        else:
+            status_string = self._get_status_string(projects)
+            if status_string:
+                return status_string
+            else:
+                return item.get_participation_display()
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -74,6 +104,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             'category': item.category,
             'status': item.status,
             'status_display': item.get_status_display(),
+            'participation_string': self._get_participation_status(item),
             'participation': item.participation,
             'participation_display': item.get_participation_display(),
         } for item in items])
