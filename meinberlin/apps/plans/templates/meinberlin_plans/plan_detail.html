@@ -42,7 +42,7 @@
                 <div class="container">
                     <dl class="item-detail__factsheet">
 
-                        <dt>{% trans 'Organisation' %}</dt> <dd>object.organisation.name</dd>
+                        <dt>{% trans 'Organisation' %}</dt> <dd>{{ object.organisation.name }}</dd>
 
                         <dt>{% trans 'Location' %}</dt><dd>{{ object.point_label|default:'no val' }}</dd>
 
@@ -50,13 +50,9 @@
 
                         <dt>{% trans 'Participation' %}</dt>
                         <dd>
-                                {% if object.participation == object.PARTICIPATION_YES %}
-                                    {% trans 'Yes, see detail (TODO: link)' %}</p>
-                                {% elif object.planned == object.PARTICIPATION_UNDECIDED %}
-                                    {% trans 'TODO: undecided text' %}</p>
-                                {% elif object.planned == object.PARTICIPATION_YES %}
-                                    {% trans 'TODO: participation yes text' %}</p>
-                                {% endif %}
+                                {{ object.get_participation_display }}{% if object.participation == object.PARTICIPATION_YES and object.published_projects.count %},
+                                <a href='#participation-plans'>{% trans 'see participation plans' %}</a>
+                                {% endif%}
                         </dd>
 
                         <dt>{% trans 'Planed cost' %}</dt><dd>{{ object.cost }}€</dd>
@@ -77,9 +73,9 @@
                     {{ object.contact|linebreaks }}
                 </div>
 
+               {% has_perm 'meinberlin_plans.change_plan' request.user object.organisation as user_may_change %}
+               {% if user_may_change %}
                 <div class="item-detail__actions lr-bar">
-                    {% has_perm 'meinberlin_plans.change_plan' request.user object.organisation as user_may_change %}
-                    {% if user_may_change %}
                         <div class="dropdown dropdown--right lr-bar__right">
                             <button
                                     title="{% trans 'Actions' %}"
@@ -102,26 +98,28 @@
                                 </li>
                             </ul>
                         </div>
-                    {% endif %}
                 </div>
+                {% endif %}
 
             </div>
 
         
-        <h3 class="item-detail__smalltitle item-detail__content">{% trans "Participation projects" %}</h3>
+        {% if object.published_projects %}
+        <h3 class="item-detail__smalltitle item-detail__content item-detail__actions" id="participation-plans">{% trans "Participation projects" %}</h3>
 
-        {% if object.published_projects.count <= 2 %}
+        {% with object.published_projects.count as published_projects_count %}
+        {% if published_projects_count <= 2 %}
              <ul class="l-tiles-2">
                 {% for project in object.published_projects %}
                     {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
-                {% endfor %}
+            {% endfor %}
         </div> {# close l-wrapper after the tiles #}
     
         {% else %}
         </div> {# close l-wrapper before the tiles #}
         <ul class="l-tiles-4">
     
-            {% if object.published_projects.count == 3 %}
+            {% if published_projects_count == 3 %}
             <li></li> {# first tile is invisible #}
             {% endif %}
     
@@ -130,6 +128,8 @@
             {% endfor %}
          </ul>
     
+        {% endif %}
+        {% endwith %}
         {% endif %}
     
     </div>
