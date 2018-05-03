@@ -107,29 +107,29 @@
         {% if object.published_projects %}
         <h3 class="item-detail__smalltitle item-detail__content item-detail__actions" id="participation-plans">{% trans "Participation projects" %}</h3>
 
-        {% with object.published_projects.count as published_projects_count %}
-        {% if published_projects_count <= 2 %}
+        {% if object.published_projects.count <= 2 %}
              <ul class="l-tiles-2">
                 {% for project in object.published_projects %}
                     {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
             {% endfor %}
-        </div> {# close l-wrapper after the tiles #}
+        </div> {# close l-wrapper *after* the tiles #}
     
         {% else %}
-        </div> {# close l-wrapper before the tiles #}
+
+        </div> {# close l-wrapper *before* the tiles #}
         <ul class="l-tiles-4">
     
-            {% if published_projects_count == 3 %}
+            {% if object.published_projects.count == 3 %}
             <li></li> {# first tile is invisible #}
             {% endif %}
     
             {% for project in object.published_projects %}
                 {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
             {% endfor %}
+
          </ul>
     
         {% endif %}
-        {% endwith %}
         {% endif %}
     
     </div>
