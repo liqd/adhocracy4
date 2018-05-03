@@ -364,10 +364,7 @@ class PlansMap extends React.Component {
     if (i === this.state.selected) {
       itemClass += ' selected'
     }
-    let statusClass = 'list-item__status--active'
-    if (item.participation_string === item.participation_display) {
-      statusClass = 'list-item__status--inactive'
-    }
+    let statusClass = (item.participation_active === true) ? 'list-item__status--active' : 'list-item__status--inactive'
     return (
       <li className={itemClass} key={i} onFocus={(e) => { this.onSelect(i) }} tabIndex="0">
         <div className="list-item__labels">

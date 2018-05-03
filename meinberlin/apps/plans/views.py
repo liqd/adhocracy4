@@ -71,13 +71,13 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                     is_archived=False,
                     is_public=True)
         if not projects:
-            return item.get_participation_display()
+            return item.get_participation_display(), False
         else:
             status_string = self._get_status_string(projects)
             if status_string:
-                return status_string
+                return status_string, True
             else:
-                return item.get_participation_display()
+                return item.get_participation_display(), False
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -95,22 +95,28 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                        key=lambda x: x.modified or x.created,
                        reverse=True)
 
-        context['items'] = json.dumps([{
-            'title': item.title,
-            'url': item.get_absolute_url(),
-            'organisation': item.organisation.name,
-            'point': item.point,
-            'point_label': item.point_label,
-            'cost': item.cost,
-            'district': item.district.name,
-            'category': item.category,
-            'status': item.status,
-            'status_display': item.get_status_display(),
-            'participation_string': self._get_participation_status(item),
-            'participation': item.participation,
-            'participation_display': item.get_participation_display(),
-        } for item in items])
+        result = []
 
+        for item in items:
+            participation_string, active = self._get_participation_status(item)
+            result.append({
+                'title': item.title,
+                'url': item.get_absolute_url(),
+                'organisation': item.organisation.name,
+                'point': item.point,
+                'point_label': item.point_label,
+                'cost': item.cost,
+                'district': item.district.name,
+                'category': item.category,
+                'status': item.status,
+                'status_display': item.get_status_display(),
+                'participation_string': participation_string,
+                'participation_active': active,
+                'participation': item.participation,
+                'participation_display': item.get_participation_display(),
+            })
+
+        context['items'] = json.dumps(result)
         context['baseurl'] = settings.A4_MAP_BASEURL
         context['attribution'] = settings.A4_MAP_ATTRIBUTION
         context['bounds'] = json.dumps(settings.A4_MAP_BOUNDING_BOX)
