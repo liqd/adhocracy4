@@ -67,7 +67,7 @@
                 {% endif %}
 
                 {% with phase_count=module.phases.count %}
-                <div class="phase-info" id="phase-overview">
+                <div class="phase-info">
                     {% for phase in module.phases %}{# FIXME: not ordered by start_date but by weight #}
                         <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
                             <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar{% endif %}">
