@@ -145,8 +145,8 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
 
     def get_virtual_fields(self, virtual):
         virtual = super().get_virtual_fields(virtual)
-        virtual['project'] = ugettext('Project')
-        virtual['project_link'] = ugettext('Project Link')
+        virtual['projects'] = ugettext('Projects')
+        virtual['projects_links'] = ugettext('Project Links')
         return virtual
 
     def get_organisation_data(self, item):
@@ -167,15 +167,20 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
     def get_description_data(self, item):
         return unescape_and_strip_html(item.description)
 
-    def get_project_data(self, item):
-        if item.project:
-            return item.project.name
+    def get_projects_data(self, item):
+        if item.projects.all():
+            return ', \n'.join(
+                [project.name
+                 for project in item.projects.all()]
+            )
         return ''
 
-    def get_project_link_data(self, item):
-        if item.project:
-            return self.request.build_absolute_uri(
-                item.project.get_absolute_url())
+    def get_projects_links_data(self, item):
+        if item.projects.all():
+            return str([self.request.build_absolute_uri(
+                        project.get_absolute_url())
+                        for project in item.projects.all()
+                        ])
         return ''
 
 
