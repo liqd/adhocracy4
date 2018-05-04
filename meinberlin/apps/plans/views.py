@@ -177,11 +177,10 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
 
     def get_projects_links_data(self, item):
         if item.projects.all():
-            return ', \n'.join(
-                [self.request.build_absolute_uri(
-                 project.get_absolute_url())
-                 for project in item.projects.all()
-                 ])
+            return str([self.request.build_absolute_uri(
+                        project.get_absolute_url())
+                        for project in item.projects.all()
+                        ])
         return ''
 
 
