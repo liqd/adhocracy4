@@ -76,6 +76,12 @@
     position: relative;
 }
 
+.u-no-border,
+.u-no-border:first-child,
+.u-no-border:last-child {
+    border: none;
+}
+
 .d-none {
     display: none;
 }
