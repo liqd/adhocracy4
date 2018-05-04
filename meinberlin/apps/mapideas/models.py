@@ -35,3 +35,4 @@ class MapIdea(AbstractMapIdea):
 
     class Meta:
         ordering = ['-created']
+        verbose_name = 'mapidea'

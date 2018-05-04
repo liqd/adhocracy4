@@ -63,6 +63,7 @@ class MapTopic(module_models.Item):
 
     class Meta:
         ordering = ['-created']
+        verbose_name = 'maptopic'
 
     @property
     def reference_number(self):
