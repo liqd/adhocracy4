@@ -27,3 +27,21 @@ def test_get_change_perm(rf, idea_factory):
     assert 'meinberlin_ideas.change_idea' == context['change_perm']
     assert rules.perm_exists(context['change_perm'])
     assert 'meinberlin_ideas.delete_idea' == context['delete_perm']
+
+
+@pytest.mark.django_db
+def test_get_item_url(rf, idea_factory):
+    obj = idea_factory()
+    request = rf.get('/')
+    template = ('{% load item_tags %}'
+                '{% get_item_update_url obj as update_url %}'
+                '{% get_item_delete_url obj as delete_url %}'
+                '{{ update_url }}'
+                '{{ delete_url }}')
+    context = {'request': request, 'obj': obj}
+    helpers.render_template(template, context)
+
+    assert ('/ideas/{}-{}/update/'.format(obj.created.year,
+            '{:05d}'.format(obj.pk)) == context['update_url'])
+    assert ('/ideas/{}-{}/delete/'.format(obj.created.year,
+            '{:05d}'.format(obj.pk)) == context['delete_url'])
