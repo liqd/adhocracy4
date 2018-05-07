@@ -950,7 +950,7 @@ msgstr "in <a href=\"%(url)s\">%(name)s</a>"
 
 #: meinberlin/apps/activities/dashboard.py:14
 msgid "Face-to-Face Information"
-msgstr ""
+msgstr "Informationen Vor-Ort-Beteiligung"
 
 #: meinberlin/apps/activities/models.py:12 meinberlin/apps/ideas/models.py:28
 #: meinberlin/apps/maptopicprio/models.py:28
@@ -961,29 +961,31 @@ msgstr "Titel"
 
 #: meinberlin/apps/activities/models.py:15
 msgid "Highlighted Info"
-msgstr ""
+msgstr "Hervorgehobene Information"
 
 #: meinberlin/apps/activities/models.py:16
 msgid ""
 "Highlight important information like the time or location of your face-to-"
 "face event"
 msgstr ""
+"Zur Hervorhebung von wichtigen Informationen wie Ort oder Zeitraum der "
+"Vor-Ort-Beteiligung"
 
 #: meinberlin/apps/activities/phases.py:14
 msgid "Face to face phase"
-msgstr ""
+msgstr "Vor-Ort-Phase"
 
 #: meinberlin/apps/activities/phases.py:15
 msgid "Provide information about face-to-face participation events."
-msgstr ""
+msgstr "Informationen zur Vor-Ort-Beteiligung bereitstellen"
 
 #: meinberlin/apps/activities/phases.py:17
 msgid "facetoface"
-msgstr ""
+msgstr "Vor-Ort"
 
 #: meinberlin/apps/activities/templates/meinberlin_activities/activities_dashboard.html:5
 msgid "Edit face to face participation information"
-msgstr ""
+msgstr "Informationen zur Vor-Ort-Beteiligung bearbeiten"
 
 #: meinberlin/apps/adminlog/admin.py:13 meinberlin/apps/adminlog/admin.py:58
 msgid "Component"
@@ -1603,13 +1605,16 @@ msgstr ""
 
 #: meinberlin/apps/dashboard/blueprints.py:170
 msgid "Face-to-Face Participation"
-msgstr ""
+msgstr "Vor-Ort-Beteiligung"
 
 #: meinberlin/apps/dashboard/blueprints.py:172
 msgid ""
 "With this module you can provide information about events or phases for face-"
 "to-face participation. No online participation is possible in this module."
 msgstr ""
+"Mit diesem Modul können Informationen über Veranstaltungen und Phasen zur "
+"Vor-Ort-Beteiligung bereitgestellt werden. In diesem Modul ist keine "
+"Online-Beteiligung möglich."
 
 #: meinberlin/apps/dashboard/forms.py:13
 msgid "Organisation name"
@@ -2228,7 +2233,7 @@ msgstr "Vorhaben"
 
 #: meinberlin/apps/plans/dashboard.py:14
 msgid "Edit Plan"
-msgstr ""
+msgstr "Vorhaben bearbeiten"
 
 #: meinberlin/apps/plans/forms.py:38
 msgid "Please locate the plan on the map."
@@ -2321,7 +2326,7 @@ msgstr "Ort"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:53
 msgid "Plan type"
-msgstr ""
+msgstr "Plantyp"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:60
 msgid "see participation plans"
