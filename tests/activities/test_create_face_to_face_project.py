@@ -20,6 +20,7 @@ def test_facetoface_in_blueprints(client, project):
             'organisation_slug': project.organisation.slug
         })
     resp = client.get(blueprints_url, follow=True)
+    assert resp.status_code == 200
     assert facetoface_blueprint_url in resp.content.decode()
 
 
