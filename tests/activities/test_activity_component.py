@@ -9,3 +9,10 @@ def test_progress(module, activity_factory):
     assert ac.get_progress(module) == (0, 1)
     activity_factory(module=module)
     assert ac.get_progress(module) == (1, 1)
+
+@pytest.mark.django_db
+def test_get_base_url(module, client):
+    ac = ActivityComponent()
+    url = ac.get_base_url(module)
+    resp = client.get(url, follow=True)
+    assert resp.status_code != 404  # url exists
