@@ -21,3 +21,8 @@ def test_get_base_url(module, client):
 def test_call_get_urls(module, client):
     ac = ActivityComponent()
     ac.get_urls()
+
+@pytest.mark.django_db
+def test_call_is_effective(module, client):
+    ac = ActivityComponent()
+    ac.get_urls()
