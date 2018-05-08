@@ -40,6 +40,8 @@ $(function () {
         $('.dropdown.show .dropdown-toggle').dropdown('toggle')
         dropdown.find('.idea-remark__btn__notify').show()
       })
+    } else {
+      $('.dropdown.show .dropdown-toggle').dropdown('toggle')
     }
   })
 })
