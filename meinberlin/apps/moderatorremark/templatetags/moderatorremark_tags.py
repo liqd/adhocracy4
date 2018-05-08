@@ -16,6 +16,7 @@ def popover_remark(item):
 
     context = {
         'remark': remark,
+        'object': item
     }
 
     if remark:

@@ -1,0 +1,31 @@
+.idea-remark {
+    background-color: $idea-remark-bg;
+    font-style: italic;
+    padding: 15px;
+    color: $idea-remark-color;
+    box-shadow: 0 0 40px 0 $shadow;
+    border: none;
+}
+
+.idea-remark__hint .fa {
+    margin-right: 5px;
+}
+
+.idea-remark__input textarea {
+    background-color: $idea-remark-bg;
+    border: 0;
+    font-style: italic;
+    color: $idea-remark-color;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.idea-remark__btn__notify {
+    color: $brand-success;
+    position: absolute;
+    background-color: $white;
+    top: -8px;
+    right: -5px;
+}

@@ -2,19 +2,20 @@ const $ = require('jquery')
 const a4api = require('adhocracy4').api
 
 $(function () {
-  const $btn = $('#idea--popover__btn')
-
-  const attributes = $btn.data('attributes')
+  const dropdown = $('#idea-remark__dropdown')
+  const attributes = dropdown.data('attributes')
   const objectPk = attributes['item_object_id']
   const contentTypeId = attributes['item_content_type']
 
   var remarkId = attributes['id']
   var remarkVal = attributes['remark']
+  if (remarkId) {
+    $('#idea-remark__input').val(remarkVal)
+  }
 
-  $btn.popover()
-
-  $btn.on('hide.bs.popover', function () {
-    const $input = $('#idea--popover__input')
+  $('#idea-remark__form').submit(function (e) {
+    e.preventDefault()
+    const $input = $('#idea-remark__input')
     const newVal = $input.val()
 
     if (remarkVal !== newVal) {
@@ -36,13 +37,9 @@ $(function () {
       response.done(remark => {
         remarkId = remark.id
         remarkVal = remark.remark
-        $btn.find('.item-detail__notify').show()
+        $('.dropdown.show .dropdown-toggle').dropdown('toggle')
+        dropdown.find('.idea-remark__btn__notify').show()
       })
     }
-  })
-
-  $('#idea--popover__btn').on('inserted.bs.popover', function () {
-    const $input = $('#idea--popover__input')
-    $input.val(remarkVal)
   })
 })

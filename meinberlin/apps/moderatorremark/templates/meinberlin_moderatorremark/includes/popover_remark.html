@@ -1,36 +1,38 @@
-{% load i18n capture_tags %}
+{% load i18n %}
 
-{% capture as popover_content silent %}
-    <div>
-      <div class="popover__input">
-         <textarea type="text"
-                name="remark"
-                role="textbox"
-                contenteditable="true"
-                aria-multiline="true"
-                max-length=200
-                placeholder="{% trans 'Write down your remark!' %}"
-                id="idea--popover__input"
-          />
-      </div>
-      <div class="popover__hint">
-        <i class="fa fa-lock" aria-label="Private"></i>{% trans 'Remarks remain private.' %}
-      </div>
-    </div>
-{% endcapture %}
-
-<button
+<div class="dropdown dropdown--right">
+    <button
+        title="{% trans 'Moderator Remark' %}"
         type="button"
-        id="idea--popover__btn"
-        class="btn btn--light btn--small popover__btn"
-        data-toggle="popover"
-        data-container="body"
-        data-placement="bottom"
-        data-html="true"
+        class="dropdown-toggle btn btn--light btn--small"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
         data-attributes="{{ attributes }}"
-        data-content="{{ popover_content|force_escape }}"
-        data-template="<div class='popover' role='tooltip'><div class='popover-content'></div></div>"
->
-    <i class="fa fa-comment" aria-label="Remark"></i>
-    <i class="fa fa-check-circle popover__btn__notify {{ remark|yesno:",d-none" }}" aria-label="Remark-Notification"></i>
-</button>
+        id="idea-remark__dropdown"
+    >
+        <i class="fa fa-comment" aria-label="{% trans 'Moderator Remark' %}"></i>
+        <i class="fa fa-check-circle idea-remark__btn__notify {{ remark|yesno:",d-none" }}" aria-label="Remark-Notification"></i>
+    </button>
+    <ul class="dropdown-menu idea-remark" id="remark__dropdown-menu" aria-labelledby="idea-remark">
+        <li>
+            <h3>{% trans 'Remark' %}</h3>
+            <form class="general-form" id="idea-remark__form">
+                <div class="form-group">
+                    <textarea class="form-control" id="idea-remark__input" placeholder="{% trans 'Write down your remark!' %}"></textarea>
+                    <div class="idea-remark__hint">
+                        <i class="fa fa-lock" aria-label="Private"></i>{% trans 'Remarks remain private.' %}
+                    </div>
+                </div>
+                <input class="btn btn--none btn--full" type="submit">
+            </form>
+        </li>
+    </ul>
+</div>
+
+
+
+
+
+
+
