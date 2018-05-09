@@ -1,0 +1,8 @@
+{% extends 'meinberlin_projects/project_detail.html' %}
+{% load offlineevent_tags %}
+
+{% block module_content %}
+    {% if object|has_activity %}
+        {% include "meinberlin_activities/includes/activity_detail.html" %}
+    {% endif %}
+{% endblock %}
