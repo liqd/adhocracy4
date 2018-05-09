@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n rules react_follows thumbnail wagtailcore_tags meinberlin_project_tags contrib_tags ckeditor_tags %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags meinberlin_project_tags offlineevent_tags contrib_tags ckeditor_tags %}
 
 {% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
 
@@ -127,8 +127,22 @@
                     {% block project_action %}{% endblock %}
                 </div>
             </div>
-            {% block phase_content %}{% endblock %}
-            {% block module_content %}{% endblock %}
+
+            {% to_class_name object as object_type %}
+            {% if object_type == 'Module' %}
+                {% if object|has_activity %}
+                {% include "meinberlin_activities/includes/activity_detail_content.html" with object=object.item_set.first.activity %}
+                {% endif %}
+            {% elif object_type == 'Project' %}
+                {% if object.modules.first|has_activity %}
+                {% with activity=object.modules.first.item_set.first.activity %}
+                {% include "meinberlin_activities/includes/activity_detail_content.html" with object=activity %}
+                {% endwith %}
+                {% endif %}
+            {% else %}
+                {% block phase_content %}{% endblock %}
+            {% endif %}
+
         </div>
         <div
             class="tabpanel"
