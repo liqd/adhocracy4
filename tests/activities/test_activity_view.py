@@ -2,7 +2,6 @@ import pytest
 from django.urls import reverse
 from django.test import RequestFactory
 from meinberlin.apps.activities.models import Activity
-
 from meinberlin.test.helpers import setup_users
 from meinberlin.apps.activities.views import ActivityDashboardView
 
