@@ -8,8 +8,8 @@ from adhocracy4.test import factories as a4_factories
 from adhocracy4.test import helpers
 from adhocracy4.test.factories.maps import AreaSettingsFactory
 from meinberlin.test import factories
-from meinberlin.test.factories.organisations import OrganisationFactory
 from meinberlin.test.factories.activities import ActivityFactory
+from meinberlin.test.factories.organisations import OrganisationFactory
 
 
 def pytest_configure(config):
