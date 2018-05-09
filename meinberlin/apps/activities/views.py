@@ -25,13 +25,15 @@ class ActivityDashboardView(ProjectMixin,
         return super().form_valid(form)
 
     def get_object(self, queryset=None):
-        try:
-            first_activity = models.Activity.objects \
-                .filter(module=self.module) \
-                .first()
-            return first_activity
-        except AttributeError:
-            return None
+        import pdb; pdb.set_trace()
+        assert 0, self.module._meta.fields
+        return self.module.activity_set.first()
+       #     first_activity = models.Activity.objects \
+       #         .filter(module=self.module) \
+       #         .first()
+       #     return first_activity
+       # except AttributeError:
+       #     return None
 
 
 class ActivityView(ProjectMixin,
