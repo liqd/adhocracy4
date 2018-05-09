@@ -1,9 +1,7 @@
 import pytest
 from django.urls import reverse
-from django.test import RequestFactory
-from meinberlin.apps.activities.models import Activity
+
 from meinberlin.test.helpers import setup_users
-from meinberlin.apps.activities.views import ActivityDashboardView
 
 
 @pytest.mark.django_db
@@ -27,20 +25,29 @@ def test_facetoface_in_blueprints(client, project):
 
 
 @pytest.mark.django_db
-def test_create_activity_in_dashboard(user, client, activity_factory, phase_factory):
+def test_create_activity_in_dashboard(user, client, activity_factory,
+                                      phase_factory):
     activity = activity_factory()
     phase_factory(module=activity.module)
     anonymous, moderator, initiator = setup_users(activity.project)
     client.login(username=initiator.email, password='password')
-    url = reverse('a4dashboard:activities-dashboard', kwargs={'module_slug': activity.module.slug})
+    url = reverse(
+        'a4dashboard:activities-dashboard',
+        kwargs={
+            'module_slug': activity.module.slug
+        })
     # get the page
     resp = client.get(url)
     assert resp.status_code == 200
 
     # post invalid data
     resp = client.post(url)
-    assert not resp.context['form'].is_valid() 
+    assert not resp.context['form'].is_valid()
 
     # post valid data
-    resp = client.post(url, {'name': 'myname', 'highlight': 'myhilight', 'description': 'mydescription'})
-    assert resp.status_code == 302 # use this an an indicator for success
+    resp = client.post(url, {
+        'name': 'myname',
+        'highlight': 'myhilight',
+        'description': 'mydescription'
+    })
+    assert resp.status_code == 302  # use this an an indicator for success
