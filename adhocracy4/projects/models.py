@@ -4,12 +4,16 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.models import base
 from adhocracy4 import transforms as html_transforms
 from adhocracy4.images import fields
+
+#XXXXXXXXxx
+cached_property = property
 
 
 class ProjectManager(models.Manager):
@@ -137,7 +141,7 @@ class Project(base.TimeStampedModel):
     def has_moderator(self, user):
         return user in self.moderators.all()
 
-    @property
+    @cached_property
     def other_projects(self):
         other_projects = self.organisation.project_set\
             .filter(is_draft=False, is_archived=False).exclude(slug=self.slug)
@@ -147,11 +151,11 @@ class Project(base.TimeStampedModel):
     def is_private(self):
         return not self.is_public
 
-    @property
+    @cached_property
     def modules(self):
         return self.module_set.all()
 
-    @property
+    @cached_property
     def last_active_phase(self):
         """
         Return the last active phase.
@@ -188,13 +192,17 @@ class Project(base.TimeStampedModel):
             return last_active_phase
         return None
 
-    @property
+    @cached_property
     def days_left(self):
         """
         Return the number of days left in the currently active phase.
 
         Attention: This method is _deprecated_ as multiple phases may be
         active at the same time.
+
+        It's a cached property to workaround possibly unexpected day
+        counts when accessed two times when milliseconds before a
+        day change.
         """
         active_phase = self.active_phase
         if active_phase:
@@ -203,24 +211,24 @@ class Project(base.TimeStampedModel):
             return time_delta.days
         return None
 
-    @property
+    @cached_property
     def phases(self):
         from adhocracy4.phases import models as phase_models
         return phase_models.Phase.objects.filter(module__project=self)
 
-    @property
+    @cached_property
     def future_phases(self):
         return self.phases.future_phases()
 
-    @property
+    @cached_property
     def past_phases(self):
         return self.phases.past_phases()
 
-    @property
+    @cached_property
     def has_started(self):
         return self.phases.past_and_active_phases().exists()
 
-    @property
+    @cached_property
     def has_finished(self):
         return not self.phases.active_phases().exists()\
                and not self.phases.future_phases().exists()
