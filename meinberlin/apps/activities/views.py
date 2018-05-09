@@ -7,8 +7,7 @@ from . import forms
 from . import models
 
 
-class ActivityDashboardView(ProjectMixin,
-                            dashboard_mixins.DashboardBaseMixin,
+class ActivityDashboardView(ProjectMixin, dashboard_mixins.DashboardBaseMixin,
                             dashboard_mixins.DashboardComponentMixin,
                             generic.UpdateView):
     model = models.Activity
@@ -25,11 +24,10 @@ class ActivityDashboardView(ProjectMixin,
         return super().form_valid(form)
 
     def get_object(self, queryset=None):
-       return models.Activity.objects.filter(
-           module=self.module).first()
+        return models.Activity.objects.filter(module=self.module).first()
 
-class ActivityView(ProjectMixin,
-                   generic.DetailView):
+
+class ActivityView(ProjectMixin, generic.DetailView):
     model = models.Activity
 
     def get_object(self):
