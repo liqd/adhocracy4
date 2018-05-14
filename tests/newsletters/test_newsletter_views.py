@@ -126,6 +126,7 @@ def test_send_platform(client, project, user_factory):
 
     admin = user_factory(is_superuser=True)
     user_factory()
+    User.objects.update(get_newsletters=True)
     assert User.objects.count() == 4
 
     data = {
