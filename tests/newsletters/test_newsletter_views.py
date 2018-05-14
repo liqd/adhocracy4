@@ -14,7 +14,7 @@ User = get_user_model()
 def test_send_organisation(admin, client, project, user_factory,
                            follow_factory):
     organisation = project.organisation
-    user1 = user_factory()
+    user1 = user_factory(get_newsletters=True)
     user2 = user_factory()
     user_factory()
 
