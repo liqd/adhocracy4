@@ -1,6 +1,7 @@
 from autoslug import AutoSlugField
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.models import base
@@ -52,15 +53,15 @@ class Module(models.Model):
             .active_phases() \
             .first()
 
-    @property
+    @cached_property
     def phases(self):
         return self.phase_set.all()
 
-    @property
+    @cached_property
     def future_phases(self):
         return self.phase_set.future_phases()
 
-    @property
+    @cached_property
     def past_phases(self):
         return self.phase_set.past_phases()
 

@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
@@ -137,7 +138,7 @@ class Project(base.TimeStampedModel):
     def has_moderator(self, user):
         return user in self.moderators.all()
 
-    @property
+    @cached_property
     def other_projects(self):
         other_projects = self.organisation.project_set\
             .filter(is_draft=False, is_archived=False).exclude(slug=self.slug)
@@ -147,7 +148,7 @@ class Project(base.TimeStampedModel):
     def is_private(self):
         return not self.is_public
 
-    @property
+    @cached_property
     def modules(self):
         return self.module_set.all()
 
@@ -203,16 +204,16 @@ class Project(base.TimeStampedModel):
             return time_delta.days
         return None
 
-    @property
+    @cached_property
     def phases(self):
         from adhocracy4.phases import models as phase_models
         return phase_models.Phase.objects.filter(module__project=self)
 
-    @property
+    @cached_property
     def future_phases(self):
         return self.phases.future_phases()
 
-    @property
+    @cached_property
     def past_phases(self):
         return self.phases.past_phases()
 

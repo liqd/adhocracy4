@@ -43,9 +43,17 @@ def test_last_active_phase(module, phase_factory):
 
     with freeze_time(phase1.start_date - timedelta(minutes=1)):
         assert module.last_active_phase is None
+
+    # reinitialize module object
+    module = module.__class__.objects.get(pk=module.pk)
+
     with freeze_time(phase1.start_date):
         assert module.last_active_phase == phase1
+
+    module = module.__class__.objects.get(pk=module.pk)
     with freeze_time(phase1.end_date):
         assert module.last_active_phase == phase1
+
+    module = module.__class__.objects.get(pk=module.pk)
     with freeze_time(phase2.end_date):
         assert module.last_active_phase == phase2
