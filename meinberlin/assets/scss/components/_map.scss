@@ -24,6 +24,8 @@
     font-size: $font-size-lg;
 
     line-height: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     a {
         color: $link-color;
