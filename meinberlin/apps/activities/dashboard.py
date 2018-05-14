@@ -11,7 +11,7 @@ from . import views
 class ActivityComponent(DashboardComponent):
     identifier = 'facetoface'
     weight = 20
-    label = _('Face to face')
+    label = _('Face-to-Face Information')
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app

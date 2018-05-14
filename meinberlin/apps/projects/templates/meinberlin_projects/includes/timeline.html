@@ -34,7 +34,7 @@
 </nav>
 {% endif %}
 
-{% if not object|is_offlineevent %}
+{% if not object|is_offlineevent and not object|has_activity %}
     <div class="l-center-6">
         <div class="timeline-detail">
             {% if module %}

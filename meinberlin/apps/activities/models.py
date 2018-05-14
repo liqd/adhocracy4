@@ -12,7 +12,9 @@ class Activity(module_models.Item):
     name = models.CharField(max_length=120, verbose_name=_('Title'))
     highlight = models.CharField(
         max_length=120,
-        verbose_name=_('Highlighted Info')
+        verbose_name=_('Highlighted Info'),
+        help_text=_('Highlight important information like the time '
+                    'or location of your face-to-face event')
     )
     description = RichTextCollapsibleUploadingField(
         config_name='collapsible-image-editor',
