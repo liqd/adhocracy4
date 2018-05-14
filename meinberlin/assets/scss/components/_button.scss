@@ -63,6 +63,19 @@
     }
 }
 
+.btn--transparent {
+    @include button-color(transparent, transparent);
+
+    &,
+    &:focus,
+    &:hover,
+    &:active,
+    &:disabled,
+    &.is-disabled {
+        border-color: $border-color;
+    }
+}
+
 .btn--primary {
     @include button-color($brand-primary, darken($brand-primary, 15%));
 }

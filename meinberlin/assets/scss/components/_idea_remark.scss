@@ -18,16 +18,10 @@
     padding-right: $spacer;
 }
 
-.form-group {
-    &.idea-remark__text textarea {
-        background-color: $idea-remark-bg;
-        font-style: italic;
-        color: $black;
-    }
-
-    &:focus {
-        outline: none;
-    }
+.idea-remark__text textarea {
+    background-color: $idea-remark-bg;
+    font-style: italic;
+    color: $black;
 }
 
 .idea-remark__btn__notify {
@@ -36,17 +30,4 @@
     background-color: $white;
     top: -8px;
     right: -5px;
-}
-
-.btn {
-    border-style: solid;
-    border-width: 1px;
-    border-color: $border-color;
-    font-weight: normal;
-}
-
-.btn:hover {
-    border-style: solid;
-    border-width: 1px;
-    border-color: $idea-remark-color;
 }
