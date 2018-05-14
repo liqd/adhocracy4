@@ -86,7 +86,7 @@ def test_send_organisation_initiators(admin, client, project, user_factory,
 def test_send_project(admin, client, project, user_factory, follow_factory):
     organisation = project.organisation
 
-    user1 = user_factory()
+    user1 = user_factory(get_newsletters=True)
     user2 = user_factory()
     user_factory()
 
