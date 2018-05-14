@@ -72,6 +72,7 @@ def test_send_organisation_initiators(admin, client, project, user_factory,
     url = reverse('a4dashboard:newsletter-create',
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
+    User.objects.update(get_newsletters=True)
     response = client.post(url, data)
     assert redirect_target(response) == 'newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
