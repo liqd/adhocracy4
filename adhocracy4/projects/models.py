@@ -12,9 +12,6 @@ from adhocracy4.models import base
 from adhocracy4 import transforms as html_transforms
 from adhocracy4.images import fields
 
-#XXXXXXXXxx
-cached_property = property
-
 
 class ProjectManager(models.Manager):
 
@@ -155,7 +152,7 @@ class Project(base.TimeStampedModel):
     def modules(self):
         return self.module_set.all()
 
-    @cached_property
+    @property
     def last_active_phase(self):
         """
         Return the last active phase.
@@ -192,17 +189,13 @@ class Project(base.TimeStampedModel):
             return last_active_phase
         return None
 
-    @cached_property
+    @property
     def days_left(self):
         """
         Return the number of days left in the currently active phase.
 
         Attention: This method is _deprecated_ as multiple phases may be
         active at the same time.
-
-        It's a cached property to workaround possibly unexpected day
-        counts when accessed two times when milliseconds before a
-        day change.
         """
         active_phase = self.active_phase
         if active_phase:
@@ -224,11 +217,11 @@ class Project(base.TimeStampedModel):
     def past_phases(self):
         return self.phases.past_phases()
 
-    @cached_property
+    @property
     def has_started(self):
         return self.phases.past_and_active_phases().exists()
 
-    @cached_property
+    @property
     def has_finished(self):
         return not self.phases.active_phases().exists()\
                and not self.phases.future_phases().exists()
