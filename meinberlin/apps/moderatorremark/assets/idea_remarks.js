@@ -1,0 +1,47 @@
+const $ = require('jquery')
+const a4api = require('adhocracy4').api
+
+$(function () {
+  const dropdown = $('#idea-remark__dropdown')
+  const attributes = dropdown.data('attributes')
+  const objectPk = attributes['item_object_id']
+  const contentTypeId = attributes['item_content_type']
+
+  var remarkId = attributes['id']
+  var remarkVal = attributes['remark']
+  if (remarkId) {
+    $('#idea-remark__input').val(remarkVal)
+  }
+
+  $('#idea-remark__form').submit(function (e) {
+    e.preventDefault()
+    const $input = $('#idea-remark__input')
+    const newVal = $input.val()
+
+    if (remarkVal !== newVal) {
+      const data = {
+        urlReplaces: {
+          objectPk: objectPk,
+          contentTypeId: contentTypeId
+        },
+        remark: newVal
+      }
+
+      var response
+      if (remarkId) {
+        response = a4api.moderatorremark.change(data, remarkId)
+      } else {
+        response = a4api.moderatorremark.add(data)
+      }
+
+      response.done(remark => {
+        remarkId = remark.id
+        remarkVal = remark.remark
+        $('.dropdown.show .dropdown-toggle').dropdown('toggle')
+        dropdown.find('.idea-remark__btn__notify').show()
+      })
+    } else {
+      $('.dropdown.show .dropdown-toggle').dropdown('toggle')
+    }
+  })
+})

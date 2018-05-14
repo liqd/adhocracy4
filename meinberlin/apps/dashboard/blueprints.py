@@ -167,9 +167,11 @@ blueprints = [
      )),
     ('facetoface',
      ProjectBlueprint(
-         title=_('Face to Face Participation'),
+         title=_('Face-to-Face Participation'),
          description=_(
-             'Share info about a face to face participation event.'
+             'With this module you can provide information about events '
+             'or phases for face-to-face participation. No online '
+             'participation is possible in this module.'
          ),
          content=[
              activities_phases.FaceToFacePhase(),

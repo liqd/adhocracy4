@@ -5,13 +5,17 @@ from django.views import generic
 
 from adhocracy4.dashboard import mixins
 from adhocracy4.projects.mixins import ProjectMixin
-from meinberlin.apps.ideas import views as idea_views
+from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.contrib.views import CanonicalURLDetailView
 
 from . import forms
 from . import models
 
 
-class OfflineEventDetailView(idea_views.AbstractIdeaDetailView):
+class OfflineEventDetailView(ProjectMixin,
+                             rules_mixins.PermissionRequiredMixin,
+                             CanonicalURLDetailView):
+    get_context_from_object = True
     model = models.OfflineEvent
     permission_required = 'meinberlin_offlineevents.view_offlineevent'
 

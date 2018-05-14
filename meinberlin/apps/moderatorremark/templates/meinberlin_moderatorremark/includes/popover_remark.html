@@ -1,0 +1,38 @@
+{% load i18n %}
+
+<div class="dropdown dropdown--right">
+    <button
+        title="{% trans 'Moderator Remark' %}"
+        type="button"
+        class="dropdown-toggle btn btn--light btn--small"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        data-attributes="{{ attributes }}"
+        id="idea-remark__dropdown"
+    >
+        <i class="fa fa-comment" aria-label="{% trans 'Moderator Remark' %}"></i>
+        <i class="fa fa-check-circle idea-remark__btn__notify {{ remark|yesno:",d-none" }}" aria-label="Remark-Notification"></i>
+    </button>
+    <ul class="dropdown-menu idea-remark" id="remark__dropdown-menu" aria-labelledby="idea-remark">
+        <li>
+            <h3>{% trans 'Remark' %}</h3>
+            <form class="general-form" id="idea-remark__form">
+                <div class="form-group idea-remark__text">
+                    <textarea class="form-control" id="idea-remark__input" placeholder="{% trans 'Write down your remark!' %}"></textarea>
+                    <div class="idea-remark__hint">
+                        <i class="fa fa-lock" aria-label="Private"></i>{% trans 'Remarks remain private.' %}
+                    </div>
+                </div>
+                <input class="btn btn--transparent btn--full" type="submit">
+            </form>
+        </li>
+    </ul>
+</div>
+
+
+
+
+
+
+

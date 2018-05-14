@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
@@ -11,18 +12,19 @@ from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.maps.models import MapPreset
 
-STATUS_TODO = 0
-STATUS_PLANNING = 1
-STATUS_IMPLEMENTATION = 2
-STATUS_DONE = 3
-STATUS_STOPPED = 4
-
-PARTICIPATION_NO = 0
-PARTICIPATION_YES = 1
-PARTICIPATION_UNDECIDED = 2
-
 
 class Plan(UserGeneratedContentModel):
+
+    PARTICIPATION_NO = 0
+    PARTICIPATION_YES = 1
+    PARTICIPATION_UNDECIDED = 2
+
+    STATUS_TODO = 0
+    STATUS_PLANNING = 1
+    STATUS_IMPLEMENTATION = 2
+    STATUS_DONE = 3
+    STATUS_STOPPED = 4
+
     title = models.CharField(max_length=120, verbose_name=_('Title'))
     organisation = models.ForeignKey(
         settings.A4_ORGANISATIONS_MODEL,
@@ -74,6 +76,11 @@ class Plan(UserGeneratedContentModel):
     @property
     def reference_number(self):
         return '{:d}-{:05d}'.format(self.created.year, self.pk)
+
+    @cached_property
+    def published_projects(self):
+        return self.projects.filter(
+            is_draft=False, is_public=True, is_archived=False)
 
     def __str__(self):
         return self.title
