@@ -4,6 +4,7 @@ from django import template
 
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
+from meinberlin.apps.activities.models import Activity
 from meinberlin.apps.offlineevents.models import OfflineEvent
 
 register = template.Library()
@@ -47,3 +48,15 @@ def is_module(obj):
 @register.filter
 def is_offlineevent(obj):
     return isinstance(obj, OfflineEvent)
+
+
+@register.filter
+def has_activity(obj):
+    try:
+        return isinstance(obj.item_set.first().activity, Activity)
+    except AttributeError:
+        try:
+            return isinstance(obj.future_phases.first().
+                              module.item_set.first().activity, Activity)
+        except AttributeError:
+            return isinstance(obj, Activity)

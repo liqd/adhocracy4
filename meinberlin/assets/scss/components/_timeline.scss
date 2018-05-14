@@ -103,6 +103,8 @@ $circle-size: 0.8em;
     }
 
     .timeline__button:after {
+        z-index: auto;
+
         top: auto;
         margin-top: 0;
 

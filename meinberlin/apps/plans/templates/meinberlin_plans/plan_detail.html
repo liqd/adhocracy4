@@ -14,7 +14,7 @@
 
 {% block content %}
     <div class="l-wrapper">
-        <div class="l-center-6">
+        <div>
             <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
                 <ul>
                     <li>
@@ -24,53 +24,70 @@
                     </li>
                 </ul>
             </nav>
+        </div>
+        <div class="l-center-6">
 
             <div class="item-detail">
                 <h1 class="item-detail__title">
                     {{ object.title }}
                 </h1>
-                <div class="item-detail__meta">{{ object.organisation.name }}</div>
 
                 <div class="item-detail__labels">
                     <span class="label label--secondary">{{ object.get_status_display }}</span>
                     {% if object.category %}
                         <span class="label">{{ object.category }}</span>
                     {% endif %}
-                    {% if object.point_label %}
-                        <span class="label"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ object.point_label }}</span>
-                    {% endif %}
                 </div>
 
-                <div class="item-detail__content">
-                    {% if object.description %}
-                        {{ object.description|richtext }}
+                <ul class="item-detail__factsheet">
+
+                    <dl>
+                        <dt>{% trans 'Organisation' %}</dt> <dd>{{ object.organisation.name }}</dd>
+                    </dl>
+
+                    <dl>
+                        <dt>{% trans 'Location' %}</dt><dd>{{ object.point_label|default:'no val' }}</dd>
+                    </dl>
+
+                    <dl>
+                        <dt>{% trans 'Plan type' %}</dt><dd>{{ object.category }}</dd>
+                    </dl>
+
+                    <dl>
+                        <dt>{% trans 'Participation' %}</dt>
+                        <dd>
+                                {{ object.get_participation_display }}{% if object.participation == object.PARTICIPATION_YES and object.published_projects.count %},
+                                <a href='#participation-plans'>{% trans 'see participation plans' %}</a>
+                            {% endif%}
+                        </dd>
+                    </dl>
+
+                    {% if object.cost %}
+                    <dl>
+                        <dt>{% trans 'Planed cost' %}</dt><dd>{{ object.cost }}€</dd>
+                    </dl>
                     {% endif %}
 
                     <dl>
-                        <dt>{% trans 'Reference No.' %}</dt>
-                        <dd>{{ object.reference_number }}</dd>
-
-                        {% if object.cost %}
-                            <dt>{% trans 'Cost' %}</dt>
-                            <dd>{{ object.cost }}€</dd>
-                        {% endif %}
-
-                        <dt>{% trans 'Contact' %}</dt>
-                        <dd class="u-whitespace-pre">{{ object.contact }}</dd>
+                        <dt>{% trans 'Reference No.' %}</dt> <dd>{{ object.reference_number }}</dd>
                     </dl>
 
-                    {% if object.project and not object.project.is_draft and object.project.is_public %}
-                        <p><a href="{{ object.project.get_absolute_url }}">{% trans 'Go to participation' %}</a></p>
-                    {% elif object.participation == 1 %}
-                        <p>{% trans 'Participation is planned, but has not started yet.' %}</p>
-                    {% endif %}
+                </ul>
 
-                    {% map_display_point object.point berlin_polygon %}
+                <div class="item-detail__actions">
+                {% if object.description %}
+                    {{ object.description|richtext }}
+                {% endif %}
                 </div>
 
+                <div class="item-detail__actions">
+                    <h3 class="item-detail__smalltitle">{% trans 'Contact' %}</h3>
+                    {{ object.contact|linebreaks }}
+                </div>
+
+               {% has_perm 'meinberlin_plans.change_plan' request.user object.organisation as user_may_change %}
+               {% if user_may_change %}
                 <div class="item-detail__actions lr-bar">
-                    {% has_perm 'meinberlin_plans.change_plan' request.user object.organisation as user_may_change %}
-                    {% if user_may_change %}
                         <div class="dropdown dropdown--right lr-bar__right">
                             <button
                                     title="{% trans 'Actions' %}"
@@ -93,9 +110,39 @@
                                 </li>
                             </ul>
                         </div>
-                    {% endif %}
                 </div>
+                {% endif %}
+
             </div>
-        </div>
+
+        
+        {% if object.published_projects %}
+        <h3 class="item-detail__smalltitle item-detail__content item-detail__actions" id="participation-plans">{% trans "Participation projects" %}</h3>
+
+        {% if object.published_projects.count <= 2 %}
+             <ul class="l-tiles-2">
+                {% for project in object.published_projects %}
+                    {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
+            {% endfor %}
+        </div> {# close l-wrapper *after* the tiles #}
+    
+        {% else %}
+
+        </div> {# close l-wrapper *before* the tiles #}
+        <ul class="l-tiles-4">
+    
+            {% if object.published_projects.count == 3 %}
+            <li></li> {# first tile is invisible #}
+            {% endif %}
+    
+            {% for project in object.published_projects %}
+                {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
+            {% endfor %}
+
+         </ul>
+    
+        {% endif %}
+        {% endif %}
+    
     </div>
 {% endblock %}

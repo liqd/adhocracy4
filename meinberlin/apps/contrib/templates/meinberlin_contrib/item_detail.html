@@ -22,19 +22,19 @@
             <h1 class="item-detail__title">{{ object.name }}</h1>
 
             <div class="item-detail__labels">
-                {% if object.category %}
-                    <div class="label label--big">{{ object.category }}</div>
-                {% endif %}
-                {% if object.labels %}
-                    {% for label in object.labels.all %}
-                        <div class="label label--big">{{ label.name }}</div>
-                    {% endfor %}
-                {% endif %}
-                {% block additional_labels %}{% endblock %}
                 {% if object.moderator_feedback %}
                     <span class="label label--big label--{{ object.moderator_feedback|classify }}">
                         {{ object.get_moderator_feedback_display }}
                     </span>
+                {% endif %}
+                {% if object.category %}
+                    <div class="label label--big">{{ object.category }}</div>
+                {% endif %}
+                {% block additional_labels %}{% endblock %}
+                {% if object.labels %}
+                    {% for label in object.labels.all %}
+                        <div class="label label--big">{{ label.name }}</div>
+                    {% endfor %}
                 {% endif %}
             </div>
 

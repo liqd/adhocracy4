@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.budgeting.apps.Config',
     'meinberlin.apps.documents.apps.Config',
     'meinberlin.apps.extprojects.apps.Config',
+    'meinberlin.apps.activities.apps.Config',
     'meinberlin.apps.ideas.apps.Config',
     'meinberlin.apps.kiezkasse.apps.Config',
     'meinberlin.apps.mapideas.apps.Config',
