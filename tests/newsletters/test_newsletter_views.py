@@ -187,7 +187,7 @@ def test_distinct_receivers(admin, client, project_factory, user_factory,
     project = project_factory()
     organisation = project.organisation
     project2 = project_factory(organisation=organisation)
-    user1 = user_factory()
+    user1 = user_factory(get_newsletters=True)
 
     follow_models.Follow.objects.all().delete()
     follow_factory(creator=user1, project=project)
