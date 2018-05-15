@@ -1,0 +1,34 @@
+.item-detail-2__smalltitle {
+    font-weight: bold;
+    font-size: $font-size-lg;
+    margin: 1em 0 0 0;
+}
+
+.item-detail-2__factsheet {
+    padding-top: 1em;
+    border-bottom: 2px solid $border-color;
+}
+
+.item-detail-2__factsheet-table {
+    display: table;
+    padding-left: 0;
+
+    dl {
+        display: table-row;
+    }
+
+    dt {
+        display: table-cell;
+        border-right: 2em solid transparent;
+    }
+
+    dd {
+        display: table-cell;
+    }
+}
+
+.item-detail-2__content {
+    margin-top: 2em;
+
+    border-bottom: 2px solid $border-color;
+}
