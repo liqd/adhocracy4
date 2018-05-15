@@ -20,6 +20,7 @@ class ProposalExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                          a4_export_mixins.ItemExportWithLocationMixin,
                          export_mixins.UserGeneratedContentExportMixin,
                          export_mixins.ItemExportWithModeratorFeedback,
+                         export_mixins.ItemExportWithModeratorRemark,
                          a4_export_views.BaseItemExportView):
     model = models.Proposal
     fields = ['name', 'description', 'budget', 'creator_contribution']

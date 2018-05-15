@@ -34,6 +34,19 @@ class ItemExportWithModeratorFeedback(VirtualFieldMixin):
         return ''
 
 
+class ItemExportWithModeratorRemark(VirtualFieldMixin):
+    def get_virtual_fields(self, virtual):
+        if 'moderator_remark' not in virtual:
+            virtual['moderator_remark'] = _('Moderator remark')
+        return super().get_virtual_fields(virtual)
+
+    def get_moderator_remark_data(self, item):
+        remark = item.remark
+        if remark:
+            return unescape_and_strip_html(remark.remark)
+        return ''
+
+
 class UserGeneratedContentExportMixin(VirtualFieldMixin):
     def get_virtual_fields(self, virtual):
         if 'creator' not in virtual:

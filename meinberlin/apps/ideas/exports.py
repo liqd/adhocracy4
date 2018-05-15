@@ -18,6 +18,7 @@ class IdeaExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                      a4_export_mixins.ItemExportWithCommentCountMixin,
                      a4_export_mixins.ItemExportWithCommentsMixin,
                      export_mixins.ItemExportWithModeratorFeedback,
+                     export_mixins.ItemExportWithModeratorRemark,
                      export_mixins.UserGeneratedContentExportMixin,
                      a4_export_views.BaseItemExportView):
     model = models.Idea

@@ -1,7 +1,9 @@
 {% extends "base.html" %}
-{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags contrib_tags thumbnail %}
+{% load i18n module_tags rules react_comments react_ratings react_reports wagtailcore_tags item_tags contrib_tags thumbnail moderatorremark_tags %}
 
 {% block title %}{{object.name}} &mdash; {{ block.super }}{% endblock %}
+
+
 {% block content %}
 <div class="l-wrapper">
     <div class="l-center-6">
@@ -65,9 +67,17 @@
 
                 {% get_item_change_permission object as change_perm %}
                 {% has_perm change_perm request.user object as user_may_change %}
+                {% get_item_permission object 'moderate' as moderate_perm %}
+                {% has_perm moderate_perm request.user object as is_moderator %}
+
+
+                <div class="lr-bar__right">
+                {% if is_moderator %}
+                    {% popover_remark object %}
+                {% endif %}
 
                 {% if request.user.is_authenticated %}
-                    <div class="dropdown dropdown--right lr-bar__right">
+                    <div class="dropdown dropdown--right">
                         <button
                                 title="{% trans 'Actions' %}"
                                 type="button"
@@ -91,8 +101,6 @@
                                 </li>
                             {% endif %}
 
-                            {% get_item_permission object 'moderate' as moderate_perm %}
-                            {% has_perm moderate_perm request.user object as is_moderator %}
                             {% get_item_url object 'moderate' False as moderate_url %}
                             {% if is_moderator and moderate_url %}
                                 <li>
@@ -108,6 +116,7 @@
                         </ul>
                     </div>
                 {% endif %}
+                </div>
             </div>
         </div>
     </div>
