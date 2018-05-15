@@ -12,12 +12,21 @@
     <form id="signup_form" method="post" action="{% url 'account_signup' %}">
         {{ form.non_field_errors }}
         {% csrf_token %}
-        {% for field in form %}
-            {% if not forloop.last %}
-                {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
-            {% endif %}
-        {% endfor %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.username %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password1 %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password2 %}
+
         <div class="form-check">
+            <label class="form-check__label" for="{{field.id_for_label}}">
+                {{ form.get_newsletters }}
+                {{ form.get_newsletters.label }}
+            </label>
+            {{ form.get_newsletters.errors }}
+        </div>
+
+        <div class="form-check" for="{{field.id_for_label}}">
             <label class="form-check__label">
                 {{ form.terms_of_use }}
                 {% blocktrans with terms_of_use_url="/terms-of-use" %}
