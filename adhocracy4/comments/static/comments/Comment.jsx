@@ -150,7 +150,7 @@ class Comment extends React.Component {
     }
 
     return (
-      <div className="comment">
+      <div className="comment" id={`comment-${this.props.id}`}>
         <ReportModal
           name={`report_comment_${this.props.id}`}
           title={django.gettext('Are you sure you want to report this item?')}
