@@ -12,6 +12,10 @@ class TermsSignupForm(auth_forms.UserCreationForm):
     })
 
     def signup(self, request, user):
+
+        # without the allaouth plugin, this would typically be inside .save
+        user.get_newsletters = self.cleaned_data["get_newsletters"]
+
         user.signup(
             self.cleaned_data['username'],
             self.cleaned_data['email'],
