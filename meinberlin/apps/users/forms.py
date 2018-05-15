@@ -20,4 +20,4 @@ class TermsSignupForm(auth_forms.UserCreationForm):
     class Meta:
         model = User
         fields = ('email', 'username', 'password1', 'password2',
-                  'terms_of_use')
+                  'get_newsletters', 'terms_of_use')
