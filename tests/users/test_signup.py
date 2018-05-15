@@ -32,7 +32,7 @@ def test_signup_user_newsletter_not_checked(client):
         })
     assert resp.status_code == 302
     user = User.objects.get()
-    assert user.get_newsletters
+    assert not user.get_newsletters
 
 
 @pytest.mark.django_db
