@@ -64,7 +64,7 @@
 
                     {% if object.cost %}
                     <dl>
-                        <dt>{% trans 'Planed cost' %}</dt><dd>{{ object.cost }}€</dd>
+                        <dt>{% trans 'Planned cost' %}</dt><dd>{{ object.cost }}€</dd>
                     </dl>
                     {% endif %}
 
@@ -115,7 +115,7 @@
 
             </div>
 
-        
+
         {% if object.published_projects %}
         <h3 class="item-detail__smalltitle item-detail__content item-detail__actions" id="participation-plans">{% trans "Participation projects" %}</h3>
 
@@ -125,24 +125,24 @@
                     {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
             {% endfor %}
         </div> {# close l-wrapper *after* the tiles #}
-    
+
         {% else %}
 
         </div> {# close l-wrapper *before* the tiles #}
         <ul class="l-tiles-4">
-    
+
             {% if object.published_projects.count == 3 %}
             <li></li> {# first tile is invisible #}
             {% endif %}
-    
+
             {% for project in object.published_projects %}
                 {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
             {% endfor %}
 
          </ul>
-    
+
         {% endif %}
         {% endif %}
-    
+
     </div>
 {% endblock %}
