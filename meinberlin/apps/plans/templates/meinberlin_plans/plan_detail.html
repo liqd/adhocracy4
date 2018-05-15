@@ -110,6 +110,18 @@
             </div>
         </div>
 
+        <div class="item-detail-2__project-list {% if object.published_projects.count <= 2 %}l-center-6{% elif object.published_projects.count == 3 %}{% endif %}">
+            <h3 class="item-detail-2__project-title" id="participation-plans">{% trans "Participation projects" %}</h3>
+            <ul class="{% if object.published_projects.count <= 2 %}l-tiles-2{% elif object.published_projects.count == 3 %}l-tiles-3{% else %}l-tiles-4{% endif %}">
+            {% for project in object.published_projects %}
+
+                    {% include "meinberlin_projects/includes/project_list_tile.html" with project=project %}
+
+            {% empty %}
+                {{ object.get_participation_display }}
+            {% endfor %}
+            </ul>
+        </div>
 
 
     </div>
