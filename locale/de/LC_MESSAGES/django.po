@@ -25,7 +25,7 @@ msgid ""
 "categories. If you create any, each contribution has to be assigned\n"
 "to one of them. This way, content can be classified."
 msgstr ""
-"Hier können Sie Kategorien anlegen. Dadurch können alleBeiträge einer "
+"Hier können Sie Kategorien anlegen. Dadurch können alle Beiträge einer "
 "Kategorie zugeordnet und entsprechend gefiltert werden."
 
 #: adhocracy4/categories/templates/a4categories/includes/module_categories_form.html:21
