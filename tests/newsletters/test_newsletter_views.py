@@ -14,7 +14,7 @@ User = get_user_model()
 def test_send_organisation(admin, client, project, user_factory,
                            follow_factory):
     organisation = project.organisation
-    user1 = user_factory()
+    user1 = user_factory(get_newsletters=True)
     user2 = user_factory()
     user_factory()
 
@@ -72,6 +72,7 @@ def test_send_organisation_initiators(admin, client, project, user_factory,
     url = reverse('a4dashboard:newsletter-create',
                   kwargs={'organisation_slug': organisation.slug})
     client.login(username=admin.email, password='password')
+    User.objects.update(get_newsletters=True)
     response = client.post(url, data)
     assert redirect_target(response) == 'newsletter-create'
     assert newsletter_models.Newsletter.objects.count() == 1
@@ -85,7 +86,7 @@ def test_send_organisation_initiators(admin, client, project, user_factory,
 def test_send_project(admin, client, project, user_factory, follow_factory):
     organisation = project.organisation
 
-    user1 = user_factory()
+    user1 = user_factory(get_newsletters=True)
     user2 = user_factory()
     user_factory()
 
@@ -125,6 +126,7 @@ def test_send_platform(client, project, user_factory):
 
     admin = user_factory(is_superuser=True)
     user_factory()
+    User.objects.update(get_newsletters=True)
     assert User.objects.count() == 4
 
     data = {
@@ -185,7 +187,7 @@ def test_distinct_receivers(admin, client, project_factory, user_factory,
     project = project_factory()
     organisation = project.organisation
     project2 = project_factory(organisation=organisation)
-    user1 = user_factory()
+    user1 = user_factory(get_newsletters=True)
 
     follow_models.Follow.objects.all().delete()
     follow_factory(creator=user1, project=project)
