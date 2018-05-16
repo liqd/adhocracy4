@@ -19,5 +19,12 @@ class ModeratorRemark(UserGeneratedContentModel):
                               verbose_name=_('Remark'),
                               blank=True)
 
+    @property
+    def project(self):
+        try:
+            return self.item.project
+        except AttributeError:
+            raise
+
     class Meta:
         unique_together = ('item_content_type', 'item_object_id')
