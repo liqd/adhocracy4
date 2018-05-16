@@ -21,10 +21,7 @@ class ModeratorRemark(UserGeneratedContentModel):
 
     @property
     def project(self):
-        try:
-            return self.item.project
-        except AttributeError:
-            raise
+        return self.item.project
 
     class Meta:
         unique_together = ('item_content_type', 'item_object_id')
