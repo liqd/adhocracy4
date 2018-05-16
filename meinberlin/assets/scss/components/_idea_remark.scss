@@ -1,8 +1,7 @@
 .idea-remark {
     background-color: $idea-remark-bg;
-    padding-left: $spacer;
-    padding-right: $spacer;
-    padding-bottom: $spacer;
+    padding: $spacer;
+    margin-top: $spacer;
     box-shadow: 0 0 10px 0 $shadow;
     border: none;
 }
