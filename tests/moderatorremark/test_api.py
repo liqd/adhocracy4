@@ -78,6 +78,25 @@ def test_initiator_can_add_remark(apiclient, user, idea_factory):
 
 
 @pytest.mark.django_db
+def test_admin_can_add_remark(apiclient, admin, idea_factory):
+    idea = idea_factory()
+    type = ContentType.objects.get_for_model(idea)
+    assert ModeratorRemark.objects.all().count() == 0
+    assert admin not in idea.project.organisation.initiators.all()
+    assert admin not in idea.project.moderators.all()
+    apiclient.force_authenticate(user=admin)
+    url = '/api/contenttypes/{}/objects/' \
+          '{}/moderatorremarks/'\
+        .format(type.id, idea.id)
+    data = {
+        'remark': 'remark'
+    }
+    response = apiclient.post(url, data, format='json')
+    assert response.status_code == 201
+    assert ModeratorRemark.objects.all().count() == 1
+
+
+@pytest.mark.django_db
 def test_anonymous_can_not_edit_remark(apiclient, moderator_remark_factory):
     remark = moderator_remark_factory()
     assert ModeratorRemark.objects.all().count() == 1
@@ -157,3 +176,24 @@ def test_initiator_can_edit_remark(apiclient,
     assert response.status_code == 200
     assert ModeratorRemark.objects.all().count() == 1
     assert ModeratorRemark.objects.all().first().remark == 'remark updated'
+
+    @pytest.mark.django_db
+    def test_admin_can_edit_remark(apiclient,
+                                   admin,
+                                   moderator_remark_factory):
+        remark = moderator_remark_factory()
+        assert ModeratorRemark.objects.all().count() == 1
+        content_type = ContentType.objects.get_for_model(remark.item)
+        assert admin not in remark.item.project.moderators.all()
+        assert admin not in remark.item.project.organisation.initiators.all()
+        apiclient.force_authenticate(user=admin)
+        url = '/api/contenttypes/{}/objects/' \
+              '{}/moderatorremarks/{}/' \
+            .format(content_type.id, remark.item.id, remark.id)
+        data = {
+            'remark': 'remark updated'
+        }
+        response = apiclient.put(url, data, format='json')
+        assert response.status_code == 200
+        assert ModeratorRemark.objects.all().count() == 1
+        assert ModeratorRemark.objects.all().first().remark == 'remark updated'
