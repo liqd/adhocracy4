@@ -1,19 +1,21 @@
 .idea-remark {
     background-color: $idea-remark-bg;
     padding: $spacer;
-    margin-top: $spacer;
     box-shadow: 0 0 10px 0 $shadow;
     border: none;
 }
 
 .idea-remark__hint {
+    position: absolute;
+    top: 9em;
+    padding-top: $spacer;
+    padding-bottom: $spacer;
     font-style: italic;
     color: $idea-remark-color;
     font-size: $font-size-sm;
 }
 
 .idea-remark__hint .fa {
-    margin-top: $spacer;
     padding-right: $spacer;
 }
 
@@ -21,6 +23,10 @@
     background-color: $idea-remark-bg;
     font-style: italic;
     color: $black;
+}
+
+.idea-remark__btn {
+    margin-top: 4em;
 }
 
 .idea-remark__btn__notify {
