@@ -43,3 +43,11 @@ class NewsletterEmail(Email):
             attachments += [logo]
 
         return attachments
+
+
+class NewsletterEmailAll(NewsletterEmail):
+
+    def get_receivers(self):
+        return User.objects\
+            .filter(is_active=True)\
+            .distinct()
