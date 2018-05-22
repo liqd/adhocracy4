@@ -9,13 +9,14 @@ $(function () {
 
   var remarkId = attributes['id']
   var remarkVal = attributes['remark']
+
   if (remarkId) {
-    $('#idea-remark__input').val(remarkVal)
+    $('#id_remark').val(remarkVal)
   }
 
   $('#idea-remark__form').submit(function (e) {
     e.preventDefault()
-    const $input = $('#idea-remark__input')
+    const $input = $('#id_remark')
     const newVal = $input.val()
 
     if (remarkVal !== newVal) {
