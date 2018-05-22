@@ -2127,7 +2127,7 @@ msgstr "Notiz"
 
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:23
 msgid "Note only visible internally within project."
-msgstr ""
+msgstr "Notiz ist nur projektintern sichtbar."
 
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:25
 msgid "Write down your remark!"
