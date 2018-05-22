@@ -18,15 +18,9 @@
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password1 %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password2 %}
 
-        <div class="form-check">
-            <label class="form-check__label" for="{{form.get_newsletters.id_for_label}}">
-                {{ form.get_newsletters }}
-                {{ form.get_newsletters.label }}
-            </label>
-            {{ form.get_newsletters.errors }}
-        </div>
+        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %} 
 
-        <div class="form-check" for="{{ form.get_newsletters.id_for_label }}">
+        <div class="form-check">
             <label class="form-check__label">
                 {{ form.terms_of_use }}
                 {% blocktrans with terms_of_use_url="/terms-of-use" %}
