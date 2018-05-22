@@ -2,16 +2,16 @@
 
 <div class="dropdown dropdown--right">
     <button
-        title="{% trans 'Moderator Remark' %}"
+        title="{% trans 'Moderator remark' %}"
         type="button"
         class="dropdown-toggle btn btn--light btn--small"
         data-toggle="dropdown"
         aria-haspopup="true"
         aria-expanded="false"
         data-attributes="{{ attributes }}"
-        id="idea-remark__dropdown" 
+        id="idea-remark__dropdown"
     >
-        <i class="fa fa-comment" aria-label="{% trans 'Moderator Remark' %}"></i>
+        <i class="fa fa-comment" aria-label="{% trans 'Moderator remark' %}"></i>
         <i class="fa fa-check-circle idea-remark__btn__notify {{ remark|yesno:",d-none" }}" aria-hidden="true"></i>
     </button>
     <ul class="dropdown-menu idea-remark" id="remark__dropdown-menu" aria-labelledby="id_remark_dropdown">
