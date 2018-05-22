@@ -2,6 +2,8 @@ import re
 import unicodedata
 
 from django import template
+from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 from django.forms.utils import flatatt
 from django.template import defaultfilters
 from django.template.loader import render_to_string
@@ -74,3 +76,21 @@ def classify(value):
         .encode('ascii', 'ignore').decode('ascii')
     value = re.sub('[^\w\s-]', '', value).strip()
     return mark_safe(re.sub('[-\s]+', '-', value))
+
+
+@register.simple_tag()
+def tracking_enabled():
+    return settings.TRACKING_ENABLED
+
+
+@register.inclusion_tag('meinberlin_contrib/matomo/tracking_code.html')
+def tracking_code():
+    try:
+        id = settings.MATOMO_SITE_ID
+    except AttributeError:
+        raise ImproperlyConfigured('MATOMO_SITE_ID does not exist.')
+    try:
+        url = settings.MATOMO_URL
+    except AttributeError:
+        raise ImproperlyConfigured('MATOMO_URL does not exist.')
+    return {'id': id, 'url': url}

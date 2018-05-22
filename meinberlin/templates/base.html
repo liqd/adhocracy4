@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load i18n static %}
+{% load i18n static contrib_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -24,6 +24,8 @@
     {% block extra_js %}
         {# Override this in templates to add extra javascript #}
     {% endblock %}
+    {% tracking_enabled as tracking %}
+    {% if tracking %} {% tracking_code %} {% endif %}
 </head>
 <body>
     <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
