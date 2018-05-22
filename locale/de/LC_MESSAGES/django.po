@@ -3358,7 +3358,8 @@ msgstr ""
 "\n"
 "                 Hiermit bestätige ich, dass ich die <a href=\"%(terms_of_use_url)s\" "
 "target=\"_blank\">Nutzungsbedingungen</a> und die <a href=\"%(privacy_policy)s\" "
-"target=\"_blank\">Datenschutzerklärung</a> gelesen habe und sie akzeptiere.\n"
+"target=\"_blank\">Datenschutzerklärung</a> gelesen habe und akzeptiere.\n"
+"                "
 
 #: meinberlin/templates/base.html:8
 msgid "meinBerlin"
