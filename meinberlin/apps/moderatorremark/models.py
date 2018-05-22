@@ -15,9 +15,12 @@ class ModeratorRemark(UserGeneratedContentModel):
     item = GenericForeignKey(
         ct_field='item_content_type', fk_field='item_object_id')
 
-    remark = models.CharField(max_length=200,
-                              verbose_name=_('Remark'),
+    remark = models.TextField(verbose_name=_('Remark'),
                               blank=True)
+
+    @property
+    def project(self):
+        return self.item.project
 
     class Meta:
         unique_together = ('item_content_type', 'item_object_id')

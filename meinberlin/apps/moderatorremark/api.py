@@ -4,7 +4,7 @@ from rest_framework import mixins
 from rest_framework import viewsets
 
 from adhocracy4.api.mixins import ContentTypeMixin
-from adhocracy4.api.permissions import IsModerator
+from adhocracy4.api.permissions import ViewSetRulesPermission
 
 from .models import ModeratorRemark
 from .serializers import ModeratorRemarkSerializer
@@ -22,10 +22,13 @@ class ModeratorRemarkViewSet(mixins.CreateModelMixin,
 
     queryset = ModeratorRemark.objects.all()
     serializer_class = ModeratorRemarkSerializer
-    permission_classes = (IsModerator, )
+    permission_classes = (ViewSetRulesPermission,)
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('item_object_id', 'item_content_type')
     content_type_filter = AllContentTypesFilter()
+
+    def get_permission_object(self):
+        return self.content_object
 
     def get_object(self):
         remark = super().get_object()
