@@ -24,6 +24,8 @@
     font-size: $font-size-lg;
 
     line-height: normal;
+    page-break-inside: avoid;
+    overflow-wrap: break-word;
 
     a {
         color: $link-color;

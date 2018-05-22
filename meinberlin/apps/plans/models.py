@@ -18,12 +18,24 @@ class Plan(UserGeneratedContentModel):
     PARTICIPATION_NO = 0
     PARTICIPATION_YES = 1
     PARTICIPATION_UNDECIDED = 2
+    PARTICIPATION_CHOICES = (
+        (PARTICIPATION_YES, _('Yes')),
+        (PARTICIPATION_NO, _('No')),
+        (PARTICIPATION_UNDECIDED, _('Still undecided')),
+    )
 
     STATUS_TODO = 0
     STATUS_PLANNING = 1
     STATUS_IMPLEMENTATION = 2
     STATUS_DONE = 3
     STATUS_STOPPED = 4
+    STATUS_CHOICES = (
+        (STATUS_TODO, _('Idea')),
+        (STATUS_PLANNING, _('Planning')),
+        (STATUS_IMPLEMENTATION, _('Implementation')),
+        (STATUS_DONE, _('Done')),
+        (STATUS_STOPPED, _('Stopped')),
+    )
 
     title = models.CharField(max_length=120, verbose_name=_('Title'))
     organisation = models.ForeignKey(
@@ -57,18 +69,11 @@ class Plan(UserGeneratedContentModel):
                                        verbose_name=_('Cost'))
     description = RichTextField(verbose_name=_('Description'))
     category = models.CharField(max_length=255, verbose_name=_('Type of plan'))
-    status = models.SmallIntegerField(choices=(
-        (STATUS_TODO, _('Idea')),
-        (STATUS_PLANNING, _('Planning')),
-        (STATUS_IMPLEMENTATION, _('Implementation')),
-        (STATUS_DONE, _('Done')),
-        (STATUS_STOPPED, _('Stopped')),
-    ))
-    participation = models.SmallIntegerField(choices=(
-        (PARTICIPATION_YES, _('Yes')),
-        (PARTICIPATION_NO, _('No')),
-        (PARTICIPATION_UNDECIDED, _('Still undecided')),
-    ), verbose_name=_('Participation'))
+    status = models.SmallIntegerField(choices=STATUS_CHOICES)
+    participation = models.SmallIntegerField(
+        choices=PARTICIPATION_CHOICES,
+        verbose_name=_('Participation')
+    )
 
     class Meta:
         ordering = ['-created']

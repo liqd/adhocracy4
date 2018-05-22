@@ -62,7 +62,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     get_newsletters = models.BooleanField(
         verbose_name=_('Send me newsletters'),
-        default=True,
+        default=False,
         help_text=_(
             'Designates whether you want to receive newsletters. '
             'Unselect if you do not want to receive newsletters.')

@@ -66,7 +66,6 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
         form.save_m2m()
 
         receivers = int(form.cleaned_data['receivers'])
-        participant_ids = []
 
         if receivers == models.PROJECT:
             participant_ids = Follow.objects.filter(
@@ -88,6 +87,8 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
             participant_ids = Organisation.objects.get(
                 pk=organisation.pk).initiators.all()\
                 .values_list('pk', flat=True)
+        else:
+            participant_ids = []
 
         emails.NewsletterEmail.send(instance,
                                     participant_ids=list(participant_ids),

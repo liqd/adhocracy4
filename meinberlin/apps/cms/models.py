@@ -49,6 +49,20 @@ class SimplePage(Page):
     subpage_types = []
 
 
+class StreamfieldSimplePage(Page):
+    body = fields.StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+        ('html', blocks.RawHTMLBlock())
+    ], blank=True)
+
+    content_panels = [
+        edit_handlers.FieldPanel('title'),
+        edit_handlers.StreamFieldPanel('body'),
+    ]
+
+    subpage_types = []
+
+
 class HomePage(Page):
     body = fields.StreamField([
         ('paragraph', blocks.RichTextBlock(

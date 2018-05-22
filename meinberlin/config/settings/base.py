@@ -66,13 +66,13 @@ INSTALLED_APPS = (
     'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.forms.apps.FormsConfig',
     'adhocracy4.images.apps.ImagesConfig',
+    'adhocracy4.labels.apps.LabelsConfig',
     'adhocracy4.maps.apps.MapsConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.organisations.apps.OrganisationsConfig',
     'adhocracy4.phases.apps.PhasesConfig',
     'adhocracy4.projects.apps.ProjectsConfig',
     'adhocracy4.ratings.apps.RatingsConfig',
-    'adhocracy4.labels.apps.LabelsConfig',
     'adhocracy4.reports.apps.ReportsConfig',
     'adhocracy4.rules.apps.RulesConfig',
 
@@ -100,11 +100,11 @@ INSTALLED_APPS = (
     'meinberlin.apps.projects.apps.Config',
 
     # Apps defining phases
+    'meinberlin.apps.activities.apps.Config',
     'meinberlin.apps.bplan.apps.Config',
     'meinberlin.apps.budgeting.apps.Config',
     'meinberlin.apps.documents.apps.Config',
     'meinberlin.apps.extprojects.apps.Config',
-    'meinberlin.apps.activities.apps.Config',
     'meinberlin.apps.ideas.apps.Config',
     'meinberlin.apps.kiezkasse.apps.Config',
     'meinberlin.apps.mapideas.apps.Config',
@@ -478,3 +478,5 @@ CSP_REPORT_ONLY = True
 SECURE_BROWSER_XSS_FILTER = True
 SESSION_COOKIE_HTTPONLY = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
+
+TRACKING_ENABLED = False
