@@ -23,8 +23,8 @@
         <div class="form-check">
             <label class="form-check__label">
                 {{ form.terms_of_use }}
-                {% blocktrans with terms_of_use_url="/terms-of-use" %}
-                I accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a>.
+                {% blocktrans with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}
+                 I have read and accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{privacy_policy}}" target="_blank">privacy policy</a>.
                 {% endblocktrans %}
             </label>
             {{ form.terms_of_use.errors }}
