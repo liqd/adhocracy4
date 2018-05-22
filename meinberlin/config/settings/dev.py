@@ -2,7 +2,6 @@ from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-TRACKING_ENABLED = False
 
 for template_engine in TEMPLATES:
     template_engine['OPTIONS']['debug'] = True
