@@ -90,9 +90,14 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
         else:
             participant_ids = []
 
-        emails.NewsletterEmail.send(instance,
-                                    participant_ids=list(participant_ids),
-                                    **self.get_email_kwargs())
+        if receivers == models.PLATFORM:
+            emails.NewsletterEmailAll.send(instance,
+                                           **self.get_email_kwargs())
+
+        else:
+            emails.NewsletterEmail.send(instance,
+                                        participant_ids=list(participant_ids),
+                                        **self.get_email_kwargs())
         messages.success(self.request,
                          _('Newsletter has been saved and '
                            'will be sent to the recipients.'))
