@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-22 16:55+0200\n"
+"POT-Creation-Date: 2018-05-22 17:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2032,8 +2032,8 @@ msgid "Remark"
 msgstr "Remark"
 
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:23
-msgid "Remarks remain private."
-msgstr "Remarks remain private."
+msgid "Note only visible internally within project."
+msgstr "Note only visible internally within project."
 
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:25
 msgid "Write down your remark!"
@@ -3266,6 +3266,9 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid "Remarks remain private."
+#~ msgstr "Remarks remain private."
 
 #~ msgid "Moderator Remark"
 #~ msgstr "Moderator Remark"
