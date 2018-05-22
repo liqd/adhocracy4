@@ -1161,6 +1161,16 @@ msgid ""
 "personal data can be found in the privacy policy linked at the bottom of the "
 "page."
 msgstr ""
+"Die Verarbeitung personenbezogener Daten erfolgt im Rahmen des "
+"Bebauungsplanverfahrens auf der Grundlage des § 3 Baugesetzbuch in "
+"Verbindung mit Art. 6 Buchst. e Datenschutz-Grundverordnung und Berliner "
+"Datenschutzgesetz. Mit der Abgabe einer Stellungnahme werden die darin "
+"enthaltenen Angaben gespeichert und nach Abschluss des Verfahrens Rückmeldung "
+"gegeben, wie die Stellungnahme Berücksichtigung gefunden hat. Bei einer "
+"Stellungnahme ohne Absenderangaben kann keine persönliche Mitteilung über das "
+"Ergebnis der Prüfung der Stellungnahme erfolgen. Ausführliche Informationen "
+"über die Rechte bei der Datenverarbeitung und den personenbezogenen Angaben "
+"sind in der am Ende der Seite verlinkten Datenschutzerklärung zu finden."
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:30
 msgid "Submit"
@@ -1755,7 +1765,7 @@ msgstr "Rückmeldung der Moderation"
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:5
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:14
 msgid "Moderator remark"
-msgstr ""
+msgstr "Moderatornotiz"
 
 #: meinberlin/apps/exports/mixins.py:53
 msgid "Creator"
@@ -2112,15 +2122,15 @@ msgstr "wird umgesetzt"
 #: meinberlin/apps/moderatorremark/models.py:18
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:21
 msgid "Remark"
-msgstr ""
+msgstr "Notiz"
 
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:23
 msgid "Remarks remain private."
-msgstr ""
+msgstr "Notizen werden nicht öffentlich angezeigt."
 
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:25
 msgid "Write down your remark!"
-msgstr ""
+msgstr "Notiz schreiben"
 
 #: meinberlin/apps/newsletters/forms.py:25
 #: meinberlin/apps/newsletters/models.py:43
