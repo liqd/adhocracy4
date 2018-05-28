@@ -72,11 +72,9 @@
 
 
                 <div class="lr-bar__right">
-                {% comment %}
                 {% if is_moderator %}
                     {% popover_remark object %}
                 {% endif %}
-                {% endcomment %}
 
                 {% if request.user.is_authenticated %}
                     <div class="dropdown dropdown--right">

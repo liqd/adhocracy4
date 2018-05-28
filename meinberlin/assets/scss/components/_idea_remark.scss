@@ -6,10 +6,7 @@
 }
 
 .idea-remark__hint {
-    position: absolute;
-    top: 9em;
     padding-top: $spacer;
-    padding-bottom: $spacer;
     font-style: italic;
     color: $idea-remark-color;
     font-size: $font-size-sm;
@@ -23,10 +20,6 @@
     background-color: $idea-remark-bg;
     font-style: italic;
     color: $black;
-}
-
-.idea-remark__btn {
-    margin-top: 3.5em;
 }
 
 .idea-remark__btn__notify {
