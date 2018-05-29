@@ -1,8 +1,60 @@
-{% extends "base_errors.html" %}
-{% load i18n %}
+{% load i18n static %}
+<html>
+    <head>
+        <title>Error &mdash; {% trans 'meinBerlin' %}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'vendor.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
+    </head>
 
-{% block error_status %}500{% endblock %}
+    <body>
+        <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
 
-{% block error_description %}
-    <p>{% trans 'Internal server error.' %}</p>
-{% endblock %}
+        <div class="portal-header">
+            <div class="l-wrapper">
+                <div class="portal-header__red-line"></div>
+                <a class="portal-header__logo" href="http://www.berlin.de/">
+                    <img src="{% static 'images/berlin_de.png' %}" alt="Zur Homepage von Berlin.de" />
+                </a>
+
+                <nav aria-label="{% trans 'Portal Navigation' %}">
+                    <ul class="portal-header__nav">
+                        <li><a href="https://www.berlin.de/politik-verwaltung-buerger/">Politik, Verwaltung, Bürger</a></li>
+                        <li><a href="https://www.berlin.de/kultur-und-tickets/">Kultur &#38; Ausgehen</a></li>
+                        <li><a href="https://www.berlin.de/tourismus/">Tourismus</a></li>
+                        <li><a href="https://www.berlin.de/wirtschaft/">Wirtschaft</a></li>
+                        <li><a href="https://www.berlin.de/special/">Themen</a></li>
+                        <li><a href="https://www.berlin.de/adressen/">BerlinFinder</a></li>
+                        <li><a href="https://www.berlin.de/stadtplan/">Stadtplan</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <header class="main-header">
+            <div class="l-wrapper">
+                <nav class="main-nav">
+                    <img class="beberlin-logo" src="{% static 'images/beberlin.svg' %}" height="22" width="90" alt="be Berlin" />
+                    <a href="/" class="main-nav__logo" rel="home">
+                        <img src="{% static 'images/LOGO.png' %}" alt="mein.berlin"/>
+                    </a>
+                </nav>
+            </div>
+            <div class="dialogue-box">
+                {# Static markup to allow the blue border with the spike from Berlin's CD #}
+                <div class="dialogue-box__left"></div>
+                <div class="dialogue-box__center"></div>
+                <div class="dialogue-box__right"></div>
+            </div>
+        </header>
+
+        <div class="l-wrapper">
+            <div class="l-center-6">
+                <h1>500</h1>
+                <p>{% trans 'Internal server error.' %}</p>
+            </div>
+        </div>
+
+        <footer class="main-footer">
+        </footer>
+    </body>
+</html>
