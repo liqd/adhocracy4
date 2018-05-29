@@ -39,7 +39,11 @@ $(function () {
         remarkId = remark.id
         remarkVal = remark.remark
         $('.dropdown.show .dropdown-toggle').dropdown('toggle')
-        dropdown.find('.idea-remark__btn__notify').show()
+        if (remarkVal) {
+          dropdown.find('.idea-remark__btn__notify').show()
+        } else {
+          dropdown.find('.idea-remark__btn__notify').hide()
+        }
       })
     } else {
       $('.dropdown.show .dropdown-toggle').dropdown('toggle')

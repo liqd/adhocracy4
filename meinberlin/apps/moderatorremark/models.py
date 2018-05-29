@@ -22,5 +22,12 @@ class ModeratorRemark(UserGeneratedContentModel):
     def project(self):
         return self.item.project
 
+    @property
+    def content(self):
+        if self.remark:
+            return True
+        else:
+            return False
+
     class Meta:
         unique_together = ('item_content_type', 'item_object_id')
