@@ -6,27 +6,8 @@ from adhocracy4.exports import mixins as export_mixins
 from adhocracy4.exports import views as export_views
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.exports import register_export
-
-
-class ItemExportWithCommentUserMixin(export_mixins.VirtualFieldMixin):
-    def get_virtual_fields(self, virtual):
-        virtual['user'] = 'user'
-        return super().get_virtual_fields(virtual)
-
-    def get_user_data(self, item):
-        return item.creator.username
-
-
-class ItemExportWithRepliesToMixin(export_mixins.VirtualFieldMixin):
-    def get_virtual_fields(self, virtual):
-        virtual['replies_to'] = 'replies_to'
-        return super().get_virtual_fields(virtual)
-
-    def get_replies_to_data(self, comment):
-        try:
-            return comment.parent_comment.get().pk
-        except Comment.DoesNotExist:
-            return ''
+from meinberlin.apps.exports.mixins import ItemExportWithCommentUserMixin
+from meinberlin.apps.exports.mixins import ItemExportWithRepliesToMixin
 
 
 @register_export(_('Documents with comments'))

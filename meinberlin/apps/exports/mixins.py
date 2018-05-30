@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext as _
 
 from adhocracy4.exports import unescape_and_strip_html
@@ -45,6 +46,27 @@ class ItemExportWithModeratorRemark(VirtualFieldMixin):
         if remark:
             return unescape_and_strip_html(remark.remark)
         return ''
+
+
+class ItemExportWithCommentUserMixin(VirtualFieldMixin):
+    def get_virtual_fields(self, virtual):
+        virtual['user'] = 'user'
+        return super().get_virtual_fields(virtual)
+
+    def get_user_data(self, item):
+        return item.creator.username
+
+
+class ItemExportWithRepliesToMixin(VirtualFieldMixin):
+    def get_virtual_fields(self, virtual):
+        virtual['replies_to'] = 'replies_to'
+        return super().get_virtual_fields(virtual)
+
+    def get_replies_to_data(self, comment):
+        try:
+            return comment.parent_comment.get().pk
+        except ObjectDoesNotExist:
+            return ''
 
 
 class UserGeneratedContentExportMixin(VirtualFieldMixin):
