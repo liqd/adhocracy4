@@ -4,29 +4,41 @@ from django.core.urlresolvers import reverse
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.ideas import models
 from meinberlin.apps.ideas import phases
-from meinberlin.apps.ideas import views
 from meinberlin.test.helpers import assert_template_response
 from meinberlin.test.helpers import freeze_phase
 from meinberlin.test.helpers import setup_phase
 
 
 @pytest.mark.django_db
-def test_list_view(rf, phase_factory, idea_factory):
+def test_list_view(client, phase_factory, idea_factory):
     phase, module, project, idea = setup_phase(
         phase_factory, idea_factory, phases.FeedbackPhase)
     phase_2, module_2, project_2, idea_2 = setup_phase(
         phase_factory, idea_factory, phases.FeedbackPhase)
+    url = project.get_absolute_url()
 
     with freeze_phase(phase):
-        view = views.IdeaListView.as_view()
-        request = rf.get('/ideas')
-        response = view(request, project=project, module=module)
-
+        response = client.get(url)
+        assert_template_response(
+            response, 'meinberlin_ideas/idea_list.html')
+        assert response.status_code == 200
         assert idea in response.context_data['idea_list']
         assert idea_2 not in response.context_data['idea_list']
         assert response.context_data['idea_list'][0].comment_count == 0
         assert response.context_data['idea_list'][0].positive_rating_count == 0
         assert response.context_data['idea_list'][0].negative_rating_count == 0
+
+
+@pytest.mark.django_db
+def test_detail_view(client, phase_factory, idea_factory):
+    phase, module, project, idea = setup_phase(
+        phase_factory, idea_factory, phases.FeedbackPhase)
+    url = idea.get_absolute_url()
+    with freeze_phase(phase):
+        response = client.get(url)
+        assert_template_response(
+            response, 'meinberlin_ideas/idea_detail.html')
+        assert response.status_code == 200
 
 
 @pytest.mark.django_db
@@ -76,6 +88,8 @@ def test_create_view(client, phase_factory, user,
         assert redirect_target(response) == 'account_login'
         client.login(username=user.email, password='password')
         response = client.get(url)
+        assert_template_response(
+            response, 'meinberlin_ideas/idea_create_form.html')
         assert response.status_code == 200
         idea = {
             'name': 'Idea',
