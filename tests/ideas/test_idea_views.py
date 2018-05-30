@@ -5,6 +5,7 @@ from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.ideas import models
 from meinberlin.apps.ideas import phases
 from meinberlin.apps.ideas import views
+from meinberlin.test.helpers import assert_template_response
 from meinberlin.test.helpers import freeze_phase
 from meinberlin.test.helpers import setup_phase
 
@@ -100,3 +101,53 @@ def test_create_view_wrong_phase(client, phase_factory, idea_factory, user):
         client.login(username=user.email, password='password')
         response = client.get(url)
         assert response.status_code == 403
+
+
+@pytest.mark.django_db
+def test_update_view(client, phase_factory, idea_factory, user,
+                     category_factory):
+    phase, module, project, idea = setup_phase(
+        phase_factory, idea_factory, phases.IssuePhase)
+    category = category_factory(module=module)
+    url = reverse(
+        'meinberlin_ideas:idea-update',
+        kwargs={
+            'pk': idea.pk,
+            'year': idea.created.year
+        })
+    with freeze_phase(phase):
+        client.login(username=idea.creator.email, password='password')
+
+        response = client.get(url)
+        assert_template_response(
+            response, 'meinberlin_ideas/idea_update_form.html')
+
+        idea = {
+            'name': 'Another Idea',
+            'description': 'changed description',
+            'category': category.pk,
+        }
+        response = client.post(url, idea)
+        assert redirect_target(response) == 'idea-detail'
+
+
+@pytest.mark.django_db
+def test_delete_view(client, phase_factory, idea_factory, user,
+                     category_factory):
+    phase, module, project, idea = setup_phase(
+        phase_factory, idea_factory, phases.IssuePhase)
+    url = reverse(
+        'meinberlin_ideas:idea-delete',
+        kwargs={
+            'pk': idea.pk,
+            'year': idea.created.year
+        })
+    with freeze_phase(phase):
+        client.login(username=idea.creator.email, password='password')
+
+        response = client.get(url)
+        assert_template_response(
+            response, 'meinberlin_ideas/idea_confirm_delete.html')
+
+        response = client.post(url)
+        assert redirect_target(response) == 'project-detail'
