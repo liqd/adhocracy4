@@ -104,11 +104,12 @@ def test_create_view_wrong_phase(client, phase_factory, idea_factory, user):
 
 
 @pytest.mark.django_db
-def test_update_view(client, phase_factory, idea_factory, user,
+def test_update_view(client, phase_factory, idea_factory,
                      category_factory):
     phase, module, project, idea = setup_phase(
         phase_factory, idea_factory, phases.IssuePhase)
     category = category_factory(module=module)
+    user = idea.creator
     url = reverse(
         'meinberlin_ideas:idea-update',
         kwargs={
@@ -116,19 +117,25 @@ def test_update_view(client, phase_factory, idea_factory, user,
             'year': idea.created.year
         })
     with freeze_phase(phase):
-        client.login(username=idea.creator.email, password='password')
-
         response = client.get(url)
+        assert response.status_code == 302
+        client.login(username=user.email, password='password')
+        response = client.get(url)
+        assert response.status_code == 200
         assert_template_response(
             response, 'meinberlin_ideas/idea_update_form.html')
 
-        idea = {
+        data = {
             'name': 'Another Idea',
             'description': 'changed description',
             'category': category.pk,
         }
-        response = client.post(url, idea)
+        response = client.post(url, data)
         assert redirect_target(response) == 'idea-detail'
+        assert response.status_code == 302
+        id = idea.pk
+        updated_idea = models.Idea.objects.get(id=id)
+        assert updated_idea.description == 'changed description'
 
 
 @pytest.mark.django_db
@@ -143,11 +150,15 @@ def test_delete_view(client, phase_factory, idea_factory, user,
             'year': idea.created.year
         })
     with freeze_phase(phase):
+        count = models.Idea.objects.all().count()
+        assert count == 1
         client.login(username=idea.creator.email, password='password')
-
         response = client.get(url)
+        assert response.status_code == 200
         assert_template_response(
             response, 'meinberlin_ideas/idea_confirm_delete.html')
-
         response = client.post(url)
         assert redirect_target(response) == 'project-detail'
+        assert response.status_code == 302
+        count = models.Idea.objects.all().count()
+        assert count == 0
