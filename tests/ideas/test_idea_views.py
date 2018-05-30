@@ -104,9 +104,11 @@ def test_create_view(client, phase_factory, user,
 
 
 @pytest.mark.django_db
-def test_create_view_wrong_phase(client, phase_factory, idea_factory, user):
+def test_create_view_wrong_phase(client, phase_factory, idea_factory,
+                                 category_factory, user, admin):
     phase = phase_factory(phase_content=phases.RatingPhase())
     module = phase.module
+    category = category_factory(module=module)
     url = reverse('meinberlin_ideas:idea-create',
                   kwargs={'module_slug': module.slug})
     with freeze_phase(phase):
@@ -115,6 +117,21 @@ def test_create_view_wrong_phase(client, phase_factory, idea_factory, user):
         client.login(username=user.email, password='password')
         response = client.get(url)
         assert response.status_code == 403
+        client.login(username=admin.email, password='password')
+        response = client.get(url)
+        assert_template_response(
+            response, 'meinberlin_ideas/idea_create_form.html')
+        assert response.status_code == 200
+        idea = {
+            'name': 'Idea',
+            'description': 'description',
+            'category': category.pk,
+        }
+        response = client.post(url, idea)
+        assert response.status_code == 302
+        assert redirect_target(response) == 'idea-detail'
+        count = models.Idea.objects.all().count()
+        assert count == 1
 
 
 @pytest.mark.django_db
