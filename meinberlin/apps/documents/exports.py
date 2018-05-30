@@ -12,10 +12,14 @@ from meinberlin.apps.exports.mixins import ItemExportWithRepliesToMixin
 
 @register_export(_('Documents with comments'))
 class DocumentExportView(
-        export_views.BaseItemExportView, export_mixins.ExportModelFieldsMixin,
+        export_views.BaseItemExportView,
+        export_mixins.ExportModelFieldsMixin,
         export_mixins.ItemExportWithLinkMixin,
-        export_mixins.ItemExportWithRatesMixin, ItemExportWithCommentUserMixin,
-        ItemExportWithRepliesToMixin, ProjectMixin):
+        export_mixins.ItemExportWithRatesMixin,
+        ItemExportWithCommentUserMixin,
+        ItemExportWithRepliesToMixin,
+        ProjectMixin):
+
     def get_base_filename(self):
         return '%s_%s' % (self.project.slug,
                           timezone.now().strftime('%Y%m%dT%H%M%S'))
