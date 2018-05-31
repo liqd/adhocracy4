@@ -1,6 +1,9 @@
 .idea-remark {
+    width: 600%;
     background-color: $idea-remark-bg;
-    padding: $spacer;
+    padding-top: $spacer;
+    padding-left: $spacer;
+    padding-right: $spacer;
     box-shadow: 0 0 10px 0 $shadow;
     border: none;
 }
@@ -17,6 +20,7 @@
 }
 
 .idea-remark__text textarea {
+    min-height: 8em;
     background-color: $idea-remark-bg;
     font-style: italic;
     color: $black;
