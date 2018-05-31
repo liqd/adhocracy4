@@ -42,5 +42,49 @@
       "user_id": 2,
       "email": "user@liqd.net"
     }
+  },
+  {
+    "model": "meinberlin_users.user",
+    "pk": 3,
+    "fields": {
+      "email": "initiator@liqd.net",
+      "username": "initiator",
+      "password": "pbkdf2_sha256$36000$cV8dNCt9KQvy$9B6aNADd5mu9icBCxH87F+5QDdI/H7JdiP06Ua16vsA=",
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 3,
+    "fields": {
+      "verified": true,
+      "primary": true,
+      "user_id": 3,
+      "email": "initiator@liqd.net"
+    }
+  },
+  {
+    "model": "meinberlin_users.user",
+    "pk": 4,
+    "fields": {
+      "email": "moderator@liqd.net",
+      "username": "moderator",
+      "password": "pbkdf2_sha256$36000$S4eWhSbehLwc$AW8pzKRfrJZz9bO135VklnIdAPNhUfe8KzJL6FvQwLg=",
+      "is_staff": false,
+      "is_active": true,
+      "is_superuser": false
+    }
+  },
+  {
+    "model": "account.emailaddress",
+    "pk": 4,
+    "fields": {
+      "verified": true,
+      "primary": true,
+      "user_id": 4,
+      "email": "moderator@liqd.net"
+    }
   }
 ]
