@@ -54,7 +54,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             phases = project.phases
             if phases.active_phases():
                 return ugettext('running')
-            if phases.future_phases():
+            if phases.future_phases() and \
+               phases.future_phases().first().start_date:
                 date = phases.future_phases().first().start_date
                 if not future_phase:
                     future_phase = date
