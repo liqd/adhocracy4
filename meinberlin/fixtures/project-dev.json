@@ -1,0 +1,13 @@
+[
+  {
+    "model": "a4projects.project",
+    "pk": 1,
+    "fields": {
+      "name": "liqd-project",
+      "slug": "liqd-project",
+      "organisation": "1",
+      "description": "liqd project description",
+      "moderators": "4"
+    }
+  }
+]
