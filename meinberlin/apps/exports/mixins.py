@@ -48,18 +48,9 @@ class ItemExportWithModeratorRemark(VirtualFieldMixin):
         return ''
 
 
-class ItemExportWithCommentUserMixin(VirtualFieldMixin):
-    def get_virtual_fields(self, virtual):
-        virtual['user'] = 'user'
-        return super().get_virtual_fields(virtual)
-
-    def get_user_data(self, item):
-        return item.creator.username
-
-
 class ItemExportWithRepliesToMixin(VirtualFieldMixin):
     def get_virtual_fields(self, virtual):
-        virtual['replies_to'] = 'replies_to'
+        virtual['replies_to'] = _('replies to')
         return super().get_virtual_fields(virtual)
 
     def get_replies_to_data(self, comment):
