@@ -2,6 +2,8 @@ from email.mime.image import MIMEImage
 
 from django.contrib.staticfiles import finders
 
+from adhocracy4.emails.tasks import send_single_mail
+
 
 class PlatformEmailMixin:
     """
@@ -35,3 +37,7 @@ class SyncEmailMixin:
     def send(cls, object, *args, **kwargs):
         """Call dispatch immediately"""
         return cls().dispatch(object, *args, **kwargs)
+
+class ParallelEmailMixin:
+    def send_mail(self, mail):
+        send_single_mail(mail, creator=self.object)

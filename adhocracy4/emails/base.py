@@ -121,6 +121,9 @@ class EmailBase:
                     mail.attach(attachment)
 
             mail.attach_alternative(html, 'text/html')
-            mail.send()
+            self.send_mail(mail)
             mails.append(mail)
         return mails
+
+    def send_mail(self, mail):
+        mail.send()
