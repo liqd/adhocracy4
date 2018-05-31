@@ -40,4 +40,4 @@ class SyncEmailMixin:
 
 class ParallelEmailMixin:
     def send_mail(self, mail):
-        send_single_mail(mail, creator=self.object)
+        send_single_mail(mail, creator=self.object, verbose_name=' '.join(mail.to))
