@@ -1,5 +1,5 @@
 -r base.txt
 brotli==1.0.4
-gunicorn==19.7.1
+gunicorn==19.8.1
 whitenoise==3.3.1
 psycopg2-binary==2.7.4
