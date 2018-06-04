@@ -1,4 +1,5 @@
 import re
+from smtplib import SMTPException
 
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
@@ -16,6 +17,10 @@ class EmailBase:
     template_name = None
     fallback_language = 'en'
     for_moderator = False
+
+    # will aggregate exceptions instead of raising them
+    # then pass the exception with all mails to `handle_report`
+    enable_reporting = False
 
     def get_site(self):
         return site_models.Site.objects.get(pk=self.site_id)
@@ -94,6 +99,7 @@ class EmailBase:
         template = self.template_name
 
         mails = []
+        mail_exceptions = []
         for receiver in receivers:
             context['receiver'] = receiver
             (subject, text, html) = self.render(template, context)
@@ -121,6 +127,17 @@ class EmailBase:
                     mail.attach(attachment)
 
             mail.attach_alternative(html, 'text/html')
-            mail.send()
             mails.append(mail)
+
+            if self.enable_reporting:
+                try:
+                    mail.send()
+                except SMTPException as exc:
+                    mail_exceptions.append(exc)
+            else:
+                mail.send()
+
+        if self.enable_reporting:
+            self.handle_report(mails, mail_exceptions)
+
         return mails
