@@ -1,6 +1,7 @@
 from email.mime.image import MIMEImage
 
 from django.contrib.staticfiles import finders
+from django.db.transaction import atomic
 
 from adhocracy4.emails.tasks import send_single_mail
 
@@ -41,3 +42,10 @@ class SyncEmailMixin:
 class ParallelEmailMixin:
     def send_mail(self, mail):
         send_single_mail(mail, creator=self.object, verbose_name=' '.join(mail.to))
+
+    # make all emails to be registered to the task queue atomically
+    @atomic
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+
