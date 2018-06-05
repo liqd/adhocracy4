@@ -127,6 +127,7 @@ class EmailBase:
                     mail.attach(attachment)
 
             mail.attach_alternative(html, 'text/html')
+            self.send_mail(mail)
             mails.append(mail)
 
             if self.enable_reporting:
@@ -141,3 +142,6 @@ class EmailBase:
             self.handle_report(mails, mail_exceptions)
 
         return mails
+
+    def send_mail(self, mail):
+        mail.send()

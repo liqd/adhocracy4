@@ -1,7 +1,9 @@
 from email.mime.image import MIMEImage
 
-from django.core.mail import mail_admins
 from django.contrib.staticfiles import finders
+from django.db.transaction import atomic
+
+from adhocracy4.emails.tasks import send_single_mail
 
 
 class PlatformEmailMixin:
@@ -9,12 +11,11 @@ class PlatformEmailMixin:
     Attaches the static file images/logo.png so it can be used in an html
     email.
     """
+
     def get_attachments(self):
         attachments = super().get_attachments()
-        filename = (
-            finders.find('images/email_logo.png')
-            or finders.find('images/email_logo.svg')
-        )
+        filename = (finders.find('images/email_logo.png')
+                    or finders.find('images/email_logo.svg'))
         if filename:
             if filename.endswith('.png'):
                 imagetype = 'png'
@@ -38,24 +39,12 @@ class SyncEmailMixin:
         return cls().dispatch(object, *args, **kwargs)
 
 
-class ReportToAdminEmailMixin:
+class ParallelEmailMixin:
+    def send_mail(self, mail):
+        send_single_mail(
+            mail, creator=self.object, verbose_name=' '.join(mail.to))
 
-    enable_reporting = True
-    report_subject_template = '{site}: {success} of {total} mails sended'
-    report_message_template = '''
-Errors (if any):
-{errors}
-
-Mail sample:
-{mail_sample}'''
-
-    def handle_report(self, mails, mail_exceptions):
-        mail_admins(
-            subject=self.report_subject_template.format(
-                site=self.get_site(),
-                success=len(mails) - len(mail_exceptions),
-                total=len(mails)),
-            message=self.report_message_template.format(
-                errors='\n'.join(str(i) for i in mail_exceptions),
-                mail_sample=mails[0].message() if mails else None)
-            )
+    # makes all emails to be registered to the task queue atomically
+    @atomic
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
