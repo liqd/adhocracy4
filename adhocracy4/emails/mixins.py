@@ -44,7 +44,7 @@ class ParallelEmailMixin:
         send_single_mail(
             mail, creator=self.object, verbose_name=' '.join(mail.to))
 
-    # make all emails to be registered to the task queue atomically
+    # makes all emails to be registered to the task queue atomically
     @atomic
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)

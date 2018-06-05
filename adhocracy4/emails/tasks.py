@@ -31,5 +31,7 @@ def send_single_mail_task(encoded_mail):
 
 
 def send_single_mail(email, *args, **kwargs):
-    encoded_email = serialize_email(email)
-    send_single_mail_task(encoded_email, *args, **kwargs)
+    send_single_mail_task(
+                          serialize_email(email),
+                          *args,
+                          **kwargs)
