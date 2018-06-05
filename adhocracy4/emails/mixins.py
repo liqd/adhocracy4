@@ -11,12 +11,11 @@ class PlatformEmailMixin:
     Attaches the static file images/logo.png so it can be used in an html
     email.
     """
+
     def get_attachments(self):
         attachments = super().get_attachments()
-        filename = (
-            finders.find('images/email_logo.png')
-            or finders.find('images/email_logo.svg')
-        )
+        filename = (finders.find('images/email_logo.png')
+        or finders.find('images/email_logo.svg'))
         if filename:
             if filename.endswith('.png'):
                 imagetype = 'png'
@@ -39,13 +38,13 @@ class SyncEmailMixin:
         """Call dispatch immediately"""
         return cls().dispatch(object, *args, **kwargs)
 
+
 class ParallelEmailMixin:
     def send_mail(self, mail):
-        send_single_mail(mail, creator=self.object, verbose_name=' '.join(mail.to))
+        send_single_mail(
+            mail, creator=self.object, verbose_name=' '.join(mail.to))
 
     # make all emails to be registered to the task queue atomically
     @atomic
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
-
-
