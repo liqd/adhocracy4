@@ -31,14 +31,6 @@ try:
 except ImportError:
     pass
 
-LOGGING = {
-        'version': 1,
-        'handlers': {
-                'console': {
-                        'class': 'logging.StreamHandler'},
-        },
-        'loggers': {'background_task': {'handlers': ['console'], 'level': 'INFO'}}}
-
 try:
     INSTALLED_APPS += tuple(ADDITIONAL_APPS)
 except NameError:

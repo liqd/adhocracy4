@@ -19,3 +19,7 @@ try:
     INSTALLED_APPS += tuple(ADDITIONAL_APPS)
 except NameError:
     pass
+
+# populate settings from RAVEN_CONFIG to LOGGING
+raven_config = locals().get('RAVEN_CONFIG', {})
+LOGGING['handlers']['sentry'].update(raven_config)
