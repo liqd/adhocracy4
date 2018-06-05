@@ -1155,6 +1155,12 @@ msgid ""
 "Detailed information on data processing rights and personal data can be "
 "found in the privacy policy at the bottom of the page."
 msgstr ""
+"Die Verarbeitung personenbezogener Daten erfolgt im Rahmen des "
+"Bebauungsplanverfahrens auf der Grundlage des § 3 BauGB in Verbindung mit "
+"Art. 6 Abs. 1 lit. e DSGVO und Berliner Datenschutzgesetz. "
+"Ausführliche Informationen über die Rechte bei der Datenverarbeitung und "
+"den personenbezogenen Angaben sind in der Datenschutzerklärung am "
+"Seitenende zu finden."
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:30
 msgid "Submit"
