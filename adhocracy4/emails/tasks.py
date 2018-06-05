@@ -15,13 +15,18 @@ def send_async(email_module_name, email_class_name,
     object = model.objects.get(pk=object_pk)
     return cls().dispatch(object, *args, **kwargs)
 
+def serialize_email(email_obj):
+    pickled_email = pickle.dumps(email_obj)
+    return b64encode(pickled_email).decode()
+
+def deserialize_email(email_string):
+    return pickle.loads(b64decode(email_string))
 
 @background(schedule=1)
 def send_single_mail_task(encoded_mail):
-    mail = pickle.loads(b64decode(encoded_mail))
+    mail = deserialize_email(encoded_mail)
     mail.send()
 
-def send_single_mail(mail, *args, **kwargs):
-    pickled_mail = pickle.dumps(mail)
-    encoded_mail = b64encode(pickled_mail).decode()
-    send_single_mail_task(encoded_mail, *args, **kwargs)
+def send_single_mail(email, *args, **kwargs):
+    encoded_email = serialize_email(email)
+    send_single_mail_task(encoded_email, *args, **kwargs)
