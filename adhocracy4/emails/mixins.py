@@ -15,7 +15,7 @@ class PlatformEmailMixin:
     def get_attachments(self):
         attachments = super().get_attachments()
         filename = (finders.find('images/email_logo.png')
-        or finders.find('images/email_logo.svg'))
+                    or finders.find('images/email_logo.svg'))
         if filename:
             if filename.endswith('.png'):
                 imagetype = 'png'
