@@ -11,6 +11,10 @@
     "automerge": true
   },
 
+  "labels": [
+    "renovate"
+  ],
+
   "packageRules": [
       {
         "packagePatterns": ["^eslint"],
