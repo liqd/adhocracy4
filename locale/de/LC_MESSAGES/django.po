@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-22 17:48+0200\n"
+"POT-Creation-Date: 2018-06-05 16:08+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -68,7 +68,7 @@ msgstr "Benötigte Felder zur Veröffentlichung"
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_form.html:27
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:35
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_form.html:25
-#: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:28
+#: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:27
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_form.html:12
 #: meinberlin/apps/plans/templates/meinberlin_plans/includes/plan_form.html:29
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:21
@@ -218,7 +218,7 @@ msgstr "Abbrechen"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
-#: meinberlin/apps/plans/views.py:148
+#: meinberlin/apps/plans/views.py:149
 #: meinberlin/apps/projectcontainers/dashboard.py:61
 #: meinberlin/apps/projectcontainers/models.py:12
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_list.html:4
@@ -373,7 +373,6 @@ msgstr "Kommentar"
 #: adhocracy4/exports/mixins.py:121
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:16
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:17
-#: meinberlin/apps/documents/exports.py:25
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:18
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:19
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_list_item.html:16
@@ -689,11 +688,11 @@ msgstr ""
 "Bitte zeichnen Sie einen Bereich auf der Karte ein, in dem Ihr Projekt "
 "stattfindet und Ideen verortet werden sollen."
 
-#: adhocracy4/modules/models.py:14
+#: adhocracy4/modules/models.py:15
 msgid "Title of the module"
 msgstr "Modultitel"
 
-#: adhocracy4/modules/models.py:15
+#: adhocracy4/modules/models.py:16
 msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
@@ -701,11 +700,11 @@ msgstr ""
 "Der Modultitel wird in der Zeitleiste und auf der Projektseite erscheinen. "
 "Er sollte maximal 512 Zeichen lang sein."
 
-#: adhocracy4/modules/models.py:23
+#: adhocracy4/modules/models.py:24
 msgid "Short description of the module"
 msgstr "Kurzbeschreibung des Moduls"
 
-#: adhocracy4/modules/models.py:24
+#: adhocracy4/modules/models.py:25
 msgid ""
 "This short description will appear on the header of the module and project "
 "detail pages. It should briefly state the goal of the module in max. 512 "
@@ -737,11 +736,11 @@ msgstr "Das Enddatum kann nicht vor dem Startdatum liegen."
 msgid "Project"
 msgstr "Projekt"
 
-#: adhocracy4/projects/models.py:29
+#: adhocracy4/projects/models.py:30
 msgid "Title of your project"
 msgstr "Titel Ihres Projekts"
 
-#: adhocracy4/projects/models.py:30
+#: adhocracy4/projects/models.py:31
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -749,11 +748,11 @@ msgstr ""
 "Der Titel wird in Kacheln und im Kopf der Projektseite angezeigt werden. Er "
 "darf maximal 120 Zeichen lang sein."
 
-#: adhocracy4/projects/models.py:39
+#: adhocracy4/projects/models.py:40
 msgid "Short description of your project"
 msgstr "Kurzbeschreibung Ihres Projekts"
 
-#: adhocracy4/projects/models.py:40
+#: adhocracy4/projects/models.py:41
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -761,11 +760,11 @@ msgstr ""
 "Die Kurzbeschreibung wird in Kacheln und im Kopf der Projektseite angezeigt "
 "werden. Sie sollte das Ziel des Projekts in maximal 250 Zeichen beschreiben."
 
-#: adhocracy4/projects/models.py:48
+#: adhocracy4/projects/models.py:49
 msgid "Description of your project"
 msgstr "Beschreibung Ihres Projekts"
 
-#: adhocracy4/projects/models.py:49
+#: adhocracy4/projects/models.py:50
 msgid ""
 "This description should tell participants what the goal of the project is, "
 "how the project’s participation will look like. It will be always visible in "
@@ -775,11 +774,11 @@ msgstr ""
 "Projekts ist und wie die Beteiligung vonstatten gehen wird. Sie wird im Info-"
 "Tab der Projektseite angezeigt werden."
 
-#: adhocracy4/projects/models.py:57
+#: adhocracy4/projects/models.py:58
 msgid "Results of your project"
 msgstr "Ergebnisse Ihres Projekts"
 
-#: adhocracy4/projects/models.py:58
+#: adhocracy4/projects/models.py:59
 msgid ""
 "Here you should explain what the expected outcome of the project will be and "
 "how you are planning to use the results. If the project is finished you "
@@ -789,11 +788,11 @@ msgstr ""
 "wie die Ergebnisse weiterverarbeitet werden. Wenn das Projekt abgeschlossen "
 "ist, sollten Sie hier eine Zusammenfassung der Resultate hinzufügen."
 
-#: adhocracy4/projects/models.py:65
+#: adhocracy4/projects/models.py:66
 msgid "Access to the project"
 msgstr "Zugang zum Projekt"
 
-#: adhocracy4/projects/models.py:66
+#: adhocracy4/projects/models.py:67
 msgid ""
 "Please indicate whether this project should be public or restricted to "
 "invited users. Teasers for your project including title and short "
@@ -802,29 +801,29 @@ msgstr ""
 "Bitte geben Sie an, ob dieses Projekt öffentlich oder auf eingeladene "
 "Teilnehmerinnen und Teinehmer beschränkt sein soll."
 
-#: adhocracy4/projects/models.py:74
-#: adhocracy4/projects/models.py:80
+#: adhocracy4/projects/models.py:75
+#: adhocracy4/projects/models.py:81
 msgid "Header image"
 msgstr "Headerbild"
 
-#: adhocracy4/projects/models.py:76
+#: adhocracy4/projects/models.py:77
 msgid "The image will be shown as a decorative background image."
 msgstr "Das Bild wird als dekoratives Hintergrundbild angezeigt."
 
-#: adhocracy4/projects/models.py:83
-#: adhocracy4/projects/models.py:90
+#: adhocracy4/projects/models.py:84
+#: adhocracy4/projects/models.py:91
 msgid "Tile image"
 msgstr "Kachel-Bild"
 
-#: adhocracy4/projects/models.py:85
+#: adhocracy4/projects/models.py:86
 msgid "The image will be shown in the project tile."
 msgstr "Das Bild wird in der Projekt-Kachel angezeigt."
 
-#: adhocracy4/projects/models.py:103
+#: adhocracy4/projects/models.py:104
 msgid "Project is archived"
 msgstr "Projekt ist archiviert."
 
-#: adhocracy4/projects/models.py:104
+#: adhocracy4/projects/models.py:105
 msgid ""
 "Exclude this project from all listings by default. You can still access this "
 "project by using filters."
@@ -1152,26 +1151,16 @@ msgstr "Meine Stellungnahme zum Bebauungsplan"
 msgid ""
 "The processing of personal data is carried out as part of the development "
 "plan procedure on the basis of § 3 Baugesetzbuch in conjunction with Art. 6 "
-"Buchst. e Datenschutz-Grundverordnung und Berliner Datenschutzgesetz. By "
-"submitting a statement, the information contained therein is stored and, "
-"after the procedure has been completed, feedback is given on how the "
-"statement was taken into account. In the case of an opinion without a "
-"sender's address, no personal communication can be given on the outcome of "
-"the opinion's opinion. Detailed information on data processing rights and "
-"personal data can be found in the privacy policy linked at the bottom of the "
-"page."
+"Buchst. e Datenschutz-Grundverordnung und Berliner Datenschutzgesetz. "
+"Detailed information on data processing rights and personal data can be "
+"found in the privacy policy at the bottom of the page."
 msgstr ""
 "Die Verarbeitung personenbezogener Daten erfolgt im Rahmen des "
-"Bebauungsplanverfahrens auf der Grundlage des § 3 Baugesetzbuch in "
-"Verbindung mit Art. 6 Buchst. e Datenschutz-Grundverordnung und Berliner "
-"Datenschutzgesetz. Mit der Abgabe einer Stellungnahme werden die darin "
-"enthaltenen Angaben gespeichert und nach Abschluss des Verfahrens "
-"Rückmeldung gegeben, wie die Stellungnahme Berücksichtigung gefunden hat. "
-"Bei einer Stellungnahme ohne Absenderangaben kann keine persönliche "
-"Mitteilung über das Ergebnis der Prüfung der Stellungnahme erfolgen. "
-"Ausführliche Informationen über die Rechte bei der Datenverarbeitung und den "
-"personenbezogenen Angaben sind in der am Ende der Seite verlinkten "
-"Datenschutzerklärung zu finden."
+"Bebauungsplanverfahrens auf der Grundlage des § 3 BauGB in Verbindung mit "
+"Art. 6 Abs. 1 lit. e DSGVO und Berliner Datenschutzgesetz. "
+"Ausführliche Informationen über die Rechte bei der Datenverarbeitung und "
+"den personenbezogenen Angaben sind in der Datenschutzerklärung am "
+"Seitenende zu finden."
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:30
 msgid "Submit"
@@ -1466,7 +1455,7 @@ msgid "Page navigation"
 msgstr "Seitennummerierung"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:56
-#: meinberlin/apps/exports/mixins.py:11
+#: meinberlin/apps/exports/mixins.py:12
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:60
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:69
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:45
@@ -1489,43 +1478,43 @@ msgid "Delete"
 msgstr "Löschen"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:128
-#: meinberlin/apps/exports/mixins.py:25
+#: meinberlin/apps/exports/mixins.py:26
 msgid "Official Statement"
 msgstr "Offizielle Rückmeldung"
 
-#: meinberlin/apps/dashboard/blueprints.py:19
+#: meinberlin/apps/dashboard/blueprints.py:18
 msgid "Brainstorming"
 msgstr "Brainstorming"
 
-#: meinberlin/apps/dashboard/blueprints.py:21
+#: meinberlin/apps/dashboard/blueprints.py:20
 msgid "Collect first ideas for a specific topic and comment on them."
 msgstr ""
 "Sammeln Sie Ideen zu einem bestimmten Thema und lassen Sie diese "
 "kommentieren."
 
-#: meinberlin/apps/dashboard/blueprints.py:31
+#: meinberlin/apps/dashboard/blueprints.py:30
 msgid "Spatial Brainstorming"
 msgstr "Brainstorming mit Kartenfunktion"
 
-#: meinberlin/apps/dashboard/blueprints.py:33
+#: meinberlin/apps/dashboard/blueprints.py:32
 msgid "Collect location specific ideas for a topic and comment on them."
 msgstr ""
 "Sammeln Sie ortsspezifische Ideen zu einem Thema und lassen Sie diese "
 "kommentieren."
 
-#: meinberlin/apps/dashboard/blueprints.py:43
+#: meinberlin/apps/dashboard/blueprints.py:42
 msgid "Spatial Idea Collection"
 msgstr "Ideensammlung mit Kartenfunktion"
 
-#: meinberlin/apps/dashboard/blueprints.py:45
+#: meinberlin/apps/dashboard/blueprints.py:44
 msgid "Collect location specific ideas that can be rated and commented."
 msgstr "Lassen Sie ortsspezifische Ideen bewerten und kommentieren."
 
-#: meinberlin/apps/dashboard/blueprints.py:55
+#: meinberlin/apps/dashboard/blueprints.py:54
 msgid "Agenda Setting"
 msgstr "Agenda festlegen"
 
-#: meinberlin/apps/dashboard/blueprints.py:57
+#: meinberlin/apps/dashboard/blueprints.py:56
 msgid ""
 "With Agenda-Setting it’s possible to identify topics and to define mission "
 "statements. Anyone can submit topics that can be commented and rated."
@@ -1534,11 +1523,11 @@ msgstr ""
 "Leitbilder zu definieren. Nutzerinnen und Nutzer können Themen vorschlagen, "
 "die bewertet und kommentiert werden können."
 
-#: meinberlin/apps/dashboard/blueprints.py:69
+#: meinberlin/apps/dashboard/blueprints.py:68
 msgid "Text Review"
 msgstr "Text kommentieren"
 
-#: meinberlin/apps/dashboard/blueprints.py:71
+#: meinberlin/apps/dashboard/blueprints.py:70
 msgid ""
 "In the text-review it’s possible to structure draft texts that can be "
 "commented."
@@ -1546,11 +1535,11 @@ msgstr ""
 "\"Text kommentieren\" erlaubt es Textentwürfe zu erstellen, die kommentiert "
 "werden können."
 
-#: meinberlin/apps/dashboard/blueprints.py:82
+#: meinberlin/apps/dashboard/blueprints.py:81
 msgid "Participatory budgeting"
 msgstr "Bürgerhaushalt"
 
-#: meinberlin/apps/dashboard/blueprints.py:84
+#: meinberlin/apps/dashboard/blueprints.py:83
 msgid ""
 "With participatory-budgeting it’s possible to make proposals with budget "
 "specifications and locate them. Anyone can comment and rate on different "
@@ -1560,22 +1549,22 @@ msgstr ""
 "einem Budget zu versehen und sie auf einer Karte zu verorten. Diese "
 "Vorschläge können bewertet und kommentiert werden."
 
-#: meinberlin/apps/dashboard/blueprints.py:96
+#: meinberlin/apps/dashboard/blueprints.py:95
 msgid "External project"
 msgstr "Externes Projekt"
 
-#: meinberlin/apps/dashboard/blueprints.py:98
+#: meinberlin/apps/dashboard/blueprints.py:97
 msgid "External projects are handled on a different platform."
 msgstr ""
 "Externe Projekte sind auf einer anderen Plattform zu finden und werden auf "
 "meinBerlin verlinkt."
 
-#: meinberlin/apps/dashboard/blueprints.py:108
+#: meinberlin/apps/dashboard/blueprints.py:107
 #: meinberlin/apps/polls/dashboard.py:14
 msgid "Poll"
 msgstr "Umfrage"
 
-#: meinberlin/apps/dashboard/blueprints.py:110
+#: meinberlin/apps/dashboard/blueprints.py:109
 msgid ""
 "Create a poll with multiple questions and possible answers. Anyone can cast "
 "votes and comment on the poll."
@@ -1584,31 +1573,31 @@ msgstr ""
 "anlegen. Nutzerinnen und Nutzer können ihre Stimme dann abgeben und die "
 "Umfrage kommentieren."
 
-#: meinberlin/apps/dashboard/blueprints.py:121
+#: meinberlin/apps/dashboard/blueprints.py:120
 msgid "Topic Prioritization"
 msgstr "Themenpriorisierung"
 
-#: meinberlin/apps/dashboard/blueprints.py:123
+#: meinberlin/apps/dashboard/blueprints.py:122
 msgid "Comment and prioritize topics."
 msgstr ""
 "Bei der Themenpriorisierung legen Sie die Themen an, welche dann von den "
 "Nutzerinnen und Nutzern bewertet und kommentiert werden können."
 
-#: meinberlin/apps/dashboard/blueprints.py:133
+#: meinberlin/apps/dashboard/blueprints.py:132
 msgid "Place Prioritization"
 msgstr "Ortspriorisierung"
 
-#: meinberlin/apps/dashboard/blueprints.py:135
+#: meinberlin/apps/dashboard/blueprints.py:134
 msgid "Comment and prioritize places located on a map."
 msgstr ""
 "Legen Sie Orte auf einer Karte an, welche dann von den Nutzerinnen und "
 "Nutzern bewertet und kommentiert werden können."
 
-#: meinberlin/apps/dashboard/blueprints.py:145
+#: meinberlin/apps/dashboard/blueprints.py:144
 msgid "Development Plan"
 msgstr "Bebauungsplan"
 
-#: meinberlin/apps/dashboard/blueprints.py:146
+#: meinberlin/apps/dashboard/blueprints.py:145
 msgid ""
 "Create a statement formular for development plans to be embedded on external "
 "sites."
@@ -1616,11 +1605,11 @@ msgstr ""
 "Legen Sie ein Formular zur Stellungnahme zu den Bebauungsplänen an. Dieses "
 "Formular wird dann auf externen Seiten eingebunden."
 
-#: meinberlin/apps/dashboard/blueprints.py:156
+#: meinberlin/apps/dashboard/blueprints.py:155
 msgid "Kiezkasse"
 msgstr "Kiezkasse"
 
-#: meinberlin/apps/dashboard/blueprints.py:158
+#: meinberlin/apps/dashboard/blueprints.py:157
 msgid ""
 "With kiezkasse it’s possible to make proposals with budget specifications "
 "and locate them. The proposals can be commented and rated."
@@ -1628,19 +1617,6 @@ msgstr ""
 "Mit der Kiezkasse ist es den Teilnehmenden möglich, Vorschläge mit einem "
 "Budget zu versehen und sie auf einer Karte zu verorten. Diese Vorschläge "
 "können bewertet und kommentiert werden."
-
-#: meinberlin/apps/dashboard/blueprints.py:170
-msgid "Face-to-Face Participation"
-msgstr "Vor-Ort-Beteiligung"
-
-#: meinberlin/apps/dashboard/blueprints.py:172
-msgid ""
-"With this module you can provide information about events or phases for face-"
-"to-face participation. No online participation is possible in this module."
-msgstr ""
-"Mit diesem Modul können Informationen über Veranstaltungen und Phasen zur "
-"Vor-Ort-Beteiligung bereitgestellt werden. In diesem Modul ist keine Online-"
-"Beteiligung möglich."
 
 #: meinberlin/apps/dashboard/forms.py:13
 msgid "Organisation name"
@@ -1655,17 +1631,9 @@ msgstr "Neues Modul"
 msgid "Document"
 msgstr "Dokument"
 
-#: meinberlin/apps/documents/exports.py:13
+#: meinberlin/apps/documents/exports.py:11
 msgid "Documents with comments"
 msgstr "Dokument mit Kommentaren"
-
-#: meinberlin/apps/documents/exports.py:25
-msgid "Chapter"
-msgstr "Kapitel"
-
-#: meinberlin/apps/documents/exports.py:25
-msgid "Paragraph"
-msgstr "Absatz"
 
 #: meinberlin/apps/documents/phases.py:15
 msgid "Comment phase"
@@ -1758,21 +1726,26 @@ msgstr "Code zum Einbetten des Projekts"
 msgid "Export Excel"
 msgstr "Excel exportieren"
 
-#: meinberlin/apps/exports/mixins.py:23
+#: meinberlin/apps/exports/mixins.py:24
 msgid "Moderator feedback"
 msgstr "Rückmeldung der Moderation"
 
-#: meinberlin/apps/exports/mixins.py:40
+#: meinberlin/apps/exports/mixins.py:41
+#: meinberlin/apps/moderatorremark/models.py:18
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:5
-#: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:14
-msgid "Moderator remark"
-msgstr "Moderatornotiz"
+#: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:21
+msgid "Remark"
+msgstr "Notiz"
 
 #: meinberlin/apps/exports/mixins.py:53
+msgid "replies to"
+msgstr ""
+
+#: meinberlin/apps/exports/mixins.py:66
 msgid "Creator"
 msgstr "Urheber"
 
-#: meinberlin/apps/exports/mixins.py:55
+#: meinberlin/apps/exports/mixins.py:68
 msgid "Created"
 msgstr "Erstellt"
 
@@ -2120,18 +2093,17 @@ msgstr "nicht umgesetzt"
 msgid "Accepted"
 msgstr "wird umgesetzt"
 
-#: meinberlin/apps/moderatorremark/models.py:18
-#: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:21
-msgid "Remark"
-msgstr "Notiz"
+#: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:14
+msgid "Moderator remark"
+msgstr "Moderatornotiz"
 
-#: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:23
-msgid "Note only visible internally within project."
-msgstr "Notiz ist nur projektintern sichtbar."
-
-#: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:25
+#: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:22
 msgid "Write down your remark!"
 msgstr "Notiz schreiben"
+
+#: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:24
+msgid "Note only visible internally within project."
+msgstr "Notiz ist nur projektintern sichtbar."
 
 #: meinberlin/apps/newsletters/forms.py:25
 #: meinberlin/apps/newsletters/models.py:43
@@ -2444,15 +2416,15 @@ msgstr ""
 msgid "running"
 msgstr ""
 
-#: meinberlin/apps/plans/views.py:66
+#: meinberlin/apps/plans/views.py:67
 msgid "starts at {}"
 msgstr ""
 
-#: meinberlin/apps/plans/views.py:149
+#: meinberlin/apps/plans/views.py:150
 msgid "Project Links"
 msgstr ""
 
-#: meinberlin/apps/plans/views.py:243
+#: meinberlin/apps/plans/views.py:244
 msgid "The plan has been deleted"
 msgstr "Vorhaben wurde gelöscht"
 
@@ -3073,13 +3045,33 @@ msgstr "Dreieck Spitze rechts"
 msgid "Zigzag"
 msgstr "ZickZack"
 
+#: meinberlin/templates/403.html:7
+msgid "You are not allowed to access this page."
+msgstr ""
+
 #: meinberlin/templates/404.html:7
 msgid "This page could not be found."
 msgstr "Diese Seite konnte nicht gefunden werden."
 
-#: meinberlin/templates/500.html:7
+#: meinberlin/templates/500.html:4 meinberlin/templates/base.html:8
+msgid "meinBerlin"
+msgstr "meinBerlin"
+
+#: meinberlin/templates/500.html:10 meinberlin/templates/base.html:31
+msgid "Skip to content "
+msgstr "Zum Inhalt springen"
+
+#: meinberlin/templates/500.html:19 meinberlin/templates/portal_header.html:10
+msgid "Portal Navigation"
+msgstr "Navigation des Portals berlin.de"
+
+#: meinberlin/templates/500.html:53
 msgid "Internal server error."
 msgstr "Interner Serverfehler."
+
+#: meinberlin/templates/500.html:54 meinberlin/templates/base_errors.html:11
+msgid "Back to meinBerlin."
+msgstr ""
 
 #: meinberlin/templates/a4dashboard/base_dashboard.html:13
 msgid "Organisations"
@@ -3276,14 +3268,6 @@ msgstr ""
 "gelesen habe und akzeptiere.\n"
 "                "
 
-#: meinberlin/templates/base.html:8
-msgid "meinBerlin"
-msgstr "meinBerlin"
-
-#: meinberlin/templates/base.html:31
-msgid "Skip to content "
-msgstr "Zum Inhalt springen"
-
 #: meinberlin/templates/base.html:58
 msgid "Feedback"
 msgstr "Feedback"
@@ -3307,10 +3291,6 @@ msgstr "meinBerlin ist die Plattform für Beteiligung, betrieben durch"
 #: meinberlin/templates/header.html:12
 msgid "Menu"
 msgstr "Menü"
-
-#: meinberlin/templates/portal_header.html:10
-msgid "Portal Navigation"
-msgstr "Navigation des Portals berlin.de"
 
 #: meinberlin/templates/socialaccount/authentication_error.html:5
 #: meinberlin/templates/socialaccount/authentication_error.html:8
@@ -3372,6 +3352,48 @@ msgstr ""
 "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem %(site_name)s "
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
+
+#~ msgid ""
+#~ "The processing of personal data is carried out as part of the development "
+#~ "plan procedure on the basis of § 3 Baugesetzbuch in conjunction with Art. "
+#~ "6 Buchst. e Datenschutz-Grundverordnung und Berliner Datenschutzgesetz. "
+#~ "By submitting a statement, the information contained therein is stored "
+#~ "and, after the procedure has been completed, feedback is given on how the "
+#~ "statement was taken into account. In the case of an opinion without a "
+#~ "sender's address, no personal communication can be given on the outcome "
+#~ "of the opinion's opinion. Detailed information on data processing rights "
+#~ "and personal data can be found in the privacy policy linked at the bottom "
+#~ "of the page."
+#~ msgstr ""
+#~ "Die Verarbeitung personenbezogener Daten erfolgt im Rahmen des "
+#~ "Bebauungsplanverfahrens auf der Grundlage des § 3 Baugesetzbuch in "
+#~ "Verbindung mit Art. 6 Buchst. e Datenschutz-Grundverordnung und Berliner "
+#~ "Datenschutzgesetz. Mit der Abgabe einer Stellungnahme werden die darin "
+#~ "enthaltenen Angaben gespeichert und nach Abschluss des Verfahrens "
+#~ "Rückmeldung gegeben, wie die Stellungnahme Berücksichtigung gefunden hat. "
+#~ "Bei einer Stellungnahme ohne Absenderangaben kann keine persönliche "
+#~ "Mitteilung über das Ergebnis der Prüfung der Stellungnahme erfolgen. "
+#~ "Ausführliche Informationen über die Rechte bei der Datenverarbeitung und "
+#~ "den personenbezogenen Angaben sind in der am Ende der Seite verlinkten "
+#~ "Datenschutzerklärung zu finden."
+
+#~ msgid "Face-to-Face Participation"
+#~ msgstr "Vor-Ort-Beteiligung"
+
+#~ msgid ""
+#~ "With this module you can provide information about events or phases for "
+#~ "face-to-face participation. No online participation is possible in this "
+#~ "module."
+#~ msgstr ""
+#~ "Mit diesem Modul können Informationen über Veranstaltungen und Phasen zur "
+#~ "Vor-Ort-Beteiligung bereitgestellt werden. In diesem Modul ist keine "
+#~ "Online-Beteiligung möglich."
+
+#~ msgid "Chapter"
+#~ msgstr "Kapitel"
+
+#~ msgid "Paragraph"
+#~ msgstr "Absatz"
 
 #~ msgid "Remarks remain private."
 #~ msgstr "Notizen werden nicht öffentlich angezeigt."
