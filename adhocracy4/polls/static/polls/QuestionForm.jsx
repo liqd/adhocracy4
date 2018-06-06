@@ -2,7 +2,7 @@ var React = require('react')
 var django = require('django')
 var FlipMove = require('react-flip-move').default
 var ChoiceForm = require('./ChoiceForm')
-var ErrorList = require('../../contrib/assets/ErrorList')
+var ErrorList = require('../../../static/ErrorList')
 
 const QuestionForm = (props) => {
   return (

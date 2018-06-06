@@ -1,6 +1,6 @@
 var React = require('react')
 var django = require('django')
-var ErrorList = require('../../contrib/assets/ErrorList')
+var ErrorList = require('../../../static/ErrorList')
 
 const ChoiceForm = (props) => {
   return (

@@ -1,10 +1,10 @@
 var React = require('react')
 var django = require('django')
-var Alert = require('../../contrib/assets/Alert')
+var Alert = require('../../../static/Alert')
 var update = require('immutability-helper')
 
-var api = require('adhocracy4').api
-var config = require('adhocracy4').config
+var api = require('../../../static/api')
+var config = require('../../../static/config')
 
 class Question extends React.Component {
   constructor (props) {
