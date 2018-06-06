@@ -5,8 +5,7 @@
     "fields": {
       "name": "liqd",
       "slug": "liqd",
-      "initiators": "1",
-      "initiators": "3"
+      "initiators": ["1","3"]
     }
   }
 ]
