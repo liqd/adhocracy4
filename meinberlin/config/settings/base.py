@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'ckeditor_uploader',
     'capture_tag',
     'background_task',
+    'raven.contrib.django.raven_compat',
 
     'adhocracy4.actions.apps.ActionsConfig',
     'adhocracy4.categories.apps.CategoriesConfig',
@@ -155,6 +156,21 @@ TEMPLATES = [
         },
     },
 ]
+
+LOGGING = {
+        'version': 1,
+        'handlers': {
+                'console': {
+                        'class': 'logging.StreamHandler'},
+                'sentry': {
+                        'level': 'ERROR',
+                        'class': 'raven.handlers.logging.SentryHandler',
+                },
+        },
+        'loggers': {'background_task': {
+                'handlers': ['console', 'sentry'],
+                'level': 'INFO'}},
+}
 
 WSGI_APPLICATION = 'meinberlin.config.wsgi.application'
 
