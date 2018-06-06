@@ -7,6 +7,9 @@
   "major": {
     "automerge": false
   },
+  "devDependencies": {
+    "automerge": true
+  },
 
   "packageRules": [
       {
