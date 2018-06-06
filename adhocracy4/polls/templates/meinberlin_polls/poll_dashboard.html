@@ -1,9 +1,0 @@
-{% extends "a4dashboard/base_dashboard_project.html" %}
-{% load i18n react_polls %}
-
-{% block dashboard_project_content %}
-    <h1 class="u-first-heading">{% trans 'Edit poll' %}</h1>
-
-    {% react_poll_form poll True %}
-
-{% endblock %}
