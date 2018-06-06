@@ -17,7 +17,7 @@ def react_polls(context, question):
     )
 
     return format_html(
-        '<div data-mb-widget="polls" data-question="{question}"></div>',
+        '<div data-a4-widget="polls" data-question="{question}"></div>',
         question=JSONRenderer().render(question_serializer.data)
     )
 
@@ -30,7 +30,7 @@ def react_poll_form(poll, reload_on_success=False):
 
     return format_html(
         (
-            '<div data-mb-widget="poll-management" data-module="{module}" '
+            '<div data-a4-widget="poll-management" data-module="{module}" '
             ' data-poll="{poll}"  data-reloadOnSuccess="{reload_on_success}">'
             '</div>'
         ),
