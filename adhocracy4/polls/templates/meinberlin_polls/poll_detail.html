@@ -1,0 +1,20 @@
+{% extends "meinberlin_projects/project_detail.html" %}
+{% load react_polls react_comments %}
+
+
+{% block phase_content %}
+    <div class="module-content">
+        <div class="l-wrapper">
+            <div class="l-center-8">
+                {% for question in question_list %}
+                    {% react_polls question %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="l-wrapper">
+        <div class="l-center-6">
+            {% react_comments object %}
+        </div>
+    </div>
+{% endblock %}
