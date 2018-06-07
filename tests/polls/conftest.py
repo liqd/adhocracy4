@@ -1,6 +1,6 @@
 from pytest_factoryboy import register
 
-from meinberlin.test.factories import polls
+from adhocracy4.test.factories import polls
 
 register(polls.PollFactory)
 register(polls.QuestionFactory)
