@@ -2,8 +2,8 @@ import pytest
 
 from adhocracy4.dashboard import components
 from meinberlin.apps.polls.phases import VotingPhase
-from meinberlin.test.helpers import assert_template_response
-from meinberlin.test.helpers import setup_phase
+from adhocracy4.test.helpers import assert_template_response
+from adhocracy4.test.helpers import setup_phase
 
 component = components.modules.get('polls')
 

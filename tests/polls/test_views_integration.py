@@ -1,9 +1,9 @@
 import pytest
 
 from meinberlin.apps.polls import phases
-from meinberlin.test.helpers import assert_template_response
-from meinberlin.test.helpers import freeze_phase
-from meinberlin.test.helpers import setup_phase
+from adhocracy4.test.helpers import assert_template_response
+from adhocracy4.test.helpers import freeze_phase
+from adhocracy4.test.helpers import setup_phase
 
 
 @pytest.mark.django_db
