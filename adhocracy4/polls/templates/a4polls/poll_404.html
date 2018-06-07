@@ -8,7 +8,7 @@
         {% trans 'Participation is not possible at the moment. The poll has not been set up yet.' %}
     </p>
 
-    {% has_perm 'meinberlin_polls.change_poll' request.user module as may_change %}
+    {% has_perm 'a4polls.change_poll' request.user module as may_change %}
     {% if may_change %}
         <p>
             <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}">
