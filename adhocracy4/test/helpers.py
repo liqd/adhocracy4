@@ -98,8 +98,7 @@ def setup_phase(phase_factory, item_factory, phase_content_class, **kwargs):
 def setup_users(project):
     anonymous = AnonymousUser()
     moderator = project.moderators.first()
-    initiator = project.organisation.initiators.first()
-    return anonymous, moderator, initiator
+    return anonymous, moderator
 
 
 @contextmanager

@@ -19,7 +19,7 @@ def test_perm_exists():
 def test_pre_phase(phase_factory, poll_factory, user):
     phase, _, project, item = setup_phase(phase_factory, poll_factory,
                                           phases.VotingPhase)
-    anonymous, moderator, initiator = setup_users(project)
+    anonymous, moderator = setup_users(project)
 
     creator = item.creator
 
@@ -29,14 +29,13 @@ def test_pre_phase(phase_factory, poll_factory, user):
         assert not rules.has_perm(perm_name, user, item)
         assert not rules.has_perm(perm_name, creator, item)
         assert rules.has_perm(perm_name, moderator, item)
-        assert rules.has_perm(perm_name, initiator, item)
 
 
 @pytest.mark.django_db
 def test_phase_active(phase_factory, poll_factory, user):
     phase, _, project, item = setup_phase(phase_factory, poll_factory,
                                           phases.VotingPhase)
-    anonymous, moderator, initiator = setup_users(project)
+    anonymous, moderator = setup_users(project)
     creator = item.creator
 
     assert project.is_public
@@ -45,7 +44,6 @@ def test_phase_active(phase_factory, poll_factory, user):
         assert rules.has_perm(perm_name, user, item)
         assert rules.has_perm(perm_name, creator, item)
         assert rules.has_perm(perm_name, moderator, item)
-        assert rules.has_perm(perm_name, initiator, item)
 
 
 @pytest.mark.django_db
@@ -53,7 +51,7 @@ def test_phase_active_project_draft(phase_factory, poll_factory, user):
     phase, _, project, item = setup_phase(phase_factory, poll_factory,
                                           phases.VotingPhase,
                                           module__project__is_draft=True)
-    anonymous, moderator, initiator = setup_users(project)
+    anonymous, moderator = setup_users(project)
     creator = item.creator
 
     assert project.is_draft
@@ -62,7 +60,6 @@ def test_phase_active_project_draft(phase_factory, poll_factory, user):
         assert not rules.has_perm(perm_name, user, item)
         assert not rules.has_perm(perm_name, creator, item)
         assert rules.has_perm(perm_name, moderator, item)
-        assert rules.has_perm(perm_name, initiator, item)
 
 
 @pytest.mark.django_db
@@ -70,7 +67,7 @@ def test_post_phase_project_archived(phase_factory, poll_factory, user):
     phase, _, project, item = setup_phase(phase_factory, poll_factory,
                                           phases.VotingPhase,
                                           module__project__is_archived=True)
-    anonymous, moderator, initiator = setup_users(project)
+    anonymous, moderator = setup_users(project)
     creator = item.creator
 
     assert project.is_archived
@@ -79,4 +76,3 @@ def test_post_phase_project_archived(phase_factory, poll_factory, user):
         assert not rules.has_perm(perm_name, user, item)
         assert not rules.has_perm(perm_name, creator, item)
         assert rules.has_perm(perm_name, moderator, item)
-        assert rules.has_perm(perm_name, initiator, item)

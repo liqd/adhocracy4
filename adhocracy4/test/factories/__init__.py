@@ -9,6 +9,7 @@ from adhocracy4.projects.models import Project
 from adhocracy4.organisations.models import Organisation
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
+from adhocracy4 import phases
 
 
 class UserFactory(factory.django.DjangoModelFactory):
@@ -97,14 +98,41 @@ class ItemFactory(factory.django.DjangoModelFactory):
     creator = factory.SubFactory(USER_FACTORY)
 
 
+class PhaseContentFactory(factory.Factory):
+    class Meta:
+        model = phases.PhaseContent
+
+    app = 'phase_content_factory'
+    phase = 'factory_phase'
+    view = None
+
+    name = 'Factory Phase'
+    description = 'Factory Phase Description'
+    module_name = 'factory phase module'
+
+    features = {}
+
+    @classmethod
+    def _create(cls, model_class, *args, **kwargs):
+        phase_content = model_class()
+        for key, value in kwargs.items():
+            setattr(phase_content, key, value)
+
+        phases.content.register(phase_content)
+        return phase_content
+
+
 class PhaseFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = Phase
 
+    class Params:
+        phase_content = PhaseContentFactory()
+
     name = factory.Sequence(lambda n: '{}. phase'.format(n))
     description = factory.Faker('text')
-    type = 'a4test_questions:ask'
+    type = factory.LazyAttribute(lambda f: f.phase_content.identifier)
     module = factory.SubFactory(ModuleFactory)
     start_date = parse('2013-01-02 00:00:00 UTC')
     end_date = parse('2013-01-03 00:00:00 UTC')
