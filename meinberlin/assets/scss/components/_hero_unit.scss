@@ -9,6 +9,10 @@
     color: $brand-secondary;
 }
 
+.hero-unit__subtitle {
+    font-size: $font-size-sm;
+}
+
 .hero-unit__wrapper {
     flex: 1 0 40%;
     padding: $padding;
