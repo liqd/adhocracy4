@@ -1,12 +1,12 @@
 {% load i18n %}
 
-<div class="dropdown dropdown--right">
+<div class="dropdown">
 
     {% if request.user.is_authenticated %}
 
     <button
             type="button"
-            class="dropdown-toggle btn btn--light"
+            class="btn btn--light dropdown-toggle"
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
@@ -15,33 +15,22 @@
         {{ request.user.username }}
         <i class="fa fa-caret-down" aria-hidden="true"></i>
     </button>
-    <ul class="dropdown-menu" aria-labelledby="user-actions">
-        <li>
+    <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="{% url 'account' %}">{% trans "Account Settings" %}</a>
-        </li>
-
         {% for organisation in request.user.organisations %}
-
-        <li>
             <a class="dropdown-item" href="{% url 'a4dashboard:project-list' organisation_slug=organisation.slug %}">
                 {{ organisation.name }}
             </a>
-        </li>
         {% endfor %}
         {% if request.user.is_superuser %}
-            <li>
                 <a class="dropdown-item" href="{% url 'meinberlin_newsletters:newsletter-create' %}">{% trans "Newsletter" %}</a>
-
-            </li>
         {% endif %}
-        <li>
             <form class="u-inline" action="{% url 'account_logout' %}" method="post" aria-label="{% trans 'Logout' %}">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ redirect_field_value }}">
                 <button type="submit" class="dropdown-item">{% trans "Logout" %}</button>
             </form>
-        </li>
-    </ul>
+    </div>
 
     {% else %}
 
