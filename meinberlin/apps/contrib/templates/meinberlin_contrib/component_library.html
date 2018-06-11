@@ -69,8 +69,11 @@
                         <li class="dashboard-nav__page">
                             <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Document</a>
                         </li>
-                       <li class="dashboard-nav__page">
+                        <li class="dashboard-nav__page">
                             <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Doc Toc</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                             <a href="#cl-embed-code" class="dashboard-nav__item dashboard-nav__item--interactive">Embed Code</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Bar</a>
@@ -106,10 +109,19 @@
                             <a href="#cl-list_item" class="dashboard-nav__item dashboard-nav__item--interactive">List Item</a>
                         </li>
                         <li class="dashboard-nav__page">
+                            <a href="#cl-menu-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Menu Layout</a>
+                        </li>
+                        <li class="dashboard-nav__page">
                             <a href="#cl-module" class="dashboard-nav__item dashboard-nav__item--interactive">Module</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-moderator-statement" class="dashboard-nav__item dashboard-nav__item--interactive">Moderato Statement</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-multiform" class="dashboard-nav__item dashboard-nav__item--interactive">Multiform</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-pagination" class="dashboard-nav__item dashboard-nav__item--interactive">Pagination</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-poll" class="dashboard-nav__item dashboard-nav__item--interactive">Poll</a>
@@ -127,14 +139,14 @@
                             <a href="#cl-poll" class="dashboard-nav__item dashboard-nav__item--interactive">Radio</a>
                         </li>
                         <li class="dashboard-nav__page">
-                             <a href="#cl-ratings" class="dashboard-nav__item dashboard-nav__item--interactive">Ratings</a>
-                         </li>
-                         <li class="dashboard-nav__page">
-                             <a href="#cl-tabs" class="dashboard-nav__item dashboard-nav__item--interactive">Select Item</a>
-                         </li>
-                         <li class="dashboard-nav__page">
-                              <a href="#cl-table" class="dashboard-nav__item dashboard-nav__item--interactive">Table</a>
-                          </li>
+                            <a href="#cl-rating" class="dashboard-nav__item dashboard-nav__item--interactive">Rating</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-tabs" class="dashboard-nav__item dashboard-nav__item--interactive">Select Item</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-table" class="dashboard-nav__item dashboard-nav__item--interactive">Table</a>
+                        </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-tabs" class="dashboard-nav__item dashboard-nav__item--interactive">Tabs</a>
                         </li>
@@ -594,7 +606,7 @@
                 <div class="cl-example">
                     <nav class="dashboard-nav">
                         <div class="dashboard-nav__dropdown">
-                            <div class="dashboard-nav__item">Dashboard nav item (in a dashboard-nav__dropwown, which is not used as dropdown)</div>
+                            <div class="dashboard-nav__item">Dashboard nav item (in a dashboard-nav__dropdown, which is not used as dropdown)</div>
                         </div>
                         <ul class="dashboard-nav__pages">
                             <li class="dashboard-nav__page">
@@ -718,7 +730,8 @@
                     </div>
                 </div>
 
-                <h2 id="cl-embed-code">Embed Code Site</h2>
+                <h2 id="cl-embed-code-site">Embed Code Site</h2>
+
                 <div class="cl-example">
                     <main class="embed">
                         <header class="embed-header">
@@ -730,7 +743,7 @@
                                 <div class="l-center-6">
                                     <a href="/projects/berlin-wird-leiser/" class="project-header__link" data-embed-target="external">
                                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                            Back to site
+                                        Back to site
                                     </a>
                                     <h1 class="project-header__title">Title</h1>
                                     <p class="project-header__description">Description - dark overlay on header image with further information via tabs and map below.</p>
@@ -743,10 +756,10 @@
                                 <div class="tablist__right"></div>
                                 <nav role="tablist">
                                     <a id="tab-1" class="tab" data-toggle="tab" href="#tabpanel-1" role="tab" aria-controls="tabpanel-1" aria-expanded="false">
-                                                        Tab 1
+                                        Tab 1
                                     </a>
                                     <a id="tab-2" class="tab active" data-toggle="tab" href="#tabpanel-2" role="tab" aria-controls="tabpanel-2" aria-expanded="true">
-                                                        Tab 2
+                                        Tab 2
                                     </a>
                                 </nav>
                             </div>
@@ -826,9 +839,9 @@
                         <div class="cl-example">
                             <div class="control-bar" role="group" aria-label="Filter bar">
                                 <a class="btn btn--light" href="#" aria-label="View as map">
-                                                        <i class="fa fa-map" aria-hidden="true"></i>
-                                                        View
-                                                    </a>
+                                    <i class="fa fa-map" aria-hidden="true"></i>
+                                    View
+                                </a>
                                 <form class="input-group form-group u-inline-flex" method="get">
                                     <input class="input-group__input" type="search" name="search" placeholder="Search" value="">
                                     <button class="input-group__after btn btn--light" type="submit" title="Search">
@@ -920,7 +933,8 @@
                                 <img class="beberlin-logo" src="/static/images/beberlin.svg" alt="be Berlin" height="22" width="90">
                                 <a href="/" class="main-nav__logo" rel="home"><img src="/static/images/LOGO.png" alt="mein.berlin"></a>
                                 <button class="btn btn--light main-nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse">
-                                    <i class="fa fa-bars" aria-hidden="true"></i> Menü
+                                    <i class="fa fa-bars" aria-hidden="true"></i> 
+                                    Menü
                                 </button>
                                 <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
                                     <ul class="main-nav__list">
@@ -930,7 +944,8 @@
                                     </ul>
                                     <div class="main-header__user">
                                         <div class="dropdown dropdown--right">
-                                            <button type="button" class="dropdown-toggle btn btn--light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="user-actions">User
+                                            <button type="button" class="dropdown-toggle btn btn--light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="user-actions">
+                                                User
                                                 <i class="fa fa-caret-down" aria-hidden="true"></i>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="user-actions"></ul>
@@ -954,14 +969,13 @@
                         <div class="hero-unit__wrapper">
                             <div class="hero-unit__title u-first-heading">Hero Unit Title</div>
                             <h1 class="hero-unit__title u-first-heading">Size used on Hompage H1</h1>
-                            <div class="hero-unit__subtitle">Large title whith or without subtitle with space for large image to otherside with copyright</div>
+                            <div class="hero-unit__subtitle">Subtitle, large image to otherside with copyright</div>
                         </div>
                         <div class="hero-unit__img">
                         <div class="hero-unit__copyright copyright">© Copyright</div>
                     </div>
                     </div>
                 </div>
-
 
                 <h2 ID="cl-overlapping-ctrl-bar">Overlapping Control Bars</h2>
 
@@ -1030,7 +1044,8 @@
                                             <label for="id_remark" class="idea-remark__label">Remark</label>
                                             <textarea class="form-control" id="id_remark" aria-describedby="idea_remark_hint" aria-label="moderator-remark-input" placeholder="Write down your remark!"></textarea>
                                             <div class="idea-remark__hint" id="idea_remark_hint">
-                                                <i class="fa fa-lock" aria-hidden="true"></i>Note only visible internally within project.
+                                                <i class="fa fa-lock" aria-hidden="true"></i>
+                                                Note only visible internally within project.
                                             </div>
                                         </div>
                                         <input class="btn btn--transparent btn--full idea-remark__btn" value="Sichern" type="submit">
@@ -1054,7 +1069,7 @@
                         <h1 class="item-detail__title">Item Detail Title</h1>
 
                         <div class="item-detail__labels">
-                                <div class="label label--big">Label</div>
+                            <div class="label label--big">Label</div>
                         </div>
 
                         <div class="item-detail__content">
@@ -1076,14 +1091,17 @@
 
                         <div class="item-detail__actions lr-bar">
                             <div class="lr-bar__left">
-                                <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>12</button>
-                                <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button>
+                                <button class="rating-button rating-up">
+                                    <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                                    12
+                                </button>
+                                <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    0
+                                </button>
                             </div>
                             <div class="dropdown dropdown--right lr-bar__right">
-                                <button
-                                    class="dropdown-toggle btn btn--light btn--small"
-                                >
-                                <i class="fa fa-ellipsis-h"></i>
+                                <button class="dropdown-toggle btn btn--light btn--small">
+                                    <i class="fa fa-ellipsis-h"></i>
                                 </button>
                             </div>
                         </div>
@@ -1098,7 +1116,7 @@
                         <h1 class="item-detail__title">Item Detail 2</h1>
 
                         <div class="item-detail__labels">
-                                <div class="label label--big">Label</div>
+                            <div class="label label--big">Label</div>
                         </div>
 
                         <div class="item-detail-2__factsheet">
@@ -1120,10 +1138,10 @@
 
                         <div class="item-detail-2__content">
                             <p>
-                            Richtext Content with a border at the bottom!
+                                Richtext Content with a border at the bottom!
                             </p>
                             <p>
-                            For the plan detail, item-detail-2 and item-detail are used. item-detail-2 will most likely also be used for ideas or at least parts of it at some point.
+                                For the plan detail, item-detail-2 and item-detail are used. item-detail-2 will most likely also be used for ideas or at least parts of it at some point.
                             </p>
                         </div>
 
@@ -1137,7 +1155,7 @@
                     </div>
                 </div>
 
-                <h2 id="cl-labels">labels</h2>
+                <h2 id="cl-labels">Labels</h2>
 
                 <div class="cl-example">
                     <p>
@@ -1158,51 +1176,53 @@
                     <div class="module-content">
                         <div class="l-wrapper">
                             <div class="l-center-8">
-                            <ul class="u-list-reset">
-                                <li class="list-item list-item--squashed">
-                                    <div class="list-item__stats">
-                                        <span class="rating">
-                                            <span class="rating-button rating-up is-read-only" title="Positive Ratings">0
-                                                <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i></span>
-                                            <span class="rating-button rating-down is-read-only" title="Negative Ratings">0
-                                                <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
+                                <ul class="u-list-reset">
+                                    <li class="list-item list-item--squashed">
+                                        <div class="list-item__stats">
+                                            <span class="rating">
+                                                <span class="rating-button rating-up is-read-only" title="Positive Ratings">0
+                                                    <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i>
+                                                </span>
+                                                <span class="rating-button rating-down is-read-only" title="Negative Ratings">0
+                                                    <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
+                                                </span>
                                             </span>
-                                        </span>
-                                        <span title="Comments">0
-                                            <i class="fa fa-comment-o" aria-label="Comments"></i></span>
-                                    </div>
+                                            <span title="Comments">0
+                                                <i class="fa fa-comment-o" aria-label="Comments"></i></span>
+                                        </div>
 
-                                    <h3 class="list-item__title"><a href="#cl-list_item">My Idea</a></h3>
-                                    <div class="list-item__labels">Label</div>
-                                    <span class="list-item__author">Author</span>
-                                    <time class="list-item__date">Date 2018</time>
-                                </li>
+                                        <h3 class="list-item__title"><a href="#cl-list_item">My Idea</a></h3>
+                                        <div class="list-item__labels">Label</div>
+                                        <span class="list-item__author">Author</span>
+                                        <time class="list-item__date">Date 2018</time>
+                                    </li>
 
-                                <li class="list-item list-item--squashed">
-                                    <div class="list-item__stats">
-                                        <span class="rating">
-                                            <span class="rating-button rating-up is-read-only" title="Positive Ratings">0
-                                                <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i></span>
-                                            <span class="rating-button rating-down is-read-only" title="Negative Ratings">0
-                                                <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
+                                    <li class="list-item list-item--squashed">
+                                        <div class="list-item__stats">
+                                            <span class="rating">
+                                                <span class="rating-button rating-up is-read-only" title="Positive Ratings">0
+                                                    <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i></span>
+                                                <span class="rating-button rating-down is-read-only" title="Negative Ratings">0
+                                                    <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
+                                                </span>
                                             </span>
-                                        </span>
-                                        <span title="Comments">0
-                                            <i class="fa fa-comment-o" aria-label="Comments"></i></span>
-                                    </div>
+                                            <span title="Comments">0
+                                                <i class="fa fa-comment-o" aria-label="Comments"></i>
+                                            </span>
+                                        </div>
 
-                                    <h3 class="list-item__title"><a href="#cl-list_item">My Idea 2</a></h3>
-                                    <div class="list-item__labels">Label</div>
-                                    <span class="list-item__author">Author</span>
-                                    <time class="list-item__date">Date 2018</time>
-                                </li>
-                            </ul>
+                                        <h3 class="list-item__title"><a href="#cl-list_item">My Idea 2</a></h3>
+                                        <div class="list-item__labels">Label</div>
+                                        <span class="list-item__author">Author</span>
+                                        <time class="list-item__date">Date 2018</time>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
 
-                <h2 id="cl-l-menu">Menu Layout</h2>
+                <h2 id="cl-menu-layout">Menu Layout</h2>
 
                 <div class="cl-example">
                     <div class="l-menu">
@@ -1212,7 +1232,8 @@
                             </div>
                         </nav>
                         <div class="l-menu__content l-menu__content--aside">
-                            <h1 class="u-first-heading">Dashbored content</h1></div>
+                            <h1 class="u-first-heading">Dashbored content</h1>
+                        </div>
                         <div class="l-menu__aside">
                             <div class="progress-box">Right Menu - Progress</div>
                         </div>
@@ -1251,13 +1272,16 @@
                 </div>
 
                 <h2 id="cl-multiform">Multiform</h2>
+
                 <div class="cl-example">
                     <form class="multiform" method="post" action="#">
                         <div class="form-errors">
                             <p class="alert alert--danger">Error</p>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="{{ form.email.id_for_label }}">Add another Email</label>
+                            <label class="control-label" for="{{ form.email.id_for_label }}">
+                                Add another Email
+                            </label>
                         </div>
                         <div class="u-spacer-bottom">
                             <input class="btn btn--primary" name="action_add" type="submit" value="Add Email" />
@@ -1266,6 +1290,7 @@
                 </div>
 
                 <h2 id="cl-pagination">Pagination</h2>
+
                 <div class="cl-example">
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
@@ -1281,41 +1306,47 @@
                 <div class="cl-example">
                     <div class="l-center-8">
                         <div>
-                        <form class="poll">
-                            <h2>First question, can click more than one answer</h2>
-                            <div class="poll__rows">
-                                <label class="poll-row radio">
-                                    <input class="poll-row__radio radio__input" name="question" value="3" type="checkbox">
-                                    <span class="radio__text radio__text--checkbox">yes</span>
-                                </label>
-                                <label class="poll-row radio">
-                                    <input class="poll-row__radio radio__input" name="question" value="4" type="checkbox"><span class="radio__text radio__text--checkbox">no</span>
-                                </label>
-                                <label class="poll-row radio">
-                                    <input class="poll-row__radio radio__input" name="question" value="5" type="checkbox"><span class="radio__text radio__text--checkbox">other</span>
-                                </label>
-                            </div>
-                            <div class="poll__actions">
-                                <button type="submit" class="btn btn--primary">Vote</button>&nbsp;
-                                <button type="button" class="btn btn--link">Show preliminary results</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div>
-                        <form class="poll">
-                            <h2>Second question, can only choose ones answer</h2>
-                            <div class="poll__rows">
-                                <label class="poll-row radio">
-                                    <input class="poll-row__radio radio__input" name="question" value="3" type="radio"><span class="radio__text">yes</span></label>
-                                <label class="poll-row radio">
-                                    <input class="poll-row__radio radio__input" name="question" value="4" type="radio"><span class="radio__text">no</span></label>
-                            </div>
-                            <div class="poll__actions">
-                                <button type="submit" class="btn btn--primary" disabled="">Vote</button>&nbsp;
-                                <button type="button" class="btn btn--link">Show preliminary results</button>
-                            </div>
-                        </form>
-                    </div>
+                            <form class="poll">
+                                <h2>First question, can click more than one answer</h2>
+                                <div class="poll__rows">
+                                    <label class="poll-row radio">
+                                        <input class="poll-row__radio radio__input" name="question" value="3" type="checkbox">
+                                        <span class="radio__text radio__text--checkbox">yes</span>
+                                    </label>
+                                    <label class="poll-row radio">
+                                        <input class="poll-row__radio radio__input" name="question" value="4" type="checkbox">
+                                        <span class="radio__text radio__text--checkbox">no</span>
+                                    </label>
+                                    <label class="poll-row radio">
+                                        <input class="poll-row__radio radio__input" name="question" value="5" type="checkbox">
+                                        <span class="radio__text radio__text--checkbox">other</span>
+                                    </label>
+                                </div>
+                                <div class="poll__actions">
+                                    <button type="submit" class="btn btn--primary">Vote</button>&nbsp;
+                                    <button type="button" class="btn btn--link">Show preliminary results</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div>
+                            <form class="poll">
+                                <h2>Second question, can only choose ones answer</h2>
+                                <div class="poll__rows">
+                                    <label class="poll-row radio">
+                                        <input class="poll-row__radio radio__input" name="question" value="3" type="radio">
+                                        <span class="radio__text">yes</span>
+                                    </label>
+                                    <label class="poll-row radio">
+                                        <input class="poll-row__radio radio__input" name="question" value="4" type="radio">
+                                        <span class="radio__text">no</span>
+                                    </label>
+                                </div>
+                                <div class="poll__actions">
+                                    <button type="submit" class="btn btn--primary" disabled="">Vote</button>&nbsp;
+                                    <button type="button" class="btn btn--link">Show preliminary results</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -1348,27 +1379,28 @@
 
                 <div class="cl-example">
                     <div class="l-wrapper">
-                    <div class="l-menu__aside">
-                        <div class="progress-box">
-                            <svg viewBox="0 0 35 35" class="progress-box__progress progress" role="presentation">
-                                <circle class="progress__background" r="15.9" cx="50%" cy="50%"></circle>
-                                <circle class="progress__value" stroke-dasharray="64 100" r="15.9" cx="50%" cy="50%"></circle>
-                                <text class="progress__label" x="50%" y="50%" dy="0.3em">50%</text>
-                            </svg>
-                            <div class="progress-box__description">
-                                <strong>7 from 11</strong>
-                                <br>required fields for publication
+                        <div class="l-menu__aside">
+                            <div class="progress-box">
+                                <svg viewBox="0 0 35 35" class="progress-box__progress progress" role="presentation">
+                                    <circle class="progress__background" r="15.9" cx="50%" cy="50%"></circle>
+                                    <circle class="progress__value" stroke-dasharray="64 100" r="15.9" cx="50%" cy="50%"></circle>
+                                    <text class="progress__label" x="50%" y="50%" dy="0.3em">50%</text>
+                                </svg>
+                                <div class="progress-box__description">
+                                    <strong>7 from 11</strong>
+                                    <br>required fields for publication
+                                </div>
                             </div>
+                            <form action="/dashboard/publish/project/choosing-map/" method="post" data-ignore-submit="true">
+                                <input name="name" value="" type="hidden">
+                                <input name="referrer" value="/dashboard/projects/choosing-map/information/" type="hidden">
+                                <button name="action" value="publish" disabled="" class="btn btn--primary btn--full btn--attached-top">Veröffentlichen</button>
+                            </form>
+                            <a href="/projects/choosing-map/" target="_self" class="btn btn--light btn--full">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                Vorschau
+                            </a>
                         </div>
-                        <form action="/dashboard/publish/project/choosing-map/" method="post" data-ignore-submit="true">
-                            <input name="name" value="" type="hidden">
-                            <input name="referrer" value="/dashboard/projects/choosing-map/information/" type="hidden">
-                            <button name="action" value="publish" disabled="" class="btn btn--primary btn--full btn--attached-top">Veröffentlichen</button>
-                        </form>
-                        <a href="/projects/choosing-map/" target="_self" class="btn btn--light btn--full">
-                            <i class="fa fa-eye" aria-hidden="true"></i>Vorschau
-                        </a>
-                    </div>
                     </div>
                 </div>
 
@@ -1376,12 +1408,12 @@
 
                 <div class="cl-example" style="padding-top: 76px">
                     <div class="project-header project-header--image u-after-dialogue-box">
-                                <div class="l-wrapper">
-                                    <div class="l-center-6">
-                                        <h1 class="project-header__title">Project Title</h1>
-                                        <p class="project-header__description">Description - dark overlay on header image, with -60px top margin to allow it to sit properly under header line</p>
-                                    </div>
-                                </div>
+                        <div class="l-wrapper">
+                            <div class="l-center-6">
+                                <h1 class="project-header__title">Project Title</h1>
+                                <p class="project-header__description">Description - dark overlay on header image, with -60px top margin to allow it to sit properly under header line</p>
+                            </div>
+                        </div>
                         <div class="project-header__copyright copyright">© Copyright</div>
                     </div>
                 </div>
@@ -1390,28 +1422,31 @@
 
                 <div class="cl-example">
                     <div class="module-content">
-                    <div class="l-wrapper">
-                        <div class="l-center-8">
-                            <ul class="u-list-reset">
-                                <li class="list-item list-item--squashed">
-                                    <div class="list-item__stats">
-                                        <span class="rating">
-                                            <span class="rating-button rating-up is-read-only" title="Positive Ratings">0
-                                                <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i>
+                        <div class="l-wrapper">
+                            <div class="l-center-8">
+                                <ul class="u-list-reset">
+                                    <li class="list-item list-item--squashed">
+                                        <div class="list-item__stats">
+                                            <span class="rating">
+                                                <span class="rating-button rating-up is-read-only" title="Positive Ratings">
+                                                    0
+                                                    <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i>
+                                                </span>
+                                                <span class="rating-button rating-down is-read-only" title="Negative Ratings">
+                                                    0
+                                                    <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
+                                                </span>
                                             </span>
-                                            <span class="rating-button rating-down is-read-only" title="Negative Ratings">0
-                                                <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
+                                            <span title="Comments">
+                                                0
+                                                <i class="fa fa-comment-o" aria-label="Comments"></i>
                                             </span>
-                                        </span>
-                                        <span title="Comments">0
-                                            <i class="fa fa-comment-o" aria-label="Comments"></i>
-                                        </span>
-                                    </div>
-                                    <h3 class="list-item__title"></h3>
-                                </li>
-                            </ul>
+                                        </div>
+                                        <h3 class="list-item__title">Rated comment</h3>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
 
@@ -1435,35 +1470,15 @@
                     </table>
                 </div>
 
-                <h2 id="cl-tabs">Tabs and Select Item</h2>
+                <h2 id="cl-tabs">Tabs</h2>
 
                 <div class="cl-example">
-                    <div class="tablist__right">
-                        <a href="/dashboard/projects/my-poll/" class="btn btn--light btn--small" data-embed-target="external">Right Tabs</a>
-                        <span data-project="my-poll">
-                            <span class="btngroup btngroup-gray">
-                                <span class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="follow-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-star" aria-hidden="true"></i>&nbsp;Follow&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i></button>
-                                    <span class="dropdown-menu" aria-labelledby="follow-dropdown">
-                                        <button class="dropdown-item select-item"><i class="fa fa-check select-item-indicator" aria-hidden="true"></i>Not following
-                                            <span class="select-item-desc">Never be notified.
-                                            </span>
-                                        </button>
-                                    <button class="dropdown-item select-item">Following
-                                    <span class="select-item-desc">Receive email notifications about this project.</span>
-                                    </button>
-                                    </span>
-                                </span> 
-                                <span class="btn btn-sm btn-dark btn-primary">0</span>
-                            </span>
-                        </span>
-                    </div>
                     <div class="tablist tablist--left">
                         <div class="l-wrapper">
                             <nav role="tablist">
-                                <a id="tab-project-3-information" class="tab" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-information" aria-expanded="false">Left tab</a>
-                                <a id="tab-project-3-participation" class="tab active" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-participation" aria-expanded="true">Left tab 2</a>
-                                <a id="tab-project-3-result" class="tab" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-result" aria-expanded="false">Left tab 3</a>
+                                <a id="tab-project-3-information" class="tab" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-information" aria-expanded="false">Tab</a>
+                                <a id="tab-project-3-participation" class="tab active" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-participation" aria-expanded="true">Tab 2</a>
+                                <a id="tab-project-3-result" class="tab" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-result" aria-expanded="false">Tab 3</a>
                             </nav>
                         </div>
                     </div>
@@ -1476,16 +1491,14 @@
                     <ul class="l-tiles-4">
                         <li class="tile ">
                             <div class="tile__head">
-                                <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-3" href="#" target="_self">
-                            </a>
+                                <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-3" href="#" target="_self"></a>
                                 <img src="/static/images/meinberlin.svg" alt="Project on meinBerlin" class="tile__badge">
-                                <div class="tile__labels">
-                                </div>
+                                <div class="tile__labels"></div>
                             </div>
                             <div class="tile__body">
                                 <h3 class="tile__title" id="project-title-3">
-                                <a href="#" target="_self">Blueprint - finished</a>
-                            </h3>
+                                    <a href="#" target="_self">Blueprint - finished</a>
+                                </h3>
                                 <p class="tile__text">Blueprint description</p>
                                 <p class="tile__hint">
                                     Participation possible until
@@ -1495,8 +1508,7 @@
                         </li>
                         <li class="tile ">
                             <div class="tile__head">
-                                <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-2" href="#" target="_self">
-                            </a>
+                                <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-2" href="#" target="_self"></a>
                                 <img src="/static/images/meinberlin.svg" alt="Project on meinBerlin" class="tile__badge">
                                 <div class="tile__labels">
                                     <span class="label label--primary">Finished</span>
@@ -1504,8 +1516,8 @@
                             </div>
                             <div class="tile__body">
                                 <h3 class="tile__title" id="project-title-2">
-                                <a href="#" target="_self">Blueprint - active</a>
-                            </h3>
+                                    <a href="#" target="_self">Blueprint - active</a>
+                                </h3>
                                 <p class="tile__text">Blueprint description</p>
                             </div>
                         </li>
@@ -1544,19 +1556,19 @@
                             </div>
 
                             <div class="phase-info collapse" id="phase-overview">
-                                    <div class="phase-info__item">
-                                        <div class="phase-info__item__title lr-bar">
-                                            <span class="lr-bar__left">Phase name</span>
-                                                <span class="lr-bar__right phase-info__highlight">active</span>
-                                        </div>
-                                        <div class="phase-info__item__subtitle">
-                                            Feb. 16, 2018, midnight
-                                            &ndash; Feb. 28, 2018, midnight
-                                        </div>
-                                        <div class="phase-info__item__description">
-                                            This is the phase description
-                                        </div>
+                                <div class="phase-info__item">
+                                    <div class="phase-info__item__title lr-bar">
+                                        <span class="lr-bar__left">Phase name</span>
+                                        <span class="lr-bar__right phase-info__highlight">active</span>
                                     </div>
+                                    <div class="phase-info__item__subtitle">
+                                        Feb. 16, 2018, midnight
+                                        &ndash; Feb. 28, 2018, midnight
+                                    </div>
+                                    <div class="phase-info__item__description">
+                                        This is the phase description
+                                    </div>
+                                </div>
                             </div>
 
                             <button class="btn btn--link" type="button" data-toggle="collapse" data-target="#phase-overview" aria-expanded="false" aria-controls="phase-overview">
