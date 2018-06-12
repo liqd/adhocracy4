@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-05 16:08+0200\n"
+"POT-Creation-Date: 2018-06-12 10:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -317,7 +317,7 @@ msgstr "Category name"
 msgid "Category icon"
 msgstr "Category icon"
 
-#: adhocracy4/comments/models.py:35
+#: adhocracy4/comments/models.py:35 meinberlin/apps/documents/exports.py:43
 msgid "Comment"
 msgstr "Comment"
 
@@ -1553,6 +1553,14 @@ msgstr "Document"
 msgid "Documents with comments"
 msgstr "Documents with comments"
 
+#: meinberlin/apps/documents/exports.py:41
+msgid "ID"
+msgstr "ID"
+
+#: meinberlin/apps/documents/exports.py:45 meinberlin/apps/exports/mixins.py:68
+msgid "Created"
+msgstr "Created"
+
 #: meinberlin/apps/documents/phases.py:15
 msgid "Comment phase"
 msgstr "Comment phase"
@@ -1661,10 +1669,6 @@ msgstr "replies to"
 #: meinberlin/apps/exports/mixins.py:66
 msgid "Creator"
 msgstr "Creator"
-
-#: meinberlin/apps/exports/mixins.py:68
-msgid "Created"
-msgstr "Created"
 
 #: meinberlin/apps/extprojects/dashboard.py:15
 msgid "External project settings"
@@ -2016,6 +2020,10 @@ msgstr "Note only visible internally within project."
 #: meinberlin/apps/newsletters/models.py:43
 msgid "Receivers"
 msgstr "Receivers"
+
+#: meinberlin/apps/newsletters/forms.py:48
+msgid "Select a Project"
+msgstr "Select a Project"
 
 #: meinberlin/apps/newsletters/models.py:19
 msgid "Users following a specific project"
@@ -2876,69 +2884,69 @@ msgstr ""
 msgid "Account Settings"
 msgstr "Account Settings"
 
-#: meinberlin/config/settings/base.py:284
-#: meinberlin/config/settings/base.py:294
-#: meinberlin/config/settings/base.py:305
+#: meinberlin/config/settings/base.py:285
+#: meinberlin/config/settings/base.py:295
+#: meinberlin/config/settings/base.py:306
 msgid "Rich text editor"
 msgstr "Rich text editor"
 
-#: meinberlin/config/settings/base.py:438
+#: meinberlin/config/settings/base.py:439
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: meinberlin/config/settings/base.py:439
+#: meinberlin/config/settings/base.py:440
 msgid "Diamond"
 msgstr "Diamond"
 
-#: meinberlin/config/settings/base.py:440
+#: meinberlin/config/settings/base.py:441
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: meinberlin/config/settings/base.py:441
+#: meinberlin/config/settings/base.py:442
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: meinberlin/config/settings/base.py:442
+#: meinberlin/config/settings/base.py:443
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:443
+#: meinberlin/config/settings/base.py:444
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: meinberlin/config/settings/base.py:444
+#: meinberlin/config/settings/base.py:445
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: meinberlin/config/settings/base.py:445
+#: meinberlin/config/settings/base.py:446
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: meinberlin/config/settings/base.py:446
+#: meinberlin/config/settings/base.py:447
 msgid "Star"
 msgstr "Star"
 
-#: meinberlin/config/settings/base.py:447
+#: meinberlin/config/settings/base.py:448
 msgid "Square"
 msgstr "Square"
 
-#: meinberlin/config/settings/base.py:448
+#: meinberlin/config/settings/base.py:449
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: meinberlin/config/settings/base.py:449
+#: meinberlin/config/settings/base.py:450
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: meinberlin/config/settings/base.py:450
+#: meinberlin/config/settings/base.py:451
 msgid "Circle"
 msgstr "Circle"
 
-#: meinberlin/config/settings/base.py:451
+#: meinberlin/config/settings/base.py:452
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: meinberlin/config/settings/base.py:452
+#: meinberlin/config/settings/base.py:453
 msgid "Zigzag"
 msgstr "Zigzag"
 

@@ -1,5 +1,5 @@
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.exports import mixins as export_mixins
@@ -35,3 +35,9 @@ class DocumentExportView(
     def get_base_filename(self):
         return '%s_%s' % (self.project.slug,
                           timezone.now().strftime('%Y%m%dT%H%M%S'))
+
+    def get_virtual_fields(self, virtual):
+        virtual.setdefault('id', _('ID'))
+        virtual.setdefault('comment', _('Comment'))
+        virtual.setdefault('created', _('Created'))
+        return super().get_virtual_fields(virtual)
