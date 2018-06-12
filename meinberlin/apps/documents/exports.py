@@ -35,3 +35,12 @@ class DocumentExportView(
     def get_base_filename(self):
         return '%s_%s' % (self.project.slug,
                           timezone.now().strftime('%Y%m%dT%H%M%S'))
+
+    def get_virtual_fields(self, virtual):
+        if 'id' not in virtual:
+            virtual['id'] = str(_('ID'))
+        if 'comment' not in virtual:
+            virtual['comment'] = str(_('Comment'))
+        if 'created' not in virtual:
+            virtual['created'] = str(_('Created'))
+        return super().get_virtual_fields(virtual)
