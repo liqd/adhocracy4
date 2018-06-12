@@ -1748,7 +1748,7 @@ msgstr "Notiz"
 
 #: meinberlin/apps/exports/mixins.py:53
 msgid "replies to"
-msgstr ""
+msgstr "Antwort auf"
 
 #: meinberlin/apps/exports/mixins.py:66
 msgid "Creator"
