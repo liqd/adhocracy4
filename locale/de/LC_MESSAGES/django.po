@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-05 16:08+0200\n"
+"POT-Creation-Date: 2018-06-12 10:52+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -366,6 +366,7 @@ msgid "Category icon"
 msgstr "Kategorieicon"
 
 #: adhocracy4/comments/models.py:35
+#: meinberlin/apps/documents/exports.py:43
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -1157,10 +1158,10 @@ msgid ""
 msgstr ""
 "Die Verarbeitung personenbezogener Daten erfolgt im Rahmen des "
 "Bebauungsplanverfahrens auf der Grundlage des § 3 BauGB in Verbindung mit "
-"Art. 6 Abs. 1 lit. e DSGVO und Berliner Datenschutzgesetz. "
-"Ausführliche Informationen über die Rechte bei der Datenverarbeitung und "
-"den personenbezogenen Angaben sind in der Datenschutzerklärung am "
-"Seitenende zu finden."
+"Art. 6 Abs. 1 lit. e DSGVO und Berliner Datenschutzgesetz. Ausführliche "
+"Informationen über die Rechte bei der Datenverarbeitung und den "
+"personenbezogenen Angaben sind in der Datenschutzerklärung am Seitenende zu "
+"finden."
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:30
 msgid "Submit"
@@ -1635,6 +1636,14 @@ msgstr "Dokument"
 msgid "Documents with comments"
 msgstr "Dokument mit Kommentaren"
 
+#: meinberlin/apps/documents/exports.py:41
+msgid "ID"
+msgstr ""
+
+#: meinberlin/apps/documents/exports.py:45 meinberlin/apps/exports/mixins.py:68
+msgid "Created"
+msgstr "Erstellt"
+
 #: meinberlin/apps/documents/phases.py:15
 msgid "Comment phase"
 msgstr "Kommentierphase"
@@ -1744,10 +1753,6 @@ msgstr ""
 #: meinberlin/apps/exports/mixins.py:66
 msgid "Creator"
 msgstr "Urheber"
-
-#: meinberlin/apps/exports/mixins.py:68
-msgid "Created"
-msgstr "Erstellt"
 
 #: meinberlin/apps/extprojects/dashboard.py:15
 msgid "External project settings"
@@ -2109,6 +2114,10 @@ msgstr "Notiz ist nur projektintern sichtbar."
 #: meinberlin/apps/newsletters/models.py:43
 msgid "Receivers"
 msgstr "Empfänger*innen"
+
+#: meinberlin/apps/newsletters/forms.py:48
+msgid "Select a Project"
+msgstr ""
 
 #: meinberlin/apps/newsletters/models.py:19
 msgid "Users following a specific project"
@@ -2979,69 +2988,69 @@ msgstr ""
 msgid "Account Settings"
 msgstr "Nutzerkonto Einstellungen"
 
-#: meinberlin/config/settings/base.py:284
-#: meinberlin/config/settings/base.py:294
-#: meinberlin/config/settings/base.py:305
+#: meinberlin/config/settings/base.py:285
+#: meinberlin/config/settings/base.py:295
+#: meinberlin/config/settings/base.py:306
 msgid "Rich text editor"
 msgstr "Rich Text Editor"
 
-#: meinberlin/config/settings/base.py:438
+#: meinberlin/config/settings/base.py:439
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: meinberlin/config/settings/base.py:439
+#: meinberlin/config/settings/base.py:440
 msgid "Diamond"
 msgstr "Diamant"
 
-#: meinberlin/config/settings/base.py:440
+#: meinberlin/config/settings/base.py:441
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: meinberlin/config/settings/base.py:441
+#: meinberlin/config/settings/base.py:442
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: meinberlin/config/settings/base.py:442
+#: meinberlin/config/settings/base.py:443
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:443
+#: meinberlin/config/settings/base.py:444
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: meinberlin/config/settings/base.py:444
+#: meinberlin/config/settings/base.py:445
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: meinberlin/config/settings/base.py:445
+#: meinberlin/config/settings/base.py:446
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: meinberlin/config/settings/base.py:446
+#: meinberlin/config/settings/base.py:447
 msgid "Star"
 msgstr "Stern"
 
-#: meinberlin/config/settings/base.py:447
+#: meinberlin/config/settings/base.py:448
 msgid "Square"
 msgstr "Quadrat"
 
-#: meinberlin/config/settings/base.py:448
+#: meinberlin/config/settings/base.py:449
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: meinberlin/config/settings/base.py:449
+#: meinberlin/config/settings/base.py:450
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: meinberlin/config/settings/base.py:450
+#: meinberlin/config/settings/base.py:451
 msgid "Circle"
 msgstr "Kreis"
 
-#: meinberlin/config/settings/base.py:451
+#: meinberlin/config/settings/base.py:452
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: meinberlin/config/settings/base.py:452
+#: meinberlin/config/settings/base.py:453
 msgid "Zigzag"
 msgstr "ZickZack"
 
