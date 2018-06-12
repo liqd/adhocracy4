@@ -203,7 +203,7 @@ MEDIA_URL = '/media/'
 
 IMAGE_ALIASES = {
     '*': {
-        'max_size': 5*10**6,
+        'max_size': 5 * 10**6,
         'fileformats': ('image/png', 'image/jpeg', 'image/gif')
     },
     'heroimage': {'min_resolution': (1500, 500)},
@@ -211,6 +211,7 @@ IMAGE_ALIASES = {
     'logo': {'min_resolution': (200, 50)},
     'avatar': {'min_resolution': (200, 200)},
     'idea_image': {'min_resolution': (600, 400)},
+    'description_image': {'min_resolution': (600, 400)},
 }
 
 THUMBNAIL_ALIASES = {
@@ -316,14 +317,14 @@ CKEDITOR_CONFIGS = {
 }
 
 BLEACH_LIST = {
-    'default' : {
-        'tags': ['p','strong','em','u','ol','li','ul','a'],
+    'default': {
+        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a'],
         'attributes': {
             'a': ['href', 'rel'],
         },
     },
     'image-editor': {
-        'tags': ['p','strong','em','u','ol','li','ul','a','img'],
+        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img'],
         'attributes': {
             'a': ['href', 'rel'],
             'img': ['src', 'alt', 'style']
@@ -460,8 +461,7 @@ A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
 
 A4_DASHBOARD = {
     'PROJECT_DASHBOARD_CLASS': 'meinberlin.apps.dashboard.TypedProjectDashboard',
-    'BLUEPRINTS': 'meinberlin.apps.dashboard.blueprints.blueprints'
-}
+    'BLUEPRINTS': 'meinberlin.apps.dashboard.blueprints.blueprints'}
 
 CONTACT_EMAIL = 'support-berlin@liqd.net'
 SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
@@ -471,7 +471,11 @@ SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 DEFAULT_LANGUAGE = 'de'
 
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
-CSP_IMG_SRC = ("'self'", "data:", "*.tile.openstreetmap.org", "https://maps.berlinonline.de")
+CSP_IMG_SRC = (
+    "'self'",
+    "data:",
+    "*.tile.openstreetmap.org",
+    "https://maps.berlinonline.de")
 CSP_CONNECT_SRC = ("'self'", "https://bplan-prod.liqd.net")
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", )
 CSP_REPORT_ONLY = True
