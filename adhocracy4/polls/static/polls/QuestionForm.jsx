@@ -6,8 +6,8 @@ var ErrorList = require('../../../static/ErrorList')
 
 const QuestionForm = (props) => {
   return (
-    <section className="commenting">
-      <div className="commenting__content commenting__content--border">
+    <section className="questionform">
+      <div className="questionform__content questionform__content--border">
         <div className="form-group">
           <label
             htmlFor={'id_questions-' + props.id + '-name'}>
@@ -65,7 +65,7 @@ const QuestionForm = (props) => {
         </button>
       </div>
 
-      <div className="commenting__actions btn-group" role="group">
+      <div className="questionform__actions btn-group" role="group">
         <button
           className="btn btn--light btn--small"
           onClick={props.onMoveUp}
