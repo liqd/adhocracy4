@@ -71,10 +71,7 @@ class Plan(UserGeneratedContentModel):
     description = RichTextField(verbose_name=_('Description'))
     description_image = ConfiguredImageField(
         'description_image',
-        verbose_name=_('Description Image'),
-        help_prefix=_(
-            'This image will be shown together with the description'
-        ),
+        verbose_name=_('Add image'),
         upload_to='plan/description_image',
         blank=True)
     category = models.CharField(max_length=255, verbose_name=_('Type of plan'))

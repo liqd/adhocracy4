@@ -28,6 +28,7 @@ class Topic(module_models.Item):
     description = RichTextUploadingField(config_name='image-editor')
     image = ConfiguredImageField(
         'idea_image',
+        verbose_name=_('Add image'),
         upload_to='ideas/images',
         blank=True,
     )
