@@ -33,6 +33,11 @@
     border-bottom: 2px solid $border-color;
 }
 
+.item-detail-2__basic-content {
+    @include clearfix;
+    margin-bottom: 1em;
+}
+
 .item-detail-2__project-title {
     font-weight: bold;
     font-size: inherit;
