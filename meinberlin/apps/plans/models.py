@@ -70,10 +70,14 @@ class Plan(UserGeneratedContentModel):
                                        verbose_name=_('Cost'))
     description = RichTextField(verbose_name=_('Description'))
     description_image = ConfiguredImageField(
-        'description_image',
+        'plan_image',
         verbose_name=_('Add image'),
         upload_to='plan/description_image',
-        blank=True)
+        blank=True,
+        help_prefix=_(
+            'Visualize your plan.'
+        ),
+    )
     category = models.CharField(max_length=255, verbose_name=_('Type of plan'))
     status = models.SmallIntegerField(choices=STATUS_CHOICES)
     participation = models.SmallIntegerField(

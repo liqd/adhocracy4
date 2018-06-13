@@ -211,7 +211,7 @@ IMAGE_ALIASES = {
     'logo': {'min_resolution': (200, 50)},
     'avatar': {'min_resolution': (200, 200)},
     'idea_image': {'min_resolution': (600, 400)},
-    'description_image': {'min_resolution': (600, 400)},
+    'plan_image': {'min_resolution': (600, 400)},
 }
 
 THUMBNAIL_ALIASES = {
