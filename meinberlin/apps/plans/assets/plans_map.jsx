@@ -450,7 +450,7 @@ class PlansMap extends React.Component {
             </form>
             &nbsp;
             <div className="dropdown ">
-              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_status">
+              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_status">
                 {django.gettext('Status')}: {statusNames[this.state.filters.status] || django.gettext('All')}
                 <i className="fa fa-caret-down" aria-hidden="true" />
               </button>
@@ -486,7 +486,7 @@ class PlansMap extends React.Component {
             </div>
             &nbsp;
             <div className="dropdown ">
-              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_participation">
+              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_participation">
                 {django.gettext('Participation')}: {participationNames[this.state.filters.participation] || django.gettext('All')}
                 <i className="fa fa-caret-down" aria-hidden="true" />
               </button>
@@ -519,7 +519,7 @@ class PlansMap extends React.Component {
             </div>
             &nbsp;
             <div className="dropdown ">
-              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_district">
+              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_district">
                 {django.gettext('District')}: {this.props.districtnames[this.state.filters.district] || django.gettext('All')}
                 <i className="fa fa-caret-down" aria-hidden="true" />
               </button>
