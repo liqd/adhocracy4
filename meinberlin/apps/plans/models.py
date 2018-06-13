@@ -7,6 +7,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
+from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects import models as project_models
@@ -68,6 +69,15 @@ class Plan(UserGeneratedContentModel):
     cost = models.PositiveIntegerField(blank=True, null=True,
                                        verbose_name=_('Cost'))
     description = RichTextField(verbose_name=_('Description'))
+    description_image = ConfiguredImageField(
+        'plan_image',
+        verbose_name=_('Add image'),
+        upload_to='plan/description_image',
+        blank=True,
+        help_prefix=_(
+            'Visualize your plan.'
+        ),
+    )
     category = models.CharField(max_length=255, verbose_name=_('Type of plan'))
     status = models.SmallIntegerField(choices=STATUS_CHOICES)
     participation = models.SmallIntegerField(

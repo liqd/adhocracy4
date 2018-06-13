@@ -31,6 +31,7 @@ class AbstractIdea(module_models.Item, Moderateable):
     description = RichTextField(verbose_name=_('Description'))
     image = ConfiguredImageField(
         'idea_image',
+        verbose_name=_('Add image'),
         upload_to='ideas/images',
         blank=True,
         help_prefix=_(
