@@ -43,6 +43,19 @@ class PollDetailView(ProjectMixin,
     def get_permission_object(self):
         return self.module
 
+    @property
+    def phase(self):
+        try:
+            weight = self.request.GET.get('phase')
+            phase = self.project.phases.filter(weight=weight).first()
+        except ValueError:
+            phase = None
+
+        if phase:
+            return phase
+        else:
+            return self.project.last_active_phase
+
 
 class PollDashboardView(ProjectMixin,
                         dashboard_mixins.DashboardBaseMixin,
