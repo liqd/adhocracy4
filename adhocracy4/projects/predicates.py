@@ -27,3 +27,17 @@ def is_moderator(user, project):
     if project:
         return user in project.moderators.all()
     return False
+
+
+@rules.predicate
+def has_started(user, project):
+    if project:
+        return project.has_started
+    return False
+
+
+@rules.predicate
+def has_context_started(user, item):
+    if item:
+        return has_started(user, item.project)
+    return False
