@@ -73,3 +73,18 @@ def test_choice_queryset(user_factory,
 
     assert hasattr(choices.first(), 'vote_count')
     assert choices.first().vote_count == 1
+
+
+@pytest.mark.django_db
+def test_get_absolute_url(poll, vote, question, choice):
+
+    assert poll.get_absolute_url() == \
+        poll.project.get_absolute_url()
+    assert choice.get_absolute_url() == \
+        choice.question.poll.get_absolute_url()
+    assert vote.get_absolute_url() == \
+        vote.choice.question.poll.get_absolute_url()
+
+    assert str(vote) == '%s: %s' % (vote.creator, vote.choice)
+    assert vote.module == vote.choice.question.poll.module
+    assert vote.project == vote.module.project

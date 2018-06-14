@@ -2,6 +2,7 @@ import pytest
 
 from adhocracy4.test.helpers import render_template
 
+
 @pytest.mark.django_db
 def test_react_polls(rf, user, question):
     request = rf.get('/')
@@ -23,4 +24,3 @@ def test_react_poll_form(poll):
     rendered = render_template(template, context)
 
     assert rendered.startswith('<div data-a4-widget="poll-management"')
-
