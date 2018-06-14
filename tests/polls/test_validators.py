@@ -1,10 +1,8 @@
 import pytest
 
-from rest_framework import status
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
-from adhocracy4.polls.models import Vote, Poll
-from adhocracy4.polls.phases import VotingPhase
+from adhocracy4.polls.models import Poll
 from adhocracy4.polls.validators import single_vote_per_user
 from adhocracy4.polls.validators import single_item_per_module
 
@@ -18,7 +16,7 @@ def test_choice_belongs_to_question(admin,
 
     poll = poll_factory()
     question1 = question_factory(poll=poll)
-    choice1 = choice_factory(question=question1)
+    choice_factory(question=question1)
     question2 = question_factory(poll=poll)
     choice2 = choice_factory(question=question2)
 
@@ -35,7 +33,7 @@ def test_choice_belongs_to_question(admin,
     }
 
     with pytest.raises(ValidationError):
-        response = apiclient.post(url, data, format='json')
+        apiclient.post(url, data, format='json')
 
 
 @pytest.mark.django_db
@@ -64,4 +62,3 @@ def test_single_item_per_module(poll_factory):
 
     with pytest.raises(ValidationError):
         single_item_per_module(module, Poll)
-
