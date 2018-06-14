@@ -10,11 +10,17 @@ from adhocracy4.projects import urls as prj_urls
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
+from adhocracy4.polls.api import PollViewSet, VoteViewSet
 from adhocracy4.comments.api import CommentViewSet
+from adhocracy4.polls.routers import QuestionDefaultRouter
 
 router = routers.DefaultRouter()
 router.register(r'follows', FollowViewSet, base_name='follows')
 router.register(r'reports', ReportViewSet, base_name='reports')
+router.register(r'polls', PollViewSet, base_name='polls')
+
+question_router = QuestionDefaultRouter()
+question_router.register(r'vote', VoteViewSet, base_name='vote')
 
 ct_router = a4routers.ContentTypeDefaultRouter()
 ct_router.register(r'comments', CommentViewSet, base_name='comments')
