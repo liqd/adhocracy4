@@ -7,10 +7,10 @@ from adhocracy4.polls.models import Question, Choice
 
 @pytest.mark.django_db
 def test_question_choice_list(user,
-                          poll_factory,
-                          vote_factory,
-                          question_factory,
-                          choice_factory):
+                              poll_factory,
+                              vote_factory,
+                              question_factory,
+                              choice_factory):
 
     poll = poll_factory()
     question = question_factory(poll=poll)
@@ -29,10 +29,10 @@ def test_question_choice_list(user,
 
 @pytest.mark.django_db
 def test_question_queryset(user_factory,
-                          poll_factory,
-                          vote_factory,
-                          question_factory,
-                          choice_factory):
+                           poll_factory,
+                           vote_factory,
+                           question_factory,
+                           choice_factory):
 
     poll = poll_factory()
     question = question_factory(poll=poll)
@@ -42,8 +42,8 @@ def test_question_queryset(user_factory,
     user1 = user_factory()
     user2 = user_factory()
 
-    vote = vote_factory(creator=user1, choice=choice1)
-    vote = vote_factory(creator=user2, choice=choice2)
+    vote_factory(creator=user1, choice=choice1)
+    vote_factory(creator=user2, choice=choice2)
 
     questions = Question.objects.annotate_vote_count()
 
@@ -66,11 +66,10 @@ def test_choice_queryset(user_factory,
     user1 = user_factory()
     user2 = user_factory()
 
-    vote = vote_factory(creator=user1, choice=choice1)
-    vote = vote_factory(creator=user2, choice=choice2)
+    vote_factory(creator=user1, choice=choice1)
+    vote_factory(creator=user2, choice=choice2)
 
     choices = Choice.objects.annotate_vote_count()
 
     assert hasattr(choices.first(), 'vote_count')
     assert choices.first().vote_count == 1
-
