@@ -4,7 +4,7 @@ django-capture-tag==1.0
 django_csp==3.4
 requests==2.19.1
 wagtail==1.13.1 # pyup: <2.0
-zeep==2.5.0
+zeep==3.0.0
 
 # Inherited a4-core requirements
 bleach==2.1.3
