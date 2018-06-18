@@ -1638,7 +1638,7 @@ msgstr "Dokument mit Kommentaren"
 
 #: meinberlin/apps/documents/exports.py:40
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: meinberlin/apps/documents/exports.py:42 meinberlin/apps/exports/mixins.py:68
 msgid "Created"
@@ -1800,7 +1800,7 @@ msgstr "Ideen mit Kommentaren"
 #: meinberlin/apps/ideas/models.py:34 meinberlin/apps/plans/models.py:74
 #: meinberlin/apps/topicprio/models.py:31
 msgid "Add image"
-msgstr ""
+msgstr "Bild hinzufügen"
 
 #: meinberlin/apps/ideas/models.py:38
 msgid "Visualize your idea."
@@ -2122,7 +2122,7 @@ msgstr "Empfänger*innen"
 
 #: meinberlin/apps/newsletters/forms.py:48
 msgid "Select a Project"
-msgstr ""
+msgstr "Suchen Sie ein Projekt aus"
 
 #: meinberlin/apps/newsletters/models.py:19
 msgid "Users following a specific project"
@@ -2321,7 +2321,7 @@ msgstr "Kosten"
 
 #: meinberlin/apps/plans/models.py:78
 msgid "Visualize your plan."
-msgstr ""
+msgstr "Visualisieren Sie das Vorhaben."
 
 #: meinberlin/apps/plans/models.py:81
 msgid "Type of plan"
@@ -2365,11 +2365,11 @@ msgstr "Plantyp"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:57
 msgid "see participation plans"
-msgstr ""
+msgstr "siehe Beteiligung"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:64
 msgid "Planned cost"
-msgstr ""
+msgstr "Geplante Kosten"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:118
 #: meinberlin/templates/a4dashboard/base_dashboard.html:44
@@ -2432,15 +2432,15 @@ msgstr ""
 
 #: meinberlin/apps/plans/views.py:56
 msgid "running"
-msgstr ""
+msgstr "laufend"
 
 #: meinberlin/apps/plans/views.py:67
 msgid "starts at {}"
-msgstr ""
+msgstr "started am {}"
 
 #: meinberlin/apps/plans/views.py:150
 msgid "Project Links"
-msgstr ""
+msgstr "Projektlinks"
 
 #: meinberlin/apps/plans/views.py:244
 msgid "The plan has been deleted"
@@ -3065,7 +3065,7 @@ msgstr "ZickZack"
 
 #: meinberlin/templates/403.html:7
 msgid "You are not allowed to access this page."
-msgstr ""
+msgstr "Sie sind nicht berechtigt, auf diese Seite zuzugreifen."
 
 #: meinberlin/templates/404.html:7
 msgid "This page could not be found."
@@ -3089,7 +3089,7 @@ msgstr "Interner Serverfehler."
 
 #: meinberlin/templates/500.html:54 meinberlin/templates/base_errors.html:11
 msgid "Back to meinBerlin."
-msgstr ""
+msgstr "Zurück zu meinBerlin"
 
 #: meinberlin/templates/a4dashboard/base_dashboard.html:13
 msgid "Organisations"
