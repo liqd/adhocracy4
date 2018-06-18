@@ -2,7 +2,7 @@ git+git://github.com/liqd/adhocracy4.git@92d73335802a14e7bcc25d6c6e5894521500272
 bcrypt==3.1.4
 django-capture-tag==1.0
 django_csp==3.4
-requests==2.18.4
+requests==2.19.1
 wagtail==1.13.1 # pyup: <2.0
 zeep==2.5.0
 
