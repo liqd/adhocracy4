@@ -2,4 +2,4 @@
 brotli==1.0.4
 gunicorn==19.8.1
 whitenoise==3.3.1
-psycopg2-binary==2.7.4
+psycopg2-binary==2.7.5
