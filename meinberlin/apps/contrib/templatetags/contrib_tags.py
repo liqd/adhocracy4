@@ -84,7 +84,7 @@ def fa_class(icon):
         return 'fas fa-{icon}'.format(icon=icon)
     return icon
 
-  
+
 @register.simple_tag()
 def tracking_enabled():
     return settings.TRACKING_ENABLED
