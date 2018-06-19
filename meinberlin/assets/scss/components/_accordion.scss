@@ -51,8 +51,9 @@
     }
 
     a[href^="/documents"]:before {
-        content: '\f016'; // file-o
-        font-family: 'FontAwesome', sans-serif;
+        font-family: "Font Awesome 5 Free", sans-serif;
+        font-weight: 600;
+        content: '\f15b'; // file
         margin-right: 0.3em;
     }
 }

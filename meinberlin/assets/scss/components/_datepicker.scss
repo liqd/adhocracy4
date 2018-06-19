@@ -25,8 +25,9 @@
         display: inline;
 
         &:before {
-            content: '\f133'; // calender-o
-            font-family: 'FontAwesome', sans-serif;
+            font-family: "Font Awesome 5 Free", sans-serif;
+            font-weight: 300; //to use the light version (formerly calendar-o)
+            content: "\f133"; // calendar
         }
     }
 
@@ -38,7 +39,7 @@
     &:focus,
     &:hover {
         span:first-child:before {
-            content: '\f073'; // calendar
+            content: "\f073"; // calendar-alt
         }
 
         span {
@@ -71,7 +72,8 @@
         font-size: 0;
 
         &:before {
-            font-family: 'FontAwesome', sans-serif;
+            font-family: "Font Awesome 5 Free", sans-serif;
+            font-weight: 600;
             font-size: $font-size-lg;
             vertical-align: bottom;
         }
