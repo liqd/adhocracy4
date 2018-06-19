@@ -1,0 +1,11 @@
+[
+  {
+    "model": "meinberlin_organisations.organisation",
+    "pk": 1,
+    "fields": {
+      "name": "liqd",
+      "slug": "liqd",
+      "initiators": ["1","3"]
+    }
+  }
+]

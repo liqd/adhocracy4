@@ -9,7 +9,8 @@ class ProposalForm(MapIdeaForm):
 
     class Meta:
         model = models.Proposal
-        fields = ['name', 'description', 'category', 'budget', 'point',
+        fields = ['name', 'description', 'image',
+                  'category', 'labels', 'budget', 'point',
                   'point_label']
 
 

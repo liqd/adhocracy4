@@ -2,6 +2,8 @@ import re
 import unicodedata
 
 from django import template
+from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 from django.forms.utils import flatatt
 from django.template import defaultfilters
 from django.template.loader import render_to_string
@@ -81,3 +83,21 @@ def fa_class(icon):
     if hasattr(icon, 'startswith') and not icon.startswith('fa'):
         return 'fas fa-{icon}'.format(icon=icon)
     return icon
+
+  
+@register.simple_tag()
+def tracking_enabled():
+    return settings.TRACKING_ENABLED
+
+
+@register.inclusion_tag('meinberlin_contrib/matomo/tracking_code.html')
+def tracking_code():
+    try:
+        id = settings.MATOMO_SITE_ID
+    except AttributeError:
+        raise ImproperlyConfigured('MATOMO_SITE_ID does not exist.')
+    try:
+        url = settings.MATOMO_URL
+    except AttributeError:
+        raise ImproperlyConfigured('MATOMO_URL does not exist.')
+    return {'id': id, 'url': url}

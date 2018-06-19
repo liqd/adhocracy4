@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'ckeditor_uploader',
     'capture_tag',
     'background_task',
+    'raven.contrib.django.raven_compat',
 
     'adhocracy4.actions.apps.ActionsConfig',
     'adhocracy4.categories.apps.CategoriesConfig',
@@ -66,6 +67,7 @@ INSTALLED_APPS = (
     'adhocracy4.follows.apps.FollowsConfig',
     'adhocracy4.forms.apps.FormsConfig',
     'adhocracy4.images.apps.ImagesConfig',
+    'adhocracy4.labels.apps.LabelsConfig',
     'adhocracy4.maps.apps.MapsConfig',
     'adhocracy4.modules.apps.ModulesConfig',
     'adhocracy4.organisations.apps.OrganisationsConfig',
@@ -81,6 +83,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.contrib.apps.Config',
     'meinberlin.apps.maps.apps.Config',
     'meinberlin.apps.moderatorfeedback.apps.Config',
+    'meinberlin.apps.moderatorremark.apps.Config',
     'meinberlin.apps.notifications.apps.Config',
     'meinberlin.apps.organisations.apps.Config',
     'meinberlin.apps.users.apps.Config',
@@ -98,6 +101,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.projects.apps.Config',
 
     # Apps defining phases
+    'meinberlin.apps.activities.apps.Config',
     'meinberlin.apps.bplan.apps.Config',
     'meinberlin.apps.budgeting.apps.Config',
     'meinberlin.apps.documents.apps.Config',
@@ -199,14 +203,15 @@ MEDIA_URL = '/media/'
 
 IMAGE_ALIASES = {
     '*': {
-        'max_size': 5*10**6,
+        'max_size': 5 * 10**6,
         'fileformats': ('image/png', 'image/jpeg', 'image/gif')
     },
     'heroimage': {'min_resolution': (1500, 500)},
     'tileimage': {'min_resolution': (500, 300)},
     'logo': {'min_resolution': (200, 50)},
     'avatar': {'min_resolution': (200, 200)},
-    'idea_image': {'min_resolution': (300, 200)},
+    'idea_image': {'min_resolution': (600, 400)},
+    'plan_image': {'min_resolution': (600, 400)},
 }
 
 THUMBNAIL_ALIASES = {
@@ -214,8 +219,8 @@ THUMBNAIL_ALIASES = {
         'heroimage': {'size': (1500, 500)},
         'project_thumbnail': {'size': (520, 330)},
         'logo': {'size': (160, 160), 'background': 'white'},
-        'item_image': {'size': (300, 0), 'crop': 'scale'},
-        'map_thumbnail': {'size': (200, 100), 'crop': 'smart'},
+        'item_image': {'size': (330, 0), 'crop': 'scale'},
+        'map_thumbnail': {'size': (200, 200), 'crop': 'smart'},
     }
 }
 
@@ -312,14 +317,14 @@ CKEDITOR_CONFIGS = {
 }
 
 BLEACH_LIST = {
-    'default' : {
-        'tags': ['p','strong','em','u','ol','li','ul','a'],
+    'default': {
+        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a'],
         'attributes': {
             'a': ['href', 'rel'],
         },
     },
     'image-editor': {
-        'tags': ['p','strong','em','u','ol','li','ul','a','img'],
+        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img'],
         'attributes': {
             'a': ['href', 'rel'],
             'img': ['src', 'alt', 'style']
@@ -422,6 +427,15 @@ A4_CATEGORIZABLE = (
     ('meinberlin_maptopicprio', 'maptopic'),
 )
 
+A4_LABELS_ADDABLE = (
+    ('meinberlin_ideas', 'idea'),
+    ('meinberlin_mapideas', 'mapidea'),
+    ('meinberlin_budgeting', 'proposal'),
+    ('meinberlin_kiezkasse', 'proposal'),
+    ('meinberlin_topicprio', 'topic'),
+    ('meinberlin_maptopicprio', 'maptopic'),
+)
+
 A4_CATEGORY_ICONS = (
     ('', _('Pin without icon')),
     ('diamant', _('Diamond')),
@@ -447,8 +461,7 @@ A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
 
 A4_DASHBOARD = {
     'PROJECT_DASHBOARD_CLASS': 'meinberlin.apps.dashboard.TypedProjectDashboard',
-    'BLUEPRINTS': 'meinberlin.apps.dashboard.blueprints.blueprints'
-}
+    'BLUEPRINTS': 'meinberlin.apps.dashboard.blueprints.blueprints'}
 
 CONTACT_EMAIL = 'support-berlin@liqd.net'
 SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
@@ -458,11 +471,20 @@ SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 DEFAULT_LANGUAGE = 'de'
 
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
-CSP_IMG_SRC = ("'self'", "data:", "*.tile.openstreetmap.org", "https://maps.berlinonline.de")
+CSP_IMG_SRC = (
+    "'self'",
+    "data:",
+    "*.tile.openstreetmap.org",
+    "https://maps.berlinonline.de")
 CSP_CONNECT_SRC = ("'self'", "https://bplan-prod.liqd.net")
 CSP_EXCLUDE_URL_PREFIXES = ("/admin", )
 CSP_REPORT_ONLY = True
 
+# make django-background-task not retry a task
+MAX_ATTEMPTS = 1
+
 SECURE_BROWSER_XSS_FILTER = True
 SESSION_COOKIE_HTTPONLY = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
+
+TRACKING_ENABLED = False

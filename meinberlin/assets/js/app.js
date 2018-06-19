@@ -9,10 +9,7 @@ require('shariff')
 var Shariff = window.Shariff
 
 // load bootstrap components
-var dropdown = require('bootstrap/js/src/dropdown.js')
-var modal = require('bootstrap/js/src/modal.js')
-var tab = require('bootstrap/js/src/tab.js')
-var collapse = require('bootstrap/js/src/collapse.js')
+require('bootstrap')
 
 var django = require('django')
 
@@ -27,7 +24,7 @@ var ReactPolls = require('../../apps/polls/assets/react_polls.jsx')
 
 var relativeTimestamps = require('../../apps/actions/assets/timestamps.js')
 var mapAddress = require('./map-address.js')
-
+var remarkpopover = require('../../apps/moderatorremark/assets/idea_remarks.js')
 var dynamicFields = require('../../apps/contrib/assets/dynamic_fields.js')
 
 // This function is overwritten with custom behavior in embed.js.

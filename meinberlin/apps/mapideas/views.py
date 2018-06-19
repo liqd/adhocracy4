@@ -79,6 +79,6 @@ class MapIdeaDeleteView(idea_views.AbstractIdeaDeleteView):
 
 class MapIdeaModerateView(idea_views.AbstractIdeaModerateView):
     model = models.MapIdea
-    permission_required = 'meinberlin_mapideas.moderate_idea'
+    permission_required = 'meinberlin_mapideas.moderate_mapidea'
     template_name = 'meinberlin_mapideas/mapidea_moderate_form.html'
     moderateable_form_class = forms.MapIdeaModerateForm

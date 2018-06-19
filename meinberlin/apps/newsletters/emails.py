@@ -4,13 +4,14 @@ from django.apps import apps
 from django.conf import settings
 from django.contrib import auth
 
+from adhocracy4.emails.mixins import ReportToAdminEmailMixin
 from meinberlin.apps.contrib.emails import Email
 
 Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 User = auth.get_user_model()
 
 
-class NewsletterEmail(Email):
+class NewsletterEmail(ReportToAdminEmailMixin, Email):
     template_name = 'meinberlin_newsletters/emails/newsletter_email'
 
     def dispatch(self, object, *args, **kwargs):
@@ -43,3 +44,11 @@ class NewsletterEmail(Email):
             attachments += [logo]
 
         return attachments
+
+
+class NewsletterEmailAll(NewsletterEmail):
+
+    def get_receivers(self):
+        return User.objects\
+            .filter(is_active=True)\
+            .distinct()

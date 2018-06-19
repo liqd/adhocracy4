@@ -3,34 +3,50 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
+from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects import models as project_models
 from meinberlin.apps.maps.models import MapPreset
 
-STATUS_TODO = 0
-STATUS_PLANNING = 1
-STATUS_IMPLEMENTATION = 2
-STATUS_DONE = 3
-STATUS_STOPPED = 4
-
-PARTICIPATION_NO = 0
-PARTICIPATION_YES = 1
-PARTICIPATION_UNDECIDED = 2
-
 
 class Plan(UserGeneratedContentModel):
+
+    PARTICIPATION_NO = 0
+    PARTICIPATION_YES = 1
+    PARTICIPATION_UNDECIDED = 2
+    PARTICIPATION_CHOICES = (
+        (PARTICIPATION_YES, _('Yes')),
+        (PARTICIPATION_NO, _('No')),
+        (PARTICIPATION_UNDECIDED, _('Still undecided')),
+    )
+
+    STATUS_TODO = 0
+    STATUS_PLANNING = 1
+    STATUS_IMPLEMENTATION = 2
+    STATUS_DONE = 3
+    STATUS_STOPPED = 4
+    STATUS_CHOICES = (
+        (STATUS_TODO, _('Idea')),
+        (STATUS_PLANNING, _('Planning')),
+        (STATUS_IMPLEMENTATION, _('Implementation')),
+        (STATUS_DONE, _('Done')),
+        (STATUS_STOPPED, _('Stopped')),
+    )
+
     title = models.CharField(max_length=120, verbose_name=_('Title'))
     organisation = models.ForeignKey(
         settings.A4_ORGANISATIONS_MODEL,
         on_delete=models.CASCADE)
-    project = models.ForeignKey(
+    projects = models.ManyToManyField(
         project_models.Project,
-        blank=True, null=True,
-        verbose_name=_('Project'))
+        related_name='plans',
+        blank=True
+    )
     point = map_fields.PointField(
         verbose_name=_('Where can the plan be located on a map?'),
         help_text=_('Click inside marked area on the map to set a marker. '
@@ -53,19 +69,21 @@ class Plan(UserGeneratedContentModel):
     cost = models.PositiveIntegerField(blank=True, null=True,
                                        verbose_name=_('Cost'))
     description = RichTextField(verbose_name=_('Description'))
+    description_image = ConfiguredImageField(
+        'plan_image',
+        verbose_name=_('Add image'),
+        upload_to='plan/description_image',
+        blank=True,
+        help_prefix=_(
+            'Visualize your plan.'
+        ),
+    )
     category = models.CharField(max_length=255, verbose_name=_('Type of plan'))
-    status = models.SmallIntegerField(choices=(
-        (STATUS_TODO, _('Idea')),
-        (STATUS_PLANNING, _('Planning')),
-        (STATUS_IMPLEMENTATION, _('Implementation')),
-        (STATUS_DONE, _('Done')),
-        (STATUS_STOPPED, _('Stopped')),
-    ))
-    participation = models.SmallIntegerField(choices=(
-        (PARTICIPATION_YES, _('Yes')),
-        (PARTICIPATION_NO, _('No')),
-        (PARTICIPATION_UNDECIDED, _('Still undecided')),
-    ), verbose_name=_('Participation'))
+    status = models.SmallIntegerField(choices=STATUS_CHOICES)
+    participation = models.SmallIntegerField(
+        choices=PARTICIPATION_CHOICES,
+        verbose_name=_('Participation')
+    )
 
     class Meta:
         ordering = ['-created']
@@ -73,6 +91,11 @@ class Plan(UserGeneratedContentModel):
     @property
     def reference_number(self):
         return '{:d}-{:05d}'.format(self.created.year, self.pk)
+
+    @cached_property
+    def published_projects(self):
+        return self.projects.filter(
+            is_draft=False, is_public=True, is_archived=False)
 
     def __str__(self):
         return self.title

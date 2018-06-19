@@ -47,6 +47,10 @@
         margin: 0 auto;
     }
 
+    .l-col-9-3 {
+        @include grid-span(10, 2);
+    }
+
     .l-tiles-2 {
         @include grid-tiles(2);
     }
@@ -67,6 +71,10 @@
 
     .l-center-6 {
         @include grid-width(6);
+    }
+
+    .l-col-9-3 {
+        @include grid-span(9, 3);
     }
 
     .l-tiles-4 {

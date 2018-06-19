@@ -14,11 +14,13 @@ class ProposalExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                          a4_export_mixins.ExportModelFieldsMixin,
                          a4_export_mixins.ItemExportWithRatesMixin,
                          a4_export_mixins.ItemExportWithCategoriesMixin,
+                         a4_export_mixins.ItemExportWithLabelsMixin,
                          a4_export_mixins.ItemExportWithCommentCountMixin,
                          a4_export_mixins.ItemExportWithCommentsMixin,
                          a4_export_mixins.ItemExportWithLocationMixin,
                          export_mixins.UserGeneratedContentExportMixin,
                          export_mixins.ItemExportWithModeratorFeedback,
+                         export_mixins.ItemExportWithModeratorRemark,
                          a4_export_views.BaseItemExportView):
     model = models.Proposal
     fields = ['name', 'description', 'budget']

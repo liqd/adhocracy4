@@ -40,3 +40,9 @@ class NewsletterForm(forms.ModelForm):
             label=_('Organisation'),
             queryset=Organisation.objects,
             required=False, empty_label=None)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if cleaned_data.get('receivers') == str(models.PROJECT) and \
+                not cleaned_data.get('project'):
+            self.add_error('project', _('Select a Project'))

@@ -2,15 +2,18 @@
 @import '~sass-planifolia/sass/grid';
 @import '~sass-planifolia/sass/contrast';
 
-@import 'variables';
 @import 'mixins';
+@import 'variables';
 
-@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/functions';
+
 @import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/modal';
 @import '~bootstrap/scss/close';
 @import '~bootstrap/scss/transitions';
 @import '~bootstrap/scss/utilities/screenreaders';
+@import '~bootstrap/scss/dropdown';
 
 @import 'base';
 @import 'layout';
@@ -42,6 +45,7 @@
 @import 'components/hero_unit';
 @import 'components/input_group';
 @import 'components/item_detail';
+@import 'components/item_detail_2';
 @import 'components/label';
 @import 'components/list_item';
 @import 'components/lr_bar';
@@ -53,6 +57,7 @@
 @import 'components/pagination';
 @import 'components/timeline';
 @import 'components/poll';
+@import 'components/idea_remark';
 @import 'components/portal_header';
 @import 'components/progress';
 @import 'components/project_header';

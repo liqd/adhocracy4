@@ -1,21 +1,63 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache
+
+# Translations
 *.mo
-*__pycache__/
-test_db.sqlite3
-db.sqlite3*
+*.pot
+
+# Environments
+venv/
+/pyvenv.cfg
+/pip-selfcheck.json
+
+# Node
 node_modules/
 package-lock.json
-meinberlin/config/settings/local.py
-venv/
+npm-debug.log*
+/webpack-stats.json
+
+# IDEs
 .idea/
-.cache/
-.coverage
-htmlcov/
-media/
+
+# Django databases
+*.sqlite3
+db.sqlite3*
+
+# Local instance specific settings
+meinberlin/config/settings/local.py
+
+# Generated static files
 meinberlin/static/
 static/
+
+# Media
+media/
 
 # setuptools
 /build
 /dist
 /*.egg-info
 /share
+
+# OS
+.DS_Store
+
+# sass
+.sass-cache

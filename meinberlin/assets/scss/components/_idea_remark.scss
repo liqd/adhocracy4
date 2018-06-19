@@ -1,0 +1,35 @@
+.idea-remark {
+    min-width: 600%;
+    background-color: $idea-remark-bg;
+    padding-top: $spacer;
+    padding-left: $spacer;
+    padding-right: $spacer;
+    box-shadow: 0 0 10px 0 $shadow;
+    border: none;
+}
+
+.idea-remark__hint {
+    padding-top: $spacer;
+    font-style: italic;
+    color: $idea-remark-color;
+    font-size: $font-size-sm;
+}
+
+.idea-remark__hint .fa {
+    padding-right: $spacer;
+}
+
+.idea-remark__text textarea {
+    min-height: 8em;
+    background-color: $idea-remark-bg;
+    font-style: italic;
+    color: $black;
+}
+
+.idea-remark__btn__notify {
+    color: $brand-success;
+    position: absolute;
+    background-color: $white;
+    top: -8px;
+    right: -5px;
+}

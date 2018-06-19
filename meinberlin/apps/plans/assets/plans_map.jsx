@@ -150,11 +150,24 @@ class PlansMap extends React.Component {
   }
 
   onDistrictFilterChange (event) {
+    let currentDistrict = this.state.filters.district.toString()
+    if (currentDistrict !== '-1') {
+      let currentLayer = this.disctrictLayerLookup[currentDistrict]
+      currentLayer.setStyle({weight: 1})
+    }
+    let district = event.currentTarget.value
     this.setState({
       filters: update(this.state.filters, {
-        $merge: {district: parseInt(event.currentTarget.value, 10)}
+        $merge: {district: parseInt(district, 10)}
       })
     })
+    if (district === '-1') {
+      this.map.flyToBounds(this.disctrictLayers.getBounds())
+    } else {
+      let layer = this.disctrictLayerLookup[district]
+      this.map.flyToBounds(layer.getBounds())
+      layer.setStyle({weight: 3})
+    }
   }
 
   onAddressSearchChange (event) {
@@ -298,7 +311,12 @@ class PlansMap extends React.Component {
     }).addTo(this.map)
     this.selected = L.layerGroup().addTo(this.map)
 
-    L.geoJSON(this.props.districts, {style: districtStyle}).addTo(this.map)
+    this.disctrictLayers = L.geoJSON(this.props.districts, {style: districtStyle}).addTo(this.map)
+
+    this.disctrictLayerLookup = {}
+    this.disctrictLayers.getLayers().map((layer, i) => {
+      this.disctrictLayerLookup[i.toString()] = layer
+    })
 
     this.markers = this.props.items.map((item, i) => {
       let marker = L.marker(pointToLatLng(item.point), {icon: statusIconPins[item.status]})
@@ -342,24 +360,23 @@ class PlansMap extends React.Component {
   }
 
   renderListItem (item, i) {
-    let className = 'list-item list-item--squashed'
+    let itemClass = 'list-item list-item--squashed'
     if (i === this.state.selected) {
-      className += ' selected'
+      itemClass += ' selected'
     }
-
+    let statusClass = (item.participation_active === true) ? 'list-item__status--active' : 'list-item__status--inactive'
     return (
-      <li className={className} key={i} onFocus={(e) => { this.onSelect(i) }} tabIndex="0">
-        <div className="list-item__subtitle">{item.organisation}</div>
-        <h3 className="list-item__title"><a href={item.url}>{item.title}</a></h3>
+      <li className={itemClass} key={i} onFocus={(e) => { this.onSelect(i) }} tabIndex="0">
         <div className="list-item__labels">
           {
             <span className="label label--secondary">{item.status_display}</span>
-          } {item.category &&
-            <span className="label">{item.category}</span>
-          } {item.point_label &&
-            <span className="label"><i className="fas fa-map-marker-alt" aria-hidden="true" /> {item.point_label}</span>
+          } {item.district &&
+            <span className="label"><i className="fas fa-map-marker-alt" aria-hidden="true" /> {item.district}</span>
           }
         </div>
+        <h3 className="list-item__title"><a href={item.url}>{item.title}</a></h3>
+        <div className="list-item__subtitle"><b>{django.gettext('Participation type: ')}</b><span>{item.category}</span></div>
+        <div className="list-item__subtitle"><b>{django.gettext('Participation: ')}</b><span className={statusClass}>{item.participation_string}</span></div>
       </li>
     )
   }
@@ -388,7 +405,7 @@ class PlansMap extends React.Component {
   render () {
     return (
       <div>
-        <div className="l-wrapper">
+        <div className="u-spacer-left u-spacer-right">
           <div className="control-bar" role="group" aria-label={django.gettext('Filter bar')}>
             <form onSubmit={this.onAddressSearchSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group u-inline-flex u-position-relative">
               <input
@@ -433,7 +450,7 @@ class PlansMap extends React.Component {
             </form>
             &nbsp;
             <div className="dropdown ">
-              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_status">
+              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_status">
                 {django.gettext('Status')}: {statusNames[this.state.filters.status] || django.gettext('All')}
                 <i className="fa fa-caret-down" aria-hidden="true" />
               </button>
@@ -456,8 +473,8 @@ class PlansMap extends React.Component {
                           className="dropdown-item"
                           value={i}
                           onClick={this.onStatusFilterChange.bind(this)}>
-                          <img class="dropdown-item__icon" src={`/static/plan_icons/icons/${statusIconNames[i]}_icon.svg`} />
-                          <span class="dropdown-item__label">
+                          <img className="dropdown-item__icon" src={`/static/plan_icons/icons/${statusIconNames[i]}_icon.svg`} />
+                          <span className="dropdown-item__label">
                             {name}
                           </span>
                         </button>
@@ -469,7 +486,7 @@ class PlansMap extends React.Component {
             </div>
             &nbsp;
             <div className="dropdown ">
-              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_participation">
+              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_participation">
                 {django.gettext('Participation')}: {participationNames[this.state.filters.participation] || django.gettext('All')}
                 <i className="fa fa-caret-down" aria-hidden="true" />
               </button>
@@ -502,7 +519,7 @@ class PlansMap extends React.Component {
             </div>
             &nbsp;
             <div className="dropdown ">
-              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_district">
+              <button type="button" className="dropdown-toggle btn btn--light btn--select" data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_filter_district">
                 {django.gettext('District')}: {this.props.districtnames[this.state.filters.district] || django.gettext('All')}
                 <i className="fa fa-caret-down" aria-hidden="true" />
               </button>
@@ -535,7 +552,7 @@ class PlansMap extends React.Component {
             </div>
             &nbsp;
             <div className="control-bar__right">
-              <a href={this.props.exportUrl} title={django.gettext('Export Excel')} class="btn btn--light"><i class="fa fa-download" aria-label={django.gettext('Export Excel')} /></a>
+              <a href={this.props.exportUrl} title={django.gettext('Export Excel')} className="btn btn--light"><i className="fa fa-download" aria-label={django.gettext('Export Excel')} /></a>
             </div>
           </div>
         </div>

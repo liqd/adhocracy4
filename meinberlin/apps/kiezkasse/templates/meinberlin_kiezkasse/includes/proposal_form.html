@@ -7,6 +7,18 @@
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
 
+    {% if form.show_categories %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.category %}
+    {% endif %}
+
+    {% if form.show_labels %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.labels %}
+    {% endif %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.image %}
+
+    {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.right_of_use %}
+
     {% include 'meinberlin_contrib/includes/form_field_with_addon.html' with field=form.budget after='€' %}
 
     {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.creator_contribution %}
@@ -14,10 +26,6 @@
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point %}
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point_label %}
-
-    {% if form.show_categories %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.category %}
-    {% endif %}
 
     <div class="u-spacer-bottom">
         <input type="submit" class="btn btn--primary" value="{% trans 'Save'%}" />

@@ -12,25 +12,31 @@
     <form id="signup_form" method="post" action="{% url 'account_signup' %}">
         {{ form.non_field_errors }}
         {% csrf_token %}
-        {% for field in form %}
-            {% if not forloop.last %}
-                {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
-            {% endif %}
-        {% endfor %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.username %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password1 %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.password2 %}
+
+        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %} 
+
         <div class="form-check">
             <label class="form-check__label">
                 {{ form.terms_of_use }}
-                {% blocktrans with terms_of_use_url="/terms-of-use" %}
-                I accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a>.
+                {% blocktrans with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}
+                 I have read and accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{privacy_policy}}" target="_blank">privacy policy</a>.
                 {% endblocktrans %}
             </label>
             {{ form.terms_of_use.errors }}
         </div>
+
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
         {% endif %}
+
         <div class="u-spacer-bottom">
             <button class="btn btn--primary" type="submit">{% trans "Register" %}</button>
         </div>
+
     </form>
 {% endblock %}

@@ -1,0 +1,34 @@
+{% load i18n %}
+
+<div class="dropdown">
+    <button
+        title="{% trans 'Remark' %}"
+        type="button"
+        class="dropdown-toggle btn btn--light btn--small"
+        data-toggle="dropdown"
+        data-flip="false"
+        aria-haspopup="true"
+        aria-expanded="false"
+        data-attributes="{{ attributes }}"
+        id="idea-remark__dropdown"
+    >
+        <i class="fa fa-comment" aria-label="{% trans 'Moderator remark' %}"></i>
+        <i class="fa fa-check-circle idea-remark__btn__notify {% if not remark or not remark.content %} d-none {% endif %}" aria-hidden="true"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right idea-remark" id="remark__dropdown-menu" aria-labelledby="id_remark_dropdown">
+        <form class="general-form" id="idea-remark__form">
+            <div class="form-group idea-remark__text">
+                <label for="id_remark" class="idea-remark__label">{% trans 'Remark' %}</label>
+                <textarea class="form-control" id="id_remark" aria-describedby="idea_remark_hint" aria-label="moderator-remark-input" placeholder="{% trans 'Write down your remark!' %}"></textarea>
+                <div class="idea-remark__hint" id="idea_remark_hint">
+                    <i class="fa fa-lock" aria-hidden="true"></i>{% trans 'Note only visible internally within project.' %}
+                </div>
+            </div>
+            <input class="btn btn--transparent btn--full idea-remark__btn" type="submit" value="{% trans 'Save' %}"/>
+        </form>
+    </div>
+</div>
+
+
+
+

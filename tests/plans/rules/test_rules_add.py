@@ -11,8 +11,8 @@ def test_perm_exists():
 
 
 @pytest.mark.django_db
-def test_rule(plan, user):
-    project = plan.project
+def test_rule(plan, project, user):
+    plan.projects.add(project)
     anonymous, moderator, initiator = setup_users(project)
 
     assert not rules.has_perm(perm_name, anonymous, plan.organisation)

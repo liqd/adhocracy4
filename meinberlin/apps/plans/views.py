@@ -47,6 +47,39 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         except ObjectDoesNotExist:
             return []
 
+    def _get_status_string(self, projects):
+
+        future_phase = None
+        for project in projects:
+            phases = project.phases
+            if phases.active_phases():
+                return ugettext('running')
+            if phases.future_phases() and \
+               phases.future_phases().first().start_date:
+                date = phases.future_phases().first().start_date
+                if not future_phase:
+                    future_phase = date
+                else:
+                    if date < future_phase:
+                        future_phase = date
+
+        if future_phase:
+            return ugettext('starts at {}').format(future_phase.date())
+
+    def _get_participation_status(self, item):
+        projects = item.projects.all()\
+            .filter(is_draft=False,
+                    is_archived=False,
+                    is_public=True)
+        if not projects:
+            return item.get_participation_display(), False
+        else:
+            status_string = self._get_status_string(projects)
+            if status_string:
+                return status_string, True
+            else:
+                return item.get_participation_display(), False
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -63,21 +96,28 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                        key=lambda x: x.modified or x.created,
                        reverse=True)
 
-        context['items'] = json.dumps([{
-            'title': item.title,
-            'url': item.get_absolute_url(),
-            'organisation': item.organisation.name,
-            'point': item.point,
-            'point_label': item.point_label,
-            'cost': item.cost,
-            'district': item.district.name,
-            'category': item.category,
-            'status': item.status,
-            'status_display': item.get_status_display(),
-            'participation': item.participation,
-            'participation_display': item.get_participation_display(),
-        } for item in items])
+        result = []
 
+        for item in items:
+            participation_string, active = self._get_participation_status(item)
+            result.append({
+                'title': item.title,
+                'url': item.get_absolute_url(),
+                'organisation': item.organisation.name,
+                'point': item.point,
+                'point_label': item.point_label,
+                'cost': item.cost,
+                'district': item.district.name,
+                'category': item.category,
+                'status': item.status,
+                'status_display': item.get_status_display(),
+                'participation_string': participation_string,
+                'participation_active': active,
+                'participation': item.participation,
+                'participation_display': item.get_participation_display(),
+            })
+
+        context['items'] = json.dumps(result)
         context['baseurl'] = settings.A4_MAP_BASEURL
         context['attribution'] = settings.A4_MAP_ATTRIBUTION
         context['bounds'] = json.dumps(settings.A4_MAP_BOUNDING_BOX)
@@ -106,8 +146,8 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
 
     def get_virtual_fields(self, virtual):
         virtual = super().get_virtual_fields(virtual)
-        virtual['project'] = ugettext('Project')
-        virtual['project_link'] = ugettext('Project Link')
+        virtual['projects'] = ugettext('Projects')
+        virtual['projects_links'] = ugettext('Project Links')
         return virtual
 
     def get_organisation_data(self, item):
@@ -128,15 +168,20 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
     def get_description_data(self, item):
         return unescape_and_strip_html(item.description)
 
-    def get_project_data(self, item):
-        if item.project:
-            return item.project.name
+    def get_projects_data(self, item):
+        if item.projects.all():
+            return ', \n'.join(
+                [project.name
+                 for project in item.projects.all()]
+            )
         return ''
 
-    def get_project_link_data(self, item):
-        if item.project:
-            return self.request.build_absolute_uri(
-                item.project.get_absolute_url())
+    def get_projects_links_data(self, item):
+        if item.projects.all():
+            return str([self.request.build_absolute_uri(
+                        project.get_absolute_url())
+                        for project in item.projects.all()
+                        ])
         return ''
 
 
