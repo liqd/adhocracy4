@@ -24,7 +24,7 @@
                 {{ form.add_users|attr:'required' }}
             </div>
             <span>
-              <input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Add' %}"/>
+                <input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Add' %}"/>
             </span>
         </div>
         {{ form.add_users.errors }}
@@ -43,7 +43,9 @@
         <div class="widget widget--{{ form.add_users_upload|widget_type }}">
             <div class="input-group">
                 {{ form.add_users_upload|attr:'required'|add_class:'input-group__input' }}
-                <span><input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Upload' %}"/></span>
+                <span>
+                    <input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Upload' %}"/>
+                </span>
             </div>
         </div>
         {{ form.add_users_upload.errors }}
