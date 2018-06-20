@@ -238,7 +238,7 @@ class PollManagement extends React.Component {
           }
         </FlipMove>
 
-        <p>
+        <p className="questionform__append">
           <button
             className="btn btn--light btn--small"
             onClick={this.handleAppendQuestion.bind(this)}
