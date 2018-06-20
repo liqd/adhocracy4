@@ -10,10 +10,12 @@ const QuestionForm = (props) => {
       <div className="questionform__content questionform__content--border">
         <div className="form-group">
           <label
+            className="questionform__label"
             htmlFor={'id_questions-' + props.id + '-name'}>
             {django.gettext('Question')}
           </label>
           <textarea
+            className="questionform__textarea"
             id={'id_questions-' + props.id + '-name'}
             name={'questions-' + props.id + '-name'}
             value={props.question.label}
@@ -21,6 +23,7 @@ const QuestionForm = (props) => {
           <ErrorList errors={props.errors} field="label" />
         </div>
 
+        <label>{django.gettext('Answer')}</label>
         <div className="form-check">
           <label className="form-check__label">
             <input
