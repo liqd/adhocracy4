@@ -130,6 +130,11 @@ class Question extends React.Component {
     let showTotalOrVoteButton
     let toggleShowResultButton
     let toggleShowResultButtonText
+    let multipleChoiceText
+
+    if (this.state.question.multiple_choice) {
+      multipleChoiceText = django.gettext('Multiple answers are possible for this question')
+    }
 
     if (this.state.showResult) {
       showTotalOrVoteButton =
@@ -155,7 +160,7 @@ class Question extends React.Component {
     return (
       <form onSubmit={this.handleSubmit.bind(this)} className="poll">
         <h2>{ this.state.question.label }</h2>
-
+        {multipleChoiceText}
         <div className="poll__rows">
           {
             this.state.question.choices.map((choice, i) => {
