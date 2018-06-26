@@ -1,7 +1,7 @@
 {% load i18n contrib_tags adminlog_tags %}
 
 <div class="action">
-    <i class="fa fa-{% logentry_icon object %} action__icon" aria-hidden="true"></i>
+    <i class="{% logentry_icon_class object %} action__icon" aria-hidden="true"></i>
     <div class="action__main">
         <div class="action__line">
             {{ object.message }}

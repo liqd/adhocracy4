@@ -78,6 +78,13 @@ def classify(value):
     return mark_safe(re.sub('[-\s]+', '-', value))
 
 
+@register.filter
+def fa_class(icon):
+    if hasattr(icon, 'startswith') and not icon.startswith('fa'):
+        return 'fas fa-{icon}'.format(icon=icon)
+    return icon
+
+
 @register.simple_tag()
 def tracking_enabled():
     return settings.TRACKING_ENABLED

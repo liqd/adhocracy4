@@ -1,7 +1,7 @@
 {% load i18n contrib_tags %}
 
 <div class="action action--withdate">
-    <i class="fa fa-{{ action.icon }} action__icon" aria-hidden="true"></i>
+    <i class="{{ action.icon|fa_class }} action__icon" aria-hidden="true"></i>
     <div class="action__main">
         <div class="action__line">
             {% if action.type == 'comment' and action.verb == 'add' %}

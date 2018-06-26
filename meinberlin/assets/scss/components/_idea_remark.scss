@@ -15,7 +15,9 @@
     font-size: $font-size-sm;
 }
 
-.idea-remark__hint .fa {
+.idea-remark__hint .fa,
+.idea-remark__hint .fas,
+.idea-remark__hint .far {
     padding-right: $spacer;
 }
 

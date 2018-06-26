@@ -12,7 +12,10 @@ module.exports = {
     ],
     vendor: [
       'classnames',
-      'font-awesome/scss/font-awesome.scss',
+      '@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss',
+      '@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss',
+      '@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss',
+      '@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss',
       'jquery',
       'jquery.scrollintoview',
       'js-cookie',

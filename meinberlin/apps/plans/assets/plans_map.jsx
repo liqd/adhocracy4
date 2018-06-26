@@ -371,7 +371,7 @@ class PlansMap extends React.Component {
           {
             <span className="label label--secondary">{item.status_display}</span>
           } {item.district &&
-            <span className="label"><i className="fa fa-map-marker" aria-hidden="true" /> {item.district}</span>
+            <span className="label"><i className="fas fa-map-marker-alt" aria-hidden="true" /> {item.district}</span>
           }
         </div>
         <h3 className="list-item__title"><a href={item.url}>{item.title}</a></h3>

@@ -6,14 +6,14 @@ register = template.Library()
 
 
 @register.simple_tag()
-def logentry_icon(logentry):
+def logentry_icon_class(logentry):
     if logentry.action == models.PROJECT_COMPONENT_UPDATED:
-        return 'pencil'
+        return 'fas fa-pencil-alt'
     elif logentry.action == models.MODULE_COMPONENT_UPDATED:
-        return 'pencil'
+        return 'fas fa-pencil-alt'
     elif logentry.action == models.PROJECT_CREATED:
-        return 'plus'
+        return 'fas fa-plus'
     elif logentry.action == models.PROJECT_PUBLISHED:
-        return 'play'
+        return 'fas fa-play'
     elif logentry.action == models.PROJECT_UNPUBLISHED:
-        return 'stop'
+        return 'fas fa-stop'
