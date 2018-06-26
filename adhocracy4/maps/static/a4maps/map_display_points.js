@@ -107,7 +107,7 @@ var init = function () {
                                 feature.properties.negative_rating_count + ' <i class="fa fa-chevron-down" aria-hidden="true"></i>' +
                                 '</span>' +
                                 '<span class="map-popup-comments-count">' +
-                                feature.properties.comments_count + ' <i class="fa fa-comment-o" aria-hidden="true"></i>' +
+                                feature.properties.comments_count + ' <i class="far fa-comment" aria-hidden="true"></i>' +
                                 '</span>' +
                             '</div>' +
                             '<div class="maps-popups-popup-name">' +
