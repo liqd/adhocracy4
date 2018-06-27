@@ -33,10 +33,10 @@ class Topic(module_models.Item):
         blank=True,
     )
     ratings = GenericRelation(rating_models.Rating,
-                              related_query_name='idea',
+                              related_query_name='topic',
                               object_id_field='object_pk')
     comments = GenericRelation(comment_models.Comment,
-                               related_query_name='idea',
+                               related_query_name='topic',
                                object_id_field='object_pk')
     category = CategoryField()
 

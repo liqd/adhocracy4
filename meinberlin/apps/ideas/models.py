@@ -38,12 +38,6 @@ class AbstractIdea(module_models.Item, Moderateable):
             'Visualize your idea.'
         ),
     )
-    ratings = GenericRelation(rating_models.Rating,
-                              related_query_name='idea',
-                              object_id_field='object_pk')
-    comments = GenericRelation(comment_models.Comment,
-                               related_query_name='idea',
-                               object_id_field='object_pk')
     category = CategoryField()
 
     labels = models.ManyToManyField(labels_models.Label,
@@ -79,6 +73,12 @@ class AbstractIdea(module_models.Item, Moderateable):
 
 
 class Idea(AbstractIdea):
+    ratings = GenericRelation(rating_models.Rating,
+                              related_query_name='idea',
+                              object_id_field='object_pk')
+    comments = GenericRelation(comment_models.Comment,
+                               related_query_name='idea',
+                               object_id_field='object_pk')
 
     def get_absolute_url(self):
         return reverse('meinberlin_ideas:idea-detail',
