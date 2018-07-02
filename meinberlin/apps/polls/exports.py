@@ -9,7 +9,7 @@ from meinberlin.apps.exports import register_export
 
 
 @register_export(_('Comments of Polls'))
-class PollExportView(
+class PollCommentExportView(
         export_mixins.ExportModelFieldsMixin,
         mb_export_mixins.UserGeneratedContentExportMixin,
         export_mixins.ItemExportWithLinkMixin,
