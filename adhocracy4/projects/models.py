@@ -23,7 +23,19 @@ class ProjectManager(models.Manager):
                    .order_by('-created')[:8]
 
 
-class Project(base.TimeStampedModel):
+class ProjectContactDetailMixin:
+    class Meta:
+        abstract = True
+
+    contact_name = models.CharField(max_length=120)
+    contact_address_text = models.TextField()
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
+        message=_("Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."))
+    contact_phone = models.CharField(validators=[phone_regex], max_length=17, blank=True)
+    contact_mail = models.EmailField()
+    contact_url = models.URLField()
+
+class Project(ProjectContactDetailMixin, base.TimeStampedModel):
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(
         max_length=120,
