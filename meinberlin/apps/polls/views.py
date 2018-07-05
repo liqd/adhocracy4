@@ -67,3 +67,14 @@ class PollDashboardView(ProjectMixin,
 
     def get_permission_object(self):
         return self.project
+
+
+class PollDashboardExportView(ProjectMixin,
+                              dashboard_mixins.DashboardBaseMixin,
+                              dashboard_mixins.DashboardComponentMixin,
+                              generic.TemplateView):
+    template_name = 'meinberlin_exports/export_dashboard.html'
+    permission_required = 'a4projects.change_project'
+
+    def get_permission_object(self):
+        return self.project

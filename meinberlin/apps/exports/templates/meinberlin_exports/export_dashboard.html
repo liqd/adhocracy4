@@ -1,0 +1,10 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
+{% load i18n %}
+
+{% block dashboard_project_content %}
+    <h1 class="u-first-heading">{% trans 'Export data' %}</h1>
+    <a class="btn" href="{% url 'a4dashboard:comment-export' module_slug=module.slug %}">
+    {% trans "Export comments" %}
+    </a>
+
+{% endblock %}

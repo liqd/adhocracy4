@@ -5,10 +5,8 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.exports import mixins as export_mixins
 from adhocracy4.exports import views as export_views
 from meinberlin.apps.exports import mixins as mb_export_mixins
-from meinberlin.apps.exports import register_export
 
 
-@register_export(_('Comments of Polls'))
 class PollCommentExportView(
         export_mixins.ExportModelFieldsMixin,
         mb_export_mixins.UserGeneratedContentExportMixin,
