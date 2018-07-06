@@ -1,14 +1,18 @@
 {% extends 'email_base.'|add:part_type %}
-{% load reports_tags %}
+{% load reports_tags i18n %}
 
 
-{% block subject %}Moderationsanfrage im Projekt {{ report.project }} auf {{ site.name }}{% endblock %}
+{% block subject %}Moderationsanfrage im Projekt „{{ report.project }}“ auf {{ site.name }}{% endblock %}
 
-{% block headline %}Moderationsanfrage im Projekt {{ report.project }}{% endblock %}
+{% block headline %}Moderationsanfrage im Projekt „{{ report.project }}“{% endblock %}
 
-{% block content %}Benutzer*in {{ report.creator.username }} hat einen Beitrag in Ihrem Projekt "{{ report.project }}" gemeldet. Gegebenenfalls könnte die Nachricht auch Spam sein. Als Moderator können Sie den Beitrag prüfen und ggf. löschen. Es wurde folgende Begründung angegeben:
+{% block content %}in Ihrem Projekt „{{ report.project }}“ wurde ein Beitrag als unangemessen gemeldet. Als Moderator*in können Sie den Beitrag prüfen und ggf. löschen, sollte er nicht unserer <a href="{{ email.get_host }}/netiquette">Netiquette</a> entsprechen.
 
-{{ report.description }}
+Gemeldeter Beitrag: „{{ report.content_object }}“,
+erstellt von „{{ report.content_object.creator.username }}“ am {% language 'de' %} {{ report.content_object.created }} {% endlanguage %}
+
+Gemeldet von „{{ report.creator.username }}“ mit folgender Begründung: „{{ report.description }}“
+
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}
