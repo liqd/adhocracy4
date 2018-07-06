@@ -5,12 +5,10 @@ from adhocracy4.comments.models import Comment
 from adhocracy4.exports import mixins as a4_export_mixins
 from adhocracy4.exports import views as a4_export_views
 from meinberlin.apps.exports import mixins as export_mixins
-from meinberlin.apps.exports import register_export
 
 from . import models
 
 
-# @register_export(_('Proposals with comments'))
 class ProposalExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                          a4_export_mixins.ItemExportWithLinkMixin,
                          a4_export_mixins.ExportModelFieldsMixin,
@@ -36,7 +34,6 @@ class ProposalExportView(export_mixins.ItemExportWithReferenceNumberMixin,
             .annotate_negative_rating_count()
 
 
-@register_export(_('Comments for budgeting proposals'))
 class ProposalCommentExportView(a4_export_mixins.ExportModelFieldsMixin,
                                 export_mixins.UserGeneratedContentExportMixin,
                                 a4_export_mixins.ItemExportWithLinkMixin,

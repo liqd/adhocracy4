@@ -6,6 +6,7 @@ from django.views import generic
 from adhocracy4.dashboard import mixins as dashboard_mixins
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.exports.views import DashboardExportView
 
 from . import models
 
@@ -69,12 +70,7 @@ class PollDashboardView(ProjectMixin,
         return self.project
 
 
-class PollDashboardExportView(ProjectMixin,
-                              dashboard_mixins.DashboardBaseMixin,
-                              dashboard_mixins.DashboardComponentMixin,
-                              generic.TemplateView):
+class PollDashboardExportView(DashboardExportView):
     template_name = 'meinberlin_exports/export_dashboard.html'
-    permission_required = 'a4projects.change_project'
 
-    def get_permission_object(self):
-        return self.project
+    comment_export = 'a4dashboard:poll-comment-export'

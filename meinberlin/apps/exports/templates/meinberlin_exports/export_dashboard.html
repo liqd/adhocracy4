@@ -2,9 +2,24 @@
 {% load i18n %}
 
 {% block dashboard_project_content %}
-    <h1 class="u-first-heading">{% trans 'Export data' %}</h1>
-    <a class="btn" href="{% url 'a4dashboard:comment-export' module_slug=module.slug %}">
-    {% trans "Export comments" %}
+    <h1 class="u-first-heading">{% trans 'Export' %}</h1>
+
+    {% if view.export %}
+    <p>
+        {% trans "This is some export." %}
+    <a class="btn" href="{% url view.export module_slug=module.slug %}">
+        {% trans "Export" %}
     </a>
+    </p>
+    {% endif %}
+
+    {% if view.comment_export %}
+    <p>
+        {% trans "This is the comment export." %}
+    <a class="btn" href="{% url view.comment_export module_slug=module.slug %}">
+        {% trans "Export" %}
+    </a>
+    </p>
+    {% endif %}
 
 {% endblock %}

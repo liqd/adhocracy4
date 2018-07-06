@@ -1,6 +1,8 @@
 from django.views import generic
 
+from adhocracy4.dashboard import mixins as dashboard_mixins
 from adhocracy4.modules import models as module_models
+from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 
 from . import exports
@@ -28,6 +30,16 @@ class ExportModuleDispatcher(rules_mixins.PermissionRequiredMixin,
         # Dispatch the request to the export view
         view = module_exports[export_id][1].as_view()
         return view(request, module=module, *args, **kwargs)
+
+    def get_permission_object(self):
+        return self.project
+
+
+class DashboardExportView(ProjectMixin,
+                          dashboard_mixins.DashboardBaseMixin,
+                          dashboard_mixins.DashboardComponentMixin,
+                          generic.TemplateView):
+    permission_required = 'a4projects.change_project'
 
     def get_permission_object(self):
         return self.project
