@@ -33,10 +33,10 @@ class ProjectCreateForm(forms.ModelForm):
         project = super().save(commit=False)
 
         project.organisation = self.organisation
-        project.creator = self.creator
 
         if commit:
             project.save()
+            project.moderators.add(self.creator)
             if hasattr(self, 'save_m2m'):
                 self.save_m2m()
 
