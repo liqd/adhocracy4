@@ -37,6 +37,7 @@ class ProjectCreateForm(forms.ModelForm):
 
         if commit:
             project.save()
+            project.moderators.add(self.creator)
             if hasattr(self, 'save_m2m'):
                 self.save_m2m()
 
