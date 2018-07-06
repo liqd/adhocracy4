@@ -37,10 +37,10 @@ class Comment(base.UserGeneratedContentModel):
         ordering = ('created',)
 
     def __str__(self):
-        if len(self.comment) > 50:
-            return "comment: {} ...".format(self.comment[:50])
+        if len(self.comment) > 200:
+            return "{} ...".format(self.comment[:200])
         else:
-            return "comment: {}".format(self.comment)
+            return "{}".format(self.comment)
 
     def save(self, *args, **kwargs):
         """
