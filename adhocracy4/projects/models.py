@@ -31,11 +31,11 @@ class ProjectContactDetailMixin(models.Model):
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
         message=_("Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."))
 
-    contact_address_text = models.TextField()
-    contact_email = models.EmailField()
-    contact_name = models.CharField(max_length=120)
-    contact_phone = models.CharField(validators=[phone_regex], max_length=17)
-    contact_url = models.URLField()
+    contact_address_text = models.TextField(blank=True)
+    contact_email = models.EmailField(blank=True)
+    contact_name = models.CharField(max_length=120, blank=True)
+    contact_phone = models.CharField(validators=[phone_regex], max_length=17, blank=True)
+    contact_url = models.URLField(blank=True)
 
 class Project(ProjectContactDetailMixin, base.TimeStampedModel):
     slug = AutoSlugField(populate_from='name', unique=True)
