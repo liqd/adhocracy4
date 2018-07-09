@@ -1,11 +1,9 @@
-from django.utils import timezone
 from django.utils.translation import ugettext as _
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.exports import mixins as a4_export_mixins
 from adhocracy4.exports import views as a4_export_views
 from meinberlin.apps.exports import mixins as export_mixins
-from meinberlin.apps.exports import register_export
 
 from . import models
 
@@ -35,7 +33,6 @@ class ProposalExportView(export_mixins.ItemExportWithReferenceNumberMixin,
             .annotate_negative_rating_count()
 
 
-@register_export(_('Comments for kiezkasse proposals'))
 class ProposalCommentExportView(a4_export_mixins.ExportModelFieldsMixin,
                                 export_mixins.UserGeneratedContentExportMixin,
                                 a4_export_mixins.ItemExportWithLinkMixin,
@@ -51,13 +48,10 @@ class ProposalCommentExportView(a4_export_mixins.ExportModelFieldsMixin,
         comments = (Comment.objects.filter(
                     kiezkasse_proposal__module=self.module) |
                     Comment.objects.filter(
-                    parent_comment__kieszkasse_proposal__module=self.module))
+                    parent_comment__kiezkasse_proposal__module=self.module)
+                    )
 
         return comments
-
-    def get_base_filename(self):
-        return '%s_%s' % (self.project.slug,
-                          timezone.now().strftime('%Y%m%dT%H%M%S'))
 
     def get_virtual_fields(self, virtual):
         virtual.setdefault('id', _('ID'))

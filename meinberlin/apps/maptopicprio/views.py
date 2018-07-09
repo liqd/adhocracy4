@@ -7,6 +7,7 @@ from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.contrib import filters
+from meinberlin.apps.exports.views import DashboardExportView
 from meinberlin.apps.ideas import views as idea_views
 
 from . import forms
@@ -159,3 +160,17 @@ class MapTopicDeleteView(mixins.DashboardBaseMixin,
 
     def get_permission_object(self):
         return self.get_object()
+
+
+class MapTopicDashboardExportView(DashboardExportView):
+    template_name = 'meinberlin_exports/export_dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['export'] = reverse(
+            'a4dashboard:maptopic-export',
+            kwargs={'module_slug': self.module.slug})
+        context['comment_export'] = reverse(
+            'a4dashboard:maptopic-comment-export',
+            kwargs={'module_slug': self.module.slug})
+        return context

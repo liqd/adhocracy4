@@ -1,16 +1,13 @@
-from django.utils import timezone
 from django.utils.translation import ugettext as _
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.exports import mixins as a4_export_mixins
 from adhocracy4.exports import views as a4_export_views
 from meinberlin.apps.exports import mixins as export_mixins
-from meinberlin.apps.exports import register_export
 
 from . import models
 
 
-# @register_export(_('Ideas with location and comments'))
 class MapIdeaExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                         a4_export_mixins.ItemExportWithLinkMixin,
                         a4_export_mixins.ExportModelFieldsMixin,
@@ -35,7 +32,6 @@ class MapIdeaExportView(export_mixins.ItemExportWithReferenceNumberMixin,
             .annotate_negative_rating_count()
 
 
-@register_export(_('Comments for map ideas'))
 class MapIdeaCommentExportView(a4_export_mixins.ExportModelFieldsMixin,
                                export_mixins.UserGeneratedContentExportMixin,
                                a4_export_mixins.ItemExportWithLinkMixin,
@@ -53,10 +49,6 @@ class MapIdeaCommentExportView(a4_export_mixins.ExportModelFieldsMixin,
                     parent_comment__mapidea__module=self.module))
 
         return comments
-
-    def get_base_filename(self):
-        return '%s_%s' % (self.project.slug,
-                          timezone.now().strftime('%Y%m%dT%H%M%S'))
 
     def get_virtual_fields(self, virtual):
         virtual.setdefault('id', _('ID'))
