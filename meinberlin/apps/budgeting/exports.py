@@ -1,4 +1,3 @@
-from django.utils import timezone
 from django.utils.translation import ugettext as _
 
 from adhocracy4.comments.models import Comment
@@ -16,7 +15,6 @@ class ProposalExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                          a4_export_mixins.ItemExportWithCategoriesMixin,
                          a4_export_mixins.ItemExportWithLabelsMixin,
                          a4_export_mixins.ItemExportWithCommentCountMixin,
-                         a4_export_mixins.ItemExportWithCommentsMixin,
                          a4_export_mixins.ItemExportWithLocationMixin,
                          export_mixins.UserGeneratedContentExportMixin,
                          export_mixins.ItemExportWithModeratorFeedback,
@@ -53,10 +51,6 @@ class ProposalCommentExportView(a4_export_mixins.ExportModelFieldsMixin,
                     )
 
         return comments
-
-    def get_base_filename(self):
-        return '%s_%s' % (self.project.slug,
-                          timezone.now().strftime('%Y%m%dT%H%M%S'))
 
     def get_virtual_fields(self, virtual):
         virtual.setdefault('id', _('ID'))
