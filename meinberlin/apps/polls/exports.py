@@ -1,4 +1,3 @@
-from django.utils import timezone
 from django.utils.translation import ugettext as _
 
 from adhocracy4.comments.models import Comment
@@ -25,10 +24,6 @@ class PollCommentExportView(
             Comment.objects.filter(parent_comment__poll__module=self.module)
         )
         return comments
-
-    def get_base_filename(self):
-        return '%s_%s' % (self.project.slug,
-                          timezone.now().strftime('%Y%m%dT%H%M%S'))
 
     def get_virtual_fields(self, virtual):
         virtual.setdefault('id', _('ID'))

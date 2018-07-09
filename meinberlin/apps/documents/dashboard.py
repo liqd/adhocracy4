@@ -5,6 +5,7 @@ from adhocracy4.dashboard import DashboardComponent
 from adhocracy4.dashboard import components
 from meinberlin.apps.documents.models import Chapter
 
+from . import exports
 from . import views
 
 
@@ -36,3 +37,35 @@ class DocumentComponent(DashboardComponent):
 
 
 components.register_module(DocumentComponent())
+
+
+class ExportDocumentComponent(DashboardComponent):
+    identifier = 'document_export'
+    weight = 50
+    label = _('Export Excel')
+
+    def is_effective(self, module):
+        module_app = module.phases[0].content().app
+        return (module_app == 'meinberlin_documents' and
+                not module.project.is_draft)
+
+    def get_progress(self, module):
+        return 0, 0
+
+    def get_base_url(self, module):
+        return reverse('a4dashboard:document-export-module', kwargs={
+            'module_slug': module.slug,
+        })
+
+    def get_urls(self):
+        return [
+            (r'^modules/(?P<module_slug>[-\w_]+)/export/document/$',
+             views.DocumentDashboardExportView.as_view(),
+             'document-export-module'),
+            (r'^modules/(?P<module_slug>[-\w_]+)/export/document/comments/$',
+             exports.DocumentExportView.as_view(),
+             'document-comment-export'),
+        ]
+
+
+components.register_module(ExportDocumentComponent())
