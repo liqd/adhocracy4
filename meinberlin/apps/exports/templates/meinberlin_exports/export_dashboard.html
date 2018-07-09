@@ -5,23 +5,38 @@
     <h1 class="u-first-heading">{% trans 'Export' %}</h1>
 
     <p class="form-hint">{% blocktrans %}Some blablabla to explain the exports!{% endblocktrans %}</p>
-
+<table class="export-table">
+    <thead>
+    <tr>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+  <tbody>
     {% if export %}
-    <p>
-        {% trans "This is some export." %}
-        <a class="btn" href="{{ export }}">
-            {% trans "Export" %}
-        </a>
-    </p>
+    <tr>
+        <td class="export-table__txt-cell">
+            <p>{% trans "This is some export." %}</p>
+        </td>
+        <td class="export-table__btn-cell">
+            <a class="btn btn--secondary" href="{{ export }}">
+                {% trans "Export" %}
+            </a>
+        </td>
+    </tr>
     {% endif %}
-
     {% if comment_export %}
-    <p>
-        {% trans "This is the comment export." %}
-        <a class="btn" href="{{ comment_export }}">
-            {% trans "Export" %}
-        </a>
-    </p>
+    <tr>
+        <td class="export-table__txt-cell">
+            <p>{% trans "This is the comment export." %}</p>
+        </td>
+        <td class="export-table__btn-cell">
+            <a class="btn btn--secondary" href="{{ comment_export }}">
+                {% trans "Export" %}
+            </a>
+        </td>
+    </tr>
     {% endif %}
-
+</table>
+</tbody>
 {% endblock %}
