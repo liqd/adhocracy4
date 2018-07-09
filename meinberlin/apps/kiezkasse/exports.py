@@ -8,7 +8,6 @@ from meinberlin.apps.exports import mixins as export_mixins
 from . import models
 
 
-# @register_export(_('Proposals with comments'))
 class ProposalExportView(export_mixins.ItemExportWithReferenceNumberMixin,
                          a4_export_mixins.ItemExportWithLinkMixin,
                          a4_export_mixins.ExportModelFieldsMixin,
