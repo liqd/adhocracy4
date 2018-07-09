@@ -4,21 +4,23 @@
 {% block dashboard_project_content %}
     <h1 class="u-first-heading">{% trans 'Export' %}</h1>
 
-    {% if view.export %}
+    <p class="form-hint">{% blocktrans %}Some blablabla to explain the exports!{% endblocktrans %}</p>
+
+    {% if export %}
     <p>
         {% trans "This is some export." %}
-    <a class="btn" href="{% url view.export module_slug=module.slug %}">
-        {% trans "Export" %}
-    </a>
+        <a class="btn" href="{{ export }}">
+            {% trans "Export" %}
+        </a>
     </p>
     {% endif %}
 
-    {% if view.comment_export %}
+    {% if comment_export %}
     <p>
         {% trans "This is the comment export." %}
-    <a class="btn" href="{% url view.comment_export module_slug=module.slug %}">
-        {% trans "Export" %}
-    </a>
+        <a class="btn" href="{{ comment_export }}">
+            {% trans "Export" %}
+        </a>
     </p>
     {% endif %}
 

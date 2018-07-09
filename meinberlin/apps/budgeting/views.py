@@ -1,4 +1,5 @@
 import django_filters
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import filters as category_filters
@@ -94,5 +95,12 @@ class ProposalModerateView(idea_views.AbstractIdeaModerateView):
 class ProposalDashboardExportView(DashboardExportView):
     template_name = 'meinberlin_exports/export_dashboard.html'
 
-    export = 'a4dashboard:budgeting-export'
-    comment_export = 'a4dashboard:budgeting-comment-export'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['export'] = reverse(
+            'a4dashboard:budgeting-export',
+            kwargs={'module_slug': self.module.slug})
+        context['comment_export'] = reverse(
+            'a4dashboard:budgeting-comment-export',
+            kwargs={'module_slug': self.module.slug})
+        return context
