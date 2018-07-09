@@ -24,7 +24,7 @@ class ProjectManager(models.Manager):
                    .order_by('-created')[:8]
 
 
-class ProjectContactDetailMixin:
+class ProjectContactDetailMixin(models.Model):
     class Meta:
         abstract = True
 
