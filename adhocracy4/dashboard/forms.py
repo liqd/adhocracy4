@@ -65,7 +65,7 @@ class ProjectInformationForm(ProjectDashboardForm):
 
     class Meta:
         model = project_models.Project
-        fields = ['information']
+        fields = ['information', 'contact_name', 'contact_address_text', 'contact_telephone', 'contact_email', 'contact_url']
         required_for_project_publish = ['information']
 
 
