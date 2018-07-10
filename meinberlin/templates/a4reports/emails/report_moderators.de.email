@@ -2,16 +2,16 @@
 {% load reports_tags i18n %}
 
 
-{% block subject %}Moderationsanfrage im Projekt „{{ report.project }}“ auf {{ site.name }}{% endblock %}
+{% block subject %}Moderationsanfrage im Projekt {{ report.project }} auf {{ site.name }}{% endblock %}
 
-{% block headline %}Moderationsanfrage im Projekt „{{ report.project }}“{% endblock %}
+{% block headline %}Moderationsanfrage im Projekt {{ report.project }}{% endblock %}
 
-{% block content %}in Ihrem Projekt „{{ report.project }}“ wurde ein Beitrag als unangemessen gemeldet. Als Moderator*in können Sie den Beitrag prüfen und ggf. löschen, sollte er nicht unserer <a href="{{ email.get_host }}/netiquette">Netiquette</a> entsprechen.
+{% block content %}in Ihrem Projekt {{ report.project }} wurde ein Beitrag als unangemessen gemeldet. Als Moderator*in können Sie den Beitrag prüfen und ggf. löschen, sollte er nicht unserer <a href="{{ email.get_host }}/netiquette">Netiquette</a> entsprechen.
 
 Gemeldeter Beitrag: „{{ report.content_object }}“,
-erstellt von „{{ report.content_object.creator.username }}“ am {% language 'de' %} {{ report.content_object.created }} {% endlanguage %}
+erstellt von {{ report.content_object.creator.username }} am {% language 'de' %} {{ report.content_object.created }} {% endlanguage %}
 
-Gemeldet von „{{ report.creator.username }}“ mit folgender Begründung: „{{ report.description }}“
+Gemeldet von {{ report.creator.username }} mit folgender Begründung: „{{ report.description }}“
 
 {% endblock %}
 
