@@ -52,7 +52,7 @@ class ProjectContactDetailMixin(models.Model):
         max_length=17,
         blank=True,
         verbose_name=_('Contact details'),
-        help_text=_('This title will appear on the')
+        help_text=_('Helper text')
         )
 
     contact_url = models.URLField(

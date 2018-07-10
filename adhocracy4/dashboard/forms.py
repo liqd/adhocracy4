@@ -72,6 +72,10 @@ class ProjectInformationForm(ProjectDashboardForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['contact_name'].widget.attrs.update(
+            {'placeholder': _('Name')})
+        self.fields['contact_address_text'].widget.attrs.update(
+            {'placeholder': _('Address')})
         self.fields['contact_phone'].widget.attrs.update(
             {'placeholder': _('Telephone')})
         self.fields['contact_email'].widget.attrs.update(
