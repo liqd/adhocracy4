@@ -1,6 +1,5 @@
 {% include 'a4dashboard/includes/form_field.html' with field=form.information %}
 {% include 'a4dashboard/includes/form_field.html' with field=form.contact_name %}
 {% include 'a4dashboard/includes/form_field.html' with field=form.contact_address_text %}
-{% include 'a4dashboard/includes/form_field.html' with field=form.contact_phone %}
-{% include 'a4dashboard/includes/form_field.html' with field=form.contact_email %}
-{% include 'a4dashboard/includes/form_field.html' with field=form.contact_url %}
+
+{% include 'a4dashboard/includes/form_field_triple.html' with field_1=form.contact_phone field_2=form.contact_email field_3=form.contact_url %}

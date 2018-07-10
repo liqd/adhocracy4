@@ -70,6 +70,15 @@ class ProjectInformationForm(ProjectDashboardForm):
         ]
         required_for_project_publish = ['information']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['contact_phone'].widget.attrs.update(
+            {'placeholder': _('Telephone')})
+        self.fields['contact_email'].widget.attrs.update(
+            {'placeholder': _('Email')})
+        self.fields['contact_url'].widget.attrs.update(
+            {'placeholder': _('Website')})
+
 
 class ProjectResultForm(ProjectDashboardForm):
 
