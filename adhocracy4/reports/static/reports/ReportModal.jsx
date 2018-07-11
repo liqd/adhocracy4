@@ -62,7 +62,7 @@ class ReportModal extends React.Component {
       partials.body = (
         <div className="form-group">
           <textarea rows="5" className="form-control report-message" value={this.state.report}
-            placeholder={django.gettext('Your message here')} onChange={this.handleTextChange.bind(this)} />
+            placeholder={django.gettext('Your message')} onChange={this.handleTextChange.bind(this)} />
           {this.state.errors && <span className="help-block">{this.state.errors.description}</span>}
         </div>
       )

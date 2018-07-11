@@ -153,7 +153,7 @@ class Comment extends React.Component {
       <div className="comment">
         <ReportModal
           name={`report_comment_${this.props.id}`}
-          title={django.gettext('Are you sure you want to report this item?')}
+          title={django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')}
           btnStyle="cta"
           objectId={this.props.id}
           contentType={this.context.comments_contenttype}

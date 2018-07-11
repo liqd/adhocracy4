@@ -17,7 +17,7 @@ module.exports.renderReports = function (el) {
   ReactDOM.render((
     <ReportModal
       name={props.modalName}
-      title={django.gettext('Are you sure you want to report this item?')}
+      title={django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')}
       btnStyle="cta"
       objectId={props.objectId}
       contentType={props.contentType} />
