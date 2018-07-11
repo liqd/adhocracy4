@@ -107,6 +107,10 @@ msgid ""
 "moderation. The moderation will look at the reported content. The content "
 "will be deleted if it does not meet our discussion rules (netiquette)."
 msgstr ""
+"Sie möchten diesen Beitrag melden? Ihre Nachricht wird an "
+"die Moderation weitergeleitet. Diese prüft den gemeldeten Beitrag. Er "
+"wird gelöscht, wenn er nicht unseren Diskussionsregeln (Netiquette) "
+"entspricht."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:179
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:26
@@ -354,7 +358,7 @@ msgstr "Vielen Dank! Wir werden uns darum kümmern."
 #: adhocracy4/reports/static/reports/ReportModal.jsx:65
 #: adhocracy4/reports/static/reports/ReportModal.jsx:65
 msgid "Your message"
-msgstr ""
+msgstr "Ihre Nachricht"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:77
 #: adhocracy4/reports/static/reports/ReportModal.jsx:77

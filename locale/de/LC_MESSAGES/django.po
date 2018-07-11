@@ -541,7 +541,7 @@ msgstr "Kontakt"
 
 #: adhocracy4/dashboard/forms.py:67
 msgid "Contact details"
-msgstr ""
+msgstr "Ansprechperson"
 
 #: adhocracy4/dashboard/forms.py:68
 msgid "This is the help text."
@@ -556,12 +556,12 @@ msgstr "Name"
 
 #: adhocracy4/dashboard/forms.py:83
 msgid "Address"
-msgstr ""
+msgstr "Adresse"
 
 #: adhocracy4/dashboard/forms.py:85
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:123
 msgid "Telephone"
-msgstr ""
+msgstr "Telefon"
 
 #: adhocracy4/dashboard/forms.py:87
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:7
@@ -572,7 +572,7 @@ msgstr "E-Mail"
 #: adhocracy4/dashboard/forms.py:89
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:132
 msgid "Website"
-msgstr ""
+msgstr "Webseite"
 
 #: adhocracy4/dashboard/forms.py:117
 #: adhocracy4/phases/models.py:72
@@ -847,6 +847,8 @@ msgid ""
 "Phone number must be entered in the format: '+999999999'. Up to 15 digits "
 "allowed."
 msgstr ""
+"Die Telfonnummer muss im Format '+999999999' eingegeben werden. "
+"Es sind bis zu 15 Zeichen erlaubt."
 
 #: adhocracy4/projects/models.py:62
 msgid "Title of your project"
@@ -1872,20 +1874,22 @@ msgstr "Urheber"
 #: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:23
 #: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:35
 msgid "Export"
-msgstr ""
+msgstr "Exportieren"
 
 #: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:7
 msgid ""
 "You can export the results of your participation project as an excel file."
 msgstr ""
+"Sie können die Ergebnisse Ihres Beteiligungsprojektes als Excel-Datei "
+"exportieren."
 
 #: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:19
 msgid "here you can export all ideas"
-msgstr ""
+msgstr "hier können Sie alle Ideen exportieren"
 
 #: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:31
 msgid "here you can export all comments"
-msgstr ""
+msgstr "hier können Sie alle Kommentare exportieren"
 
 #: meinberlin/apps/extprojects/dashboard.py:15
 msgid "External project settings"
@@ -2841,7 +2845,7 @@ msgstr "Zurück zu %(name)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:115
 msgid "Contact for questions"
-msgstr ""
+msgstr "Kontakt für Rückfragen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:180
 msgid "No results yet."
