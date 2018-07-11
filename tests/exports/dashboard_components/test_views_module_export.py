@@ -16,5 +16,15 @@ def test_edit_view(client, phase_factory):
     client.login(username=initiator.email, password='password')
     response = client.get(url)
     assert response.status_code == 200
-    # assert response.get('Content-Type') == \
-    #    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    assert 'export' in response.context
+    assert 'comment_export' in response.context
+    export_url = response.context['export']
+    comment_export_url = response.context['comment_export']
+    response = client.get(export_url)
+    assert response.status_code == 200
+    assert response.get('Content-Type') == \
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    response = client.get(comment_export_url)
+    assert response.status_code == 200
+    assert response.get('Content-Type') == \
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
