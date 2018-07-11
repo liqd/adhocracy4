@@ -62,6 +62,10 @@ class ProjectBasicForm(ProjectDashboardForm):
 
 
 class ProjectInformationForm(ProjectDashboardForm):
+
+    contact_info_label = 'Contact details'
+    contact_info_help = 'This is the help text.'
+
     class Meta:
         model = project_models.Project
         fields = [

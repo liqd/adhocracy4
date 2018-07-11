@@ -34,8 +34,7 @@ class ProjectContactDetailMixin(models.Model):
                   "Up to 15 digits allowed."))
 
     contact_address_text = models.TextField(
-        blank=True,
-        help_text=_('Helper text')
+        blank=True
         )
 
     contact_email = models.EmailField(
@@ -43,16 +42,13 @@ class ProjectContactDetailMixin(models.Model):
 
     contact_name = models.CharField(
         max_length=120,
-        blank=True,
-        help_text=_('Helper text')
+        blank=True
         )
 
     contact_phone = models.CharField(
         validators=[phone_regex],
         max_length=17,
-        blank=True,
-        verbose_name=_('Contact details'),
-        help_text=_('Helper text')
+        blank=True
         )
 
     contact_url = models.URLField(
