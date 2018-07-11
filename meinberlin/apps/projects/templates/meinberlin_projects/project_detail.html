@@ -111,6 +111,28 @@
             <div class="l-wrapper">
                 <div class="l-center-8">
                     {{ project.information | transform_collapsibles | richtext }}
+                    {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
+                        <h3 class="u-top-divider">{% trans 'Contact for questions' %}</h3>
+                        {% if project.contact_name %}
+                        <p>{{ project.contact_name }}</p>
+                        {% endif %}
+                        {% if project.contact_address_text %}
+                        <p>{{ project.contact_address_text|linebreaks }}</p>
+                        {% endif %}
+                        {% if project.contact_phone %}
+                        <p><strong>{% trans 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
+                        {% endif %}
+                        {% if project.contact_email %}
+                        <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
+                            {% trans 'Email' %}
+                        </a>
+                        {% endif %}
+                        {% if project.contact_url %}
+                        <a class="btn btn--secondary" href="{{ project.contact_url }}">
+                            {% trans 'Website' %}
+                        </a>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>

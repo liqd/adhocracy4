@@ -85,3 +85,8 @@
 .d-none {
     display: none;
 }
+
+.u-top-divider {
+    padding-top: $padding;
+    border-top: 2px solid $border-color;
+}
