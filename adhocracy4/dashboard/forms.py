@@ -63,8 +63,9 @@ class ProjectBasicForm(ProjectDashboardForm):
 
 class ProjectInformationForm(ProjectDashboardForm):
 
-    contact_info_label = 'Contact details'
-    contact_info_help = 'This is the help text.'
+    contact_heading = _('Contact')
+    contact_info_label = _('Contact details')
+    contact_info_help = _('This is the help text.')
 
     class Meta:
         model = project_models.Project

@@ -1,6 +1,6 @@
 {% load i18n widget_tweaks %}
 
-<h2 class="u-second-heading">{% trans "Contact" %}</h2>
+<h2 class="u-second-heading">{{ form.contact_heading }}</h2>
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.contact_name %}
 {% include 'a4dashboard/includes/form_field.html' with field=form.contact_address_text %}
