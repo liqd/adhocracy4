@@ -2,6 +2,7 @@ from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -23,7 +24,38 @@ class ProjectManager(models.Manager):
                    .order_by('-created')[:8]
 
 
-class Project(base.TimeStampedModel):
+class ProjectContactDetailMixin(models.Model):
+    class Meta:
+        abstract = True
+
+    phone_regex = RegexValidator(
+        regex=r'^\+?1?\d{9,15}$',
+        message=_("Phone number must be entered in the format: '+999999999'. "
+                  "Up to 15 digits allowed."))
+
+    contact_address_text = models.TextField(
+        blank=True
+        )
+
+    contact_email = models.EmailField(
+        blank=True)
+
+    contact_name = models.CharField(
+        max_length=120,
+        blank=True
+        )
+
+    contact_phone = models.CharField(
+        validators=[phone_regex],
+        max_length=17,
+        blank=True
+        )
+
+    contact_url = models.URLField(
+        blank=True)
+
+
+class Project(ProjectContactDetailMixin, base.TimeStampedModel):
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(
         max_length=120,

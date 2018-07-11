@@ -63,10 +63,30 @@ class ProjectBasicForm(ProjectDashboardForm):
 
 class ProjectInformationForm(ProjectDashboardForm):
 
+    contact_heading = _('Contact')
+    contact_info_label = _('Contact details')
+    contact_info_help = _('This is the help text.')
+
     class Meta:
         model = project_models.Project
-        fields = ['information']
+        fields = [
+            'information', 'contact_name', 'contact_address_text',
+            'contact_phone', 'contact_email', 'contact_url'
+        ]
         required_for_project_publish = ['information']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['contact_name'].widget.attrs.update(
+            {'placeholder': _('Name')})
+        self.fields['contact_address_text'].widget.attrs.update(
+            {'placeholder': _('Address')})
+        self.fields['contact_phone'].widget.attrs.update(
+            {'placeholder': _('Telephone')})
+        self.fields['contact_email'].widget.attrs.update(
+            {'placeholder': _('Email')})
+        self.fields['contact_url'].widget.attrs.update(
+            {'placeholder': _('Website')})
 
 
 class ProjectResultForm(ProjectDashboardForm):
