@@ -80,6 +80,11 @@ div.cke_focus {
     }
 }
 
+.form-fieldset {
+    padding: 0;
+    border: none;
+}
+
 .form-group--narrow {
     @include grid-width(9);
 }
