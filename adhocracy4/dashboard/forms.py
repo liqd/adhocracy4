@@ -81,6 +81,7 @@ class ProjectInformationForm(ProjectDashboardForm):
             {'placeholder': _('Name')})
         self.fields['contact_address_text'].widget.attrs.update(
             {'placeholder': _('Address')})
+        self.fields['contact_address_text'].widget.attrs['rows'] = 6
         self.fields['contact_phone'].widget.attrs.update(
             {'placeholder': _('Telephone')})
         self.fields['contact_email'].widget.attrs.update(
