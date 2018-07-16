@@ -35,7 +35,7 @@ class ProjectContactDetailMixin(models.Model):
 
     contact_address_text = models.TextField(
         blank=True,
-        verbose_name='Postal address'
+        verbose_name=_('Postal address')
         )
 
     contact_email = models.EmailField(
@@ -44,7 +44,7 @@ class ProjectContactDetailMixin(models.Model):
     contact_name = models.CharField(
         max_length=120,
         blank=True,
-        verbose_name='Contact person'
+        verbose_name=_('Contact person')
         )
 
     contact_phone = models.CharField(
