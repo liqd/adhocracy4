@@ -63,9 +63,13 @@ class ProjectBasicForm(ProjectDashboardForm):
 
 class ProjectInformationForm(ProjectDashboardForm):
 
-    contact_heading = _('Contact')
-    contact_info_label = _('Contact details')
-    contact_info_help = _('This is the help text.')
+    contact_heading = _('Contact for questions')
+    contact_info_label = _('More contact possibilities')
+    contact_info_help = _('Please name a contact person. The user will '
+                          'then know who is carrying out this project and '
+                          'to whom they can address possible questions. '
+                          'The contact person will be shown in the '
+                          'information tab on the project page.')
 
     class Meta:
         model = project_models.Project

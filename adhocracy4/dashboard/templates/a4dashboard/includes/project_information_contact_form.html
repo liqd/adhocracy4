@@ -1,6 +1,9 @@
 {% load i18n widget_tweaks %}
 
 <h2 class="u-second-heading">{{ form.contact_heading }}</h2>
+<div class="form-hint">
+    {{ form.contact_help }}
+</div>
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.contact_name %}
 {% include 'a4dashboard/includes/form_field.html' with field=form.contact_address_text %}
@@ -10,9 +13,6 @@
 <div class="form-group">
     <fieldset class="form-fieldset">
         <legend>{{ form.contact_info_label }}</legend>
-        <div class="form-hint">
-            {{ form.contact_info_help }}
-        </div>
         {% if field_1.help_text %}
         <div class="form-hint">
             {{ field_1.help_text }}
