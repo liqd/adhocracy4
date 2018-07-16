@@ -536,7 +536,7 @@ msgstr "Kontakt für Rückfragen"
 
 #: adhocracy4/dashboard/forms.py:67
 msgid "More contact possibilities"
-msgstr ""
+msgstr "weitere Kontaktmöglichkeiten"
 
 #: adhocracy4/dashboard/forms.py:68
 msgid ""
@@ -544,6 +544,9 @@ msgid ""
 "this project and to whom they can address possible questions. The contact "
 "person will be shown in the information tab on the project page."
 msgstr ""
+"Bitte benennen Sie eine Kontaktperson. So wissen die Nutzer*innen, wer das "
+"Projekt durchführt und an wen sie sich mit möglichen Fragen wenden können. "
+"Die Kontaktperson wird im Informationsreiter der Projektseite angezeigt."
 
 #: adhocracy4/dashboard/forms.py:85
 #: adhocracy4/phases/models.py:64
@@ -850,11 +853,11 @@ msgstr ""
 
 #: adhocracy4/projects/models.py:38
 msgid "Postal address"
-msgstr ""
+msgstr "Postanschrift"
 
 #: adhocracy4/projects/models.py:47
 msgid "Contact person"
-msgstr ""
+msgstr "Kontaktperson"
 
 #: adhocracy4/projects/models.py:64
 msgid "Title of your project"
