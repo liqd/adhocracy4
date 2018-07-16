@@ -29,9 +29,10 @@ class ProjectContactDetailMixin(models.Model):
         abstract = True
 
     phone_regex = RegexValidator(
-        regex=r'^\+?1?\d{9,15}$',
-        message=_("Phone number must be entered in the format: '+999999999'. "
-                  "Up to 15 digits allowed."))
+        regex=r'^[\d\+\(\)\- ]{8,20}$',
+        message=_("Phone numbers can only contain digits, spaces and "
+                  "the following characters: -, +, (, ). "
+                  "It has to be between 8 and 20 characters long."))
 
     contact_address_text = models.TextField(
         blank=True,
@@ -49,7 +50,7 @@ class ProjectContactDetailMixin(models.Model):
 
     contact_phone = models.CharField(
         validators=[phone_regex],
-        max_length=17,
+        max_length=20,
         blank=True
         )
 
