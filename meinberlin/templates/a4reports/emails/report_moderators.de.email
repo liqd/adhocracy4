@@ -18,4 +18,4 @@ Gemeldet von {{ report.creator.username }} mit folgender Begründung: „{{ repo
 {% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}
 {% block cta_label %}Beitrag prüfen{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie Moderator des Projekts sind. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie die Benachrichtigungen in den Einstellungen Ihres Benutzerkontos deaktivieren.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie Moderator des Projekts sind.{% endblock %}
