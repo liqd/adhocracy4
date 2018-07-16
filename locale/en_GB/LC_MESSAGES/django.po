@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-16 09:55+0200\n"
+"POT-Creation-Date: 2018-07-16 16:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -477,10 +477,6 @@ msgid "Contact for questions"
 msgstr "Contact for questions"
 
 #: adhocracy4/dashboard/forms.py:67
-msgid "More contact possibilities"
-msgstr "More contact possibilities"
-
-#: adhocracy4/dashboard/forms.py:68
 msgid ""
 "Please name a contact person. The user will then know who is carrying out "
 "this project and to whom they can address possible questions. The contact "
@@ -489,6 +485,10 @@ msgstr ""
 "Please name a contact person. The user will then know who is carrying out "
 "this project and to whom they can address possible questions. The contact "
 "person will be shown in the information tab on the project page."
+
+#: adhocracy4/dashboard/forms.py:72
+msgid "More contact possibilities"
+msgstr "More contact possibilities"
 
 #: adhocracy4/dashboard/forms.py:85 adhocracy4/phases/models.py:64
 #: meinberlin/apps/newsletters/models.py:30
@@ -768,25 +768,25 @@ msgstr "Project"
 
 #: adhocracy4/projects/models.py:33
 msgid ""
-"Phone number must be entered in the format: '+999999999'. Up to 15 digits "
-"allowed."
+"Phone numbers can only contain digits, spaces and the following characters: "
+"-, +, (, ). It has to be between 8 and 20 characters long."
 msgstr ""
-"Phone number must be entered in the format: '+999999999'. Up to 15 digits "
-"allowed."
+"Phone numbers can only contain digits, spaces and the following characters: "
+"-, +, (, ). It has to be between 8 and 20 characters long."
 
-#: adhocracy4/projects/models.py:38
+#: adhocracy4/projects/models.py:39
 msgid "Postal address"
 msgstr "Postal address"
 
-#: adhocracy4/projects/models.py:47
+#: adhocracy4/projects/models.py:48
 msgid "Contact person"
 msgstr "Contact person"
 
-#: adhocracy4/projects/models.py:64
+#: adhocracy4/projects/models.py:65
 msgid "Title of your project"
 msgstr "Title of your project"
 
-#: adhocracy4/projects/models.py:65
+#: adhocracy4/projects/models.py:66
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -794,11 +794,11 @@ msgstr ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
 
-#: adhocracy4/projects/models.py:74
+#: adhocracy4/projects/models.py:75
 msgid "Short description of your project"
 msgstr "Short description of your project"
 
-#: adhocracy4/projects/models.py:75
+#: adhocracy4/projects/models.py:76
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -806,11 +806,11 @@ msgstr ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
 
-#: adhocracy4/projects/models.py:83
+#: adhocracy4/projects/models.py:84
 msgid "Description of your project"
 msgstr "Description of your project"
 
-#: adhocracy4/projects/models.py:84
+#: adhocracy4/projects/models.py:85
 msgid ""
 "This description should tell participants what the goal of the project is, "
 "how the project’s participation will look like. It will be always visible in "
@@ -820,11 +820,11 @@ msgstr ""
 "how the project’s participation will look like. It will be always visible in "
 "the „Info“ tab on your project’s page."
 
-#: adhocracy4/projects/models.py:92
+#: adhocracy4/projects/models.py:93
 msgid "Results of your project"
 msgstr "Results of your project"
 
-#: adhocracy4/projects/models.py:93
+#: adhocracy4/projects/models.py:94
 msgid ""
 "Here you should explain what the expected outcome of the project will be and "
 "how you are planning to use the results. If the project is finished you "
@@ -834,11 +834,11 @@ msgstr ""
 "how you are planning to use the results. If the project is finished you "
 "should add a summary of the results."
 
-#: adhocracy4/projects/models.py:100
+#: adhocracy4/projects/models.py:101
 msgid "Access to the project"
 msgstr "Access to the project"
 
-#: adhocracy4/projects/models.py:101
+#: adhocracy4/projects/models.py:102
 msgid ""
 "Please indicate whether this project should be public or restricted to "
 "invited users. Teasers for your project including title and short "
@@ -848,27 +848,27 @@ msgstr ""
 "invited users. Teasers for your project including title and short "
 "description will always be visible to everyone"
 
-#: adhocracy4/projects/models.py:109 adhocracy4/projects/models.py:115
+#: adhocracy4/projects/models.py:110 adhocracy4/projects/models.py:116
 msgid "Header image"
 msgstr "Header image"
 
-#: adhocracy4/projects/models.py:111
+#: adhocracy4/projects/models.py:112
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
-#: adhocracy4/projects/models.py:118 adhocracy4/projects/models.py:125
+#: adhocracy4/projects/models.py:119 adhocracy4/projects/models.py:126
 msgid "Tile image"
 msgstr "Tile image"
 
-#: adhocracy4/projects/models.py:120
+#: adhocracy4/projects/models.py:121
 msgid "The image will be shown in the project tile."
 msgstr "The image will be shown in the project tile."
 
-#: adhocracy4/projects/models.py:138
+#: adhocracy4/projects/models.py:139
 msgid "Project is archived"
 msgstr "Project is archived"
 
-#: adhocracy4/projects/models.py:139
+#: adhocracy4/projects/models.py:140
 msgid ""
 "Exclude this project from all listings by default. You can still access this "
 "project by using filters."
@@ -2335,7 +2335,7 @@ msgstr "District"
 #: meinberlin/apps/plans/models.py:68
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:83
 #: meinberlin/templates/email_base.html:60
-#: meinberlin/templates/email_base.txt:14
+#: meinberlin/templates/email_base.txt:15
 #: meinberlin/templates/newsletter_base.html:51
 #: meinberlin/templates/newsletter_base.txt:13
 msgid "Contact"
@@ -2893,7 +2893,7 @@ msgid "Please enter correct email addresses, separated by commas."
 msgstr "Please enter correct email addresses, separated by commas."
 
 #: meinberlin/apps/users/forms.py:10 meinberlin/templates/email_base.html:61
-#: meinberlin/templates/email_base.txt:15
+#: meinberlin/templates/email_base.txt:16
 #: meinberlin/templates/newsletter_base.html:52
 #: meinberlin/templates/newsletter_base.txt:14
 msgid "Terms of use"
@@ -3262,12 +3262,12 @@ msgid "Error"
 msgstr "Error"
 
 #: meinberlin/templates/email_base.html:24
-#: meinberlin/templates/email_base.txt:3
+#: meinberlin/templates/email_base.txt:4
 msgid "Hello"
 msgstr "Hello"
 
 #: meinberlin/templates/email_base.html:56
-#: meinberlin/templates/email_base.txt:11
+#: meinberlin/templates/email_base.txt:12
 #: meinberlin/templates/newsletter_base.html:47
 #: meinberlin/templates/newsletter_base.txt:10
 msgid "meinBerlin is a participation platform operated by"
@@ -3336,6 +3336,13 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid ""
+#~ "Phone number must be entered in the format: '+999999999'. Up to 15 digits "
+#~ "allowed."
+#~ msgstr ""
+#~ "Phone number must be entered in the format: '+999999999'. Up to 15 digits "
+#~ "allowed."
 
 #~ msgid "Contact details"
 #~ msgstr "Contact details"
