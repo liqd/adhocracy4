@@ -848,6 +848,9 @@ msgid ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
 msgstr ""
+"Telefonnummern können nur Zahlen, Leerzeichen und die folgenden "
+"Zeichen enthalten: -, +, (, ). Sie müssen zwischen 8 und 20 "
+"Zeichen lang sein."
 
 #: adhocracy4/projects/models.py:39
 msgid "Postal address"
