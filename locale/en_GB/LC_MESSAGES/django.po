@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-11 16:37+0200\n"
+"POT-Creation-Date: 2018-07-16 09:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -471,64 +471,66 @@ msgstr "All users can participate (public)."
 msgid "Only invited users can participate (private)."
 msgstr "Only invited users can participate (private)."
 
-#: adhocracy4/dashboard/forms.py:66 meinberlin/apps/plans/models.py:68
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:83
-#: meinberlin/templates/email_base.html:60
-#: meinberlin/templates/email_base.txt:14
-#: meinberlin/templates/newsletter_base.html:51
-#: meinberlin/templates/newsletter_base.txt:13
-msgid "Contact"
-msgstr "Contact"
+#: adhocracy4/dashboard/forms.py:66
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:115
+msgid "Contact for questions"
+msgstr "Contact for questions"
 
 #: adhocracy4/dashboard/forms.py:67
-msgid "Contact details"
-msgstr "Contact details"
+msgid "More contact possibilities"
+msgstr "More contact possibilities"
 
 #: adhocracy4/dashboard/forms.py:68
-msgid "This is the help text."
-msgstr "This is the help text."
+msgid ""
+"Please name a contact person. The user will then know who is carrying out "
+"this project and to whom they can address possible questions. The contact "
+"person will be shown in the information tab on the project page."
+msgstr ""
+"Please name a contact person. The user will then know who is carrying out "
+"this project and to whom they can address possible questions. The contact "
+"person will be shown in the information tab on the project page."
 
-#: adhocracy4/dashboard/forms.py:81 adhocracy4/phases/models.py:64
+#: adhocracy4/dashboard/forms.py:85 adhocracy4/phases/models.py:64
 #: meinberlin/apps/newsletters/models.py:30
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:7
 msgid "Name"
 msgstr "Name"
 
-#: adhocracy4/dashboard/forms.py:83
+#: adhocracy4/dashboard/forms.py:87
 msgid "Address"
 msgstr "Address"
 
-#: adhocracy4/dashboard/forms.py:85
+#: adhocracy4/dashboard/forms.py:90
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:123
 msgid "Telephone"
 msgstr "Telephone"
 
-#: adhocracy4/dashboard/forms.py:87
+#: adhocracy4/dashboard/forms.py:92
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:7
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:127
 msgid "Email"
 msgstr "Email"
 
-#: adhocracy4/dashboard/forms.py:89
+#: adhocracy4/dashboard/forms.py:94
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:132
 msgid "Website"
 msgstr "Website"
 
-#: adhocracy4/dashboard/forms.py:117 adhocracy4/phases/models.py:72
+#: adhocracy4/dashboard/forms.py:122 adhocracy4/phases/models.py:72
 #: meinberlin/apps/extprojects/forms.py:32
 msgid "End date"
 msgstr "End date"
 
-#: adhocracy4/dashboard/forms.py:117 meinberlin/apps/extprojects/forms.py:32
+#: adhocracy4/dashboard/forms.py:122 meinberlin/apps/extprojects/forms.py:32
 msgid "End time"
 msgstr "End time"
 
-#: adhocracy4/dashboard/forms.py:123 adhocracy4/phases/models.py:70
+#: adhocracy4/dashboard/forms.py:128 adhocracy4/phases/models.py:70
 #: meinberlin/apps/extprojects/forms.py:23
 msgid "Start date"
 msgstr "Start date"
 
-#: adhocracy4/dashboard/forms.py:123 meinberlin/apps/extprojects/forms.py:23
+#: adhocracy4/dashboard/forms.py:128 meinberlin/apps/extprojects/forms.py:23
 msgid "Start time"
 msgstr "Start time"
 
@@ -772,11 +774,19 @@ msgstr ""
 "Phone number must be entered in the format: '+999999999'. Up to 15 digits "
 "allowed."
 
-#: adhocracy4/projects/models.py:62
+#: adhocracy4/projects/models.py:38
+msgid "Postal address"
+msgstr "Postal address"
+
+#: adhocracy4/projects/models.py:47
+msgid "Contact person"
+msgstr "Contact person"
+
+#: adhocracy4/projects/models.py:64
 msgid "Title of your project"
 msgstr "Title of your project"
 
-#: adhocracy4/projects/models.py:63
+#: adhocracy4/projects/models.py:65
 msgid ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
@@ -784,11 +794,11 @@ msgstr ""
 "This title will appear on the teaser card and on top of the project detail "
 "page. It should be max. 120 characters long"
 
-#: adhocracy4/projects/models.py:72
+#: adhocracy4/projects/models.py:74
 msgid "Short description of your project"
 msgstr "Short description of your project"
 
-#: adhocracy4/projects/models.py:73
+#: adhocracy4/projects/models.py:75
 msgid ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
@@ -796,11 +806,11 @@ msgstr ""
 "This short description will appear on the header of the project and in the "
 "teaser. It should briefly state the goal of the project in max. 250 chars."
 
-#: adhocracy4/projects/models.py:81
+#: adhocracy4/projects/models.py:83
 msgid "Description of your project"
 msgstr "Description of your project"
 
-#: adhocracy4/projects/models.py:82
+#: adhocracy4/projects/models.py:84
 msgid ""
 "This description should tell participants what the goal of the project is, "
 "how the project’s participation will look like. It will be always visible in "
@@ -810,11 +820,11 @@ msgstr ""
 "how the project’s participation will look like. It will be always visible in "
 "the „Info“ tab on your project’s page."
 
-#: adhocracy4/projects/models.py:90
+#: adhocracy4/projects/models.py:92
 msgid "Results of your project"
 msgstr "Results of your project"
 
-#: adhocracy4/projects/models.py:91
+#: adhocracy4/projects/models.py:93
 msgid ""
 "Here you should explain what the expected outcome of the project will be and "
 "how you are planning to use the results. If the project is finished you "
@@ -824,11 +834,11 @@ msgstr ""
 "how you are planning to use the results. If the project is finished you "
 "should add a summary of the results."
 
-#: adhocracy4/projects/models.py:98
+#: adhocracy4/projects/models.py:100
 msgid "Access to the project"
 msgstr "Access to the project"
 
-#: adhocracy4/projects/models.py:99
+#: adhocracy4/projects/models.py:101
 msgid ""
 "Please indicate whether this project should be public or restricted to "
 "invited users. Teasers for your project including title and short "
@@ -838,27 +848,27 @@ msgstr ""
 "invited users. Teasers for your project including title and short "
 "description will always be visible to everyone"
 
-#: adhocracy4/projects/models.py:107 adhocracy4/projects/models.py:113
+#: adhocracy4/projects/models.py:109 adhocracy4/projects/models.py:115
 msgid "Header image"
 msgstr "Header image"
 
-#: adhocracy4/projects/models.py:109
+#: adhocracy4/projects/models.py:111
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
-#: adhocracy4/projects/models.py:116 adhocracy4/projects/models.py:123
+#: adhocracy4/projects/models.py:118 adhocracy4/projects/models.py:125
 msgid "Tile image"
 msgstr "Tile image"
 
-#: adhocracy4/projects/models.py:118
+#: adhocracy4/projects/models.py:120
 msgid "The image will be shown in the project tile."
 msgstr "The image will be shown in the project tile."
 
-#: adhocracy4/projects/models.py:136
+#: adhocracy4/projects/models.py:138
 msgid "Project is archived"
 msgstr "Project is archived"
 
-#: adhocracy4/projects/models.py:137
+#: adhocracy4/projects/models.py:139
 msgid ""
 "Exclude this project from all listings by default. You can still access this "
 "project by using filters."
@@ -2322,6 +2332,15 @@ msgstr "Label of the location"
 msgid "District"
 msgstr "District"
 
+#: meinberlin/apps/plans/models.py:68
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:83
+#: meinberlin/templates/email_base.html:60
+#: meinberlin/templates/email_base.txt:14
+#: meinberlin/templates/newsletter_base.html:51
+#: meinberlin/templates/newsletter_base.txt:13
+msgid "Contact"
+msgstr "Contact"
+
 #: meinberlin/apps/plans/models.py:70
 msgid "Cost"
 msgstr "Cost"
@@ -2727,10 +2746,6 @@ msgstr "This project is in not published yet."
 #, python-format
 msgid "back to %(name)s"
 msgstr "back to %(name)s"
-
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:115
-msgid "Contact for questions"
-msgstr "Contact for questions"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:180
 msgid "No results yet."
@@ -3321,6 +3336,12 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid "Contact details"
+#~ msgstr "Contact details"
+
+#~ msgid "This is the help text."
+#~ msgstr "This is the help text."
 
 #~ msgid "Proposals with comments"
 #~ msgstr "Proposals with comments"
