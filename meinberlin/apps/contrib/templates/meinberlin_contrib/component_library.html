@@ -46,10 +46,13 @@
                             <a href="#cl-buttons" class="dashboard-nav__item dashboard-nav__item--interactive">Buttons</a>
                         </li>
                         <li class="dashboard-nav__page">
+                            <a href="#cl-category_formset" class="dashboard-nav__item dashboard-nav__item--interactive">Category Formset</a>
+                        </li>
+                        <li class="dashboard-nav__page">
                             <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Commenting</a>
                         </li>
                         <li class="dashboard-nav__page">
-                            <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Comments</a>
+                            <a href="#cl-comments" class="dashboard-nav__item dashboard-nav__item--interactive">Comments</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-complete" class="dashboard-nav__item dashboard-nav__item--interactive">Complete</a>
@@ -417,6 +420,48 @@
                     </p>
                     <div class="btn-group" role="group">
                         <button class="btn" type="button">But</button><button class="btn" type="button">ton</button><button class="btn" type="button">group</button>
+                    </div>
+                </div>
+
+                <h2 id="cl-category_formset">Category Formset</h2>
+
+                <div class="cl-example">
+                    <p>The category formset is used for the categories and category icons from A4.</p>
+
+                    <div class="js-form category-formset__form form-group">
+                        <div class="category-formset__form__category">
+                            <input name="category_set-0-DELETE" id="id_category_set-0-DELETE" class="category-formset__delete" type="checkbox">
+                            <input name="category_set-0-name" value="category 1" placeholder="Kategorie" id="id_category_set-0-name" type="text">
+                            <label for="id_category_set-0-DELETE" class="category-formset__delete-label" title="Kategorie entfernen">
+                                <i class="fas fa-trash-alt" aria-label="Kategorie entfernen"></i>
+                            </label>
+                        </div>
+
+                        <div class="category-formset__form__icon select-icon">
+                            <div class="dropdown select-dropdown category-icon-select">
+                                <button class="btn select-dropdown__btn category-icon-select__btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="select-dropdown__btn__label">
+                                        <img src="/static/category_icons/icons/diamant_icon.svg" class="select-dropdown__btn__label__icon">
+                                        <span class="select-dropdown__btn__label__label">Diamant</span>
+                                    </span>
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-menu select-dropdown__menu">
+                                    <a class="dropdown-item select-dropdown__item" href="#">
+                                        <img src="/static/category_icons/icons/default_icon.svg" class="select-dropdown__item__icon">
+                                        <span class="select-dropdown__item__label">Pin ohne Icon</span>
+                                    </a>
+                                    <a class="dropdown-item select-dropdown__item selected" href="#">
+                                        <img src="/static/category_icons/icons/diamant_icon.svg" class="select-dropdown__item__icon">
+                                        <span class="select-dropdown__item__label">Diamant</span>
+                                    </a>
+                                    <a class="dropdown-item select-dropdown__item" href="#">
+                                        <img src="/static/category_icons/icons/dreieck_oben_icon.svg" class="select-dropdown__item__icon">
+                                        <span class="select-dropdown__item__label">Dreieck Spitze oben</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
