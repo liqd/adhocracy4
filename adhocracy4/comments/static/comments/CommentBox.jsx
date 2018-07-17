@@ -12,7 +12,8 @@ class CommentBox extends React.Component {
     super(props)
 
     this.state = {
-      comments: this.props.comments
+      comments: this.props.comments,
+      commentCategories: this.props.commentCategories
     }
   }
 
