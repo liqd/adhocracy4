@@ -46,10 +46,13 @@
                             <a href="#cl-buttons" class="dashboard-nav__item dashboard-nav__item--interactive">Buttons</a>
                         </li>
                         <li class="dashboard-nav__page">
+                            <a href="#cl-category_formset" class="dashboard-nav__item dashboard-nav__item--interactive">Category Formset</a>
+                        </li>
+                        <li class="dashboard-nav__page">
                             <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Commenting</a>
                         </li>
                         <li class="dashboard-nav__page">
-                            <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Comments</a>
+                            <a href="#cl-comments" class="dashboard-nav__item dashboard-nav__item--interactive">Comments</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-complete" class="dashboard-nav__item dashboard-nav__item--interactive">Complete</a>
@@ -73,7 +76,7 @@
                             <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Doc Toc</a>
                         </li>
                         <li class="dashboard-nav__page">
-                             <a href="#cl-embed-code" class="dashboard-nav__item dashboard-nav__item--interactive">Embed Code</a>
+                             <a href="#cl-embed-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Embed Layout</a>
                         </li>
                         <li class="dashboard-nav__page">
                             <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Bar</a>
@@ -420,6 +423,48 @@
                     </div>
                 </div>
 
+                <h2 id="cl-category_formset">Category Formset</h2>
+
+                <div class="cl-example">
+                    <p>The category formset is used for the categories and category icons from A4.</p>
+
+                    <div class="js-form category-formset__form form-group">
+                        <div class="category-formset__form__category">
+                            <input name="category_set-0-DELETE" id="id_category_set-0-DELETE" class="category-formset__delete" type="checkbox">
+                            <input name="category_set-0-name" value="category 1" placeholder="Kategorie" id="id_category_set-0-name" type="text">
+                            <label for="id_category_set-0-DELETE" class="category-formset__delete-label" title="Kategorie entfernen">
+                                <i class="fas fa-trash-alt" aria-label="Kategorie entfernen"></i>
+                            </label>
+                        </div>
+
+                        <div class="category-formset__form__icon select-icon">
+                            <div class="dropdown select-dropdown category-icon-select">
+                                <button class="btn select-dropdown__btn category-icon-select__btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="select-dropdown__btn__label">
+                                        <img src="/static/category_icons/icons/diamant_icon.svg" class="select-dropdown__btn__label__icon">
+                                        <span class="select-dropdown__btn__label__label">Diamant</span>
+                                    </span>
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-menu select-dropdown__menu">
+                                    <a class="dropdown-item select-dropdown__item" href="#">
+                                        <img src="/static/category_icons/icons/default_icon.svg" class="select-dropdown__item__icon">
+                                        <span class="select-dropdown__item__label">Pin ohne Icon</span>
+                                    </a>
+                                    <a class="dropdown-item select-dropdown__item selected" href="#">
+                                        <img src="/static/category_icons/icons/diamant_icon.svg" class="select-dropdown__item__icon">
+                                        <span class="select-dropdown__item__label">Diamant</span>
+                                    </a>
+                                    <a class="dropdown-item select-dropdown__item" href="#">
+                                        <img src="/static/category_icons/icons/dreieck_oben_icon.svg" class="select-dropdown__item__icon">
+                                        <span class="select-dropdown__item__label">Dreieck Spitze oben</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <h2 id="cl-commenting">Commenting</h2>
 
                 <div class="cl-example">
@@ -730,161 +775,85 @@
                     </div>
                 </div>
 
-                <h2 id="cl-embed-code-site">Embed Code Site</h2>
+                <h2 id="cl-embed-layout">Embed Layout</h2>
 
                 <div class="cl-example">
-                    <main class="embed">
-                        <header class="embed-header">
-                            <a href="/accounts/login/" class="btn btn--light">Log in</a>
-                            <div id="embed-status" class="embed-status"></div>
-                        </header>
-                        <div class="project-header project-header--image u-after-dialogue-box" style="background-image: url(/media/projects/backgrounds/danziger.png.1500x500_q85.png);">
-                            <div class="l-wrapper">
-                                <div class="l-center-6">
-                                    <a href="/projects/berlin-wird-leiser/" class="project-header__link" data-embed-target="external">
-                                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                        Back to site
-                                    </a>
-                                    <h1 class="project-header__title">Title</h1>
-                                    <p class="project-header__description">Description - dark overlay on header image with further information via tabs and map below.</p>
-                                </div>
-                            </div>
-                            <div class="project-header__copyright copyright">© Copyright</div>
-                        </div>
-                        <div class="tablist tablist--left">
-                            <div class="l-wrapper">
-                                <div class="tablist__right"></div>
-                                <nav class="nav" role="tablist">
-                                    <a id="tab-1" class="tab" data-toggle="tab" href="#tabpanel-1" role="tab" aria-controls="tabpanel-1" aria-expanded="false">
-                                        Tab 1
-                                    </a>
-                                    <a id="tab-2" class="tab active" data-toggle="tab" href="#tabpanel-2" role="tab" aria-controls="tabpanel-2" aria-expanded="true">
-                                        Tab 2
-                                    </a>
-                                </nav>
-                            </div>
-                        </div>
-                        <div class="tabpanel" id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1" aria-expanded="false">
-                            <div class="l-wrapper">
-                                <div class="l-center-8">
-                                    <div class="rich-text">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="l-wrapper">
-                            <div class="l-center-6">
-                                <div class="timeline-detail">
-                                    <div class="timeline-detail__meta">
-                                        <strong>Project title finish on <time datetime="2018-01-01T00:00:00+02:00">01. January 2018 00:00</time>
-                                        </strong>
-                                    </div>
-                                    <div class="phase-info">
-                                        <div class="phase-info__item  u-no-border ">
-                                            <div class="phase-info__item__title">
-                                                Title
-                                            </div>
-                                            <div class="phase-info__item__subtitle">
-                                                <time datetime="2018-01-01T00:00:00+02:00">01. January 2018 00:00</time>
-                                                –
-                                                <time datetime="2019-01-01T00:00:00+02:00">01. January 2019 00:00</time>
-                                            </div>
-                                            <div class="phase-info__item__description">
-                                                Decription - Below btween Catagory All and footer should be a map, should be placed between last closing div and closing main tag.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="l-center-6">
-                            </div>
-                        </div>
-                        <div class="control-bar__top-overlap">
-                            <div class="l-wrapper">
-                                <div class="l-center-8">
-                                    <div class="control-bar">
-                                        <a class="btn btn--light" href="?mode=list" aria-label="Listenansicht">
-                                            <i class="fa fa-list" aria-hidden="true"></i>
-                                            View
-                                        </a>
-                                        <div class="dropdown ">
-                                            <button type="button" class="dropdown-toggle btn btn--light btn--select" data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="id_category">
-                                                Catagory All
-                                                <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                            </button>
-                                            <ul aria-labelledby="id_category" class="dropdown-menu">
-                                                <li><a class="selected" href="#">All</a></li>
-                                                <li><a href="#"><img class="dropdown-item__icon" src="#"><span class="dropdown-item__label">Dropdown 1</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </main>
-                    <footer class="embed-footer">
-                        <a href="#" target="_blank">
-                            <img src="/static/images/logo_horizontal.5ba9d725f7fa.svg" alt="mein.berlin" class="embed-footer__logo">
-                        </a>
-                        <a href="#" data-embed-target="external">To Platform</a>
-                    </footer>
-                    </div>
-
-                    <h2 id="cl-control_bar">Filter Bar and Input Group</h2>
-
-                    <div class="cl-example">
-                        <p>Inside the component Filter Bar are the control-bar block elements. Control Bars are intended to be used atop of lists of elements or maps.</p>
-                        <p>Control Bars may only contain <a href="#">Buttons</a>, <a href="#">Dropdowns</a> and <code>input-groups</code>.</p>
-                        <p>Note that they are somehow located within the <code>_filter_bar.scss</code> file.</p>
-                        <div class="cl-example">
-                            <div class="control-bar" role="group" aria-label="Filter bar">
-                                <a class="btn btn--light" href="#" aria-label="View as map">
-                                    <i class="fa fa-map" aria-hidden="true"></i>
-                                    View
+                    <html class="embed">
+                        <body>
+                            <header class="embed-header">
+                                You are logged in as Username
+                                <a href="#" class="btn btn--light" target="_blank">Logout</a>
+                                <div id="embed-status" class="embed-status"></div>
+                            </header>
+                            <main class="embed-main">
+                                <p>This is where the actual content of the embed will be.</p>
+                                <p>The class embed status left in above is only an empty div before embed.js puts stuff in there.</p>
+                            </main>
+                            <footer class="embed-footer">
+                                <a href="/" target="_blank">
+                                    <img src="" alt="mein.berlin Logo" class="embed-footer__logo">
                                 </a>
-                                <form class="input-group form-group u-inline-flex" method="get">
-                                    <input class="input-group__input" type="search" name="search" placeholder="Search" value="">
-                                    <button class="input-group__after btn btn--light" type="submit" title="Search">
-                                        <i class="fa fa-search" aria-label="Search"></i>
-                                    </button>
-                                </form>
+                                <a href="#" data-embed-target="external">Go to platform</a>
+                            </footer>
+                        </body>
+                    </html>
+                </div>
+
+                <h2 id="cl-control_bar">Filter Bar and Input Group</h2>
+
+                <div class="cl-example">
+                    <p>Inside the component Filter Bar are the control-bar block elements. Control Bars are intended to be used atop of lists of elements or maps.</p>
+                    <p>Control Bars may only contain <a href="#">Buttons</a>, <a href="#">Dropdowns</a> and <code>input-groups</code>.</p>
+                    <p>Note that they are somehow located within the <code>_filter_bar.scss</code> file.</p>
+                    <div class="cl-example">
+                        <div class="control-bar" role="group" aria-label="Filter bar">
+                            <a class="btn btn--light" href="#" aria-label="View as map">
+                                <i class="fa fa-map" aria-hidden="true"></i>
+                                View
+                            </a>
+                            <form class="input-group form-group u-inline-flex" method="get">
+                                <input class="input-group__input" type="search" name="search" placeholder="Search" value="">
+                                <button class="input-group__after btn btn--light" type="submit" title="Search">
+                                    <i class="fa fa-search" aria-label="Search"></i>
+                                </button>
+                            </form>
+                            <div class="dropdown">
+                                <button type="button" class="dropdown-toggle btn btn--light btn--select">
+                                    Category: All
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <div class="control-bar__right">
                                 <div class="dropdown">
                                     <button type="button" class="dropdown-toggle btn btn--light btn--select">
-                                        Category: All
+                                        Ordering: Most recent
                                         <i class="fa fa-caret-down" aria-hidden="true"></i>
                                     </button>
                                 </div>
-                                <div class="control-bar__right">
-                                    <div class="dropdown">
-                                        <button type="button" class="dropdown-toggle btn btn--light btn--select">
-                                            Ordering: Most recent
-                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="module-content">
-                                <div class="l-wrapper">
-                                    <ul class="u-list-reset">
-                                        <li class="list-item list-item--squashed">
-                                            {% lorem 20 w random %}
-                                        </li>
-                                        <li class="list-item list-item--squashed">
-                                            {% lorem 20 w random %}
-                                        </li>
-                                    </ul>
-                                </div>
+                        </div>
+                        <div class="module-content">
+                            <div class="l-wrapper">
+                                <ul class="u-list-reset">
+                                    <li class="list-item list-item--squashed">
+                                        {% lorem 20 w random %}
+                                    </li>
+                                    <li class="list-item list-item--squashed">
+                                        {% lorem 20 w random %}
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <h2 id="cl-fixedside">Fixed side</h2>
+                <h2 id="cl-fixedside">Fixed side</h2>
 
-                    <div class="cl-example">SEE FEEDBACK BUTTON --->
-                        <aside class="fixed-side">
-                            <a href="/feedback/" class="btn btn--primary btn--attached-top">Feedback</a>
-                        </aside>
-                    </div>
+                <div class="cl-example">SEE FEEDBACK BUTTON --->
+                    <aside class="fixed-side">
+                        <a href="/feedback/" class="btn btn--primary btn--attached-top">Feedback</a>
+                    </aside>
+                </div>
 
                 <h2 id="cl-footer">Footer</h2>
 
@@ -967,13 +936,12 @@
                 <div class="cl-example">
                     <div class="hero-unit">
                         <div class="hero-unit__wrapper">
-                            <div class="hero-unit__title u-first-heading">Hero Unit Title</div>
-                            <h1 class="hero-unit__title u-first-heading">Size used on Hompage H1</h1>
-                            <div class="hero-unit__subtitle">Subtitle, large image to otherside with copyright</div>
+                            <h1 class="hero-unit__title u-first-heading">Hero Unit Title - the hero unit is used on the (wagtail) landing page</h1>
+                            <div class="hero-unit__subtitle">And a subtitle!</div>
                         </div>
                         <div class="hero-unit__img">
-                        <div class="hero-unit__copyright copyright">© Copyright</div>
-                    </div>
+                            <div class="hero-unit__copyright copyright">© Copyright</div>
+                        </div>
                     </div>
                 </div>
 
