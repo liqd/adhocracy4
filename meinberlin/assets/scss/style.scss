@@ -2,15 +2,18 @@
 @import '~sass-planifolia/sass/grid';
 @import '~sass-planifolia/sass/contrast';
 
-@import 'variables';
 @import 'mixins';
+@import 'variables';
 
-@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/functions';
+
 @import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/variables';
 @import '~bootstrap/scss/modal';
 @import '~bootstrap/scss/close';
 @import '~bootstrap/scss/transitions';
 @import '~bootstrap/scss/utilities/screenreaders';
+@import '~bootstrap/scss/dropdown';
 
 @import 'base';
 @import 'layout';
@@ -35,6 +38,7 @@
 @import 'components/dropdown';
 @import 'components/embed_layout';
 @import 'components/embed_status';
+@import 'components/export_dashboard';
 @import 'components/filter_bar';
 @import 'components/fixed_side';
 @import 'components/footer';

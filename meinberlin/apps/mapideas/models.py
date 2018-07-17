@@ -1,8 +1,11 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.comments import models as comment_models
 from adhocracy4.maps import fields as map_fields
+from adhocracy4.ratings import models as rating_models
 from meinberlin.apps.ideas import models as idea_models
 
 
@@ -27,6 +30,12 @@ class AbstractMapIdea(idea_models.AbstractIdea):
 
 
 class MapIdea(AbstractMapIdea):
+    ratings = GenericRelation(rating_models.Rating,
+                              related_query_name='mapidea',
+                              object_id_field='object_pk')
+    comments = GenericRelation(comment_models.Comment,
+                               related_query_name='mapidea',
+                               object_id_field='object_pk')
 
     def get_absolute_url(self):
         return reverse('meinberlin_mapideas:mapidea-detail',

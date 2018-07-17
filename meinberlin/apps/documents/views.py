@@ -1,11 +1,13 @@
 from django.http import Http404
 from django.http.response import HttpResponseRedirect
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.dashboard import mixins as dashboard_mixins
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.exports.views import DashboardExportView
 
 from . import models
 
@@ -66,3 +68,14 @@ class ParagraphDetailView(ProjectMixin,
                           generic.DetailView):
     model = models.Paragraph
     permission_required = 'meinberlin_documents.view_paragraph'
+
+
+class DocumentDashboardExportView(DashboardExportView):
+    template_name = 'meinberlin_exports/export_dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_export'] = reverse(
+            'a4dashboard:document-comment-export',
+            kwargs={'module_slug': self.module.slug})
+        return context

@@ -21,7 +21,7 @@
             </div>
         {% elif project|is_external %}
             <div class="tile__badge tile__badge--external">
-                <i class="fa fa-mail-forward" aria-label="{% trans 'External Project' %}"></i>
+                <i class="fas fa-share" aria-label="{% trans 'External Project' %}"></i>
             </div>
         {% else %}
             <img src="{% static 'images/meinberlin.svg' %}" alt="{% trans 'Project on meinBerlin' %}" class="tile__badge">

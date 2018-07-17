@@ -9,11 +9,7 @@ require('shariff')
 var Shariff = window.Shariff
 
 // load bootstrap components
-var dropdown = require('bootstrap/js/src/dropdown.js')
-var modal = require('bootstrap/js/src/modal.js')
-var tab = require('bootstrap/js/src/tab.js')
-var collapse = require('bootstrap/js/src/collapse.js')
-var popover = require('bootstrap/js/src/popover.js')
+require('bootstrap')
 
 var django = require('django')
 

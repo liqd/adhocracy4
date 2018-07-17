@@ -1,4 +1,5 @@
-{% load i18n %}{% block headline %}{% endblock %}
+{% load i18n %}{# Hack to ensure german mails are sent regardless of the current users browser language setting #}{% language 'de' %}
+{% block headline %}{% endblock %}
 
 {% trans 'Hello' %},
 {% block content %}{% endblock %}
@@ -13,3 +14,4 @@ Liquid Democracy e.V., Am Sudhaus 2, D-12053 Berlin
 
 {% trans 'Contact' %}: {{ site.domain }}/contact/
 {% trans 'Terms of use' %}: {{ site.domain }}/terms-of-use/
+{% endlanguage %}

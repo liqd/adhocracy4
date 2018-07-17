@@ -58,11 +58,11 @@ var setBusy = function ($group, busy) {
   $group.find('input').attr('disabled', busy)
   $group.find('button').attr('disabled', busy)
   if (busy) {
-    $group.find('.fa')
+    $group.find('.fa, .fas, .far')
       .addClass('fa-spinner fa-pulse')
       .removeClass('fa-search')
   } else {
-    $group.find('.fa')
+    $group.find('.fa, .fas, .far')
       .addClass('fa-search')
       .removeClass('fa-spinner fa-pulse')
   }

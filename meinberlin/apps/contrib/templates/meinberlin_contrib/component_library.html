@@ -260,7 +260,7 @@
 
                 <div class="cl-example">
                     <div class="action action--withdate">
-                        <i class="fa fa-clock-o action__icon" aria-hidden="true"></i>
+                        <i class="far fa-clock action__icon" aria-hidden="true"></i>
                         <div class="action__main">
                             <div class="action__line">
                                 Action of type schedule
@@ -436,7 +436,7 @@
                                     <i class="fa fa-chevron-down" aria-label="Move down"></i>
                                 </button>
                                 <button class="btn btn--light btn--small" title="Delete" type="button">
-                                    <i class="fa fa-trash" aria-label="Delete"></i>
+                                    <i class="fas fa-trash-alt" aria-label="Delete"></i>
                                 </button>
                             </div>
                         {% endspaceless %}
@@ -447,7 +447,7 @@
                         </div>
                         <div class="commenting__actions">
                             <button class="btn btn--light btn--small" title="Delete" type="button">
-                                <i class="fa fa-trash" aria-label="Delete"></i>
+                                <i class="fas fa-trash-alt" aria-label="Delete"></i>
                             </button>
                         </div>
                     </div>
@@ -457,7 +457,7 @@
                         </button>
                         <div class="commenting__actions">
                             <button class="btn btn--light btn--small" title="Delete" type="button">
-                                <i class="fa fa-trash" aria-label="Delete"></i>
+                                <i class="fas fa-trash-alt" aria-label="Delete"></i>
                             </button>
                         </div>
                     </div>
@@ -467,7 +467,7 @@
                         </button>
                         <div class="commenting__actions">
                             <button class="btn btn--light btn--small" title="Delete" type="button">
-                                <i class="fa fa-trash" aria-label="Delete"></i>
+                                <i class="fas fa-trash-alt" aria-label="Delete"></i>
                             </button>
                         </div>
                     </div>
@@ -505,7 +505,7 @@
                                                 </div>
                                                 <ul class="nav navbar-nav">
                                                     <li class="dropdown">
-                                                        <button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+                                                        <button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-flip="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
                                                         <ul class="dropdown-menu">
                                                             <li><button type="button">Edit</button></li>
                                                             <li class="divider"></li><li><a href="#">Delete</a></li>
@@ -540,7 +540,7 @@
                                                                 <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button>
                                                                 <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button>
                                                             </div>
-                                                            <ul class="nav navbar-nav"><li class="dropdown"><button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+                                                            <ul class="nav navbar-nav"><li class="dropdown"><button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-flip="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
                                                             </ul>
                                                         </nav>
                                                     </div>
@@ -698,7 +698,7 @@
                             </div>
                             <div class="paragraph__actions">
                                 <a class="btn" href="#">
-                                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                    <i class="far fa-comment" aria-hidden="true"></i>
                                     10 Comments
                                 </a>
                             </div>
@@ -713,11 +713,20 @@
                             </div>
                             <div class="paragraph__actions">
                                 <a class="btn" href="#">
-                                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                    <i class="far fa-comment" aria-hidden="true"></i>
                                     1 Comment
                                 </a>
                             </div>
                         </section>
+                    </div>
+                </div>
+
+                <h2 id="cl-embed-code">Embed Code Interface</h2>
+
+                <div class="cl-example">
+                    <div class="form-group">
+                        <label for="embed-code-spatial-idea-collection-2">Embed Code</label>
+                        <textarea id="embed-code-spatial-idea-collection-2" readonly=""></textarea>
                     </div>
                 </div>
 
@@ -810,19 +819,19 @@
                                 <ul class="theme-white orientation-horizontal col-4">
                                     <li class="shariff-button twitter">
                                         <a href="#" data-rel="popup" rel="nofollow" title="Bei Twitter teilen" role="button" aria-label="Bei Twitter teilen">
-                                            <span class="fa fa-twitter"></span>
+                                            <span class="fab fa-twitter"></span>
                                             <span class="share_text">tweet</span>
                                         </a>
                                     </li>
-                                    <li class="shariff-button facebook">
+                                    <li class="shariff-button ">
                                         <a href="#" data-rel="popup" rel="nofollow" title="Bei Facebook teilen" role="button" aria-label="Bei Facebook teilen">
-                                            <span class="fa fa-facebook"></span>
+                                            <span class="fab fa-facebook"></span>
                                             <span class="share_text">teilen</span>
                                         </a>
                                     </li>
                                     <li class="shariff-button googleplus">
                                         <a href="#cl-footer" data-rel="popup" rel="nofollow" title="Bei Google+ teilen" role="button" aria-label="Bei Google+ teilen">
-                                            <span class="fa fa-google-plus"></span>
+                                            <span class="fab fa-google-plus-g"></span>
                                             <span class="share_text">teilen</span>
                                         </a>
                                     </li>
@@ -859,7 +868,7 @@
                                     </ul>
                                     <div class="main-header__user">
                                         <div class="dropdown dropdown--right">
-                                            <button type="button" class="dropdown-toggle btn btn--light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="user-actions">
+                                            <button type="button" class="dropdown-toggle btn btn--light" data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="user-actions">
                                                 User
                                                 <i class="fa fa-caret-down" aria-hidden="true"></i>
                                             </button>
@@ -968,7 +977,7 @@
                             </ul>
                         </div>
                         <div class="dropdown dropdown--right">
-                            <button title="Remark" type="button" class="dropdown-toggle btn btn--light btn--small" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="idea-remark__dropdown">
+                            <button title="Remark" type="button" class="dropdown-toggle btn btn--light btn--small"  data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="idea-remark__dropdown">
                                 <i class="fa fa-comment" aria-label="Moderator remark"></i>
                                 <i class="fa fa-check-circle idea-remark__btn__notify  d-none " aria-hidden="true" style="display: inline;"></i>
                             </button>
@@ -1102,7 +1111,7 @@
                                                 </span>
                                             </span>
                                             <span title="Comments">0
-                                                <i class="fa fa-comment-o" aria-label="Comments"></i></span>
+                                                <i class="far fa-comment" aria-label="Comments"></i></span>
                                         </div>
 
                                         <h3 class="list-item__title"><a href="#cl-list_item">My Idea</a></h3>
@@ -1121,7 +1130,7 @@
                                                 </span>
                                             </span>
                                             <span title="Comments">0
-                                                <i class="fa fa-comment-o" aria-label="Comments"></i>
+                                                <i class="far fa-comment" aria-label="Comments"></i>
                                             </span>
                                         </div>
 
@@ -1353,7 +1362,7 @@
                                             </span>
                                             <span title="Comments">
                                                 0
-                                                <i class="fa fa-comment-o" aria-label="Comments"></i>
+                                                <i class="far fa-comment" aria-label="Comments"></i>
                                             </span>
                                         </div>
                                         <h3 class="list-item__title">Rated comment</h3>
@@ -1389,7 +1398,7 @@
                 <div class="cl-example">
                     <div class="tablist tablist--left">
                         <div class="l-wrapper">
-                            <nav role="tablist">
+                            <nav class="nav" role="tablist">
                                 <a id="tab-project-3-information" class="tab" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-information" aria-expanded="false">Tab</a>
                                 <a id="tab-project-3-participation" class="tab active" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-participation" aria-expanded="true">Tab 2</a>
                                 <a id="tab-project-3-result" class="tab" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-result" aria-expanded="false">Tab 3</a>
@@ -1507,7 +1516,7 @@
                                     <input name="logo" id="id_logo" class="form-control form-control-file" type="file">
                                     <input name="__noname__" class="form-control form-control-file-dummy" placeholder="Select a picture from your local folder." tabindex="-1" id="text-id_logo" type="text">
                                     <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
-                                        <i class="fa fa-cloud-upload" aria-label="Upload a picture"></i>
+                                        <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
                                     </label>
                                 </div>
                                 <div class="form-id_logo upload-wrapper__preview">

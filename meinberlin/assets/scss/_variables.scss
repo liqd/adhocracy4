@@ -1,5 +1,8 @@
 // subset of bootstrap variables
 
+$gray: #464a4c !default;
+$gray-lighter: #636c72 !default;
+
 $brand-primary: #cd0055 !default;
 $brand-primary-tint: #f5ccdd !default;
 $brand-secondary: #253276 !default;
@@ -52,6 +55,8 @@ $hero-height-mobile: 10.4rem !default;
 @include grid-set('gutter', $padding);
 $planifolia-contrast-dark-default: $text-color;
 $planifolia-contrast-light-default: $text-color-inverted;
+
+$enable-caret: false;
 
 $idea-remark-bg: #faf5d1 !default;
 $idea-remark-color: #999 !default;

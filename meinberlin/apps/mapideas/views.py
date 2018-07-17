@@ -1,8 +1,10 @@
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.categories import filters as category_filters
 from adhocracy4.filters import filters as a4_filters
 from meinberlin.apps.contrib import filters
+from meinberlin.apps.exports.views import DashboardExportView
 from meinberlin.apps.ideas import views as idea_views
 
 from . import forms
@@ -82,3 +84,17 @@ class MapIdeaModerateView(idea_views.AbstractIdeaModerateView):
     permission_required = 'meinberlin_mapideas.moderate_mapidea'
     template_name = 'meinberlin_mapideas/mapidea_moderate_form.html'
     moderateable_form_class = forms.MapIdeaModerateForm
+
+
+class MapIdeaDashboardExportView(DashboardExportView):
+    template_name = 'meinberlin_exports/export_dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['export'] = reverse(
+            'a4dashboard:mapidea-export',
+            kwargs={'module_slug': self.module.slug})
+        context['comment_export'] = reverse(
+            'a4dashboard:mapidea-comment-export',
+            kwargs={'module_slug': self.module.slug})
+        return context
