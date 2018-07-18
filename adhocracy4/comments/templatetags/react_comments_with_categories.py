@@ -38,8 +38,12 @@ def react_comments_with_categories(context, obj):
     comments_contenttype = ContentType.objects.get_for_model(Comment)
     pk = obj.pk
 
-    commentCategories = getattr(settings, 'A4_COMMENT_CATEGORIES', None)
-    if not commentCategories:
+    commentCategoryChoices = getattr(settings,
+                                     'A4_COMMENT_CATEGORIES', None)
+    if commentCategoryChoices:
+        commentCategoryChoices = dict((x, str(y)) for x, y
+                                      in commentCategoryChoices)
+    else:
         raise ImproperlyConfigured('set A4_COMMENT_CATEGORIES in settings')
 
     attributes = {
@@ -52,7 +56,7 @@ def react_comments_with_categories(context, obj):
         'user_name': user_name,
         'isReadOnly': (not has_comment_permission and
                        not would_have_comment_permission),
-        'commentCategories': commentCategories,
+        'commentCategoryChoices': commentCategoryChoices,
     }
 
     return format_html(
