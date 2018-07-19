@@ -74,7 +74,7 @@ class CommentSerializer(serializers.ModelSerializer):
         categories = {}
         if comment.comment_categories:
             category_choices = getattr(settings,
-                                       'A4_COMMENT_CATEGORIES', None)
+                                       'A4_COMMENT_CATEGORIES', '')
             if category_choices:
                 category_choices = dict((x, str(y)) for x, y
                                         in category_choices)
