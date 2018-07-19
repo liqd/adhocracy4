@@ -1,5 +1,7 @@
 var CommentList = require('./CommentList')
 var CommentForm = require('./CommentForm')
+var CommentCategoryForm = require('./CommentCategoryForm')
+
 var api = require('../../../static/api')
 
 var React = require('react')
@@ -161,14 +163,29 @@ class CommentBox extends React.Component {
     }
   }
 
+  getCommentForm () {
+    if (this.props.commentCategoryChoices) {
+      return (
+        <CommentCategoryForm subjectType={this.props.subjectType} subjectId={this.props.subjectId}
+          onCommentSubmit={this.handleCommentSubmit.bind(this)} placeholder={django.gettext('Your comment here')}
+          rows="5" isReadOnly={this.props.isReadOnly} error={this.state.error} errorMessage={this.state.errorMessage} handleErrorClick={this.hideNewError.bind(this)}
+          commentCategoryChoices={this.props.commentCategoryChoices} />
+      )
+    } else {
+      return (
+        <CommentForm subjectType={this.props.subjectType} subjectId={this.props.subjectId}
+          onCommentSubmit={this.handleCommentSubmit.bind(this)} placeholder={django.gettext('Your comment here')}
+          rows="5" isReadOnly={this.props.isReadOnly} error={this.state.error} errorMessage={this.state.errorMessage} handleErrorClick={this.hideNewError.bind(this)} />
+      )
+    }
+  }
+
   render () {
     return (
       <div>
         <div className="black-divider">{this.state.comments.length + ' ' + django.ngettext('comment', 'comments', this.state.comments.length)}</div>
         <div className="comment-box">
-          <CommentForm subjectType={this.props.subjectType} subjectId={this.props.subjectId}
-            onCommentSubmit={this.handleCommentSubmit.bind(this)} placeholder={django.gettext('Your comment here')}
-            rows="5" isReadOnly={this.props.isReadOnly} error={this.state.error} errorMessage={this.state.errorMessage} handleErrorClick={this.hideNewError.bind(this)} />
+          {this.getCommentForm()}
           <div className="comment-list">
             <CommentList
               comments={this.state.comments}

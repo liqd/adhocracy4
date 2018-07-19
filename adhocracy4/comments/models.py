@@ -30,6 +30,8 @@ class Comment(base.UserGeneratedContentModel):
     child_comments = GenericRelation('self',
                                      related_query_name='parent_comment',
                                      object_id_field='object_pk')
+    comment_categories = models.CharField(blank=True,
+                                          max_length=256)
 
     class Meta:
         verbose_name = _("Comment")
@@ -53,8 +55,10 @@ class Comment(base.UserGeneratedContentModel):
 
         if self.is_removed:
             self.comment = _('deleted by creator')
+            self.comment_categories = ''
         if self.is_censored:
             self.comment = _('deleted by moderator')
+            self.comment_categories = ''
         return super(Comment, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
