@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.utils.translation import ugettext as _
 from rest_framework import serializers
 
@@ -9,6 +10,7 @@ class CommentSerializer(serializers.ModelSerializer):
     is_deleted = serializers.SerializerMethodField()
     ratings = serializers.SerializerMethodField()
     is_moderator = serializers.SerializerMethodField()
+    comment_categories = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
@@ -63,6 +65,26 @@ class CommentSerializer(serializers.ModelSerializer):
         }
 
         return result
+
+    def get_comment_categories(self, comment):
+        """
+        Gets the categories and adds them along with their values
+        to a dictionary
+        """
+        categories = {}
+        if comment.comment_categories:
+            category_choices = getattr(settings,
+                                       'A4_COMMENT_CATEGORIES', None)
+            if category_choices:
+                category_choices = dict((x, str(y)) for x, y
+                                        in category_choices)
+            category_list = comment.comment_categories.strip('[]').split(',')
+            for category in category_list:
+                if category in category_choices:
+                    categories[category] = category_choices[category]
+                else:
+                    categories[category] = category
+        return categories
 
 
 class ThreadSerializer(CommentSerializer):
