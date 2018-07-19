@@ -42,12 +42,12 @@ class CommentForm extends React.Component {
 
     var categoryChoiceHtml = Object.keys(categoryChoices).map(function (objectKey, index) {
       categoryCheck = categoryChoices[objectKey]
-      inputId = 'id_' + {objectKey}
+      inputId = 'id_' + objectKey
       return (
         <div className="comment-category" key={objectKey}>
-          <label className="comment-category_row" htmlFor={inputId} for={inputId}>
+          <label className="comment-category_row" htmlFor={inputId} >
             <input className="comment-category_input" type="checkbox" id={inputId} value={categoryCheck} />
-            {categoryCheck}
+            <span className="comment-category_text">{categoryCheck}</span>
           </label>
         </div>
       )
