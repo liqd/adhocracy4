@@ -11,7 +11,6 @@ class CommentForm extends React.Component {
     super(props)
 
     this.state = {comment: ''}
-    this.state = {category: ''}
   }
 
   handleTextChange (e) {
@@ -45,12 +44,10 @@ class CommentForm extends React.Component {
       categoryCheck = categoryChoices[objectKey]
       inputId = 'id_' + {objectKey}
       return (
-        <div className="comments_categories" key={objectKey}>
-          <label className="category_row" htmlFor={inputId} for={inputId}>
-            <input className="radio__input"
-              type="checkbox"
-              id={inputId}
-              value={categoryCheck} />{categoryCheck}
+        <div className="form-group_category" key={objectKey}>
+          <label className="form-group_category_row" htmlFor={inputId} for={inputId}>
+            <input className="form-group_input_category" type="checkbox" id={inputId} value={categoryCheck}/>
+            {categoryCheck}
           </label>
         </div>
       )
