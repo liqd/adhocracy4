@@ -34,19 +34,20 @@ class CommentForm extends React.Component {
     })
   }
 
-  getCategoryChoices () {
-    return (
-      <div>
-        <input type="checkbox" id="scales" name="feature" value="scales" />
-        <label htmlFor="scales">Scales</label>
-      </div>
-    // props.commentCategoryChoices.map((item, key) => {
-    //     return <KvpColumn key={item.key} kvp={item}/>
-    // })
-    )
-  }
-
   render () {
+    var categoryChoices = this.props.commentCategoryChoices
+    let categoryCheck = ''
+
+    var categories = Object.keys(categoryChoices).map(function (objectKey, index) {
+      categoryCheck = categoryChoices[objectKey]
+      return (
+        <div>
+          <input type="checkbox" id="scales" name="feature" value="scales" />
+          <label htmlFor="scales">{categoryCheck}</label>
+        </div>
+      )
+    })
+
     if (this.context.isAuthenticated && !this.props.isReadOnly) {
       return (
         <form className="general-form" onSubmit={this.handleSubmit.bind(this)}>
@@ -56,7 +57,7 @@ class CommentForm extends React.Component {
           <div className="form-group">
             <fieldset>
               <legend className="sr-only">{django.gettext('Choose categories for your comment')}</legend>
-              {this.getCategoryChoices()}
+              {categories}
             </fieldset>
             <textarea
               autoFocus={this.props.grabFocus}
