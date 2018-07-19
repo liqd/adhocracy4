@@ -11,6 +11,7 @@ class CommentForm extends React.Component {
     super(props)
 
     this.state = {comment: ''}
+    this.state = {category: ''}
   }
 
   handleTextChange (e) {
@@ -20,6 +21,7 @@ class CommentForm extends React.Component {
   handleSubmit (e) {
     e.preventDefault()
     var comment = this.state.comment.trim()
+
     if (!comment) {
       return
     }
@@ -37,13 +39,19 @@ class CommentForm extends React.Component {
   render () {
     var categoryChoices = this.props.commentCategoryChoices
     let categoryCheck = ''
+    let inputId = ''
 
-    var categories = Object.keys(categoryChoices).map(function (objectKey, index) {
+    var categoryChoiceHtml = Object.keys(categoryChoices).map(function (objectKey, index) {
       categoryCheck = categoryChoices[objectKey]
+      inputId = 'id_' + {objectKey}
       return (
-        <div>
-          <input type="checkbox" id="scales" name="feature" value="scales" />
-          <label htmlFor="scales">{categoryCheck}</label>
+        <div className="comments_categories" key={objectKey}>
+          <label className="category_row" htmlFor={inputId} for={inputId}>
+            <input className="radio__input"
+              type="checkbox"
+              id={inputId}
+              value={categoryCheck} />{categoryCheck}
+          </label>
         </div>
       )
     })
@@ -57,7 +65,7 @@ class CommentForm extends React.Component {
           <div className="form-group">
             <fieldset>
               <legend className="sr-only">{django.gettext('Choose categories for your comment')}</legend>
-              {categories}
+              {categoryChoiceHtml}
             </fieldset>
             <textarea
               autoFocus={this.props.grabFocus}
