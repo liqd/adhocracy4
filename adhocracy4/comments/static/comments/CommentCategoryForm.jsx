@@ -44,9 +44,9 @@ class CommentForm extends React.Component {
       categoryCheck = categoryChoices[objectKey]
       inputId = 'id_' + {objectKey}
       return (
-        <div className="form-group_category" key={objectKey}>
-          <label className="form-group_category_row" htmlFor={inputId} for={inputId}>
-            <input className="form-group_input_category" type="checkbox" id={inputId} value={categoryCheck}/>
+        <div className="comment-category" key={objectKey}>
+          <label className="comment-category_row" htmlFor={inputId} for={inputId}>
+            <input className="comment-category_input" type="checkbox" id={inputId} value={categoryCheck} />
             {categoryCheck}
           </label>
         </div>
