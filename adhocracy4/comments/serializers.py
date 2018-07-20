@@ -10,7 +10,6 @@ class CommentSerializer(serializers.ModelSerializer):
     is_deleted = serializers.SerializerMethodField()
     ratings = serializers.SerializerMethodField()
     is_moderator = serializers.SerializerMethodField()
-    comment_categories = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
@@ -18,6 +17,28 @@ class CommentSerializer(serializers.ModelSerializer):
                             'user_name', 'ratings', 'content_type',
                             'object_pk')
         exclude = ('creator', 'is_censored', 'is_removed')
+
+    def to_representation(self, instance):
+        """
+        Gets the categories and adds them along with their values
+        to a dictionary
+        """
+        ret = super().to_representation(instance)
+        categories = {}
+        if ret['comment_categories']:
+            category_choices = getattr(settings,
+                                       'A4_COMMENT_CATEGORIES', '')
+            if category_choices:
+                category_choices = dict((x, str(y)) for x, y
+                                        in category_choices)
+            category_list = ret['comment_categories'].strip('[]').split(',')
+            for category in category_list:
+                if category in category_choices:
+                    categories[category] = category_choices[category]
+                else:
+                    categories[category] = category
+        ret['comment_categories'] = categories
+        return ret
 
     def get_user_name(self, obj):
         """
@@ -65,26 +86,6 @@ class CommentSerializer(serializers.ModelSerializer):
         }
 
         return result
-
-    def get_comment_categories(self, comment):
-        """
-        Gets the categories and adds them along with their values
-        to a dictionary
-        """
-        categories = {}
-        if comment.comment_categories:
-            category_choices = getattr(settings,
-                                       'A4_COMMENT_CATEGORIES', '')
-            if category_choices:
-                category_choices = dict((x, str(y)) for x, y
-                                        in category_choices)
-            category_list = comment.comment_categories.strip('[]').split(',')
-            for category in category_list:
-                if category in category_choices:
-                    categories[category] = category_choices[category]
-                else:
-                    categories[category] = category
-        return categories
 
 
 class ThreadSerializer(CommentSerializer):
