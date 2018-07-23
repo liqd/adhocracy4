@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.utils.translation import ugettext as _
 from rest_framework import serializers
 
@@ -16,6 +17,28 @@ class CommentSerializer(serializers.ModelSerializer):
                             'user_name', 'ratings', 'content_type',
                             'object_pk')
         exclude = ('creator', 'is_censored', 'is_removed')
+
+    def to_representation(self, instance):
+        """
+        Gets the categories and adds them along with their values
+        to a dictionary
+        """
+        ret = super().to_representation(instance)
+        categories = {}
+        if ret['comment_categories']:
+            category_choices = getattr(settings,
+                                       'A4_COMMENT_CATEGORIES', '')
+            if category_choices:
+                category_choices = dict((x, str(y)) for x, y
+                                        in category_choices)
+            category_list = ret['comment_categories'].strip('[]').split(',')
+            for category in category_list:
+                if category in category_choices:
+                    categories[category] = category_choices[category]
+                else:
+                    categories[category] = category
+        ret['comment_categories'] = categories
+        return ret
 
     def get_user_name(self, obj):
         """
