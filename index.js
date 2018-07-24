@@ -7,5 +7,6 @@ module.exports = {
   config: require('./adhocracy4/static/config.js'),
   api: require('./adhocracy4/static/api.js'),
   widget: require('./adhocracy4/static/widget.js'),
-  selectDropdown: require('./adhocracy4/static/select_dropdown.js')
+  selectDropdown: require('./adhocracy4/static/select_dropdown.js'),
+  alert: require('./adhocracy4/static/Alert.jsx')
 }
