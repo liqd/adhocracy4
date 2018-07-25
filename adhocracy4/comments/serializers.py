@@ -40,6 +40,16 @@ class CommentSerializer(serializers.ModelSerializer):
         ret['comment_categories'] = categories
         return ret
 
+    def to_internal_value(self, data):
+        if 'comment_categories' in data:
+            value = data.get('comment_categories')
+            if value == '' or value == '[]':
+                raise serializers.ValidationError({
+                    'comment_categories': _('Please choose a category')
+                    })
+        return data
+
+
     def get_user_name(self, obj):
         """
         Don't show username if comment is marked removed or censored
