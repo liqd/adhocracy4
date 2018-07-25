@@ -41,6 +41,7 @@ class CommentSerializer(serializers.ModelSerializer):
         return ret
 
     def to_internal_value(self, data):
+        data = super().to_internal_value(data)
         if 'comment_categories' in data:
             value = data.get('comment_categories')
             if value == '' or value == '[]':
