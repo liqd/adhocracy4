@@ -34,7 +34,7 @@
     "leaflet.markercluster": "1.3.0",
     "node-sass": "4.9.2",
     "popper.js": "1.14.3",
-    "postcss-loader": "2.1.6",
+    "postcss-loader": "3.0.0",
     "react-flip-move": "3.0.1",
     "react-flip-move": "3.0.2",
     "sass-loader": "7.0.3",
