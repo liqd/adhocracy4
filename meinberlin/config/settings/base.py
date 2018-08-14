@@ -470,15 +470,23 @@ SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 # that are stored translated to the database.
 DEFAULT_LANGUAGE = 'de'
 
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+CSP_STYLE_SRC = (
+    "'self'",
+    "'unsafe-inline'")
+CSP_SCRIPT_SRC = (
+    "'self'",
+    "'unsafe-inline'",
+    "https://stats.liqd.net")
 CSP_IMG_SRC = (
     "'self'",
     "data:",
     "*.tile.openstreetmap.org",
-    "https://maps.berlinonline.de")
-CSP_CONNECT_SRC = ("'self'", "https://bplan-prod.liqd.net")
-CSP_EXCLUDE_URL_PREFIXES = ("/admin", )
-CSP_REPORT_ONLY = True
+    "https://maps.berlinonline.de",
+    "https://stats.liqd.net")
+CSP_CONNECT_SRC = (
+    "'self'",
+    "https://bplan-prod.liqd.net")
+CSP_EXCLUDE_URL_PREFIXES = ("/admin")
 
 # make django-background-task not retry a task
 MAX_ATTEMPTS = 1
