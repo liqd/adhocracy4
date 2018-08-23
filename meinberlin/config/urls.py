@@ -9,6 +9,11 @@ from django.views.decorators.cache import never_cache
 from django.views.i18n import javascript_catalog
 from rest_framework import routers
 
+from wagtail.contrib.wagtailsitemaps import views as wagtail_sitemap_views
+from wagtail.contrib.wagtailsitemaps.sitemap_generator import Sitemap as WagtailSitemap
+from meinberlin.apps.contrib.sitemaps.adhocracy4_sitemap import Adhocracy4Sitemap
+from meinberlin.apps.contrib.sitemaps.static_sitemap import StaticSitemap
+
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.follows.api import FollowViewSet
@@ -47,6 +52,12 @@ ct_router.register(r'moderatorremarks', ModeratorRemarkViewSet,
 
 question_router = QuestionDefaultRouter()
 question_router.register(r'vote', VoteViewSet, base_name='vote')
+
+sitemaps = {
+    'adhocracy4': Adhocracy4Sitemap,
+    'wagtail': WagtailSitemap,
+    'static': StaticSitemap
+}
 
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
@@ -97,6 +108,9 @@ urlpatterns = [
         user_is_project_admin(ck_views.upload), name='ckeditor_upload'),
     url(r'^browse/', never_cache(user_is_project_admin(ck_views.browse)),
         name='ckeditor_browse'),
+
+    url('^sitemap\.xml$', wagtail_sitemap_views.index, {'sitemaps': sitemaps, 'sitemap_url_name': 'sitemaps'}),
+    url('^sitemap-(?P<section>.+)\.xml$', wagtail_sitemap_views.sitemap, {'sitemaps': sitemaps}, name='sitemaps'),
 
     url(r'^components/$', contrib_views.ComponentLibraryView.as_view()),
     url(r'^jsi18n/$', javascript_catalog,
