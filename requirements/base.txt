@@ -6,7 +6,7 @@ django_csp==3.4
 requests==2.19.1
 wagtail==1.13.4 # pyup: <2.0
 whitenoise==4.0
-zeep==3.0.0
+zeep==3.1.0
 
 # Inherited a4-core requirements
 bleach==2.1.3
