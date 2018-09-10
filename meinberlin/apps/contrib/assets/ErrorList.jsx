@@ -1,6 +1,6 @@
 var React = require('react')
 
-const ErrorList = ({errors, field}) => {
+const ErrorList = ({ errors, field }) => {
   if (errors && errors[field]) {
     return (
       <ul className="errorlist">
