@@ -35,7 +35,6 @@
     "node-sass": "4.9.2",
     "popper.js": "1.14.3",
     "postcss-loader": "2.1.6",
-    "react-flip-move": "3.0.1",
     "react-flip-move": "3.0.2",
     "sass-loader": "7.0.3",
     "sass-planifolia": "0.6.0",
@@ -62,7 +61,8 @@
     "polylint.sh": "0.0.4",
     "stylelint": "9.3.0",
     "stylelint-config-standard": "18.2.0",
-    "stylelint-declaration-strict-value": "1.0.4"
+    "stylelint-declaration-strict-value": "1.0.4",
+    "webpack-cli": "^3.1.0"
   },
   "scripts": {
     "build": "webpack --config webpack.prod.js",
