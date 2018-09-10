@@ -1,4 +1,5 @@
 from django.contrib.sitemaps import Sitemap
+
 from adhocracy4.projects.models import Project
 
 
@@ -7,4 +8,4 @@ class Adhocracy4Sitemap(Sitemap):
     priority = 0.8
 
     def items(self):
-        return Project.objects.filter(is_draft=False,is_public=True)
+        return Project.objects.filter(is_draft=False, is_public=True)
