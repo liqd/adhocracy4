@@ -7,7 +7,7 @@ module.exports = {
    * progress.
    */
   updateDashboard () {
-    $.get(window.location.pathname, {dataType: 'html'}, function (data) {
+    $.get(window.location.pathname, { dataType: 'html' }, function (data) {
       const selector = elementsToUpdate.join(', ')
       const $newElements = $(data).find(selector)
       const $oldElements = $(selector)

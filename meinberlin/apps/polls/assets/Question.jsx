@@ -37,7 +37,7 @@ class Question extends React.Component {
 
     let submitData = {
       choices: newChoices,
-      urlReplaces: {questionId: this.state.question.id}
+      urlReplaces: { questionId: this.state.question.id }
     }
 
     api.poll.vote(submitData)
@@ -83,9 +83,9 @@ class Question extends React.Component {
 
     var diff = {}
     if (index === -1) {
-      diff = {'$push': [choiceId]}
+      diff = { '$push': [choiceId] }
     } else {
-      diff = {'$splice': [[index, 1]]}
+      diff = { '$splice': [[index, 1]] }
     }
 
     this.setState({
@@ -171,7 +171,7 @@ class Question extends React.Component {
                     <div className="poll-row__label">{ choice.label }</div>
                     { chosen ? <i className="fa fa-check-circle u-primary" aria-label={django.gettext('Your choice')} /> : '' }
                     <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
-                      ref={node => this.doBarTransition(node, {width: percent + '%'})} />
+                      ref={node => this.doBarTransition(node, { width: percent + '%' })} />
                   </div>
                 )
               } else {

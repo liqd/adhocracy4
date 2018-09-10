@@ -130,7 +130,7 @@ module.exports = {
       name: 'vendor',
       filename: 'vendor.js'
     }),
-    new ExtractTextPlugin({filename: '[name].css'}),
+    new ExtractTextPlugin({ filename: '[name].css' }),
     new CopyWebpackPlugin([
       {
         from: './meinberlin/assets/images/**/*',
