@@ -72,7 +72,7 @@ var getPoints = function (address, cb) {
   var $ = window.jQuery
 
   $.ajax(apiUrl, {
-    data: {address: address},
+    data: { address: address },
     success: function (geojson) {
       cb(geojson.features)
     },

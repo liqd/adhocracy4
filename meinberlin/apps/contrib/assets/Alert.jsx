@@ -1,7 +1,7 @@
 var React = require('react')
 var django = require('django')
 
-const Alert = ({type, message, onClick}) => {
+const Alert = ({ type, message, onClick }) => {
   if (type) {
     return (
       <div className={`alert alert--${type}`} role="alert" onClick={onClick}>

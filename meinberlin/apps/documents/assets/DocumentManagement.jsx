@@ -52,7 +52,7 @@ class DocumentManagement extends React.Component {
 
   handleChapterMoveUp (index) {
     const value = this.state.chapters[index]
-    const diff = {$splice: [[index, 1], [index - 1, 0, value]]}
+    const diff = { $splice: [[index, 1], [index - 1, 0, value]] }
     let editChapterIndex = this.state.editChapterIndex
     if (index === editChapterIndex) {
       editChapterIndex--
@@ -67,7 +67,7 @@ class DocumentManagement extends React.Component {
 
   handleChapterMoveDown (index) {
     const value = this.state.chapters[index]
-    const diff = {$splice: [[index, 1], [index + 1, 0, value]]}
+    const diff = { $splice: [[index, 1], [index + 1, 0, value]] }
     let editChapterIndex = this.state.editChapterIndex
     if (index === editChapterIndex) {
       editChapterIndex++
@@ -81,7 +81,7 @@ class DocumentManagement extends React.Component {
   }
 
   handleChapterDelete (index) {
-    const diff = {$splice: [[index, 1]]}
+    const diff = { $splice: [[index, 1]] }
     let editChapterIndex = this.state.editChapterIndex
     if (index < editChapterIndex) {
       editChapterIndex--
@@ -98,7 +98,7 @@ class DocumentManagement extends React.Component {
     const newChapter = this.getNewChapter(django.gettext('new chapter'))
     const newChapterIndex = this.state.chapters.length
 
-    const diff = {$push: [newChapter]}
+    const diff = { $push: [newChapter] }
     this.setState({
       chapters: update(this.state.chapters, diff),
       editChapterIndex: newChapterIndex
@@ -199,7 +199,7 @@ class DocumentManagement extends React.Component {
 
   handleParagraphNameChange (chapterIndex, paragraphIndex, name) {
     const diff = {}
-    diff[chapterIndex] = {paragraphs: []}
+    diff[chapterIndex] = { paragraphs: [] }
     diff[chapterIndex]['paragraphs'][paragraphIndex] = {
       $merge: {
         name: name
@@ -212,7 +212,7 @@ class DocumentManagement extends React.Component {
 
   handleParagraphTextChange (chapterIndex, paragraphIndex, text) {
     const diff = {}
-    diff[chapterIndex] = {paragraphs: []}
+    diff[chapterIndex] = { paragraphs: [] }
     diff[chapterIndex]['paragraphs'][paragraphIndex] = {
       $merge: {
         text: text
@@ -249,7 +249,7 @@ class DocumentManagement extends React.Component {
     }
 
     const submitData = {
-      urlReplaces: {moduleId: this.props.module},
+      urlReplaces: { moduleId: this.props.module },
       chapters: this.state.chapters
     }
 
