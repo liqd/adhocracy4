@@ -490,6 +490,8 @@ CSP_CONNECT_SRC = (
     "https://bplan-prod.liqd.net")
 CSP_EXCLUDE_URL_PREFIXES = ("/admin")
 
+CSP_REPORT_ONLY = True # for local development. overwrite in local.py by salt
+
 # make django-background-task not retry a task
 MAX_ATTEMPTS = 1
 
