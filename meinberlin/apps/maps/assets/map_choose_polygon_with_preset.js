@@ -8,7 +8,7 @@ const shp = require('shpjs')
 function createMap (L, baseurl, attribution, e) {
   const basemap = baseurl + '{z}/{x}/{y}.png'
   const baselayer = L.tileLayer(basemap, { maxZoom: 18, attribution: attribution })
-  const map = new L.Map(e, {scrollWheelZoom: false, zoomControl: true, minZoom: 2})
+  const map = new L.Map(e, { scrollWheelZoom: false, zoomControl: true, minZoom: 2 })
   baselayer.addTo(map)
   return map
 }
@@ -129,7 +129,7 @@ function getBaseBounds (L, polygon, bbox) {
 
     _export: function (map) {
       const geoJson = this._layer.toGeoJSON()
-      const blob = new window.Blob([JSON.stringify(geoJson)], {type: 'application/json'})
+      const blob = new window.Blob([JSON.stringify(geoJson)], { type: 'application/json' })
       FileSaver.saveAs(blob, 'export.geojson')
     },
 
