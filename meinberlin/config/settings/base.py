@@ -472,31 +472,6 @@ SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 # that are stored translated to the database.
 DEFAULT_LANGUAGE = 'de'
 
-CSP_STYLE_SRC = (
-    "'self'",
-    "'unsafe-inline'")
-CSP_SCRIPT_SRC = (
-    "'self'",
-    "'unsafe-inline'",
-    "https://stats.liqd.net")
-CSP_IMG_SRC = (
-    "'self'",
-    "data:",
-    "*.tile.openstreetmap.org",
-    "https://maps.berlinonline.de",
-    "https://stats.liqd.net")
-CSP_CONNECT_SRC = (
-    "'self'",
-    "https://bplan-prod.liqd.net")
-CSP_EXCLUDE_URL_PREFIXES = ("/admin")
-
 CSP_REPORT_ONLY = True # for local development. overwrite in local.py by salt
-
-# make django-background-task not retry a task
-MAX_ATTEMPTS = 1
-
-SECURE_BROWSER_XSS_FILTER = True
-SESSION_COOKIE_HTTPONLY = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
 
 TRACKING_ENABLED = False
