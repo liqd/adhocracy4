@@ -1,11 +1,23 @@
 {% extends 'email_base.'|add:part_type %}
 {% load verbose_name %}
 
-{% block subject %}Einladung zum privaten Projekt {{ participantinvite.project.name }}{% endblock %}
+{% block subject %}Einladung zum Projekt {{ participantinvite.project.name }}{% endblock %}
 
-{% block headline %}Einladung zum privaten Projekt {{ participantinvite.project.name }}{% endblock  %}
+{% block headline %}Einladung zum Projekt {{ participantinvite.project.name }}{% endblock  %}
 
-{% block content %}Sie wurden zum privaten Projekt "{{ participantinvite.project.name }}" auf der Beteiligungsplattform {{ site.name }} eingeladen. Um an dem Projekt teilzunehmen, klicken Sie auf "Einladung annehmen". {% endblock %}
+{% block content %}
+Sie wurden zum Projekt "{{ participantinvite.project.name }}" auf der Beteiligungsplattform <a href="{{ email.get_host }}">{{ site.name }}</a> eingeladen. <a href="{{ email.get_host }}">{{ site.name }}</a> ist die Beteiligungsplattform des Landes Berlin. Hier werden Sie um Ihre Meinung zu Projekten der Berliner Verwaltung gebeten. Sie wurden eingeladen von „{{ participantinvite.creator.username }}“.
+
+Dieses Projekt ist für einen beschränkten Teilnehmerkreis und nicht öffentlich sichtbar. Bitte leiten Sie die Einladung nicht an Dritte weiter.
+
+Für die Teilnahme melden Sie sich bitte auf <a href="{{ email.get_host }}">{{ site.name }}</a> an. Sollten Sie noch kein Konto haben, können Sie sich mit wenigen Klicks registrieren.
+
+Klicken Sie jetzt den folgenden Link/Button, um dem Projekt beizutreten und sich anzumelden bzw. zu registrieren.
+
+Ihre Meinung ist uns wichtig, wir freuen uns auf Ihren Beitrag!
+
+Sie haben Fragen? Schreiben Sie an <a href="mailto:support@liqd.net">support@liqd.net</a>.
+{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ participantinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Einladung annehmen{% endblock %}
