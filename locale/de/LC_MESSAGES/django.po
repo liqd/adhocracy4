@@ -2971,12 +2971,13 @@ msgstr "Projekt: %(project)s"
 #: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_detail.html:8
 #, python-format
 msgid "Do you want to take part in %(project)s?"
-msgstr ""
+msgstr "Teilnahme am Projekt „%(project)s“"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_detail.html:11
 msgid ""
 "For this you need an account. Please login with your account or register."
-msgstr ""
+msgstr "Hierzu benötigen Sie ein Konto. Bitte melden Sie sich mit Ihrem meinBerlin-Konto "
+"an oder registrieren Sie sich neu."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_form.html:8
 #, python-format
@@ -2995,6 +2996,11 @@ msgid ""
 "the invitation the link is not valid anymore.\n"
 "                "
 msgstr ""
+"\n"
+"Wenn Sie akzeptieren, treten Sie dem Projekt mit dem Nutzernamen „%(user)s“ bei.\n"
+"Wenn Sie dem Projekt mit einem anderen Profil beitreten möchten, melden Sie sich ab "
+"und folgen Sie dem Einladungslink erneut. Wenn Sie die Einladung ablehnen, "
+"verliert der Link seine Gültigkeit."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:13
 msgid "This project is in not published yet."
