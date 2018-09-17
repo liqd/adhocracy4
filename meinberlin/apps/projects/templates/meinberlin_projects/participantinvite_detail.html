@@ -5,10 +5,10 @@
 {% block content %}
     <div class="l-wrapper">
         <div class="l-center-6">
-            <h1>{% blocktrans with project=invite.project.name %}Do you want to join {{ project }}?{% endblocktrans %}</h1>
+            <h1>{% blocktrans with project=invite.project.name %}Do you want to take part in {{ project }}?{% endblocktrans %}</h1>
             {{ form.non_field_errors }}
             <p>
-                {% trans "Please login to procceed. If you do not have an account, register and revisit the invitation link."%}
+                {% trans "For this you need an account. Please login with your account or register."%}
             </p>
             <a class="btn btn--primary" href="{% url 'account_login' %}?next={% url 'project-participant-invite-detail' invite_token=participantinvite.token %}">{% trans "Proceed to login" %}</a>
             <a class="btn btn--light" href="{% url 'account_signup' %}">{% trans "Register" %}</a>
