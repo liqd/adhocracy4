@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-17 17:11+0200\n"
+"POT-Creation-Date: 2018-09-18 14:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1487,6 +1487,36 @@ msgstr "Show all projects"
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_create_form.html:28
 msgid "Send"
 msgstr "Send"
+
+#: meinberlin/apps/contrib/django_standard_messages.py:6
+msgid "You have signed out."
+msgstr "You have signed out."
+
+#: meinberlin/apps/contrib/django_standard_messages.py:7
+msgid "Verify Your E-mail Address"
+msgstr "Verify Your E-mail Address"
+
+#: meinberlin/apps/contrib/django_standard_messages.py:8
+msgid "You must type the same password each time."
+msgstr "You must type the same password each time."
+
+#: meinberlin/apps/contrib/django_standard_messages.py:9
+#, python-format
+msgid "You have confirmed %(email)s."
+msgstr "You have confirmed %(email)s."
+
+#: meinberlin/apps/contrib/django_standard_messages.py:10
+#, python-format
+msgid "You cannot remove your primary e-mail address (%(email)s)."
+msgstr "You cannot remove your primary e-mail address (%(email)s)."
+
+#: meinberlin/apps/contrib/django_standard_messages.py:11
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
 
 #: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:36
 msgid "Ordering"

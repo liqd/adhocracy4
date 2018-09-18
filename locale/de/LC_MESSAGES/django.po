@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-17 17:11+0200\n"
+"POT-Creation-Date: 2018-09-18 14:50+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1693,6 +1693,34 @@ msgstr "Alle Projekte anzeigen"
 msgid "Send"
 msgstr "Senden"
 
+#: meinberlin/apps/contrib/django_standard_messages.py:6
+msgid "You have signed out."
+msgstr ""
+
+#: meinberlin/apps/contrib/django_standard_messages.py:7
+msgid "Verify Your E-mail Address"
+msgstr ""
+
+#: meinberlin/apps/contrib/django_standard_messages.py:8
+msgid "You must type the same password each time."
+msgstr ""
+
+#: meinberlin/apps/contrib/django_standard_messages.py:9
+#, python-format
+msgid "You have confirmed %(email)s."
+msgstr ""
+
+#: meinberlin/apps/contrib/django_standard_messages.py:10
+#, python-format
+msgid "You cannot remove your primary e-mail address (%(email)s)."
+msgstr ""
+
+#: meinberlin/apps/contrib/django_standard_messages.py:11
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+
 #: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:36
 msgid "Ordering"
 msgstr "Sortierung"
@@ -2976,8 +3004,9 @@ msgstr "Teilnahme am Projekt „%(project)s“"
 #: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_detail.html:11
 msgid ""
 "For this you need an account. Please login with your account or register."
-msgstr "Hierzu benötigen Sie ein Konto. Bitte melden Sie sich mit Ihrem meinBerlin-Konto "
-"an oder registrieren Sie sich neu."
+msgstr ""
+"Hierzu benötigen Sie ein Konto. Bitte melden Sie sich mit Ihrem meinBerlin-"
+"Konto an oder registrieren Sie sich neu."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/participantinvite_form.html:8
 #, python-format
@@ -2997,10 +3026,11 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"Wenn Sie akzeptieren, treten Sie dem Projekt mit dem Nutzernamen „%(user)s“ bei.\n"
-"Wenn Sie dem Projekt mit einem anderen Profil beitreten möchten, melden Sie sich ab "
-"und folgen Sie dem Einladungslink erneut. Wenn Sie die Einladung ablehnen, "
-"verliert der Link seine Gültigkeit."
+"Wenn Sie akzeptieren, treten Sie dem Projekt mit dem Nutzernamen „%(user)s“ "
+"bei.\n"
+"Wenn Sie dem Projekt mit einem anderen Profil beitreten möchten, melden Sie "
+"sich ab und folgen Sie dem Einladungslink erneut. Wenn Sie die Einladung "
+"ablehnen, verliert der Link seine Gültigkeit."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:13
 msgid "This project is in not published yet."
