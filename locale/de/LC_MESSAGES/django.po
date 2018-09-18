@@ -1695,31 +1695,32 @@ msgstr "Senden"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
-msgstr ""
+msgstr "Sie haben sich ausgeloggt"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:7
 msgid "Verify Your E-mail Address"
-msgstr ""
+msgstr "Bestätigen Sie Ihre E-Mail-Adresse"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:8
 msgid "You must type the same password each time."
-msgstr ""
+msgstr "Sie müssen zweimal das selbe Passwort eingeben."
 
 #: meinberlin/apps/contrib/django_standard_messages.py:9
 #, python-format
 msgid "You have confirmed %(email)s."
-msgstr ""
+msgstr "Sie haben die Adresse %(email)s bestätigt."
 
 #: meinberlin/apps/contrib/django_standard_messages.py:10
 #, python-format
 msgid "You cannot remove your primary e-mail address (%(email)s)."
-msgstr ""
+msgstr "Sie können Ihre primäre E-Mail-Adresse (%(email)s) nicht löschen."
 
 #: meinberlin/apps/contrib/django_standard_messages.py:11
 msgid ""
 "We have sent you an e-mail. Please contact us if you do not receive it "
 "within a few minutes."
-msgstr ""
+msgstr "Wir haben Ihnen eine E-Mail geschickt. Bitte kontaktieren Sie uns, wenn Sie diese "
+"nicht in ein paar Minuten erhalten haben."
 
 #: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:36
 msgid "Ordering"
