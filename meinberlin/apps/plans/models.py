@@ -54,7 +54,7 @@ class Plan(UserGeneratedContentModel):
                     'Alternatively you can use the search field to search '
                     'for an address.'))
     point_label = models.CharField(
-        default=_('Label of the location'),
+        default='',
         max_length=255,
         verbose_name=_('Label of the location'),
         help_text=_('The label of the location is '
