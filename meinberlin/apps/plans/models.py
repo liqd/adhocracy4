@@ -57,7 +57,8 @@ class Plan(UserGeneratedContentModel):
         default=_('Label of the location'),
         max_length=255,
         verbose_name=_('Label of the location'),
-        help_text=_('This could be an address or the name of a landmark.'),
+        help_text=_('The label of the location is '
+                    'displayed in the detail view of the plan'),
     )
     district = models.ForeignKey(
         MapPreset,
