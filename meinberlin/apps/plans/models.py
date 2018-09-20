@@ -66,8 +66,11 @@ class Plan(UserGeneratedContentModel):
         verbose_name=_('District')
     )
     contact = models.TextField(max_length=255, verbose_name=_('Contact'))
-    cost = models.PositiveIntegerField(blank=True, null=True,
-                                       verbose_name=_('Cost'))
+    cost = models.CharField(
+        blank=True,
+        null=True,
+        max_length=255,
+        verbose_name=_('Cost'))
     description = RichTextField(verbose_name=_('Description'))
     description_image = ConfiguredImageField(
         'plan_image',
