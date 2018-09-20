@@ -265,7 +265,7 @@ msgstr "Bitte melden Sie sich zum Abstimmen an."
 #: adhocracy4/polls/static/polls/Question.jsx:136
 #: adhocracy4/polls/static/polls/Question.jsx:136
 msgid "Multiple answers are possible for this question"
-msgstr ""
+msgstr "Für diese Frage sind mehrere Antworten möglich"
 
 #: adhocracy4/polls/static/polls/Question.jsx:141
 #: adhocracy4/polls/static/polls/Question.jsx:141

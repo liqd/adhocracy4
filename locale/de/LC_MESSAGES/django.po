@@ -2537,7 +2537,7 @@ msgstr "Geplante Kosten"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:70
 msgid "updated on "
-msgstr ""
+msgstr "bearbeitet am "
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:121
 #: meinberlin/templates/a4dashboard/base_dashboard.html:44
