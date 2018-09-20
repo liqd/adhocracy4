@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-20 16:49+0200\n"
+"POT-Creation-Date: 2018-09-20 16:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2380,6 +2380,7 @@ msgid "Visualize your plan."
 msgstr "Visualize your plan."
 
 #: meinberlin/apps/plans/models.py:81
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:50
 msgid "Type of plan"
 msgstr "Type of plan"
 
@@ -2414,10 +2415,6 @@ msgstr "back to list of plans"
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:46
 msgid "Location"
 msgstr "Location"
-
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:50
-msgid "Plan type"
-msgstr "Plan type"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:57
 msgid "see participation plans"
@@ -3392,6 +3389,9 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid "Plan type"
+#~ msgstr "Plan type"
 
 #~ msgid "Please choose a category"
 #~ msgstr "Please choose a category"

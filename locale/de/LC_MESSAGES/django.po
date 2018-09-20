@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-20 16:49+0200\n"
+"POT-Creation-Date: 2018-09-20 16:56+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2488,6 +2488,7 @@ msgid "Visualize your plan."
 msgstr "Visualisieren Sie das Vorhaben."
 
 #: meinberlin/apps/plans/models.py:81
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:50
 msgid "Type of plan"
 msgstr "Plantyp"
 
@@ -2522,10 +2523,6 @@ msgstr "Zurück zur Vorhabenliste"
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:46
 msgid "Location"
 msgstr "Ort"
-
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:50
-msgid "Plan type"
-msgstr "Plantyp"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:57
 msgid "see participation plans"
@@ -3508,6 +3505,9 @@ msgstr ""
 "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem %(site_name)s "
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
+
+#~ msgid "Plan type"
+#~ msgstr "Plantyp"
 
 #~ msgid "Do you want to take part in %(project)s?"
 #~ msgstr "Teilnahme am Projekt „%(project)s“"
