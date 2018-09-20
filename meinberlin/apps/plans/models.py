@@ -65,7 +65,7 @@ class Plan(UserGeneratedContentModel):
         limit_choices_to=Q(category__name='Bezirke - Berlin'),
         verbose_name=_('District')
     )
-    contact = models.TextField(max_length=255, verbose_name=_('Contact'))
+    contact = models.TextField(max_length=1000, verbose_name=_('Contact'))
     cost = models.CharField(
         blank=True,
         null=True,
