@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-11 16:37+0200\n"
+"POT-Creation-Date: 2018-09-20 16:49+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,10 +107,9 @@ msgid ""
 "moderation. The moderation will look at the reported content. The content "
 "will be deleted if it does not meet our discussion rules (netiquette)."
 msgstr ""
-"Sie möchten diesen Beitrag melden? Ihre Nachricht wird an "
-"die Moderation weitergeleitet. Diese prüft den gemeldeten Beitrag. Er "
-"wird gelöscht, wenn er nicht unseren Diskussionsregeln (Netiquette) "
-"entspricht."
+"Sie möchten diesen Beitrag melden? Ihre Nachricht wird an die Moderation "
+"weitergeleitet. Diese prüft den gemeldeten Beitrag. Er wird gelöscht, wenn "
+"er nicht unseren Diskussionsregeln (Netiquette) entspricht."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:179
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:26
@@ -523,8 +522,8 @@ msgid "Still undecided"
 msgstr "Noch nicht entschieden"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:378
-msgid "Participation type: "
-msgstr "Beteiligungstyp: "
+msgid "Plan type: "
+msgstr ""
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:379
 msgid "Participation: "
@@ -606,6 +605,9 @@ msgstr "Keine Treffer im Bereich des Projekts gefunden"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Meinten Sie:"
+
+#~ msgid "Participation type: "
+#~ msgstr "Beteiligungstyp: "
 
 #~ msgid "Are you sure you want to report this item?"
 #~ msgstr "Sind Sie sicher, dass Sie diesen Beitrag melden möchten?"
