@@ -64,7 +64,8 @@ class Plan(UserGeneratedContentModel):
         MapPreset,
         limit_choices_to=Q(category__name='Bezirke - Berlin'),
         verbose_name=_('District'),
-        null=True
+        null=True,
+        blank=True
     )
     contact = models.TextField(max_length=1000, verbose_name=_('Contact'))
     cost = models.CharField(
