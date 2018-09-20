@@ -1,22 +1,18 @@
 {% extends 'email_base.'|add:part_type %}
 {% load verbose_name %}
 
-{% block subject %}Einladung zum Projekt {{ participantinvite.project.name }}{% endblock %}
+{% block subject %}Einladung zum Projekt "{{ participantinvite.project.name }}" {% endblock %}
 
-{% block headline %}Einladung zum Projekt {{ participantinvite.project.name }}{% endblock  %}
+{% block headline %}Einladung zum Projekt "{{ participantinvite.project.name }}" {% endblock  %}
 
 {% block content %}
-Sie wurden zum Projekt "{{ participantinvite.project.name }}" auf der Beteiligungsplattform <a href="{{ email.get_host }}">{{ site.name }}</a> eingeladen. <a href="{{ email.get_host }}">{{ site.name }}</a> ist die Beteiligungsplattform des Landes Berlin. Hier werden Sie um Ihre Meinung zu Projekten der Berliner Verwaltung gebeten. Sie wurden eingeladen von „{{ participantinvite.creator.username }}“.
+Sie wurden zum Projekt "{{ participantinvite.project.name }}" auf {{ site.name }} eingeladen. {{ site.name }} ist die Beteiligungsplattform des Landes Berlin. Hier werden Sie um Ihre Meinung zu Projekten der Berliner Verwaltung gebeten. Sie wurden eingeladen von "{{ participantinvite.project.organisation }}".
 
-Dieses Projekt ist für einen beschränkten Teilnehmerkreis und nicht öffentlich sichtbar. Bitte leiten Sie die Einladung nicht an Dritte weiter.
+Klicken sie jetzt auf "Einladung annehmen" um an dem Projekt teilzunehmen. Sollten Sie noch nicht auf {{ site.name }} registriert sein, ist dies in wenigen Schritten möglich. Bitte beachten Sie: Diese Einladung ist nur für Sie persönlich bestimmt.
 
-Für die Teilnahme melden Sie sich bitte auf <a href="{{ email.get_host }}">{{ site.name }}</a> an. Sollten Sie noch kein Konto haben, können Sie sich mit wenigen Klicks registrieren.
+Wir freuen uns auf Ihren Beitrag!
 
-Klicken Sie jetzt den folgenden Link/Button, um dem Projekt beizutreten und sich anzumelden bzw. zu registrieren.
-
-Ihre Meinung ist uns wichtig, wir freuen uns auf Ihren Beitrag!
-
-Sie haben Fragen? Schreiben Sie an <a href="mailto:support@liqd.net">support@liqd.net</a>.
+Sie haben Fragen? Schreiben Sie an support@mein.berlin.de.
 {% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ participantinvite.get_absolute_url }}{% endblock %}
