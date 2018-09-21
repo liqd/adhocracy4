@@ -2567,7 +2567,7 @@ msgstr "Bitte verorten Sie das Vorhaben auf der Karte."
 
 #: meinberlin/apps/plans/forms.py:53
 msgid "City wide"
-msgstr ""
+msgstr "Gesamtstädtisch"
 
 #: meinberlin/apps/plans/models.py:25
 msgid "Still undecided"
@@ -2603,7 +2603,7 @@ msgstr "Name des Ortes"
 
 #: meinberlin/apps/plans/models.py:60
 msgid "The label of the location is displayed in the detail view of the plan"
-msgstr ""
+msgstr "Die Ortsbezeichnung erscheint im Steckbrief der Detailansicht zu Ihrem Vorhaben."
 
 #: meinberlin/apps/plans/models.py:66
 msgid "District"
