@@ -47,7 +47,7 @@
                         </dl>
 
                         <dl>
-                            <dt>{% trans 'Plan type' %}</dt><dd>{{ object.category }}</dd>
+                            <dt>{% trans 'Type of plan' %}</dt><dd>{{ object.category }}</dd>
                         </dl>
 
                         <dl>
@@ -66,7 +66,8 @@
                         {% endif %}
 
                         <dl>
-                            <dt>{% trans 'Reference No.' %}</dt> <dd>{{ object.reference_number }}</dd>
+                            <dt>{% trans 'Reference No.' %}</dt>
+                            <dd>{{ object.reference_number }}, {% trans 'updated on ' %}{% if object.modified %}{{ object.modified|date }}{% else %}{{ object.created|date }}{% endif %}</dd>
                         </dl>
                     </ul>
                 </div>
