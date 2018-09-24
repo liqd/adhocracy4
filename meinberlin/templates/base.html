@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load i18n static contrib_tags %}
+{% load i18n static contrib_tags wagtailuserbar %}
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
@@ -51,6 +51,8 @@
         {% block super_content %}
             {% block content %}{% endblock %}
         {% endblock %}
+
+        {% wagtailuserbar %}
 
     </main>
 
