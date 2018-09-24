@@ -1564,7 +1564,7 @@ msgstr "Senden"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
-msgstr "Sie haben sich ausgeloggt"
+msgstr "Sie haben sich abgemeldet."
 
 #: meinberlin/apps/contrib/django_standard_messages.py:7
 msgid "Verify Your E-mail Address"
