@@ -54,20 +54,25 @@ class Plan(UserGeneratedContentModel):
                     'Alternatively you can use the search field to search '
                     'for an address.'))
     point_label = models.CharField(
-        blank=True,
         default='',
         max_length=255,
         verbose_name=_('Label of the location'),
-        help_text=_('This could be an address or the name of a landmark.'),
+        help_text=_('The label of the location is '
+                    'displayed in the detail view of the plan'),
     )
     district = models.ForeignKey(
         MapPreset,
         limit_choices_to=Q(category__name='Bezirke - Berlin'),
-        verbose_name=_('District')
+        verbose_name=_('District'),
+        null=True,
+        blank=True
     )
-    contact = models.TextField(max_length=255, verbose_name=_('Contact'))
-    cost = models.PositiveIntegerField(blank=True, null=True,
-                                       verbose_name=_('Cost'))
+    contact = models.TextField(max_length=1000, verbose_name=_('Contact'))
+    cost = models.CharField(
+        blank=True,
+        null=True,
+        max_length=255,
+        verbose_name=_('Cost'))
     description = RichTextField(verbose_name=_('Description'))
     description_image = ConfiguredImageField(
         'plan_image',

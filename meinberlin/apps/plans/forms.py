@@ -48,6 +48,10 @@ class PlanForm(forms.ModelForm):
             }
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['district'].empty_label = _('City wide')
+
 
 class CustomMultipleChoiceField(forms.ModelMultipleChoiceField):
 
