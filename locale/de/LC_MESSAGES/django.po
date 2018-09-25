@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-25 09:50+0200\n"
+"POT-Creation-Date: 2018-09-25 14:49+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -524,7 +524,7 @@ msgstr "Abbrechen"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
-#: meinberlin/apps/plans/views.py:150
+#: meinberlin/apps/plans/views.py:154
 #: meinberlin/apps/projectcontainers/dashboard.py:61
 #: meinberlin/apps/projectcontainers/models.py:12
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_list.html:4
@@ -2577,6 +2577,7 @@ msgid "Please locate the plan on the map."
 msgstr "Bitte verorten Sie das Vorhaben auf der Karte."
 
 #: meinberlin/apps/plans/forms.py:53 meinberlin/apps/plans/views.py:100
+#: meinberlin/apps/plans/views.py:162
 msgid "City wide"
 msgstr "Gesamtstädtisch"
 
@@ -2755,11 +2756,11 @@ msgstr "laufend"
 msgid "starts at {}"
 msgstr "started am {}"
 
-#: meinberlin/apps/plans/views.py:151
+#: meinberlin/apps/plans/views.py:155
 msgid "Project Links"
 msgstr "Projektlinks"
 
-#: meinberlin/apps/plans/views.py:245
+#: meinberlin/apps/plans/views.py:249
 msgid "The plan has been deleted"
 msgstr "Vorhaben wurde gelöscht"
 
@@ -3111,9 +3112,25 @@ msgstr "Moderator*innen via E-Mail einladen"
 msgid "Invite moderators via file upload"
 msgstr "Moderator*innen aus Datei einladen"
 
+#: meinberlin/apps/projects/views.py:323
+msgid "{} moderator invited."
+msgstr "{} Moderator*in eingeladen."
+
+#: meinberlin/apps/projects/views.py:323
+msgid "{} moderators invited."
+msgstr "{} Moderator*innen eingeladen."
+
 #: meinberlin/apps/projects/views.py:324
 msgid "Moderator successfully removed."
 msgstr "Moderator*in erfolgreich entfernt."
+
+#: meinberlin/apps/projects/views.py:343
+msgid "{} participant invited."
+msgstr "{} Teilnehmer*in eingeladen"
+
+#: meinberlin/apps/projects/views.py:343
+msgid "{} participants invited."
+msgstr "{} Teilnehmer*innen eingeladen"
 
 #: meinberlin/apps/projects/views.py:344
 msgid "Participant successfully removed."
@@ -3573,7 +3590,7 @@ msgstr ""
 "gelesen habe und akzeptiere.\n"
 "                "
 
-#: meinberlin/templates/base.html:58
+#: meinberlin/templates/base.html:60
 msgid "Feedback"
 msgstr "Feedback"
 
