@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-21 10:23+0200\n"
+"POT-Creation-Date: 2018-09-25 09:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -429,7 +429,7 @@ msgstr "Cancel"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
-#: meinberlin/apps/plans/views.py:149
+#: meinberlin/apps/plans/views.py:150
 #: meinberlin/apps/projectcontainers/dashboard.py:61
 #: meinberlin/apps/projectcontainers/models.py:12
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_list.html:4
@@ -2343,7 +2343,7 @@ msgstr "Edit Plan"
 msgid "Please locate the plan on the map."
 msgstr "Please locate the plan on the map."
 
-#: meinberlin/apps/plans/forms.py:53
+#: meinberlin/apps/plans/forms.py:53 meinberlin/apps/plans/views.py:100
 msgid "City wide"
 msgstr "City wide"
 
@@ -2516,11 +2516,11 @@ msgstr "running"
 msgid "starts at {}"
 msgstr "starts at {}"
 
-#: meinberlin/apps/plans/views.py:150
+#: meinberlin/apps/plans/views.py:151
 msgid "Project Links"
 msgstr "Project Links"
 
-#: meinberlin/apps/plans/views.py:244
+#: meinberlin/apps/plans/views.py:245
 msgid "The plan has been deleted"
 msgstr "The plan has been deleted"
 
