@@ -113,7 +113,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 'point_label': item.point_label,
                 'cost': item.cost,
                 'district': district_name,
-                'category': item.category,
+                'theme': item.theme,
                 'status': item.status,
                 'status_display': item.get_status_display(),
                 'participation_string': participation_string,
@@ -140,7 +140,7 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
     permission_required = 'meinberlin_plans.list_plan'
     model = models.Plan
     fields = ['title', 'organisation', 'contact', 'district', 'cost',
-              'description', 'category', 'status', 'participation']
+              'description', 'theme', 'status', 'participation']
     html_fields = ['description']
 
     def get_object_list(self):
