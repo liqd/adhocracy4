@@ -1518,6 +1518,16 @@ msgstr ""
 "We have sent you an e-mail. Please contact us if you do not receive it "
 "within a few minutes."
 
+#: meinberlin/apps/contrib/django_standard_messages.py:13
+msgid ""
+"We have sent an e-mail to you for verification. Follow the link provided to "
+"finalize the signup process. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+"We have sent an e-mail to you for verification. Follow the link provided to "
+"finalize the signup process. Please contact us if you do not receive it "
+"within a few minutes."
+
 #: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:36
 msgid "Ordering"
 msgstr "Ordering"

@@ -1695,7 +1695,7 @@ msgstr "Senden"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
-msgstr "Sie haben sich ausgeloggt"
+msgstr "Sie haben sich abgemeldet."
 
 #: meinberlin/apps/contrib/django_standard_messages.py:7
 msgid "Verify Your E-mail Address"
@@ -1722,6 +1722,15 @@ msgid ""
 msgstr ""
 "Wir haben Ihnen eine E-Mail geschickt. Bitte kontaktieren Sie uns, wenn Sie "
 "diese nicht in ein paar Minuten erhalten haben."
+
+#: meinberlin/apps/contrib/django_standard_messages.py:13
+msgid ""
+"We have sent an e-mail to you for verification. Follow the link provided to "
+"finalize the signup process. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr "Wir haben Ihnen eine E-Mail geschickt, um Ihre Adresse zu verifizieren. "
+"Bitte folgen Sie dem Link in der E-Mail um den Anmeldeprozess abzuschließen. "
+"Bitte kontaktieren Sie uns, falls die E-Mail nicht in ein paar Minuten angekommen ist."
 
 #: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:36
 msgid "Ordering"
