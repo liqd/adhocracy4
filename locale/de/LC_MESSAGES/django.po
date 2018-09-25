@@ -2512,7 +2512,7 @@ msgstr "Visualisieren Sie das Vorhaben."
 #: meinberlin/apps/plans/models.py:86
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:50
 msgid "Theme"
-msgstr ""
+msgstr "Thema"
 
 #: meinberlin/apps/plans/models.py:90
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:54

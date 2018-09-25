@@ -523,7 +523,7 @@ msgstr "Noch nicht entschieden"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:378
 msgid "Theme: "
-msgstr ""
+msgstr "Thema: "
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:379
 msgid "Participation: "
