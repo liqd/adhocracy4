@@ -32,8 +32,8 @@
 
                 <div class="item-detail__labels">
                     <span class="label label--secondary">{{ object.get_status_display }}</span>
-                    {% if object.category %}
-                        <span class="label">{{ object.category }}</span>
+                    {% if object.theme %}
+                        <span class="label">{{ object.theme }}</span>
                     {% endif %}
                 </div>
                 <div class="item-detail-2__factsheet">
@@ -47,7 +47,7 @@
                         </dl>
 
                         <dl>
-                            <dt>{% trans 'Type of plan' %}</dt><dd>{{ object.category }}</dd>
+                            <dt>{% trans 'Theme' %}</dt><dd>{{ object.theme }}</dd>
                         </dl>
 
                         <dl>

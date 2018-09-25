@@ -11,11 +11,11 @@ from meinberlin.apps.contrib import widgets as contrib_widgets
 from . import models
 
 
-def get_category_options():
+def get_theme_options():
     return models.Plan.objects\
-        .filter(~Q(category=''))\
-        .order_by('category')\
-        .values_list('category', flat=True)\
+        .filter(~Q(theme=''))\
+        .order_by('theme')\
+        .values_list('theme', flat=True)\
         .distinct()
 
 
@@ -32,14 +32,14 @@ class PlanForm(forms.ModelForm):
             'district',
             'cost',
             'description',
-            'category',
+            'theme',
             'status',
             'participation']
         widgets = {
             'point': maps_widgets.MapChoosePointWidget(
                 polygon=settings.BERLIN_POLYGON),
-            'category': contrib_widgets.TextWithDatalistWidget(attrs={
-                'options': get_category_options
+            'theme': contrib_widgets.TextWithDatalistWidget(attrs={
+                'options': get_theme_options
             })
         }
         error_messages = {
