@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-20 16:57+0200\n"
+"POT-Creation-Date: 2018-09-25 14:16+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -522,8 +522,8 @@ msgid "Still undecided"
 msgstr "Noch nicht entschieden"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:378
-msgid "Type of plan: "
-msgstr "Plantyp: "
+msgid "Theme: "
+msgstr "Thema: "
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:379
 msgid "Participation: "
@@ -605,6 +605,9 @@ msgstr "Keine Treffer im Bereich des Projekts gefunden"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Meinten Sie:"
+
+#~ msgid "Type of plan: "
+#~ msgstr "Plantyp: "
 
 #~ msgid "Participation type: "
 #~ msgstr "Beteiligungstyp: "

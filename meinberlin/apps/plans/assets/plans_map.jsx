@@ -77,7 +77,7 @@ const checkQueryMatch = function (item, q) {
   const s = [
     item.title,
     item.organisation,
-    item.category
+    item.theme
   ].join(' ').toLowerCase()
   return !q || q.split(/\s+/g).every(word => {
     return s.indexOf(word.toLowerCase()) !== -1
@@ -375,7 +375,7 @@ class PlansMap extends React.Component {
           }
         </div>
         <h3 className="list-item__title"><a href={item.url}>{item.title}</a></h3>
-        <div className="list-item__subtitle"><b>{django.gettext('Type of plan: ')}</b><span>{item.category}</span></div>
+        <div className="list-item__subtitle"><b>{django.gettext('Theme: ')}</b><span>{item.theme}</span></div>
         <div className="list-item__subtitle"><b>{django.gettext('Participation: ')}</b><span className={statusClass}>{item.participation_string}</span></div>
       </li>
     )
