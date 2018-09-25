@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailuserbar wagtailimages_tags rules i18n %}
+{% load wagtailimages_tags rules i18n %}
 
 {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
     {{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
@@ -37,6 +37,4 @@
         {% endif %}
     {% endfor %}
 
-
-    {% wagtailuserbar %}
 {% endblock %}

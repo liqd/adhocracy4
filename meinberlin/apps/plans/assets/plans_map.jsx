@@ -113,7 +113,7 @@ class PlansMap extends React.Component {
   onBoundsChange (event) {
     this.setState({
       filters: update(this.state.filters, {
-        $merge: {bounds: event.target.getBounds()}
+        $merge: { bounds: event.target.getBounds() }
       })
     })
   }
@@ -121,7 +121,7 @@ class PlansMap extends React.Component {
   onStatusFilterChange (event) {
     this.setState({
       filters: update(this.state.filters, {
-        $merge: {status: parseInt(event.currentTarget.value, 10)}
+        $merge: { status: parseInt(event.currentTarget.value, 10) }
       })
     })
   }
@@ -129,7 +129,7 @@ class PlansMap extends React.Component {
   onParticipationFilterChange (event) {
     this.setState({
       filters: update(this.state.filters, {
-        $merge: {participation: parseInt(event.currentTarget.value, 10)}
+        $merge: { participation: parseInt(event.currentTarget.value, 10) }
       })
     })
   }
@@ -137,7 +137,7 @@ class PlansMap extends React.Component {
   onFreeTextFilterChange (event) {
     this.setState({
       filters: update(this.state.filters, {
-        $merge: {q: event.target.value}
+        $merge: { q: event.target.value }
       })
     })
   }
@@ -153,12 +153,12 @@ class PlansMap extends React.Component {
     let currentDistrict = this.state.filters.district.toString()
     if (currentDistrict !== '-1') {
       let currentLayer = this.disctrictLayerLookup[currentDistrict]
-      currentLayer.setStyle({weight: 1})
+      currentLayer.setStyle({ weight: 1 })
     }
     let district = event.currentTarget.value
     this.setState({
       filters: update(this.state.filters, {
-        $merge: {district: parseInt(district, 10)}
+        $merge: { district: parseInt(district, 10) }
       })
     })
     if (district === '-1') {
@@ -166,7 +166,7 @@ class PlansMap extends React.Component {
     } else {
       let layer = this.disctrictLayerLookup[district]
       this.map.flyToBounds(layer.getBounds())
-      layer.setStyle({weight: 3})
+      layer.setStyle({ weight: 3 })
     }
   }
 
@@ -183,7 +183,7 @@ class PlansMap extends React.Component {
     event.preventDefault()
     let address = event.target.search.value
     $.ajax(apiUrl, {
-      data: {address: address},
+      data: { address: address },
       context: this,
       success: function (geojson) {
         let count = geojson.count
@@ -200,8 +200,8 @@ class PlansMap extends React.Component {
 
   displayResults (geojson) {
     this.setState(
-      {'displayResults': true,
-        'searchResults': geojson.features}
+      { 'displayResults': true,
+        'searchResults': geojson.features }
     )
   }
 
@@ -210,7 +210,7 @@ class PlansMap extends React.Component {
     let address = this.state.searchResults[index]
     this.displayAdressMarker(address)
     this.setState(
-      {'displayResults': false}
+      { 'displayResults': false }
     )
   }
 
@@ -220,22 +220,22 @@ class PlansMap extends React.Component {
     }
     let addressMarker = L.geoJSON(geojson, {
       pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {icon: addressIcon})
+        return L.marker(latlng, { icon: addressIcon })
       }
     }).addTo(this.map)
-    this.map.flyToBounds(addressMarker.getBounds(), {'maxZoom': 13})
+    this.map.flyToBounds(addressMarker.getBounds(), { 'maxZoom': 13 })
     this.setState(
-      {'address': addressMarker}
+      { 'address': addressMarker }
     )
   }
 
   displayErrorMessage () {
     this.setState(
-      {'displayError': true}
+      { 'displayError': true }
     )
     setTimeout(function () {
       this.setState(
-        {'displayError': false})
+        { 'displayError': false })
     }.bind(this), 2000)
   }
 
@@ -311,7 +311,7 @@ class PlansMap extends React.Component {
     }).addTo(this.map)
     this.selected = L.layerGroup().addTo(this.map)
 
-    this.disctrictLayers = L.geoJSON(this.props.districts, {style: districtStyle}).addTo(this.map)
+    this.disctrictLayers = L.geoJSON(this.props.districts, { style: districtStyle }).addTo(this.map)
 
     this.disctrictLayerLookup = {}
     this.disctrictLayers.getLayers().map((layer, i) => {
@@ -319,7 +319,7 @@ class PlansMap extends React.Component {
     })
 
     this.markers = this.props.items.map((item, i) => {
-      let marker = L.marker(pointToLatLng(item.point), {icon: statusIconPins[item.status]})
+      let marker = L.marker(pointToLatLng(item.point), { icon: statusIconPins[item.status] })
       this.cluster.addLayer(marker)
       marker.on('click', () => {
         this.onSelect(i)
@@ -328,7 +328,7 @@ class PlansMap extends React.Component {
     })
 
     this.activeMarkers = this.props.items.map((item, i) => {
-      let marker = L.marker(pointToLatLng(item.point), {icon: activeIcon})
+      let marker = L.marker(pointToLatLng(item.point), { icon: activeIcon })
       marker.on('click', () => {
         this.onSelect(i)
       })
@@ -375,7 +375,7 @@ class PlansMap extends React.Component {
           }
         </div>
         <h3 className="list-item__title"><a href={item.url}>{item.title}</a></h3>
-        <div className="list-item__subtitle"><b>{django.gettext('Participation type: ')}</b><span>{item.category}</span></div>
+        <div className="list-item__subtitle"><b>{django.gettext('Type of plan: ')}</b><span>{item.category}</span></div>
         <div className="list-item__subtitle"><b>{django.gettext('Participation: ')}</b><span className={statusClass}>{item.participation_string}</span></div>
       </li>
     )

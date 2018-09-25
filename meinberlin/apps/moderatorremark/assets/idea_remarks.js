@@ -4,11 +4,12 @@ const a4api = require('adhocracy4').api
 $(function () {
   const dropdown = $('#idea-remark__dropdown')
   const attributes = dropdown.data('attributes')
-  const objectPk = attributes['item_object_id']
-  const contentTypeId = attributes['item_content_type']
-
-  var remarkId = attributes['id']
-  var remarkVal = attributes['remark']
+  if (typeof attributes !== 'undefined') {
+    var objectPk = attributes['item_object_id']
+    var contentTypeId = attributes['item_content_type']
+    var remarkId = attributes['id']
+    var remarkVal = attributes['remark']
+  }
 
   if (remarkId) {
     $('#id_remark').val(remarkVal)

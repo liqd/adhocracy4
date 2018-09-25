@@ -16,6 +16,10 @@
         </nav>
 
         <h1>{% trans 'Submit a new idea for this project'%}</h1>
+        <div class="u-bottom-divider">
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+        </div>
 
         {% include "meinberlin_mapideas/includes/mapidea_form.html" with cancel=project.get_absolute_url %}
     </div>

@@ -1,11 +1,23 @@
 {% extends 'email_base.'|add:part_type %}
 {% load verbose_name %}
 
-{% block subject %}Invitation to the private project {{ participantinvite.project.name }}{% endblock %}
+{% block subject %}Invitation to the project "{{ participantinvite.project.name }}" {% endblock %}
 
-{% block headline %}Invitation to the private project {{ participantinvite.project.name }}{% endblock  %}
+{% block headline %}Invitation to the project "{{ participantinvite.project.name }}" {% endblock  %}
 
-{% block content %}you are invited to participate in the private project "{{ participantinvite.project.name }}" on the participation platform  {{ site.name }}. To participate click on "Accepct invitation."{% endblock %}
+{% block content %}
+you are invited to participate in the private project "{{ participantinvite.project.name }}" on the participation platform {{ site.name }}. {{ site.name }} is the participation platform of Berlin. Here your are being asked for your opinion on several projects of the administration of Berlin. You were invited by „{{ participantinvite.project.organisation }}“.
+
+This project is only accessible to a limited number of people and not visible to the public. Please note: This invitation is only intended for you personally.
+
+To participate please login to {{ site.name }}. If you don't have an account yet, you can create one with just a small number of steps.
+
+Click the following link/button to join the project or to login or to register.
+
+Your opinion means a lot to us, we are looking forward to your contribution!
+
+If you have question, please contact us via support@mein.berlin.de.
+{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ participantinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Accept invitation{% endblock %}

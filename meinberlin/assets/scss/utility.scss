@@ -90,3 +90,8 @@
     padding-top: $padding;
     border-top: 2px solid $border-color;
 }
+
+.u-bottom-divider {
+    margin-bottom: $spacer * 2;
+    border-bottom: 2px solid $border-color;
+}

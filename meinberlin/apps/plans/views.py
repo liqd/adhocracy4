@@ -97,9 +97,14 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                        reverse=True)
 
         result = []
+        city_wide = _('City wide')
 
         for item in items:
             participation_string, active = self._get_participation_status(item)
+            district_name = str(city_wide)
+            if item.district:
+                district_name = item.district.name
+
             result.append({
                 'title': item.title,
                 'url': item.get_absolute_url(),
@@ -107,7 +112,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 'point': item.point,
                 'point_label': item.point_label,
                 'cost': item.cost,
-                'district': item.district.name,
+                'district': district_name,
                 'category': item.category,
                 'status': item.status,
                 'status_display': item.get_status_display(),
@@ -154,7 +159,7 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
         return item.organisation.name
 
     def get_district_data(self, item):
-        return item.district.name
+        return item.district.name if item.district else str(_('City wide'))
 
     def get_contact_data(self, item):
         return unescape_and_strip_html(item.contact)

@@ -192,7 +192,9 @@ class EmailFormPage(AbstractEmailForm):
 
 class DocsPage(Page):
     body = fields.StreamField([
-        ('documents_list', cms_blocks.DocsBlock())
+        ('documents_list', cms_blocks.DocsBlock()),
+        ('header', blocks.CharBlock(
+            template='meinberlin_cms/blocks/header.html'))
     ])
 
     description = fields.RichTextField(blank=True)
