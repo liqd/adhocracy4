@@ -4,7 +4,7 @@
 Please select the plan your project belongs to. Your project will be shown in the list of plans accordingly.
 {% endblocktrans %}
 </p>
-{% if form.plans.field.choices %} here
+{% if form.plans.field.choices %}
     {% include 'a4dashboard/includes/form_field.html' with field=form.plans %}
 {% else %}
     <p class="form-hint">
