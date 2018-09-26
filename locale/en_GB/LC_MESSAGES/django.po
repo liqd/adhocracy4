@@ -496,18 +496,6 @@ msgstr "More contact possibilities"
 msgid "Name"
 msgstr "Name"
 
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
-#: meinberlin/apps/plans/views.py:154
-#: meinberlin/apps/projectcontainers/dashboard.py:61
-#: meinberlin/apps/projectcontainers/models.py:12
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_list.html:4
-#: meinberlin/templates/a4dashboard/base_project_list.html:15
-#: meinberlin/templates/a4dashboard/project_list.html:4
-#: meinberlin/templates/a4dashboard/project_list.html:9
-msgid "Projects"
-msgstr "Projects"
-
 #: adhocracy4/dashboard/forms.py:87
 msgid "Address"
 msgstr "Address"
