@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-25 14:16+0200\n"
+"POT-Creation-Date: 2018-09-26 15:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -495,18 +495,6 @@ msgstr "More contact possibilities"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:7
 msgid "Name"
 msgstr "Name"
-
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
-#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
-#: meinberlin/apps/plans/views.py:154
-#: meinberlin/apps/projectcontainers/dashboard.py:61
-#: meinberlin/apps/projectcontainers/models.py:12
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_list.html:4
-#: meinberlin/templates/a4dashboard/base_project_list.html:15
-#: meinberlin/templates/a4dashboard/project_list.html:4
-#: meinberlin/templates/a4dashboard/project_list.html:9
-msgid "Projects"
-msgstr "Projects"
 
 #: adhocracy4/dashboard/forms.py:87
 msgid "Address"
@@ -2676,6 +2664,7 @@ msgstr "Participation starting from %(date)s"
 msgid "Remove"
 msgstr "Remove"
 
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:31
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_user_list.html:29
 msgid "None"
 msgstr "None"
@@ -2888,15 +2877,15 @@ msgstr "{} moderators invited."
 msgid "Moderator successfully removed."
 msgstr "Moderator successfully removed."
 
-#: meinberlin/apps/projects/views.py:343
+#: meinberlin/apps/projects/views.py:344
 msgid "{} participant invited."
 msgstr "{} participant invited."
 
-#: meinberlin/apps/projects/views.py:343
+#: meinberlin/apps/projects/views.py:345
 msgid "{} participants invited."
 msgstr "{} participants invited."
 
-#: meinberlin/apps/projects/views.py:344
+#: meinberlin/apps/projects/views.py:346
 msgid "Participant successfully removed."
 msgstr "Participant successfully removed."
 
