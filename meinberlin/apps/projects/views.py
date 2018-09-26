@@ -320,7 +320,7 @@ class DashboardProjectModeratorsView(AbstractProjectUserInviteListView):
     related_users_field = 'moderators'
     add_user_field_label = _('Invite moderators via email')
     add_user_upload_field_label = _('Invite moderators via file upload')
-    success_message = ('{} moderator invited.', '{} moderators invited.')
+    success_message = (_('{} moderator invited.'), _('{} moderators invited.'))
     success_message_removal = _('Moderator successfully removed.')
 
     invite_model = models.ModeratorInvite
@@ -340,7 +340,9 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
     related_users_field = 'participants'
     add_user_field_label = _('Invite users via email')
     add_user_upload_field_label = _('Invite users via file upload')
-    success_message = ('{} participant invited.', '{} participants invited.')
+    success_message = (
+        _('{} participant invited.'),
+        _('{} participants invited.'))
     success_message_removal = _('Participant successfully removed.')
 
     invite_model = models.ParticipantInvite

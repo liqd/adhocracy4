@@ -496,6 +496,18 @@ msgstr "More contact possibilities"
 msgid "Name"
 msgstr "Name"
 
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
+#: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
+#: meinberlin/apps/plans/views.py:154
+#: meinberlin/apps/projectcontainers/dashboard.py:61
+#: meinberlin/apps/projectcontainers/models.py:12
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_list.html:4
+#: meinberlin/templates/a4dashboard/base_project_list.html:15
+#: meinberlin/templates/a4dashboard/project_list.html:4
+#: meinberlin/templates/a4dashboard/project_list.html:9
+msgid "Projects"
+msgstr "Projects"
+
 #: adhocracy4/dashboard/forms.py:87
 msgid "Address"
 msgstr "Address"
@@ -2864,9 +2876,25 @@ msgstr "Invite moderators via email"
 msgid "Invite moderators via file upload"
 msgstr "Invite moderators via file upload"
 
+#: meinberlin/apps/projects/views.py:323
+msgid "{} moderator invited."
+msgstr "{} moderator invited."
+
+#: meinberlin/apps/projects/views.py:323
+msgid "{} moderators invited."
+msgstr "{} moderators invited."
+
 #: meinberlin/apps/projects/views.py:324
 msgid "Moderator successfully removed."
 msgstr "Moderator successfully removed."
+
+#: meinberlin/apps/projects/views.py:343
+msgid "{} participant invited."
+msgstr "{} participant invited."
+
+#: meinberlin/apps/projects/views.py:343
+msgid "{} participants invited."
+msgstr "{} participants invited."
 
 #: meinberlin/apps/projects/views.py:344
 msgid "Participant successfully removed."
