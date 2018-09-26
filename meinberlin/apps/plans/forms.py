@@ -64,7 +64,8 @@ class CustomMultipleChoiceField(forms.ModelMultipleChoiceField):
 
 
 class ProjectPlansDashboardForm(ProjectDashboardForm):
-    plans = CustomMultipleChoiceField(queryset=None)
+    plans = CustomMultipleChoiceField(queryset=None,
+                                      label=_('Plans'))
 
     class Meta:
         model = project_models.Project
