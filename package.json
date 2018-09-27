@@ -60,7 +60,7 @@
     "husky": "0.14.3",
     "markdownlint-cli": "0.13.0",
     "polylint.sh": "0.0.4",
-    "stylelint": "9.5.0",
+    "stylelint": "9.6.0",
     "stylelint-config-standard": "18.2.0",
     "stylelint-declaration-strict-value": "1.0.4"
   },
