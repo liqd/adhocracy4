@@ -83,7 +83,7 @@ class Plan(UserGeneratedContentModel):
             'Visualize your plan.'
         ),
     )
-    category = models.CharField(max_length=255, verbose_name=_('Type of plan'))
+    theme = models.CharField(max_length=255, verbose_name=_('Theme'))
     status = models.SmallIntegerField(choices=STATUS_CHOICES)
     participation = models.SmallIntegerField(
         choices=PARTICIPATION_CHOICES,
