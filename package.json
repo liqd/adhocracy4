@@ -35,7 +35,6 @@
     "node-sass": "4.9.3",
     "popper.js": "1.14.4",
     "postcss-loader": "3.0.0",
-    "react-flip-move": "3.0.1",
     "react-flip-move": "3.0.2",
     "sass-loader": "7.1.0",
     "sass-planifolia": "0.6.0",
@@ -67,8 +66,12 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "build:dev": "webpack --config webpack.dev.js",
-    "watch": "webpack --config webpack.dev.js --watch",
-    "precommit": "make lint-quick"
+    "watch": "webpack --config webpack.dev.js --watch"
   },
-  "browserslist": "last 3 versions, ie >= 10"
+  "browserslist": "last 3 versions, ie >= 10",
+  "husky": {
+    "hooks": {
+      "pre-commit": "make lint-quick"
+    }
+  }
 }
