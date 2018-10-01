@@ -16,7 +16,7 @@
     "adhocracy4": "liqd/adhocracy4#1f1e0083accab142c5bbfa55553bbd4574c943eb",
     "autoprefixer": "9.1.5",
     "babel-core": "6.26.3",
-    "babel-loader": "7.1.5",
+    "babel-loader": "8.0.4",
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "bootstrap": "4.1.3",
