@@ -14,7 +14,7 @@
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
     "adhocracy4": "liqd/adhocracy4#fbee92186d0e45b90974a507f42e1199b0cdc94b",
-    "autoprefixer": "9.1.5",
+    "autoprefixer": "9.2.0",
     "babel-core": "6.26.3",
     "babel-loader": "7.1.5",
     "babel-preset-env": "1.7.0",
