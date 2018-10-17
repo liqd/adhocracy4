@@ -8,7 +8,9 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
+from adhocracy4.maps.fields import PointField
 from adhocracy4.models import base
 from adhocracy4 import transforms as html_transforms
 from adhocracy4.images import fields
@@ -58,7 +60,26 @@ class ProjectContactDetailMixin(models.Model):
         blank=True)
 
 
-class Project(ProjectContactDetailMixin, base.TimeStampedModel):
+class ProjectLocationMixin(models.Model):
+    class Meta:
+        abstract = True
+
+    point = PointField(
+        blank=True,
+        verbose_name=_('Location of your Project')
+    )
+
+    administrative_district = models.ForeignKey(
+        AdministrativeDistrict,
+        null=True,
+        blank=True,
+        verbose_name=_('Administrative district')
+    )
+
+
+class Project(ProjectContactDetailMixin,
+              ProjectLocationMixin,
+              base.TimeStampedModel):
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(
         max_length=120,
