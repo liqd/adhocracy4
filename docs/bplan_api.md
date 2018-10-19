@@ -11,12 +11,14 @@ API user and the *id* of your organisation.
 
 The API supports the HTTP Basic Authentication mechanism using your *email* and *password*.
 
-## Ceating a BPLAN
+## Creating a BPLAN
 
 The following data fields are posted as JSON to create and publish a BPLAN
 project:
 
 -   *name*: Name of the BPLAN (e.g. used as the title of the project tile)
+    -   maximum length of 120 chars
+-   *identifier*: Identifier that clearly identifies the BPLAN, needs to be the same as in the FIS Broker
     -   maximum length of 120 chars
 -   *description*: Description of the BPLAN shown in the project tile
     -   maximum length of 250 chars
