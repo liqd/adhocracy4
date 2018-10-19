@@ -15,6 +15,8 @@ from adhocracy4.models import base
 from adhocracy4 import transforms as html_transforms
 from adhocracy4.images import fields
 
+from .fields import TopicField
+
 
 class ProjectManager(models.Manager):
 
@@ -160,6 +162,9 @@ class Project(ProjectContactDetailMixin,
         verbose_name=_('Project is archived'),
         help_text=_('Exclude this project from all listings by default. '
                     'You can still access this project by using filters.'),
+    )
+    topic = TopicField(
+        verbose_name=_('Project topic')
     )
 
     objects = ProjectManager()
