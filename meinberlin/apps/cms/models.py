@@ -13,6 +13,7 @@ from wagtail.wagtailimages.models import AbstractImage
 from wagtail.wagtailimages.models import AbstractRendition
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.wagtailadmin.edit_handlers import (FieldPanel, InlinePanel, PageChooserPanel)
 
 from meinberlin.apps.actions import blocks as actions_blocks
 
@@ -124,6 +125,54 @@ class NavigationMenu(ClusterableModel):
 
 class NavigationMenuItem(Orderable, MenuItem):
     parent = ParentalKey('meinberlin_cms.NavigationMenu', related_name='items')
+
+
+class StorefrontItem(models.Model):
+    link_page = models.ForeignKey('wagtailcore.Page',
+        related_name='+',
+        null=True,
+        blank=True,
+    )
+        title = models.CharField(
+        max_length=255, verbose_name="Title")
+
+    header_image = models.ForeignKey(
+        'meinberlin_cms.CustomImage',
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    @property
+    def url(self):
+        return self.link_page.url
+
+    def __str__(self):
+        return self.title
+
+    panels = [
+        PageChooserPanel('link_page'),
+        FieldPanel('title'),
+        ImageChooserPanel('header_image')
+    ]
+
+
+@register_snippet
+class Storefront(ClusterableModel):
+    title = models.CharField(max_length=255, null=False, blank=False)
+
+    def __str__(self):
+        return self.title
+
+    panels = [
+        edit_handlers.FieldPanel('title'),
+        edit_handlers.InlinePanel('items')
+    ]
+
+
+class StorefrontCollection(Orderable, StorefrontItem):
+    parent = ParentalKey('meinberlin_cms.Storefront', related_name='items')
 
 
 class EmailFormField(AbstractFormField):
