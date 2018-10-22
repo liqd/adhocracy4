@@ -133,7 +133,7 @@ class StorefrontItem(models.Model):
         null=True,
         blank=True,
     )
-        title = models.CharField(
+    title = models.CharField(
         max_length=255, verbose_name="Title")
 
     header_image = models.ForeignKey(
