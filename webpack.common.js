@@ -17,7 +17,6 @@ module.exports = {
       '@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss',
       '@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss',
       'jquery',
-      'jquery.scrollintoview',
       'js-cookie',
       'react',
       'immutability-helper',

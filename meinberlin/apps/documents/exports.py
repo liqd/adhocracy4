@@ -1,4 +1,5 @@
 from django.utils.translation import ugettext as _
+from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.exports import mixins as export_mixins
@@ -7,6 +8,7 @@ from meinberlin.apps.exports import mixins as mb_export_mixins
 
 
 class DocumentExportView(
+        PermissionRequiredMixin,
         export_mixins.ExportModelFieldsMixin,
         mb_export_mixins.UserGeneratedContentExportMixin,
         export_mixins.ItemExportWithLinkMixin,
@@ -16,8 +18,12 @@ class DocumentExportView(
 ):
 
     model = Comment
+    permission_required = 'meinberlin_documents.change_chapter'
 
     fields = ['id', 'comment', 'created']
+
+    def get_permission_object(self):
+        return self.module
 
     def get_queryset(self):
         comments = (
@@ -34,3 +40,7 @@ class DocumentExportView(
         virtual.setdefault('comment', _('Comment'))
         virtual.setdefault('created', _('Created'))
         return super().get_virtual_fields(virtual)
+
+    @property
+    def raise_exception(self):
+        return self.request.user.is_authenticated()
