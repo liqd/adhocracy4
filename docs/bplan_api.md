@@ -18,7 +18,8 @@ project:
 
 -   *name*: Name of the BPLAN (e.g. used as the title of the project tile)
     -   maximum length of 120 chars
--   *identifier*: Identifier that clearly identifies the BPLAN, needs to be the same as in the FIS Broker
+-   *identifier*: Identifier that clearly identifies the BPLAN,
+    needs to be the same as in the FIS Broker
     -   maximum length of 120 chars
 -   *description*: Description of the BPLAN shown in the project tile
     -   maximum length of 250 chars
