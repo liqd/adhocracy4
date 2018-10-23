@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'adhocracy4.rules.apps.RulesConfig',
     'adhocracy4.dashboard.apps.DashboardConfig',
     'adhocracy4.polls.apps.PollsConfig',
+    'adhocracy4.administrative_districts.apps.AdministrativeDistrictsConfig',
 
     # adhocrayc4 generic apps
     'adhocracy4.ratings.apps.RatingsConfig',
