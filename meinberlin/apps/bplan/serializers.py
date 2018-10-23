@@ -45,17 +45,18 @@ class BplanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bplan
         fields = (
-            'id', 'name', 'description', 'url', 'office_worker_email',
-            'is_draft', 'start_date', 'end_date', 'image_url',
-            'image_copyright', 'embed_code'
+            'id', 'name', 'identifier', 'description', 'url',
+            'office_worker_email', 'is_draft', 'start_date', 'end_date',
+            'image_url', 'image_copyright', 'embed_code'
         )
         extra_kwargs = {
-            # write_only for constency reasons
+            # write_only for consistency reasons
             'is_draft': {'default': False, 'write_only': True},
             'name': {'write_only': True},
             'description': {'write_only': True},
             'url': {'write_only': True},
-            'office_worker_email': {'write_only': True}
+            'office_worker_email': {'write_only': True},
+            'identifier': {'write_only': True}
         }
 
     def create(self, validated_data):
