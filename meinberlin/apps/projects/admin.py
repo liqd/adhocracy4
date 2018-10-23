@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.projects import models
 
@@ -11,6 +12,33 @@ class ProjectAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     raw_id_fields = ('moderators', 'participants')
     date_hierarchy = 'created'
+
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'organisation')
+        }),
+        (_('Topic and location'), {
+            'fields': ('topic', 'point', 'administrative_district'),
+        }),
+        (_('Information and result'), {
+            'fields': ('description', 'information', 'result'),
+        }),
+        (_('Settings'), {
+            'classes': ('collapse',),
+            'fields': ('is_public', 'is_draft', 'is_archived',
+                       'moderators', 'participants')
+        }),
+        (_('Images'), {
+            'classes': ('collapse',),
+            'fields': ('image', 'image_copyright', 'tile_image',
+                       'tile_image_copyright')
+        }),
+        (_('Contact'), {
+            'classes': ('collapse',),
+            'fields': ('contact_name', 'contact_address_text',
+                       'contact_phone', 'contact_email', 'contact_url'),
+        }),
+    )
 
 
 # Overwrite adhocracy4.projects.admin

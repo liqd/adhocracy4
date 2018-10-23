@@ -60,6 +60,7 @@ INSTALLED_APPS = (
     'raven.contrib.django.raven_compat',
 
     'adhocracy4.actions.apps.ActionsConfig',
+    'adhocracy4.administrative_districts.apps.AdministrativeDistrictsConfig',
     'adhocracy4.categories.apps.CategoriesConfig',
     'adhocracy4.ckeditor.apps.CKEditorConfig',
     'adhocracy4.comments.apps.CommentsConfig',
@@ -454,6 +455,12 @@ A4_CATEGORY_ICONS = (
     ('ring', _('Circle')),
     ('rw_dreieck', _('Right triangle')),
     ('zickzack', _('Zigzag'))
+)
+
+A4_PROJECT_TOPICS = (
+    ('suw', _('Stadtentwicklung und Wohnen')),
+    ('bpl', _('Bebauungsplan')),
+    ('kka', _('Kiezkasse'))
 )
 
 
