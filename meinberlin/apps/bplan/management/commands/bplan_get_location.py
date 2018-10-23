@@ -25,6 +25,7 @@ class Command(BaseCommand):
                 features = res_json.get('features')
                 if features:
                     geometry = features[0].get('geometry')
+                    print(geometry)
 
                     if geometry:
                         coordinates = geometry.get('coordinates')
