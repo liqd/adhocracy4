@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags rules i18n %}
+{% load wagtailimages_tags rules i18n static %}
 
 {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
     {{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
@@ -10,12 +10,13 @@
     {% endif %}
 {% endblock %}
 
-{% block storefront %}
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'masonary.js' %}"></script>
 {% endblock %}
 
 
-
 {% block content %}
+
     {% image self.header_image max-1920x560 as header_image %}
 
     <div class="hero-unit">
@@ -30,8 +31,19 @@
                 {% endif %}
             </div>
         {% endif %}
-    </div>
 
+    </div>
+    {% if self.storefront %}
+    <div class="grid">
+     {% for item in self.storefront.items.all %}
+           <div class="grid-item">
+             {{ item.title }}
+             <a href="{{ item.link_page.url }}"></a>
+           {% image item.header_image max-1920x560 %}
+           </div>
+     {% endfor %}
+   </div>
+    {% endif %}
     {% for block in self.body %}
         {% if block.block_type == 'call_to_action' %}
             {{ block }}
@@ -41,5 +53,6 @@
         </div>
         {% endif %}
     {% endfor %}
+
 
 {% endblock %}

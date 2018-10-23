@@ -14,6 +14,7 @@ from wagtail.wagtailimages.models import AbstractRendition
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailadmin.edit_handlers import (FieldPanel, InlinePanel, PageChooserPanel)
+from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 
 from meinberlin.apps.actions import blocks as actions_blocks
 
@@ -85,11 +86,12 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-
+    storefront = models.ForeignKey('meinberlin_cms.Storefront', on_delete=models.SET_NULL, null=True, related_name='+')
     content_panels = Page.content_panels + [
         edit_handlers.FieldPanel('subtitle'),
         ImageChooserPanel('header_image'),
         edit_handlers.StreamFieldPanel('body'),
+        SnippetChooserPanel('storefront')
     ]
 
 
