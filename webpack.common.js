@@ -35,7 +35,7 @@ module.exports = {
       'leaflet.markercluster/dist/MarkerCluster.css',
       './meinberlin/apps/plans/assets/plans_map.jsx'
     ],
-    masonary : [
+    masonary: [
       'masonry-layout',
       './meinberlin/assets/js/init-masonary.js'
     ],
