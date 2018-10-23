@@ -70,7 +70,7 @@ class ProjectPlansDashboardForm(ProjectDashboardForm):
     class Meta:
         model = project_models.Project
         fields = ['plans']
-        required_for_project_publish = ['plans']
+        required = False
 
     def save(self, commit=False):
         plans = self.cleaned_data['plans']
