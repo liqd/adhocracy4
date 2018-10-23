@@ -17,16 +17,16 @@ class Command(BaseCommand):
             if bplan.identifier:
                 url = 'https://bplan-prod.liqd.net/api/bplan/points/' + \
                     '?bplan={}'.format(bplan.identifier.replace(' ', '%20'))
-                req = urllib.request.Request(url)
-                res = urllib.request.urlopen(req)
-                res_body = res.read()
-                res_json = json.loads(res_body.decode("utf-8"))
+                try:
+                    req = urllib.request.Request(url)
+                    res = urllib.request.urlopen(req)
+                    res_body = res.read()
+                    res_json = json.loads(res_body.decode("utf-8"))
 
-                features = res_json.get('features')
-                if features:
-                    geometry = features[0].get('geometry')
-                    print(geometry)
+                    features = res_json.get('features')
+                    if features:
+                        bplan.point = features[0]
+                        bplan.save()
 
-                    if geometry:
-                        coordinates = geometry.get('coordinates')
-                        print(coordinates)
+                except UnicodeEncodeError:
+                    pass
