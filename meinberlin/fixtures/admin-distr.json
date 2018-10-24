@@ -1,0 +1,62 @@
+[
+    {
+        "model": "a4administrative_districts.administrativedistrict",
+        "pk": 1,
+        "fields": {"name": "Mitte"}
+    },
+    {
+        "model": "a4administrative_districts.administrativedistrict",
+        "pk": 2,
+        "fields": {"name": "Friedrichshain-Kreuzberg"}
+    },
+    {
+        "model": "a4administrative_districts.administrativedistrict",
+        "pk": 3,
+        "fields": {"name": "Pankow"}
+    },
+    {
+        "model": "a4administrative_districts.administrativedistrict",
+        "pk": 4,
+        "fields": {"name": "Charlottenburg-Wilmersdorf"}
+    },
+    {
+        "model": "a4administrative_districts.administrativedistrict",
+        "pk": 5,
+        "fields": {"name": "Spandau"}
+    },
+    {
+        "model": "a4administrative_districts.administrativedistrict",
+        "pk": 6,
+        "fields": {"name": "Steglitz-Zehlendorf"}
+    },
+    {
+        "model": "a4administrative_districts.administrativedistrict",
+        "pk": 7,
+        "fields": {"name": "Tempelhof-Sch\u00f6neberg"}
+    },
+    {
+        "model": "a4administrative_districts.administrativedistrict",
+        "pk": 8,
+        "fields": {"name": "Neuk\u00f6lln"}
+    },
+    {
+        "model": "a4administrative_districts.administrativedistrict",
+        "pk": 9,
+        "fields": {"name": "Treptow-K\u00f6penick"}
+    },
+    {
+        "model": "a4administrative_districts.administrativedistrict",
+        "pk": 10,
+        "fields": {"name": "Marzahn-Hellersdorf"}
+    },
+    {
+        "model": "a4administrative_districts.administrativedistrict",
+        "pk": 11,
+        "fields": {"name": "Lichtenberg"}
+    },
+    {
+        "model": "a4administrative_districts.administrativedistrict",
+        "pk": 12,
+        "fields": {"name": "Reinickendorf"}
+    }
+]
