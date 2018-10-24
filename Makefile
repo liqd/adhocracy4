@@ -50,6 +50,9 @@ fixtures:
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/users-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/orga-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/project-dev.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/module-dev.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/phase-dev.json
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/admin-distr.json
 
 .PHONY: server
 server:

@@ -1,0 +1,14 @@
+[
+    {
+        "model": "a4modules.module",
+        "pk": 1,
+        "fields": {
+            "slug": "brainstorming",
+            "name": "Brainstorming",
+            "description":
+            "liqd project description",
+            "weight": 1,
+            "project": 1
+        }
+    }
+]
