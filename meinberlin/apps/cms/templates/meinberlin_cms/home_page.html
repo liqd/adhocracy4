@@ -36,10 +36,10 @@
     {% if self.storefront %}
     <div class="grid">
      {% for item in self.storefront.items.all %}
-           <div class="grid-item">
-             {{ item.title }}
-             <a href="{{ item.link_page.url }}"></a>
-           {% image item.header_image max-1920x560 %}
+           <div class="grid-item grid-item-{{ forloop.counter }}">
+              {{ item.title }}
+              <a href="{{ item.link_page.url }}"></a>
+              {% image item.header_image max-1920x560 %}
            </div>
      {% endfor %}
    </div>
