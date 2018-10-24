@@ -28,8 +28,12 @@ module.exports = {
     select2: [
       'select2'
     ],
+    mapoptions: [
+      './meinberlin/assets/js/map-options.js'
+    ],
     leaflet: [
       'leaflet',
+      'leaflet.vectorgrid',
       'leaflet/dist/leaflet.css',
       'leaflet.markercluster',
       'leaflet.markercluster/dist/MarkerCluster.css',
@@ -146,6 +150,11 @@ module.exports = {
       {
         from: './meinberlin/assets/info',
         to: 'info/',
+        flatten: false
+      },
+      {
+        from: './meinberlin/assets/data',
+        to: 'data/',
         flatten: false
       }
     ])
