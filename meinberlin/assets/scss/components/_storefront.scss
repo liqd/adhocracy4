@@ -1,5 +1,55 @@
+/* ---- grid ---- */
+
+.grid {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* clearfix */
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/* ---- grid-item ---- */
+
 .grid-item {
+    margin: auto;
+    width: 400px;
+    height: 200px;
     float: left;
-    width: 150px;
-    height: 1500px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* force scrollbar */
+html {
+    overflow-y: scroll;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+    width: 30%;
+    min-width: 200px;
+}
+
+.grid-item-1 {
+    width: 20%;
+}
+
+.grid-item-2 {
+    width: 50%;
+}
+
+.grid-item-4 {
+    width: 40%;
 }

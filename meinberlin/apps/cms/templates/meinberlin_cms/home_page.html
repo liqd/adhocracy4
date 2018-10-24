@@ -33,6 +33,7 @@
         {% else %}
             {% if self.storefront %}
             <div class="grid">
+              <div class="grid-sizer"></div>
              {% for item in self.storefront.items.all %}
                    <div class="grid-item grid-item-{{ forloop.counter }}">
                       {{ item.title }}
