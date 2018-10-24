@@ -457,7 +457,7 @@ A4_CATEGORY_ICONS = (
 )
 
 
-A4_MAP_BASEURL = 'https://maps.berlinonline.de/tile/bright/'
+A4_MAP_BASEURL = 'https://vector.maps.berlinonline.de/data/v3/'
 A4_MAP_ATTRIBUTION = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
 
