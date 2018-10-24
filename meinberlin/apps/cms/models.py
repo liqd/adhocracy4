@@ -149,7 +149,7 @@ class StorefrontItem(models.Model):
     header_image = models.ForeignKey(
         'meinberlin_cms.CustomImage',
         null=True,
-        blank=False,
+        blank=True,
         on_delete=models.SET_NULL,
         related_name='+'
     )
