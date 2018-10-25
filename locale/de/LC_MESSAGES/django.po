@@ -2551,8 +2551,8 @@ msgid "see participation plans"
 msgstr "siehe Beteiligung"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:64
-msgid "Planned cost"
-msgstr "Geplante Kosten"
+msgid "Cost"
+msgstr "Kosten"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:70
 msgid "updated on "
