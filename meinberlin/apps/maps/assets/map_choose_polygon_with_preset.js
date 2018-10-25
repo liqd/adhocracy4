@@ -6,10 +6,11 @@ const FileSaver = require('file-saver')
 const shp = require('shpjs')
 
 function createMap (L, baseurl, attribution, e) {
-  const basemap = baseurl + '{z}/{x}/{y}.png'
-  const baselayer = L.tileLayer(basemap, { maxZoom: 18, attribution: attribution })
   const map = new L.Map(e, { scrollWheelZoom: false, zoomControl: true, minZoom: 2 })
-  baselayer.addTo(map)
+  L.mapboxGL({
+    accessToken: 'no-token',
+    style: baseurl
+  }).addTo(map)
   return map
 }
 

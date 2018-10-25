@@ -6,6 +6,7 @@ const ReactDOM = require('react-dom')
 const update = require('immutability-helper')
 const $ = require('jquery')
 const L = require('leaflet')
+require('mapbox-gl-leaflet')
 
 const statusNames = [
   django.gettext('Idea'),
@@ -246,12 +247,11 @@ class PlansMap extends React.Component {
   }
 
   createMap () {
-    var basemap = this.props.baseurl + '{z}/{x}/{y}.png'
-    var baselayer = L.tileLayer(basemap, {
-      attribution: this.props.attribution
-    })
-    var map = new L.Map(this.mapElement, { scrollWheelZoom: false })
-    baselayer.addTo(map)
+    var map = new L.Map(this.mapElement, { scrollWheelZoom: false, maxZoom: 18 })
+    L.mapboxGL({
+      accessToken: 'no-token',
+      style: this.props.baseurl
+    }).addTo(map)
 
     map.fitBounds(this.props.bounds)
     map.options.minZoom = map.getZoom()
