@@ -31,10 +31,9 @@ class Command(BaseCommand):
                     dis_dict[district['properties']['pk']] = \
                         dis_model[0]
                 else:
-                    dis_dict[district['properties']['pk']] = ''
+                    dis_dict[district['properties']['pk']] = None
 
         for bplan in Bplan.objects.all():
-            print(bplan.identifier)
             if bplan.identifier:
                 url_poi = 'https://bplan-prod.liqd.net/api/bplan/points/' + \
                     '?bplan={}'.format(bplan.identifier.replace(' ', '%20'))
