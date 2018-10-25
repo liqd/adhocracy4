@@ -84,12 +84,3 @@ class DocsBlock(blocks.StructBlock):
 
     class Meta:
         template = 'meinberlin_cms/blocks/docs_block.html'
-
-
-class StorefrontBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
-    image = ImageChooserBlock()
-    link = blocks.CharBlock()
-
-    class Meta:
-        template = 'meinberlin_cms/blocks/storefront_block.html'
