@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-26 15:12+0200\n"
+"POT-Creation-Date: 2018-10-25 17:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,72 +18,91 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:12
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:12
+#: /Users/phillippa/adhocracy4/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:12
 msgid "Insert Collapsible Item"
 msgstr "Insert Collapsible Item"
 
-#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:14
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:14
+#: /Users/phillippa/adhocracy4/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:14
 msgid "Title"
 msgstr "Title"
 
-#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:15
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:15
+#: /Users/phillippa/adhocracy4/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:15
 msgid "Body text"
 msgstr "Body text"
 
-#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:37
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:37
+#: /Users/phillippa/adhocracy4/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:37
 msgid "Collapsible element"
 msgstr "Collapsible element"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:26 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:26
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:26
 msgid "hide one reply"
 msgstr "hide one reply"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:26 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:26
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:26
 #, javascript-format
 msgid "hide %s replies"
 msgstr "hide %s replies"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:28 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:28
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:28
 msgid "view one reply"
 msgstr "view one reply"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:28 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:28
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:28
 #, javascript-format
 msgid "view %s replies"
 msgstr "view %s replies"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:128 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:128
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:128
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:130
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:93
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:96
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:130
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:93
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:96
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:130
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:93
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:96
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:52
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:125
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:90
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:93 adhocracy4.js:7
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:93
 msgid "Delete"
 msgstr "Delete"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:131
-#: adhocracy4/static/Modal.jsx:49 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:131
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/static/Modal.jsx:49
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:131
+#: /Users/phillippa/adhocracy4/adhocracy4/static/Modal.jsx:49
 msgid "Abort"
 msgstr "Abort"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:144 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:144
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:144
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:149 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:149
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:149
 msgid "Moderator"
 msgstr "Moderator"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:156
-#: adhocracy4/reports/static/reports/react_reports.jsx:20 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:156
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/reports/static/reports/react_reports.jsx:20
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:156
+#: /Users/phillippa/adhocracy4/adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
 "moderation. The moderation will look at the reported content. The content "
@@ -93,222 +112,268 @@ msgstr ""
 "moderation. The moderation will look at the reported content. The content "
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
-#: adhocracy4/comments/static/comments/Comment.jsx:179
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:26 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:179
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:26
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:179
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:26
 msgid "Answer"
 msgstr "Answer"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:218 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:218
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:218
 msgid "Your reply here"
 msgstr "Your reply here"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:167 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentBox.jsx:167
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/CommentBox.jsx:167
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "comment"
 msgstr[1] "comments"
 
-#: adhocracy4/comments/static/comments/CommentBox.jsx:170
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:38
-#: adhocracy4/comments/static/comments/CommentForm.jsx:48 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentBox.jsx:170
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentEditForm.jsx:38
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentForm.jsx:48
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/CommentBox.jsx:170
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/CommentEditForm.jsx:38
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/CommentForm.jsx:48
 msgid "Your comment here"
 msgstr "Your comment here"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:41 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentEditForm.jsx:41
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/CommentEditForm.jsx:41
 msgid "save changes"
 msgstr "save changes"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:43 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentEditForm.jsx:43
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/CommentEditForm.jsx:43
 msgid "cancel"
 msgstr "cancel"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:51 adhocracy4.js:1
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentForm.jsx:51
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/CommentForm.jsx:51
 msgid "post"
 msgstr "post"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:57 adhocracy4.js:1
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentForm.jsx:57
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/CommentForm.jsx:57
 msgid "Please login to comment"
 msgstr "Please login to comment"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:63 adhocracy4.js:1
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentForm.jsx:63
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/CommentForm.jsx:63
 msgid "The currently active phase doesn't allow to comment."
 msgstr "The currently active phase doesn't allow to comment."
 
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:16
-#: adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentManageDropdown.jsx:16
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/CommentManageDropdown.jsx:16
 msgid "Edit"
 msgstr "Edit"
 
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
-#: adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
+#: /Users/phillippa/adhocracy4/adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
 msgid "Report"
 msgstr "Report"
 
-#: adhocracy4/follows/static/follows/FollowButton.jsx:51 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:51
+#: /Users/phillippa/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:51
 msgid "Not following"
 msgstr "Not following"
 
-#: adhocracy4/follows/static/follows/FollowButton.jsx:52 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:52
+#: /Users/phillippa/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:52
 msgid "Never be notified."
 msgstr "Never be notified."
 
-#: adhocracy4/follows/static/follows/FollowButton.jsx:53 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:53
+#: /Users/phillippa/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:53
 msgid "Following"
 msgstr "Following"
 
-#: adhocracy4/follows/static/follows/FollowButton.jsx:54 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:54
+#: /Users/phillippa/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:54
 msgid "Receive email notifications about this project."
 msgstr "Receive email notifications about this project."
 
-#: adhocracy4/follows/static/follows/FollowButton.jsx:61 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:61
+#: /Users/phillippa/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:61
 msgid "Unfollow"
 msgstr "Unfollow"
 
-#: adhocracy4/follows/static/follows/FollowButton.jsx:61 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:61
+#: /Users/phillippa/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:61
 msgid "Follow"
 msgstr "Follow"
 
-#: adhocracy4/polls/static/polls/ChoiceForm.jsx:24
-#: adhocracy4/polls/static/polls/ChoiceForm.jsx:27
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/ChoiceForm.jsx:24
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/ChoiceForm.jsx:27
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/ChoiceForm.jsx:24
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/ChoiceForm.jsx:27
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:24
-#: meinberlin/apps/polls/assets/ChoiceForm.jsx:27 adhocracy4.js:7
+#: meinberlin/apps/polls/assets/ChoiceForm.jsx:27
 msgid "remove"
 msgstr "remove"
 
-#: adhocracy4/polls/static/polls/PollManagement.jsx:188
-#: meinberlin/apps/polls/assets/PollManagement.jsx:188 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/PollManagement.jsx:188
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/PollManagement.jsx:188
+#: meinberlin/apps/polls/assets/PollManagement.jsx:188
 msgid "The poll has been updated."
 msgstr "The poll has been updated."
 
-#: adhocracy4/polls/static/polls/PollManagement.jsx:205
-#: meinberlin/apps/polls/assets/PollManagement.jsx:205 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/PollManagement.jsx:205
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/PollManagement.jsx:205
+#: meinberlin/apps/polls/assets/PollManagement.jsx:205
 msgid "The poll could not be updated."
 msgstr "The poll could not be updated."
 
-#: adhocracy4/polls/static/polls/PollManagement.jsx:246
-#: meinberlin/apps/polls/assets/PollManagement.jsx:246 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/PollManagement.jsx:246
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/PollManagement.jsx:246
+#: meinberlin/apps/polls/assets/PollManagement.jsx:246
 msgid "Add a new question"
 msgstr "Add a new question"
 
-#: adhocracy4/polls/static/polls/PollManagement.jsx:252
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/PollManagement.jsx:252
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/PollManagement.jsx:252
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:324
-#: meinberlin/apps/polls/assets/PollManagement.jsx:252 adhocracy4.js:7
+#: meinberlin/apps/polls/assets/PollManagement.jsx:252
 msgid "Save"
 msgstr "Save"
 
-#: adhocracy4/polls/static/polls/Question.jsx:51
-#: meinberlin/apps/polls/assets/Question.jsx:51 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:51
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:51
+#: meinberlin/apps/polls/assets/Question.jsx:51
 msgid "Vote counted"
 msgstr "Vote counted"
 
-#: adhocracy4/polls/static/polls/Question.jsx:61
-#: meinberlin/apps/polls/assets/Question.jsx:61 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:61
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:61
+#: meinberlin/apps/polls/assets/Question.jsx:61
 msgid "Vote has not been counted due to a server error."
 msgstr "Vote has not been counted due to a server error."
 
-#: adhocracy4/polls/static/polls/Question.jsx:108
-#: meinberlin/apps/polls/assets/Question.jsx:108 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:108
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:108
+#: meinberlin/apps/polls/assets/Question.jsx:108
 msgid "Vote"
 msgstr "Vote"
 
-#: adhocracy4/polls/static/polls/Question.jsx:114
-#: meinberlin/apps/polls/assets/Question.jsx:114 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:114
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:114
+#: meinberlin/apps/polls/assets/Question.jsx:114
 msgid "Please login to vote"
 msgstr "Please login to vote"
 
-#: adhocracy4/polls/static/polls/Question.jsx:136 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:136
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:136
 msgid "Multiple answers are possible for this question"
 msgstr "Multiple answers are possible for this question"
 
-#: adhocracy4/polls/static/polls/Question.jsx:141
-#: meinberlin/apps/polls/assets/Question.jsx:136 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:141
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:141
+#: meinberlin/apps/polls/assets/Question.jsx:136
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "vote"
 msgstr[1] "votes"
 
-#: adhocracy4/polls/static/polls/Question.jsx:142
-#: meinberlin/apps/polls/assets/Question.jsx:137 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:142
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:142
+#: meinberlin/apps/polls/assets/Question.jsx:137
 msgid "To poll"
 msgstr "To poll"
 
-#: adhocracy4/polls/static/polls/Question.jsx:145
-#: meinberlin/apps/polls/assets/Question.jsx:140 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:145
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:145
+#: meinberlin/apps/polls/assets/Question.jsx:140
 msgid "Change vote"
 msgstr "Change vote"
 
-#: adhocracy4/polls/static/polls/Question.jsx:149
-#: meinberlin/apps/polls/assets/Question.jsx:144 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:149
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:149
+#: meinberlin/apps/polls/assets/Question.jsx:144
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
-#: adhocracy4/polls/static/polls/Question.jsx:177
-#: meinberlin/apps/polls/assets/Question.jsx:172 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:177
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:177
+#: meinberlin/apps/polls/assets/Question.jsx:172
 msgid "Your choice"
 msgstr "Your choice"
 
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:15
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:14 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:15
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:15
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:14
 msgid "Question"
 msgstr "Question"
 
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:37
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:34 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:37
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:37
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:34
 msgid "Users can select more than one answer."
 msgstr "Users can select more than one answer."
 
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:45
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:42 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:45
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:45
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:42
 msgid "Choice"
 msgstr "Choice"
 
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:67
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:64 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:67
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:67
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:64
 msgid "Add a new choice"
 msgstr "Add a new choice"
 
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:76
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:79
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:76
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:79
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:76
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:79
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:31
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:34
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:105
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:108
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:73
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:76 adhocracy4.js:7
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:76
 msgid "Move up"
 msgstr "Move up"
 
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:85
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:88
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:85
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:88
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:85
+#: /Users/phillippa/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:88
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:40
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:43
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:114
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:117
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:82
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:85 adhocracy4.js:7
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:85
 msgid "Move down"
 msgstr "Move down"
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:57 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/reports/static/reports/ReportModal.jsx:57
+#: /Users/phillippa/adhocracy4/adhocracy4/reports/static/reports/ReportModal.jsx:57
 msgid "Thank you! We are taking care of it."
 msgstr "Thank you! We are taking care of it."
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:65 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/reports/static/reports/ReportModal.jsx:65
+#: /Users/phillippa/adhocracy4/adhocracy4/reports/static/reports/ReportModal.jsx:65
 msgid "Your message"
 msgstr "Your message"
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:77 adhocracy4.js:7
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/reports/static/reports/ReportModal.jsx:77
+#: /Users/phillippa/adhocracy4/adhocracy4/reports/static/reports/ReportModal.jsx:77
 msgid "Send Report"
 msgstr "Send Report"
 
-#: adhocracy4/static/Alert.jsx:10 adhocracy4/static/Alert.jsx:11
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/static/Alert.jsx:10
+#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/static/Alert.jsx:11
+#: /Users/phillippa/adhocracy4/adhocracy4/static/Alert.jsx:10
+#: /Users/phillippa/adhocracy4/adhocracy4/static/Alert.jsx:11
 #: meinberlin/apps/contrib/assets/Alert.jsx:10
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:93
 #: meinberlin/assets/js/embed.js:29 meinberlin/assets/js/embed.js:30
-#: adhocracy4.js:1 meinberlin/static/embed.js:1
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid "Close"
 msgstr "Close"
 
@@ -316,175 +381,158 @@ msgstr "Close"
 msgid "If you leave this page changes you made will not be saved."
 msgstr "If you leave this page changes you made will not be saved."
 
-#: meinberlin/apps/documents/assets/ChapterForm.jsx:13 adhocracy4.js:7
+#: meinberlin/apps/documents/assets/ChapterForm.jsx:13
 msgid "Chapter title"
 msgstr "Chapter title"
 
-#: meinberlin/apps/documents/assets/ChapterForm.jsx:53 adhocracy4.js:7
+#: meinberlin/apps/documents/assets/ChapterForm.jsx:53
 msgid "Add a new paragraph"
 msgstr "Add a new paragraph"
 
-#: meinberlin/apps/documents/assets/ChapterNav.jsx:9 adhocracy4.js:7
+#: meinberlin/apps/documents/assets/ChapterNav.jsx:9
 msgid "Chapter navigation"
 msgstr "Chapter navigation"
 
-#: meinberlin/apps/documents/assets/ChapterNav.jsx:37 adhocracy4.js:7
+#: meinberlin/apps/documents/assets/ChapterNav.jsx:37
 msgid "Add a new chapter"
 msgstr "Add a new chapter"
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:18 adhocracy4.js:7
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:18
 msgid "first chapter"
 msgstr "first chapter"
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:98 adhocracy4.js:7
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:98
 msgid "new chapter"
 msgstr "new chapter"
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:261 adhocracy4.js:7
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:261
 msgid "The document has been updated."
 msgstr "The document has been updated."
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:279 adhocracy4.js:7
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:279
 msgid "The document could not be updated."
 msgstr "The document could not be updated."
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:295 adhocracy4.js:7
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:295
 msgid "Contents"
 msgstr "Contents"
 
-#: meinberlin/apps/documents/assets/DocumentManagement.jsx:307 adhocracy4.js:7
+#: meinberlin/apps/documents/assets/DocumentManagement.jsx:307
 msgid "Edit chapter"
 msgstr "Edit chapter"
 
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:70 adhocracy4.js:7
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:70
 msgid "Headline"
 msgstr "Headline"
 
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:85 adhocracy4.js:7
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:85
 msgid "Paragraph"
 msgstr "Paragraph"
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:75
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid "Export polygon as GeoJSON"
 msgstr "Export polygon as GeoJSON"
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:76
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:86
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:98
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid "Import polygon via file upload"
 msgstr "Import polygon via file upload"
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:100
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid ""
 "Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
 msgstr ""
 "Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:101
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid ""
 "Note that uploading Shapefiles is not supported with Internet Explorer 10"
 msgstr ""
 "Note that uploading Shapefiles is not supported with Internet Explorer 10"
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:102
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid "Attention importing a file will delete the existing polygons."
 msgstr "Attention importing a file will delete the existing polygons."
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:107
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid "Upload"
 msgstr "Upload"
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:114
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid "Cancel"
 msgstr "Cancel"
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:148
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:150
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid "The uploaded file is not a valid shapefile."
 msgstr "The uploaded file is not a valid shapefile."
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:152
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid "The uploaded file could not be imported."
 msgstr "The uploaded file could not be imported."
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:166
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid "The uploaded file is not a valid geojson file."
 msgstr "The uploaded file is not a valid geojson file."
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:171
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid "Invalid file format."
 msgstr "Invalid file format."
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:280
-#: meinberlin/static/map_choose_polygon_with_preset.js:7
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:11 meinberlin/static/leaflet.js:1
+#: meinberlin/apps/plans/assets/plans_map.jsx:11
 msgid "Idea"
 msgstr "Idea"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:12 meinberlin/static/leaflet.js:1
+#: meinberlin/apps/plans/assets/plans_map.jsx:12
 msgid "Planning"
 msgstr "Planning"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:13 meinberlin/static/leaflet.js:1
+#: meinberlin/apps/plans/assets/plans_map.jsx:13
 msgid "Implementation"
 msgstr "Implementation"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:14 meinberlin/static/leaflet.js:1
+#: meinberlin/apps/plans/assets/plans_map.jsx:14
 msgid "Done"
 msgstr "Done"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:15 meinberlin/static/leaflet.js:1
+#: meinberlin/apps/plans/assets/plans_map.jsx:15
 msgid "Stopped"
 msgstr "Stopped"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:27 meinberlin/static/leaflet.js:1
+#: meinberlin/apps/plans/assets/plans_map.jsx:27
 msgid "No"
 msgstr "No"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:28 meinberlin/static/leaflet.js:1
+#: meinberlin/apps/plans/assets/plans_map.jsx:28
 msgid "Yes"
 msgstr "Yes"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:29 meinberlin/static/leaflet.js:1
+#: meinberlin/apps/plans/assets/plans_map.jsx:29
 msgid "Still undecided"
 msgstr "Still undecided"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:378
-#: meinberlin/static/leaflet.js:1
 msgid "Theme: "
 msgstr "Theme: "
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:379
-#: meinberlin/static/leaflet.js:1
 msgid "Participation: "
 msgstr "Participation: "
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:400
-#: meinberlin/static/leaflet.js:1
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:409
-#: meinberlin/static/leaflet.js:1
 msgid "Filter bar"
 msgstr "Filter bar"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:416
-#: meinberlin/static/leaflet.js:1
 msgid "Address Search"
 msgstr "Address Search"
 
@@ -493,12 +541,10 @@ msgstr "Address Search"
 #: meinberlin/apps/plans/assets/plans_map.jsx:446
 #: meinberlin/apps/plans/assets/plans_map.jsx:447
 #: meinberlin/apps/plans/assets/plans_map.jsx:448
-#: meinberlin/static/leaflet.js:1
 msgid "Search"
 msgstr "Search"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:454
-#: meinberlin/static/leaflet.js:1
 msgid "Status"
 msgstr "Status"
 
@@ -508,43 +554,38 @@ msgstr "Status"
 #: meinberlin/apps/plans/assets/plans_map.jsx:500
 #: meinberlin/apps/plans/assets/plans_map.jsx:523
 #: meinberlin/apps/plans/assets/plans_map.jsx:533
-#: meinberlin/static/leaflet.js:1
 msgid "All"
 msgstr "All"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:490
-#: meinberlin/static/leaflet.js:1
 msgid "Participation"
 msgstr "Participation"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:523
-#: meinberlin/static/leaflet.js:1
 msgid "District"
 msgstr "District"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:555
-#: meinberlin/static/leaflet.js:1
 msgid "Export Excel"
 msgstr "Export Excel"
 
 #: meinberlin/apps/plans/assets/plans_map.jsx:562
-#: meinberlin/static/leaflet.js:1
 msgid "Address could not be found"
 msgstr "Address could not be found"
 
-#: meinberlin/assets/js/embed.js:85 meinberlin/static/embed.js:1
+#: meinberlin/assets/js/embed.js:85
 msgid "We couldn't find what you were looking for."
 msgstr "We couldn't find what you were looking for."
 
-#: meinberlin/assets/js/embed.js:89 meinberlin/static/embed.js:1
+#: meinberlin/assets/js/embed.js:89
 msgid "You don't have the permission to view this page."
 msgstr "You don't have the permission to view this page."
 
-#: meinberlin/assets/js/embed.js:92 meinberlin/static/embed.js:1
+#: meinberlin/assets/js/embed.js:92
 msgid "Something went wrong!"
 msgstr "Something went wrong!"
 
-#: meinberlin/assets/js/embed.js:191 meinberlin/static/embed.js:1
+#: meinberlin/assets/js/embed.js:191
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
@@ -552,11 +593,11 @@ msgstr ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
 
-#: adhocracy4.js:7
+#: meinberlin/assets/js/map-address.js:89
 msgid "No matches found within the project area"
 msgstr "No matches found within the project area"
 
-#: adhocracy4.js:7
+#: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Did you mean:"
 
