@@ -7,12 +7,21 @@ var init = function () {
     var point = JSON.parse(e.getAttribute('data-point'))
     var pinSrc = JSON.parse(e.getAttribute('data-pin-src'))
     var baseurl = e.getAttribute('data-baseurl')
+    var usevectormap = e.getAttribute('data-usevectormap')
     var attribution = e.getAttribute('data-attribution')
 
-    var basemap = baseurl + '{z}/{x}/{y}.png'
-    var baselayer = L.tileLayer(basemap, {attribution: attribution})
     var map = new L.Map(e, {scrollWheelZoom: false, zoomControl: false})
-    baselayer.addTo(map)
+
+    if (usevectormap === '1') {
+      L.mapboxGL({
+        accessToken: 'no-token',
+        style: baseurl
+      }).addTo(map)
+    } else {
+      var basemap = baseurl + '{z}/{x}/{y}.png'
+      var baselayer = L.tileLayer(basemap, { attribution: attribution })
+      baselayer.addTo(map)
+    }
 
     var polygonStyle = {
       'color': '#0076ae',
