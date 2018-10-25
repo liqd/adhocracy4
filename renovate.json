@@ -10,6 +10,9 @@
   "devDependencies": {
     "automerge": true
   },
+  "digest": {
+    "enabled": false
+  },
 
   "labels": [
     "renovate"
