@@ -1,0 +1,15 @@
+[
+    {
+        "model": "a4phases.phase",
+        "pk": 1,
+        "fields": {
+            "name": "Phase zur Einreichung von Ideen",
+            "description": "Anlegen und Kommentieren neuer Ideen.",
+            "type": "meinberlin_ideas:collect",
+            "module": 1,
+            "start_date": "2018-10-22T22:00:00Z",
+            "end_date": "2019-10-30T23:00:00Z",
+            "weight": 0
+        }
+    }
+]

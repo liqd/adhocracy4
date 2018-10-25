@@ -8,6 +8,11 @@ from meinberlin.apps.extprojects.models import ExternalProject
 
 
 class Bplan(ExternalProject):
+    identifier = models.CharField(
+        verbose_name=_('Identifier'),
+        blank=True,
+        max_length=120
+    )
     office_worker_email = models.EmailField(
         verbose_name=_('Office worker email'),
         blank=True,
