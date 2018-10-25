@@ -181,7 +181,7 @@ class Storefront(ClusterableModel):
     ]
 
 
-class StorefrontCollection(Orderable, StorefrontItem):
+class StorefrontCollection(StorefrontItem):
     parent = ParentalKey('meinberlin_cms.Storefront', related_name='items')
 
 
