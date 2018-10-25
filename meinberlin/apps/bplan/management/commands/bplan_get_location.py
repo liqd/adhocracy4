@@ -23,12 +23,15 @@ class Command(BaseCommand):
         dis_json = res_json.get('features')
         if dis_json:
             for district in dis_json:
-                dis_dict[district['properties']['pk']] = \
-                    district['properties']['name']
-        print(dis_dict)
 
-        dis_model = AdministrativeDistrict.objects.all()
-        print(dis_model)
+                dis_model = AdministrativeDistrict.objects.filter(
+                    name=district['properties']['name']
+                )
+                if dis_model:
+                    dis_dict[district['properties']['pk']] = \
+                        dis_model[0]
+                else:
+                    dis_dict[district['properties']['pk']] = ''
 
         for bplan in Bplan.objects.all():
             print(bplan.identifier)
@@ -42,12 +45,13 @@ class Command(BaseCommand):
                     res_json = json.loads(res_body.decode("utf-8"))
 
                     features = res_json.get('features')
-                    print(features)
                     if features:
                         district_pk = features[0]['properties']['bezirk']
-                        print(district_pk)
+                        bplan.administrative_district = \
+                            dis_dict[district_pk]
                         bplan.point = features[0]
                         bplan.save()
 
                 except UnicodeEncodeError:
+                    # catches bplan-identifiers with problematic chars
                     pass
