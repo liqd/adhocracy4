@@ -28,16 +28,17 @@ module.exports = {
     select2: [
       'select2'
     ],
-    mapoptions: [
-      './meinberlin/assets/js/map-options.js'
-    ],
     leaflet: [
       'leaflet',
-      'leaflet.vectorgrid',
+      'mapbox-gl-leaflet',
+      'mapbox-gl/dist/mapbox-gl.js',
       'leaflet/dist/leaflet.css',
       'leaflet.markercluster',
       'leaflet.markercluster/dist/MarkerCluster.css',
       './meinberlin/apps/plans/assets/plans_map.jsx'
+    ],
+    'mapboxgl': [
+      'mapbox-gl/dist/mapbox-gl.js'
     ],
     datepicker: [
       './meinberlin/assets/js/init-picker.js',
@@ -150,11 +151,6 @@ module.exports = {
       {
         from: './meinberlin/assets/info',
         to: 'info/',
-        flatten: false
-      },
-      {
-        from: './meinberlin/assets/data',
-        to: 'data/',
         flatten: false
       }
     ])
