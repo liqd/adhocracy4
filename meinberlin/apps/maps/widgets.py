@@ -13,7 +13,8 @@ class MapChoosePolygonWithPresetWidget(Widget):
     class Media:
         js = (
             'leaflet.js',
-            'map_choose_polygon_with_preset.js'
+            'map_choose_polygon_with_preset.js',
+            'mapboxgl.js'
         )
         css = {'all': [
             'leaflet.css',
