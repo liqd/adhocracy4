@@ -57,18 +57,24 @@ def get_points(items):
 
 @register.simple_tag()
 def map_display_points(items, polygon):
+    use_vector_map = 0
+    if (hasattr(settings, 'A4_USE_VECTORMAP') and
+       settings.A4_USE_VECTORMAP):
+        use_vector_map = 1
     return format_html(
         (
             '<div'
             ' style="height: 300px"'
             ' data-map="display_points"'
             ' data-baseurl="{baseurl}"'
+            ' data-usevectormap="{usevectormap}"'
             ' data-attribution="{attribution}"'
             ' data-points="{points}"'
             ' data-polygon="{polygon}"'
             '></div>'
         ),
         baseurl=settings.A4_MAP_BASEURL,
+        usevectormap=use_vector_map,
         attribution=settings.A4_MAP_ATTRIBUTION,
         points=get_points(items),
         polygon=json.dumps(polygon)
@@ -77,12 +83,17 @@ def map_display_points(items, polygon):
 
 @register.simple_tag()
 def map_display_point(point, polygon, pin_src=None):
+    use_vector_map = 0
+    if (hasattr(settings, 'A4_USE_VECTORMAP') and
+       settings.A4_USE_VECTORMAP):
+        use_vector_map = 1
     return format_html(
         (
             '<div'
             ' style="height: 300px"'
             ' data-map="display_point"'
             ' data-baseurl="{baseurl}"'
+            ' data-usevectormap="{usevectormap}"'
             ' data-attribution="{attribution}"'
             ' data-point="{point}"'
             ' data-polygon="{polygon}"'
@@ -90,6 +101,7 @@ def map_display_point(point, polygon, pin_src=None):
             '></div>'
         ),
         baseurl=settings.A4_MAP_BASEURL,
+        usevectormap=use_vector_map,
         attribution=settings.A4_MAP_ATTRIBUTION,
         point=json.dumps(point),
         polygon=json.dumps(polygon),

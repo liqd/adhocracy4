@@ -14,13 +14,27 @@ var init = function () {
     var polygon = JSON.parse(e.getAttribute('data-polygon'))
     var points = JSON.parse(e.getAttribute('data-points'))
     var baseurl = e.getAttribute('data-baseurl')
+    var usevectormap = e.getAttribute('data-usevectormap')
     var attribution = e.getAttribute('data-attribution')
     var initial = 0
 
-    var basemap = baseurl + '{z}/{x}/{y}.png'
-    var baselayer = L.tileLayer(basemap, { attribution: attribution })
-    var map = new L.Map(e, { scrollWheelZoom: false, zoomControl: false })
-    baselayer.addTo(map)
+    var map = new L.Map(e, {
+      scrollWheelZoom: false,
+      zoomControl: false,
+      maxZoom: 18
+    }
+    )
+
+    if (usevectormap === '1') {
+      L.mapboxGL({
+        accessToken: 'no-token',
+        style: baseurl
+      }).addTo(map)
+    } else {
+      var basemap = baseurl + '{z}/{x}/{y}.png'
+      var baselayer = L.tileLayer(basemap, { attribution: attribution })
+      baselayer.addTo(map)
+    }
 
     map.on('zoomend', function () {
       var currentZoom = map.getZoom()

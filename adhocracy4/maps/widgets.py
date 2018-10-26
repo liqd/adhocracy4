@@ -8,11 +8,21 @@ from django.template import loader
 class MapChoosePolygonWidget(Widget):
 
     class Media:
-        js = (
-            'leaflet.js',
-            'leaflet.draw.js',
-            'a4maps/map_choose_polygon.js'
-        )
+        if (hasattr(settings, 'A4_USE_VECTORMAP') and
+           settings.A4_USE_VECTORMAP):
+            js = (
+                'leaflet.js',
+                'leaflet.draw.js',
+                'a4maps/map_choose_polygon.js',
+                'mapboxgl.js'
+            )
+        else:
+            js = (
+                'leaflet.js',
+                'leaflet.draw.js',
+                'a4maps/map_choose_polygon.js'
+            )
+
         css = {'all': [
             'leaflet.css',
             'leaflet.draw.css',
@@ -20,8 +30,14 @@ class MapChoosePolygonWidget(Widget):
 
     def render(self, name, value, attrs):
 
+        use_vector_map = 0
+        if (hasattr(settings, 'A4_USE_VECTORMAP') and
+           settings.A4_USE_VECTORMAP):
+            use_vector_map = 1
+
         context = {
             'baseurl': settings.A4_MAP_BASEURL,
+            'usevectormap': use_vector_map,
             'attribution': settings.A4_MAP_ATTRIBUTION,
             'bbox': json.dumps(settings.A4_MAP_BOUNDING_BOX),
             'name': name,
@@ -41,18 +57,32 @@ class MapChoosePointWidget(Widget):
         super().__init__(attrs)
 
     class Media:
-        js = (
-            'leaflet.js',
-            'a4maps/map_choose_point.js',
-        )
+        if (hasattr(settings, 'A4_USE_VECTORMAP') and
+           settings.A4_USE_VECTORMAP):
+            js = (
+                'leaflet.js',
+                'a4maps/map_choose_point.js',
+                'mapboxgl.js'
+            )
+        else:
+            js = (
+                'leaflet.js',
+                'a4maps/map_choose_point.js'
+            )
         css = {'all': [
             'leaflet.css',
         ]}
 
     def render(self, name, value, attrs):
 
+        use_vector_map = 0
+        if (hasattr(settings, 'A4_USE_VECTORMAP') and
+           settings.A4_USE_VECTORMAP):
+            use_vector_map = 1
+
         context = {
             'baseurl': settings.A4_MAP_BASEURL,
+            'usevectormap': use_vector_map,
             'attribution': settings.A4_MAP_ATTRIBUTION,
             'name': name,
             'point': value,
