@@ -30,10 +30,15 @@ module.exports = {
     ],
     leaflet: [
       'leaflet',
+      'mapbox-gl-leaflet',
+      'mapbox-gl/dist/mapbox-gl.js',
       'leaflet/dist/leaflet.css',
       'leaflet.markercluster',
       'leaflet.markercluster/dist/MarkerCluster.css',
       './meinberlin/apps/plans/assets/plans_map.jsx'
+    ],
+    'mapboxgl': [
+      'mapbox-gl/dist/mapbox-gl.js'
     ],
     datepicker: [
       './meinberlin/assets/js/init-picker.js',
