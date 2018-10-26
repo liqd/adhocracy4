@@ -132,8 +132,7 @@ MIDDLEWARE = (
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 
-    'meinberlin.apps.embed.middleware.AjaxPathMiddleware',
-    'csp.middleware.CSPMiddleware'
+    'meinberlin.apps.embed.middleware.AjaxPathMiddleware'
 )
 
 SITE_ID = 1
