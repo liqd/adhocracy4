@@ -5,12 +5,20 @@ const $ = require('jquery')
 const FileSaver = require('file-saver')
 const shp = require('shpjs')
 
-function createMap (L, baseurl, attribution, e) {
+function createMap (L, baseurl, usevectormap, attribution, e) {
   const map = new L.Map(e, { scrollWheelZoom: false, zoomControl: true, minZoom: 2 })
-  L.mapboxGL({
-    accessToken: 'no-token',
-    style: baseurl
-  }).addTo(map)
+
+  if (usevectormap === '1') {
+    L.mapboxGL({
+      accessToken: 'no-token',
+      style: baseurl
+    }).addTo(map)
+  } else {
+    var basemap = baseurl + '{z}/{x}/{y}.png'
+    var baselayer = L.tileLayer(basemap, { attribution: attribution })
+    baselayer.addTo(map)
+  }
+
   return map
 }
 
@@ -190,9 +198,10 @@ function getBaseBounds (L, polygon, bbox) {
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
     const bbox = JSON.parse(e.getAttribute('data-bbox'))
     const baseurl = e.getAttribute('data-baseurl')
+    const usevectormap = e.getAttribute('data-usevectormap')
     const attribution = e.getAttribute('data-attribution')
 
-    const map = createMap(L, baseurl, attribution, e)
+    const map = createMap(L, baseurl, usevectormap, attribution, e)
 
     const polygonStyle = {
       'color': '#0076ae',
