@@ -40,5 +40,33 @@ class ProjectAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     date_hierarchy = 'created'
 
+    fieldsets = (
+        (None, {
+            'fields': ('name', 'organisation')
+        }),
+        (_('Information and result'), {
+            'fields': ('description', 'information', 'result'),
+        }),
+        (_('Settings'), {
+            'classes': ('collapse',),
+            'fields': ('is_public', 'is_draft', 'is_archived',
+                       'moderators', 'participants')
+        }),
+        (_('Images'), {
+            'classes': ('collapse',),
+            'fields': ('image', 'image_copyright', 'tile_image',
+                       'tile_image_copyright')
+        }),
+        (_('Contact'), {
+            'classes': ('collapse',),
+            'fields': ('contact_name', 'contact_address_text',
+                       'contact_phone', 'contact_email', 'contact_url'),
+        }),
+        (_('Topic and location'), {
+            'classes': ('collapse',),
+            'fields': ('topic', 'point', 'administrative_district'),
+        }),
+    )
+
 
 admin.site.register(models.Project, ProjectAdmin)
