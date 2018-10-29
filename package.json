@@ -13,7 +13,7 @@
   ],
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
-    "adhocracy4": "liqd/adhocracy4#b490dc68841ed4935e6b68c60b2cd986425c6940",
+    "adhocracy4": "liqd/adhocracy4#ae6cb91404f6185d450c2e5e3b845acb9a91a8f7",
     "autoprefixer": "9.3.1",
     "babel-core": "6.26.3",
     "babel-loader": "7.1.5",
