@@ -6,6 +6,7 @@
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
     <script type="text/javascript" src="{% static 'a4maps/map_display_point.js' %}"></script>
+    <script type="text/javascript" src="{% static 'mapboxgl.js' %}"></script>
 {% endblock %}
 
 {% block extra_css %}
@@ -61,7 +62,7 @@
 
                         {% if object.cost %}
                         <dl>
-                            <dt>{% trans 'Planned cost' %}</dt><dd>{{ object.cost }}</dd>
+                            <dt>{% trans 'Cost' %}</dt><dd>{{ object.cost }}</dd>
                         </dl>
                         {% endif %}
 
