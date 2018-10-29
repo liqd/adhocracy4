@@ -30,10 +30,15 @@ module.exports = {
     ],
     leaflet: [
       'leaflet',
+      'mapbox-gl-leaflet',
+      'mapbox-gl/dist/mapbox-gl.js',
       'leaflet/dist/leaflet.css',
       'leaflet.markercluster',
       'leaflet.markercluster/dist/MarkerCluster.css',
       './meinberlin/apps/plans/assets/plans_map.jsx'
+    ],
+    'mapboxgl': [
+      'mapbox-gl/dist/mapbox-gl.js'
     ],
     datepicker: [
       './meinberlin/assets/js/init-picker.js',
@@ -71,7 +76,7 @@ module.exports = {
         exclude: /node_modules\/(?!adhocracy4|bootstrap)/, // exclude most dependencies
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve)
+          presets: ['babel-preset-env', 'babel-preset-react'].map(require.resolve)
         }
       },
       {
