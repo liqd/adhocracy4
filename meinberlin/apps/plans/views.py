@@ -18,6 +18,7 @@ from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.maps.models import MapPreset
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
+from meinberlin.apps.projects.models import Project
 
 from . import models
 
@@ -120,6 +121,37 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 'participation_active': active,
                 'participation': item.participation,
                 'participation_display': item.get_participation_display(),
+            })
+
+        projects = Project.objects.all().order_by('created')
+        for item in projects:
+            district_name = str(city_wide)
+            if item.administrative_district:
+                district_name = item.administrative_district.name
+            point_label = ''
+            cost = ''
+            status = 2  # what should happen here?
+            status_display = _('Implementation')  # what should happen here?
+            participation_string = _('Online participation')  # wshh?
+            active = True  # what should happen here?
+            participation = 1  # what should happen here?
+            participation_display = _('Yes')  # what should happen here?
+
+            result.append({
+                'title': item.name,
+                'url': item.get_absolute_url(),
+                'organisation': item.organisation.name,
+                'point': item.point,
+                'point_label': point_label,
+                'cost': cost,
+                'district': district_name,
+                'theme': item.topic,
+                'status': status,
+                'status_display': str(status_display),
+                'participation_string': str(participation_string),
+                'participation_active': active,
+                'participation': participation,
+                'participation_display': str(participation_display),
             })
 
         context['items'] = json.dumps(result)
