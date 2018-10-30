@@ -32,6 +32,7 @@ module.exports = {
       'leaflet',
       'mapbox-gl-leaflet',
       'mapbox-gl/dist/mapbox-gl.js',
+      'mapbox-gl/dist/mapbox-gl.css',
       'leaflet/dist/leaflet.css',
       'leaflet.markercluster',
       'leaflet.markercluster/dist/MarkerCluster.css',
