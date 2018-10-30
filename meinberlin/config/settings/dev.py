@@ -2,6 +2,7 @@ from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+CSP_REPORT_ONLY = True
 
 for template_engine in TEMPLATES:
     template_engine['OPTIONS']['debug'] = True

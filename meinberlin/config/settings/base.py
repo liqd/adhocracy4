@@ -480,6 +480,4 @@ SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
 # that are stored translated to the database.
 DEFAULT_LANGUAGE = 'de'
 
-CSP_REPORT_ONLY = True # for local development. overwrite in local.py by salt
-
 TRACKING_ENABLED = False
