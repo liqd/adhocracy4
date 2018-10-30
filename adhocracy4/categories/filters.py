@@ -28,7 +28,7 @@ class CategoryChoiceField(ModelChoiceField):
             icon_name = getattr(obj, 'icon', None)
             icon_url = get_category_icon_url(icon_name)
             icon_label += \
-                '<img class="dropdown-item__icon" src="{icon_src}">' \
+                '<img alt="" class="dropdown-item__icon" src="{icon_src}">' \
                 .format(icon_src=force_text(icon_url))
 
         icon_label += \
