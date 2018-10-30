@@ -1,8 +1,6 @@
 from .base import *
 
 DEBUG = False
-# Temporary disable CSP blocking due to CKEditor failures
-# CSP_REPORT_ONLY = False
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 try:
