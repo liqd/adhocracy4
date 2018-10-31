@@ -1,7 +1,7 @@
 from .dev import *
 
-if 'meinberlin.apps.servicekonto.apps.Config' not in INSTALLED_APPS:
-    INSTALLED_APPS += ('meinberlin.apps.servicekonto.apps.Config',)
+if 'meinberlin.apps.servicekonto' not in INSTALLED_APPS:
+    INSTALLED_APPS += ('meinberlin.apps.servicekonto',)
 
 A4_ORGANISATION_FACTORY = \
     'meinberlin.test.factories.organisations.OrganisationFactory'
