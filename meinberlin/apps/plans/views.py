@@ -81,6 +81,22 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             else:
                 return item.get_participation_display(), False
 
+    def _get_participation_status_project(self, project):
+        if project.phases.active_phases():
+            return ugettext('running'), True
+        elif project.phases.future_phases():
+            return (ugettext('starts at {}').format
+                    (project.phases.future_phases().first().start_date.date()),
+                    True)
+        else:
+            return ugettext('done'), False
+
+    def _get_status_project(self, project):
+        if project.phases.active_phases() or project.phases.future_phases():
+            return 2, ugettext('Implementation')
+        else:
+            return 3, ugettext('Done')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -130,12 +146,12 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 district_name = item.administrative_district.name
             point_label = ''
             cost = ''
-            status = 2  # what should happen here?
-            status_display = _('Implementation')  # what should happen here?
-            participation_string = _('Online participation')  # wshh?
-            active = True  # what should happen here?
-            participation = 1  # what should happen here?
-            participation_display = _('Yes')  # what should happen here?
+            participation_string, active = \
+                self._get_participation_status_project(item)
+            status, status_display = \
+                self._get_status_project(item)
+            participation = 1
+            participation_display = _('Yes')
 
             result.append({
                 'title': item.name,
