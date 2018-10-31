@@ -139,36 +139,39 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 'participation_display': item.get_participation_display(),
             })
 
-        projects = Project.objects.all().order_by('created')
+        projects = Project.objects.all()\
+            .filter(is_draft=False, is_archived=False)\
+            .order_by('created')
         for item in projects:
-            district_name = str(city_wide)
-            if item.administrative_district:
-                district_name = item.administrative_district.name
-            point_label = ''
-            cost = ''
-            participation_string, active = \
-                self._get_participation_status_project(item)
-            status, status_display = \
-                self._get_status_project(item)
-            participation = 1
-            participation_display = _('Yes')
+            if self.request.user.has_perm('a4projects.view_project', item):
+                district_name = str(city_wide)
+                if item.administrative_district:
+                    district_name = item.administrative_district.name
+                point_label = ''
+                cost = ''
+                participation_string, active = \
+                    self._get_participation_status_project(item)
+                status, status_display = \
+                    self._get_status_project(item)
+                participation = 1
+                participation_display = _('Yes')
 
-            result.append({
-                'title': item.name,
-                'url': item.get_absolute_url(),
-                'organisation': item.organisation.name,
-                'point': item.point,
-                'point_label': point_label,
-                'cost': cost,
-                'district': district_name,
-                'theme': item.topic,
-                'status': status,
-                'status_display': str(status_display),
-                'participation_string': str(participation_string),
-                'participation_active': active,
-                'participation': participation,
-                'participation_display': str(participation_display),
-            })
+                result.append({
+                    'title': item.name,
+                    'url': item.get_absolute_url(),
+                    'organisation': item.organisation.name,
+                    'point': item.point,
+                    'point_label': point_label,
+                    'cost': cost,
+                    'district': district_name,
+                    'theme': item.topic,
+                    'status': status,
+                    'status_display': str(status_display),
+                    'participation_string': str(participation_string),
+                    'participation_active': active,
+                    'participation': participation,
+                    'participation_display': str(participation_display),
+                })
 
         context['items'] = json.dumps(result)
         context['baseurl'] = settings.A4_MAP_BASEURL
