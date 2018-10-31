@@ -3,6 +3,9 @@ from adhocracy4.dashboard import ProjectDashboard
 from meinberlin.apps.projects import get_project_type
 
 
+default_app_config = 'meinberlin.apps.dashboard.apps.Config'
+
+
 class TypedProjectDashboard(ProjectDashboard):
     def __init__(self, project):
         self.project_type = get_project_type(project)
