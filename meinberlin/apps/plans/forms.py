@@ -55,10 +55,10 @@ class PlanForm(forms.ModelForm):
 
 class CustomMultipleChoiceField(forms.ModelMultipleChoiceField):
 
-    widget = forms.RadioSelect
+    widget = forms.Select
 
     def clean(self, value):
-        if value is None:
+        if not value:
             return super().clean([])
         return super().clean([value])
 
@@ -79,5 +79,7 @@ class ProjectPlansDashboardForm(ProjectDashboardForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.initial['plans'] = self.instance.plans.all()
-        self.fields['plans'
-                    ].queryset = self.instance.organisation.plan_set.all()
+        self.fields['plans'].required = False
+        self.fields['plans'].empty_label = '----------'
+        self.fields['plans'].queryset = \
+            self.instance.organisation.plan_set.all()
