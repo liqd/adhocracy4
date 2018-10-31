@@ -1,1 +1,1 @@
-default_app_config = 'adhocracy4.actions.apps.ActionsConfig'
+default_app_config = 'adhocracy4.actions.apps.Config'

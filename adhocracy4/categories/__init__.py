@@ -1,8 +1,7 @@
 from django.conf import settings
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
-
-default_app_config = 'adhocracy4.categories.apps.CategoriesConfig'
+default_app_config = 'adhocracy4.categories.apps.Config'
 
 
 def has_icons(module):

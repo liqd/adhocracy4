@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class ActionsConfig(AppConfig):
+class Config(AppConfig):
     name = 'adhocracy4.actions'
     label = 'a4actions'
 

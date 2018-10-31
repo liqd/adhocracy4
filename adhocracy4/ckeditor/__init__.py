@@ -1,1 +1,1 @@
-default_app_config = 'adhocracy4.ckeditor.apps.CKEditorConfig'
+default_app_config = 'adhocracy4.ckeditor.apps.Config'

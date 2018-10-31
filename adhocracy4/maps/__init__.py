@@ -1,1 +1,1 @@
-default_app_config = 'adhocracy4.maps.apps.MapsConfig'
+default_app_config = 'adhocracy4.maps.apps.Config'

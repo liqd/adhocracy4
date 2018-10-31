@@ -8,7 +8,7 @@ from . import views
 
 
 class VotingPhase(phases.PhaseContent):
-    app = apps.PollsConfig.label
+    app = apps.Config.label
     phase = 'voting'
     view = views.PollDetailView
 

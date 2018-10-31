@@ -1,1 +1,1 @@
-default_app_config = 'adhocracy4.comments.apps.CommentsConfig'
+default_app_config = 'adhocracy4.comments.apps.Config'

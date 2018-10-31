@@ -4,7 +4,7 @@ from . import apps, models, views
 
 
 class AskPhase(phases.PhaseContent):
-    app = apps.QuestionsConfig.label
+    app = apps.Config.label
     phase = 'ask'
     view = views.QuestionList
 
@@ -22,7 +22,7 @@ phases.content.register(AskPhase())
 
 
 class RatePhase(phases.PhaseContent):
-    app = apps.QuestionsConfig.label
+    app = apps.Config.label
     phase = 'rate'
     view = views.QuestionList
 
