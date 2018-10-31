@@ -51,7 +51,7 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'rules',
+    'rules.apps.AutodiscoverRulesConfig',
     'easy_thumbnails',
     'ckeditor',
     'ckeditor_uploader',
