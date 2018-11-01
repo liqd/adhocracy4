@@ -68,7 +68,7 @@ const districtStyle = {
 }
 
 const pointToLatLng = function (point) {
-  if (point.geometry === '') {
+  if (point.geometry !== '') {
     return {
       lat: point.geometry.coordinates[1],
       lng: point.geometry.coordinates[0]
