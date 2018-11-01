@@ -85,9 +85,14 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         if project.phases.active_phases():
             return ugettext('running'), True
         elif project.phases.future_phases():
-            return (ugettext('starts at {}').format
-                    (project.phases.future_phases().first().start_date.date()),
-                    True)
+            try:
+                return (ugettext('starts at {}').format
+                        (project.phases.future_phases().first().
+                         start_date.date()),
+                        True)
+            except AttributeError:
+                return (ugettext('starts in the future'),
+                        True)
         else:
             return ugettext('done'), False
 
