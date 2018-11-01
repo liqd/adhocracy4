@@ -27,35 +27,35 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     # adhocracy4 base apps
-    'adhocracy4.organisations.apps.OrganisationsConfig',
-    'adhocracy4.projects.apps.ProjectsConfig',
-    'adhocracy4.modules.apps.ModulesConfig',
-    'adhocracy4.phases.apps.PhasesConfig',
-    'adhocracy4.reports.apps.ReportsConfig',
-    'adhocracy4.comments.apps.CommentsConfig',
-    'adhocracy4.maps.apps.MapsConfig',
-    'adhocracy4.actions.apps.ActionsConfig',
-    'adhocracy4.follows.apps.FollowsConfig',
-    'adhocracy4.filters.apps.FiltersConfig',
-    'adhocracy4.forms.apps.FormsConfig',
-    'adhocracy4.rules.apps.RulesConfig',
-    'adhocracy4.dashboard.apps.DashboardConfig',
-    'adhocracy4.polls.apps.PollsConfig',
-    'adhocracy4.administrative_districts.apps.AdministrativeDistrictsConfig',
+    'adhocracy4.organisations',
+    'adhocracy4.projects',
+    'adhocracy4.modules',
+    'adhocracy4.phases',
+    'adhocracy4.reports',
+    'adhocracy4.comments',
+    'adhocracy4.maps',
+    'adhocracy4.actions',
+    'adhocracy4.follows',
+    'adhocracy4.filters',
+    'adhocracy4.forms',
+    'adhocracy4.rules',
+    'adhocracy4.dashboard',
+    'adhocracy4.polls',
+    'adhocracy4.administrative_districts',
 
     # adhocrayc4 generic apps
-    'adhocracy4.ratings.apps.RatingsConfig',
-    'adhocracy4.categories.apps.CategoriesConfig',
-    'adhocracy4.labels.apps.LabelsConfig',
+    'adhocracy4.ratings',
+    'adhocracy4.categories',
+    'adhocracy4.labels',
 
     # adhocracy4 helper apps
-    'adhocracy4.ckeditor.apps.CKEditorConfig',
-    'adhocracy4.images.apps.ImagesConfig',
+    'adhocracy4.ckeditor',
+    'adhocracy4.images',
 
     # test apps
-    'tests.apps.questions.apps.QuestionsConfig',
-    'tests.apps.locations.apps.LocationsConfig',
-    'tests.apps.ideas.apps.IdeasConfig',
+    'tests.apps.questions',
+    'tests.apps.locations',
+    'tests.apps.ideas',
 
     # mandatory third party apps
     'easy_thumbnails',

@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class ImagesConfig(AppConfig):
+class Config(AppConfig):
     name = 'adhocracy4.images'
     label = 'a4images'
 

@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class CommentsConfig(AppConfig):
+class Config(AppConfig):
     name = 'adhocracy4.comments'
     label = 'a4comments'
 

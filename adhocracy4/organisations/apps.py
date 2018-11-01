@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class OrganisationsConfig(AppConfig):
+class Config(AppConfig):
     name = 'adhocracy4.organisations'
     label = 'a4organisations'
