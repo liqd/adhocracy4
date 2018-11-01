@@ -68,9 +68,11 @@ const districtStyle = {
 }
 
 const pointToLatLng = function (point) {
-  return {
-    lat: point.geometry.coordinates[1],
-    lng: point.geometry.coordinates[0]
+  if (point.geometry !== '') {
+    return {
+      lat: point.geometry.coordinates[1],
+      lng: point.geometry.coordinates[0]
+    }
   }
 }
 
@@ -304,6 +306,10 @@ class PlansMap extends React.Component {
     this.selected.removeLayer(this.activeMarkers[i])
   }
 
+  escapeHtml (unsafe) {
+    return $('<div>').text(unsafe).html()
+  }
+
   componentDidMount () {
     this.map = this.createMap()
     this.cluster = L.markerClusterGroup({
@@ -319,43 +325,55 @@ class PlansMap extends React.Component {
     })
 
     this.markers = this.props.items.map((item, i) => {
-      let marker = L.marker(pointToLatLng(item.point), { icon: statusIconPins[item.status] })
-      this.cluster.addLayer(marker)
-      marker.on('click', () => {
-        this.onSelect(i)
-      })
-      return marker
+      if (item.point !== '') {
+        let marker = L.marker(pointToLatLng(item.point), { icon: statusIconPins[item.status] })
+        this.cluster.addLayer(marker)
+        var popupContent = '<div class="maps-popups-popup-text-content">' +
+                             '<div class="maps-popups-popup-name">' +
+                                '<a href="' + item.url + '">' + this.escapeHtml(item.title) + '</a>' +
+                            '</div>' +
+                          '</div>'
+        marker.bindPopup(popupContent)
+        return marker
+      }
     })
 
     this.activeMarkers = this.props.items.map((item, i) => {
-      let marker = L.marker(pointToLatLng(item.point), { icon: activeIcon })
-      marker.on('click', () => {
-        this.onSelect(i)
-      })
-      return marker
+      if (item.point !== '') {
+        let marker = L.marker(pointToLatLng(item.point), { icon: activeIcon })
+        var popupContent = '<div class="maps-popups-popup-text-content">' +
+                             '<div class="maps-popups-popup-name">' +
+                                '<a href="' + item.url + '">' + this.escapeHtml(item.title) + '</a>' +
+                            '</div>' +
+                          '</div>'
+        marker.bindPopup(popupContent)
+        return marker
+      }
     })
 
-    this.map.on('zoomend', this.onBoundsChange.bind(this))
-    this.map.on('moveend', this.onBoundsChange.bind(this))
+    // this.map.on('zoomend', this.onBoundsChange.bind(this))
+    // this.map.on('moveend', this.onBoundsChange.bind(this))
   }
 
   componentDidUpdate (prevProps, prevState) {
     if (prevState.selected !== this.state.selected || prevState.filters !== this.state.filters) {
       // filter markers
       this.props.items.forEach((item, i) => {
-        if (!this.isInFilter(item)) {
-          this.setMarkerFiltered(i)
-        } else if (i === this.state.selected) {
-          this.setMarkerSelected(i, item)
-        } else {
-          this.setMarkerDefault(i, item)
+        if (item.point !== '') {
+          if (!this.isInFilter(item)) {
+            this.setMarkerFiltered(i)
+          } else if (i === this.state.selected) {
+            this.setMarkerSelected(i, item)
+          } else {
+            this.setMarkerDefault(i, item)
+          }
         }
       })
 
       // scroll list
-      if (this.state.selected !== null && this.isInFilter(this.props.items[this.state.selected])) {
-        $(this.listElement).find('.selected')[0].scrollIntoView({ behavior: 'smooth' })
-      }
+      // if (this.state.selected !== null && this.isInFilter(this.props.items[this.state.selected])) {
+      // $(this.listElement).find('.selected')[0].scrollIntoView({ behavior: 'smooth' })
+      // }
     }
   }
 
@@ -366,7 +384,7 @@ class PlansMap extends React.Component {
     }
     let statusClass = (item.participation_active === true) ? 'list-item__status--active' : 'list-item__status--inactive'
     return (
-      <li className={itemClass} key={i} onFocus={(e) => { this.onSelect(i) }} tabIndex="0">
+      <li className={itemClass} key={i} tabIndex="0">
         <div className="list-item__labels">
           {
             <span className="label label--secondary">{item.status_display}</span>
