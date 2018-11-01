@@ -160,12 +160,15 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                     self._get_status_project(item)
                 participation = 1
                 participation_display = _('Yes')
+                point = item.point
+                if point == '""':
+                    point = ''
 
                 result.append({
                     'title': item.name,
                     'url': item.get_absolute_url(),
                     'organisation': item.organisation.name,
-                    'point': item.point,
+                    'point': point,
                     'point_label': point_label,
                     'cost': cost,
                     'district': district_name,
