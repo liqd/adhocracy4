@@ -59,7 +59,7 @@ INSTALLED_APPS = (
 
     # mandatory third party apps
     'easy_thumbnails',
-    'rules',
+    'rules.apps.AutodiscoverRulesConfig',
     'background_task',
 
     'django.contrib.admin',
