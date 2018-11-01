@@ -18,6 +18,7 @@ from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.maps.models import MapPreset
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
+from meinberlin.apps.projects.models import Project
 
 from . import models
 
@@ -80,6 +81,22 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             else:
                 return item.get_participation_display(), False
 
+    def _get_participation_status_project(self, project):
+        if project.phases.active_phases():
+            return ugettext('running'), True
+        elif project.phases.future_phases():
+            return (ugettext('starts at {}').format
+                    (project.phases.future_phases().first().start_date.date()),
+                    True)
+        else:
+            return ugettext('done'), False
+
+    def _get_status_project(self, project):
+        if project.phases.active_phases() or project.phases.future_phases():
+            return 2, ugettext('Implementation')
+        else:
+            return 3, ugettext('Done')
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -121,6 +138,40 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 'participation': item.participation,
                 'participation_display': item.get_participation_display(),
             })
+
+        projects = Project.objects.all()\
+            .filter(is_draft=False, is_archived=False)\
+            .order_by('created')
+        for item in projects:
+            if self.request.user.has_perm('a4projects.view_project', item):
+                district_name = str(city_wide)
+                if item.administrative_district:
+                    district_name = item.administrative_district.name
+                point_label = ''
+                cost = ''
+                participation_string, active = \
+                    self._get_participation_status_project(item)
+                status, status_display = \
+                    self._get_status_project(item)
+                participation = 1
+                participation_display = _('Yes')
+
+                result.append({
+                    'title': item.name,
+                    'url': item.get_absolute_url(),
+                    'organisation': item.organisation.name,
+                    'point': item.point,
+                    'point_label': point_label,
+                    'cost': cost,
+                    'district': district_name,
+                    'theme': item.topic,
+                    'status': status,
+                    'status_display': str(status_display),
+                    'participation_string': str(participation_string),
+                    'participation_active': active,
+                    'participation': participation,
+                    'participation_display': str(participation_display),
+                })
 
         context['items'] = json.dumps(result)
         context['baseurl'] = settings.A4_MAP_BASEURL
