@@ -40,6 +40,11 @@ class ProjectAdmin(admin.ModelAdmin):
         }),
     )
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == 'administrative_district':
+            kwargs['empty_label'] = _('City wide')
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
 
 # Overwrite adhocracy4.projects.admin
 admin.site.unregister(models.Project)
