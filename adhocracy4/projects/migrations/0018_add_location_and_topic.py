@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='project',
             name='point',
-            field=adhocracy4.maps.fields.PointField(blank=True, verbose_name='Location of your Project'),
+            field=adhocracy4.maps.fields.PointField(blank=True, null=True, verbose_name='Location of your Project'),
         ),
         migrations.AddField(
             model_name='project',

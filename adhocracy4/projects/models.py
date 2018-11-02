@@ -67,6 +67,7 @@ class ProjectLocationMixin(models.Model):
         abstract = True
 
     point = PointField(
+        null=True,
         blank=True,
         verbose_name=_('Location of your Project')
     )
