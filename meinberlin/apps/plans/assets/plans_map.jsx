@@ -1,13 +1,10 @@
 /* global django */
 
-const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
 const React = require('react')
 const ReactDOM = require('react-dom')
-const update = require('immutability-helper')
 const $ = require('jquery')
 const L = require('leaflet')
 require('mapbox-gl-leaflet')
-
 
 class PlansMap extends React.Component {
   constructor (props) {
@@ -87,7 +84,7 @@ class PlansMap extends React.Component {
     if (list.length > 0) {
       return (
         <ul className="u-list-reset">
-          {list}
+        {list}
         </ul>
       )
     } else {
