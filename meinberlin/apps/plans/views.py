@@ -85,9 +85,14 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         if project.phases.active_phases():
             return ugettext('running'), True
         elif project.phases.future_phases():
-            return (ugettext('starts at {}').format
-                    (project.phases.future_phases().first().start_date.date()),
-                    True)
+            try:
+                return (ugettext('starts at {}').format
+                        (project.phases.future_phases().first().
+                         start_date.date()),
+                        True)
+            except AttributeError:
+                return (ugettext('starts in the future'),
+                        True)
         else:
             return ugettext('done'), False
 
@@ -142,11 +147,15 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         projects = Project.objects.all()\
             .filter(is_draft=False, is_archived=False)\
             .order_by('created')
+
         for item in projects:
             if self.request.user.has_perm('a4projects.view_project', item):
                 district_name = str(city_wide)
                 if item.administrative_district:
                     district_name = item.administrative_district.name
+                point = item.point
+                if not point:
+                    point = ''
                 point_label = ''
                 cost = ''
                 participation_string, active = \
@@ -160,7 +169,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                     'title': item.name,
                     'url': item.get_absolute_url(),
                     'organisation': item.organisation.name,
-                    'point': item.point,
+                    'point': point,
                     'point_label': point_label,
                     'cost': cost,
                     'district': district_name,
