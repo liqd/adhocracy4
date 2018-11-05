@@ -11,3 +11,8 @@ def get_menu(title):
 
     if menu is not None:
         return menu.items.all()
+
+
+@register.simple_tag()
+def get_identifier(item):
+    return id(item)

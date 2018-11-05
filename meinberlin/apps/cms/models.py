@@ -73,6 +73,7 @@ class HomePage(Page):
         ('columns_text', cms_blocks.ColumnsBlock()),
         ('projects', cms_blocks.ProjectsWrapperBlock()),
         ('activities', actions_blocks.PlatformActivityBlock()),
+        ('accordion', cms_blocks.DocsBlock())
     ])
 
     subtitle = models.CharField(max_length=120)
