@@ -2,6 +2,8 @@ from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.wagtailadmin import edit_handlers
+from wagtail.wagtailadmin.edit_handlers import FieldPanel
+from wagtail.wagtailadmin.edit_handlers import PageChooserPanel
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore import fields
 from wagtail.wagtailcore.models import Orderable
@@ -12,6 +14,7 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.models import AbstractImage
 from wagtail.wagtailimages.models import AbstractRendition
 from wagtail.wagtailimages.models import Image
+from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 
 from meinberlin.apps.actions import blocks as actions_blocks
@@ -80,8 +83,14 @@ class HomePage(Page):
     header_image = models.ForeignKey(
         'meinberlin_cms.CustomImage',
         null=True,
-        blank=False,
+        blank=True,
         on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    storefront = models.ForeignKey(
+        'meinberlin_cms.Storefront',
+        on_delete=models.SET_NULL,
+        null=True,
         related_name='+'
     )
 
@@ -89,6 +98,7 @@ class HomePage(Page):
         edit_handlers.FieldPanel('subtitle'),
         ImageChooserPanel('header_image'),
         edit_handlers.StreamFieldPanel('body'),
+        SnippetChooserPanel('storefront')
     ]
 
 
@@ -124,6 +134,55 @@ class NavigationMenu(ClusterableModel):
 
 class NavigationMenuItem(Orderable, MenuItem):
     parent = ParentalKey('meinberlin_cms.NavigationMenu', related_name='items')
+
+
+class StorefrontItem(models.Model):
+    link_page = models.ForeignKey(
+        'wagtailcore.Page',
+        related_name='+',
+        null=True,
+        blank=True,
+    )
+    title = models.CharField(
+        max_length=255, verbose_name="Title")
+
+    header_image = models.ForeignKey(
+        'meinberlin_cms.CustomImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    @property
+    def url(self):
+        return self.link_page.url
+
+    def __str__(self):
+        return self.title
+
+    panels = [
+        PageChooserPanel('link_page'),
+        FieldPanel('title'),
+        ImageChooserPanel('header_image')
+    ]
+
+
+@register_snippet
+class Storefront(ClusterableModel):
+    title = models.CharField(max_length=255, null=False, blank=False)
+
+    def __str__(self):
+        return self.title
+
+    panels = [
+        edit_handlers.FieldPanel('title'),
+        edit_handlers.InlinePanel('items')
+    ]
+
+
+class StorefrontCollection(StorefrontItem):
+    parent = ParentalKey('meinberlin_cms.Storefront', related_name='items')
 
 
 class EmailFormField(AbstractFormField):
