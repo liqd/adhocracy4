@@ -32,7 +32,7 @@
     "leaflet.markercluster": "1.4.1",
     "mapbox-gl": "0.50.0",
     "mapbox-gl-leaflet": "0.0.3",
-    "masonry-layout": "^4.2.2",
+    "masonry-layout": "4.2.2",
     "mini-css-extract-plugin": "0.4.4",
     "node-sass": "4.10.0",
     "popper.js": "1.14.4",
