@@ -2461,19 +2461,19 @@ msgstr "Die Veranstaltung wurde gelöscht."
 
 #: meinberlin/apps/organisations/models.py:15
 msgid "district Administrations"
-msgstr ""
+msgstr "Bezirksamt"
 
 #: meinberlin/apps/organisations/models.py:16
 msgid "city administration"
-msgstr ""
+msgstr "Senatsverwaltung"
 
 #: meinberlin/apps/organisations/models.py:17
 msgid "neighbourhood management"
-msgstr ""
+msgstr "Quartiersmanagement"
 
 #: meinberlin/apps/organisations/models.py:18
 msgid "other"
-msgstr ""
+msgstr "Sonstige"
 
 #: meinberlin/apps/organisations/models.py:31
 #: meinberlin/apps/projectcontainers/forms.py:13
