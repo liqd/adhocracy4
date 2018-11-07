@@ -6,6 +6,18 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.images import fields
 
+DISCTRICT_ADMINISTRATION = 'DA'
+CITY_ADMINISTRATION = 'CA'
+NEIGHBOURHOOD_MANAGEMENT = 'NM'
+OTHER = 'OT'
+
+ORGANISATION_TYPES = (
+    (DISCTRICT_ADMINISTRATION, _('district Administrations')),
+    (CITY_ADMINISTRATION, _('city administration')),
+    (NEIGHBOURHOOD_MANAGEMENT, _('neighbourhood management')),
+    (OTHER, _('other'))
+)
+
 
 class Organisation(models.Model):
     slug = AutoSlugField(populate_from='name', unique=True)
@@ -22,6 +34,11 @@ class Organisation(models.Model):
         ),
         upload_to='organisation/logos',
         blank=True)
+    type = models.CharField(
+        max_length=2,
+        choices=ORGANISATION_TYPES,
+        default=OTHER
+    )
 
     def __str__(self):
         return self.name
