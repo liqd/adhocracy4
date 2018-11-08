@@ -1,9 +1,11 @@
-{% load wagtailimages_tags wagtailcore_tags %}
+{% load wagtailimages_tags wagtailcore_tags block_tags %}
+
+{% get_identifier value as identifier %}
 
 <div class="accordion">
     <a
-        id="accordion-{{ index }}-title"
-        href="#accordion-{{ index }}-body"
+        id="accordion-{{ identifier }}-title"
+        href="#accordion-{{ identifier }}-body"
         class="accordion__title collapsed"
         aria-haspopup="true"
         aria-expanded="false"
@@ -16,8 +18,8 @@
 
     <div
         class="accordion__body collapse"
-        id="accordion-{{ index }}-body"
-        aria-labelledby="accordion-{{ index }}-title">
+        id="accordion-{{ identifier }}-body"
+        aria-labelledby="accordion-{{ identifier }}-title">
         {% if value.images %}
             {% for image in value.images %}
                 {% image image width-1440 as big_image %}
