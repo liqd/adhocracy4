@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-07 17:32+0100\n"
+"POT-Creation-Date: 2018-11-08 13:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2347,8 +2347,8 @@ msgid "The offline event has been deleted"
 msgstr "The offline event has been deleted"
 
 #: meinberlin/apps/organisations/models.py:15
-msgid "district Administrations"
-msgstr "district Administrations"
+msgid "district administration"
+msgstr "district administration"
 
 #: meinberlin/apps/organisations/models.py:16
 msgid "city administration"
@@ -3489,6 +3489,9 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid "district Administrations"
+#~ msgstr "district Administrations"
 
 #~ msgid "Planned cost"
 #~ msgstr "Planned cost"
