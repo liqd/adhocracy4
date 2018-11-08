@@ -32,6 +32,7 @@
     "leaflet.markercluster": "1.4.1",
     "mapbox-gl": "0.50.0",
     "mapbox-gl-leaflet": "0.0.3",
+    "masonry-layout": "4.2.2",
     "mini-css-extract-plugin": "0.4.4",
     "node-sass": "4.10.0",
     "popper.js": "1.14.4",
@@ -45,7 +46,7 @@
     "style-loader": "0.23.1",
     "tether": "1.4.5",
     "timeago.js": "3.0.2",
-    "webpack": "4.23.1",
+    "webpack": "4.25.1",
     "webpack-merge": "4.1.4"
   },
   "devDependencies": {
@@ -63,7 +64,7 @@
     "polylint.sh": "0.0.4",
     "stylelint": "9.7.1",
     "stylelint-config-standard": "18.2.0",
-    "stylelint-declaration-strict-value": "1.1.0",
+    "stylelint-declaration-strict-value": "1.1.2",
     "webpack-cli": "3.1.2"
   },
   "scripts": {
