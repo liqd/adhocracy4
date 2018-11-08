@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailimages_tags rules i18n %}
+{% load wagtailimages_tags rules i18n static %}
 
 {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}
     {{ self.title }}{% endif %} &mdash; {{ block.super }}{% endblock %}
@@ -10,23 +10,42 @@
     {% endif %}
 {% endblock %}
 
+{% block extra_js %}
+    <script type="text/javascript" src="{% static 'masonary.js' %}"></script>
+{% endblock %}
+
+
 {% block content %}
+
     {% image self.header_image max-1920x560 as header_image %}
 
     <div class="hero-unit">
+      {% if header_image.url %}
         <div class="hero-unit__wrapper">
             <h1 class="hero-unit__title u-first-heading">{{ self.title }}</h1>
             <div class="hero-unit__subtitle">{{ self.subtitle }}</div>
         </div>
-        {% if header_image.url %}
             <div class="hero-unit__img" style="background-image: url({{ header_image.url }})">
                 {% if self.header_image.copyright %}
                     <div class="hero-unit__copyright copyright">© {{ self.header_image.copyright }}</div>
                 {% endif %}
             </div>
+        {% else %}
+            {% if self.storefront %}
+            <div class="grid">
+              <div class="grid-sizer"></div>
+             {% for item in self.storefront.items.all %}
+                   <div class="grid-item grid-item-{{ forloop.counter }}">
+                      {{ item.title }}
+                      <a href="{{ item.link_page.url }}"></a>
+                      {% image item.header_image max-1920x560 %}
+                   </div>
+             {% endfor %}
+           </div>
+            {% endif %}
         {% endif %}
-    </div>
 
+    </div>
     {% for block in self.body %}
         {% if block.block_type == 'call_to_action' %}
             {{ block }}
@@ -36,5 +55,6 @@
         </div>
         {% endif %}
     {% endfor %}
+
 
 {% endblock %}

@@ -38,6 +38,10 @@ module.exports = {
       'leaflet.markercluster/dist/MarkerCluster.css',
       './meinberlin/apps/plans/assets/plans_map.jsx'
     ],
+    masonary: [
+      'masonry-layout',
+      './meinberlin/assets/js/init-masonary.js'
+    ],
     'mapboxgl': [
       'mapbox-gl/dist/mapbox-gl.js'
     ],
