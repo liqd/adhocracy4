@@ -6,7 +6,104 @@ const $ = require('jquery')
 const L = require('leaflet')
 require('mapbox-gl-leaflet')
 
+class PlansList extends React.Component {
+  constructor (props) {
+    super(props)
 
+    this.state = {
+      searchResults: null,
+      address: null,
+      selected: null,
+      displayError: false,
+      displayResults: false,
+      filters: {
+        status: -1,
+        participation: -1,
+        district: -1
+      }
+    }
+  }
+
+  bindList (element) {
+    this.listElement = element
+  }
+
+  componentDidMount () {
+
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (prevState.selected !== this.state.selected || prevState.filters !== this.state.filters) {
+      // filter markers
+      this.props.items.forEach((item, i) => {
+        if (item.point !== '') {
+          if (!this.isInFilter(item)) {
+            this.setMarkerFiltered(i)
+          } else if (i === this.state.selected) {
+            this.setMarkerSelected(i, item)
+          } else {
+            this.setMarkerDefault(i, item)
+          }
+        }
+      })
+    }
+  }
+
+  renderListItem (item, i) {
+    let itemClass = 'list-item list-item--squashed'
+    if (i === this.state.selected) {
+      itemClass += ' selected'
+    }
+    let statusClass = (item.participation_active === true) ? 'list-item__status--active' : 'list-item__status--inactive'
+    return (
+      <li className={itemClass} key={i} tabIndex="0">
+        <div className="list-item__labels">
+          {
+            <span className="label label--secondary">{item.status_display}</span>
+          } {item.district &&
+            <span className="label"><i className="fas fa-map-marker-alt" aria-hidden="true" /> {item.district}</span>
+          }
+        </div>
+        <h3 className="list-item__title"><a href={item.url}>{item.title}</a></h3>
+        <div className="list-item__subtitle"><b>{django.gettext('Theme: ')}</b><span>{item.theme}</span></div>
+        <div className="list-item__subtitle"><b>{django.gettext('Participation: ')}</b><span className={statusClass}>{item.participation_string}</span></div>
+      </li>
+    )
+  }
+
+  renderList () {
+    let list = []
+    this.props.items.forEach((item, i) => {
+      list.push(this.renderListItem(item, i))
+    })
+
+    if (list.length > 0) {
+      return (
+        <ul className="u-list-reset">
+          {list}
+        </ul>
+      )
+    } else {
+      return (
+        <div className="list-item-empty">{django.gettext('Nothing to show')}</div>
+      )
+    }
+  }
+
+  render () {
+    return (
+      <div>
+
+        <div className="map-list-combined">
+          <div className="map-list-combined__list" ref={this.bindList.bind(this)}>
+            {this.renderList()}
+          </div>
+          <div className="map-list-combined__map" />
+        </div>
+      </div>
+    )
+  }
+}
 
 class PlansMap extends React.Component {
   constructor (props) {
@@ -54,12 +151,23 @@ class PlansMap extends React.Component {
   render () {
     return (
       <div>
+        <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
+      </div>
+    )
+  }
+}
 
-        <div className="map-list-combined">
-          <div className="map-list-combined__list" >
-          </div>
-          <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
+class ListMapBox extends React.Component {
+  render () {
+    return (
+      <div className="ListMapBox">
+        <div>
+          <PlansMap key="content" items={this.props.items} bounds={this.props.bounds} districts={this.props.districts} districtnames={this.props.districtnames} />
         </div>
+        <div>
+          <PlansList key="content" items={this.props.items} />
+        </div>
+        Hello, world! I am a CommentBox.
       </div>
     )
   }
@@ -74,7 +182,9 @@ const init = function () {
     let districts = JSON.parse(element.getAttribute('data-districts'))
     let districtnames = JSON.parse(element.getAttribute('data-district-names'))
     let exportUrl = element.getAttribute('data-export-url')
-    ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} exportUrl={exportUrl} />, element)
+    // ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} exportUrl={exportUrl} />, element)
+    // ReactDOM.render(<PlansList items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} exportUrl={exportUrl} />, element)
+    ReactDOM.render(<ListMapBox items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} exportUrl={exportUrl} />, element)
   })
 }
 
