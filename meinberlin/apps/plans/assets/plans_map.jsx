@@ -1,5 +1,4 @@
 /* global django */
-
 const React = require('react')
 const ReactDOM = require('react-dom')
 const $ = require('jquery')
@@ -9,7 +8,6 @@ require('mapbox-gl-leaflet')
 class PlansList extends React.Component {
   constructor (props) {
     super(props)
-
     this.state = {
       searchResults: null,
       address: null,
@@ -142,10 +140,6 @@ class PlansMap extends React.Component {
 
   componentDidMount () {
     this.map = this.createMap()
-    this.cluster = L.markerClusterGroup({
-      showCoverageOnHover: false
-    }).addTo(this.map)
-    this.selected = L.layerGroup().addTo(this.map)
   }
 
   render () {
@@ -167,7 +161,6 @@ class ListMapBox extends React.Component {
         <div>
           <PlansList key="content" items={this.props.items} />
         </div>
-        Hello, world! I am a CommentBox.
       </div>
     )
   }
