@@ -12,7 +12,7 @@ NEIGHBOURHOOD_MANAGEMENT = 'NM'
 OTHER = 'OT'
 
 ORGANISATION_TYPES = (
-    (DISCTRICT_ADMINISTRATION, _('district Administrations')),
+    (DISCTRICT_ADMINISTRATION, _('district administration')),
     (CITY_ADMINISTRATION, _('city administration')),
     (NEIGHBOURHOOD_MANAGEMENT, _('neighbourhood management')),
     (OTHER, _('other'))
