@@ -850,7 +850,7 @@ msgstr "Projekt"
 #: adhocracy4/projects/admin.py:47
 #: meinberlin/apps/projects/admin.py:23
 msgid "Information and result"
-msgstr ""
+msgstr "Informationen und Ergebnis"
 
 #: adhocracy4/projects/admin.py:50
 #: meinberlin/apps/organisations/templates/meinberlin_organisations/organisation_form.html:4
@@ -862,7 +862,7 @@ msgstr "Einstellungen"
 #: adhocracy4/projects/admin.py:55
 #: meinberlin/apps/projects/admin.py:31
 msgid "Images"
-msgstr ""
+msgstr "Bilder"
 
 #: adhocracy4/projects/admin.py:60
 #: meinberlin/apps/plans/models.py:70
@@ -877,7 +877,7 @@ msgstr "Kontakt"
 #: adhocracy4/projects/admin.py:65
 #: meinberlin/apps/projects/admin.py:20
 msgid "Topic and location"
-msgstr ""
+msgstr "Thema und Ort"
 
 #: adhocracy4/projects/models.py:37
 msgid ""
@@ -897,11 +897,11 @@ msgstr "Kontaktperson"
 
 #: adhocracy4/projects/models.py:72
 msgid "Location of your Project"
-msgstr ""
+msgstr "Ort Ihres Projektes"
 
 #: adhocracy4/projects/models.py:79
 msgid "Administrative district"
-msgstr ""
+msgstr "Bezirk"
 
 #: adhocracy4/projects/models.py:89
 msgid "Title of your project"
@@ -1000,7 +1000,7 @@ msgstr ""
 
 #: adhocracy4/projects/models.py:168
 msgid "Project topic"
-msgstr ""
+msgstr "Projektthema"
 
 #: adhocracy4/projects/templatetags/project_tags.py:12
 #, python-format
@@ -1262,7 +1262,7 @@ msgstr "Bebauungsplan bearbeiten"
 
 #: meinberlin/apps/bplan/models.py:12
 msgid "Identifier"
-msgstr ""
+msgstr "Bezeichner"
 
 #: meinberlin/apps/bplan/models.py:17
 msgid "Office worker email"
@@ -2461,7 +2461,7 @@ msgstr "Die Veranstaltung wurde gelöscht."
 
 #: meinberlin/apps/organisations/models.py:15
 msgid "district administration"
-msgstr ""
+msgstr "Bezirksamt"
 
 #: meinberlin/apps/organisations/models.py:16
 msgid "city administration"
@@ -2679,11 +2679,11 @@ msgstr "started am {}"
 
 #: meinberlin/apps/plans/views.py:94
 msgid "starts in the future"
-msgstr ""
+msgstr "startet in der Zukunft"
 
 #: meinberlin/apps/plans/views.py:97
 msgid "done"
-msgstr ""
+msgstr "abgeschlossen"
 
 #: meinberlin/apps/plans/views.py:215
 msgid "Project Links"
