@@ -90,14 +90,8 @@ class PlansList extends React.Component {
 
   render () {
     return (
-      <div>
-
-        <div className="map-list-combined">
-          <div className="map-list-combined__list" ref={this.bindList.bind(this)}>
-            {this.renderList()}
-          </div>
-          <div className="map-list-combined__map" />
-        </div>
+      <div className="map-list-combined__list" ref={this.bindList.bind(this)}>
+        {this.renderList()}
       </div>
     )
   }
@@ -131,7 +125,6 @@ class PlansMap extends React.Component {
       accessToken: 'no-token',
       style: this.props.baseurl
     }).addTo(map)
-
     map.fitBounds(this.props.bounds)
     map.options.minZoom = map.getZoom()
 
@@ -144,9 +137,7 @@ class PlansMap extends React.Component {
 
   render () {
     return (
-      <div>
-        <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
-      </div>
+      <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
     )
   }
 }
@@ -154,12 +145,12 @@ class PlansMap extends React.Component {
 class ListMapBox extends React.Component {
   render () {
     return (
-      <div className="ListMapBox">
-        <div>
-          <PlansMap key="content" items={this.props.items} bounds={this.props.bounds} districts={this.props.districts} districtnames={this.props.districtnames} />
-        </div>
-        <div>
+      <div className="map-list-combined">
+        <div className="list-container">
           <PlansList key="content" items={this.props.items} />
+        </div>
+        <div className="map-container map-list-combined__map">
+          <PlansMap key="content" items={this.props.items} bounds={this.props.bounds} districts={this.props.districts} baseurl={this.props.baseurl} districtnames={this.props.districtnames} />
         </div>
       </div>
     )
