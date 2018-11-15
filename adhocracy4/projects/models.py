@@ -167,11 +167,12 @@ class Project(ProjectContactDetailMixin,
     topic = TopicField(
         verbose_name=_('Project topic')
     )
+    relevance = models.DecimalField(max_digits=4, decimal_places=2, default=0)
 
     objects = ProjectManager()
 
     class Meta:
-        ordering = ['-created']
+        ordering = ['-relevance', '-created']
 
     def __str__(self):
         return self.name
@@ -213,6 +214,10 @@ class Project(ProjectContactDetailMixin,
     @cached_property
     def modules(self):
         return self.module_set.all()
+
+    @cached_property
+    def relevance_string(self):
+        return str(self.relevance)
 
     @property
     def last_active_phase(self):
