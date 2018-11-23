@@ -12,7 +12,7 @@ class RatingBox extends React.Component {
     this.state = {
       positiveRatings: this.props.positiveRatings,
       negativeRatings: this.props.negativeRatings,
-      userHasRatingd: this.props.userRating !== null,
+      userHasRating: this.props.userRating !== null,
       userRating: this.props.userRating,
       userRatingId: this.props.userRatingId
     }
@@ -24,15 +24,27 @@ class RatingBox extends React.Component {
         contentTypeId: this.props.contentType
       },
       value: number
-    }).done(function (data) {
-      this.setState({
-        positiveRatings: data.meta_info.positive_ratings_on_same_object,
-        negativeRatings: data.meta_info.negative_ratings_on_same_object,
-        userRating: data.meta_info.user_rating_on_same_object_value,
-        userHasRatingd: true,
-        userRatingId: data.id
-      })
-    }.bind(this))
+    })
+      .done(function (data) {
+        this.setState({
+          positiveRatings: data.meta_info.positive_ratings_on_same_object,
+          negativeRatings: data.meta_info.negative_ratings_on_same_object,
+          userRating: data.meta_info.user_rating_on_same_object_value,
+          userHasRating: true,
+          userRatingId: data.id
+        })
+      }.bind(this))
+      .fail(function (jqXhr) {
+        if (jqXhr.status === 400 &&
+           jqXhr.responseJSON.length === 1 &&
+           Number.isInteger(parseInt(jqXhr.responseJSON[0]))) {
+          this.setState({
+            userHasRating: true,
+            userRatingId: jqXhr.responseJSON[0]
+          })
+          this.handleRatingModify(number, this.state.userRatingId)
+        }
+      }.bind(this))
   }
   handleRatingModify (number, id) {
     api.rating.change({
@@ -62,7 +74,7 @@ class RatingBox extends React.Component {
     if (this.props.isReadOnly) {
       return
     }
-    if (this.state.userHasRatingd) {
+    if (this.state.userHasRating) {
       var number
       if (this.state.userRating === 1) {
         number = 0
@@ -83,7 +95,7 @@ class RatingBox extends React.Component {
     if (this.props.isReadOnly) {
       return
     }
-    if (this.state.userHasRatingd) {
+    if (this.state.userHasRating) {
       var number
       if (this.state.userRating === -1) {
         number = 0

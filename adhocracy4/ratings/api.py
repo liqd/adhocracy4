@@ -3,6 +3,7 @@ from django.conf import settings
 from django_filters import rest_framework as filters
 from rest_framework import mixins, viewsets
 from rest_framework.response import Response
+from rest_framework.serializers import ValidationError
 
 from adhocracy4.api.mixins import ContentTypeMixin
 from adhocracy4.api.permissions import ViewSetRulesPermission
@@ -24,6 +25,11 @@ class RatingViewSet(mixins.CreateModelMixin,
     content_type_filter = settings.A4_RATEABLES
 
     def perform_create(self, serializer):
+        queryset = Rating.objects.filter(content_type_id=self.content_type.pk,
+                                         creator=self.request.user,
+                                         object_pk=self.content_object.pk)
+        if queryset.exists():
+            raise ValidationError(queryset[0].pk)
         serializer.save(
             content_object=self.content_object,
             creator=self.request.user
