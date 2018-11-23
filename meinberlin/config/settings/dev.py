@@ -2,7 +2,6 @@ from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-CSP_REPORT_ONLY = True
 
 for template_engine in TEMPLATES:
     template_engine['OPTIONS']['debug'] = True
@@ -38,9 +37,22 @@ LOGGING = {
                 'console': {
                         'class': 'logging.StreamHandler'},
         },
-        'loggers': {'background_task': {'handlers': ['console'], 'level': 'INFO'}}}
+        'loggers': {
+                'django': {
+                        'handlers': ['console'],
+                        'level': 'INFO'
+                },
+                'background_task': {
+                        'handlers': ['console'],
+                        'level': 'INFO'
+                }
+        }
+}
 
 try:
     INSTALLED_APPS += tuple(ADDITIONAL_APPS)
 except NameError:
     pass
+
+CSP_REPORT_ONLY = True
+CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'data:', 'blob:', '*']
