@@ -5,6 +5,25 @@ const $ = require('jquery')
 const L = require('leaflet')
 require('mapbox-gl-leaflet')
 
+const addressIcon = L.icon({
+  iconUrl: '/static/images/address_search_marker.svg',
+  shadowUrl: '/static/images/map_shadow_01.svg',
+  iconSize: [30, 36],
+  iconAnchor: [15, 36],
+  shadowSize: [40, 54],
+  shadowAnchor: [20, 54],
+  zIndexOffset: 1000
+})
+
+// const pointToLatLng = function (point) {
+//   if (point.geometry !== '') {
+//     return {
+//       lat: point.geometry.coordinates[1],
+//       lng: point.geometry.coordinates[0]
+//     }
+//   }
+// }
+
 class PlansList extends React.Component {
   constructor (props) {
     super(props)
@@ -90,7 +109,7 @@ class PlansList extends React.Component {
 
   render () {
     return (
-      <div className="map-list-combined__list" ref={this.bindList.bind(this)}>
+      <div ref={this.bindList.bind(this)}>
         {this.renderList()}
       </div>
     )
@@ -143,10 +162,51 @@ class PlansMap extends React.Component {
 }
 
 class ListMapBox extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      searchResults: null,
+      address: null,
+      selected: null,
+      displayError: false,
+      displayResults: false,
+      filters: {
+        status: -1,
+        participation: -1,
+        district: -1
+      }
+    }
+  }
+
+  displayAdressMarker (geojson) {
+    if (this.state.address) {
+      this.map.removeLayer(this.state.address)
+    }
+    let addressMarker = L.geoJSON(geojson, {
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, { icon: addressIcon })
+      }
+    }).addTo(this.map)
+    this.map.flyToBounds(addressMarker.getBounds(), { 'maxZoom': 13 })
+    this.setState(
+      { 'address': addressMarker }
+    )
+  }
+
+  componentDidMount () {
+    this.props.items.forEach((item, i) => {
+      if (item.point !== '') {
+      } if (i === this.state.selected) {
+        this.setMarkerSelected(i, item)
+      }
+    })
+  }
+
   render () {
     return (
       <div className="map-list-combined">
-        <div className="list-container">
+        <div className="list-container map-list-combined__list">
           <PlansList key="content" items={this.props.items} />
         </div>
         <div className="map-container map-list-combined__map">
@@ -166,8 +226,6 @@ const init = function () {
     let districts = JSON.parse(element.getAttribute('data-districts'))
     let districtnames = JSON.parse(element.getAttribute('data-district-names'))
     let exportUrl = element.getAttribute('data-export-url')
-    // ReactDOM.render(<PlansMap items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} exportUrl={exportUrl} />, element)
-    // ReactDOM.render(<PlansList items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} exportUrl={exportUrl} />, element)
     ReactDOM.render(<ListMapBox items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} exportUrl={exportUrl} />, element)
   })
 }

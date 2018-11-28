@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="l-wrapper u-spacer-bottom-double">
+    <!-- <div class="l-wrapper u-spacer-bottom-double">
         <div class="l-center-6">
             <h1 class="u-first-heading">
                 {% trans 'Plans' %}
@@ -24,7 +24,7 @@
             <p>{% blocktrans %}Welcome to the list of plans for the state of Berlin!{% endblocktrans %}</p>
             <p>{% blocktrans %}On this map you can find all plans of the administration, for example development plans and other projects. You can use the zoom feature to get an overview of the plans in your area. More information on each plan is available from the list. Among other things, you can learn wether public participation is planned. All currently active participation projects can also be found on <a href="/" target="_blank">mein.berlin.de</a>.{% endblocktrans %}</p>
         </div>
-    </div>
+    </div> -->
 
     <div data-map="plans" data-items="{{ items }}" data-districts="{{ districts }}"  data-district-names="{{ district_names }}" data-attribution="{{ attribution }}" data-baseurl="{{ baseurl }}" data-bounds="{{ bounds }}" data-export-url="{% url 'meinberlin_plans:plan-export' %}"></div>
 
