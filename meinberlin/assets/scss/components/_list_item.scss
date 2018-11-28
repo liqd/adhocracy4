@@ -108,3 +108,7 @@
 .list-item__status--active {
     color: $brand-primary;
 }
+
+.list-container {
+    overflow: auto;
+}
