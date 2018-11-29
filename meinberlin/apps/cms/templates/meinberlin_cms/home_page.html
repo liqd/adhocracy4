@@ -32,16 +32,30 @@
             </div>
         {% else %}
             {% if self.storefront %}
-            <div class="grid">
-              <div class="grid-sizer"></div>
-             {% for item in self.storefront.items.all %}
-                   <div class="grid-item grid-item-{{ forloop.counter }}">
-                      {{ item.title }}
-                      <a href="{{ item.link_page.url }}"></a>
-                      {% image item.header_image max-1920x560 %}
-                   </div>
-             {% endfor %}
-           </div>
+            <div class="l-wrapper">
+                <div class="storefront">
+                    <div class="storefront__col">
+                        <div class="storefront__item storefront__img" style="width=100%; background:url(https://fillmurray.com/200/300) no-repeat; background-size: cover;"> <h1>Beteiligungs-plattform des Landes Berlin!</h1></div>
+                        <div class="storefront__item storefront__stat-sm"><h1>8267</h1><p>von Bürger*innen eingereichte Ideen und Kommentare </p></div>
+                    </div>
+                    <div class="storefront__col">
+                        <div class="storefront__item storefront__quote">
+                          <div class="list-item__stats"><span title="Kommentare" class="list-item__comments"><i class="far fa-comment" aria-label="Kommentare"></i>5</span></div>
+                          <h2>„Ein Zitat an dieser Stelle kann wahre Wunder bewirken.“</h2><a href="" target="self">Was ist Ihre Meinung zum
+Projekt: Ich bin der Projekttitel ?</a></div>
+                        <div class="storefront__item storefront__proj"><div class="list-item__stats"><span title="Kommentare" class="list-item__comments"><i class="far fa-comment" aria-label="Kommentare"></i>234</span></div>
+                        <div class="item-detail__labels">
+                            <span class="label label--secondary">Implementation</span>
+                            <span class="label">theme 3</span>
+                        </div>
+                <h2>Ich bin die Projekt- & B-Plan-Headline, die etwas mehr zu sagen hat </h2></div>
+                    </div>
+                    <div class="storefront__col">
+                        <div class="storefront__item storefront__local"><h2>Was passiert gerade in Friedrichshain-Kreuzberg?</h2> <a class="btn">(25) Projekte anzeigen</a></div>
+                        <div class="storefront__item storefront__stat-lg"><h1>276</h1><p>Projekte, zu denen wir Ihre Meinung wissen möchten!</p></div>
+                    </div>
+                </div>
+            </div>
             {% endif %}
         {% endif %}
 
