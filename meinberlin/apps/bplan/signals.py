@@ -8,8 +8,9 @@ from .models import Statement
 
 
 @receiver(post_save, sender=Bplan)
-def get_location(sender, instance, **kwargs):
-    if instance.identifier:
+def get_location(sender, instance, update_fields, **kwargs):
+    if instance.identifier and (not update_fields or
+                                'point' not in update_fields):
         tasks.get_location_information(instance.pk)
 
 

@@ -49,7 +49,9 @@ class Command(BaseCommand):
                         bplan.administrative_district = \
                             dis_dict[district_pk]
                         bplan.point = features[0]
-                        bplan.save()
+                        bplan.save(
+                            update_fields=['point', 'administrative_district']
+                        )
 
                 except UnicodeEncodeError:
                     # catches bplan-identifiers with problematic chars
