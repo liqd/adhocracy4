@@ -1,20 +1,26 @@
 
 .storefront {
-    margin-top: 5rem;
+    margin-top: 3rem;
     display: flex;
+    font-size: $font-size-base;
 }
 
 .storefront__col {
     display: flex;
     flex-direction: column;
-    min-height: 680px;
+    min-height: 600px;
+
+    @media (min-width: $breakpoint) {
+        width: 33.3%;
+    }
 }
 
 .storefront__item {
     margin: $spacer;
     padding: $padding;
-    float: left;
     box-shadow: 0 0 20px 0 $shadow;
+    flex: 0 1 6rem;
+    flex-wrap: wrap;
 
     h1 {
         margin-top: 0;
@@ -22,7 +28,6 @@
 
     .btn {
         color: $white;
-        font-size: initial;
     }
 
     .list-item__stats {
@@ -32,6 +37,10 @@
 
     .item-detail__labels {
         float: left;
+    }
+
+    @media (min-width: $breakpoint) {
+        flex: none;
     }
 }
 
@@ -65,8 +74,12 @@
     height: 50%;
     text-align: center;
 
+    h6 {
+        padding-top: 3rem;
+    }
+
     h2 {
-        padding-top: inherit;
+        margin-top: 0;
     }
 }
 
