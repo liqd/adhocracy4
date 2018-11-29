@@ -1,4 +1,7 @@
+import random
+
 from django.db import models
+from django.utils.functional import cached_property
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
 from wagtail.wagtailadmin import edit_handlers
@@ -26,7 +29,7 @@ class StorefrontItem(models.Model):
     )
 
     def __str__(self):
-        return self.title
+        return str(self.pk)
 
     panels = [
         FieldPanel('district'),
@@ -49,6 +52,16 @@ class Storefront(ClusterableModel):
 
     def __str__(self):
         return self.title
+
+    @cached_property
+    def random_items(self):
+        items = self.items.all()
+        if items.count() > 3:
+            items_list = items.values_list('id', flat=True)
+            random_items = random.sample(list(items_list), 3)
+            return StorefrontItem.objects.filter(id__in=random_items)
+        else:
+            return items
 
     title_panel = [
         edit_handlers.FieldPanel('title')
