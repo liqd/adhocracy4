@@ -15,15 +15,6 @@ const addressIcon = L.icon({
   zIndexOffset: 1000
 })
 
-// const pointToLatLng = function (point) {
-//   if (point.geometry !== '') {
-//     return {
-//       lat: point.geometry.coordinates[1],
-//       lng: point.geometry.coordinates[0]
-//     }
-//   }
-// }
-
 class PlansList extends React.Component {
   constructor (props) {
     super(props)
@@ -209,7 +200,7 @@ class ListMapBox extends React.Component {
         <div className="list-container map-list-combined__list">
           <PlansList key="content" items={this.props.items} />
         </div>
-        <div className="map-container map-list-combined__map">
+        <div className="map-container map-list-combined__map sticky">
           <PlansMap key="content" items={this.props.items} bounds={this.props.bounds} districts={this.props.districts} baseurl={this.props.baseurl} districtnames={this.props.districtnames} />
         </div>
       </div>
