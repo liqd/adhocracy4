@@ -3,7 +3,7 @@
 {% if item.district %}
 <div class="storefront__item storefront__local">
     <h2>{% blocktrans with district=item.district %} What is happening in {{ district }} ? {% endblocktrans %}</h2>
-    <a class="btn">
+    <a class="btn" href="{% url 'project-list' %}?administrative_district={{ item.district.pk }}">
         {% blocktrans count counter=item.district_project_count %}
         display {{ counter }} project
         {% plural %}
