@@ -1624,7 +1624,13 @@ msgid_plural ""
 "                               entries added by citizens\n"
 "                               "
 msgstr[0] ""
+"\n"
+"                               von Bürger*in eingereichter Beitrag \n"
+"                               "
 msgstr[1] ""
+"\n"
+"                               von Bürger*innen eingereichte Ideen und Kommentare \n"
+"                               "
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:60
 msgid ""
@@ -1636,12 +1642,18 @@ msgid_plural ""
 "                               projects you can participate in!\n"
 "                               "
 msgstr[0] ""
+"\n"
+"                               Projekt, zu denen wir Ihre Meinung wissen möchten!\n"
+"                               "
 msgstr[1] ""
+"\n"
+"                               Projekte, zu denen wir Ihre Meinung wissen möchten!\n"
+"                               "
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:5
 #, python-format
 msgid " What is happening in %(district)s ? "
-msgstr ""
+msgstr "Was passiert gerade in %(district)s ? "
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:7
 #, python-format
@@ -1654,12 +1666,18 @@ msgid_plural ""
 "        display %(counter)s projects\n"
 "        "
 msgstr[0] ""
+"\n"
+"        %(counter)s Projekt anzeigen \n"
+"        "
 msgstr[1] ""
+"\n"
+"        %(counter)s Projekte anzeigen \n"
+"        "
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:31
 #, python-format
 msgid "What is your opinion on this: %(name)s ?"
-msgstr ""
+msgstr "Was ist Ihre Meinung zum Projekt: %(name)s ?"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
