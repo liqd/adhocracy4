@@ -62,3 +62,14 @@
     bottom: 0;
     right: 0;
 }
+
+.block__homepage .rich-text {
+    p,
+    h2 {
+        text-align: center;
+    }
+
+    h2 {
+        color: $brand-secondary;
+    }
+}

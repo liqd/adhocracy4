@@ -32,21 +32,24 @@ except ImportError:
     pass
 
 LOGGING = {
-        'version': 1,
-        'handlers': {
-                'console': {
-                        'class': 'logging.StreamHandler'},
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler'
         },
-        'loggers': {
-                'django': {
-                        'handlers': ['console'],
-                        'level': 'INFO'
-                },
-                'background_task': {
-                        'handlers': ['console'],
-                        'level': 'INFO'
-                }
+        'null': {
+            'class': 'logging.NullHandler'
         }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'], 'level': 'INFO'
+        },
+        'raven': {
+            'handlers': ['null'], 'level': 'ERROR'
+        }
+    }
 }
 
 try:
