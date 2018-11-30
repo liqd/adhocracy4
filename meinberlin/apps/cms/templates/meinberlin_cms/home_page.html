@@ -20,16 +20,16 @@
     {% image self.header_image max-1920x560 as header_image %}
 
     <div class="hero-unit">
-      {% if header_image.url %}
+        {% if header_image.url %}
         <div class="hero-unit__wrapper">
             <h1 class="hero-unit__title u-first-heading">{{ self.title }}</h1>
             <div class="hero-unit__subtitle">{{ self.subtitle }}</div>
         </div>
-            <div class="hero-unit__img" style="background-image: url({{ header_image.url }})">
-                {% if self.header_image.copyright %}
-                    <div class="hero-unit__copyright copyright">© {{ self.header_image.copyright }}</div>
-                {% endif %}
-            </div>
+        <div class="hero-unit__img" style="background-image: url({{ header_image.url }})">
+            {% if self.header_image.copyright %}
+                <div class="hero-unit__copyright copyright">© {{ self.header_image.copyright }}</div>
+            {% endif %}
+        </div>
         {% else %}
             {% if self.storefront %}
             {% image self.storefront.image max-400x600 as storefront_image %}
