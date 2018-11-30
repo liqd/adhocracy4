@@ -40,7 +40,13 @@
                            <h1>{{ self.storefront.teaser }}</h1>
                         </div>
                         <div class="storefront__item storefront__stat-sm">
-                            <h1>{{ self.storefront.num_entries }}</h1><p>von Bürger*innen eingereichte Ideen und Kommentare </p>
+                            <h1>{{ self.storefront.num_entries }}</h1>
+                            <p>{% blocktrans count counter=self.storefront.num_entries %}
+                               entry added by citizens
+                               {% plural %}
+                               entries added by citizens
+                               {% endblocktrans %}
+                            </p>
                         </div>
                     </div>
                     <div class="storefront__col">
@@ -51,7 +57,12 @@
                         {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.2 %}
                         <div class="storefront__item storefront__stat-lg">
                             <h1>{{ self.storefront.num_projects }}</h1>
-                            <p>Projekte, zu denen wir Ihre Meinung wissen möchten!</p>
+                            <p>{% blocktrans count counter=self.storefront.num_projects %}
+                               project you can participate in!
+                               {% plural %}
+                               projects you can participate in!
+                               {% endblocktrans %}
+                            </p>
                         </div>
                     </div>
                 </div>

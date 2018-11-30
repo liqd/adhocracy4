@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-08 13:21+0100\n"
+"POT-Creation-Date: 2018-11-30 17:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1528,6 +1528,71 @@ msgstr "Show all projects"
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_create_form.html:28
 msgid "Send"
 msgstr "Send"
+
+#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:44
+msgid ""
+"\n"
+"                               entry added by citizens\n"
+"                               "
+msgid_plural ""
+"\n"
+"                               entries added by citizens\n"
+"                               "
+msgstr[0] ""
+"\n"
+"                               entry added by citizens\n"
+"                               "
+msgstr[1] ""
+"\n"
+"                               entries added by citizens\n"
+"                               "
+
+#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:60
+msgid ""
+"\n"
+"                               project you can participate in!\n"
+"                               "
+msgid_plural ""
+"\n"
+"                               projects you can participate in!\n"
+"                               "
+msgstr[0] ""
+"\n"
+"                               project you can participate in!\n"
+"                               "
+msgstr[1] ""
+"\n"
+"                               projects you can participate in!\n"
+"                               "
+
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:5
+#, python-format
+msgid " What is happening in %(district)s ? "
+msgstr " What is happening in %(district)s ? "
+
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:7
+#, python-format
+msgid ""
+"\n"
+"        display %(counter)s project\n"
+"        "
+msgid_plural ""
+"\n"
+"        display %(counter)s projects\n"
+"        "
+msgstr[0] ""
+"\n"
+"        display %(counter)s project\n"
+"        "
+msgstr[1] ""
+"\n"
+"        display %(counter)s projects\n"
+"        "
+
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:31
+#, python-format
+msgid "What is your opinion on this: %(name)s ?"
+msgstr "What is your opinion on this: %(name)s ?"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
