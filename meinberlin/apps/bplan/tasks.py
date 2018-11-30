@@ -7,12 +7,9 @@ from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from meinberlin.apps.bplan.models import Bplan
 
 
-@background(schedule=0)
-def get_location_information(bplan_id):
-    bplan = Bplan.objects.get(pk=bplan_id)
+def get_bplan_point_and_district_pk(bplan_identifier):
     url_poi = 'https://bplan-prod.liqd.net/api/bplan/points/' + \
-        '?bplan={}'.format(bplan.identifier.replace(' ', '%20'))
-    url_dis = 'https://bplan-prod.liqd.net/api/bezirke/'
+        '?bplan={}'.format(bplan_identifier.replace(' ', '%20'))
 
     try:
         req = urllib.request.Request(url_poi)
@@ -23,28 +20,51 @@ def get_location_information(bplan_id):
         features = res_json.get('features')
         if features:
             district_pk = features[0]['properties']['bezirk']
+            point = features[0]
 
-            req = urllib.request.Request(url_dis)
-            res = urllib.request.urlopen(req)
-            res_body = res.read()
-            res_json = json.loads(res_body.decode("utf-8"))
+            return point, district_pk
 
-            dis_json = res_json.get('features')
-            if dis_json:
-                for district in dis_json:
-                    if district['properties']['pk'] == district_pk:
-                        dis_model = AdministrativeDistrict.objects.filter(
-                            name=district['properties']['name']
-                        )
-                        if dis_model:
-                            bplan.administrative_district = \
-                                dis_model[0]
-                        else:
-                            bplan.administrative_district = None
-
-            bplan.point = features[0]
-            bplan.save(update_fields=['point', 'administrative_district'])
+        return None, None
 
     except UnicodeEncodeError:
         # catches bplan-identifiers with problematic chars
         pass
+
+
+def get_bplan_api_pk_to_a4_admin_district_dict():
+    url_dis = 'https://bplan-prod.liqd.net/api/bezirke/'
+    req = urllib.request.Request(url_dis)
+    res = urllib.request.urlopen(req)
+    res_body = res.read()
+    res_json = json.loads(res_body.decode("utf-8"))
+
+    dis_dict = {}
+    dis_json = res_json.get('features')
+    if dis_json:
+        for district in dis_json:
+
+            dis_model = AdministrativeDistrict.objects.filter(
+                name=district['properties']['name']
+            )
+            if dis_model:
+                dis_dict[district['properties']['pk']] = \
+                    dis_model[0]
+            else:
+                dis_dict[district['properties']['pk']] = None
+
+    return dis_dict
+
+
+@background(schedule=0)
+def get_location_information(bplan_id):
+    bplan = Bplan.objects.get(pk=bplan_id)
+    point, district_pk = get_bplan_point_and_district_pk(bplan.identifier)
+    dis_dict = get_bplan_api_pk_to_a4_admin_district_dict()
+
+    if district_pk:
+        bplan.administrative_district = \
+            dis_dict[district_pk]
+    else:
+        pass  # todo: tell someone that identifier seems to be wrong
+    bplan.point = point
+    bplan.save(update_fields=['point', 'administrative_district'])
