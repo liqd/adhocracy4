@@ -35,6 +35,15 @@ class StorefrontItem(models.Model):
     def __str__(self):
         return str(self.pk)
 
+    @cached_property
+    def district_project_count(self):
+        return Project.objects\
+            .filter(administrative_district=self.district,
+                    is_draft=False,
+                    is_public=True,
+                    is_archived=False
+                    ).count()
+
     panels = [
         FieldPanel('district'),
         FieldPanel('project'),

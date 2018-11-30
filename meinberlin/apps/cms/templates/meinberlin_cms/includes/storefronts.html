@@ -1,7 +1,7 @@
 {% if item.district %}
 <div class="storefront__item storefront__local">
     <h2>Was passiert gerade in {{ item.district }}</h2>
-    <a class="btn">(25) Projekte anzeigen</a>
+    <a class="btn">{{ item.district_project_count }} Projekte anzeigen</a>
 </div>
 {% elif item.project and not item.quote %}
 <div class="storefront__item storefront__proj">
