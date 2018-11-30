@@ -25,7 +25,7 @@ class StorefrontItem(models.Model):
     )
     quote = models.TextField(
         blank=True,
-        max_length=300
+        max_length=150
     )
 
     def __str__(self):
