@@ -60,7 +60,7 @@ class Storefront(ClusterableModel):
     ]
 
     project_tiles_panel = [
-        edit_handlers.InlinePanel('items')
+        edit_handlers.InlinePanel('items', min_num=3)
     ]
 
     edit_handler = edit_handlers.TabbedInterface([
