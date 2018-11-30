@@ -7,17 +7,22 @@ from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from meinberlin.apps.bplan.models import Bplan
 
 
+def get_features_from_bplan_api(endpoint):
+    url = 'https://bplan-prod.liqd.net/api/' + endpoint
+    req = urllib.request.Request(url)
+    res = urllib.request.urlopen(req)
+    res_body = res.read()
+    res_json = json.loads(res_body.decode("utf-8"))
+
+    return res_json.get('features')
+
+
 def get_bplan_point_and_district_pk(bplan_identifier):
-    url_poi = 'https://bplan-prod.liqd.net/api/bplan/points/' + \
+    url_poi = 'bplan/points/' + \
         '?bplan={}'.format(bplan_identifier.replace(' ', '%20'))
 
     try:
-        req = urllib.request.Request(url_poi)
-        res = urllib.request.urlopen(req)
-        res_body = res.read()
-        res_json = json.loads(res_body.decode("utf-8"))
-
-        features = res_json.get('features')
+        features = get_features_from_bplan_api(url_poi)
         if features:
             district_pk = features[0]['properties']['bezirk']
             point = features[0]
@@ -32,16 +37,11 @@ def get_bplan_point_and_district_pk(bplan_identifier):
 
 
 def get_bplan_api_pk_to_a4_admin_district_dict():
-    url_dis = 'https://bplan-prod.liqd.net/api/bezirke/'
-    req = urllib.request.Request(url_dis)
-    res = urllib.request.urlopen(req)
-    res_body = res.read()
-    res_json = json.loads(res_body.decode("utf-8"))
-
+    url_dis = 'bezirke/'
+    features = get_features_from_bplan_api(url_dis)
     dis_dict = {}
-    dis_json = res_json.get('features')
-    if dis_json:
-        for district in dis_json:
+    if features:
+        for district in features:
 
             dis_model = AdministrativeDistrict.objects.filter(
                 name=district['properties']['name']
