@@ -9,6 +9,10 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 
+from adhocracy4.comments.models import Comment
+from adhocracy4.modules.models import Item
+from adhocracy4.projects.models import Project
+
 
 class StorefrontItem(models.Model):
     district = models.ForeignKey(
@@ -25,11 +29,20 @@ class StorefrontItem(models.Model):
     )
     quote = models.TextField(
         blank=True,
-        max_length=300
+        max_length=150
     )
 
     def __str__(self):
         return str(self.pk)
+
+    @cached_property
+    def district_project_count(self):
+        return Project.objects\
+            .filter(administrative_district=self.district,
+                    is_draft=False,
+                    is_public=True,
+                    is_archived=False
+                    ).count()
 
     panels = [
         FieldPanel('district'),
@@ -52,6 +65,16 @@ class Storefront(ClusterableModel):
 
     def __str__(self):
         return self.title
+
+    @cached_property
+    def num_entries(self):
+        num_comments = Comment.objects.all().count()
+        num_items = Item.objects.all().count()
+        return num_comments + num_items
+
+    @cached_property
+    def num_projects(self):
+        return Project.objects.all().count()
 
     @cached_property
     def random_items(self):
