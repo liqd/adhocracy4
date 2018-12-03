@@ -95,3 +95,9 @@
     margin-bottom: $spacer * 2;
     border-bottom: 2px solid $border-color;
 }
+
+.u-overflow-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
