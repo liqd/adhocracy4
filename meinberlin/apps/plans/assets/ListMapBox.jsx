@@ -1,3 +1,4 @@
+import Sticky from 'react-sticky-state'
 const React = require('react')
 let PlansList = require('./PlansList')
 let PlansMap = require('./PlansMap')
@@ -36,7 +37,11 @@ class ListMapBox extends React.Component {
           <PlansList key="content" items={this.props.items} />
         </div>
         <div className="map-container map-list-combined__map sticky">
-          <PlansMap key="content" items={this.props.items} bounds={this.props.bounds} districts={this.props.districts} baseurl={this.props.baseurl} districtnames={this.props.districtnames} />
+          <Sticky>
+            <div>
+              <PlansMap key="content" items={this.props.items} bounds={this.props.bounds} districts={this.props.districts} baseurl={this.props.baseurl} districtnames={this.props.districtnames} />
+            </div>
+          </Sticky>
         </div>
       </div>
     )

@@ -4,13 +4,10 @@
 {% block title %}{% trans "Plans" %} &mdash; {{ block.super }}{% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'react-sticky-state.js' %}"></script>
-{% endblock %}
-
-{% block extra_js %}
     {{ block.super }}
     <script src="{% static 'leaflet.js' %}"></script>
     <script src="{% static 'mapboxgl.js' %}"></script>
+    <script src="{% static 'react-sticky-state.js' %}"></script>
 {% endblock %}
 
 {% block extra_css %}
