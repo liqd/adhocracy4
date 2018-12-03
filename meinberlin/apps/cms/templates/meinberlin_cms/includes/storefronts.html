@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if item.district %}
-<div class="storefront__item storefront__local">
+<div class="storefront__item storefront__local tile__md">
     <h2>{% blocktrans with district=item.district %} What is happening in {{ district }} ? {% endblocktrans %}</h2>
     <a class="btn" href="{% url 'project-list' %}?administrative_district={{ item.district.pk }}">
         {% blocktrans count counter=item.district_project_count %}
@@ -11,7 +11,7 @@
         {% endblocktrans %}</a>
 </div>
 {% elif item.project and not item.quote %}
-<div class="storefront__item storefront__proj">
+<div class="storefront__item storefront__proj tile__md">
     <div class="list-item__stats">
         <!-- can't count comments on project level -->
         <!--<span title="Kommentare" class="list-item__comments"><i class="far fa-comment" aria-label="Kommentare"></i>234</span>-->
@@ -25,13 +25,13 @@
     <a href="{% url 'project-detail' item.project.slug %}"><h2>{{ item.project.name }}</h2></a>
 </div>
 {% elif item.project and item.quote %}
-<div class="storefront__item storefront__quote">
+<div class="storefront__item storefront__quote tile__md">
     <!-- can't count comments on project level -->
     <!--<div class="list-item__stats"><span title="Kommentare" class="list-item__comments"><i class="far fa-comment" aria-label="Kommentare"></i>5</span></div>-->
     <h2>„{{ item.quote }}“</h2><a href="{% url 'project-detail' item.project.slug %}">{% blocktrans with name=item.project.name %}What is your opinion on this: {{ name }} ?{% endblocktrans %}</a>
 </div>
 {% elif not item.project and item.quote %}
-<div class="storefront__item storefront__quote">
+<div class="storefront__item storefront__quote tile__md">
     <h2>„{{ item.quote }}“</h2>
 </div>
 {% endif %}

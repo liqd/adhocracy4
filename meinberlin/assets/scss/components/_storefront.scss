@@ -1,4 +1,16 @@
 
+.tile__lg {
+    height: 75%;
+}
+
+.tile__md {
+    height: 50%;
+}
+
+.tile__sm {
+    height: 25%;
+}
+
 .storefront {
     margin-top: 3rem;
     display: flex;
@@ -27,10 +39,6 @@
         margin-top: 0;
     }
 
-    .btn {
-        color: $white;
-    }
-
     .list-item__stats {
         font-size: $font-size-sm;
         color: $gray;
@@ -46,24 +54,20 @@
 }
 
 .storefront__img {
-    height: 75%;
     color: $white;
 }
 
 .storefront__stat-sm {
-    height: 25%;
     background-color: $brand-primary;
     color: $white;
 }
 
 .storefront__stat-lg {
-    height: 50%;
     background-color: $brand-secondary;
     color: $white;
 }
 
 .storefront__quote {
-    height: 50%;
     text-align: center;
 
     h2 {
@@ -72,7 +76,6 @@
 }
 
 .storefront__proj {
-    height: 50%;
     text-align: center;
 
     h6 {
@@ -85,7 +88,6 @@
 }
 
 .storefront__local {
-    height: 50%;
     text-align: center;
     padding: 3rem 3rem;
 }
