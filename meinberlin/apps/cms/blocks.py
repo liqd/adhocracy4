@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.functional import cached_property
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.core import blocks
+from wagtail.images.blocks import ImageChooserBlock
 
 from adhocracy4.projects.models import Project
 
