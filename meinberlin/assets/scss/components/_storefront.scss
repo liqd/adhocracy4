@@ -60,6 +60,7 @@
 .storefront__lg-text {
     margin-top: 0;
     color: $white;
+    text-shadow: 0 0 3px $shadow;
 }
 
 .storefront__xl-text {
@@ -67,18 +68,26 @@
     line-height: 1.8*$font-size-xxl;
 }
 
-.storefront__bold-text {
+.storefront__quote-text {
     font-weight: bold;
+    font-style: italic;
 }
 
 .storefront__stat-sm {
+    font-size: $font-size-lg;
     background-color: $brand-primary;
     color: $white;
 }
 
 .storefront__stat-lg {
+    font-size: $font-size-lg;
     background-color: $brand-secondary;
     color: $white;
+}
+
+.storefront__stat-text {
+    width: 66%;
+    margin-top: 0.8rem;
 }
 
 .storefront__quote,
@@ -90,12 +99,3 @@
 .storefront__local {
     padding: 3*$padding 3*$padding;
 }
-
-// .storefront__text2 {
-//     height: 3em;
-//     overflow: hidden;
-// }
-//
-// .storefront__text2::after {
-//         content: '...';
-//     }
