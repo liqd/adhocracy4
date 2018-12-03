@@ -57,6 +57,10 @@
     color: $white;
 }
 
+.storefront__xl-text {
+    font-size: 2*$font-size-xxl;
+}
+
 .storefront__stat-sm {
     background-color: $brand-primary;
     color: $white;
@@ -73,7 +77,7 @@
     text-align: center;
 }
 
-.storefront__quote-text {
+.storefront__bold-text {
     font-weight: bold;
 }
 

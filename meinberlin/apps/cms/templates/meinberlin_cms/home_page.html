@@ -52,7 +52,7 @@
                 <div class="storefront__col u-spacer-left">
                     {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.2 %}
                     <div class="storefront__item storefront__stat-lg tile__md">
-                        <h1 class="storefront__lg-text">{{ self.storefront.num_projects }}</h1>
+                        <span class="storefront__xl-text">{{ self.storefront.num_projects }}</span>
                         <p>{% blocktrans count counter=self.storefront.num_projects %}
                            project you can participate in!
                            {% plural %}
