@@ -22,6 +22,7 @@ def test_edit_view(client, phase_factory, bplan, module_factory):
     data = {
         'name': 'name',
         'description': 'desc',
+        'identifier': 'VE69 5a BPLAN',
         'image_copyright': 'copyright',
         'tile_image_copyright': 'tile_copyright',
         'is_archived': False,
@@ -39,6 +40,7 @@ def test_edit_view(client, phase_factory, bplan, module_factory):
     bplan.refresh_from_db()
     assert bplan.name == data.get('name')
     assert bplan.description == data.get('description')
+    assert bplan.identifier == data.get('identifier')
     assert bplan.tile_image_copyright == data.get('tile_image_copyright')
     assert bplan.is_archived == data.get('is_archived')
     assert bplan.is_public == data.get('is_public')
