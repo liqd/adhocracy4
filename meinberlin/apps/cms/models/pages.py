@@ -1,13 +1,13 @@
 from django.db import models
 from modelcluster.fields import ParentalKey
-from wagtail.wagtailadmin import edit_handlers
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailcore import fields
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailforms.models import AbstractEmailForm
-from wagtail.wagtailforms.models import AbstractFormField
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
+from wagtail.admin import edit_handlers
+from wagtail.contrib.forms.models import AbstractEmailForm
+from wagtail.contrib.forms.models import AbstractFormField
+from wagtail.core import blocks
+from wagtail.core import fields
+from wagtail.core.models import Page
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from meinberlin.apps.actions import blocks as actions_blocks
 from meinberlin.apps.cms import blocks as cms_blocks
