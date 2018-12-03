@@ -13,6 +13,7 @@
   ],
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
+    "@fortawesome/fontawesome-free-webfonts": "1.0.9",
     "adhocracy4": "liqd/adhocracy4#44b104bbeff2400e62f5e9033cd217ec7757d493",
     "autoprefixer": "9.3.1",
     "babel-core": "6.26.3",
@@ -25,7 +26,6 @@
     "datepicker": "git+https://github.com/liqd/datePicker.git",
     "file-loader": "2.0.0",
     "file-saver": "1.3.8",
-    "@fortawesome/fontawesome-free-webfonts": "1.0.9",
     "immutability-helper": "2.8.1",
     "leaflet": "1.3.4",
     "leaflet-draw": "1.0.4",
@@ -38,6 +38,7 @@
     "popper.js": "1.14.4",
     "postcss-loader": "3.0.0",
     "react-flip-move": "3.0.3",
+    "react-sticky-state": "^2.1.9",
     "sass-loader": "7.1.0",
     "sass-planifolia": "0.6.0",
     "select2": "4.0.5",

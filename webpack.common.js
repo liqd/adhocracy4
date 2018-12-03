@@ -62,7 +62,11 @@ module.exports = {
       './meinberlin/assets/js/i18n-leaflet-draw.js',
       'file-saver',
       'shpjs'
+    ],
+    'react-sticky-state': [
+      './meinberlin/assets/js/react-sticky-state.js'
     ]
+
   },
   output: {
     libraryTarget: 'this',
