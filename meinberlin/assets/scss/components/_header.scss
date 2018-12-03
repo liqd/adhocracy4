@@ -17,13 +17,11 @@ $header-margin-bottom: 25px;
 
     img {
         margin: 0;
-        width: 3em;
+        width: 5em;
         vertical-align: middle;
 
         @media screen and (min-width: $breakpoint) {
-            width: 6em;
-            margin-top: -2em;
-            margin-bottom: -2.85em;
+            width: 8em;
         }
     }
 }
@@ -71,7 +69,8 @@ $header-margin-bottom: 25px;
 
     @media screen and (min-width: $breakpoint) {
         display: inline;
-        border: 0;
+        border-top: 0;
+        border-right: 1px solid $border-color;
 
         &:last-child {
             border: 0;
@@ -82,7 +81,7 @@ $header-margin-bottom: 25px;
 .main-nav__link {
     display: block;
     padding: 0.5em 0;
-    color: inherit;
+    color: $brand-secondary;
     text-decoration: none;
 
     &:hover,
@@ -94,7 +93,7 @@ $header-margin-bottom: 25px;
 
     @media screen and (min-width: $breakpoint) {
         display: inline;
-        padding: 0.2em 0.4em;
+        padding: 0.2em 1em;
 
         &:hover,
         &:focus {
@@ -103,11 +102,13 @@ $header-margin-bottom: 25px;
             color: inherit;
         }
     }
+
+    .fa-home {
+        color: $brand-primary;
+    }
 }
 
 .main-nav__toggle {
-    float: right;
-
     @media print {
         display: none;
     }
@@ -117,10 +118,14 @@ $header-margin-bottom: 25px;
     }
 }
 
+.main-nav__headline {
+    display: inline-block;
+}
+
 .main-header__user {
     @media screen and (min-width: $breakpoint) {
         position: absolute;
-        bottom: -1em;
+        top: 0;
         right: $padding;
     }
 
@@ -155,43 +160,6 @@ $header-margin-bottom: 25px;
         li:last-child button {
             border-bottom: 0;
         }
-    }
-}
-
-.dialogue-box {
-    display: flex;
-
-    > div {
-        height: 43px;
-    }
-}
-
-.dialogue-box__left,
-.dialogue-box__right {
-    flex: 1 0 auto;
-    background-position: left center;
-    background-image: url('/static/images/dialoguebox_border.png');
-    background-repeat: repeat-x;
-}
-
-.dialogue-box__center {
-    flex: 0 1 70rem;
-    background-position: right -250px center;
-    background-image: url('/static/images/dialoguebox.png');
-    background-repeat: no-repeat;
-
-    @media screen and (min-width: $breakpoint) {
-        background-position: right -150px center;
-    }
-}
-
-.beberlin-logo {
-    margin-right: 1.5em;
-    vertical-align: middle;
-
-    @media screen and (min-width: $breakpoint) {
-        // set type on baseline
-        vertical-align: -0.3em;
     }
 }
 

@@ -3,18 +3,16 @@
 <header class="main-header">
     <div class="l-wrapper">
         <nav class="main-nav">
-            <img class="beberlin-logo" src="{% static 'images/beberlin.svg' %}" height="22" width="90" alt="be Berlin" />
-            <a href="/" class="main-nav__logo" rel="home">
-                <img src="{% static 'images/LOGO.png' %}" alt="mein.berlin"/>
-            </a>
-            <button class="btn btn--light main-nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-                {% trans 'Menu' %}
+            <button class="btn btn--light main-nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse" aria-label="{% trans 'Menu' %}">
+                <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
             <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
                 <ul class="main-nav__list">
                     <li class="main-nav__item">
-                        <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Participation projects' %}</a>
+                        <a class="main-nav__link" href="/"><i class="fas fa-home"></i></a>
+                    </li>
+                    <li class="main-nav__item">
+                        <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Where can I take part?' %}</a>
                     </li>
                     {% get_menu "topnav" as topnav %}
                     {% for item in topnav %}
@@ -23,16 +21,27 @@
                         </li>
                     {% endfor %}
                 </ul>
+            </div>
+            <a href="/" class="main-nav__logo" rel="home">
+                <img src="{% static 'images/LOGO.png' %}" alt="mein.berlin"/>
+            </a>
+            <div class="main-nav__headline">{% trans 'Participation platform of Berlin!' %}</div>
+            <button class="btn btn--secondary main-nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse" aria-label="{% trans 'User Menu' %}">
+                <i class="fas fa-user"></i>
+            </button>
+            <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
                 <div class="main-header__user">
                     {% userindicator %}
                 </div>
+                <ul class="main-nav__list">
+                    <li class="main-nav__item">
+                        <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Another link' %}</a>
+                    </li>
+                    <li class="main-nav__item">
+                        <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Feedback link' %}</a>
+                    </li>
+                </ul>
             </div>
         </nav>
-    </div>
-    <div class="dialogue-box">
-        {# Static markup to allow the blue border with the spike from Berlin's CD #}
-        <div class="dialogue-box__left"></div>
-        <div class="dialogue-box__center"></div>
-        <div class="dialogue-box__right"></div>
     </div>
 </header>
