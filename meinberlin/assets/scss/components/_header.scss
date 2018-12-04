@@ -48,6 +48,12 @@ $header-margin-bottom: 25px;
     top: 0;
     bottom: 0;
 
+    span {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
     @media screen and (max-width: $breakpoint - 0.1em) {
         display: none;
     }
@@ -182,21 +188,6 @@ $header-margin-bottom: 25px;
 
         li:last-child button {
             border-bottom: 0;
-        }
-    }
-}
-
-// compensate for generic margin-bottom on header and move those elements
-// underneath the "dialograhmen"
-$header-overlap: -35px;
-
-.messages,
-.hero-unit {
-    &:first-child {
-        margin-top: $header-overlap - $header-margin-bottom;
-
-        @media print {
-            margin-top: 0;
         }
     }
 }
