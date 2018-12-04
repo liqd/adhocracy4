@@ -7,13 +7,24 @@ $header-margin-bottom: 25px;
 }
 
 .main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     line-height: 1;
+}
+
+.main-nav__nav-item {
+    flex: 1;
+}
+
+.main-nav__nav-item--right {
+    display: flex;
+    justify-content: flex-end;
 }
 
 // positioned so that the "mein" from "meinBerlin" is on the baseline
 .main-nav__logo {
     text-decoration: none;
-    margin-right: 1em;
 
     img {
         margin: 0;
@@ -23,6 +34,22 @@ $header-margin-bottom: 25px;
         @media screen and (min-width: $breakpoint) {
             width: 8em;
         }
+    }
+}
+
+.main-nav__logo-item {
+    position: relative;
+}
+
+.main-nav__headline {
+    position: absolute;
+    width: 10em;
+    left: 8.5em;
+    top: 0;
+    bottom: 0;
+
+    @media screen and (max-width: $breakpoint - 0.1em) {
+        display: none;
     }
 }
 
@@ -116,10 +143,6 @@ $header-margin-bottom: 25px;
     @media screen and (min-width: $breakpoint) {
         display: none;
     }
-}
-
-.main-nav__headline {
-    display: inline-block;
 }
 
 .main-header__user {

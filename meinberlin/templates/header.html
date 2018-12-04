@@ -3,44 +3,50 @@
 <header class="main-header">
     <div class="l-wrapper">
         <nav class="main-nav">
-            <button class="btn btn--light main-nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse" aria-label="{% trans 'Menu' %}">
-                <i class="fas fa-bars" aria-hidden="true"></i>
-            </button>
-            <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
-                <ul class="main-nav__list">
-                    <li class="main-nav__item">
-                        <a class="main-nav__link" href="/"><i class="fas fa-home"></i></a>
-                    </li>
-                    <li class="main-nav__item">
-                        <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Where can I take part?' %}</a>
-                    </li>
-                    {% get_menu "topnav" as topnav %}
-                    {% for item in topnav %}
+            <div class="main-nav__nav-item">
+                <button class="btn btn--light main-nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse" aria-label="{% trans 'Menu' %}">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
+                    <ul class="main-nav__list">
                         <li class="main-nav__item">
-                            <a class="main-nav__link" href="{{ item.url }}">{{ item.title }}</a>
+                            <a class="main-nav__link" href="/"><i class="fas fa-home"></i></a>
                         </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <a href="/" class="main-nav__logo" rel="home">
-                <img src="{% static 'images/LOGO.png' %}" alt="mein.berlin"/>
-            </a>
-            <div class="main-nav__headline">{% trans 'Participation platform of Berlin!' %}</div>
-            <button class="btn btn--secondary main-nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse" aria-label="{% trans 'User Menu' %}">
-                <i class="fas fa-user"></i>
-            </button>
-            <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
-                <div class="main-header__user">
-                    {% userindicator %}
+                        <li class="main-nav__item">
+                            <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Where can I take part?' %}</a>
+                        </li>
+                        {% get_menu "topnav" as topnav %}
+                        {% for item in topnav %}
+                            <li class="main-nav__item">
+                                <a class="main-nav__link" href="{{ item.url }}">{{ item.title }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </div>
-                <ul class="main-nav__list">
-                    <li class="main-nav__item">
-                        <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Another link' %}</a>
-                    </li>
-                    <li class="main-nav__item">
-                        <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Feedback link' %}</a>
-                    </li>
-                </ul>
+            </div>
+            <div class="main-nav__logo-item">
+                <a href="/" class="main-nav__logo" rel="home">
+                    <img src="{% static 'images/LOGO.png' %}" alt="mein.berlin"/>
+                    <div class="main-nav__headline">{% trans 'Participation platform of Berlin!' %}</div>
+                </a>
+            </div>
+            <div class="main-nav__nav-item main-nav__nav-item--right">
+                <button class="btn btn--secondary main-nav__toggle" data-toggle="collapse" data-target="#user-menu-collapse" aria-expanded="false" aria-controls="user-menu-collapse" aria-label="{% trans 'User Menu' %}">
+                    <i class="fas fa-user"></i>
+                </button>
+                <div class="main-nav__menu-wrapper collapse" id="user-menu-collapse">
+                    <div class="main-header__user">
+                        {% userindicator %}
+                    </div>
+                    <ul class="main-nav__list">
+                        <li class="main-nav__item">
+                            <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Another link' %}</a>
+                        </li>
+                        <li class="main-nav__item">
+                            <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Feedback link' %}</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </div>
