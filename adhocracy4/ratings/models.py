@@ -24,7 +24,8 @@ class Rating(UserGeneratedContentModel):
     value = models.IntegerField()
 
     class Meta:
-        unique_together = (('content_type', 'object_pk', 'creator'))
+        unique_together = ('content_type', 'object_pk', 'creator')
+        index_together = [('content_type', 'object_pk')]
 
     def __str__(self):
         return str(self.value)
