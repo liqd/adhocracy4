@@ -1,44 +1,17 @@
 from django.db import models
 from modelcluster.fields import ParentalKey
-from modelcluster.models import ClusterableModel
-from wagtail.wagtailadmin import edit_handlers
-from wagtail.wagtailadmin.edit_handlers import FieldPanel
-from wagtail.wagtailadmin.edit_handlers import PageChooserPanel
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailcore import fields
-from wagtail.wagtailcore.models import Orderable
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailforms.models import AbstractEmailForm
-from wagtail.wagtailforms.models import AbstractFormField
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailimages.models import AbstractImage
-from wagtail.wagtailimages.models import AbstractRendition
-from wagtail.wagtailimages.models import Image
-from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
-from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.admin import edit_handlers
+from wagtail.contrib.forms.models import AbstractEmailForm
+from wagtail.contrib.forms.models import AbstractFormField
+from wagtail.core import blocks
+from wagtail.core import fields
+from wagtail.core.models import Page
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from meinberlin.apps.actions import blocks as actions_blocks
-
-from . import blocks as cms_blocks
-from . import emails
-
-
-class CustomImage(AbstractImage):
-
-    copyright = models.CharField(max_length=255, blank=True)
-
-    admin_form_fields = Image.admin_form_fields + (
-        'copyright',
-    )
-
-
-class CustomRendition(AbstractRendition):
-    image = models.ForeignKey(CustomImage, related_name='renditions')
-
-    class Meta:
-        unique_together = (
-            ('image', 'filter_spec', 'focal_point_key'),
-        )
+from meinberlin.apps.cms import blocks as cms_blocks
+from meinberlin.apps.cms import emails
 
 
 class SimplePage(Page):
@@ -103,87 +76,24 @@ class HomePage(Page):
     ]
 
 
-class MenuItem(models.Model):
-    title = models.CharField(max_length=255)
-    link_page = models.ForeignKey('wagtailcore.Page')
+class DocsPage(Page):
+    body = fields.StreamField([
+        ('documents_list', cms_blocks.DocsBlock()),
+        ('header', blocks.CharBlock(
+            template='meinberlin_cms/blocks/header.html'))
+    ])
 
-    @property
-    def url(self):
-        return self.link_page.url
+    description = fields.RichTextField(blank=True)
 
-    def __str__(self):
-        return self.title
-
-    panels = [
-        edit_handlers.FieldPanel('title'),
-        edit_handlers.PageChooserPanel('link_page')
+    content_panels = Page.content_panels + [
+        edit_handlers.FieldPanel('description'),
+        edit_handlers.StreamFieldPanel('body'),
     ]
 
+    class Meta:
+        verbose_name = 'Documents'
 
-@register_snippet
-class NavigationMenu(ClusterableModel):
-    title = models.CharField(max_length=255, null=False, blank=False)
-
-    def __str__(self):
-        return self.title
-
-    panels = [
-        edit_handlers.FieldPanel('title'),
-        edit_handlers.InlinePanel('items')
-    ]
-
-
-class NavigationMenuItem(Orderable, MenuItem):
-    parent = ParentalKey('meinberlin_cms.NavigationMenu', related_name='items')
-
-
-class StorefrontItem(models.Model):
-    link_page = models.ForeignKey(
-        'wagtailcore.Page',
-        related_name='+',
-        null=True,
-        blank=True,
-    )
-    title = models.CharField(
-        max_length=255, verbose_name="Title")
-
-    header_image = models.ForeignKey(
-        'meinberlin_cms.CustomImage',
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name='+'
-    )
-
-    @property
-    def url(self):
-        return self.link_page.url
-
-    def __str__(self):
-        return self.title
-
-    panels = [
-        PageChooserPanel('link_page'),
-        FieldPanel('title'),
-        ImageChooserPanel('header_image')
-    ]
-
-
-@register_snippet
-class Storefront(ClusterableModel):
-    title = models.CharField(max_length=255, null=False, blank=False)
-
-    def __str__(self):
-        return self.title
-
-    panels = [
-        edit_handlers.FieldPanel('title'),
-        edit_handlers.InlinePanel('items')
-    ]
-
-
-class StorefrontCollection(StorefrontItem):
-    parent = ParentalKey('meinberlin_cms.Storefront', related_name='items')
+    subpage_types = []
 
 
 class EmailFormField(AbstractFormField):
@@ -248,23 +158,3 @@ class EmailFormPage(AbstractEmailForm):
                 value = ', '.join(value)
             fields[field.label] = value
         return fields
-
-
-class DocsPage(Page):
-    body = fields.StreamField([
-        ('documents_list', cms_blocks.DocsBlock()),
-        ('header', blocks.CharBlock(
-            template='meinberlin_cms/blocks/header.html'))
-    ])
-
-    description = fields.RichTextField(blank=True)
-
-    content_panels = Page.content_panels + [
-        edit_handlers.FieldPanel('description'),
-        edit_handlers.StreamFieldPanel('body'),
-    ]
-
-    class Meta:
-        verbose_name = 'Documents'
-
-    subpage_types = []

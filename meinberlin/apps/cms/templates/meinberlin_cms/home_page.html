@@ -10,47 +10,69 @@
     {% endif %}
 {% endblock %}
 
-{% block extra_js %}
-    <script type="text/javascript" src="{% static 'masonary.js' %}"></script>
-{% endblock %}
-
-
 {% block content %}
 
     {% image self.header_image max-1920x560 as header_image %}
 
-    <div class="hero-unit">
-      {% if header_image.url %}
-        <div class="hero-unit__wrapper">
-            <h1 class="hero-unit__title u-first-heading">{{ self.title }}</h1>
-            <div class="hero-unit__subtitle">{{ self.subtitle }}</div>
-        </div>
+        {% if header_image.url %}
+        <div class="hero-unit">
+            <div class="hero-unit__wrapper">
+                <h1 class="hero-unit__title u-first-heading">{{ self.title }}</h1>
+                <div class="hero-unit__subtitle">{{ self.subtitle }}</div>
+            </div>
             <div class="hero-unit__img" style="background-image: url({{ header_image.url }})">
                 {% if self.header_image.copyright %}
                     <div class="hero-unit__copyright copyright">© {{ self.header_image.copyright }}</div>
                 {% endif %}
             </div>
+        </div>
         {% else %}
-            {% if self.storefront %}
-            <div class="grid">
-              <div class="grid-sizer"></div>
-             {% for item in self.storefront.items.all %}
-                   <div class="grid-item grid-item-{{ forloop.counter }}">
-                      {{ item.title }}
-                      <a href="{{ item.link_page.url }}"></a>
-                      {% image item.header_image max-1920x560 %}
-                   </div>
-             {% endfor %}
-           </div>
-            {% endif %}
+        {% if self.storefront %}
+        {% image self.storefront.image max-400x600 as storefront_image %}
+        <div class="l-wrapper">
+            <div class="storefront">
+                <div class="storefront__col u-spacer-right">
+                    <div class="storefront__item storefront__img tile__lg" style="width=100%; background:url({{ storefront_image.url }}) no-repeat; background-size: cover; background-position: bottom;">
+                       <h1 class="storefront__lg-text">{{ self.storefront.teaser }}</h1>
+                    </div>
+                    <div class="storefront__item storefront__stat-sm tile__sm">
+                        <h1 class="storefront__lg-text">{{ self.storefront.num_entries }}</h1>
+                        <p>{% blocktrans count counter=self.storefront.num_entries %}
+                           entry added by citizens
+                           {% plural %}
+                           entries added by citizens
+                           {% endblocktrans %}
+                        </p>
+                    </div>
+                </div>
+                <div class="storefront__col u-spacer-left u-spacer-right">
+                    {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.0 %}
+                    {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.1 %}
+                </div>
+                <div class="storefront__col u-spacer-left">
+                    {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.2 %}
+                    <div class="storefront__item storefront__stat-lg tile__md">
+                        <span class="storefront__xl-text">{{ self.storefront.num_projects }}</span>
+                        <div class="storefront__stat-text">
+                            <p>{% blocktrans count counter=self.storefront.num_projects %}
+                           project you can participate in!
+                           {% plural %}
+                           projects you can participate in!
+                           {% endblocktrans %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
         {% endif %}
 
-    </div>
     {% for block in self.body %}
         {% if block.block_type == 'call_to_action' %}
             {{ block }}
         {% else %}
-        <div class="l-wrapper">
+        <div class="l-wrapper block__homepage">
             {{ block }}
         </div>
         {% endif %}

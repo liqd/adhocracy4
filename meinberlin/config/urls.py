@@ -9,8 +9,8 @@ from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
 from django.views.i18n import javascript_catalog
 from rest_framework import routers
-from wagtail.contrib.wagtailsitemaps import views as wagtail_sitemap_views
-from wagtail.contrib.wagtailsitemaps.sitemap_generator import \
+from wagtail.contrib.sitemaps import views as wagtail_sitemap_views
+from wagtail.contrib.sitemaps.sitemap_generator import \
     Sitemap as WagtailSitemap
 
 from adhocracy4.api import routers as a4routers
@@ -70,10 +70,10 @@ urlpatterns = [
     url(r'^initiators/', include('meinberlin.apps.initiators.urls',
                                  namespace='meinberlin_initiators')),
 
-    url(r'^admin/', include('wagtail.wagtailadmin.urls')),
+    url(r'^admin/', include('wagtail.admin.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/social/', include('allauth.socialaccount.urls')),
-    url(r'^documents/', include('wagtail.wagtaildocs.urls')),
+    url(r'^documents/', include('wagtail.documents.urls')),
     url(r'^projects/', include('meinberlin.apps.projects.urls')),
     url(r'^modules/', include('adhocracy4.modules.urls')),
 
@@ -121,7 +121,7 @@ urlpatterns = [
     url(r'^components/$', contrib_views.ComponentLibraryView.as_view()),
     url(r'^jsi18n/$', javascript_catalog,
         js_info_dict, name='javascript-catalog'),
-    url(r'', include('wagtail.wagtailcore.urls')),
+    url(r'', include('wagtail.core.urls')),
 ]
 
 if settings.DEBUG:

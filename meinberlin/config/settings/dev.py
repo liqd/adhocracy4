@@ -2,7 +2,6 @@ from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-CSP_REPORT_ONLY = True
 
 for template_engine in TEMPLATES:
     template_engine['OPTIONS']['debug'] = True
@@ -33,14 +32,30 @@ except ImportError:
     pass
 
 LOGGING = {
-        'version': 1,
-        'handlers': {
-                'console': {
-                        'class': 'logging.StreamHandler'},
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler'
         },
-        'loggers': {'background_task': {'handlers': ['console'], 'level': 'INFO'}}}
+        'null': {
+            'class': 'logging.NullHandler'
+        }
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'], 'level': 'INFO'
+        },
+        'raven': {
+            'handlers': ['null'], 'level': 'ERROR'
+        }
+    }
+}
 
 try:
     INSTALLED_APPS += tuple(ADDITIONAL_APPS)
 except NameError:
     pass
+
+CSP_REPORT_ONLY = True
+CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'data:', 'blob:', '*']
