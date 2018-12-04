@@ -10,7 +10,7 @@
         {% for blueprint_slug, blueprint in view.blueprints %}
         <li>
             <div>{{ blueprint.title }}</div>
-            <img src="{% static blueprint.image %}">
+            <img alt="" src="{% static blueprint.image %}">
             <div>{{ blueprint.description | linebreaks }}</div>
             <ul>
                 {% for phase_content in blueprint.content %}

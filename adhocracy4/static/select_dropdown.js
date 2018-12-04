@@ -68,7 +68,7 @@ The following classes are available:
       classNameBase = classNameBase || 'select-dropdown__item'
 
       if (option.iconSrc) {
-        $('<img src="' + option.iconSrc + '" class="' + classNameBase + '__icon">').appendTo($element)
+        $('<img alt="" src="' + option.iconSrc + '" class="' + classNameBase + '__icon">').appendTo($element)
       }
       $('<span class="' + classNameBase + '__label">').html(option.label).appendTo($element)
     },
