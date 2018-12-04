@@ -22,6 +22,9 @@ class Report(base.UserGeneratedContentModel):
     def __str__(self):
         return "{}_{}".format(str(self.content_type), str(self.object_pk))
 
+    class Meta:
+        index_together = [('content_type', 'object_pk')]
+
     @property
     def project(self):
         co = self.content_object
