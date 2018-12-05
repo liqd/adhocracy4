@@ -13,6 +13,7 @@ class ListMapBox extends React.Component {
       selected: null,
       displayError: false,
       displayResults: false,
+      showMap: true,
       filters: {
         status: -1,
         participation: -1,
@@ -30,22 +31,38 @@ class ListMapBox extends React.Component {
    })
    } */
 
+  handleMapListChange () {
+    let newValue = !this.state.showMap
+    this.setState({ showMap: newValue })
+  }
+
   render () {
     return (
-      <div className="map-list-combined">
-        <div className="list-container map-list-combined__list">
-          <PlansList key="content" items={this.props.items} />
+      <div>
+        <div className="switch">
+          <input id="switch-primary" onChange={this.handleMapListChange.bind(this)} name="switch-primary" type="checkbox" />
+          <label htmlFor="switch-primary" className="primary-color" />
         </div>
-        <div className="map-container map-list-combined__map">
-          <StickyBox offsetTop={0} offsetBottom={0}>
-            <PlansMap key="content"
-              items={this.props.items}
-              bounds={this.props.bounds}
-              districts={this.props.districts}
-              baseurl={this.props.baseurl}
-              districtnames={this.props.districtnames} />
-          </StickyBox>
-        </div>
+        { this.state.showMap
+          ? <div className="map-list-combined">
+            <div className="list-container map-list-combined__list">
+              <PlansList key="content" items={this.props.items} />
+            </div>
+            <div className="map-container map-list-combined__map">
+              <StickyBox offsetTop={0} offsetBottom={0}>
+                <PlansMap key="content"
+                  items={this.props.items}
+                  bounds={this.props.bounds}
+                  districts={this.props.districts}
+                  baseurl={this.props.baseurl}
+                  districtnames={this.props.districtnames} />
+              </StickyBox>
+            </div>
+          </div>
+          : <div className="list-container map-list-combined__list">
+            <PlansList key="content" items={this.props.items} />
+          </div>
+        }
       </div>
     )
   }
