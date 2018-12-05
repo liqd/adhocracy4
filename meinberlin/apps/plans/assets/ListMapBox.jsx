@@ -1,4 +1,4 @@
-import Sticky from 'react-sticky-state'
+import StickyBox from 'react-sticky-box'
 const React = require('react')
 let PlansList = require('./PlansList')
 let PlansMap = require('./PlansMap')
@@ -22,13 +22,13 @@ class ListMapBox extends React.Component {
   }
 
   /* componentDidMount () {
-    this.props.items.forEach((item, i) => {
-      if (item.point !== '') {
-      } if (i === this.state.selected) {
-        this.setMarkerSelected(i, item)
-      }
-    })
-  } */
+   this.props.items.forEach((item, i) => {
+   if (item.point !== '') {
+   } if (i === this.state.selected) {
+   this.setMarkerSelected(i, item)
+   }
+   })
+   } */
 
   render () {
     return (
@@ -36,12 +36,15 @@ class ListMapBox extends React.Component {
         <div className="list-container map-list-combined__list">
           <PlansList key="content" items={this.props.items} />
         </div>
-        <div className="map-container map-list-combined__map sticky">
-          <Sticky>
-            <div>
-              <PlansMap key="content" items={this.props.items} bounds={this.props.bounds} districts={this.props.districts} baseurl={this.props.baseurl} districtnames={this.props.districtnames} />
-            </div>
-          </Sticky>
+        <div className="map-container map-list-combined__map">
+          <StickyBox offsetTop={0} offsetBottom={0}>
+            <PlansMap key="content"
+              items={this.props.items}
+              bounds={this.props.bounds}
+              districts={this.props.districts}
+              baseurl={this.props.baseurl}
+              districtnames={this.props.districtnames} />
+          </StickyBox>
         </div>
       </div>
     )
