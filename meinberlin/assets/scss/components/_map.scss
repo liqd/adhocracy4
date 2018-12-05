@@ -91,7 +91,6 @@
 .map-list-combined {
     display: flex;
     flex-direction: column;
-    max-height: 100vh;
     position: relative;
 
     @media (min-width: $breakpoint) {
@@ -123,7 +122,6 @@
 
     @media (min-width: $breakpoint) {
         flex-grow: 4;
-        align-self: flex-start;
     }
 }
 
@@ -131,7 +129,6 @@
     flex: 0 1 44vh;
     background-color: $bg-secondary;
     min-height: 100vh;
-    overflow: hidden;
 
     @media (min-width: $breakpoint) {
         flex-grow: 2;
@@ -169,34 +166,4 @@
         color: $text-color-inverted;
         line-height: 30px;
     }
-}
-
-.sticky {
-    // position: -webkit-sticky;
-    position: sticky;
-}
-
-.sticky.sticky-fixed.is-sticky {
-    margin-top: 0;
-    margin-bottom: 0;
-    position: fixed;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    backface-visibility: hidden;
-}
-
-.sticky.sticky-fixed.is-sticky:not {
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-}
-
-// .sticky.sticky-fixed.is-sticky:not([style*="margin-top"]) {
-//     margin-top: 0 !important;
-// }
-// .sticky.sticky-fixed.is-sticky:not([style*="margin-bottom"]) {
-//     margin-bottom: 0 !important;
-// }
-
-.sticky.sticky-fixed.is-absolute {
-    position: absolute;
 }
