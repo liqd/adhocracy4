@@ -1,10 +1,13 @@
 import json
+import logging
 import urllib
 
 from background_task import background
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from meinberlin.apps.bplan.models import Bplan
+
+logger = logging.getLogger(__name__)
 
 
 def get_features_from_bplan_api(endpoint):
@@ -65,6 +68,10 @@ def get_location_information(bplan_id):
         bplan.administrative_district = \
             dis_dict[district_pk]
     else:
-        pass  # todo: tell someone that identifier seems to be wrong
+        logger.warning(
+            "The identifier '{}' for bplan '{}' seems to be wrong. "
+            "It doesn't exist on https://bplan-prod.liqd.net/api/"
+            .format(bplan.identifier, bplan)
+        )
     bplan.point = point
     bplan.save(update_fields=['point', 'administrative_district'])
