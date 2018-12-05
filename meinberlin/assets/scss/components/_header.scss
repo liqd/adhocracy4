@@ -12,12 +12,12 @@ $header-margin-bottom: 25px;
     align-items: center;
     line-height: 1;
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-md) {
         align-items: end;
     }
 }
 
-@media screen and (min-width: $breakpoint) {
+@media screen and (min-width: $breakpoint-md) {
     .main-nav__nav-item {
         flex: 1;
     }
@@ -40,7 +40,7 @@ $header-margin-bottom: 25px;
         width: 5em;
         vertical-align: middle;
 
-        @media screen and (min-width: $breakpoint) {
+        @media screen and (min-width: $breakpoint-md) {
             width: 8em;
         }
     }
@@ -48,19 +48,26 @@ $header-margin-bottom: 25px;
 
 .main-nav__headline {
     position: absolute;
-    width: 10em;
-    left: 8.5em;
-    top: 0;
-    bottom: 0;
+    // left: 0;
+    // right: 0;
+    display: none;
 
-    span {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
+    @media screen and (min-width: $breakpoint) {
+        display: inline;
+        width: 10em;
+        left: 5.5em;
+        top: 0;
+        bottom: 0;
+
+        span {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
     }
 
-    @media screen and (max-width: $breakpoint - 0.1em) {
-        display: none;
+    @media screen and (min-width: $breakpoint-md) {
+        left: 8.5em;
     }
 }
 
@@ -75,7 +82,7 @@ $header-margin-bottom: 25px;
 
     background-color: $body-bg;
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-md) {
         padding: 0;
         border: 0;
         position: static;
@@ -92,7 +99,7 @@ $header-margin-bottom: 25px;
     padding: 0;
     margin: 0;
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-md) {
         display: inline-block;
         padding-bottom: 2em;
     }
@@ -102,7 +109,7 @@ $header-margin-bottom: 25px;
     display: block;
     border-top: 1px solid $border-color;
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-md) {
         display: inline;
         border-top: 0;
         border-right: 1px solid $border-color;
@@ -126,7 +133,7 @@ $header-margin-bottom: 25px;
         color: $brand-primary;
     }
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-md) {
         display: inline;
         padding: 0.2em 1em;
 
@@ -148,20 +155,20 @@ $header-margin-bottom: 25px;
         display: none;
     }
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-md) {
         display: none;
     }
 }
 
 .main-header__user {
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-md) {
         position: absolute;
         top: 0;
         right: $padding;
     }
 
     // min-width and max-width can't have the same breakpoint
-    @media screen and (max-width: $breakpoint - 0.1em) {
+    @media screen and (max-width: $breakpoint-md - 0.1em) {
         // overwrite dropdown style on mobile
 
         .dropdown {
