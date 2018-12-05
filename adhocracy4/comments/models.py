@@ -37,6 +37,7 @@ class Comment(base.UserGeneratedContentModel):
         verbose_name = _("Comment")
         verbose_name_plural = _("Comments")
         ordering = ('created',)
+        index_together = [('content_type', 'object_pk')]
 
     def __str__(self):
         if len(self.comment) > 200:
