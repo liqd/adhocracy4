@@ -31,6 +31,7 @@ def test_initiator_add_bplan(apiclient, organisation):
     data = {
         "name": "bplan-1",
         "description": "desc",
+        "identifier": "VE69 5a BPLAN",
         "url": "https://bplan.net",
         "office_worker_email": "test@liqd.de",
         "start_date": "2013-01-01 18:00",
@@ -43,6 +44,7 @@ def test_initiator_add_bplan(apiclient, organisation):
     bplan = bplan_models.Bplan.objects.first()
     assert bplan.name == data['name']
     assert bplan.description == data['description']
+    assert bplan.identifier == data['identifier']
     assert bplan.url == data['url']
     assert bplan.office_worker_email == data['office_worker_email']
     assert bplan.is_archived is False

@@ -1,4 +1,16 @@
 
+.tile__lg {
+    height: 75%;
+}
+
+.tile__md {
+    height: 50%;
+}
+
+.tile__sm {
+    height: 25%;
+}
+
 .storefront {
     margin-top: 3rem;
     display: flex;
@@ -9,7 +21,7 @@
 .storefront__col {
     display: flex;
     flex-direction: column;
-    min-height: 600px;
+    min-height: 632px;
 
     @media (min-width: $breakpoint) {
         width: 33.3%;
@@ -17,19 +29,11 @@
 }
 
 .storefront__item {
-    margin: $spacer;
+    margin: $spacer 0;
     padding: $padding;
     box-shadow: 0 0 20px 0 $shadow;
     flex: 0 1 6rem;
     flex-wrap: wrap;
-
-    h1 {
-        margin-top: 0;
-    }
-
-    .btn {
-        color: $white;
-    }
 
     .list-item__stats {
         font-size: $font-size-sm;
@@ -45,47 +49,53 @@
     }
 }
 
-.storefront__img {
-    height: 75%;
+.storefront__sm-text {
+    padding-top: 3rem;
+}
+
+.storefront__md-text {
+    margin-top: 0;
+}
+
+.storefront__lg-text {
+    margin-top: 0;
     color: $white;
+    text-shadow: 0 0 3px $shadow;
+}
+
+.storefront__xl-text {
+    font-size: 2*$font-size-xxl;
+    line-height: 1.8*$font-size-xxl;
+}
+
+.storefront__quote-text {
+    font-weight: bold;
+    font-style: italic;
 }
 
 .storefront__stat-sm {
-    height: 25%;
+    font-size: $font-size-lg;
     background-color: $brand-primary;
     color: $white;
 }
 
 .storefront__stat-lg {
-    height: 50%;
+    font-size: $font-size-lg;
     background-color: $brand-secondary;
     color: $white;
 }
 
-.storefront__quote {
-    height: 50%;
-    text-align: center;
-
-    h2 {
-        font-weight: bold;
-    }
+.storefront__stat-text {
+    width: 66%;
+    margin-top: 0.8rem;
 }
 
-.storefront__proj {
-    height: 50%;
+.storefront__quote,
+.storefront__proj,
+.storefront__local {
     text-align: center;
-
-    h6 {
-        padding-top: 3rem;
-    }
-
-    h2 {
-        margin-top: 0;
-    }
 }
 
 .storefront__local {
-    height: 50%;
-    text-align: center;
-    padding: 3rem 3rem;
+    padding: 3*$padding 3*$padding;
 }

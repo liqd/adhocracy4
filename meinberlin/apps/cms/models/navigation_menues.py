@@ -1,9 +1,9 @@
 from django.db import models
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
-from wagtail.wagtailadmin import edit_handlers
-from wagtail.wagtailcore.models import Orderable
-from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.admin import edit_handlers
+from wagtail.core.models import Orderable
+from wagtail.snippets.models import register_snippet
 
 
 class MenuItem(models.Model):

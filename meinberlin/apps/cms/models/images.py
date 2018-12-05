@@ -1,7 +1,7 @@
 from django.db import models
-from wagtail.wagtailimages.models import AbstractImage
-from wagtail.wagtailimages.models import AbstractRendition
-from wagtail.wagtailimages.models import Image
+from wagtail.images.models import AbstractImage
+from wagtail.images.models import AbstractRendition
+from wagtail.images.models import Image
 
 
 class CustomImage(AbstractImage):
