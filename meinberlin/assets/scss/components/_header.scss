@@ -8,21 +8,30 @@ $header-margin-bottom: 25px;
 
 .main-nav {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     line-height: 1;
+
+    @media screen and (min-width: $breakpoint) {
+        align-items: end;
+    }
 }
 
-.main-nav__nav-item {
-    flex: 1;
+@media screen and (min-width: $breakpoint) {
+    .main-nav__nav-item {
+        flex: 1;
+    }
+
+    .main-nav__nav-item--right {
+        display: flex;
+        justify-content: flex-end;
+    }
 }
 
-.main-nav__nav-item--right {
-    display: flex;
-    justify-content: flex-end;
+.main-nav__logo-item {
+    position: relative;
 }
 
-// positioned so that the "mein" from "meinBerlin" is on the baseline
 .main-nav__logo {
     text-decoration: none;
 
@@ -35,10 +44,6 @@ $header-margin-bottom: 25px;
             width: 8em;
         }
     }
-}
-
-.main-nav__logo-item {
-    position: relative;
 }
 
 .main-nav__headline {
@@ -89,16 +94,13 @@ $header-margin-bottom: 25px;
 
     @media screen and (min-width: $breakpoint) {
         display: inline-block;
+        padding-bottom: 2em;
     }
 }
 
 .main-nav__item {
     display: block;
     border-top: 1px solid $border-color;
-
-    &:last-child {
-        border-bottom: 1px solid $border-color;
-    }
 
     @media screen and (min-width: $breakpoint) {
         display: inline;
@@ -171,28 +173,27 @@ $header-margin-bottom: 25px;
         }
 
         .dropdown-menu {
+            position: static;
             display: block;
+            margin-bottom: 0.5em;
             padding: 0;
-            border: 0;
-
             box-shadow: none;
 
-            position: static;
+            border-right: 0;
+            border-left: 0;
+            border-color: $border-color;
         }
 
         .dropdown-item {
             padding-left: 0;
             padding-right: 0;
+            color: $brand-secondary;
             border-color: $border-color;
+            border-bottom: 1px solid $border-color;
         }
 
         li:last-child button {
             border-bottom: 0;
         }
     }
-}
-
-.u-after-dialogue-box:first-child {
-    margin-top: $header-overlap - $header-margin-bottom;
-    padding-top: -($header-overlap - $header-margin-bottom);
 }
