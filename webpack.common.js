@@ -22,6 +22,7 @@ module.exports = {
       'immutability-helper',
       'react-dom',
       'react-flip-move',
+      'react-sticky-box',
       'shariff/dist/shariff.complete.js',
       'shariff/dist/shariff.min.css'
     ],
@@ -58,11 +59,7 @@ module.exports = {
       './meinberlin/assets/js/i18n-leaflet-draw.js',
       'file-saver',
       'shpjs'
-    ],
-    'react-sticky-state': [
-      './meinberlin/assets/js/react-sticky-state.js'
     ]
-
   },
   output: {
     libraryTarget: 'this',
