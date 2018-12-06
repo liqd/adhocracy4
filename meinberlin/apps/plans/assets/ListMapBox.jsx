@@ -40,7 +40,7 @@ class ListMapBox extends React.Component {
     return (
       <div>
         <div className="switch">
-          <input id="switch-primary" onChange={this.handleMapListChange.bind(this)} name="switch-primary" type="checkbox" />
+          <input className="switch__input" id="switch-primary" onChange={this.handleMapListChange.bind(this)} name="switch-primary" type="checkbox" />
           <label htmlFor="switch-primary" className="primary-color" />
         </div>
         { this.state.showMap
