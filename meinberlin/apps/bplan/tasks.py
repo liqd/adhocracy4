@@ -68,7 +68,7 @@ def get_location_information(bplan_id):
         bplan.administrative_district = \
             dis_dict[district_pk]
     else:
-        logger.warning(
+        logger.error(
             "The identifier '{}' for bplan '{}' seems to be wrong. "
             "It doesn't exist on https://bplan-prod.liqd.net/api/"
             .format(bplan.identifier, bplan)
