@@ -273,10 +273,6 @@ PASSWORD_HASHERS = [
     'meinberlin.apps.users.hashers.A2PasswordHasher',
 ]
 
-# Service Konto
-SERVICE_KONTO_LOGIN_URL = 'https://skbref.verwalt-berlin.de/skb/Account/Login?ReturnUrl=%2fskb%2fService%2fEntry%2f6'
-SERVICE_KONTO_API_URL = 'https://skbref.verwalt-berlin.de/HHGWUserData/HHGWUserData.asmx?wsdl'
-
 # ckeditor
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
