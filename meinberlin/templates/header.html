@@ -39,9 +39,11 @@
                         {% userindicator %}
                     </div>
                     <ul class="main-nav__list">
+                        {% if settings.meinberlin_cms.HelpPages.help_page %}
                         <li class="main-nav__item">
-                            <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Another link' %}</a>
+                            <a class="main-nav__link" href="{{ settings.meinberlin_cms.HelpPages.help_page.url }}">{% trans 'Help' %}</a>
                         </li>
+                        {% endif %}
                         <li class="main-nav__item">
                             <a class="main-nav__link" href="{% url 'project-list' %}">{% trans 'Feedback link' %}</a>
                         </li>
