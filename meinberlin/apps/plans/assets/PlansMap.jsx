@@ -57,6 +57,26 @@ class PlansMap extends React.Component {
     }
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.resize === true) {
+      this.map.eachLayer(function (layer) {
+        this.map.removeLayer(layer)
+      }.bind(this))
+    }
+  }
+
+  componentDidUpdate () {
+    if (this.props.resize === true) {
+      this.map.invalidateSize()
+      this.addBackgroundMap(this.map)
+      this.addDistrictLayers(this.map)
+      this.cluster = L.markerClusterGroup({
+        showCoverageOnHover: false
+      }).addTo(this.map)
+      this.markers = this.addMarkers(this.cluster)
+    }
+  }
+
   /* displayAdressMarker (geojson) {
     if (this.state.address) {
       this.map.removeLayer(this.state.address)
@@ -82,14 +102,16 @@ class PlansMap extends React.Component {
 
   createMap () {
     var map = new L.Map(this.mapElement, { scrollWheelZoom: false, maxZoom: 18 })
+    return map
+  }
+
+  addBackgroundMap (map) {
     L.mapboxGL({
       accessToken: 'no-token',
       style: this.props.baseurl
     }).addTo(map)
     map.fitBounds(this.props.bounds)
     map.options.minZoom = map.getZoom()
-
-    return map
   }
 
   addDistrictLayers (map) {
@@ -124,6 +146,7 @@ class PlansMap extends React.Component {
 
   componentDidMount () {
     this.map = this.createMap()
+    this.addBackgroundMap(this.map)
     this.addDistrictLayers(this.map)
     this.cluster = L.markerClusterGroup({
       showCoverageOnHover: false
