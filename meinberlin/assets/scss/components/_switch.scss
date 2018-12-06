@@ -37,14 +37,16 @@
         transition: all 0.3s ease-in-out;
         width: 24px;
     }
-}
 
-.switch__input + label:before {
-    background: inherit;
-    opacity: 0.5;
-}
+    input[type="checkbox"]:checked {
+        & + label:before {
+            background: inherit;
+            opacity: 0.5;
+        }
 
-.switch__input + label:after {
-    background: inherit;
-    left: 20px;
+        & + label:after {
+            background: inherit;
+            left: 20px;
+        }
+    }
 }
