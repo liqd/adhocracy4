@@ -101,3 +101,15 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.u-mobile-display-none {
+    @media screen and (max-width: $breakpoint-xs - 0.1em) {
+        display: none;
+    }
+}
+
+.u-desktop-display-none {
+    @media screen and (min-width: $breakpoint-xs) {
+        display: none;
+    }
+}

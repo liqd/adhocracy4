@@ -91,12 +91,11 @@
 .map-list-combined {
     display: flex;
     flex-direction: column;
-    max-height: 80vh;
     position: relative;
 
     @media (min-width: $breakpoint) {
         flex-direction: row;
-        height: 36em;
+        margin-left: 18rem;
     }
 
     @media print {
@@ -119,19 +118,21 @@
 .map-list-combined__map {
     flex: 0 1 36vh;
     z-index: 0;
+    min-height: 100vh;
 
-    @media (min-width: $breakpoint) {
-        flex: 1 1 auto;
+    @media (min-width: $breakpoint-xs) {
+        flex-grow: 4;
     }
 }
 
 .map-list-combined__list {
-    overflow-y: auto;
     flex: 0 1 44vh;
     background-color: $bg-secondary;
 
-    @media (min-width: $breakpoint) {
-        flex: 0 1 30em;
+    @media (min-width: $breakpoint-xs) {
+        flex-grow: 2;
+        overflow-y: visible;
+        min-height: 100vh;
     }
 
     @media print {
