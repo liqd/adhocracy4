@@ -22,6 +22,7 @@ module.exports = {
       'immutability-helper',
       'react-dom',
       'react-flip-move',
+      'react-sticky-box',
       'shariff/dist/shariff.complete.js',
       'shariff/dist/shariff.min.css'
     ],
