@@ -14,7 +14,7 @@
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
     "@fortawesome/fontawesome-free-webfonts": "1.0.9",
-    "acorn": "^6.0.4",
+    "acorn": "6.0.4",
     "adhocracy4": "liqd/adhocracy4#02dd093a95bf8b8033f347aa04e40e714a885688",
     "autoprefixer": "9.4.2",
     "babel-core": "6.26.3",
@@ -25,7 +25,7 @@
     "copy-webpack-plugin": "4.6.0",
     "css-loader": "1.0.1",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
-    "feature-detect": "^1.0.0",
+    "feature-detect": "1.0.0",
     "file-loader": "2.0.0",
     "file-saver": "1.3.8",
     "immutability-helper": "2.8.1",
