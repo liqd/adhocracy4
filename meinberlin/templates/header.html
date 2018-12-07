@@ -39,14 +39,16 @@
                         {% userindicator %}
                     </div>
                     <ul class="main-nav__list">
-                        {% if settings.meinberlin_cms.HelpPages.help_page %}
+                        {% if settings.meinberlin_cms.HeaderPages.help_page %}
                         <li class="main-nav__item">
                             <a class="main-nav__link" href="{{ settings.meinberlin_cms.HelpPages.help_page.url }}">{% trans 'Help' %}</a>
                         </li>
                         {% endif %}
+                        {% if settings.meinberlin_cms.HeaderPages.feedback_page %}
                         <li class="main-nav__item">
-                            <a class="main-nav__link" href="/feedback/">{% trans 'Give Feedback' %}</a>
+                            <a class="main-nav__link" href="{{ settings.meinberlin_cms.HelpPages.feedback_page.url }}">{% trans 'Give Feedback' %}</a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
