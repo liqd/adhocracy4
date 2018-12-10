@@ -108,6 +108,12 @@
     }
 }
 
+.u-tablet-display-none {
+    @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint) {
+        display: none;
+    }
+}
+
 .u-desktop-display-none {
     @media screen and (min-width: $breakpoint-xs) {
         display: none;

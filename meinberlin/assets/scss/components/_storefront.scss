@@ -11,6 +11,20 @@
     height: 25%;
 }
 
+//mobile
+// @media (min-width: $breakpoint) {
+//     .storefront__img,
+//     .storefront__stat-sm,
+//     .storefront__proj,
+//     .storefront__quote, {
+//         display: none;
+//     }
+//
+// }
+// //tablet
+// @media (min-width: $breakpoint) {
+// }
+
 .storefront {
     margin-top: 3rem;
     display: flex;
@@ -92,10 +106,11 @@
 
 .storefront__quote,
 .storefront__proj,
-.storefront__local {
+.storefront__district,
+.storefront__proj-quote {
     text-align: center;
 }
 
-.storefront__local {
+.storefront__district {
     padding: 3*$padding 3*$padding;
 }
