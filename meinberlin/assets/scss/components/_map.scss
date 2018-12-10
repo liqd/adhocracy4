@@ -127,7 +127,6 @@
 
 .map-list-combined__list {
     flex: 0 1 44vh;
-    background-color: $bg-secondary;
 
     @media (min-width: $breakpoint-xs) {
         flex-grow: 2;
