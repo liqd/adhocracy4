@@ -109,7 +109,7 @@
 }
 
 .u-tablet-display-none {
-    @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-md) {
+    @media screen and (min-width: $breakpoint-xs + 0.1em) and (max-width: $breakpoint-md - 0.1em) {
         display: none;
     }
 }

@@ -12,7 +12,7 @@
 }
 
 //mobile
-@media screen and (max-width: $breakpoint-xs) {
+@media screen and (max-width: $breakpoint-xs - 0.1em) {
     .u-spacer-left {
         margin-left: 0 !important;
     }
@@ -32,7 +32,7 @@
 }
 
 //tablet
-@media screen and (min-width: $breakpoint-xs + 0.1em) and (max-width: $breakpoint-md) {
+@media screen and (min-width: $breakpoint-xs + 0.1em) and (max-width: $breakpoint-md - 0.1em) {
     .storefront {
         margin-left: $spacer;
     }
