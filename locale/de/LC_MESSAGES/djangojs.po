@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-08 13:21+0100\n"
+"POT-Creation-Date: 2018-12-10 21:42+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -489,94 +489,21 @@ msgstr ""
 "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
 "entfernen?"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:12
-msgid "Idea"
-msgstr "Idee"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:13
-msgid "Planning"
-msgstr "Geplant"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:14
-msgid "Implementation"
-msgstr "in Umsetzung"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:15
-msgid "Done"
-msgstr "abgeschlossen"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:16
-msgid "Stopped"
-msgstr "angehalten"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:28
-msgid "No"
-msgstr "Nein"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:29
-msgid "Yes"
-msgstr "Ja"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:30
-msgid "Still undecided"
-msgstr "Noch nicht entschieden"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:396
-msgid "Theme: "
-msgstr "Thema: "
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:397
-msgid "Participation: "
-msgstr "Beteiligung: "
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:418
-msgid "Nothing to show"
-msgstr "Keine Ergebnisse"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:427
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:61
 msgid "Filter bar"
 msgstr "Filter Leiste"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:434
-msgid "Address Search"
-msgstr "Adresssuche"
+#: meinberlin/apps/plans/assets/PlansList.jsx:62
+msgid "Theme: "
+msgstr "Thema: "
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:435
-#: meinberlin/apps/plans/assets/plans_map.jsx:436
-#: meinberlin/apps/plans/assets/plans_map.jsx:464
-#: meinberlin/apps/plans/assets/plans_map.jsx:465
-#: meinberlin/apps/plans/assets/plans_map.jsx:466
-msgid "Search"
-msgstr "Suche"
+#: meinberlin/apps/plans/assets/PlansList.jsx:63
+msgid "Participation: "
+msgstr "Beteiligung: "
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:472
-msgid "Status"
-msgstr "Status"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:472
-#: meinberlin/apps/plans/assets/plans_map.jsx:482
-#: meinberlin/apps/plans/assets/plans_map.jsx:508
-#: meinberlin/apps/plans/assets/plans_map.jsx:518
-#: meinberlin/apps/plans/assets/plans_map.jsx:541
-#: meinberlin/apps/plans/assets/plans_map.jsx:551
-msgid "All"
-msgstr "Alle"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:508
-msgid "Participation"
-msgstr "Beteiligung"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:541
-msgid "District"
-msgstr "Bezirk"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:573
-msgid "Export Excel"
-msgstr "Excel herunterladen"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:580
-msgid "Address could not be found"
-msgstr "Keine Adresse gefunden"
+#: meinberlin/apps/plans/assets/PlansList.jsx:82
+msgid "Nothing to show"
+msgstr "Keine Ergebnisse"
 
 #: meinberlin/assets/js/embed.js:85
 msgid "We couldn't find what you were looking for."
@@ -605,6 +532,54 @@ msgstr "Keine Treffer im Bereich des Projekts gefunden"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Meinten Sie:"
+
+#~ msgid "Idea"
+#~ msgstr "Idee"
+
+#~ msgid "Planning"
+#~ msgstr "Geplant"
+
+#~ msgid "Implementation"
+#~ msgstr "in Umsetzung"
+
+#~ msgid "Done"
+#~ msgstr "abgeschlossen"
+
+#~ msgid "Stopped"
+#~ msgstr "angehalten"
+
+#~ msgid "No"
+#~ msgstr "Nein"
+
+#~ msgid "Yes"
+#~ msgstr "Ja"
+
+#~ msgid "Still undecided"
+#~ msgstr "Noch nicht entschieden"
+
+#~ msgid "Address Search"
+#~ msgstr "Adresssuche"
+
+#~ msgid "Search"
+#~ msgstr "Suche"
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgid "All"
+#~ msgstr "Alle"
+
+#~ msgid "Participation"
+#~ msgstr "Beteiligung"
+
+#~ msgid "District"
+#~ msgstr "Bezirk"
+
+#~ msgid "Export Excel"
+#~ msgstr "Excel herunterladen"
+
+#~ msgid "Address could not be found"
+#~ msgstr "Keine Adresse gefunden"
 
 #~ msgid "Type of plan: "
 #~ msgstr "Plantyp: "
