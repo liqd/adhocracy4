@@ -74,9 +74,13 @@ class Storefront(ClusterableModel):
 
     @cached_property
     def num_projects(self):
-        return Project.objects.all()\
-            .filter(is_draft=False, is_archived=False, is_public=True)\
-            .count()
+        projects = Project.objects.all()\
+            .filter(is_draft=False, is_archived=False, is_public=True)
+        active_project_count = 0
+        for project in projects:
+            if project.active_phase or project.future_phases:
+                active_project_count += 1
+        return active_project_count
 
     @cached_property
     def random_items(self):
