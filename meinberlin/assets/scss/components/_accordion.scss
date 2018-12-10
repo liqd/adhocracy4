@@ -30,6 +30,7 @@
         right: $padding;
         transition: transform 0.3s;
         color: $brand-primary;
+        line-height: inherit;
     }
 
     &[aria-expanded="true"] i {
