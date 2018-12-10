@@ -27,7 +27,7 @@
     }
 
     .tile__md {
-        max-height: 75%;
+        height: 75%;
     }
 }
 
@@ -55,7 +55,6 @@
 .storefront__item {
     margin: $spacer 0;
     padding: $padding;
-    box-shadow: 0 0 20px 0 $shadow;
     flex: 0 1 6rem;
     flex-wrap: wrap;
 
@@ -85,6 +84,7 @@
     margin-top: 0;
     color: $white;
     text-shadow: 0 0 3px $shadow;
+    width: 75%;
 }
 
 .storefront__xl-text {
@@ -95,6 +95,10 @@
 .storefront__quote-text {
     font-weight: bold;
     font-style: italic;
+}
+
+.storefront__district-text {
+    color: $brand-secondary;
 }
 
 .storefront__stat-sm {
@@ -110,7 +114,7 @@
 }
 
 .storefront__stat-text {
-    width: 66%;
+    width: 75%;
     margin-top: 0.8rem;
 }
 
@@ -119,6 +123,7 @@
 .storefront__district,
 .storefront__proj-quote {
     text-align: center;
+    box-shadow: 0 0 20px 0 $shadow;
 }
 
 .storefront__district {
