@@ -51,6 +51,14 @@
     }
 }
 
+.switch-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-bottom: $spacer;
+}
+
 .switch-label {
-    display: block;
+    width: 6rem;
+    margin-top: -0.5rem;
 }
