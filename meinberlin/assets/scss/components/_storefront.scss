@@ -1,49 +1,20 @@
-
 .tile__lg {
     height: 75%;
 }
 
 .tile__md {
-    height: 50%;
+    height: 75%;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        height: 50%;
+    }
 }
 
 .tile__sm {
     height: 25%;
 }
 
-//mobile
-@media screen and (max-width: $breakpoint-xs - 0.1em) {
-    .u-spacer-left {
-        margin-left: 0 !important;
-    }
-
-    .storefront__district {
-        padding: 2*$padding 2*$padding;
-    }
-
-    .storefront__quote-text,
-    .storefront__district-text {
-        margin-top: 0;
-    }
-
-    .tile__md {
-        height: 75%;
-    }
-}
-
-//tablet
-@media screen and (min-width: $breakpoint-xs + 0.1em) and (max-width: $breakpoint-md - 0.1em) {
-    .storefront {
-        margin-left: $spacer;
-    }
-
-    .storefront__col {
-        width: 50%;
-    }
-}
-
 .storefront {
-    margin-top: 3rem;
     display: flex;
     font-size: $font-size-base;
     padding-bottom: 6*$padding;
@@ -52,10 +23,16 @@
 .storefront__col {
     display: flex;
     flex-direction: column;
-    min-height: 632px;
+    margin-left: $spacer;
+    margin-right: $spacer;
 
-    @media screen and (min-width: $breakpoint-md + 0.1em) {
+    @media screen and (min-width: $breakpoint-md) {
         width: 33.3%;
+    }
+
+    @media screen and (min-width: $breakpoint-xs) {
+        width: 50%;
+        min-height: 632px;
     }
 }
 
@@ -74,7 +51,7 @@
         float: left;
     }
 
-    @media screen and (min-width: $breakpoint-xs + 0.1em) {
+    @media screen and (min-width: $breakpoint-xs) {
         flex: none;
     }
 }
@@ -108,6 +85,13 @@
     color: $brand-secondary;
 }
 
+@media screen and (max-width: $breakpoint-xs - 0.1em) {
+    .storefront__quote-text,
+    .storefront__district-text {
+        margin-top: 0;
+    }
+}
+
 .storefront__stat-sm {
     font-size: $font-size-lg;
     background-color: $brand-primary;
@@ -134,5 +118,9 @@
 }
 
 .storefront__district {
-    padding: 3*$padding 3*$padding;
+    padding: 2*$padding 2*$padding;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding: 3*$padding 3*$padding;
+    }
 }
