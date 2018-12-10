@@ -12,18 +12,24 @@
 }
 
 //mobile
-// @media (min-width: $breakpoint) {
-//     .storefront__img,
-//     .storefront__stat-sm,
-//     .storefront__proj,
-//     .storefront__quote, {
-//         display: none;
-//     }
-//
-// }
-// //tablet
-// @media (min-width: $breakpoint) {
-// }
+@media screen and (max-width: $breakpoint-xs) {
+    .u-spacer-left {
+        margin-left: 0 !important;
+    }
+
+    .storefront__district {
+        padding: 2*$padding 2*$padding;
+    }
+
+    .storefront__quote-text,
+    .storefront__district-text {
+        margin-top: 0;
+    }
+
+    .tile__md {
+        max-height: 75%;
+    }
+}
 
 .storefront {
     margin-top: 3rem;
@@ -37,7 +43,11 @@
     flex-direction: column;
     min-height: 632px;
 
-    @media (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-xs + 0.1em) {
+        width: 50%;
+    }
+
+    @media screen and (min-width: $breakpoint-md + 0.1em) {
         width: 33.3%;
     }
 }
@@ -58,13 +68,13 @@
         float: left;
     }
 
-    @media (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-xs + 0.1em) {
         flex: none;
     }
 }
 
 .storefront__sm-text {
-    padding-top: 3rem;
+    padding-top: 3*$padding;
 }
 
 .storefront__md-text {
