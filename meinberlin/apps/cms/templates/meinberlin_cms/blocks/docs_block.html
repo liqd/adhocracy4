@@ -1,35 +1,36 @@
 {% load wagtailimages_tags wagtailcore_tags block_tags %}
 
 {% get_identifier value as identifier %}
+<div class="l-center-8">
+    <div class="accordion">
+        <a
+            id="accordion-{{ identifier }}-title"
+            href="#accordion-{{ identifier }}-body"
+            class="accordion__title collapsed"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-toggle="collapse">
+            <h2>
+                {{ value.title }}
+                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </h2>
+        </a>
 
-<div class="accordion">
-    <a
-        id="accordion-{{ identifier }}-title"
-        href="#accordion-{{ identifier }}-body"
-        class="accordion__title collapsed"
-        aria-haspopup="true"
-        aria-expanded="false"
-        data-toggle="collapse">
-        <h2>
-            {{ value.title }}
-            <i class="fa fa-chevron-down" aria-hidden="true"></i>
-        </h2>
-    </a>
-
-    <div
-        class="accordion__body collapse"
-        id="accordion-{{ identifier }}-body"
-        aria-labelledby="accordion-{{ identifier }}-title">
-        {% if value.images %}
-            {% for image in value.images %}
-                {% image image width-1440 as big_image %}
-                <a href="{{ big_image.url }}" class="lightbox-group" title="{{ image.title|title }}">
-                    {% image image height-60 %}
-                </a>
-            {% endfor %}
-        {% endif %}
-        {% if value.body %}
-            {{ value.body|richtext }}
-        {% endif %}
+        <div
+            class="accordion__body collapse"
+            id="accordion-{{ identifier }}-body"
+            aria-labelledby="accordion-{{ identifier }}-title">
+            {% if value.images %}
+                {% for image in value.images %}
+                    {% image image width-1440 as big_image %}
+                    <a href="{{ big_image.url }}" class="lightbox-group" title="{{ image.title|title }}">
+                        {% image image height-60 %}
+                    </a>
+                {% endfor %}
+            {% endif %}
+            {% if value.body %}
+                {{ value.body|richtext }}
+            {% endif %}
+        </div>
     </div>
 </div>
