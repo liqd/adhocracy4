@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-30 17:44+0100\n"
+"POT-Creation-Date: 2018-12-10 21:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -237,7 +237,7 @@ msgstr "We could not find any projects."
 
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11 meinberlin/apps/ideas/views.py:26
-#: meinberlin/apps/projects/views.py:45 meinberlin/apps/topicprio/views.py:20
+#: meinberlin/apps/projects/views.py:50 meinberlin/apps/topicprio/views.py:20
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:4
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:10
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:11
@@ -439,17 +439,17 @@ msgstr "Areasettings"
 msgid "Edit areasettings"
 msgstr "Edit areasettings"
 
-#: adhocracy4/dashboard/filter.py:15 meinberlin/apps/projects/views.py:49
+#: adhocracy4/dashboard/filter.py:15 meinberlin/apps/projects/views.py:54
 msgid "Archived"
 msgstr "Archived"
 
 #: adhocracy4/dashboard/filter.py:19 adhocracy4/filters/widgets.py:32
-#: meinberlin/apps/projects/views.py:53
+#: meinberlin/apps/projects/views.py:58
 msgid "All"
 msgstr "All"
 
 #: adhocracy4/dashboard/filter.py:20 meinberlin/apps/plans/models.py:24
-#: meinberlin/apps/projects/views.py:54
+#: meinberlin/apps/projects/views.py:59
 msgid "No"
 msgstr "No"
 
@@ -462,7 +462,7 @@ msgstr "No"
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
 #: meinberlin/apps/plans/models.py:23
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
-#: meinberlin/apps/plans/views.py:166 meinberlin/apps/projects/views.py:55
+#: meinberlin/apps/plans/views.py:166 meinberlin/apps/projects/views.py:60
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
 msgid "Yes"
 msgstr "Yes"
@@ -1487,7 +1487,7 @@ msgstr "Edit proposal"
 #: meinberlin/apps/budgeting/views.py:17 meinberlin/apps/ideas/views.py:30
 #: meinberlin/apps/kiezkasse/views.py:15 meinberlin/apps/mapideas/views.py:15
 #: meinberlin/apps/maptopicprio/views.py:18
-#: meinberlin/apps/projects/views.py:84
+#: meinberlin/apps/projects/views.py:89
 msgid "Most recent"
 msgstr "Most recent"
 
@@ -1529,70 +1529,34 @@ msgstr "Show all projects"
 msgid "Send"
 msgstr "Send"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:44
-msgid ""
-"\n"
-"                               entry added by citizens\n"
-"                               "
-msgid_plural ""
-"\n"
-"                               entries added by citizens\n"
-"                               "
-msgstr[0] ""
-"\n"
-"                               entry added by citizens\n"
-"                               "
-msgstr[1] ""
-"\n"
-"                               entries added by citizens\n"
-"                               "
+#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:40
+msgid "entry added by citizens"
+msgid_plural "entries added by citizens"
+msgstr[0] "entry added by citizens"
+msgstr[1] "entries added by citizens"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:60
-msgid ""
-"\n"
-"                               project you can participate in!\n"
-"                               "
-msgid_plural ""
-"\n"
-"                               projects you can participate in!\n"
-"                               "
-msgstr[0] ""
-"\n"
-"                               project you can participate in!\n"
-"                               "
-msgstr[1] ""
-"\n"
-"                               projects you can participate in!\n"
-"                               "
+#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:52
+msgid "project you can participate in!"
+msgid_plural "projects you can participate in!"
+msgstr[0] "project you can participate in!"
+msgstr[1] "projects you can participate in!"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:5
 #, python-format
-msgid " What is happening in %(district)s ? "
-msgstr " What is happening in %(district)s ? "
+msgid "What is happening in <strong>%(district)s</strong>?"
+msgstr "What is happening in <strong>%(district)s</strong>?"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:7
 #, python-format
-msgid ""
-"\n"
-"        display %(counter)s project\n"
-"        "
-msgid_plural ""
-"\n"
-"        display %(counter)s projects\n"
-"        "
-msgstr[0] ""
-"\n"
-"        display %(counter)s project\n"
-"        "
-msgstr[1] ""
-"\n"
-"        display %(counter)s projects\n"
-"        "
+msgid "display %(counter)s project"
+msgid_plural "display %(counter)s projects"
+msgstr[0] "display %(counter)s project"
+msgstr[1] "display %(counter)s projects"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:31
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:27
 #, python-format
-msgid "What is your opinion on this: %(name)s ?"
-msgstr "What is your opinion on this: %(name)s ?"
+msgid " What is your opinion on this: %(name)s?"
+msgstr " What is your opinion on this: %(name)s?"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
@@ -1634,7 +1598,7 @@ msgstr ""
 "finalize the signup process. Please contact us if you do not receive it "
 "within a few minutes."
 
-#: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:36
+#: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:37
 msgid "Ordering"
 msgstr "Ordering"
 
@@ -1807,7 +1771,7 @@ msgstr ""
 "sites."
 
 #: meinberlin/apps/dashboard/blueprints.py:155
-#: meinberlin/config/settings/base.py:466
+#: meinberlin/config/settings/base.py:464
 msgid "Kiezkasse"
 msgstr "Kiezkasse"
 
@@ -2101,7 +2065,7 @@ msgstr "Your Idea has been deleted"
 #: meinberlin/apps/initiators/forms.py:11
 #: meinberlin/apps/newsletters/forms.py:40
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:43
-#: meinberlin/apps/projects/views.py:41
+#: meinberlin/apps/projects/views.py:42
 msgid "Organisation"
 msgstr "Organisation"
 
@@ -2448,7 +2412,6 @@ msgstr "Organisation successfully updated."
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:4
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:9
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:4
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:21
 #: meinberlin/templates/a4dashboard/base_project_list.html:27
 msgid "Plans"
 msgstr "Plans"
@@ -2502,7 +2465,7 @@ msgstr "Label of the location"
 msgid "The label of the location is displayed in the detail view of the plan"
 msgstr "The label of the location is displayed in the detail view of the plan"
 
-#: meinberlin/apps/plans/models.py:66
+#: meinberlin/apps/plans/models.py:66 meinberlin/apps/projects/views.py:46
 msgid "District"
 msgstr "District"
 
@@ -2564,29 +2527,8 @@ msgstr "updated on "
 #: meinberlin/templates/a4dashboard/base_dashboard.html:44
 #: meinberlin/templates/a4dashboard/base_project_list.html:6
 #: meinberlin/templates/a4dashboard/base_project_list.html:9
-#: meinberlin/templates/header.html:17
 msgid "Participation projects"
 msgstr "Participation projects"
-
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:24
-msgid "Welcome to the list of plans for the state of Berlin!"
-msgstr "Welcome to the list of plans for the state of Berlin!"
-
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:25
-msgid ""
-"On this map you can find all plans of the administration, for example "
-"development plans and other projects. You can use the zoom feature to get an "
-"overview of the plans in your area. More information on each plan is "
-"available from the list. Among other things, you can learn wether public "
-"participation is planned. All currently active participation projects can "
-"also be found on <a href=\"/\" target=\"_blank\">mein.berlin.de</a>."
-msgstr ""
-"On this map you can find all plans of the administration, for example "
-"development plans and other projects. You can use the zoom feature to get an "
-"overview of the plans in your area. More information on each plan is "
-"available from the list. Among other things, you can learn wether public "
-"participation is planned. All currently active participation projects can "
-"also be found on <a href=\"/\" target=\"_blank\">mein.berlin.de</a>."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:7
 msgid "Edit plan"
@@ -2740,11 +2682,11 @@ msgstr "Participants"
 msgid "Moderators"
 msgstr "Moderators"
 
-#: meinberlin/apps/projects/forms.py:46 meinberlin/apps/projects/views.py:341
+#: meinberlin/apps/projects/forms.py:46 meinberlin/apps/projects/views.py:352
 msgid "Invite users via email"
 msgstr "Invite users via email"
 
-#: meinberlin/apps/projects/forms.py:51 meinberlin/apps/projects/views.py:342
+#: meinberlin/apps/projects/forms.py:51 meinberlin/apps/projects/views.py:353
 msgid "Invite users via file upload"
 msgstr "Invite users via file upload"
 
@@ -2958,55 +2900,55 @@ msgstr "Pending Invitations"
 msgid "Edit Participants"
 msgstr "Edit Participants"
 
-#: meinberlin/apps/projects/views.py:61
+#: meinberlin/apps/projects/views.py:66
 msgid "Year"
 msgstr "Year"
 
-#: meinberlin/apps/projects/views.py:64
+#: meinberlin/apps/projects/views.py:69
 msgid "Any"
 msgstr "Any"
 
-#: meinberlin/apps/projects/views.py:229
+#: meinberlin/apps/projects/views.py:240
 msgid "Invitation succesfully removed."
 msgstr "Invitation succesfully removed."
 
-#: meinberlin/apps/projects/views.py:270
+#: meinberlin/apps/projects/views.py:281
 msgid "Following users already accepted an invitation: "
 msgstr "Following users already accepted an invitation: "
 
-#: meinberlin/apps/projects/views.py:278
+#: meinberlin/apps/projects/views.py:289
 msgid "Following users are already invited: "
 msgstr "Following users are already invited: "
 
-#: meinberlin/apps/projects/views.py:321
+#: meinberlin/apps/projects/views.py:332
 msgid "Invite moderators via email"
 msgstr "Invite moderators via email"
 
-#: meinberlin/apps/projects/views.py:322
+#: meinberlin/apps/projects/views.py:333
 msgid "Invite moderators via file upload"
 msgstr "Invite moderators via file upload"
 
-#: meinberlin/apps/projects/views.py:323
+#: meinberlin/apps/projects/views.py:334
 msgid "{} moderator invited."
 msgstr "{} moderator invited."
 
-#: meinberlin/apps/projects/views.py:323
+#: meinberlin/apps/projects/views.py:334
 msgid "{} moderators invited."
 msgstr "{} moderators invited."
 
-#: meinberlin/apps/projects/views.py:324
+#: meinberlin/apps/projects/views.py:335
 msgid "Moderator successfully removed."
 msgstr "Moderator successfully removed."
 
-#: meinberlin/apps/projects/views.py:344
+#: meinberlin/apps/projects/views.py:355
 msgid "{} participant invited."
 msgstr "{} participant invited."
 
-#: meinberlin/apps/projects/views.py:345
+#: meinberlin/apps/projects/views.py:356
 msgid "{} participants invited."
 msgstr "{} participants invited."
 
-#: meinberlin/apps/projects/views.py:346
+#: meinberlin/apps/projects/views.py:357
 msgid "Participant successfully removed."
 msgstr "Participant successfully removed."
 
@@ -3175,77 +3117,77 @@ msgstr ""
 msgid "Account Settings"
 msgstr "Account Settings"
 
-#: meinberlin/config/settings/base.py:289
-#: meinberlin/config/settings/base.py:299
-#: meinberlin/config/settings/base.py:310
+#: meinberlin/config/settings/base.py:287
+#: meinberlin/config/settings/base.py:297
+#: meinberlin/config/settings/base.py:308
 msgid "Rich text editor"
 msgstr "Rich text editor"
 
-#: meinberlin/config/settings/base.py:443
+#: meinberlin/config/settings/base.py:441
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: meinberlin/config/settings/base.py:444
+#: meinberlin/config/settings/base.py:442
 msgid "Diamond"
 msgstr "Diamond"
 
-#: meinberlin/config/settings/base.py:445
+#: meinberlin/config/settings/base.py:443
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: meinberlin/config/settings/base.py:446
+#: meinberlin/config/settings/base.py:444
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: meinberlin/config/settings/base.py:447
+#: meinberlin/config/settings/base.py:445
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:448
+#: meinberlin/config/settings/base.py:446
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: meinberlin/config/settings/base.py:449
+#: meinberlin/config/settings/base.py:447
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: meinberlin/config/settings/base.py:450
+#: meinberlin/config/settings/base.py:448
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: meinberlin/config/settings/base.py:451
+#: meinberlin/config/settings/base.py:449
 msgid "Star"
 msgstr "Star"
 
-#: meinberlin/config/settings/base.py:452
+#: meinberlin/config/settings/base.py:450
 msgid "Square"
 msgstr "Square"
 
-#: meinberlin/config/settings/base.py:453
+#: meinberlin/config/settings/base.py:451
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: meinberlin/config/settings/base.py:454
+#: meinberlin/config/settings/base.py:452
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: meinberlin/config/settings/base.py:455
+#: meinberlin/config/settings/base.py:453
 msgid "Circle"
 msgstr "Circle"
 
-#: meinberlin/config/settings/base.py:456
+#: meinberlin/config/settings/base.py:454
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: meinberlin/config/settings/base.py:457
+#: meinberlin/config/settings/base.py:455
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: meinberlin/config/settings/base.py:464
+#: meinberlin/config/settings/base.py:462
 msgid "Stadtentwicklung und Wohnen"
 msgstr "Stadtentwicklung und Wohnen"
 
-#: meinberlin/config/settings/base.py:465
+#: meinberlin/config/settings/base.py:463
 msgid "Bebauungsplan"
 msgstr "Bebauungsplan"
 
@@ -3269,11 +3211,11 @@ msgstr "Skip to content "
 msgid "Portal Navigation"
 msgstr "Portal Navigation"
 
-#: meinberlin/templates/500.html:53
+#: meinberlin/templates/500.html:50
 msgid "Internal server error."
 msgstr "Internal server error."
 
-#: meinberlin/templates/500.html:54 meinberlin/templates/base_errors.html:11
+#: meinberlin/templates/500.html:51 meinberlin/templates/base_errors.html:11
 msgid "Back to meinBerlin."
 msgstr "Back to meinBerlin."
 
@@ -3471,10 +3413,6 @@ msgstr ""
 "target=\"_blank\">privacy policy</a>.\n"
 "                "
 
-#: meinberlin/templates/base.html:60
-msgid "Feedback"
-msgstr "Feedback"
-
 #: meinberlin/templates/base_errors.html:4
 msgid "Error"
 msgstr "Error"
@@ -3491,9 +3429,29 @@ msgstr "Hello"
 msgid "meinBerlin is a participation platform operated by"
 msgstr "meinBerlin is a participation platform operated by"
 
-#: meinberlin/templates/header.html:12
+#: meinberlin/templates/header.html:7
 msgid "Menu"
 msgstr "Menu"
+
+#: meinberlin/templates/header.html:16
+msgid "Where can I take part?"
+msgstr "Where can I take part?"
+
+#: meinberlin/templates/header.html:30
+msgid "Participation platform of Berlin!"
+msgstr "Participation platform of Berlin!"
+
+#: meinberlin/templates/header.html:34
+msgid "User Menu"
+msgstr "User Menu"
+
+#: meinberlin/templates/header.html:44
+msgid "Help"
+msgstr "Help"
+
+#: meinberlin/templates/header.html:49
+msgid "Give Feedback"
+msgstr "Give Feedback"
 
 #: meinberlin/templates/socialaccount/authentication_error.html:5
 #: meinberlin/templates/socialaccount/authentication_error.html:8
@@ -3554,6 +3512,124 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid " What is happening in <strong>%(district)s</strong>? "
+#~ msgstr " What is happening in <strong>%(district)s</strong>? "
+
+#~ msgid ""
+#~ "\n"
+#~ "        display %(counter)s project\n"
+#~ "        "
+#~ msgid_plural ""
+#~ "\n"
+#~ "        display %(counter)s projects\n"
+#~ "        "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "        display %(counter)s project\n"
+#~ "        "
+#~ msgstr[1] ""
+#~ "\n"
+#~ "        display %(counter)s projects\n"
+#~ "        "
+
+#~ msgid " \"What is your opinion on this: \"%(name)s? "
+#~ msgstr " \"What is your opinion on this: \"%(name)s? "
+
+#~ msgid ""
+#~ "\n"
+#~ "                           entry added by citizens\n"
+#~ "                           "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                           entries added by citizens\n"
+#~ "                           "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "                           entry added by citizens\n"
+#~ "                           "
+#~ msgstr[1] ""
+#~ "\n"
+#~ "                           entries added by citizens\n"
+#~ "                           "
+
+#~ msgid ""
+#~ "\n"
+#~ "                           project you can participate in!\n"
+#~ "                           "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                           projects you can participate in!\n"
+#~ "                           "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "                           project you can participate in!\n"
+#~ "                           "
+#~ msgstr[1] ""
+#~ "\n"
+#~ "                           projects you can participate in!\n"
+#~ "                           "
+
+#~ msgid ""
+#~ "\n"
+#~ "                               entry added by citizens\n"
+#~ "                               "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                               entries added by citizens\n"
+#~ "                               "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "                               entry added by citizens\n"
+#~ "                               "
+#~ msgstr[1] ""
+#~ "\n"
+#~ "                               entries added by citizens\n"
+#~ "                               "
+
+#~ msgid ""
+#~ "\n"
+#~ "                               project you can participate in!\n"
+#~ "                               "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                               projects you can participate in!\n"
+#~ "                               "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "                               project you can participate in!\n"
+#~ "                               "
+#~ msgstr[1] ""
+#~ "\n"
+#~ "                               projects you can participate in!\n"
+#~ "                               "
+
+#~ msgid " What is happening in %(district)s ? "
+#~ msgstr " What is happening in %(district)s ? "
+
+#~ msgid "What is your opinion on this: %(name)s ?"
+#~ msgstr "What is your opinion on this: %(name)s ?"
+
+#~ msgid "Welcome to the list of plans for the state of Berlin!"
+#~ msgstr "Welcome to the list of plans for the state of Berlin!"
+
+#~ msgid ""
+#~ "On this map you can find all plans of the administration, for example "
+#~ "development plans and other projects. You can use the zoom feature to get "
+#~ "an overview of the plans in your area. More information on each plan is "
+#~ "available from the list. Among other things, you can learn wether public "
+#~ "participation is planned. All currently active participation projects can "
+#~ "also be found on <a href=\"/\" target=\"_blank\">mein.berlin.de</a>."
+#~ msgstr ""
+#~ "On this map you can find all plans of the administration, for example "
+#~ "development plans and other projects. You can use the zoom feature to get "
+#~ "an overview of the plans in your area. More information on each plan is "
+#~ "available from the list. Among other things, you can learn wether public "
+#~ "participation is planned. All currently active participation projects can "
+#~ "also be found on <a href=\"/\" target=\"_blank\">mein.berlin.de</a>."
+
+#~ msgid "Feedback"
+#~ msgstr "Feedback"
 
 #~ msgid "district Administrations"
 #~ msgstr "district Administrations"

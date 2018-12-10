@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-08 13:21+0100\n"
+"POT-Creation-Date: 2018-12-10 21:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -415,94 +415,21 @@ msgstr "Invalid file format."
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:12
-msgid "Idea"
-msgstr "Idea"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:13
-msgid "Planning"
-msgstr "Planning"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:14
-msgid "Implementation"
-msgstr "Implementation"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:15
-msgid "Done"
-msgstr "Done"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:16
-msgid "Stopped"
-msgstr "Stopped"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:28
-msgid "No"
-msgstr "No"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:29
-msgid "Yes"
-msgstr "Yes"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:30
-msgid "Still undecided"
-msgstr "Still undecided"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:396
-msgid "Theme: "
-msgstr "Theme: "
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:397
-msgid "Participation: "
-msgstr "Participation: "
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:418
-msgid "Nothing to show"
-msgstr "Nothing to show"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:427
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:61
 msgid "Filter bar"
 msgstr "Filter bar"
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:434
-msgid "Address Search"
-msgstr "Address Search"
+#: meinberlin/apps/plans/assets/PlansList.jsx:62
+msgid "Theme: "
+msgstr "Theme: "
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:435
-#: meinberlin/apps/plans/assets/plans_map.jsx:436
-#: meinberlin/apps/plans/assets/plans_map.jsx:464
-#: meinberlin/apps/plans/assets/plans_map.jsx:465
-#: meinberlin/apps/plans/assets/plans_map.jsx:466
-msgid "Search"
-msgstr "Search"
+#: meinberlin/apps/plans/assets/PlansList.jsx:63
+msgid "Participation: "
+msgstr "Participation: "
 
-#: meinberlin/apps/plans/assets/plans_map.jsx:472
-msgid "Status"
-msgstr "Status"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:472
-#: meinberlin/apps/plans/assets/plans_map.jsx:482
-#: meinberlin/apps/plans/assets/plans_map.jsx:508
-#: meinberlin/apps/plans/assets/plans_map.jsx:518
-#: meinberlin/apps/plans/assets/plans_map.jsx:541
-#: meinberlin/apps/plans/assets/plans_map.jsx:551
-msgid "All"
-msgstr "All"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:508
-msgid "Participation"
-msgstr "Participation"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:541
-msgid "District"
-msgstr "District"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:573
-msgid "Export Excel"
-msgstr "Export Excel"
-
-#: meinberlin/apps/plans/assets/plans_map.jsx:580
-msgid "Address could not be found"
-msgstr "Address could not be found"
+#: meinberlin/apps/plans/assets/PlansList.jsx:82
+msgid "Nothing to show"
+msgstr "Nothing to show"
 
 #: meinberlin/assets/js/embed.js:85
 msgid "We couldn't find what you were looking for."
@@ -531,6 +458,54 @@ msgstr "No matches found within the project area"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Did you mean:"
+
+#~ msgid "Idea"
+#~ msgstr "Idea"
+
+#~ msgid "Planning"
+#~ msgstr "Planning"
+
+#~ msgid "Implementation"
+#~ msgstr "Implementation"
+
+#~ msgid "Done"
+#~ msgstr "Done"
+
+#~ msgid "Stopped"
+#~ msgstr "Stopped"
+
+#~ msgid "No"
+#~ msgstr "No"
+
+#~ msgid "Yes"
+#~ msgstr "Yes"
+
+#~ msgid "Still undecided"
+#~ msgstr "Still undecided"
+
+#~ msgid "Address Search"
+#~ msgstr "Address Search"
+
+#~ msgid "Search"
+#~ msgstr "Search"
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgid "All"
+#~ msgstr "All"
+
+#~ msgid "Participation"
+#~ msgstr "Participation"
+
+#~ msgid "District"
+#~ msgstr "District"
+
+#~ msgid "Export Excel"
+#~ msgstr "Export Excel"
+
+#~ msgid "Address could not be found"
+#~ msgstr "Address could not be found"
 
 #~ msgid "Type of plan: "
 #~ msgstr "Type of plan: "

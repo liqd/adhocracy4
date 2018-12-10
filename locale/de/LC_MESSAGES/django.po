@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-30 17:44+0100\n"
+"POT-Creation-Date: 2018-12-10 21:56+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -273,7 +273,7 @@ msgstr "Wir konnten keine Projekte finden."
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: meinberlin/apps/ideas/views.py:26 meinberlin/apps/projects/views.py:45
+#: meinberlin/apps/ideas/views.py:26 meinberlin/apps/projects/views.py:50
 #: meinberlin/apps/topicprio/views.py:20
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:4
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:10
@@ -495,18 +495,18 @@ msgid "Edit areasettings"
 msgstr "Kartenbereich bearbeiten"
 
 #: adhocracy4/dashboard/filter.py:15
-#: meinberlin/apps/projects/views.py:49
+#: meinberlin/apps/projects/views.py:54
 msgid "Archived"
 msgstr "Archiviert"
 
 #: adhocracy4/dashboard/filter.py:19
 #: adhocracy4/filters/widgets.py:32
-#: meinberlin/apps/projects/views.py:53
+#: meinberlin/apps/projects/views.py:58
 msgid "All"
 msgstr "Alle"
 
 #: adhocracy4/dashboard/filter.py:20
-#: meinberlin/apps/plans/models.py:24 meinberlin/apps/projects/views.py:54
+#: meinberlin/apps/plans/models.py:24 meinberlin/apps/projects/views.py:59
 msgid "No"
 msgstr "Nein"
 
@@ -519,7 +519,7 @@ msgstr "Nein"
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
 #: meinberlin/apps/plans/models.py:23
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
-#: meinberlin/apps/plans/views.py:166 meinberlin/apps/projects/views.py:55
+#: meinberlin/apps/plans/views.py:166 meinberlin/apps/projects/views.py:60
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
 msgid "Yes"
 msgstr "Ja"
@@ -1572,7 +1572,7 @@ msgstr "Vorschlag bearbeiten"
 #: meinberlin/apps/budgeting/views.py:17 meinberlin/apps/ideas/views.py:30
 #: meinberlin/apps/kiezkasse/views.py:15 meinberlin/apps/mapideas/views.py:15
 #: meinberlin/apps/maptopicprio/views.py:18
-#: meinberlin/apps/projects/views.py:84
+#: meinberlin/apps/projects/views.py:89
 msgid "Most recent"
 msgstr "am aktuellsten"
 
@@ -1614,70 +1614,34 @@ msgstr "Alle Projekte anzeigen"
 msgid "Send"
 msgstr "Senden"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:44
-msgid ""
-"\n"
-"                               entry added by citizens\n"
-"                               "
-msgid_plural ""
-"\n"
-"                               entries added by citizens\n"
-"                               "
-msgstr[0] ""
-"\n"
-"                               von Bürger*in eingereichter Beitrag \n"
-"                               "
-msgstr[1] ""
-"\n"
-"                               von Bürger*innen eingereichte Ideen und Kommentare \n"
-"                               "
+#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:40
+msgid "entry added by citizens"
+msgid_plural "entries added by citizens"
+msgstr[0] "von Bürger*innen eingereichte Idee"
+msgstr[1] "von Bürger*innen eingereichte Ideen und Kommentare"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:60
-msgid ""
-"\n"
-"                               project you can participate in!\n"
-"                               "
-msgid_plural ""
-"\n"
-"                               projects you can participate in!\n"
-"                               "
-msgstr[0] ""
-"\n"
-"                               Projekt, zu denen wir Ihre Meinung wissen möchten!\n"
-"                               "
-msgstr[1] ""
-"\n"
-"                               Projekte, zu denen wir Ihre Meinung wissen möchten!\n"
-"                               "
+#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:52
+msgid "project you can participate in!"
+msgid_plural "projects you can participate in!"
+msgstr[0] "Projekt, zu dem wir Ihre Meinung wissen möchten!"
+msgstr[1] "Projekte, zu denen wir Ihre Meinung wissen möchten!"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:5
 #, python-format
-msgid " What is happening in %(district)s ? "
-msgstr "Was passiert gerade in %(district)s ? "
+msgid "What is happening in <strong>%(district)s</strong>?"
+msgstr "Was passiert gerade in <strong>%(district)s</strong>?"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:7
 #, python-format
-msgid ""
-"\n"
-"        display %(counter)s project\n"
-"        "
-msgid_plural ""
-"\n"
-"        display %(counter)s projects\n"
-"        "
-msgstr[0] ""
-"\n"
-"        %(counter)s Projekt anzeigen \n"
-"        "
-msgstr[1] ""
-"\n"
-"        %(counter)s Projekte anzeigen \n"
-"        "
+msgid "display %(counter)s project"
+msgid_plural "display %(counter)s projects"
+msgstr[0] "%(counter)s Projekt anzeigen"
+msgstr[1] "%(counter)s Projekte anzeigen"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:31
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:27
 #, python-format
-msgid "What is your opinion on this: %(name)s ?"
-msgstr "Was ist Ihre Meinung zum Projekt: %(name)s ?"
+msgid " What is your opinion on this: %(name)s?"
+msgstr "Was ist Ihre Meinung zum Projekt: %(name)s?"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
@@ -1720,7 +1684,7 @@ msgstr ""
 "Bitte kontaktieren Sie uns, falls die E-Mail nicht in ein paar Minuten "
 "angekommen ist."
 
-#: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:36
+#: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:37
 msgid "Ordering"
 msgstr "Sortierung"
 
@@ -1906,7 +1870,7 @@ msgstr ""
 "Formular wird dann auf externen Seiten eingebunden."
 
 #: meinberlin/apps/dashboard/blueprints.py:155
-#: meinberlin/config/settings/base.py:466
+#: meinberlin/config/settings/base.py:464
 msgid "Kiezkasse"
 msgstr "Kiezkasse"
 
@@ -2210,7 +2174,7 @@ msgstr "Ihre Idee wurde gelöscht"
 #: meinberlin/apps/initiators/forms.py:11
 #: meinberlin/apps/newsletters/forms.py:40
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:43
-#: meinberlin/apps/projects/views.py:41
+#: meinberlin/apps/projects/views.py:42
 msgid "Organisation"
 msgstr "Organisation"
 
@@ -2561,7 +2525,6 @@ msgstr "Organisation erfolgreich aktualisiert"
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:4
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:9
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:4
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:21
 #: meinberlin/templates/a4dashboard/base_project_list.html:27
 msgid "Plans"
 msgstr "Vorhaben"
@@ -2617,7 +2580,7 @@ msgstr ""
 "Die Ortsbezeichnung erscheint im Steckbrief der Detailansicht zu Ihrem "
 "Vorhaben."
 
-#: meinberlin/apps/plans/models.py:66
+#: meinberlin/apps/plans/models.py:66 meinberlin/apps/projects/views.py:46
 msgid "District"
 msgstr "Bezirk"
 
@@ -2679,33 +2642,8 @@ msgstr "bearbeitet am "
 #: meinberlin/templates/a4dashboard/base_dashboard.html:44
 #: meinberlin/templates/a4dashboard/base_project_list.html:6
 #: meinberlin/templates/a4dashboard/base_project_list.html:9
-#: meinberlin/templates/header.html:17
 msgid "Participation projects"
 msgstr "Beteiligungsprojekte"
-
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:24
-msgid "Welcome to the list of plans for the state of Berlin!"
-msgstr "Willkommen auf der Vorhabenliste von Berlin!"
-
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:25
-msgid ""
-"On this map you can find all plans of the administration, for example "
-"development plans and other projects. You can use the zoom feature to get an "
-"overview of the plans in your area. More information on each plan is "
-"available from the list. Among other things, you can learn wether public "
-"participation is planned. All currently active participation projects can "
-"also be found on <a href=\"/\" target=\"_blank\">mein.berlin.de</a>."
-msgstr ""
-"Wo wird derzeit in Berlin was geplant und wo haben Bürger*innen die "
-"Möglichkeit, sich aktiv einzubringen? Die Vorhabenliste bietet eine "
-"Übersicht über die Vorhaben und Projekte des Landes Berlins. Die Symbole in "
-"der Karte geben einen Hinweis auf den Bearbeitungsstand des jeweiligen "
-"Vorhabens - von der Idee bis zur Umsetzung. Außerdem können Sie die "
-"Vorhabenliste filtern nach den Möglichkeiten, sich im Rahmen von Verfahren "
-"zur Bürger*innenbeteiligung aktiv einzubringen. Über den Bezirksfilter und "
-"den Zoom finden Sie die Vorhaben in Ihrer Nachbarschaft. Mit Klick auf die "
-"Vorhaben neben der Karte erhalten Sie weitere Informationen, z.B. zu den "
-"Zielen und Ansprechpartner*innen der jeweiligen Vorhaben."
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:7
 msgid "Edit plan"
@@ -2861,11 +2799,11 @@ msgstr "Teilnehmer*innen"
 msgid "Moderators"
 msgstr "Moderator*innen"
 
-#: meinberlin/apps/projects/forms.py:46 meinberlin/apps/projects/views.py:341
+#: meinberlin/apps/projects/forms.py:46 meinberlin/apps/projects/views.py:352
 msgid "Invite users via email"
 msgstr "Nutzer*innen via E-Mail einladen"
 
-#: meinberlin/apps/projects/forms.py:51 meinberlin/apps/projects/views.py:342
+#: meinberlin/apps/projects/forms.py:51 meinberlin/apps/projects/views.py:353
 msgid "Invite users via file upload"
 msgstr "Nutzer*innen aus Datei einladen"
 
@@ -3078,56 +3016,56 @@ msgstr "Ausstehende Einladungen"
 msgid "Edit Participants"
 msgstr "Teilnehmer*innen bearbeiten"
 
-#: meinberlin/apps/projects/views.py:61
+#: meinberlin/apps/projects/views.py:66
 msgid "Year"
 msgstr "Jahr"
 
-#: meinberlin/apps/projects/views.py:64
+#: meinberlin/apps/projects/views.py:69
 msgid "Any"
 msgstr "Alle"
 
-#: meinberlin/apps/projects/views.py:229
+#: meinberlin/apps/projects/views.py:240
 msgid "Invitation succesfully removed."
 msgstr "Einladung erfolgreich entfernt."
 
-#: meinberlin/apps/projects/views.py:270
+#: meinberlin/apps/projects/views.py:281
 msgid "Following users already accepted an invitation: "
 msgstr ""
 "Die folgenden Nutzerinnen und Nutzer haben bereits eine Einladung angenommen:"
 
-#: meinberlin/apps/projects/views.py:278
+#: meinberlin/apps/projects/views.py:289
 msgid "Following users are already invited: "
 msgstr "Die folgenden Nutzerinnen und Nutzer wurden bereits eingeladen:"
 
-#: meinberlin/apps/projects/views.py:321
+#: meinberlin/apps/projects/views.py:332
 msgid "Invite moderators via email"
 msgstr "Moderator*innen via E-Mail einladen"
 
-#: meinberlin/apps/projects/views.py:322
+#: meinberlin/apps/projects/views.py:333
 msgid "Invite moderators via file upload"
 msgstr "Moderator*innen aus Datei einladen"
 
-#: meinberlin/apps/projects/views.py:323
+#: meinberlin/apps/projects/views.py:334
 msgid "{} moderator invited."
 msgstr "{} Moderator*in eingeladen."
 
-#: meinberlin/apps/projects/views.py:323
+#: meinberlin/apps/projects/views.py:334
 msgid "{} moderators invited."
 msgstr "{} Moderator*innen eingeladen."
 
-#: meinberlin/apps/projects/views.py:324
+#: meinberlin/apps/projects/views.py:335
 msgid "Moderator successfully removed."
 msgstr "Moderator*in erfolgreich entfernt."
 
-#: meinberlin/apps/projects/views.py:344
+#: meinberlin/apps/projects/views.py:355
 msgid "{} participant invited."
 msgstr "{} Teilnehmer*in eingeladen"
 
-#: meinberlin/apps/projects/views.py:345
+#: meinberlin/apps/projects/views.py:356
 msgid "{} participants invited."
 msgstr "{} Teilnehmer*innen eingeladen"
 
-#: meinberlin/apps/projects/views.py:346
+#: meinberlin/apps/projects/views.py:357
 msgid "Participant successfully removed."
 msgstr "Teilnehmer*in erfolgreich entfernt."
 
@@ -3296,77 +3234,77 @@ msgstr ""
 msgid "Account Settings"
 msgstr "Nutzerkonto Einstellungen"
 
-#: meinberlin/config/settings/base.py:289
-#: meinberlin/config/settings/base.py:299
-#: meinberlin/config/settings/base.py:310
+#: meinberlin/config/settings/base.py:287
+#: meinberlin/config/settings/base.py:297
+#: meinberlin/config/settings/base.py:308
 msgid "Rich text editor"
 msgstr "Rich Text Editor"
 
-#: meinberlin/config/settings/base.py:443
+#: meinberlin/config/settings/base.py:441
 msgid "Pin without icon"
 msgstr "Pin ohne Icon"
 
-#: meinberlin/config/settings/base.py:444
+#: meinberlin/config/settings/base.py:442
 msgid "Diamond"
 msgstr "Diamant"
 
-#: meinberlin/config/settings/base.py:445
+#: meinberlin/config/settings/base.py:443
 msgid "Triangle up"
 msgstr "Dreieck Spitze oben"
 
-#: meinberlin/config/settings/base.py:446
+#: meinberlin/config/settings/base.py:444
 msgid "Triangle down"
 msgstr "Dreieck Spitze unten"
 
-#: meinberlin/config/settings/base.py:447
+#: meinberlin/config/settings/base.py:445
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:448
+#: meinberlin/config/settings/base.py:446
 msgid "Semi circle"
 msgstr "Halbkreis"
 
-#: meinberlin/config/settings/base.py:449
+#: meinberlin/config/settings/base.py:447
 msgid "Hexagon"
 msgstr "Sechseck"
 
-#: meinberlin/config/settings/base.py:450
+#: meinberlin/config/settings/base.py:448
 msgid "Rhomboid"
 msgstr "Parallelogramm"
 
-#: meinberlin/config/settings/base.py:451
+#: meinberlin/config/settings/base.py:449
 msgid "Star"
 msgstr "Stern"
 
-#: meinberlin/config/settings/base.py:452
+#: meinberlin/config/settings/base.py:450
 msgid "Square"
 msgstr "Quadrat"
 
-#: meinberlin/config/settings/base.py:453
+#: meinberlin/config/settings/base.py:451
 msgid "Octothorpe"
 msgstr "Raute"
 
-#: meinberlin/config/settings/base.py:454
+#: meinberlin/config/settings/base.py:452
 msgid "Rectangle"
 msgstr "Viereck"
 
-#: meinberlin/config/settings/base.py:455
+#: meinberlin/config/settings/base.py:453
 msgid "Circle"
 msgstr "Kreis"
 
-#: meinberlin/config/settings/base.py:456
+#: meinberlin/config/settings/base.py:454
 msgid "Right triangle"
 msgstr "Dreieck Spitze rechts"
 
-#: meinberlin/config/settings/base.py:457
+#: meinberlin/config/settings/base.py:455
 msgid "Zigzag"
 msgstr "ZickZack"
 
-#: meinberlin/config/settings/base.py:464
+#: meinberlin/config/settings/base.py:462
 msgid "Stadtentwicklung und Wohnen"
 msgstr ""
 
-#: meinberlin/config/settings/base.py:465
+#: meinberlin/config/settings/base.py:463
 msgid "Bebauungsplan"
 msgstr ""
 
@@ -3390,11 +3328,11 @@ msgstr "Zum Inhalt springen"
 msgid "Portal Navigation"
 msgstr "Navigation des Portals berlin.de"
 
-#: meinberlin/templates/500.html:53
+#: meinberlin/templates/500.html:50
 msgid "Internal server error."
 msgstr "Interner Serverfehler."
 
-#: meinberlin/templates/500.html:54 meinberlin/templates/base_errors.html:11
+#: meinberlin/templates/500.html:51 meinberlin/templates/base_errors.html:11
 msgid "Back to meinBerlin."
 msgstr "Zurück zu meinBerlin"
 
@@ -3593,10 +3531,6 @@ msgstr ""
 "gelesen habe und akzeptiere.\n"
 "                "
 
-#: meinberlin/templates/base.html:60
-msgid "Feedback"
-msgstr "Feedback"
-
 #: meinberlin/templates/base_errors.html:4
 msgid "Error"
 msgstr "Fehler"
@@ -3613,9 +3547,29 @@ msgstr "Guten Tag"
 msgid "meinBerlin is a participation platform operated by"
 msgstr "meinBerlin ist die Plattform für Beteiligung, betrieben durch"
 
-#: meinberlin/templates/header.html:12
+#: meinberlin/templates/header.html:7
 msgid "Menu"
 msgstr "Menü"
+
+#: meinberlin/templates/header.html:16
+msgid "Where can I take part?"
+msgstr "Wo kann ich mich beteiligen?"
+
+#: meinberlin/templates/header.html:30
+msgid "Participation platform of Berlin!"
+msgstr "Beteiligungsplattform des Landes Berlin!"
+
+#: meinberlin/templates/header.html:34
+msgid "User Menu"
+msgstr "Nutzer*innen-Menu"
+
+#: meinberlin/templates/header.html:44
+msgid "Help"
+msgstr "Hilfe"
+
+#: meinberlin/templates/header.html:49
+msgid "Give Feedback"
+msgstr "Feedback geben"
 
 #: meinberlin/templates/socialaccount/authentication_error.html:5
 #: meinberlin/templates/socialaccount/authentication_error.html:8
@@ -3677,6 +3631,92 @@ msgstr ""
 "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem %(site_name)s "
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
+
+#~ msgid ""
+#~ "\n"
+#~ "        display %(counter)s project\n"
+#~ "        "
+#~ msgid_plural ""
+#~ "\n"
+#~ "        display %(counter)s projects\n"
+#~ "        "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "        %(counter)s Projekt anzeigen \n"
+#~ "        "
+#~ msgstr[1] ""
+#~ "\n"
+#~ "        %(counter)s Projekte anzeigen \n"
+#~ "        "
+
+#~ msgid ""
+#~ "\n"
+#~ "                               entry added by citizens\n"
+#~ "                               "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                               entries added by citizens\n"
+#~ "                               "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "                               von Bürger*in eingereichter Beitrag \n"
+#~ "                               "
+#~ msgstr[1] ""
+#~ "\n"
+#~ "                               von Bürger*innen eingereichte Ideen und "
+#~ "Kommentare \n"
+#~ "                               "
+
+#~ msgid ""
+#~ "\n"
+#~ "                               project you can participate in!\n"
+#~ "                               "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                               projects you can participate in!\n"
+#~ "                               "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "                               Projekt, zu denen wir Ihre Meinung wissen "
+#~ "möchten!\n"
+#~ "                               "
+#~ msgstr[1] ""
+#~ "\n"
+#~ "                               Projekte, zu denen wir Ihre Meinung wissen "
+#~ "möchten!\n"
+#~ "                               "
+
+#~ msgid " What is happening in %(district)s ? "
+#~ msgstr "Was passiert gerade in %(district)s ? "
+
+#~ msgid "What is your opinion on this: %(name)s ?"
+#~ msgstr "Was ist Ihre Meinung zum Projekt: %(name)s ?"
+
+#~ msgid "Welcome to the list of plans for the state of Berlin!"
+#~ msgstr "Willkommen auf der Vorhabenliste von Berlin!"
+
+#~ msgid ""
+#~ "On this map you can find all plans of the administration, for example "
+#~ "development plans and other projects. You can use the zoom feature to get "
+#~ "an overview of the plans in your area. More information on each plan is "
+#~ "available from the list. Among other things, you can learn wether public "
+#~ "participation is planned. All currently active participation projects can "
+#~ "also be found on <a href=\"/\" target=\"_blank\">mein.berlin.de</a>."
+#~ msgstr ""
+#~ "Wo wird derzeit in Berlin was geplant und wo haben Bürger*innen die "
+#~ "Möglichkeit, sich aktiv einzubringen? Die Vorhabenliste bietet eine "
+#~ "Übersicht über die Vorhaben und Projekte des Landes Berlins. Die Symbole "
+#~ "in der Karte geben einen Hinweis auf den Bearbeitungsstand des jeweiligen "
+#~ "Vorhabens - von der Idee bis zur Umsetzung. Außerdem können Sie die "
+#~ "Vorhabenliste filtern nach den Möglichkeiten, sich im Rahmen von "
+#~ "Verfahren zur Bürger*innenbeteiligung aktiv einzubringen. Über den "
+#~ "Bezirksfilter und den Zoom finden Sie die Vorhaben in Ihrer "
+#~ "Nachbarschaft. Mit Klick auf die Vorhaben neben der Karte erhalten Sie "
+#~ "weitere Informationen, z.B. zu den Zielen und Ansprechpartner*innen der "
+#~ "jeweiligen Vorhaben."
+
+#~ msgid "Feedback"
+#~ msgstr "Feedback"
 
 #~ msgid "district Administrations"
 #~ msgstr "Bezirksamt"

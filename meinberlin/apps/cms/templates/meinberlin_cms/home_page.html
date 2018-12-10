@@ -37,12 +37,7 @@
                     </div>
                     <div class="storefront__item storefront__stat-sm tile__sm u-mobile-display-none">
                         <h1 class="storefront__lg-text">{{ self.storefront.num_entries }}</h1>
-                        <p>{% blocktrans count counter=self.storefront.num_entries %}
-                           entry added by citizens
-                           {% plural %}
-                           entries added by citizens
-                           {% endblocktrans %}
-                        </p>
+                        <p>{% blocktrans count counter=self.storefront.num_entries %}entry added by citizens{% plural %}entries added by citizens{% endblocktrans %}</p>
                     </div>
                 </div>
                 <div class="storefront__col u-mobile-display-none">
@@ -54,12 +49,7 @@
                     <div class="storefront__item storefront__stat-lg tile__md">
                         <span class="storefront__xl-text">{{ self.storefront.num_projects }}</span>
                         <div class="storefront__stat-text">
-                            <p>{% blocktrans count counter=self.storefront.num_projects %}
-                           project you can participate in!
-                           {% plural %}
-                           projects you can participate in!
-                           {% endblocktrans %}
-                            </p>
+                            <p>{% blocktrans count counter=self.storefront.num_projects %}project you can participate in!{% plural %}projects you can participate in!{% endblocktrans %}</p>
                         </div>
                     </div>
                 </div>
