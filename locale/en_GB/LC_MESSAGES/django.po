@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-10 21:42+0100\n"
+"POT-Creation-Date: 2018-12-10 21:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1543,32 +1543,20 @@ msgstr[1] "projects you can participate in!"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:5
 #, python-format
-msgid " What is happening in <strong>%(district)s</strong>? "
-msgstr " What is happening in <strong>%(district)s</strong>? "
+msgid "What is happening in <strong>%(district)s</strong>?"
+msgstr "What is happening in <strong>%(district)s</strong>?"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:7
 #, python-format
-msgid ""
-"\n"
-"        display %(counter)s project\n"
-"        "
-msgid_plural ""
-"\n"
-"        display %(counter)s projects\n"
-"        "
-msgstr[0] ""
-"\n"
-"        display %(counter)s project\n"
-"        "
-msgstr[1] ""
-"\n"
-"        display %(counter)s projects\n"
-"        "
+msgid "display %(counter)s project"
+msgid_plural "display %(counter)s projects"
+msgstr[0] "display %(counter)s project"
+msgstr[1] "display %(counter)s projects"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:31
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:27
 #, python-format
-msgid " \"What is your opinion on this: \"%(name)s? "
-msgstr " \"What is your opinion on this: \"%(name)s? "
+msgid " What is your opinion on this: %(name)s?"
+msgstr " What is your opinion on this: %(name)s?"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
@@ -3524,6 +3512,29 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid " What is happening in <strong>%(district)s</strong>? "
+#~ msgstr " What is happening in <strong>%(district)s</strong>? "
+
+#~ msgid ""
+#~ "\n"
+#~ "        display %(counter)s project\n"
+#~ "        "
+#~ msgid_plural ""
+#~ "\n"
+#~ "        display %(counter)s projects\n"
+#~ "        "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "        display %(counter)s project\n"
+#~ "        "
+#~ msgstr[1] ""
+#~ "\n"
+#~ "        display %(counter)s projects\n"
+#~ "        "
+
+#~ msgid " \"What is your opinion on this: \"%(name)s? "
+#~ msgstr " \"What is your opinion on this: \"%(name)s? "
 
 #~ msgid ""
 #~ "\n"
