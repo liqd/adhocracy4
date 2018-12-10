@@ -1617,31 +1617,31 @@ msgstr "Senden"
 #: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:40
 msgid "entry added by citizens"
 msgid_plural "entries added by citizens"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "von Bürger*innen eingereichte Idee"
+msgstr[1] "von Bürger*innen eingereichte Ideen und Kommentare"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:52
 msgid "project you can participate in!"
 msgid_plural "projects you can participate in!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Projekt, zu dem wir Ihre Meinung wissen möchten!"
+msgstr[1] "Projekte, zu denen wir Ihre Meinung wissen möchten!"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:5
 #, python-format
 msgid "What is happening in <strong>%(district)s</strong>?"
-msgstr ""
+msgstr "Was passiert gerade in <strong>%(district)s</strong>?"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:7
 #, python-format
 msgid "display %(counter)s project"
 msgid_plural "display %(counter)s projects"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(counter)s Projekt anzeigen"
+msgstr[1] "%(counter)s Projekte anzeigen"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:27
 #, python-format
 msgid " What is your opinion on this: %(name)s?"
-msgstr ""
+msgstr "Was ist Ihre Meinung zum Projekt: %(name)s?"
 
 #: meinberlin/apps/contrib/django_standard_messages.py:6
 msgid "You have signed out."
@@ -3553,23 +3553,23 @@ msgstr "Menü"
 
 #: meinberlin/templates/header.html:16
 msgid "Where can I take part?"
-msgstr ""
+msgstr "Wo kann ich mich beteiligen?"
 
 #: meinberlin/templates/header.html:30
 msgid "Participation platform of Berlin!"
-msgstr ""
+msgstr "Beteiligungsplattform des Landes Berlin!"
 
 #: meinberlin/templates/header.html:34
 msgid "User Menu"
-msgstr ""
+msgstr "Nutzer*innen-Menu"
 
 #: meinberlin/templates/header.html:44
 msgid "Help"
-msgstr ""
+msgstr "Hilfe"
 
 #: meinberlin/templates/header.html:49
 msgid "Give Feedback"
-msgstr ""
+msgstr "Feedback geben"
 
 #: meinberlin/templates/socialaccount/authentication_error.html:5
 #: meinberlin/templates/socialaccount/authentication_error.html:8
