@@ -60,6 +60,7 @@ class ListMapBox extends React.Component {
           <div className="u-spacer-left u-spacer-right">
             <div role="group" aria-label={django.gettext('Filter bar')}>
               <div className="switch u-mobile-display-none">
+                <span className="switch-label">Show map</span>
                 <input
                   id="switch-primary"
                   onChange={this.toggleSwitch.bind(this)}
