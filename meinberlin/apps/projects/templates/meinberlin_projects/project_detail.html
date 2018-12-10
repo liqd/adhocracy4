@@ -33,7 +33,7 @@
             </div>
         </div>
     {% else %}
-        <div class="project-header{% if project.image %} project-header--image{% endif %} u-after-dialogue-box" style="{% if view.project.image %}
+        <div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
                        background-image: url({{ project.image |thumbnail_url:'heroimage' }});
                        {% endif %}">
             <div class="l-wrapper">

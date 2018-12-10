@@ -847,14 +847,6 @@
                     </div>
                 </div>
 
-                <h2 id="cl-fixedside">Fixed side</h2>
-
-                <div class="cl-example">SEE FEEDBACK BUTTON --->
-                    <aside class="fixed-side">
-                        <a href="/feedback/" class="btn btn--primary btn--attached-top">Feedback</a>
-                    </aside>
-                </div>
-
                 <h2 id="cl-footer">Footer</h2>
 
                 <div class="cl-example">
@@ -899,34 +891,49 @@
                     <header class="main-header">
                         <div class="l-wrapper">
                             <nav class="main-nav">
-                                <img class="beberlin-logo" src="/static/images/beberlin.svg" alt="be Berlin" height="22" width="90">
-                                <a href="/" class="main-nav__logo" rel="home"><img src="/static/images/LOGO.png" alt="mein.berlin"></a>
-                                <button class="btn btn--light main-nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse">
-                                    <i class="fa fa-bars" aria-hidden="true"></i>
-                                    Menü
-                                </button>
-                                <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
-                                    <ul class="main-nav__list">
-                                        <li class="main-nav__item">
-                                            <a class="main-nav__link" href="/projects/">Participation projects</a>
-                                        </li>
-                                    </ul>
-                                    <div class="main-header__user">
-                                        <div class="dropdown dropdown--right">
-                                            <button type="button" class="dropdown-toggle btn btn--light" data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="user-actions">
-                                                User
-                                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                <div class="main-nav__nav-item">
+                                    <button class="btn btn--light main-nav__toggle" data-toggle="collapse" data-target="#menu-collapse" aria-expanded="false" aria-controls="menu-collapse" aria-label="Menu">
+                                        <i class="fas fa-bars" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
+                                        <ul class="main-nav__list">
+                                            <li class="main-nav__item">
+                                                <a class="main-nav__link" href="/"><i class="fas fa-home"></i></a>
+                                            </li>
+                                            <li class="main-nav__item">
+                                                <a class="main-nav__link" href="#">Where can I take part?'</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="main-nav__logo-item">
+                                    <a href="/" class="main-nav__logo" rel="home">
+                                        <img src="/static/images/LOGO.png" alt="mein.berlin">
+                                        <div class="main-nav__headline"><span>Participation platform of Berlin!</span></div>
+                                    </a>
+                                </div>
+                                <div class="main-nav__nav-item main-nav__nav-item--right">
+                                    <button class="btn btn--secondary main-nav__toggle" data-toggle="collapse" data-target="#user-menu-collapse" aria-expanded="false" aria-controls="user-menu-collapse" aria-label="User Menu">
+                                        <i class="fas fa-user"></i>
+                                    </button>
+                                    <div class="main-nav__menu-wrapper collapse" id="user-menu-collapse">
+                                        <div class="main-header__user">
+                                            <button type="button" class="dropdown-toggle btn btn--secondary">
+                                            Anmelden/Registrieren
+                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
                                             </button>
-                                            <ul class="dropdown-menu" aria-labelledby="user-actions"></ul>
                                         </div>
+                                        <ul class="main-nav__list">
+                                            <li class="main-nav__item">
+                                                <a class="main-nav__link" href="#">Help</a>
+                                            </li>
+                                            <li class="main-nav__item">
+                                                <a class="main-nav__link" href="#">Give Feedback</a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </nav>
-                        </div>
-                        <div class="dialogue-box">
-                            <div class="dialogue-box__left"></div>
-                            <div class="dialogue-box__center"></div>
-                            <div class="dialogue-box__right"></div>
                         </div>
                     </header>
                 </div>
@@ -1375,7 +1382,7 @@
                 <h2 id="cl-project-header">Project Header</h2>
 
                 <div class="cl-example" style="padding-top: 76px">
-                    <div class="project-header project-header--image u-after-dialogue-box">
+                    <div class="project-header project-header--image">
                         <div class="l-wrapper">
                             <div class="l-center-6">
                                 <h1 class="project-header__title">Project Title</h1>

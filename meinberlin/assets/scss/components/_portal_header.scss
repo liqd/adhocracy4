@@ -14,8 +14,8 @@
         position: initial;
     }
 
-    @media screen and (min-width: $breakpoint) {
-        margin-bottom: 5em;
+    @media screen and (min-width: $breakpoint-md) {
+        margin-bottom: 2em;
     }
 }
 
@@ -67,7 +67,7 @@
     }
 }
 
-@media (min-width: $breakpoint) {
+@media (min-width: $breakpoint-md) {
     .portal-header__logo img {
         width: 161px;
         height: 44px;
