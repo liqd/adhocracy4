@@ -31,6 +31,17 @@
     }
 }
 
+//tablet
+@media screen and (min-width: $breakpoint-xs + 0.1em) and (max-width: $breakpoint-md) {
+    .storefront {
+        margin-left: $spacer;
+    }
+
+    .storefront__col {
+        width: 50%;
+    }
+}
+
 .storefront {
     margin-top: 3rem;
     display: flex;
@@ -42,10 +53,6 @@
     display: flex;
     flex-direction: column;
     min-height: 632px;
-
-    @media screen and (min-width: $breakpoint-xs + 0.1em) {
-        width: 50%;
-    }
 
     @media screen and (min-width: $breakpoint-md + 0.1em) {
         width: 33.3%;
