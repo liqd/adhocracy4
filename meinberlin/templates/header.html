@@ -13,7 +13,7 @@
                             <a class="{% if request.path == '/' %}is-active{% else %}not-active{% endif %} main-nav__link" href="/"><i class="fas fa-home"></i></a>
                         </li>
                         <li class="main-nav__item">
-                          {% url 'project-list' as project_list %}
+                            {% url 'project-list' as project_list %}
                             <a class="{% if request.path == project_list %}is-active{% else %}not-active{% endif %} main-nav__link" href="{% url 'project-list' %}">{% trans 'Where can I take part?' %}</a>
                         </li>
                         {% get_menu "topnav" as topnav %}
