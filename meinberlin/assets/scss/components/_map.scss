@@ -97,7 +97,7 @@
         flex-direction: row;
     }
 
-    @media (min-width: $breakpoint-md + 0.1em) {
+    @media (min-width: $breakpoint-md) {
         margin-left: 18rem;
     }
 
