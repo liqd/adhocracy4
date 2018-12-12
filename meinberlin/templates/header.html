@@ -10,7 +10,7 @@
                 <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
                     <ul class="main-nav__list">
                         <li class="main-nav__item">
-                            <a class="main-nav__link {% if request.path == '/' %}is-active{% else %}not-active{% endif %}" href="/"><i class="fas fa-home"></i></a>
+                            <a class="main-nav__link {% if request.path == '/' %}is-active{% else %}not-active{% endif %}" href="/"><i class="fas fa-home"></i><span class="main-nav__link-home">Home</span></a>
                         </li>
                         <li class="main-nav__item">
                             {% url 'project-list' as project_list %}
