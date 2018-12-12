@@ -13,7 +13,7 @@ $header-margin-bottom: 25px;
     line-height: 1;
 
     @media screen and (min-width: $breakpoint-md) {
-        align-items: end;
+        align-items: flex-end;
     }
 }
 
@@ -78,6 +78,7 @@ $header-margin-bottom: 25px;
     position: absolute;
     left: 0;
     right: 0;
+    top: 5rem;
     z-index: 1;
 
     background-color: $body-bg;
@@ -139,11 +140,24 @@ $header-margin-bottom: 25px;
 
         &:hover,
         &:focus {
-            text-decoration: underline;
             background-color: transparent;
-            color: inherit;
+            color: $brand-primary;
         }
     }
+
+    .fa-home {
+        color: $brand-secondary;
+
+        &:hover,
+        &:focus {
+            background-color: transparent;
+            color: $brand-primary;
+        }
+    }
+}
+
+.main-nav__link.is-active {
+    color: $brand-primary;
 
     .fa-home {
         color: $brand-primary;
