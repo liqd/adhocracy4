@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-10 21:56+0100\n"
+"POT-Creation-Date: 2018-12-12 14:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1771,7 +1771,6 @@ msgstr ""
 "sites."
 
 #: meinberlin/apps/dashboard/blueprints.py:155
-#: meinberlin/config/settings/base.py:464
 msgid "Kiezkasse"
 msgstr "Kiezkasse"
 
@@ -3184,12 +3183,56 @@ msgid "Zigzag"
 msgstr "Zigzag"
 
 #: meinberlin/config/settings/base.py:462
-msgid "Stadtentwicklung und Wohnen"
-msgstr "Stadtentwicklung und Wohnen"
+msgid "Anti-discrimination"
+msgstr "Anti-discrimination"
 
 #: meinberlin/config/settings/base.py:463
-msgid "Bebauungsplan"
-msgstr "Bebauungsplan"
+msgid "Work & economy"
+msgstr "Work & economy"
+
+#: meinberlin/config/settings/base.py:464
+msgid "Building & living"
+msgstr "Building & living"
+
+#: meinberlin/config/settings/base.py:465
+msgid "Education & research"
+msgstr "Education & research"
+
+#: meinberlin/config/settings/base.py:466
+msgid "Children, youth & family"
+msgstr "Children, youth & family"
+
+#: meinberlin/config/settings/base.py:467
+msgid "Finances"
+msgstr "Finances"
+
+#: meinberlin/config/settings/base.py:468
+msgid "Health & sports"
+msgstr "Health & sports"
+
+#: meinberlin/config/settings/base.py:469
+msgid "Integration"
+msgstr "Integration"
+
+#: meinberlin/config/settings/base.py:470
+msgid "Culture & leisure"
+msgstr "Culture & leisure"
+
+#: meinberlin/config/settings/base.py:471
+msgid "Neighborhood & participation"
+msgstr "Neighborhood & participation"
+
+#: meinberlin/config/settings/base.py:472
+msgid "Urban development"
+msgstr "Urban development"
+
+#: meinberlin/config/settings/base.py:473
+msgid "Environment & public green space"
+msgstr "Environment & public green space"
+
+#: meinberlin/config/settings/base.py:474
+msgid "Traffic"
+msgstr "Traffic"
 
 #: meinberlin/templates/403.html:7
 msgid "You are not allowed to access this page."
@@ -3433,23 +3476,23 @@ msgstr "meinBerlin is a participation platform operated by"
 msgid "Menu"
 msgstr "Menu"
 
-#: meinberlin/templates/header.html:16
+#: meinberlin/templates/header.html:17
 msgid "Where can I take part?"
 msgstr "Where can I take part?"
 
-#: meinberlin/templates/header.html:30
+#: meinberlin/templates/header.html:31
 msgid "Participation platform of Berlin!"
 msgstr "Participation platform of Berlin!"
 
-#: meinberlin/templates/header.html:34
+#: meinberlin/templates/header.html:35
 msgid "User Menu"
 msgstr "User Menu"
 
-#: meinberlin/templates/header.html:44
+#: meinberlin/templates/header.html:45
 msgid "Help"
 msgstr "Help"
 
-#: meinberlin/templates/header.html:49
+#: meinberlin/templates/header.html:50
 msgid "Give Feedback"
 msgstr "Give Feedback"
 
@@ -3512,6 +3555,12 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid "Stadtentwicklung und Wohnen"
+#~ msgstr "Stadtentwicklung und Wohnen"
+
+#~ msgid "Bebauungsplan"
+#~ msgstr "Bebauungsplan"
 
 #~ msgid " What is happening in <strong>%(district)s</strong>? "
 #~ msgstr " What is happening in <strong>%(district)s</strong>? "
