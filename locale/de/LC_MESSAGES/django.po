@@ -3301,55 +3301,55 @@ msgstr "ZickZack"
 
 #: meinberlin/config/settings/base.py:462
 msgid "Anti-discrimination"
-msgstr ""
+msgstr "Antidiskriminierung"
 
 #: meinberlin/config/settings/base.py:463
 msgid "Work & economy"
-msgstr ""
+msgstr "Arbeit & Wirtschaft"
 
 #: meinberlin/config/settings/base.py:464
 msgid "Building & living"
-msgstr ""
+msgstr "Bauen & Wohnen"
 
 #: meinberlin/config/settings/base.py:465
 msgid "Education & research"
-msgstr ""
+msgstr "Bildung & Forschung"
 
 #: meinberlin/config/settings/base.py:466
 msgid "Children, youth & family"
-msgstr ""
+msgstr "Kinder, Jugend & Familie"
 
 #: meinberlin/config/settings/base.py:467
 msgid "Finances"
-msgstr ""
+msgstr "Finanzen"
 
 #: meinberlin/config/settings/base.py:468
 msgid "Health & sports"
-msgstr ""
+msgstr "Gesundheit & Sport"
 
 #: meinberlin/config/settings/base.py:469
 msgid "Integration"
-msgstr ""
+msgstr "Integration"
 
 #: meinberlin/config/settings/base.py:470
 msgid "Culture & leisure"
-msgstr ""
+msgstr "Kultur & Freizeit"
 
 #: meinberlin/config/settings/base.py:471
 msgid "Neighborhood & participation"
-msgstr ""
+msgstr "Nachbarschaft & Teilhabe"
 
 #: meinberlin/config/settings/base.py:472
 msgid "Urban development"
-msgstr ""
+msgstr "Stadtentwicklung"
 
 #: meinberlin/config/settings/base.py:473
 msgid "Environment & public green space"
-msgstr ""
+msgstr "Umwelt & Grünflächen"
 
 #: meinberlin/config/settings/base.py:474
 msgid "Traffic"
-msgstr ""
+msgstr "Verkehr"
 
 #: meinberlin/templates/403.html:7
 msgid "You are not allowed to access this page."
