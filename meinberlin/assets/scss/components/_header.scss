@@ -139,13 +139,25 @@ $header-margin-bottom: 25px;
         padding: 0.2em 1em;
 
         &:hover,
-        &:focus,
-        &:active {
-            text-decoration: underline;
+        &:focus {
             background-color: transparent;
             color: $brand-primary;
         }
     }
+
+    .fa-home {
+        color: $brand-secondary;
+
+        &:hover,
+        &:focus {
+            background-color: transparent;
+            color: $brand-primary;
+        }
+    }
+}
+
+.main-nav__link.is-active {
+    color: $brand-primary;
 
     .fa-home {
         color: $brand-primary;
@@ -205,9 +217,4 @@ $header-margin-bottom: 25px;
             border-bottom: 0;
         }
     }
-}
-
-.is-active {
-    text-decoration: none;
-    color: $brand-primary;
 }

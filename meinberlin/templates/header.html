@@ -10,16 +10,16 @@
                 <div class="main-nav__menu-wrapper collapse" id="menu-collapse">
                     <ul class="main-nav__list">
                         <li class="main-nav__item">
-                            <a class="{% if request.path == '/' %}is-active{% else %}not-active{% endif %} main-nav__link" href="/"><i class="fas fa-home"></i></a>
+                            <a class="main-nav__link {% if request.path == '/' %}is-active{% else %}not-active{% endif %}" href="/"><i class="fas fa-home"></i></a>
                         </li>
                         <li class="main-nav__item">
                             {% url 'project-list' as project_list %}
-                            <a class="{% if request.path == project_list %}is-active{% else %}not-active{% endif %} main-nav__link" href="{% url 'project-list' %}">{% trans 'Where can I take part?' %}</a>
+                            <a class="main-nav__link {% if request.path == project_list %}is-active{% else %}not-active{% endif %}" href="{% url 'project-list' %}">{% trans 'Where can I take part?' %}</a>
                         </li>
                         {% get_menu "topnav" as topnav %}
                         {% for item in topnav %}
                             <li class="main-nav__item">
-                                <a class="{% if request.path == item.url %}is-active{% else %}not-active{% endif %} main-nav__link" href="{{ item.url }}">{{ item.title }}</a>
+                                <a class="main-nav__link {% if request.path == item.url %}is-active{% else %}not-active{% endif %}" href="{{ item.url }}">{{ item.title }}</a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -42,12 +42,12 @@
                     <ul class="main-nav__list">
                         {% if settings.meinberlin_cms.HeaderPages.help_page %}
                         <li class="main-nav__item">
-                            <a class="{% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}is-active{% else %}not-active{% endif %} main-nav__link" href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% trans 'Help' %}</a>
+                            <a class="main-nav__link {% if request.path == settings.meinberlin_cms.HeaderPages.help_page.get_url %}is-active{% else %}not-active{% endif %}" href="{{ settings.meinberlin_cms.HeaderPages.help_page.get_url }}">{% trans 'Help' %}</a>
                         </li>
                         {% endif %}
                         {% if settings.meinberlin_cms.HeaderPages.feedback_page %}
                         <li class="main-nav__item">
-                            <a class="{% if request.path == settings.meinberlin_cms.HeaderPages.feedback_page.get_url %}is-active{% else %}not-active{% endif %} main-nav__link" href="{{ settings.meinberlin_cms.HeaderPages.feedback_page.get_url }}">{% trans 'Give Feedback' %}</a>
+                            <a class="main-nav__link {% if request.path == settings.meinberlin_cms.HeaderPages.feedback_page.get_url %}is-active{% else %}not-active{% endif %}" href="{{ settings.meinberlin_cms.HeaderPages.feedback_page.get_url }}">{% trans 'Give Feedback' %}</a>
                         </li>
                         {% endif %}
                     </ul>
