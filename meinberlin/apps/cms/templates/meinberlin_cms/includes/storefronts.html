@@ -24,7 +24,7 @@
 <div class="storefront__item storefront__proj-quote tile__md">
     <!-- can't count comments on project level -->
     <!--<div class="list-item__stats"><span title="Kommentare" class="list-item__comments"><i class="far fa-comment" aria-label="Kommentare"></i>5</span></div>-->
-    <h2 class="storefront__quote-text">„{{ item.quote|truncatechars:135 }}“</h2><a href="{% url 'project-detail' item.project.slug %}">{% blocktrans with name=item.project.name|truncatechars:60 %} What is your opinion on this: {{ name }}?{% endblocktrans %}</a>
+    <h3 class="storefront__quote-text">„{{ item.quote|truncatechars:150 }}“</h3><a href="{% url 'project-detail' item.project.slug %}">{% blocktrans with name=item.project.name|truncatechars:60 %} What is your opinion on this: {{ name }}?{% endblocktrans %}</a>
 </div>
 {% elif not item.project and item.quote %}
 <div class="storefront__item storefront__quote tile__md">

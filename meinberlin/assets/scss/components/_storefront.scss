@@ -80,10 +80,12 @@
 .storefront__quote-text {
     font-weight: bold;
     font-style: italic;
+    padding: $padding 0;
 }
 
 .storefront__district-text {
     color: $brand-secondary;
+    padding: $padding 0;
 }
 
 @media screen and (max-width: $breakpoint-xs - 0.1em) {

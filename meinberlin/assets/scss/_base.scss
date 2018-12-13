@@ -77,7 +77,7 @@ h6 {
     }
 
     h3 {
-        font-size: $mobile-headline-size*$font-size-lg;
+        font-size: $font-size-base; //it's smaller than base if multiplied same as above
     }
 }
 
