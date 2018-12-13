@@ -20,7 +20,9 @@ body {
 
 .footer-nav__link {
     display: inline-block;
-    padding: 0.7em;
+    padding-left: $padding;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
     color: inherit;
     text-decoration: none;
 
