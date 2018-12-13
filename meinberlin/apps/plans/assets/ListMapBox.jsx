@@ -58,7 +58,8 @@ class ListMapBox extends React.Component {
       <div>
         <div>
           <div className="u-spacer-left u-spacer-right">
-            <div role="group" aria-label={django.gettext('Filter bar')}>
+            <div className="switch-group" role="group" aria-label={django.gettext('Filter bar')}>
+              <div className="switch-label">Show map</div>
               <div className="switch u-mobile-display-none">
                 <input
                   id="switch-primary"

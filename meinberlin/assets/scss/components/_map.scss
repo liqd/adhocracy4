@@ -95,6 +95,9 @@
 
     @media (min-width: $breakpoint) {
         flex-direction: row;
+    }
+
+    @media (min-width: $breakpoint-md) {
         margin-left: 18rem;
     }
 
@@ -127,7 +130,6 @@
 
 .map-list-combined__list {
     flex: 0 1 44vh;
-    background-color: $bg-secondary;
 
     @media (min-width: $breakpoint-xs) {
         flex-grow: 2;
