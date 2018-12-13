@@ -121,6 +121,18 @@ $header-margin-bottom: 25px;
     }
 }
 
+.main-nav__link-home {
+    @media screen and (min-width: $breakpoint-md) {
+        display: none;
+    }
+}
+
+.fa-home {
+    @media screen and (max-width: $breakpoint-md - 0.1em) {
+        display: none;
+    }
+}
+
 .main-nav__link {
     display: block;
     padding: 0.5em 0;

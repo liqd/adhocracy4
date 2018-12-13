@@ -66,3 +66,8 @@ $(document).on('a4.embed.ready', init)
 module.exports = {
   'getCurrentPath': getCurrentPath
 }
+
+// Closes bootstrap collapse on click elsewhere
+$(document).on('click', function () {
+  $('.collapse').collapse('hide')
+})
