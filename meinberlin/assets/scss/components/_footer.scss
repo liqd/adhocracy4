@@ -20,7 +20,9 @@ body {
 
 .footer-nav__link {
     display: inline-block;
-    padding: 0.7em;
+    padding-left: $padding;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
     color: inherit;
     text-decoration: none;
 
@@ -42,4 +44,12 @@ body {
     @media (min-width: $breakpoint) {
         float: left;
     }
+}
+
+.beberlin__logo {
+    padding-right: $padding;
+}
+
+.berlin__logo {
+    padding-left: $padding;
 }

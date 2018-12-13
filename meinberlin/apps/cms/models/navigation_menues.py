@@ -32,7 +32,7 @@ class NavigationMenu(ClusterableModel):
 
     panels = [
         edit_handlers.FieldPanel('title'),
-        edit_handlers.InlinePanel('items', max_num=2)
+        edit_handlers.InlinePanel('items')
     ]
 
 
