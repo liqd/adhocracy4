@@ -104,7 +104,7 @@ class ListMapBox extends React.Component {
               <StickyBox offsetTop={0} offsetBottom={0}>
                 <PlansMap key="content"
                   resize={this.state.resizeMap}
-                  items={this.props.items}
+                  items={this.state.items}
                   bounds={this.props.bounds}
                   districts={this.props.districts}
                   baseurl={this.props.baseurl}
