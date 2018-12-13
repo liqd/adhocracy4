@@ -17,7 +17,7 @@
         <span class="label label--secondary">{{ item.project.get_topic_display }}</span>
         {% endif %}
     </div>
-    <h6 class="storefront__sm-text">{% if item.project.administrative_district %}{{ item.project.administrative_district }}{% endif %}</h6>
+    <h5 class="storefront__sm-text">{% if item.project.administrative_district %}{{ item.project.administrative_district }}{% endif %}</h5>
     <a href="{% url 'project-detail' item.project.slug %}"><h2 class="storefront__md-text">{{ item.project.name }}</h2></a>
 </div>
 {% elif item.project and item.quote %}

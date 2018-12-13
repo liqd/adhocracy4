@@ -58,6 +58,7 @@
 
 .storefront__sm-text {
     padding-top: 3*$padding;
+    color: $gray;
 }
 
 .storefront__md-text {
@@ -122,5 +123,15 @@
 
     @media screen and (min-width: $breakpoint-xs) {
         padding: 3*$padding 3*$padding;
+    }
+}
+
+.storefront__proj {
+    a {
+        color: $brand-secondary;
+
+        :hover {
+            color: $brand-primary;
+        }
     }
 }
