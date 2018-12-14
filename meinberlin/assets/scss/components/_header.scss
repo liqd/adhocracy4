@@ -156,16 +156,6 @@ $header-margin-bottom: 25px;
             color: $brand-primary;
         }
     }
-
-    .fa-home {
-        color: $brand-secondary;
-
-        &:hover,
-        &:focus {
-            background-color: transparent;
-            color: $brand-primary;
-        }
-    }
 }
 
 .main-nav__link.is-active {
