@@ -119,7 +119,7 @@ class SettingsFactory(factory.django.DjangoModelFactory):
     module = factory.SubFactory(ModuleFactory)
 
 
-class AdministrativeDistrict(factory.django.DjangoModelFactory):
+class AdministrativeDistrictFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = AdministrativeDistrict
