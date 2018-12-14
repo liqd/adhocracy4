@@ -1,10 +1,10 @@
-/* global django */
 import StickyBox from 'react-sticky-box'
 const React = require('react')
 const $ = require('jquery')
 let PlansList = require('./PlansList')
 let PlansMap = require('./PlansMap')
 let FilterNav = require('./FilterNav')
+let ListMapSwitch = require('./MapListSwitch')
 
 class ListMapBox extends React.Component {
   constructor (props) {
@@ -89,25 +89,11 @@ class ListMapBox extends React.Component {
           district={this.state.district}
           districtnames={this.props.districtnames}
         />
-        <div>
-          <div className="u-spacer-left u-spacer-right">
-            <div className="switch-group" role="group" aria-label={django.gettext('Filter bar')}>
-              <div className="switch-label">Show map</div>
-              <div className="switch u-mobile-display-none">
-                <input
-                  id="switch-primary"
-                  onChange={this.toggleSwitch.bind(this)}
-                  name="switch-primary"
-                  type="checkbox" />
-                <label htmlFor="switch-primary" className="primary-color" />
-              </div>
-              <div className="btn-group u-desktop-display-none">
-                <button className="btn btn--light" onClick={this.hideMap.bind(this)}><i className="fa fa-list" /></button>
-                <button className="btn btn--light" onClick={this.hideList.bind(this)}><i className="fa fa-map" /></button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ListMapSwitch
+          toggleSwitch={this.toggleSwitch.bind(this)}
+          hideMap={this.hideMap.bind(this)}
+          hideList={this.hideList.bind(this)}
+        />
         { this.state.showListMap
           ? <div className="map-list-combined">
             <div id="list" className="list-container map-list-combined__list">
