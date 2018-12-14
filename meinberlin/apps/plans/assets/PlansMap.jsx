@@ -75,6 +75,7 @@ class PlansMap extends React.Component {
       }).addTo(this.map)
       this.markers = this.addMarkers(this.cluster)
     } else {
+      this.cluster.clearLayers()
       this.markers = this.addMarkers(this.cluster)
     }
   }

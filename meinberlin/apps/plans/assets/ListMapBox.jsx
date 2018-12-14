@@ -4,20 +4,11 @@ const React = require('react')
 const $ = require('jquery')
 let PlansList = require('./PlansList')
 let PlansMap = require('./PlansMap')
+let FilterNav = require('./FilterNav')
 
 class ListMapBox extends React.Component {
   constructor (props) {
     super(props)
-
-    let selectedDistrictIdentifier = -1
-    if (props.selectedDistrict !== '-1') {
-      selectedDistrictIdentifier = props.selectedDistrict
-    }
-
-    let selectedTopicIdentifier = -1
-    if (props.selectedTopic !== '-1') {
-      selectedTopicIdentifier = props.selectedTopic
-    }
 
     this.state = {
       items: [],
@@ -28,31 +19,40 @@ class ListMapBox extends React.Component {
       displayResults: false,
       showListMap: true,
       resizeMap: false,
-      filters: {
-        status: -1,
-        participation: -1,
-        district: selectedDistrictIdentifier,
-        topic: selectedTopicIdentifier
-      }
+      filterChanged: false,
+      status: -1,
+      participation: -1,
+      district: props.selectedDistrict,
+      topic: props.selectedTopic
     }
   }
 
   isInFilter (item) {
-    let filters = this.state.filters
-    return (filters.topic === -1 || filters.topic === item.topic) &&
-      (filters.district === -1 || filters.district === item.district)
+    return (this.state.topic === '-1' || this.state.topic === item.topic) &&
+      (this.state.district === '-1' || this.state.district === item.district)
   }
 
-  componentDidMount () {
+  updateList () {
     let items = []
-    this.props.items.forEach((item, i) => {
+    this.props.initialitems.forEach((item, i) => {
       if (this.isInFilter(item)) {
         items.push(item)
       }
     })
     this.setState({
-      items: items
+      items: items,
+      filterChanged: false
     })
+  }
+
+  componentDidMount () {
+    this.updateList()
+  }
+
+  componentDidUpdate () {
+    if (this.state.filterChanged === true) {
+      this.updateList()
+    }
   }
 
   toggleSwitch () {
@@ -66,6 +66,13 @@ class ListMapBox extends React.Component {
     $('#list').removeClass('u-mobile-display-none')
   }
 
+  selectDistrict (district) {
+    this.setState({
+      filterChanged: true,
+      district: district
+    })
+  }
+
   hideList (e) {
     e.preventDefault()
     $('#list').addClass('u-mobile-display-none')
@@ -77,6 +84,11 @@ class ListMapBox extends React.Component {
   render () {
     return (
       <div>
+        <FilterNav
+          selectDistrict={this.selectDistrict.bind(this)}
+          district={this.state.district}
+          districtnames={this.props.districtnames}
+        />
         <div>
           <div className="u-spacer-left u-spacer-right">
             <div className="switch-group" role="group" aria-label={django.gettext('Filter bar')}>
