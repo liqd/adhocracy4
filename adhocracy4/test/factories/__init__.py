@@ -5,6 +5,7 @@ from dateutil.parser import parse
 from django.conf import settings
 from django.contrib.auth.models import User
 
+from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.projects.models import Project
 from adhocracy4.organisations.models import Organisation
 from adhocracy4.modules.models import Module
@@ -116,3 +117,11 @@ class SettingsFactory(factory.django.DjangoModelFactory):
         abstract = True
 
     module = factory.SubFactory(ModuleFactory)
+
+
+class AdministrativeDistrict(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = AdministrativeDistrict
+
+    name = factory.Faker('text')
