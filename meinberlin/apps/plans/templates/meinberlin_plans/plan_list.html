@@ -15,5 +15,14 @@
 {% endblock %}
 
 {% block content %}
-    <div data-map="plans" data-items="{{ items }}" data-districts="{{ districts }}"  data-district-names="{{ district_names }}" data-attribution="{{ attribution }}" data-baseurl="{{ baseurl }}" data-bounds="{{ bounds }}" data-export-url="{% url 'meinberlin_plans:plan-export' %}"></div>
+    <div data-map="plans"
+         data-selected-district="{{ district }}"
+         data-selected-topic="{{ topic }}"
+         data-items="{{ items }}"
+         data-districts="{{ districts }}"
+         data-district-names="{{ district_names }}"
+         data-attribution="{{ attribution }}"
+         data-baseurl="{{ baseurl }}"
+         data-bounds="{{ bounds }}"
+         data-export-url="{% url 'meinberlin_plans:plan-export' %}"></div>
 {% endblock %}

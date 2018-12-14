@@ -9,10 +9,12 @@ const init = function () {
     let attribution = element.getAttribute('data-attribution')
     let baseurl = element.getAttribute('data-baseurl')
     let bounds = JSON.parse(element.getAttribute('data-bounds'))
+    let selectedDistrict = element.getAttribute('data-selected-district')
+    let selectedTopic = element.getAttribute('data-selected-topic')
     let districts = JSON.parse(element.getAttribute('data-districts'))
     let districtnames = JSON.parse(element.getAttribute('data-district-names'))
     let exportUrl = element.getAttribute('data-export-url')
-    ReactDOM.render(<ListMapBox items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} exportUrl={exportUrl} />, element)
+    ReactDOM.render(<ListMapBox selectedDistrict={selectedDistrict} selectedTopic={selectedTopic} items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} exportUrl={exportUrl} />, element)
   })
 }
 

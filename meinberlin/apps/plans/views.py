@@ -186,6 +186,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         context['baseurl'] = settings.A4_MAP_BASEURL
         context['attribution'] = settings.A4_MAP_ATTRIBUTION
         context['bounds'] = json.dumps(settings.A4_MAP_BOUNDING_BOX)
+        context['district'] = self.request.GET.get('district', -1)
+        context['topic'] = self.request.GET.get('topic', -1)
 
         return context
 

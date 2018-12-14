@@ -2,16 +2,15 @@ from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models import Q
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
+from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.maps.models import MapPreset
 
 
 class Plan(UserGeneratedContentModel):
@@ -61,8 +60,7 @@ class Plan(UserGeneratedContentModel):
                     'displayed in the detail view of the plan'),
     )
     district = models.ForeignKey(
-        MapPreset,
-        limit_choices_to=Q(category__name='Bezirke - Berlin'),
+        AdministrativeDistrict,
         verbose_name=_('District'),
         null=True,
         blank=True

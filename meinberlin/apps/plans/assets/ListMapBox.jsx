@@ -9,7 +9,18 @@ class ListMapBox extends React.Component {
   constructor (props) {
     super(props)
 
+    let selectedDistrictIdentifier = -1
+    if (props.selectedDistrict !== '-1') {
+      selectedDistrictIdentifier = props.selectedDistrict
+    }
+
+    let selectedTopicIdentifier = -1
+    if (props.selectedTopic !== '-1') {
+      selectedTopicIdentifier = props.selectedTopic
+    }
+
     this.state = {
+      items: [],
       searchResults: null,
       address: null,
       selected: null,
@@ -20,19 +31,29 @@ class ListMapBox extends React.Component {
       filters: {
         status: -1,
         participation: -1,
-        district: -1
+        district: selectedDistrictIdentifier,
+        topic: selectedTopicIdentifier
       }
     }
   }
 
-  /* componentDidMount () {
-   this.props.items.forEach((item, i) => {
-   if (item.point !== '') {
-   } if (i === this.state.selected) {
-   this.setMarkerSelected(i, item)
-   }
-   })
-   } */
+  isInFilter (item) {
+    let filters = this.state.filters
+    return (filters.topic === -1 || filters.topic === item.topic) &&
+      (filters.district === -1 || filters.district === item.district)
+  }
+
+  componentDidMount () {
+    let items = []
+    this.props.items.forEach((item, i) => {
+      if (this.isInFilter(item)) {
+        items.push(item)
+      }
+    })
+    this.setState({
+      items: items
+    })
+  }
 
   toggleSwitch () {
     let newValue = !this.state.showListMap
@@ -78,13 +99,13 @@ class ListMapBox extends React.Component {
         { this.state.showListMap
           ? <div className="map-list-combined">
             <div id="list" className="list-container map-list-combined__list">
-              <PlansList key="content" items={this.props.items} />
+              <PlansList key="content" items={this.state.items} />
             </div>
             <div id="map" className="map-container map-list-combined__map u-mobile-display-none">
               <StickyBox offsetTop={0} offsetBottom={0}>
                 <PlansMap key="content"
                   resize={this.state.resizeMap}
-                  items={this.props.items}
+                  items={this.state.items}
                   bounds={this.props.bounds}
                   districts={this.props.districts}
                   baseurl={this.props.baseurl}
@@ -94,7 +115,7 @@ class ListMapBox extends React.Component {
           </div>
           : <div className="map-list-combined">
             <div className="list-container map-list-combined__list">
-              <PlansList key="content" items={this.props.items} />
+              <PlansList key="content" items={this.state.items} />
             </div>
           </div>
         }
