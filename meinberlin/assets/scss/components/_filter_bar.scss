@@ -1,4 +1,4 @@
-.proj-map__filter-bar {
+.filter-bar {
     box-shadow: 0 0 20px 0 $shadow;
 
     @media screen and (min-width: $breakpoint-xs) {
@@ -8,7 +8,7 @@
     }
 }
 
-.proj-map__btn {
+.filter-bar__btn {
     color: $gray-lighter;
     font-style: italic;
     font-weight: normal;
@@ -17,7 +17,7 @@
     border-bottom: 1px dotted $border-color;
 }
 
-.proj-map__btn-selected {
+.filter-bar__btn-selected {
     color: $text-color;
     font-weight: normal;
     border-radius: inherit;
