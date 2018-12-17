@@ -17,10 +17,11 @@ class FilterNav extends React.Component {
   render () {
     return (
       <div className="u-spacer-left u-spacer-right">
-        <div className="control-bar" role="group" aria-label={django.gettext('Filter bar')}>
+        <div className="control-bar proj-map__filter-bar" role="group" aria-label={django.gettext('Filter bar')}>
+          <span>{django.gettext('I am interested in projects from ')}</span>
           <div className="dropdown ">
             <button type="button"
-              className="dropdown-toggle btn btn--light btn--select"
+              className="dropdown-toggle btn btn--light btn--select btn--none proj-map__dropdown"
               data-flip="false"
               data-toggle="dropdown"
               aria-haspopup="true"
@@ -56,7 +57,7 @@ class FilterNav extends React.Component {
               }
             </ul>
           </div>
-
+          <span>{django.gettext(' and the area ')}</span>
         </div>
       </div>
     )

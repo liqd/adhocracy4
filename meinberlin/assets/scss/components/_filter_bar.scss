@@ -54,3 +54,22 @@
     z-index: 1;
     top: -1em;
 }
+
+.proj-map__filter-bar {
+    box-shadow: 0 0 20px 0 $shadow;
+    padding: 2*$padding 4*$padding $padding 4*$padding;
+    font-size: $font-size-lg;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        line-height: 2.5;
+    }
+}
+
+.proj-map__dropdown {
+    color: $gray-lighter;
+    font-style: italic;
+    font-weight: normal;
+    padding-bottom: inherit;
+    vertical-align: initial;
+    border-bottom: 1px dotted $gray-lighter;
+}
