@@ -62,10 +62,6 @@
     color: $gray;
 }
 
-.storefront__proj-name {
-    margin-top: 0;
-}
-
 .storefront__lg-text {
     margin-top: 0;
     color: $white;
@@ -82,8 +78,16 @@
     font-size: $font-size-lg;
     font-weight: bold;
     font-style: italic;
-    padding: 2*$padding 0;
+    padding: $padding 0;
     margin: auto;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding: 2*$padding 0;
+    }
+}
+
+.storefront__proj-text {
+    margin-top: 0;
 }
 
 .storefront__district-text {

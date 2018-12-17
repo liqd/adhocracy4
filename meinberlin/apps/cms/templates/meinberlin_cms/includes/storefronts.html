@@ -2,9 +2,7 @@
 
 {% if item.district %}
 <div class="storefront__item storefront__district tile__md">
-    <div class="storefront__district-text">
-        <h2>{% blocktrans with district=item.district %}What is happening in <strong>{{ district }}</strong>?{% endblocktrans %}</h2>
-    </div>
+    <h2 class="storefront__district-text">{% blocktrans with district=item.district %}What is happening in <strong>{{ district }}</strong>?{% endblocktrans %}</h2>
     <a class="btn" href="{% url 'project-list' %}?administrative_district={{ item.district.pk }}">
         {% blocktrans count counter=item.district_project_count %}display {{ counter }} project{% plural %}display {{ counter }} projects{% endblocktrans %}</a>
 </div>
@@ -20,7 +18,7 @@
         {% endif %}
     </div>
     <p class="storefront__sm-text">{% if item.project.administrative_district %}{{ item.project.administrative_district }}{% endif %}</p>
-    <a href="{% url 'project-detail' item.project.slug %}"><h2 class="storefront__proj-name">{{ item.project.name }}</h2></a>
+    <a href="{% url 'project-detail' item.project.slug %}"><h2 class="storefront__proj-text">{{ item.project.name }}</h2></a>
 </div>
 {% elif item.project and item.quote %}
 <div class="storefront__item storefront__proj-quote tile__md">
