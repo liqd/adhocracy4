@@ -92,7 +92,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    max-height: 80vh;
+    // max-height: 80vh;
 
     @media (min-width: $breakpoint) {
         flex-direction: row;
@@ -119,7 +119,7 @@
 .map-list-combined__map {
     flex: 0 1 44vh;
     z-index: 0;
-    min-height: 90vh;
+    min-height: 49vh;
 
     @media (min-width: $breakpoint-xs) {
         flex-grow: 2;
