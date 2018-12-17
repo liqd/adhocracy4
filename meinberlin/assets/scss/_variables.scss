@@ -33,6 +33,7 @@ $feedback-color-rejected: #dc3818 !default;
 $feedback-color-consideration: #ffae00 !default;
 
 $spacer: 1em !default;
+$r-spacer: 1rem !default;
 $padding: 1rem !default;
 
 $font-family-sans-serif: "Arial", "Helvetica", sans-serif !default;
@@ -44,6 +45,7 @@ $font-size-lg: 1.25rem !default;
 $font-size-sm: 0.8rem !default;
 $font-size-xs: 0.64rem !default;
 
+
 // use for min-width media-queries
 $breakpoint-xs: 32rem !default;
 $breakpoint: 50rem !default;  // sm
@@ -54,6 +56,7 @@ $breakpoint-down: $breakpoint - 0.1rem !default;  // sm
 $breakpoint-md-down: $breakpoint-md - 0.1rem !default;
 
 $wrapper-width: 81rem !default;
+$mobile-headline-size: 0.75 !default;
 
 $hero-height: 41rem !default;
 $hero-height-secondary: 30rem !default;
