@@ -2,7 +2,9 @@
 
 {% if item.district %}
 <div class="storefront__item storefront__district tile__md">
-    <h2 class="storefront__district-text">{% blocktrans with district=item.district %}What is happening in <strong>{{ district }}</strong>?{% endblocktrans %}</h2>
+    <div class="storefront__district-text">
+        <h2>{% blocktrans with district=item.district %}What is happening in <strong>{{ district }}</strong>?{% endblocktrans %}</h2>
+    </div>
     <a class="btn" href="{% url 'project-list' %}?administrative_district={{ item.district.pk }}">
         {% blocktrans count counter=item.district_project_count %}display {{ counter }} project{% plural %}display {{ counter }} projects{% endblocktrans %}</a>
 </div>
@@ -17,17 +19,20 @@
         <span class="label label--secondary">{{ item.project.get_topic_display }}</span>
         {% endif %}
     </div>
-    <h5 class="storefront__sm-text">{% if item.project.administrative_district %}{{ item.project.administrative_district }}{% endif %}</h5>
-    <a href="{% url 'project-detail' item.project.slug %}"><h2 class="storefront__md-text">{{ item.project.name }}</h2></a>
+    <p class="storefront__sm-text">{% if item.project.administrative_district %}{{ item.project.administrative_district }}{% endif %}</p>
+    <a href="{% url 'project-detail' item.project.slug %}"><h2 class="storefront__proj-name">{{ item.project.name }}</h2></a>
 </div>
 {% elif item.project and item.quote %}
 <div class="storefront__item storefront__proj-quote tile__md">
     <!-- can't count comments on project level -->
     <!--<div class="list-item__stats"><span title="Kommentare" class="list-item__comments"><i class="far fa-comment" aria-label="Kommentare"></i>5</span></div>-->
-    <h3 class="storefront__quote-text">„{{ item.quote|truncatechars:150 }}“</h3><a href="{% url 'project-detail' item.project.slug %}">{% blocktrans with name=item.project.name|truncatechars:60 %} What is your opinion on this: {{ name }}?{% endblocktrans %}</a>
+    <blockquote class="storefront__quote-text">
+        „{{ item.quote|truncatechars:150 }}“
+    </blockquote>
+    <a href="{% url 'project-detail' item.project.slug %}">{% blocktrans with name=item.project.name|truncatechars:60 %} What is your opinion on this: {{ name }}?{% endblocktrans %}</a>
 </div>
 {% elif not item.project and item.quote %}
 <div class="storefront__item storefront__quote tile__md">
-    <h2 class="storefront__quote-text">„{{ item.quote|truncatechars:135 }}“</h2>
+    <blockquote class="storefront__quote-text">„{{ item.quote|truncatechars:135 }}“</blockquote>
 </div>
 {% endif %}

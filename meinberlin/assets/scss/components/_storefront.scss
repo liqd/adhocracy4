@@ -23,8 +23,8 @@
 .storefront__col {
     display: flex;
     flex-direction: column;
-    margin-left: $spacer;
-    margin-right: $spacer;
+    margin-left: $r-spacer;
+    margin-right: $r-spacer;
 
     @media screen and (min-width: $breakpoint-md) {
         width: 33.3%;
@@ -37,7 +37,7 @@
 }
 
 .storefront__item {
-    margin: $spacer 0;
+    margin: $r-spacer 0;
     padding: $padding;
     flex: 0 1 6rem;
     flex-wrap: wrap;
@@ -57,11 +57,12 @@
 }
 
 .storefront__sm-text {
+    margin-bottom: 0;
     padding-top: 3*$padding;
     color: $gray;
 }
 
-.storefront__md-text {
+.storefront__proj-name {
     margin-top: 0;
 }
 
@@ -78,13 +79,14 @@
 }
 
 .storefront__quote-text {
+    font-size: $font-size-lg;
     font-weight: bold;
     font-style: italic;
-    padding: $padding 0;
+    padding: 2*$padding 0;
+    margin: auto;
 }
 
 .storefront__district-text {
-    color: $brand-secondary;
     padding: $padding 0;
 }
 
@@ -122,6 +124,7 @@
 
 .storefront__district {
     padding: 2*$padding 2*$padding;
+    color: $brand-secondary;
 
     @media screen and (min-width: $breakpoint-xs) {
         padding: 3*$padding 3*$padding;
