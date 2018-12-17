@@ -10,7 +10,7 @@ $header-margin-bottom: 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    line-height: 1;
+    line-height: 1.5;
 
     @media screen and (min-width: $breakpoint-md) {
         align-items: flex-end;
@@ -37,29 +37,28 @@ $header-margin-bottom: 25px;
 
     img {
         margin: 0;
-        width: 5em;
+        width: 5rem;
         vertical-align: middle;
 
         @media screen and (min-width: $breakpoint-md) {
-            width: 8em;
+            width: 8rem;
         }
     }
 }
 
 .main-nav__headline {
     position: absolute;
-    // left: 0;
-    // right: 0;
     display: none;
 
     @media screen and (min-width: $breakpoint) {
         display: inline;
-        width: 10em;
-        left: 5.5em;
+        width: 14rem;
+        left: 5.5rem;
         top: 0;
         bottom: 0;
 
-        span {
+        img {
+            width: 100%;
             position: relative;
             top: 50%;
             transform: translateY(-50%);
