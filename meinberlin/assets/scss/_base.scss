@@ -67,7 +67,7 @@ h6 {
     font-size: $font-size-xs;
 }
 
-@media screen and (max-width: $breakpoint-xs - 0.1em) {
+@media screen and (max-width: $breakpoint-xs-down) {
     h1 {
         font-size: $mobile-headline-size*$font-size-xxl;
     }

@@ -103,13 +103,13 @@
 }
 
 .u-mobile-display-none {
-    @media screen and (max-width: $breakpoint-xs - 0.1em) {
+    @media screen and (max-width: $breakpoint-xs-down) {
         display: none;
     }
 }
 
 .u-tablet-display-none {
-    @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-md - 0.1em) {
+    @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-md-down) {
         display: none;
     }
 }
