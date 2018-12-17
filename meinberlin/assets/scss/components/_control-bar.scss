@@ -1,0 +1,56 @@
+.control-bar {
+    @include clearfix;
+    font-size: $font-size-sm;
+
+    select,
+    .dropdown {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    @media (max-width: $breakpoint) {
+        > * {
+            @include grid-same-width(2);
+        }
+
+        .dropdown {
+            display: block;
+        }
+
+        .dropdown-toggle {
+            width: 100%;
+            max-width: none;
+        }
+    }
+
+    .control-bar__right {
+        float: right;
+
+        @media (max-width: $breakpoint) {
+            // push to the right
+            // NOTE: needs to overwrite grid-tiles
+            @include grid-cell();
+            @include grid-position(6);
+        }
+    }
+
+    .form-group {
+        margin-bottom: $spacer / 2;
+    }
+}
+
+.control-bar__top-overlap {
+    position: relative;
+    z-index: 1;
+    bottom: -1em;
+
+    .dropdown {
+        margin-bottom: 0;
+    }
+}
+
+.control-bar__bottom-overlap {
+    position: relative;
+    z-index: 1;
+    top: -1em;
+}

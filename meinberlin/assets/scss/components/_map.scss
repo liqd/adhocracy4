@@ -97,10 +97,6 @@
         flex-direction: row;
     }
 
-    @media (min-width: $breakpoint-md) {
-        margin-left: 18rem;
-    }
-
     @media print {
         max-height: none;
     }
@@ -119,12 +115,12 @@
 }
 
 .map-list-combined__map {
-    flex: 0 1 36vh;
+    flex: 0 1 44vh;
     z-index: 0;
     min-height: 100vh;
 
     @media (min-width: $breakpoint-xs) {
-        flex-grow: 4;
+        flex-grow: 2;
     }
 }
 
