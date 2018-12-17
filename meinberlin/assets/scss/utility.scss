@@ -104,24 +104,24 @@
 
 .u-mobile-display-none {
     @media screen and (max-width: $breakpoint-xs-down) {
-        display: none;
+        display: none !important;
     }
 }
 
 .u-lg-mobile-display-none {
-    @media screen and (max-width: $breakpoint) {
-        display: none;
+    @media screen and (max-width: $breakpoint-down) {
+        display: none !important;
     }
 }
 
 .u-tablet-display-none {
     @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-md-down) {
-        display: none;
+        display: none !important;
     }
 }
 
 .u-desktop-display-none {
     @media screen and (min-width: $breakpoint) {
-        display: none;
+        display: none !important;
     }
 }
