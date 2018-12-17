@@ -19,9 +19,9 @@ class FilterNav extends React.Component {
       <div className="u-spacer-left u-spacer-right">
         <div className="control-bar proj-map__filter-bar" role="group" aria-label={django.gettext('Filter bar')}>
           <span>{django.gettext('I am interested in projects from ')}</span>
-          <div className="dropdown ">
+          <div className="dropdown proj-map__dropdown">
             <button type="button"
-              className="dropdown-toggle btn btn--light btn--select btn--none proj-map__dropdown"
+              className="dropdown-toggle btn btn--light btn--select btn--none proj-map__btn"
               data-flip="false"
               data-toggle="dropdown"
               aria-haspopup="true"
