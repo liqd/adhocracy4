@@ -2,52 +2,11 @@
 const React = require('react')
 
 class PlansList extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      searchResults: null,
-      address: null,
-      selected: null,
-      displayError: false,
-      displayResults: false,
-      filters: {
-        status: -1,
-        participation: -1,
-        district: -1
-      }
-    }
-  }
-
   bindList (element) {
     this.listElement = element
   }
-
-  componentDidMount () {
-
-  }
-
-  componentDidUpdate (prevProps, prevState) {
-    if (prevState.selected !== this.state.selected || prevState.filters !== this.state.filters) {
-      // filter markers
-      this.props.items.forEach((item, i) => {
-        if (item.point !== '') {
-          if (!this.isInFilter(item)) {
-            this.setMarkerFiltered(i)
-          } else if (i === this.state.selected) {
-            this.setMarkerSelected(i, item)
-          } else {
-            this.setMarkerDefault(i, item)
-          }
-        }
-      })
-    }
-  }
-
   renderListItem (item, i) {
     let itemClass = 'list-item list-item--squashed'
-    if (i === this.state.selected) {
-      itemClass += ' selected'
-    }
     let statusClass = (item.participation_active === true) ? 'list-item__status--active' : 'list-item__status--inactive'
     return (
       <li className={itemClass} key={i} tabIndex="0">

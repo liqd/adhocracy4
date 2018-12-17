@@ -74,23 +74,11 @@ class PlansMap extends React.Component {
         showCoverageOnHover: false
       }).addTo(this.map)
       this.markers = this.addMarkers(this.cluster)
+    } else {
+      this.cluster.clearLayers()
+      this.markers = this.addMarkers(this.cluster)
     }
   }
-
-  /* displayAdressMarker (geojson) {
-    if (this.state.address) {
-      this.map.removeLayer(this.state.address)
-    }
-    let addressMarker = L.geoJSON(geojson, {
-      pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, { icon: addressIcon })
-      }
-    }).addTo(this.map)
-    this.map.flyToBounds(addressMarker.getBounds(), { 'maxZoom': 13 })
-    this.setState(
-      { 'address': addressMarker }
-    )
-  } */
 
   escapeHtml (unsafe) {
     return $('<div>').text(unsafe).html()

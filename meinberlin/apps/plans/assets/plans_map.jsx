@@ -14,7 +14,16 @@ const init = function () {
     let districts = JSON.parse(element.getAttribute('data-districts'))
     let districtnames = JSON.parse(element.getAttribute('data-district-names'))
     let exportUrl = element.getAttribute('data-export-url')
-    ReactDOM.render(<ListMapBox selectedDistrict={selectedDistrict} selectedTopic={selectedTopic} items={items} attribution={attribution} baseurl={baseurl} bounds={bounds} districts={districts} districtnames={districtnames} exportUrl={exportUrl} />, element)
+    ReactDOM.render(<ListMapBox
+      selectedDistrict={selectedDistrict}
+      selectedTopic={selectedTopic}
+      initialitems={items}
+      attribution={attribution}
+      baseurl={baseurl}
+      bounds={bounds}
+      districts={districts}
+      districtnames={districtnames}
+      exportUrl={exportUrl} />, element)
   })
 }
 
