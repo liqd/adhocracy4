@@ -85,7 +85,7 @@
     color: $brand-secondary;
 }
 
-@media screen and (max-width: $breakpoint-xs - 0.1em) {
+@media screen and (max-width: $breakpoint-xs-down) {
     .storefront__quote-text,
     .storefront__district-text {
         margin-top: 0;

@@ -128,7 +128,7 @@ $header-margin-bottom: 25px;
 }
 
 .fa-home {
-    @media screen and (max-width: $breakpoint-md - 0.1em) {
+    @media screen and (max-width: $breakpoint-md-down) {
         display: none;
     }
 }
@@ -184,7 +184,7 @@ $header-margin-bottom: 25px;
     }
 
     // min-width and max-width can't have the same breakpoint
-    @media screen and (max-width: $breakpoint-md - 0.1em) {
+    @media screen and (max-width: $breakpoint-md-down) {
         // overwrite dropdown style on mobile
 
         .dropdown {
