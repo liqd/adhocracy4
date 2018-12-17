@@ -108,14 +108,20 @@
     }
 }
 
+.u-lg-mobile-display-none {
+    @media screen and (max-width: $breakpoint) {
+        display: none;
+    }
+}
+
 .u-tablet-display-none {
-    @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-md - 0.1em) {
+    @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-md) {
         display: none;
     }
 }
 
 .u-desktop-display-none {
-    @media screen and (min-width: $breakpoint-xs) {
+    @media screen and (min-width: $breakpoint) {
         display: none;
     }
 }
