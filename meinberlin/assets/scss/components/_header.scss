@@ -3,7 +3,10 @@ $header-margin-bottom: 25px;
 .main-header {
     position: relative;
     z-index: 1;
-    margin-bottom: $header-margin-bottom;
+
+    @media screen and (min-width: $breakpoint) {
+        margin-bottom: $header-margin-bottom;
+    }
 }
 
 .main-nav {
