@@ -31,20 +31,20 @@
         {% image self.storefront.image max-400x600 as storefront_image %}
         <div class="l-wrapper">
             <div class="storefront">
-                <div class="storefront__col u-mobile-display-none">
-                    <div class="storefront__item storefront__img tile__lg u-mobile-display-none" style="width=100%; background:url({{ storefront_image.url }}) no-repeat; background-size: cover; background-position: bottom;">
+                <div class="storefront__col u-xs-down-display-none">
+                    <div class="storefront__item storefront__img tile__lg u-xs-down-display-none" style="width=100%; background:url({{ storefront_image.url }}) no-repeat; background-size: cover; background-position: bottom;">
                        <h1 class="storefront__lg-text">{{ self.storefront.teaser }}</h1>
                     </div>
-                    <div class="storefront__item storefront__stat-sm tile__sm u-mobile-display-none">
+                    <div class="storefront__item storefront__stat-sm tile__sm u-xs-down-display-none">
                         <h1 class="storefront__lg-text">{{ self.storefront.num_entries }}</h1>
                         <p>{% blocktrans count counter=self.storefront.num_entries %}entry added by citizens{% plural %}entries added by citizens{% endblocktrans %}</p>
                     </div>
                 </div>
-                <div class="storefront__col u-mobile-display-none">
+                <div class="storefront__col u-xs-down-display-none">
                     {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.0 %}
                     {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.1 %}
                 </div>
-                <div class="storefront__col u-tablet-display-none">
+                <div class="storefront__col u-xs-md-display-none">
                     {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.2 %}
                     <div class="storefront__item storefront__stat-lg tile__md">
                         <span class="storefront__xl-text">{{ self.storefront.num_projects }}</span>

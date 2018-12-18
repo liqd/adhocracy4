@@ -62,8 +62,8 @@ class ListMapBox extends React.Component {
 
   hideMap (e) {
     e.preventDefault()
-    $('#map').addClass('u-lg-mobile-display-none')
-    $('#list').removeClass('u-lg-mobile-display-none')
+    $('#map').addClass('u-sm-down-display-none')
+    $('#list').removeClass('u-sm-down-display-none')
   }
 
   selectDistrict (district) {
@@ -75,8 +75,8 @@ class ListMapBox extends React.Component {
 
   hideList (e) {
     e.preventDefault()
-    $('#list').addClass('u-lg-mobile-display-none')
-    $('#map').removeClass('u-lg-mobile-display-none')
+    $('#list').addClass('u-sm-down-display-none')
+    $('#map').removeClass('u-sm-down-display-none')
     $('#map').css('display', 'block')
     this.setState({ resizeMap: true })
   }
@@ -99,7 +99,7 @@ class ListMapBox extends React.Component {
             <div id="list" className="list-container map-list-combined__list">
               <PlansList key="content" items={this.state.items} />
             </div>
-            <div id="map" className="map-container map-list-combined__map u-lg-mobile-display-none">
+            <div id="map" className="map-container map-list-combined__map u-sm-down-display-none">
               <StickyBox offsetTop={0} offsetBottom={0}>
                 <PlansMap key="content"
                   resize={this.state.resizeMap}

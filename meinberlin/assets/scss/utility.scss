@@ -102,25 +102,25 @@
     text-overflow: ellipsis;
 }
 
-.u-mobile-display-none {
+.u-xs-down-display-none {
     @media screen and (max-width: $breakpoint-xs-down) {
         display: none !important;
     }
 }
 
-.u-lg-mobile-display-none {
+.u-sm-down-display-none {
     @media screen and (max-width: $breakpoint-down) {
         display: none !important;
     }
 }
 
-.u-tablet-display-none {
+.u-xs-md-display-none {
     @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-md-down) {
         display: none !important;
     }
 }
 
-.u-desktop-display-none {
+.u-lg-up-display-none {
     @media screen and (min-width: $breakpoint) {
         display: none !important;
     }

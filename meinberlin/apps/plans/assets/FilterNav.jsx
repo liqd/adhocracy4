@@ -18,7 +18,7 @@ class FilterNav extends React.Component {
     return (
       <div className="filter-bar-spacer">
         <div className="control-bar filter-bar" role="group" aria-label={django.gettext('Filter bar')}>
-          <span>{django.gettext('I am interested in projects from ')}</span>
+          <span>{django.gettext('I am interested in projects from')}</span>
           <div className="dropdown filter-bar__dropdown">
             <button type="button"
               className={this.props.district === '-1' ? 'dropdown-toggle btn btn--light btn--select btn--none filter-bar__btn' : 'd-none'}
@@ -67,7 +67,6 @@ class FilterNav extends React.Component {
               }
             </ul>
           </div>
-          <span>{django.gettext(' and the area ')}</span>
         </div>
       </div>
     )
