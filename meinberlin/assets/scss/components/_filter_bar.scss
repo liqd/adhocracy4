@@ -1,3 +1,9 @@
+.filter-bar-spacer {
+    margin-left: $r-spacer;
+    margin-right: $r-spacer;
+    margin-bottom: 2*$r-spacer;
+}
+
 .filter-bar {
     box-shadow: 0 0 20px 0 $shadow;
 

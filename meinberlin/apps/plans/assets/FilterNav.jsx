@@ -16,7 +16,7 @@ class FilterNav extends React.Component {
 
   render () {
     return (
-      <div className="u-spacer-left u-spacer-right u-spacer-bottom-double">
+      <div className="filter-bar-spacer">
         <div className="control-bar filter-bar" role="group" aria-label={django.gettext('Filter bar')}>
           <span>{django.gettext('I am interested in projects from ')}</span>
           <div className="dropdown filter-bar__dropdown">
