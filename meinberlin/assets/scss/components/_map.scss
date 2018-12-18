@@ -123,6 +123,7 @@
 
     @media (min-width: $breakpoint-xs) {
         flex-grow: 2;
+        min-height: 100vh;
     }
 }
 
