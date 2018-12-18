@@ -54,8 +54,10 @@
                 </div>
             </div>
         </nav>
+        {% if request.path == '/' %}
         <div class="main-nav__subtitle-item u-spacer-top">
             <img src="{% static 'images/mein.berlin_subtitle.png' %}" alt="mein.berlin"/>
         </div>
+        {% endif %}
     </div>
 </header>

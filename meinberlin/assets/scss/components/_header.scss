@@ -3,10 +3,6 @@ $header-margin-bottom: 25px;
 .main-header {
     position: relative;
     z-index: 1;
-
-    @media screen and (min-width: $breakpoint) {
-        margin-bottom: $header-margin-bottom;
-    }
 }
 
 .main-nav {
@@ -14,6 +10,7 @@ $header-margin-bottom: 25px;
     justify-content: space-between;
     align-items: center;
     line-height: 1.5;
+    margin-bottom: $header-margin-bottom;
 
     @media screen and (min-width: $breakpoint-md) {
         align-items: flex-end;
