@@ -16,7 +16,7 @@
     "@fortawesome/fontawesome-free": "5.6.1",
     "acorn": "6.0.4",
     "adhocracy4": "liqd/adhocracy4#05e961f6d3185b30baff785ef48baa8ca3c499ae",
-    "autoprefixer": "9.4.2",
+    "autoprefixer": "9.4.3",
     "babel-core": "6.26.3",
     "babel-loader": "7.1.5",
     "babel-preset-env": "1.7.0",
