@@ -12,23 +12,20 @@
     }
 
     label:before {
-        background: $gray;
-        // box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        background: $brand-secondary;
         border-radius: 16px;
         content: '';
         height: 30px;
         margin-top: -15px;
         position: absolute;
-        // opacity: 0.3;
         transition: all 0.4s ease-in-out;
         width: 47px;
-        border: 1px solid $gray;
+        border: 1px solid $brand-secondary;
     }
 
     label:after {
         background: $body-bg;
         border-radius: 16px;
-        // box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         content: '';
         height: 24px;
         left: 2px;
@@ -37,7 +34,7 @@
         top: -4px;
         transition: all 0.3s ease-in-out;
         width: 24px;
-        border: 1px solid $gray;
+        border: 1px solid $brand-secondary;
     }
 
     input[type="checkbox"]:checked {

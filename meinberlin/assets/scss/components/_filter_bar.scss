@@ -1,56 +1,40 @@
-.control-bar {
-    @include clearfix;
-    font-size: $font-size-sm;
+.filter-bar-spacer {
+    margin-left: $r-spacer;
+    margin-right: $r-spacer;
+    margin-bottom: 2*$r-spacer;
+}
 
-    select,
-    .dropdown {
-        display: inline-block;
-        vertical-align: top;
-    }
+.filter-bar {
+    box-shadow: 0 0 20px 0 $shadow;
 
-    @media (max-width: $breakpoint) {
-        > * {
-            @include grid-same-width(2);
-        }
-
-        .dropdown {
-            display: block;
-        }
-
-        .dropdown-toggle {
-            width: 100%;
-            max-width: none;
-        }
-    }
-
-    .control-bar__right {
-        float: right;
-
-        @media (max-width: $breakpoint) {
-            // push to the right
-            // NOTE: needs to overwrite grid-tiles
-            @include grid-cell();
-            @include grid-position(6);
-        }
-    }
-
-    .form-group {
-        margin-bottom: $spacer / 2;
+    @media screen and (min-width: $breakpoint-xs) {
+        padding: 2*$padding 4*$padding $padding 4*$padding;
+        font-size: $font-size-lg;
+        line-height: 2.5;
     }
 }
 
-.control-bar__top-overlap {
-    position: relative;
-    z-index: 1;
-    bottom: -1em;
-
-    .dropdown {
-        margin-bottom: 0;
-    }
+.filter-bar__btn {
+    color: $gray-lighter;
+    font-style: italic;
+    font-weight: normal;
+    padding-bottom: inherit;
+    vertical-align: initial;
+    border-bottom: 1px dotted $border-color;
 }
 
-.control-bar__bottom-overlap {
-    position: relative;
-    z-index: 1;
-    top: -1em;
+.filter-bar__btn-selected {
+    color: $text-color;
+    font-weight: normal;
+    border-radius: inherit;
+    border: 1px solid $border-color;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    padding-left: 0.5rem;
+    padding-right: 2rem;
+
+    i {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
 }
