@@ -1,0 +1,38 @@
+{% load static %}
+
+<div class="block block--infographic">
+    <div class="l-wrapper">
+        <div class="block--infographic__body">
+            <div class="block--infographic__icon-block">
+                <div class="block--infographic__icon">
+                    <img src="{% static 'images/icon_infografik_projekte.png' %}" alt="">
+                </div>
+                <div>
+                {{ value.text_left }}
+                </div>
+            </div>
+            <div class="block--infographic__arrow">
+                <img src="{% static 'images/icon_infografik_arrow_down@2x.png' %}" alt="">
+            </div>
+            <div class="block--infographic__icon-block">
+                <div class="block--infographic__icon">
+                    <img src="{% static 'images/icon_infografik_mitmachen.png' %}" alt="">
+                </div>
+                <div>
+                {{ value.text_center }}
+                </div>
+            </div>
+            <div class="block--infographic__arrow">
+                <img src="{% static 'images/icon_infografik_arrow_up@2x.png' %}" alt="">
+            </div>
+            <div class="block--infographic__icon-block">
+                <div class="block--infographic__icon">
+                    <img src="{% static 'images/icon_infografik_folgen.png' %}" alt="">
+                </div>
+                <div>
+                {{ value.text_right }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

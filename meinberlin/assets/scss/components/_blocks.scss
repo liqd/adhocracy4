@@ -74,3 +74,86 @@
         font-size: $font-size-xxxl;
     }
 }
+
+.block--infographic {
+    background-color: $brand-secondary;
+    color: $body-bg;
+
+    padding-top: $padding;
+    padding-bottom: $padding;
+
+    @media screen and (min-width: $breakpoint) {
+        padding-top: 2 * $padding;
+        padding-bottom: 2 * $padding;
+    }
+
+    @media print {
+        background-color: transparent;
+        color: $print-black;
+    }
+}
+
+.block--infographic__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    @media screen and (min-width: $breakpoint) {
+        flex-direction: row;
+    }
+}
+
+.block--infographic__icon-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (min-width: $breakpoint) {
+        flex-direction: column;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        flex-direction: row;
+    }
+}
+
+.block--infographic__icon {
+    padding-right: 2 * $padding;
+    padding-top: 0.5 * $padding;
+    padding-bottom: 0.5 * $padding;
+    width: 6rem;
+
+    img {
+        width: 100%;
+    }
+
+    @media screen and (min-width: $breakpoint) {
+        padding-right: 0;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        width: 8rem;
+        padding-right: 2 * $padding;
+    }
+}
+
+.block--infographic__arrow {
+    display: none;
+
+    img {
+        width: 100%;
+    }
+
+    @media screen and (min-width: $breakpoint) {
+        display: inline;
+
+        width: 13rem;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        padding-right: 3*$padding;
+        padding-left: 3*$padding;
+    }
+}
