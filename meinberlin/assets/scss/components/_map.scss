@@ -167,3 +167,24 @@
         line-height: 30px;
     }
 }
+
+.maplist-proj {
+    display: flex;
+    flex-direction: row;
+}
+
+.maplist-item {
+    margin: 0 $r-spacer $r-spacer 4*$r-spacer;
+    border: 1px solid $border-color;
+}
+
+.maplist__image {
+    height: 250px;
+    flex-basis: 250px;
+}
+
+.maplist__info {
+    height: 250px;
+    flex: 2 1 auto;
+    margin-left: $r-spacer;
+}

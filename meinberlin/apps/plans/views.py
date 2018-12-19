@@ -128,6 +128,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 district_name = item.district.name
 
             result.append({
+                'type': 'plan',
                 'title': item.title,
                 'url': item.get_absolute_url(),
                 'organisation': item.organisation.name,
@@ -166,6 +167,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 participation_display = _('Yes')
 
                 result.append({
+                    'type': 'project',
                     'title': item.name,
                     'url': item.get_absolute_url(),
                     'organisation': item.organisation.name,
