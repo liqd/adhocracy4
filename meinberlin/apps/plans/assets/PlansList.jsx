@@ -16,7 +16,7 @@ class PlansList extends React.Component {
     return (
 
       <li className={itemClass} key={i} tabIndex="0">
-        <div className={item.type === 'project' ? 'maplist-proj' : 'd-none'} >
+        <div className={item.type === 'project' ? 'maplist-proj' : 'd-none'}>
           <div className="maplist__image" style={styles} alt="">
             <span className="maplist__copyright copyright">© copyright</span>
           </div>
@@ -31,19 +31,19 @@ class PlansList extends React.Component {
           </div>
         </div>
 
-        <div className={item.type === 'plan' ? 'maplist-plan' : 'd-none'} >
-          <div className="list-item__labels">
+        <div className={item.type === 'plan' ? 'maplist-plan' : 'd-none'}>
+          <div className="maplist-item__labels u-spacer-bottom">
             <span className="label label--secondary">{item.theme}</span>
           </div>
-          <span> {item.district}</span>
-          <h3 className="list-item__title"><a href={item.url}>{item.title}</a></h3>
+          <span className="maplist-item__roofline">{item.district}</span>
+          <h3 className="maplist-item__title"><a href={item.url}>{item.title}</a></h3>
           <div>
-            <span><i className="fas fa-th" /> {django.gettext('Participation projects: ') } </span>
-            <span>? </span>
+            <span><i className="fas fa-th" />{django.gettext('Participation projects: ')}</span>
+            <span>?</span>
           </div>
           <div>
-            <span><i className="fas fa-clock" /> {django.gettext('Participation: ') } </span>
-            <span className={statusClass}> { item.participation_string } </span>
+            <span><i className="fas fa-clock" />{django.gettext('Participation: ')}</span>
+            <span className={statusClass}>{item.participation_string }</span>
           </div>
         </div>
 
