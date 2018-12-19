@@ -1,0 +1,40 @@
+.maplist-item {
+    margin: 0 $r-spacer $r-spacer 4*$r-spacer;
+    border: 1px solid $border-color;
+}
+
+//.maplist-item__proj
+.maplist-proj {
+    display: flex;
+    flex-direction: row;
+}
+
+//.maplist-item__image
+.maplist__image {
+    height: 250px;
+    flex-basis: 250px;
+    position: relative;
+}
+
+//.maplist-item__img-copyright
+.maplist__copyright {
+    position: absolute;
+    bottom: 0;
+}
+
+//.maplist-item__info
+.maplist__info {
+    height: 250px;
+    flex: 2 1 auto;
+    margin: $r-spacer;
+}
+
+.maplist-item__roofline {
+    font-size: $font-size-sm;
+    color: $gray;
+}
+
+.maplist-item__title {
+    margin-top: 0;
+    color: $brand-secondary;
+}

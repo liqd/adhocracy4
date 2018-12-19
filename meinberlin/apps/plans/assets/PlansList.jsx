@@ -11,7 +11,7 @@ class PlansList extends React.Component {
     this.listElement = element
   }
   renderListItem (item, i) {
-    let itemClass = 'list-item maplist-item list-item--squashed'
+    let itemClass = 'maplist-item'
     let statusClass = (item.participation_active === true) ? 'list-item__status--active' : 'list-item__status--inactive'
     return (
 
@@ -22,30 +22,29 @@ class PlansList extends React.Component {
           </div>
 
           <div className="maplist__info">
-            <div className="maplist-item__labels">
-              <span className="label label--secondary">{item.status_display}</span>
+            <div className="maplist-item__labels u-spacer-bottom">
+              <span className="label label--secondary">{item.theme}</span>
             </div>
-
-            <p>{item.district}</p>
-
-            <h2 className="maplist-item__title"><a href={item.url}>{item.title}</a></h2>
-            <div className="maplist-item__subtitle"><b>{django.gettext('Theme: ')}</b><span>{item.theme}</span></div>
-            <div className="maplist-item__subtitle"><b>{django.gettext('Participation: ')}</b><span className={statusClass}>{item.participation_string}</span></div>
+            <span className="maplist-item__roofline">{item.district}</span>
+            <h3 className="maplist-item__title"><a href={item.url}>{item.title}</a></h3>
+            <span>Short description?</span>
           </div>
         </div>
 
         <div className={item.type === 'plan' ? 'maplist-plan' : 'd-none'} >
-          Im a plan!!!!
           <div className="list-item__labels">
-            {
-              <span className="label label--secondary">{item.status_display}</span>
-            } {item.district &&
-              <span className="label"><i className="fas fa-map-marker-alt" aria-hidden="true" /> {item.district}</span>
-            }
+            <span className="label label--secondary">{item.theme}</span>
           </div>
+          <span> {item.district}</span>
           <h3 className="list-item__title"><a href={item.url}>{item.title}</a></h3>
-          <div className="list-item__subtitle"><b>{django.gettext('Theme: ')}</b><span>{item.theme}</span></div>
-          <div className="list-item__subtitle"><b>{django.gettext('Participation: ')}</b><span className={statusClass}>{item.participation_string}</span></div>
+          <div>
+            <span><i className="fas fa-th" /> {django.gettext('Participation projects: ') } </span>
+            <span>? </span>
+          </div>
+          <div>
+            <span><i className="fas fa-clock" /> {django.gettext('Participation: ') } </span>
+            <span className={statusClass}> { item.participation_string } </span>
+          </div>
         </div>
 
       </li>
