@@ -12,6 +12,10 @@
 
 {% block content %}
 
+    <div class="main-nav__homepage-subtitle u-spacer-top">
+        <img src="{% static 'images/mein.berlin_subtitle.png' %}" alt="Participation platform of Berlin!"/>
+    </div>
+
     {% image self.header_image max-1920x560 as header_image %}
 
         {% if header_image.url %}
