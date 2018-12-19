@@ -1,0 +1,33 @@
+.dialogue-box {
+    display: flex;
+
+    > div {
+        height: 71px;
+    }
+}
+
+.dialogue-box__left,
+.dialogue-box__right {
+    // background-position: left center;
+    background-image: url('/static/images/dialoguebox_border.png');
+    background-repeat: repeat-x;
+}
+
+.dialogue-box__left {
+    flex: 1 0 auto;
+
+    @media screen and (min-width: $breakpoint) {
+        flex: 3 0 auto;
+    }
+}
+
+.dialogue-box__right {
+    flex: 1 0 auto;
+}
+
+.dialogue-box__center {
+    flex: 0 1 4.4rem;
+    // background-position: right -250px center;
+    background-image: url('/static/images/dialoguebox.png');
+    background-repeat: no-repeat;
+}

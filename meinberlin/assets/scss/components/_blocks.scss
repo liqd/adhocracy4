@@ -80,11 +80,11 @@
     color: $body-bg;
 
     padding-top: $padding;
-    padding-bottom: $padding;
+    //padding-bottom: $padding;
 
     @media screen and (min-width: $breakpoint) {
         padding-top: 2 * $padding;
-        padding-bottom: 2 * $padding;
+        //padding-bottom: 2 * $padding;
     }
 
     @media print {
