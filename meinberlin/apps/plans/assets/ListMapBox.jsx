@@ -28,7 +28,7 @@ class ListMapBox extends React.Component {
   }
 
   isInFilter (item) {
-    return (this.state.topic === '-1' || this.state.topic === item.topic) &&
+    return (this.state.topic === '-1' || this.state.topic === item.topic || this.state.topic === item.topic.toLowerCase()) &&
       (this.state.district === '-1' || this.state.district === item.district)
   }
 
@@ -70,6 +70,13 @@ class ListMapBox extends React.Component {
     this.setState({
       filterChanged: true,
       district: district
+    })
+  }
+
+  selectTopic (topic) {
+    this.setState({
+      filterChanged: true,
+      topic: topic
     })
   }
 
