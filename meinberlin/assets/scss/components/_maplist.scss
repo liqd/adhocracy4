@@ -21,6 +21,7 @@
 
 .maplist-item__img {
     position: relative;
+    flex-basis: 250px;
 
     @media screen and (min-width: $breakpoint-md) {
         height: 250px;

@@ -143,6 +143,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 'participation_active': active,
                 'participation': item.participation,
                 'participation_display': item.get_participation_display(),
+                'published_projects_count': item.published_projects.count(),
             })
 
         projects = Project.objects.all()\
@@ -182,6 +183,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                     'participation_active': active,
                     'participation': participation,
                     'participation_display': str(participation_display),
+                    'description': item.description
                 })
 
         context['items'] = json.dumps(result)
