@@ -1,36 +1,45 @@
 .maplist-item {
-    margin: 0 $r-spacer $r-spacer 4*$r-spacer;
     border: 1px solid $border-color;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin: 0 $r-spacer $r-spacer 4*$r-spacer;
+    }
 }
 
-//.maplist-item__proj
-.maplist-proj {
+.maplist-item__proj {
     display: flex;
     flex-direction: row;
 }
 
-.maplist-plan {
+.maplist-item__plan {
     padding: $padding;
+
+    @media screen and (min-width: $breakpoint-md) {
+        padding: 1.5*$padding 2*$padding;
+    }
 }
 
-//.maplist-item__image
-.maplist__image {
-    height: 250px;
-    flex-basis: 250px;
+.maplist-item__img {
     position: relative;
+
+    @media screen and (min-width: $breakpoint-md) {
+        height: 250px;
+        flex-basis: 250px;
+    }
 }
 
-//.maplist-item__img-copyright
-.maplist__copyright {
+.maplist-item__img-copyright {
     position: absolute;
     bottom: 0;
 }
 
-//.maplist-item__info
-.maplist__info {
-    height: 250px;
+.maplist-item__info {
     flex: 2 1 auto;
-    margin: $r-spacer;
+    padding: $padding;
+
+    @media screen and (min-width: $breakpoint-md) {
+        padding: 1.5*$padding 2*$padding;
+    }
 }
 
 .maplist-item__roofline {
@@ -41,4 +50,21 @@
 .maplist-item__title {
     margin-top: 0;
     color: $brand-secondary;
+}
+
+.maplist-item__proj-count,
+.maplist-item__status {
+    color: $text-color;
+
+    i {
+        padding-right: $padding;
+    }
+}
+
+.maplist-item__status--active {
+    color: $gray;
+}
+
+.maplist-item__status--inactive {
+    color: $gray;
 }
