@@ -82,7 +82,7 @@
     padding-top: $padding;
     //padding-bottom: $padding;
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-xs) {
         padding-top: 2 * $padding;
         //padding-bottom: 2 * $padding;
     }
@@ -97,20 +97,24 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-xs) {
         flex-direction: row;
+        align-items: flex-start;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        align-items: center;
     }
 }
 
 .block--infographic__icon-block {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-xs) {
         flex-direction: column;
     }
 
@@ -124,18 +128,31 @@
     padding-top: 0.5 * $padding;
     padding-bottom: 0.5 * $padding;
     width: 6rem;
+    flex-shrink: 0;
 
     img {
         width: 100%;
     }
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-xs) {
+        width: 4rem;
         padding-right: 0;
+        flex-shrink: 1;
     }
 
     @media screen and (min-width: $breakpoint-md) {
         width: 8rem;
         padding-right: 2 * $padding;
+    }
+}
+
+.block--infographic__text {
+    @media screen and (min-width: $breakpoint-xs) {
+        text-align: center;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        text-align: left;
     }
 }
 
@@ -146,14 +163,16 @@
         width: 100%;
     }
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-xs) {
+        padding-top: 2 * $padding;
         display: inline;
-
-        width: 13rem;
+        width: 7rem;
     }
 
     @media screen and (min-width: $breakpoint-md) {
         padding-right: 3*$padding;
         padding-left: 3*$padding;
+        padding-top: 0;
+        width: 13rem;
     }
 }
