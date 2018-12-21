@@ -2,6 +2,7 @@ import json
 
 from django.conf import settings
 from django.contrib import messages
+from django.core.exceptions import ImproperlyConfigured
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from django.utils import timezone
@@ -113,6 +114,13 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                                      for district in districts])
         context['districts'] = district_list
         context['district_names'] = district_names
+
+        topics = getattr(settings, 'A4_PROJECT_TOPICS', None)
+        if topics:
+            topics = dict((x, str(y)) for x, y in topics)
+        else:
+            raise ImproperlyConfigured('set A4_PROJECT_TOPICS in settings')
+        context['topic_choices'] = json.dumps(topics)
 
         items = sorted(context['object_list'],
                        key=lambda x: x.modified or x.created,

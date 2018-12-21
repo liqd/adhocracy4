@@ -7,11 +7,23 @@ class FilterNav extends React.Component {
     this.props.selectDistrict(district)
   }
 
+  clickTopic (event) {
+    let topic = event.currentTarget.value
+    this.props.selectTopic(topic)
+  }
+
   getDistrictFilterName () {
     if (this.props.district === '-1') {
       return django.gettext('all')
     }
     return this.props.district
+  }
+
+  getTopicFilterName () {
+    if (this.props.topic === '-1') {
+      return django.gettext('all')
+    }
+    return this.props.topicChoices[this.props.topic]
   }
 
   render () {
@@ -70,29 +82,50 @@ class FilterNav extends React.Component {
           <span>{django.gettext(' in the area of ')}</span>
           <div className="dropdown ">
             <button type="button"
-              className="dropdown-toggle btn btn--light btn--select btn--none filter-bar__dropdown-btn"
+              className={this.props.topic === '-1' ? 'dropdown-toggle btn btn--light btn--select btn--none filter-bar__dropdown-btn' : 'd-none'}
               data-flip="false"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-              id="id_filter_district">
-              Topic
+              id="id_filter_topic">
+              {django.gettext('Topic')}: {this.getTopicFilterName()}
               <i className="fa fa-caret-down" aria-hidden="true" />
             </button>
-            <ul aria-labelledby="id_filter_district" className="dropdown-menu">
+            <button type="button"
+              className={this.props.topic !== '-1' ? 'dropdown-toggle btn btn--light btn--none btn--select filter-bar__dropdown-selected' : 'd-none'}
+              data-flip="false"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              id="id_filter_topic">
+              {this.getTopicFilterName()}
+              <i className="fa fa-times" aria-hidden="true" />
+            </button>
+            <ul aria-labelledby="topic" className="dropdown-menu">
               <li>
                 <button
                   type="button"
                   className="dropdown-item"
-                  value="-1">
-                  all
+                  value="-1"
+                  onClick={this.clickTopic.bind(this)}>
+                  {django.gettext('All')}
                 </button>
               </li>
-              <li>
-                <button
-                  type="button"
-                  className="dropdown-item" />
-              </li>
+              {
+                Object.keys(this.props.topicChoices).map((key, i) => {
+                  return (
+                    <li key={key}>
+                      <button
+                        type="button"
+                        className="dropdown-item"
+                        value={key}
+                        onClick={this.clickTopic.bind(this)}>
+                        {this.props.topicChoices[key]}
+                      </button>
+                    </li>
+                  )
+                })
+              }
             </ul>
           </div>
           <div>
