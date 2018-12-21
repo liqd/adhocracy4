@@ -103,6 +103,27 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         else:
             return 3, ugettext('Done')
 
+    def _get_phase_status(self, project):
+        if project.phases.future_phases():
+            date_str = str(
+                project.phases.future_phases().first().start_date.date())
+            return (date_str,
+                    False,
+                    False)
+        elif project.phases.active_phases():
+            days_total = 10
+            days_left = 3
+            return (False,
+                    [days_total, days_left],
+                    False)
+        elif project.phases.past_phases():
+            return (False,
+                    False,
+                    True)
+        return (False,
+                False,
+                False)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -174,6 +195,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                     self._get_status_project(item)
                 participation = 1
                 participation_display = _('Yes')
+                future_phase, active_phase, past_phase = \
+                    self._get_phase_status(item)
 
                 result.append({
                     'type': 'project',
@@ -191,7 +214,10 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                     'participation_active': active,
                     'participation': participation,
                     'participation_display': str(participation_display),
-                    'description': item.description
+                    'description': item.description,
+                    'future_phase': future_phase,
+                    'active_phase': active_phase,
+                    'past_phase': past_phase
                 })
 
         context['items'] = json.dumps(result)
