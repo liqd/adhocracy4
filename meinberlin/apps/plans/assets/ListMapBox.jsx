@@ -107,7 +107,9 @@ class ListMapBox extends React.Component {
         { this.state.showListMap
           ? <div className="map-list-combined">
             <div id="list" className="list-container map-list-combined__list">
-              <PlansList key="content" items={this.state.items} />
+              <PlansList key="content"
+                items={this.state.items}
+                topicChoices={this.props.topicChoices} />
             </div>
             <div id="map" className="map-container map-list-combined__map u-sm-down-display-none">
               <StickyBox offsetTop={0} offsetBottom={0}>
@@ -123,7 +125,9 @@ class ListMapBox extends React.Component {
           </div>
           : <div className="map-list-combined">
             <div className="list-container map-list-combined__list">
-              <PlansList key="content" items={this.state.items} />
+              <PlansList key="content"
+                items={this.state.items}
+                topicChoices={this.props.topicChoices} />
             </div>
           </div>
         }
