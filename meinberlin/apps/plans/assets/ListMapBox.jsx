@@ -28,7 +28,7 @@ class ListMapBox extends React.Component {
   }
 
   isInFilter (item) {
-    return (this.state.topic === '-1' || this.state.topic === item.topic) &&
+    return (this.state.topic === '-1' || this.state.topic === item.topic || this.state.topic.toLowerCase() === item.topic.toLowerCase()) &&
       (this.state.district === '-1' || this.state.district === item.district)
   }
 
@@ -73,6 +73,13 @@ class ListMapBox extends React.Component {
     })
   }
 
+  selectTopic (topic) {
+    this.setState({
+      filterChanged: true,
+      topic: topic
+    })
+  }
+
   hideList (e) {
     e.preventDefault()
     $('#list').addClass('u-sm-down-display-none')
@@ -86,8 +93,11 @@ class ListMapBox extends React.Component {
       <div>
         <FilterNav
           selectDistrict={this.selectDistrict.bind(this)}
+          selectTopic={this.selectTopic.bind(this)}
           district={this.state.district}
           districtnames={this.props.districtnames}
+          topic={this.state.topic}
+          topicChoices={this.props.topicChoices}
         />
         <ListMapSwitch
           toggleSwitch={this.toggleSwitch.bind(this)}
