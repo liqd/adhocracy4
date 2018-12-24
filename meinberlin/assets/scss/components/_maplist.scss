@@ -25,7 +25,7 @@
 
     @media screen and (min-width: $breakpoint-md) {
         height: 250px;
-        flex-basis: 250px;
+        min-width: 250px;
     }
 }
 
@@ -59,6 +59,7 @@
 
     i {
         padding-right: $padding;
+        color: $brand-secondary;
     }
 }
 
