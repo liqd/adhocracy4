@@ -41,6 +41,7 @@ class ProjectsWrapperBlock(blocks.StructBlock):
 
     class Meta:
         template = 'meinberlin_cms/blocks/projects_block.html'
+        icon = 'list-ul'
 
 
 class CallToActionBlock(blocks.StructBlock):
@@ -50,6 +51,7 @@ class CallToActionBlock(blocks.StructBlock):
 
     class Meta:
         template = 'meinberlin_cms/blocks/cta_block.html'
+        icon = 'plus-inverse'
 
 
 class ImageCallToActionBlock(blocks.StructBlock):
@@ -61,6 +63,7 @@ class ImageCallToActionBlock(blocks.StructBlock):
 
     class Meta:
         template = 'meinberlin_cms/blocks/image_cta_block.html'
+        icon = 'image'
 
 
 class ColumnsBlock(blocks.StructBlock):
@@ -76,6 +79,7 @@ class ColumnsBlock(blocks.StructBlock):
 
     class Meta:
         template = 'meinberlin_cms/blocks/columns_block.html'
+        icon = 'grip'
 
 
 class DocsBlock(blocks.StructBlock):
@@ -84,3 +88,14 @@ class DocsBlock(blocks.StructBlock):
 
     class Meta:
         template = 'meinberlin_cms/blocks/docs_block.html'
+        icon = 'arrow-down'
+
+
+class InfographicBlock(blocks.StructBlock):
+    text_left = blocks.CharBlock(max_length=50)
+    text_center = blocks.CharBlock(max_length=50)
+    text_right = blocks.CharBlock(max_length=50)
+
+    class Meta:
+        template = 'meinberlin_cms/blocks/infographic_block.html'
+        icon = 'success'

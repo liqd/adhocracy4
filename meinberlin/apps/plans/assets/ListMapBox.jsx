@@ -28,7 +28,7 @@ class ListMapBox extends React.Component {
   }
 
   isInFilter (item) {
-    return (this.state.topic === '-1' || this.state.topic === item.topic) &&
+    return (this.state.topic === '-1' || this.state.topic === item.topic || this.state.topic.toLowerCase() === item.topic.toLowerCase()) &&
       (this.state.district === '-1' || this.state.district === item.district)
   }
 
@@ -73,6 +73,13 @@ class ListMapBox extends React.Component {
     })
   }
 
+  selectTopic (topic) {
+    this.setState({
+      filterChanged: true,
+      topic: topic
+    })
+  }
+
   hideList (e) {
     e.preventDefault()
     $('#list').addClass('u-sm-down-display-none')
@@ -86,8 +93,11 @@ class ListMapBox extends React.Component {
       <div>
         <FilterNav
           selectDistrict={this.selectDistrict.bind(this)}
+          selectTopic={this.selectTopic.bind(this)}
           district={this.state.district}
           districtnames={this.props.districtnames}
+          topic={this.state.topic}
+          topicChoices={this.props.topicChoices}
         />
         <ListMapSwitch
           toggleSwitch={this.toggleSwitch.bind(this)}
@@ -97,7 +107,9 @@ class ListMapBox extends React.Component {
         { this.state.showListMap
           ? <div className="map-list-combined">
             <div id="list" className="list-container map-list-combined__list">
-              <PlansList key="content" items={this.state.items} />
+              <PlansList key="content"
+                items={this.state.items}
+                topicChoices={this.props.topicChoices} />
             </div>
             <div id="map" className="map-container map-list-combined__map u-sm-down-display-none">
               <StickyBox offsetTop={0} offsetBottom={0}>
@@ -113,7 +125,9 @@ class ListMapBox extends React.Component {
           </div>
           : <div className="map-list-combined">
             <div className="list-container map-list-combined__list">
-              <PlansList key="content" items={this.state.items} />
+              <PlansList key="content"
+                items={this.state.items}
+                topicChoices={this.props.topicChoices} />
             </div>
           </div>
         }

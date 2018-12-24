@@ -24,8 +24,8 @@ class PlansList extends React.Component {
             </div>
 
             <div className="maplist-item__info">
-              <div className={item.theme ? 'maplist-item__labels u-spacer-bottom' : 'd-none'}>
-                <span className="label label--secondary">{item.theme}</span>
+              <div className="maplist-item__labels u-spacer-bottom">
+                <span className="label label--secondary">{this.props.topicChoices[item.topic]}</span>
               </div>
               <span className="maplist-item__roofline">{item.district}</span>
               <h3 className="maplist-item__title">{item.title}</h3>

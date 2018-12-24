@@ -2,6 +2,7 @@ import json
 
 from django.conf import settings
 from django.contrib import messages
+from django.core.exceptions import ImproperlyConfigured
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from django.utils import timezone
@@ -102,6 +103,27 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         else:
             return 3, ugettext('Done')
 
+    def _get_phase_status(self, project):
+        if project.phases.future_phases():
+            date_str = str(
+                project.phases.future_phases().first().start_date.date())
+            return (date_str,
+                    False,
+                    False)
+        elif project.phases.active_phases():
+            days_total = 10
+            days_left = 3
+            return (False,
+                    [days_total, days_left],
+                    False)
+        elif project.phases.past_phases():
+            return (False,
+                    False,
+                    True)
+        return (False,
+                False,
+                False)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -113,6 +135,13 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                                      for district in districts])
         context['districts'] = district_list
         context['district_names'] = district_names
+
+        topics = getattr(settings, 'A4_PROJECT_TOPICS', None)
+        if topics:
+            topics = dict((x, str(y)) for x, y in topics)
+        else:
+            raise ImproperlyConfigured('set A4_PROJECT_TOPICS in settings')
+        context['topic_choices'] = json.dumps(topics)
 
         items = sorted(context['object_list'],
                        key=lambda x: x.modified or x.created,
@@ -136,7 +165,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 'point_label': item.point_label,
                 'cost': item.cost,
                 'district': district_name,
-                'theme': item.theme,
+                'topic': item.theme,
                 'status': item.status,
                 'status_display': item.get_status_display(),
                 'participation_string': participation_string,
@@ -166,6 +195,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                     self._get_status_project(item)
                 participation = 1
                 participation_display = _('Yes')
+                future_phase, active_phase, past_phase = \
+                    self._get_phase_status(item)
 
                 result.append({
                     'type': 'project',
@@ -176,14 +207,17 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                     'point_label': point_label,
                     'cost': cost,
                     'district': district_name,
-                    'theme': item.get_topic_display(),
+                    'topic': item.topic,
                     'status': status,
                     'status_display': str(status_display),
                     'participation_string': str(participation_string),
                     'participation_active': active,
                     'participation': participation,
                     'participation_display': str(participation_display),
-                    'description': item.description
+                    'description': item.description,
+                    'future_phase': future_phase,
+                    'active_phase': active_phase,
+                    'past_phase': past_phase
                 })
 
         context['items'] = json.dumps(result)
