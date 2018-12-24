@@ -80,7 +80,7 @@ class FilterNav extends React.Component {
             </ul>
           </div>
           <span>{django.gettext(' in the area of ')}</span>
-          <div className="dropdown ">
+          <div className="dropdown filter-bar__dropdown">
             <button type="button"
               className={this.props.topic === '-1' ? 'dropdown-toggle btn btn--light btn--select btn--none filter-bar__dropdown-btn' : 'd-none'}
               data-flip="false"
