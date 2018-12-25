@@ -39,7 +39,7 @@
     "popper.js": "1.14.6",
     "postcss-loader": "3.0.0",
     "react-flip-move": "3.0.3",
-    "react-sticky-box": "0.7.6",
+    "react-sticky-box": "0.7.7",
     "sass-loader": "7.1.0",
     "sass-planifolia": "0.6.0",
     "select2": "4.0.5",
