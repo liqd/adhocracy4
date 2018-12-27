@@ -2,16 +2,27 @@
     display: flex;
     flex-wrap: wrap;
     max-width: 100%;
+
+    @media screen and (min-width: $breakpoint-md) {
+        display: block;
+    }
 }
 
 .maplist-item {
     border: 1px solid $border-color;
 
-    margin: 0 0 $r-spacer $r-spacer;
-    width: 45%;
+    margin: 0 $r-spacer $r-spacer $r-spacer;
+    width: 100%;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        margin: 0 0 $r-spacer $r-spacer;
+        width: 45%;
+    }
 
     @media screen and (min-width: $breakpoint-md) {
         margin: 0 $r-spacer $r-spacer 4*$r-spacer;
+        width: auto;
+        max-height: 250px;
     }
 }
 
