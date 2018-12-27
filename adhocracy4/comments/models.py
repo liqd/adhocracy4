@@ -64,9 +64,11 @@ class Comment(base.UserGeneratedContentModel):
 
     def get_absolute_url(self):
         if hasattr(self.content_object, 'get_absolute_url'):
-            return self.content_object.get_absolute_url()
+            return "{}#comment_{}".format(
+                self.content_object.get_absolute_url(), str(self.id))
         else:
-            return self.module.get_absolute_url()
+            return "{}#comment_{}".format(
+                self.module.get_absolute_url(), str(self.id))
 
     @property
     def notification_content(self):
