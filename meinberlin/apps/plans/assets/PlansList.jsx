@@ -1,11 +1,15 @@
 /* global django */
 const React = require('react')
 
-var styles = {
+var imgStyle = {
   backgroundImage: `url(https://placeimg.com/500/500/any/grayscale)`,
   backgroundPosition: 'center',
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat'
+}
+
+var statusbarStyle = {
+  width: '20%'
 }
 
 class PlansList extends React.Component {
@@ -20,7 +24,7 @@ class PlansList extends React.Component {
       <li className={itemClass} key={i} tabIndex="0">
         <a href={item.url}>
           <div className={item.type === 'project' ? 'maplist-item__proj' : 'd-none'}>
-            <div className="maplist-item__img" style={styles} alt="">
+            <div className="maplist-item__img" style={imgStyle} alt="">
               <span className="maplist-item__img-copyright copyright">© copyright</span>
             </div>
 
@@ -31,14 +35,14 @@ class PlansList extends React.Component {
               <span className="maplist-item__roofline">{item.district}</span>
               <h3 className="maplist-item__title">{item.title}</h3>
               <span>{item.description}</span>
-              <div className={item.future_phase !== false ? 'status-bar__future' : 'd-none'}>
-                <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ')}</span>
-                <span>{item.future_phase}{django.gettext(' possible')}</span>
+              <div className={item.future_phase !== false ? 'status-item status__future' : 'd-none'}>
+                <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ')}{item.future_phase}{django.gettext(' possible')}</span>
               </div>
-              <div className={item.active_phase !== false ? 'status-bar__active' : 'd-none'}>
-                <span className="maplist-item__status"><i className="fas fa-clock" />{item.active_phase}</span>
+              <div className={item.active_phase !== false ? 'status-item status__active' : 'd-none'}>
+                <div className="status-bar__active"><span className="status-bar__active-fill" style={statusbarStyle} /></div>
+                <span className="maplist-item__status"><i className="fas fa-clock" />{item.active_phase}{django.gettext(' days remaining')}</span>
               </div>
-              <div className={item.past_phase !== false ? 'status-bar__past' : 'd-none'}>
+              <div className={item.past_phase !== false ? 'status-item status__past' : 'd-none'}>
                 {django.gettext('Participation ended. Read result.')}
               </div>
             </div>

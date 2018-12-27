@@ -1,0 +1,24 @@
+.status-bar__active {
+    position: relative;
+    height: 5px;
+    background-color: $bg-tertiary;
+}
+
+.status-bar__active-fill {
+    background-color: $brand-primary;
+    display: block;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.status-item {
+    padding-top: $padding;
+}
+
+.status__past {
+    padding: $padding;
+    background-color: $brand-secondary;
+    color: contrast-color($brand-secondary);
+    text-align: center;
+}
