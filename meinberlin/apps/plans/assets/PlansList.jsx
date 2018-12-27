@@ -4,6 +4,7 @@ const React = require('react')
 var styles = {
   backgroundImage: `url(https://placeimg.com/500/500/any/grayscale)`,
   backgroundPosition: 'center',
+  backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat'
 }
 
@@ -30,6 +31,16 @@ class PlansList extends React.Component {
               <span className="maplist-item__roofline">{item.district}</span>
               <h3 className="maplist-item__title">{item.title}</h3>
               <span>{item.description}</span>
+              <div className={item.future_phase !== false ? 'status-bar__future' : 'd-none'}>
+                <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ')}</span>
+                <span>{item.future_phase}{django.gettext(' possible')}</span>
+              </div>
+              <div className={item.active_phase !== false ? 'status-bar__active' : 'd-none'}>
+                <span className="maplist-item__status"><i className="fas fa-clock" />{item.active_phase}</span>
+              </div>
+              <div className={item.past_phase !== false ? 'status-bar__past' : 'd-none'}>
+                {django.gettext('Participation ended. Read result.')}
+              </div>
             </div>
           </div>
 
