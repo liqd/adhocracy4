@@ -1,5 +1,14 @@
+.maplist-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
 .maplist-item {
     border: 1px solid $border-color;
+
+    margin: 0 0 $r-spacer $r-spacer;
+    width: 45%;
 
     @media screen and (min-width: $breakpoint-md) {
         margin: 0 $r-spacer $r-spacer 4*$r-spacer;
@@ -8,7 +17,11 @@
 
 .maplist-item__proj {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+
+    @media screen and (min-width: $breakpoint-md) {
+        flex-direction: row;
+    }
 }
 
 .maplist-item__plan {

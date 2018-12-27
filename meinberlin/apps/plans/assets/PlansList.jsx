@@ -4,7 +4,7 @@ const React = require('react')
 var styles = {
   backgroundImage: `url(https://placeimg.com/500/500/any/grayscale)`,
   backgroundPosition: 'center',
-  backgroundSize: 'contain'
+  backgroundRepeat: 'no-repeat'
 }
 
 class PlansList extends React.Component {
@@ -61,7 +61,7 @@ class PlansList extends React.Component {
 
     if (list.length > 0) {
       return (
-        <ul className="u-list-reset">
+        <ul className="u-list-reset maplist-list">
           {list}
         </ul>
       )
