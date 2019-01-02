@@ -67,9 +67,10 @@ class ListMapBox extends React.Component {
   }
 
   selectDistrict (district) {
+    var newDistrict = (district === '-1') ? '-1' : this.props.districtnames[district]
     this.setState({
       filterChanged: true,
-      district: district
+      district: newDistrict
     })
   }
 
