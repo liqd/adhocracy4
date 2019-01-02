@@ -55,3 +55,17 @@
 .filter-bar__btn-light {
     margin-left: $r-spacer;
 }
+
+.filter-bar__options {
+    margin-top: $spacer;
+    box-shadow: 0 0 20px 0 $shadow;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding: 2*$padding 4*$padding $padding 4*$padding;
+    }
+}
+
+.filter-bar__options__option {
+    flex-grow: 1;
+    width: 33%;
+}
