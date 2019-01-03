@@ -37,16 +37,22 @@ class PlansList extends React.Component {
               <div className="maplist-item__description">
                 <span>{item.description}</span>
               </div>
-              <div className={item.future_phase !== false ? 'status-item status__future' : 'd-none'}>
+              {item.future_phase &&
+              <div className="status-item status__future">
                 <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ')}{item.future_phase}{django.gettext(' possible')}</span>
               </div>
-              <div className={item.active_phase !== false ? 'status-item status__active' : 'd-none'}>
+              }
+              {item.active_phase &&
+              <div className="status-item status__active">
                 <div className="status-bar__active"><span className="status-bar__active-fill" style={statusbarStyle} /></div>
-                <span className="maplist-item__status"><i className="fas fa-clock" />{item.active_phase}{django.gettext(' days remaining')}</span>
+                <span className="maplist-item__status"><i className="fas fa-clock" />{item.active_phase[1]}{django.gettext(' days remaining')}</span>
               </div>
-              <div className={item.past_phase !== false ? 'status-item status-bar__past' : 'd-none'}>
+              }
+              {item.past_phase &&
+              <div className="status-item status-bar__past">
                 {django.gettext('Participation ended. Read result.')}
               </div>
+              }
             </div>
           </div>
 
