@@ -10,7 +10,6 @@
 
 .maplist-item {
     border: 1px solid $border-color;
-
     margin: 0 $r-spacer $r-spacer $r-spacer;
     width: 100%;
 
@@ -58,7 +57,7 @@
     bottom: 0;
 }
 
-.maplist-item__info {
+.maplist-item__content {
     flex: 2 1 auto;
     padding: $padding;
 
@@ -75,6 +74,10 @@
 .maplist-item__title {
     margin-top: 0;
     color: $brand-secondary;
+}
+
+.maplist-item__description {
+    max-width: 3rem;
 }
 
 .maplist-item__proj-count,

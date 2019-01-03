@@ -1,7 +1,12 @@
+.status-item {
+    margin-top: 2*$r-spacer;
+}
+
 .status-bar__active {
     position: relative;
     height: 5px;
     background-color: $bg-tertiary;
+    margin-bottom: $r-spacer;
 }
 
 .status-bar__active-fill {
@@ -12,11 +17,7 @@
     overflow: hidden;
 }
 
-.status-item {
-    padding-top: $padding;
-}
-
-.status__past {
+.status-bar__past {
     padding: $padding;
     background-color: $brand-secondary;
     color: contrast-color($brand-secondary);

@@ -28,13 +28,15 @@ class PlansList extends React.Component {
               <span className="maplist-item__img-copyright copyright">© copyright</span>
             </div>
 
-            <div className="maplist-item__info">
+            <div className="maplist-item__content">
               <div className={item.topic ? 'maplist-item__labels u-spacer-bottom' : 'd-none'}>
                 <span className="label label--secondary">{this.props.topicChoices[item.topic]}</span>
               </div>
               <span className="maplist-item__roofline">{item.district}</span>
               <h3 className="maplist-item__title">{item.title}</h3>
-              <span>{item.description}</span>
+              <div className="maplist-item__description">
+                <span>{item.description}</span>
+              </div>
               <div className={item.future_phase !== false ? 'status-item status__future' : 'd-none'}>
                 <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ')}{item.future_phase}{django.gettext(' possible')}</span>
               </div>
@@ -42,7 +44,7 @@ class PlansList extends React.Component {
                 <div className="status-bar__active"><span className="status-bar__active-fill" style={statusbarStyle} /></div>
                 <span className="maplist-item__status"><i className="fas fa-clock" />{item.active_phase}{django.gettext(' days remaining')}</span>
               </div>
-              <div className={item.past_phase !== false ? 'status-item status__past' : 'd-none'}>
+              <div className={item.past_phase !== false ? 'status-item status-bar__past' : 'd-none'}>
                 {django.gettext('Participation ended. Read result.')}
               </div>
             </div>
