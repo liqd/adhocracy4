@@ -8,14 +8,15 @@ var imgStyle = {
   backgroundRepeat: 'no-repeat'
 }
 
-var statusbarStyle = {
-  width: '20%'
-}
-
 class PlansList extends React.Component {
   bindList (element) {
     this.listElement = element
   }
+
+  getWidth (item) {
+    return { width: item.active_phase[0] + '%' }
+  }
+
   renderListItem (item, i) {
     let itemClass = 'maplist-item'
     let statusClass = (item.participation_active === true) ? 'maplist-item__status--active' : 'maplist-item__status--inactive'
@@ -44,7 +45,7 @@ class PlansList extends React.Component {
               }
               {item.active_phase &&
               <div className="status-item status__active">
-                <div className="status-bar__active"><span className="status-bar__active-fill" style={statusbarStyle} /></div>
+                <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
                 <span className="maplist-item__status"><i className="fas fa-clock" />{item.active_phase[1]}{django.gettext(' days remaining')}</span>
               </div>
               }
