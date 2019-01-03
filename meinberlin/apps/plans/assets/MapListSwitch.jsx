@@ -17,13 +17,12 @@ class MapListSwitch extends React.Component {
               <label htmlFor="switch-primary" className="primary-color" />
             </div>
             <div className="btn-group u-lg-up-display-none">
-              <button className="btn btn--light" onClick={this.props.hideMap}><i className="fa fa-list" /></button>
-              <button className="btn btn--light" onClick={this.props.hideList}><i className="fa fa-map" /></button>
+              <button className="btn btn--light" onClick={this.props.toggleSwitch}><i className="fa fa-list" /></button>
+              <button className="btn btn--light" onClick={this.props.toggleSwitch}><i className="fa fa-map" /></button>
             </div>
           </div>
         </div>
       </div>
-
     )
   }
 }
