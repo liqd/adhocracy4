@@ -96,18 +96,11 @@
 
     @media (min-width: $breakpoint) {
         flex-direction: row;
-        height: 36em;
     }
 
     @media print {
         max-height: none;
     }
-}
-
-.map-list-combined__dropdown-menu {
-    @extend .dropdown-menu;
-    top: 32px;
-    display: block;
 }
 
 .map-list-combined__alert {
@@ -120,6 +113,27 @@
     flex: 0 1 44vh;
     z-index: 0;
     min-height: 100vh;
+    position: relative;
+
+    .map-list-combined__map__search {
+        font-size: $font-size-base;
+        width: 50%;
+        position: absolute;
+        left: $spacer;
+        top: $spacer;
+        z-index: 1000;
+    }
+
+    .map-list-combined__map__search__error {
+        padding: $spacer;
+        border: none;
+    }
+
+    ul {
+        @extend .dropdown-menu;
+        border: none;
+        display: block;
+    }
 
     @media (min-width: $breakpoint-xs) {
         flex-grow: 2;

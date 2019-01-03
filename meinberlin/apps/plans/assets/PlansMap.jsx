@@ -1,9 +1,10 @@
-/* global $ */
+/* global django */
 const React = require('react')
 const L = require('leaflet')
+const $ = require('jquery')
 require('mapbox-gl-leaflet')
 
-/* const addressIcon = L.icon({
+const addressIcon = L.icon({
   iconUrl: '/static/images/address_search_marker.svg',
   shadowUrl: '/static/images/map_shadow_01.svg',
   iconSize: [30, 36],
@@ -11,7 +12,8 @@ require('mapbox-gl-leaflet')
   shadowSize: [40, 54],
   shadowAnchor: [20, 54],
   zIndexOffset: 1000
-}) */
+})
+
 const pointToLatLng = function (point) {
   if (point.geometry !== '') {
     return {
@@ -20,6 +22,8 @@ const pointToLatLng = function (point) {
     }
   }
 }
+
+const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
 
 const statusIconNames = [
   'idee',
@@ -65,6 +69,16 @@ class PlansMap extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.map = this.createMap()
+    this.addBackgroundMap(this.map)
+    this.addDistrictLayers(this.map)
+    this.cluster = L.markerClusterGroup({
+      showCoverageOnHover: false
+    }).addTo(this.map)
+    this.markers = this.addMarkers(this.cluster)
+  }
+
   componentDidUpdate () {
     if (this.props.resize === true) {
       this.map.invalidateSize()
@@ -89,7 +103,11 @@ class PlansMap extends React.Component {
   }
 
   createMap () {
-    var map = new L.Map(this.mapElement, { scrollWheelZoom: false, maxZoom: 18 })
+    var map = new L.Map(this.mapElement, {
+      scrollWheelZoom: false,
+      zoomControl: false,
+      maxZoom: 18 })
+    new L.Control.Zoom({ position: 'bottomright' }).addTo(map)
     return map
   }
 
@@ -132,19 +150,117 @@ class PlansMap extends React.Component {
     })
   }
 
-  componentDidMount () {
-    this.map = this.createMap()
-    this.addBackgroundMap(this.map)
-    this.addDistrictLayers(this.map)
-    this.cluster = L.markerClusterGroup({
-      showCoverageOnHover: false
+  displayResults (geojson) {
+    this.setState(
+      { 'displayResults': true,
+        'searchResults': geojson.features }
+    )
+  }
+
+  displayErrorMessage () {
+    this.setState(
+      { 'displayError': true }
+    )
+    setTimeout(function () {
+      this.setState(
+        { 'displayError': false })
+    }.bind(this), 2000)
+  }
+
+  displayAdressMarker (geojson) {
+    if (this.state.address) {
+      this.map.removeLayer(this.state.address)
+    }
+    let addressMarker = L.geoJSON(geojson, {
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, { icon: addressIcon })
+      }
     }).addTo(this.map)
-    this.markers = this.addMarkers(this.cluster)
+    this.map.flyToBounds(addressMarker.getBounds(), { 'maxZoom': 13 })
+    this.setState(
+      { 'address': addressMarker }
+    )
+  }
+
+  onAddressSearchSubmit (event) {
+    event.preventDefault()
+    let address = event.target.search.value
+    $.ajax(apiUrl, {
+      data: { address: address },
+      context: this,
+      success: function (geojson) {
+        let count = geojson.count
+        if (count === 0) {
+          this.displayErrorMessage()
+        } else if (count === 1) {
+          this.displayAdressMarker(geojson)
+        } else {
+          this.displayResults(geojson)
+        }
+      }
+    })
+  }
+
+  onAddressSearchChange (event) {
+    if (event.target.value === '' && this.state.address) {
+      this.map.removeLayer(this.state.address)
+      this.setState({
+        'address': null
+      })
+    }
+  }
+
+  selectSearchResult (event) {
+    let index = parseInt(event.target.value, 10)
+    let address = this.state.searchResults[index]
+    this.displayAdressMarker(address)
+    this.setState(
+      { 'displayResults': false }
+    )
   }
 
   render () {
     return (
-      <div className="map-list-combined__map" ref={this.bindMap.bind(this)} />
+      <div className="map-list-combined__map" ref={this.bindMap.bind(this)}>
+        <div className="map-list-combined__map__search">
+          <form onSubmit={this.onAddressSearchSubmit.bind(this)} data-embed-target="ignore" className="input-group form-group">
+            <input
+              onChange={this.onAddressSearchChange.bind(this)}
+              className="input-group__input"
+              name="search"
+              type="search"
+              placeholder={django.gettext('Address Search')} />
+            <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Search')}>
+              <i className="fa fa-search" aria-label={django.gettext('Search')} />
+            </button>
+
+            {this.state.displayResults &&
+              <ul aria-labelledby="id_filter_address">
+                { this.state.searchResults.map((name, i) => {
+                  return (
+                    <li key={i}>
+                      <button
+                        type="button"
+                        value={i}
+                        onClick={this.selectSearchResult.bind(this)}>
+                        {name.properties.strname} {name.properties.hsnr} in {name.properties.plz} {name.properties.bezirk_name}
+                      </button>
+                    </li>
+                  )
+                })
+                }
+              </ul>
+            }
+
+            {this.state.displayError &&
+              <ul aria-labelledby="id_filter_address" className="map-list-combined__map__search__error">
+                <li>{django.gettext('Nothing to show')}</li>
+              </ul>
+            }
+
+          </form>
+        </div>
+      </div>
     )
   }
 }
