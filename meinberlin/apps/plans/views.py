@@ -105,7 +105,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
     def _get_phase_status(self, project):
         if (project.phases.future_phases() and
-                project.phases.future_phases.first().start_date):
+                project.phases.future_phases().first().start_date):
             date_str = str(
                 project.phases.future_phases().first().start_date.date())
             return (date_str,
