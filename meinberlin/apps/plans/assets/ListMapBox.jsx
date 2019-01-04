@@ -5,7 +5,8 @@ let PlansMap = require('./PlansMap')
 let FilterNav = require('./FilterNav')
 let ListMapSwitch = require('./MapListSwitch')
 
-const breakpoint = 512
+const breakpointXS = 512
+const breakpointMD = 1024
 
 class ListMapBox extends React.Component {
   constructor (props) {
@@ -21,7 +22,7 @@ class ListMapBox extends React.Component {
       selected: null,
       displayError: false,
       displayResults: false,
-      showListMap: window.innerWidth > breakpoint,
+      showListMap: window.innerWidth > breakpointMD,
       resizeMap: false,
       filterChanged: false,
       status: -1,
@@ -94,33 +95,70 @@ class ListMapBox extends React.Component {
     })
   }
 
+  getPlansList (isHorizontal) {
+    return (
+      <PlansList
+        key="content"
+        items={this.state.items}
+        topicChoices={this.props.topicChoices}
+        isHorizontal={isHorizontal}
+      />
+    )
+  }
+
+  getPlansMap () {
+    return (
+      <PlansMap key="content"
+        resize={this.state.resizeMap}
+        items={this.state.items}
+        bounds={this.props.bounds}
+        districts={this.props.districts}
+        baseurl={this.props.baseurl}
+        districtnames={this.props.districtnames}
+      />
+    )
+  }
+
   render () {
     const { width } = this.state
-    const isMobile = width <= breakpoint
+    const isMobile = width <= breakpointXS
+    const isTablet = width <= breakpointMD && width > breakpointXS
 
     if (isMobile) {
       return (
         <div>
           <ListMapSwitch
             toggleSwitch={this.toggleSwitch.bind(this)}
+            isSlider={false}
           />
           {!this.state.showListMap &&
-          <PlansList
-            key="content"
-            items={this.state.items}
-            topicChoices={this.props.topicChoices}
-          />
+            this.getPlansList(false)
           }
           {this.state.showListMap &&
-          <PlansMap key="content"
-            resize={this.state.resizeMap}
-            items={this.state.items}
-            bounds={this.props.bounds}
-            districts={this.props.districts}
-            baseurl={this.props.baseurl}
-            districtnames={this.props.districtnames} />
+            this.getPlansMap()
           }
         </div>)
+    } else if (isTablet) {
+      return (<div>
+        <FilterNav
+          selectDistrict={this.selectDistrict.bind(this)}
+          selectTopic={this.selectTopic.bind(this)}
+          district={this.state.district}
+          districtnames={this.props.districtnames}
+          topic={this.state.topic}
+          topicChoices={this.props.topicChoices}
+        />
+        <ListMapSwitch
+          toggleSwitch={this.toggleSwitch.bind(this)}
+          isSlider={false}
+        />
+        {!this.state.showListMap &&
+          this.getPlansList(false)
+        }
+        {this.state.showListMap &&
+          this.getPlansMap()
+        }
+      </div>)
     } else {
       return (
         <div>
@@ -134,35 +172,22 @@ class ListMapBox extends React.Component {
           />
           <ListMapSwitch
             toggleSwitch={this.toggleSwitch.bind(this)}
+            isSlider
           />
           { this.state.showListMap
             ? <div className="map-list-combined">
               <div id="list" className="list-container map-list-combined__list">
-                <PlansList
-                  key="content"
-                  items={this.state.items}
-                  topicChoices={this.props.topicChoices}
-                />
+                { this.getPlansList(true) }
               </div>
               <div id="map" className="map-container map-list-combined__map">
                 <StickyBox offsetTop={0} offsetBottom={0}>
-                  <PlansMap key="content"
-                    resize={this.state.resizeMap}
-                    items={this.state.items}
-                    bounds={this.props.bounds}
-                    districts={this.props.districts}
-                    baseurl={this.props.baseurl}
-                    districtnames={this.props.districtnames} />
+                  { this.getPlansMap() }
                 </StickyBox>
               </div>
             </div>
             : <div className="map-list-combined">
               <div className="list-container map-list-combined__list">
-                <PlansList
-                  key="content"
-                  items={this.state.items}
-                  topicChoices={this.props.topicChoices}
-                />
+                { this.getPlansList(false) }
               </div>
             </div>
           }
