@@ -7,8 +7,8 @@ class MapListSwitch extends React.Component {
       return (
         <div>
           <div className="u-spacer-left u-spacer-right">
-            <div className="switch-group" role="group" aria-label={django.gettext('Filter bar')}>
-              <div className="switch-label">{django.gettext('Show map')}</div>
+            <div className="switch-group" role="group" aria-labelledby="id-switch-label">
+              <div id="id-switch-label" className="switch-label">{django.gettext('Show map')}</div>
               <div className="switch">
                 <input
                   id="switch-primary"

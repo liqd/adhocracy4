@@ -95,12 +95,13 @@ class ListMapBox extends React.Component {
     })
   }
 
-  getPlansList () {
+  getPlansList (isHorizontal) {
     return (
       <PlansList
         key="content"
         items={this.state.items}
         topicChoices={this.props.topicChoices}
+        isHorizontal={isHorizontal}
       />
     )
   }
@@ -131,7 +132,7 @@ class ListMapBox extends React.Component {
             isSlider={false}
           />
           {!this.state.showListMap &&
-            this.getPlansList()
+            this.getPlansList(false)
           }
           {this.state.showListMap &&
             this.getPlansMap()
@@ -152,7 +153,7 @@ class ListMapBox extends React.Component {
           isSlider={false}
         />
         {!this.state.showListMap &&
-          this.getPlansList()
+          this.getPlansList(false)
         }
         {this.state.showListMap &&
           this.getPlansMap()
@@ -176,7 +177,7 @@ class ListMapBox extends React.Component {
           { this.state.showListMap
             ? <div className="map-list-combined">
               <div id="list" className="list-container map-list-combined__list">
-                { this.getPlansList() }
+                { this.getPlansList(true) }
               </div>
               <div id="map" className="map-container map-list-combined__map">
                 <StickyBox offsetTop={0} offsetBottom={0}>
@@ -186,7 +187,7 @@ class ListMapBox extends React.Component {
             </div>
             : <div className="map-list-combined">
               <div className="list-container map-list-combined__list">
-                { this.getPlansList() }
+                { this.getPlansList(false) }
               </div>
             </div>
           }
