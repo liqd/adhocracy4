@@ -5,11 +5,13 @@ let PlansMap = require('./PlansMap')
 let FilterNav = require('./FilterNav')
 let ListMapSwitch = require('./MapListSwitch')
 
-const breakpoint = 800
+const breakpoint = 512
 
 class ListMapBox extends React.Component {
   constructor (props) {
     super(props)
+
+    this.windowSizeChange = this.handleWindowSizeChange.bind(this)
 
     this.state = {
       width: window.innerWidth,
@@ -30,15 +32,18 @@ class ListMapBox extends React.Component {
   }
 
   handleWindowSizeChange () {
-    this.setState({ width: window.innerWidth })
+    let width = window.innerWidth
+    this.setState({
+      width: width
+    })
   }
 
   componentWillMount () {
-    window.addEventListener('resize', this.handleWindowSizeChange.bind(this))
+    window.addEventListener('resize', this.windowSizeChange)
   }
 
   componentWillUnmount () {
-    window.removeEventListener('resize', this.handleWindowSizeChange.bind(this))
+    window.removeEventListener('resize', this.windowSizeChange)
   }
 
   componentDidMount () {
