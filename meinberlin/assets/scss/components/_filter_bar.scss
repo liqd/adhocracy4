@@ -47,16 +47,11 @@
     }
 }
 
-.filter-bar__btn-primay {
-    margin-left: 2*$r-spacer;
-    font-weight: bold;
-}
-
 .filter-bar__btn-light {
-    margin-left: $r-spacer;
+    margin-left: 2 * $r-spacer;
 }
 
-.filter-bar__options {
+.filter-bar__dropdown-menu {
     margin-top: $spacer;
     box-shadow: 0 0 20px 0 $shadow;
 
@@ -65,7 +60,11 @@
     }
 }
 
-.filter-bar__options__option {
-    flex-grow: 1;
+.filter-bar__options {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter-bar__option {
     width: 33%;
 }

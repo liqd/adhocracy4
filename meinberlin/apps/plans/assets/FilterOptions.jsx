@@ -1,13 +1,13 @@
 /* global django */
 const React = require('react')
 
-class Filteroptions extends React.Component {
+class FilterOptions extends React.Component {
   render () {
     return (
-      <div className="filter-bar__options">
+      <div className="filter-bar__dropdown-menu">
         <h2>{this.props.title}</h2>
-        <div className="u-display-flex u-flex-wrap">
-          <div className="filter-bar__options__option">
+        <div className="filter-bar__options">
+          <div className="filter-bar__option">
             <button
               type="button"
               value="-1"
@@ -18,7 +18,7 @@ class Filteroptions extends React.Component {
           {
             Object.keys(this.props.options).map((key, i) => {
               return (
-                <div key={key} className="filter-bar__options__option">
+                <div key={key} className="filter-bar__option">
                   <button
                     type="button"
                     value={key}
@@ -35,4 +35,4 @@ class Filteroptions extends React.Component {
   }
 }
 
-module.exports = Filteroptions
+module.exports = FilterOptions
