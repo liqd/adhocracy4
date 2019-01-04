@@ -95,6 +95,29 @@ class ListMapBox extends React.Component {
     })
   }
 
+  getPlansList () {
+    return (
+      <PlansList
+        key="content"
+        items={this.state.items}
+        topicChoices={this.props.topicChoices}
+      />
+    )
+  }
+
+  getPlansMap () {
+    return (
+      <PlansMap key="content"
+        resize={this.state.resizeMap}
+        items={this.state.items}
+        bounds={this.props.bounds}
+        districts={this.props.districts}
+        baseurl={this.props.baseurl}
+        districtnames={this.props.districtnames}
+      />
+    )
+  }
+
   render () {
     const { width } = this.state
     const isMobile = width <= breakpointXS
@@ -108,20 +131,10 @@ class ListMapBox extends React.Component {
             isSlider={false}
           />
           {!this.state.showListMap &&
-          <PlansList
-            key="content"
-            items={this.state.items}
-            topicChoices={this.props.topicChoices}
-          />
+            this.getPlansList()
           }
           {this.state.showListMap &&
-          <PlansMap key="content"
-            resize={this.state.resizeMap}
-            items={this.state.items}
-            bounds={this.props.bounds}
-            districts={this.props.districts}
-            baseurl={this.props.baseurl}
-            districtnames={this.props.districtnames} />
+            this.getPlansMap()
           }
         </div>)
     } else if (isTablet) {
@@ -139,20 +152,10 @@ class ListMapBox extends React.Component {
           isSlider={false}
         />
         {!this.state.showListMap &&
-          <PlansList
-            key="content"
-            items={this.state.items}
-            topicChoices={this.props.topicChoices}
-          />
+          this.getPlansList()
         }
         {this.state.showListMap &&
-          <PlansMap key="content"
-            resize={this.state.resizeMap}
-            items={this.state.items}
-            bounds={this.props.bounds}
-            districts={this.props.districts}
-            baseurl={this.props.baseurl}
-            districtnames={this.props.districtnames} />
+          this.getPlansMap()
         }
       </div>)
     } else {
@@ -173,31 +176,17 @@ class ListMapBox extends React.Component {
           { this.state.showListMap
             ? <div className="map-list-combined">
               <div id="list" className="list-container map-list-combined__list">
-                <PlansList
-                  key="content"
-                  items={this.state.items}
-                  topicChoices={this.props.topicChoices}
-                />
+                { this.getPlansList() }
               </div>
               <div id="map" className="map-container map-list-combined__map">
                 <StickyBox offsetTop={0} offsetBottom={0}>
-                  <PlansMap key="content"
-                    resize={this.state.resizeMap}
-                    items={this.state.items}
-                    bounds={this.props.bounds}
-                    districts={this.props.districts}
-                    baseurl={this.props.baseurl}
-                    districtnames={this.props.districtnames} />
+                  { this.getPlansMap() }
                 </StickyBox>
               </div>
             </div>
             : <div className="map-list-combined">
               <div className="list-container map-list-combined__list">
-                <PlansList
-                  key="content"
-                  items={this.state.items}
-                  topicChoices={this.props.topicChoices}
-                />
+                { this.getPlansList() }
               </div>
             </div>
           }
