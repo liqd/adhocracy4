@@ -80,9 +80,10 @@ class ListMapBox extends React.Component {
   }
 
   selectDistrict (district) {
+    var newDistrict = (district === '-1') ? '-1' : this.props.districtnames[district]
     this.setState({
       filterChanged: true,
-      district: district
+      district: newDistrict
     })
   }
 
@@ -104,7 +105,11 @@ class ListMapBox extends React.Component {
             toggleSwitch={this.toggleSwitch.bind(this)}
           />
           {!this.state.showListMap &&
-          <PlansList key="content" items={this.state.items} />
+          <PlansList
+            key="content"
+            items={this.state.items}
+            topicChoices={this.props.topicChoices}
+          />
           }
           {this.state.showListMap &&
           <PlansMap key="content"
@@ -133,7 +138,11 @@ class ListMapBox extends React.Component {
           { this.state.showListMap
             ? <div className="map-list-combined">
               <div id="list" className="list-container map-list-combined__list">
-                <PlansList key="content" items={this.state.items} />
+                <PlansList
+                  key="content"
+                  items={this.state.items}
+                  topicChoices={this.props.topicChoices}
+                />
               </div>
               <div id="map" className="map-container map-list-combined__map">
                 <StickyBox offsetTop={0} offsetBottom={0}>
@@ -149,7 +158,11 @@ class ListMapBox extends React.Component {
             </div>
             : <div className="map-list-combined">
               <div className="list-container map-list-combined__list">
-                <PlansList key="content" items={this.state.items} />
+                <PlansList
+                  key="content"
+                  items={this.state.items}
+                  topicChoices={this.props.topicChoices}
+                />
               </div>
             </div>
           }

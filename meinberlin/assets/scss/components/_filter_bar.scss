@@ -1,6 +1,6 @@
 .filter-bar-spacer {
-    margin-left: $r-spacer;
-    margin-right: $r-spacer;
+    margin-left: 4*$r-spacer;
+    margin-right: 4*$r-spacer;
     margin-bottom: 2*$r-spacer;
 }
 
@@ -47,11 +47,24 @@
     }
 }
 
-.filter-bar__btn-primay {
-    margin-left: 2*$r-spacer;
-    font-weight: bold;
+.filter-bar__btn-light {
+    margin-left: 2 * $r-spacer;
 }
 
-.filter-bar__btn-light {
-    margin-left: $r-spacer;
+.filter-bar__dropdown-menu {
+    margin-top: $spacer;
+    box-shadow: 0 0 20px 0 $shadow;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding: 2*$padding 4*$padding $padding 4*$padding;
+    }
+}
+
+.filter-bar__options {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter-bar__option {
+    width: 33%;
 }
