@@ -1,0 +1,99 @@
+.maplist-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+
+    @media screen and (min-width: $breakpoint-md) {
+        display: block;
+    }
+}
+
+.maplist-item {
+    border: 1px solid $border-color;
+    margin: 0 $r-spacer $r-spacer $r-spacer;
+    width: 100%;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        margin: 0 0 $r-spacer $r-spacer;
+        width: 45%;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin: 0 $r-spacer $r-spacer 4*$r-spacer;
+        width: auto;
+        max-height: 250px;
+    }
+}
+
+.maplist-item__proj {
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: $breakpoint-md) {
+        flex-direction: row;
+    }
+}
+
+.maplist-item__plan {
+    padding: $padding;
+
+    @media screen and (min-width: $breakpoint-md) {
+        padding: 1.5*$padding 2*$padding;
+    }
+}
+
+.maplist-item__img {
+    position: relative;
+    flex-basis: 250px;
+
+    @media screen and (min-width: $breakpoint-md) {
+        height: 250px;
+        min-width: 250px;
+    }
+}
+
+.maplist-item__img-copyright {
+    position: absolute;
+    bottom: 0;
+}
+
+.maplist-item__content {
+    flex: 2 1 auto;
+    padding: $padding;
+
+    @media screen and (min-width: $breakpoint-md) {
+        padding: 1.5*$padding 2*$padding;
+    }
+}
+
+.maplist-item__roofline {
+    font-size: $font-size-sm;
+    color: $gray;
+}
+
+.maplist-item__title {
+    margin-top: 0;
+    color: $brand-secondary;
+}
+
+.maplist-item__description {
+    max-height: 3rem;
+}
+
+.maplist-item__proj-count,
+.maplist-item__status {
+    color: $text-color;
+
+    i {
+        padding-right: $padding;
+        color: $brand-secondary;
+    }
+}
+
+.maplist-item__status--active {
+    color: $gray;
+}
+
+.maplist-item__status--inactive {
+    color: $gray;
+}
