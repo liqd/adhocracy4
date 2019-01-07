@@ -80,11 +80,10 @@ class PlansList extends React.Component {
               }
               <span className="maplist-item__roofline">{item.district}</span>
               <h3 className="maplist-item__title">{item.title}</h3>
-              <div>
+              <div className="maplist-item__stats">
                 <span className="maplist-item__proj-count"><i className="fas fa-th" />{django.gettext('Participation projects: ')}</span>
-                <span className="maplist-item__status--inactive">{item.published_projects_count}</span>
-              </div>
-              <div>
+                <span>{item.published_projects_count}</span>
+                <br />
                 <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: ')}</span>
                 <span className={statusClass}>{item.participation_string }</span>
               </div>

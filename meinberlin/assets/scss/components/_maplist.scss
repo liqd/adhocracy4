@@ -10,6 +10,7 @@
     margin: 0 $r-spacer $r-spacer $r-spacer;
     position: relative;
     width: 30%;
+    min-height: 450px //to be changed
 }
 
 .maplist-item__proj {
@@ -17,10 +18,10 @@
     flex-direction: column;
 }
 
-.maplist-item__proj--horizontal,
-.maplist-item__plan--horizontal {
-    background-color: $brand-primary;
-}
+// .maplist-item__proj--horizontal, //for testing
+// .maplist-item__plan--horizontal {
+//     background-color: $brand-primary;
+// }
 
 .maplist-item__plan {
     padding: $padding;
@@ -49,6 +50,11 @@
 .maplist-item__title {
     margin-top: 0;
     color: $brand-secondary;
+}
+
+.maplist-item__stats {
+    position: absolute;
+    bottom: $padding;
 }
 
 .maplist-item__proj-count,
