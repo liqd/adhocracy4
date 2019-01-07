@@ -19,6 +19,22 @@
     </div>
     <p class="storefront__sm-text">{% if item.project.administrative_district %}{{ item.project.administrative_district }}{% endif %}</p>
     <a href="{% url 'project-detail' item.project.slug %}"><h2 class="storefront__proj-text">{{ item.project.name }}</h2></a>
+    {% if item.project.active_phase %}
+    <div class="status-item status__active">
+        <div class="status-bar__active">
+            <span class="status-bar__active-fill" style= ></span>
+        </div>
+      <span class="maplist-item__status"><i class="fas fa-clock"></i>{% blocktrans with days=item.project.days_left %} {{ days }} days remaining{% endblocktrans %}</span>
+    </div>
+    {% elif item.project.future_phases %}
+    <div class="status-item status__future">
+      <span class="maplist-item__status"><i class="fas fa-clock" ></i>{% blocktrans with date=item.project.future_phases.first.start_date.date %} Participation: from {{ date }} possible{% endblocktrans %}</span>
+    </div>
+    {% elif item.project.past_phases %}
+    <div class="status-item status-bar__past">
+      {% blocktrans %}Participation ended. Read result.{% endblocktrans %}
+    </div>
+    {% endif %}
 </div>
 {% elif item.project and item.quote %}
 <div class="storefront__item storefront__proj-quote tile__md">
