@@ -1,13 +1,6 @@
 /* global django */
 const React = require('react')
 
-var imgStyle = {
-  backgroundImage: `url(https://placeimg.com/500/500/any/grayscale)`,
-  backgroundPosition: 'center',
-  backgroundSize: 'contain',
-  backgroundRepeat: 'no-repeat'
-}
-
 class PlansList extends React.Component {
   bindList (element) {
     this.listElement = element
@@ -17,16 +10,26 @@ class PlansList extends React.Component {
     return { width: item.active_phase[0] + '%' }
   }
 
+  getImage (item) {
+    return {
+      backgroundImage: `url(` + item.tile_image + ')',
+      backgroundPosition: 'center',
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat'
+    }
+  }
+
   renderListItem (item, i) {
     let itemClass = 'maplist-item'
     let statusClass = (item.participation_active === true) ? 'maplist-item__status--active' : 'maplist-item__status--inactive'
     return (
-
       <li className={itemClass} key={i} tabIndex="0">
         <a href={item.url}>
           <div className={item.type === 'project' ? 'maplist-item__proj' : 'd-none'}>
-            <div className="maplist-item__img" style={imgStyle} alt="">
-              <span className="maplist-item__img-copyright copyright">© copyright</span>
+            <div className="maplist-item__img" style={this.getImage(item)} alt="">
+              { item.tile_image_copyright &&
+                <span className="maplist-item__img-copyright copyright">© {item.tile_image_copyright}</span>
+              }
             </div>
 
             <div className="maplist-item__content">

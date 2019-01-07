@@ -9,6 +9,7 @@ from django.utils import timezone
 from django.utils.translation import ugettext
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
+from easy_thumbnails.files import get_thumbnailer
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.exports import mixins as export_mixins
@@ -198,12 +199,18 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 participation_display = _('Yes')
                 future_phase, active_phase, past_phase = \
                     self._get_phase_status(item)
+                image_url = ''
+                if item.tile_image:
+                    image = get_thumbnailer(item.tile_image)['project_tile']
+                    image_url = image.url
 
                 result.append({
                     'type': 'project',
                     'title': item.name,
                     'url': item.get_absolute_url(),
                     'organisation': item.organisation.name,
+                    'tile_image': image_url,
+                    'tile_image_copyright': item.tile_image_copyright,
                     'point': point,
                     'point_label': point_label,
                     'cost': cost,
