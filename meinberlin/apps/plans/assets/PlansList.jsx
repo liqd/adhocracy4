@@ -14,7 +14,7 @@ class PlansList extends React.Component {
     return {
       backgroundImage: `url(` + item.tile_image + ')',
       backgroundPosition: 'center',
-      backgroundSize: 'contain',
+      backgroundSize: 'conver',
       backgroundRepeat: 'no-repeat'
     }
   }
@@ -26,13 +26,14 @@ class PlansList extends React.Component {
       <li className={itemClass} key={i} tabIndex="0">
         <a href={item.url}>
           {item.type === 'project' &&
-            <div className="maplist-item__proj">
+            <div className={this.props.isHorizontal ? 'maplist-item__proj maplist-item__proj--horizontal' : 'maplist-item__proj maplist-item__proj--vertical'}>
+              {item.tile_image &&
               <div className="maplist-item__img" style={this.getImage(item)} alt="">
                 { item.tile_image_copyright &&
                   <span className="maplist-item__img-copyright copyright">© {item.tile_image_copyright}</span>
                 }
               </div>
-
+              }
               <div className="maplist-item__content">
                 <div className={item.topic ? 'maplist-item__labels u-spacer-bottom' : 'd-none'}>
                   <span className="label label--secondary">{this.props.topicChoices[item.topic]}</span>
@@ -43,29 +44,40 @@ class PlansList extends React.Component {
                   <span>{item.description}</span>
                 </div>
                 {item.future_phase &&
-                <div className="status-item status__future">
-                  <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ')}{item.future_phase}{django.gettext(' possible')}</span>
+                <div>
+                  <div className="status-item status__future">
+                    <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ')}{item.future_phase}{django.gettext(' possible')}</span>
+                  </div>
+                  <div className="status-item_spacer" />
                 </div>
                 }
                 {item.active_phase &&
-                <div className="status-item status__active">
-                  <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
-                  <span className="maplist-item__status"><i className="fas fa-clock" />{item.active_phase[1]}{django.gettext(' days remaining')}</span>
-                </div>
+                  <div>
+                    <div className="status-item status__active">
+                      <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
+                      <span className="maplist-item__status"><i className="fas fa-clock" />{item.active_phase[1]}{django.gettext(' days remaining')}</span>
+                    </div>
+                    <div className="status-item_spacer" />
+                  </div>
                 }
                 {item.past_phase &&
-                <div className="status-item status-bar__past">
-                  {django.gettext('Participation ended. Read result.')}
+                <div>
+                  <div className="status-item status-bar__past">
+                    {django.gettext('Participation ended. Read result.')}
+                  </div>
+                  <div className="status-item_spacer" />
                 </div>
                 }
               </div>
             </div>
           }
           {item.type === 'plan' &&
-            <div className="maplist-item__plan">
+            <div className={this.props.isHorizontal ? 'maplist-item__plan maplist-item__plan--horizontal' : 'maplist-item__plan maplist-item__plan'}>
+              {item.theme &&
               <div className="maplist-item__labels u-spacer-bottom">
                 <span className="label label--secondary">{item.theme}</span>
               </div>
+              }
               <span className="maplist-item__roofline">{item.district}</span>
               <h3 className="maplist-item__title">{item.title}</h3>
               <div>

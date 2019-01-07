@@ -174,23 +174,25 @@ class ListMapBox extends React.Component {
             toggleSwitch={this.toggleSwitch.bind(this)}
             isSlider
           />
-          { this.state.showListMap
-            ? <div className="map-list-combined">
-              <div id="list" className="list-container map-list-combined__list">
-                { this.getPlansList(true) }
+          <div className="l-wrapper">
+            { this.state.showListMap
+              ? <div className="map-list-combined">
+                <div id="list" className="list-container map-list-combined__list">
+                  { this.getPlansList(true) }
+                </div>
+                <div id="map" className="map-container map-list-combined__map">
+                  <StickyBox offsetTop={0} offsetBottom={0}>
+                    { this.getPlansMap() }
+                  </StickyBox>
+                </div>
               </div>
-              <div id="map" className="map-container map-list-combined__map">
-                <StickyBox offsetTop={0} offsetBottom={0}>
-                  { this.getPlansMap() }
-                </StickyBox>
+              : <div className="map-list-combined">
+                <div className="list-container map-list-combined__list">
+                  { this.getPlansList(false) }
+                </div>
               </div>
-            </div>
-            : <div className="map-list-combined">
-              <div className="list-container map-list-combined__list">
-                { this.getPlansList(false) }
-              </div>
-            </div>
-          }
+            }
+          </div>
         </div>)
     }
   }
