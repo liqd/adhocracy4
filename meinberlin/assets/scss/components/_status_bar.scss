@@ -1,12 +1,16 @@
 .status-item {
-    margin-top: 2*$r-spacer;
+    position: absolute;
+    bottom: 2*$padding;
+    right: 2*$padding;
+    left: 2*$padding;
+    text-align: left;
 }
 
 .status-bar__active {
     position: relative;
     height: 5px;
     background-color: $bg-tertiary;
-    margin-bottom: $r-spacer;
+    margin-bottom: 0.5*$r-spacer;
 }
 
 .status-bar__active-fill {
@@ -22,4 +26,13 @@
     background-color: $brand-secondary;
     color: contrast-color($brand-secondary);
     text-align: center;
+}
+
+.status-bar__status {
+    color: $text-color;
+
+    i {
+        padding-right: 0.5*$padding;
+        color: $brand-secondary;
+    }
 }
