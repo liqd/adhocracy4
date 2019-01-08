@@ -266,6 +266,21 @@ class Project(ProjectContactDetailMixin,
             return time_delta.days
         return None
 
+    @property
+    def active_phase_progress(self):
+        """
+        Return the progress of the currently active phase in percent.
+
+        Attention: This method is _deprecated_ as multiple phases may be
+        active at the same time.
+        """
+        active_phase = self.active_phase
+        if active_phase:
+            time_gone = timezone.now() - active_phase.start_date
+            total_time = active_phase.end_date - active_phase.start_date
+            return round(time_gone / total_time * 100)
+        return None
+
     @cached_property
     def phases(self):
         from adhocracy4.phases import models as phase_models
