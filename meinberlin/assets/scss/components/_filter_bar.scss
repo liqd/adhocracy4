@@ -68,3 +68,55 @@
 .filter-bar__option {
     width: 33%;
 }
+
+.filter-bar__stacked {
+    padding-top: $spacer;
+    padding-bottom: $spacer;
+    margin-bottom: $spacer;
+    background-color: $brand-secondary;
+    color: $white;
+}
+
+.filter_bar__accordion {
+    border: none;
+    background-color: $brand-secondary;
+    color: $white;
+    border-radius: 0;
+    margin-bottom: 0;
+
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+        color: $white;
+    }
+
+    i {
+        color: $white;
+    }
+
+    ul {
+        list-style: none;
+    }
+}
+
+.filter_bar__accordion__unselected {
+    h2 {
+        border-bottom: 1px dotted $white;
+        font-weight: normal;
+        font-style: italic;
+    }
+}
+
+.filter_bar__accordion__selected {
+    h2 {
+        border: 1px solid white;
+        padding: 0.5*$spacer;
+    }
+
+    i {
+        position: absolute;
+        right: 2rem;
+        top: 1.5rem;
+    }
+}
