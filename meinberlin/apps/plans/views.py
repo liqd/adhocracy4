@@ -105,18 +105,18 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             return 3, ugettext('Done')
 
     def _get_phase_status(self, project):
-        if (project.phases.future_phases() and
-                project.phases.future_phases().first().start_date):
+        if (project.future_phases and
+                project.future_phases.first().start_date):
             date_str = str(
-                project.phases.future_phases().first().start_date.date())
+                project.future_phases.first().start_date.date())
             return (date_str,
                     False,
                     False)
-        elif project.phases.active_phases():
-            days_total = 10
-            days_left = 3
+        elif project.active_phase:
+            progress = project.active_phase_progress
+            days_left = project.days_left
             return (False,
-                    [days_total, days_left],
+                    [progress, days_left],
                     False)
         elif project.phases.past_phases():
             return (False,
