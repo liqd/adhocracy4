@@ -127,6 +127,15 @@ class ListMapBox extends React.Component {
     if (isMobile) {
       return (
         <div>
+          <FilterNav
+            selectDistrict={this.selectDistrict.bind(this)}
+            selectTopic={this.selectTopic.bind(this)}
+            district={this.state.district}
+            districtnames={this.props.districtnames}
+            topic={this.state.topic}
+            topicChoices={this.props.topicChoices}
+            isStacked
+          />
           <ListMapSwitch
             toggleSwitch={this.toggleSwitch.bind(this)}
             isSlider={false}
@@ -147,6 +156,7 @@ class ListMapBox extends React.Component {
           districtnames={this.props.districtnames}
           topic={this.state.topic}
           topicChoices={this.props.topicChoices}
+          isStacked={false}
         />
         <ListMapSwitch
           toggleSwitch={this.toggleSwitch.bind(this)}
@@ -169,6 +179,7 @@ class ListMapBox extends React.Component {
             districtnames={this.props.districtnames}
             topic={this.state.topic}
             topicChoices={this.props.topicChoices}
+            isStacked={false}
           />
           <ListMapSwitch
             toggleSwitch={this.toggleSwitch.bind(this)}
