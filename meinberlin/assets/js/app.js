@@ -44,7 +44,10 @@ var initialiseWidget = function (namespace, name, fn) {
 }
 
 var init = function () {
-  new Shariff($('.shariff'))
+  new Shariff($('.shariff'), {
+    services: '[&quot;twitter&quot;,&quot;facebook&quot;,&quot;info&quot;]',
+    infoUrl: 'https://www.berlin.de/wir-ueber-uns/agb/datenschutz/3990064-4219234-socialmediabuttons-mit-datenschutz-shari.html'
+  })
 
   if ($.fn.select2) {
     $('.js-select2').select2()
