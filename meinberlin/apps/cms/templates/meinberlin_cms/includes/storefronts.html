@@ -20,24 +20,24 @@
     <p class="storefront__sm-text">{% if item.project.administrative_district %}{{ item.project.administrative_district }}{% endif %}</p>
     <a href="{% url 'project-detail' item.project.slug %}"><h2 class="storefront__proj-text">{{ item.project.name }}</h2></a>
     {% if item.project.active_phase %}
-    <div class="status-item status__active">
+    <div class="status-item__position-storefront status__active">
         <div class="status-bar__active">
-            <span class="status-bar__active-fill" style="width:{{item.project.days_left}}px"></span>
+            <span class="status-bar__active-fill" style="width:{{ item.project.active_phase_progress }}%"></span>
         </div>
         {% if item.project.days_left > 3 %}
-        <span class="status-bar__status"><i class="fas fa-clock"></i>{% blocktrans with days=item.project.days_left %} {{ days }} days remaining{% endblocktrans %}</span>
+        <span class="status-bar__status"><i class="fas fa-clock"></i>{% blocktrans count days=item.project.days_left %} {{ days }} more day {% plural %} {{ days }} more days{% endblocktrans %}</span>
         {% else %}
-        <span class="status-bar__status"><i class="fas fa-clock"></i>{% blocktrans count  days=item.project.days_left %} {{ days }} more day {% plural %} more days{% endblocktrans %}</span>
+        <span class="status-bar__status"><i class="fas fa-clock"></i>{% blocktrans count days=item.project.days_left %} {{ days }} more day {% plural %} more days{% endblocktrans %}</span>
         {% endif %}
     </div>
 
     {% elif item.project.future_phases %}
-    <div class="status-item status__future">
+    <div class="status-item__position-storefront status__future">
       <span class="status-bar__status"><i class="fas fa-clock" ></i>{% blocktrans with date=item.project.future_phases.first.start_date.date|date:"d.m.Y" %} Participation: from {{ date }} possible{% endblocktrans %}</span>
     </div>
 
     {% elif item.project.past_phases %}
-    <div class="status-item status-bar__past">
+    <div class="status-item__position-storefront status-bar__past">
       {% blocktrans %}Participation ended. Read result.{% endblocktrans %}
     </div>
     {% endif %}

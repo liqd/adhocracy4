@@ -1,4 +1,8 @@
 .status-item {
+    margin-top: 2*$r-spacer;
+}
+
+.status-item__position-storefront {
     position: absolute;
     bottom: 2*$padding;
     right: 2*$padding;
