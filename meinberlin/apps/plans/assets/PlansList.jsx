@@ -20,8 +20,8 @@ class PlansList extends React.Component {
   }
 
   getText (item) {
-    if (item.length > 100) {
-      return item.substr(0, 100) + '...'
+    if (item.length > 150) {
+      return item.substr(0, 150) + '...'
     } else {
       return item
     }
