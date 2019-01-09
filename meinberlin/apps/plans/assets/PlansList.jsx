@@ -42,9 +42,11 @@ class PlansList extends React.Component {
               </div>
               }
               <div className="maplist-item__content">
-                <div className={item.topic ? 'maplist-item__labels u-spacer-bottom' : 'd-none'}>
-                  <span className="label label--secondary">{this.props.topicChoices[item.topic]}</span>
+                {item.topic &&
+                <div className={item.tile_image ? 'malist-item__label-nospacer' : 'maplist-item__label-spacer'}>
+                  <span className="label label--secondary maplist-item__label">{this.props.topicChoices[item.topic]}</span>
                 </div>
+                }
                 <span className="maplist-item__roofline">{item.district}</span>
                 <h3 className="maplist-item__title">{item.title}</h3>
                 <div className="maplist-item__description">
@@ -81,7 +83,7 @@ class PlansList extends React.Component {
           {item.type === 'plan' &&
             <div className="maplist-item__plan">
               {item.theme &&
-              <div className="maplist-item__labels u-spacer-bottom">
+              <div className="maplist-item__labels u-spacer-bottom-half">
                 <span className="label label--secondary">{item.theme}</span>
               </div>
               }

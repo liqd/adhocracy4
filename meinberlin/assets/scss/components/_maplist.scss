@@ -75,6 +75,15 @@
         flex-direction: column;
     }
 
+    .maplist-item__label-spacer {
+        margin-bottom: 1.5*$r-spacer;
+    }
+
+    .maplist-item__label {
+        position: absolute;
+        top: $r-spacer;
+    }
+
     @media screen and (min-width: $breakpoint-xs) {
         width: 45%;
     }
