@@ -14,14 +14,13 @@ class PlansList extends React.Component {
     return {
       backgroundImage: `url(` + item.tile_image + ')',
       backgroundPosition: 'center',
-      backgroundSize: 'conver',
       backgroundRepeat: 'no-repeat'
     }
   }
 
   getText (item) {
-    if (item.length > 150) {
-      return item.substr(0, 150) + '...'
+    if (item.length > 100) {
+      return item.substr(0, 100) + '...'
     } else {
       return item
     }

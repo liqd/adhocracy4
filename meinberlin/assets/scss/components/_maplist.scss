@@ -2,17 +2,17 @@
     max-width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .maplist-item__vertical,
 .maplist-item__horizontal {
     border: 1px solid $border-color;
     position: relative;
-    width: 100%;
-    margin: 0 $r-spacer $r-spacer $r-spacer;
 }
 
-.maplist-item__plan {
+.maplist-item__plan,
+.maplist-item__content {
     padding: $padding;
 }
 
@@ -28,10 +28,6 @@
 .maplist-item__img-copyright {
     position: absolute;
     bottom: 0;
-}
-
-.maplist-item__content {
-    padding: $padding;
 }
 
 .maplist-item__roofline {
@@ -67,15 +63,18 @@
     color: $gray;
 }
 
-//vertical tile structure
+// vertical tile structure
 .maplist-item__vertical {
+    width: 100%;
+    margin: $r-spacer;
+    flex-grow: 1 0 100%;
     min-height: 250px;
 
-    .maplist-item__proj {
+    .maplist-item__proj { // for image
         flex-direction: column;
     }
 
-    .maplist-item__label-spacer {
+    .maplist-item__label-spacer { // stop overlap
         margin-bottom: 1.5*$r-spacer;
     }
 
@@ -85,21 +84,34 @@
     }
 
     @media screen and (min-width: $breakpoint-xs) {
-        width: 45%;
+        flex-basis: auto;
+        flex-grow: 1;
+        max-width: calc(100% * (1 / 2) - 2rem - 1px);
     }
 
     @media screen and (min-width: $breakpoint-md) {
-        width: 30%;
+        flex-basis: auto;
+        flex-grow: 1;
+        max-width: calc(100% * (1 / 3) - 2rem - 1px);
     }
 }
 
-//horizontal tile structure
+// horizontal tile structure
 .maplist-item__horizontal {
-    .maplist-item__proj {
+    width: 600px;
+    margin: 0 $r-spacer $r-spacer $r-spacer;
+
+    .maplist-item__proj,
+    .maplist-item__plan { // statusbar position
+        height: 250px;
+    }
+
+    .maplist-item__proj { // image
         flex-direction: row;
     }
 
-    .maplist-item__content {
+    .maplist-item__content { // for status bar flex for image
+        height: inherit;
         position: relative;
         flex: 1;
     }
