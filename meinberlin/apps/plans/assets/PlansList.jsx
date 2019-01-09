@@ -19,14 +19,22 @@ class PlansList extends React.Component {
     }
   }
 
+  getText (item) {
+    if (item.length > 100) {
+      return item.substr(0, 100) + '...'
+    } else {
+      return item
+    }
+  }
+
   renderListItem (item, i) {
     let itemClass = 'maplist-item'
-    let statusClass = (item.participation_active === true) ? 'maplist-item__status--active' : 'maplist-item__status--inactive'
+    let statusClass = (item.participation_active === true) ? 'maplist-item__status-active' : 'maplist-item__status-inactive'
     return (
       <li className={itemClass} key={i} tabIndex="0">
         <a href={item.url}>
           {item.type === 'project' &&
-            <div className={this.props.isHorizontal ? 'maplist-item__proj maplist-item__proj--horizontal' : 'maplist-item__proj maplist-item__proj--vertical'}>
+            <div className={this.props.isHorizontal ? 'maplist-item__proj maplist-item__proj-horizontal' : 'maplist-item__proj maplist-item__proj-vertical'}>
               {item.tile_image &&
               <div className="maplist-item__img" style={this.getImage(item)} alt="">
                 { item.tile_image_copyright &&
@@ -41,7 +49,7 @@ class PlansList extends React.Component {
                 <span className="maplist-item__roofline">{item.district}</span>
                 <h3 className="maplist-item__title">{item.title}</h3>
                 <div className="maplist-item__description">
-                  <span>{item.description}</span>
+                  <span>{this.getText(item.description)}</span>
                 </div>
                 {item.future_phase &&
                 <div>
@@ -72,7 +80,7 @@ class PlansList extends React.Component {
             </div>
           }
           {item.type === 'plan' &&
-            <div className={this.props.isHorizontal ? 'maplist-item__plan maplist-item__plan--horizontal' : 'maplist-item__plan maplist-item__plan'}>
+            <div className={this.props.isHorizontal ? 'maplist-item__plan maplist-item__plan-horizontal' : 'maplist-item__plan maplist-item__plan'}>
               {item.theme &&
               <div className="maplist-item__labels u-spacer-bottom">
                 <span className="label label--secondary">{item.theme}</span>

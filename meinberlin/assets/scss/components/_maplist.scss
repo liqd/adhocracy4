@@ -10,20 +10,31 @@
     margin: $r-spacer;
     position: relative;
     width: 100%;
-    max-height: 350px; //to be changed
+    min-height: 250px; //to be changed?
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-xs) {
+        width: 45%;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
         width: 30%;
     }
 }
 
+// .maplist-item__proj-vertical,
+// .maplist-item__plan-vertical {
+//     min-width: 100%;
+//     min-height: 250px; //to be changed?
+//
+//
+// }
 .maplist-item__proj {
-    display: flex;
+    display: flex; //for image
     flex-direction: column;
 }
 
-.maplist-item__proj--horizontal, //for testing
-.maplist-item__plan--horizontal {
+.maplist-item__proj-horizontal, //for testing
+.maplist-item__plan-horizontal {
     background-color: $brand-primary;
 }
 
@@ -71,7 +82,7 @@
     }
 }
 
-.maplist-item__status--active {
+.maplist-item__status-active {
     color: $brand-primary;
 }
 
