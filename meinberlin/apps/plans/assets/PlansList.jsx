@@ -28,13 +28,12 @@ class PlansList extends React.Component {
   }
 
   renderListItem (item, i) {
-    let itemClass = 'maplist-item'
     let statusClass = (item.participation_active === true) ? 'maplist-item__status-active' : 'maplist-item__status-inactive'
     return (
-      <li className={itemClass} key={i} tabIndex="0">
+      <li className={this.props.isHorizontal ? 'maplist-item__horizontal' : 'maplist-item__vertical'} key={i} tabIndex="0">
         <a href={item.url}>
           {item.type === 'project' &&
-            <div className={this.props.isHorizontal ? 'maplist-item__proj maplist-item__proj-horizontal' : 'maplist-item__proj maplist-item__proj-vertical'}>
+            <div className="maplist-item__proj">
               {item.tile_image &&
               <div className="maplist-item__img" style={this.getImage(item)} alt="">
                 { item.tile_image_copyright &&
@@ -80,7 +79,7 @@ class PlansList extends React.Component {
             </div>
           }
           {item.type === 'plan' &&
-            <div className={this.props.isHorizontal ? 'maplist-item__plan maplist-item__plan-horizontal' : 'maplist-item__plan maplist-item__plan'}>
+            <div className="maplist-item__plan">
               {item.theme &&
               <div className="maplist-item__labels u-spacer-bottom">
                 <span className="label label--secondary">{item.theme}</span>
@@ -95,6 +94,7 @@ class PlansList extends React.Component {
                 <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: ')}</span>
                 <span className={statusClass}>{item.participation_string }</span>
               </div>
+              <div className="status-item_spacer" />
             </div>
           }
         </a>

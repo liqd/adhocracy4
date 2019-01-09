@@ -1,60 +1,29 @@
 .maplist-list {
     max-width: 100%;
-
     display: flex;
     flex-wrap: wrap;
 }
 
-.maplist-item {
+.maplist-item__vertical,
+.maplist-item__horizontal {
     border: 1px solid $border-color;
-    margin: $r-spacer;
     position: relative;
     width: 100%;
-    min-height: 250px; //to be changed?
-
-    @media screen and (min-width: $breakpoint-xs) {
-        width: 45%;
-    }
-
-    @media screen and (min-width: $breakpoint-md) {
-        width: 30%;
-    }
+    margin: $r-spacer;
 }
 
-// .maplist-item__proj-vertical,
-// .maplist-item__plan-vertical {
-//     min-width: 100%;
-//     min-height: 250px; //to be changed?
-//
-//
-// }
-.maplist-item__proj {
-    display: flex; //for image
-    flex-direction: column;
-}
-
-.maplist-item__proj-horizontal, //for testing
-.maplist-item__plan-horizontal {
-    background-color: $brand-primary;
-}
-
-.maplist-item__plan {
+.maplist-item__plan,
+.maplist-item__content {
     padding: $padding;
 }
 
 .maplist-item__img {
     position: relative;
-    flex-basis: 250px;
 }
 
 .maplist-item__img-copyright {
     position: absolute;
     bottom: 0;
-}
-
-.maplist-item__content {
-    // flex: 2 1 auto;
-    padding: $padding;
 }
 
 .maplist-item__roofline {
@@ -86,6 +55,33 @@
     color: $brand-primary;
 }
 
-.maplist-item__status--inactive {
+.maplist-item__status-inactive {
     color: $gray;
+}
+
+.maplist-item__vertical {
+    min-height: 250px; //to be changed?
+
+    .maplist-item__proj {
+        display: flex; //for image
+        flex-direction: column;
+    }
+
+    @media screen and (min-width: $breakpoint-xs) {
+        width: 45%;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        width: 30%;
+    }
+}
+
+.maplist-item__horizontal {
+    .maplist-item__img {
+        flex-basis: 250px;
+    }
+
+    .maplist-item__content {
+        flex: 2 1 auto;
+    }
 }
