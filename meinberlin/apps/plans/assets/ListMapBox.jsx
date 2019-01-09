@@ -127,15 +127,6 @@ class ListMapBox extends React.Component {
     if (isMobile) {
       return (
         <div>
-          <FilterNav
-            selectDistrict={this.selectDistrict.bind(this)}
-            selectTopic={this.selectTopic.bind(this)}
-            district={this.state.district}
-            districtnames={this.props.districtnames}
-            topic={this.state.topic}
-            topicChoices={this.props.topicChoices}
-            isStacked
-          />
           <ListMapSwitch
             toggleSwitch={this.toggleSwitch.bind(this)}
             isSlider={false}
@@ -156,7 +147,6 @@ class ListMapBox extends React.Component {
           districtnames={this.props.districtnames}
           topic={this.state.topic}
           topicChoices={this.props.topicChoices}
-          isStacked={false}
         />
         <ListMapSwitch
           toggleSwitch={this.toggleSwitch.bind(this)}
@@ -179,31 +169,30 @@ class ListMapBox extends React.Component {
             districtnames={this.props.districtnames}
             topic={this.state.topic}
             topicChoices={this.props.topicChoices}
-            isStacked={false}
           />
           <ListMapSwitch
             toggleSwitch={this.toggleSwitch.bind(this)}
             isSlider
           />
-          <div className="l-wrapper">
-            { this.state.showListMap
-              ? <div className="map-list-combined">
-                <div id="list" className="list-container map-list-combined__list">
-                  { this.getPlansList(true) }
-                </div>
-                <div id="map" className="map-container map-list-combined__map">
-                  <StickyBox offsetTop={0} offsetBottom={0}>
-                    { this.getPlansMap() }
-                  </StickyBox>
-                </div>
+          { this.state.showListMap
+            ? <div className="map-list-combined">
+              <div id="list" className="list-container map-list-combined__list">
+                { this.getPlansList(true) }
               </div>
-              : <div className="map-list-combined">
+              <div id="map" className="map-container map-list-combined__map">
+                <StickyBox offsetTop={0} offsetBottom={0}>
+                  { this.getPlansMap() }
+                </StickyBox>
+              </div>
+            </div>
+            : <div className="l-wrapper">
+              <div className="map-list-combined">
                 <div className="list-container map-list-combined__list">
                   { this.getPlansList(false) }
                 </div>
               </div>
-            }
-          </div>
+            </div>
+          }
         </div>)
     }
   }

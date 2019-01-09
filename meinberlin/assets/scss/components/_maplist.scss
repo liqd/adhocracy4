@@ -7,10 +7,14 @@
 
 .maplist-item {
     border: 1px solid $border-color;
-    margin: 0 $r-spacer $r-spacer $r-spacer;
+    margin: $r-spacer;
     position: relative;
-    width: 30%;
-    min-height: 450px //to be changed
+    width: 100%;
+    max-height: 350px; //to be changed
+
+    @media screen and (min-width: $breakpoint) {
+        width: 30%;
+    }
 }
 
 .maplist-item__proj {
@@ -18,10 +22,10 @@
     flex-direction: column;
 }
 
-// .maplist-item__proj--horizontal, //for testing
-// .maplist-item__plan--horizontal {
-//     background-color: $brand-primary;
-// }
+.maplist-item__proj--horizontal, //for testing
+.maplist-item__plan--horizontal {
+    background-color: $brand-primary;
+}
 
 .maplist-item__plan {
     padding: $padding;
