@@ -26,27 +26,21 @@ class FilterAccordeon extends React.Component {
 
   render () {
     return (
-      <div className="accordion filter_bar__accordion">
-        { this.state.selected &&
-          <a id={'accordion-' + this.props.identifier + '-title'}
+      <div className="">
+        { this.state.selected
+          ? <a id={'accordion-' + this.props.identifier + '-title'}
             href={'#accordion-' + this.props.identifier + '-body'}
-            className="accordion__title collapsed filter_bar__accordion__selected"
+            className="collapsed btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
             aria-haspopup="true" aria-expanded="false" data-toggle="collapse">
-            <h2>
-              {this.props.title}
-              <i className="fa fa-times" aria-hidden="true" />
-            </h2>
+            {this.props.title}
+            <i className="fa fa-times" aria-hidden="true" />
           </a>
-        }
-        { !this.state.selected &&
-          <a id={'accordion-' + this.props.identifier + '-title'}
+          : <a id={'accordion-' + this.props.identifier + '-title'}
             href={'#accordion-' + this.props.identifier + '-body'}
-            className="accordion__title collapsed filter_bar__accordion__unselected"
+            className="collapsed btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
             aria-haspopup="true" aria-expanded="false" data-toggle="collapse">
-            <h2>
-              {this.props.titlePrefix}: {this.props.title}
-              <i className="fa fa-chevron-down" aria-hidden="true" />
-            </h2>
+            {this.props.titlePrefix}: {this.props.title}
+            <i className="fa fa-chevron-down" aria-hidden="true" />
           </a>
         }
         <div className="accordion__body collapse"
