@@ -9,21 +9,24 @@ class FilterNav extends React.Component {
 
     this.state = {
       displayDistrictOptions: false,
-      displayTopicOptions: false
+      displayTopicOptions: false,
+      isOpen: ''
     }
   }
 
   showDistrictOptions () {
     this.setState({
       displayTopicOptions: false,
-      displayDistrictOptions: !this.state.displayDistrictOptions
+      displayDistrictOptions: !this.state.displayDistrictOptions,
+      isOpen: 'filter-bar--open'
     })
   }
 
   showTopicOptions () {
     this.setState({
       displayDistrictOptions: false,
-      displayTopicOptions: !this.state.displayTopicOptions
+      displayTopicOptions: !this.state.displayTopicOptions,
+      isOpen: 'filter-bar--open'
     })
   }
 
@@ -31,7 +34,8 @@ class FilterNav extends React.Component {
     let district = event.currentTarget.value
     this.props.selectDistrict(district)
     this.setState({
-      displayDistrictOptions: false
+      displayDistrictOptions: false,
+      isOpen: ''
     })
   }
 
@@ -39,7 +43,8 @@ class FilterNav extends React.Component {
     let topic = event.currentTarget.value
     this.props.selectTopic(topic)
     this.setState({
-      displayTopicOptions: false
+      displayTopicOptions: false,
+      isOpen: ''
     })
   }
 
@@ -83,7 +88,7 @@ class FilterNav extends React.Component {
     } else {
       return (
         <div className="filter-bar-container">
-          <div className="filter-bar filter-bar--horizontal" role="group" aria-label={django.gettext('Filter bar')}>
+          <div className={this.state.isOpen + 'filter-bar filter-bar--horizontal'} role="group" aria-label={django.gettext('Filter bar')}>
             <span>{django.gettext('I am interested in projects from')}</span>
             <div className="filter-bar__btn-margin">
               {this.props.district === '-1'
@@ -141,14 +146,14 @@ class FilterNav extends React.Component {
           </div>
           { this.state.displayDistrictOptions &&
           <FilterOptions
-            title={django.gettext('Which district are you interested in?')}
+            question={django.gettext('Which district are you interested in?')}
             options={this.props.districtnames}
             onSelect={this.clickDistrict.bind(this)}
           />
           }
           { this.state.displayTopicOptions &&
           <FilterOptions
-            title={django.gettext('Which topic are you interested in?')}
+            question={django.gettext('Which topic are you interested in?')}
             options={this.props.topicChoices}
             onSelect={this.clickTopic.bind(this)}
           />

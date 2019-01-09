@@ -31,7 +31,9 @@ class FilterAccordeon extends React.Component {
           ? <a id={'accordion-' + this.props.identifier + '-title'}
             href={'#accordion-' + this.props.identifier + '-body'}
             className="collapsed btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
-            aria-haspopup="true" aria-expanded="false" data-toggle="collapse">
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-toggle="collapse">
             {this.props.title}
             <i className="fa fa-times" aria-hidden="true" />
           </a>
@@ -43,13 +45,14 @@ class FilterAccordeon extends React.Component {
             <i className="fa fa-chevron-down" aria-hidden="true" />
           </a>
         }
-        <div className="accordion__body collapse"
+        <div className="collapse filter-bar__dropdown-menu"
           id={'accordion-' + this.props.identifier + '-body'}
           aria-labelledby={'accordion-' + this.props.identifier + '-title'}>
-          <h1 className="u-spacer-left u-spacer-right">{this.props.question}</h1>
+          <h2 className="filter-bar__question">{this.props.question}</h2>
           <ul>
             <li>
               <button
+                className="filter-bar__option"
                 type="button"
                 value="-1"
                 onClick={this.unselect.bind(this)}>
@@ -61,6 +64,7 @@ class FilterAccordeon extends React.Component {
                 return (
                   <li key={key}>
                     <button
+                      className="filter-bar__option"
                       type="button"
                       value={key}
                       onClick={this.select.bind(this)}>

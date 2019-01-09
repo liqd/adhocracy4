@@ -11,6 +11,11 @@
     line-height: 2.5;
 }
 
+.filter-bar--open {
+    background-color: $bg-secondary;
+    color: $text-color;
+}
+
 .filter-bar--horizontal {
     display: flex;
     flex-direction: row;
@@ -51,6 +56,7 @@
 .filter-bar__btn--wide {
     display: block;
     text-align: left;
+    margin-top: $r-spacer;
 }
 
 .filter-bar__btn--unselected {
@@ -96,61 +102,40 @@
 }
 
 .filter-bar__dropdown-menu {
-    margin-top: $spacer;
-    box-shadow: 0 0 20px 0 $shadow;
+    background-color: $bg-secondary;
+
+    ul {
+        list-style: none;
+        padding-left: 0;
+    }
 
     @media screen and (min-width: $breakpoint-xs) {
         padding: 2*$padding 4*$padding $padding 4*$padding;
     }
 }
 
-.filter-bar__options {
+.filter-bar__question {
+    font-size: $font-size-xl;
+    color: $text-color;
+}
+
+.filter-bar__option {
+    font-size: $font-size-base;
+    color: $brand-secondary;
+
+    &:focus,
+    &:hover,
+    &:active,
+    &:disabled {
+        color: $brand-primary;
+    }
+}
+
+.filter-bar__options--horizontal {
     display: flex;
     flex-wrap: wrap;
 }
 
-.filter-bar__option {
+.filter-bar__option--horizontal {
     width: 33%;
-}
-
-.filter-bar__accordion {
-    border: none;
-    background-color: $brand-secondary;
-    color: $white;
-
-    a:link,
-    a:visited,
-    a:hover,
-    a:active {
-        color: $white;
-    }
-
-    i {
-        color: $white;
-    }
-
-    ul {
-        list-style: none;
-    }
-}
-
-.filter_bar__accordion__unselected {
-    h2 {
-        border-bottom: 1px dotted $white;
-        font-weight: normal;
-        font-style: italic;
-    }
-}
-
-.filter_bar__accordion__selected {
-    h2 {
-        border: 1px solid white;
-        padding: 0.5*$spacer;
-    }
-
-    i {
-        position: absolute;
-        right: 2rem;
-        top: 1.5rem;
-    }
 }

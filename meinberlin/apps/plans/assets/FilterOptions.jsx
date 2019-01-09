@@ -5,9 +5,9 @@ class FilterOptions extends React.Component {
   render () {
     return (
       <div className="filter-bar__dropdown-menu">
-        <h2>{this.props.title}</h2>
-        <div className="filter-bar__options">
-          <div className="filter-bar__option">
+        <h2 className="filter-bar__question">{this.props.question}</h2>
+        <div className="filter-bar__options--horizontal">
+          <div className="filter-bar__option filter-bar__option--horizontal">
             <button
               type="button"
               value="-1"
@@ -18,7 +18,7 @@ class FilterOptions extends React.Component {
           {
             Object.keys(this.props.options).map((key, i) => {
               return (
-                <div key={key} className="filter-bar__option">
+                <div key={key} className="filter-bar__option filter-bar__option--horizontal">
                   <button
                     type="button"
                     value={key}
