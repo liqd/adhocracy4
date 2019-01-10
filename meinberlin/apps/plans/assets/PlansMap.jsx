@@ -53,6 +53,8 @@ class PlansMap extends React.Component {
       selected: null,
       displayError: false,
       displayResults: false,
+      showInfoBox: true,
+      showInfoBoxUser: true,
       filters: {
         status: -1,
         participation: -1,
@@ -153,17 +155,20 @@ class PlansMap extends React.Component {
   displayResults (geojson) {
     this.setState(
       { 'displayResults': true,
+        'showInfoBox': false,
         'searchResults': geojson.features }
     )
   }
 
   displayErrorMessage () {
     this.setState(
-      { 'displayError': true }
+      { 'displayError': true,
+        'showInfoBox': false }
     )
     setTimeout(function () {
       this.setState(
-        { 'displayError': false })
+        { 'displayError': false,
+          'showInfoBox': this.state.showInfoBoxUser })
     }.bind(this), 2000)
   }
 
@@ -178,7 +183,8 @@ class PlansMap extends React.Component {
     }).addTo(this.map)
     this.map.flyToBounds(addressMarker.getBounds(), { 'maxZoom': 13 })
     this.setState(
-      { 'address': addressMarker }
+      { 'address': addressMarker,
+        'showInfoBox': this.state.showInfoBoxUser }
     )
   }
 
@@ -216,6 +222,13 @@ class PlansMap extends React.Component {
     this.displayAdressMarker(address)
     this.setState(
       { 'displayResults': false }
+    )
+  }
+
+  closeInfoBox () {
+    this.setState(
+      { 'showInfoBox': false,
+        'showInfoBoxUser': false }
     )
   }
 
@@ -260,6 +273,12 @@ class PlansMap extends React.Component {
 
           </form>
         </div>
+        {this.state.showInfoBox &&
+        <div className="map-infobox">
+          <button className="infobox__close" id="close" onClick={this.closeInfoBox.bind(this)}><i className="fa fa-times" /></button>
+          <i className="fa fa-info-circle " /><span>{django.gettext('Not all plans are shown on map, please check list view.')}</span>
+        </div>
+        }
       </div>
     )
   }
