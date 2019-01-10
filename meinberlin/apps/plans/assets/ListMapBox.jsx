@@ -71,7 +71,8 @@ class ListMapBox extends React.Component {
     })
     this.setState({
       items: items,
-      filterChanged: false
+      filterChanged: false,
+      showListMap: window.innerWidth > breakpointMD
     })
   }
 
