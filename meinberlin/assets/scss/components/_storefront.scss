@@ -4,6 +4,7 @@
 
 .tile__md {
     height: 75%;
+    min-height: 200px;
 
     @media screen and (min-width: $breakpoint-xs) {
         height: 50%;
@@ -42,7 +43,6 @@
     flex: 0 1 6rem;
     flex-wrap: wrap;
     position: relative;
-    min-height: 200px;
 
     .list-item__stats {
         font-size: $font-size-sm;
