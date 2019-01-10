@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static %}
 
 {% if item.district %}
 <div class="storefront__item storefront__district tile__md">
@@ -8,6 +9,14 @@
 </div>
 {% elif item.project and not item.quote %}
 <div class="storefront__item storefront__proj tile__md">
+    {% if item.project.days_left < 3 %}
+    <div>
+      <div class="storefront__ending-icon">
+        <img src="{% static 'images/icon_notification@2x.png' %}" alt="" />
+      </div>
+      <div class="storefront__ending-icon-spacer"></div>
+    </div>
+    {% else %}
     <div class="list-item__stats">
         <!-- can't count comments on project level -->
         <!--<span title="Kommentare" class="list-item__comments"><i class="far fa-comment" aria-label="Kommentare"></i>234</span>-->
@@ -17,6 +26,7 @@
         <span class="label label--secondary">{{ item.project.get_topic_display }}</span>
         {% endif %}
     </div>
+    {% endif %}
     <p class="storefront__sm-text">{% if item.project.administrative_district %}{{ item.project.administrative_district }}{% endif %}</p>
     <a href="{% url 'project-detail' item.project.slug %}"><h2 class="storefront__proj-text">{{ item.project.name }}</h2></a>
     {% if item.project.active_phase %}
