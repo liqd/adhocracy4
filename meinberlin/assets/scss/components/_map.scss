@@ -122,6 +122,10 @@
         left: $spacer;
         top: $spacer;
         z-index: 1000;
+
+        .form-group {
+            margin-bottom: 0;
+        }
     }
 
     .map-list-combined__map__search__error {
