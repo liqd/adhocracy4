@@ -42,6 +42,7 @@
     flex: 0 1 6rem;
     flex-wrap: wrap;
     position: relative;
+    min-height: 200px;
 
     .list-item__stats {
         font-size: $font-size-sm;
