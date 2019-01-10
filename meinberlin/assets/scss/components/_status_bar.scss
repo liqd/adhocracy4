@@ -1,13 +1,13 @@
 .status-item {
-    margin-top: 2*$r-spacer;
+    position: absolute;
+    bottom: 1*$padding;
+    right: 1*$padding;
+    left: 1*$padding;
+    text-align: left;
 }
 
-.status-item__position-storefront {
-    position: absolute;
-    bottom: 2*$padding;
-    right: 2*$padding;
-    left: 2*$padding;
-    text-align: left;
+.status-item_spacer {
+    height: 3*$r-spacer;
 }
 
 .status-bar__active {
@@ -30,6 +30,9 @@
     background-color: $brand-secondary;
     color: contrast-color($brand-secondary);
     text-align: center;
+    bottom: 0;
+    right: 0;
+    left: 0;
 }
 
 .status-bar__status {
