@@ -11,11 +11,6 @@
     line-height: 2.5;
 }
 
-.filter-bar--open {
-    background-color: $bg-secondary;
-    color: $text-color;
-}
-
 .filter-bar--horizontal {
     display: flex;
     flex-direction: row;
@@ -29,7 +24,7 @@
     margin-bottom: $r-spacer;
 }
 
-.filter-bar__btn-margin {
+.filter-bar__dropdown {
     margin-left: $r-spacer;
     margin-right: $r-spacer;
 }
@@ -45,12 +40,13 @@
     &:active,
     &:disabled {
         color: $white;
+        border-color: $white;
     }
 }
 
 .filter-bar__btn--truncate {
     @include text-truncate;
-    max-width: 12rem;
+    width: 12rem;
 }
 
 .filter-bar__btn--wide {
@@ -101,7 +97,32 @@
     }
 }
 
-.filter-bar__dropdown-menu {
+.filter-bar--open {
+    background-color: $bg-secondary;
+    color: $text-color;
+
+    .btn {
+        color: $text-color;
+
+        &:focus,
+        &:hover,
+        &:active,
+        &:disabled {
+            color: $text-color;
+            border-color: $text-color;
+        }
+    }
+
+    .filter-bar__btn--unselected {
+        border-bottom: 1px dotted $text-color;
+    }
+
+    .filter-bar__btn--selected {
+        border: 1px solid $text-color;
+    }
+}
+
+.filter-bar__menu {
     background-color: $bg-secondary;
 
     ul {
@@ -112,6 +133,15 @@
     @media screen and (min-width: $breakpoint-xs) {
         padding: 2*$padding 4*$padding $padding 4*$padding;
     }
+}
+
+.filter-bar__dropdown-menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: 4*$r-spacer;
+    margin-right: 4*$r-spacer;
+    z-index: 1;
 }
 
 .filter-bar__question {

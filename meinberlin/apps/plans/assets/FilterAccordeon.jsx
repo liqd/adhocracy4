@@ -12,6 +12,7 @@ class FilterAccordeon extends React.Component {
 
   unselect (e) {
     this.props.onSelect(e)
+    this.props.updateIsExpanded()
     this.setState({
       selected: false
     })
@@ -19,6 +20,7 @@ class FilterAccordeon extends React.Component {
 
   select (e) {
     this.props.onSelect(e)
+    this.props.updateIsExpanded()
     this.setState({
       selected: true
     })
@@ -33,19 +35,21 @@ class FilterAccordeon extends React.Component {
             className="collapsed btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
             aria-haspopup="true"
             aria-expanded="false"
-            data-toggle="collapse">
+            data-toggle="collapse"
+            onClick={this.props.updateIsExpanded}>
             {this.props.title}
             <i className="fa fa-times" aria-hidden="true" />
           </a>
           : <a id={'accordion-' + this.props.identifier + '-title'}
             href={'#accordion-' + this.props.identifier + '-body'}
             className="collapsed btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
-            aria-haspopup="true" aria-expanded="false" data-toggle="collapse">
+            aria-haspopup="true" aria-expanded="false" data-toggle="collapse"
+            onClick={this.props.updateIsExpanded}>
             {this.props.titlePrefix}: {this.props.title}
             <i className="fa fa-chevron-down" aria-hidden="true" />
           </a>
         }
-        <div className="collapse filter-bar__dropdown-menu"
+        <div className="collapse filter-bar__menu"
           id={'accordion-' + this.props.identifier + '-body'}
           aria-labelledby={'accordion-' + this.props.identifier + '-title'}>
           <h2 className="filter-bar__question">{this.props.question}</h2>
