@@ -82,7 +82,7 @@ class Plan(UserGeneratedContentModel):
             'Visualize your plan.'
         ),
     )
-    theme = TopicField()
+    topic = TopicField()
     status = models.SmallIntegerField(choices=STATUS_CHOICES)
     participation = models.SmallIntegerField(
         choices=PARTICIPATION_CHOICES,

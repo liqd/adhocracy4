@@ -1,6 +1,5 @@
 from django import forms
 from django.conf import settings
-from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard.components.forms import ProjectDashboardForm
@@ -8,14 +7,6 @@ from adhocracy4.maps import widgets as maps_widgets
 from adhocracy4.projects import models as project_models
 
 from . import models
-
-
-def get_theme_options():
-    return models.Plan.objects\
-        .filter(~Q(theme=''))\
-        .order_by('theme')\
-        .values_list('theme', flat=True)\
-        .distinct()
 
 
 class PlanForm(forms.ModelForm):
@@ -31,7 +22,7 @@ class PlanForm(forms.ModelForm):
             'district',
             'cost',
             'description',
-            'theme',
+            'topic',
             'status',
             'participation']
         widgets = {
