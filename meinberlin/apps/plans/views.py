@@ -114,9 +114,9 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                     False)
         elif project.active_phase:
             progress = project.active_phase_progress
-            days_left = project.days_left
+            time_left = project.time_left
             return (False,
-                    [progress, days_left],
+                    [progress, time_left],
                     False)
         elif project.phases.past_phases():
             return (False,

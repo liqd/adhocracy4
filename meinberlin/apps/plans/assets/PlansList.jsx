@@ -63,7 +63,7 @@ class PlansList extends React.Component {
                   <div>
                     <div className="status-item status__active">
                       <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
-                      <span className="maplist-item__status"><i className="fas fa-clock" />{item.active_phase[1]}{django.gettext(' days remaining')}</span>
+                      <span className="maplist-item__status"><i className="fas fa-clock" />{item.active_phase[1]} {django.gettext('remaining')}</span>
                     </div>
                     <div className="status-item_spacer" />
                   </div>
