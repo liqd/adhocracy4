@@ -6,7 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.dashboard.components.forms import ProjectDashboardForm
 from adhocracy4.maps import widgets as maps_widgets
 from adhocracy4.projects import models as project_models
-from meinberlin.apps.contrib import widgets as contrib_widgets
 
 from . import models
 
@@ -37,10 +36,7 @@ class PlanForm(forms.ModelForm):
             'participation']
         widgets = {
             'point': maps_widgets.MapChoosePointWidget(
-                polygon=settings.BERLIN_POLYGON),
-            'theme': contrib_widgets.TextWithDatalistWidget(attrs={
-                'options': get_theme_options
-            })
+                polygon=settings.BERLIN_POLYGON)
         }
         error_messages = {
             'point': {
