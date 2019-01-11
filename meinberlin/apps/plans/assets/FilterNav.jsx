@@ -1,6 +1,6 @@
 /* global django */
 var FilterOptions = require('./FilterOptions')
-var FilterAccordeon = require('./FilterAccordeon')
+var FilterButton = require('./FilterButton')
 const React = require('react')
 
 class FilterNav extends React.Component {
@@ -15,7 +15,10 @@ class FilterNav extends React.Component {
   }
 
   showDistrictOptions () {
-    let isExpanded = !!this.state.isExpanded
+    let isExpanded = !this.state.isExpanded
+    if (this.state.displayTopicOptions) {
+      isExpanded = true
+    }
     this.setState({
       displayTopicOptions: false,
       displayDistrictOptions: !this.state.displayDistrictOptions,
@@ -24,7 +27,10 @@ class FilterNav extends React.Component {
   }
 
   showTopicOptions () {
-    let isExpanded = !!this.state.isExpanded
+    let isExpanded = !this.state.isExpanded
+    if (this.state.displayDistrictOptions) {
+      isExpanded = true
+    }
     this.setState({
       displayDistrictOptions: false,
       displayTopicOptions: !this.state.displayTopicOptions,
@@ -72,12 +78,6 @@ class FilterNav extends React.Component {
     }
   }
 
-  toggleIsExpanded () {
-    this.setState({
-      isExpanded: !this.state.isExpanded
-    })
-  }
-
   getAriaExpanded (displayOptions) {
     if (this.state.isExpanded & displayOptions) {
       return true
@@ -85,29 +85,69 @@ class FilterNav extends React.Component {
     return false
   }
 
+  getButtonText (filterType, filterName) {
+    return filterType + ': ' + filterName
+  }
+
   render () {
     if (this.props.isStacked) {
       return (
         <div className={this.getFilterBarClassName('--stacked')} role="group" aria-label={django.gettext('Filter bar')}>
           <span className="">{django.gettext('I am interested in projects from')}</span>
-          <FilterAccordeon
-            titlePrefix={django.gettext('District')}
-            title={this.getDistrictFilterName()}
-            question={django.gettext('Which district are you interested in?')}
-            identifier={'district'}
-            options={this.props.districtnames}
-            onSelect={this.clickDistrict.bind(this)}
-            updateIsExpanded={this.toggleIsExpanded.bind(this)}
-          />
-          <FilterAccordeon
-            titlePrefix={django.gettext('Topic')}
-            title={this.getTopicFilterName()}
+          {this.props.district === '-1'
+            ? <FilterButton
+              className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
+              ariaExpanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
+              showOptions={this.showDistrictOptions.bind(this)}
+              id="id_filter_district"
+              buttonText={this.getButtonText(django.gettext('District'), this.getDistrictFilterName())}
+              iClassName="fa fa-chevron-down"
+            />
+            : <FilterButton
+              className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
+              ariaExpanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
+              showOptions={this.showDistrictOptions.bind(this)}
+              id="id_filter_district"
+              buttonText={this.getDistrictFilterName()}
+              iClassName="fa fa-times"
+            />
+          }
+          { this.state.displayDistrictOptions &&
+            <FilterOptions
+              question={django.gettext('Which district are you interested in?')}
+              options={this.props.districtnames}
+              onSelect={this.clickDistrict.bind(this)}
+              ariaLabelledby="id_filter_district"
+              isStacked={this.props.isStacked}
+            />
+          }
+          {this.props.topic === '-1'
+            ? <FilterButton
+              className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
+              ariaExpanded={this.getAriaExpanded(this.state.displayTopicOptions)}
+              showOptions={this.showTopicOptions.bind(this)}
+              id="id_filter_topic"
+              buttonText={this.getButtonText(django.gettext('Topic'), this.getTopicFilterName())}
+              iClassName="fa fa-chevron-down"
+            />
+            : <FilterButton
+              className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
+              ariaExpanded={this.getAriaExpanded(this.state.displayTopicOptions)}
+              showOptions={this.showTopicOptions.bind(this)}
+              id="id_filter_topic"
+              buttonText={this.getTopicFilterName()}
+              iClassName="fa fa-times"
+            />
+          }
+          { this.state.displayTopicOptions &&
+          <FilterOptions
             question={django.gettext('Which topic are you interested in?')}
-            identifier={'topic'}
             options={this.props.topicChoices}
             onSelect={this.clickTopic.bind(this)}
-            updateIsExpanded={this.toggleIsExpanded.bind(this)}
+            ariaLabelledby="id_filter_topic"
+            isStacked={this.props.isStacked}
           />
+          }
         </div>
       )
     } else {
@@ -117,26 +157,22 @@ class FilterNav extends React.Component {
             <span>{django.gettext('I am interested in projects from')}</span>
             <div className="filter-bar__dropdown">
               {this.props.district === '-1'
-                ? <button type="button"
+                ? <FilterButton
                   className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
-                  data-flip="false"
-                  aria-haspopup="true"
-                  aria-expanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
-                  onClick={this.showDistrictOptions.bind(this)}
-                  id="id_filter_district">
-                  {django.gettext('District')}: {this.getDistrictFilterName()}
-                  <i className="fa fa-chevron-down" aria-hidden="true" />
-                </button>
-                : <button type="button"
+                  ariaExpanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
+                  showOptions={this.showDistrictOptions.bind(this)}
+                  id="id_filter_district"
+                  buttonText={this.getButtonText(django.gettext('District'), this.getDistrictFilterName())}
+                  iClassName="fa fa-chevron-down"
+                />
+                : <FilterButton
                   className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
-                  data-flip="false"
-                  aria-haspopup="true"
-                  aria-expanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
-                  onClick={this.showDistrictOptions.bind(this)}
-                  id="id_filter_district">
-                  {this.getDistrictFilterName()}
-                  <i className="fa fa-times" aria-hidden="true" />
-                </button>
+                  ariaExpanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
+                  showOptions={this.showDistrictOptions.bind(this)}
+                  id="id_filter_district"
+                  buttonText={this.getDistrictFilterName()}
+                  iClassName="fa fa-times"
+                />
               }
               { this.state.displayDistrictOptions &&
               <FilterOptions
@@ -144,32 +180,29 @@ class FilterNav extends React.Component {
                 options={this.props.districtnames}
                 onSelect={this.clickDistrict.bind(this)}
                 ariaLabelledby="id_filter_district"
+                isStacked={this.props.isStacked}
               />
               }
             </div>
             <span>{django.gettext(' in the area of ')}</span>
             <div className="filter-bar__dropdown">
               {this.props.topic === '-1'
-                ? <button type="button"
+                ? <FilterButton
                   className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
-                  data-flip="false"
-                  aria-haspopup="true"
-                  aria-expanded={this.getAriaExpanded(this.state.displayTopicOptions)}
-                  onClick={this.showTopicOptions.bind(this)}
-                  id="id_filter_topic">
-                  {django.gettext('Topic')}: {this.getTopicFilterName()}
-                  <i className="fa fa-chevron-down" aria-hidden="true" />
-                </button>
-                : <button type="button"
+                  ariaExpanded={this.getAriaExpanded(this.state.displayTopicOptions)}
+                  showOptions={this.showTopicOptions.bind(this)}
+                  id="id_filter_topic"
+                  buttonText={this.getButtonText(django.gettext('Topic'), this.getTopicFilterName())}
+                  iClassName="fa fa-chevron-down"
+                />
+                : <FilterButton
                   className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
-                  data-flip="false"
-                  aria-haspopup="true"
-                  aria-expanded={this.getAriaExpanded(this.state.displayTopicOptions)}
-                  onClick={this.showTopicOptions.bind(this)}
-                  id="id_filter_topic">
-                  {this.getTopicFilterName()}
-                  <i className="fa fa-times" aria-hidden="true" />
-                </button>
+                  ariaExpanded={this.getAriaExpanded(this.state.displayTopicOptions)}
+                  showOptions={this.showTopicOptions.bind(this)}
+                  id="id_filter_topic"
+                  buttonText={this.getTopicFilterName()}
+                  iClassName="fa fa-times"
+                />
               }
               { this.state.displayTopicOptions &&
               <FilterOptions
@@ -177,6 +210,7 @@ class FilterNav extends React.Component {
                 options={this.props.topicChoices}
                 onSelect={this.clickTopic.bind(this)}
                 ariaLabelledby="id_filter_topic"
+                isStacked={this.props.isStacked}
               />
               }
             </div>
