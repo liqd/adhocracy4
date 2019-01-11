@@ -1004,27 +1004,27 @@ msgstr "Projektthema"
 
 #: adhocracy4/projects/models.py:282
 msgid "day"
-msgstr ""
+msgstr "Tag"
 
 #: adhocracy4/projects/models.py:282
 msgid "days"
-msgstr ""
+msgstr "Tage"
 
 #: adhocracy4/projects/models.py:283
 msgid "hour"
-msgstr ""
+msgstr "Stunde"
 
 #: adhocracy4/projects/models.py:283
 msgid "hours"
-msgstr ""
+msgstr "Stunden"
 
 #: adhocracy4/projects/models.py:284
 msgid "minute"
-msgstr ""
+msgstr "Minute"
 
 #: adhocracy4/projects/models.py:284
 msgid "minutes"
-msgstr ""
+msgstr "Minuten"
 
 #: adhocracy4/projects/templatetags/project_tags.py:12
 #, python-format
@@ -1665,16 +1665,16 @@ msgstr[1] "%(counter)s Projekte anzeigen"
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:37
 #, python-format
 msgid " %(time_left)s remaining "
-msgstr ""
+msgstr " noch %(time_left)s"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:42
 #, python-format
 msgid " Participation: from %(date)s possible"
-msgstr ""
+msgstr "ab %(date)s möglich"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:47
 msgid "Participation ended. Read result."
-msgstr ""
+msgstr "Beteiligung beendet. Ergebnis lesen."
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:58
 #, python-format

@@ -492,7 +492,7 @@ msgstr ""
 #: meinberlin/apps/plans/assets/FilterNav.jsx:68
 #: meinberlin/apps/plans/assets/FilterOptions.jsx:36
 msgid "all"
-msgstr ""
+msgstr "Alle"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:95
 #: meinberlin/apps/plans/assets/FilterNav.jsx:156
@@ -502,7 +502,7 @@ msgstr "Filter Leiste"
 #: meinberlin/apps/plans/assets/FilterNav.jsx:96
 #: meinberlin/apps/plans/assets/FilterNav.jsx:157
 msgid "I am interested in projects from"
-msgstr ""
+msgstr "Mich interessieren Projekte aus"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:103
 #: meinberlin/apps/plans/assets/FilterNav.jsx:165
@@ -512,45 +512,45 @@ msgstr "Bezirk"
 #: meinberlin/apps/plans/assets/FilterNav.jsx:117
 #: meinberlin/apps/plans/assets/FilterNav.jsx:179
 msgid "Which district are you interested in?"
-msgstr ""
+msgstr "Welchen Bezirk suchen Sie?"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:130
 #: meinberlin/apps/plans/assets/FilterNav.jsx:195
 msgid "Topic"
-msgstr ""
+msgstr "Thema"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:144
 #: meinberlin/apps/plans/assets/FilterNav.jsx:209
 msgid "Which topic are you interested in?"
-msgstr ""
+msgstr "Welches Thema interessiert Sie"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:187
 msgid " in the area of "
-msgstr ""
+msgstr "und dem Bereich"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:219
 msgid "more filters"
-msgstr ""
+msgstr "weitere Filter"
 
 #: meinberlin/apps/plans/assets/MapListSwitch.jsx:11
 msgid "Show map"
-msgstr ""
+msgstr "Karte anzeigen"
 
 #: meinberlin/apps/plans/assets/MapListSwitch.jsx:28
 msgid "Map list switch"
-msgstr ""
+msgstr "Schalter zwischen Karte und Liste"
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:66
 msgid "remaining"
-msgstr ""
+msgstr "noch"
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:74
 msgid "Participation ended. Read result."
-msgstr ""
+msgstr "Beteiligung beendet. Ergebnis lesen."
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:92
 msgid "Participation projects: "
-msgstr ""
+msgstr "Beteiligungsprojekte: "
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:95
 msgid "Participation: "
