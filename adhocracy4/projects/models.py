@@ -267,6 +267,46 @@ class Project(ProjectContactDetailMixin,
         return None
 
     @property
+    def time_left(self):
+        """
+        Return the time left in the currently active phase.
+
+        Attention: This method is _deprecated_ as multiple phases may be
+        active at the same time.
+        """
+
+        def seconds_in_units(seconds):
+            unit_totals = []
+
+            unit_limits = [
+                           ([_('day'), _('days')], 24 * 3600),
+                           ([_('hour'), _('hours')], 3600),
+                           ([_('minute'), _('minutes')], 60)
+                          ]
+
+            for unit_name, limit in unit_limits:
+                if seconds >= limit:
+                    amount = int(float(seconds) / limit)
+                    if amount > 1:
+                        unit_totals.append((unit_name[1], amount))
+                    else:
+                        unit_totals.append((unit_name[0], amount))
+                    seconds = seconds - (amount * limit)
+
+            return unit_totals
+
+        active_phase = self.active_phase
+        if active_phase:
+            today = timezone.now()
+            time_delta = active_phase.end_date - today
+            seconds = time_delta.total_seconds()
+            time_delta_list = seconds_in_units(seconds)
+            best_unit = time_delta_list[0]
+            time_delta_str = '{} {}'.format(str(best_unit[1]),
+                                            str(best_unit[0]))
+            return time_delta_str
+
+    @property
     def active_phase_progress(self):
         """
         Return the progress of the currently active phase in percent.
