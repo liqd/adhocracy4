@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-12 14:06+0100\n"
+"POT-Creation-Date: 2019-01-11 14:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -188,7 +188,7 @@ msgstr "Cancel"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
-#: meinberlin/apps/plans/views.py:214
+#: meinberlin/apps/plans/views.py:262
 #: meinberlin/apps/projectcontainers/dashboard.py:61
 #: meinberlin/apps/projectcontainers/models.py:12
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_list.html:4
@@ -361,11 +361,11 @@ msgstr "Comment"
 msgid "Comments"
 msgstr "Comments"
 
-#: adhocracy4/comments/models.py:57
+#: adhocracy4/comments/models.py:58
 msgid "deleted by creator"
 msgstr "deleted by creator"
 
-#: adhocracy4/comments/models.py:60
+#: adhocracy4/comments/models.py:61
 msgid "deleted by moderator"
 msgstr "deleted by moderator"
 
@@ -373,7 +373,7 @@ msgstr "deleted by moderator"
 msgid "Please choose a category"
 msgstr "Please choose a category"
 
-#: adhocracy4/comments/serializers.py:59
+#: adhocracy4/comments/serializers.py:58
 msgid "unknown user"
 msgstr "unknown user"
 
@@ -448,7 +448,7 @@ msgstr "Archived"
 msgid "All"
 msgstr "All"
 
-#: adhocracy4/dashboard/filter.py:20 meinberlin/apps/plans/models.py:24
+#: adhocracy4/dashboard/filter.py:20 meinberlin/apps/plans/models.py:23
 #: meinberlin/apps/projects/views.py:59
 msgid "No"
 msgstr "No"
@@ -460,9 +460,9 @@ msgstr "No"
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:13
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:12
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
-#: meinberlin/apps/plans/models.py:23
+#: meinberlin/apps/plans/models.py:22
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
-#: meinberlin/apps/plans/views.py:166 meinberlin/apps/projects/views.py:60
+#: meinberlin/apps/plans/views.py:199 meinberlin/apps/projects/views.py:60
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
 msgid "Yes"
 msgstr "Yes"
@@ -727,7 +727,7 @@ msgstr ""
 #: adhocracy4/phases/models.py:66 meinberlin/apps/activities/models.py:21
 #: meinberlin/apps/ideas/models.py:31
 #: meinberlin/apps/offlineevents/models.py:17
-#: meinberlin/apps/plans/models.py:76
+#: meinberlin/apps/plans/models.py:74
 msgid "Description"
 msgstr "Description"
 
@@ -785,7 +785,7 @@ msgstr "Settings"
 msgid "Images"
 msgstr "Images"
 
-#: adhocracy4/projects/admin.py:60 meinberlin/apps/plans/models.py:70
+#: adhocracy4/projects/admin.py:60 meinberlin/apps/plans/models.py:68
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:85
 #: meinberlin/apps/projects/admin.py:36 meinberlin/templates/email_base.html:60
 #: meinberlin/templates/email_base.txt:15
@@ -920,6 +920,30 @@ msgstr ""
 msgid "Project topic"
 msgstr "Project topic"
 
+#: adhocracy4/projects/models.py:282
+msgid "day"
+msgstr "day"
+
+#: adhocracy4/projects/models.py:282
+msgid "days"
+msgstr "days"
+
+#: adhocracy4/projects/models.py:283
+msgid "hour"
+msgstr "hour"
+
+#: adhocracy4/projects/models.py:283
+msgid "hours"
+msgstr "hours"
+
+#: adhocracy4/projects/models.py:284
+msgid "minute"
+msgstr "minute"
+
+#: adhocracy4/projects/models.py:284
+msgid "minutes"
+msgstr "minutes"
+
 #: adhocracy4/projects/templatetags/project_tags.py:12
 #, python-format
 msgid "%(number)d day left"
@@ -1044,7 +1068,7 @@ msgstr "Face-to-Face Information"
 #: meinberlin/apps/activities/models.py:12 meinberlin/apps/ideas/models.py:30
 #: meinberlin/apps/maptopicprio/models.py:28
 #: meinberlin/apps/offlineevents/models.py:14
-#: meinberlin/apps/plans/models.py:41 meinberlin/apps/topicprio/models.py:27
+#: meinberlin/apps/plans/models.py:40 meinberlin/apps/topicprio/models.py:27
 msgid "Title"
 msgstr "Title"
 
@@ -1529,31 +1553,45 @@ msgstr "Show all projects"
 msgid "Send"
 msgstr "Send"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:40
+#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:44
 msgid "entry added by citizens"
 msgid_plural "entries added by citizens"
 msgstr[0] "entry added by citizens"
 msgstr[1] "entries added by citizens"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:52
+#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:56
 msgid "project you can participate in!"
 msgid_plural "projects you can participate in!"
 msgstr[0] "project you can participate in!"
 msgstr[1] "projects you can participate in!"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:5
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:6
 #, python-format
 msgid "What is happening in <strong>%(district)s</strong>?"
 msgstr "What is happening in <strong>%(district)s</strong>?"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:7
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:8
 #, python-format
 msgid "display %(counter)s project"
 msgid_plural "display %(counter)s projects"
 msgstr[0] "display %(counter)s project"
 msgstr[1] "display %(counter)s projects"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:27
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:37
+#, python-format
+msgid " %(time_left)s remaining "
+msgstr " %(time_left)s remaining "
+
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:42
+#, python-format
+msgid " Participation: from %(date)s possible"
+msgstr " Participation: from %(date)s possible"
+
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:47
+msgid "Participation ended. Read result."
+msgstr "Participation ended. Read result."
+
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:58
 #, python-format
 msgid " What is your opinion on this: %(name)s?"
 msgstr " What is your opinion on this: %(name)s?"
@@ -1956,7 +1994,7 @@ msgstr "External phase."
 msgid "external project"
 msgstr "external project"
 
-#: meinberlin/apps/ideas/models.py:34 meinberlin/apps/plans/models.py:79
+#: meinberlin/apps/ideas/models.py:34 meinberlin/apps/plans/models.py:77
 #: meinberlin/apps/topicprio/models.py:31
 msgid "Add image"
 msgstr "Add image"
@@ -2130,7 +2168,7 @@ msgid "Where can your idea be located on a map?"
 msgstr "Where can your idea be located on a map?"
 
 #: meinberlin/apps/mapideas/models.py:15
-#: meinberlin/apps/maptopicprio/models.py:49 meinberlin/apps/plans/models.py:52
+#: meinberlin/apps/maptopicprio/models.py:49 meinberlin/apps/plans/models.py:51
 msgid ""
 "Click inside marked area on the map to set a marker. Drag and drop the "
 "marker to change its place. Alternatively you can use the search field to "
@@ -2423,66 +2461,66 @@ msgstr "Edit Plan"
 msgid "Please locate the plan on the map."
 msgstr "Please locate the plan on the map."
 
-#: meinberlin/apps/plans/forms.py:53 meinberlin/apps/plans/views.py:122
-#: meinberlin/apps/plans/views.py:222 meinberlin/apps/projects/admin.py:45
+#: meinberlin/apps/plans/forms.py:53 meinberlin/apps/plans/views.py:153
+#: meinberlin/apps/plans/views.py:270 meinberlin/apps/projects/admin.py:45
 msgid "City wide"
 msgstr "City wide"
 
-#: meinberlin/apps/plans/models.py:25
+#: meinberlin/apps/plans/models.py:24
 msgid "Still undecided"
 msgstr "Still undecided"
 
-#: meinberlin/apps/plans/models.py:34
+#: meinberlin/apps/plans/models.py:33
 msgid "Idea"
 msgstr "Idea"
 
-#: meinberlin/apps/plans/models.py:35
+#: meinberlin/apps/plans/models.py:34
 msgid "Planning"
 msgstr "Planning"
 
-#: meinberlin/apps/plans/models.py:36 meinberlin/apps/plans/views.py:101
+#: meinberlin/apps/plans/models.py:35 meinberlin/apps/plans/views.py:103
 msgid "Implementation"
 msgstr "Implementation"
 
-#: meinberlin/apps/plans/models.py:37 meinberlin/apps/plans/views.py:103
+#: meinberlin/apps/plans/models.py:36 meinberlin/apps/plans/views.py:105
 msgid "Done"
 msgstr "Done"
 
-#: meinberlin/apps/plans/models.py:38
+#: meinberlin/apps/plans/models.py:37
 msgid "Stopped"
 msgstr "Stopped"
 
-#: meinberlin/apps/plans/models.py:51
+#: meinberlin/apps/plans/models.py:50
 msgid "Where can the plan be located on a map?"
 msgstr "Where can the plan be located on a map?"
 
-#: meinberlin/apps/plans/models.py:59
+#: meinberlin/apps/plans/models.py:58
 msgid "Label of the location"
 msgstr "Label of the location"
 
-#: meinberlin/apps/plans/models.py:60
+#: meinberlin/apps/plans/models.py:59
 msgid "The label of the location is displayed in the detail view of the plan"
 msgstr "The label of the location is displayed in the detail view of the plan"
 
-#: meinberlin/apps/plans/models.py:66 meinberlin/apps/projects/views.py:46
+#: meinberlin/apps/plans/models.py:64 meinberlin/apps/projects/views.py:46
 msgid "District"
 msgstr "District"
 
-#: meinberlin/apps/plans/models.py:75
+#: meinberlin/apps/plans/models.py:73
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:65
 msgid "Cost"
 msgstr "Cost"
 
-#: meinberlin/apps/plans/models.py:83
+#: meinberlin/apps/plans/models.py:81
 msgid "Visualize your plan."
 msgstr "Visualize your plan."
 
-#: meinberlin/apps/plans/models.py:86
+#: meinberlin/apps/plans/models.py:84
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:51
 msgid "Theme"
 msgstr "Theme"
 
-#: meinberlin/apps/plans/models.py:90
+#: meinberlin/apps/plans/models.py:88
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:55
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:89
@@ -2556,27 +2594,27 @@ msgstr ""
 "\"%(plan_create_url)s\">here</a>.\n"
 "    "
 
-#: meinberlin/apps/plans/views.py:57 meinberlin/apps/plans/views.py:86
+#: meinberlin/apps/plans/views.py:59 meinberlin/apps/plans/views.py:88
 msgid "running"
 msgstr "running"
 
-#: meinberlin/apps/plans/views.py:68 meinberlin/apps/plans/views.py:89
+#: meinberlin/apps/plans/views.py:70 meinberlin/apps/plans/views.py:91
 msgid "starts at {}"
 msgstr "starts at {}"
 
-#: meinberlin/apps/plans/views.py:94
+#: meinberlin/apps/plans/views.py:96
 msgid "starts in the future"
 msgstr "starts in the future"
 
-#: meinberlin/apps/plans/views.py:97
+#: meinberlin/apps/plans/views.py:99
 msgid "done"
 msgstr "done"
 
-#: meinberlin/apps/plans/views.py:215
+#: meinberlin/apps/plans/views.py:263
 msgid "Project Links"
 msgstr "Project Links"
 
-#: meinberlin/apps/plans/views.py:309
+#: meinberlin/apps/plans/views.py:357
 msgid "The plan has been deleted"
 msgstr "The plan has been deleted"
 
@@ -3116,121 +3154,121 @@ msgstr ""
 msgid "Account Settings"
 msgstr "Account Settings"
 
-#: meinberlin/config/settings/base.py:287
-#: meinberlin/config/settings/base.py:297
-#: meinberlin/config/settings/base.py:308
+#: meinberlin/config/settings/base.py:288
+#: meinberlin/config/settings/base.py:298
+#: meinberlin/config/settings/base.py:309
 msgid "Rich text editor"
 msgstr "Rich text editor"
 
-#: meinberlin/config/settings/base.py:441
+#: meinberlin/config/settings/base.py:442
 msgid "Pin without icon"
 msgstr "Pin without icon"
 
-#: meinberlin/config/settings/base.py:442
+#: meinberlin/config/settings/base.py:443
 msgid "Diamond"
 msgstr "Diamond"
 
-#: meinberlin/config/settings/base.py:443
+#: meinberlin/config/settings/base.py:444
 msgid "Triangle up"
 msgstr "Triangle up"
 
-#: meinberlin/config/settings/base.py:444
+#: meinberlin/config/settings/base.py:445
 msgid "Triangle down"
 msgstr "Triangle down"
 
-#: meinberlin/config/settings/base.py:445
+#: meinberlin/config/settings/base.py:446
 msgid "Ellipse"
 msgstr "Ellipse"
 
-#: meinberlin/config/settings/base.py:446
+#: meinberlin/config/settings/base.py:447
 msgid "Semi circle"
 msgstr "Semi circle"
 
-#: meinberlin/config/settings/base.py:447
+#: meinberlin/config/settings/base.py:448
 msgid "Hexagon"
 msgstr "Hexagon"
 
-#: meinberlin/config/settings/base.py:448
+#: meinberlin/config/settings/base.py:449
 msgid "Rhomboid"
 msgstr "Rhomboid"
 
-#: meinberlin/config/settings/base.py:449
+#: meinberlin/config/settings/base.py:450
 msgid "Star"
 msgstr "Star"
 
-#: meinberlin/config/settings/base.py:450
+#: meinberlin/config/settings/base.py:451
 msgid "Square"
 msgstr "Square"
 
-#: meinberlin/config/settings/base.py:451
+#: meinberlin/config/settings/base.py:452
 msgid "Octothorpe"
 msgstr "Octothorpe"
 
-#: meinberlin/config/settings/base.py:452
+#: meinberlin/config/settings/base.py:453
 msgid "Rectangle"
 msgstr "Rectangle"
 
-#: meinberlin/config/settings/base.py:453
+#: meinberlin/config/settings/base.py:454
 msgid "Circle"
 msgstr "Circle"
 
-#: meinberlin/config/settings/base.py:454
+#: meinberlin/config/settings/base.py:455
 msgid "Right triangle"
 msgstr "Right triangle"
 
-#: meinberlin/config/settings/base.py:455
+#: meinberlin/config/settings/base.py:456
 msgid "Zigzag"
 msgstr "Zigzag"
 
-#: meinberlin/config/settings/base.py:462
+#: meinberlin/config/settings/base.py:463
 msgid "Anti-discrimination"
 msgstr "Anti-discrimination"
 
-#: meinberlin/config/settings/base.py:463
+#: meinberlin/config/settings/base.py:464
 msgid "Work & economy"
 msgstr "Work & economy"
 
-#: meinberlin/config/settings/base.py:464
+#: meinberlin/config/settings/base.py:465
 msgid "Building & living"
 msgstr "Building & living"
 
-#: meinberlin/config/settings/base.py:465
+#: meinberlin/config/settings/base.py:466
 msgid "Education & research"
 msgstr "Education & research"
 
-#: meinberlin/config/settings/base.py:466
+#: meinberlin/config/settings/base.py:467
 msgid "Children, youth & family"
 msgstr "Children, youth & family"
 
-#: meinberlin/config/settings/base.py:467
+#: meinberlin/config/settings/base.py:468
 msgid "Finances"
 msgstr "Finances"
 
-#: meinberlin/config/settings/base.py:468
+#: meinberlin/config/settings/base.py:469
 msgid "Health & sports"
 msgstr "Health & sports"
 
-#: meinberlin/config/settings/base.py:469
+#: meinberlin/config/settings/base.py:470
 msgid "Integration"
 msgstr "Integration"
 
-#: meinberlin/config/settings/base.py:470
+#: meinberlin/config/settings/base.py:471
 msgid "Culture & leisure"
 msgstr "Culture & leisure"
 
-#: meinberlin/config/settings/base.py:471
+#: meinberlin/config/settings/base.py:472
 msgid "Neighborhood & participation"
 msgstr "Neighborhood & participation"
 
-#: meinberlin/config/settings/base.py:472
+#: meinberlin/config/settings/base.py:473
 msgid "Urban development"
 msgstr "Urban development"
 
-#: meinberlin/config/settings/base.py:473
+#: meinberlin/config/settings/base.py:474
 msgid "Environment & public green space"
 msgstr "Environment & public green space"
 
-#: meinberlin/config/settings/base.py:474
+#: meinberlin/config/settings/base.py:475
 msgid "Traffic"
 msgstr "Traffic"
 
@@ -3475,6 +3513,10 @@ msgstr "meinBerlin is a participation platform operated by"
 #: meinberlin/templates/header.html:7
 msgid "Menu"
 msgstr "Menu"
+
+#: meinberlin/templates/header.html:13
+msgid "Home"
+msgstr "Home"
 
 #: meinberlin/templates/header.html:17
 msgid "Where can I take part?"
