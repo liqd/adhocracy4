@@ -11,6 +11,10 @@
     bottom: 0;
     z-index: 10;
     width: 15%;
+
+    @media screen and (min-width: $wrapper-width + 10rem) {
+        width: 20%;
+    }
 }
 
 .dialogue-box__background-left {
