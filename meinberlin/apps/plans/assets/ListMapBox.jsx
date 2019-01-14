@@ -71,7 +71,8 @@ class ListMapBox extends React.Component {
     })
     this.setState({
       items: items,
-      filterChanged: false
+      filterChanged: false,
+      showListMap: window.innerWidth > breakpointMD
     })
   }
 
@@ -196,9 +197,11 @@ class ListMapBox extends React.Component {
                 </StickyBox>
               </div>
             </div>
-            : <div className="map-list-combined">
-              <div className="list-container map-list-combined__list">
-                { this.getPlansList(false) }
+            : <div className="l-wrapper">
+              <div className="map-list-combined">
+                <div className="list-container map-list-combined__list">
+                  { this.getPlansList(false) }
+                </div>
               </div>
             </div>
           }

@@ -1,6 +1,6 @@
 /* global django */
 var FilterOptions = require('./FilterOptions')
-var FilterAccordeon = require('./FilterAccordeon')
+var FilterButton = require('./FilterButton')
 const React = require('react')
 
 class FilterNav extends React.Component {
@@ -9,21 +9,32 @@ class FilterNav extends React.Component {
 
     this.state = {
       displayDistrictOptions: false,
-      displayTopicOptions: false
+      displayTopicOptions: false,
+      isExpanded: false
     }
   }
 
   showDistrictOptions () {
+    let isExpanded = !this.state.isExpanded
+    if (this.state.displayTopicOptions) {
+      isExpanded = true
+    }
     this.setState({
       displayTopicOptions: false,
-      displayDistrictOptions: !this.state.displayDistrictOptions
+      displayDistrictOptions: !this.state.displayDistrictOptions,
+      isExpanded: isExpanded
     })
   }
 
   showTopicOptions () {
+    let isExpanded = !this.state.isExpanded
+    if (this.state.displayDistrictOptions) {
+      isExpanded = true
+    }
     this.setState({
       displayDistrictOptions: false,
-      displayTopicOptions: !this.state.displayTopicOptions
+      displayTopicOptions: !this.state.displayTopicOptions,
+      isExpanded: isExpanded
     })
   }
 
@@ -31,7 +42,8 @@ class FilterNav extends React.Component {
     let district = event.currentTarget.value
     this.props.selectDistrict(district)
     this.setState({
-      displayDistrictOptions: false
+      displayDistrictOptions: false,
+      isExpanded: false
     })
   }
 
@@ -39,7 +51,8 @@ class FilterNav extends React.Component {
     let topic = event.currentTarget.value
     this.props.selectTopic(topic)
     this.setState({
-      displayTopicOptions: false
+      displayTopicOptions: false,
+      isExpanded: false
     })
   }
 
@@ -57,98 +70,155 @@ class FilterNav extends React.Component {
     return this.props.topicChoices[this.props.topic]
   }
 
+  getFilterBarClassName (variant) {
+    if (this.state.isExpanded) {
+      return 'filter-bar--open filter-bar filter-bar' + variant
+    } else {
+      return 'filter-bar filter-bar' + variant
+    }
+  }
+
+  getAriaExpanded (displayOptions) {
+    if (this.state.isExpanded & displayOptions) {
+      return true
+    }
+    return false
+  }
+
+  getButtonText (filterType, filterName) {
+    return filterType + ': ' + filterName
+  }
+
   render () {
     if (this.props.isStacked) {
       return (
-        <div className="filter-bar__stacked">
-          <h2 className="u-spacer-right u-spacer-left u-spacer-top">{django.gettext('I am interested in projects from')}</h2>
-          <FilterAccordeon
-            titlePrefix={django.gettext('District')}
-            title={this.getDistrictFilterName()}
-            question={django.gettext('Which district are you interested in?')}
-            identifier={'district'}
-            options={this.props.districtnames}
-            onSelect={this.clickDistrict.bind(this)}
-          />
-          <FilterAccordeon
-            titlePrefix={django.gettext('Topic')}
-            title={this.getTopicFilterName()}
+        <div className={this.getFilterBarClassName('--stacked')} role="group" aria-label={django.gettext('Filter bar')}>
+          <span className="">{django.gettext('I am interested in projects from')}</span>
+          {this.props.district === '-1'
+            ? <FilterButton
+              className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
+              ariaExpanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
+              showOptions={this.showDistrictOptions.bind(this)}
+              id="id_filter_district"
+              buttonText={this.getButtonText(django.gettext('District'), this.getDistrictFilterName())}
+              iClassName="fa fa-chevron-down"
+            />
+            : <FilterButton
+              className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
+              ariaExpanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
+              showOptions={this.showDistrictOptions.bind(this)}
+              id="id_filter_district"
+              buttonText={this.getDistrictFilterName()}
+              iClassName="fa fa-times"
+            />
+          }
+          { this.state.displayDistrictOptions &&
+            <FilterOptions
+              question={django.gettext('Which district are you interested in?')}
+              options={this.props.districtnames}
+              onSelect={this.clickDistrict.bind(this)}
+              ariaLabelledby="id_filter_district"
+              isStacked={this.props.isStacked}
+            />
+          }
+          {this.props.topic === '-1'
+            ? <FilterButton
+              className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
+              ariaExpanded={this.getAriaExpanded(this.state.displayTopicOptions)}
+              showOptions={this.showTopicOptions.bind(this)}
+              id="id_filter_topic"
+              buttonText={this.getButtonText(django.gettext('Topic'), this.getTopicFilterName())}
+              iClassName="fa fa-chevron-down"
+            />
+            : <FilterButton
+              className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
+              ariaExpanded={this.getAriaExpanded(this.state.displayTopicOptions)}
+              showOptions={this.showTopicOptions.bind(this)}
+              id="id_filter_topic"
+              buttonText={this.getTopicFilterName()}
+              iClassName="fa fa-times"
+            />
+          }
+          { this.state.displayTopicOptions &&
+          <FilterOptions
             question={django.gettext('Which topic are you interested in?')}
-            identifier={'topic'}
             options={this.props.topicChoices}
             onSelect={this.clickTopic.bind(this)}
+            ariaLabelledby="id_filter_topic"
+            isStacked={this.props.isStacked}
           />
+          }
         </div>
       )
     } else {
       return (
-        <div className="filter-bar-spacer">
-          <div className="control-bar filter-bar" role="group" aria-label={django.gettext('Filter bar')}>
+        <div className="filter-bar-container">
+          <div className={this.getFilterBarClassName('--horizontal')} role="group" aria-label={django.gettext('Filter bar')}>
             <span>{django.gettext('I am interested in projects from')}</span>
             <div className="filter-bar__dropdown">
-              <button type="button"
-                className={this.props.district === '-1' ? 'dropdown-toggle btn btn--light btn--select btn--none filter-bar__dropdown-btn' : 'd-none'}
-                data-flip="false"
-                aria-haspopup="true"
-                aria-expanded="false"
-                onClick={this.showDistrictOptions.bind(this)}
-                id="id_filter_district">
-                {django.gettext('District')}: {this.getDistrictFilterName()}
-                <i className="fa fa-caret-down" aria-hidden="true" />
-              </button>
-              <button type="button"
-                className={this.props.district !== '-1' ? 'dropdown-toggle btn btn--light btn--none btn--select filter-bar__dropdown-selected' : 'd-none'}
-                data-flip="false"
-                aria-haspopup="true"
-                aria-expanded="false"
-                onClick={this.showDistrictOptions.bind(this)}
-                id="id_filter_district">
-                {this.getDistrictFilterName()}
-                <i className="fa fa-times" aria-hidden="true" />
-              </button>
+              {this.props.district === '-1'
+                ? <FilterButton
+                  className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
+                  ariaExpanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
+                  showOptions={this.showDistrictOptions.bind(this)}
+                  id="id_filter_district"
+                  buttonText={this.getButtonText(django.gettext('District'), this.getDistrictFilterName())}
+                  iClassName="fa fa-chevron-down"
+                />
+                : <FilterButton
+                  className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
+                  ariaExpanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
+                  showOptions={this.showDistrictOptions.bind(this)}
+                  id="id_filter_district"
+                  buttonText={this.getDistrictFilterName()}
+                  iClassName="fa fa-times"
+                />
+              }
+              { this.state.displayDistrictOptions &&
+              <FilterOptions
+                question={django.gettext('Which district are you interested in?')}
+                options={this.props.districtnames}
+                onSelect={this.clickDistrict.bind(this)}
+                ariaLabelledby="id_filter_district"
+                isStacked={this.props.isStacked}
+              />
+              }
             </div>
             <span>{django.gettext(' in the area of ')}</span>
             <div className="filter-bar__dropdown">
-              <button type="button"
-                className={this.props.topic === '-1' ? 'dropdown-toggle btn btn--light btn--select btn--none filter-bar__dropdown-btn' : 'd-none'}
-                data-flip="false"
-                aria-haspopup="true"
-                onClick={this.showTopicOptions.bind(this)}
-                aria-expanded="false"
-                id="id_filter_topic">
-                {django.gettext('Topic')}: {this.getTopicFilterName()}
-                <i className="fa fa-caret-down" aria-hidden="true" />
-              </button>
-              <button type="button"
-                className={this.props.topic !== '-1' ? 'dropdown-toggle btn btn--light btn--none btn--select filter-bar__dropdown-selected' : 'd-none'}
-                data-flip="false"
-                aria-haspopup="true"
-                aria-expanded="false"
-                onClick={this.showTopicOptions.bind(this)}
-                id="id_filter_topic">
-                {this.getTopicFilterName()}
-                <i className="fa fa-times" aria-hidden="true" />
-              </button>
+              {this.props.topic === '-1'
+                ? <FilterButton
+                  className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
+                  ariaExpanded={this.getAriaExpanded(this.state.displayTopicOptions)}
+                  showOptions={this.showTopicOptions.bind(this)}
+                  id="id_filter_topic"
+                  buttonText={this.getButtonText(django.gettext('Topic'), this.getTopicFilterName())}
+                  iClassName="fa fa-chevron-down"
+                />
+                : <FilterButton
+                  className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
+                  ariaExpanded={this.getAriaExpanded(this.state.displayTopicOptions)}
+                  showOptions={this.showTopicOptions.bind(this)}
+                  id="id_filter_topic"
+                  buttonText={this.getTopicFilterName()}
+                  iClassName="fa fa-times"
+                />
+              }
+              { this.state.displayTopicOptions &&
+              <FilterOptions
+                question={django.gettext('Which topic are you interested in?')}
+                options={this.props.topicChoices}
+                onSelect={this.clickTopic.bind(this)}
+                ariaLabelledby="id_filter_topic"
+                isStacked={this.props.isStacked}
+              />
+              }
             </div>
             <div>
               <button
-                className="btn btn--light btn--small filter-bar__btn-light">{django.gettext('more filters')}</button>
+                className="btn btn--small btn--transparent filter-bar__btn--light">{django.gettext('more filters')}</button>
             </div>
           </div>
-          { this.state.displayDistrictOptions &&
-          <FilterOptions
-            title={django.gettext('Which district are you interested in?')}
-            options={this.props.districtnames}
-            onSelect={this.clickDistrict.bind(this)}
-          />
-          }
-          { this.state.displayTopicOptions &&
-          <FilterOptions
-            title={django.gettext('Which topic are you interested in?')}
-            options={this.props.topicChoices}
-            onSelect={this.clickTopic.bind(this)}
-          />
-          }
         </div>
       )
     }

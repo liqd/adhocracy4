@@ -14,48 +14,66 @@ class PlansList extends React.Component {
     return {
       backgroundImage: `url(` + item.tile_image + ')',
       backgroundPosition: 'center',
-      backgroundSize: 'contain',
       backgroundRepeat: 'no-repeat'
     }
   }
 
+  getText (item) {
+    if (item.length > 100) {
+      return item.substr(0, 100) + '...'
+    } else {
+      return item
+    }
+  }
+
   renderListItem (item, i) {
-    let itemClass = 'maplist-item'
-    let statusClass = (item.participation_active === true) ? 'maplist-item__status--active' : 'maplist-item__status--inactive'
+    let statusClass = (item.participation_active === true) ? 'maplist-item__status-active' : 'maplist-item__status-inactive'
     return (
-      <li className={itemClass} key={i} tabIndex="0">
+      <li className={this.props.isHorizontal ? 'maplist-item__horizontal' : 'maplist-item__vertical'} key={i} tabIndex="0">
         <a href={item.url}>
           {item.type === 'project' &&
             <div className="maplist-item__proj">
+              {item.tile_image &&
               <div className="maplist-item__img" style={this.getImage(item)} alt="">
                 { item.tile_image_copyright &&
                   <span className="maplist-item__img-copyright copyright">© {item.tile_image_copyright}</span>
                 }
               </div>
-
+              }
               <div className="maplist-item__content">
-                <div className={item.topic ? 'maplist-item__labels u-spacer-bottom' : 'd-none'}>
-                  <span className="label label--secondary">{this.props.topicChoices[item.topic]}</span>
+                {item.topic &&
+                <div className={item.tile_image ? 'malist-item__label-nospacer' : 'maplist-item__label-spacer'}>
+                  <span className="label label--secondary maplist-item__label">{this.props.topicChoices[item.topic]}</span>
                 </div>
+                }
                 <span className="maplist-item__roofline">{item.district}</span>
                 <h3 className="maplist-item__title">{item.title}</h3>
                 <div className="maplist-item__description">
-                  <span>{item.description}</span>
+                  <span>{this.getText(item.description)}</span>
                 </div>
                 {item.future_phase &&
-                <div className="status-item status__future">
-                  <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ')}{item.future_phase}{django.gettext(' possible')}</span>
+                <div>
+                  <div className="status-item status__future">
+                    <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ')}{item.future_phase}{django.gettext(' possible')}</span>
+                  </div>
+                  <div className="status-item_spacer" />
                 </div>
                 }
                 {item.active_phase &&
-                <div className="status-item status__active">
-                  <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
-                  <span className="maplist-item__status"><i className="fas fa-clock" />{item.active_phase[1]}{django.gettext(' days remaining')}</span>
-                </div>
+                  <div>
+                    <div className="status-item status__active">
+                      <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
+                      <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('remaining')} {item.active_phase[1]}</span>
+                    </div>
+                    <div className="status-item_spacer" />
+                  </div>
                 }
                 {item.past_phase &&
-                <div className="status-item status-bar__past">
-                  {django.gettext('Participation ended. Read result.')}
+                <div>
+                  <div className="status-item status-bar__past">
+                    {django.gettext('Participation ended. Read result.')}
+                  </div>
+                  <div className="status-item_spacer" />
                 </div>
                 }
               </div>
@@ -63,19 +81,21 @@ class PlansList extends React.Component {
           }
           {item.type === 'plan' &&
             <div className="maplist-item__plan">
-              <div className="maplist-item__labels u-spacer-bottom">
-                <span className="label label--secondary">{item.theme}</span>
+              {item.topic &&
+              <div className="maplist-item__labels u-spacer-bottom-half">
+                <span className="label label--secondary">{this.props.topicChoices[item.topic]}</span>
               </div>
+              }
               <span className="maplist-item__roofline">{item.district}</span>
               <h3 className="maplist-item__title">{item.title}</h3>
-              <div>
+              <div className="maplist-item__stats">
                 <span className="maplist-item__proj-count"><i className="fas fa-th" />{django.gettext('Participation projects: ')}</span>
-                <span className="maplist-item__status--inactive">{item.published_projects_count}</span>
-              </div>
-              <div>
+                <span>{item.published_projects_count}</span>
+                <br />
                 <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: ')}</span>
                 <span className={statusClass}>{item.participation_string }</span>
               </div>
+              <div className="status-item_spacer" />
             </div>
           }
         </a>

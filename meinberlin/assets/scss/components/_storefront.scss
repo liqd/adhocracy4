@@ -136,3 +136,16 @@
         padding: 3*$padding 3*$padding;
     }
 }
+
+.storefront__ending-icon {
+    position: absolute;
+    width: 20%;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.storefront__ending-icon-spacer {
+    padding-bottom: $padding;
+}

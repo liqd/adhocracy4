@@ -114,9 +114,9 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                     False)
         elif project.active_phase:
             progress = project.active_phase_progress
-            days_left = project.days_left
+            time_left = project.time_left
             return (False,
-                    [progress, days_left],
+                    [progress, time_left],
                     False)
         elif project.phases.past_phases():
             return (False,
@@ -127,14 +127,19 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 False)
 
     def get_context_data(self, **kwargs):
+
+        city_wide = _('City wide')
+
         context = super().get_context_data(**kwargs)
 
         districts = self.get_districts()
 
         district_list = json.dumps([district.polygon
                                     for district in districts])
-        district_names = json.dumps([district.name
-                                     for district in districts])
+        district_names_list = [district.name
+                               for district in districts]
+        district_names_list.append(str(city_wide))
+        district_names = json.dumps(district_names_list)
         context['districts'] = district_list
         context['district_names'] = district_names
 
@@ -150,7 +155,6 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                        reverse=True)
 
         result = []
-        city_wide = _('City wide')
 
         for item in items:
             participation_string, active = self._get_participation_status(item)
@@ -167,7 +171,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 'point_label': item.point_label,
                 'cost': item.cost,
                 'district': district_name,
-                'topic': item.theme,
+                'topic': item.topic,
                 'status': item.status,
                 'status_display': item.get_status_display(),
                 'participation_string': participation_string,
@@ -248,7 +252,7 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
     permission_required = 'meinberlin_plans.list_plan'
     model = models.Plan
     fields = ['title', 'organisation', 'contact', 'district', 'cost',
-              'description', 'theme', 'status', 'participation']
+              'description', 'topic', 'status', 'participation']
     html_fields = ['description']
 
     def get_object_list(self):
