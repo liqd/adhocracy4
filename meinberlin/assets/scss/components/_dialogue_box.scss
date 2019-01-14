@@ -8,9 +8,9 @@
 
 .dialogue-box__left,
 .dialogue-box__right {
-    // background-position: left center;
     background-image: url('/static/images/dialoguebox_border.png');
     background-repeat: repeat-x;
+    margin: 1px -1px -1px 0; //fix for gop in safari zoom
 }
 
 .dialogue-box__left {
@@ -26,6 +26,7 @@
 }
 
 .dialogue-box__center {
+    margin: 1px -1px -1px 0;
     flex: 0 1 15.8rem;
     // background-position: right -250px center;
     background-image: url('/static/images/dialoguebox.png');
