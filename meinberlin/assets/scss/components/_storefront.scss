@@ -23,6 +23,7 @@
 .storefront__col {
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     @media screen and (min-width: $breakpoint-md) {
         width: 33.3%;
