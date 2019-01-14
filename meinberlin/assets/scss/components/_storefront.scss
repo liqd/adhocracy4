@@ -36,15 +36,19 @@
 
 .storefront__first-col {
     margin-right: $r-spacer;
-
-    @media screen and (min-width: $breakpoint-xs) {
-        margin-left: $r-spacer;
-    }
 }
 
 .storefront__mid-col {
     margin-left: $r-spacer;
     margin-right: $r-spacer;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        margin-right: 0;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-right: $r-spacer;
+    }
 }
 
 .storefront__last-col {
