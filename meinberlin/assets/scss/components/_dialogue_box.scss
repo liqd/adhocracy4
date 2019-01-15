@@ -30,15 +30,6 @@
     right: 0;
 }
 
-.dialogue-box__background-right-xl {
-    display: none;
-
-    @media screen and (min-width: $wrapper-width + 50rem) {
-        display: block;
-        right: 15%;
-    }
-}
-
 .dialogue-box {
     z-index: 2;
     display: flex;
