@@ -3,19 +3,22 @@
 }
 
 .dialogue-box__background-left,
-.dialogue-box__background-right,
-.dialogue-box__background-right-xl,
-.dialogue-box__background-left-xl {
+.dialogue-box__background-right {
     position: absolute;
     height: 94px;
     background-image: url('/static/images/dialoguebox_border.png');
     background-repeat: repeat-x;
     bottom: 0;
-    z-index: 10;
+    z-index: 1;
     width: 15%;
 
-    @media screen and (min-width: $wrapper-width + 10rem) {
+    @media screen and (min-width: $breakpoint-lg) {
         width: 20%;
+    }
+
+    // if user zooms out
+    @media screen and (min-width: $breakpoint-lg + 50rem) {
+        width: 40%;
     }
 }
 
@@ -25,16 +28,6 @@
 
 .dialogue-box__background-right {
     right: 0;
-}
-
-// for zoom out
-.dialogue-box__background-left-xl {
-    display: none;
-
-    @media screen and (min-width: $wrapper-width + 50rem) {
-        display: block;
-        left: 15%;
-    }
 }
 
 .dialogue-box__background-right-xl {
@@ -47,7 +40,7 @@
 }
 
 .dialogue-box {
-    z-index: 100;
+    z-index: 2;
     display: flex;
 
     > div {

@@ -49,6 +49,8 @@ $font-size-xs: 0.64rem !default;
 $breakpoint-xs: 32rem !default;
 $breakpoint: 50rem !default;  // sm
 $breakpoint-md: 65rem !default;
+$breakpoint-lg: 90rem !default;
+
 // use for max-width media queries
 $breakpoint-xs-down: $breakpoint-xs - 0.1rem !default;
 $breakpoint-down: $breakpoint - 0.1rem !default;  // sm
