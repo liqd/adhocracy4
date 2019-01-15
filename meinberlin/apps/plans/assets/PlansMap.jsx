@@ -276,7 +276,7 @@ class PlansMap extends React.Component {
         {this.state.showInfoBox &&
         <div className="map-infobox">
           <button className="infobox__close" id="close" aria-label={django.gettext('Close information box')} onClick={this.closeInfoBox.bind(this)}><i className="fa fa-times" /></button>
-          <i className="fa fa-info-circle" aria-hidden="true" /><span>{django.gettext('Not all plans are shown on map, please check list view.')}</span>
+          <i className="fa fa-info-circle" aria-hidden="true" /><span>{django.gettext('Projects without spacial reference are not shown on the map. Please have a look at the project list.')}</span>
         </div>
         }
       </div>
