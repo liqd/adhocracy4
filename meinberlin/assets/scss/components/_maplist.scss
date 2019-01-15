@@ -116,3 +116,15 @@
         flex: 1;
     }
 }
+
+.maplist-item__link-img {
+    background-image: url('/static/images/badge_external_link.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}

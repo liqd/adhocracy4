@@ -31,6 +31,7 @@ class PlansList extends React.Component {
     return (
       <li className={this.props.isHorizontal ? 'maplist-item__horizontal' : 'maplist-item__vertical'} key={i} tabIndex="0">
         <a href={item.url}>
+          <div className="maplist-item__link-img" />
           {item.type === 'project' &&
             <div className="maplist-item__proj">
               {item.tile_image &&
