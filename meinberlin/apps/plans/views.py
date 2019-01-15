@@ -6,10 +6,11 @@ from django.core.exceptions import ImproperlyConfigured
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
-from easy_thumbnails.files import get_thumbnailer
+from rest_framework.renderers import JSONRenderer
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.exports import mixins as export_mixins
@@ -23,6 +24,7 @@ from meinberlin.apps.plans.models import Plan
 from meinberlin.apps.projects.models import Project
 
 from . import models
+from . import serializers
 
 
 class PlanDetailView(rules_mixins.PermissionRequiredMixin,
@@ -43,202 +45,68 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
     template_name = 'meinberlin_plans/plan_list.html'
     permission_required = 'meinberlin_plans.list_plan'
 
-    def get_districts(self):
+    def get_queryset(self):
+        plans = super().get_queryset()
+        return sorted(plans,
+                      key=lambda x: x.modified or x.created,
+                      reverse=True)
+
+    @cached_property
+    def districts(self):
         try:
             return MapPreset.objects.filter(
                 category__name='Bezirke - Berlin')
         except ObjectDoesNotExist:
             return []
 
-    def _get_status_string(self, projects):
+    @cached_property
+    def projects(self):
+        projects = Project.objects.all() \
+            .filter(is_draft=False, is_archived=False) \
+            .order_by('created')
+        not_allowed_projects = [project.id for project in projects if
+                                not self.request.user.has_perm(
+                                    'a4projects.view_project',
+                                    project)]
+        return projects.exclude(id__in=not_allowed_projects)
 
-        future_phase = None
-        for project in projects:
-            phases = project.phases
-            if phases.active_phases():
-                return ugettext('running')
-            if phases.future_phases() and \
-               phases.future_phases().first().start_date:
-                date = phases.future_phases().first().start_date
-                if not future_phase:
-                    future_phase = date
-                else:
-                    if date < future_phase:
-                        future_phase = date
+    def get_district_polygons(self):
+        districts = self.districts
+        return json.dumps([district.polygon
+                           for district in districts])
 
-        if future_phase:
-            return ugettext('starts at {}').format(future_phase.date())
-
-    def _get_participation_status(self, item):
-        projects = item.projects.all()\
-            .filter(is_draft=False,
-                    is_archived=False,
-                    is_public=True)
-        if not projects:
-            return item.get_participation_display(), False
-        else:
-            status_string = self._get_status_string(projects)
-            if status_string:
-                return status_string, True
-            else:
-                return item.get_participation_display(), False
-
-    def _get_participation_status_project(self, project):
-        if project.phases.active_phases():
-            return ugettext('running'), True
-        elif project.phases.future_phases():
-            try:
-                return (ugettext('starts at {}').format
-                        (project.phases.future_phases().first().
-                         start_date.date()),
-                        True)
-            except AttributeError:
-                return (ugettext('starts in the future'),
-                        True)
-        else:
-            return ugettext('done'), False
-
-    def _get_status_project(self, project):
-        if project.phases.active_phases() or project.phases.future_phases():
-            return 2, ugettext('Implementation')
-        else:
-            return 3, ugettext('Done')
-
-    def _get_phase_status(self, project):
-        if (project.future_phases and
-                project.future_phases.first().start_date):
-            date_str = str(
-                project.future_phases.first().start_date.date())
-            return (date_str,
-                    False,
-                    False)
-        elif project.active_phase:
-            progress = project.active_phase_progress
-            time_left = project.time_left
-            return (False,
-                    [progress, time_left],
-                    False)
-        elif project.phases.past_phases():
-            return (False,
-                    False,
-                    True)
-        return (False,
-                False,
-                False)
-
-    def get_context_data(self, **kwargs):
-
+    def get_district_names(self):
         city_wide = _('City wide')
-
-        context = super().get_context_data(**kwargs)
-
-        districts = self.get_districts()
-
-        district_list = json.dumps([district.polygon
-                                    for district in districts])
+        districts = self.districts
         district_names_list = [district.name
                                for district in districts]
         district_names_list.append(str(city_wide))
-        district_names = json.dumps(district_names_list)
-        context['districts'] = district_list
-        context['district_names'] = district_names
+        return json.dumps(district_names_list)
 
+    def get_topics(self):
         topics = getattr(settings, 'A4_PROJECT_TOPICS', None)
         if topics:
-            topics = dict((x, str(y)) for x, y in topics)
+            topic_dict = dict((x, str(y)) for x, y in topics)
+            return json.dumps(topic_dict)
         else:
             raise ImproperlyConfigured('set A4_PROJECT_TOPICS in settings')
-        context['topic_choices'] = json.dumps(topics)
 
-        items = sorted(context['object_list'],
-                       key=lambda x: x.modified or x.created,
-                       reverse=True)
-
-        result = []
-
-        for item in items:
-            participation_string, active = self._get_participation_status(item)
-            district_name = str(city_wide)
-            if item.district:
-                district_name = item.district.name
-
-            result.append({
-                'type': 'plan',
-                'title': item.title,
-                'url': item.get_absolute_url(),
-                'organisation': item.organisation.name,
-                'point': item.point,
-                'point_label': item.point_label,
-                'cost': item.cost,
-                'district': district_name,
-                'topic': item.topic,
-                'status': item.status,
-                'status_display': item.get_status_display(),
-                'participation_string': participation_string,
-                'participation_active': active,
-                'participation': item.participation,
-                'participation_display': item.get_participation_display(),
-                'published_projects_count': item.published_projects.count(),
-            })
-
-        projects = Project.objects.all()\
-            .filter(is_draft=False, is_archived=False)\
-            .order_by('created')
-
-        for item in projects:
-            if self.request.user.has_perm('a4projects.view_project', item):
-                district_name = str(city_wide)
-                if item.administrative_district:
-                    district_name = item.administrative_district.name
-                point = item.point
-                if not point:
-                    point = ''
-                point_label = ''
-                cost = ''
-                participation_string, active = \
-                    self._get_participation_status_project(item)
-                status, status_display = \
-                    self._get_status_project(item)
-                participation = 1
-                participation_display = _('Yes')
-                future_phase, active_phase, past_phase = \
-                    self._get_phase_status(item)
-                image_url = ''
-                if item.tile_image:
-                    image = get_thumbnailer(item.tile_image)['project_tile']
-                    image_url = image.url
-
-                result.append({
-                    'type': 'project',
-                    'title': item.name,
-                    'url': item.get_absolute_url(),
-                    'organisation': item.organisation.name,
-                    'tile_image': image_url,
-                    'tile_image_copyright': item.tile_image_copyright,
-                    'point': point,
-                    'point_label': point_label,
-                    'cost': cost,
-                    'district': district_name,
-                    'topic': item.topic,
-                    'status': status,
-                    'status_display': str(status_display),
-                    'participation_string': str(participation_string),
-                    'participation_active': active,
-                    'participation': participation,
-                    'participation_display': str(participation_display),
-                    'description': item.description,
-                    'future_phase': future_phase,
-                    'active_phase': active_phase,
-                    'past_phase': past_phase
-                })
-
-        context['items'] = json.dumps(result)
+    def get_context_data(self, **kwargs):
+        plans_serializer = serializers.PlanSerializer(self.get_queryset(),
+                                                      many=True)
+        projects_serializer = serializers.ProjectSerializer(self.projects,
+                                                            many=True)
+        items = plans_serializer.data + projects_serializer.data
+        context = super().get_context_data(**kwargs)
+        context['districts'] = self.get_district_polygons()
+        context['district_names'] = self.get_district_names()
+        context['topic_choices'] = self.get_topics()
+        context['items'] = JSONRenderer().render(items)
         context['baseurl'] = settings.A4_MAP_BASEURL
         context['attribution'] = settings.A4_MAP_ATTRIBUTION
         context['bounds'] = json.dumps(settings.A4_MAP_BOUNDING_BOX)
         context['district'] = self.request.GET.get('district', -1)
         context['topic'] = self.request.GET.get('topic', -1)
-
         return context
 
 
