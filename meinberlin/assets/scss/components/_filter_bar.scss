@@ -16,7 +16,7 @@
     flex-direction: row;
     justify-content: center;
 
-    padding: 2*$padding 4*$padding;
+    padding: 2*$padding;
 }
 
 .filter-bar--stacked {
@@ -169,4 +169,29 @@
 
 .filter-bar__option--horizontal {
     width: 33%;
+}
+
+@media screen and (max-width: $breakpoint-md-down) {
+    .filter-bar--horizontal {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .filter-bar__project-text {
+        display: block;
+        width: 100%;
+    }
+
+    .filter-bar__dropdown {
+        margin-left: 0;
+        width: 40%;
+    }
+
+    .filter-bar__btn--truncate {
+        width: 100%;
+    }
+
+    .filter-bar__btn--light {
+        margin-left: 0;
+    }
 }
