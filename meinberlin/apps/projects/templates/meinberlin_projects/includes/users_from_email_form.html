@@ -21,7 +21,7 @@
         {% endif %}
         <div class="input-group">
             <div class="input-group__input widget widget--{{ form.add_users|widget_type }}">
-                {{ form.add_users|attr:'required' }}
+                {{ form.add_users }}
             </div>
             <span>
                 <input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Add' %}"/>
@@ -42,7 +42,7 @@
         </div>
         <div class="widget widget--{{ form.add_users_upload|widget_type }}">
             <div class="input-group">
-                {{ form.add_users_upload|attr:'required'|add_class:'input-group__input' }}
+                {{ form.add_users_upload|add_class:'input-group__input' }}
                 <span>
                     <input type="submit" class="btn btn--primary input-group__after" value="{% trans 'Upload' %}"/>
                 </span>
