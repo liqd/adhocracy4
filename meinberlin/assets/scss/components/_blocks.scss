@@ -116,10 +116,12 @@
 
     @media screen and (min-width: $breakpoint-xs) {
         flex-direction: column;
+        min-width: 25%;
     }
 
     @media screen and (min-width: $breakpoint-md) {
         flex-direction: row;
+        min-width: 0;
     }
 }
 
@@ -131,7 +133,7 @@
     flex-shrink: 0;
 
     img {
-        width: 100%;
+        width: 70%;
     }
 
     @media screen and (min-width: $breakpoint-xs) {
