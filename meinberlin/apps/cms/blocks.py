@@ -103,8 +103,9 @@ class InfographicBlock(blocks.StructBlock):
 
 class MapTeaserBlock(blocks.StructBlock):
     image = ImageChooserBlock()
+    icon = blocks.RichTextBlock()
     title = blocks.CharBlock()
-    body = blocks.RichTextBlock(required=False)
+    body = blocks.RichTextBlock()
 
     class Meta:
         template = 'meinberlin_cms/blocks/map_teaser_block.html'

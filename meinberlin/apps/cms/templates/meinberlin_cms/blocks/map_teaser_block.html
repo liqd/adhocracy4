@@ -1,0 +1,16 @@
+{% load wagtailimages_tags wagtailcore_tags block_tags %}
+
+<div class="block block--map-teaser" style="background-image: url({{ image.url }})">
+    <div class="l-wrapper">
+        <div class="block--map-teaser__icon">
+            {{ value|richtext }}
+        </div>
+        <div class="block--map-teaser__title">
+            {{ value|title }}
+        </div>
+        <div class="block--map-teaser__body">
+            {{ value|richtext }}
+        </div>
+        <div class="block--map-teaser__filter"></div>
+    </div>
+</div>
