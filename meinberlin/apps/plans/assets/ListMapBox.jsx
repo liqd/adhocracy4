@@ -135,6 +135,7 @@ class ListMapBox extends React.Component {
             districtnames={this.props.districtnames}
             topic={this.state.topic}
             topicChoices={this.props.topicChoices}
+            numColumns={1}
             isStacked
           />
           <ListMapSwitch
@@ -157,6 +158,7 @@ class ListMapBox extends React.Component {
           districtnames={this.props.districtnames}
           topic={this.state.topic}
           topicChoices={this.props.topicChoices}
+          numColumns={2}
           isStacked={false}
         />
         <ListMapSwitch
@@ -180,6 +182,7 @@ class ListMapBox extends React.Component {
             districtnames={this.props.districtnames}
             topic={this.state.topic}
             topicChoices={this.props.topicChoices}
+            numColumns={3}
             isStacked={false}
           />
           <ListMapSwitch

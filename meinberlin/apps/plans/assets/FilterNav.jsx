@@ -119,6 +119,8 @@ class FilterNav extends React.Component {
               onSelect={this.clickDistrict.bind(this)}
               ariaLabelledby="id_filter_district"
               isStacked={this.props.isStacked}
+              numColumns={this.props.numColumns}
+              hasNoneValue
             />
           }
           {this.props.topic === '-1'
@@ -146,6 +148,8 @@ class FilterNav extends React.Component {
             onSelect={this.clickTopic.bind(this)}
             ariaLabelledby="id_filter_topic"
             isStacked={this.props.isStacked}
+            numColumns={this.props.numColumns}
+            hasNoneValue={false}
           />
           }
         </div>
@@ -181,6 +185,8 @@ class FilterNav extends React.Component {
                 onSelect={this.clickDistrict.bind(this)}
                 ariaLabelledby="id_filter_district"
                 isStacked={this.props.isStacked}
+                numColumns={this.props.numColumns}
+                hasNoneValue
               />
               }
             </div>
@@ -211,6 +217,8 @@ class FilterNav extends React.Component {
                 onSelect={this.clickTopic.bind(this)}
                 ariaLabelledby="id_filter_topic"
                 isStacked={this.props.isStacked}
+                numColumns={this.props.numColumns}
+                hasNoneValue={false}
               />
               }
             </div>
