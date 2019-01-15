@@ -23,8 +23,7 @@
 .storefront__col {
     display: flex;
     flex-direction: column;
-    margin-left: $r-spacer;
-    margin-right: $r-spacer;
+    width: 100%;
 
     @media screen and (min-width: $breakpoint-md) {
         width: 33.3%;
@@ -33,6 +32,31 @@
     @media screen and (min-width: $breakpoint-xs) {
         width: 50%;
         min-height: 632px;
+    }
+}
+
+.storefront__first-col {
+    margin-right: $r-spacer;
+}
+
+.storefront__mid-col {
+    margin-left: $r-spacer;
+    margin-right: $r-spacer;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        margin-right: 0;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-right: $r-spacer;
+    }
+}
+
+.storefront__last-col {
+    margin-left: $r-spacer;
+
+    @media screen and (max-width: $breakpoint-xs) {
+        margin: auto;
     }
 }
 
