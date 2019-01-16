@@ -63,7 +63,7 @@
         {% endif %}
 
     {% for block in self.body %}
-        {% if block.block_type == 'call_to_action' or block.block_type == 'infographic' %}
+        {% if block.block_type == 'call_to_action' or block.block_type == 'infographic' or block.block_type == 'map_teaser' %}
             {{ block }}
         {% else %}
         <div class="l-wrapper block__homepage">

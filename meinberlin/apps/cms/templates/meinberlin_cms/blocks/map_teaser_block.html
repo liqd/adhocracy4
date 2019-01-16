@@ -1,8 +1,8 @@
 {% load wagtailimages_tags wagtailcore_tags block_tags %}
 
-<div class="l-wrapper u-z-index-bottom">
-    {% image value.image width-1300 as image %}
-    <div class="block block--map-teaser" style="background-image: url({{ image.url }})">
+{% image value.image max-1920x800 as image %}
+<div class="block block__homepage block--map-teaser u-z-index-bottom" style="background-image: url({{ image.url }})">
+    <div class="l-wrapper">
         <div class="block--map-teaser__icon">
             {{ value.icon }}
         </div>

@@ -72,6 +72,7 @@
     h2 {
         color: $brand-secondary;
         font-size: $font-size-xxxl;
+        margin-top: $r-spacer;
     }
 }
 
@@ -180,6 +181,11 @@
 }
 
 .block--map-teaser {
-    margin-top: - 8*$r-spacer;
-    padding: 6rem;
+    background-size: 300vh;
+    background-position: top;
+    background-repeat: no-repeat;
+    margin-top: -15*$r-spacer;
+    padding-top: 15*$padding;
+    margin-bottom: -$r-spacer;
+    padding-bottom: 3*$padding;
 }
