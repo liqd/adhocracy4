@@ -1,3 +1,7 @@
+//divider margin needs to be half the line-height
+$line-height: 2.5;
+$divider-margin: 1.25rem;
+
 .filter-bar-container {
     margin-left: 4*$r-spacer;
     margin-right: 4*$r-spacer;
@@ -8,7 +12,7 @@
     background-color: $brand-secondary;
     color: $white;
     font-size: $font-size-lg;
-    line-height: 2.5;
+    line-height: $line-height;
 }
 
 .filter-bar--horizontal {
@@ -162,13 +166,10 @@
     }
 }
 
-.filter-bar__options--horizontal {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.filter-bar__option--horizontal {
-    width: 33%;
+.filter-bar__option-divider {
+    margin-top: $divider-margin;
+    margin-bottom: $divider-margin;
+    border-top: 2px solid $white;
 }
 
 @media screen and (max-width: $breakpoint-md-down) {
