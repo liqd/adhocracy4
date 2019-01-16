@@ -4,6 +4,7 @@
 
 .tile__md {
     height: 75%;
+    min-height: 200px;
 
     @media screen and (min-width: $breakpoint-xs) {
         height: 50%;
@@ -157,16 +158,6 @@
 
     @media screen and (min-width: $breakpoint-xs) {
         padding: 3*$padding 3*$padding;
-    }
-}
-
-.storefront__proj {
-    a {
-        color: $brand-secondary;
-
-        :hover {
-            color: $brand-primary;
-        }
     }
 }
 
