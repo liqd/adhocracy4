@@ -168,6 +168,24 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
                   'participation_active',
                   'published_projects_count']
 
+    def _get_status_string(self, projects):
+        future_phase = None
+        for project in projects:
+            phases = project.phases
+            if phases.active_phases():
+                return _('running')
+            if phases.future_phases() and \
+               phases.future_phases().first().start_date:
+                date = phases.future_phases().first().start_date
+                if not future_phase:
+                    future_phase = date
+                else:
+                    if date < future_phase:
+                        future_phase = date
+
+        if future_phase:
+            return _('starts at {}').format(future_phase.date())
+
     def _get_participation_status_plan(self, item):
         projects = item.projects.all() \
             .filter(is_draft=False,
