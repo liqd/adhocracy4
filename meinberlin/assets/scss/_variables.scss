@@ -25,6 +25,9 @@ $print-link: #005cb4 !default;
 $link-color: $brand-secondary !default;
 $link-hover-color: $brand-primary !default;
 
+$link-color-btn: $brand-primary !default;
+$link-hover-color-btn: darken($link-color-btn, 15%) !default;
+
 $border-color: #ccc !default;
 $input-border-color: $border-color !default;
 
