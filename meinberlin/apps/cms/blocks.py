@@ -108,4 +108,4 @@ class MapTeaserBlock(blocks.StructBlock):
 
     class Meta:
         template = 'meinberlin_cms/blocks/map_teaser_block.html'
-        icon = 'success'
+        icon = 'view'
