@@ -80,6 +80,14 @@
     position: relative;
 }
 
+.u-z-index-top {
+    z-index: 2;
+}
+
+.u-z-index-bottom {
+    z-index: 1;
+}
+
 .u-no-border,
 .u-no-border:first-child,
 .u-no-border:last-child {
