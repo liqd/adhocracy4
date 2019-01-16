@@ -20,7 +20,6 @@
         position: absolute;
         transition: all 0.4s ease-in-out;
         width: 47px;
-        border: 1px solid $brand-secondary;
     }
 
     label:after {
@@ -34,18 +33,19 @@
         top: -4px;
         transition: all 0.3s ease-in-out;
         width: 24px;
-        border: 1px solid $brand-secondary;
     }
 
     input[type="checkbox"]:checked {
         & + label:before {
             background: inherit;
+            border: 1px solid $gray-lighter;
             // opacity: 0.5;
         }
 
         & + label:after {
             background: inherit;
             left: 20px;
+            border: 1px solid $gray-lighter;
         }
     }
 }

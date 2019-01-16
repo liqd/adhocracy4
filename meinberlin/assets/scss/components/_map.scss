@@ -122,11 +122,47 @@
         left: $spacer;
         top: $spacer;
         z-index: 1000;
+
+        .form-group {
+            margin-bottom: 0;
+        }
     }
 
     .map-list-combined__map__search__error {
         padding: $spacer;
         border: none;
+    }
+
+    .map-infobox {
+        font-size: $font-size-base;
+        width: 75%;
+        position: absolute;
+        left: 1*$spacer;
+        top: 4.5*$spacer;
+        z-index: 1000;
+        background-color: $body-bg;
+        padding: $padding $padding $padding 3*$padding;
+
+        @media (min-width: $breakpoint) {
+            width: 50%;
+        }
+
+        i.fa-info-circle {
+            color: $brand-secondary;
+            position: absolute;
+            left: $padding;
+            top: 1.2rem;
+        }
+
+        .infobox__close {
+            position: absolute;
+            right: 0.5*$padding;
+            top: 0.25*$padding;
+        }
+
+        i.fa-times {
+            color: $gray-lighter;
+        }
     }
 
     ul {
