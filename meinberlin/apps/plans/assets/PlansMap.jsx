@@ -53,6 +53,8 @@ class PlansMap extends React.Component {
       selected: null,
       displayError: false,
       displayResults: false,
+      showInfoBox: true,
+      showInfoBoxUser: true,
       filters: {
         status: -1,
         participation: -1,
@@ -153,17 +155,20 @@ class PlansMap extends React.Component {
   displayResults (geojson) {
     this.setState(
       { 'displayResults': true,
+        'showInfoBox': false,
         'searchResults': geojson.features }
     )
   }
 
   displayErrorMessage () {
     this.setState(
-      { 'displayError': true }
+      { 'displayError': true,
+        'showInfoBox': false }
     )
     setTimeout(function () {
       this.setState(
-        { 'displayError': false })
+        { 'displayError': false,
+          'showInfoBox': this.state.showInfoBoxUser })
     }.bind(this), 2000)
   }
 
@@ -178,7 +183,8 @@ class PlansMap extends React.Component {
     }).addTo(this.map)
     this.map.flyToBounds(addressMarker.getBounds(), { 'maxZoom': 13 })
     this.setState(
-      { 'address': addressMarker }
+      { 'address': addressMarker,
+        'showInfoBox': this.state.showInfoBoxUser }
     )
   }
 
@@ -219,6 +225,13 @@ class PlansMap extends React.Component {
     )
   }
 
+  closeInfoBox () {
+    this.setState(
+      { 'showInfoBox': false,
+        'showInfoBoxUser': false }
+    )
+  }
+
   render () {
     return (
       <div className="map-list-combined__map" ref={this.bindMap.bind(this)}>
@@ -231,7 +244,7 @@ class PlansMap extends React.Component {
               type="search"
               placeholder={django.gettext('Address Search')} />
             <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Search')}>
-              <i className="fa fa-search" aria-label={django.gettext('Search')} />
+              <i className="fas fa-location-arrow" aria-label={django.gettext('Search')} />
             </button>
 
             {this.state.displayResults &&
@@ -260,6 +273,12 @@ class PlansMap extends React.Component {
 
           </form>
         </div>
+        {this.state.showInfoBox &&
+        <div className="map-infobox">
+          <button className="infobox__close" id="close" aria-label={django.gettext('Close information box')} onClick={this.closeInfoBox.bind(this)}><i className="fa fa-times" /></button>
+          <i className="fa fa-info-circle" aria-hidden="true" /><span>{django.gettext('Projects without spacial reference are not shown on the map. Please have a look at the project list.')}</span>
+        </div>
+        }
       </div>
     )
   }

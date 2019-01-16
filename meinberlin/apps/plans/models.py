@@ -96,6 +96,10 @@ class Plan(UserGeneratedContentModel):
     def reference_number(self):
         return '{:d}-{:05d}'.format(self.created.year, self.pk)
 
+    @property
+    def administrative_district(self):
+        return self.district
+
     @cached_property
     def published_projects(self):
         return self.projects.filter(
