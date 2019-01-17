@@ -47,7 +47,7 @@
 
 .btn {
     @extend %button-base;
-    @include button-color($link-color, $link-hover-color);
+    @include button-color($link-color-btn, $link-hover-color-btn);
 }
 
 .btn--light {
