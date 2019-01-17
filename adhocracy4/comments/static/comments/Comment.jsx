@@ -19,10 +19,13 @@ var localeDate = function (dateStr) {
 
 var getViewRepliesText = function (number, hide) {
   var fmts
+  // FIXME: due to an error with gettext it is not possible to use ngettext
+  // if the %s placeholder occurs only in the plural form.
+  // This is workaround until gettext is updated on our build system to 0.19.8.1
   if (hide) {
-    fmts = django.ngettext('hide one reply', 'hide %s replies', number)
+    fmts = number === 1 ? django.gettext('hide one reply') : django.gettext('hide %s replies')
   } else {
-    fmts = django.ngettext('view one reply', 'view %s replies', number)
+    fmts = number === 1 ? django.gettext('view one reply') : django.gettext('view %s replies')
   }
   return django.interpolate(fmts, [number])
 }
