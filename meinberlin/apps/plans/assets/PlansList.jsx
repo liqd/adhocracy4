@@ -64,36 +64,28 @@ class PlansList extends React.Component {
                   </div>
                 }
                 {item.future_phase &&
-                <div>
                   <div className="status-item status__future">
                     <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ')}{item.future_phase}{django.gettext(' possible')}</span>
                   </div>
-                  <div className="status-item_spacer" />
-                </div>
                 }
                 {item.active_phase &&
-                  <div>
-                    <div className="status-item status__active">
-                      <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
-                      <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('remaining')} {item.active_phase[1]}</span>
-                    </div>
-                    <div className="status-item_spacer" />
-                  </div>
+                <div className="status-item status__active">
+                  <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
+                  <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('remaining')} {item.active_phase[1]}</span>
+                </div>
                 }
                 {item.past_phase &&
-                <div>
                   <div className="status-item status-bar__past">
                     {django.gettext('Participation ended. Read result.')}
                   </div>
-                  <div className="status-item_spacer" />
-                </div>
                 }
               </div>
+              <div className="status-item_spacer" />
             </div>
           }
           {item.type === 'plan' &&
             <div className="maplist-item__plan">
-              {item.topic &&
+              {this.props.topicChoices[item.topic] &&
               <div className="maplist-item__labels u-spacer-bottom-half">
                 <span className="label label--secondary">{this.props.topicChoices[item.topic]}</span>
               </div>
