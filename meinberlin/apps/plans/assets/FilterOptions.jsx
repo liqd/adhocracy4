@@ -1,6 +1,77 @@
 /* global django */
 const React = require('react')
 
+class OptionButton extends React.Component {
+  render () {
+    return (
+      <button
+        type="button"
+        value={this.props.identifier}
+        onClick={this.props.onSelect}>
+        {this.props.name}
+      </button>
+    )
+  }
+}
+
+class OptionList extends React.Component {
+  render () {
+    return (
+      <div key={'list' + this.props.name}>
+        {this.props.listItems.map((key, i) =>
+          <div key={i.toString()} className="filter-bar__option">
+            <OptionButton
+              identifier={key}
+              onSelect={this.props.onSelect.bind(this)}
+              name={this.props.options[key]}
+            />
+          </div>
+        )}
+      </div>
+    )
+  }
+}
+
+class OptionListLast extends React.Component {
+  render () {
+    return (
+      <div key={'lastList'}>
+        {this.props.listItems.map((key, i) => (
+          <div key={key} className="filter-bar__option">
+            <OptionButton
+              identifier={key}
+              onSelect={this.props.onSelect.bind(this)}
+              name={this.props.options[key]}
+            />
+          </div>
+        ))}
+        <div className="filter-bar__option-divider" />
+        {this.props.hasNoneValue &&
+          Object.keys(this.props.options).slice(-1).map((key, i) => {
+            return (
+              <div key={key} className="filter-bar__option">
+                <OptionButton
+                  identifier={key}
+                  onSelect={this.props.onSelect.bind(this)}
+                  name={this.props.options[key]}
+                />
+              </div>
+            )
+          })
+        }
+        <div className="filter-bar__option">
+          <button
+            type="button"
+            value="-1"
+            onClick={this.props.onSelect}>
+            {django.gettext('all')}
+          </button>
+        </div>
+      </div>
+    )
+  }
+}
+
 class FilterOptions extends React.Component {
   getMenuClassName () {
     if (this.props.isStacked) {
@@ -9,47 +80,67 @@ class FilterOptions extends React.Component {
     return 'filter-bar__dropdown-menu filter-bar__menu'
   }
 
-  getOptionsClassName () {
-    if (this.props.isStacked) {
-      return ''
+  getGridClassName () {
+    if (this.props.numColumns > 1) {
+      return 'l-tiles-' + this.props.numColumns
     }
-    return 'filter-bar__options--horizontal'
+    return ''
   }
 
-  getOptionClassName () {
-    if (this.props.isStacked) {
-      return 'filter-bar__option'
+  getListLength () {
+    const elements = Object.keys(this.props.options).length + 2
+    const elementsPerColumn = Math.ceil(elements / this.props.numColumns)
+    return elementsPerColumn
+  }
+
+  getList (sliceStart, sliceEnd, i) {
+    let slicedList = Object.keys(this.props.options).slice(sliceStart, sliceEnd)
+    return (
+      <OptionList
+        key={i.toString()}
+        name={i.toString()}
+        listItems={slicedList}
+        onSelect={this.props.onSelect.bind(this)}
+        options={this.props.options} />
+    )
+  }
+
+  getLastList (sliceStart, sliceEnd, i) {
+    let sliceEndLast = sliceEnd
+    if (this.props.hasNoneValue) {
+      sliceEndLast = -1
     }
-    return 'filter-bar__option filter-bar__option--horizontal'
+    let slicedList = Object.keys(this.props.options).slice(sliceStart, sliceEndLast)
+    return (
+      <OptionListLast
+        key={i.toString()}
+        listItems={slicedList}
+        onSelect={this.props.onSelect.bind(this)}
+        hasNoneValue={this.props.hasNoneValue}
+        options={this.props.options} />
+    )
+  }
+
+  getLists () {
+    let lists = []
+    for (let i = 0; i < this.props.numColumns; i++) {
+      let sliceStart = 0 + i * this.getListLength()
+      let sliceEnd = this.getListLength() + i * this.getListLength()
+      if (i < this.props.numColumns - 1) {
+        lists.push(this.getList(sliceStart, sliceEnd, i))
+      } else {
+        lists.push(this.getLastList(sliceStart, sliceEnd, i))
+      }
+    }
+    return lists
   }
 
   render () {
     return (
       <div aria-labelledby={this.props.ariaLabelledby} className={this.getMenuClassName()}>
         <h2 className="filter-bar__question">{this.props.question}</h2>
-        <div className={this.getOptionsClassName()}>
-          <div className={this.getOptionClassName()}>
-            <button
-              type="button"
-              value="-1"
-              onClick={this.props.onSelect}>
-              {django.gettext('all')}
-            </button>
-          </div>
-          {
-            Object.keys(this.props.options).map((key, i) => {
-              return (
-                <div key={key} className={this.getOptionClassName()}>
-                  <button
-                    type="button"
-                    value={key}
-                    onClick={this.props.onSelect}>
-                    {this.props.options[key]}
-                  </button>
-                </div>
-              )
-            })
-          }
+        <div className={this.getGridClassName()}>
+          {this.getLists()}
         </div>
       </div>
     )

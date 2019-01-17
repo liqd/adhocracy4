@@ -5,7 +5,7 @@ let PlansMap = require('./PlansMap')
 let FilterNav = require('./FilterNav')
 let ListMapSwitch = require('./MapListSwitch')
 
-const breakpointXS = 512
+const breakpointXS = 800
 const breakpointMD = 1024
 
 class ListMapBox extends React.Component {
