@@ -31,7 +31,9 @@ class PlansList extends React.Component {
     return (
       <li className={this.props.isHorizontal ? 'maplist-item__horizontal' : 'maplist-item__vertical'} key={i} tabIndex="0">
         <a href={item.url}>
+          {item.subtype === 'external' &&
           <div className="maplist-item__link-img" />
+          }
           {item.type === 'project' &&
             <div className="maplist-item__proj">
               {item.tile_image &&
@@ -52,6 +54,15 @@ class PlansList extends React.Component {
                 <div className="maplist-item__description">
                   <span>{this.getText(item.description)}</span>
                 </div>
+                {item.subtype === 'container' &&
+                  <div className="maplist-item__stats">
+                    <span className="maplist-item__proj-count"><i className="fas fa-th" />{django.gettext('Participation projects: ')}</span>
+                    <span>{item.published_projects_count}</span>
+                    <br />
+                    <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: ')}</span>
+                    <span className={statusClass}>{item.participation_string }</span>
+                  </div>
+                }
                 {item.future_phase &&
                 <div>
                   <div className="status-item status__future">
