@@ -39,7 +39,6 @@
         & + label:before {
             background: inherit;
             border: 1px solid $gray-lighter;
-            // opacity: 0.5;
         }
 
         & + label:after {
@@ -55,6 +54,27 @@
     flex-direction: row;
     justify-content: flex-end;
     margin-bottom: $spacer;
+}
+
+.switch--btn {
+    color: $brand-secondary;
+
+    &:hover,
+    &:focus {
+        color: $brand-primary;
+    }
+
+    &:active {
+        color: $body-bg;
+        background-color: $brand-secondary;
+        border-color: $brand-secondary;
+    }
+}
+
+.switch--btn.active {
+    color: $body-bg;
+    background-color: $brand-secondary;
+    border-color: $brand-secondary;
 }
 
 .switch-label {

@@ -81,6 +81,14 @@ class ListMapBox extends React.Component {
     this.setState({ showListMap: newValue })
   }
 
+  showList () {
+    this.setState({ showListMap: false })
+  }
+
+  showMap () {
+    this.setState({ showListMap: true })
+  }
+
   selectDistrict (district) {
     var newDistrict = (district === '-1') ? '-1' : this.props.districtnames[district]
     this.setState({
@@ -140,7 +148,10 @@ class ListMapBox extends React.Component {
           />
           <ListMapSwitch
             toggleSwitch={this.toggleSwitch.bind(this)}
+            showMap={this.showMap.bind(this)}
+            showList={this.showList.bind(this)}
             isSlider={false}
+            displayMap={this.state.showListMap}
           />
           {!this.state.showListMap &&
             this.getPlansList(false)
@@ -163,7 +174,10 @@ class ListMapBox extends React.Component {
         />
         <ListMapSwitch
           toggleSwitch={this.toggleSwitch.bind(this)}
+          showMap={this.showMap.bind(this)}
+          showList={this.showList.bind(this)}
           isSlider={false}
+          displayMap={this.state.showListMap}
         />
         {!this.state.showListMap &&
           this.getPlansList(false)
@@ -187,7 +201,11 @@ class ListMapBox extends React.Component {
           />
           <ListMapSwitch
             toggleSwitch={this.toggleSwitch.bind(this)}
+            showMap={this.showMap.bind(this)}
+            showList={this.showList.bind(this)}
             isSlider
+            displayMap={this.state.showListMap}
+
           />
           { this.state.showListMap
             ? <div className="map-list-combined">
