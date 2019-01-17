@@ -134,12 +134,32 @@ class PlansMap extends React.Component {
 
   getPopUpContent (item) {
     let popupContent = '<div class="maps-popups-popup-text-content">' +
-                             '<div class="maps-popups-popup-name">' +
-                                '<a href="' + item.url + '">' + this.escapeHtml(item.title) + '</a>' +
-                            '</div>' +
-                          '</div>'
+                           '<span class="label label--secondary maplist-item__label">' + item.topic + '</span>' +
+                           '<span className="maplist-item__roofline">' + item.district + '</span>' +
+                           '<div class="maps-popups-popup-name">' +
+                           '<a href="' + item.url + '">' + this.escapeHtml(item.title) + '</div>' +
+                        '</div>'
     return popupContent
   }
+
+  // if (item.type ===' project') {
+  //   let popUpContent = '<div class="maps-popups-popup-text-content">' +
+  //                           '<span class="label label--secondary maplist-item__label">' + item.topic + '</span>' +
+  //                           '<span className="maplist-item__roofline">' + item.district + '</span>' +
+  //                           '<div class="maps-popups-popup-name">' +
+  //                               '<a href="' + item.url + '">' + this.escapeHtml(item.title) + '</a>' +
+  //                           '</div>' +
+  //                             '<div className="status-item status__future">' +
+  //                                 '<span className="maplist-item__status">' + '<i className="fas fa-clock" />' + django.gettext('Participation: from ') + item.future_phase + django.gettext(' possible') + '</span>' +
+  //                             '</div>' + }
+  // else {
+  //   let popUpContent = '<div class="maplist-item__stats">' +
+  //                           '<span class="maplist-item__proj-count">' + '<i class="fas fa-th" />' + django.gettext('Participation projects: ') + '</span>' +
+  //                           '<span>' + 'some' + '</span>' +
+  //                           '<span class="maplist-item__status">' + '<i class="fas fa-clock" />' + django.gettext('Participation: ') + '</span>' +
+  //                           '<span class={statusClass}>' + item.participation_string  + '</span>' +
+  //                       '</div>' +
+  // }
 
   addMarkers (cluster) {
     this.props.items.map((item, i) => {
