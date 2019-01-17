@@ -26,6 +26,7 @@ class CommonFields:
 
 class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     type = serializers.SerializerMethodField()
+    subtype = serializers.SerializerMethodField()
     title = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
     organisation = serializers.SerializerMethodField()
@@ -46,7 +47,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
 
     class Meta:
         model = Project
-        fields = ['type', 'title', 'url',
+        fields = ['type', 'subtype', 'title', 'url',
                   'organisation', 'tile_image',
                   'tile_image_copyright',
                   'point', 'point_label', 'cost',
@@ -75,6 +76,12 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
 
     def get_type(self, instance):
         return 'project'
+
+    def get_subtype(self, instance):
+        subtype = get_project_type(instance)
+        if subtype in ('external', 'bplan'):
+            return 'external'
+        return subtype
 
     def get_title(self, instance):
         return instance.name
@@ -148,6 +155,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
 
 class PlanSerializer(serializers.ModelSerializer, CommonFields):
     type = serializers.SerializerMethodField()
+    subtype = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
     district = serializers.SerializerMethodField()
     point = serializers.SerializerMethodField()
@@ -158,7 +166,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
 
     class Meta:
         model = Plan
-        fields = ['type', 'title', 'url',
+        fields = ['type', 'subtype', 'title', 'url',
                   'organisation', 'point',
                   'point_label', 'cost',
                   'district', 'topic', 'status',
@@ -167,6 +175,27 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
                   'participation_string',
                   'participation_active',
                   'published_projects_count']
+
+    def get_subtype(self, instance):
+        return 'plan'
+
+    def _get_status_string(self, projects):
+        future_phase = None
+        for project in projects:
+            phases = project.phases
+            if phases.active_phases():
+                return _('running')
+            if phases.future_phases() and \
+               phases.future_phases().first().start_date:
+                date = phases.future_phases().first().start_date
+                if not future_phase:
+                    future_phase = date
+                else:
+                    if date < future_phase:
+                        future_phase = date
+
+        if future_phase:
+            return _('starts at {}').format(future_phase.date())
 
     def _get_participation_status_plan(self, item):
         projects = item.projects.all() \

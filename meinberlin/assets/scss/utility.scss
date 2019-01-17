@@ -120,6 +120,18 @@
     }
 }
 
+.u-md-down-display-none {
+    @media screen and (max-width: $breakpoint-md-down) {
+        display: none !important;
+    }
+}
+
+.u-md-up-display-none {
+    @media screen and (min-width: $breakpoint-md) {
+        display: none !important;
+    }
+}
+
 .u-xs-md-display-none {
     @media screen and (min-width: $breakpoint-xs) and (max-width: $breakpoint-md-down) {
         display: none !important;
