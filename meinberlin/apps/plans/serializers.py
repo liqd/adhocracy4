@@ -29,17 +29,11 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     subtype = serializers.SerializerMethodField()
     title = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
-    organisation = serializers.SerializerMethodField()
     point = serializers.SerializerMethodField()
-    point_label = serializers.SerializerMethodField()
-    cost = serializers.SerializerMethodField()
     district = serializers.SerializerMethodField()
     status = serializers.SerializerMethodField()
-    status_display = serializers.SerializerMethodField()
-    participation = serializers.SerializerMethodField()
     participation_active = serializers.SerializerMethodField()
     participation_string = serializers.SerializerMethodField()
-    participation_display = serializers.SerializerMethodField()
     future_phase = serializers.SerializerMethodField()
     active_phase = serializers.SerializerMethodField()
     past_phase = serializers.SerializerMethodField()
@@ -48,15 +42,12 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     class Meta:
         model = Project
         fields = ['type', 'subtype', 'title', 'url',
-                  'organisation', 'tile_image',
-                  'tile_image_copyright',
-                  'point', 'point_label', 'cost',
-                  'district', 'topic',
-                  'status', 'status_display',
-                  'participation_string',
+                  'tile_image', 'tile_image_copyright',
+                  'point', 'district', 'topic',
+                  'status', 'participation_string',
                   'participation_active',
-                  'participation', 'participation_display', 'description',
-                  'future_phase', 'active_phase',
+                  'description', 'future_phase',
+                  'active_phase',
                   'past_phase']
 
     def _get_participation_status_project(self, instance):
@@ -91,9 +82,6 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
             return instance.externalproject.url
         return instance.get_absolute_url()
 
-    def get_organisation(self, instance):
-        return instance.organisation.name
-
     def get_tile_image(self, instance):
         image_url = ''
         if instance.tile_image:
@@ -101,27 +89,10 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
             image_url = image.url
         return image_url
 
-    def get_point_label(self, instance):
-        return ''
-
-    def get_cost(self, instance):
-        return ''
-
     def get_status(self, instance):
         if instance.phases.active_phases() or instance.phases.future_phases():
             return 2
         return 3
-
-    def get_status_display(self, instance):
-        if instance.phases.active_phases() or instance.phases.future_phases():
-            return _('Implementation')
-        return _('Done')
-
-    def get_participation(self, instance):
-        return 1
-
-    def get_participation_display(self, instance):
-        return _('Yes')
 
     def get_future_phase(self, instance):
         if (instance.future_phases and
@@ -159,7 +130,6 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     url = serializers.SerializerMethodField()
     district = serializers.SerializerMethodField()
     point = serializers.SerializerMethodField()
-    status_display = serializers.SerializerMethodField()
     participation_active = serializers.SerializerMethodField()
     participation_string = serializers.SerializerMethodField()
     published_projects_count = serializers.SerializerMethodField()
@@ -167,11 +137,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     class Meta:
         model = Plan
         fields = ['type', 'subtype', 'title', 'url',
-                  'organisation', 'point',
-                  'point_label', 'cost',
-                  'district', 'topic', 'status',
-                  'status_display',
-                  'participation',
+                  'point', 'district', 'topic', 'status',
                   'participation_string',
                   'participation_active',
                   'published_projects_count']
@@ -216,9 +182,6 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
 
     def get_url(self, instance):
         return instance.get_absolute_url()
-
-    def get_status_display(self, instance):
-        return instance.get_status_display()
 
     def get_published_projects_count(self, instance):
         return instance.published_projects.count()
