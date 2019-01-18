@@ -12,6 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 from rest_framework.renderers import JSONRenderer
 
+from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.exports import mixins as export_mixins
 from adhocracy4.exports import unescape_and_strip_html
@@ -63,7 +64,10 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
     def projects(self):
         projects = Project.objects.all() \
             .filter(is_draft=False, is_archived=False) \
-            .order_by('created')
+            .order_by('created')\
+            .select_related('administrative_district')\
+            .prefetch_related('moderators', 'organisation__initiators')
+
         not_allowed_projects = [project.id for project in projects if
                                 not self.request.user.has_perm(
                                     'a4projects.view_project',
@@ -77,7 +81,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
     def get_district_names(self):
         city_wide = _('City wide')
-        districts = self.districts
+        districts = AdministrativeDistrict.objects.all()
         district_names_list = [district.name
                                for district in districts]
         district_names_list.append(str(city_wide))
@@ -92,13 +96,13 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             raise ImproperlyConfigured('set A4_PROJECT_TOPICS in settings')
 
     def get_context_data(self, **kwargs):
-        plans_serializer = serializers.PlanSerializer(self.get_queryset(),
+        context = super().get_context_data(**kwargs)
+        plans_serializer = serializers.PlanSerializer(context['object_list'],
                                                       many=True)
         projects_serializer = serializers.ProjectSerializer(self.projects,
                                                             many=True)
         items = plans_serializer.data + projects_serializer.data
-        context = super().get_context_data(**kwargs)
-        context['districts'] = self.get_district_polygons()
+        # context['districts'] = self.get_district_polygons()
         context['district_names'] = self.get_district_names()
         context['topic_choices'] = self.get_topics()
         context['items'] = JSONRenderer().render(items)
