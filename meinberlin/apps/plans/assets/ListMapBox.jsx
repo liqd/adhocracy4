@@ -69,10 +69,14 @@ class ListMapBox extends React.Component {
         items.push(item)
       }
     })
+    let showListMap = this.state.showListMap
+    if (window.innerWidth <= breakpointMD) {
+      showListMap = false
+    }
     this.setState({
       items: items,
       filterChanged: false,
-      showListMap: window.innerWidth > breakpointMD
+      showListMap: showListMap
     })
   }
 
@@ -121,7 +125,7 @@ class ListMapBox extends React.Component {
         resize={this.state.resizeMap}
         items={this.state.items}
         bounds={this.props.bounds}
-        districts={this.props.districts}
+
         baseurl={this.props.baseurl}
         districtnames={this.props.districtnames}
       />
