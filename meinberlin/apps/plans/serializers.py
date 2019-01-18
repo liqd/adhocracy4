@@ -1,7 +1,9 @@
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
 
+from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
 from meinberlin.apps.projects import get_project_type
 
@@ -50,13 +52,25 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                   'active_phase',
                   'past_phase']
 
+    @cached_property
+    def phases(self):
+        return Phase.objects\
+            .select_related('module__project')
+
+    def _get_phases_for_instance(self, instance):
+        return self.phases.filter(
+            module__project_id__in=[instance.id])
+
     def _get_participation_status_project(self, instance):
-        if instance.phases.active_phases():
+        project_phases = self._get_phases_for_instance(instance)
+
+        if project_phases.active_phases():
             return _('running'), True
-        elif instance.phases.future_phases():
+
+        if project_phases.future_phases():
             try:
                 return (_('starts at {}').format
-                        (instance.phases.future_phases().first().
+                        (project_phases.future_phases().first().
                          start_date.date()),
                         True)
             except AttributeError:
@@ -90,7 +104,10 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return image_url
 
     def get_status(self, instance):
-        if instance.phases.active_phases() or instance.phases.future_phases():
+        project_phases = \
+            self.phases.filter(
+                module__project_id__in=[instance.id])
+        if project_phases.active_phases() or project_phases.future_phases():
             return 2
         return 3
 
@@ -102,14 +119,16 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return False
 
     def get_active_phase(self, instance):
-        if instance.active_phase:
+        project_phases = self._get_phases_for_instance(instance)
+        if project_phases.active_phases():
             progress = instance.active_phase_progress
             time_left = instance.time_left
             return [progress, time_left]
         return False
 
     def get_past_phase(self, instance):
-        if instance.phases.past_phases():
+        project_phases = self._get_phases_for_instance(instance)
+        if project_phases.past_phases():
             return True
         return False
 
@@ -145,33 +164,12 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     def get_subtype(self, instance):
         return 'plan'
 
-    def _get_status_string(self, projects):
-        future_phase = None
-        for project in projects:
-            phases = project.phases
-            if phases.active_phases():
-                return _('running')
-            if phases.future_phases() and \
-               phases.future_phases().first().start_date:
-                date = phases.future_phases().first().start_date
-                if not future_phase:
-                    future_phase = date
-                else:
-                    if date < future_phase:
-                        future_phase = date
-
-        if future_phase:
-            return _('starts at {}').format(future_phase.date())
-
     def _get_participation_status_plan(self, item):
-        projects = item.projects.all() \
-            .filter(is_draft=False,
-                    is_archived=False,
-                    is_public=True)
+        projects = item.published_projects
         if not projects:
             return item.get_participation_display(), False
         else:
-            status_string = self._get_status_string(projects)
+            status_string = item.participation_string
             if status_string:
                 return status_string, True
             else:
