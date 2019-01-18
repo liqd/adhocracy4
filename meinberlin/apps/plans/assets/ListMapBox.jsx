@@ -125,7 +125,7 @@ class ListMapBox extends React.Component {
         resize={this.state.resizeMap}
         items={this.state.items}
         bounds={this.props.bounds}
-
+        districts={this.props.districts}
         baseurl={this.props.baseurl}
         districtnames={this.props.districtnames}
       />
