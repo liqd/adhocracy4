@@ -18,18 +18,18 @@ class PopUp extends React.Component {
             <a href={this.props.item.url}>{this.props.item.title}</a>
           </div>
           {this.props.item.future_phase &&
-          <div className="status-item status__future">
+          <div className="status-item-popup status__future">
             <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ') + this.props.item.future_phase + django.gettext(' possible')}</span>
           </div>
           }
           {this.props.item.active_phase &&
-          <div className="status-item status__active">
+          <div className="status-item-popup status__active">
             <div className="status-bar__active"><span className="status-bar__active-fill" /></div>
             <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('remaining')} {this.props.item.active_phase[1]}</span>
           </div>
           }
           {this.props.item.past_phase &&
-            <div className="status-item status-bar__past">
+            <div className="status-item-popup status-bar__past">
               {django.gettext('Participation ended. Read result.')}
             </div>
           }
