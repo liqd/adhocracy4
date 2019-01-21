@@ -12,9 +12,9 @@ class PopUp extends React.Component {
     if (this.props.item.type === 'project') {
       return (
         <div className="maps-popups-popup-text-content">
-          <span className="label label--secondary maplist-item__label">{this.props.item.topic}</span>
-          <span className="maplist-item__roofline">{this.props.item.district}</span>
-          <div className="maps-popups-popup-name">
+          <span className="label label--secondary maplist-item__label u-spacer-bottom-half">{this.props.item.topic}</span>
+          <span className="maplist-popup-item__roofline">{this.props.item.district}</span>
+          <div className="maps-popups-popup-name u-spacer-bottom-half">
             <a href={this.props.item.url}>{this.props.item.title}</a>
           </div>
           {this.props.item.future_phase &&
@@ -38,14 +38,16 @@ class PopUp extends React.Component {
     } else {
       return (
         <div className="maps-popups-popup-text-content">
+          {this.props.item.topic &&
           <div className="maplist-item__labels u-spacer-bottom-half">
             <span className="label label--secondary">{this.props.item.topic}</span>
           </div>
+          }
           <span className="maplist-item__roofline">{this.props.item.district}</span>
-          <div className="maps-popups-popup-name">
+          <div className="maps-popups-popup-name u-spacer-bottom-half">
             <a href={this.props.item.url}>{this.props.item.title}</a>
           </div>
-          <div className="maplist-item__stats">
+          <div className="maplist-popup-item__stats">
             <span className="maplist-item__proj-count">
               <i className="fas fa-th" />{django.gettext('Participation projects: ') }</span>
             <span>{this.props.item.published_projects_count}</span>
