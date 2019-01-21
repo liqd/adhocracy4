@@ -15,7 +15,7 @@ class PopUp extends React.Component {
           <span className="label label--secondary maplist-item__label">{this.props.item.topic}</span>
           <span className="maplist-item__roofline">{this.props.item.district}</span>
           <div className="maps-popups-popup-name">
-            <a href={this.props.item.url}>{this.props.item.title}</a>'
+            <a href={this.props.item.url}>{this.props.item.title}</a>
           </div>
           <div className="status-item status__future">
             <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ') + this.props.item.future_phase + django.gettext(' possible')}</span>
