@@ -27,7 +27,7 @@ class PlansList extends React.Component {
   }
 
   renderListItem (item, i) {
-    let statusClass = (item.participation_active === true) ? 'maplist-item__status-active' : 'maplist-item__status-inactive'
+    let participationStatusClass = (item.participation_active === true) ? 'maplist-item__status-active' : 'maplist-item__status-inactive'
     return (
       <li className={this.props.isHorizontal ? 'maplist-item__horizontal' : 'maplist-item__vertical'} key={i} tabIndex="0">
         <a href={item.url}>
@@ -60,7 +60,7 @@ class PlansList extends React.Component {
                     <span>{item.published_projects_count}</span>
                     <br />
                     <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: ')}</span>
-                    <span className={statusClass}>{item.participation_string }</span>
+                    <span className={participationStatusClass}>{item.participation_string }</span>
                   </div>
                 }
                 {item.future_phase &&
@@ -97,7 +97,7 @@ class PlansList extends React.Component {
                 <span>{item.published_projects_count}</span>
                 <br />
                 <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: ')}</span>
-                <span className={statusClass}>{item.participation_string }</span>
+                <span className={participationStatusClass}>{item.participation_string }</span>
               </div>
               <div className="status-item_spacer" />
             </div>

@@ -35,7 +35,6 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     cost = serializers.SerializerMethodField()
     district = serializers.SerializerMethodField()
     status = serializers.SerializerMethodField()
-    status_display = serializers.SerializerMethodField()
     participation = serializers.SerializerMethodField()
     participation_active = serializers.SerializerMethodField()
     participation_string = serializers.SerializerMethodField()
@@ -52,7 +51,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                   'tile_image_copyright',
                   'point', 'point_label', 'cost',
                   'district', 'topic',
-                  'status', 'status_display',
+                  'status',
                   'participation_string',
                   'participation_active',
                   'participation', 'participation_display', 'description',
@@ -112,11 +111,6 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
             return 2
         return 3
 
-    def get_status_display(self, instance):
-        if instance.phases.active_phases() or instance.phases.future_phases():
-            return _('Implementation')
-        return _('Done')
-
     def get_participation(self, instance):
         return 1
 
@@ -143,14 +137,14 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return False
 
     def get_participation_string(self, instance):
-        participation_string, active = \
+        participation_string, participation_active = \
             self._get_participation_status_project(instance)
         return str(participation_string)
 
     def get_participation_active(self, instance):
-        participation_string, active = \
+        participation_string, participation_active = \
             self._get_participation_status_project(instance)
-        return active
+        return participation_active
 
 
 class PlanSerializer(serializers.ModelSerializer, CommonFields):
@@ -159,7 +153,6 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     url = serializers.SerializerMethodField()
     district = serializers.SerializerMethodField()
     point = serializers.SerializerMethodField()
-    status_display = serializers.SerializerMethodField()
     participation_active = serializers.SerializerMethodField()
     participation_string = serializers.SerializerMethodField()
     published_projects_count = serializers.SerializerMethodField()
@@ -170,7 +163,6 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
                   'organisation', 'point',
                   'point_label', 'cost',
                   'district', 'topic', 'status',
-                  'status_display',
                   'participation',
                   'participation_string',
                   'participation_active',
@@ -179,7 +171,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     def get_subtype(self, instance):
         return 'plan'
 
-    def _get_status_string(self, projects):
+    def _get_participation_string(self, projects):
         future_phase = None
         for project in projects:
             phases = project.phases
@@ -205,9 +197,9 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
         if not projects:
             return item.get_participation_display(), False
         else:
-            status_string = self._get_status_string(projects)
-            if status_string:
-                return status_string, True
+            participation_string = self._get_participation_string(projects)
+            if participation_string:
+                return participation_string, True
             else:
                 return item.get_participation_display(), False
 
@@ -217,18 +209,15 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     def get_url(self, instance):
         return instance.get_absolute_url()
 
-    def get_status_display(self, instance):
-        return instance.get_status_display()
-
     def get_published_projects_count(self, instance):
         return instance.published_projects.count()
 
     def get_participation_string(self, instance):
-        participation_string, active = \
+        participation_string, participation_active = \
             self._get_participation_status_plan(instance)
         return str(participation_string)
 
     def get_participation_active(self, instance):
-        participation_string, active = \
+        participation_string, participation_active = \
             self._get_participation_status_plan(instance)
-        return active
+        return participation_active
