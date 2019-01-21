@@ -131,7 +131,12 @@ class PlansMap extends React.Component {
   }
 
   getPopUpContent (item) {
-    return renderToString(<PopUp item={item} />)
+    return renderToString(
+      <PopUp
+        item={item}
+        itemTopic={this.props.topicChoices[item.topic]}
+      />
+    )
   }
 
   addMarkers (cluster) {
