@@ -158,7 +158,7 @@ class FilterNav extends React.Component {
       return (
         <div className="filter-bar-container">
           <div className={this.getFilterBarClassName('--horizontal')} role="group" aria-label={django.gettext('Filter bar')}>
-            <span>{django.gettext('I am interested in projects from')}</span>
+            <span className="filter-bar__project-text">{django.gettext('I am interested in projects from')}</span>
             <div className="filter-bar__dropdown">
               {this.props.district === '-1'
                 ? <FilterButton
@@ -190,7 +190,7 @@ class FilterNav extends React.Component {
               />
               }
             </div>
-            <span>{django.gettext(' in the area of ')}</span>
+            <span className="u-md-down-display-none">{django.gettext(' in the area of ')}</span>
             <div className="filter-bar__dropdown">
               {this.props.topic === '-1'
                 ? <FilterButton
@@ -224,7 +224,11 @@ class FilterNav extends React.Component {
             </div>
             <div>
               <button
-                className="btn btn--small btn--transparent filter-bar__btn--light">{django.gettext('more filters')}</button>
+                className="u-md-down-display-none btn btn--small btn--transparent filter-bar__btn--light">{django.gettext('more filters')}
+              </button>
+              <button
+                className="u-md-up-display-none btn btn--small btn--transparent filter-bar__btn--light"><i className="fas fa-sliders-h" aria-label={django.gettext('more filters')} />
+              </button>
             </div>
           </div>
         </div>

@@ -27,8 +27,8 @@ class MapListSwitch extends React.Component {
           <div className="u-spacer-left u-spacer-right">
             <div className="switch-group" role="group" aria-label={django.gettext('Map list switch')}>
               <div className="btn-group">
-                <button className="btn btn--light" onClick={this.props.toggleSwitch}><i className="fa fa-list" /></button>
-                <button className="btn btn--light" onClick={this.props.toggleSwitch}><i className="fa fa-map" /></button>
+                <button className={!this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'} onClick={this.props.showList}><i className="fa fa-list" /></button>
+                <button className={this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'} onClick={this.props.showMap}><i className="fa fa-map" /></button>
               </div>
             </div>
           </div>

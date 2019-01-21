@@ -1,3 +1,7 @@
+//divider margin needs to be half the line-height
+$line-height: 2.5;
+$divider-margin: 1.25rem;
+
 .filter-bar-container {
     margin-left: 4*$r-spacer;
     margin-right: 4*$r-spacer;
@@ -8,7 +12,7 @@
     background-color: $brand-secondary;
     color: $white;
     font-size: $font-size-lg;
-    line-height: 2.5;
+    line-height: $line-height;
 }
 
 .filter-bar--horizontal {
@@ -16,7 +20,7 @@
     flex-direction: row;
     justify-content: center;
 
-    padding: 2*$padding 4*$padding;
+    padding: 2*$padding;
 }
 
 .filter-bar--stacked {
@@ -162,11 +166,33 @@
     }
 }
 
-.filter-bar__options--horizontal {
-    display: flex;
-    flex-wrap: wrap;
+.filter-bar__option-divider {
+    margin-top: $divider-margin;
+    margin-bottom: $divider-margin;
+    border-top: 2px solid $white;
 }
 
-.filter-bar__option--horizontal {
-    width: 33%;
+@media screen and (max-width: $breakpoint-md-down) {
+    .filter-bar--horizontal {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .filter-bar__project-text {
+        display: block;
+        width: 100%;
+    }
+
+    .filter-bar__dropdown {
+        margin-left: 0;
+        width: 40%;
+    }
+
+    .filter-bar__btn--truncate {
+        width: 100%;
+    }
+
+    .filter-bar__btn--light {
+        margin-left: 0;
+    }
 }

@@ -5,7 +5,7 @@ let PlansMap = require('./PlansMap')
 let FilterNav = require('./FilterNav')
 let ListMapSwitch = require('./MapListSwitch')
 
-const breakpointXS = 512
+const breakpointXS = 800
 const breakpointMD = 1024
 
 class ListMapBox extends React.Component {
@@ -69,16 +69,28 @@ class ListMapBox extends React.Component {
         items.push(item)
       }
     })
+    let showListMap = this.state.showListMap
+    if (window.innerWidth <= breakpointMD) {
+      showListMap = false
+    }
     this.setState({
       items: items,
       filterChanged: false,
-      showListMap: window.innerWidth > breakpointMD
+      showListMap: showListMap
     })
   }
 
   toggleSwitch () {
     let newValue = !this.state.showListMap
     this.setState({ showListMap: newValue })
+  }
+
+  showList () {
+    this.setState({ showListMap: false })
+  }
+
+  showMap () {
+    this.setState({ showListMap: true })
   }
 
   selectDistrict (district) {
@@ -140,7 +152,10 @@ class ListMapBox extends React.Component {
           />
           <ListMapSwitch
             toggleSwitch={this.toggleSwitch.bind(this)}
+            showMap={this.showMap.bind(this)}
+            showList={this.showList.bind(this)}
             isSlider={false}
+            displayMap={this.state.showListMap}
           />
           {!this.state.showListMap &&
             this.getPlansList(false)
@@ -163,7 +178,10 @@ class ListMapBox extends React.Component {
         />
         <ListMapSwitch
           toggleSwitch={this.toggleSwitch.bind(this)}
+          showMap={this.showMap.bind(this)}
+          showList={this.showList.bind(this)}
           isSlider={false}
+          displayMap={this.state.showListMap}
         />
         {!this.state.showListMap &&
           this.getPlansList(false)
@@ -187,7 +205,11 @@ class ListMapBox extends React.Component {
           />
           <ListMapSwitch
             toggleSwitch={this.toggleSwitch.bind(this)}
+            showMap={this.showMap.bind(this)}
+            showList={this.showList.bind(this)}
             isSlider
+            displayMap={this.state.showListMap}
+
           />
           { this.state.showListMap
             ? <div className="map-list-combined">

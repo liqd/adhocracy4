@@ -31,6 +31,9 @@ class PlansList extends React.Component {
     return (
       <li className={this.props.isHorizontal ? 'maplist-item__horizontal' : 'maplist-item__vertical'} key={i} tabIndex="0">
         <a href={item.url}>
+          {item.subtype === 'external' &&
+          <div className="maplist-item__link-img" />
+          }
           {item.type === 'project' &&
             <div className="maplist-item__proj">
               {item.tile_image &&
@@ -51,37 +54,38 @@ class PlansList extends React.Component {
                 <div className="maplist-item__description">
                   <span>{this.getText(item.description)}</span>
                 </div>
+                {item.subtype === 'container' &&
+                  <div className="maplist-item__stats">
+                    <span className="maplist-item__proj-count"><i className="fas fa-th" />{django.gettext('Participation projects: ')}</span>
+                    <span>{item.published_projects_count}</span>
+                    <br />
+                    <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: ')}</span>
+                    <span className={statusClass}>{item.participation_string }</span>
+                  </div>
+                }
                 {item.future_phase &&
-                <div>
                   <div className="status-item status__future">
                     <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ')}{item.future_phase}{django.gettext(' possible')}</span>
                   </div>
-                  <div className="status-item_spacer" />
-                </div>
                 }
                 {item.active_phase &&
-                  <div>
-                    <div className="status-item status__active">
-                      <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
-                      <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('remaining')} {item.active_phase[1]}</span>
-                    </div>
-                    <div className="status-item_spacer" />
-                  </div>
+                <div className="status-item status__active">
+                  <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
+                  <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('remaining')} {item.active_phase[1]}</span>
+                </div>
                 }
                 {item.past_phase &&
-                <div>
                   <div className="status-item status-bar__past">
                     {django.gettext('Participation ended. Read result.')}
                   </div>
-                  <div className="status-item_spacer" />
-                </div>
                 }
               </div>
+              <div className="status-item_spacer" />
             </div>
           }
           {item.type === 'plan' &&
             <div className="maplist-item__plan">
-              {item.topic &&
+              {this.props.topicChoices[item.topic] &&
               <div className="maplist-item__labels u-spacer-bottom-half">
                 <span className="label label--secondary">{this.props.topicChoices[item.topic]}</span>
               </div>
