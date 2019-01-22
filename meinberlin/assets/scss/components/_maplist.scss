@@ -50,13 +50,29 @@
 }
 
 .maplist-item__proj-count,
-.maplist-item__status {
+.maplist-item-popup__proj-count,
+.maplist-item__status,
+.maplist-item-popup__status {
     color: $text-color;
 
     i {
         padding-right: $padding;
         color: $brand-secondary;
     }
+}
+
+.maplist-item-popup__proj-count,
+.maplist-item-popup__status {
+    padding: 0.5*$padding;
+
+    i {
+        padding-right: 0.5*$padding;
+    }
+}
+
+.maplist-item-popup__status.status-bar__past {
+    padding: 0.25*$padding;
+    color: contrast-color($brand-secondary);
 }
 
 .maplist-item__status-active {
