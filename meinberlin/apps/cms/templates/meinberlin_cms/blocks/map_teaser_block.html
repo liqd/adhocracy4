@@ -1,4 +1,4 @@
-{% load wagtailimages_tags wagtailcore_tags block_tags %}
+{% load wagtailimages_tags wagtailcore_tags block_tags react_map_teaser %}
 
 {% image value.image max-1920x700 as image %}
 <div class="block block__homepage block--map-teaser u-z-index-bottom" style="background-image: url({{ image.url }})">
@@ -15,4 +15,5 @@
         <div class="block--map-teaser__filter">
         </div>
     </div>
+    {% react_map_teaser %}
 </div>
