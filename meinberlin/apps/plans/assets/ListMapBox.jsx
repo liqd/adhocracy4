@@ -128,6 +128,7 @@ class ListMapBox extends React.Component {
         districts={this.props.districts}
         baseurl={this.props.baseurl}
         districtnames={this.props.districtnames}
+        topicChoices={this.props.topicChoices}
       />
     )
   }
