@@ -35,6 +35,10 @@
     color: $gray;
 }
 
+.maplist-popup-item__roofline {
+    font-size: $font-size-xs;
+}
+
 .maplist-item__title {
     margin-top: 0;
     color: $brand-secondary;
@@ -46,13 +50,33 @@
 }
 
 .maplist-item__proj-count,
-.maplist-item__status {
+.maplist-item-popup__proj-count,
+.maplist-item__status,
+.maplist-item-popup__status {
     color: $text-color;
 
     i {
         padding-right: $padding;
         color: $brand-secondary;
     }
+}
+
+.maplist-item-popup__proj-count,
+.maplist-item-popup__status {
+    i {
+        padding-right: 0.5*$padding;
+    }
+}
+
+.maplist-item-popup__status.status-bar__past {
+    padding: 0.25*$padding;
+    color: contrast-color($brand-secondary);
+}
+
+.maplist-item-popup__proj-plan {
+    background-color: $bg-secondary;
+    padding: 0.5*$padding $padding;
+    margin: 0.5*$padding (-$padding) auto;
 }
 
 .maplist-item__status-active {
