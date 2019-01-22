@@ -17,7 +17,9 @@ class PopUp extends React.Component {
       return (
         <div className="maps-popups-popup-text-content">
           {this.props.item.topic &&
-          <span className="label label--secondary maplist-item__label u-spacer-bottom-half">{this.props.item.topic}</span>
+          <div className="maplist-item__label-spacer">
+            <span className="label label--secondary maplist-item__label u-spacer-bottom-half">{this.props.item.topic}</span>
+          </div>
           }
           <span className="maplist-popup-item__roofline">{this.props.item.district}</span>
           <div className="maps-popups-popup-name u-spacer-bottom-half">
@@ -37,6 +39,12 @@ class PopUp extends React.Component {
           {this.props.item.past_phase &&
             <div className="maplist-item-popup__status status-bar__past">
               {django.gettext('Participation ended. Read result.')}
+            </div>
+          }
+          {this.props.item.plan_url &&
+            <div className="plan-project">
+              <span>{django.gettext('project for the following plan')}</span>
+              <a href={this.props.item.plan_url}>{this.props.item.plan_title}</a>
             </div>
           }
         </div>
