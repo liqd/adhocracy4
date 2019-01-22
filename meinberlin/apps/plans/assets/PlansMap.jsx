@@ -1,8 +1,10 @@
 /* global django */
+import { renderToString } from 'react-dom/server'
 const React = require('react')
 const L = require('leaflet')
 const $ = require('jquery')
 require('mapbox-gl-leaflet')
+let PopUp = require('./PopUp')
 
 const addressIcon = L.icon({
   iconUrl: '/static/images/address_search_marker.svg',
@@ -96,10 +98,6 @@ class PlansMap extends React.Component {
     }
   }
 
-  escapeHtml (unsafe) {
-    return $('<div>').text(unsafe).html()
-  }
-
   bindMap (element) {
     this.mapElement = element
   }
@@ -133,12 +131,12 @@ class PlansMap extends React.Component {
   }
 
   getPopUpContent (item) {
-    let popupContent = '<div class="maps-popups-popup-text-content">' +
-                             '<div class="maps-popups-popup-name">' +
-                                '<a href="' + item.url + '">' + this.escapeHtml(item.title) + '</a>' +
-                            '</div>' +
-                          '</div>'
-    return popupContent
+    return renderToString(
+      <PopUp
+        item={item}
+        itemTopic={this.props.topicChoices[item.topic]}
+      />
+    )
   }
 
   addMarkers (cluster) {
