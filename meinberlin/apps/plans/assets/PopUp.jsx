@@ -7,9 +7,9 @@ class PopUp extends React.Component {
     return $('<div>').text(unsafe).html()
   }
 
-  // getWidth (item) {
-  //   return { width: this.props.item.active_phase[0] + '%' }
-  // }
+  getWidth () {
+    return { width: this.props.item.active_phase[0] + '%' }
+  }
 
   render () {
     let statusClass = (this.props.item.participation_active === true) ? 'maplist-item__status-active' : 'maplist-item__status-inactive'
@@ -17,7 +17,7 @@ class PopUp extends React.Component {
       return (
         <div className="maps-popups-popup-text-content">
           {this.props.itemTopic &&
-            <div className="maplist-item__labels u-spacer-bottom-half">
+            <div className="maplist-item__labels">
               <span className="label label--secondary maplist-item__label u-spacer-bottom-half">{this.props.itemTopic}</span>
             </div>
           }
@@ -32,7 +32,7 @@ class PopUp extends React.Component {
           }
           {this.props.item.active_phase &&
           <div className="status__active">
-            <div className="status-bar__active"><span className="status-bar__active-fill" /></div>
+            <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(this.props.item)} /></div>
             <span className="maplist-item-popup__status"><i className="fas fa-clock" />{django.gettext('remaining')} {this.props.item.active_phase[1]}</span>
           </div>
           }
@@ -54,7 +54,7 @@ class PopUp extends React.Component {
       return (
         <div className="maps-popups-popup-text-content">
           {this.props.itemTopic &&
-          <div className="maplist-item__labels u-spacer-bottom-half">
+          <div className="maplist-item__labels">
             <span className="label label--secondary">{this.props.itemTopic}</span>
           </div>
           }
