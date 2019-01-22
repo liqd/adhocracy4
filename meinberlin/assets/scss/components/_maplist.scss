@@ -73,6 +73,12 @@
     color: contrast-color($brand-secondary);
 }
 
+.maplist-item-popup__proj-plan {
+    background-color: $bg-secondary;
+    padding: 0.5*$padding $padding;
+    margin: 0.5*$padding (-$padding) auto;
+}
+
 .maplist-item__status-active {
     color: $brand-primary;
 }

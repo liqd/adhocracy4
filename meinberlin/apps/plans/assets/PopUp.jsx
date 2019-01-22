@@ -16,7 +16,11 @@ class PopUp extends React.Component {
     if (this.props.item.type === 'project') {
       return (
         <div className="maps-popups-popup-text-content">
-          <span className="label label--secondary maplist-item__label u-spacer-bottom-half">{this.props.itemTopic}</span>
+          {this.props.itemTopic &&
+            <div className="maplist-item__labels u-spacer-bottom-half">
+              <span className="label label--secondary maplist-item__label u-spacer-bottom-half">{this.props.itemTopic}</span>
+            </div>
+          }
           <span className="maplist-popup-item__roofline">{this.props.item.district}</span>
           <div className="maps-popups-popup-name u-spacer-bottom-half">
             <a href={this.props.item.url}>{this.props.item.title}</a>
@@ -38,14 +42,18 @@ class PopUp extends React.Component {
             </div>
           }
           {this.props.item.plan_url &&
-            <a href={this.props.item.plan_url}>{this.props.item.plan_title}</a>
+            <div className="maps-popups-popup-name maplist-item-popup__proj-plan">
+              <span className="maplist-popup-item__roofline">{django.gettext('Project for the following plan: ') }</span>
+              <br />
+              <a href={this.props.item.plan_url}>{this.props.item.plan_title}</a>
+            </div>
           }
         </div>
       )
     } else {
       return (
         <div className="maps-popups-popup-text-content">
-          {this.props.item.topic &&
+          {this.props.itemTopic &&
           <div className="maplist-item__labels u-spacer-bottom-half">
             <span className="label label--secondary">{this.props.itemTopic}</span>
           </div>
