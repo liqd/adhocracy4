@@ -1,9 +1,7 @@
-from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
 
-from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
 from meinberlin.apps.projects import get_project_type
 
@@ -25,6 +23,9 @@ class CommonFields:
             point = ''
         return point
 
+    def get_organisation(self, instance):
+        return instance.organisation.name
+
 
 class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     type = serializers.SerializerMethodField()
@@ -36,6 +37,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     cost = serializers.SerializerMethodField()
     district = serializers.SerializerMethodField()
     status = serializers.SerializerMethodField()
+    organisation = serializers.SerializerMethodField()
     participation = serializers.SerializerMethodField()
     participation_display = serializers.SerializerMethodField()
     participation_active = serializers.SerializerMethodField()
@@ -63,17 +65,8 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                   'past_phase', 'plan_url', 'plan_title',
                   'published_projects_count']
 
-    @cached_property
-    def phases(self):
-        return Phase.objects\
-            .select_related('module__project')
-
-    def _get_phases_for_instance(self, instance):
-        return self.phases.filter(
-            module__project_id__in=[instance.id])
-
     def _get_participation_status_project(self, instance):
-        project_phases = self._get_phases_for_instance(instance)
+        project_phases = instance.phases
 
         if project_phases.active_phases():
             return _('running'), True
@@ -115,9 +108,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return image_url
 
     def get_status(self, instance):
-        project_phases = \
-            self.phases.filter(
-                module__project_id__in=[instance.id])
+        project_phases = instance.phases
         if project_phases.active_phases() or project_phases.future_phases():
             return 2
         return 3
@@ -136,7 +127,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return False
 
     def get_active_phase(self, instance):
-        project_phases = self._get_phases_for_instance(instance)
+        project_phases = instance.phases
         if project_phases.active_phases():
             progress = instance.active_phase_progress
             time_left = instance.time_left
@@ -144,7 +135,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return False
 
     def get_past_phase(self, instance):
-        project_phases = self._get_phases_for_instance(instance)
+        project_phases = instance.phases
         if project_phases.past_phases():
             return True
         return False
@@ -189,6 +180,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     participation_active = serializers.SerializerMethodField()
     participation_string = serializers.SerializerMethodField()
     published_projects_count = serializers.SerializerMethodField()
+    organisation = serializers.SerializerMethodField()
 
     class Meta:
         model = Plan
