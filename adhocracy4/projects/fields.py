@@ -1,11 +1,12 @@
 from django.conf import settings
-from django.db import models
+from multiselectfield import MultiSelectField
 
 
-class TopicField(models.CharField):
+class TopicField(MultiSelectField):
 
     def __init__(self, *args, **kwargs):
         kwargs['max_length'] = 254
+        kwargs['max_choices'] = 2
         kwargs['default'] = ''
         kwargs['blank'] = True
         super().__init__(*args, **kwargs)
