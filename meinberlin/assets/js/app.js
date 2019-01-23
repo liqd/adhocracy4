@@ -21,6 +21,7 @@ var ReactFollows = require('adhocracy4').follows
 
 var ReactDocuments = require('../../apps/documents/assets/react_documents.jsx')
 var ReactPolls = require('../../apps/polls/assets/react_polls.jsx')
+var ReactMapTeaser = require('../../apps/plans/assets/react_map_teaser.jsx')
 
 var relativeTimestamps = require('../../apps/actions/assets/timestamps.js')
 var mapAddress = require('./map-address.js')
@@ -60,6 +61,7 @@ var init = function () {
 
   initialiseWidget('mb', 'document-management', ReactDocuments.renderDocumentManagement)
   initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
+  initialiseWidget('mb', 'mapTeaser', ReactMapTeaser.renderFilter)
   initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)
 }
 

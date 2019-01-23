@@ -50,7 +50,8 @@ class HomePage(Page):
         ('projects', cms_blocks.ProjectsWrapperBlock()),
         ('activities', actions_blocks.PlatformActivityBlock()),
         ('accordion', cms_blocks.DocsBlock()),
-        ('infographic', cms_blocks.InfographicBlock())
+        ('infographic', cms_blocks.InfographicBlock()),
+        ('map_teaser', cms_blocks.MapTeaserBlock())
     ])
 
     subtitle = models.CharField(max_length=120)

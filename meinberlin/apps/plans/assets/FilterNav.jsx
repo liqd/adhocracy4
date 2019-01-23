@@ -152,6 +152,14 @@ class FilterNav extends React.Component {
             hasNoneValue={false}
           />
           }
+          { this.props.linkUrl &&
+            <div>
+              <a
+                href={this.props.linkUrl}
+                className="u-spacer-top btn btn--small btn--primary btn--full filter-bar__btn--light-homepage">{django.gettext('display projects')}
+              </a>
+            </div>
+          }
         </div>
       )
     } else {
@@ -222,14 +230,27 @@ class FilterNav extends React.Component {
               />
               }
             </div>
-            <div>
-              <button
-                className="u-md-down-display-none btn btn--small btn--transparent filter-bar__btn--light">{django.gettext('more filters')}
-              </button>
-              <button
-                className="u-md-up-display-none btn btn--small btn--transparent filter-bar__btn--light"><i className="fas fa-sliders-h" aria-label={django.gettext('more filters')} />
-              </button>
-            </div>
+            { !this.props.linkUrl &&
+              <div>
+                <button
+                  onClick={this.props.buttonOnClick}
+                  className="u-md-down-display-none btn btn--small btn--transparent filter-bar__btn--light">{django.gettext('more filters')}
+                </button>
+                <button
+                  onClick={this.props.buttonOnClick}
+                  className="u-md-up-display-none btn btn--small btn--transparent filter-bar__btn--light"><i
+                    className="fas fa-sliders-h" aria-label={django.gettext('more filters')} />
+                </button>
+              </div>
+            }
+            { this.props.linkUrl &&
+              <div>
+                <a
+                  href={this.props.linkUrl}
+                  className="btn btn--small btn--primary filter-bar__btn--light-homepage">{django.gettext('display projects')}
+                </a>
+              </div>
+            }
           </div>
         </div>
       )
