@@ -32,25 +32,36 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     title = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
     point = serializers.SerializerMethodField()
+    point_label = serializers.SerializerMethodField()
+    cost = serializers.SerializerMethodField()
     district = serializers.SerializerMethodField()
     status = serializers.SerializerMethodField()
+    participation = serializers.SerializerMethodField()
+    participation_display = serializers.SerializerMethodField()
     participation_active = serializers.SerializerMethodField()
     participation_string = serializers.SerializerMethodField()
     future_phase = serializers.SerializerMethodField()
     active_phase = serializers.SerializerMethodField()
     past_phase = serializers.SerializerMethodField()
     tile_image = serializers.SerializerMethodField()
+    plan_url = serializers.SerializerMethodField()
+    plan_title = serializers.SerializerMethodField()
+    published_projects_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Project
         fields = ['type', 'subtype', 'title', 'url',
-                  'tile_image', 'tile_image_copyright',
-                  'point', 'district', 'topic',
-                  'status', 'participation_string',
+                  'organisation', 'tile_image',
+                  'tile_image_copyright',
+                  'point', 'point_label', 'cost',
+                  'district', 'topic',
+                  'status',
+                  'participation_string',
                   'participation_active',
-                  'description', 'future_phase',
-                  'active_phase',
-                  'past_phase']
+                  'participation', 'participation_display', 'description',
+                  'future_phase', 'active_phase',
+                  'past_phase', 'plan_url', 'plan_title',
+                  'published_projects_count']
 
     @cached_property
     def phases(self):
@@ -111,6 +122,12 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
             return 2
         return 3
 
+    def get_participation(self, instance):
+        return 1
+
+    def get_participation_display(self, instance):
+        return _('Yes')
+
     def get_future_phase(self, instance):
         if (instance.future_phases and
                 instance.future_phases.first().start_date):
@@ -133,14 +150,34 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return False
 
     def get_participation_string(self, instance):
-        participation_string, active = \
+        participation_string, participation_active = \
             self._get_participation_status_project(instance)
         return str(participation_string)
 
     def get_participation_active(self, instance):
-        participation_string, active = \
+        participation_string, participation_active = \
             self._get_participation_status_project(instance)
-        return active
+        return participation_active
+
+    def get_plan_url(self, instance):
+        if instance.plans.exists():
+            return instance.plans.first().get_absolute_url()
+        return None
+
+    def get_plan_title(self, instance):
+        if instance.plans.exists():
+            return instance.plans.first().title
+        return None
+
+    def get_published_projects_count(self, instance):
+        if hasattr(instance, 'projectcontainer') and instance.projectcontainer:
+            return instance.projectcontainer.active_project_count
+
+    def get_point_label(self, instance):
+        return ''
+
+    def get_cost(self, instance):
+        return ''
 
 
 class PlanSerializer(serializers.ModelSerializer, CommonFields):
@@ -156,7 +193,10 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     class Meta:
         model = Plan
         fields = ['type', 'subtype', 'title', 'url',
-                  'point', 'district', 'topic', 'status',
+                  'organisation', 'point',
+                  'point_label', 'cost',
+                  'district', 'topic', 'status',
+                  'participation',
                   'participation_string',
                   'participation_active',
                   'published_projects_count']
@@ -185,11 +225,11 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
         return instance.published_projects.count()
 
     def get_participation_string(self, instance):
-        participation_string, active = \
+        participation_string, participation_active = \
             self._get_participation_status_plan(instance)
         return str(participation_string)
 
     def get_participation_active(self, instance):
-        participation_string, active = \
+        participation_string, participation_active = \
             self._get_participation_status_plan(instance)
-        return active
+        return participation_active
