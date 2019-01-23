@@ -45,6 +45,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     tile_image = serializers.SerializerMethodField()
     plan_url = serializers.SerializerMethodField()
     plan_title = serializers.SerializerMethodField()
+    published_projects_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Project
@@ -58,7 +59,8 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                   'participation_active',
                   'participation', 'participation_display', 'description',
                   'future_phase', 'active_phase',
-                  'past_phase', 'plan_url', 'plan_title']
+                  'past_phase', 'plan_url', 'plan_title',
+                  'published_projects_count']
 
     def _get_participation_status_project(self, instance):
         if instance.phases.active_phases():
@@ -157,6 +159,10 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         if instance.plans.exists():
             return instance.plans.first().title
         return None
+
+    def get_published_projects_count(self, instance):
+        if hasattr(instance, 'projectcontainer') and instance.projectcontainer:
+            return instance.projectcontainer.active_project_count
 
 
 class PlanSerializer(serializers.ModelSerializer, CommonFields):
