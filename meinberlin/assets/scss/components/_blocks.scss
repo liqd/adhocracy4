@@ -193,10 +193,11 @@
 //as filter is different on homepage styling must be nested
 .block--map-teaser__filter {
     .filter-bar-container {
-        margin: 5rem 0 0 0;
+        margin: 2*$r-spacer 0 0 0;
     }
 
     .filter-bar {
+        margin-top: 3*$r-spacer;
         box-shadow: 0 0 20px 0 $shadow;
         background-color: $body-bg;
         color: $text-color;
@@ -230,13 +231,27 @@
         margin-right: 0;
         margin-top: 2*$r-spacer;
         border-top: 2px solid $white;
+        z-index: 3;
     }
 
     .filter-bar__menu {
-        padding: 0;
+        padding: 0 4*$padding $padding 4*$padding;
+    }
 
-        @media screen and (min-width: $breakpoint-xs) {
-            padding: 0 4*$padding $padding 4*$padding;
+    .filter-bar--stacked {
+        .filter-bar__menu {
+            padding: 0;
+        }
+    }
+}
+
+@media screen and (max-width: $breakpoint-md-down) {
+    .block--map-teaser {
+        padding-top: 15*$padding;
+        padding-bottom: 11*$padding;
+
+        .filter-bar__dropdown {
+            width: 30%;
         }
     }
 }

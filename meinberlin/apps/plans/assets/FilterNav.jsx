@@ -156,7 +156,7 @@ class FilterNav extends React.Component {
             <div>
               <a
                 href={this.props.linkUrl}
-                className="btn btn--small btn--primary btn--full filter-bar__btn--light-homepage">{django.gettext('display projects')}
+                className="u-spacer-top btn btn--small btn--primary btn--full filter-bar__btn--light-homepage">{django.gettext('display projects')}
               </a>
             </div>
           }
