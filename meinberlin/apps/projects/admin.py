@@ -4,6 +4,20 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.projects import models
 
 
+def set_is_archived_true(modeladmin, request, queryset):
+    queryset.update(is_archived=True)
+
+
+set_is_archived_true.short_description = _('archive')
+
+
+def set_is_archived_false(modeladmin, request, queryset):
+    queryset.update(is_archived=False)
+
+
+set_is_archived_false.short_description = _('dearchive')
+
+
 class ProjectAdmin(admin.ModelAdmin):
     list_display = (
         '__str__', 'organisation', 'is_draft', 'is_archived', 'created'
@@ -12,6 +26,11 @@ class ProjectAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     raw_id_fields = ('moderators', 'participants')
     date_hierarchy = 'created'
+
+    actions = [
+        set_is_archived_true,
+        set_is_archived_false,
+    ]
 
     fieldsets = (
         (None, {
