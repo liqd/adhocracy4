@@ -47,7 +47,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
     permission_required = 'meinberlin_plans.list_plan'
 
     def get_queryset(self):
-        plans = super().get_queryset()
+        plans = super().get_queryset()\
+            .select_related()
         return sorted(plans,
                       key=lambda x: x.modified or x.created,
                       reverse=True)
@@ -65,8 +66,13 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         projects = Project.objects.all() \
             .filter(is_draft=False, is_archived=False) \
             .order_by('created')\
-            .select_related('administrative_district')\
-            .prefetch_related('moderators', 'organisation__initiators')
+            .select_related('administrative_district',
+                            'organisation',
+                            'externalproject',
+                            'projectcontainer')\
+            .prefetch_related('moderators',
+                              'organisation__initiators',
+                              'module_set__phase_set')
 
         not_allowed_projects = [project.id for project in projects if
                                 not self.request.user.has_perm(
