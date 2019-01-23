@@ -190,13 +190,14 @@
     padding-bottom: 16*$padding;
 }
 
+//as filter is different on homepage
 .block--map-teaser__filter {
     .filter-bar-container {
         margin: 5rem 0 0 0;
-        box-shadow: 0 0 20px 0 $shadow;
     }
 
     .filter-bar {
+        box-shadow: 0 0 20px 0 $shadow;
         background-color: $body-bg;
         color: $text-color;
     }
@@ -208,12 +209,42 @@
         &:hover,
         &:active,
         &:disabled {
-            color: $brand-primary;
+            color: $gray-lighter;
             border-color: $gray-lighter;
         }
     }
 
     .filter-bar__btn--unselected {
         border-bottom: 1px dotted $gray-lighter;
+    }
+
+    .filter-bar--open {
+        background-color: $bg-secondary;
+        color: $text-color;
+
+        // .filter-bar__btn--light {
+        //     color: $white;
+        //
+        //     &:focus,
+        //     &:hover,
+        //     &:active,
+        //     &:disabled {
+        //         color: $white;
+        //         border-color: $white;
+        //     }
+        //}
+    }
+
+    .filter-bar__dropdown-menu {
+        left: 1rem;
+        right: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: $r-spacer;
+        border-top: 2px solid $white;
+    }
+
+    .filter-bar__menu {
+        padding: 0 4*$padding $padding 4*$padding;
     }
 }
