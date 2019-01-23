@@ -185,7 +185,35 @@
     background-position: top;
     background-repeat: no-repeat;
     margin-top: -15*$r-spacer;
-    padding-top: 15*$padding;
+    padding-top: 20*$padding;
     margin-bottom: -$r-spacer;
-    padding-bottom: 3*$padding;
+    padding-bottom: 16*$padding;
+}
+
+.block--map-teaser__filter {
+    .filter-bar-container {
+        margin: 5rem 0 0 0;
+        box-shadow: 0 0 20px 0 $shadow;
+    }
+
+    .filter-bar {
+        background-color: $body-bg;
+        color: $text-color;
+    }
+
+    .filter-bar__btn {
+        color: $gray-lighter;
+
+        &:focus,
+        &:hover,
+        &:active,
+        &:disabled {
+            color: $brand-primary;
+            border-color: $gray-lighter;
+        }
+    }
+
+    .filter-bar__btn--unselected {
+        border-bottom: 1px dotted $gray-lighter;
+    }
 }
