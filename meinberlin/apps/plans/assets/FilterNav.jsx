@@ -152,6 +152,14 @@ class FilterNav extends React.Component {
             hasNoneValue={false}
           />
           }
+          { this.props.linkUrl &&
+            <div>
+              <a
+                href={this.props.linkUrl}
+                className="btn btn--small btn--primary btn--full filter-bar__btn--light-homepage">{django.gettext('display projects')}
+              </a>
+            </div>
+          }
         </div>
       )
     } else {
@@ -239,7 +247,7 @@ class FilterNav extends React.Component {
               <div>
                 <a
                   href={this.props.linkUrl}
-                  className="u-md-down-display-none btn btn--small btn--primary filter-bar__btn--light">{django.gettext('display projects')}
+                  className="btn btn--small btn--primary filter-bar__btn--light-homepage">{django.gettext('display projects')}
                 </a>
               </div>
             }
