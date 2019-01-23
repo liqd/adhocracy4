@@ -3,6 +3,8 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4.dashboard.forms import ProjectDashboardForm
+from adhocracy4.projects.models import Project
 from meinberlin.apps.users import fields as user_fields
 
 from .models import ModeratorInvite
@@ -68,3 +70,11 @@ class InviteUsersFromEmailForm(forms.Form):
             raise ValidationError(
                 _('Please enter email addresses or upload a file'))
         return cleaned_data
+
+
+class TopicForm(ProjectDashboardForm):
+
+    class Meta:
+        model = Project
+        fields = ['topic']
+        required_for_project_publish = []
