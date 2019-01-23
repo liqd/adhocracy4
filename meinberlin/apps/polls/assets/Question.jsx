@@ -177,11 +177,12 @@ class Question extends React.Component {
               } else {
                 if (!this.state.question.multiple_choice) {
                   return (
-                    <label className="poll-row radio" key={choice.id}>
+                    <label className="poll-row radio" key={choice.id} htmlFor={'id_choice-' + choice.id + '-single'}>
                       <input
                         className="poll-row__radio radio__input"
                         type="radio"
                         name="question"
+                        id={'id_choice-' + choice.id + '-single'}
                         value={choice.id}
                         checked={checked}
                         onChange={this.handleOnChange.bind(this)}
@@ -192,11 +193,12 @@ class Question extends React.Component {
                   )
                 } else {
                   return (
-                    <label className="poll-row radio" key={choice.id}>
+                    <label className="poll-row radio" key={choice.id} htmlFor={'id_choice-' + choice.id + '-multiple'}>
                       <input
                         className="poll-row__radio radio__input"
                         type="checkbox"
                         name="question"
+                        id={'id_choice-' + choice.id + '-multiple'}
                         value={choice.id}
                         checked={checked}
                         onChange={this.handleOnMultiChange.bind(this)}
