@@ -103,7 +103,6 @@ class InfographicBlock(blocks.StructBlock):
 
 class MapTeaserBlock(blocks.StructBlock):
     image = ImageChooserBlock()
-    icon = blocks.RichTextBlock()
     body = blocks.RichTextBlock()
 
     class Meta:
