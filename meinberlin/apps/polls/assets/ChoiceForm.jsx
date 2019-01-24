@@ -17,7 +17,7 @@ const ChoiceForm = (props) => {
             onChange={(e) => { props.onLabelChange(e.target.value) }} />
         </label>
         <button
-          className="input-group__after input-group__after-ex-label btn btn--light"
+          className="input-group__after input-group__after-outside btn btn--light"
           onClick={props.onDelete}
           title={django.gettext('remove')}
           type="button">
