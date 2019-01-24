@@ -65,14 +65,6 @@ class PlansMap extends React.Component {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.resize === true) {
-      this.map.eachLayer(function (layer) {
-        this.map.removeLayer(layer)
-      }.bind(this))
-    }
-  }
-
   componentDidMount () {
     this.map = this.createMap()
     this.addBackgroundMap(this.map)
@@ -83,19 +75,16 @@ class PlansMap extends React.Component {
     this.markers = this.addMarkers(this.cluster)
   }
 
-  componentDidUpdate () {
-    if (this.props.resize === true) {
-      this.map.invalidateSize()
-      this.addBackgroundMap(this.map)
-      this.addDistrictLayers(this.map)
-      this.cluster = L.markerClusterGroup({
-        showCoverageOnHover: false
-      }).addTo(this.map)
-      this.markers = this.addMarkers(this.cluster)
-    } else {
-      this.cluster.clearLayers()
-      this.markers = this.addMarkers(this.cluster)
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.currentDistrict !== this.props.currentDistrict) {
+      this.zoomToDistrict(nextProps.currentDistrict)
+      this.unsetLayerStyle(this.props.currentDistrict)
     }
+  }
+
+  componentDidUpdate () {
+    this.cluster.clearLayers()
+    this.markers = this.addMarkers(this.cluster)
   }
 
   bindMap (element) {
@@ -116,8 +105,23 @@ class PlansMap extends React.Component {
       accessToken: 'no-token',
       style: this.props.baseurl
     }).addTo(map)
-    map.fitBounds(this.props.bounds)
-    map.options.minZoom = map.getZoom()
+  }
+
+  unsetLayerStyle (district) {
+    if (district !== '-1' && district !== this.props.nonValue) {
+      let layer = this.disctrictLayerLookup[district]
+      layer.setStyle({ weight: 1 })
+    }
+  }
+
+  zoomToDistrict (district) {
+    if (district !== '-1' && district !== this.props.nonValue) {
+      let layer = this.disctrictLayerLookup[district]
+      this.map.fitBounds(layer.getBounds())
+      layer.setStyle({ weight: 3 })
+    } else {
+      this.map.fitBounds(this.props.bounds)
+    }
   }
 
   addDistrictLayers (map) {
@@ -127,7 +131,13 @@ class PlansMap extends React.Component {
       'opacity': 1,
       'fillOpacity': 0
     }
-    L.geoJSON(this.props.districts, { style: districtStyle }).addTo(map)
+    let districLayers = L.geoJSON(this.props.districts, { style: districtStyle }).addTo(map)
+    let districtNames = this.props.districtnames
+    this.disctrictLayerLookup = {}
+    districLayers.getLayers().map((layer, i) => {
+      this.disctrictLayerLookup[districtNames[i].toString()] = layer
+    })
+    this.zoomToDistrict(this.props.currentDistrict)
   }
 
   getPopUpContent (item) {

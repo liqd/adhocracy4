@@ -1,3 +1,4 @@
+/* global history */
 import StickyBox from 'react-sticky-box'
 const React = require('react')
 let PlansList = require('./PlansList')
@@ -13,6 +14,7 @@ class ListMapBox extends React.Component {
     super(props)
 
     this.windowSizeChange = this.handleWindowSizeChange.bind(this)
+    this.location = window.location.pathname
 
     this.state = {
       width: window.innerWidth,
@@ -93,12 +95,21 @@ class ListMapBox extends React.Component {
     this.setState({ showListMap: true })
   }
 
+  updateUrl (topic, district) {
+    let params = '?district=' + district + '&topic=' + topic
+    let newUrl = this.location + params
+    if (window.history && history.pushState) {
+      window.history.replaceState({}, '', newUrl)
+    }
+  }
+
   selectDistrict (district) {
     var newDistrict = (district === '-1') ? '-1' : this.props.districtnames[district]
     this.setState({
       filterChanged: true,
       district: newDistrict
     })
+    this.updateUrl(this.state.topic, newDistrict)
   }
 
   selectTopic (topic) {
@@ -106,6 +117,7 @@ class ListMapBox extends React.Component {
       filterChanged: true,
       topic: topic
     })
+    this.updateUrl(topic, this.state.district)
   }
 
   getPlansList (isHorizontal) {
@@ -125,6 +137,8 @@ class ListMapBox extends React.Component {
         resize={this.state.resizeMap}
         items={this.state.items}
         bounds={this.props.bounds}
+        currentDistrict={this.state.district}
+        nonValue={this.props.districtnames[this.props.districtnames.length - 1]}
         districts={this.props.districts}
         baseurl={this.props.baseurl}
         districtnames={this.props.districtnames}
