@@ -1,3 +1,4 @@
+/* global history */
 import StickyBox from 'react-sticky-box'
 const React = require('react')
 let PlansList = require('./PlansList')
@@ -97,7 +98,9 @@ class ListMapBox extends React.Component {
   updateUrl (topic, district) {
     let params = '?district=' + district + '&topic=' + topic
     let newUrl = this.location + params
-    window.history.replaceState({}, '', newUrl)
+    if (window.history && history.pushState) {
+      window.history.replaceState({}, '', newUrl)
+    }
   }
 
   selectDistrict (district) {
