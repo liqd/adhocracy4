@@ -18,7 +18,11 @@
 .storefront {
     display: flex;
     font-size: $font-size-base;
-    padding-bottom: 6*$padding;
+    padding-bottom: 3*$padding;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        padding-bottom: 6*$padding;
+    }
 }
 
 .storefront__col {
@@ -67,6 +71,7 @@
     flex: 0 1 6rem;
     flex-wrap: wrap;
     position: relative;
+    background-color: $body-bg;
 
     .list-item__stats {
         font-size: $font-size-sm;

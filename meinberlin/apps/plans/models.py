@@ -10,6 +10,7 @@ from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
+from adhocracy4.phases.models import Phase
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.fields import TopicField
 
@@ -104,6 +105,24 @@ class Plan(UserGeneratedContentModel):
     def published_projects(self):
         return self.projects.filter(
             is_draft=False, is_public=True, is_archived=False)
+
+    @cached_property
+    def participation_string(self):
+        project_list = self.published_projects.values_list('id', flat=True)
+        phases_in_plan = Phase.objects\
+            .select_related('module__project')\
+            .filter(module__project_id__in=project_list)\
+            .order_by('-start_date')
+
+        if phases_in_plan.active_phases():
+            return _('running')
+
+        future_phases_with_start_date = phases_in_plan.future_phases()\
+            .exclude(start_date__isnull=True)
+
+        if future_phases_with_start_date:
+            future_phase = future_phases_with_start_date.first()
+            return _('starts at {}').format(future_phase.start_date.date())
 
     def __str__(self):
         return self.title

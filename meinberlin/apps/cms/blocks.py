@@ -99,3 +99,12 @@ class InfographicBlock(blocks.StructBlock):
     class Meta:
         template = 'meinberlin_cms/blocks/infographic_block.html'
         icon = 'success'
+
+
+class MapTeaserBlock(blocks.StructBlock):
+    image = ImageChooserBlock()
+    body = blocks.RichTextBlock()
+
+    class Meta:
+        template = 'meinberlin_cms/blocks/map_teaser_block.html'
+        icon = 'view'

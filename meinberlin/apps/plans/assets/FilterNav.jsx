@@ -1,6 +1,7 @@
 /* global django */
 var FilterOptions = require('./FilterOptions')
 var FilterButton = require('./FilterButton')
+var FilterSecondary = require('./FilterSecondary')
 const React = require('react')
 
 class FilterNav extends React.Component {
@@ -10,30 +11,46 @@ class FilterNav extends React.Component {
     this.state = {
       displayDistrictOptions: false,
       displayTopicOptions: false,
+      displaySecondaryFilters: false,
       isExpanded: false
     }
   }
 
   showDistrictOptions () {
     let isExpanded = !this.state.isExpanded
-    if (this.state.displayTopicOptions) {
+    if (this.state.displayTopicOptions || this.state.displaySecondaryFilters) {
       isExpanded = true
     }
     this.setState({
       displayTopicOptions: false,
       displayDistrictOptions: !this.state.displayDistrictOptions,
+      displaySecondaryFilters: false,
       isExpanded: isExpanded
     })
   }
 
   showTopicOptions () {
     let isExpanded = !this.state.isExpanded
-    if (this.state.displayDistrictOptions) {
+    if (this.state.displayDistrictOptions || this.state.displaySecondaryFilters) {
       isExpanded = true
     }
     this.setState({
       displayDistrictOptions: false,
       displayTopicOptions: !this.state.displayTopicOptions,
+      displaySecondaryFilters: false,
+      isExpanded: isExpanded
+    })
+  }
+
+  showSecondaryFilters () {
+    let isExpanded = !this.state.isExpanded
+    if (this.state.displayDistrictOptions || this.state.displayTopicOptions) {
+      isExpanded = true
+    }
+    this.setState({
+      displayDistrictOptions: false,
+      displayTopicOptions: false,
+      displaySecondaryFilters: !this.state.displaySecondaryFilters,
       isExpanded: isExpanded
     })
   }
@@ -152,6 +169,14 @@ class FilterNav extends React.Component {
             hasNoneValue={false}
           />
           }
+          { this.props.linkUrl &&
+            <div>
+              <a
+                href={this.props.linkUrl}
+                className="u-spacer-top btn btn--small btn--primary btn--full filter-bar__btn--light-homepage">{django.gettext('display projects')}
+              </a>
+            </div>
+          }
         </div>
       )
     } else {
@@ -222,15 +247,32 @@ class FilterNav extends React.Component {
               />
               }
             </div>
-            <div>
-              <button
-                className="u-md-down-display-none btn btn--small btn--transparent filter-bar__btn--light">{django.gettext('more filters')}
-              </button>
-              <button
-                className="u-md-up-display-none btn btn--small btn--transparent filter-bar__btn--light"><i className="fas fa-sliders-h" aria-label={django.gettext('more filters')} />
-              </button>
-            </div>
+            { !this.props.linkUrl &&
+              <div>
+                <button
+                  onClick={this.showSecondaryFilters.bind(this)}
+                  className="u-md-down-display-none btn btn--small btn--transparent filter-bar__btn--light">{django.gettext('more filters')}
+                </button>
+                <button
+                  onClick={this.showSecondaryFilters.bind(this)}
+                  className="u-md-up-display-none btn btn--small btn--transparent filter-bar__btn--light"><i
+                    className="fas fa-sliders-h" aria-label={django.gettext('more filters')} />
+                </button>
+              </div>
+            }
+            { this.props.linkUrl &&
+              <div>
+                <a
+                  href={this.props.linkUrl}
+                  className="btn btn--small btn--primary filter-bar__btn--light-homepage">{django.gettext('display projects')}
+                </a>
+              </div>
+            }
           </div>
+          { this.state.displaySecondaryFilters &&
+            <FilterSecondary
+            />
+          }
         </div>
       )
     }

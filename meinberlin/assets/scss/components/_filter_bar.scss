@@ -106,7 +106,8 @@ $divider-margin: 1.25rem;
     background-color: $bg-secondary;
     color: $text-color;
 
-    .btn {
+    .filter-bar__btn,
+    .filter-bar__btn--light {
         color: $text-color;
 
         &:focus,
