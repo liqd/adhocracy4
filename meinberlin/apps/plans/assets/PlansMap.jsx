@@ -75,6 +75,13 @@ class PlansMap extends React.Component {
     this.markers = this.addMarkers(this.cluster)
   }
 
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.currentDistrict !== this.props.currentDistrict) {
+      this.zoomToDistrict(nextProps.currentDistrict)
+      this.unsetLayerStyle(this.props.currentDistrict)
+    }
+  }
+
   componentDidUpdate () {
     this.cluster.clearLayers()
     this.markers = this.addMarkers(this.cluster)
@@ -100,9 +107,16 @@ class PlansMap extends React.Component {
     }).addTo(map)
   }
 
-  zoomToDistrict () {
-    if (this.props.currentDistrict !== '-1') {
-      let layer = this.disctrictLayerLookup[this.props.currentDistrict]
+  unsetLayerStyle (district) {
+    if (district !== '-1' && district !== this.props.nonValue) {
+      let layer = this.disctrictLayerLookup[district]
+      layer.setStyle({ weight: 1 })
+    }
+  }
+
+  zoomToDistrict (district) {
+    if (district !== '-1' && district !== this.props.nonValue) {
+      let layer = this.disctrictLayerLookup[district]
       this.map.fitBounds(layer.getBounds())
       layer.setStyle({ weight: 3 })
     } else {
@@ -123,7 +137,7 @@ class PlansMap extends React.Component {
     districLayers.getLayers().map((layer, i) => {
       this.disctrictLayerLookup[districtNames[i].toString()] = layer
     })
-    this.zoomToDistrict()
+    this.zoomToDistrict(this.props.currentDistrict)
   }
 
   getPopUpContent (item) {

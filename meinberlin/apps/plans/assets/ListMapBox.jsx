@@ -138,6 +138,7 @@ class ListMapBox extends React.Component {
         items={this.state.items}
         bounds={this.props.bounds}
         currentDistrict={this.state.district}
+        nonValue={this.props.districtnames[this.props.districtnames.length - 1]}
         districts={this.props.districts}
         baseurl={this.props.baseurl}
         districtnames={this.props.districtnames}
