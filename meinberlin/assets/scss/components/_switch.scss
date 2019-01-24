@@ -1,55 +1,66 @@
-.switch > input[type="checkbox"] {
+.switch-label > .switch-input[type="checkbox"] {
     display: none;
 }
 
-.switch {
-    label {
-        cursor: pointer;
-        height: 0;
-        position: relative;
-        top: 2px;
-        width: 40px;
+.switch-label {
+    width: 6rem;
+    margin-top: -0.5rem;
+    cursor: pointer;
+    height: 0;
+    position: relative;
+    top: 2px;
+}
+
+.switch-label__text {
+    display: inline-block;
+    margin-top: 0.25*$r-spacer;
+}
+
+.switch__toggle:before,
+.switch__toggle:after {
+    content: '';
+    // background: $brand-secondary;
+    margin: 0 3px;
+    // transition: all 100ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    border-radius: 16px;
+}
+
+.switch__toggle:before {
+    height: 31px;
+    width: 47px;
+    background: $brand-secondary;
+    position: absolute;
+    transition: all 0.4s ease-in-out;
+}
+
+.switch__toggle:after {
+    position: absolute;
+    top: 12px;
+    left: 79px;
+    transition: all 0.3s ease-in-out;
+    height: 24px;
+    width: 24px;
+    background: $body-bg;
+    margin-top: -8px;
+}
+
+.switch-input[type="checkbox"]:checked {
+    & + .switch__toggle:before {
+        background: inherit;
+        border: 1px solid $gray-lighter;
     }
 
-    label:before {
-        background: $brand-secondary;
-        border-radius: 16px;
-        content: '';
-        height: 30px;
-        margin-top: -15px;
-        position: absolute;
-        transition: all 0.4s ease-in-out;
-        width: 47px;
-    }
-
-    label:after {
-        background: $body-bg;
-        border-radius: 16px;
-        content: '';
-        height: 24px;
-        left: 2px;
-        margin-top: -8px;
-        position: absolute;
-        top: -4px;
-        transition: all 0.3s ease-in-out;
-        width: 24px;
-    }
-
-    input[type="checkbox"]:checked {
-        & + label:before {
-            background: inherit;
-            border: 1px solid $gray-lighter;
-        }
-
-        & + label:after {
-            background: inherit;
-            left: 20px;
-            border: 1px solid $gray-lighter;
-        }
+    & + .switch__toggle:after {
+        background: inherit;
+        left: 95px;
+        top: 12px;
+        border: 1px solid $gray-lighter;
     }
 }
 
 .switch-group {
+    height: 3rem;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -75,9 +86,4 @@
     color: $body-bg;
     background-color: $brand-secondary;
     border-color: $brand-secondary;
-}
-
-.switch-label {
-    width: 6rem;
-    margin-top: -0.5rem;
 }
