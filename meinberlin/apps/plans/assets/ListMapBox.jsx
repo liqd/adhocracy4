@@ -13,6 +13,7 @@ class ListMapBox extends React.Component {
     super(props)
 
     this.windowSizeChange = this.handleWindowSizeChange.bind(this)
+    this.location = window.location.pathname
 
     this.state = {
       width: window.innerWidth,
@@ -93,12 +94,19 @@ class ListMapBox extends React.Component {
     this.setState({ showListMap: true })
   }
 
+  updateUrl (topic, district) {
+    let params = '?district=' + district + '&topic=' + topic
+    let newUrl = this.location + params
+    window.history.replaceState({}, '', newUrl)
+  }
+
   selectDistrict (district) {
     var newDistrict = (district === '-1') ? '-1' : this.props.districtnames[district]
     this.setState({
       filterChanged: true,
       district: newDistrict
     })
+    this.updateUrl(this.state.topic, newDistrict)
   }
 
   selectTopic (topic) {
@@ -106,6 +114,7 @@ class ListMapBox extends React.Component {
       filterChanged: true,
       topic: topic
     })
+    this.updateUrl(topic, this.state.district)
   }
 
   getPlansList (isHorizontal) {
