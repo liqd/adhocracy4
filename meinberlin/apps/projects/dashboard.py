@@ -2,8 +2,10 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard import DashboardComponent
+from adhocracy4.dashboard import ProjectFormComponent
 from adhocracy4.dashboard import components
 
+from . import forms
 from . import views
 
 
@@ -49,5 +51,16 @@ class ModeratorsComponent(DashboardComponent):
         )]
 
 
+class PointComponent(ProjectFormComponent):
+    identifier = 'point'
+    weight = 33
+    label = _('Location')
+
+    form_title = _('Edit location')
+    form_class = forms.PointForm
+    form_template_name = 'meinberlin_projects/project_point.html'
+
+
 components.register_project(ModeratorsComponent())
 components.register_project(ParticipantsComponent())
+components.register_project(PointComponent())
