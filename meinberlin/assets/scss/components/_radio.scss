@@ -70,3 +70,10 @@ $checkbox-size: 20px;
         cursor: not-allowed;
     }
 }
+
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: $spacer;
+}
