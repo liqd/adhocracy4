@@ -200,6 +200,13 @@ class Project(ProjectContactDetailMixin,
     def has_moderator(self, user):
         return user in self.moderators.all()
 
+    @property
+    def project_topics_names(self):
+        if hasattr(settings, 'A4_PROJECT_TOPICS'):
+            choices = dict(settings.A4_PROJECT_TOPICS)
+            return [choices[topic] for topic in self.topics]
+        return []
+
     @cached_property
     def other_projects(self):
         other_projects = self.organisation.project_set\
