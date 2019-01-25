@@ -76,5 +76,5 @@ class TopicForm(ProjectDashboardForm):
 
     class Meta:
         model = Project
-        fields = ['topic']
+        fields = ['topics']
         required_for_project_publish = []

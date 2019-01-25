@@ -22,7 +22,7 @@ class PlanForm(forms.ModelForm):
             'district',
             'cost',
             'description',
-            'topic',
+            'topics',
             'status',
             'participation']
         widgets = {
