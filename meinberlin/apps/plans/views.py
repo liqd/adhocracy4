@@ -130,7 +130,7 @@ class PlanExportView(rules_mixins.PermissionRequiredMixin,
     permission_required = 'meinberlin_plans.list_plan'
     model = models.Plan
     fields = ['title', 'organisation', 'contact', 'district', 'cost',
-              'description', 'topic', 'status', 'participation']
+              'description', 'topics', 'status', 'participation']
     html_fields = ['description']
 
     def get_object_list(self):
