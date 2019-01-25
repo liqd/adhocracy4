@@ -18,6 +18,24 @@ class PlansList extends React.Component {
     }
   }
 
+  getTopicList (item) {
+    let topicList = item.topics.map((val) => {
+      return this.props.topicChoices[val]
+    })
+    return topicList
+  }
+
+  renderTopics (item) {
+    let topicsList = this.getTopicList(item)
+    if (item.topics) {
+      return (
+        <div className={item.tile_image ? 'malist-item__label-nospacer' : 'maplist-item__label-spacer'}>
+          {topicsList.map(topic => <span key={topic} className="label label--secondary maplist-item__label u-spacer-bottom-half">{topic}</span>)}
+        </div>
+      )
+    }
+  }
+
   getText (item) {
     if (item.length > 100) {
       return item.substr(0, 100) + '...'
@@ -44,11 +62,7 @@ class PlansList extends React.Component {
               </div>
               }
               <div className="maplist-item__content">
-                {item.topic &&
-                <div className={item.tile_image ? 'malist-item__label-nospacer' : 'maplist-item__label-spacer'}>
-                  <span className="label label--secondary maplist-item__label">{this.props.topicChoices[item.topic]}</span>
-                </div>
-                }
+                {this.renderTopics(item)}
                 <span className="maplist-item__roofline">{item.district}</span>
                 <h3 className="maplist-item__title">{item.title}</h3>
                 <div className="maplist-item__description">

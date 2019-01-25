@@ -140,11 +140,18 @@ class PlansMap extends React.Component {
     this.zoomToDistrict(this.props.currentDistrict)
   }
 
+  getTopicList (item) {
+    let topicList = item.topics.map((val) => {
+      return this.props.topicChoices[val]
+    })
+    return topicList
+  }
+
   getPopUpContent (item) {
     return renderToString(
       <PopUp
         item={item}
-        itemTopic={this.props.topicChoices[item.topic]}
+        itemTopics={this.getTopicList(item)}
       />
     )
   }
