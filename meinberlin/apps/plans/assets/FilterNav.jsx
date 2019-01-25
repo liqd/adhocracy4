@@ -271,6 +271,10 @@ class FilterNav extends React.Component {
           </div>
           { this.state.displaySecondaryFilters &&
             <FilterSecondary
+              selectParticipation={this.props.selectParticipation.bind(this)}
+              showSecondaryFilters={this.showSecondaryFilters.bind(this)}
+              participation={this.props.participation}
+              participationNames={this.props.participationNames}
             />
           }
         </div>

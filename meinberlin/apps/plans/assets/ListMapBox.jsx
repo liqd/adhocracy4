@@ -1,4 +1,5 @@
 /* global history */
+/* global django */
 import StickyBox from 'react-sticky-box'
 const React = require('react')
 let PlansList = require('./PlansList')
@@ -8,6 +9,12 @@ let ListMapSwitch = require('./MapListSwitch')
 
 const breakpointXS = 800
 const breakpointMD = 1024
+
+const participationNames = [
+  django.gettext('without participation'),
+  django.gettext('with participation'),
+  django.gettext('undecided')
+]
 
 class ListMapBox extends React.Component {
   constructor (props) {
@@ -28,7 +35,7 @@ class ListMapBox extends React.Component {
       resizeMap: false,
       filterChanged: false,
       status: -1,
-      participation: -1,
+      participation: 1,
       district: props.selectedDistrict,
       topic: props.selectedTopic
     }
@@ -61,7 +68,8 @@ class ListMapBox extends React.Component {
 
   isInFilter (item) {
     return (this.state.topic === '-1' || this.state.topic === item.topic || this.state.topic.toLowerCase() === item.topic.toLowerCase()) &&
-      (this.state.district === '-1' || this.state.district === item.district)
+      (this.state.district === '-1' || this.state.district === item.district) &&
+      (this.state.participation === -1 || this.state.participation === item.participation)
   }
 
   updateList () {
@@ -120,6 +128,13 @@ class ListMapBox extends React.Component {
     this.updateUrl(topic, this.state.district)
   }
 
+  selectParticipation (participation) {
+    this.setState({
+      filterChanged: true,
+      participation: participation
+    })
+  }
+
   getPlansList (isHorizontal) {
     return (
       <PlansList
@@ -158,10 +173,13 @@ class ListMapBox extends React.Component {
           <FilterNav
             selectDistrict={this.selectDistrict.bind(this)}
             selectTopic={this.selectTopic.bind(this)}
+            selectParticipation={this.selectParticipation.bind(this)}
             district={this.state.district}
             districtnames={this.props.districtnames}
             topic={this.state.topic}
             topicChoices={this.props.topicChoices}
+            participation={this.state.participation}
+            participationNames={participationNames}
             numColumns={1}
             isStacked
           />
@@ -184,10 +202,13 @@ class ListMapBox extends React.Component {
         <FilterNav
           selectDistrict={this.selectDistrict.bind(this)}
           selectTopic={this.selectTopic.bind(this)}
+          selectParticipation={this.selectParticipation.bind(this)}
           district={this.state.district}
           districtnames={this.props.districtnames}
           topic={this.state.topic}
           topicChoices={this.props.topicChoices}
+          participation={this.state.participation}
+          participationNames={participationNames}
           numColumns={2}
           isStacked={false}
         />
@@ -211,10 +232,13 @@ class ListMapBox extends React.Component {
           <FilterNav
             selectDistrict={this.selectDistrict.bind(this)}
             selectTopic={this.selectTopic.bind(this)}
+            selectParticipation={this.selectParticipation.bind(this)}
             district={this.state.district}
             districtnames={this.props.districtnames}
             topic={this.state.topic}
             topicChoices={this.props.topicChoices}
+            participation={this.state.participation}
+            participationNames={participationNames}
             numColumns={3}
             isStacked={false}
           />
