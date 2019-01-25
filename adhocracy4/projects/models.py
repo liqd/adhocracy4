@@ -164,8 +164,8 @@ class Project(ProjectContactDetailMixin,
         help_text=_('Exclude this project from all listings by default. '
                     'You can still access this project by using filters.'),
     )
-    topic = TopicField(
-        verbose_name=_('Project topic')
+    topics = TopicField(
+        verbose_name=_('Project topics')
     )
 
     objects = ProjectManager()
@@ -199,6 +199,13 @@ class Project(ProjectContactDetailMixin,
 
     def has_moderator(self, user):
         return user in self.moderators.all()
+
+    @property
+    def project_topics_names(self):
+        if hasattr(settings, 'A4_PROJECT_TOPICS'):
+            choices = dict(settings.A4_PROJECT_TOPICS)
+            return [choices[topic] for topic in self.topics]
+        return []
 
     @cached_property
     def other_projects(self):
