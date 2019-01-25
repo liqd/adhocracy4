@@ -78,9 +78,12 @@ class PointForm(ProjectDashboardForm):
 
     class Meta:
         model = Project
-        fields = ['point']
+        fields = ['administrative_district', 'point']
         required_for_project_publish = []
         widgets = {
             'point': maps_widgets.MapChoosePointWidget(
                 polygon=settings.BERLIN_POLYGON)
+        }
+        help_texts = {
+            'point': _('Please locate the project on the map.')
         }
