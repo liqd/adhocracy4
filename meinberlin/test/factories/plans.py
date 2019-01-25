@@ -22,7 +22,7 @@ class PlanFactory(factory.django.DjangoModelFactory):
     }
     contact = ''
     topics = ''
-    status = Plan.STATUS_TODO
+    status = Plan.STATUS_ONGOING
     participation = Plan.PARTICIPATION_UNDECIDED
 
     @factory.post_generation
