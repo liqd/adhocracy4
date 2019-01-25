@@ -164,8 +164,8 @@ class Project(ProjectContactDetailMixin,
         help_text=_('Exclude this project from all listings by default. '
                     'You can still access this project by using filters.'),
     )
-    topic = TopicField(
-        verbose_name=_('Project topic')
+    topics = TopicField(
+        verbose_name=_('Project topics')
     )
 
     objects = ProjectManager()
