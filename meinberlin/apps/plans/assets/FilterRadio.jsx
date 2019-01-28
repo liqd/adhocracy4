@@ -22,15 +22,23 @@ class FilterRadio extends React.Component {
     return (this.state.selectedChoice === choice)
   }
 
+  getClassNameInput (choice) {
+    if (this.isChecked(choice)) {
+      return 'btn btn--light switch--btn active'
+    }
+    return 'btn btn--light switch--btn'
+  }
+
   render () {
     return (
       <div className="radio-group" role="group">
         <h2>{this.props.question}</h2>
-        <label className="" key={this.props.filterId + 'all'} htmlFor={'id_choice-' + this.props.filterId + '-all'}>
+        <label className={this.getClassNameInput(-1)}
+          key={this.props.filterId + 'all'}
+          htmlFor={'id_choice-' + this.props.filterId + '-all'}>
           <input
-            className=""
+            className="radio__input"
             type="radio"
-            name="question"
             id={'id_choice-' + this.props.filterId + '-all'}
             value="-1"
             checked={this.isChecked(-1)}
@@ -40,11 +48,12 @@ class FilterRadio extends React.Component {
         </label>
         {this.props.choiceNames.map((choice, i) => {
           return (
-            <label className="" key={this.props.filterId + i} htmlFor={'id_choice-' + this.props.filterId + '-' + i}>
+            <label className={this.getClassNameInput(i)}
+              key={this.props.filterId + i}
+              htmlFor={'id_choice-' + this.props.filterId + '-' + i}>
               <input
-                className=""
+                className="radio__input"
                 type="radio"
-                name="question"
                 id={'id_choice-' + this.props.filterId + '-' + i}
                 value={i}
                 checked={this.isChecked(i)}
