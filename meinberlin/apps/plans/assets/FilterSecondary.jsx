@@ -34,20 +34,26 @@ class FilterSecondary extends React.Component {
   render () {
     return (
       <form className="filter-bar__menu">
-        <FilterRadio
-          filterId="par"
-          question={django.gettext('Participation')}
-          chosen={this.state.participationChoice}
-          choiceNames={this.props.participationNames}
-          onSelect={this.clickParticipation.bind(this)}
-        />
-        <FilterRadio
-          filterId="sta"
-          question={django.gettext('Project status')}
-          chosen={this.state.statusChoice}
-          choiceNames={this.props.statusNames}
-          onSelect={this.clickStatus.bind(this)}
-        />
+        <div className="filter-bar__menu-radio-group">
+          <div className="filter-bar__menu-radio-1">
+            <FilterRadio
+              filterId="par"
+              question={django.gettext('Participation')}
+              chosen={this.state.participationChoice}
+              choiceNames={this.props.participationNames}
+              onSelect={this.clickParticipation.bind(this)}
+            />
+          </div>
+          <div className="filter-bar__menu-radio-2">
+            <FilterRadio
+              filterId="sta"
+              question={django.gettext('Project status')}
+              chosen={this.state.statusChoice}
+              choiceNames={this.props.statusNames}
+              onSelect={this.clickStatus.bind(this)}
+            />
+          </div>
+        </div>
         <button
           className="btn btn-primary"
           type="submit"

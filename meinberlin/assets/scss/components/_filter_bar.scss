@@ -197,3 +197,25 @@ $divider-margin: 1.25rem;
         margin-left: 0;
     }
 }
+
+.filter-bar__menu-radio-group {
+    display: flex;
+}
+
+.filter-bar__menu-radio-1 {
+    width: 60%;
+
+    label {
+        width: 25%;
+    }
+}
+
+.filter-bar__menu-radio-2 {
+    width: 40%;
+    justify-content: flex-start;
+    margin-left: 2*$r-spacer;
+
+    label {
+        width: 33%;
+    }
+}
