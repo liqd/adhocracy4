@@ -18,6 +18,24 @@ class PlansList extends React.Component {
     }
   }
 
+  getTopicList (item) {
+    let topicList = item.topics.map((val) => {
+      return this.props.topicChoices[val]
+    })
+    return topicList
+  }
+
+  renderTopics (item) {
+    let topicsList = this.getTopicList(item)
+    if (item.topics) {
+      return (
+        <div className={item.tile_image ? 'maplist-item__label-img' : 'maplist-item__label-spacer'}>
+          {topicsList.map(topic => <span key={topic} className="label label--secondary maplist-item__label u-spacer-bottom-half">{topic}</span>)}
+        </div>
+      )
+    }
+  }
+
   getText (item) {
     if (item.length > 100) {
       return item.substr(0, 100) + '...'
@@ -29,7 +47,7 @@ class PlansList extends React.Component {
   renderListItem (item, i) {
     let statusClass = (item.participation_active === true) ? 'maplist-item__status-active' : 'maplist-item__status-inactive'
     return (
-      <li className={this.props.isHorizontal ? 'maplist-item__horizontal' : 'maplist-item__vertical'} key={i} tabIndex="0">
+      <li className={this.props.isHorizontal ? 'maplist-item__horizontal' : 'maplist-item__vertical'} key={i}>
         <a href={item.url}>
           {item.subtype === 'external' &&
           <div className="maplist-item__link-img" />
@@ -38,17 +56,14 @@ class PlansList extends React.Component {
             <div className="maplist-item__proj">
               {item.tile_image &&
               <div className="maplist-item__img" style={this.getImage(item)} alt="">
+                {!this.props.isHorizontal && this.renderTopics(item)}
                 { item.tile_image_copyright &&
                   <span className="maplist-item__img-copyright copyright">© {item.tile_image_copyright}</span>
                 }
               </div>
               }
               <div className="maplist-item__content">
-                {item.topic &&
-                <div className={item.tile_image ? 'malist-item__label-nospacer' : 'maplist-item__label-spacer'}>
-                  <span className="label label--secondary maplist-item__label">{this.props.topicChoices[item.topic]}</span>
-                </div>
-                }
+                {(this.props.isHorizontal || !item.tile_image) && this.renderTopics(item)}
                 <span className="maplist-item__roofline">{item.district}</span>
                 <h3 className="maplist-item__title">{item.title}</h3>
                 <div className="maplist-item__description">

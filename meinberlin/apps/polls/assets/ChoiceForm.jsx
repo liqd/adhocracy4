@@ -5,21 +5,19 @@ var ErrorList = require('../../contrib/assets/ErrorList')
 const ChoiceForm = (props) => {
   return (
     <div className="form-group form-group--narrow">
-      <label
-        className="sr-only"
-        htmlFor={'id_choices-' + props.id + '-name'}>
-        {props.label}
-      </label>
       <div className="input-group">
-        <input
-          id={'id_choices-' + props.id + '-name'}
-          name={'choices-' + props.id + '-name'}
-          type="text"
-          className="input-group__input"
-          value={props.choice.label}
-          onChange={(e) => { props.onLabelChange(e.target.value) }} />
+        <label htmlFor={'id_choices-' + props.id + '-name'}>
+          <span className="sr-only">{props.label}</span>
+          <input
+            id={'id_choices-' + props.id + '-name'}
+            name={'choices-' + props.id + '-name'}
+            type="text"
+            className="input-group__input"
+            value={props.choice.label}
+            onChange={(e) => { props.onLabelChange(e.target.value) }} />
+        </label>
         <button
-          className="input-group__after btn btn--light"
+          className="input-group__after input-group__after-outside btn btn--light"
           onClick={props.onDelete}
           title={django.gettext('remove')}
           type="button">

@@ -76,6 +76,12 @@
     }
 }
 
+.accordion__body .rich-text {
+    p, {
+        text-align: left;
+    }
+}
+
 .block--infographic {
     background-color: $brand-secondary;
     color: $body-bg;

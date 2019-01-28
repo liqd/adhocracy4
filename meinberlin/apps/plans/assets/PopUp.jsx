@@ -11,16 +11,22 @@ class PopUp extends React.Component {
     return { width: this.props.item.active_phase[0] + '%' }
   }
 
+  renderTopics () {
+    if (this.props.itemTopics) {
+      return (
+        <div className="maplist-item__labels">
+          {this.props.itemTopics.map(topic => <span key={topic} className="label label--secondary maplist-item__label u-spacer-bottom-half">{topic}</span>)}
+        </div>
+      )
+    }
+  }
+
   render () {
     let statusClass = (this.props.item.participation_active === true) ? 'maplist-item__status-active' : 'maplist-item__status-inactive'
     if (this.props.item.type === 'project') {
       return (
         <div className="maps-popups-popup-text-content">
-          {this.props.itemTopic &&
-            <div className="maplist-item__labels">
-              <span className="label label--secondary maplist-item__label u-spacer-bottom-half">{this.props.itemTopic}</span>
-            </div>
-          }
+          {this.renderTopics()}
           <span className="maplist-popup-item__roofline">{this.props.item.district}</span>
           <div className="maps-popups-popup-name u-spacer-bottom-half">
             <a href={this.props.item.url}>{this.props.item.title}</a>

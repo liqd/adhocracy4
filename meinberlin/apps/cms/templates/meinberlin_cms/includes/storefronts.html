@@ -1,5 +1,5 @@
 {% load i18n %}
-{% load static %}
+{% load static contrib_tags %}
 
 {% if item.district %}
 <div class="storefront__item storefront__district tile__md">
@@ -17,13 +17,11 @@
       <div class="storefront__ending-icon-spacer"></div>
     </div>
     {% else %}
-    <div class="list-item__stats">
-        <!-- can't count comments on project level -->
-        <!--<span title="Kommentare" class="list-item__comments"><i class="far fa-comment" aria-label="Kommentare"></i>234</span>-->
-    </div>
     <div class="item-detail__labels">
-         {% if item.project.topic %}
-        <span class="label label--secondary">{{ item.project.get_topic_display }}</span>
+        {% if item.project.topics %}
+        {% for topic in item.project.project_topics_names %}
+        <span class="label label--secondary">{{ topic }}</span>
+        {% endfor %}
         {% endif %}
     </div>
     {% endif %}
@@ -50,8 +48,6 @@
 </div>
 {% elif item.project and item.quote %}
 <div class="storefront__item storefront__proj-quote tile__md">
-    <!-- can't count comments on project level -->
-    <!--<div class="list-item__stats"><span title="Kommentare" class="list-item__comments"><i class="far fa-comment" aria-label="Kommentare"></i>5</span></div>-->
     <blockquote class="storefront__quote-text">
         „{{ item.quote|truncatechars:150 }}“
     </blockquote>

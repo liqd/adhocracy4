@@ -26,17 +26,12 @@ class Plan(UserGeneratedContentModel):
         (PARTICIPATION_UNDECIDED, _('Still undecided')),
     )
 
-    STATUS_TODO = 0
-    STATUS_PLANNING = 1
-    STATUS_IMPLEMENTATION = 2
-    STATUS_DONE = 3
-    STATUS_STOPPED = 4
+    STATUS_ONGOING = 0
+    STATUS_DONE = 1
+
     STATUS_CHOICES = (
-        (STATUS_TODO, _('Idea')),
-        (STATUS_PLANNING, _('Planning')),
-        (STATUS_IMPLEMENTATION, _('Implementation')),
-        (STATUS_DONE, _('Done')),
-        (STATUS_STOPPED, _('Stopped')),
+        (STATUS_ONGOING, _('Ongoing')),
+        (STATUS_DONE, _('Done'))
     )
 
     title = models.CharField(max_length=120, verbose_name=_('Title'))
@@ -83,7 +78,7 @@ class Plan(UserGeneratedContentModel):
             'Visualize your plan.'
         ),
     )
-    topic = TopicField()
+    topics = TopicField()
     status = models.SmallIntegerField(choices=STATUS_CHOICES)
     participation = models.SmallIntegerField(
         choices=PARTICIPATION_CHOICES,

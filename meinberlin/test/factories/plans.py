@@ -21,8 +21,8 @@ class PlanFactory(factory.django.DjangoModelFactory):
                      'coordinates': [13.447437286376953, 52.51518602243137]}
     }
     contact = ''
-    topic = ''
-    status = Plan.STATUS_TODO
+    topics = ''
+    status = Plan.STATUS_ONGOING
     participation = Plan.PARTICIPATION_UNDECIDED
 
     @factory.post_generation

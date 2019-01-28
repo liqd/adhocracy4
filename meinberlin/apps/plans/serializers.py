@@ -56,7 +56,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                   'organisation', 'tile_image',
                   'tile_image_copyright',
                   'point', 'point_label', 'cost',
-                  'district', 'topic',
+                  'district', 'topics',
                   'status',
                   'participation_string',
                   'participation_active',
@@ -110,8 +110,8 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     def get_status(self, instance):
         project_phases = instance.phases
         if project_phases.active_phases() or project_phases.future_phases():
-            return 2
-        return 3
+            return 0
+        return 1
 
     def get_participation(self, instance):
         return 0
@@ -187,7 +187,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
         fields = ['type', 'subtype', 'title', 'url',
                   'organisation', 'point',
                   'point_label', 'cost',
-                  'district', 'topic', 'status',
+                  'district', 'topics', 'status',
                   'participation',
                   'participation_string',
                   'participation_active',

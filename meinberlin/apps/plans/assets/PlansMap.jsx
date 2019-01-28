@@ -16,6 +16,16 @@ const addressIcon = L.icon({
   zIndexOffset: 1000
 })
 
+const itemIcon = L.icon({
+  iconUrl: '/static/images/map_pin_default.svg',
+  shadowUrl: '/static/images/map_shadow_01.svg',
+  iconSize: [30, 36],
+  iconAnchor: [15, 36],
+  shadowSize: [40, 54],
+  shadowAnchor: [20, 54],
+  zIndexOffset: 1000
+})
+
 const pointToLatLng = function (point) {
   if (point.geometry !== '') {
     return {
@@ -26,24 +36,6 @@ const pointToLatLng = function (point) {
 }
 
 const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
-
-const statusIconNames = [
-  'idee',
-  'planung',
-  'implementiert',
-  'beendet',
-  'pause'
-]
-
-const statusIconPins = statusIconNames.map((cls, i) => L.icon({
-  iconUrl: `/static/plan_icons/pins/${cls}_pin.svg`,
-  shadowUrl: '/static/images/map_shadow_01.svg',
-  iconSize: [30, 36],
-  iconAnchor: [15, 36],
-  shadowSize: [40, 54],
-  shadowAnchor: [20, 54],
-  zIndexOffset: 1000
-}))
 
 class PlansMap extends React.Component {
   constructor (props) {
@@ -140,11 +132,18 @@ class PlansMap extends React.Component {
     this.zoomToDistrict(this.props.currentDistrict)
   }
 
+  getTopicList (item) {
+    let topicList = item.topics.map((val) => {
+      return this.props.topicChoices[val]
+    })
+    return topicList
+  }
+
   getPopUpContent (item) {
     return renderToString(
       <PopUp
         item={item}
-        itemTopic={this.props.topicChoices[item.topic]}
+        itemTopics={this.getTopicList(item)}
       />
     )
   }
@@ -152,7 +151,7 @@ class PlansMap extends React.Component {
   addMarkers (cluster) {
     this.props.items.map((item, i) => {
       if (item.point !== '') {
-        let marker = L.marker(pointToLatLng(item.point), { icon: statusIconPins[item.status] })
+        let marker = L.marker(pointToLatLng(item.point), { icon: itemIcon })
         cluster.addLayer(marker)
         marker.bindPopup(this.getPopUpContent(item))
         return marker
