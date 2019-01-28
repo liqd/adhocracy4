@@ -95,13 +95,6 @@ class FilterNav extends React.Component {
     }
   }
 
-  getAriaExpanded (displayOptions) {
-    if (this.state.isExpanded & displayOptions) {
-      return true
-    }
-    return false
-  }
-
   getButtonText (filterType, filterName) {
     return filterType + ': ' + filterName
   }
@@ -114,7 +107,7 @@ class FilterNav extends React.Component {
           {this.props.district === '-1'
             ? <FilterButton
               className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
-              ariaExpanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
+              ariaExpanded={this.state.displayDistrictOptions}
               showOptions={this.showDistrictOptions.bind(this)}
               id="id_filter_district"
               buttonText={this.getButtonText(django.gettext('District'), this.getDistrictFilterName())}
@@ -122,7 +115,7 @@ class FilterNav extends React.Component {
             />
             : <FilterButton
               className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
-              ariaExpanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
+              ariaExpanded={this.state.displayDistrictOptions}
               showOptions={this.showDistrictOptions.bind(this)}
               id="id_filter_district"
               buttonText={this.getDistrictFilterName()}
@@ -143,7 +136,7 @@ class FilterNav extends React.Component {
           {this.props.topic === '-1'
             ? <FilterButton
               className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
-              ariaExpanded={this.getAriaExpanded(this.state.displayTopicOptions)}
+              ariaExpanded={this.state.displayTopicOptions}
               showOptions={this.showTopicOptions.bind(this)}
               id="id_filter_topic"
               buttonText={this.getButtonText(django.gettext('Topic'), this.getTopicFilterName())}
@@ -151,7 +144,7 @@ class FilterNav extends React.Component {
             />
             : <FilterButton
               className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
-              ariaExpanded={this.getAriaExpanded(this.state.displayTopicOptions)}
+              ariaExpanded={this.state.displayTopicOptions}
               showOptions={this.showTopicOptions.bind(this)}
               id="id_filter_topic"
               buttonText={this.getTopicFilterName()}
@@ -180,7 +173,10 @@ class FilterNav extends React.Component {
           { !this.props.linkUrl &&
             <button
               onClick={this.showSecondaryFilters.bind(this)}
-              className="u-spacer-top btn btn--small btn--transparent btn--full filter-bar__btn--light">{django.gettext('more filters')}
+              className="u-spacer-top btn btn--small btn--transparent btn--full filter-bar__btn--light"
+              aria-haspopup="true"
+              aria-expanded={this.state.displaySecondaryFilters}>
+              {django.gettext('more filters')}
             </button>
           }
           { this.state.displaySecondaryFilters &&
@@ -205,7 +201,7 @@ class FilterNav extends React.Component {
               {this.props.district === '-1'
                 ? <FilterButton
                   className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
-                  ariaExpanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
+                  ariaExpanded={this.state.displayDistrictOptions}
                   showOptions={this.showDistrictOptions.bind(this)}
                   id="id_filter_district"
                   buttonText={this.getButtonText(django.gettext('District'), this.getDistrictFilterName())}
@@ -213,7 +209,7 @@ class FilterNav extends React.Component {
                 />
                 : <FilterButton
                   className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
-                  ariaExpanded={this.getAriaExpanded(this.state.displayDistrictOptions)}
+                  ariaExpanded={this.state.displayDistrictOptions}
                   showOptions={this.showDistrictOptions.bind(this)}
                   id="id_filter_district"
                   buttonText={this.getDistrictFilterName()}
@@ -237,7 +233,7 @@ class FilterNav extends React.Component {
               {this.props.topic === '-1'
                 ? <FilterButton
                   className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
-                  ariaExpanded={this.getAriaExpanded(this.state.displayTopicOptions)}
+                  ariaExpanded={this.state.displayTopicOptions}
                   showOptions={this.showTopicOptions.bind(this)}
                   id="id_filter_topic"
                   buttonText={this.getButtonText(django.gettext('Topic'), this.getTopicFilterName())}
@@ -245,7 +241,7 @@ class FilterNav extends React.Component {
                 />
                 : <FilterButton
                   className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
-                  ariaExpanded={this.getAriaExpanded(this.state.displayTopicOptions)}
+                  ariaExpanded={this.state.displayTopicOptions}
                   showOptions={this.showTopicOptions.bind(this)}
                   id="id_filter_topic"
                   buttonText={this.getTopicFilterName()}
@@ -276,7 +272,9 @@ class FilterNav extends React.Component {
               <div>
                 <button
                   onClick={this.showSecondaryFilters.bind(this)}
-                  className="btn btn--small btn--transparent filter-bar__btn--light">
+                  className="btn btn--small btn--transparent filter-bar__btn--light"
+                  aria-haspopup="true"
+                  aria-expanded={this.state.displaySecondaryFilters}>
                   <i className="fas fa-sliders-h" aria-label={django.gettext('more filters')} />
                 </button>
               </div>
@@ -285,7 +283,10 @@ class FilterNav extends React.Component {
               <div>
                 <button
                   onClick={this.showSecondaryFilters.bind(this)}
-                  className="btn btn--small btn--transparent filter-bar__btn--light">{django.gettext('more filters')}
+                  className="btn btn--small btn--transparent filter-bar__btn--light"
+                  aria-haspopup="true"
+                  aria-expanded={this.state.displaySecondaryFilters}>
+                  {django.gettext('more filters')}
                 </button>
               </div>
             }
