@@ -3,44 +3,38 @@
 }
 
 .switch-label {
-    width: 6rem;
-    margin-top: -0.5rem;
     cursor: pointer;
-    height: 0;
     position: relative;
-    top: 2px;
 }
 
 .switch-label__text {
-    display: inline-block;
-    margin-top: 0.25*$r-spacer;
+    vertical-align: super;
 }
 
 .switch__toggle:before,
 .switch__toggle:after {
     content: '';
-    margin: 0 3px;
+    margin-left: 0.5*$r-spacer;
     display: inline-block;
     border-radius: 16px;
 }
 
 .switch__toggle:before {
-    height: 31px;
-    width: 47px;
+    display: inline-block;
+    height: 32px;
+    width: 50px;
     background: $brand-secondary;
-    position: absolute;
     transition: all 0.4s ease-in-out;
 }
 
 .switch__toggle:after {
     position: absolute;
-    top: 12px;
-    left: 79px;
+    top: 4px;
+    right: 4px;
     transition: all 0.3s ease-in-out;
     height: 24px;
     width: 24px;
     background: $body-bg;
-    margin-top: -8px;
 }
 
 .switch-input[type="checkbox"]:checked {
@@ -51,8 +45,8 @@
 
     & + .switch__toggle:after {
         background: inherit;
-        left: 95px;
-        top: 12px;
+        top: 4px;
+        right: 22px;
         border: 1px solid $gray-lighter;
     }
 }
