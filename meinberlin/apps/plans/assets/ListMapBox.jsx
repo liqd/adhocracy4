@@ -182,6 +182,7 @@ class ListMapBox extends React.Component {
             participationNames={participationNames}
             numColumns={1}
             isStacked
+            isTablet={isTablet}
           />
           <ListMapSwitch
             toggleSwitch={this.toggleSwitch.bind(this)}
@@ -211,6 +212,7 @@ class ListMapBox extends React.Component {
           participationNames={participationNames}
           numColumns={2}
           isStacked={false}
+          isTablet={isTablet}
         />
         <ListMapSwitch
           toggleSwitch={this.toggleSwitch.bind(this)}
@@ -241,6 +243,7 @@ class ListMapBox extends React.Component {
             participationNames={participationNames}
             numColumns={3}
             isStacked={false}
+            isTablet={isTablet}
           />
           <ListMapSwitch
             toggleSwitch={this.toggleSwitch.bind(this)}
@@ -248,7 +251,6 @@ class ListMapBox extends React.Component {
             showList={this.showList.bind(this)}
             isSlider
             displayMap={this.state.showListMap}
-
           />
           { this.state.showListMap
             ? <div className="map-list-combined">
