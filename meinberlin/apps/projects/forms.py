@@ -80,8 +80,8 @@ class TopicForm(ProjectDashboardForm):
         model = Project
         fields = ['topics']
         required_for_project_publish = []
-        
-        
+
+
 class PointForm(ProjectDashboardForm):
 
     class Meta:
@@ -95,4 +95,3 @@ class PointForm(ProjectDashboardForm):
         help_texts = {
             'point': _('Please locate the project on the map.')
         }
-        
