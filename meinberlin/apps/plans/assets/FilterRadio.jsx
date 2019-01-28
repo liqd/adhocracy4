@@ -25,6 +25,7 @@ class FilterRadio extends React.Component {
   render () {
     return (
       <div className="radio-group" role="group">
+        <h2>{this.props.question}</h2>
         <label className="" key={this.props.filterId + 'all'} htmlFor={'id_choice-' + this.props.filterId + '-all'}>
           <input
             className=""

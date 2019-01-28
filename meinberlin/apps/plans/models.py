@@ -17,8 +17,8 @@ from adhocracy4.projects.fields import TopicField
 
 class Plan(UserGeneratedContentModel):
 
-    PARTICIPATION_NO = 0
-    PARTICIPATION_YES = 1
+    PARTICIPATION_YES = 0
+    PARTICIPATION_NO = 1
     PARTICIPATION_UNDECIDED = 2
     PARTICIPATION_CHOICES = (
         (PARTICIPATION_YES, _('Yes')),

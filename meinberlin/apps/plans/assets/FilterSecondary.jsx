@@ -34,6 +34,7 @@ class FilterSecondary extends React.Component {
           onSelect={this.clickParticipation.bind(this)}
         />
         <button
+          className="btn btn-primary"
           type="submit"
           onClick={this.submitSecondaryFilters.bind(this)}>
           {django.gettext('show projects')}
