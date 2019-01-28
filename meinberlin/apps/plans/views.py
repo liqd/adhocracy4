@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Count
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -47,11 +48,8 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
     permission_required = 'meinberlin_plans.list_plan'
 
     def get_queryset(self):
-        plans = super().get_queryset()\
+        return super().get_queryset()\
             .select_related()
-        return sorted(plans,
-                      key=lambda x: x.modified or x.created,
-                      reverse=True)
 
     @cached_property
     def districts(self):
@@ -79,6 +77,20 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                                     'a4projects.view_project',
                                     project)]
         return projects.exclude(id__in=not_allowed_projects)
+
+    def get_organisations(self):
+        project_orgs = self.projects.values('organisation__name')\
+            .annotate(total=Count('organisation__name'))\
+            .order_by('total')
+        plans_orgs = self.object_list.values('organisation__name')\
+            .annotate(total=Count('organisation__name'))\
+            .order_by('total')
+        project_orgs_list = [entry['organisation__name']
+                             for entry in project_orgs]
+        plans_orgs_list = [entry['organisation__name']
+                           for entry in plans_orgs]
+        orgs_list = project_orgs_list + plans_orgs_list
+        return json.dumps(list(set(orgs_list)))
 
     def get_district_polygons(self):
         districts = self.districts
@@ -109,6 +121,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                                                             many=True)
         items = plans_serializer.data + projects_serializer.data
         context['districts'] = self.get_district_polygons()
+        context['organisations'] = self.get_organisations()
         context['district_names'] = self.get_district_names()
         context['topic_choices'] = self.get_topics()
         context['items'] = JSONRenderer().render(items)
