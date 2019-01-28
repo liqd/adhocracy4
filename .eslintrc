@@ -1,7 +1,14 @@
 {
-  "extends": ["standard", "standard-jsx"],
+  "extends": [
+    "standard",
+    "standard-jsx",
+    "plugin:jsx-a11y/recommended"
+  ],
   "rules": {
     "jsx-quotes": [2, "prefer-double"]
   },
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "plugins": [
+    "jsx-a11y"
+  ]
 }

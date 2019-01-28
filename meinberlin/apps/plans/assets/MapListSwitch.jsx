@@ -7,15 +7,17 @@ class MapListSwitch extends React.Component {
       return (
         <div>
           <div className="l-wrapper">
-            <div className="switch-group" role="group" aria-labelledby="id-switch-label">
-              <div id="id-switch-label" className="switch-label">{django.gettext('Show map')}</div>
-              <div className="switch">
-                <input
-                  id="switch-primary"
-                  onChange={this.props.toggleSwitch}
-                  name="switch-primary"
-                  type="checkbox" />
-                <label htmlFor="switch-primary" className="primary-color" />
+            <div className="switch">
+              <div className="switch-group" role="group" aria-labelledby="id-switch-label">
+                <label htmlFor="switch-primary" className="switch-label">
+                  <span className="switch-label__text">{django.gettext('Show map')}</span>
+                  <input className="switch-input"
+                    id="switch-primary"
+                    onChange={this.props.toggleSwitch}
+                    name="switch-primary"
+                    type="checkbox" />
+                  <span className="switch__toggle" />
+                </label>
               </div>
             </div>
           </div>

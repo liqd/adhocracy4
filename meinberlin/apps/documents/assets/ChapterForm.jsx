@@ -9,7 +9,7 @@ const ChapterForm = (props) => {
     <section className="u-spacer-bottom-double">
       <div className="commenting">
         <div className="form-group commenting__content">
-          <label>
+          <label htmlFor={'id_chapters-' + props.id + '-name'}>
             {django.gettext('Chapter title')}
             <input
               id={'id_chapters-' + props.id + '-name'}

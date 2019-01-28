@@ -12,17 +12,17 @@ const QuestionForm = (props) => {
           <label
             htmlFor={'id_questions-' + props.id + '-name'}>
             {django.gettext('Question')}
+            <textarea
+              id={'id_questions-' + props.id + '-name'}
+              name={'questions-' + props.id + '-name'}
+              value={props.question.label}
+              onChange={(e) => { props.onLabelChange(e.target.value) }} />
           </label>
-          <textarea
-            id={'id_questions-' + props.id + '-name'}
-            name={'questions-' + props.id + '-name'}
-            value={props.question.label}
-            onChange={(e) => { props.onLabelChange(e.target.value) }} />
           <ErrorList errors={props.errors} field="label" />
         </div>
 
         <div className="form-check">
-          <label className="form-check__label">
+          <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-multiple_choice'}>
             <input
               type="checkbox"
               id={'id_questions-' + props.id + '-multiple_choice'}
