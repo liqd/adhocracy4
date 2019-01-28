@@ -29,7 +29,7 @@ class PlansList extends React.Component {
     let topicsList = this.getTopicList(item)
     if (item.topics) {
       return (
-        <div className={item.tile_image ? 'malist-item__label-nospacer' : 'maplist-item__label-spacer'}>
+        <div className={item.tile_image ? 'maplist-item__label-img' : 'maplist-item__label-spacer'}>
           {topicsList.map(topic => <span key={topic} className="label label--secondary maplist-item__label u-spacer-bottom-half">{topic}</span>)}
         </div>
       )
@@ -56,13 +56,14 @@ class PlansList extends React.Component {
             <div className="maplist-item__proj">
               {item.tile_image &&
               <div className="maplist-item__img" style={this.getImage(item)} alt="">
+                {!this.props.isHorizontal && this.renderTopics(item)}
                 { item.tile_image_copyright &&
                   <span className="maplist-item__img-copyright copyright">© {item.tile_image_copyright}</span>
                 }
               </div>
               }
               <div className="maplist-item__content">
-                {this.renderTopics(item)}
+                {(this.props.isHorizontal || !item.tile_image) && this.renderTopics(item)}
                 <span className="maplist-item__roofline">{item.district}</span>
                 <h3 className="maplist-item__title">{item.title}</h3>
                 <div className="maplist-item__description">
