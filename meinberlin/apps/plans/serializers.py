@@ -114,7 +114,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return 1
 
     def get_participation(self, instance):
-        return 1
+        return 0
 
     def get_participation_display(self, instance):
         return _('Yes')

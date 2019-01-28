@@ -250,8 +250,8 @@ class PlansMap extends React.Component {
               name="search"
               type="search"
               placeholder={django.gettext('Address Search')} />
-            <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Search')}>
-              <i className="fas fa-location-arrow" aria-label={django.gettext('Search')} />
+            <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Address search')}>
+              <i className="fas fa-location-arrow" aria-label={django.gettext('Address search')} />
             </button>
 
             {this.state.displayResults &&
