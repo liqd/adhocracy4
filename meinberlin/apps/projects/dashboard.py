@@ -50,7 +50,6 @@ class ModeratorsComponent(DashboardComponent):
             'dashboard-moderators-edit'
         )]
 
-
 class TopicComponent(ProjectFormComponent):
     identifier = 'topics'
     weight = 33
@@ -60,7 +59,18 @@ class TopicComponent(ProjectFormComponent):
     form_class = forms.TopicForm
     form_template_name = 'meinberlin_projects/project_topics.html'
 
+    
+class PointComponent(ProjectFormComponent):
+    identifier = 'point'
+    weight = 33
+    label = _('Location')
+
+    form_title = _('Edit location')
+    form_class = forms.PointForm
+    form_template_name = 'meinberlin_projects/project_point.html'
+
 
 components.register_project(ModeratorsComponent())
 components.register_project(ParticipantsComponent())
 components.register_project(TopicComponent())
+components.register_project(PointComponent())
