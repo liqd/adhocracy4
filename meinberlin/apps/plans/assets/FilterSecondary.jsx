@@ -7,7 +7,8 @@ class FilterSecondary extends React.Component {
     super(props)
 
     this.state = {
-      participationChoice: this.props.participation
+      participationChoice: this.props.participation,
+      statusChoice: this.props.status
     }
   }
 
@@ -15,6 +16,7 @@ class FilterSecondary extends React.Component {
     e.preventDefault()
     this.props.showSecondaryFilters()
     this.props.selectParticipation(this.state.participationChoice)
+    this.props.selectStatus(this.state.statusChoice)
   }
 
   clickParticipation (participation) {
@@ -23,15 +25,28 @@ class FilterSecondary extends React.Component {
     })
   }
 
+  clickStatus (status) {
+    this.setState({
+      statusChoice: status
+    })
+  }
+
   render () {
     return (
       <form className="filter-bar__menu">
         <FilterRadio
-          filterId="parti"
+          filterId="par"
           question={django.gettext('Participation')}
           chosen={this.state.participationChoice}
           choiceNames={this.props.participationNames}
           onSelect={this.clickParticipation.bind(this)}
+        />
+        <FilterRadio
+          filterId="sta"
+          question={django.gettext('Project status')}
+          chosen={this.state.statusChoice}
+          choiceNames={this.props.statusNames}
+          onSelect={this.clickStatus.bind(this)}
         />
         <button
           className="btn btn-primary"
