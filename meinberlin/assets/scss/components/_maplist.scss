@@ -30,6 +30,10 @@
     bottom: 0;
 }
 
+.maplist-item__label {
+    margin-right: 0.5*$r-spacer;
+}
+
 .maplist-item__roofline {
     font-size: $font-size-sm;
     color: $gray;
@@ -99,12 +103,12 @@
     }
 
     .maplist-item__label-spacer { // stop overlap
-        margin-bottom: 1.5*$r-spacer;
+        margin-bottom: 0.5*$r-spacer;
     }
 
-    .maplist-item__label {
-        position: absolute;
-        top: $r-spacer;
+    .maplist-item__label-img {
+        margin-top: $r-spacer;
+        margin-left: $r-spacer;
     }
 
     @media screen and (min-width: $breakpoint-xs) {

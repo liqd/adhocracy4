@@ -74,6 +74,14 @@ class InviteUsersFromEmailForm(forms.Form):
         return cleaned_data
 
 
+class TopicForm(ProjectDashboardForm):
+
+    class Meta:
+        model = Project
+        fields = ['topics']
+        required_for_project_publish = []
+
+
 class PointForm(ProjectDashboardForm):
 
     class Meta:
