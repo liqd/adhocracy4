@@ -8,7 +8,9 @@ class FilterSecondary extends React.Component {
 
     this.state = {
       participationChoice: this.props.participation,
-      statusChoice: this.props.status
+      statusChoice: this.props.status,
+      organisationChoice: this.props.organisation,
+      titleSearch: this.props.titleSearch
     }
   }
 
@@ -17,6 +19,8 @@ class FilterSecondary extends React.Component {
     this.props.showSecondaryFilters()
     this.props.selectParticipation(this.state.participationChoice)
     this.props.selectStatus(this.state.statusChoice)
+    this.props.selectOrganisation(this.state.organisationChoice)
+    this.props.selectTitleSearch(this.state.titleSearch)
   }
 
   clickParticipation (participation) {
