@@ -36,7 +36,7 @@
     "mapbox-gl-leaflet": "0.0.3",
     "mini-css-extract-plugin": "0.5.0",
     "node-sass": "4.11.0",
-    "popper.js": "1.14.6",
+    "popper.js": "1.14.7",
     "postcss-loader": "3.0.0",
     "react-flip-move": "3.0.3",
     "react-sticky-box": "0.8.0",
