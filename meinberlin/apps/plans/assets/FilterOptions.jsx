@@ -15,6 +15,25 @@ class OptionButton extends React.Component {
 }
 
 class OptionList extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      selectedChoice: this.props.selected
+    }
+  }
+
+  isSelected (choice) {
+    return (this.state.selectedChoice === choice)
+  }
+
+  getClassNameInput (choice) {
+    if (this.isSelected(choice)) {
+      return 'filter-bar__option active'
+    }
+    return 'filter-bar__option'
+  }
+
   render () {
     return (
       <div key={'list' + this.props.name}>
