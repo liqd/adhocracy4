@@ -77,6 +77,9 @@ class FilterOptions extends React.Component {
     if (this.props.isStacked) {
       return 'filter-bar__menu'
     }
+    if (this.props.isPartOfForm) {
+      return ''
+    }
     return 'filter-bar__dropdown-menu filter-bar__menu'
   }
 

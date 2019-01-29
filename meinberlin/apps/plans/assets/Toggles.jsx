@@ -47,7 +47,7 @@ class Toggles extends React.Component {
       return (
         <div>
           <div className="u-spacer-left u-spacer-right">
-            <div className="radio-group" role="group">
+            <div className="btn-group switch-btn-group" role="group">
               <label className={!this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'} onClick={this.props.showList} htmlFor="show_list">
                 <span className="sr-only">{django.gettext('Show List')}</span>
                 <input className="radio__input" type="radio" value="list" id="show_list" /> <i className="fa fa-list" />

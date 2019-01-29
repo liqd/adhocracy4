@@ -24,45 +24,47 @@ class FilterRadio extends React.Component {
 
   getClassNameInput (choice) {
     if (this.isChecked(choice)) {
-      return 'btn btn--light switch--btn active'
+      return 'btn btn--light switch--btn u-z-index-1 active'
     }
     return 'btn btn--light switch--btn'
   }
 
   render () {
     return (
-      <div className="radio-group" role="group">
+      <div>
         <h2>{this.props.question}</h2>
-        <label className={this.getClassNameInput(-1)}
-          key={this.props.filterId + 'all'}
-          htmlFor={'id_choice-' + this.props.filterId + '-all'}>
-          <input
-            className="radio__input"
-            type="radio"
-            id={'id_choice-' + this.props.filterId + '-all'}
-            value="-1"
-            checked={this.isChecked(-1)}
-            onChange={this.handleOnChange.bind(this)}
-          />
-          <span className="">{django.gettext('all')}</span>
-        </label>
-        {this.props.choiceNames.map((choice, i) => {
-          return (
-            <label className={this.getClassNameInput(i)}
-              key={this.props.filterId + i}
-              htmlFor={'id_choice-' + this.props.filterId + '-' + i}>
-              <input
-                className="radio__input"
-                type="radio"
-                id={'id_choice-' + this.props.filterId + '-' + i}
-                value={i}
-                checked={this.isChecked(i)}
-                onChange={this.handleOnChange.bind(this)}
-              />
-              <span className="">{ choice }</span>
-            </label>
-          )
-        })}
+        <div className="btn-group " role="group">
+          <label className={this.getClassNameInput(-1)}
+            key={this.props.filterId + 'all'}
+            htmlFor={'id_choice-' + this.props.filterId + '-all'}>
+            <input
+              className="radio__input"
+              type="radio"
+              id={'id_choice-' + this.props.filterId + '-all'}
+              value="-1"
+              checked={this.isChecked(-1)}
+              onChange={this.handleOnChange.bind(this)}
+            />
+            <span className="">{django.gettext('all')}</span>
+          </label>
+          {this.props.choiceNames.map((choice, i) => {
+            return (
+              <label className={this.getClassNameInput(i)}
+                key={this.props.filterId + i}
+                htmlFor={'id_choice-' + this.props.filterId + '-' + i}>
+                <input
+                  className="radio__input"
+                  type="radio"
+                  id={'id_choice-' + this.props.filterId + '-' + i}
+                  value={i}
+                  checked={this.isChecked(i)}
+                  onChange={this.handleOnChange.bind(this)}
+                />
+                <span className="">{ choice }</span>
+              </label>
+            )
+          })}
+        </div>
       </div>
     )
   }
