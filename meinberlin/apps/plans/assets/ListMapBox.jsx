@@ -5,7 +5,7 @@ const React = require('react')
 let PlansList = require('./PlansList')
 let PlansMap = require('./PlansMap')
 let FilterNav = require('./FilterNav')
-let ListMapSwitch = require('./MapListSwitch')
+let Toggles = require('./Toggles')
 
 const breakpointXS = 800
 const breakpointMD = 1024
@@ -200,10 +200,16 @@ class ListMapBox extends React.Component {
             isStacked
             isTablet={isTablet}
           />
-          <ListMapSwitch
+          <Toggles
             toggleSwitch={this.toggleSwitch.bind(this)}
             showMap={this.showMap.bind(this)}
             showList={this.showList.bind(this)}
+            statusString={statusNames[this.state.status]}
+            statusSelected={this.state.status !== -1}
+            changeStatusSelection={this.selectStatus.bind(this)}
+            participationString={participationNames[this.state.participation]}
+            participationSelected={this.state.participation !== -1}
+            changeParticipationSelection={this.selectParticipation.bind(this)}
             isSlider={false}
             displayMap={this.state.showListMap}
           />
@@ -233,10 +239,16 @@ class ListMapBox extends React.Component {
           isStacked={false}
           isTablet={isTablet}
         />
-        <ListMapSwitch
+        <Toggles
           toggleSwitch={this.toggleSwitch.bind(this)}
           showMap={this.showMap.bind(this)}
           showList={this.showList.bind(this)}
+          statusString={statusNames[this.state.status]}
+          statusSelected={this.state.status !== -1}
+          changeStatusSelection={this.selectStatus.bind(this)}
+          participationString={participationNames[this.state.participation]}
+          participationSelected={this.state.participation !== -1}
+          changeParticipationSelection={this.selectParticipation.bind(this)}
           isSlider={false}
           displayMap={this.state.showListMap}
         />
@@ -267,10 +279,16 @@ class ListMapBox extends React.Component {
             isStacked={false}
             isTablet={isTablet}
           />
-          <ListMapSwitch
+          <Toggles
             toggleSwitch={this.toggleSwitch.bind(this)}
             showMap={this.showMap.bind(this)}
             showList={this.showList.bind(this)}
+            statusString={statusNames[this.state.status]}
+            statusSelected={this.state.status !== -1}
+            changeStatusSelection={this.selectStatus.bind(this)}
+            participationString={participationNames[this.state.participation]}
+            participationSelected={this.state.participation !== -1}
+            changeParticipationSelection={this.selectParticipation.bind(this)}
             isSlider
             displayMap={this.state.showListMap}
           />
