@@ -33,7 +33,7 @@ class FilterRadio extends React.Component {
     return (
       <div>
         <h2>{this.props.question}</h2>
-        <div className="radio-group " role="group">
+        <div className="btn-group " role="group">
           <label className={this.getClassNameInput(-1)}
             key={this.props.filterId + 'all'}
             htmlFor={'id_choice-' + this.props.filterId + '-all'}>
