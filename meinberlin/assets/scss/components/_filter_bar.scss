@@ -202,20 +202,36 @@ $divider-margin: 1.25rem;
     display: flex;
 }
 
-.filter-bar__menu-radio-1 {
+.filter-bar__menu-radio-part {
     width: 60%;
 
-    label {
+    .switch--btn {
         width: 25%;
     }
 }
 
-.filter-bar__menu-radio-2 {
+.filter-bar__menu-radio-proj {
     width: 40%;
-    justify-content: flex-start;
     margin-left: 2*$r-spacer;
 
-    label {
-        width: 33%;
+    .radio-group {
+        justify-content: flex-start;
+    }
+
+    .switch--btn {
+        width: 33.3%;
+    }
+}
+
+//for tab look effect
+.filter-bar__menu-radio-part,
+.filter-bar__menu-radio-proj {
+    .switch--btn {
+        margin-right: -3px;
+        border-radius: 0;
+    }
+
+    .active {
+        border-radius: 0.3em;
     }
 }

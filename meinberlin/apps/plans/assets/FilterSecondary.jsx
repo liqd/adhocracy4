@@ -35,7 +35,7 @@ class FilterSecondary extends React.Component {
     return (
       <form className="filter-bar__menu">
         <div className="filter-bar__menu-radio-group">
-          <div className="filter-bar__menu-radio-1">
+          <div className="filter-bar__menu-radio-part">
             <FilterRadio
               filterId="par"
               question={django.gettext('Participation')}
@@ -44,7 +44,7 @@ class FilterSecondary extends React.Component {
               onSelect={this.clickParticipation.bind(this)}
             />
           </div>
-          <div className="filter-bar__menu-radio-2">
+          <div className="filter-bar__menu-radio-proj">
             <FilterRadio
               filterId="sta"
               question={django.gettext('Project status')}

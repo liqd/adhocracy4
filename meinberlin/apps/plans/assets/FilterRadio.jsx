@@ -24,7 +24,7 @@ class FilterRadio extends React.Component {
 
   getClassNameInput (choice) {
     if (this.isChecked(choice)) {
-      return 'btn btn--light switch--btn active'
+      return 'btn btn--light switch--btn u-z-index-1 active'
     }
     return 'btn btn--light switch--btn'
   }
