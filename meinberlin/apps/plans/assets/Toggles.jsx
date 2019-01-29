@@ -17,15 +17,15 @@ class Toggles extends React.Component {
           <div className="l-wrapper">
             { this.props.statusSelected &&
               <button
-                className="btn btn--transparent"
+                className="btn btn--transparent btn--small"
                 onClick={this.clickStatusButton.bind(this)}
-                type="button">{this.props.statusString}</button>
+                type="button">{this.props.statusString} <i className="fa fa-times" /></button>
             }
             { this.props.participationSelected &&
               <button
-                className="btn btn--transparent"
+                className="btn btn--transparent btn--small"
                 onClick={this.clickParticipationButton.bind(this)}
-                type="button">{this.props.participationString}</button>
+                type="button">{this.props.participationString} <i className="fa fa-times" /></button>
             }
             <div className="switch">
               <div className="switch-group" role="group" aria-labelledby="id-switch-label">
