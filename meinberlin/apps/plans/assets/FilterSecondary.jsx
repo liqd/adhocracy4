@@ -1,4 +1,5 @@
 /* global django */
+var FilterOptions = require('./FilterOptions')
 var FilterRadio = require('./FilterRadio')
 const React = require('react')
 
@@ -8,7 +9,9 @@ class FilterSecondary extends React.Component {
 
     this.state = {
       participationChoice: this.props.participation,
-      statusChoice: this.props.status
+      statusChoice: this.props.status,
+      organisationChoice: this.props.organisation,
+      titleSearch: this.props.titleSearch
     }
   }
 
@@ -17,6 +20,8 @@ class FilterSecondary extends React.Component {
     this.props.showSecondaryFilters()
     this.props.selectParticipation(this.state.participationChoice)
     this.props.selectStatus(this.state.statusChoice)
+    this.props.selectOrganisation(this.state.organisationChoice)
+    this.props.selectTitleSearch(this.state.titleSearch)
   }
 
   clickParticipation (participation) {
@@ -28,6 +33,13 @@ class FilterSecondary extends React.Component {
   clickStatus (status) {
     this.setState({
       statusChoice: status
+    })
+  }
+
+  clickOrganisation (event) {
+    let organisation = event.currentTarget.value
+    this.setState({
+      organisationChoice: organisation
     })
   }
 
@@ -54,6 +66,15 @@ class FilterSecondary extends React.Component {
             />
           </div>
         </div>
+        <FilterOptions
+          question={django.gettext('Show projects of the following organisations to me')}
+          options={this.props.organisations}
+          onSelect={this.clickOrganisation.bind(this)}
+          ariaLabelledby="id_filter_orga"
+          numColumns={this.props.numColumns}
+          hasNoneValue={false}
+          isPartOfForm
+        />
         <button
           className="btn btn-primary"
           type="submit"
