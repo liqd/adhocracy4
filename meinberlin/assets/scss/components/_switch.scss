@@ -79,3 +79,10 @@
     background-color: $brand-secondary;
     border-color: $brand-secondary;
 }
+
+.switch-btn-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: $spacer;
+}

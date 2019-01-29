@@ -136,7 +136,11 @@ $divider-margin: 1.25rem;
         padding-left: 0;
     }
 
-    @media screen and (min-width: $breakpoint-xs) {
+    @media screen and (min-width: $breakpoint) {
+        padding: 2*$padding;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
         padding: 2*$padding 4*$padding $padding 4*$padding;
     }
 }
@@ -195,5 +199,58 @@ $divider-margin: 1.25rem;
 
     .filter-bar__btn--light {
         margin-left: 0;
+    }
+}
+
+//secondary radio group
+.filter-bar__menu-radio-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter-bar__menu-radio-part,
+.filter-bar__menu-radio-proj {
+    width: 100%;
+
+    .btn-group {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+    }
+
+    .switch--btn {
+        font-weight: normal;
+        padding-left: 0.5*$padding;
+        padding-right: 0.5*$padding;
+    }
+}
+
+.filter-bar__menu-radio-part {
+    .switch--btn {
+        min-width: 15%;
+        flex-grow: 1;
+    }
+}
+
+.filter-bar__menu-radio-proj {
+    margin-bottom: 2*$r-spacer;
+
+    .switch--btn {
+        width: 33.3%;
+    }
+}
+
+@media screen and (min-width: $breakpoint-md) {
+    .filter-bar__menu-radio-part {
+        width: 56%;
+
+        .switch--btn {
+            width: 25%;
+        }
+    }
+
+    .filter-bar__menu-radio-proj {
+        width: 39%;
+        margin-left: 2*$r-spacer;
     }
 }
