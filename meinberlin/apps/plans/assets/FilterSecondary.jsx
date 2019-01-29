@@ -1,4 +1,5 @@
 /* global django */
+var FilterOptions = require('./FilterOptions')
 var FilterRadio = require('./FilterRadio')
 const React = require('react')
 
@@ -35,6 +36,13 @@ class FilterSecondary extends React.Component {
     })
   }
 
+  clickOrganisation (event) {
+    let organisation = event.currentTarget.value
+    this.setState({
+      organisationChoice: organisation
+    })
+  }
+
   render () {
     return (
       <form className="filter-bar__menu">
@@ -51,6 +59,15 @@ class FilterSecondary extends React.Component {
           chosen={this.state.statusChoice}
           choiceNames={this.props.statusNames}
           onSelect={this.clickStatus.bind(this)}
+        />
+        <FilterOptions
+          question={django.gettext('Show projects of the following organisations to me')}
+          options={this.props.organisations}
+          onSelect={this.clickOrganisation.bind(this)}
+          ariaLabelledby="id_filter_orga"
+          numColumns={this.props.numColumns}
+          hasNoneValue={false}
+          isPartOfForm
         />
         <button
           className="btn btn-primary"

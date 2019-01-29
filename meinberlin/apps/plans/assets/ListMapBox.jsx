@@ -43,8 +43,8 @@ class ListMapBox extends React.Component {
       participation: 0,
       district: props.selectedDistrict,
       topic: props.selectedTopic,
-      organisation: -1,
-      titleSearch: -1
+      organisation: '-1',
+      titleSearch: '-1'
     }
   }
 
@@ -78,7 +78,7 @@ class ListMapBox extends React.Component {
       (this.state.district === '-1' || this.state.district === item.district) &&
       (this.state.participation === -1 || this.state.participation === item.participation) &&
       (this.state.status === -1 || this.state.status === item.status) &&
-      (this.state.organisation === -1 || this.state.organisation === item.organisation)
+      (this.state.organisation === '-1' || this.state.organisation === item.organisation)
   }
 
   updateList () {
@@ -152,9 +152,10 @@ class ListMapBox extends React.Component {
   }
 
   selectOrganisation (organisation) {
+    var newOrganisation = (organisation === '-1') ? '-1' : this.props.organisations[organisation]
     this.setState({
       filterChanged: true,
-      organisation: organisation
+      organisation: newOrganisation
     })
   }
 
@@ -216,6 +217,7 @@ class ListMapBox extends React.Component {
             status={this.state.status}
             statusNames={statusNames}
             organisation={this.state.organisation}
+            organisations={this.props.organisations}
             titleSearch={this.state.titleSearch}
             numColumns={1}
             isStacked
@@ -253,6 +255,7 @@ class ListMapBox extends React.Component {
           status={this.state.status}
           statusNames={statusNames}
           organisation={this.state.organisation}
+          organisations={this.props.organisations}
           titleSearch={this.state.titleSearch}
           numColumns={2}
           isStacked={false}
@@ -291,6 +294,7 @@ class ListMapBox extends React.Component {
             status={this.state.status}
             statusNames={statusNames}
             organisation={this.state.organisation}
+            organisations={this.props.organisations}
             titleSearch={this.state.titleSearch}
             numColumns={3}
             isStacked={false}

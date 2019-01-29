@@ -184,13 +184,15 @@ class FilterNav extends React.Component {
               selectParticipation={this.props.selectParticipation.bind(this)}
               selectStatus={this.props.selectStatus.bind(this)}
               selectOrganisation={this.props.selectOrganisation.bind(this)}
-              selectTitleSearch={this.selectTitleSearch.bind(this)}
+              selectTitleSearch={this.props.selectTitleSearch.bind(this)}
               showSecondaryFilters={this.showSecondaryFilters.bind(this)}
               participation={this.props.participation}
               participationNames={this.props.participationNames}
               status={this.props.status}
               statusNames={this.props.statusNames}
               organisation={this.props.organisation}
+              organisations={this.props.organisations}
+              numColumns={this.props.numColumns}
               titleSearch={this.props.titleSearch}
             />
           }
@@ -300,13 +302,15 @@ class FilterNav extends React.Component {
               selectParticipation={this.props.selectParticipation.bind(this)}
               selectStatus={this.props.selectStatus.bind(this)}
               selectOrganisation={this.props.selectOrganisation.bind(this)}
-              selectTitleSearch={this.selectTitleSearch.bind(this)}
+              selectTitleSearch={this.props.selectTitleSearch.bind(this)}
               showSecondaryFilters={this.showSecondaryFilters.bind(this)}
               participation={this.props.participation}
               participationNames={this.props.participationNames}
               status={this.props.status}
               statusNames={this.props.statusNames}
               organisation={this.props.organisation}
+              organisations={this.props.organisations}
+              numColumns={this.props.numColumns}
               titleSearch={this.props.titleSearch}
             />
           }
