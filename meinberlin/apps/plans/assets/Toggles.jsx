@@ -18,13 +18,13 @@ class Toggles extends React.Component {
             { this.props.statusSelected &&
               <button
                 className="btn btn--transparent"
-                onClick={this.clickStatusButton()}
+                onClick={this.clickStatusButton.bind(this)}
                 type="button">{this.props.statusString}</button>
             }
             { this.props.participationSelected &&
               <button
                 className="btn btn--transparent"
-                onClick={this.clickParticipationButton()}
+                onClick={this.clickParticipationButton.bind(this)}
                 type="button">{this.props.participationString}</button>
             }
             <div className="switch">
