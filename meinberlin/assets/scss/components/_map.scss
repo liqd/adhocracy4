@@ -88,6 +88,11 @@
  * The size of the map should not change depending on the number of items in
  * the list.
  */
+
+.map-container {
+    margin-left: $r-spacer;
+}
+
 .map-list-combined {
     display: flex;
     flex-direction: column;

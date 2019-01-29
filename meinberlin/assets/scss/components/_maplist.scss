@@ -126,8 +126,8 @@
 
 // horizontal tile structure
 .maplist-item__horizontal {
-    width: 600px;
-    margin: 0 $r-spacer $r-spacer $r-spacer;
+    width: 100%;
+    margin: 0 $r-spacer $r-spacer 4*$r-spacer;
 
     .maplist-item__proj,
     .maplist-item__plan { // statusbar position
