@@ -233,6 +233,8 @@ $divider-margin: 1.25rem;
 }
 
 .filter-bar__menu-radio-proj {
+    margin-bottom: 2*$r-spacer;
+
     .switch--btn {
         width: 33.3%;
     }
