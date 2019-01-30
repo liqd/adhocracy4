@@ -216,6 +216,12 @@ BLEACH_LIST = {
     }
 }
 
+A4_PROJECT_TOPICS = (
+    ('ANT', 'Anti-discrimination'),
+    ('WOR', 'Work & economy'),
+    ('BUI', 'Building & living'),
+)
+
 LOGIN_URL = "/accounts/login"
 
 IMAGE_ALIASES = {
