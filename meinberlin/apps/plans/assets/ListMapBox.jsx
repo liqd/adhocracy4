@@ -73,12 +73,21 @@ class ListMapBox extends React.Component {
     }
   }
 
+  isInTitle (title) {
+    let titleLower = title.toLowerCase()
+    if (titleLower.indexOf(this.state.titleSearch) === -1) {
+      return false
+    }
+    return true
+  }
+
   isInFilter (item) {
     return (this.state.topic === '-1' || item.topics.includes(this.state.topic)) &&
       (this.state.district === '-1' || this.state.district === item.district) &&
       (this.state.participation === -1 || this.state.participation === item.participation) &&
       (this.state.status === -1 || this.state.status === item.status) &&
-      (this.state.organisation === '-1' || this.state.organisation === item.organisation)
+      (this.state.organisation === '-1' || this.state.organisation === item.organisation) &&
+      (this.state.titleSearch === '-1' || this.isInTitle(item.title))
   }
 
   updateList () {
