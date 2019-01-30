@@ -171,6 +171,10 @@ $divider-margin: 1.25rem;
     }
 }
 
+.filter-bar__option.active {
+    color: $brand-primary;
+}
+
 .filter-bar__option-divider {
     margin-top: $divider-margin;
     margin-bottom: $divider-margin;

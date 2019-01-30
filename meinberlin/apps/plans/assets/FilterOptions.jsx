@@ -15,30 +15,11 @@ class OptionButton extends React.Component {
 }
 
 class OptionList extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      selectedChoice: this.props.selected
-    }
-  }
-
-  isSelected (choice) {
-    return (this.state.selectedChoice === choice)
-  }
-
-  getClassNameInput (choice) {
-    if (this.isSelected(choice)) {
-      return 'filter-bar__option active'
-    }
-    return 'filter-bar__option'
-  }
-
   render () {
     return (
       <div key={'list' + this.props.name}>
         {this.props.listItems.map((key, i) =>
-          <div key={i.toString()} className={this.getClassNameInput(-1)}>
+          <div key={i.toString()} className="filter-bar__option">
             <OptionButton
               identifier={key}
               onSelect={this.props.onSelect.bind(this)}
@@ -53,7 +34,7 @@ class OptionList extends React.Component {
 
 class OptionListLast extends React.Component {
   isSelected (choice) {
-    return (this.state.selectedChoice === choice)
+    return (this.props.selectedChoice === choice)
   }
 
   getClassNameInput (choice) {
@@ -67,7 +48,7 @@ class OptionListLast extends React.Component {
     return (
       <div key={'lastList'}>
         {this.props.listItems.map((key, i) => (
-          <div key={key} className={this.getClassNameInput(-1)}>
+          <div key={key} className={this.getClassNameInput(this.props.options[key])}>
             <OptionButton
               identifier={key}
               onSelect={this.props.onSelect.bind(this)}
@@ -89,7 +70,7 @@ class OptionListLast extends React.Component {
             )
           })
         }
-        <div className={this.getClassNameInput(-1)}>
+        <div className={this.getClassNameInput('-1')}>
           <button
             type="button"
             value="-1"
@@ -134,7 +115,8 @@ class FilterOptions extends React.Component {
         name={i.toString()}
         listItems={slicedList}
         onSelect={this.props.onSelect.bind(this)}
-        options={this.props.options} />
+        options={this.props.options}
+        selectedChoice={this.props.selectedChoice} />
     )
   }
 
@@ -150,7 +132,8 @@ class FilterOptions extends React.Component {
         listItems={slicedList}
         onSelect={this.props.onSelect.bind(this)}
         hasNoneValue={this.props.hasNoneValue}
-        options={this.props.options} />
+        options={this.props.options}
+        selectedChoice={this.props.selectedChoice} />
     )
   }
 
