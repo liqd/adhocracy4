@@ -79,7 +79,7 @@ class TopicForm(ProjectDashboardForm):
     class Meta:
         model = Project
         fields = ['topics']
-        required_for_project_publish = []
+        required_for_project_publish = ['topics']
 
 
 class PointForm(ProjectDashboardForm):
