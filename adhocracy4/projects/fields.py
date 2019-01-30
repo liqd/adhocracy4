@@ -8,7 +8,7 @@ class TopicField(MultiSelectField):
         kwargs['max_length'] = 254
         kwargs['max_choices'] = 2
         kwargs['default'] = ''
-        kwargs['blank'] = True
+        kwargs['blank'] = False
         super().__init__(*args, **kwargs)
 
     def contribute_to_class(self, cls, name, **kwargs):
