@@ -152,10 +152,9 @@ class ListMapBox extends React.Component {
   }
 
   selectOrganisation (organisation) {
-    var newOrganisation = (organisation === '-1') ? '-1' : this.props.organisations[organisation]
     this.setState({
       filterChanged: true,
-      organisation: newOrganisation
+      organisation: organisation
     })
   }
 
