@@ -15,13 +15,13 @@ class Toggles extends React.Component {
       return (
         <div>
           <div className="l-wrapper">
-            { this.props.statusSelected &&
+            { this.props.displayButtons && this.props.statusSelected &&
               <button
                 className="btn btn--transparent btn--small"
                 onClick={this.clickStatusButton.bind(this)}
                 type="button">{this.props.statusString} <i className="fa fa-times" /></button>
             }
-            { this.props.participationSelected &&
+            { this.props.displayButtons && this.props.participationSelected &&
               <button
                 className="btn btn--transparent btn--small"
                 onClick={this.clickParticipationButton.bind(this)}

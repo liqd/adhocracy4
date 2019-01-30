@@ -45,6 +45,7 @@ class ListMapBox extends React.Component {
       showListMap: window.innerWidth > breakpointMD,
       resizeMap: false,
       filterChanged: false,
+      filterOpen: false,
       status: 0,
       participation: 0,
       district: props.selectedDistrict,
@@ -108,6 +109,12 @@ class ListMapBox extends React.Component {
   toggleSwitch () {
     let newValue = !this.state.showListMap
     this.setState({ showListMap: newValue })
+  }
+
+  toggleFilter (filterStatus) {
+    this.setState({
+      filterOpen: filterStatus
+    })
   }
 
   showList () {
