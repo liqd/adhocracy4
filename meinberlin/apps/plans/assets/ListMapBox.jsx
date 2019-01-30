@@ -11,9 +11,15 @@ const breakpointXS = 800
 const breakpointMD = 1024
 
 const participationNames = [
+  django.gettext('with'),
+  django.gettext('without'),
+  django.gettext('undecided')
+]
+
+const participationButtonNames = [
   django.gettext('with participation'),
   django.gettext('without participation'),
-  django.gettext('undecided')
+  django.gettext('participation undecided')
 ]
 
 const statusNames = [
