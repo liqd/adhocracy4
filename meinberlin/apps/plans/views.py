@@ -4,7 +4,6 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models import Count
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -21,6 +20,7 @@ from adhocracy4.exports import views as export_views
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.maps.models import MapPreset
+from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
 from meinberlin.apps.projects.models import Project
@@ -79,18 +79,11 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         return projects.exclude(id__in=not_allowed_projects)
 
     def get_organisations(self):
-        project_orgs = self.projects.values('organisation__name')\
-            .annotate(total=Count('organisation__name'))\
-            .order_by('total')
-        plans_orgs = self.object_list.values('organisation__name')\
-            .annotate(total=Count('organisation__name'))\
-            .order_by('total')
-        project_orgs_list = [entry['organisation__name']
-                             for entry in project_orgs]
-        plans_orgs_list = [entry['organisation__name']
-                           for entry in plans_orgs]
-        orgs_list = project_orgs_list + plans_orgs_list
-        return json.dumps(list(set(orgs_list)))
+        organisations = Organisation\
+            .objects\
+            .values_list('name', flat=True)\
+            .order_by('name')
+        return json.dumps(list(organisations))
 
     def get_district_polygons(self):
         districts = self.districts
