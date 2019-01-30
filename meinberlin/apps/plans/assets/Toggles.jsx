@@ -1,12 +1,32 @@
 /* global django */
 const React = require('react')
 
-class MapListSwitch extends React.Component {
+class Toggles extends React.Component {
+  clickStatusButton () {
+    this.props.changeStatusSelection(-1)
+  }
+
+  clickParticipationButton () {
+    this.props.changeParticipationSelection(-1)
+  }
+
   render () {
     if (this.props.isSlider) {
       return (
         <div>
           <div className="l-wrapper">
+            { this.props.statusSelected &&
+              <button
+                className="btn btn--transparent btn--small"
+                onClick={this.clickStatusButton.bind(this)}
+                type="button">{this.props.statusString} <i className="fa fa-times" /></button>
+            }
+            { this.props.participationSelected &&
+              <button
+                className="btn btn--transparent btn--small"
+                onClick={this.clickParticipationButton.bind(this)}
+                type="button">{this.props.participationString} <i className="fa fa-times" /></button>
+            }
             <div className="switch">
               <div className="switch-group" role="group" aria-labelledby="id-switch-label">
                 <label htmlFor="switch-primary" className="switch-label">
@@ -44,4 +64,4 @@ class MapListSwitch extends React.Component {
   }
 }
 
-module.exports = MapListSwitch
+module.exports = Toggles
