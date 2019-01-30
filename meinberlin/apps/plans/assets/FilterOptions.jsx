@@ -38,7 +38,7 @@ class OptionList extends React.Component {
     return (
       <div key={'list' + this.props.name}>
         {this.props.listItems.map((key, i) =>
-          <div key={i.toString()} className="filter-bar__option">
+          <div key={i.toString()} className={this.getClassNameInput(-1)}>
             <OptionButton
               identifier={key}
               onSelect={this.props.onSelect.bind(this)}
@@ -52,11 +52,22 @@ class OptionList extends React.Component {
 }
 
 class OptionListLast extends React.Component {
+  isSelected (choice) {
+    return (this.state.selectedChoice === choice)
+  }
+
+  getClassNameInput (choice) {
+    if (this.isSelected(choice)) {
+      return 'filter-bar__option active'
+    }
+    return 'filter-bar__option'
+  }
+
   render () {
     return (
       <div key={'lastList'}>
         {this.props.listItems.map((key, i) => (
-          <div key={key} className="filter-bar__option">
+          <div key={key} className={this.getClassNameInput(-1)}>
             <OptionButton
               identifier={key}
               onSelect={this.props.onSelect.bind(this)}
@@ -78,7 +89,7 @@ class OptionListLast extends React.Component {
             )
           })
         }
-        <div className="filter-bar__option">
+        <div className={this.getClassNameInput(-1)}>
           <button
             type="button"
             value="-1"
