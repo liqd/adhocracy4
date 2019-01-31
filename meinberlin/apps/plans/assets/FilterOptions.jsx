@@ -17,7 +17,20 @@ class OptionButton extends React.Component {
 class OptionList extends React.Component {
   render () {
     return (
-      <div key={this.props.key}>
+      <div key={this.props.keyProp}>
+        {this.props.firstElement &&
+          <div className={this.props.getClassNameInput('-1')}>
+            <button
+              type="button"
+              value="-1"
+              onClick={this.props.onSelect}>
+              {django.gettext('all')}
+            </button>
+          </div>
+        }
+        {this.props.firstElement &&
+          <div className="filter-bar__option-divider" />
+        }
         {this.props.listItems.map((key, i) => (
           <div key={key}
             className={this.props.getClassNameInput(this.props.options[key])}>
@@ -28,7 +41,9 @@ class OptionList extends React.Component {
             />
           </div>
         ))}
-        <div className="filter-bar__option-divider" />
+        {this.props.hasNoneValue && this.props.lastElement &&
+          <div className="filter-bar__option-divider" />
+        }
         {this.props.hasNoneValue && this.props.lastElement &&
           Object.keys(this.props.options).slice(-1).map((key, i) => {
             return (
@@ -42,16 +57,6 @@ class OptionList extends React.Component {
               </div>
             )
           })
-        }
-        {this.props.lastElement &&
-          <div className={this.props.getClassNameInput('-1')}>
-            <button
-              type="button"
-              value="-1"
-              onClick={this.props.onSelect}>
-              {django.gettext('all')}
-            </button>
-          </div>
         }
       </div>
     )
@@ -77,12 +82,15 @@ class FilterOptions extends React.Component {
   }
 
   getListLength () {
-    const elements = Object.keys(this.props.options).length + 2
+    let elements = Object.keys(this.props.options).length + 2
+    if (this.props.hasNoneValue) {
+      elements += 2
+    }
     const elementsPerColumn = Math.ceil(elements / this.props.numColumns)
     return elementsPerColumn
   }
 
-  getList (sliceStart, sliceEnd, i, lastElement) {
+  getList (sliceStart, sliceEnd, i, firstElement, lastElement) {
     let sliceEndLast = sliceEnd
     if (lastElement && this.props.hasNoneValue) {
       sliceEndLast = -1
@@ -91,12 +99,14 @@ class FilterOptions extends React.Component {
     return (
       <OptionList
         key={'list-' + i.toString()}
+        keyProp={'list-' + i.toString()}
         listItems={slicedList}
         onSelect={this.props.onSelect.bind(this)}
         hasNoneValue={this.props.hasNoneValue}
         options={this.props.options}
         selectedChoice={this.props.selectedChoice}
         getClassNameInput={this.getClassNameInput.bind(this)}
+        firstElement={firstElement}
         lastElement={lastElement} />
     )
   }
@@ -104,13 +114,14 @@ class FilterOptions extends React.Component {
   getLists () {
     let lists = []
     for (let i = 0; i < this.props.numColumns; i++) {
-      let sliceStart = 0 + i * this.getListLength()
-      let sliceEnd = this.getListLength() + i * this.getListLength()
-      if (i < this.props.numColumns - 1) {
-        lists.push(this.getList(sliceStart, sliceEnd, i, false))
-      } else {
-        lists.push(this.getList(sliceStart, sliceEnd, i, true))
+      let firstElement = (i === 0)
+      let lastElement = (i === (this.props.numColumns - 1))
+      let sliceStart = i * this.getListLength()
+      if (!firstElement) {
+        sliceStart -= 2
       }
+      let sliceEnd = (this.getListLength() - 2) + i * this.getListLength()
+      lists.push(this.getList(sliceStart, sliceEnd, i, firstElement, lastElement))
     }
     return lists
   }
