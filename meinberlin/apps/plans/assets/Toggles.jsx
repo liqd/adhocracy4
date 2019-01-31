@@ -14,19 +14,21 @@ class Toggles extends React.Component {
     if (this.props.isSlider) {
       return (
         <div>
-          <div className="l-wrapper">
-            { this.props.displayButtons && this.props.statusSelected &&
-              <button
-                className="btn btn--transparent btn--small"
-                onClick={this.clickStatusButton.bind(this)}
-                type="button">{this.props.statusString} <i className="fa fa-times" /></button>
-            }
-            { this.props.displayButtons && this.props.participationSelected &&
-              <button
-                className="btn btn--transparent btn--small"
-                onClick={this.clickParticipationButton.bind(this)}
-                type="button">{this.props.participationString} <i className="fa fa-times" /></button>
-            }
+          <div className="switch-container">
+            <div>
+              { this.props.displayButtons && this.props.statusSelected &&
+                <button
+                  className="btn btn--transparent btn--small"
+                  onClick={this.clickStatusButton.bind(this)}
+                  type="button">{this.props.statusString} <i className="fa fa-times" /></button>
+              }
+              { this.props.displayButtons && this.props.participationSelected &&
+                <button
+                  className="btn btn--transparent btn--small"
+                  onClick={this.clickParticipationButton.bind(this)}
+                  type="button">{this.props.participationString} <i className="fa fa-times" /></button>
+              }
+            </div>
             <div className="switch">
               <div className="switch-group" role="group" aria-labelledby="id-switch-label">
                 <label htmlFor="switch-primary" className="switch-label">
@@ -46,19 +48,21 @@ class Toggles extends React.Component {
     } else {
       return (
         <div>
-          <div className="u-spacer-left u-spacer-right">
-            { this.props.displayButtons && this.props.statusSelected &&
-              <button
-                className="btn btn--transparent btn--small"
-                onClick={this.clickStatusButton.bind(this)}
-                type="button">{this.props.statusString} <i className="fa fa-times" /></button>
-            }
-            { this.props.displayButtons && this.props.participationSelected &&
-              <button
-                className="btn btn--transparent btn--small"
-                onClick={this.clickParticipationButton.bind(this)}
-                type="button">{this.props.participationString} <i className="fa fa-times" /></button>
-            }
+          <div className="switch-container">
+            <div>
+              { this.props.displayButtons && this.props.statusSelected &&
+                <button
+                  className="btn btn--transparent btn--small"
+                  onClick={this.clickStatusButton.bind(this)}
+                  type="button">{this.props.statusString} <i className="fa fa-times" /></button>
+              }
+              { this.props.displayButtons && this.props.participationSelected &&
+                <button
+                  className="btn btn--transparent btn--small"
+                  onClick={this.clickParticipationButton.bind(this)}
+                  type="button">{this.props.participationString} <i className="fa fa-times" /></button>
+              }
+            </div>
             <div className="btn-group switch-btn-group" role="group">
               <label className={!this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'} onClick={this.props.showList} htmlFor="show_list">
                 <span className="sr-only">{django.gettext('Show List')}</span>

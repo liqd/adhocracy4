@@ -70,16 +70,16 @@ class FilterSecondary extends React.Component {
     return (
       <form className="filter-bar__menu">
         <label htmlFor="id-title-search">
-          <input className="input-group__input"
+          <input className="input-group__input filter-bar__search"
             type="text"
             id="id-title-search"
             placeholder={django.gettext('Search title')}
             value={this.state.titleSearchChoice}
             onChange={this.changeTitleSearch.bind(this)} />
-          <button className="input-group__after btn btn--light"
+          <button className="input-group__after btn btn--light filter-bar__search--btn"
             type="submit"
             onClick={this.submitSecondaryFilters.bind(this)}>
-            <i className="fa fa-search" aria-label={django.gettext('Search title')} />
+            <i className="fa fa-search" aria-hidden="true" />
           </button>
           <span className="sr-only">{django.gettext('Search title')}
           </span>
