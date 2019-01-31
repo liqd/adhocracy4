@@ -96,10 +96,6 @@ class FilterNav extends React.Component {
     }
   }
 
-  getButtonText (filterType, filterName) {
-    return filterType + ': ' + filterName
-  }
-
   render () {
     if (this.props.isStacked) {
       return (
