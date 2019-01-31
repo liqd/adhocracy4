@@ -79,7 +79,7 @@ class FilterSecondary extends React.Component {
           <button className="input-group__after btn btn--light filter-bar__search--btn"
             type="submit"
             onClick={this.submitSecondaryFilters.bind(this)}>
-            <i className="fa fa-search" aria-label={django.gettext('Search title')} />
+            <i className="fa fa-search" aria-hidden="true" />
           </button>
           <span className="sr-only">{django.gettext('Search title')}
           </span>
