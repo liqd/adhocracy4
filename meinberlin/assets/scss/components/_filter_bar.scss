@@ -25,7 +25,7 @@ $divider-margin: 1.25rem;
     flex-direction: row;
     justify-content: center;
 
-    padding: 2*$padding;
+    padding: 1.5*$padding 2*$padding;
 }
 
 .filter-bar--stacked {
@@ -67,7 +67,8 @@ $divider-margin: 1.25rem;
 
 .filter-bar__btn--unselected {
     border-bottom: 1px dotted $white;
-    padding-left: 0;
+    padding: 0;
+    text-align: left;
 
     // leave space for caret
     padding-right: 1.5rem;
@@ -75,8 +76,8 @@ $divider-margin: 1.25rem;
 
     i {
         position: absolute;
-        top: 0.8rem;
-        right: 0;
+        top: 0.5rem;
+        right: 5px;
     }
 }
 
@@ -96,6 +97,7 @@ $divider-margin: 1.25rem;
 }
 
 .filter-bar__btn--light {
+    font-size: $font-size-sm;
     color: $white;
     margin-left: 2 * $r-spacer;
 
@@ -114,6 +116,7 @@ $divider-margin: 1.25rem;
     .filter-bar__btn,
     .filter-bar__btn--light {
         color: $text-color;
+        font-size: $font-size-base;
 
         &:focus,
         &:hover,
@@ -197,7 +200,7 @@ $divider-margin: 1.25rem;
     .filter-bar__project-text {
         display: block;
         width: 100%;
-        font-size: $font-size-xxl;
+        font-size: $font-size-lg;
     }
 
     .filter-bar__dropdown {
@@ -210,7 +213,6 @@ $divider-margin: 1.25rem;
     }
 
     .filter-bar__btn--light {
-        font-size: $font-size-base;
         margin-left: 0;
     }
 }
