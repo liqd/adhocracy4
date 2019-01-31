@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-11 14:17+0100\n"
+"POT-Creation-Date: 2019-01-31 18:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,27 +34,33 @@ msgstr "Body text"
 msgid "Collapsible element"
 msgstr "Collapsible element"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:23
-#, fuzzy, javascript-format
+#: adhocracy4/comments/static/comments/Comment.jsx:26
+#, fuzzy
 #| msgid "hide one reply"
 msgid "hide one reply"
-msgid_plural "hide %s replies"
-msgstr[0] "hide one reply"
-msgstr[1] "hide one reply"
+msgstr "hide one reply"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:25
-#, fuzzy, javascript-format
+#: adhocracy4/comments/static/comments/Comment.jsx:26
+#, javascript-format
+msgid "hide %s replies"
+msgstr "hide %s replies"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:28
+#, fuzzy
 #| msgid "view one reply"
 msgid "view one reply"
-msgid_plural "view %s replies"
-msgstr[0] "view one reply"
-msgstr[1] "view one reply"
+msgstr "view one reply"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:125
+#: adhocracy4/comments/static/comments/Comment.jsx:28
+#, javascript-format
+msgid "view %s replies"
+msgstr "view %s replies"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:128
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:127
+#: adhocracy4/comments/static/comments/Comment.jsx:130
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:93
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:96
@@ -67,20 +73,20 @@ msgstr "Do you really want to delete this comment?"
 msgid "Delete"
 msgstr "Delete"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:128
+#: adhocracy4/comments/static/comments/Comment.jsx:131
 #: adhocracy4/static/Modal.jsx:49
 msgid "Abort"
 msgstr "Abort"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:141
+#: adhocracy4/comments/static/comments/Comment.jsx:144
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:146
+#: adhocracy4/comments/static/comments/Comment.jsx:149
 msgid "Moderator"
 msgstr "Moderator"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:153
+#: adhocracy4/comments/static/comments/Comment.jsx:156
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -91,12 +97,12 @@ msgstr ""
 "moderation. The moderation will look at the reported content. The content "
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
-#: adhocracy4/comments/static/comments/Comment.jsx:176
+#: adhocracy4/comments/static/comments/Comment.jsx:179
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:26
 msgid "Answer"
 msgstr "Answer"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:215
+#: adhocracy4/comments/static/comments/Comment.jsx:218
 msgid "Your reply here"
 msgstr "Your reply here"
 
@@ -166,8 +172,8 @@ msgstr "Follow"
 
 #: adhocracy4/polls/static/polls/ChoiceForm.jsx:24
 #: adhocracy4/polls/static/polls/ChoiceForm.jsx:27
-#: meinberlin/apps/polls/assets/ChoiceForm.jsx:24
-#: meinberlin/apps/polls/assets/ChoiceForm.jsx:27
+#: meinberlin/apps/polls/assets/ChoiceForm.jsx:22
+#: meinberlin/apps/polls/assets/ChoiceForm.jsx:25
 msgid "remove"
 msgstr "remove"
 
@@ -413,87 +419,173 @@ msgstr "Invalid file format."
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:61
-#: meinberlin/apps/plans/assets/FilterNav.jsx:68
-#: meinberlin/apps/plans/assets/FilterOptions.jsx:36
+#: meinberlin/apps/plans/assets/FilterNav.jsx:79
+#: meinberlin/apps/plans/assets/FilterNav.jsx:86
+#: meinberlin/apps/plans/assets/FilterOptions.jsx:27
+#: meinberlin/apps/plans/assets/FilterRadio.jsx:48
 msgid "all"
 msgstr "all"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:95
-#: meinberlin/apps/plans/assets/FilterNav.jsx:156
+#: meinberlin/apps/plans/assets/FilterNav.jsx:109
+#: meinberlin/apps/plans/assets/FilterNav.jsx:210
 msgid "Filter bar"
 msgstr "Filter bar"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:96
-#: meinberlin/apps/plans/assets/FilterNav.jsx:157
+#: meinberlin/apps/plans/assets/FilterNav.jsx:110
+#: meinberlin/apps/plans/assets/FilterNav.jsx:211
 msgid "I am interested in projects from"
 msgstr "I am interested in projects from"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:103
-#: meinberlin/apps/plans/assets/FilterNav.jsx:165
-msgid "District"
-msgstr "District"
-
 #: meinberlin/apps/plans/assets/FilterNav.jsx:117
-#: meinberlin/apps/plans/assets/FilterNav.jsx:179
+#: meinberlin/apps/plans/assets/FilterNav.jsx:219
+msgid "„ all Districts “"
+msgstr "„ all Districts “"
+
+#: meinberlin/apps/plans/assets/FilterNav.jsx:131
+#: meinberlin/apps/plans/assets/FilterNav.jsx:233
 msgid "Which district are you interested in?"
 msgstr "Which district are you interested in?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:130
-#: meinberlin/apps/plans/assets/FilterNav.jsx:195
-msgid "Topic"
-msgstr "Topic"
+#: meinberlin/apps/plans/assets/FilterNav.jsx:147
+#: meinberlin/apps/plans/assets/FilterNav.jsx:252
+msgid "„ all Topics “"
+msgstr "„ all Topics “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:144
-#: meinberlin/apps/plans/assets/FilterNav.jsx:209
+#: meinberlin/apps/plans/assets/FilterNav.jsx:161
+#: meinberlin/apps/plans/assets/FilterNav.jsx:266
 msgid "Which topic are you interested in?"
 msgstr "Which topic are you interested in?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:187
-msgid " in the area of "
-msgstr " in the area of "
+#: meinberlin/apps/plans/assets/FilterNav.jsx:175
+#: meinberlin/apps/plans/assets/FilterNav.jsx:281
+msgid "display projects"
+msgstr "display projects"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:219
+#: meinberlin/apps/plans/assets/FilterNav.jsx:185
+#: meinberlin/apps/plans/assets/FilterNav.jsx:292
+#: meinberlin/apps/plans/assets/FilterNav.jsx:303
 msgid "more filters"
 msgstr "more filters"
 
-#: meinberlin/apps/plans/assets/MapListSwitch.jsx:11
-msgid "Show map"
-msgstr "Show map"
+#: meinberlin/apps/plans/assets/FilterNav.jsx:244
+msgid " in the area of "
+msgstr " in the area of "
 
-#: meinberlin/apps/plans/assets/MapListSwitch.jsx:28
-msgid "Map list switch"
-msgstr "Map list switch"
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:76
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:84
+msgid "Search title"
+msgstr "Search title"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:66
-msgid "remaining"
-msgstr "remaining"
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:91
+msgid "Participation"
+msgstr "Participation"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:74
-msgid "Participation ended. Read result."
-msgstr "Participation ended. Read result."
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:100
+msgid "Project status"
+msgstr "Project status"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:92
-msgid "Participation projects: "
-msgstr "Participation projects: "
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:113
+msgid "Show Organisation ..."
+msgstr "Show Organisation ..."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:95
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:119
+msgid "show projects"
+msgstr "show projects"
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:14
+msgid "with"
+msgstr "with"
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:15
+msgid "without"
+msgstr "without"
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:16
+msgid "undecided"
+msgstr "undecided"
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:20
+msgid "with participation"
+msgstr "with participation"
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:21
+msgid "without participation"
+msgstr "without participation"
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:22
+msgid "participation undecided"
+msgstr "participation undecided"
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:26
+msgid "ongoing"
+msgstr "ongoing"
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:27
+msgid "done"
+msgstr "done"
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:77
+#: meinberlin/apps/plans/assets/PlansList.jsx:114
+#: meinberlin/apps/plans/assets/PopUp.jsx:76
 msgid "Participation: "
 msgstr "Participation: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:120
-#: meinberlin/apps/plans/assets/PlansMap.jsx:257
+#: meinberlin/apps/plans/assets/PlansList.jsx:89
+#: meinberlin/apps/plans/assets/PopUp.jsx:42
+msgid "remaining"
+msgstr "remaining"
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:94
+#: meinberlin/apps/plans/assets/PopUp.jsx:47
+msgid "Participation ended. Read result."
+msgstr "Participation ended. Read result."
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:111
+#: meinberlin/apps/plans/assets/PopUp.jsx:73
+msgid "Participation projects: "
+msgstr "Participation projects: "
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:139
+#: meinberlin/apps/plans/assets/PlansMap.jsx:277
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:232
+#: meinberlin/apps/plans/assets/PlansMap.jsx:252
 msgid "Address Search"
 msgstr "Address Search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:233
-#: meinberlin/apps/plans/assets/PlansMap.jsx:234
-msgid "Search"
-msgstr "Search"
+#: meinberlin/apps/plans/assets/PlansMap.jsx:253
+#: meinberlin/apps/plans/assets/PlansMap.jsx:254
+msgid "Address search"
+msgstr "Address search"
+
+#: meinberlin/apps/plans/assets/PlansMap.jsx:285
+msgid "Close information box"
+msgstr "Close information box"
+
+#: meinberlin/apps/plans/assets/PlansMap.jsx:286
+msgid ""
+"Projects without spacial reference are not shown on the map. Please have a "
+"look at the project list."
+msgstr ""
+"Projects without spacial reference are not shown on the map. Please have a "
+"look at the project list."
+
+#: meinberlin/apps/plans/assets/PopUp.jsx:52
+msgid "Project for the following plan: "
+msgstr "Project for the following plan: "
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:35
+msgid "Show map"
+msgstr "Show map"
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:68
+msgid "Show List"
+msgstr "Show List"
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:72
+msgid "Show Map"
+msgstr "Show Map"
 
 #: meinberlin/assets/js/embed.js:85
 msgid "We couldn't find what you were looking for."
@@ -523,11 +615,17 @@ msgstr "No matches found within the project area"
 msgid "Did you mean:"
 msgstr "Did you mean:"
 
-#~ msgid "hide %s replies"
-#~ msgstr "hide %s replies"
+#~ msgid "District"
+#~ msgstr "District"
 
-#~ msgid "view %s replies"
-#~ msgstr "view %s replies"
+#~ msgid "Topic"
+#~ msgstr "Topic"
+
+#~ msgid "Map list switch"
+#~ msgstr "Map list switch"
+
+#~ msgid "Search"
+#~ msgstr "Search"
 
 #~ msgid "Theme: "
 #~ msgstr "Theme: "
@@ -561,9 +659,6 @@ msgstr "Did you mean:"
 
 #~ msgid "All"
 #~ msgstr "All"
-
-#~ msgid "Participation"
-#~ msgstr "Participation"
 
 #~ msgid "Export Excel"
 #~ msgstr "Export Excel"

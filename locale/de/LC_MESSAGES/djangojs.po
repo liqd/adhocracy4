@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-11 14:17+0100\n"
+"POT-Creation-Date: 2019-01-31 18:49+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,34 +38,42 @@ msgstr "Textkörper"
 msgid "Collapsible element"
 msgstr "Aufklappbares Element"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:23
-#: adhocracy4/comments/static/comments/Comment.jsx:23
-#, fuzzy, javascript-format
+#: adhocracy4/comments/static/comments/Comment.jsx:26
+#: adhocracy4/comments/static/comments/Comment.jsx:26
+#, fuzzy
 #| msgid "hide one reply"
 msgid "hide one reply"
-msgid_plural "hide %s replies"
-msgstr[0] "Antwort ausblenden"
-msgstr[1] "Antwort ausblenden"
+msgstr "Antwort ausblenden"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:25
-#: adhocracy4/comments/static/comments/Comment.jsx:25
-#, fuzzy, javascript-format
+#: adhocracy4/comments/static/comments/Comment.jsx:26
+#: adhocracy4/comments/static/comments/Comment.jsx:26
+#, javascript-format
+msgid "hide %s replies"
+msgstr "%s Antworten ausblenden"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:28
+#: adhocracy4/comments/static/comments/Comment.jsx:28
+#, fuzzy
 #| msgid "view one reply"
 msgid "view one reply"
-msgid_plural "view %s replies"
-msgstr[0] "Antwort einblenden"
-msgstr[1] "Antwort einblenden"
+msgstr "Antwort einblenden"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:125
-#: adhocracy4/comments/static/comments/Comment.jsx:125
+#: adhocracy4/comments/static/comments/Comment.jsx:28
+#: adhocracy4/comments/static/comments/Comment.jsx:28
+#, javascript-format
+msgid "view %s replies"
+msgstr "%s Antworten einblenden"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:128
+#: adhocracy4/comments/static/comments/Comment.jsx:128
 msgid "Do you really want to delete this comment?"
 msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:127
+#: adhocracy4/comments/static/comments/Comment.jsx:130
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:93
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:96
-#: adhocracy4/comments/static/comments/Comment.jsx:127
+#: adhocracy4/comments/static/comments/Comment.jsx:130
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:93
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:96
@@ -78,26 +86,25 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 msgid "Delete"
 msgstr "Löschen"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:128
+#: adhocracy4/comments/static/comments/Comment.jsx:131
 #: adhocracy4/static/Modal.jsx:49
-#: adhocracy4/comments/static/comments/Comment.jsx:128
-#: adhocracy4/static/Modal.jsx:49
+#: adhocracy4/comments/static/comments/Comment.jsx:131
 msgid "Abort"
 msgstr "Abbrechen"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:141
-#: adhocracy4/comments/static/comments/Comment.jsx:141
+#: adhocracy4/comments/static/comments/Comment.jsx:144
+#: adhocracy4/comments/static/comments/Comment.jsx:144
 msgid "Latest edit on"
 msgstr "Letzte Änderung am"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:146
-#: adhocracy4/comments/static/comments/Comment.jsx:146
+#: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments/static/comments/Comment.jsx:149
 msgid "Moderator"
 msgstr "Moderator"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:153
+#: adhocracy4/comments/static/comments/Comment.jsx:156
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
-#: adhocracy4/comments/static/comments/Comment.jsx:153
+#: adhocracy4/comments/static/comments/Comment.jsx:156
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -108,15 +115,15 @@ msgstr ""
 "weitergeleitet. Diese prüft den gemeldeten Beitrag. Er wird gelöscht, wenn "
 "er nicht unseren Diskussionsregeln (Netiquette) entspricht."
 
-#: adhocracy4/comments/static/comments/Comment.jsx:176
+#: adhocracy4/comments/static/comments/Comment.jsx:179
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:26
-#: adhocracy4/comments/static/comments/Comment.jsx:176
+#: adhocracy4/comments/static/comments/Comment.jsx:179
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:26
 msgid "Answer"
 msgstr "Antworten"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:215
-#: adhocracy4/comments/static/comments/Comment.jsx:215
+#: adhocracy4/comments/static/comments/Comment.jsx:218
+#: adhocracy4/comments/static/comments/Comment.jsx:218
 msgid "Your reply here"
 msgstr "Ihre Antwort hier"
 
@@ -205,8 +212,8 @@ msgstr "Folgen"
 #: adhocracy4/polls/static/polls/ChoiceForm.jsx:27
 #: adhocracy4/polls/static/polls/ChoiceForm.jsx:24
 #: adhocracy4/polls/static/polls/ChoiceForm.jsx:27
-#: meinberlin/apps/polls/assets/ChoiceForm.jsx:24
-#: meinberlin/apps/polls/assets/ChoiceForm.jsx:27
+#: meinberlin/apps/polls/assets/ChoiceForm.jsx:22
+#: meinberlin/apps/polls/assets/ChoiceForm.jsx:25
 msgid "remove"
 msgstr "entfernen"
 
@@ -363,8 +370,6 @@ msgstr "Meldung senden"
 
 #: adhocracy4/static/Alert.jsx:10
 #: adhocracy4/static/Alert.jsx:11
-#: adhocracy4/static/Alert.jsx:10
-#: adhocracy4/static/Alert.jsx:11
 #: meinberlin/apps/contrib/assets/Alert.jsx:10
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
@@ -488,87 +493,171 @@ msgstr ""
 "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
 "entfernen?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:61
-#: meinberlin/apps/plans/assets/FilterNav.jsx:68
-#: meinberlin/apps/plans/assets/FilterOptions.jsx:36
+#: meinberlin/apps/plans/assets/FilterNav.jsx:79
+#: meinberlin/apps/plans/assets/FilterNav.jsx:86
+#: meinberlin/apps/plans/assets/FilterOptions.jsx:27
+#: meinberlin/apps/plans/assets/FilterRadio.jsx:48
 msgid "all"
 msgstr "Alle"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:95
-#: meinberlin/apps/plans/assets/FilterNav.jsx:156
+#: meinberlin/apps/plans/assets/FilterNav.jsx:109
+#: meinberlin/apps/plans/assets/FilterNav.jsx:210
 msgid "Filter bar"
 msgstr "Filter Leiste"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:96
-#: meinberlin/apps/plans/assets/FilterNav.jsx:157
+#: meinberlin/apps/plans/assets/FilterNav.jsx:110
+#: meinberlin/apps/plans/assets/FilterNav.jsx:211
 msgid "I am interested in projects from"
 msgstr "Mich interessieren Projekte aus"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:103
-#: meinberlin/apps/plans/assets/FilterNav.jsx:165
-msgid "District"
-msgstr "Bezirk"
-
 #: meinberlin/apps/plans/assets/FilterNav.jsx:117
-#: meinberlin/apps/plans/assets/FilterNav.jsx:179
+#: meinberlin/apps/plans/assets/FilterNav.jsx:219
+msgid "„ all Districts “"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/FilterNav.jsx:131
+#: meinberlin/apps/plans/assets/FilterNav.jsx:233
 msgid "Which district are you interested in?"
 msgstr "Welchen Bezirk suchen Sie?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:130
-#: meinberlin/apps/plans/assets/FilterNav.jsx:195
-msgid "Topic"
-msgstr "Thema"
+#: meinberlin/apps/plans/assets/FilterNav.jsx:147
+#: meinberlin/apps/plans/assets/FilterNav.jsx:252
+msgid "„ all Topics “"
+msgstr ""
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:144
-#: meinberlin/apps/plans/assets/FilterNav.jsx:209
+#: meinberlin/apps/plans/assets/FilterNav.jsx:161
+#: meinberlin/apps/plans/assets/FilterNav.jsx:266
 msgid "Which topic are you interested in?"
 msgstr "Welches Thema interessiert Sie"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:187
-msgid " in the area of "
-msgstr "und dem Bereich"
+#: meinberlin/apps/plans/assets/FilterNav.jsx:175
+#: meinberlin/apps/plans/assets/FilterNav.jsx:281
+msgid "display projects"
+msgstr ""
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:219
+#: meinberlin/apps/plans/assets/FilterNav.jsx:185
+#: meinberlin/apps/plans/assets/FilterNav.jsx:292
+#: meinberlin/apps/plans/assets/FilterNav.jsx:303
 msgid "more filters"
 msgstr "weitere Filter"
 
-#: meinberlin/apps/plans/assets/MapListSwitch.jsx:11
-msgid "Show map"
-msgstr "Karte anzeigen"
+#: meinberlin/apps/plans/assets/FilterNav.jsx:244
+msgid " in the area of "
+msgstr "und dem Bereich"
 
-#: meinberlin/apps/plans/assets/MapListSwitch.jsx:28
-msgid "Map list switch"
-msgstr "Schalter zwischen Karte und Liste"
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:76
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:84
+msgid "Search title"
+msgstr ""
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:66
-msgid "remaining"
-msgstr "noch"
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:91
+msgid "Participation"
+msgstr "Beteiligung"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:74
-msgid "Participation ended. Read result."
-msgstr "Beteiligung beendet. Ergebnis lesen."
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:100
+msgid "Project status"
+msgstr ""
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:92
-msgid "Participation projects: "
-msgstr "Beteiligungsprojekte: "
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:113
+msgid "Show Organisation ..."
+msgstr ""
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:95
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:119
+msgid "show projects"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:14
+msgid "with"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:15
+msgid "without"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:16
+msgid "undecided"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:20
+msgid "with participation"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:21
+msgid "without participation"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:22
+msgid "participation undecided"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:26
+msgid "ongoing"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:27
+msgid "done"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:77
+#: meinberlin/apps/plans/assets/PlansList.jsx:114
+#: meinberlin/apps/plans/assets/PopUp.jsx:76
 msgid "Participation: "
 msgstr "Beteiligung: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:120
-#: meinberlin/apps/plans/assets/PlansMap.jsx:257
+#: meinberlin/apps/plans/assets/PlansList.jsx:89
+#: meinberlin/apps/plans/assets/PopUp.jsx:42
+msgid "remaining"
+msgstr "noch"
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:94
+#: meinberlin/apps/plans/assets/PopUp.jsx:47
+msgid "Participation ended. Read result."
+msgstr "Beteiligung beendet. Ergebnis lesen."
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:111
+#: meinberlin/apps/plans/assets/PopUp.jsx:73
+msgid "Participation projects: "
+msgstr "Beteiligungsprojekte: "
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:139
+#: meinberlin/apps/plans/assets/PlansMap.jsx:277
 msgid "Nothing to show"
 msgstr "Keine Ergebnisse"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:232
+#: meinberlin/apps/plans/assets/PlansMap.jsx:252
 msgid "Address Search"
 msgstr "Adresssuche"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:233
-#: meinberlin/apps/plans/assets/PlansMap.jsx:234
-msgid "Search"
-msgstr "Suche"
+#: meinberlin/apps/plans/assets/PlansMap.jsx:253
+#: meinberlin/apps/plans/assets/PlansMap.jsx:254
+msgid "Address search"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/PlansMap.jsx:285
+msgid "Close information box"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/PlansMap.jsx:286
+msgid ""
+"Projects without spacial reference are not shown on the map. Please have a "
+"look at the project list."
+msgstr ""
+
+#: meinberlin/apps/plans/assets/PopUp.jsx:52
+msgid "Project for the following plan: "
+msgstr ""
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:35
+msgid "Show map"
+msgstr "Karte anzeigen"
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:68
+msgid "Show List"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:72
+msgid "Show Map"
+msgstr ""
 
 #: meinberlin/assets/js/embed.js:85
 msgid "We couldn't find what you were looking for."
@@ -598,11 +687,17 @@ msgstr "Keine Treffer im Bereich des Projekts gefunden"
 msgid "Did you mean:"
 msgstr "Meinten Sie:"
 
-#~ msgid "hide %s replies"
-#~ msgstr "%s Antworten ausblenden"
+#~ msgid "District"
+#~ msgstr "Bezirk"
 
-#~ msgid "view %s replies"
-#~ msgstr "%s Antworten einblenden"
+#~ msgid "Topic"
+#~ msgstr "Thema"
+
+#~ msgid "Map list switch"
+#~ msgstr "Schalter zwischen Karte und Liste"
+
+#~ msgid "Search"
+#~ msgstr "Suche"
 
 #~ msgid "Theme: "
 #~ msgstr "Thema: "
@@ -636,9 +731,6 @@ msgstr "Meinten Sie:"
 
 #~ msgid "All"
 #~ msgstr "Alle"
-
-#~ msgid "Participation"
-#~ msgstr "Beteiligung"
 
 #~ msgid "Export Excel"
 #~ msgstr "Excel herunterladen"
