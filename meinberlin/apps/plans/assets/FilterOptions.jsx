@@ -20,7 +20,7 @@ class OptionList extends React.Component {
       <div key={'list' + this.props.name}>
         {this.props.listItems.map((key, i) =>
           <div key={i.toString()}
-            className={this.props.getClassNameInput(key, this.props.options[key])}>
+            className={this.props.getClassNameInput(this.props.options[key])}>
             <OptionButton
               identifier={key}
               onSelect={this.props.onSelect.bind(this)}
@@ -39,7 +39,7 @@ class OptionListLast extends React.Component {
       <div key={'lastList'}>
         {this.props.listItems.map((key, i) => (
           <div key={key}
-            className={this.props.getClassNameInput(key, this.props.options[key])}>
+            className={this.props.getClassNameInput(this.props.options[key])}>
             <OptionButton
               identifier={key}
               onSelect={this.props.onSelect.bind(this)}
@@ -52,7 +52,7 @@ class OptionListLast extends React.Component {
           Object.keys(this.props.options).slice(-1).map((key, i) => {
             return (
               <div key={key}
-                className={this.props.getClassNameInput(key, this.props.options[key])}>
+                className={this.props.getClassNameInput(this.props.options[key])}>
                 <OptionButton
                   identifier={key}
                   onSelect={this.props.onSelect.bind(this)}
@@ -62,7 +62,7 @@ class OptionListLast extends React.Component {
             )
           })
         }
-        <div className={this.props.getClassNameInput('-1', '-1')}>
+        <div className={this.props.getClassNameInput('-1')}>
           <button
             type="button"
             value="-1"
@@ -145,8 +145,8 @@ class FilterOptions extends React.Component {
     return lists
   }
 
-  getClassNameInput (choice1, choice2) {
-    if (this.props.selectedChoice === choice1 || this.props.selectedChoice === choice2) {
+  getClassNameInput (choice) {
+    if (this.props.selectedChoice === choice) {
       return 'filter-bar__option active'
     }
     return 'filter-bar__option'

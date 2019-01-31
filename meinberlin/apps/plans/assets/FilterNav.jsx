@@ -99,6 +99,13 @@ class FilterNav extends React.Component {
     return filterType + ': ' + filterName
   }
 
+  getSelectedTopicOption (choice) {
+    if (choice === '-1') {
+      return choice
+    }
+    return this.props.topicChoices[this.props.topic]
+  }
+
   render () {
     if (this.props.isStacked) {
       return (
@@ -161,7 +168,7 @@ class FilterNav extends React.Component {
             isStacked={this.props.isStacked}
             numColumns={this.props.numColumns}
             hasNoneValue={false}
-            selectedChoice={this.props.topic}
+            selectedChoice={this.getSelectedTopicOption(this.props.topic)}
           />
           }
           { this.props.linkUrl &&
@@ -266,7 +273,7 @@ class FilterNav extends React.Component {
                 isStacked={this.props.isStacked}
                 numColumns={this.props.numColumns}
                 hasNoneValue={false}
-                selectedChoice={this.props.topic}
+                selectedChoice={this.getSelectedTopicOption(this.props.topic)}
               />
               }
             </div>
