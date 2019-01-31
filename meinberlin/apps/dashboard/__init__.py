@@ -27,6 +27,8 @@ class TypedProjectDashboard(ProjectDashboard):
         elif self.project_type == 'container':
             return [components.projects.get('container-basic'),
                     components.projects.get('container-information'),
+                    components.projects.get('topics'),
+                    components.projects.get('point'),
                     components.projects.get('container-projects')]
 
         return [component for component in components.get_project_components()

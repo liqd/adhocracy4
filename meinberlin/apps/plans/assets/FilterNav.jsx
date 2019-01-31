@@ -47,6 +47,7 @@ class FilterNav extends React.Component {
     if (this.state.displayDistrictOptions || this.state.displayTopicOptions) {
       isExpanded = true
     }
+    this.props.updateFilterStatus(isExpanded)
     this.setState({
       displayDistrictOptions: false,
       displayTopicOptions: false,

@@ -37,7 +37,9 @@ module.exports = {
       'leaflet/dist/leaflet.css',
       'leaflet.markercluster',
       'leaflet.markercluster/dist/MarkerCluster.css',
-      './meinberlin/apps/plans/assets/plans_map.jsx'
+      './meinberlin/apps/plans/assets/plans_map.jsx',
+      'react-bootstrap-typeahead',
+      'react-bootstrap-typeahead/css/Typeahead.css'
     ],
     'mapboxgl': [
       'mapbox-gl/dist/mapbox-gl.js'
