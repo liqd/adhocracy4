@@ -111,7 +111,7 @@ class FilterNav extends React.Component {
               ariaExpanded={this.state.displayDistrictOptions}
               showOptions={this.showDistrictOptions.bind(this)}
               id="id_filter_district"
-              buttonText={this.getButtonText(django.gettext('District'), this.getDistrictFilterName())}
+              buttonText={django.gettext('„ all Districts “')}
               iClassName="fa fa-chevron-down"
             />
             : <FilterButton
@@ -140,7 +140,7 @@ class FilterNav extends React.Component {
               ariaExpanded={this.state.displayTopicOptions}
               showOptions={this.showTopicOptions.bind(this)}
               id="id_filter_topic"
-              buttonText={this.getButtonText(django.gettext('Topic'), this.getTopicFilterName())}
+              buttonText={django.gettext('„ all Topics “')}
               iClassName="fa fa-chevron-down"
             />
             : <FilterButton
