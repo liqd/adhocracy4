@@ -82,7 +82,7 @@ class ListMapBox extends React.Component {
 
   isInTitle (title) {
     let titleLower = title.toLowerCase()
-    if (titleLower.indexOf(this.state.titleSearch) === -1) {
+    if (titleLower.indexOf(this.state.titleSearch.toLowerCase()) === -1) {
       return false
     }
     return true

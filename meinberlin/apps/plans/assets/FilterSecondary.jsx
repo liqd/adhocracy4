@@ -47,9 +47,8 @@ class FilterSecondary extends React.Component {
 
   changeTitleSearch (e) {
     let value = e.target.value
-    let searchTerm = value.toLowerCase().trim()
     this.setState({
-      titleSearchChoice: searchTerm
+      titleSearchChoice: value
     })
   }
 
