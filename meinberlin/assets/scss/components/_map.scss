@@ -88,6 +88,11 @@
  * The size of the map should not change depending on the number of items in
  * the list.
  */
+
+.map-container {
+    margin-left: $r-spacer;
+}
+
 .map-list-combined {
     display: flex;
     flex-direction: column;
@@ -135,17 +140,13 @@
 
     .map-infobox {
         font-size: $font-size-base;
-        width: 75%;
+        width: 50%;
         position: absolute;
         left: 1*$spacer;
         top: 4.5*$spacer;
         z-index: 1000;
         background-color: $body-bg;
         padding: $padding $padding $padding 3*$padding;
-
-        @media (min-width: $breakpoint) {
-            width: 50%;
-        }
 
         i.fa-info-circle {
             color: $brand-secondary;

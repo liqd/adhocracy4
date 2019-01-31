@@ -150,7 +150,7 @@ class PlansMap extends React.Component {
 
   addMarkers (cluster) {
     this.props.items.map((item, i) => {
-      if (item.point !== '') {
+      if (item.point !== '' && item.point.geometry) {
         let marker = L.marker(pointToLatLng(item.point), { icon: itemIcon })
         cluster.addLayer(marker)
         marker.bindPopup(this.getPopUpContent(item))

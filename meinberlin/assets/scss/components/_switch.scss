@@ -1,3 +1,32 @@
+.switch-container {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    margin-left: 1*$r-spacer;
+    margin-right: 1*$r-spacer;
+    margin-bottom: $r-spacer;
+
+    .btn--transparent {
+        color: $brand-secondary;
+        margin: 0 $r-spacer $r-spacer 0;
+
+        &:hover,
+        &:focus {
+            color: $brand-primary;
+        }
+
+        @media screen and (min-width: $breakpoint-xs) {
+            margin-bottom: 0;
+        }
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-left: 4*$r-spacer;
+        margin-right: 4*$r-spacer;
+        margin-bottom: 2*$r-spacer;
+    }
+}
+
 .switch-label > .switch-input[type="checkbox"] {
     display: none;
 }
@@ -56,18 +85,15 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin-bottom: $spacer;
 }
 
 .switch--btn {
+    padding: 0.5em 0.8em;
     color: $brand-secondary;
 
+    &:active,
     &:hover,
     &:focus {
-        color: $brand-primary;
-    }
-
-    &:active {
         color: $body-bg;
         background-color: $brand-secondary;
         border-color: $brand-secondary;
@@ -84,5 +110,4 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin-bottom: $spacer;
 }

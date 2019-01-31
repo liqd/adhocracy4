@@ -3,9 +3,14 @@ $line-height: 2.5;
 $divider-margin: 1.25rem;
 
 .filter-bar-container {
-    margin-left: 4*$r-spacer;
-    margin-right: 4*$r-spacer;
+    margin-left: 1*$r-spacer;
+    margin-right: 1*$r-spacer;
     margin-bottom: 2*$r-spacer;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-left: 4*$r-spacer;
+        margin-right: 4*$r-spacer;
+    }
 }
 
 .filter-bar {
@@ -20,11 +25,11 @@ $divider-margin: 1.25rem;
     flex-direction: row;
     justify-content: center;
 
-    padding: 2*$padding;
+    padding: 1.5*$padding 2*$padding;
 }
 
 .filter-bar--stacked {
-    padding: $padding 2*$padding;
+    padding: $padding;
     margin-bottom: $r-spacer;
 }
 
@@ -62,7 +67,8 @@ $divider-margin: 1.25rem;
 
 .filter-bar__btn--unselected {
     border-bottom: 1px dotted $white;
-    padding-left: 0;
+    padding: 0;
+    text-align: left;
 
     // leave space for caret
     padding-right: 1.5rem;
@@ -70,8 +76,8 @@ $divider-margin: 1.25rem;
 
     i {
         position: absolute;
-        top: 0.8rem;
-        right: 0;
+        top: 0.5rem;
+        right: 5px;
     }
 }
 
@@ -91,6 +97,7 @@ $divider-margin: 1.25rem;
 }
 
 .filter-bar__btn--light {
+    font-size: $font-size-sm;
     color: $white;
     margin-left: 2 * $r-spacer;
 
@@ -109,6 +116,7 @@ $divider-margin: 1.25rem;
     .filter-bar__btn,
     .filter-bar__btn--light {
         color: $text-color;
+        font-size: $font-size-base;
 
         &:focus,
         &:hover,
@@ -136,12 +144,12 @@ $divider-margin: 1.25rem;
         padding-left: 0;
     }
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-xs) {
         padding: 2*$padding;
     }
 
     @media screen and (min-width: $breakpoint-md) {
-        padding: 2*$padding 4*$padding $padding 4*$padding;
+        padding: 0.5*$padding 4*$padding 2*$padding 4*$padding;
     }
 }
 
@@ -149,9 +157,15 @@ $divider-margin: 1.25rem;
     position: absolute;
     left: 0;
     right: 0;
-    margin-left: 4*$r-spacer;
-    margin-right: 4*$r-spacer;
+    margin-left: 1*$r-spacer;
+    margin-right: 1*$r-spacer;
     z-index: 1;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-top: 2*$r-spacer;
+        margin-left: 4*$r-spacer;
+        margin-right: 4*$r-spacer;
+    }
 }
 
 .filter-bar__question {
@@ -190,6 +204,7 @@ $divider-margin: 1.25rem;
     .filter-bar__project-text {
         display: block;
         width: 100%;
+        font-size: $font-size-lg;
     }
 
     .filter-bar__dropdown {
@@ -206,10 +221,26 @@ $divider-margin: 1.25rem;
     }
 }
 
+//secondary search
+
+.filter-bar__search {
+    display: inline;
+    width: calc(100% - 63px);
+
+    @media screen and (min-width: $breakpoint-xs) {
+        width: calc(100% - 51px);
+    }
+}
+
+.filter-bar__search--btn {
+    vertical-align: inherit;
+}
+
 //secondary radio group
 .filter-bar__menu-radio-group {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .filter-bar__menu-radio-part,

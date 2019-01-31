@@ -5,15 +5,21 @@ const React = require('react')
 let PlansList = require('./PlansList')
 let PlansMap = require('./PlansMap')
 let FilterNav = require('./FilterNav')
-let ListMapSwitch = require('./MapListSwitch')
+let Toggles = require('./Toggles')
 
-const breakpointXS = 800
+const breakpointXS = 512
 const breakpointMD = 1024
 
 const participationNames = [
+  django.gettext('with'),
+  django.gettext('without'),
+  django.gettext('undecided')
+]
+
+const participationButtonNames = [
   django.gettext('with participation'),
   django.gettext('without participation'),
-  django.gettext('undecided')
+  django.gettext('participation undecided')
 ]
 
 const statusNames = [
@@ -39,6 +45,7 @@ class ListMapBox extends React.Component {
       showListMap: window.innerWidth > breakpointMD,
       resizeMap: false,
       filterChanged: false,
+      filterOpen: false,
       status: 0,
       participation: 0,
       district: props.selectedDistrict,
@@ -73,12 +80,21 @@ class ListMapBox extends React.Component {
     }
   }
 
+  isInTitle (title) {
+    let titleLower = title.toLowerCase()
+    if (titleLower.indexOf(this.state.titleSearch) === -1) {
+      return false
+    }
+    return true
+  }
+
   isInFilter (item) {
     return (this.state.topic === '-1' || item.topics.includes(this.state.topic)) &&
       (this.state.district === '-1' || this.state.district === item.district) &&
       (this.state.participation === -1 || this.state.participation === item.participation) &&
       (this.state.status === -1 || this.state.status === item.status) &&
-      (this.state.organisation === '-1' || this.state.organisation === item.organisation)
+      (this.state.organisation === '-1' || this.state.organisation === item.organisation) &&
+      (this.state.titleSearch === '-1' || this.isInTitle(item.title))
   }
 
   updateList () {
@@ -102,6 +118,12 @@ class ListMapBox extends React.Component {
   toggleSwitch () {
     let newValue = !this.state.showListMap
     this.setState({ showListMap: newValue })
+  }
+
+  toggleFilter (filterStatus) {
+    this.setState({
+      filterOpen: filterStatus
+    })
   }
 
   showList () {
@@ -152,10 +174,9 @@ class ListMapBox extends React.Component {
   }
 
   selectOrganisation (organisation) {
-    var newOrganisation = (organisation === '-1') ? '-1' : this.props.organisations[organisation]
     this.setState({
       filterChanged: true,
-      organisation: newOrganisation
+      organisation: organisation
     })
   }
 
@@ -193,6 +214,53 @@ class ListMapBox extends React.Component {
     )
   }
 
+  getToggles (isSlider) {
+    return (
+      <Toggles
+        toggleSwitch={this.toggleSwitch.bind(this)}
+        showMap={this.showMap.bind(this)}
+        showList={this.showList.bind(this)}
+        statusString={statusNames[this.state.status]}
+        statusSelected={this.state.status !== -1}
+        changeStatusSelection={this.selectStatus.bind(this)}
+        participationString={participationButtonNames[this.state.participation]}
+        participationSelected={this.state.participation !== -1}
+        changeParticipationSelection={this.selectParticipation.bind(this)}
+        isSlider={isSlider}
+        displayButtons={!this.state.filterOpen}
+        displayMap={this.state.showListMap}
+      />
+    )
+  }
+
+  getFilterNav (numColumns, isStacked, isTablet) {
+    return (
+      <FilterNav
+        selectDistrict={this.selectDistrict.bind(this)}
+        selectTopic={this.selectTopic.bind(this)}
+        selectParticipation={this.selectParticipation.bind(this)}
+        selectStatus={this.selectStatus.bind(this)}
+        selectOrganisation={this.selectOrganisation.bind(this)}
+        selectTitleSearch={this.selectTitleSearch.bind(this)}
+        district={this.state.district}
+        districtnames={this.props.districtnames}
+        topic={this.state.topic}
+        topicChoices={this.props.topicChoices}
+        participation={this.state.participation}
+        participationNames={participationNames}
+        status={this.state.status}
+        statusNames={statusNames}
+        organisation={this.state.organisation}
+        organisations={this.props.organisations}
+        titleSearch={this.state.titleSearch}
+        numColumns={numColumns}
+        updateFilterStatus={this.toggleFilter.bind(this)}
+        isStacked={isStacked}
+        isTablet={isTablet}
+      />
+    )
+  }
+
   render () {
     const { width } = this.state
     const isMobile = width <= breakpointXS
@@ -201,35 +269,8 @@ class ListMapBox extends React.Component {
     if (isMobile) {
       return (
         <div>
-          <FilterNav
-            selectDistrict={this.selectDistrict.bind(this)}
-            selectTopic={this.selectTopic.bind(this)}
-            selectParticipation={this.selectParticipation.bind(this)}
-            selectStatus={this.selectStatus.bind(this)}
-            selectOrganisation={this.selectOrganisation.bind(this)}
-            selectTitleSearch={this.selectTitleSearch.bind(this)}
-            district={this.state.district}
-            districtnames={this.props.districtnames}
-            topic={this.state.topic}
-            topicChoices={this.props.topicChoices}
-            participation={this.state.participation}
-            participationNames={participationNames}
-            status={this.state.status}
-            statusNames={statusNames}
-            organisation={this.state.organisation}
-            organisations={this.props.organisations}
-            titleSearch={this.state.titleSearch}
-            numColumns={1}
-            isStacked
-            isTablet={isTablet}
-          />
-          <ListMapSwitch
-            toggleSwitch={this.toggleSwitch.bind(this)}
-            showMap={this.showMap.bind(this)}
-            showList={this.showList.bind(this)}
-            isSlider={false}
-            displayMap={this.state.showListMap}
-          />
+          {this.getFilterNav(1, true, isTablet)}
+          {this.getToggles(false)}
           {!this.state.showListMap &&
             this.getPlansList(false)
           }
@@ -239,35 +280,8 @@ class ListMapBox extends React.Component {
         </div>)
     } else if (isTablet) {
       return (<div>
-        <FilterNav
-          selectDistrict={this.selectDistrict.bind(this)}
-          selectTopic={this.selectTopic.bind(this)}
-          selectParticipation={this.selectParticipation.bind(this)}
-          selectStatus={this.selectStatus.bind(this)}
-          selectOrganisation={this.selectOrganisation.bind(this)}
-          selectTitleSearch={this.selectTitleSearch.bind(this)}
-          district={this.state.district}
-          districtnames={this.props.districtnames}
-          topic={this.state.topic}
-          topicChoices={this.props.topicChoices}
-          participation={this.state.participation}
-          participationNames={participationNames}
-          status={this.state.status}
-          statusNames={statusNames}
-          organisation={this.state.organisation}
-          organisations={this.props.organisations}
-          titleSearch={this.state.titleSearch}
-          numColumns={2}
-          isStacked={false}
-          isTablet={isTablet}
-        />
-        <ListMapSwitch
-          toggleSwitch={this.toggleSwitch.bind(this)}
-          showMap={this.showMap.bind(this)}
-          showList={this.showList.bind(this)}
-          isSlider={false}
-          displayMap={this.state.showListMap}
-        />
+        {this.getFilterNav(2, false, isTablet)}
+        {this.getToggles(false)}
         {!this.state.showListMap &&
           this.getPlansList(false)
         }
@@ -278,35 +292,8 @@ class ListMapBox extends React.Component {
     } else {
       return (
         <div>
-          <FilterNav
-            selectDistrict={this.selectDistrict.bind(this)}
-            selectTopic={this.selectTopic.bind(this)}
-            selectParticipation={this.selectParticipation.bind(this)}
-            selectStatus={this.selectStatus.bind(this)}
-            selectOrganisation={this.selectOrganisation.bind(this)}
-            selectTitleSearch={this.selectTitleSearch.bind(this)}
-            district={this.state.district}
-            districtnames={this.props.districtnames}
-            topic={this.state.topic}
-            topicChoices={this.props.topicChoices}
-            participation={this.state.participation}
-            participationNames={participationNames}
-            status={this.state.status}
-            statusNames={statusNames}
-            organisation={this.state.organisation}
-            organisations={this.props.organisations}
-            titleSearch={this.state.titleSearch}
-            numColumns={3}
-            isStacked={false}
-            isTablet={isTablet}
-          />
-          <ListMapSwitch
-            toggleSwitch={this.toggleSwitch.bind(this)}
-            showMap={this.showMap.bind(this)}
-            showList={this.showList.bind(this)}
-            isSlider
-            displayMap={this.state.showListMap}
-          />
+          {this.getFilterNav(3, false, isTablet)}
+          {this.getToggles(true)}
           { this.state.showListMap
             ? <div className="map-list-combined">
               <div id="list" className="list-container map-list-combined__list">

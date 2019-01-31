@@ -47,6 +47,7 @@ class FilterNav extends React.Component {
     if (this.state.displayDistrictOptions || this.state.displayTopicOptions) {
       isExpanded = true
     }
+    this.props.updateFilterStatus(isExpanded)
     this.setState({
       displayDistrictOptions: false,
       displayTopicOptions: false,
@@ -95,10 +96,6 @@ class FilterNav extends React.Component {
     }
   }
 
-  getButtonText (filterType, filterName) {
-    return filterType + ': ' + filterName
-  }
-
   getSelectedTopicOption (choice) {
     if (choice === '-1') {
       return choice
@@ -117,7 +114,7 @@ class FilterNav extends React.Component {
               ariaExpanded={this.state.displayDistrictOptions}
               showOptions={this.showDistrictOptions.bind(this)}
               id="id_filter_district"
-              buttonText={this.getButtonText(django.gettext('District'), this.getDistrictFilterName())}
+              buttonText={django.gettext('„ all Districts “')}
               iClassName="fa fa-chevron-down"
             />
             : <FilterButton
@@ -126,7 +123,7 @@ class FilterNav extends React.Component {
               showOptions={this.showDistrictOptions.bind(this)}
               id="id_filter_district"
               buttonText={this.getDistrictFilterName()}
-              iClassName="fa fa-times"
+              iClassName="fa fa-chevron-down"
             />
           }
           { this.state.displayDistrictOptions &&
@@ -147,7 +144,7 @@ class FilterNav extends React.Component {
               ariaExpanded={this.state.displayTopicOptions}
               showOptions={this.showTopicOptions.bind(this)}
               id="id_filter_topic"
-              buttonText={this.getButtonText(django.gettext('Topic'), this.getTopicFilterName())}
+              buttonText={django.gettext('„ all Topics “')}
               iClassName="fa fa-chevron-down"
             />
             : <FilterButton
@@ -156,7 +153,7 @@ class FilterNav extends React.Component {
               showOptions={this.showTopicOptions.bind(this)}
               id="id_filter_topic"
               buttonText={this.getTopicFilterName()}
-              iClassName="fa fa-times"
+              iClassName="fa fa-chevron-down"
             />
           }
           { this.state.displayTopicOptions &&
@@ -219,7 +216,7 @@ class FilterNav extends React.Component {
                   ariaExpanded={this.state.displayDistrictOptions}
                   showOptions={this.showDistrictOptions.bind(this)}
                   id="id_filter_district"
-                  buttonText={this.getButtonText(django.gettext('District'), this.getDistrictFilterName())}
+                  buttonText={django.gettext('„ all Districts “')}
                   iClassName="fa fa-chevron-down"
                 />
                 : <FilterButton
@@ -228,7 +225,7 @@ class FilterNav extends React.Component {
                   showOptions={this.showDistrictOptions.bind(this)}
                   id="id_filter_district"
                   buttonText={this.getDistrictFilterName()}
-                  iClassName="fa fa-times"
+                  iClassName="fa fa-chevron-down"
                 />
               }
               { this.state.displayDistrictOptions &&
@@ -252,7 +249,7 @@ class FilterNav extends React.Component {
                   ariaExpanded={this.state.displayTopicOptions}
                   showOptions={this.showTopicOptions.bind(this)}
                   id="id_filter_topic"
-                  buttonText={this.getButtonText(django.gettext('Topic'), this.getTopicFilterName())}
+                  buttonText={django.gettext('„ all Topics “')}
                   iClassName="fa fa-chevron-down"
                 />
                 : <FilterButton
@@ -261,7 +258,7 @@ class FilterNav extends React.Component {
                   showOptions={this.showTopicOptions.bind(this)}
                   id="id_filter_topic"
                   buttonText={this.getTopicFilterName()}
-                  iClassName="fa fa-times"
+                  iClassName="fa fa-chevron-down"
                 />
               }
               { this.state.displayTopicOptions &&

@@ -45,6 +45,9 @@
 
 .maplist-item__title {
     margin-top: 0;
+}
+
+.maplist-item__description {
     color: $brand-secondary;
 }
 
@@ -126,8 +129,8 @@
 
 // horizontal tile structure
 .maplist-item__horizontal {
-    width: 600px;
-    margin: 0 $r-spacer $r-spacer $r-spacer;
+    width: 100%;
+    margin: 0 $r-spacer $r-spacer 4*$r-spacer;
 
     .maplist-item__proj,
     .maplist-item__plan { // statusbar position
