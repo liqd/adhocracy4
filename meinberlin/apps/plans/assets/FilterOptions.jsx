@@ -19,7 +19,8 @@ class OptionList extends React.Component {
     return (
       <div key={'list' + this.props.name}>
         {this.props.listItems.map((key, i) =>
-          <div key={i.toString()} className="filter-bar__option">
+          <div key={i.toString()}
+            className={this.props.getClassNameInput(key, this.props.options[key])}>
             <OptionButton
               identifier={key}
               onSelect={this.props.onSelect.bind(this)}
@@ -33,22 +34,12 @@ class OptionList extends React.Component {
 }
 
 class OptionListLast extends React.Component {
-  isSelected (choice) {
-    return (this.props.selectedChoice === choice)
-  }
-
-  getClassNameInput (choice) {
-    if (this.isSelected(choice)) {
-      return 'filter-bar__option active'
-    }
-    return 'filter-bar__option'
-  }
-
   render () {
     return (
       <div key={'lastList'}>
         {this.props.listItems.map((key, i) => (
-          <div key={key} className={this.getClassNameInput(this.props.options[key])}>
+          <div key={key}
+            className={this.props.getClassNameInput(key, this.props.options[key])}>
             <OptionButton
               identifier={key}
               onSelect={this.props.onSelect.bind(this)}
@@ -60,7 +51,8 @@ class OptionListLast extends React.Component {
         {this.props.hasNoneValue &&
           Object.keys(this.props.options).slice(-1).map((key, i) => {
             return (
-              <div key={key} className="filter-bar__option">
+              <div key={key}
+                className={this.props.getClassNameInput(key, this.props.options[key])}>
                 <OptionButton
                   identifier={key}
                   onSelect={this.props.onSelect.bind(this)}
@@ -70,7 +62,7 @@ class OptionListLast extends React.Component {
             )
           })
         }
-        <div className={this.getClassNameInput('-1')}>
+        <div className={this.props.getClassNameInput('-1', '-1')}>
           <button
             type="button"
             value="-1"
@@ -116,7 +108,8 @@ class FilterOptions extends React.Component {
         listItems={slicedList}
         onSelect={this.props.onSelect.bind(this)}
         options={this.props.options}
-        selectedChoice={this.props.selectedChoice} />
+        selectedChoice={this.props.selectedChoice}
+        getClassNameInput={this.getClassNameInput.bind(this)} />
     )
   }
 
@@ -133,7 +126,8 @@ class FilterOptions extends React.Component {
         onSelect={this.props.onSelect.bind(this)}
         hasNoneValue={this.props.hasNoneValue}
         options={this.props.options}
-        selectedChoice={this.props.selectedChoice} />
+        selectedChoice={this.props.selectedChoice}
+        getClassNameInput={this.getClassNameInput.bind(this)} />
     )
   }
 
@@ -149,6 +143,13 @@ class FilterOptions extends React.Component {
       }
     }
     return lists
+  }
+
+  getClassNameInput (choice1, choice2) {
+    if (this.props.selectedChoice === choice1 || this.props.selectedChoice === choice2) {
+      return 'filter-bar__option active'
+    }
+    return 'filter-bar__option'
   }
 
   render () {
