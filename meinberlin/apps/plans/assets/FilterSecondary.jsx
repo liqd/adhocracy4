@@ -72,7 +72,7 @@ class FilterSecondary extends React.Component {
         <label htmlFor="id-title-search">
           <input className="input-group__input"
             type="text"
-            id="title-search"
+            id="id-title-search"
             placeholder={django.gettext('Search title')}
             value={this.state.titleSearchChoice}
             onChange={this.changeTitleSearch.bind(this)} />
