@@ -10,6 +10,9 @@ class Toggles extends React.Component {
     this.props.changeParticipationSelection(-1)
   }
 
+  clickOrganisationButton () {
+    this.props.changeOrganisationSelection('-1')
+  }
   render () {
     if (this.props.isSlider) {
       return (
@@ -27,6 +30,12 @@ class Toggles extends React.Component {
                   className="btn btn--transparent btn--small"
                   onClick={this.clickParticipationButton.bind(this)}
                   type="button">{this.props.participationString} <i className="fa fa-times" /></button>
+              }
+              { this.props.displayButtons && this.props.organisationSelected &&
+                <button
+                  className="btn btn--transparent btn--small"
+                  onClick={this.clickOrganisationButton.bind(this)}
+                  type="button">{this.props.organisationString} <i className="fa fa-times" /></button>
               }
             </div>
             <div className="switch">
@@ -61,6 +70,12 @@ class Toggles extends React.Component {
                   className="btn btn--transparent btn--small"
                   onClick={this.clickParticipationButton.bind(this)}
                   type="button">{this.props.participationString} <i className="fa fa-times" /></button>
+              }
+              { this.props.displayButtons && this.props.organisationSelected &&
+                <button
+                  className="btn btn--transparent btn--small"
+                  onClick={this.clickOrganisationButton.bind(this)}
+                  type="button">{this.props.organisationString} <i className="fa fa-times" /></button>
               }
             </div>
             <div className="btn-group switch-btn-group" role="group">

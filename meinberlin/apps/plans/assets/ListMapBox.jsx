@@ -220,6 +220,9 @@ class ListMapBox extends React.Component {
         toggleSwitch={this.toggleSwitch.bind(this)}
         showMap={this.showMap.bind(this)}
         showList={this.showList.bind(this)}
+        organisationString={this.state.organisation}
+        organisationSelected={this.state.organisation !== '-1'}
+        changeOrganisationSelection={this.selectOrganisation.bind(this)}
         statusString={statusNames[this.state.status]}
         statusSelected={this.state.status !== -1}
         changeStatusSelection={this.selectStatus.bind(this)}
