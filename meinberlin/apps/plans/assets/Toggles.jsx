@@ -18,6 +18,13 @@ class Toggles extends React.Component {
     this.props.changeTitleSearchSelection('-1')
   }
 
+  titleSearchButtonString () {
+    if (this.props.titleSearchString.length > 20) {
+      return this.props.titleSearchString.substr(0, 20) + '...'
+    }
+    return this.props.titleSearchString
+  }
+
   render () {
     if (this.props.isSlider) {
       return (
@@ -46,7 +53,7 @@ class Toggles extends React.Component {
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickTitleSearchButton.bind(this)}
-                  type="button">{this.props.titleSearchString} <i className="fa fa-times" /></button>
+                  type="button">{this.titleSearchButtonString()} <i className="fa fa-times" /></button>
               }
             </div>
             <div className="switch">
@@ -92,7 +99,7 @@ class Toggles extends React.Component {
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickTitleSearchButton.bind(this)}
-                  type="button">{this.props.titleSearchString} <i className="fa fa-times" /></button>
+                  type="button">{this.titleSearchButtonString()} <i className="fa fa-times" /></button>
               }
             </div>
             <div className="btn-group switch-btn-group" role="group">
