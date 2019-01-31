@@ -120,7 +120,7 @@ class FilterNav extends React.Component {
               showOptions={this.showDistrictOptions.bind(this)}
               id="id_filter_district"
               buttonText={this.getDistrictFilterName()}
-              iClassName="fa fa-times"
+              iClassName="fa fa-chevron-down"
             />
           }
           { this.state.displayDistrictOptions &&
@@ -149,7 +149,7 @@ class FilterNav extends React.Component {
               showOptions={this.showTopicOptions.bind(this)}
               id="id_filter_topic"
               buttonText={this.getTopicFilterName()}
-              iClassName="fa fa-times"
+              iClassName="fa fa-chevron-down"
             />
           }
           { this.state.displayTopicOptions &&
@@ -220,7 +220,7 @@ class FilterNav extends React.Component {
                   showOptions={this.showDistrictOptions.bind(this)}
                   id="id_filter_district"
                   buttonText={this.getDistrictFilterName()}
-                  iClassName="fa fa-times"
+                  iClassName="fa fa-chevron-down"
                 />
               }
               { this.state.displayDistrictOptions &&
@@ -252,7 +252,7 @@ class FilterNav extends React.Component {
                   showOptions={this.showTopicOptions.bind(this)}
                   id="id_filter_topic"
                   buttonText={this.getTopicFilterName()}
-                  iClassName="fa fa-times"
+                  iClassName="fa fa-chevron-down"
                 />
               }
               { this.state.displayTopicOptions &&
