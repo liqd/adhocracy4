@@ -7,7 +7,7 @@ let PlansMap = require('./PlansMap')
 let FilterNav = require('./FilterNav')
 let Toggles = require('./Toggles')
 
-const breakpointXS = 800
+const breakpointXS = 512
 const breakpointMD = 1024
 
 const participationNames = [

@@ -3,9 +3,14 @@ $line-height: 2.5;
 $divider-margin: 1.25rem;
 
 .filter-bar-container {
-    margin-left: 4*$r-spacer;
-    margin-right: 4*$r-spacer;
+    margin-left: 1*$r-spacer;
+    margin-right: 1*$r-spacer;
     margin-bottom: 2*$r-spacer;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-left: 4*$r-spacer;
+        margin-right: 4*$r-spacer;
+    }
 }
 
 .filter-bar {
@@ -24,7 +29,7 @@ $divider-margin: 1.25rem;
 }
 
 .filter-bar--stacked {
-    padding: $padding 2*$padding;
+    padding: $padding;
     margin-bottom: $r-spacer;
 }
 
@@ -141,7 +146,7 @@ $divider-margin: 1.25rem;
     }
 
     @media screen and (min-width: $breakpoint-md) {
-        padding: 2*$padding 4*$padding $padding 4*$padding;
+        padding: 0.5*$padding 4*$padding 2*$padding 4*$padding;
     }
 }
 
@@ -149,9 +154,15 @@ $divider-margin: 1.25rem;
     position: absolute;
     left: 0;
     right: 0;
-    margin-left: 4*$r-spacer;
-    margin-right: 4*$r-spacer;
+    margin-left: 1*$r-spacer;
+    margin-right: 1*$r-spacer;
     z-index: 1;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-top: 2*$r-spacer;
+        margin-left: 4*$r-spacer;
+        margin-right: 4*$r-spacer;
+    }
 }
 
 .filter-bar__question {
@@ -186,6 +197,7 @@ $divider-margin: 1.25rem;
     .filter-bar__project-text {
         display: block;
         width: 100%;
+        font-size: $font-size-xxl;
     }
 
     .filter-bar__dropdown {
@@ -198,6 +210,7 @@ $divider-margin: 1.25rem;
     }
 
     .filter-bar__btn--light {
+        font-size: $font-size-base;
         margin-left: 0;
     }
 }
