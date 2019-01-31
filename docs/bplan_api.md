@@ -49,7 +49,8 @@ The response will contain the following fields:
 Example:
 
     data = {
-        "name":"Luisenblock Ost - Bebauungsplan 1-70",
+        "name": "Luisenblock Ost - Bebauungsplan 1-70",
+        "identifier": "VI - 123c",
         "description": "Der Luisenblock Ost soll städtebaulich neu geordnet
           werden. Nutzungen des Deutschen Bundestages sollen in einem Sondergebiet
           als Auftakt des 'Band des Bundes' zusammengefasst werden.",
@@ -58,7 +59,7 @@ Example:
         "start_date": "2017-01-01T00:00",
         "end_date": "2018-01-01T00:00",
         "image_url": "http://berlin.de/images/.../bebauungsplan.649020.png",
-        "image_copyright": "BA Marzahn-Hellersdorf",
+        "image_copyright": "BA Marzahn-Hellersdorf"
     }
     res = POST(https://mein.berlin.de/api/organisations/5/bplan/, data)
     print(res)
@@ -72,6 +73,17 @@ Example:
                 frameborder="0">
             </iframe>"
     }
+
+Example for `curl`:
+
+```sh
+curl -d '{"name":"Luisenblock Ost - Bebauungsplan 1-70", "identifier": \
+"VI - 96a", "description": "Test", "url": "https://mein.berlin.de", \
+"office_worker_email": "test@example.com", "start_date": "2019-01-01T00:00", \
+"end_date": "2022-01-01T00:00"}' -H "Content-Type: application/json" -X POST \
+https://mein.berlin.de/api/organisations/5/bplan/ --user \
+'test@example.com':'password'
+```
 
 The participation will start end end automatically at the scheduled time.
 
