@@ -141,7 +141,7 @@ $divider-margin: 1.25rem;
         padding-left: 0;
     }
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoint-xs) {
         padding: 2*$padding;
     }
 
@@ -215,10 +215,26 @@ $divider-margin: 1.25rem;
     }
 }
 
+//secondary search
+
+.filter-bar__search {
+    display: inline;
+    width: calc(100% - 63px);
+
+    @media screen and (min-width: $breakpoint-xs) {
+        width: calc(100% - 51px);
+    }
+}
+
+.filter-bar__search--btn {
+    vertical-align: inherit;
+}
+
 //secondary radio group
 .filter-bar__menu-radio-group {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .filter-bar__menu-radio-part,
