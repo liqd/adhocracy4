@@ -19,7 +19,7 @@
     {% else %}
     <div class="item-detail__labels">
         {% if item.project.topics %}
-        {% for topic in item.project.project_topics_names %}
+        {% for topic in item.project.topic_names %}
         <span class="label label--secondary">{{ topic }}</span>
         {% endfor %}
         {% endif %}
