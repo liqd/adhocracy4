@@ -11,7 +11,7 @@ from .models import Plan
 class CommonFields:
 
     def get_district(self, instance):
-        city_wide = _('City wide')
+        city_wide = _('City wide projects')
         district_name = str(city_wide)
         if instance.administrative_district:
             district_name = instance.administrative_district.name
