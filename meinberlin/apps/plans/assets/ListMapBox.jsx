@@ -82,8 +82,14 @@ class ListMapBox extends React.Component {
 
   isInTitle (title) {
     let titleLower = title.toLowerCase().trim().replace(/\s/g, '')
-    let searchString = this.state.titleSearch.toLowerCase().trim().replace(/\s/g, '')
-    return !(titleLower.indexOf(searchString) === -1)
+    let searchString = this.state.titleSearch.toLowerCase().trim()
+    let searchList = searchString.split(/\s/)
+    for (let i in searchList) {
+      if (titleLower.indexOf(searchList[i]) === -1) {
+        return false
+      }
+    }
+    return true
   }
 
   isInFilter (item) {
