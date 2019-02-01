@@ -2637,7 +2637,7 @@ msgstr "started am {}"
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
 #: meinberlin/apps/plans/views.py:94
 msgid "City wide projects"
-msgstr ""
+msgstr "Gesamtstädtische Projekte"
 
 #: meinberlin/apps/plans/serializers.py:81
 msgid "starts in the future"
