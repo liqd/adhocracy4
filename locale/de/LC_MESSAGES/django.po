@@ -2631,7 +2631,7 @@ msgstr "laufend"
 
 #: meinberlin/apps/plans/models.py:120 meinberlin/apps/plans/serializers.py:76
 msgid "starts at {}"
-msgstr "started am {}"
+msgstr "startet am {}"
 
 #: meinberlin/apps/plans/serializers.py:14
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18

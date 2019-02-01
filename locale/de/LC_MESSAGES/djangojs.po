@@ -588,7 +588,7 @@ msgstr "ohne Beteiligung"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:22
 msgid "participation undecided"
-msgstr "Beteiligung noch nicht entschieden"
+msgstr "Beteiligung nicht entschieden"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:26
 msgid "ongoing"
