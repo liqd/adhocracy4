@@ -96,6 +96,13 @@ class Plan(UserGeneratedContentModel):
     def administrative_district(self):
         return self.district
 
+    @property
+    def topic_names(self):
+        if hasattr(settings, 'A4_PROJECT_TOPICS'):
+            choices = dict(settings.A4_PROJECT_TOPICS)
+            return [choices[topic] for topic in self.topics]
+        return []
+
     @cached_property
     def published_projects(self):
         return self.projects.filter(
