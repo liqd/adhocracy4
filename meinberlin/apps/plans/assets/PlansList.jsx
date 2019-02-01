@@ -100,11 +100,7 @@ class PlansList extends React.Component {
           }
           {item.type === 'plan' &&
             <div className="maplist-item__plan">
-              {this.props.topicChoices[item.topic] &&
-              <div className="maplist-item__labels u-spacer-bottom-half">
-                <span className="label label--secondary">{this.props.topicChoices[item.topic]}</span>
-              </div>
-              }
+              {this.renderTopics(item)}
               <span className="maplist-item__roofline">{item.district}</span>
               <h3 className="maplist-item__title">{item.title}</h3>
               <div className="maplist-item__stats">
