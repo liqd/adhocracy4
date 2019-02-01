@@ -12,7 +12,7 @@ class FilterSecondary extends React.Component {
       titleSearchChoice = ''
     }
 
-    let orgChoice = ['']
+    let orgChoice = null
     if (this.props.organisation !== '-1') {
       orgChoice = [this.props.organisation]
     }
