@@ -80,7 +80,7 @@ class PlansList extends React.Component {
                 }
                 {item.future_phase &&
                   <div className="status-item status__future">
-                    <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: from ')}{item.future_phase}{django.gettext(' possible')}</span>
+                    <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: ')}{item.participation_string}</span>
                   </div>
                 }
                 {item.active_phase &&
