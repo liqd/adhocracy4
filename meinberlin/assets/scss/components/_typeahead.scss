@@ -1,0 +1,23 @@
+.typeahead__input-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+}
+
+.typeahead__input-group-prepend {
+    display: flex;
+    margin-right: -1px;
+}
+
+.typeahead__input-group-text {
+    display: flex;
+    align-items: center;
+    padding: $input-padding-y $input-padding-x;
+    margin-bottom: 0;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $white;
+    border: 1px solid $border-color;
+    border-radius: 0;
+}

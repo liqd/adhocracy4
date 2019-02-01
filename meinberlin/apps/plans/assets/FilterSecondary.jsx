@@ -12,7 +12,7 @@ class FilterSecondary extends React.Component {
       titleSearchChoice = ''
     }
 
-    let orgChoice = ['']
+    let orgChoice = null
     if (this.props.organisation !== '-1') {
       orgChoice = [this.props.organisation]
     }
@@ -33,9 +33,9 @@ class FilterSecondary extends React.Component {
       titleSearchChoice = '-1'
     }
 
-    let organisationChoice = this.state.organisationChoice[0]
-    if (organisationChoice === '') {
-      organisationChoice = '-1'
+    let organisationChoice = '-1'
+    if (this.state.organisationChoice !== null && this.state.organisationChoice !== '') {
+      organisationChoice = this.state.organisationChoice[0]
     }
 
     this.props.showSecondaryFilters()
@@ -108,14 +108,24 @@ class FilterSecondary extends React.Component {
             />
           </div>
         </div>
-        <Typeahead
-          onChange={this.clickOrganisation.bind(this)}
-          labelKey="name"
-          multiple={false}
-          options={this.props.organisations}
-          selected={this.state.organisationChoice}
-          placeholder={django.gettext('Show Organisation ...')}
-        />
+        <div className="form-group">
+          <span className="typeahead__input-group">
+            <span className="typeahead__input-group-prepend">
+              <span className="typeahead__input-group-text">
+                <i className="fas fa-sort-alpha-down" />
+              </span>
+            </span>
+            <Typeahead
+              className="input-group__input"
+              onChange={this.clickOrganisation.bind(this)}
+              labelKey="name"
+              multiple={false}
+              options={this.props.organisations}
+              selected={this.state.organisationChoice}
+              placeholder={django.gettext('Show Organisation ...')}
+            />
+          </span>
+        </div>
         <button
           className="btn btn-primary"
           type="submit"

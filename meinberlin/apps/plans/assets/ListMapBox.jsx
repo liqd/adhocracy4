@@ -178,10 +178,17 @@ class ListMapBox extends React.Component {
   }
 
   selectOrganisation (organisation) {
-    this.setState({
-      filterChanged: true,
-      organisation: organisation
-    })
+    if (!Object.is(organisation, undefined)) {
+      this.setState({
+        filterChanged: true,
+        organisation: organisation
+      })
+    } else {
+      this.setState({
+        filterChanged: true,
+        organisation: '-1'
+      })
+    }
   }
 
   selectTitleSearch (searchTerm) {
