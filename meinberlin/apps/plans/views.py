@@ -112,7 +112,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                                                       many=True)
         projects_serializer = serializers.ProjectSerializer(self.projects,
                                                             many=True)
-        items = plans_serializer.data + projects_serializer.data
+        items = projects_serializer.data + plans_serializer.data
         context['districts'] = self.get_district_polygons()
         context['organisations'] = self.get_organisations()
         context['district_names'] = self.get_district_names()
