@@ -201,7 +201,7 @@ class Project(ProjectContactDetailMixin,
         return user in self.moderators.all()
 
     @property
-    def project_topics_names(self):
+    def topic_names(self):
         if hasattr(settings, 'A4_PROJECT_TOPICS'):
             choices = dict(settings.A4_PROJECT_TOPICS)
             return [choices[topic] for topic in self.topics]
