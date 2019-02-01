@@ -1133,7 +1133,7 @@ msgstr ""
 #: adhocracy4/projects/models.py:168
 #: adhocracy4/projects/models.py:168
 msgid "Project topics"
-msgstr ""
+msgstr "Projektthemen"
 
 #: adhocracy4/projects/models.py:289
 #: adhocracy4/projects/models.py:289
@@ -2729,7 +2729,7 @@ msgstr "Noch nicht entschieden"
 
 #: meinberlin/apps/plans/models.py:33
 msgid "Ongoing"
-msgstr ""
+msgstr "laufend"
 
 #: meinberlin/apps/plans/models.py:34
 msgid "Done"
@@ -2813,7 +2813,7 @@ msgstr "Ort"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:51
 msgid "Topic"
-msgstr ""
+msgstr "Thema"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:58
 msgid "see participation plans"
@@ -2958,11 +2958,11 @@ msgstr "Eine Projektsammlung enthält mehrere Projekte."
 
 #: meinberlin/apps/projects/admin.py:11
 msgid "archive"
-msgstr ""
+msgstr "archivieren"
 
 #: meinberlin/apps/projects/admin.py:18
 msgid "dearchive"
-msgstr ""
+msgstr "unarchivieren"
 
 #: meinberlin/apps/projects/dashboard.py:15
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_participants.html:4
@@ -2985,11 +2985,11 @@ msgstr "Themen"
 
 #: meinberlin/apps/projects/dashboard.py:59
 msgid "Edit topics"
-msgstr ""
+msgstr "Themen bearbeiten"
 
 #: meinberlin/apps/projects/dashboard.py:69
 msgid "Edit location"
-msgstr ""
+msgstr "Ort bearbeiten"
 
 #: meinberlin/apps/projects/forms.py:50 meinberlin/apps/projects/views.py:352
 msgid "Invite users via email"
@@ -3009,7 +3009,7 @@ msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 
 #: meinberlin/apps/projects/forms.py:96
 msgid "Please locate the project on the map."
-msgstr ""
+msgstr "Bitte lokalisieren Sie Ihr Projekt auf der Karte"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_list_tile.html:24
 msgid "External Project"
@@ -3787,7 +3787,7 @@ msgstr "Menü"
 
 #: meinberlin/templates/header.html:13
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: meinberlin/templates/header.html:17
 msgid "Where can I take part?"

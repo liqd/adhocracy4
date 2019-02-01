@@ -513,7 +513,7 @@ msgstr "Mich interessieren Projekte aus"
 #: meinberlin/apps/plans/assets/FilterNav.jsx:117
 #: meinberlin/apps/plans/assets/FilterNav.jsx:219
 msgid "„ all Districts “"
-msgstr ""
+msgstr "„ alle Bezirke “"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:131
 #: meinberlin/apps/plans/assets/FilterNav.jsx:233
@@ -523,7 +523,7 @@ msgstr "Welchen Bezirk suchen Sie?"
 #: meinberlin/apps/plans/assets/FilterNav.jsx:147
 #: meinberlin/apps/plans/assets/FilterNav.jsx:252
 msgid "„ all Topics “"
-msgstr ""
+msgstr "„ alle Themen “"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:161
 #: meinberlin/apps/plans/assets/FilterNav.jsx:266
@@ -533,7 +533,7 @@ msgstr "Welches Thema interessiert Sie"
 #: meinberlin/apps/plans/assets/FilterNav.jsx:175
 #: meinberlin/apps/plans/assets/FilterNav.jsx:281
 msgid "display projects"
-msgstr ""
+msgstr "Projekte anzeigen"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:185
 #: meinberlin/apps/plans/assets/FilterNav.jsx:292
@@ -548,7 +548,7 @@ msgstr "und dem Bereich"
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:76
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:84
 msgid "Search title"
-msgstr ""
+msgstr "nach Projekttitel suchen"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:91
 msgid "Participation"
@@ -556,47 +556,47 @@ msgstr "Beteiligung"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:100
 msgid "Project status"
-msgstr ""
+msgstr "Projektstatus"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:113
 msgid "Show Organisation ..."
-msgstr ""
+msgstr "Name der Verwaltung eingeben"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:119
 msgid "show projects"
-msgstr ""
+msgstr "Projekte anzeigen"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:14
 msgid "with"
-msgstr ""
+msgstr "mit"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:15
 msgid "without"
-msgstr ""
+msgstr "ohne"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:16
 msgid "undecided"
-msgstr ""
+msgstr "nicht entschieden"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:20
 msgid "with participation"
-msgstr ""
+msgstr "mit Beteiligung"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:21
 msgid "without participation"
-msgstr ""
+msgstr "ohne Beteiligung"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:22
 msgid "participation undecided"
-msgstr ""
+msgstr "Beteiligung noch nicht entschieden"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:26
 msgid "ongoing"
-msgstr ""
+msgstr "laufend"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:27
 msgid "done"
-msgstr ""
+msgstr "abgeschlossen"
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:77
 #: meinberlin/apps/plans/assets/PlansList.jsx:114
@@ -631,21 +631,21 @@ msgstr "Adresssuche"
 #: meinberlin/apps/plans/assets/PlansMap.jsx:253
 #: meinberlin/apps/plans/assets/PlansMap.jsx:254
 msgid "Address search"
-msgstr ""
+msgstr "Adresssuche"
 
 #: meinberlin/apps/plans/assets/PlansMap.jsx:285
 msgid "Close information box"
-msgstr ""
+msgstr "Informationsfenster schließen"
 
 #: meinberlin/apps/plans/assets/PlansMap.jsx:286
 msgid ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
-msgstr ""
+msgstr "Projekte ohne räumlichen Bezug werden nicht auf der Karte angezeigt. Bitte beachten Sie daher auch die Projektliste. "
 
 #: meinberlin/apps/plans/assets/PopUp.jsx:52
 msgid "Project for the following plan: "
-msgstr ""
+msgstr "Projekt zu folgendem Vorhaben:"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:35
 msgid "Show map"
@@ -653,11 +653,11 @@ msgstr "Karte anzeigen"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:68
 msgid "Show List"
-msgstr ""
+msgstr "Liste anzeigen"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:72
 msgid "Show Map"
-msgstr ""
+msgstr "Karte anzeigen"
 
 #: meinberlin/assets/js/embed.js:85
 msgid "We couldn't find what you were looking for."
