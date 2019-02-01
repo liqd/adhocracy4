@@ -97,8 +97,8 @@ urlpatterns = [
                                     namespace='meinberlin_offlineevents')),
     url(r'^newsletters/', include('meinberlin.apps.newsletters.urls',
                                   namespace='meinberlin_newsletters')),
-    url(r'^vorhaben/', include('meinberlin.apps.plans.urls',
-                               namespace='meinberlin_plans')),
+    url(r'', include('meinberlin.apps.plans.urls',
+                     namespace='meinberlin_plans')),
 
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 11:43+0100\n"
+"POT-Creation-Date: 2019-02-01 12:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2550,8 +2550,8 @@ msgid "Add Plan"
 msgstr "Add Plan"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:23
-msgid "back to list of plans"
-msgstr "back to list of plans"
+msgid "back to overview of projects"
+msgstr "back to overview of projects"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:47
 #: meinberlin/apps/projects/dashboard.py:67
@@ -3612,6 +3612,9 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid "back to list of plans"
+#~ msgstr "back to list of plans"
 
 #~ msgid "Project topic"
 #~ msgstr "Project topic"

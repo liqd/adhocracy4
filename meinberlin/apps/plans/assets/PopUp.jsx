@@ -59,11 +59,7 @@ class PopUp extends React.Component {
     } else {
       return (
         <div className="maps-popups-popup-text-content">
-          {this.props.itemTopic &&
-          <div className="maplist-item__labels">
-            <span className="label label--secondary">{this.props.itemTopic}</span>
-          </div>
-          }
+          {this.renderTopics()}
           <span className="maplist-popup-item__roofline">{this.props.item.district}</span>
           <div className="maps-popups-popup-name u-spacer-bottom-half">
             <a href={this.props.item.url}>{this.props.item.title}</a>
