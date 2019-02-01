@@ -49,6 +49,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     plan_url = serializers.SerializerMethodField()
     plan_title = serializers.SerializerMethodField()
     published_projects_count = serializers.SerializerMethodField()
+    created_or_modified = serializers.SerializerMethodField()
 
     class Meta:
         model = Project
@@ -63,7 +64,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                   'participation', 'participation_display', 'description',
                   'future_phase', 'active_phase',
                   'past_phase', 'plan_url', 'plan_title',
-                  'published_projects_count']
+                  'published_projects_count', 'created_or_modified']
 
     def _get_participation_status_project(self, instance):
         project_phases = instance.phases
@@ -131,13 +132,16 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         if project_phases.active_phases():
             progress = instance.active_phase_progress
             time_left = instance.time_left
-            return [progress, time_left]
+            end_date = str(project_phases.active_phases().first().end_date)
+            return [progress, time_left, end_date]
         return False
 
     def get_past_phase(self, instance):
         project_phases = instance.phases
-        if project_phases.past_phases():
-            return True
+        if (project_phases.past_phases() and
+                project_phases.past_phases().first().end_date):
+            return str(
+                project_phases.past_phases().first().end_date.date())
         return False
 
     def get_participation_string(self, instance):
@@ -170,6 +174,11 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     def get_cost(self, instance):
         return ''
 
+    def get_created_or_modified(self, instance):
+        if instance.modified:
+            return str(instance.modified)
+        return str(instance.created)
+
 
 class PlanSerializer(serializers.ModelSerializer, CommonFields):
     type = serializers.SerializerMethodField()
@@ -181,6 +190,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     participation_string = serializers.SerializerMethodField()
     published_projects_count = serializers.SerializerMethodField()
     organisation = serializers.SerializerMethodField()
+    created_or_modified = serializers.SerializerMethodField()
 
     class Meta:
         model = Plan
@@ -191,7 +201,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
                   'participation',
                   'participation_string',
                   'participation_active',
-                  'published_projects_count']
+                  'published_projects_count', 'created_or_modified']
 
     def get_subtype(self, instance):
         return 'plan'
@@ -225,3 +235,8 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
         participation_string, participation_active = \
             self._get_participation_status_plan(instance)
         return participation_active
+
+    def get_created_or_modified(self, instance):
+        if instance.modified:
+            return str(instance.modified)
+        return str(instance.created)
