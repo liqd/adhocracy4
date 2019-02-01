@@ -2666,7 +2666,7 @@ msgstr "Vorhaben hinzufügen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:23
 msgid "back to overview of projects"
-msgstr ""
+msgstr "zurück zur Projektübersicht"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:47
 #: meinberlin/apps/projects/dashboard.py:67
