@@ -33,18 +33,22 @@ class FilterSecondary extends React.Component {
       titleSearchChoice = '-1'
     }
 
+    let organisationChoice = this.state.organisationChoice[0]
+    if (organisationChoice === '') {
+      organisationChoice = '-1'
+    }
+
     this.props.showSecondaryFilters()
     this.props.selectParticipation(this.state.participationChoice)
     this.props.selectStatus(this.state.statusChoice)
-    this.props.selectOrganisation(this.state.organisationChoice[0])
+    this.props.selectOrganisation(organisationChoice)
     this.props.selectTitleSearch(titleSearchChoice)
   }
 
   changeTitleSearch (e) {
     let value = e.target.value
-    let searchTerm = value.toLowerCase().trim()
     this.setState({
-      titleSearchChoice: searchTerm
+      titleSearchChoice: value
     })
   }
 

@@ -81,11 +81,9 @@ class ListMapBox extends React.Component {
   }
 
   isInTitle (title) {
-    let titleLower = title.toLowerCase()
-    if (titleLower.indexOf(this.state.titleSearch) === -1) {
-      return false
-    }
-    return true
+    let titleLower = title.toLowerCase().trim().replace(/\s/g, '')
+    let searchString = this.state.titleSearch.toLowerCase().trim().replace(/\s/g, '')
+    return !(titleLower.indexOf(searchString) === -1)
   }
 
   isInFilter (item) {
@@ -220,6 +218,12 @@ class ListMapBox extends React.Component {
         toggleSwitch={this.toggleSwitch.bind(this)}
         showMap={this.showMap.bind(this)}
         showList={this.showList.bind(this)}
+        titleSearchString={this.state.titleSearch}
+        titleSearchSelected={this.state.titleSearch !== '-1'}
+        changeTitleSearchSelection={this.selectTitleSearch.bind(this)}
+        organisationString={this.state.organisation}
+        organisationSelected={this.state.organisation !== '-1'}
+        changeOrganisationSelection={this.selectOrganisation.bind(this)}
         statusString={statusNames[this.state.status]}
         statusSelected={this.state.status !== -1}
         changeStatusSelection={this.selectStatus.bind(this)}
