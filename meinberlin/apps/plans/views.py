@@ -126,21 +126,24 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         return context
 
 
-class PlanExportView(rules_mixins.PermissionRequiredMixin,
-                     export_mixins.ItemExportWithLinkMixin,
-                     export_mixins.ExportModelFieldsMixin,
-                     export_mixins.ItemExportWithLocationMixin,
-                     export_views.BaseExport,
-                     export_views.AbstractXlsxExportView):
+class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
+                              export_mixins.ItemExportWithLinkMixin,
+                              export_mixins.ExportModelFieldsMixin,
+                              export_mixins.ItemExportWithLocationMixin,
+                              export_views.BaseExport,
+                              export_views.AbstractXlsxExportView):
 
-    permission_required = 'meinberlin_plans.list_plan'
+    permission_required = 'meinberlin_plans.export_plan'
     model = models.Plan
     fields = ['title', 'organisation', 'contact', 'district', 'cost',
               'description', 'topics', 'status', 'participation']
     html_fields = ['description']
 
     def get_object_list(self):
-        return models.Plan.objects.all()
+        return models.Plan.objects.filter(organisation=self.organisation)
+
+    def get_permission_object(self):
+        return self.organisation
 
     def get_base_filename(self):
         return 'plans_%s' % timezone.now().strftime('%Y%m%dT%H%M%S')
