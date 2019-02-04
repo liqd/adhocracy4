@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 09:55+0100\n"
+"POT-Creation-Date: 2019-02-04 10:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,7 +108,7 @@ msgstr "Preview"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:14
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:14
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:15
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:32
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:36
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:14
 #: meinberlin/templates/a4dashboard/includes/preview.html:10
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:36
@@ -189,7 +189,7 @@ msgstr "Cancel"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:4
-#: meinberlin/apps/plans/views.py:150
+#: meinberlin/apps/plans/views.py:153
 #: meinberlin/apps/projectcontainers/dashboard.py:61
 #: meinberlin/apps/projectcontainers/models.py:12
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_list.html:4
@@ -215,7 +215,7 @@ msgstr "private"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:96
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:37
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:41
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:113
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:28
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:63
@@ -449,8 +449,7 @@ msgstr "Archived"
 msgid "All"
 msgstr "All"
 
-#: adhocracy4/dashboard/filter.py:20 meinberlin/apps/plans/models.py:25
-#: meinberlin/apps/projects/views.py:59
+#: adhocracy4/dashboard/filter.py:20 meinberlin/apps/projects/views.py:59
 msgid "No"
 msgstr "No"
 
@@ -461,7 +460,7 @@ msgstr "No"
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:13
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:12
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
-#: meinberlin/apps/plans/models.py:24 meinberlin/apps/plans/serializers.py:122
+#: meinberlin/apps/plans/serializers.py:122
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
 #: meinberlin/apps/projects/views.py:60
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
@@ -1469,7 +1468,7 @@ msgstr "Zoom out"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_dashboard_list.html:26
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_list.html:47
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html:27
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:52
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:56
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_dashboard_list.html:26
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_list.html:22
 msgid "Nothing to show"
@@ -1693,7 +1692,7 @@ msgstr "Actions"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:98
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:24
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:25
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:42
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:46
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:24
 msgid "Delete"
 msgstr "Delete"
@@ -2461,22 +2460,30 @@ msgstr "Edit Plan"
 msgid "Please locate the plan on the map."
 msgstr "Please locate the plan on the map."
 
-#: meinberlin/apps/plans/forms.py:40 meinberlin/apps/plans/views.py:158
+#: meinberlin/apps/plans/forms.py:40 meinberlin/apps/plans/views.py:161
 #: meinberlin/apps/projects/admin.py:64
 msgid "City wide"
 msgstr "City wide"
 
+#: meinberlin/apps/plans/models.py:24
+msgid "with"
+msgstr "with"
+
+#: meinberlin/apps/plans/models.py:25
+msgid "without"
+msgstr "without"
+
 #: meinberlin/apps/plans/models.py:26
-msgid "Still undecided"
-msgstr "Still undecided"
+msgid "undecided"
+msgstr "undecided"
 
 #: meinberlin/apps/plans/models.py:33
-msgid "Ongoing"
-msgstr "Ongoing"
+msgid "ongoing"
+msgstr "ongoing"
 
-#: meinberlin/apps/plans/models.py:34
-msgid "Done"
-msgstr "Done"
+#: meinberlin/apps/plans/models.py:34 meinberlin/apps/plans/serializers.py:86
+msgid "done"
+msgstr "done"
 
 #: meinberlin/apps/plans/models.py:47
 msgid "Where can the plan be located on a map?"
@@ -2528,10 +2535,6 @@ msgstr "City wide projects"
 msgid "starts in the future"
 msgstr "starts in the future"
 
-#: meinberlin/apps/plans/serializers.py:86
-msgid "done"
-msgstr "done"
-
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:4
 msgid "Confirm Plan Deletion"
 msgstr "Confirm Plan Deletion"
@@ -2545,7 +2548,11 @@ msgstr "Are you sure you want to delete the plan?"
 msgid "Add a new plan"
 msgstr "Add a new plan"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:13
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:14
+msgid "Download list"
+msgstr "Download list"
+
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:17
 msgid "Add Plan"
 msgstr "Add Plan"
 
@@ -2604,11 +2611,11 @@ msgstr ""
 "\"%(plan_create_url)s\">here</a>.\n"
 "    "
 
-#: meinberlin/apps/plans/views.py:151
+#: meinberlin/apps/plans/views.py:154
 msgid "Project Links"
 msgstr "Project Links"
 
-#: meinberlin/apps/plans/views.py:245
+#: meinberlin/apps/plans/views.py:248
 msgid "The plan has been deleted"
 msgstr "The plan has been deleted"
 
@@ -3608,6 +3615,15 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid "Still undecided"
+#~ msgstr "Still undecided"
+
+#~ msgid "Ongoing"
+#~ msgstr "Ongoing"
+
+#~ msgid "Done"
+#~ msgstr "Done"
 
 #~ msgid "Where can I take part?"
 #~ msgstr "Where can I take part?"

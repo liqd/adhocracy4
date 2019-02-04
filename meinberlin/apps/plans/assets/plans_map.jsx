@@ -15,7 +15,6 @@ const init = function () {
     let organisations = JSON.parse(element.getAttribute('data-organisations'))
     let districtnames = JSON.parse(element.getAttribute('data-district-names'))
     let topicChoices = JSON.parse(element.getAttribute('data-topic-choices'))
-    let exportUrl = element.getAttribute('data-export-url')
     ReactDOM.render(<ListMapBox
       selectedDistrict={selectedDistrict}
       selectedTopic={selectedTopic}
@@ -26,8 +25,7 @@ const init = function () {
       organisations={organisations}
       districts={districts}
       districtnames={districtnames}
-      topicChoices={topicChoices}
-      exportUrl={exportUrl} />, element)
+      topicChoices={topicChoices} />, element)
   })
 }
 
