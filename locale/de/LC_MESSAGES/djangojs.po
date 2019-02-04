@@ -647,7 +647,7 @@ msgstr ""
 
 #: meinberlin/apps/plans/assets/PopUp.jsx:52
 msgid "Superordinate project: "
-msgstr ""
+msgstr "Übergeordnetes Projekt: "
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:62
 msgid "Show map"
