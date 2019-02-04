@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-31 18:49+0100\n"
+"POT-Creation-Date: 2019-02-04 09:55+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -545,24 +545,24 @@ msgstr "weitere Filter"
 msgid " in the area of "
 msgstr "und dem Bereich"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:76
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:84
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:80
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:88
 msgid "Search title"
 msgstr "nach Projekttitel suchen"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:91
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:95
 msgid "Participation"
 msgstr "Beteiligung"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:100
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:104
 msgid "Project status"
 msgstr "Projektstatus"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:113
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:125
 msgid "Show Organisation ..."
 msgstr "Name der Verwaltung eingeben"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:119
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:133
 msgid "show projects"
 msgstr "Projekte anzeigen"
 
@@ -599,8 +599,8 @@ msgid "done"
 msgstr "abgeschlossen"
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:77
-#: meinberlin/apps/plans/assets/PlansList.jsx:114
-#: meinberlin/apps/plans/assets/PopUp.jsx:76
+#: meinberlin/apps/plans/assets/PlansList.jsx:110
+#: meinberlin/apps/plans/assets/PopUp.jsx:72
 msgid "Participation: "
 msgstr "Beteiligung: "
 
@@ -614,12 +614,12 @@ msgstr "noch"
 msgid "Participation ended. Read result."
 msgstr "Beteiligung beendet. Ergebnis lesen."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:111
-#: meinberlin/apps/plans/assets/PopUp.jsx:73
+#: meinberlin/apps/plans/assets/PlansList.jsx:107
+#: meinberlin/apps/plans/assets/PopUp.jsx:69
 msgid "Participation projects: "
 msgstr "Beteiligungsprojekte: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:139
+#: meinberlin/apps/plans/assets/PlansList.jsx:135
 #: meinberlin/apps/plans/assets/PlansMap.jsx:277
 msgid "Nothing to show"
 msgstr "Keine Ergebnisse"
@@ -641,21 +641,23 @@ msgstr "Informationsfenster schließen"
 msgid ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
-msgstr "Projekte ohne räumlichen Bezug werden nicht auf der Karte angezeigt. Bitte beachten Sie daher auch die Projektliste. "
+msgstr ""
+"Projekte ohne räumlichen Bezug werden nicht auf der Karte angezeigt. Bitte "
+"beachten Sie daher auch die Projektliste. "
 
 #: meinberlin/apps/plans/assets/PopUp.jsx:52
 msgid "Project for the following plan: "
 msgstr "Projekt zu folgendem Vorhaben:"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:35
+#: meinberlin/apps/plans/assets/Toggles.jsx:62
 msgid "Show map"
 msgstr "Karte anzeigen"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:68
+#: meinberlin/apps/plans/assets/Toggles.jsx:107
 msgid "Show List"
 msgstr "Liste anzeigen"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:72
+#: meinberlin/apps/plans/assets/Toggles.jsx:111
 msgid "Show Map"
 msgstr "Karte anzeigen"
 

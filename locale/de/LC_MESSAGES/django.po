@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 12:59+0100\n"
+"POT-Creation-Date: 2019-02-04 09:55+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -218,6 +218,7 @@ msgstr "Abbrechen"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:4
 #: meinberlin/apps/plans/views.py:150
 #: meinberlin/apps/projectcontainers/dashboard.py:61
 #: meinberlin/apps/projectcontainers/models.py:12
@@ -248,7 +249,7 @@ msgstr "privat"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:37
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:111
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:113
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:28
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:63
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:19
@@ -517,7 +518,7 @@ msgstr "Nein"
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:13
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:12
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
-#: meinberlin/apps/plans/models.py:24 meinberlin/apps/plans/serializers.py:120
+#: meinberlin/apps/plans/models.py:24 meinberlin/apps/plans/serializers.py:122
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
 #: meinberlin/apps/projects/views.py:60
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
@@ -866,7 +867,7 @@ msgstr "Bilder"
 
 #: adhocracy4/projects/admin.py:60
 #: meinberlin/apps/plans/models.py:65
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:85
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:87
 #: meinberlin/apps/projects/admin.py:55 meinberlin/templates/email_base.html:60
 #: meinberlin/templates/email_base.txt:15
 #: meinberlin/templates/newsletter_base.html:51
@@ -1638,13 +1639,13 @@ msgstr "Alle Projekte anzeigen"
 msgid "Send"
 msgstr "Senden"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:44
+#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:39
 msgid "entry added by citizens"
 msgid_plural "entries added by citizens"
 msgstr[0] "von Bürger*innen eingereichte Idee"
 msgstr[1] "von Bürger*innen eingereichte Ideen und Kommentare"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:56
+#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:51
 msgid "project you can participate in!"
 msgid_plural "projects you can participate in!"
 msgstr[0] "Projekt, zu dem wir Ihre Meinung wissen möchten!"
@@ -1764,15 +1765,15 @@ msgstr "Seitennummerierung"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:56
 #: meinberlin/apps/exports/mixins.py:12
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:61
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:70
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:72
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:45
 msgid "Reference No."
 msgstr "Referenznr."
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:82
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:91
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:94
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:103
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:96
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:105
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -2210,7 +2211,7 @@ msgstr "Ihre Idee wurde gelöscht"
 
 #: meinberlin/apps/initiators/forms.py:11
 #: meinberlin/apps/newsletters/forms.py:40
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:43
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:45
 #: meinberlin/apps/projects/views.py:42
 msgid "Organisation"
 msgstr "Organisation"
@@ -2561,7 +2562,6 @@ msgstr "Organisation erfolgreich aktualisiert"
 #: meinberlin/apps/plans/dashboard.py:12 meinberlin/apps/plans/forms.py:55
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:4
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:9
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:4
 #: meinberlin/templates/a4dashboard/base_project_list.html:27
 msgid "Plans"
 msgstr "Vorhaben"
@@ -2610,7 +2610,7 @@ msgid "District"
 msgstr "Bezirk"
 
 #: meinberlin/apps/plans/models.py:70
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:65
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:67
 msgid "Cost"
 msgstr "Kosten"
 
@@ -2619,17 +2619,17 @@ msgid "Visualize your plan."
 msgstr "Visualisieren Sie das Vorhaben."
 
 #: meinberlin/apps/plans/models.py:85
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:55
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:57
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:89
 msgid "Participation"
 msgstr "Beteiligung"
 
-#: meinberlin/apps/plans/models.py:113 meinberlin/apps/plans/serializers.py:72
+#: meinberlin/apps/plans/models.py:120 meinberlin/apps/plans/serializers.py:73
 msgid "running"
 msgstr "laufend"
 
-#: meinberlin/apps/plans/models.py:120 meinberlin/apps/plans/serializers.py:76
+#: meinberlin/apps/plans/models.py:127 meinberlin/apps/plans/serializers.py:77
 msgid "starts at {}"
 msgstr "startet am {}"
 
@@ -2639,11 +2639,11 @@ msgstr "startet am {}"
 msgid "City wide projects"
 msgstr "Gesamtstädtische Projekte"
 
-#: meinberlin/apps/plans/serializers.py:81
+#: meinberlin/apps/plans/serializers.py:83
 msgid "starts in the future"
 msgstr "startet in der Zukunft"
 
-#: meinberlin/apps/plans/serializers.py:84
+#: meinberlin/apps/plans/serializers.py:86
 msgid "done"
 msgstr "abgeschlossen"
 
@@ -2668,24 +2668,24 @@ msgstr "Vorhaben hinzufügen"
 msgid "back to overview of projects"
 msgstr "zurück zur Projektübersicht"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:47
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:49
 #: meinberlin/apps/projects/dashboard.py:67
 msgid "Location"
 msgstr "Ort"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:51
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:53
 msgid "Topic"
 msgstr "Thema"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:58
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:60
 msgid "see participation plans"
 msgstr "siehe Beteiligung"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:71
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:73
 msgid "updated on "
 msgstr "bearbeitet am "
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:122
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:124
 #: meinberlin/templates/a4dashboard/base_dashboard.html:44
 #: meinberlin/templates/a4dashboard/base_project_list.html:6
 #: meinberlin/templates/a4dashboard/base_project_list.html:9
@@ -3652,22 +3652,18 @@ msgid "Home"
 msgstr "Home"
 
 #: meinberlin/templates/header.html:17
-msgid "Where can I take part?"
-msgstr "Wo kann ich mich beteiligen?"
+msgid "Project overview"
+msgstr "Projektübersicht"
 
-#: meinberlin/templates/header.html:31
-msgid "Participation platform of Berlin!"
-msgstr "Beteiligungsplattform des Landes Berlin!"
-
-#: meinberlin/templates/header.html:35
+#: meinberlin/templates/header.html:34
 msgid "User Menu"
 msgstr "Nutzer*innen-Menu"
 
-#: meinberlin/templates/header.html:45
+#: meinberlin/templates/header.html:44
 msgid "Help"
 msgstr "Hilfe"
 
-#: meinberlin/templates/header.html:50
+#: meinberlin/templates/header.html:49
 msgid "Give Feedback"
 msgstr "Feedback geben"
 
@@ -3731,6 +3727,12 @@ msgstr ""
 "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem %(site_name)s "
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
+
+#~ msgid "Where can I take part?"
+#~ msgstr "Wo kann ich mich beteiligen?"
+
+#~ msgid "Participation platform of Berlin!"
+#~ msgstr "Beteiligungsplattform des Landes Berlin!"
 
 #~ msgid "back to list of plans"
 #~ msgstr "Zurück zur Vorhabenliste"
