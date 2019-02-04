@@ -21,17 +21,17 @@ class Plan(UserGeneratedContentModel):
     PARTICIPATION_NO = 1
     PARTICIPATION_UNDECIDED = 2
     PARTICIPATION_CHOICES = (
-        (PARTICIPATION_YES, _('Yes')),
-        (PARTICIPATION_NO, _('No')),
-        (PARTICIPATION_UNDECIDED, _('Still undecided')),
+        (PARTICIPATION_YES, _('with')),
+        (PARTICIPATION_NO, _('without')),
+        (PARTICIPATION_UNDECIDED, _('undecided')),
     )
 
     STATUS_ONGOING = 0
     STATUS_DONE = 1
 
     STATUS_CHOICES = (
-        (STATUS_ONGOING, _('Ongoing')),
-        (STATUS_DONE, _('Done'))
+        (STATUS_ONGOING, _('ongoing')),
+        (STATUS_DONE, _('done'))
     )
 
     title = models.CharField(max_length=120, verbose_name=_('Title'))
