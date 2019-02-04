@@ -14,7 +14,7 @@
                         </li>
                         <li class="main-nav__item">
                             {% url 'project-list' as project_list %}
-                            <a class="main-nav__link {% if request.path == project_list %}is-active{% else %}not-active{% endif %}" href="{% url 'project-list' %}">{% trans 'Where can I take part?' %}</a>
+                            <a class="main-nav__link {% if request.path == project_list %}is-active{% else %}not-active{% endif %}" href="{% url 'project-list' %}">{% trans 'Project overview' %}</a>
                         </li>
                         {% get_menu "topnav" as topnav %}
                         {% for item in topnav %}
@@ -28,7 +28,6 @@
             <div class="main-nav__logo-item">
                 <a href="/" class="main-nav__logo" rel="home">
                     <img src="{% static 'images/LOGO.png' %}" alt="mein.berlin"/>
-                    <div class="main-nav__headline"><img src="{% static 'images/logo_subtitle.png' %}" alt="{% trans 'Participation platform of Berlin!' %}"/></div>
                 </a>
             </div>
             <div class="main-nav__nav-item main-nav__nav-item--right">

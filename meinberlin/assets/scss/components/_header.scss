@@ -46,30 +46,6 @@ $header-margin-bottom: 25px;
     }
 }
 
-.main-nav__headline {
-    position: absolute;
-    display: none;
-
-    @media screen and (min-width: $breakpoint) {
-        display: inline;
-        width: 14rem;
-        left: 5.5rem;
-        top: 0;
-        bottom: 0;
-
-        img {
-            width: 100%;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-    }
-
-    @media screen and (min-width: $breakpoint-md) {
-        left: 8.5em;
-    }
-}
-
 .main-nav__menu-wrapper {
     padding: 0.5em $padding 0;
     border-bottom: 1px solid $border-color;
@@ -217,15 +193,5 @@ $header-margin-bottom: 25px;
         li:last-child button {
             border-bottom: 0;
         }
-    }
-}
-
-.main-nav__homepage-subtitle {
-    width: 70%;
-    max-width: 15rem;
-    margin: auto;
-
-    @media screen and (min-width: $breakpoint) {
-        display: none;
     }
 }
