@@ -2581,19 +2581,19 @@ msgstr "Gesamtstädtisch"
 
 #: meinberlin/apps/plans/models.py:24
 msgid "with"
-msgstr ""
+msgstr "mit"
 
 #: meinberlin/apps/plans/models.py:25
 msgid "without"
-msgstr ""
+msgstr "ohne"
 
 #: meinberlin/apps/plans/models.py:26
 msgid "undecided"
-msgstr ""
+msgstr "nicht entschieden"
 
 #: meinberlin/apps/plans/models.py:33
 msgid "ongoing"
-msgstr ""
+msgstr "laufend"
 
 #: meinberlin/apps/plans/models.py:34 meinberlin/apps/plans/serializers.py:86
 msgid "done"
@@ -2666,7 +2666,7 @@ msgstr "Vorhaben hinzufügen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:14
 msgid "Download list"
-msgstr ""
+msgstr "Liste herunterladen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:17
 msgid "Add Plan"
