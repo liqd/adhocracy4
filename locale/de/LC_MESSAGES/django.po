@@ -3653,7 +3653,7 @@ msgstr "Home"
 
 #: meinberlin/templates/header.html:17
 msgid "Project overview"
-msgstr ""
+msgstr "Projektübersicht"
 
 #: meinberlin/templates/header.html:34
 msgid "User Menu"
