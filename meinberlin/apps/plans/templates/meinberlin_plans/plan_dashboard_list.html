@@ -9,6 +9,10 @@
             {% trans 'Plans' %}
         </h1>
         <div class="lr-bar__right">
+            <a href="{% url 'a4dashboard:plan-export' organisation_slug=view.organisation.slug %}" class="u-spacer-right">
+                <i class="fas fa-download" aria-hidden="true"></i>
+                {% trans 'Download list' %}
+            </a>
             <a href="{% url 'a4dashboard:plan-create' organisation_slug=view.organisation.slug %}" class="btn">
                 {% trans 'Add Plan' %}
             </a>

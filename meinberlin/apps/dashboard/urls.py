@@ -28,6 +28,9 @@ urlpatterns = [
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/plans/create/$',
         plan_views.DashboardPlanCreateView.as_view(),
         name='plan-create'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/plans/export/$',
+        plan_views.DashboardPlanExportView.as_view(),
+        name='plan-export'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)'
         r'/plans/(?P<pk>\d+)/$',
         plan_views.DashboardPlanUpdateView.as_view(),

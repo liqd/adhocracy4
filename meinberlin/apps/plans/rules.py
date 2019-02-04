@@ -22,3 +22,8 @@ rules.add_perm(
     'meinberlin_plans.change_plan',
     is_superuser | is_initiator
 )
+
+rules.add_perm(
+    'meinberlin_plans.export_plan',
+    is_superuser | is_initiator
+)
