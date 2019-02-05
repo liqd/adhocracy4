@@ -87,16 +87,11 @@ class ListMapBox extends React.Component {
     let item2Type = (item2.subtype === 'default' || item2.subtype === 'external') ? 'project' : item2.subtype
 
     let sortByPhase = (phase1, phase2, earliestFirst) => {
-      switch (phase1 && phase2) {
-        case true: {
-          if (earliestFirst) {
-            return (phase1 <= phase2) ? -1 : 1
-          } else {
-            return (phase1 >= phase2) ? -1 : 1
-          }
-        }
-        case false: {
-          return phase1 ? -1 : 1
+      if (phase1 && phase2) {
+        if (earliestFirst) {
+          return (new Date(phase1) <= new Date(phase2)) ? -1 : 1
+        } else {
+          return (new Date(phase1) >= new Date(phase2)) ? -1 : 1
         }
       }
       if (phase1 || phase2) { return phase1 ? -1 : 1 }
@@ -124,7 +119,7 @@ class ListMapBox extends React.Component {
         }
       } else {
         /* sort plans and containers by modified */
-        return (item1.created_or_modified >= item2.created_or_modified) ? -1 : 1
+        return (new Date(item1.created_or_modified) >= new Date(item2.created_or_modified)) ? -1 : 1
       }
     } else {
       /* show projects first, plans second, containers third */
