@@ -83,42 +83,59 @@ class ListMapBox extends React.Component {
   }
 
   compareItems (item1, item2) {
-    /* show projects first, plans second, containers third */
-    if (item1.type === 'project' && (item2.type === 'plan' || item2.subtype === 'container')) {
-      return -1
+    let item1Type = (item1.subtype === 'default' || item1.subtype === 'external') ? 'project' : item1.subtype
+    let item2Type = (item2.subtype === 'default' || item2.subtype === 'external') ? 'project' : item2.subtype
+
+    let sortByPhase = (phase1, phase2, earliestFirst) => {
+      switch (phase1 && phase2) {
+        case true: {
+          if (earliestFirst) {
+            return (phase1 <= phase2) ? -1 : 1
+          } else {
+            return (phase1 >= phase2) ? -1 : 1
+          }
+        }
+        case false: {
+          return phase1 ? -1 : 1
+        }
+      }
+      if (phase1 || phase2) { return phase1 ? -1 : 1 }
+      return false
     }
-    if (item1.type === 'plan' && item2.subtype === 'container') {
-      return -1
-    }
-    /* show
-    1. projects with active phase
-    2. projects with future phase
-    3. projects with past phase
-    4. projects without phase (can happen for external ones) */
-    if (item1.active_phase && !item2.active_phase) {
-      return -1
-    }
-    if (item1.future_phase && !item2.active_phase && !item2.future_phase) {
-      return -1
-    }
-    if (item1.past_phase && !item2.active_phase && !item2.future_phase && !item2.past_phase) {
-      return -1
-    }
-    /* sort projects with active pphase by end date */
-    if (item1.active_phase && item2.active_phase && (item1.active_phase[2] < item2.active_phase[2])) {
-      return -1
-    }
-    /* sort projects with future phase by start date */
-    if (item1.future_phase && item2.future_phase && (item1.future_phase < item2.future_phase)) {
-      return -1
-    }
-    /* sort projects with past phase by end date */
-    if (item1.past_phase && item2.past_phase && (item1.past_phase > item2.past_phase)) {
-      return -1
-    }
-    /* sort plans and containers by modified */
-    if (item1.created_or_modified > item2.created_or_modified) {
-      return -1
+
+    if (item1Type === item2Type) {
+      /* show
+      1. projects with active phase
+      2. projects with future phase
+      3. projects with past phase
+      4. projects without phase (can happen for external ones) */
+      if (item1Type === 'project') {
+        let active = sortByPhase(item1.active_phase[2], item2.active_phase[2], true)
+        if (active) {
+          return active
+        }
+        let future = sortByPhase(item1.future_phase, item2.future_phase, true)
+        if (future) {
+          return future
+        }
+        let past = sortByPhase(item1.past_phase, item2.past_phase, false)
+        if (past) {
+          return past
+        }
+      } else {
+        /* sort plans and containers by modified */
+        return (item1.created_or_modified >= item2.created_or_modified) ? -1 : 1
+      }
+    } else {
+      /* show projects first, plans second, containers third */
+      switch (item1Type) {
+        case 'project':
+          return -1
+        case 'plan':
+          return (item2Type === 'container') ? -1 : 1
+        case 'container':
+          return 1
+      }
     }
   }
 
