@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 09:55+0100\n"
+"POT-Creation-Date: 2019-02-04 16:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -572,8 +572,8 @@ msgstr ""
 "look at the project list."
 
 #: meinberlin/apps/plans/assets/PopUp.jsx:52
-msgid "Project for the following plan: "
-msgstr "Project for the following plan: "
+msgid "Superordinate project: "
+msgstr "Superordinate project: "
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:62
 msgid "Show map"
@@ -614,6 +614,9 @@ msgstr "No matches found within the project area"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Did you mean:"
+
+#~ msgid "Project for the following plan: "
+#~ msgstr "Project for the following plan: "
 
 #~ msgid "District"
 #~ msgstr "District"

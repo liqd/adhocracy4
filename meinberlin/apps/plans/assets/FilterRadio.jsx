@@ -31,8 +31,8 @@ class FilterRadio extends React.Component {
 
   render () {
     return (
-      <div>
-        <h2>{this.props.question}</h2>
+      <fieldset className="u-no-border u-no-margin u-no-padding">
+        <legend><h2>{this.props.question}</h2></legend>
         <div className="btn-group " role="group">
           <label className={this.getClassNameInput(-1)}
             key={this.props.filterId + 'all'}
@@ -65,7 +65,7 @@ class FilterRadio extends React.Component {
             )
           })}
         </div>
-      </div>
+      </fieldset>
     )
   }
 }

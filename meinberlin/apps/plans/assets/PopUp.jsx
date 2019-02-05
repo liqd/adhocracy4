@@ -49,7 +49,7 @@ class PopUp extends React.Component {
           }
           {this.props.item.plan_url &&
             <div className="maps-popups-popup-name maplist-item-popup__proj-plan">
-              <span className="maplist-popup-item__roofline">{django.gettext('Project for the following plan: ') }</span>
+              <span className="maplist-popup-item__roofline">{django.gettext('Superordinate project: ') }</span>
               <br />
               <a href={this.props.item.plan_url}>{this.props.item.plan_title}</a>
             </div>
