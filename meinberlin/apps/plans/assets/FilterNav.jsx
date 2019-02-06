@@ -285,7 +285,8 @@ class FilterNav extends React.Component {
             { (!this.props.linkUrl && this.props.isTablet) &&
               <div>
                 <button
-                  onClick={this.showSecondaryFilters.bind(this)}
+                  dataToggle="modal"
+                  dataTarget={this.showSecondaryFilters.bind(this)}
                   className="btn btn--small btn--transparent filter-bar__btn--light"
                   aria-haspopup="true"
                   aria-expanded={this.state.displaySecondaryFilters}>
