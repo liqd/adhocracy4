@@ -144,6 +144,11 @@ $divider-margin: 1.25rem;
         padding-left: 0;
     }
 
+    .btn-primary {
+        display: block;
+        margin: auto;
+    }
+
     @media screen and (min-width: $breakpoint-xs) {
         padding: 2*$padding;
     }
