@@ -106,8 +106,12 @@
     border-color: $brand-secondary;
 }
 
-.switch-btn-group {
+.switch-btn-group-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+
+    @media screen and (max-width: $breakpoint-xs-down) {
+        width: 100%;
+    }
 }
