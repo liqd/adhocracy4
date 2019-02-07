@@ -25,7 +25,12 @@
         {% endif %}
     </div>
     {% endif %}
-    <p class="storefront__sm-text">{% if item.project.administrative_district %}{{ item.project.administrative_district }}{% endif %}</p>
+    <p class="storefront__sm-text">
+    {% if item.project.administrative_district %}
+    {{ item.project.administrative_district }}
+    {% else %}
+    {% trans 'City wide' %}
+    {% endif %}</p>
     <a href="{% url 'project-detail' item.project.slug %}"><h2 class="storefront__proj-text">{{ item.project.name }}</h2></a>
     {% if item.project.active_phase %}
     <div class="status-item status-item__position-storefront status__active">
