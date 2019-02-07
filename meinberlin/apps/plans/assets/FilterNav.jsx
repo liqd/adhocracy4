@@ -301,8 +301,6 @@ class FilterNav extends React.Component {
               <div>
                 <button
                   onClick={this.showSecondaryFilters.bind(this)}
-                  data-toggle="modal"
-                  data-target="#filter-modal"
                   className="btn btn--small btn--transparent filter-bar__btn--light"
                   aria-haspopup="true"
                   aria-expanded={this.state.displaySecondaryFilters}>
@@ -314,8 +312,6 @@ class FilterNav extends React.Component {
               <div>
                 <button
                   onClick={this.showSecondaryFilters.bind(this)}
-                  data-toggle="modal"
-                  data-target="#filter-modal"
                   className="btn btn--small btn--transparent filter-bar__btn--light"
                   aria-haspopup="true"
                   aria-expanded={this.state.displaySecondaryFilters}>
