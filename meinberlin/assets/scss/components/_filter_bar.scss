@@ -296,14 +296,22 @@ $divider-margin: 1.25rem;
     }
 }
 
+//modal for mobile secondary filters
 .filter-secondary__modal {
     display: block;
 }
 
 .filter-secondary__modal-header {
     border-bottom: none;
+    padding-bottom: 0;
 }
 
 .filter-secondary__modal-content {
     background-color: $bg-secondary;
+    font-size: $font-size-base;
+
+    .btn-primary {
+        width: 100%;
+        margin: 2*$r-spacer 0 $r-spacer 0;
+    }
 }

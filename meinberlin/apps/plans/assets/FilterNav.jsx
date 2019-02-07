@@ -58,7 +58,7 @@ class FilterNav extends React.Component {
 
   closeSecondaryFilters () {
     this.setState({
-      closeSecondaryFilters: !this.state.displaySecondaryFilters
+      displaySecondaryFilters: !this.state.displaySecondaryFilters
     })
   }
 
@@ -195,7 +195,7 @@ class FilterNav extends React.Component {
             <div className="modal filter-secondary__modal" id="filter-modal" role="dialog">
               <div className="modal-dialog modal-lg" role="document">
                 <div className="modal-content filter-secondary__modal-content">
-                  <div className="modal-header filter-secondary__modal-header"><button type="button" className="close" onClick={this.showSecondaryFilters.bind(this)} aria-label={django.gettext('Close')}><i className="fa fa-times" /></button></div>
+                  <div className="modal-header filter-secondary__modal-header"><button type="button" className="close" onClick={this.closeSecondaryFilters.bind(this)} aria-label={django.gettext('Close')}><i className="fa fa-times" /></button></div>
                   <div className="modal-body">
                     <FilterSecondary
                       selectParticipation={this.props.selectParticipation.bind(this)}
