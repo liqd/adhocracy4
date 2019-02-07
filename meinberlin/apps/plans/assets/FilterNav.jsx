@@ -58,7 +58,8 @@ class FilterNav extends React.Component {
 
   closeSecondaryFilters () {
     this.setState({
-      displaySecondaryFilters: false
+      displaySecondaryFilters: false,
+      isExpanded: false
     })
   }
 
