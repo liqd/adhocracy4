@@ -144,7 +144,7 @@ $divider-margin: 1.25rem;
         padding-left: 0;
     }
 
-    .btn-primary {
+    .filter-secondary__btn {
         display: block;
         margin: auto;
     }
@@ -310,7 +310,7 @@ $divider-margin: 1.25rem;
     background-color: $bg-secondary;
     font-size: $font-size-base;
 
-    .btn-primary {
+    .filter-secondary__btn {
         width: 100%;
         margin: 2*$r-spacer 0 $r-spacer 0;
     }
