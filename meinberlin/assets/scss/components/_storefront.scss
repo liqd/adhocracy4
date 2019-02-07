@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-width: 250px;
 
     @media screen and (min-width: $breakpoint-md) {
         width: 33.3%;
@@ -71,6 +72,7 @@
     flex-wrap: wrap;
     position: relative;
     background-color: $body-bg;
+    overflow-wrap: break-word;
 
     .list-item__stats {
         font-size: $font-size-sm;
@@ -110,6 +112,7 @@
     font-style: italic;
     padding: $padding 0;
     margin: auto;
+    color: $text-color;
 
     @media screen and (min-width: $breakpoint-xs) {
         padding: 2*$padding 0;
@@ -128,6 +131,10 @@
     .storefront__quote-text,
     .storefront__district-text {
         margin-top: 0;
+    }
+
+    .storefront__proj {
+        min-height: 250px;
     }
 }
 

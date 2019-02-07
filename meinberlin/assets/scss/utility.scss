@@ -122,6 +122,10 @@
     text-overflow: ellipsis;
 }
 
+.u-break-word {
+    overflow-wrap: break-word;
+}
+
 .u-xs-down-display-none {
     @media screen and (max-width: $breakpoint-xs-down) {
         display: none !important;
