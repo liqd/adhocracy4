@@ -149,6 +149,10 @@ $divider-margin: 1.25rem;
         margin: auto;
     }
 
+    .form-group {
+        margin-bottom: 2*$r-spacer;
+    }
+
     @media screen and (min-width: $breakpoint-xs) {
         padding: 2*$padding;
     }
@@ -231,7 +235,7 @@ $divider-margin: 1.25rem;
 .filter-bar__search {
     display: inline;
     width: calc(100% - 63px);
-    margin-bottom: 0;
+    margin-bottom: 2*$r-spacer;
 
     @media screen and (min-width: $breakpoint-xs) {
         width: calc(100% - 51px);
@@ -252,8 +256,10 @@ $divider-margin: 1.25rem;
 .filter-bar__menu-radio-part,
 .filter-bar__menu-radio-proj {
     width: 100%;
+    margin-bottom: 2*$r-spacer;
 
     .btn-group {
+        margin-top: $r-spacer;
         display: flex;
         justify-content: flex-start;
         flex-direction: row;
