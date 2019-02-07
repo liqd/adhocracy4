@@ -1734,12 +1734,12 @@ msgstr ""
 #: meinberlin/apps/contrib/django_standard_messages.py:16
 #, python-format
 msgid "You must select a minimum of  %(limit_value)d choices."
-msgstr ""
+msgstr "Bitte wählen Sie mindestens %(limit_value)d Felder aus."
 
 #: meinberlin/apps/contrib/django_standard_messages.py:17
 #, python-format
 msgid "You must select a maximum of  %(limit_value)d choices."
-msgstr ""
+msgstr "Sie können max. %(limit_value)d Felder auswählen."
 
 #: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:37
 msgid "Ordering"
@@ -2853,11 +2853,11 @@ msgstr "Themen bearbeiten"
 
 #: meinberlin/apps/projects/dashboard.py:67
 msgid "District and Location"
-msgstr ""
+msgstr "Bezirk und Ort"
 
 #: meinberlin/apps/projects/dashboard.py:69
 msgid "Edit district and location"
-msgstr ""
+msgstr "Bezirk und Verortung bearbeiten"
 
 #: meinberlin/apps/projects/forms.py:50 meinberlin/apps/projects/views.py:352
 msgid "Invite users via email"
@@ -3061,7 +3061,7 @@ msgstr "Dieses Projekt ist noch nicht veröffentlicht."
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:45
 #, python-format
 msgid "to project collection %(name)s"
-msgstr ""
+msgstr "zur Projektsammlung %(name)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:180
 msgid "No results yet."

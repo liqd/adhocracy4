@@ -529,7 +529,7 @@ msgstr "„ alle Themen “"
 #: meinberlin/apps/plans/assets/FilterNav.jsx:167
 #: meinberlin/apps/plans/assets/FilterNav.jsx:281
 msgid "Which topic are you interested in?"
-msgstr "Welches Thema interessiert Sie"
+msgstr "Welches Thema interessiert Sie?"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:181
 #: meinberlin/apps/plans/assets/FilterNav.jsx:296
