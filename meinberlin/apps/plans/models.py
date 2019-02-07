@@ -37,7 +37,8 @@ class Plan(UserGeneratedContentModel):
     title = models.CharField(max_length=120, verbose_name=_('Title'))
     organisation = models.ForeignKey(
         settings.A4_ORGANISATIONS_MODEL,
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE,
+        verbose_name=_('Organisation'))
     projects = models.ManyToManyField(
         project_models.Project,
         related_name='plans',
@@ -78,8 +79,11 @@ class Plan(UserGeneratedContentModel):
             'Visualize your plan.'
         ),
     )
-    topics = TopicField()
-    status = models.SmallIntegerField(choices=STATUS_CHOICES)
+    topics = TopicField(verbose_name=_('Topics'))
+    status = models.SmallIntegerField(
+        choices=STATUS_CHOICES,
+        verbose_name=_('Status')
+    )
     participation = models.SmallIntegerField(
         choices=PARTICIPATION_CHOICES,
         verbose_name=_('Participation')
