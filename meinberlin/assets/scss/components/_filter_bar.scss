@@ -231,6 +231,7 @@ $divider-margin: 1.25rem;
 .filter-bar__search {
     display: inline;
     width: calc(100% - 63px);
+    margin-bottom: 0;
 
     @media screen and (min-width: $breakpoint-xs) {
         width: calc(100% - 51px);
@@ -295,6 +296,14 @@ $divider-margin: 1.25rem;
     }
 }
 
-.filter-secondary-modal {
+.filter-secondary__modal {
     display: block;
+}
+
+.filter-secondary__modal-header {
+    border-bottom: none;
+}
+
+.filter-secondary__modal-content {
+    background-color: $bg-secondary;
 }

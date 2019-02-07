@@ -72,78 +72,67 @@ class FilterSecondary extends React.Component {
 
   render () {
     return (
-      <div className="modal filter-secondary-modal" role="dialog">
-        <div className="modal-dialog modal-lg" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <button type="button" className="close" data-dismiss="modal" aria-label={django.gettext('Close')}><i className="fa fa-times" /></button>
-            </div>
-            <div className="modal-body">
-              <form className="filter-bar__menu">
-                <label htmlFor="id-title-search">
-                  <input className="input-group__input filter-bar__search"
-                    type="text"
-                    id="id-title-search"
-                    placeholder={django.gettext('Search title')}
-                    value={this.state.titleSearchChoice}
-                    onChange={this.changeTitleSearch.bind(this)} />
-                  <button className="input-group__after btn btn--light filter-bar__search--btn"
-                    type="submit"
-                    onClick={this.submitSecondaryFilters.bind(this)}>
-                    <i className="fa fa-search" aria-hidden="true" />
-                  </button>
-                  <span className="sr-only">{django.gettext('Search title')}
-                  </span>
-                </label>
-                <div className="filter-bar__menu-radio-group">
-                  <div className="filter-bar__menu-radio-part">
-                    <FilterRadio
-                      filterId="par"
-                      question={django.gettext('Participation')}
-                      chosen={this.state.participationChoice}
-                      choiceNames={this.props.participationNames}
-                      onSelect={this.clickParticipation.bind(this)}
-                    />
-                  </div>
-                  <div className="filter-bar__menu-radio-proj">
-                    <FilterRadio
-                      filterId="sta"
-                      question={django.gettext('Project status')}
-                      chosen={this.state.statusChoice}
-                      choiceNames={this.props.statusNames}
-                      onSelect={this.clickStatus.bind(this)}
-                    />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <span className="typeahead__input-group">
-                    <span className="typeahead__input-group-prepend">
-                      <span className="typeahead__input-group-text">
-                        <i className="fas fa-sort-alpha-down" />
-                      </span>
-                    </span>
-                    <Typeahead
-                      className="input-group__input"
-                      onChange={this.clickOrganisation.bind(this)}
-                      labelKey="name"
-                      multiple={false}
-                      options={this.props.organisations}
-                      selected={this.state.organisationChoice}
-                      placeholder={django.gettext('Show Organisation ...')}
-                    />
-                  </span>
-                </div>
-                <button
-                  className="btn btn-primary"
-                  type="submit"
-                  onClick={this.submitSecondaryFilters.bind(this)}>
-                  {django.gettext('show projects')}
-                </button>
-              </form>
-            </div>
+      <form className="filter-bar__menu">
+        <label htmlFor="id-title-search">
+          <input className="input-group__input filter-bar__search"
+            type="text"
+            id="id-title-search"
+            placeholder={django.gettext('Search title')}
+            value={this.state.titleSearchChoice}
+            onChange={this.changeTitleSearch.bind(this)} />
+          <button className="input-group__after btn btn--light filter-bar__search--btn"
+            type="submit"
+            onClick={this.submitSecondaryFilters.bind(this)}>
+            <i className="fa fa-search" aria-hidden="true" />
+          </button>
+          <span className="sr-only">{django.gettext('Search title')}
+          </span>
+        </label>
+        <div className="filter-bar__menu-radio-group">
+          <div className="filter-bar__menu-radio-part">
+            <FilterRadio
+              filterId="par"
+              question={django.gettext('Participation')}
+              chosen={this.state.participationChoice}
+              choiceNames={this.props.participationNames}
+              onSelect={this.clickParticipation.bind(this)}
+            />
+          </div>
+          <div className="filter-bar__menu-radio-proj">
+            <FilterRadio
+              filterId="sta"
+              question={django.gettext('Project status')}
+              chosen={this.state.statusChoice}
+              choiceNames={this.props.statusNames}
+              onSelect={this.clickStatus.bind(this)}
+            />
           </div>
         </div>
-      </div>
+        <div className="form-group">
+          <span className="typeahead__input-group">
+            <span className="typeahead__input-group-prepend">
+              <span className="typeahead__input-group-text">
+                <i className="fas fa-sort-alpha-down" />
+              </span>
+            </span>
+            <Typeahead
+              className="input-group__input"
+              onChange={this.clickOrganisation.bind(this)}
+              labelKey="name"
+              multiple={false}
+              options={this.props.organisations}
+              selected={this.state.organisationChoice}
+              placeholder={django.gettext('Show Organisation ...')}
+            />
+          </span>
+        </div>
+        <button
+          className="btn btn-primary"
+          type="submit"
+          onClick={this.submitSecondaryFilters.bind(this)}>
+          {django.gettext('show projects')}
+        </button>
+      </form>
     )
   }
 }

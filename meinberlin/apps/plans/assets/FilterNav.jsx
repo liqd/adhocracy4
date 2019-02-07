@@ -56,6 +56,12 @@ class FilterNav extends React.Component {
     })
   }
 
+  closeSecondaryFilters () {
+    this.setState({
+      closeSecondaryFilters: !this.state.displaySecondaryFilters
+    })
+  }
+
   clickDistrict (event) {
     let district = event.currentTarget.value
     this.props.selectDistrict(district)
@@ -186,21 +192,30 @@ class FilterNav extends React.Component {
             </button>
           }
           { this.state.displaySecondaryFilters &&
-            <FilterSecondary
-              selectParticipation={this.props.selectParticipation.bind(this)}
-              selectStatus={this.props.selectStatus.bind(this)}
-              selectOrganisation={this.props.selectOrganisation.bind(this)}
-              selectTitleSearch={this.props.selectTitleSearch.bind(this)}
-              showSecondaryFilters={this.showSecondaryFilters.bind(this)}
-              participation={this.props.participation}
-              participationNames={this.props.participationNames}
-              status={this.props.status}
-              statusNames={this.props.statusNames}
-              organisation={this.props.organisation}
-              organisations={this.props.organisations}
-              numColumns={this.props.numColumns}
-              titleSearch={this.props.titleSearch}
-            />
+            <div className="modal filter-secondary__modal" id="filter-modal" role="dialog">
+              <div className="modal-dialog modal-lg" role="document">
+                <div className="modal-content filter-secondary__modal-content">
+                  <div className="modal-header filter-secondary__modal-header"><button type="button" className="close" onClick={this.showSecondaryFilters.bind(this)} aria-label={django.gettext('Close')}><i className="fa fa-times" /></button></div>
+                  <div className="modal-body">
+                    <FilterSecondary
+                      selectParticipation={this.props.selectParticipation.bind(this)}
+                      selectStatus={this.props.selectStatus.bind(this)}
+                      selectOrganisation={this.props.selectOrganisation.bind(this)}
+                      selectTitleSearch={this.props.selectTitleSearch.bind(this)}
+                      showSecondaryFilters={this.showSecondaryFilters.bind(this)}
+                      participation={this.props.participation}
+                      participationNames={this.props.participationNames}
+                      status={this.props.status}
+                      statusNames={this.props.statusNames}
+                      organisation={this.props.organisation}
+                      organisations={this.props.organisations}
+                      numColumns={this.props.numColumns}
+                      titleSearch={this.props.titleSearch}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           }
         </div>
       )
@@ -286,6 +301,8 @@ class FilterNav extends React.Component {
               <div>
                 <button
                   onClick={this.showSecondaryFilters.bind(this)}
+                  data-toggle="modal"
+                  data-target="#filter-modal"
                   className="btn btn--small btn--transparent filter-bar__btn--light"
                   aria-haspopup="true"
                   aria-expanded={this.state.displaySecondaryFilters}>
@@ -297,6 +314,8 @@ class FilterNav extends React.Component {
               <div>
                 <button
                   onClick={this.showSecondaryFilters.bind(this)}
+                  data-toggle="modal"
+                  data-target="#filter-modal"
                   className="btn btn--small btn--transparent filter-bar__btn--light"
                   aria-haspopup="true"
                   aria-expanded={this.state.displaySecondaryFilters}>
