@@ -64,9 +64,9 @@ class TopicComponent(ProjectFormComponent):
 class PointComponent(ProjectFormComponent):
     identifier = 'point'
     weight = 33
-    label = _('Location')
+    label = _('District and Location')
 
-    form_title = _('Edit location')
+    form_title = _('Edit district and location')
     form_class = forms.PointForm
     form_template_name = 'meinberlin_projects/project_point.html'
 
