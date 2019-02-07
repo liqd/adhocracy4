@@ -109,6 +109,15 @@
         margin-bottom: 0.5*$r-spacer;
     }
 
+    //to make whole tile clickable even when empty
+    .maplist-item__link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+
     .maplist-item__label-img {
         margin-top: $r-spacer;
         margin-left: $r-spacer;
