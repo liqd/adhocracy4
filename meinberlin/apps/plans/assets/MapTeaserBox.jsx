@@ -35,6 +35,9 @@ class MapTeaserBox extends React.Component {
 
   selectDistrict (district) {
     let districtName = this.props.districtnames[district]
+    if (district === '-1') {
+      districtName = '-1'
+    }
     let newLinkUrl = this.props.url + '?district=' + districtName + '&topic=' + this.state.topic
     this.setState({
       district: districtName,
