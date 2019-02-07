@@ -102,15 +102,17 @@ class Toggles extends React.Component {
                   type="button">{this.titleSearchButtonString()} <i className="fa fa-times" /></button>
               }
             </div>
-            <div className="btn-group switch-btn-group" role="group">
-              <label className={!this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'} onClick={this.props.showList} htmlFor="show_list">
-                <span className="sr-only">{django.gettext('Show List')}</span>
-                <input className="radio__input" type="radio" value="list" id="show_list" /> <i className="fa fa-list" />
-              </label>
-              <label className={this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'} onClick={this.props.showMap} htmlFor="show_map">
-                <span className="sr-only">{django.gettext('Show Map')}</span>
-                <input className="radio__input" type="radio" value="map" id="show_map" /> <i className="fa fa-map" />
-              </label>
+            <div className="switch-btn-group-container">
+              <div className="btn-group switch-btn-group" role="group">
+                <label className={!this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'} onClick={this.props.showList} htmlFor="show_list">
+                  <span className="sr-only">{django.gettext('Show List')}</span>
+                  <input className="radio__input" type="radio" value="list" id="show_list" /> <i className="fa fa-list" />
+                </label>
+                <label className={this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'} onClick={this.props.showMap} htmlFor="show_map">
+                  <span className="sr-only">{django.gettext('Show Map')}</span>
+                  <input className="radio__input" type="radio" value="map" id="show_map" /> <i className="fa fa-map" />
+                </label>
+              </div>
             </div>
           </div>
         </div>

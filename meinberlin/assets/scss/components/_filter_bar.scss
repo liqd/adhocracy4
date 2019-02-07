@@ -144,6 +144,11 @@ $divider-margin: 1.25rem;
         padding-left: 0;
     }
 
+    .btn-primary {
+        display: block;
+        margin: auto;
+    }
+
     @media screen and (min-width: $breakpoint-xs) {
         padding: 2*$padding;
     }
@@ -226,6 +231,7 @@ $divider-margin: 1.25rem;
 .filter-bar__search {
     display: inline;
     width: calc(100% - 63px);
+    margin-bottom: 0;
 
     @media screen and (min-width: $breakpoint-xs) {
         width: calc(100% - 51px);
@@ -287,5 +293,25 @@ $divider-margin: 1.25rem;
     .filter-bar__menu-radio-proj {
         width: 39%;
         margin-left: 2*$r-spacer;
+    }
+}
+
+//modal for mobile secondary filters
+.filter-secondary__modal {
+    display: block;
+}
+
+.filter-secondary__modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.filter-secondary__modal-content {
+    background-color: $bg-secondary;
+    font-size: $font-size-base;
+
+    .btn-primary {
+        width: 100%;
+        margin: 2*$r-spacer 0 $r-spacer 0;
     }
 }
