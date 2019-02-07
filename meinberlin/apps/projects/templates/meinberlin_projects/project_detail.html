@@ -42,7 +42,7 @@
                         {% if container %}
                             <a href="{{ container.get_absolute_url }}" class="project-header__link" data-embed-target="external">
                                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                {% blocktrans with name=container.name %}back to {{ name }}{% endblocktrans %}
+                                {% blocktrans with name=container.name %}to project collection {{ name }}{% endblocktrans %}
                             </a>
                         {% endif %}
                     {% endwith %}
