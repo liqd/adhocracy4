@@ -277,7 +277,8 @@ $divider-margin: 1.25rem;
     margin-bottom: 2*$r-spacer;
 
     .switch--btn {
-        width: 33.3%;
+        min-width: 20%;
+        flex-grow: 1;
     }
 }
 
