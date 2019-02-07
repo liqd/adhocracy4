@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 16:32+0100\n"
+"POT-Creation-Date: 2019-02-07 15:40+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -374,6 +374,7 @@ msgstr "Meldung senden"
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:102
+#: meinberlin/apps/plans/assets/FilterNav.jsx:198
 #: meinberlin/assets/js/embed.js:29 meinberlin/assets/js/embed.js:30
 msgid "Close"
 msgstr "Schließen"
@@ -493,55 +494,55 @@ msgstr ""
 "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
 "entfernen?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:79
-#: meinberlin/apps/plans/assets/FilterNav.jsx:86
+#: meinberlin/apps/plans/assets/FilterNav.jsx:85
+#: meinberlin/apps/plans/assets/FilterNav.jsx:92
 #: meinberlin/apps/plans/assets/FilterOptions.jsx:27
 #: meinberlin/apps/plans/assets/FilterRadio.jsx:48
 msgid "all"
 msgstr "Alle"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:109
-#: meinberlin/apps/plans/assets/FilterNav.jsx:210
+#: meinberlin/apps/plans/assets/FilterNav.jsx:115
+#: meinberlin/apps/plans/assets/FilterNav.jsx:225
 msgid "Filter bar"
 msgstr "Filter Leiste"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:110
-#: meinberlin/apps/plans/assets/FilterNav.jsx:211
+#: meinberlin/apps/plans/assets/FilterNav.jsx:116
+#: meinberlin/apps/plans/assets/FilterNav.jsx:226
 msgid "I am interested in projects from"
 msgstr "Mich interessieren Projekte aus"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:117
-#: meinberlin/apps/plans/assets/FilterNav.jsx:219
+#: meinberlin/apps/plans/assets/FilterNav.jsx:123
+#: meinberlin/apps/plans/assets/FilterNav.jsx:234
 msgid "„ all Districts “"
 msgstr "„ alle Bezirke “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:131
-#: meinberlin/apps/plans/assets/FilterNav.jsx:233
+#: meinberlin/apps/plans/assets/FilterNav.jsx:137
+#: meinberlin/apps/plans/assets/FilterNav.jsx:248
 msgid "Which district are you interested in?"
 msgstr "Welchen Bezirk suchen Sie?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:147
-#: meinberlin/apps/plans/assets/FilterNav.jsx:252
+#: meinberlin/apps/plans/assets/FilterNav.jsx:153
+#: meinberlin/apps/plans/assets/FilterNav.jsx:267
 msgid "„ all Topics “"
 msgstr "„ alle Themen “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:161
-#: meinberlin/apps/plans/assets/FilterNav.jsx:266
-msgid "Which topic are you interested in?"
-msgstr "Welches Thema interessiert Sie"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:175
+#: meinberlin/apps/plans/assets/FilterNav.jsx:167
 #: meinberlin/apps/plans/assets/FilterNav.jsx:281
+msgid "Which topic are you interested in?"
+msgstr "Welches Thema interessiert Sie?"
+
+#: meinberlin/apps/plans/assets/FilterNav.jsx:181
+#: meinberlin/apps/plans/assets/FilterNav.jsx:296
 msgid "display projects"
 msgstr "Projekte anzeigen"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:185
-#: meinberlin/apps/plans/assets/FilterNav.jsx:292
-#: meinberlin/apps/plans/assets/FilterNav.jsx:303
+#: meinberlin/apps/plans/assets/FilterNav.jsx:191
+#: meinberlin/apps/plans/assets/FilterNav.jsx:307
+#: meinberlin/apps/plans/assets/FilterNav.jsx:318
 msgid "more filters"
 msgstr "weitere Filter"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:244
+#: meinberlin/apps/plans/assets/FilterNav.jsx:259
 msgid " in the area of "
 msgstr "und dem Bereich"
 
@@ -653,11 +654,11 @@ msgstr "Übergeordnetes Projekt: "
 msgid "Show map"
 msgstr "Karte anzeigen"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:107
+#: meinberlin/apps/plans/assets/Toggles.jsx:108
 msgid "Show List"
 msgstr "Liste anzeigen"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:111
+#: meinberlin/apps/plans/assets/Toggles.jsx:112
 msgid "Show Map"
 msgstr "Karte anzeigen"
 

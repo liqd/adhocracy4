@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 16:32+0100\n"
+"POT-Creation-Date: 2019-02-07 15:40+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -308,6 +308,7 @@ msgstr "Send Report"
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:102
+#: meinberlin/apps/plans/assets/FilterNav.jsx:198
 #: meinberlin/assets/js/embed.js:29 meinberlin/assets/js/embed.js:30
 msgid "Close"
 msgstr "Close"
@@ -419,55 +420,55 @@ msgstr "Invalid file format."
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:79
-#: meinberlin/apps/plans/assets/FilterNav.jsx:86
+#: meinberlin/apps/plans/assets/FilterNav.jsx:85
+#: meinberlin/apps/plans/assets/FilterNav.jsx:92
 #: meinberlin/apps/plans/assets/FilterOptions.jsx:27
 #: meinberlin/apps/plans/assets/FilterRadio.jsx:48
 msgid "all"
 msgstr "all"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:109
-#: meinberlin/apps/plans/assets/FilterNav.jsx:210
+#: meinberlin/apps/plans/assets/FilterNav.jsx:115
+#: meinberlin/apps/plans/assets/FilterNav.jsx:225
 msgid "Filter bar"
 msgstr "Filter bar"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:110
-#: meinberlin/apps/plans/assets/FilterNav.jsx:211
+#: meinberlin/apps/plans/assets/FilterNav.jsx:116
+#: meinberlin/apps/plans/assets/FilterNav.jsx:226
 msgid "I am interested in projects from"
 msgstr "I am interested in projects from"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:117
-#: meinberlin/apps/plans/assets/FilterNav.jsx:219
+#: meinberlin/apps/plans/assets/FilterNav.jsx:123
+#: meinberlin/apps/plans/assets/FilterNav.jsx:234
 msgid "„ all Districts “"
 msgstr "„ all Districts “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:131
-#: meinberlin/apps/plans/assets/FilterNav.jsx:233
+#: meinberlin/apps/plans/assets/FilterNav.jsx:137
+#: meinberlin/apps/plans/assets/FilterNav.jsx:248
 msgid "Which district are you interested in?"
 msgstr "Which district are you interested in?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:147
-#: meinberlin/apps/plans/assets/FilterNav.jsx:252
+#: meinberlin/apps/plans/assets/FilterNav.jsx:153
+#: meinberlin/apps/plans/assets/FilterNav.jsx:267
 msgid "„ all Topics “"
 msgstr "„ all Topics “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:161
-#: meinberlin/apps/plans/assets/FilterNav.jsx:266
+#: meinberlin/apps/plans/assets/FilterNav.jsx:167
+#: meinberlin/apps/plans/assets/FilterNav.jsx:281
 msgid "Which topic are you interested in?"
 msgstr "Which topic are you interested in?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:175
-#: meinberlin/apps/plans/assets/FilterNav.jsx:281
+#: meinberlin/apps/plans/assets/FilterNav.jsx:181
+#: meinberlin/apps/plans/assets/FilterNav.jsx:296
 msgid "display projects"
 msgstr "display projects"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:185
-#: meinberlin/apps/plans/assets/FilterNav.jsx:292
-#: meinberlin/apps/plans/assets/FilterNav.jsx:303
+#: meinberlin/apps/plans/assets/FilterNav.jsx:191
+#: meinberlin/apps/plans/assets/FilterNav.jsx:307
+#: meinberlin/apps/plans/assets/FilterNav.jsx:318
 msgid "more filters"
 msgstr "more filters"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:244
+#: meinberlin/apps/plans/assets/FilterNav.jsx:259
 msgid " in the area of "
 msgstr " in the area of "
 
@@ -579,11 +580,11 @@ msgstr "Superordinate project: "
 msgid "Show map"
 msgstr "Show map"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:107
+#: meinberlin/apps/plans/assets/Toggles.jsx:108
 msgid "Show List"
 msgstr "Show List"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:111
+#: meinberlin/apps/plans/assets/Toggles.jsx:112
 msgid "Show Map"
 msgstr "Show Map"
 

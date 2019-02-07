@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-04 10:58+0100\n"
+"POT-Creation-Date: 2019-02-07 15:40+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -797,7 +797,7 @@ msgstr ""
 #: adhocracy4/phases/models.py:66
 #: meinberlin/apps/activities/models.py:21 meinberlin/apps/ideas/models.py:31
 #: meinberlin/apps/offlineevents/models.py:17
-#: meinberlin/apps/plans/models.py:71
+#: meinberlin/apps/plans/models.py:72
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -866,7 +866,7 @@ msgid "Images"
 msgstr "Bilder"
 
 #: adhocracy4/projects/admin.py:60
-#: meinberlin/apps/plans/models.py:65
+#: meinberlin/apps/plans/models.py:66
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:87
 #: meinberlin/apps/projects/admin.py:55 meinberlin/templates/email_base.html:60
 #: meinberlin/templates/email_base.txt:15
@@ -1663,21 +1663,29 @@ msgid_plural "display %(counter)s projects"
 msgstr[0] "%(counter)s Projekt anzeigen"
 msgstr[1] "%(counter)s Projekte anzeigen"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:35
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:29
+#: meinberlin/apps/plans/forms.py:40 meinberlin/apps/plans/serializers.py:14
+#: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
+#: meinberlin/apps/plans/views.py:94 meinberlin/apps/plans/views.py:161
+#: meinberlin/apps/projects/admin.py:64
+msgid "City wide"
+msgstr "Gesamtstädtisch"
+
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:36
 #, python-format
 msgid " %(time_left)s remaining "
 msgstr " noch %(time_left)s"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:40
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:41
 #, python-format
 msgid " Participation: from %(date)s possible"
 msgstr "ab %(date)s möglich"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:45
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:46
 msgid "Participation ended. Read result."
 msgstr "Beteiligung beendet. Ergebnis lesen."
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:54
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:55
 #, python-format
 msgid " What is your opinion on this: %(name)s?"
 msgstr "Was ist Ihre Meinung zum Projekt: %(name)s?"
@@ -1722,6 +1730,16 @@ msgstr ""
 "Bitte folgen Sie dem Link in der E-Mail um den Anmeldeprozess abzuschließen. "
 "Bitte kontaktieren Sie uns, falls die E-Mail nicht in ein paar Minuten "
 "angekommen ist."
+
+#: meinberlin/apps/contrib/django_standard_messages.py:16
+#, python-format
+msgid "You must select a minimum of  %(limit_value)d choices."
+msgstr "Bitte wählen Sie mindestens %(limit_value)d Felder aus."
+
+#: meinberlin/apps/contrib/django_standard_messages.py:17
+#, python-format
+msgid "You must select a maximum of  %(limit_value)d choices."
+msgstr "Sie können max. %(limit_value)d Felder auswählen."
 
 #: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:37
 msgid "Ordering"
@@ -2100,7 +2118,7 @@ msgstr "Externe Phase"
 msgid "external project"
 msgstr "Externes Projekt"
 
-#: meinberlin/apps/ideas/models.py:34 meinberlin/apps/plans/models.py:74
+#: meinberlin/apps/ideas/models.py:34 meinberlin/apps/plans/models.py:75
 #: meinberlin/apps/topicprio/models.py:31
 msgid "Add image"
 msgstr "Bild hinzufügen"
@@ -2210,7 +2228,7 @@ msgid "Your Idea has been deleted"
 msgstr "Ihre Idee wurde gelöscht"
 
 #: meinberlin/apps/initiators/forms.py:11
-#: meinberlin/apps/newsletters/forms.py:40
+#: meinberlin/apps/newsletters/forms.py:40 meinberlin/apps/plans/models.py:41
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:45
 #: meinberlin/apps/projects/views.py:42
 msgid "Organisation"
@@ -2279,7 +2297,7 @@ msgid "Where can your idea be located on a map?"
 msgstr "Wo kann ihre Idee auf der Karte verortet werden?"
 
 #: meinberlin/apps/mapideas/models.py:15
-#: meinberlin/apps/maptopicprio/models.py:49 meinberlin/apps/plans/models.py:48
+#: meinberlin/apps/maptopicprio/models.py:49 meinberlin/apps/plans/models.py:49
 msgid ""
 "Click inside marked area on the map to set a marker. Drag and drop the "
 "marker to change its place. Alternatively you can use the search field to "
@@ -2526,28 +2544,12 @@ msgstr "Veranstaltung bearbeiten"
 msgid "The offline event has been deleted"
 msgstr "Die Veranstaltung wurde gelöscht."
 
-#: meinberlin/apps/organisations/models.py:15
-msgid "district administration"
-msgstr "Bezirksamt"
-
-#: meinberlin/apps/organisations/models.py:16
-msgid "city administration"
-msgstr "Senatsverwaltung"
-
-#: meinberlin/apps/organisations/models.py:17
-msgid "neighbourhood management"
-msgstr "Quartiersmanagement"
-
-#: meinberlin/apps/organisations/models.py:18
-msgid "other"
-msgstr "Sonstige"
-
-#: meinberlin/apps/organisations/models.py:31
+#: meinberlin/apps/organisations/models.py:19
 #: meinberlin/apps/projectcontainers/forms.py:13
 msgid "Logo"
 msgstr "Logo"
 
-#: meinberlin/apps/organisations/models.py:33
+#: meinberlin/apps/organisations/models.py:21
 msgid "The image will be shown in the newsletter in the banner."
 msgstr "Das Bild wird in der Kopfzeile von Newslettern angezeigt."
 
@@ -2574,11 +2576,6 @@ msgstr "Vorhaben bearbeiten"
 msgid "Please locate the plan on the map."
 msgstr "Bitte verorten Sie das Vorhaben auf der Karte."
 
-#: meinberlin/apps/plans/forms.py:40 meinberlin/apps/plans/views.py:161
-#: meinberlin/apps/projects/admin.py:64
-msgid "City wide"
-msgstr "Gesamtstädtisch"
-
 #: meinberlin/apps/plans/models.py:24
 msgid "with"
 msgstr "mit"
@@ -2599,53 +2596,58 @@ msgstr "laufend"
 msgid "done"
 msgstr "abgeschlossen"
 
-#: meinberlin/apps/plans/models.py:47
+#: meinberlin/apps/plans/models.py:48
 msgid "Where can the plan be located on a map?"
 msgstr "Wo kann das Vorhaben auf der Karte verortet werden?"
 
-#: meinberlin/apps/plans/models.py:55
+#: meinberlin/apps/plans/models.py:56
 msgid "Label of the location"
 msgstr "Name des Ortes"
 
-#: meinberlin/apps/plans/models.py:56
+#: meinberlin/apps/plans/models.py:57
 msgid "The label of the location is displayed in the detail view of the plan"
 msgstr ""
 "Die Ortsbezeichnung erscheint im Steckbrief der Detailansicht zu Ihrem "
 "Vorhaben."
 
-#: meinberlin/apps/plans/models.py:61 meinberlin/apps/projects/views.py:46
+#: meinberlin/apps/plans/models.py:62 meinberlin/apps/projects/views.py:46
 msgid "District"
 msgstr "Bezirk"
 
-#: meinberlin/apps/plans/models.py:70
+#: meinberlin/apps/plans/models.py:71
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:67
 msgid "Cost"
 msgstr "Kosten"
 
-#: meinberlin/apps/plans/models.py:78
+#: meinberlin/apps/plans/models.py:79
 msgid "Visualize your plan."
 msgstr "Visualisieren Sie das Vorhaben."
 
+#: meinberlin/apps/plans/models.py:82 meinberlin/apps/projects/dashboard.py:57
+#: meinberlin/apps/topicprio/dashboard.py:15
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_dashboard_list.html:4
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_dashboard_list.html:9
+msgid "Topics"
+msgstr "Themen"
+
 #: meinberlin/apps/plans/models.py:85
+msgid "Status"
+msgstr ""
+
+#: meinberlin/apps/plans/models.py:89
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:57
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:89
 msgid "Participation"
 msgstr "Beteiligung"
 
-#: meinberlin/apps/plans/models.py:120 meinberlin/apps/plans/serializers.py:73
+#: meinberlin/apps/plans/models.py:124 meinberlin/apps/plans/serializers.py:73
 msgid "running"
 msgstr "laufend"
 
-#: meinberlin/apps/plans/models.py:127 meinberlin/apps/plans/serializers.py:77
+#: meinberlin/apps/plans/models.py:131 meinberlin/apps/plans/serializers.py:77
 msgid "starts at {}"
 msgstr "startet am {}"
-
-#: meinberlin/apps/plans/serializers.py:14
-#: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
-#: meinberlin/apps/plans/views.py:94
-msgid "City wide projects"
-msgstr "Gesamtstädtische Projekte"
 
 #: meinberlin/apps/plans/serializers.py:83
 msgid "starts in the future"
@@ -2677,7 +2679,6 @@ msgid "back to overview of projects"
 msgstr "zurück zur Projektübersicht"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:49
-#: meinberlin/apps/projects/dashboard.py:67
 msgid "Location"
 msgstr "Ort"
 
@@ -2846,20 +2847,17 @@ msgstr "Teilnehmer*innen"
 msgid "Moderators"
 msgstr "Moderator*innen"
 
-#: meinberlin/apps/projects/dashboard.py:57
-#: meinberlin/apps/topicprio/dashboard.py:15
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_dashboard_list.html:4
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_dashboard_list.html:9
-msgid "Topics"
-msgstr "Themen"
-
 #: meinberlin/apps/projects/dashboard.py:59
 msgid "Edit topics"
 msgstr "Themen bearbeiten"
 
+#: meinberlin/apps/projects/dashboard.py:67
+msgid "District and Location"
+msgstr "Bezirk und Ort"
+
 #: meinberlin/apps/projects/dashboard.py:69
-msgid "Edit location"
-msgstr "Ort bearbeiten"
+msgid "Edit district and location"
+msgstr "Bezirk und Verortung bearbeiten"
 
 #: meinberlin/apps/projects/forms.py:50 meinberlin/apps/projects/views.py:352
 msgid "Invite users via email"
@@ -3062,8 +3060,8 @@ msgstr "Dieses Projekt ist noch nicht veröffentlicht."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:45
 #, python-format
-msgid "back to %(name)s"
-msgstr "Zurück zu %(name)s"
+msgid "to project collection %(name)s"
+msgstr "zur Projektsammlung %(name)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:180
 msgid "No results yet."
@@ -3735,6 +3733,27 @@ msgstr ""
 "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem %(site_name)s "
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
+
+#~ msgid "City wide projects"
+#~ msgstr "Gesamtstädtische Projekte"
+
+#~ msgid "Edit location"
+#~ msgstr "Ort bearbeiten"
+
+#~ msgid "back to %(name)s"
+#~ msgstr "Zurück zu %(name)s"
+
+#~ msgid "district administration"
+#~ msgstr "Bezirksamt"
+
+#~ msgid "city administration"
+#~ msgstr "Senatsverwaltung"
+
+#~ msgid "neighbourhood management"
+#~ msgstr "Quartiersmanagement"
+
+#~ msgid "other"
+#~ msgstr "Sonstige"
 
 #~ msgid "Still undecided"
 #~ msgstr "Noch nicht entschieden"

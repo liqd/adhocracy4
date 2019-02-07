@@ -15,7 +15,7 @@ register = template.Library()
 @register.simple_tag(takes_context=False)
 def react_map_teaser():
 
-    city_wide = _('City wide projects')
+    city_wide = _('City wide')
     districts = AdministrativeDistrict.objects.all()
     district_names_list = [district.name
                            for district in districts]

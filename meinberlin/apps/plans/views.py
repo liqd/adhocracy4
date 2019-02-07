@@ -91,7 +91,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                            for district in districts])
 
     def get_district_names(self):
-        city_wide = _('City wide projects')
+        city_wide = _('City wide')
         districts = AdministrativeDistrict.objects.all()
         district_names_list = [district.name
                                for district in districts]
