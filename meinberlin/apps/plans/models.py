@@ -80,7 +80,7 @@ class Plan(UserGeneratedContentModel):
     )
     topics = TopicField(
         verbose_name=_('Topics'),
-        help_text='Add topics to your project.')
+        help_text=_('Add topics to your project.'))
     status = models.SmallIntegerField(
         choices=STATUS_CHOICES,
         verbose_name=_('Status')
