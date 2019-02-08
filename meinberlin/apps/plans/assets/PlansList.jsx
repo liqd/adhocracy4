@@ -66,9 +66,12 @@ class PlansList extends React.Component {
                 {(this.props.isHorizontal || !item.tile_image) && this.renderTopics(item)}
                 <span className="maplist-item__roofline">{item.district}</span>
                 <h3 className="maplist-item__title">{item.title}</h3>
+                {!this.props.isHorizontal &&
                 <div className="maplist-item__description">
                   <span>{this.getText(item.description)}</span>
                 </div>
+                }
+                <div className="maplist-item__link" />
                 {item.subtype === 'container' &&
                   <div className="maplist-item__stats">
                     <span className="maplist-item__proj-count"><i className="fas fa-th" />{django.gettext('Participation projects: ')}</span>
@@ -103,6 +106,7 @@ class PlansList extends React.Component {
               {this.renderTopics(item)}
               <span className="maplist-item__roofline">{item.district}</span>
               <h3 className="maplist-item__title">{item.title}</h3>
+              <div className="maplist-item__link" />
               <div className="maplist-item__stats">
                 <span className="maplist-item__proj-count"><i className="fas fa-th" />{django.gettext('Participation projects: ')}</span>
                 <span>{item.published_projects_count}</span>

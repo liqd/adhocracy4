@@ -9,6 +9,7 @@
 .maplist-item__horizontal {
     border: 1px solid $border-color;
     position: relative;
+    overflow-wrap: break-word;
 }
 
 .maplist-item__plan,
@@ -107,6 +108,15 @@
 
     .maplist-item__label-spacer { // stop overlap
         margin-bottom: 0.5*$r-spacer;
+    }
+
+    //to make whole tile clickable even when empty
+    .maplist-item__link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
     }
 
     .maplist-item__label-img {
