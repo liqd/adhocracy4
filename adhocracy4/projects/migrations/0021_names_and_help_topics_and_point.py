@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='project',
             name='point',
-            field=adhocracy4.maps.fields.PointField(blank=True, help_text='Locate your project. Click inside the marked area or type in an address to set the marker. A set marker can be dreagged when pressed.', null=True, verbose_name='Can your project be located on the map?'),
+            field=adhocracy4.maps.fields.PointField(blank=True, help_text='Locate your project. Click inside the marked area or type in an address to set the marker. A set marker can be dragged when pressed.', null=True, verbose_name='Can your project be located on the map?'),
         ),
         migrations.AlterField(
             model_name='project',

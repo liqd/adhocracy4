@@ -73,7 +73,7 @@ class ProjectLocationMixin(models.Model):
         help_text=_('Locate your project. '
                     'Click inside the marked area '
                     'or type in an address to set the marker. A set '
-                    'marker can be dreagged when pressed.')
+                    'marker can be dragged when pressed.')
     )
 
     administrative_district = models.ForeignKey(
