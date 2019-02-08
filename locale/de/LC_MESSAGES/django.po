@@ -898,13 +898,17 @@ msgstr "Kontaktperson"
 
 #: adhocracy4/projects/models.py:72
 msgid "Can your project be located on the map?"
-msgstr ""
+msgstr "Kann Ihr Projekt auf der Karte verortet werden?"
 
 #: adhocracy4/projects/models.py:73
 msgid ""
 "Locate your project. Click inside the marked area or type in an address to "
 "set the marker. A set marker can be dragged when pressed."
 msgstr ""
+"Wenn Sie Ihr Projekt verorten, wird es in der allgemeinen Projektübersicht "
+"zusätzlich zur Liste auch in der Karte angezeigt. Um einen Pin zu setzen, "
+"klicken Sie innerhalb des markierten Bereichs oder geben Sie eine Adresse "
+"ein. Ein gesetzter Pin kann verschoben werden, wenn Sie ihn gedrückt halten."
 
 #: adhocracy4/projects/models.py:83
 msgid "Administrative district"
@@ -1012,6 +1016,8 @@ msgstr "Projektthemen"
 #: adhocracy4/projects/models.py:173
 msgid "Add topics to your project."
 msgstr ""
+"Bitte ordnen Sie Ihrem Projekt 1-2 Themenfelder zu. Ihr Projekt kann in der "
+"Projektübersicht nach diesen Themen gefiltert werden."
 
 #: adhocracy4/projects/models.py:294
 msgid "day"
@@ -1304,6 +1310,9 @@ msgid ""
 "The identifier has to be identic to the identifier in the FIS-Broker, so "
 "that district and location are added automatically."
 msgstr ""
+"Der Bezeichner des Bebauungsgplans muss identisch mit dem Bezeichner im "
+"FIS-Broker sein. So werden Informationen zum Bezirk und zur Verortung "
+"automatisch hinzugefügt."
 
 #: meinberlin/apps/bplan/models.py:20
 msgid "Office worker email"
@@ -2318,6 +2327,9 @@ msgid ""
 "Click inside the marked area or type in an address to set the marker. A set "
 "marker can be dragged when pressed."
 msgstr ""
+"Um einen Pin zu setzen, klicken Sie innerhalb des markierten Bereichs oder "
+"geben Sie eine Adresse ein. Ein gesetzter Pin kann verschoben werden, wenn "
+"Sie ihn gedrückt halten."
 
 #: meinberlin/apps/mapideas/models.py:23
 #: meinberlin/apps/maptopicprio/models.py:57
