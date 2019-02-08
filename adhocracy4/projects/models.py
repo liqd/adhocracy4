@@ -69,7 +69,11 @@ class ProjectLocationMixin(models.Model):
     point = PointField(
         null=True,
         blank=True,
-        verbose_name=_('Location of your Project')
+        verbose_name=_('Can your project be located on the map?'),
+        help_text=_('Locate your project. '
+                    'Click inside the marked area '
+                    'or type in an address to set the marker. A set '
+                    'marker can be dragged when pressed.')
     )
 
     administrative_district = models.ForeignKey(
@@ -165,7 +169,8 @@ class Project(ProjectContactDetailMixin,
                     'You can still access this project by using filters.'),
     )
     topics = TopicField(
-        verbose_name=_('Project topics')
+        verbose_name=_('Project topics'),
+        help_text=_('Add topics to your project.')
     )
 
     objects = ProjectManager()
