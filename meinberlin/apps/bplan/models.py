@@ -10,6 +10,9 @@ from meinberlin.apps.extprojects.models import ExternalProject
 class Bplan(ExternalProject):
     identifier = models.CharField(
         verbose_name=_('Identifier'),
+        help_text=_('The identifier has to be identic to the identifier '
+                    'in the FIS-Broker, so that district and location are '
+                    'added automatically.'),
         blank=True,
         max_length=120
     )
