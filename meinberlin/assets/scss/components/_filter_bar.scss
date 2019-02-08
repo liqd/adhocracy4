@@ -144,9 +144,13 @@ $divider-margin: 1.25rem;
         padding-left: 0;
     }
 
-    .btn-primary {
+    .filter-secondary__btn {
         display: block;
         margin: auto;
+    }
+
+    .form-group {
+        margin-bottom: 2*$r-spacer;
     }
 
     @media screen and (min-width: $breakpoint-xs) {
@@ -231,7 +235,7 @@ $divider-margin: 1.25rem;
 .filter-bar__search {
     display: inline;
     width: calc(100% - 63px);
-    margin-bottom: 0;
+    margin-bottom: 2*$r-spacer;
 
     @media screen and (min-width: $breakpoint-xs) {
         width: calc(100% - 51px);
@@ -252,8 +256,10 @@ $divider-margin: 1.25rem;
 .filter-bar__menu-radio-part,
 .filter-bar__menu-radio-proj {
     width: 100%;
+    margin-bottom: 2*$r-spacer;
 
     .btn-group {
+        margin-top: $r-spacer;
         display: flex;
         justify-content: flex-start;
         flex-direction: row;
@@ -277,7 +283,8 @@ $divider-margin: 1.25rem;
     margin-bottom: 2*$r-spacer;
 
     .switch--btn {
-        width: 33.3%;
+        min-width: 20%;
+        flex-grow: 1;
     }
 }
 
@@ -310,7 +317,7 @@ $divider-margin: 1.25rem;
     background-color: $bg-secondary;
     font-size: $font-size-base;
 
-    .btn-primary {
+    .filter-secondary__btn {
         width: 100%;
         margin: 2*$r-spacer 0 $r-spacer 0;
     }

@@ -127,7 +127,7 @@ class FilterSecondary extends React.Component {
           </span>
         </div>
         <button
-          className="btn btn-primary"
+          className="btn btn--primary filter-secondary__btn"
           type="submit"
           onClick={this.submitSecondaryFilters.bind(this)}>
           {django.gettext('show projects')}

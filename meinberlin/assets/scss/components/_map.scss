@@ -157,8 +157,9 @@
 
         .infobox__close {
             position: absolute;
-            right: 0.5*$padding;
-            top: 0.25*$padding;
+            padding: 0.25*$padding 0.5*$padding;
+            right: 0;
+            top: 0;
         }
 
         i.fa-times {
