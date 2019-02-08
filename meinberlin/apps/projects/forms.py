@@ -92,6 +92,3 @@ class PointForm(ProjectDashboardForm):
             'point': maps_widgets.MapChoosePointWidget(
                 polygon=settings.BERLIN_POLYGON)
         }
-        help_texts = {
-            'point': _('Please locate the project on the map.')
-        }
