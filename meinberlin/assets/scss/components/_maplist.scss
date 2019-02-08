@@ -9,6 +9,7 @@
 .maplist-item__horizontal {
     border: 1px solid $border-color;
     position: relative;
+    overflow-wrap: break-word;
 }
 
 .maplist-item__plan,
