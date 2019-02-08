@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-07 15:40+0100\n"
+"POT-Creation-Date: 2019-02-08 14:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -308,7 +308,7 @@ msgstr "Send Report"
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:102
-#: meinberlin/apps/plans/assets/FilterNav.jsx:198
+#: meinberlin/apps/plans/assets/FilterNav.jsx:199
 #: meinberlin/assets/js/embed.js:29 meinberlin/assets/js/embed.js:30
 msgid "Close"
 msgstr "Close"
@@ -420,55 +420,55 @@ msgstr "Invalid file format."
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:85
-#: meinberlin/apps/plans/assets/FilterNav.jsx:92
+#: meinberlin/apps/plans/assets/FilterNav.jsx:86
+#: meinberlin/apps/plans/assets/FilterNav.jsx:93
 #: meinberlin/apps/plans/assets/FilterOptions.jsx:27
 #: meinberlin/apps/plans/assets/FilterRadio.jsx:48
 msgid "all"
 msgstr "all"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:115
-#: meinberlin/apps/plans/assets/FilterNav.jsx:225
+#: meinberlin/apps/plans/assets/FilterNav.jsx:116
+#: meinberlin/apps/plans/assets/FilterNav.jsx:226
 msgid "Filter bar"
 msgstr "Filter bar"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:116
-#: meinberlin/apps/plans/assets/FilterNav.jsx:226
+#: meinberlin/apps/plans/assets/FilterNav.jsx:117
+#: meinberlin/apps/plans/assets/FilterNav.jsx:227
 msgid "I am interested in projects from"
 msgstr "I am interested in projects from"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:123
-#: meinberlin/apps/plans/assets/FilterNav.jsx:234
+#: meinberlin/apps/plans/assets/FilterNav.jsx:124
+#: meinberlin/apps/plans/assets/FilterNav.jsx:235
 msgid "„ all Districts “"
 msgstr "„ all Districts “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:137
-#: meinberlin/apps/plans/assets/FilterNav.jsx:248
+#: meinberlin/apps/plans/assets/FilterNav.jsx:138
+#: meinberlin/apps/plans/assets/FilterNav.jsx:249
 msgid "Which district are you interested in?"
 msgstr "Which district are you interested in?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:153
-#: meinberlin/apps/plans/assets/FilterNav.jsx:267
+#: meinberlin/apps/plans/assets/FilterNav.jsx:154
+#: meinberlin/apps/plans/assets/FilterNav.jsx:268
 msgid "„ all Topics “"
 msgstr "„ all Topics “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:167
-#: meinberlin/apps/plans/assets/FilterNav.jsx:281
+#: meinberlin/apps/plans/assets/FilterNav.jsx:168
+#: meinberlin/apps/plans/assets/FilterNav.jsx:282
 msgid "Which topic are you interested in?"
 msgstr "Which topic are you interested in?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:181
-#: meinberlin/apps/plans/assets/FilterNav.jsx:296
+#: meinberlin/apps/plans/assets/FilterNav.jsx:182
+#: meinberlin/apps/plans/assets/FilterNav.jsx:297
 msgid "display projects"
 msgstr "display projects"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:191
-#: meinberlin/apps/plans/assets/FilterNav.jsx:307
-#: meinberlin/apps/plans/assets/FilterNav.jsx:318
+#: meinberlin/apps/plans/assets/FilterNav.jsx:192
+#: meinberlin/apps/plans/assets/FilterNav.jsx:308
+#: meinberlin/apps/plans/assets/FilterNav.jsx:319
 msgid "more filters"
 msgstr "more filters"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:259
+#: meinberlin/apps/plans/assets/FilterNav.jsx:260
 msgid " in the area of "
 msgstr " in the area of "
 
@@ -525,28 +525,28 @@ msgstr "ongoing"
 msgid "done"
 msgstr "done"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:77
-#: meinberlin/apps/plans/assets/PlansList.jsx:110
+#: meinberlin/apps/plans/assets/PlansList.jsx:80
+#: meinberlin/apps/plans/assets/PlansList.jsx:114
 #: meinberlin/apps/plans/assets/PopUp.jsx:72
 msgid "Participation: "
 msgstr "Participation: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:89
+#: meinberlin/apps/plans/assets/PlansList.jsx:92
 #: meinberlin/apps/plans/assets/PopUp.jsx:42
 msgid "remaining"
 msgstr "remaining"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:94
+#: meinberlin/apps/plans/assets/PlansList.jsx:97
 #: meinberlin/apps/plans/assets/PopUp.jsx:47
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:107
+#: meinberlin/apps/plans/assets/PlansList.jsx:111
 #: meinberlin/apps/plans/assets/PopUp.jsx:69
 msgid "Participation projects: "
 msgstr "Participation projects: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:135
+#: meinberlin/apps/plans/assets/PlansList.jsx:139
 #: meinberlin/apps/plans/assets/PlansMap.jsx:277
 msgid "Nothing to show"
 msgstr "Nothing to show"

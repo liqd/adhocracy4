@@ -46,10 +46,9 @@ class Plan(UserGeneratedContentModel):
     )
     point = map_fields.PointField(
         verbose_name=_('Where can the plan be located on a map?'),
-        help_text=_('Click inside marked area on the map to set a marker. '
-                    'Drag and drop the marker to change its place. '
-                    'Alternatively you can use the search field to search '
-                    'for an address.'))
+        help_text=_('Click inside the marked area '
+                    'or type in an address to set the marker. A set '
+                    'marker can be dragged when pressed.'))
     point_label = models.CharField(
         default='',
         max_length=255,
@@ -79,7 +78,9 @@ class Plan(UserGeneratedContentModel):
             'Visualize your plan.'
         ),
     )
-    topics = TopicField(verbose_name=_('Topics'))
+    topics = TopicField(
+        verbose_name=_('Topics'),
+        help_text=_('Add topics to your project.'))
     status = models.SmallIntegerField(
         choices=STATUS_CHOICES,
         verbose_name=_('Status')
