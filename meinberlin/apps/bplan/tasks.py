@@ -74,4 +74,5 @@ def get_location_information(bplan_id):
             .format(bplan.identifier, bplan)
         )
     bplan.point = point
-    bplan.save(update_fields=['point', 'administrative_district'])
+    bplan.topics = ['URB']
+    bplan.save(update_fields=['point', 'administrative_district', 'topics'])
