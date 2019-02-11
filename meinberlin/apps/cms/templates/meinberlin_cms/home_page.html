@@ -45,12 +45,12 @@
                 </div>
                 <div class="storefront__col storefront__last-col u-xs-md-display-none">
                     {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.2 %}
-                    <div class="storefront__item storefront__stat-lg tile__md">
+                    <a href="{% url 'meinberlin_plans:plan-list' %}" class="storefront__item storefront__stat-lg tile__md">
                         <span class="storefront__xl-text">{{ self.storefront.num_projects }}</span>
                         <div class="storefront__stat-text">
                             <p>{% blocktrans count counter=self.storefront.num_projects %}project you can participate in!{% plural %}projects you can participate in!{% endblocktrans %}</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
