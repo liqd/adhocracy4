@@ -122,7 +122,7 @@
 
     .map-list-combined__map__search {
         font-size: $font-size-base;
-        width: 50%;
+        width: 90%;
         position: absolute;
         left: $spacer;
         top: $spacer;
@@ -130,6 +130,10 @@
 
         .form-group {
             margin-bottom: 0;
+        }
+
+        @media (min-width: $breakpoint-xs) {
+            width: 50%;
         }
     }
 
@@ -140,13 +144,17 @@
 
     .map-infobox {
         font-size: $font-size-base;
-        width: 50%;
+        width: 90%;
         position: absolute;
         left: 1*$spacer;
         top: 4.5*$spacer;
         z-index: 1000;
         background-color: $body-bg;
         padding: $padding $padding $padding 3*$padding;
+
+        @media (min-width: $breakpoint-xs) {
+            width: 50%;
+        }
 
         i.fa-info-circle {
             color: $brand-secondary;
