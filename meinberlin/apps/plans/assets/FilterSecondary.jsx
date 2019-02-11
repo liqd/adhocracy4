@@ -109,6 +109,9 @@ class FilterSecondary extends React.Component {
           </div>
         </div>
         <div className="form-group">
+          <div className="typeahead__input-label">
+            <h2 className="u-no-margin">{django.gettext('Organisation')}</h2>
+          </div>
           <span className="typeahead__input-group">
             <span className="typeahead__input-group-prepend">
               <span className="typeahead__input-group-text">
@@ -122,7 +125,7 @@ class FilterSecondary extends React.Component {
               multiple={false}
               options={this.props.organisations}
               selected={this.state.organisationChoice}
-              placeholder={django.gettext('Show Organisation ...')}
+              placeholder={django.gettext('Enter the name of the organisation')}
             />
           </span>
         </div>
