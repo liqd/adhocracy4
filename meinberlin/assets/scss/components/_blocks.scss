@@ -190,7 +190,7 @@
     background-size: 300vh;
     background-position: top;
     background-repeat: no-repeat;
-    margin: -15*$r-spacer -$r-spacer -$r-spacer -$r-spacer;
+    margin: (-15*$r-spacer) (-$r-spacer) (-$r-spacer) (-$r-spacer);
     padding-top: 20*$padding;
     padding-bottom: 16*$padding;
 }
