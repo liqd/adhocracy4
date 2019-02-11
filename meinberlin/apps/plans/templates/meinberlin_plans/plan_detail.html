@@ -33,11 +33,6 @@
 
                 <div class="item-detail__labels">
                     <span class="label label--secondary">{{ object.get_status_display }}</span>
-                    {% if object.topics %}
-                        {% for topic in object.topic_names %}
-                            <span class="label">{{ topic }}</span>
-                        {% endfor %}
-                    {% endif %}
                 </div>
                 <div class="item-detail-2__factsheet">
                     <ul class="item-detail-2__factsheet-table">
