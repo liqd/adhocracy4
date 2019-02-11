@@ -35,11 +35,6 @@ class PlanDetailView(rules_mixins.PermissionRequiredMixin,
     template_name = 'meinberlin_plans/plan_detail.html'
     permission_required = 'meinberlin_plans.view_plan'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['berlin_polygon'] = settings.BERLIN_POLYGON
-        return context
-
 
 class PlanListView(rules_mixins.PermissionRequiredMixin,
                    generic.ListView):
