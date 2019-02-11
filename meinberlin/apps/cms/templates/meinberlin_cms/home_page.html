@@ -44,13 +44,16 @@
                     {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.1 %}
                 </div>
                 <div class="storefront__col storefront__last-col u-xs-md-display-none">
+                    <div class="storefront__item storefront__img tile__lg--xs-screen u-xs-only-display" style="width=100%; background:url({{ storefront_image.url }}) no-repeat; background-size: cover; background-position: bottom;">
+                       <h1 class="storefront__lg-text">{{ self.storefront.teaser }}</h1>
+                    </div>
                     {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.2 %}
-                    <div class="storefront__item storefront__stat-lg tile__md">
+                    <a href="{% url 'meinberlin_plans:plan-list' %}" class="storefront__item storefront__stat-lg tile__md">
                         <span class="storefront__xl-text">{{ self.storefront.num_projects }}</span>
                         <div class="storefront__stat-text">
                             <p>{% blocktrans count counter=self.storefront.num_projects %}project you can participate in!{% plural %}projects you can participate in!{% endblocktrans %}</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
