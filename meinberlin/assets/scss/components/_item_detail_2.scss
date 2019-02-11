@@ -34,10 +34,13 @@
 }
 
 .item-detail-2__project-title {
+    margin-left: $r-spacer;
     font-weight: bold;
     font-size: inherit;
 }
 
 .item-detail-2__project-list {
-    border-top: 2px solid $border-color;
+    padding-top: $padding;
+    padding-bottom: $padding;
+    background-color: $bg-secondary;
 }
