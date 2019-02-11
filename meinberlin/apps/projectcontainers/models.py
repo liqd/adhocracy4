@@ -34,6 +34,20 @@ class ProjectContainer(project_models.Project):
             .count()
 
     @property
+    def future_project_count(self):
+        """Return the number of future projects within the container.
+
+        If a container is public (default) only public projects are counted.
+        For future private containers all projects should be counted.
+        """
+        now = timezone.now()
+        return self.projects\
+            .filter(is_public=True, is_draft=False, is_archived=False)\
+            .filter(module__phase__end_date__lte=now)\
+            .distinct()\
+            .count()
+
+    @property
     def total_project_count(self):
         """Return the number of total projects within the container.
 

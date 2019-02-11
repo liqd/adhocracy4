@@ -67,23 +67,31 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                   'published_projects_count', 'created_or_modified']
 
     def _get_participation_status_project(self, instance):
-        project_phases = instance.phases
-
-        if project_phases.active_phases():
-            return _('running'), True
-
-        if project_phases.future_phases():
-            try:
-                return (_('starts at {}').format
-                        (project_phases.future_phases().first().
-                         start_date.date().strftime('%d.%m.%Y')),
-                        True)
-            except AttributeError as e:
-                print(e)
-                return (_('starts in the future'),
-                        True)
+        if hasattr(instance, 'projectcontainer') and instance.projectcontainer:
+            if instance.projectcontainer.active_project_count > 0:
+                return _('running'), True
+            elif instance.projectcontainer.future_project_count > 0:
+                return _('starts in the future'), True
+            else:
+                return _('done'), False
         else:
-            return _('done'), False
+            project_phases = instance.phases
+
+            if project_phases.active_phases():
+                return _('running'), True
+
+            if project_phases.future_phases():
+                try:
+                    return (_('starts at {}').format
+                            (project_phases.future_phases().first().
+                             start_date.date().strftime('%d.%m.%Y')),
+                            True)
+                except AttributeError as e:
+                    print(e)
+                    return (_('starts in the future'),
+                            True)
+            else:
+                return _('done'), False
 
     def get_type(self, instance):
         return 'project'
@@ -167,7 +175,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
 
     def get_published_projects_count(self, instance):
         if hasattr(instance, 'projectcontainer') and instance.projectcontainer:
-            return instance.projectcontainer.active_project_count
+            return instance.projectcontainer.total_project_count
 
     def get_point_label(self, instance):
         return ''
