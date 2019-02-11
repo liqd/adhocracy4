@@ -197,8 +197,8 @@
 }
 
 .block--map-teaser_background {
-    background-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 0 70px $white;
+    background-color: $white-shadow;
+    box-shadow: 0 0 70px 20px $white-shadow;
     border-radius: 100px;
 }
 
