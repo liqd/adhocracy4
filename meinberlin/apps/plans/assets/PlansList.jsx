@@ -74,22 +74,22 @@ class PlansList extends React.Component {
                 <div className="maplist-item__link" />
                 {item.subtype === 'container' &&
                   <div className="maplist-item__stats">
-                    <span className="maplist-item__proj-count"><i className="fas fa-th" />{django.gettext('Participation projects: ')}</span>
+                    <span className="maplist-item__proj-count"><i className="fas fa-th" aria-hidden="true" />{django.gettext('Participation projects: ')}</span>
                     <span>{item.published_projects_count}</span>
                     <br />
-                    <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: ')}</span>
+                    <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Participation: ')}</span>
                     <span className={statusClass}>{item.participation_string }</span>
                   </div>
                 }
                 {item.future_phase &&
                   <div className="status-item status__future">
-                    <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: ')}{item.participation_string}</span>
+                    <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Participation: ')}{item.participation_string}</span>
                   </div>
                 }
                 {item.active_phase &&
                 <div className="status-item status__active">
                   <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
-                  <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('remaining')} {item.active_phase[1]}</span>
+                  <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('remaining')} {item.active_phase[1]}</span>
                 </div>
                 }
                 {item.past_phase &&
@@ -108,10 +108,10 @@ class PlansList extends React.Component {
               <h3 className="maplist-item__title">{item.title}</h3>
               <div className="maplist-item__link" />
               <div className="maplist-item__stats">
-                <span className="maplist-item__proj-count"><i className="fas fa-th" />{django.gettext('Participation projects: ')}</span>
+                <span className="maplist-item__proj-count"><i className="fas fa-th" aria-hidden="true" />{django.gettext('Participation projects: ')}</span>
                 <span>{item.published_projects_count}</span>
                 <br />
-                <span className="maplist-item__status"><i className="fas fa-clock" />{django.gettext('Participation: ')}</span>
+                <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Participation: ')}</span>
                 <span className={statusClass}>{item.participation_string }</span>
               </div>
               <div className="status-item_spacer" />
