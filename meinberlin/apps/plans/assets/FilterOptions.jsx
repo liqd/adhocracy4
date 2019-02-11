@@ -72,7 +72,9 @@ class FilterOptions extends React.Component {
   }
 
   getGridClassName () {
-    if (this.props.numColumns > 1) {
+    if (this.props.numColumns === 3) {
+      return 'l-tiles-4'
+    } else if (this.props.numColumns > 1) {
       return 'l-tiles-' + this.props.numColumns
     }
     return ''
