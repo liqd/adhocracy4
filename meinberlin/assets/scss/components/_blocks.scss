@@ -196,6 +196,12 @@
     padding-bottom: 16*$padding;
 }
 
+.block--map-teaser_background {
+    background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 70px $white;
+    border-radius: 100px;
+}
+
 //as filter is different on homepage styling must be nested
 .block--map-teaser__filter {
     .filter-bar-container {
