@@ -30,7 +30,7 @@ class Toggles extends React.Component {
       return (
         <div>
           <div className="switch-container">
-            <div className="switch-filter__label">{django.gettext('Set filters')}</div>
+            <div className={!this.props.displayButtons ? 'd-none' : 'switch-filter__label'}>{django.gettext('Set filters')}</div>
             <div>
               { this.props.displayButtons && this.props.statusSelected &&
                 <button
