@@ -187,11 +187,14 @@
 }
 
 .block--map-teaser {
-    background-size: 300vh;
+    background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
-    margin: (-15*$r-spacer) (-$r-spacer) (-$r-spacer) (-$r-spacer);
-    padding-top: 20*$padding;
+    max-width: $wrapper-width;
+    margin: auto;
+    margin-top: (-15*$r-spacer);
+    margin-bottom: (-$r-spacer);
+    padding-top: 25*$padding;
     padding-bottom: 16*$padding;
 }
 
