@@ -26,6 +26,11 @@ class CommonFields:
     def get_organisation(self, instance):
         return instance.organisation.name
 
+    def get_created_or_modified(self, instance):
+        if instance.modified:
+            return str(instance.modified)
+        return str(instance.created)
+
 
 class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     type = serializers.SerializerMethodField()
@@ -130,7 +135,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
 
     def get_active_phase(self, instance):
         project_phases = instance.phases
-        if project_phases.active_phases():
+        if project_phases.active_phases() and instance.active_phase_progress:
             progress = instance.active_phase_progress
             time_left = instance.time_left
             end_date = str(project_phases.active_phases().last().end_date)
@@ -174,11 +179,6 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
 
     def get_cost(self, instance):
         return ''
-
-    def get_created_or_modified(self, instance):
-        if instance.modified:
-            return str(instance.modified)
-        return str(instance.created)
 
 
 class PlanSerializer(serializers.ModelSerializer, CommonFields):
@@ -236,8 +236,3 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
         participation_string, participation_active = \
             self._get_participation_status_plan(instance)
         return participation_active
-
-    def get_created_or_modified(self, instance):
-        if instance.modified:
-            return str(instance.modified)
-        return str(instance.created)
