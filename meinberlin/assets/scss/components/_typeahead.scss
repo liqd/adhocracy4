@@ -3,6 +3,13 @@
     flex-wrap: wrap;
     align-items: stretch;
     width: 100%;
+
+    //align input and autocomplete letters
+    .rbt-input-hint-container {
+        div {
+            top: -1px !important;
+        }
+    }
 }
 
 .typeahead__input-group-prepend {
