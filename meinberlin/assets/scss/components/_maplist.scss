@@ -15,7 +15,7 @@
 
 .maplist-item__plan,
 .maplist-item__content {
-    padding: $padding;
+    padding: 1.5*$padding;
 }
 
 .maplist-item__proj {
@@ -33,6 +33,7 @@
 }
 
 .maplist-item__label {
+    font-size: $font-size-sm;
     margin-right: 0.5*$r-spacer;
 }
 
@@ -42,11 +43,11 @@
 }
 
 .maplist-popup-item__roofline {
-    font-size: $font-size-xs;
+    font-size: $font-size-sm;
 }
 
 .maplist-item__title {
-    margin-top: 0;
+    margin-top: $r-spacer;
 }
 
 .maplist-item__description {
@@ -63,6 +64,7 @@
 .maplist-item__status,
 .maplist-item-popup__status {
     color: $text-color;
+    font-size: $font-size-xs;
 
     i {
         padding-right: $padding;
@@ -105,10 +107,6 @@
 
     .maplist-item__proj { // for image
         flex-direction: column;
-    }
-
-    .maplist-item__label-spacer { // stop overlap
-        margin-bottom: 0.5*$r-spacer;
     }
 
     //to make whole tile clickable even when empty
