@@ -20,15 +20,20 @@ class TypedProjectDashboard(ProjectDashboard):
     def get_project_components(self):
         if self.project_type == 'bplan':
             return [components.projects.get('bplan'),
+                    components.projects.get('plans'),
                     components.projects.get('adminlog')]
         elif self.project_type == 'external':
             return [components.projects.get('external'),
+                    components.projects.get('topics'),
+                    components.projects.get('point'),
+                    components.projects.get('plans'),
                     components.projects.get('adminlog')]
         elif self.project_type == 'container':
             return [components.projects.get('container-basic'),
                     components.projects.get('container-information'),
                     components.projects.get('topics'),
                     components.projects.get('point'),
+                    components.projects.get('plans'),
                     components.projects.get('container-projects')]
 
         return [component for component in components.get_project_components()
