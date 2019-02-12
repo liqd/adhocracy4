@@ -4,7 +4,6 @@
     flex-flow: row wrap;
     margin-left: 1*$r-spacer;
     margin-right: 1*$r-spacer;
-    margin-bottom: $r-spacer;
 
     .btn--transparent {
         color: $brand-secondary;
@@ -13,10 +12,6 @@
         &:hover,
         &:focus {
             color: $brand-primary;
-        }
-
-        @media screen and (min-width: $breakpoint-xs) {
-            margin-bottom: 0;
         }
     }
 
