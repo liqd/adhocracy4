@@ -561,11 +561,11 @@ msgstr "Projektstatus"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:113
 msgid "Organisation"
-msgstr ""
+msgstr "Organisation"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:128
 msgid "Enter the name of the organisation"
-msgstr ""
+msgstr "Name der Organisation eingeben"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:136
 msgid "show projects"
@@ -657,7 +657,7 @@ msgstr "Übergeordnetes Projekt: "
 #: meinberlin/apps/plans/assets/Toggles.jsx:33
 #: meinberlin/apps/plans/assets/Toggles.jsx:80
 msgid "Set filters"
-msgstr ""
+msgstr "gesetzte Filter"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:63
 msgid "Show map"

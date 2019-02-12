@@ -2660,7 +2660,7 @@ msgstr "Themen"
 
 #: meinberlin/apps/plans/models.py:86
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: meinberlin/apps/plans/models.py:90
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:52
@@ -2927,25 +2927,25 @@ msgstr "Beteiligung fängt am %(date)s an"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:54
 msgid "Participation projects: "
-msgstr ""
+msgstr "Beteiligungsprojekte: "
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:60
 msgid "Participation: "
-msgstr ""
+msgstr "Beteiligung: "
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:78
 #, python-format
 msgid "remaining %(time_left)s"
-msgstr ""
+msgstr "noch %(time_left)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:84
 #, python-format
 msgid "Participation: starts on %(date)s"
-msgstr ""
+msgstr "Beteiligung: startet am %(date)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:89
 msgid "Participation ended. Read result"
-msgstr ""
+msgstr "Beteiligung beendet. Ergebnis lesen."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:9
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:21
