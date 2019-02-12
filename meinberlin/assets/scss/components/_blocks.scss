@@ -242,19 +242,10 @@
         right: 1rem;
         margin-left: 0;
         margin-right: 0;
-        margin-top: 2*$r-spacer;
+        margin-top: 1.5*$r-spacer;
+        padding-top: 2*$padding;
         border-top: 2px solid $white;
         z-index: 3;
-    }
-
-    .filter-bar__menu {
-        padding: 0 4*$padding $padding 4*$padding;
-    }
-
-    .filter-bar--stacked {
-        .filter-bar__menu {
-            padding: 0;
-        }
     }
 }
 
