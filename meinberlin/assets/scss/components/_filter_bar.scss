@@ -171,7 +171,7 @@ $divider-margin: 1.25rem;
     z-index: 1;
 
     @media screen and (min-width: $breakpoint-md) {
-        margin-top: 2*$r-spacer;
+        margin-top: $r-spacer;
         margin-left: 4*$r-spacer;
         margin-right: 4*$r-spacer;
     }
@@ -180,6 +180,10 @@ $divider-margin: 1.25rem;
 .filter-bar__question {
     font-size: $font-size-xl;
     color: $text-color;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        margin-top: 0;
+    }
 }
 
 .filter-bar__option {
