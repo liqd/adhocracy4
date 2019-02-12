@@ -268,7 +268,7 @@ class ListMapBox extends React.Component {
     )
   }
 
-  getPlansMap (tapEnabled) {
+  getPlansMap (draggingEnabled) {
     return (
       <PlansMap key="content"
         resize={this.state.resizeMap}
@@ -280,7 +280,7 @@ class ListMapBox extends React.Component {
         baseurl={this.props.baseurl}
         districtnames={this.props.districtnames}
         topicChoices={this.props.topicChoices}
-        tapEnabled={tapEnabled}
+        draggingEnabled={draggingEnabled}
 
       />
     )

@@ -88,7 +88,7 @@ class PlansMap extends React.Component {
       scrollWheelZoom: false,
       zoomControl: false,
       maxZoom: 18,
-      tap: this.props.tapEnabled })
+      dragging: this.props.draggingEnabled })
     new L.Control.Zoom({ position: 'bottomright' }).addTo(map)
     return map
   }
