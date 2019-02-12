@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 14:49+0100\n"
+"POT-Creation-Date: 2019-02-12 10:23+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -559,11 +559,15 @@ msgstr "Beteiligung"
 msgid "Project status"
 msgstr "Projektstatus"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:125
-msgid "Show Organisation ..."
-msgstr "Name der Verwaltung eingeben"
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:113
+msgid "Organisation"
+msgstr ""
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:133
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:128
+msgid "Enter the name of the organisation"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:136
 msgid "show projects"
 msgstr "Projekte anzeigen"
 
@@ -621,24 +625,24 @@ msgid "Participation projects: "
 msgstr "Beteiligungsprojekte: "
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:139
-#: meinberlin/apps/plans/assets/PlansMap.jsx:277
+#: meinberlin/apps/plans/assets/PlansMap.jsx:279
 msgid "Nothing to show"
 msgstr "Keine Ergebnisse"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:252
+#: meinberlin/apps/plans/assets/PlansMap.jsx:254
 msgid "Address Search"
 msgstr "Adresssuche"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:253
-#: meinberlin/apps/plans/assets/PlansMap.jsx:254
+#: meinberlin/apps/plans/assets/PlansMap.jsx:255
+#: meinberlin/apps/plans/assets/PlansMap.jsx:256
 msgid "Address search"
 msgstr "Adresssuche"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:285
+#: meinberlin/apps/plans/assets/PlansMap.jsx:287
 msgid "Close information box"
 msgstr "Informationsfenster schließen"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:286
+#: meinberlin/apps/plans/assets/PlansMap.jsx:288
 msgid ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
@@ -650,15 +654,20 @@ msgstr ""
 msgid "Superordinate project: "
 msgstr "Übergeordnetes Projekt: "
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:62
+#: meinberlin/apps/plans/assets/Toggles.jsx:33
+#: meinberlin/apps/plans/assets/Toggles.jsx:80
+msgid "Set filters"
+msgstr ""
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:63
 msgid "Show map"
 msgstr "Karte anzeigen"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:108
+#: meinberlin/apps/plans/assets/Toggles.jsx:110
 msgid "Show List"
 msgstr "Liste anzeigen"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:112
+#: meinberlin/apps/plans/assets/Toggles.jsx:114
 msgid "Show Map"
 msgstr "Karte anzeigen"
 
@@ -689,6 +698,9 @@ msgstr "Keine Treffer im Bereich des Projekts gefunden"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Meinten Sie:"
+
+#~ msgid "Show Organisation ..."
+#~ msgstr "Name der Verwaltung eingeben"
 
 #~ msgid "Project for the following plan: "
 #~ msgstr "Projekt zu folgendem Vorhaben:"

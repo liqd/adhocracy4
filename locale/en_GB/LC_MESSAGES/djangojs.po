@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-08 14:49+0100\n"
+"POT-Creation-Date: 2019-02-12 10:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -485,11 +485,15 @@ msgstr "Participation"
 msgid "Project status"
 msgstr "Project status"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:125
-msgid "Show Organisation ..."
-msgstr "Show Organisation ..."
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:113
+msgid "Organisation"
+msgstr "Organisation"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:133
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:128
+msgid "Enter the name of the organisation"
+msgstr "Enter the name of the organisation"
+
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:136
 msgid "show projects"
 msgstr "show projects"
 
@@ -547,24 +551,24 @@ msgid "Participation projects: "
 msgstr "Participation projects: "
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:139
-#: meinberlin/apps/plans/assets/PlansMap.jsx:277
+#: meinberlin/apps/plans/assets/PlansMap.jsx:279
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:252
+#: meinberlin/apps/plans/assets/PlansMap.jsx:254
 msgid "Address Search"
 msgstr "Address Search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:253
-#: meinberlin/apps/plans/assets/PlansMap.jsx:254
+#: meinberlin/apps/plans/assets/PlansMap.jsx:255
+#: meinberlin/apps/plans/assets/PlansMap.jsx:256
 msgid "Address search"
 msgstr "Address search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:285
+#: meinberlin/apps/plans/assets/PlansMap.jsx:287
 msgid "Close information box"
 msgstr "Close information box"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:286
+#: meinberlin/apps/plans/assets/PlansMap.jsx:288
 msgid ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
@@ -576,15 +580,20 @@ msgstr ""
 msgid "Superordinate project: "
 msgstr "Superordinate project: "
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:62
+#: meinberlin/apps/plans/assets/Toggles.jsx:33
+#: meinberlin/apps/plans/assets/Toggles.jsx:80
+msgid "Set filters"
+msgstr "Set filters"
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:63
 msgid "Show map"
 msgstr "Show map"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:108
+#: meinberlin/apps/plans/assets/Toggles.jsx:110
 msgid "Show List"
 msgstr "Show List"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:112
+#: meinberlin/apps/plans/assets/Toggles.jsx:114
 msgid "Show Map"
 msgstr "Show Map"
 
@@ -615,6 +624,9 @@ msgstr "No matches found within the project area"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Did you mean:"
+
+#~ msgid "Show Organisation ..."
+#~ msgstr "Show Organisation ..."
 
 #~ msgid "Project for the following plan: "
 #~ msgstr "Project for the following plan: "
