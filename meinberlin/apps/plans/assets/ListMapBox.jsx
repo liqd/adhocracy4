@@ -268,7 +268,7 @@ class ListMapBox extends React.Component {
     )
   }
 
-  getPlansMap () {
+  getPlansMap (tapEnabled) {
     return (
       <PlansMap key="content"
         resize={this.state.resizeMap}
@@ -280,6 +280,8 @@ class ListMapBox extends React.Component {
         baseurl={this.props.baseurl}
         districtnames={this.props.districtnames}
         topicChoices={this.props.topicChoices}
+        tapEnabled={tapEnabled}
+
       />
     )
   }
@@ -351,7 +353,7 @@ class ListMapBox extends React.Component {
             this.getPlansList(false)
           }
           {this.state.showListMap &&
-            this.getPlansMap()
+            this.getPlansMap(false)
           }
         </div>)
     } else if (isTablet) {
@@ -362,7 +364,7 @@ class ListMapBox extends React.Component {
           this.getPlansList(false)
         }
         {this.state.showListMap &&
-          this.getPlansMap()
+          this.getPlansMap(true)
         }
       </div>)
     } else {
@@ -377,7 +379,7 @@ class ListMapBox extends React.Component {
               </div>
               <div id="map" className="map-container map-list-combined__map">
                 <StickyBox offsetTop={0} offsetBottom={0}>
-                  { this.getPlansMap() }
+                  { this.getPlansMap(true) }
                 </StickyBox>
               </div>
             </div>
