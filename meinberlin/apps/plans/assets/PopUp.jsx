@@ -31,7 +31,7 @@ class PopUp extends React.Component {
           <div className="maps-popups-popup-name u-spacer-bottom-half">
             <a href={this.props.item.url}>{this.props.item.title}</a>
           </div>
-          {this.props.item.future_phase &&
+          {this.props.item.future_phase && !this.props.item.active_phase &&
           <div className="status__future">
             <span className="maplist-item-popup__status"><i className="fas fa-clock" />{django.gettext('Participation: from ') + this.props.item.future_phase + django.gettext(' possible')}</span>
           </div>
@@ -42,7 +42,7 @@ class PopUp extends React.Component {
             <span className="maplist-item-popup__status"><i className="fas fa-clock" />{django.gettext('remaining')} {this.props.item.active_phase[1]}</span>
           </div>
           }
-          {this.props.item.past_phase &&
+          {this.props.item.past_phase && !this.props.item.active_phase && !this.props.item.future_phase &&
             <div className="maplist-item-popup__status status-bar__past">
               {django.gettext('Participation ended. Read result.')}
             </div>
