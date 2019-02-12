@@ -142,11 +142,10 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return False
 
     def get_active_phase(self, instance):
-        project_phases = instance.phases
-        if project_phases.active_phases() and instance.active_phase_progress:
+        if instance.active_phase:
             progress = instance.active_phase_progress
             time_left = instance.time_left
-            end_date = str(project_phases.active_phases().last().end_date)
+            end_date = str(instance.active_phase.end_date)
             return [progress, time_left, end_date]
         return False
 
