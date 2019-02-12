@@ -13,7 +13,7 @@
   ],
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "5.7.1",
+    "@fortawesome/fontawesome-free": "5.7.2",
     "acorn": "6.1.0",
     "adhocracy4": "liqd/adhocracy4#mB-v2.0",
     "autoprefixer": "9.4.7",
