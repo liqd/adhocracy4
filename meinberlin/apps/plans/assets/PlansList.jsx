@@ -30,7 +30,7 @@ class PlansList extends React.Component {
     if (item.topics) {
       return (
         <div className={item.tile_image ? 'maplist-item__label-img' : 'maplist-item__label-spacer'}>
-          {topicsList.map(topic => <span key={topic} className="label label--secondary maplist-item__label u-spacer-bottom-half">{topic}</span>)}
+          {topicsList.map(topic => <span key={topic} className="label label--secondary maplist-item__label u-spacer-bottom">{topic}</span>)}
         </div>
       )
     }
