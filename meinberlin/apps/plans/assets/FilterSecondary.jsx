@@ -88,6 +88,30 @@ class FilterSecondary extends React.Component {
           <span className="sr-only">{django.gettext('Search title')}
           </span>
         </label>
+        { this.props.organisationFilterOnTop &&
+          <div className="form-group">
+            <div className="typeahead__input-label">
+              <h2 className="u-no-margin">{django.gettext('Organisation')}</h2>
+            </div>
+            <span className="typeahead__input-group">
+              <span className="typeahead__input-group-prepend">
+                <span className="typeahead__input-group-text">
+                  <i className="fas fa-sort-alpha-down" />
+                </span>
+              </span>
+              <Typeahead
+                className="input-group__input"
+                onChange={this.clickOrganisation.bind(this)}
+                labelKey="name"
+                multiple={false}
+                options={this.props.organisations}
+                selected={this.state.organisationChoice}
+                placeholder={django.gettext('Enter the name of the organisation')}
+              />
+            </span>
+          </div>
+
+        }
         <div className="filter-bar__menu-radio-group">
           <div className="filter-bar__menu-radio-part">
             <FilterRadio
@@ -108,6 +132,7 @@ class FilterSecondary extends React.Component {
             />
           </div>
         </div>
+        { !this.props.organisationFilterOnTop &&
         <div className="form-group">
           <div className="typeahead__input-label">
             <h2 className="u-no-margin">{django.gettext('Organisation')}</h2>
@@ -129,6 +154,7 @@ class FilterSecondary extends React.Component {
             />
           </span>
         </div>
+        }
         <button
           className="btn btn--primary filter-secondary__btn"
           type="submit"
