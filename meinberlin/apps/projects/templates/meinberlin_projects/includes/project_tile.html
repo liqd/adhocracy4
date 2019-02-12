@@ -5,9 +5,6 @@
 <li class="maplist-item__vertical">
     <a href="{{ project|project_url }}" target="{{ project|is_external|yesno:"_blank,_self" }}">
 
-        {% if project|is_external %}
-        <div class="maplist-item__link-img"></div>
-        {% endif %}
         <div class="maplist-item__proj">
             {% if project_image %}
             <div class="maplist-item__img" alt="" style="background-image: url({{ project_image|thumbnail_url:'project_tile' }})">
@@ -94,5 +91,8 @@
             </div>
             <div class="status-item_spacer"></div>
         </div>
+        {% if project|is_external %}
+        <div class="maplist-item__link-img"></div>
+        {% endif %}
     </a>
 </li>

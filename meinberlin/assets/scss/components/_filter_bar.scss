@@ -109,6 +109,11 @@ $divider-margin: 1.25rem;
     }
 }
 
+.filter-bar__btn--light-homepage {
+    font-size: $font-size-sm;
+    margin-left: 2 * $r-spacer;
+}
+
 .filter-bar--open {
     background-color: $bg-secondary;
     color: $text-color;
@@ -116,7 +121,6 @@ $divider-margin: 1.25rem;
     .filter-bar__btn,
     .filter-bar__btn--light {
         color: $text-color;
-        font-size: $font-size-base;
 
         &:focus,
         &:hover,
@@ -229,7 +233,8 @@ $divider-margin: 1.25rem;
         width: 100%;
     }
 
-    .filter-bar__btn--light {
+    .filter-bar__btn--light,
+    .filter-bar__btn--light-homepage {
         margin-left: 0;
     }
 }

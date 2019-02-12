@@ -49,9 +49,6 @@ class PlansList extends React.Component {
     return (
       <li className={this.props.isHorizontal ? 'maplist-item__horizontal' : 'maplist-item__vertical'} key={i}>
         <a href={item.url}>
-          {item.subtype === 'external' &&
-          <div className="maplist-item__link-img" />
-          }
           {item.type === 'project' &&
             <div className="maplist-item__proj">
               {item.tile_image &&
@@ -116,6 +113,9 @@ class PlansList extends React.Component {
               </div>
               <div className="status-item_spacer" />
             </div>
+          }
+          {item.subtype === 'external' &&
+          <div className="maplist-item__link-img" />
           }
         </a>
       </li>
