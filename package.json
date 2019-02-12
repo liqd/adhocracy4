@@ -15,7 +15,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.7.1",
     "acorn": "6.1.0",
-    "adhocracy4": "liqd/adhocracy4#9f8b1e742d58946340068a3c6b38497718df433e",
+    "adhocracy4": "liqd/adhocracy4#mB-v2.0",
     "autoprefixer": "9.4.7",
     "babel-core": "6.26.3",
     "babel-loader": "7.1.5",
