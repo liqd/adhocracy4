@@ -71,7 +71,7 @@
 
 .storefront__item {
     margin: $r-spacer 0;
-    padding: $padding;
+    padding: 1.5*$padding;
     flex: 0 1 6rem;
     flex-wrap: wrap;
     position: relative;
@@ -94,7 +94,7 @@
 
 .storefront__sm-text {
     margin-bottom: 0;
-    padding-top: 3*$padding;
+    padding-top: 4*$padding;
     color: $gray;
 }
 
@@ -115,20 +115,11 @@
     font-weight: bold;
     font-style: italic;
     padding: $padding 0;
-    margin: auto;
     color: $text-color;
 
     @media screen and (min-width: $breakpoint-xs) {
-        padding: 2*$padding 0;
+        padding: 4*$padding 0 2*$padding 0;
     }
-}
-
-.storefront__proj-text {
-    margin-top: 0;
-}
-
-.storefront__district-text {
-    padding: $padding 0;
 }
 
 @media screen and (max-width: $breakpoint-xs-down) {
@@ -167,12 +158,24 @@
     box-shadow: 0 0 20px 0 $shadow;
 }
 
+.storefront__opinion-text,
+.storefront__proj-text,
+.storefront__quote-text {
+    margin: auto;
+    width: 70%;
+    min-width: 200px;
+}
+
+.storefront__district-text {
+    padding-bottom: $padding;
+}
+
 .storefront__district {
-    padding: 2*$padding 2*$padding;
+    padding: 2*$padding;
     color: $brand-secondary;
 
     @media screen and (min-width: $breakpoint-xs) {
-        padding: 3*$padding 3*$padding;
+        padding: 3*$padding;
     }
 }
 
