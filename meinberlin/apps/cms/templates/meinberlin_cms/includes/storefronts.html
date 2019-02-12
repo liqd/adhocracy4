@@ -52,7 +52,7 @@
     <blockquote class="storefront__quote-text">
         „{{ item.quote|truncatechars:150 }}“
     </blockquote>
-    <div>{% blocktrans with name=item.project.name|truncatechars:60 %} What is your opinion on this: {{ name }}?{% endblocktrans %}</div>
+    <div class="storefront__opinion-text">{% blocktrans with name=item.project.name|truncatechars:60 %} What is your opinion on this: {{ name }}?{% endblocktrans %}</div>
 </a>
 {% elif not item.project and item.quote %}
 <div class="storefront__item storefront__quote tile__md">
