@@ -33,11 +33,12 @@
 }
 
 .maplist-item__label {
+    font-size: $font-size-sm;
     margin-right: 0.5*$r-spacer;
 }
 
 .maplist-item__roofline {
-    font-size: $font-size-sm;
+    font-size: $font-size-xs;
     color: $gray;
 }
 
@@ -63,6 +64,7 @@
 .maplist-item__status,
 .maplist-item-popup__status {
     color: $text-color;
+    font-size: $font-size-xs;
 
     i {
         padding-right: $padding;
@@ -169,4 +171,5 @@
     position: absolute;
     top: 0;
     right: 0;
+    z-index: 1;
 }
