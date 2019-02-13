@@ -51,6 +51,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
     active_phase = serializers.SerializerMethodField()
     past_phase = serializers.SerializerMethodField()
     tile_image = serializers.SerializerMethodField()
+    tile_image_copyright = serializers.SerializerMethodField()
     plan_url = serializers.SerializerMethodField()
     plan_title = serializers.SerializerMethodField()
     published_projects_count = serializers.SerializerMethodField()
@@ -120,7 +121,18 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         if instance.tile_image:
             image = get_thumbnailer(instance.tile_image)['project_tile']
             image_url = image.url
+        elif instance.image:
+            image = get_thumbnailer(instance.image)['project_tile']
+            image_url = image.url
         return image_url
+
+    def get_tile_image_copyright(self, instance):
+        if instance.tile_image:
+            return instance.tile_image_copyright
+        elif instance.image:
+            return instance.image_copyright
+        else:
+            return None
 
     def get_status(self, instance):
         project_phases = instance.phases

@@ -25,6 +25,10 @@
 .maplist-item__img {
     position: relative;
     flex-basis: 250px;
+
+    background-size: cover;
+    background-position: 50%;
+    background-repeat: no-repeat;
 }
 
 .maplist-item__img-copyright {
