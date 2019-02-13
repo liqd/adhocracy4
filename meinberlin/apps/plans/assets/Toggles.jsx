@@ -25,6 +25,13 @@ class Toggles extends React.Component {
     return this.props.titleSearchString
   }
 
+  organisationButtonString () {
+    if (this.props.organisationString.length > 20) {
+      return this.props.organisationString.substr(0, 20) + '...'
+    }
+    return this.props.organisationString
+  }
+
   render () {
     if (this.props.isSlider) {
       return (
@@ -48,7 +55,7 @@ class Toggles extends React.Component {
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickOrganisationButton.bind(this)}
-                  type="button">{this.props.organisationString} <i className="fa fa-times" /></button>
+                  type="button">{this.organisationButtonString()} <i className="fa fa-times" /></button>
               }
               { this.props.displayButtons && this.props.titleSearchSelected &&
                 <button
