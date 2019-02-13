@@ -35,7 +35,7 @@
                        <h1 class="storefront__lg-text">{{ self.storefront.teaser }}</h1>
                     </div>
                     <div class="storefront__item storefront__stat-sm tile__sm u-xs-down-display-none">
-                        <h1 class="storefront__lg-text">{{ self.storefront.num_entries }}</h1>
+                        <h1 class="storefront__lg-text storefront__xl-text">{{ self.storefront.num_entries }}</h1>
                         <p>{% blocktrans count counter=self.storefront.num_entries %}entry added by citizens{% plural %}entries added by citizens{% endblocktrans %}</p>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     </div>
                     {% include "meinberlin_cms/includes/storefronts.html" with item=self.storefront.random_items.2 %}
                     <a href="{% url 'meinberlin_plans:plan-list' %}" class="storefront__item storefront__stat-lg tile__md">
-                        <span class="storefront__xl-text">{{ self.storefront.num_projects }}</span>
+                        <span class="storefront__xxl-text">{{ self.storefront.num_projects }}</span>
                         <div class="storefront__stat-text">
                             <p>{% blocktrans count counter=self.storefront.num_projects %}project you can participate in!{% plural %}projects you can participate in!{% endblocktrans %}</p>
                         </div>
