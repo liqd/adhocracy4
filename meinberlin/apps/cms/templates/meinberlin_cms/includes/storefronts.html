@@ -9,7 +9,7 @@
     </button>
 </a>
 {% elif item.project and not item.quote %}
-<a href="{{ item.project_url }}" class="storefront__item storefront__proj tile__md">
+<a href="{{ item.project_url }}" {% if item.item_type == 'external' %}target="_blank"{% endif %} class="storefront__item storefront__proj tile__md">
     {% if item.project.days_left < 3 %}
     <div>
       <div class="storefront__ending-icon">
@@ -48,7 +48,7 @@
     {% endif %}
 </a>
 {% elif item.project and item.quote %}
-<a href="{{ item.project_url }}" class="storefront__item storefront__proj-quote tile__md">
+<a href="{{ item.project_url }}" {% if item.item_type == 'external' %}target="_blank"{% endif %} class="storefront__item storefront__proj-quote tile__md">
     <blockquote class="storefront__quote-text">
         „{{ item.quote|truncatechars:150 }}“
     </blockquote>
