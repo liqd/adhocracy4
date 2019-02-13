@@ -12,6 +12,7 @@ from wagtail.snippets.models import register_snippet
 from adhocracy4.comments.models import Comment
 from adhocracy4.modules.models import Item
 from adhocracy4.projects.models import Project
+from meinberlin.apps.projects import get_project_type
 
 
 class StorefrontItem(models.Model):
@@ -34,6 +35,12 @@ class StorefrontItem(models.Model):
 
     def __str__(self):
         return str(self.pk)
+
+    @cached_property
+    def project_url(self):
+        if get_project_type(self.project) in ('external', 'bplan'):
+            return self.project.externalproject.url
+        return self.project.get_absolute_url()
 
     @cached_property
     def district_project_count(self):
