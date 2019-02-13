@@ -13,8 +13,8 @@
                             <a class="main-nav__link {% if request.path == '/' %}is-active{% else %}not-active{% endif %}" href="/"><i class="fas fa-home"></i><span class="main-nav__link-home">{% trans 'Home' %}</span></a>
                         </li>
                         <li class="main-nav__item">
-                            {% url 'project-list' as project_list %}
-                            <a class="main-nav__link {% if request.path == project_list %}is-active{% else %}not-active{% endif %}" href="{% url 'project-list' %}">{% trans 'Project overview' %}</a>
+                            {% url 'meinberlin_plans:plan-list' as project_list %}
+                            <a class="main-nav__link {% if request.path == project_list %}is-active{% else %}not-active{% endif %}" href="{% url 'meinberlin_plans:plan-list' %}">{% trans 'Project overview' %}</a>
                         </li>
                         {% get_menu "topnav" as topnav %}
                         {% for item in topnav %}
