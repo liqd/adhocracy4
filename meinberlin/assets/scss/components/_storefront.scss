@@ -99,14 +99,19 @@
 }
 
 .storefront__lg-text {
-    margin-top: 0;
+    margin: 0;
     color: $white;
     width: 75%;
 }
 
 .storefront__xl-text {
+    font-size: 1.5*$font-size-xxl;
+}
+
+.storefront__xxl-text {
+    margin: 0;
     font-size: 2*$font-size-xxl;
-    line-height: 1.8*$font-size-xxl;
+    line-height: 1.5*$font-size-xxl;
 }
 
 .storefront__quote-text {
