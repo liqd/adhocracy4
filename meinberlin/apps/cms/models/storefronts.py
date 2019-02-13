@@ -37,8 +37,14 @@ class StorefrontItem(models.Model):
         return str(self.pk)
 
     @cached_property
-    def project_url(self):
+    def item_type(self):
         if get_project_type(self.project) in ('external', 'bplan'):
+            return 'external'
+        return 'project'
+
+    @cached_property
+    def project_url(self):
+        if self.item_type == 'external':
             return self.project.externalproject.url
         return self.project.get_absolute_url()
 
