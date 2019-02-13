@@ -118,11 +118,11 @@
     font-size: $font-size-lg;
     font-weight: bold;
     font-style: italic;
-    padding: $padding 0;
+    padding: 0.7*$padding 0;
     color: $text-color;
 
     @media screen and (min-width: $breakpoint) {
-        padding: 7% 0 3% 0; //to stop overflow of content on small screen
+        padding: 5% 0; //to stop overflow of content on small screen
     }
 }
 
@@ -151,7 +151,7 @@
 
 .storefront__stat-text {
     width: 75%;
-    margin-top: 0.8rem;
+    margin-top: 0.5*$r-spacer;
 }
 
 .storefront__quote,
@@ -166,7 +166,7 @@
 .storefront__proj-text,
 .storefront__quote-text {
     margin: auto;
-    width: 70%;
+    width: 75%;
     min-width: 200px;
 }
 
