@@ -63,7 +63,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                   'organisation', 'tile_image',
                   'tile_image_copyright',
                   'point', 'point_label', 'cost',
-                  'district', 'topics',
+                  'district', 'topics', 'is_public',
                   'status',
                   'participation_string',
                   'participation_active',

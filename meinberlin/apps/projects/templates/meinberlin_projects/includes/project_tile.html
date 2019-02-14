@@ -92,7 +92,9 @@
             <div class="status-item_spacer"></div>
         </div>
         {% if project|is_external %}
-        <div class="maplist-item__link-img"></div>
+        <div class="maplist-item__corner-badge maplist-item__corner-badge--external"></div>
+        {% elif not project.is_public %}
+        <div class="maplist-item__corner-badge maplist-item__corner-badge--private"></div>
         {% endif %}
     </a>
 </li>

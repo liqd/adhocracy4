@@ -161,8 +161,7 @@
     }
 }
 
-.maplist-item__link-img {
-    background-image: url('/static/images/badge_external_link.png');
+.maplist-item__corner-badge {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -171,4 +170,12 @@
     position: absolute;
     top: 0;
     right: 0;
+}
+
+.maplist-item__corner-badge--external {
+    background-image: url('/static/images/badge_external_link.png');
+}
+
+.maplist-item__corner-badge--private {
+    background-image: url('/static/images/badge_priva_projekt.png');
 }
