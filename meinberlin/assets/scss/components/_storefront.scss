@@ -22,6 +22,8 @@
     display: flex;
     font-size: $font-size-base;
     padding-bottom: 3*$padding;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
     @media screen and (min-width: $breakpoint-xs) {
         padding-bottom: 6*$padding;

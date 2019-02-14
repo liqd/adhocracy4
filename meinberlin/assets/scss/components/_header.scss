@@ -156,6 +156,8 @@ $header-margin-bottom: 25px;
         position: absolute;
         top: 0;
         right: $padding;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
     // min-width and max-width can't have the same breakpoint
