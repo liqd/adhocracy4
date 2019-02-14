@@ -48,7 +48,8 @@ class PlansList extends React.Component {
     let statusClass = (item.participation_active === true) ? 'maplist-item__status-active' : 'maplist-item__status-inactive'
     return (
       <li className={this.props.isHorizontal ? 'maplist-item__horizontal' : 'maplist-item__vertical'} key={i}>
-        <a href={item.url}>
+
+        <a href={item.url} target={item.subtype === 'external' ? '_blank' : '_self'}>
           {item.type === 'project' &&
             <div className="maplist-item__proj">
               {item.tile_image &&

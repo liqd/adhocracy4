@@ -29,7 +29,7 @@ class PopUp extends React.Component {
           {this.renderTopics()}
           <span className="maplist-popup-item__roofline">{this.props.item.district}</span>
           <div className="maps-popups-popup-name u-spacer-bottom-half">
-            <a href={this.props.item.url}>{this.props.item.title}</a>
+            <a href={this.props.item.url} target={this.props.item.subtype === 'external' ? '_blank' : '_self'}>{this.props.item.title}</a>
           </div>
           {this.props.item.future_phase && !this.props.item.active_phase &&
           <div className="status__future">
