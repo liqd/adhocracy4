@@ -10,7 +10,7 @@
 .accordion__title {
     display: block;
     position: relative;
-    padding: $padding/2 1em $padding/2 1.2em;
+    padding: 0.5*$padding 1.7*$padding 0.5*$padding $padding;
     text-decoration: none;
     color: inherit;
     border-bottom: solid 1px $border-color;
