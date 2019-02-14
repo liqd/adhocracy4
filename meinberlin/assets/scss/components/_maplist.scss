@@ -1,10 +1,13 @@
 .maplist-list {
     max-width: calc(100% + 2rem); //this is all to fit within the frame to be inline with above items
-    margin-left: -1rem !important;
-    margin-right: -1rem !important;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-left: -1rem !important;
+        margin-right: -1rem !important;
+    }
 }
 
 .maplist-item__vertical,
@@ -151,7 +154,11 @@
 // horizontal tile structure
 .maplist-item__horizontal {
     width: 100%;
-    margin: 0 $r-spacer $r-spacer 4*$r-spacer;
+    margin: 0 $r-spacer $r-spacer $r-spacer;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin: 0 $r-spacer $r-spacer 5*$r-spacer;
+    }
 
     .maplist-item__proj,
     .maplist-item__plan { // statusbar position
