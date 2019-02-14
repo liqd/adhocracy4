@@ -71,8 +71,10 @@
 
     h2 {
         color: $brand-secondary;
-        font-size: $font-size-xxxl;
+        font-size: $font-size-xxl;
         margin-top: $r-spacer;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 }
 
