@@ -1,10 +1,10 @@
 .maplist-list {
-    max-width: 100%;
+    max-width: calc(100% + 2rem); //this is all to fit within the frame to be inline with above items
+    margin-left: -1rem !important;
+    margin-right: -1rem !important;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin-left: -1rem;
-    margin-right: -1rem;
 }
 
 .maplist-item__vertical,
