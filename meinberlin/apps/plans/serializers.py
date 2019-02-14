@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from django.utils.translation import ugettext as _
 from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
@@ -72,6 +74,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                   'past_phase', 'plan_url', 'plan_title',
                   'published_projects_count', 'created_or_modified']
 
+    @lru_cache(maxsize=1)
     def _get_participation_status_project(self, instance):
         if hasattr(instance, 'projectcontainer') and instance.projectcontainer:
             if instance.projectcontainer.active_project_count > 0:
@@ -226,6 +229,7 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     def get_subtype(self, instance):
         return 'plan'
 
+    @lru_cache(maxsize=1)
     def _get_participation_status_plan(self, item):
         projects = item.published_projects
         if not projects:
