@@ -291,6 +291,7 @@ class FilterNav extends React.Component {
               />
               }
             </div>
+            <span className="u-md-down-display-none">.</span>
             { this.props.linkUrl &&
               <div>
                 <a
