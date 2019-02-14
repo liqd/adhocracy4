@@ -36,7 +36,7 @@ class Toggles extends React.Component {
     if (this.props.isSlider) {
       return (
         <div>
-          <div className="switch-container">
+          <div className="l-frame switch-container">
             <div className={this.props.displayButtons && (this.props.statusSelected || this.props.participationSelected || this.props.organisationSelected || this.props.titleSearchSelected) ? 'switch-filter__label' : 'd-none'}>{django.gettext('Set filters')}</div>
             <div>
               { this.props.displayButtons && this.props.statusSelected &&
@@ -83,7 +83,7 @@ class Toggles extends React.Component {
     } else {
       return (
         <div>
-          <div className="switch-container">
+          <div className="l-frame switch-container">
             <div className={this.props.displayButtons && (this.props.statusSelected || this.props.participationSelected || this.props.organisationSelected || this.props.titleSearchSelected) ? 'switch-filter__label' : 'd-none'}>{django.gettext('Set filters')}</div>
             <div>
               { this.props.displayButtons && this.props.statusSelected &&
