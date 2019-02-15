@@ -74,7 +74,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                             'externalproject',
                             'projectcontainer')\
             .prefetch_related('moderators',
-                              'plans__title',
+                              'plans',
                               'organisation__initiators',
                               'module_set__phase_set')
         return projects
