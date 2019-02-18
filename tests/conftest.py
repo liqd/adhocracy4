@@ -9,7 +9,10 @@ from adhocracy4.test import helpers
 from adhocracy4.test.factories.maps import AreaSettingsFactory
 from meinberlin.test import factories
 from meinberlin.test.factories.activities import ActivityFactory
+from meinberlin.test.factories.bplan import BplanFactory
+from meinberlin.test.factories.extprojects import ExternalProjectFactory
 from meinberlin.test.factories.organisations import OrganisationFactory
+from meinberlin.test.factories.projectcontainers import ProjectContainerFactory
 
 
 def pytest_configure(config):
@@ -37,8 +40,12 @@ register(factories.RatingFactory)
 register(factories.ModeratorStatementFactory)
 register(factories.CategoryFactory)
 register(ActivityFactory)
+register(ProjectContainerFactory)
+register(ExternalProjectFactory)
+register(BplanFactory)
 
 register(a4_factories.ProjectFactory)
+register(a4_factories.PhaseFactory)
 register(a4_factories.ModuleFactory)
 register(AreaSettingsFactory)
 
