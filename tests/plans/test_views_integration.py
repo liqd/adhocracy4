@@ -1,17 +1,125 @@
-import pytest
-from django.core.urlresolvers import reverse
+import json
 
+import pytest
+from dateutil.parser import parse
+from django.core.urlresolvers import reverse
+from django.utils import timezone
+from freezegun import freeze_time
+
+from adhocracy4.projects.models import Project
 from meinberlin.apps.plans.models import Plan
 from meinberlin.test.helpers import assert_template_response
 
 
 @pytest.mark.django_db
-def test_list_view(client, plan_factory):
-    plan_factory()
-    url = reverse('meinberlin_plans:plan-list')
-    response = client.get(url)
-    assert_template_response(
-        response, 'meinberlin_plans/plan_list.html')
+def test_list_view(client, plan_factory, project_factory,
+                   project_container_factory,
+                   external_project_factory,
+                   bplan_factory,
+                   phase_factory):
+
+    project_active = project_factory(name='active')
+    project_future = project_factory(name='future')
+    project_active_and_future = project_factory(name='active and future')
+    project_past = project_factory(name='past')
+    project_container_factory(name='project container')
+    ep = external_project_factory(
+        name='external project active', is_draft=False)
+    external_project_factory(name='external project no phase', is_draft=False)
+    bplan = bplan_factory(name='bplan', is_draft=False)
+    plan_factory(title='plan')
+
+    now = parse('2013-01-01 18:00:00 UTC')
+    yesterday = now - timezone.timedelta(days=1)
+    last_week = now - timezone.timedelta(days=7)
+    tomorrow = now + timezone.timedelta(days=1)
+    next_week = now + timezone.timedelta(days=7)
+
+    # active phase
+    phase_factory(
+        start_date=last_week,
+        end_date=next_week,
+        module__project=project_active,
+    )
+
+    # active phase
+    phase_factory(
+        start_date=last_week,
+        end_date=next_week,
+        module__project=bplan
+    )
+
+    # active phase
+    phase_factory(
+        start_date=last_week,
+        end_date=next_week,
+        module__project=ep
+    )
+
+    # future phase
+    phase_factory(
+        start_date=tomorrow,
+        end_date=next_week,
+        module__project=project_future,
+    )
+
+    # active phase
+    phase_factory(
+        start_date=yesterday,
+        end_date=tomorrow,
+        module__project=project_active_and_future,
+    )
+
+    # future_phase
+    phase_factory(
+        start_date=tomorrow,
+        end_date=next_week,
+        module__project=project_active_and_future,
+    )
+
+    # past phase
+    phase_factory(
+        start_date=last_week,
+        end_date=yesterday,
+        module__project=project_past,
+    )
+
+    with freeze_time(now):
+
+        url = reverse('meinberlin_plans:plan-list')
+        response = client.get(url)
+        items = json.loads(response.context_data['items'].decode('utf-8'))
+        assert len(items) == 9
+        assert Project.objects.all().count() == 9
+
+        assert items[0]['title'] == 'active'
+        assert items[1]['title'] == 'active and future'
+        assert items[2]['title'] == 'external project active'
+        assert items[3]['title'] == 'bplan'
+        assert items[4]['title'] == 'future'
+        assert items[5]['title'] == 'past'
+        assert items[6]['title'] == 'plan'
+        assert items[7]['title'] == 'external project no phase'
+        assert items[8]['title'] == 'project container'
+
+        assert items[0]['type'] == 'project'
+        assert items[1]['type'] == 'project'
+        assert items[2]['type'] == 'project'
+        assert items[3]['type'] == 'project'
+        assert items[4]['type'] == 'project'
+        assert items[5]['type'] == 'project'
+        assert items[6]['type'] == 'plan'
+        assert items[7]['type'] == 'project'
+
+        assert items[0]['subtype'] == 'default'
+        assert items[1]['subtype'] == 'default'
+        assert items[2]['subtype'] == 'external'
+        assert items[3]['subtype'] == 'external'
+        assert items[4]['subtype'] == 'default'
+        assert items[5]['subtype'] == 'default'
+        assert items[6]['subtype'] == 'plan'
+        assert items[7]['subtype'] == 'external'
+        assert items[8]['subtype'] == 'container'
 
 
 @pytest.mark.django_db
