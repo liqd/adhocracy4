@@ -22,12 +22,12 @@ class ProjectContainerSerializer(ProjectSerializer):
                   'published_projects_count', 'created_or_modified']
 
     def _get_participation_status_project(self, instance):
-            if instance.active_project_count > 0:
-                return _('running'), True
-            elif instance.projectcontainer.future_project_count > 0:
-                return _('starts in the future'), True
-            else:
-                return _('done'), False
+        if instance.active_project_count > 0:
+            return _('running'), True
+        elif instance.future_project_count > 0:
+            return _('starts in the future'), True
+        else:
+            return _('done'), False
 
     def get_url(self, instance):
         return instance.get_absolute_url()
