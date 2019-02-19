@@ -28,6 +28,16 @@
     padding: 0 $padding;
 }
 
+.l-frame {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-left: 4rem !important;
+        margin-right: 4rem !important;
+    }
+}
+
 .l-tiles-2,
 .l-tiles-3,
 .l-tiles-4 {

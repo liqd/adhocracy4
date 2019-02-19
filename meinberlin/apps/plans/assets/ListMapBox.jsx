@@ -383,7 +383,7 @@ class ListMapBox extends React.Component {
                 </StickyBox>
               </div>
             </div>
-            : <div className="l-wrapper">
+            : <div className="l-frame">
               <div className="map-list-combined">
                 <div className="list-container map-list-combined__list">
                   { this.getPlansList(false) }

@@ -3,14 +3,7 @@ $line-height: 2.5;
 $divider-margin: 1.25rem;
 
 .filter-bar-container {
-    margin-left: 1*$r-spacer;
-    margin-right: 1*$r-spacer;
     margin-bottom: 2*$r-spacer;
-
-    @media screen and (min-width: $breakpoint-md) {
-        margin-left: 4*$r-spacer;
-        margin-right: 4*$r-spacer;
-    }
 }
 
 .filter-bar {
@@ -170,14 +163,10 @@ $divider-margin: 1.25rem;
     position: absolute;
     left: 0;
     right: 0;
-    margin-left: 1*$r-spacer;
-    margin-right: 1*$r-spacer;
     z-index: 1;
 
     @media screen and (min-width: $breakpoint-md) {
         margin-top: $r-spacer;
-        margin-left: 4*$r-spacer;
-        margin-right: 4*$r-spacer;
     }
 }
 

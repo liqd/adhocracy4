@@ -223,7 +223,7 @@ class FilterNav extends React.Component {
       )
     } else {
       return (
-        <div className="filter-bar-container">
+        <div className="l-frame filter-bar-container">
           <div className={this.getFilterBarClassName('--horizontal')} role="group" aria-label={django.gettext('Filter bar')}>
             <span className="filter-bar__project-text">{django.gettext('I am interested in projects from')}</span>
             <div className="filter-bar__dropdown">

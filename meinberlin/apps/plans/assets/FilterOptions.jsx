@@ -68,7 +68,7 @@ class FilterOptions extends React.Component {
     if (this.props.isStacked) {
       return 'filter-bar__menu'
     }
-    return 'filter-bar__dropdown-menu filter-bar__menu'
+    return 'l-frame filter-bar__dropdown-menu filter-bar__menu'
   }
 
   getGridClassName () {

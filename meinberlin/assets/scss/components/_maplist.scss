@@ -1,8 +1,13 @@
 .maplist-list {
-    max-width: 100%;
+    max-width: calc(100% + 2rem); //this is all to fit within the frame to be inline with above items
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-left: -1rem !important;
+        margin-right: -1rem !important;
+    }
 }
 
 .maplist-item__vertical,
@@ -133,17 +138,27 @@
         max-width: calc(100% * (1 / 2) - 2rem - 1px);
     }
 
-    @media screen and (min-width: $breakpoint-md) {
+    @media screen and (min-width: $breakpoint) {
         flex-basis: auto;
         flex-grow: 1;
         max-width: calc(100% * (1 / 3) - 2rem - 1px);
+    }
+
+    @media screen and (min-width: $breakpoint-lg) {
+        flex-basis: auto;
+        flex-grow: 1;
+        max-width: calc(100% * (1 / 4) - 2rem - 1px);
     }
 }
 
 // horizontal tile structure
 .maplist-item__horizontal {
     width: 100%;
-    margin: 0 $r-spacer $r-spacer 4*$r-spacer;
+    margin: 0 $r-spacer $r-spacer $r-spacer;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin: 0 $r-spacer $r-spacer 5*$r-spacer;
+    }
 
     .maplist-item__proj,
     .maplist-item__plan { // statusbar position

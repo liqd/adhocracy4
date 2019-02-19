@@ -2,8 +2,6 @@
     display: flex;
     justify-content: space-between;
     flex-flow: row wrap;
-    margin-left: $r-spacer;
-    margin-right: $r-spacer;
     margin-bottom: $r-spacer;
 
     .btn--transparent {
@@ -18,11 +16,6 @@
 
     @media screen and (min-width: $breakpoint-xs) {
         margin-bottom: 0;
-    }
-
-    @media screen and (min-width: $breakpoint-md) {
-        margin-left: 4*$r-spacer;
-        margin-right: 4*$r-spacer;
     }
 }
 
