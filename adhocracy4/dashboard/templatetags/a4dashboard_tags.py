@@ -5,7 +5,7 @@ from adhocracy4 import phases
 register = template.Library()
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_phase_name(type):
     name = phases.content[type].name
     return name
