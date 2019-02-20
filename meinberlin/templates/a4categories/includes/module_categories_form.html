@@ -1,0 +1,25 @@
+{% load i18n %}
+
+<p class="form-hint">{% blocktrans %}In this section, you can create
+categories. If you create any, each contribution has to be assigned
+to one of them. This way, content can be classified.{% endblocktrans %}</p>
+
+<div class="js-formset category-formset"
+     data-prefix="{{ form.prefix }}">
+    {{ form.management_form }}
+
+    {% for category_form in form %}
+        {% include 'a4forms/includes/inline_form.html' with form=category_form can_delete=form.can_delete %}
+    {% endfor %}
+    <div class="js-form-template category-formset__template">
+        {% include 'a4forms/includes/inline_form.html' with form=form.empty_form can_delete=form.can_delete %}
+    </div>
+
+    <div class="category-formset__btn">
+        <button class="btn btn--secondary btn--small btn--full js-add-form" type="button">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            {% trans 'Add category' %}
+        </button>
+    </div>
+
+</div>
