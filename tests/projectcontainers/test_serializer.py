@@ -95,6 +95,11 @@ def test_projectcontainer_serializer(project_container_factory, phase_factory):
         assert data[2]['participation_string'] == _('running')
         assert data[3]['participation_string'] == _('done')
 
+        assert data[0]['status'] == 0
+        assert data[1]['status'] == 0
+        assert data[2]['status'] == 0
+        assert data[3]['status'] == 1
+
         assert data[0]['participation_active']
         assert data[1]['participation_active']
         assert data[2]['participation_active']
