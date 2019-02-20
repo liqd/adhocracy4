@@ -55,6 +55,7 @@ class Action(models.Model):
     # target eg. idea
     target_content_type = models.ForeignKey(
         ContentType,
+        on_delete=models.CASCADE,
         blank=True,
         null=True,
         related_name='target'
@@ -72,6 +73,7 @@ class Action(models.Model):
     # action object eg. comment
     obj_content_type = models.ForeignKey(
         ContentType,
+        on_delete=models.CASCADE,
         blank=True, null=True,
         related_name='obj')
     obj_object_id = models.CharField(
