@@ -5,7 +5,7 @@ from django.utils.translation import ungettext
 register = template.Library()
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_days(number):
     if number and number >= 1 and number <= 5:
         text = ungettext(
@@ -21,7 +21,7 @@ def get_days(number):
         return ''
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_class(project):
     if not project.is_public:
         return 'private'
@@ -33,12 +33,12 @@ def get_class(project):
         return 'public'
 
 
-@register.assignment_tag
+@register.simple_tag
 def project_tile_image(project):
     return project.tile_image or project.image or None
 
 
-@register.assignment_tag
+@register.simple_tag
 def project_tile_image_copyright(project):
     if project.tile_image:
         return project.tile_image_copyright

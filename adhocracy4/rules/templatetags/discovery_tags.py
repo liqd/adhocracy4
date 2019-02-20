@@ -5,7 +5,7 @@ from adhocracy4.rules.discovery import NormalUser
 register = template.Library()
 
 
-@register.assignment_tag
+@register.simple_tag
 def would_have_perm(perm, obj=None):
     """
     Check if the NormalUser has the given permission.
@@ -14,7 +14,7 @@ def would_have_perm(perm, obj=None):
     return NormalUser().would_have_perm(perm, obj)
 
 
-@register.assignment_tag
+@register.simple_tag
 def has_or_would_have_perm(perm, user, obj=None):
     """
     Check if the NormalUser has the given permission.
