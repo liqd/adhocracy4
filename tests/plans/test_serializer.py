@@ -55,9 +55,9 @@ def test_serializer(client, plan_factory, project_factory, phase_factory):
     with freeze_time(now):
         plan_factory.create(projects=[project1])
         plan_factory.create(projects=[project2])
-        plan_factory.create(projects=[project3])
+        plan_factory.create(projects=[project3], status=Plan.STATUS_DONE)
         plan_factory.create(projects=[project4])
-        plan_factory.create(projects=[project5])
+        plan_factory.create(projects=[project5], status=Plan.STATUS_DONE)
 
         plans = Plan.objects.all()
 
@@ -80,13 +80,13 @@ def test_serializer(client, plan_factory, project_factory, phase_factory):
         assert plan_data[0]['participation_string'] == \
             _('running')
         assert plan_data[1]['participation_string'] == \
-            _('starts at {}').format(tomorrow.strftime('%d.%m.%Y'))
+            _('running')
         assert plan_data[2]['participation_string'] == \
-            Plan.PARTICIPATION_CHOICES[2][1]
+            _('done')
         assert plan_data[3]['participation_string'] == \
             _('running')
         assert plan_data[4]['participation_string'] == \
-            Plan.PARTICIPATION_CHOICES[2][1]
+            _('done')
 
         assert plan_data[0]['participation_active']
         assert plan_data[1]['participation_active']
