@@ -22,6 +22,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='project',
             name='topics',
-            field=adhocracy4.projects.fields.TopicField(choices=[('ANT', 'Anti-discrimination'), ('WOR', 'Work & economy'), ('BUI', 'Building & living')], default='', help_text='Add topics to your project.', max_length=254, verbose_name='Project topics'),
+            field=adhocracy4.projects.fields.TopicField(default='', help_text='Add topics to your project.', max_length=254, verbose_name='Project topics'),
         ),
     ]
