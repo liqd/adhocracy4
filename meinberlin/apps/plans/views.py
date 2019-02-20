@@ -19,14 +19,20 @@ from adhocracy4.exports import unescape_and_strip_html
 from adhocracy4.exports import views as export_views
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
+from meinberlin.apps.extprojects.models import ExternalProject
+from meinberlin.apps.extprojects.serializers import ExternalProjectSerializer
 from meinberlin.apps.maps.models import MapPreset
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
+from meinberlin.apps.projectcontainers.models import ProjectContainer
+from meinberlin.apps.projectcontainers.serializers import \
+    ProjectContainerSerializer
+from meinberlin.apps.projects import serializers as project_serializers
 from meinberlin.apps.projects.models import Project
 
 from . import models
-from . import serializers
+from .serializers import PlanSerializer
 
 
 class PlanDetailView(rules_mixins.PermissionRequiredMixin,
@@ -55,23 +61,47 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             return []
 
     @cached_property
+    def external_projects(self):
+        return ExternalProject.objects.filter(
+            is_draft=False,
+            is_public=True,
+            module__phase__start_date=None,
+            module__phase__end_date=None
+        )
+
+    @cached_property
+    def containers(self):
+        containers = ProjectContainer.objects.filter(
+            is_draft=False,
+            is_public=True
+        )
+        return containers
+
+    @cached_property
     def projects(self):
-        projects = Project.objects.all() \
+        projects = Project.objects.all()\
             .filter(is_draft=False, is_archived=False) \
+            .exclude(id__in=self.containers.values('id')) \
+            .exclude(id__in=self.external_projects.values('id')) \
             .order_by('created')\
             .select_related('administrative_district',
                             'organisation',
                             'externalproject',
                             'projectcontainer')\
             .prefetch_related('moderators',
+                              'plans',
                               'organisation__initiators',
                               'module_set__phase_set')
+        return projects
 
-        not_allowed_projects = [project.id for project in projects if
-                                not self.request.user.has_perm(
-                                    'a4projects.view_project',
-                                    project)]
-        return projects.exclude(id__in=not_allowed_projects)
+    def allowed_projects(self):
+        private_projects = self.projects.filter(is_public=False)
+        if private_projects:
+            not_allowed_projects = \
+                [project.id for project in private_projects if
+                 not self.request.user.has_perm(
+                     'a4projects.view_project', project)]
+            return private_projects.exclude(id__in=not_allowed_projects)
 
     def get_organisations(self):
         organisations = Organisation\
@@ -101,13 +131,84 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         else:
             raise ImproperlyConfigured('set A4_PROJECT_TOPICS in settings')
 
+    def _get_project_querysets(self, now):
+        public_projects = self.projects.filter(is_public=True)
+        active_projects = public_projects \
+            .filter(
+                module__phase__start_date__lte=now,
+                module__phase__end_date__gt=now) \
+            .distinct()
+
+        future_projects = public_projects \
+            .filter(
+                module__phase__start_date__gt=now
+            ) \
+            .distinct() \
+            .exclude(id__in=active_projects.values('id'))
+
+        past_projects = public_projects \
+            .filter(
+                module__phase__end_date__lt=now
+            ) \
+            .distinct() \
+            .exclude(id__in=active_projects.values('id')) \
+            .exclude(id__in=future_projects.values('id'))
+        return active_projects, future_projects, past_projects
+
+    def _get_serializers_data(self, active_projects,
+                              future_projects, past_projects,
+                              now):
+
+        active_projects_projects_serializer = \
+            project_serializers.ActiveProjectSerializer(
+                active_projects, many=True, now=now).data
+
+        future_projects_serializer = \
+            project_serializers.FutureProjectSerializer(
+                future_projects, many=True, now=now).data
+
+        past_project_serializer = \
+            project_serializers.PastProjectSerializer(
+                past_projects, many=True, now=now).data
+
+        container_serializer = \
+            ProjectContainerSerializer(
+                self.containers, many=True, now=now).data
+
+        return active_projects_projects_serializer, \
+            future_projects_serializer, \
+            past_project_serializer, \
+            container_serializer
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        plans_serializer = serializers.PlanSerializer(context['object_list'],
-                                                      many=True)
-        projects_serializer = serializers.ProjectSerializer(self.projects,
-                                                            many=True)
-        items = projects_serializer.data + plans_serializer.data
+        plans_serializer = PlanSerializer(context['object_list'], many=True)
+        projects_for_user = self.allowed_projects()
+
+        now = timezone.now()
+        active_projects, future_projects, past_projects =\
+            self._get_project_querysets(now)
+
+        active_data, future_data, past_data, container_data = \
+            self._get_serializers_data(active_projects, future_projects,
+                                       past_projects, now)
+
+        external_projects = ExternalProjectSerializer(
+            self.external_projects, many=True, now=now)
+
+        items = active_data \
+            + future_data \
+            + past_data \
+            + plans_serializer.data \
+            + external_projects.data \
+            + container_data
+
+        if projects_for_user:
+            items = items + \
+                project_serializers.ProjectSerializer(
+                    projects_for_user,
+                    many=True, now=now).data
+
         context['districts'] = self.get_district_polygons()
         context['organisations'] = self.get_organisations()
         context['district_names'] = self.get_district_names()
