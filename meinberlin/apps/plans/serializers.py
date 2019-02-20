@@ -1,5 +1,3 @@
-from functools import lru_cache
-
 from rest_framework import serializers
 
 from meinberlin.apps.projects.serializers import CommonFields
@@ -33,17 +31,8 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     def get_subtype(self, instance):
         return 'plan'
 
-    @lru_cache(maxsize=1)
     def _get_participation_status_plan(self, item):
-        projects = item.published_projects
-        if not projects:
-            return item.get_participation_display(), False
-        else:
-            status_string = item.participation_string
-            if status_string:
-                return status_string, True
-            else:
-                return item.get_participation_display(), False
+        return item.get_status_display(), not bool(item.status)
 
     def get_type(self, instance):
         return 'plan'
