@@ -1,5 +1,4 @@
 from copy import deepcopy
-from datetime import datetime
 
 from django.apps import apps
 from django.conf import settings
@@ -7,6 +6,7 @@ from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import base
 from django.views.generic import edit
@@ -158,7 +158,7 @@ class DashboardProjectDuplicateMixin:
             if project_clone.image:
                 project_clone.image.save(project.image.name,
                                          project.image, False)
-            project_clone.created = datetime.now()
+            project_clone.created = timezone.now()
             project_clone.is_draft = True
             project_clone.is_archived = False
             project_clone.save()
