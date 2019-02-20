@@ -19,6 +19,8 @@ from adhocracy4.exports import unescape_and_strip_html
 from adhocracy4.exports import views as export_views
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
+from meinberlin.apps.extprojects.models import ExternalProject
+from meinberlin.apps.extprojects.serializers import ExternalProjectSerializer
 from meinberlin.apps.maps.models import MapPreset
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans.forms import PlanForm
@@ -59,8 +61,20 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             return []
 
     @cached_property
+    def external_projects(self):
+        return ExternalProject.objects.filter(
+            is_draft=False,
+            is_public=True,
+            module__phase__start_date=None,
+            module__phase__end_date=None
+        )
+
+    @cached_property
     def containers(self):
-        containers = ProjectContainer.objects.all()
+        containers = ProjectContainer.objects.filter(
+            is_draft=False,
+            is_public=True
+        )
         return containers
 
     @cached_property
@@ -68,6 +82,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         projects = Project.objects.all()\
             .filter(is_draft=False, is_archived=False) \
             .exclude(id__in=self.containers.values('id')) \
+            .exclude(id__in=self.external_projects.values('id')) \
             .order_by('created')\
             .select_related('administrative_district',
                             'organisation',
@@ -178,10 +193,14 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
             self._get_serializers_data(active_projects, future_projects,
                                        past_projects, now)
 
+        external_projects = ExternalProjectSerializer(
+            self.external_projects, many=True, now=now)
+
         items = active_data \
             + future_data \
             + past_data \
             + plans_serializer.data \
+            + external_projects.data \
             + container_data
 
         if projects_for_user:

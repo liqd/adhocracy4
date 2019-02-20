@@ -43,7 +43,7 @@ class ProjectContainer(project_models.Project):
         now = timezone.now()
         return self.projects\
             .filter(is_public=True, is_draft=False, is_archived=False)\
-            .filter(module__phase__end_date__lte=now)\
+            .filter(module__phase__start_date__gt=now)\
             .distinct()\
             .count()
 
