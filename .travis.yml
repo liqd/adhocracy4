@@ -1,7 +1,11 @@
 language: python
+dist: xenial
 python:
-  - "3.5"
-cache: pip
+  - "3.6"
+cache:
+  pip: true
+  directories:
+    - node_modules
 install:
   - pip install -r requirements/dev.txt
   - pip install coveralls
@@ -10,4 +14,3 @@ script:
   - py.test --cov
 after_success:
   - coveralls
-dist: xenial
