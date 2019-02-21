@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('type', models.CharField(validators=[adhocracy4.phases.validators.validate_content], max_length=128)),
                 ('start_date', models.DateTimeField(null=True, blank=True)),
                 ('end_date', models.DateTimeField(null=True, blank=True)),
-                ('module', models.ForeignKey(to='a4modules.Module')),
+                ('module', models.ForeignKey(to='a4modules.Module', on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['type'],

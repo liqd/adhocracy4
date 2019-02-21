@@ -78,6 +78,7 @@ class ProjectLocationMixin(models.Model):
 
     administrative_district = models.ForeignKey(
         AdministrativeDistrict,
+        on_delete=models.CASCADE,
         null=True,
         blank=True,
         verbose_name=_('Administrative district')

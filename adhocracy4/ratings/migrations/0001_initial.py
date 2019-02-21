@@ -22,8 +22,8 @@ class Migration(migrations.Migration):
                 ('modified', models.DateTimeField(blank=True, null=True, editable=False)),
                 ('object_pk', models.PositiveIntegerField()),
                 ('value', models.IntegerField()),
-                ('content_type', models.ForeignKey(to='contenttypes.ContentType')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('content_type', models.ForeignKey(to='contenttypes.ContentType', on_delete=models.CASCADE)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
         ),
         migrations.AlterUniqueTogether(

@@ -22,8 +22,8 @@ class Migration(migrations.Migration):
                 ('modified', models.DateTimeField(null=True, editable=False, blank=True)),
                 ('object_pk', models.PositiveIntegerField()),
                 ('description', models.TextField(max_length=1024)),
-                ('content_type', models.ForeignKey(to='contenttypes.ContentType')),
-                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('content_type', models.ForeignKey(to='contenttypes.ContentType', on_delete=models.CASCADE)),
+                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
                 'abstract': False,
