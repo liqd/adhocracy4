@@ -109,7 +109,7 @@ class ProjectFilterSet(DefaultsFilterSet):
     )
 
     created = django_filters.NumberFilter(
-        name='created',
+        field_name='created',
         lookup_expr='year',
         widget=YearWidget,
     )
