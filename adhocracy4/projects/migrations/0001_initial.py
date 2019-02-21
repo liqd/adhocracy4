@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 ('is_draft', models.BooleanField(default=True)),
                 ('image', models.ImageField(verbose_name='Header image', blank=True, upload_to='projects/backgrounds', help_text='The image will be shown as a decorative background image. It must be min. 1300px wide and 600px tall. Allowed file formats are .jpg and .png. The file size should be max. 2 MB.')),
                 ('moderators', models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='project_moderator')),
-                ('organisation', models.ForeignKey(to=settings.A4_ORGANISATIONS_MODEL)),
+                ('organisation', models.ForeignKey(to=settings.A4_ORGANISATIONS_MODEL, on_delete=models.CASCADE)),
                 ('participants', models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='project_participant', blank=True)),
             ],
             options={

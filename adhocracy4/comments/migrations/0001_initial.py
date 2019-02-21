@@ -24,8 +24,8 @@ class Migration(migrations.Migration):
                 ('comment', models.TextField(max_length=1024)),
                 ('is_removed', models.BooleanField(default=False)),
                 ('is_censored', models.BooleanField(default=False)),
-                ('content_type', models.ForeignKey(to='contenttypes.ContentType')),
-                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('content_type', models.ForeignKey(to='contenttypes.ContentType', on_delete=models.CASCADE)),
+                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name_plural': 'Comments',
