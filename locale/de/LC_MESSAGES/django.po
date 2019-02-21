@@ -2287,7 +2287,7 @@ msgstr "Das Enddatum kann nicht kleiner als das Startdatum sein."
 
 #: meinberlin/apps/extprojects/models.py:10
 msgid "Please enter a full url which starts with https:// or http://"
-msgstr ""
+msgstr "Bitte geben Sie eine vollständige URL ein, die mit https:// or http:// beginnt."
 
 #: meinberlin/apps/extprojects/phases.py:14
 msgid "External phase"
