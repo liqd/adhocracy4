@@ -10,4 +10,4 @@ class PermissionRequiredMixin(rules_views.PermissionRequiredMixin):
         Needed, as permissions for a logged-in user might still be
         limited by the current phase.
         """
-        return self.request.user.is_authenticated()
+        return self.request.user.is_authenticated

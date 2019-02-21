@@ -50,7 +50,6 @@ class CommentSerializer(serializers.ModelSerializer):
                     })
         return data
 
-
     def get_user_name(self, obj):
         """
         Don't show username if comment is marked removed or censored
@@ -77,7 +76,7 @@ class CommentSerializer(serializers.ModelSerializer):
         positive_ratings = comment.ratings.filter(value=1).count()
         negative_ratings = comment.ratings.filter(value=-1).count()
 
-        if user.is_authenticated():
+        if user.is_authenticated:
             user_rating = comment.ratings.filter(creator=user).first()
         else:
             user_rating = None

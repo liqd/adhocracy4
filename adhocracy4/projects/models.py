@@ -198,7 +198,7 @@ class Project(ProjectContactDetailMixin,
         be joined as moderator or participant.
         """
         return (
-            (user.is_authenticated() and self.is_public)
+            (user.is_authenticated and self.is_public)
             or (user in self.participants.all())
             or (user in self.moderators.all())
         )

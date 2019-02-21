@@ -23,7 +23,7 @@ def react_ratings(context, obj):
         permission, obj
     )
 
-    if user.is_authenticated():
+    if user.is_authenticated:
         authenticated_as = user.username
     else:
         authenticated_as = None

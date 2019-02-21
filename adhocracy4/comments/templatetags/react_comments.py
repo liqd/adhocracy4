@@ -21,7 +21,7 @@ def react_comments(context, obj):
     comments = serializer.data
 
     user = request.user
-    is_authenticated = user.is_authenticated()
+    is_authenticated = user.is_authenticated.value
     is_moderator = user.is_superuser or user in obj.project.moderators.all()
     user_name = user.username
 

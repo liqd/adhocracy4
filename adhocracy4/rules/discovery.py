@@ -1,5 +1,6 @@
 import rules
 from django.contrib.auth.models import AnonymousUser
+from django.utils.deprecation import CallableTrue
 
 
 class NormalUser(AnonymousUser):
@@ -13,8 +14,9 @@ class NormalUser(AnonymousUser):
     def __str__(self):
         return 'NormalUser'
 
+    @property
     def is_authenticated(self):
-        return True
+        return CallableTrue
 
     def would_have_perm(self, perm, obj):
         return rules.has_perm(perm, self, obj)
