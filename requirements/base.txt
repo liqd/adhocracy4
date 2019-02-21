@@ -5,7 +5,7 @@ django-autoslug==1.9.3
 django-background-tasks==1.1.13
 django-multiselectfield==0.1.8
 django-ckeditor==5.4.0
-django-filter==1.1.0
+django-filter==2.1.0
 django-widget-tweaks==1.4.1
 djangorestframework==3.7.7
 easy-thumbnails==2.5
