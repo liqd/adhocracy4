@@ -30,7 +30,7 @@ class Plan(UserGeneratedContentModel):
     STATUS_DONE = 1
 
     STATUS_CHOICES = (
-        (STATUS_ONGOING, _('ongoing')),
+        (STATUS_ONGOING, _('running')),
         (STATUS_DONE, _('done'))
     )
 

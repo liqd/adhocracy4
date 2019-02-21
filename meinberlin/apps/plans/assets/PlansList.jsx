@@ -109,7 +109,7 @@ class PlansList extends React.Component {
                 <span className="maplist-item__proj-count"><i className="fas fa-th" aria-hidden="true" />{django.gettext('Participation projects: ')}</span>
                 <span>{item.published_projects_count}</span>
                 <br />
-                <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Participation: ')}</span>
+                <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Status: ')}</span>
                 <span className={statusClass}>{item.participation_string }</span>
               </div>
               <div className="status-item_spacer" />

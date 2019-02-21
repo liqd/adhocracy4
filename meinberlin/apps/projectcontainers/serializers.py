@@ -1,3 +1,5 @@
+from functools import lru_cache
+
 from django.utils.translation import ugettext as _
 
 from meinberlin.apps.projectcontainers.models import ProjectContainer
@@ -21,6 +23,7 @@ class ProjectContainerSerializer(ProjectSerializer):
                   'past_phase', 'plan_url', 'plan_title',
                   'published_projects_count', 'created_or_modified']
 
+    @lru_cache(maxsize=1)
     def _get_participation_status_project(self, instance):
         if instance.active_project_count > 0:
             return _('running'), True
@@ -39,7 +42,8 @@ class ProjectContainerSerializer(ProjectSerializer):
         return 'container'
 
     def get_status(self, instance):
-        return 1
+        string, status = self._get_participation_status_project(instance)
+        return not bool(status)
 
     def get_future_phase(self, instance):
         return False
