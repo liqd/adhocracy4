@@ -28,7 +28,7 @@ class MapChoosePolygonWidget(Widget):
             'leaflet.draw.css',
         ]}
 
-    def render(self, name, value, attrs):
+    def render(self, name, value, attrs, renderer=None):
 
         use_vector_map = 0
         if (hasattr(settings, 'A4_USE_VECTORMAP') and
@@ -73,7 +73,7 @@ class MapChoosePointWidget(Widget):
             'leaflet.css',
         ]}
 
-    def render(self, name, value, attrs):
+    def render(self, name, value, attrs, renderer=None):
 
         use_vector_map = 0
         if (hasattr(settings, 'A4_USE_VECTORMAP') and

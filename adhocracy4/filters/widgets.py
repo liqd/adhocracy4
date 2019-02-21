@@ -33,7 +33,7 @@ class DropdownLinkWidget(django_filters.widgets.LinkWidget):
 
         return option_label
 
-    def render(self, name, value, attrs=None, choices=()):
+    def render(self, name, value, attrs=None, choices=(), renderer=None):
         all_choices = list(chain(self.choices, choices))
 
         if len(all_choices) <= 1:
@@ -81,7 +81,7 @@ class FreeTextFilterWidget(TextInput):
         self.data = data
         return value
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         if not hasattr(self, 'data'):
             self.data = {}
         if value is None:
