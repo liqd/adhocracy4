@@ -66,7 +66,7 @@
 .storefront__last-col {
     margin-left: $r-spacer;
 
-    @media screen and (max-width: $breakpoint-xs) {
+    @media screen and (max-width: $breakpoint-xs-down) {
         margin: auto;
     }
 }
@@ -107,7 +107,11 @@
 }
 
 .storefront__xl-text {
-    font-size: 1.5*$font-size-xxl;
+    font-size: 1.3*$font-size-xxl;
+
+    @media screen and (min-width: $breakpoint) {
+        font-size: 1.5*$font-size-xxl;
+    }
 }
 
 .storefront__xxl-text {
@@ -168,19 +172,26 @@
 .storefront__proj-text,
 .storefront__quote-text {
     margin: auto;
-    width: 75%;
     min-width: 200px;
+
+    @media screen and (min-width: $breakpoint) {
+        width: 75%;
+    }
 }
 
 .storefront__district-text {
     padding-bottom: $padding;
+
+    @media screen and (max-width: $breakpoint-down) {
+        font-size: $font-size-lg;
+    }
 }
 
 .storefront__district {
     padding: 2*$padding;
     color: $brand-secondary;
 
-    @media screen and (min-width: $breakpoint-xs) {
+    @media screen and (min-width: $breakpoint) {
         padding: 3*$padding;
     }
 }
