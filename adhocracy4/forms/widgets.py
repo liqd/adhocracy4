@@ -2,14 +2,17 @@ import datetime
 
 from django.forms import widgets as form_widgets
 from django.template.loader import render_to_string
-from django.utils.timezone import localtime
+from django.utils import timezone
+
+tzinfo = timezone.get_default_timezone()
 
 
 class DateTimeInput(form_widgets.SplitDateTimeWidget):
     def __init__(self, time_label='', time_default=None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.time_label = time_label
-        self.time_default = time_default or datetime.time(hour=0, minute=0)
+        self.time_default = time_default or datetime.time(hour=0, minute=0,
+                                                          tzinfo=tzinfo)
 
     class Media:
         js = (
@@ -36,7 +39,7 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
         })
 
         if isinstance(value, datetime.datetime):
-            value = localtime(value)
+            value = timezone.localtime(value)
             date = value.date()
             time = value.time()
         else:
@@ -71,7 +74,8 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
         time_widget = self.widgets[1]
 
         if not self.time_default:
-            return time_widget.format_value(datetime.time(hour=0, minute=0))
+            return time_widget.format_value(datetime.time(hour=0, minute=0,
+                                                          tzinfo=tzinfo))
         elif isinstance(self.time_default, (datetime.time, datetime.datetime)):
             return time_widget.format_value(self.time_default)
         else:
