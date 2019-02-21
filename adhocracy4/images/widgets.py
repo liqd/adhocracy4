@@ -17,7 +17,7 @@ class ImageInputWidget(widgets.ClearableFileInput):
     class Media:
         js = ('a4images/imageUploader.js'),
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         html_id = attrs and attrs.get('id', name) or name
         has_image_set = self.is_initial(value)
         is_required = self.is_required
