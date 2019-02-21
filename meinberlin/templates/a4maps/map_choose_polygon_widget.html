@@ -1,0 +1,12 @@
+<div
+    style="height: 300px;"
+    data-map="choose_polygon"
+    data-baseurl="{{ baseurl }}"
+    data-usevectormap="{{ usevectormap }}"
+    data-attribution="{{ attribution }}"
+    data-bbox="{{ bbox }}"
+    data-name="{{ name }}"
+    {% if polygon %}data-polygon="{{ polygon }}"{% endif %}
+></div>
+
+<input id="id_{{ name }}" type="hidden" name="{{ name }}" {% if polygon %}value="{{ polygon }}"{% endif %}>

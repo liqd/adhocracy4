@@ -1,0 +1,34 @@
+{% load i18n a4dashboard_tags %}
+
+<div class="progress-box">
+    <svg viewBox="0 0 35 35" class="progress-box__progress progress" role="presentation">
+        <circle class="progress__background" r="15.9" cx="50%" cy="50%"></circle>
+
+        <circle class="progress__value" stroke-dasharray="{{ value|percentage:max }} 100" r="15.9" cx="50%" cy="50%"></circle>
+        {% if value == max %}
+            <path class="progress__check {% if project.is_draft %} progress__check-unpublished {% endif %}" d="m 25,13.996777 q 0,0.387096 -0.27097,0.65806 l -7.006451,7.006452 -1.316127,1.316132 q -0.27097,0.270965 -0.658066,0.270965 -0.387097,0 -0.658061,-0.270965 L 13.774193,21.661289 10.27097,18.158066 Q 10,17.887096 10,17.5 q 0,-0.387096 0.27097,-0.658066 l 1.316126,-1.316127 q 0.27097,-0.27097 0.658066,-0.27097 0.387097,0 0.658061,0.27097 l 2.845163,2.854838 6.348391,-6.358066 q 0.270964,-0.270965 0.65806,-0.270965 0.387097,0 0.658067,0.270965 l 1.316126,1.316132 Q 25,13.609675 25,13.996777 Z"></path>
+        {% else %}
+            <text class="progress__label" x="50%" y="50%" dy="0.3em">{{ value|percentage:max }}%</text>
+        {% endif %}
+    </svg>
+
+    <div class="progress-box__description">
+        <strong>{% blocktrans with value=value max=max %}{{ value }} from {{ max }}{% endblocktrans %}</strong><br>
+        {% blocktrans %}required fields for publication{% endblocktrans %}
+    </div>
+</div>
+
+<form action="{% url 'a4dashboard:project-publish' project_slug=project.slug %}" method="post" data-ignore-submit="true">
+    {% csrf_token %}
+    <input type="hidden" name="referrer" value="{{ request.path }}" />
+
+    {% if project.is_draft %}
+        <button name="action" value="publish" {% if value != max %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top">
+            {% trans 'Publish' %}
+        </button>
+    {% else %}
+        <button name="action" value="unpublish" class="btn btn--light btn--full btn--attached-top">
+            {% trans 'Unpublish' %}
+        </button>
+    {% endif %}
+</form>

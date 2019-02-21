@@ -1,0 +1,48 @@
+{% load i18n widget_tweaks %}
+
+<h2 class="u-second-heading">{{ form.contact_heading }}</h2>
+<div class="form-hint">
+    {{ form.contact_help }}
+</div>
+
+{% include 'a4dashboard/includes/form_field.html' with field=form.contact_name %}
+{% include 'a4dashboard/includes/form_field.html' with field=form.contact_address_text %}
+
+{% with field_1=form.contact_phone field_2=form.contact_email field_3=form.contact_url %}
+
+<div class="form-group">
+    <fieldset class="form-fieldset">
+        <legend>{{ form.contact_info_label }}</legend>
+        {% if field_1.help_text %}
+        <div class="form-hint">
+            {{ field_1.help_text }}
+        </div>
+        {% endif %}
+        <div class="widget widget--{{ field_1|widget_type }}" aria-label="{{ field_1.label }}">
+            {{ field_1 }}
+        </div>
+        {{ field_1.errors }}
+        <br>
+        {% if field_2.help_text %}
+        <div class="form-hint">
+            {{ field_2.help_text }}
+        </div>
+        {% endif %}
+        <div class="widget widget--{{ field_2|widget_type }}" aria-label="{{ field_2.label }}">
+            {{ field_2 }}
+        </div>
+        {{ field_2.errors }}
+        <br>
+        {% if field_3.help_text %}
+        <div class="form-hint">
+            {{ field_3.help_text }}
+        </div>
+        {% endif %}
+        <div class="widget widget--{{ field_3|widget_type }}" aria-label="{{ field_3.label }}">
+            {{ field_3 }}
+        </div>
+        {{ field_3.errors }}
+    </fieldset>
+</div>
+
+{% endwith %}
