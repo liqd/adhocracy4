@@ -64,7 +64,7 @@ class ProjectAdmin(admin.ModelAdmin):
         }),
         (_('Topic and location'), {
             'classes': ('collapse',),
-            'fields': ('topic', 'point', 'administrative_district'),
+            'fields': ('topics', 'point', 'administrative_district'),
         }),
     )
 
