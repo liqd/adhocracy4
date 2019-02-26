@@ -114,6 +114,14 @@
     z-index: 1;
 }
 
+//chrome bug workaround
+.leaflet-control-zoom,
+.leaflet-control-attribution,
+.map-list-combined__map__search,
+.map-infobox {
+    will-change: transform;
+}
+
 .map-list-combined__map {
     flex: 0 1 44vh;
     z-index: 0;
