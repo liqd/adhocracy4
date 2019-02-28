@@ -36,8 +36,9 @@ class PollDetailView(ProjectMixin,
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['question_list'] = \
-            self.object.questions.annotate_vote_count().all()
+        if self.object is not None:
+            context['question_list'] = \
+                self.object.questions.annotate_vote_count().all()
         return context
 
     def get_permission_object(self):
