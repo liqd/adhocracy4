@@ -15,7 +15,6 @@
       <div class="storefront__ending-icon">
         <img src="{% static 'images/icon_notification@2x.png' %}" alt="" />
       </div>
-      <div class="storefront__ending-icon-spacer"></div>
     </div>
     {% else %}
     <div class="item-detail__labels">
@@ -27,7 +26,7 @@
     </div>
     {% endif %}
     <p class="storefront__sm-text">{% if item.project.administrative_district %}{{ item.project.administrative_district }}{% else %}{% trans 'City wide' %}{% endif %}</p>
-    <h2 class="storefront__proj-text">{{ item.project.name }}</h2>
+    <h2 class="storefront__proj-text {% if item.project.name|length > 95 %} storefront__proj-text-wide {% endif %}">{{ item.project.name }}</h2>
     {% if item.project.active_phase %}
     <div class="status-item status-item__position-storefront status__active">
         <div class="status-bar__active">
