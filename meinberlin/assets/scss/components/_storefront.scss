@@ -96,7 +96,7 @@
 
 .storefront__sm-text {
     margin-bottom: 0;
-    padding-top: 4*$padding;
+    padding-top: 20%;
     color: $gray;
 }
 
@@ -177,6 +177,10 @@
     @media screen and (min-width: $breakpoint) {
         width: 75%;
     }
+}
+
+.storefront__proj-text-wide {
+    width: 100% !important;
 }
 
 .storefront__district-text {
