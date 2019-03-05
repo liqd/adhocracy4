@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
                 ('polygon', adhocracy4.maps.fields.MultiPolygonField()),
-                ('module', models.OneToOneField(related_name='areasettings_settings', to='a4modules.Module')),
+                ('module', models.OneToOneField(related_name='areasettings_settings', to='a4modules.Module', on_delete=models.CASCADE)),
             ],
             options={
                 'abstract': False,
