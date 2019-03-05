@@ -33,7 +33,7 @@
     "leaflet-draw": "1.0.4",
     "leaflet.markercluster": "1.4.1",
     "mapbox-gl": "0.53.1",
-    "mapbox-gl-leaflet": "0.0.3",
+    "mapbox-gl-leaflet": "0.0.4",
     "mini-css-extract-plugin": "0.5.0",
     "node-sass": "4.11.0",
     "popper.js": "1.14.7",
