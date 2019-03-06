@@ -22,6 +22,14 @@ class Organisation(models.Model):
         ),
         upload_to='organisation/logos',
         blank=True)
+    address = models.TextField(
+        blank=True,
+        verbose_name=_('Unit and postal address')
+    )
+    url = models.URLField(
+        blank=True,
+        verbose_name=_('Website of organisation')
+    )
 
     def __str__(self):
         return self.name
