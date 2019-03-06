@@ -88,10 +88,12 @@ class ListMapBox extends React.Component {
 
     let sortByPhase = (phase1, phase2, earliestFirst) => {
       if (phase1 && phase2) {
+        let date1 = Date.parse(phase1.replace(/ /g, 'T'))
+        let date2 = Date.parse(phase2.replace(/ /g, 'T'))
         if (earliestFirst) {
-          return (new Date(phase1) <= new Date(phase2)) ? -1 : 1
+          return date1 <= date2 ? -1 : 1
         } else {
-          return (new Date(phase1) >= new Date(phase2)) ? -1 : 1
+          return date1 >= date2 ? -1 : 1
         }
       }
       if (phase1 || phase2) { return phase1 ? -1 : 1 }
