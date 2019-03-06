@@ -11,7 +11,6 @@ class OrganisationForm(forms.ModelForm):
         self.fields['address'].required = True
         self.fields['url'].required = True
 
-
     class Meta:
         model = Organisation
         fields = ['name', 'logo', 'address', 'url']
