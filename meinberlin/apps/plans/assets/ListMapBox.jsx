@@ -237,7 +237,7 @@ class ListMapBox extends React.Component {
   }
 
   selectOrganisation (organisation) {
-    if (!Object.is(organisation, undefined)) {
+    if (organisation !== undefined) {
       this.setState({
         filterChanged: true,
         organisation: organisation
