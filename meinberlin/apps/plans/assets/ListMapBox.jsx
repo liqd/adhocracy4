@@ -152,7 +152,7 @@ class ListMapBox extends React.Component {
   }
 
   isInFilter (item) {
-    return (this.state.topic === '-1' || item.topics.includes(this.state.topic)) &&
+    return (this.state.topic === '-1' || item.topics.indexOf(this.state.topic) > -1) &&
       (this.state.district === '-1' || this.state.district === item.district) &&
       (this.state.participation === -1 || this.state.participation === item.participation) &&
       (this.state.status === -1 || this.state.status === item.status) &&
