@@ -146,7 +146,7 @@
                                 <p>{{ project.organisation.address|linebreaks }}</p>
                                 {% endif %}
                                 {% if project.organisation.url %}
-                                <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
+                                <a class="btn btn--secondary" target="_blank" href="{{ project.organisation.url }}">
                                     {% trans 'Website' %}
                                 </a>
                                 {% endif %}
