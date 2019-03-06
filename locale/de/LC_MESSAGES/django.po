@@ -2622,11 +2622,11 @@ msgstr "Das Bild wird in der Kopfzeile von Newslettern angezeigt."
 
 #: meinberlin/apps/organisations/models.py:27
 msgid "Unit and postal address"
-msgstr ""
+msgstr "Stelle und Postadresse"
 
 #: meinberlin/apps/organisations/models.py:31
 msgid "Website of organisation"
-msgstr ""
+msgstr "Webseite der Organisation"
 
 #: meinberlin/apps/organisations/templates/meinberlin_organisations/organisation_form.html:8
 msgid "Edit your organisation information"
@@ -3160,7 +3160,7 @@ msgstr "zur Projektsammlung %(name)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:143
 msgid "Responsible office"
-msgstr ""
+msgstr "Verantwortliche Stelle"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:201
 msgid "No results yet."
