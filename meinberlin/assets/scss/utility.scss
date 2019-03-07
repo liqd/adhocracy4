@@ -155,3 +155,9 @@
         display: none !important;
     }
 }
+
+.u-lg-only-display {
+    @media screen and (max-width: $breakpoint-lg-down) {
+        display: none !important;
+    }
+}
