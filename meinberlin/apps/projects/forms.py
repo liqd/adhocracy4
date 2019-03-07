@@ -92,3 +92,7 @@ class PointForm(ProjectDashboardForm):
             'point': maps_widgets.MapChoosePointWidget(
                 polygon=settings.BERLIN_POLYGON)
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['administrative_district'].empty_label = _('City wide')
