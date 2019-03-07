@@ -88,10 +88,12 @@ class ListMapBox extends React.Component {
 
     let sortByPhase = (phase1, phase2, earliestFirst) => {
       if (phase1 && phase2) {
+        let date1 = Date.parse(phase1.replace(/ /g, 'T'))
+        let date2 = Date.parse(phase2.replace(/ /g, 'T'))
         if (earliestFirst) {
-          return (new Date(phase1) <= new Date(phase2)) ? -1 : 1
+          return date1 <= date2 ? -1 : 1
         } else {
-          return (new Date(phase1) >= new Date(phase2)) ? -1 : 1
+          return date1 >= date2 ? -1 : 1
         }
       }
       if (phase1 || phase2) { return phase1 ? -1 : 1 }
@@ -152,7 +154,7 @@ class ListMapBox extends React.Component {
   }
 
   isInFilter (item) {
-    return (this.state.topic === '-1' || item.topics.includes(this.state.topic)) &&
+    return (this.state.topic === '-1' || item.topics.indexOf(this.state.topic) > -1) &&
       (this.state.district === '-1' || this.state.district === item.district) &&
       (this.state.participation === -1 || this.state.participation === item.participation) &&
       (this.state.status === -1 || this.state.status === item.status) &&
@@ -237,7 +239,7 @@ class ListMapBox extends React.Component {
   }
 
   selectOrganisation (organisation) {
-    if (!Object.is(organisation, undefined)) {
+    if (organisation !== undefined) {
       this.setState({
         filterChanged: true,
         organisation: organisation
