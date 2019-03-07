@@ -6,12 +6,16 @@ const common = require('./webpack.common.js')
 module.exports = merge(common, {
   devtool: 'source-map',
   plugins: [
-    new TerserPlugin({
-      sourceMap: true,
-      parallel: true
-    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     })
-  ]
+  ],
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        sourceMap: true,
+        parallel: true
+      })
+    ]
+  }
 })
