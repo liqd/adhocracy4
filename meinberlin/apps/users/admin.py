@@ -1,13 +1,16 @@
 from django.contrib import admin
 from django.contrib import auth
+from django.contrib.auth.models import Group
 from django.utils.translation import ugettext_lazy as _
 
 from . import models
+from .forms import UserAdminForm
 
 
 class UserAdmin(auth.admin.UserAdmin):
+    form = UserAdminForm
     fieldsets = (
-        (None, {'fields': ('username', 'email', 'password')}),
+        (None, {'fields': ('username', 'email', 'password', 'groups')}),
         (_('Permissions'), {'fields': ('is_staff', 'is_superuser')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
@@ -26,4 +29,12 @@ class UserAdmin(auth.admin.UserAdmin):
     search_fields = ('username', 'email', 'id')
 
 
+class GroupAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (None, {'fields': ('name', )}),
+    )
+
+
 admin.site.register(models.User, UserAdmin)
+admin.site.unregister(Group)
+admin.site.register(Group, GroupAdmin)
