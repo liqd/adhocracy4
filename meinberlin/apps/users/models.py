@@ -24,6 +24,12 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
             'unique': _('A user with that username already exists.')}
     )
 
+    groups = models.ManyToManyField(
+        auth_models.Group,
+        blank=True,
+        related_name='groups'
+    )
+
     email = models.EmailField(
         _('Email address'),
         unique=True,
