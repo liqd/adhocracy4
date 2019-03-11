@@ -23,7 +23,7 @@ django-filter==2.1.0
 django-sites==0.10
 django-widget-tweaks==1.4.3
 djangorestframework==3.9.2
-easy-thumbnails==2.5
+easy-thumbnails==2.6
 html5lib==1.0.1
 jsonfield==2.0.2
 python-dateutil==2.7.3
