@@ -103,6 +103,7 @@ class Project(ProjectContactDetailMixin,
 
     group = models.ForeignKey(
         Group,
+        blank=True,
         null=True)
 
     description = models.CharField(
