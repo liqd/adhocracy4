@@ -309,6 +309,7 @@ class ListMapBox extends React.Component {
         isSlider={isSlider}
         displayButtons={!this.state.filterOpen}
         displayMap={this.state.showListMap}
+        projectCount={this.state.items.length}
       />
     )
   }
