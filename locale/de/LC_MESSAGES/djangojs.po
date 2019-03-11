@@ -661,7 +661,7 @@ msgstr "Übergeordnetes Projekt: "
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:40
 msgid " participation projects in Berlin"
-msgstr ""
+msgstr " Beteiligunsprojekte in Berlin"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:70
 msgid "Show map"
@@ -669,7 +669,7 @@ msgstr "Karte anzeigen"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:87
 msgid " participation projects"
-msgstr ""
+msgstr " Beteiligunsprojekte"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:117
 msgid "Show List"
