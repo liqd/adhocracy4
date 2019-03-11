@@ -193,6 +193,10 @@
         flex-grow: 2;
         min-height: 100vh;
     }
+
+    @media (max-width: $breakpoint-md-down) {
+        margin-top: $r-spacer;
+    }
 }
 
 .map-list-combined__list {
