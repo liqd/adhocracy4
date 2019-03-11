@@ -1,6 +1,7 @@
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
+from django.contrib.auth.models import Group
 from django.core.urlresolvers import reverse
 from django.core.validators import RegexValidator
 from django.db import models
@@ -99,6 +100,11 @@ class Project(ProjectContactDetailMixin,
     organisation = models.ForeignKey(
         settings.A4_ORGANISATIONS_MODEL,
         on_delete=models.CASCADE)
+
+    group = models.ForeignKey(
+        Group,
+        null=True)
+
     description = models.CharField(
         max_length=250,
         verbose_name=_('Short description of your project'),
