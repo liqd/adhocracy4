@@ -34,7 +34,7 @@ class ProjectAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'organisation')
+            'fields': ('name', 'organisation', 'group')
         }),
         (_('Topic and location'), {
             'fields': ('topics', 'point', 'administrative_district'),
