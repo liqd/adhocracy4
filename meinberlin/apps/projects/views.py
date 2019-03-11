@@ -1,5 +1,4 @@
 import itertools
-from datetime import datetime
 
 import django_filters
 from django.apps import apps
@@ -9,6 +8,7 @@ from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 from django.views import generic
@@ -67,7 +67,7 @@ class YearWidget(DropdownLinkWidget):
 
     def __init__(self, attrs=None):
         choices = (('', _('Any')),)
-        now = datetime.now().year
+        now = timezone.now().year
         try:
             first_year = project_models.Project.objects.earliest('created').\
                 created.year
