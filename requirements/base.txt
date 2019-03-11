@@ -3,7 +3,7 @@ Django==1.11.20 # pyup: <2.0
 wagtail==2.3 # pyup: <2.4
 
 bcrypt==3.1.6
-brotli==1.0.6
+brotli==1.0.7
 django-capture-tag==1.0
 django_csp==3.4
 requests==2.20.0
