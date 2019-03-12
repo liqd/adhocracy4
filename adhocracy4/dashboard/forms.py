@@ -30,9 +30,22 @@ class ProjectCreateForm(forms.ModelForm):
         self.creator = creator
 
     def save(self, commit=True):
-        project = super().save(commit=False)
 
+        creator = self.creator
+        org = self.organisation
+
+        org_has_groups = hasattr(org, 'groups')
+        creator_has_groups = hasattr(creator, 'groups')
+
+        project = super().save(commit=False)
         project.organisation = self.organisation
+
+        if org_has_groups and creator_has_groups:
+            creator_groups = creator.groups.all()
+            org_groups = org.groups.all()
+            shared_groups = creator_groups & org_groups
+            group = shared_groups.first()
+            project.group = group
 
         if commit:
             project.save()
