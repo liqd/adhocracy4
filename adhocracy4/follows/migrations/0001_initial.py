@@ -21,8 +21,8 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(null=True, blank=True, editable=False)),
                 ('enabled', models.BooleanField(default=True)),
-                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
-                ('project', models.ForeignKey(to='a4projects.Project')),
+                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
+                ('project', models.ForeignKey(to='a4projects.Project', on_delete=models.CASCADE)),
             ],
         ),
         migrations.AlterUniqueTogether(
