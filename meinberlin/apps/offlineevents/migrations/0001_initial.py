@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
-import django.utils.timezone
-import ckeditor_uploader.fields
 import autoslug.fields
+import ckeditor_uploader.fields
+import django.utils.timezone
 from django.conf import settings
+from django.db import migrations
+from django.db import models
 
 
 class Migration(migrations.Migration):

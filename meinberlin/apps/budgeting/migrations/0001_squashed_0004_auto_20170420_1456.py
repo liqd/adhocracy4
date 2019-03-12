@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
+import autoslug.fields
+import ckeditor.fields
+import django.db.models.deletion
 import django.utils.timezone
 from django.conf import settings
-import autoslug.fields
-import meinberlin.apps.moderatorfeedback.fields
-import django.db.models.deletion
-import ckeditor.fields
+from django.db import migrations
+from django.db import models
+
 import adhocracy4.maps.fields
+import meinberlin.apps.moderatorfeedback.fields
 
 
 class Migration(migrations.Migration):

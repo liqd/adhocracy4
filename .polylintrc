@@ -1,4 +1,4 @@
-py:flake8 --extend-ignore=W503,W504 --exclude */migrations/*,*/settings/* %s
+py:flake8 %s
 py:isort --diff -rc -c %s
 scss:node_modules/.bin/stylelint --syntax scss %s
 js\\|jsx:node_modules/.bin/eslint -c .eslintrc --ext js,jsx %s

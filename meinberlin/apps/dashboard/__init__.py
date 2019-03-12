@@ -1,7 +1,6 @@
-from adhocracy4.dashboard import components
 from adhocracy4.dashboard import ProjectDashboard
+from adhocracy4.dashboard import components
 from meinberlin.apps.projects import get_project_type
-
 
 default_app_config = 'meinberlin.apps.dashboard.apps.Config'
 
