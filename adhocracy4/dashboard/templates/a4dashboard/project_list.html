@@ -1,5 +1,5 @@
 {% extends "a4dashboard/base_dashboard.html" %}
-{% load i18n project_tags thumbnail %}
+{% load i18n project_tags thumbnail rules %}
 
 {% block title %}{% trans "Projects" %} &mdash; {{ block.super }}{% endblock%}
 
@@ -13,12 +13,13 @@
     {% if project_list|length > 0 %}
         <ul>
             {% for project in project_list %}
+                {% has_perm 'a4projects.change_project' request.user project as can_change_project %}
+                {% if can_change_project %}
                 {% project_tile_image project as project_image %}
                 {% project_tile_image_copyright project as project_image_copyright %}
                 <li>
                     <h2>
                         {{ project.name }}
-
                         {% if project.has_finished %}
                             ({% trans "Finished" %})
                         {% endif %}
@@ -54,6 +55,7 @@
                         </button>
                     </form>
                 </li>
+            {% endif %}
             {% endfor %}
         </ul>
     {% else %}
