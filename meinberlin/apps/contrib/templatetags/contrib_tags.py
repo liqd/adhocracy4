@@ -14,13 +14,13 @@ from django.utils.safestring import mark_safe
 register = template.Library()
 
 
-@register.assignment_tag
+@register.simple_tag
 def include_template_string(template, **kwargs):
     rendered_template = render_to_string(template, kwargs)
     return str(rendered_template)
 
 
-@register.assignment_tag
+@register.simple_tag
 def combined_url_parameter(request_query_dict, **kwargs):
     combined_query_dict = request_query_dict.copy()
     for key in kwargs:
@@ -29,7 +29,7 @@ def combined_url_parameter(request_query_dict, **kwargs):
     return encoded_parameter
 
 
-@register.assignment_tag
+@register.simple_tag
 def filter_has_perm(perm, user, objects):
     """Filter a list of objects based on user permissions."""
     if not hasattr(user, 'has_perm'):

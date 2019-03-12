@@ -27,6 +27,6 @@ def is_container(project):
     return get_project_type(project) == 'container'
 
 
-@register.assignment_tag
+@register.simple_tag
 def to_class_name(value):
     return value.__class__.__name__
