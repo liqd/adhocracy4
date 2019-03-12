@@ -210,6 +210,11 @@ class Project(ProjectContactDetailMixin,
             or (user in self.moderators.all())
         )
 
+    def is_group_member(self, user):
+        if self.group:
+            return user.groups.filter(id=self.group.id).exists()
+        return False
+
     def has_moderator(self, user):
         return user in self.moderators.all()
 

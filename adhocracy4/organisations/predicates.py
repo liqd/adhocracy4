@@ -10,3 +10,13 @@ def is_initiator(user, subject):
             organisation = subject.organisation
         return organisation.has_initiator(user)
     return False
+
+
+@rules.predicate
+def is_org_group_member(user, organisation):
+    if organisation:
+        if hasattr(organisation, 'groups'):
+            org_groups = organisation.groups.all()
+            user_groups = user.groups.all()
+            return org_groups & user_groups
+    return False
