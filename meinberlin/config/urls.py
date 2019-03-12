@@ -35,25 +35,25 @@ js_info_dict = {
 }
 
 router = routers.DefaultRouter()
-router.register(r'follows', FollowViewSet, base_name='follows')
-router.register(r'reports', ReportViewSet, base_name='reports')
-router.register(r'polls', PollViewSet, base_name='polls')
+router.register(r'follows', FollowViewSet, basename='follows')
+router.register(r'reports', ReportViewSet, basename='reports')
+router.register(r'polls', PollViewSet, basename='polls')
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
-module_router.register(r'documents', DocumentViewSet, base_name='chapters')
+module_router.register(r'documents', DocumentViewSet, basename='chapters')
 
 orga_router = a4routers.OrganisationDefaultRouter()
-orga_router.register(r'bplan', BplanViewSet, base_name='bplan')
+orga_router.register(r'bplan', BplanViewSet, basename='bplan')
 
 ct_router = a4routers.ContentTypeDefaultRouter()
-ct_router.register(r'comments', CommentViewSet, base_name='comments')
-ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
+ct_router.register(r'comments', CommentViewSet, basename='comments')
+ct_router.register(r'ratings', RatingViewSet, basename='ratings')
 ct_router.register(r'moderatorremarks', ModeratorRemarkViewSet,
-                   base_name='moderatorremarks')
+                   basename='moderatorremarks')
 
 question_router = QuestionDefaultRouter()
-question_router.register(r'vote', VoteViewSet, base_name='vote')
+question_router.register(r'vote', VoteViewSet, basename='vote')
 
 sitemaps = {
     'adhocracy4': Adhocracy4Sitemap,
@@ -77,28 +77,39 @@ urlpatterns = [
     url(r'^projects/', include('meinberlin.apps.projects.urls')),
     url(r'^modules/', include('adhocracy4.modules.urls')),
 
-    url(r'^ideas/', include('meinberlin.apps.ideas.urls',
-                            namespace='meinberlin_ideas')),
-    url(r'^kiezkasse/', include('meinberlin.apps.kiezkasse.urls',
-                                namespace='meinberlin_kiezkasse')),
-    url(r'^mapideas/', include('meinberlin.apps.mapideas.urls',
-                               namespace='meinberlin_mapideas')),
-    url(r'^text/', include('meinberlin.apps.documents.urls',
-                           namespace='meinberlin_documents')),
-    url(r'^bplan/', include('meinberlin.apps.bplan.urls',
-                            namespace='meinberlin_bplan')),
-    url(r'^budgeting/', include('meinberlin.apps.budgeting.urls',
-                                namespace='meinberlin_budgeting')),
-    url(r'^topicprio/', include('meinberlin.apps.topicprio.urls',
-                                namespace='meinberlin_topicprio')),
-    url(r'^maptopicprio/', include('meinberlin.apps.maptopicprio.urls',
-                                   namespace='meinberlin_maptopicprio')),
-    url(r'^offlineevents/', include('meinberlin.apps.offlineevents.urls',
-                                    namespace='meinberlin_offlineevents')),
-    url(r'^newsletters/', include('meinberlin.apps.newsletters.urls',
-                                  namespace='meinberlin_newsletters')),
-    url(r'', include('meinberlin.apps.plans.urls',
-                     namespace='meinberlin_plans')),
+    url(r'^ideas/', include(('meinberlin.apps.ideas.urls',
+                             'meinberlin_ideas'),
+                            'meinberlin_ideas')),
+    url(r'^kiezkasse/', include(('meinberlin.apps.kiezkasse.urls',
+                                 'meinberlin_kiezkasse'),
+                                'meinberlin_kiezkasse')),
+    url(r'^mapideas/', include(('meinberlin.apps.mapideas.urls',
+                                'meinberlin_mapideas'),
+                               'meinberlin_mapideas')),
+    url(r'^text/', include(('meinberlin.apps.documents.urls',
+                            'meinberlin_documents'),
+                           'meinberlin_documents')),
+    url(r'^bplan/', include(('meinberlin.apps.bplan.urls',
+                             'meinberlin_bplan'),
+                            'meinberlin_bplan')),
+    url(r'^budgeting/', include(('meinberlin.apps.budgeting.urls',
+                                 'meinberlin_budgeting'),
+                                'meinberlin_budgeting')),
+    url(r'^topicprio/', include(('meinberlin.apps.topicprio.urls',
+                                 'meinberlin_topicprio'),
+                                'meinberlin_topicprio')),
+    url(r'^maptopicprio/', include(('meinberlin.apps.maptopicprio.urls',
+                                    'meinberlin_maptopicprio'),
+                                   'meinberlin_maptopicprio')),
+    url(r'^offlineevents/', include(('meinberlin.apps.offlineevents.urls',
+                                     'meinberlin_offlineevents'),
+                                    'meinberlin_offlineevents')),
+    url(r'^newsletters/', include(('meinberlin.apps.newsletters.urls',
+                                   'meinberlin_newsletters'),
+                                  'meinberlin_newsletters')),
+    url(r'', include(('meinberlin.apps.plans.urls',
+                      'meinberlin_plans'),
+                     'meinberlin_plans')),
 
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(module_router.urls)),
