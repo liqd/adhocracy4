@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='proposal',
             name='moderator_statement',
-            field=models.OneToOneField(null=True, related_name='+', to='meinberlin_moderatorfeedback.ModeratorStatement', blank=True),
+            field=models.OneToOneField(null=True, related_name='+', to='meinberlin_moderatorfeedback.ModeratorStatement', blank=True, on_delete=models.CASCADE),
         ),
     ]

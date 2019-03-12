@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='EmailFormPage',
             fields=[
-                ('page_ptr', models.OneToOneField(primary_key=True, serialize=False, auto_created=True, parent_link=True, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(primary_key=True, serialize=False, auto_created=True, parent_link=True, to='wagtailcore.Page', on_delete=models.CASCADE)),
                 ('to_address', models.CharField(verbose_name='to address', max_length=255, blank=True, help_text='Optional - form submissions will be emailed to these addresses. Separate multiple addresses by comma.')),
                 ('from_address', models.CharField(verbose_name='from address', max_length=255, blank=True)),
                 ('subject', models.CharField(verbose_name='subject', max_length=255, blank=True)),

@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='proposal',
             name='item_ptr',
-            field=models.OneToOneField(to='a4modules.Item', serialize=False, primary_key=True, related_name='meinberlin_budgeting_proposal', parent_link=True),
+            field=models.OneToOneField(to='a4modules.Item', serialize=False, primary_key=True, related_name='meinberlin_budgeting_proposal', parent_link=True, on_delete=models.CASCADE),
         ),
     ]

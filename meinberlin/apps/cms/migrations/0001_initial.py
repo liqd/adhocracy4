@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='HomePage',
             fields=[
-                ('page_ptr', models.OneToOneField(to='wagtailcore.Page', serialize=False, auto_created=True, parent_link=True, primary_key=True)),
+                ('page_ptr', models.OneToOneField(to='wagtailcore.Page', serialize=False, auto_created=True, parent_link=True, primary_key=True, on_delete=models.CASCADE)),
                 ('body', wagtail.core.fields.RichTextField(blank=True)),
             ],
             options={
@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='NavigationMenuItem',
             fields=[
-                ('menuitem_ptr', models.OneToOneField(to='meinberlin_cms.MenuItem', serialize=False, auto_created=True, parent_link=True, primary_key=True)),
+                ('menuitem_ptr', models.OneToOneField(to='meinberlin_cms.MenuItem', serialize=False, auto_created=True, parent_link=True, primary_key=True, on_delete=models.CASCADE)),
                 ('sort_order', models.IntegerField(blank=True, null=True, editable=False)),
                 ('parent', modelcluster.fields.ParentalKey(related_name='items', to='meinberlin_cms.NavigationMenu')),
             ],
@@ -58,6 +58,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='menuitem',
             name='link_page',
-            field=models.ForeignKey(to='wagtailcore.Page'),
+            field=models.ForeignKey(to='wagtailcore.Page', on_delete=models.CASCADE),
         ),
     ]

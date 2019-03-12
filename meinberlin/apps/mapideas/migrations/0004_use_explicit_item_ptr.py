@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='mapidea',
             name='item_ptr',
-            field=models.OneToOneField(to='a4modules.Item', serialize=False, primary_key=True, related_name='meinberlin_mapideas_mapidea', parent_link=True),
+            field=models.OneToOneField(to='a4modules.Item', serialize=False, primary_key=True, related_name='meinberlin_mapideas_mapidea', parent_link=True, on_delete=models.CASCADE),
         ),
     ]

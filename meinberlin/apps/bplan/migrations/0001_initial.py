@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Bplan',
             fields=[
-                ('externalproject_ptr', models.OneToOneField(parent_link=True, serialize=False, auto_created=True, to='meinberlin_extprojects.ExternalProject', primary_key=True)),
+                ('externalproject_ptr', models.OneToOneField(parent_link=True, serialize=False, auto_created=True, to='meinberlin_extprojects.ExternalProject', primary_key=True, on_delete=models.CASCADE)),
                 ('office_worker_email', models.EmailField(max_length=254)),
             ],
             options={
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('statement', models.TextField(max_length=17500)),
                 ('street_number', models.CharField(max_length=255)),
                 ('postal_code_city', models.CharField(max_length=255)),
-                ('module', models.ForeignKey(to='a4modules.Module')),
+                ('module', models.ForeignKey(to='a4modules.Module', on_delete=models.CASCADE)),
             ],
             options={
                 'abstract': False,

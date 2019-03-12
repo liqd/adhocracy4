@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(blank=True, null=True, editable=False)),
                 ('statement', ckeditor.fields.RichTextField(blank=True)),
-                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
                 'abstract': False,

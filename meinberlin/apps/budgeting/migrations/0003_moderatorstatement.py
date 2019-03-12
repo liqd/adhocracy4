@@ -21,9 +21,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(blank=True, null=True, editable=False)),
-                ('proposal', models.OneToOneField(related_name='moderator_statement', primary_key=True, serialize=False, to='meinberlin_budgeting.Proposal')),
+                ('proposal', models.OneToOneField(related_name='moderator_statement', primary_key=True, serialize=False, to='meinberlin_budgeting.Proposal', on_delete=models.CASCADE)),
                 ('statement', ckeditor.fields.RichTextField(blank=True)),
-                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
                 'abstract': False,
