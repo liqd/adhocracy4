@@ -3,7 +3,8 @@
 
 {% block content %}
 
-{% has_perm 'a4projects.add_project' request.user view.project as user_may_add %}
+{% has_perm 'a4projects.add_project' request.user view.organisation as user_may_add %}
+{% has_perm 'meinberlin_organisations.change_organisation' request.user view.organisation as user_may_change %}
 {% if user_may_add %}
 <div class="tablist tablist--right tablist--background">
     <div class="l-wrapper">
@@ -43,10 +44,12 @@
                class="tab {% ifequal view.menu_item 'project' %}active{% endifequal %}">
                 {% trans 'Participation projects' %}
             </a>
+            {% if user_may_change %}
             <a href="{% url 'a4dashboard:organisation-edit' organisation_slug=view.organisation.slug %}"
                class="tab {% ifequal view.menu_item 'organisation' %}active{% endifequal %}">
                 {% trans 'Settings' %}
             </a>
+            {% endif %}
             <a href="{% url 'a4dashboard:newsletter-create' organisation_slug=view.organisation.slug %}"
                class="tab {% ifequal view.menu_item 'newsletter' %}active{% endifequal %}">
                 {% trans 'Newsletter' %}
