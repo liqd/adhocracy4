@@ -62,13 +62,14 @@ sitemaps = {
 }
 
 urlpatterns = [
-    url(r'^django-admin/', include(admin.site.urls)),
+    url(r'^django-admin/', admin.site.urls),
     url(r'^dashboard/', include('meinberlin.apps.dashboard.urls')),
     url(r'^account/', include('meinberlin.apps.account.urls')),
     url(r'^embed/', include('meinberlin.apps.embed.urls')),
     url(r'^profile/', include('meinberlin.apps.users.urls')),
-    url(r'^initiators/', include('meinberlin.apps.initiators.urls',
-                                 namespace='meinberlin_initiators')),
+    url(r'^initiators/', include(('meinberlin.apps.initiators.urls',
+                                  'meinberlin_initiators'),
+                                 'meinberlin_initiators')),
 
     url(r'^admin/', include('wagtail.admin.urls')),
     url(r'^accounts/', include('allauth.urls')),
