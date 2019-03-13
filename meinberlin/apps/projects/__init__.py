@@ -1,6 +1,5 @@
 from functools import lru_cache
 
-
 default_app_config = 'meinberlin.apps.projects.apps.Config'
 
 

@@ -146,7 +146,7 @@ class BplanSerializer(serializers.ModelSerializer):
                         f.write(chunk)
                 file_name = self._generate_image_filename(parsed_url.path, f)
                 self._image_storage.save(file_name, f)
-        except Exception as e:
+        except Exception:
             if file_name:
                 self._image_storage.delete(file_name)
             raise serializers.ValidationError(

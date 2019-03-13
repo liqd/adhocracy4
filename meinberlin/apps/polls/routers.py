@@ -6,7 +6,7 @@ from adhocracy4.api.routers import CustomRouterMixin
 class QuestionRouterMixin(CustomRouterMixin):
 
     prefix_regex = (
-        'polls/question/(?P<question_pk>[\d]+)/{prefix}'
+        r'polls/question/(?P<question_pk>[\d]+)/{prefix}'
     )
 
 

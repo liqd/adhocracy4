@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
-import adhocracy4.maps.fields
 import django.db.models.deletion
+from django.db import migrations
+from django.db import models
+
+import adhocracy4.maps.fields
 
 
 class Migration(migrations.Migration):

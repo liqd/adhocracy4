@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
+from django.db import migrations
+from django.db import models
+
 import meinberlin.apps.moderatorfeedback.fields
 
 
@@ -21,6 +23,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='proposal',
             name='moderator_statement',
-            field=models.OneToOneField(null=True, related_name='+', to='meinberlin_moderatorfeedback.ModeratorStatement'),
+            field=models.OneToOneField(null=True, related_name='+', to='meinberlin_moderatorfeedback.ModeratorStatement', on_delete=models.CASCADE),
         ),
     ]

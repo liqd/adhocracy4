@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 
+
 def copy_images(apps, schema_editor):
     CustomImage = apps.get_model('meinberlin_cms', 'CustomImage')
     Image = apps.get_model('wagtailimages', 'Image')

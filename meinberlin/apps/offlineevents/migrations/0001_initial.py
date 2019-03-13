@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
-import django.utils.timezone
-import ckeditor_uploader.fields
 import autoslug.fields
+import ckeditor_uploader.fields
+import django.utils.timezone
 from django.conf import settings
+from django.db import migrations
+from django.db import models
 
 
 class Migration(migrations.Migration):
@@ -26,8 +27,8 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(verbose_name='Name', max_length=120)),
                 ('date', models.DateTimeField(verbose_name='Date', blank=True, null=True)),
                 ('description', ckeditor_uploader.fields.RichTextUploadingField(verbose_name='Description')),
-                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
-                ('project', models.ForeignKey(to='a4projects.Project')),
+                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
+                ('project', models.ForeignKey(to='a4projects.Project', on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['-date'],

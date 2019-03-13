@@ -43,7 +43,7 @@ urlpatterns = [
         views.ModuleBlueprintListView.as_view(),
         name='module-blueprint-list'),
     url(r'^projects/(?P<project_slug>[-\w_]+)/blueprints/'
-        '(?P<blueprint_slug>[-\w_]+)/$',
+        r'(?P<blueprint_slug>[-\w_]+)/$',
         views.ModuleCreateView.as_view(),
         name='module-create'),
 
