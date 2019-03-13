@@ -1,5 +1,6 @@
 from autoslug import AutoSlugField
 from django.conf import settings
+from django.contrib.auth.models import Group
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -13,6 +14,10 @@ class Organisation(models.Model):
     initiators = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
         blank=True,
+    )
+    groups = models.ManyToManyField(
+        Group,
+        blank=True
     )
     logo = fields.ConfiguredImageField(
         'logo',
