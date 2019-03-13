@@ -2,6 +2,13 @@ import rules
 
 
 @rules.predicate
+def is_prj_group_member(user, project):
+    if project:
+        return project.is_group_member(user)
+    return False
+
+
+@rules.predicate
 def is_member(user, project):
     if project:
         return project.has_member(user)
