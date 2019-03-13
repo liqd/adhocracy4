@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
-from django.conf import settings
-import django.utils.timezone
 import ckeditor_uploader.fields
+import django.utils.timezone
+from django.conf import settings
+from django.db import migrations
+from django.db import models
 
 
 class Migration(migrations.Migration):
@@ -27,9 +28,9 @@ class Migration(migrations.Migration):
                 ('body', ckeditor_uploader.fields.RichTextUploadingField(blank=True, verbose_name='Email body')),
                 ('sent', models.DateTimeField(null=True, blank=True, verbose_name='Sent')),
                 ('receivers', models.PositiveSmallIntegerField(choices=[(0, 'Every user on the platform'), (1, 'Users following the chosen organisation'), (2, 'Users following the chosen project')], verbose_name='Receivers')),
-                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
-                ('organisation', models.ForeignKey(null=True, to=settings.A4_ORGANISATIONS_MODEL, blank=True)),
-                ('project', models.ForeignKey(null=True, to='a4projects.Project', blank=True)),
+                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
+                ('organisation', models.ForeignKey(null=True, to=settings.A4_ORGANISATIONS_MODEL, blank=True, on_delete=models.CASCADE)),
+                ('project', models.ForeignKey(null=True, to='a4projects.Project', blank=True, on_delete=models.CASCADE)),
             ],
             options={
                 'abstract': False,

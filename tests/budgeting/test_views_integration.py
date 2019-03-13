@@ -67,7 +67,7 @@ def test_moderate_view(client, phase_factory, proposal_factory, user,
     area_settings_factory(module=module)
     url = reverse('meinberlin_budgeting:proposal-moderate',
                   kwargs={'pk': item.pk, 'year': item.created.year})
-    project.moderators = [user]
+    project.moderators.set([user])
     with freeze_phase(phase):
         client.login(username=user.email, password='password')
 

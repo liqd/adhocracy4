@@ -37,31 +37,31 @@ class Toggles extends React.Component {
       return (
         <div>
           <div className="l-frame switch-container">
-            <div className={this.props.displayButtons && (this.props.statusSelected || this.props.participationSelected || this.props.organisationSelected || this.props.titleSearchSelected) ? 'switch-filter__label' : 'd-none'}>{django.gettext('Set filters')}</div>
-            <div>
+            <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{django.gettext(' participation projects in Berlin')}</div>
+            <div className="switch-filter__btn-group">
               { this.props.displayButtons && this.props.statusSelected &&
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickStatusButton.bind(this)}
-                  type="button">{this.props.statusString} <i className="fa fa-times" /></button>
+                  type="button">{this.props.statusString} {this.props.statusCount} <i className="fa fa-times" /></button>
               }
               { this.props.displayButtons && this.props.participationSelected &&
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickParticipationButton.bind(this)}
-                  type="button">{this.props.participationString} <i className="fa fa-times" /></button>
+                  type="button">{this.props.participationString} {this.props.participationCount} <i className="fa fa-times" /></button>
               }
               { this.props.displayButtons && this.props.organisationSelected &&
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickOrganisationButton.bind(this)}
-                  type="button">{this.organisationButtonString()} <i className="fa fa-times" /></button>
+                  type="button">{this.organisationButtonString()} {this.props.organisationCount} <i className="fa fa-times" /></button>
               }
               { this.props.displayButtons && this.props.titleSearchSelected &&
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickTitleSearchButton.bind(this)}
-                  type="button">{this.titleSearchButtonString()} <i className="fa fa-times" /></button>
+                  type="button">{this.titleSearchButtonString()} {this.props.titleSearchCount} <i className="fa fa-times" /></button>
               }
             </div>
             <div className="switch">
@@ -84,8 +84,8 @@ class Toggles extends React.Component {
       return (
         <div>
           <div className="l-frame switch-container">
-            <div className={this.props.displayButtons && (this.props.statusSelected || this.props.participationSelected || this.props.organisationSelected || this.props.titleSearchSelected) ? 'switch-filter__label' : 'd-none'}>{django.gettext('Set filters')}</div>
-            <div>
+            <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{django.gettext(' participation projects')}</div>
+            <div className="switch-filter__btn-group">
               { this.props.displayButtons && this.props.statusSelected &&
                 <button
                   className="btn btn--transparent btn--small"

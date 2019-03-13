@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
-import ckeditor.fields
 import autoslug.fields
+import ckeditor.fields
 import django.db.models.deletion
+from django.db import migrations
+from django.db import models
+
 import adhocracy4.maps.fields
 
 
@@ -19,7 +21,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Proposal',
             fields=[
-                ('item_ptr', models.OneToOneField(serialize=False, primary_key=True, to='a4modules.Item', parent_link=True, related_name='meinberlin_kiezkasse_proposal')),
+                ('item_ptr', models.OneToOneField(serialize=False, primary_key=True, to='a4modules.Item', parent_link=True, related_name='meinberlin_kiezkasse_proposal', on_delete=models.CASCADE)),
                 ('slug', autoslug.fields.AutoSlugField(populate_from='name', editable=False, unique=True)),
                 ('name', models.CharField(max_length=120)),
                 ('description', ckeditor.fields.RichTextField()),
