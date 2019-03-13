@@ -5,27 +5,27 @@ from django.urls import NoReverseMatch
 register = template.Library()
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_item_view_permission(item):
     return get_item_permission(item, 'view')
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_item_add_permission(item):
     return get_item_permission(item, 'add')
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_item_change_permission(item):
     return get_item_permission(item, 'change')
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_item_delete_permission(item):
     return get_item_permission(item, 'delete')
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_item_permission(item, verb):
     return '{app}.{verb}_{name}'.format(
         app=item._meta.app_label,
@@ -34,17 +34,17 @@ def get_item_permission(item, verb):
     )
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_item_update_url(item):
     return get_item_url(item, 'update')
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_item_delete_url(item):
     return get_item_url(item, 'delete')
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_item_url(item, view, raises=True):
     url_name = '{app}:{name}-{view}'.format(
         app=item._meta.app_label,

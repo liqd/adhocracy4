@@ -41,7 +41,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     def get_authenticated(self, _):
         if 'request' in self.context:
             user = self.context['request'].user
-            return user.is_authenticated()
+            return bool(user.is_authenticated)
         return False
 
     def get_is_read_only(self, question):

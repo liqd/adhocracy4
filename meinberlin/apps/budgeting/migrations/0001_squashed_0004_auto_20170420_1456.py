@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
+import autoslug.fields
+import ckeditor.fields
+import django.db.models.deletion
 import django.utils.timezone
 from django.conf import settings
-import autoslug.fields
-import meinberlin.apps.moderatorfeedback.fields
-import django.db.models.deletion
-import ckeditor.fields
+from django.db import migrations
+from django.db import models
+
 import adhocracy4.maps.fields
+import meinberlin.apps.moderatorfeedback.fields
 
 
 class Migration(migrations.Migration):
@@ -25,7 +27,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Proposal',
             fields=[
-                ('item_ptr', models.OneToOneField(serialize=False, auto_created=True, to='a4modules.Item', primary_key=True, parent_link=True)),
+                ('item_ptr', models.OneToOneField(serialize=False, auto_created=True, to='a4modules.Item', primary_key=True, parent_link=True, on_delete=models.CASCADE)),
                 ('slug', autoslug.fields.AutoSlugField(populate_from='name', editable=False, unique=True)),
                 ('name', models.CharField(max_length=120)),
                 ('description', ckeditor.fields.RichTextField()),
@@ -44,9 +46,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('created', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(blank=True, editable=False, null=True)),
-                ('proposal', models.OneToOneField(serialize=False, related_name='moderator_statement', to='meinberlin_budgeting.Proposal', primary_key=True)),
+                ('proposal', models.OneToOneField(serialize=False, related_name='moderator_statement', to='meinberlin_budgeting.Proposal', primary_key=True, on_delete=models.CASCADE)),
                 ('statement', ckeditor.fields.RichTextField(blank=True)),
-                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('creator', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
                 'abstract': False,

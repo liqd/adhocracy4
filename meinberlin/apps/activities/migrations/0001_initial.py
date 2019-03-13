@@ -4,8 +4,9 @@ from __future__ import unicode_literals
 
 import autoslug.fields
 import ckeditor.fields
-from django.db import migrations, models
 import django.db.models.deletion
+from django.db import migrations
+from django.db import models
 
 
 class Migration(migrations.Migration):

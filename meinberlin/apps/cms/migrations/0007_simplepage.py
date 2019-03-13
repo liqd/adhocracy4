@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import migrations, models
 import wagtail.core.fields
+from django.db import migrations
+from django.db import models
 
 
 class Migration(migrations.Migration):
@@ -16,7 +17,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SimplePage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, serialize=False, auto_created=True, primary_key=True, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(parent_link=True, serialize=False, auto_created=True, primary_key=True, to='wagtailcore.Page', on_delete=models.CASCADE)),
                 ('body', wagtail.core.fields.RichTextField(blank=True)),
             ],
             options={

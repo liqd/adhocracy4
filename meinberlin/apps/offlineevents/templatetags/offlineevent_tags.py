@@ -10,7 +10,7 @@ from meinberlin.apps.offlineevents.models import OfflineEvent
 register = template.Library()
 
 
-@register.assignment_tag
+@register.simple_tag
 def offlineevents_and_modules_sorted(project):
     modules = list(project.module_set.all())
     events = list(OfflineEvent.objects.filter(project=project))
