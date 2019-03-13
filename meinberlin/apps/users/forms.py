@@ -26,9 +26,9 @@ class UserAdminForm(auth_forms.UserChangeForm):
         if duplicates:
             count = len(duplicates)
             message = ngettext(
-                'User is member in more then one group '
+                'User is member in more than one group '
                 'in this organisation: %(duplicates)s.',
-                'User is member in more then one group '
+                'User is member in more than one group '
                 'in these organisations: %(duplicates)s.',
                 count) % {
                 'duplicates': ', '.join(duplicates)
