@@ -1,5 +1,6 @@
 from ckeditor.fields import RichTextField
 from django.conf import settings
+from django.contrib.auth.models import Group
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.functional import cached_property
@@ -44,6 +45,10 @@ class Plan(UserGeneratedContentModel):
         related_name='plans',
         blank=True
     )
+    group = models.ForeignKey(
+        Group,
+        blank=True,
+        null=True)
     point = map_fields.PointField(
         verbose_name=_('Where can the plan be located on a map?'),
         help_text=_('Click inside the marked area '
