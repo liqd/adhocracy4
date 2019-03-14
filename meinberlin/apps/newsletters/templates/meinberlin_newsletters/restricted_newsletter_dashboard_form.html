@@ -1,0 +1,30 @@
+{% extends "a4dashboard/base_dashboard.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Newsletter" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block dashboard_content %}
+<div class="l-center-8">
+    <h1>{% trans "Create Newsletter" %}</h1>
+
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+        <div class="l-tiles-2">
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender_name %}
+            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender %}
+        </div>
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.subject %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.receivers %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.body %}
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project %}
+
+        <input type="hidden" id="{{ form.organisation.id_for_label}}" name="{{form.organisation.html_name}}" value="{{view.organisation.id}}" />
+
+        <div class="u-spacer-bottom">
+            <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send'%}" />
+            <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}" class="btn btn--light">{% trans 'Cancel'%}</a>
+        </div>
+    </form>
+    {{ form.media }}
+</div>
+{% endblock %}

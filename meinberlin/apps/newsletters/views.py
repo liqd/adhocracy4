@@ -13,6 +13,7 @@ from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.follows.models import Follow
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.newsletters.forms import NewsletterForm
+from meinberlin.apps.newsletters.forms import RestrictedNewsletterForm
 
 from . import emails
 from . import forms
@@ -51,12 +52,13 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
     def get_success_url(self):
         return reverse('meinberlin_newsletters:newsletter-create')
 
+    def _check_permission(self, organisation, user):
+        return user.is_superuser or organisation.has_initiator(user)
+
     def form_valid(self, form):
         # Check if the current user is allowed to send to the selected org
         organisation = form.cleaned_data['organisation']
-        if not (self.request.user.is_superuser or
-                Organisation.objects.get(pk=organisation.pk)
-                    .has_initiator(self.request.user)):
+        if not self._check_permission(organisation, self.request.user):
             raise PermissionDenied
 
         instance = form.save(commit=False)
@@ -107,10 +109,23 @@ class NewsletterCreateView(rules_mixins.PermissionRequiredMixin,
 
 class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
                                     NewsletterCreateView):
-    template_name = 'meinberlin_newsletters/newsletter_dashboard_form.html'
     menu_item = 'newsletter'
-    form_class = NewsletterForm
     permission_required = 'a4projects.add_project'
+
+    def get_form(self):
+        user = self.request.user
+        if self.organisation.has_initiator(user) or user.is_superuser:
+            return NewsletterForm(**self.get_form_kwargs())
+        else:
+            return RestrictedNewsletterForm(**self.get_form_kwargs())
+
+    def get_template_names(self):
+        user = self.request.user
+        if self.organisation.has_initiator(user) or user.is_superuser:
+            return ['meinberlin_newsletters/newsletter_dashboard_form.html']
+        else:
+            return ['meinberlin_newsletters/'
+                    'restricted_newsletter_dashboard_form.html']
 
     def get_email_kwargs(self):
         kwargs = {}
@@ -120,13 +135,24 @@ class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs['organisation'] = self.organisation
-        kwargs.pop('user')
+        user = self.request.user
+        if not self.organisation.has_initiator(user) or user.is_superuser:
+            kwargs['initial']['receivers'] = models.PROJECT
         return kwargs
 
     def get_success_url(self):
         return reverse(
             'a4dashboard:newsletter-create',
             kwargs={'organisation_slug': self.organisation.slug})
+
+    def _group_permission(self, organisation, user):
+        org_groups = organisation.groups.all()
+        user_groups = user.groups.all()
+        return (org_groups & user_groups).count() > 0
+
+    def _check_permission(self, organisation, user):
+        base_perms = super()._check_permission(organisation, user)
+        return base_perms or self._group_permission(organisation, user)
 
     def get_permission_object(self):
         return self.organisation
