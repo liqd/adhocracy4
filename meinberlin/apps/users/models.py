@@ -5,6 +5,8 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
+from meinberlin.apps.organisations.models import Organisation
+
 from . import USERNAME_INVALID_MESSAGE
 from . import USERNAME_REGEX
 
@@ -75,7 +77,14 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
 
     @property
     def organisations(self):
-        return self.organisation_set.all()
+        initiator_orgs = self.organisation_set.all()
+        if self.groups.all():
+            user_groups = self.groups.all().values_list('id', flat=True)
+            group_orgs = Organisation.objects \
+                .filter(groups__in=user_groups)
+            orgs = initiator_orgs | group_orgs
+            return orgs.distinct()
+        return initiator_orgs
 
     def get_short_name(self):
         return self.username
