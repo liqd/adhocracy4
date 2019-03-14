@@ -236,7 +236,17 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
     html_fields = ['description']
 
     def get_object_list(self):
-        return models.Plan.objects.filter(organisation=self.organisation)
+        if self.organisation.has_initiator(self.request.user):
+            return models.Plan.objects.filter(organisation=self.organisation)
+        else:
+            if self.organisation.groups.all() and \
+               self.request.user.groups.all():
+                org_groups = self.organisation.groups.all()
+                user_groups = self.request.user.groups.all()
+                shared_groups = org_groups & user_groups
+                group = shared_groups.distinct().first()
+                return models.Plan.objects\
+                    .filter(organisation=self.organisation, group=group)
 
     def get_permission_object(self):
         return self.organisation

@@ -28,5 +28,5 @@ rules.add_perm(
 
 rules.add_perm(
     'meinberlin_plans.export_plan',
-    is_superuser | is_initiator
+    is_superuser | is_initiator | is_org_group_member
 )
