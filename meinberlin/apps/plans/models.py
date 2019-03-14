@@ -155,3 +155,8 @@ class Plan(UserGeneratedContentModel):
         org_groups = organisation.groups.all()
         shared_groups = user_groups & org_groups
         return shared_groups.distinct().first()
+
+    def is_group_member(self, user):
+        if self.group:
+            return user.groups.filter(id=self.group.id).exists()
+        return False
