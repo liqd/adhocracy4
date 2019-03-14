@@ -1,5 +1,5 @@
 {% extends "a4dashboard/base_project_list.html" %}
-{% load i18n %}
+{% load rules i18n %}
 
 {% block title %}{% trans "Plans" %} &mdash; {{ block.super }}{% endblock %}
 
@@ -22,6 +22,8 @@
     {% if object_list.count > 0 %}
         <ul class="u-list-reset">
             {% for plan in object_list %}
+                {% has_perm 'meinberlin_plans.change_plan' request.user plan as can_change_plan %}
+                {% if can_change_plan %}
                 <li class="list-item">
                     <div class="lr-bar">
                         <div class="lr-bar__left">
@@ -50,6 +52,7 @@
                         </div>
                     </div>
                 </li>
+                {% endif %}
             {% endfor %}
         </ul>
     {% else %}
