@@ -147,4 +147,16 @@ class Plan(UserGeneratedContentModel):
 
     def save(self, *args, **kwargs):
         self.description = transforms.clean_html_field(self.description)
+        self.group = self._get_group(self.creator, self.organisation)
         super().save(*args, **kwargs)
+
+    def _get_group(self, user, organisation):
+        user_groups = user.groups.all()
+        org_groups = organisation.groups.all()
+        shared_groups = user_groups & org_groups
+        return shared_groups.distinct().first()
+
+    def is_group_member(self, user):
+        if self.group:
+            return user.groups.filter(id=self.group.id).exists()
+        return False
