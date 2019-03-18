@@ -1,12 +1,9 @@
 from autoslug import AutoSlugField
-from django.conf import settings
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
-from adhocracy4.images import fields
 
 
 class Organisation(models.Model):

@@ -65,7 +65,6 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
         model = Organisation
     name = factory.Faker('company')
 
-
     @factory.post_generation
     def groups(self, create, extracted, **kwargs):
         if not create:
