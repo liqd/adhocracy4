@@ -18,5 +18,6 @@ def is_org_group_member(user, organisation):
         if hasattr(organisation, 'groups'):
             org_groups = organisation.groups.all()
             user_groups = user.groups.all()
-            return org_groups & user_groups
+            group = org_groups & user_groups
+            return group.count() > 0
     return False

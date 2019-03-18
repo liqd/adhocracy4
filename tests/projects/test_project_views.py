@@ -32,8 +32,10 @@ def test_detail_private_project(client, project, user):
 
 @pytest.mark.django_db
 @pytest.mark.parametrize('project__is_draft', [True])
-def test_detail_draft_project(client, project, user, staff_user):
+def test_detail_draft_project(client, project, user, another_user):
     project_url = reverse('project-detail', args=[project.slug])
+    organisation = project.organisation
+    organisation.initiators.add(another_user)
     response = client.get(project_url)
     assert response.status_code == 302
     assert redirect_target(response) == 'account_login'
@@ -42,7 +44,7 @@ def test_detail_draft_project(client, project, user, staff_user):
     response = client.get(project_url)
     assert response.status_code == 403
 
-    client.login(username=staff_user, password='password')
+    client.login(username=another_user, password='password')
     response = client.get(project_url)
     assert response.status_code == 200
     assert response.context_data['view'].project == project

@@ -3,13 +3,20 @@ import factory
 
 from dateutil.parser import parse
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.projects.models import Project
-from adhocracy4.organisations.models import Organisation
+from tests.apps.organisations.models import Organisation
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
+
+
+class GroupFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Group
+
+    name = factory.Faker('name')
 
 
 class UserFactory(factory.django.DjangoModelFactory):
@@ -24,6 +31,17 @@ class UserFactory(factory.django.DjangoModelFactory):
     )
     is_staff = False
     is_superuser = False
+
+    @factory.post_generation
+    def groups(self, create, extracted, **kwargs):
+        if not create:
+            # Simple build, do nothing.
+            return
+
+        if extracted:
+            # A list of groups were passed in, use them
+            for group in extracted:
+                self.groups.add(group)
 
 
 class AdminFactory(factory.django.DjangoModelFactory):
@@ -58,6 +76,7 @@ class ProjectFactory(factory.django.DjangoModelFactory):
         model = Project
 
     name = factory.Faker('sentence')
+    group = factory.SubFactory(GroupFactory)
     slug = factory.Faker('slug')
     organisation = factory.SubFactory(ORGANISATION_FACTORY)
     description = factory.Faker('text', max_nb_chars=120)
