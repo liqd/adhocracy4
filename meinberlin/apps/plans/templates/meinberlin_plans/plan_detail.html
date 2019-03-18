@@ -82,7 +82,7 @@
                 <h3 class="item-detail-2__smalltitle">{% trans 'Contact' %}</h3>
                 {{ object.contact|linebreaks }}
 
-               {% has_perm 'meinberlin_plans.change_plan' request.user object.organisation as user_may_change %}
+               {% has_perm 'meinberlin_plans.change_plan' request.user object as user_may_change %}
                {% if user_may_change %}
                 <div class="item-detail__actions lr-bar">
                     <div class="lr-bar__right">
