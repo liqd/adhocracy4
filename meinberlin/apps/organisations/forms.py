@@ -20,12 +20,13 @@ class OrganisationForm(forms.ModelForm):
 
     def clean(self):
         groups = self.cleaned_data.get('groups')
-        old_groups = self._get_old_groups(groups)
         duplicates = self._check_user_twice(groups)
         if duplicates:
             raise ValidationError(
                 self._get_duplicate_error_message(duplicates))
-        self._delete_from_old_groups(old_groups)
+        if self.instance.id:
+            old_groups = self._get_old_groups(groups)
+            self._delete_from_old_groups(old_groups)
         return self.cleaned_data
 
     def _get_old_groups(self, groups):
