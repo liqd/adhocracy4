@@ -6,9 +6,12 @@ from adhocracy4.test.helpers import redirect_target
 
 
 @pytest.mark.django_db
-def test_project_list(client, organisation, project_factory, user, staff_user):
+def test_project_list(client, organisation,
+                      project_factory, user, another_user):
     project0 = project_factory(organisation=organisation)
     project1 = project_factory(organisation=organisation)
+
+    organisation.initiators.add(another_user)
 
     project_list_url = reverse('a4dashboard:project-list', kwargs={
         'organisation_slug': organisation.slug})
@@ -19,7 +22,7 @@ def test_project_list(client, organisation, project_factory, user, staff_user):
     response = client.get(project_list_url)
     assert response.status_code == 403
 
-    client.login(username=staff_user, password='password')
+    client.login(username=another_user, password='password')
     response = client.get(project_list_url)
     assert response.status_code == 200
 
@@ -28,7 +31,8 @@ def test_project_list(client, organisation, project_factory, user, staff_user):
 
 
 @pytest.mark.django_db
-def test_blueprint_list(client, organisation, user, staff_user):
+def test_blueprint_list(client, organisation, user, another_user):
+
     blueprint_list_url = reverse('a4dashboard:blueprint-list', kwargs={
         'organisation_slug': organisation.slug})
     response = client.get(blueprint_list_url)
@@ -38,7 +42,8 @@ def test_blueprint_list(client, organisation, user, staff_user):
     response = client.get(blueprint_list_url)
     assert response.status_code == 403
 
-    client.login(username=staff_user, password='password')
+    organisation.initiators.add(another_user)
+    client.login(username=another_user, password='password')
     response = client.get(blueprint_list_url)
     assert response.status_code == 200
 
@@ -48,7 +53,14 @@ def test_blueprint_list(client, organisation, user, staff_user):
 
 
 @pytest.mark.django_db
-def test_project_create(client, organisation, user, staff_user):
+def test_project_create(client, organisation, user_factory, group_factory):
+    group1 = group_factory()
+    group2 = group_factory()
+    user = user_factory()
+    initiator = user_factory()
+    group_member = user_factory.create(groups=(group1, group2))
+    organisation.groups.add(group2)
+
     project_create_url = reverse('a4dashboard:project-create', kwargs={
         'organisation_slug': organisation.slug,
         'blueprint_slug': 'questions'
@@ -66,7 +78,8 @@ def test_project_create(client, organisation, user, staff_user):
     response = client.post(project_create_url, data)
     assert response.status_code == 403
 
-    client.login(username=staff_user, password='password')
+    organisation.initiators.add(initiator)
+    client.login(username=initiator, password='password')
     response = client.post(project_create_url, data)
     assert redirect_target(response) == 'project-edit'
 
@@ -74,6 +87,13 @@ def test_project_create(client, organisation, user, staff_user):
     project = Project.objects.all().first()
     assert 'project name' == project.name
     assert 'project description' == project.description
+
+    client.login(username=group_member, password='password')
+    response = client.post(project_create_url, data)
+    assert redirect_target(response) == 'project-edit'
+
+    assert 2 == Project.objects.all().count()
+    assert 1 == Project.objects.filter(group_id=group2.id).count()
 
 
 @pytest.mark.django_db
@@ -87,7 +107,7 @@ def test_project_edit_redirect(client, project):
 
 
 @pytest.mark.django_db
-def test_project_publish_perms(client, phase, user, staff_user):
+def test_project_publish_perms(client, phase, user, another_user):
     project = phase.module.project
 
     project_publish_url = reverse('a4dashboard:project-publish', kwargs={
@@ -102,17 +122,21 @@ def test_project_publish_perms(client, phase, user, staff_user):
     response = client.post(project_publish_url, data)
     assert response.status_code == 403
 
-    client.login(username=staff_user, password='password')
+    organisation = project.organisation
+    organisation.initiators.add(another_user)
+    client.login(username=another_user, password='password')
     response = client.post(project_publish_url, data)
     assert redirect_target(response) == 'project-edit'
 
 
 @pytest.mark.django_db
-def test_project_publish(client, phase, staff_user):
+def test_project_publish(client, phase, another_user):
     project = phase.module.project
     project.is_draft = True
     project.information = ''
     project.save()
+    organisation = project.organisation
+    organisation.initiators.add(another_user)
 
     project_publish_url = reverse('a4dashboard:project-publish', kwargs={
         'project_slug': project.slug})
@@ -120,7 +144,7 @@ def test_project_publish(client, phase, staff_user):
     data = {'action': 'publish'}
 
     # publishing incomplete projects has no effect
-    client.login(username=staff_user, password='password')
+    client.login(username=another_user, password='password')
     response = client.post(project_publish_url, data)
     assert redirect_target(response) == 'project-edit'
 
@@ -131,7 +155,7 @@ def test_project_publish(client, phase, staff_user):
     project.information = 'project information'
     project.save()
 
-    client.login(username=staff_user, password='password')
+    client.login(username=another_user, password='password')
     response = client.post(project_publish_url, data)
     assert redirect_target(response) == 'project-edit'
 
@@ -140,17 +164,19 @@ def test_project_publish(client, phase, staff_user):
 
 
 @pytest.mark.django_db
-def test_project_unpublish(client, phase, staff_user):
+def test_project_unpublish(client, phase, another_user):
     project = phase.module.project
     project.is_draft = False
     project.save()
+    organisation = project.organisation
+    organisation.initiators.add(another_user)
 
     project_publish_url = reverse('a4dashboard:project-publish', kwargs={
         'project_slug': project.slug})
 
     data = {'action': 'unpublish'}
 
-    client.login(username=staff_user, password='password')
+    client.login(username=another_user, password='password')
     response = client.post(project_publish_url, data)
     assert redirect_target(response) == 'project-edit'
 
@@ -158,7 +184,7 @@ def test_project_unpublish(client, phase, staff_user):
     assert project.is_draft is True
 
     # unpublishing draft projects has no effect
-    client.login(username=staff_user, password='password')
+    client.login(username=another_user, password='password')
     response = client.post(project_publish_url, data)
     assert redirect_target(response) == 'project-edit'
 
@@ -167,11 +193,14 @@ def test_project_unpublish(client, phase, staff_user):
 
 
 @pytest.mark.django_db
-def test_project_publish_redirect(client, project, staff_user):
+def test_project_publish_redirect(client, project, another_user):
     project_publish_url = reverse('a4dashboard:project-publish', kwargs={
         'project_slug': project.slug})
 
-    client.login(username=staff_user, password='password')
+    organisation = project.organisation
+    organisation.initiators.add(another_user)
+
+    client.login(username=another_user, password='password')
 
     response = client.post(project_publish_url, {'referrer': 'refurl'})
     assert response.status_code == 302
@@ -186,11 +215,12 @@ def test_project_publish_redirect(client, project, staff_user):
 
 
 @pytest.mark.django_db
-def test_project_duplicate(client, staff_user,
+def test_project_duplicate(client, another_user,
                            area_settings, phase_factory):
     module = area_settings.module
     project = module.project
     organisation = project.organisation
+    organisation.initiators.add(another_user)
     phase = phase_factory(module=module)
 
     project.is_draft = False
@@ -199,7 +229,7 @@ def test_project_duplicate(client, staff_user,
     project_list_url = reverse('a4dashboard:project-list', kwargs={
         'organisation_slug': organisation.slug})
 
-    client.login(username=staff_user, password='password')
+    client.login(username=another_user, password='password')
     response = client.post(project_list_url, {
         'duplicate': '1',
         'project_pk': project.pk

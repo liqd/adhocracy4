@@ -23,7 +23,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Application definition
+# Applicationdefinition
 
 INSTALLED_APPS = (
     # adhocracy4 base apps
@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'tests.apps.questions',
     'tests.apps.locations',
     'tests.apps.ideas',
+    'tests.apps.organisations',
 
     # mandatory third party apps
     'easy_thumbnails',
@@ -154,7 +155,7 @@ MEDIA_URL = '/media/'
 
 # Adhcoracy 4
 
-A4_ORGANISATIONS_MODEL = 'a4organisations.Organisation'
+A4_ORGANISATIONS_MODEL = 'a4test_organisations.Organisation'
 A4_RATEABLES = (('a4test_questions', 'question'), ('a4comments', 'comment'),)
 A4_REPORTABLES = (('a4test_questions', 'question'),)
 A4_COMMENTABLES = (('a4test_questions', 'question'),

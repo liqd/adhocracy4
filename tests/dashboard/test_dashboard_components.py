@@ -21,14 +21,18 @@ def test_module_area_settings(area_settings):
 
 @pytest.mark.django_db
 def test_module_area_settings_view(client, area_settings, phase_factory,
-                                   staff_user):
+                                   user):
     module = area_settings.module
     phase_factory(module=module)
+    organisation = module.project.organisation
+
+    organisation.initiators.add(user)
+    organisation.save()
 
     component = components.modules.get('area_settings')
     component_url = component.get_base_url(module)
 
-    client.login(username=staff_user, password='password')
+    client.login(username=user.username, password='password')
     response = client.get(component_url)
     assert response.status_code == 200
 
