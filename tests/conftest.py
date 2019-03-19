@@ -44,6 +44,7 @@ register(ProjectContainerFactory)
 register(ExternalProjectFactory)
 register(BplanFactory)
 
+register(a4_factories.GroupFactory)
 register(a4_factories.ProjectFactory)
 register(a4_factories.PhaseFactory)
 register(a4_factories.ModuleFactory)
