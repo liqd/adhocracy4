@@ -20,6 +20,17 @@ class UserFactory(factory.django.DjangoModelFactory):
     email = factory.Sequence(lambda n: 'user%d@liqd.net' % n)
     password = make_password('password')
 
+    @factory.post_generation
+    def groups(self, create, extracted, **kwargs):
+        if not create:
+            # Simple build, do nothing.
+            return
+
+        if extracted:
+            # A list of groups were passed in, use them
+            for group in extracted:
+                self.groups.add(group)
+
 
 class AdminFactory(factory.django.DjangoModelFactory):
 
