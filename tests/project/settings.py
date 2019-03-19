@@ -156,6 +156,7 @@ MEDIA_URL = '/media/'
 # Adhcoracy 4
 
 A4_ORGANISATIONS_MODEL = 'a4test_organisations.Organisation'
+A4_ORGANISATION_FACTORY = 'tests.apps.organisations.factories.OrganisationFactory'
 A4_RATEABLES = (('a4test_questions', 'question'), ('a4comments', 'comment'),)
 A4_REPORTABLES = (('a4test_questions', 'question'),)
 A4_COMMENTABLES = (('a4test_questions', 'question'),

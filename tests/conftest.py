@@ -6,6 +6,7 @@ from tests.images import factories as img_factories
 from tests.apps.locations import factories as location_factories
 from tests.apps.questions import factories as q_factories
 from adhocracy4.test import factories
+from tests.apps.organisations.factories import OrganisationFactory
 from adhocracy4.test import helpers
 
 
@@ -24,12 +25,12 @@ def image_factory():
     return img_factories.ImageFactory()
 
 
+register(OrganisationFactory)
 register(factories.UserFactory)
 register(factories.GroupFactory)
 register(factories.AdminFactory, 'admin')
 register(factories.UserFactory, 'another_user')
 register(factories.UserFactory, 'staff_user', is_staff=True)
-register(factories.OrganisationFactory)
 register(factories.ProjectFactory)
 register(factories.ModuleFactory)
 register(factories.PhaseFactory)

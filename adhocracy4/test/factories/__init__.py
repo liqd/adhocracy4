@@ -7,7 +7,6 @@ from django.contrib.auth.models import User, Group
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.projects.models import Project
-from tests.apps.organisations.models import Organisation
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
 
@@ -44,6 +43,9 @@ class UserFactory(factory.django.DjangoModelFactory):
                 self.groups.add(group)
 
 
+USER_FACTORY = getattr(settings, 'A4_USER_FACTORY', UserFactory)
+
+
 class AdminFactory(factory.django.DjangoModelFactory):
 
     class Meta:
@@ -57,29 +59,7 @@ class AdminFactory(factory.django.DjangoModelFactory):
     is_superuser = True
 
 
-USER_FACTORY = getattr(settings, 'A4_USER_FACTORY', UserFactory)
-
-
-class OrganisationFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = Organisation
-    name = factory.Faker('company')
-
-    @factory.post_generation
-    def groups(self, create, extracted, **kwargs):
-        if not create:
-            # Simple build, do nothing.
-            return
-
-        if extracted:
-            # A list of groups were passed in, use them
-            for group in extracted:
-                self.groups.add(group)
-
-
-ORGANISATION_FACTORY = getattr(settings,
-                               'A4_ORGANISATION_FACTORY',
-                               OrganisationFactory)
+ORGANISATION_FACTORY = getattr(settings, 'A4_ORGANISATION_FACTORY')
 
 
 class ProjectFactory(factory.django.DjangoModelFactory):
