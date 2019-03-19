@@ -20,8 +20,7 @@
     "@babel/preset-react": "7.0.0",
     "@fortawesome/fontawesome-free": "5.7.2",
     "acorn": "6.1.1",
-    "adhocracy4": "liqd/adhocracy4#5109b737d716afc08c6c26f11c71e558517f1422",
-    "autoprefixer": "9.4.10",
+    "adhocracy4": "liqd/adhocracy4#f8f2c48f0bcc6ac5938752ac940763f8b9aac44d",
     "babel-loader": "8.0.5",
     "bootstrap": "4.3.1",
     "copy-webpack-plugin": "5.0.1",
@@ -39,7 +38,6 @@
     "mini-css-extract-plugin": "0.5.0",
     "node-sass": "4.11.0",
     "popper.js": "1.14.7",
-    "postcss-loader": "3.0.0",
     "react": "16.8.4",
     "react-bootstrap-typeahead": "3.4.1",
     "react-dom": "16.8.4",
@@ -77,8 +75,8 @@
     "webpack-cli": "3.3.0"
   },
   "scripts": {
-    "build": "webpack --config webpack.prod.js --mode production",
-    "build:dev": "webpack --config webpack.dev.js --mode development",
+    "build:prod": "webpack --config webpack.prod.js --mode production",
+    "build": "webpack --config webpack.dev.js --mode development",
     "watch": "webpack --config webpack.dev.js --watch --mode development"
   },
   "browserslist": "last 3 versions, ie >= 10",

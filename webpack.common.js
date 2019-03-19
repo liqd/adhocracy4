@@ -1,8 +1,6 @@
-var MiniCssExtractPlugin = require('mini-css-extract-plugin')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
 var webpack = require('webpack')
 var path = require('path')
-var autoprefixer = require('autoprefixer')
+var CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -16,14 +14,14 @@ module.exports = {
       '@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss',
       '@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss',
       '@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss',
-      'jquery',
+      'jquery/dist/jquery.min.js',
       'js-cookie',
       'react',
       'immutability-helper',
       'react-dom',
       'react-flip-move',
       'react-sticky-box',
-      'shariff/dist/shariff.complete.js',
+      'shariff/dist/shariff.min.js',
       'shariff/dist/shariff.min.css'
     ],
     select2: [
@@ -85,29 +83,6 @@ module.exports = {
         }
       },
       {
-        test: /\.s?css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: (loader) => [
-                autoprefixer()
-              ]
-            }
-          },
-          {
-            loader: 'sass-loader'
-          }
-        ]
-      },
-      {
         test: /fonts\/.*\.(svg|woff2?|ttf|eot)(\?.*)?$/,
         loader: 'file-loader',
         options: {
@@ -125,10 +100,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
-    alias: {
-      'jquery$': 'jquery/dist/jquery.min.js',
-      'shariff$': 'shariff/dist/shariff.complete.js'
-    },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.
     // Setting `resolve.root` forces webpack to resolve all dependencies
@@ -137,15 +108,13 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      timeago: 'timeago.js'
+      timeago: 'timeago.js',
+      $: 'jquery',
+      jQuery: 'jquery'
     }),
     new webpack.optimize.SplitChunksPlugin({
       name: 'vendor',
       filename: 'vendor.js'
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css'
     }),
     new CopyWebpackPlugin([
       {
