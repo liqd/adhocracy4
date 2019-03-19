@@ -41,7 +41,14 @@ class DashboardBaseMixin(rules_mixins.PermissionRequiredMixin):
     def other_organisations_of_user(self):
         user = self.request.user
         if self.organisation:
-            return user.organisation_set.exclude(pk=self.organisation.pk)
+            initiator_orgs = user.organisation_set.all()
+            if hasattr(Organisation, 'groups') and user.groups.all():
+                user_groups = user.groups.all().values_list('id', flat=True)
+                group_orgs = Organisation.objects\
+                    .filter(groups__in=user_groups)
+                orgs = initiator_orgs | group_orgs
+                return orgs.distinct().exclude(pk=self.organisation.pk)
+            return initiator_orgs.exclude(pk=self.organisation.pk)
         else:
             return None
 
