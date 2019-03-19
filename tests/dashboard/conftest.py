@@ -1,6 +1,6 @@
 from pytest_factoryboy import register
 
-from adhocracy4.test.factories.organisations import OrganisationFactory
+from tests.apps.organisations.factories import OrganisationFactory
 from adhocracy4.test.factories.maps import AreaSettingsFactory
 from . import factories
 
