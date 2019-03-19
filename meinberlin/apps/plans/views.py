@@ -340,7 +340,7 @@ class DashboardPlanUpdateView(a4dashboard_mixins.DashboardBaseMixin,
     menu_item = 'project'
 
     def get_permission_object(self):
-        return self.organisation
+        return self.get_object()
 
     def get_success_url(self):
         return reverse(
@@ -361,7 +361,7 @@ class DashboardPlanDeleteView(a4dashboard_mixins.DashboardBaseMixin,
         return super().delete(request, *args, **kwargs)
 
     def get_permission_object(self):
-        return self.organisation
+        return self.get_object()
 
     def get_success_url(self):
         return reverse(
