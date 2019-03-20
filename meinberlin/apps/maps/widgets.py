@@ -11,23 +11,14 @@ from meinberlin.apps.maps.models import MapPresetCategory
 class MapChoosePolygonWithPresetWidget(Widget):
 
     class Media:
-        if (hasattr(settings, 'A4_USE_VECTORMAP') and
-                settings.A4_USE_VECTORMAP):
-            js = (
-                'leaflet.js',
-                'map_choose_polygon_with_preset.js',
-                'mapboxgl.js'
-            )
-        else:
-            js = (
-                'leaflet.js',
-                'map_choose_polygon_with_preset.js',
-                'mapboxgl.js'
-            )
+        js = (
+            'leaflet.js',
+            'map_choose_polygon_with_preset.js'
+        )
 
         css = {'all': [
             'leaflet.css',
-            'map_choose_polygon_with_preset.css',
+            'map_choose_polygon_with_preset.css'
         ]}
 
     def get_presets(self, category):
