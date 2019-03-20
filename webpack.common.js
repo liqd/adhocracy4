@@ -39,9 +39,6 @@ module.exports = {
       'react-bootstrap-typeahead',
       'react-bootstrap-typeahead/css/Typeahead.css'
     ],
-    'mapboxgl': [
-      'mapbox-gl/dist/mapbox-gl.js'
-    ],
     datepicker: [
       './meinberlin/assets/js/init-picker.js',
       'datepicker/css/datepicker.min.css'
