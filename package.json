@@ -18,7 +18,7 @@
     "@babel/plugin-transform-runtime": "7.4.0",
     "@babel/preset-env": "7.4.1",
     "@babel/preset-react": "7.0.0",
-    "@fortawesome/fontawesome-free": "5.8.0",
+    "@fortawesome/fontawesome-free": "5.8.1",
     "acorn": "6.1.1",
     "adhocracy4": "liqd/adhocracy4#f8f2c48f0bcc6ac5938752ac940763f8b9aac44d",
     "babel-loader": "8.0.5",
