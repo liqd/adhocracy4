@@ -10,6 +10,10 @@ class OrganisationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['address'].required = True
         self.fields['url'].required = True
+        self.fields['url'].help_text = _('Please enter '
+                                         'a full url which '
+                                         'starts with https:// '
+                                         'or http://')
 
     class Meta:
         model = Organisation
