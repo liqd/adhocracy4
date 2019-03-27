@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
@@ -78,6 +79,14 @@ module.exports = {
         }
       },
       {
+        test: /\.s?css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
         test: /fonts\/.*\.(svg|woff2?|ttf|eot)(\?.*)?$/,
         loader: 'file-loader',
         options: {
@@ -114,6 +123,10 @@ module.exports = {
     new webpack.optimize.SplitChunksPlugin({
       name: 'vendor',
       filename: 'vendor.js'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     }),
     new CopyWebpackPlugin([
       {
