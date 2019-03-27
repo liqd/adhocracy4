@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-11 15:16+0100\n"
+"POT-Creation-Date: 2019-03-27 17:46+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,65 +18,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:12
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:12
+#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:12
+#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:12
 msgid "Insert Collapsible Item"
 msgstr "Aufklappbares Element einfügen"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:14
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:14
+#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:14
+#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:14
 msgid "Title"
 msgstr "Titel"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:15
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:15
+#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:15
+#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:15
 msgid "Body text"
 msgstr "Textkörper"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:37
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:37
+#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:37
+#: adhocracy4/ckeditor/static/ckeditor_collapsible/plugin.js:37
 msgid "Collapsible element"
 msgstr "Aufklappbares Element"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:26
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/Comment.jsx:26
-#, fuzzy
-#| msgid "hide one reply"
+#: adhocracy4/comments/static/comments/Comment.jsx:26
+#: adhocracy4/comments/static/comments/Comment.jsx:26
 msgid "hide one reply"
 msgstr "Antwort ausblenden"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:26
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/Comment.jsx:26
+#: adhocracy4/comments/static/comments/Comment.jsx:26
+#: adhocracy4/comments/static/comments/Comment.jsx:26
 #, javascript-format
 msgid "hide %s replies"
 msgstr "%s Antworten ausblenden"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:28
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/Comment.jsx:28
-#, fuzzy
-#| msgid "view one reply"
+#: adhocracy4/comments/static/comments/Comment.jsx:28
+#: adhocracy4/comments/static/comments/Comment.jsx:28
 msgid "view one reply"
 msgstr "Antwort einblenden"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:28
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/Comment.jsx:28
+#: adhocracy4/comments/static/comments/Comment.jsx:28
+#: adhocracy4/comments/static/comments/Comment.jsx:28
 #, javascript-format
 msgid "view %s replies"
 msgstr "%s Antworten einblenden"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:128
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/Comment.jsx:128
+#: adhocracy4/comments/static/comments/Comment.jsx:128
+#: adhocracy4/comments/static/comments/Comment.jsx:128
 msgid "Do you really want to delete this comment?"
 msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:130
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:93
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:96
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/Comment.jsx:130
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/QuestionForm.jsx:93
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/QuestionForm.jsx:96
+#: adhocracy4/comments/static/comments/Comment.jsx:130
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:93
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:96
+#: adhocracy4/comments/static/comments/Comment.jsx:130
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:93
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:96
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:52
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
@@ -86,26 +82,26 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 msgid "Delete"
 msgstr "Löschen"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:131
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/static/Modal.jsx:49
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/Comment.jsx:131
+#: adhocracy4/comments/static/comments/Comment.jsx:131
+#: adhocracy4/static/Modal.jsx:49
+#: adhocracy4/comments/static/comments/Comment.jsx:131
 msgid "Abort"
 msgstr "Abbrechen"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:144
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/Comment.jsx:144
+#: adhocracy4/comments/static/comments/Comment.jsx:144
+#: adhocracy4/comments/static/comments/Comment.jsx:144
 msgid "Latest edit on"
 msgstr "Letzte Änderung am"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:149
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments/static/comments/Comment.jsx:149
 msgid "Moderator"
 msgstr "Moderator"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:156
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/reports/static/reports/react_reports.jsx:20
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/Comment.jsx:156
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/reports/static/reports/react_reports.jsx:20
+#: adhocracy4/comments/static/comments/Comment.jsx:156
+#: adhocracy4/reports/static/reports/react_reports.jsx:20
+#: adhocracy4/comments/static/comments/Comment.jsx:156
+#: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
 "moderation. The moderation will look at the reported content. The content "
@@ -115,222 +111,222 @@ msgstr ""
 "weitergeleitet. Diese prüft den gemeldeten Beitrag. Er wird gelöscht, wenn "
 "er nicht unseren Diskussionsregeln (Netiquette) entspricht."
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:179
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:26
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/Comment.jsx:179
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/QuestionForm.jsx:26
+#: adhocracy4/comments/static/comments/Comment.jsx:179
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:26
+#: adhocracy4/comments/static/comments/Comment.jsx:179
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:26
 msgid "Answer"
 msgstr "Antworten"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/Comment.jsx:218
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/Comment.jsx:218
+#: adhocracy4/comments/static/comments/Comment.jsx:218
+#: adhocracy4/comments/static/comments/Comment.jsx:218
 msgid "Your reply here"
 msgstr "Ihre Antwort hier"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentBox.jsx:167
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/CommentBox.jsx:167
+#: adhocracy4/comments/static/comments/CommentBox.jsx:167
+#: adhocracy4/comments/static/comments/CommentBox.jsx:167
 msgid "comment"
 msgid_plural "comments"
 msgstr[0] "Kommentar"
 msgstr[1] "Kommentare"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentBox.jsx:170
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentEditForm.jsx:38
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentForm.jsx:48
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/CommentBox.jsx:170
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/CommentEditForm.jsx:38
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/CommentForm.jsx:48
+#: adhocracy4/comments/static/comments/CommentBox.jsx:170
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:38
+#: adhocracy4/comments/static/comments/CommentForm.jsx:48
+#: adhocracy4/comments/static/comments/CommentBox.jsx:170
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:38
+#: adhocracy4/comments/static/comments/CommentForm.jsx:48
 msgid "Your comment here"
 msgstr "Ihr Kommentar hier"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentEditForm.jsx:41
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/CommentEditForm.jsx:41
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:41
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:41
 msgid "save changes"
 msgstr "Änderungen speichern"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentEditForm.jsx:43
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/CommentEditForm.jsx:43
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:43
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:43
 msgid "cancel"
 msgstr "Abbrechen"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentForm.jsx:51
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/CommentForm.jsx:51
+#: adhocracy4/comments/static/comments/CommentForm.jsx:51
+#: adhocracy4/comments/static/comments/CommentForm.jsx:51
 msgid "post"
 msgstr "Senden"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentForm.jsx:57
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/CommentForm.jsx:57
+#: adhocracy4/comments/static/comments/CommentForm.jsx:57
+#: adhocracy4/comments/static/comments/CommentForm.jsx:57
 msgid "Please login to comment"
 msgstr "Bitte melden Sie sich zum Kommentieren an."
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentForm.jsx:63
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/CommentForm.jsx:63
+#: adhocracy4/comments/static/comments/CommentForm.jsx:63
+#: adhocracy4/comments/static/comments/CommentForm.jsx:63
 msgid "The currently active phase doesn't allow to comment."
 msgstr "Die aktuell laufende Phase erlaubt keine Kommentare."
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentManageDropdown.jsx:16
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/CommentManageDropdown.jsx:16
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:16
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:16
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
+#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
 msgid "Report"
 msgstr "Melden"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:51
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/follows/static/follows/FollowButton.jsx:51
+#: adhocracy4/follows/static/follows/FollowButton.jsx:51
+#: adhocracy4/follows/static/follows/FollowButton.jsx:51
 msgid "Not following"
 msgstr "Nicht folgen"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:52
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/follows/static/follows/FollowButton.jsx:52
+#: adhocracy4/follows/static/follows/FollowButton.jsx:52
+#: adhocracy4/follows/static/follows/FollowButton.jsx:52
 msgid "Never be notified."
 msgstr "Sie werden nie benachrichtigt"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:53
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/follows/static/follows/FollowButton.jsx:53
+#: adhocracy4/follows/static/follows/FollowButton.jsx:53
+#: adhocracy4/follows/static/follows/FollowButton.jsx:53
 msgid "Following"
 msgstr "Folgen"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:54
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/follows/static/follows/FollowButton.jsx:54
+#: adhocracy4/follows/static/follows/FollowButton.jsx:54
+#: adhocracy4/follows/static/follows/FollowButton.jsx:54
 msgid "Receive email notifications about this project."
 msgstr "Sie erhalten E-Mail Benachrichtigungen über dieses Projekt"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:61
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/follows/static/follows/FollowButton.jsx:61
+#: adhocracy4/follows/static/follows/FollowButton.jsx:61
+#: adhocracy4/follows/static/follows/FollowButton.jsx:61
 msgid "Unfollow"
 msgstr "Entfolgen"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/follows/static/follows/FollowButton.jsx:61
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/follows/static/follows/FollowButton.jsx:61
+#: adhocracy4/follows/static/follows/FollowButton.jsx:61
+#: adhocracy4/follows/static/follows/FollowButton.jsx:61
 msgid "Follow"
 msgstr "Folgen"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/ChoiceForm.jsx:24
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/ChoiceForm.jsx:27
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/ChoiceForm.jsx:24
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/ChoiceForm.jsx:27
+#: adhocracy4/polls/static/polls/ChoiceForm.jsx:24
+#: adhocracy4/polls/static/polls/ChoiceForm.jsx:27
+#: adhocracy4/polls/static/polls/ChoiceForm.jsx:24
+#: adhocracy4/polls/static/polls/ChoiceForm.jsx:27
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:22
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:25
 msgid "remove"
 msgstr "entfernen"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/PollManagement.jsx:188
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/PollManagement.jsx:188
+#: adhocracy4/polls/static/polls/PollManagement.jsx:188
+#: adhocracy4/polls/static/polls/PollManagement.jsx:188
 #: meinberlin/apps/polls/assets/PollManagement.jsx:188
 msgid "The poll has been updated."
 msgstr "Die Umfrage wurde aktualisiert."
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/PollManagement.jsx:205
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/PollManagement.jsx:205
+#: adhocracy4/polls/static/polls/PollManagement.jsx:205
+#: adhocracy4/polls/static/polls/PollManagement.jsx:205
 #: meinberlin/apps/polls/assets/PollManagement.jsx:205
 msgid "The poll could not be updated."
 msgstr "Die Umfrage konnte nicht aktualisiert werden."
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/PollManagement.jsx:246
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/PollManagement.jsx:246
+#: adhocracy4/polls/static/polls/PollManagement.jsx:246
+#: adhocracy4/polls/static/polls/PollManagement.jsx:246
 #: meinberlin/apps/polls/assets/PollManagement.jsx:246
 msgid "Add a new question"
 msgstr "Neue Frage"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/PollManagement.jsx:252
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/PollManagement.jsx:252
+#: adhocracy4/polls/static/polls/PollManagement.jsx:252
+#: adhocracy4/polls/static/polls/PollManagement.jsx:252
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:324
 #: meinberlin/apps/polls/assets/PollManagement.jsx:252
 msgid "Save"
 msgstr "Speichern"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:51
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/Question.jsx:51
+#: adhocracy4/polls/static/polls/Question.jsx:51
+#: adhocracy4/polls/static/polls/Question.jsx:51
 #: meinberlin/apps/polls/assets/Question.jsx:51
 msgid "Vote counted"
 msgstr "Ihre Stimme wurde gezählt."
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:61
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/Question.jsx:61
+#: adhocracy4/polls/static/polls/Question.jsx:61
+#: adhocracy4/polls/static/polls/Question.jsx:61
 #: meinberlin/apps/polls/assets/Question.jsx:61
 msgid "Vote has not been counted due to a server error."
 msgstr "Ihre Stimme konnte aufgrund eines Serverfehlers nicht gezählt werden."
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:108
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/Question.jsx:108
+#: adhocracy4/polls/static/polls/Question.jsx:108
+#: adhocracy4/polls/static/polls/Question.jsx:108
 #: meinberlin/apps/polls/assets/Question.jsx:108
 msgid "Vote"
 msgstr "Stimme abgeben"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:114
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/Question.jsx:114
+#: adhocracy4/polls/static/polls/Question.jsx:114
+#: adhocracy4/polls/static/polls/Question.jsx:114
 #: meinberlin/apps/polls/assets/Question.jsx:114
 msgid "Please login to vote"
 msgstr "Bitte melden Sie sich zum Abstimmen an."
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:136
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/Question.jsx:136
+#: adhocracy4/polls/static/polls/Question.jsx:136
+#: adhocracy4/polls/static/polls/Question.jsx:136
 msgid "Multiple answers are possible for this question"
 msgstr "Für diese Frage sind mehrere Antworten möglich"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:141
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/Question.jsx:141
+#: adhocracy4/polls/static/polls/Question.jsx:141
+#: adhocracy4/polls/static/polls/Question.jsx:141
 #: meinberlin/apps/polls/assets/Question.jsx:136
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "Stimme"
 msgstr[1] "Stimmen"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:142
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/Question.jsx:142
+#: adhocracy4/polls/static/polls/Question.jsx:142
+#: adhocracy4/polls/static/polls/Question.jsx:142
 #: meinberlin/apps/polls/assets/Question.jsx:137
 msgid "To poll"
 msgstr "Zur Umfrage"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:145
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/Question.jsx:145
+#: adhocracy4/polls/static/polls/Question.jsx:145
+#: adhocracy4/polls/static/polls/Question.jsx:145
 #: meinberlin/apps/polls/assets/Question.jsx:140
 msgid "Change vote"
 msgstr "Stimme ändern"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:149
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/Question.jsx:149
+#: adhocracy4/polls/static/polls/Question.jsx:149
+#: adhocracy4/polls/static/polls/Question.jsx:149
 #: meinberlin/apps/polls/assets/Question.jsx:144
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/Question.jsx:177
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/Question.jsx:177
+#: adhocracy4/polls/static/polls/Question.jsx:177
+#: adhocracy4/polls/static/polls/Question.jsx:177
 #: meinberlin/apps/polls/assets/Question.jsx:172
 msgid "Your choice"
 msgstr "Ihre Wahl"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:15
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/QuestionForm.jsx:15
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:15
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:15
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:14
 msgid "Question"
 msgstr "Frage"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:37
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/QuestionForm.jsx:37
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:37
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:37
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:34
 msgid "Users can select more than one answer."
 msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:45
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/QuestionForm.jsx:45
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:45
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:45
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:42
 msgid "Choice"
 msgstr "Auswahl"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:67
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/QuestionForm.jsx:67
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:67
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:67
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:64
 msgid "Add a new choice"
 msgstr "Neue Antwort"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:76
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:79
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/QuestionForm.jsx:76
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/QuestionForm.jsx:79
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:76
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:79
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:76
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:79
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:31
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:34
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:105
@@ -340,10 +336,10 @@ msgstr "Neue Antwort"
 msgid "Move up"
 msgstr "nach oben"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:85
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/polls/static/polls/QuestionForm.jsx:88
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/QuestionForm.jsx:85
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/polls/static/polls/QuestionForm.jsx:88
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:85
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:88
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:85
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:88
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:40
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:43
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:114
@@ -353,23 +349,23 @@ msgstr "nach oben"
 msgid "Move down"
 msgstr "nach unten"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/reports/static/reports/ReportModal.jsx:57
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/reports/static/reports/ReportModal.jsx:57
+#: adhocracy4/reports/static/reports/ReportModal.jsx:57
+#: adhocracy4/reports/static/reports/ReportModal.jsx:57
 msgid "Thank you! We are taking care of it."
 msgstr "Vielen Dank! Wir werden uns darum kümmern."
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/reports/static/reports/ReportModal.jsx:65
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/reports/static/reports/ReportModal.jsx:65
+#: adhocracy4/reports/static/reports/ReportModal.jsx:65
+#: adhocracy4/reports/static/reports/ReportModal.jsx:65
 msgid "Your message"
 msgstr "Ihre Nachricht"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/reports/static/reports/ReportModal.jsx:77
-#: /Users/phillippa/a4-meinberlin/venv/lib/python3.6/site-packages/adhocracy4/reports/static/reports/ReportModal.jsx:77
+#: adhocracy4/reports/static/reports/ReportModal.jsx:77
+#: adhocracy4/reports/static/reports/ReportModal.jsx:77
 msgid "Send Report"
 msgstr "Meldung senden"
 
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/static/Alert.jsx:10
-#: /Users/phillippa/a4-meinberlin/node_modules/adhocracy4/adhocracy4/static/Alert.jsx:11
+#: adhocracy4/static/Alert.jsx:10
+#: adhocracy4/static/Alert.jsx:11
 #: meinberlin/apps/contrib/assets/Alert.jsx:10
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
