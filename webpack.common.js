@@ -6,8 +6,8 @@ module.exports = {
   entry: {
     adhocracy4: [
       './meinberlin/assets/scss/style.scss',
-      'shariff/dist/shariff.min.css',
-      './meinberlin/assets/js/app.js'
+      './meinberlin/assets/js/app.js',
+      'shariff/dist/shariff.min.css'
     ],
     vendor: [
       'classnames',
@@ -15,7 +15,6 @@ module.exports = {
       '@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss',
       '@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss',
       '@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss',
-      'jquery',
       'js-cookie',
       'react',
       'immutability-helper',
