@@ -37,7 +37,7 @@ class Toggles extends React.Component {
       return (
         <div>
           <div className="l-frame switch-container">
-            <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{django.gettext(' participation projects in Berlin')}</div>
+            <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{django.gettext(' search results')}</div>
             <div className="switch-filter__btn-group">
               { this.props.displayButtons && this.props.statusSelected &&
                 <button
@@ -84,7 +84,7 @@ class Toggles extends React.Component {
       return (
         <div>
           <div className="l-frame switch-container">
-            <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{django.gettext(' participation projects')}</div>
+            <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{django.gettext(' search results')}</div>
             <div className="switch-filter__btn-group">
               { this.props.displayButtons && this.props.statusSelected &&
                 <button
