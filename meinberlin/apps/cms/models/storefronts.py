@@ -12,6 +12,7 @@ from wagtail.snippets.models import register_snippet
 from adhocracy4.comments.models import Comment
 from adhocracy4.modules.models import Item
 from adhocracy4.projects.models import Project
+from meinberlin.apps.plans.models import Plan
 from meinberlin.apps.projects import get_project_type
 
 
@@ -56,7 +57,11 @@ class StorefrontItem(models.Model):
                     is_public=True,
                     is_archived=False
                     )
-        active_project_count = 0
+        plans = Plan.objects\
+            .filter(district=self.district,
+                    status=0
+                    )
+        active_project_count = plans.count()
         for project in projects:
             if project.active_phase or project.future_phases:
                 active_project_count += 1
