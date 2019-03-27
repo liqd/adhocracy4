@@ -8,20 +8,11 @@ from django.template import loader
 class MapChoosePolygonWidget(Widget):
 
     class Media:
-        if (hasattr(settings, 'A4_USE_VECTORMAP') and
-           settings.A4_USE_VECTORMAP):
-            js = (
-                'leaflet.js',
-                'leaflet.draw.js',
-                'a4maps/map_choose_polygon.js',
-                'mapboxgl.js'
-            )
-        else:
-            js = (
-                'leaflet.js',
-                'leaflet.draw.js',
-                'a4maps/map_choose_polygon.js'
-            )
+        js = (
+            'leaflet.js',
+            'leaflet.draw.js',
+            'a4maps/map_choose_polygon.js'
+        )
 
         css = {'all': [
             'leaflet.css',
@@ -57,18 +48,10 @@ class MapChoosePointWidget(Widget):
         super().__init__(attrs)
 
     class Media:
-        if (hasattr(settings, 'A4_USE_VECTORMAP') and
-           settings.A4_USE_VECTORMAP):
-            js = (
-                'leaflet.js',
-                'a4maps/map_choose_point.js',
-                'mapboxgl.js'
-            )
-        else:
-            js = (
-                'leaflet.js',
-                'a4maps/map_choose_point.js'
-            )
+        js = (
+            'leaflet.js',
+            'a4maps/map_choose_point.js'
+        )
         css = {'all': [
             'leaflet.css',
         ]}
