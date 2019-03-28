@@ -29,7 +29,7 @@ class Organisation(models.Model):
         blank=True)
     address = models.TextField(
         blank=True,
-        verbose_name=_('Unit and postal address')
+        verbose_name=_('Postal address')
     )
     url = models.URLField(
         blank=True,
