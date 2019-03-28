@@ -37,7 +37,7 @@
 
     {% elif item.project.future_phases %}
     <div class="status-item status-item__position-storefront status__future">
-      <span class="status-bar__status"><i class="fas fa-clock" ></i>{% blocktrans with date=item.project.future_phases.first.start_date.date|date:"d.m.Y" %} Participation: from {{ date }} possible{% endblocktrans %}</span>
+      <span class="status-bar__status"><i class="fas fa-clock" ></i>{% blocktrans with date=item.project.future_phases.first.start_date.date|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktrans %}</span>
     </div>
 
     {% elif item.project.past_phases %}
