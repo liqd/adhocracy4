@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-27 17:46+0100\n"
+"POT-Creation-Date: 2019-03-28 17:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -531,31 +531,31 @@ msgstr "ongoing"
 msgid "done"
 msgstr "done"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:78
-#: meinberlin/apps/plans/assets/PopUp.jsx:72
+#: meinberlin/apps/plans/assets/PlansList.jsx:85
+#: meinberlin/apps/plans/assets/PopUp.jsx:79
 msgid "Participation: "
 msgstr "Participation: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:90
-#: meinberlin/apps/plans/assets/PopUp.jsx:42
+#: meinberlin/apps/plans/assets/PlansList.jsx:97
+#: meinberlin/apps/plans/assets/PopUp.jsx:49
 msgid "remaining"
 msgstr "remaining"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:95
-#: meinberlin/apps/plans/assets/PopUp.jsx:47
+#: meinberlin/apps/plans/assets/PlansList.jsx:102
+#: meinberlin/apps/plans/assets/PopUp.jsx:54
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:109
-#: meinberlin/apps/plans/assets/PopUp.jsx:69
+#: meinberlin/apps/plans/assets/PlansList.jsx:116
+#: meinberlin/apps/plans/assets/PopUp.jsx:76
 msgid "Participation projects: "
 msgstr "Participation projects: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:112
+#: meinberlin/apps/plans/assets/PlansList.jsx:119
 msgid "Status: "
 msgstr "Status: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:143
+#: meinberlin/apps/plans/assets/PlansList.jsx:150
 #: meinberlin/apps/plans/assets/PlansMap.jsx:278
 msgid "Nothing to show"
 msgstr "Nothing to show"
@@ -581,21 +581,22 @@ msgstr ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:52
+#: meinberlin/apps/plans/assets/PopUp.jsx:18
+msgid "Participation: from "
+msgstr "Participation: from "
+
+#: meinberlin/apps/plans/assets/PopUp.jsx:59
 msgid "Superordinate project: "
 msgstr "Superordinate project: "
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:40
-msgid " participation projects in Berlin"
-msgstr " Beteiligunsprojekte in Berlin"
+#: meinberlin/apps/plans/assets/Toggles.jsx:87
+msgid " search results"
+msgstr " search results"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:70
 msgid "Show map"
 msgstr "Show map"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:87
-msgid " participation projects"
-msgstr " Beteiligunsprojekte"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:117
 msgid "Show List"
@@ -632,6 +633,12 @@ msgstr "No matches found within the project area"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Did you mean:"
+
+#~ msgid " participation projects in Berlin"
+#~ msgstr " Beteiligunsprojekte in Berlin"
+
+#~ msgid " participation projects"
+#~ msgstr " Beteiligunsprojekte"
 
 #~ msgid "Set filters"
 #~ msgstr "Set filters"

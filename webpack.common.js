@@ -8,7 +8,8 @@ module.exports = {
     adhocracy4: [
       './meinberlin/assets/scss/style.scss',
       './meinberlin/assets/js/app.js',
-      'shariff/dist/shariff.min.css'
+      'shariff/dist/shariff.min.css',
+      'moment'
     ],
     vendor: [
       'classnames',
