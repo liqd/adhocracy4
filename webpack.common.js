@@ -1,12 +1,14 @@
-var webpack = require('webpack')
-var path = require('path')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
+const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
     adhocracy4: [
       './meinberlin/assets/scss/style.scss',
-      './meinberlin/assets/js/app.js'
+      './meinberlin/assets/js/app.js',
+      'shariff/dist/shariff.min.css'
     ],
     vendor: [
       'classnames',
@@ -14,15 +16,12 @@ module.exports = {
       '@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss',
       '@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss',
       '@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss',
-      'jquery/dist/jquery.min.js',
       'js-cookie',
       'react',
       'immutability-helper',
       'react-dom',
       'react-flip-move',
-      'react-sticky-box',
-      'shariff/dist/shariff.min.js',
-      'shariff/dist/shariff.min.css'
+      'react-sticky-box'
     ],
     select2: [
       'select2'
@@ -80,6 +79,14 @@ module.exports = {
         }
       },
       {
+        test: /\.s?css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
         test: /fonts\/.*\.(svg|woff2?|ttf|eot)(\?.*)?$/,
         loader: 'file-loader',
         options: {
@@ -97,6 +104,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
+    alias: {
+      'jquery$': 'jquery/dist/jquery.min.js',
+      'shariff$': 'shariff/dist/shariff.min.js'
+    },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.
     // Setting `resolve.root` forces webpack to resolve all dependencies
@@ -112,6 +123,10 @@ module.exports = {
     new webpack.optimize.SplitChunksPlugin({
       name: 'vendor',
       filename: 'vendor.js'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
     }),
     new CopyWebpackPlugin([
       {
