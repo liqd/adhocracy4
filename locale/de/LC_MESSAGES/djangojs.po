@@ -653,7 +653,7 @@ msgstr ""
 
 #: meinberlin/apps/plans/assets/PopUp.jsx:18
 msgid "Participation: from "
-msgstr ""
+msgstr "Beteiligung: ab "
 
 #: meinberlin/apps/plans/assets/PopUp.jsx:59
 msgid "Superordinate project: "
@@ -662,7 +662,7 @@ msgstr "Übergeordnetes Projekt: "
 #: meinberlin/apps/plans/assets/Toggles.jsx:40
 #: meinberlin/apps/plans/assets/Toggles.jsx:87
 msgid " search results"
-msgstr ""
+msgstr " Suchergebnisse"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:70
 msgid "Show map"
