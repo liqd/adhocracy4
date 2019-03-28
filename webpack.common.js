@@ -22,7 +22,7 @@ module.exports = {
       'immutability-helper',
       'react-dom',
       'react-flip-move',
-      'react-sticky-box',
+      'react-sticky-box'
     ],
     select2: [
       'select2'
