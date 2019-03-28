@@ -23,6 +23,7 @@ class MapTopicForm(CategorizableFieldMixin,
             polygon=self.settings.polygon)
         self.fields['point'].error_messages['required'] = _(
             'Please locate your proposal on the map.')
+        self.fields['description'].label = _('Description')
 
     class Meta:
         model = models.MapTopic
@@ -30,5 +31,5 @@ class MapTopicForm(CategorizableFieldMixin,
                   'labels', 'point', 'point_label']
         labels = {
             'point': _('Locate the place on a map'),
-            'point_label': _('Place label'),
+            'point_label': _('Place label')
         }
