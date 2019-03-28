@@ -12,7 +12,7 @@ class PopUp extends React.Component {
   }
 
   getTranslation () {
-    return django.gettext('Participation: from ')
+    return django.gettext('Participation: from ') + this.props.item.future_phase
   }
 
   renderTopics () {

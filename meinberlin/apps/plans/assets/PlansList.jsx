@@ -81,7 +81,7 @@ class PlansList extends React.Component {
                 }
                 {item.future_phase && !item.active_phase &&
                   <div className="status-item status__future">
-                    <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Participation: ')}{item.participation_string}</span>
+                    <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Participation: from ')}{item.future_phase}</span>
                   </div>
                 }
                 {item.active_phase &&
