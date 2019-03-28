@@ -8,7 +8,8 @@ module.exports = {
     adhocracy4: [
       './meinberlin/assets/scss/style.scss',
       './meinberlin/assets/js/app.js',
-      'shariff/dist/shariff.min.css'
+      'shariff/dist/shariff.min.css',
+      'moment'
     ],
     vendor: [
       'classnames',
@@ -21,7 +22,7 @@ module.exports = {
       'immutability-helper',
       'react-dom',
       'react-flip-move',
-      'react-sticky-box'
+      'react-sticky-box',
     ],
     select2: [
       'select2'
