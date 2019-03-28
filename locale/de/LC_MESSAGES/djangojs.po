@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-27 17:46+0100\n"
+"POT-Creation-Date: 2019-03-28 16:02+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -601,31 +601,31 @@ msgstr "laufend"
 msgid "done"
 msgstr "abgeschlossen"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:78
-#: meinberlin/apps/plans/assets/PopUp.jsx:72
+#: meinberlin/apps/plans/assets/PlansList.jsx:85
+#: meinberlin/apps/plans/assets/PopUp.jsx:79
 msgid "Participation: "
 msgstr "Beteiligung: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:90
-#: meinberlin/apps/plans/assets/PopUp.jsx:42
+#: meinberlin/apps/plans/assets/PlansList.jsx:97
+#: meinberlin/apps/plans/assets/PopUp.jsx:49
 msgid "remaining"
 msgstr "noch"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:95
-#: meinberlin/apps/plans/assets/PopUp.jsx:47
+#: meinberlin/apps/plans/assets/PlansList.jsx:102
+#: meinberlin/apps/plans/assets/PopUp.jsx:54
 msgid "Participation ended. Read result."
 msgstr "Beteiligung beendet. Ergebnis lesen."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:109
-#: meinberlin/apps/plans/assets/PopUp.jsx:69
+#: meinberlin/apps/plans/assets/PlansList.jsx:116
+#: meinberlin/apps/plans/assets/PopUp.jsx:76
 msgid "Participation projects: "
 msgstr "Beteiligungsprojekte: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:112
+#: meinberlin/apps/plans/assets/PlansList.jsx:119
 msgid "Status: "
 msgstr ""
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:143
+#: meinberlin/apps/plans/assets/PlansList.jsx:150
 #: meinberlin/apps/plans/assets/PlansMap.jsx:278
 msgid "Nothing to show"
 msgstr "Keine Ergebnisse"
@@ -651,21 +651,22 @@ msgstr ""
 "Projekte ohne räumlichen Bezug werden nicht auf der Karte angezeigt. Bitte "
 "beachten Sie daher auch die Projektliste. "
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:52
+#: meinberlin/apps/plans/assets/PopUp.jsx:18
+msgid "Participation: from "
+msgstr ""
+
+#: meinberlin/apps/plans/assets/PopUp.jsx:59
 msgid "Superordinate project: "
 msgstr "Übergeordnetes Projekt: "
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:40
-msgid " participation projects in Berlin"
-msgstr " Beteiligunsprojekte in Berlin"
+#: meinberlin/apps/plans/assets/Toggles.jsx:87
+msgid " search results"
+msgstr ""
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:70
 msgid "Show map"
 msgstr "Karte anzeigen"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:87
-msgid " participation projects"
-msgstr " Beteiligunsprojekte"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:117
 msgid "Show List"
@@ -702,6 +703,12 @@ msgstr "Keine Treffer im Bereich des Projekts gefunden"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Meinten Sie:"
+
+#~ msgid " participation projects in Berlin"
+#~ msgstr " Beteiligunsprojekte in Berlin"
+
+#~ msgid " participation projects"
+#~ msgstr " Beteiligunsprojekte"
 
 #~ msgid "Set filters"
 #~ msgstr "gesetzte Filter"
