@@ -1,5 +1,6 @@
 /* global django */
 const React = require('react')
+const Moment = require('moment')
 
 class PlansList extends React.Component {
   bindList (element) {
@@ -44,6 +45,12 @@ class PlansList extends React.Component {
     }
   }
 
+  getDate (item) {
+    let newDate = Date.parse(item.future_phase.replace(/ /g, 'T'))
+    newDate = Moment(newDate).format('DD.MM.YYYY')
+    return newDate
+  }
+
   renderListItem (item, i) {
     let statusClass = (item.participation_active === true) ? 'maplist-item__status-active' : 'maplist-item__status-inactive'
     return (
@@ -81,7 +88,7 @@ class PlansList extends React.Component {
                 }
                 {item.future_phase && !item.active_phase &&
                   <div className="status-item status__future">
-                    <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Participation: from ')}{item.future_phase}</span>
+                    <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Participation: from ')}{this.getDate(item)}</span>
                   </div>
                 }
                 {item.active_phase &&

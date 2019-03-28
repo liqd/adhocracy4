@@ -1,6 +1,7 @@
 /* global django */
 const React = require('react')
 const $ = require('jquery')
+const Moment = require('moment')
 
 class PopUp extends React.Component {
   escapeHtml (unsafe) {
@@ -12,7 +13,9 @@ class PopUp extends React.Component {
   }
 
   getTranslation () {
-    return django.gettext('Participation: from ') + this.props.item.future_phase
+    let newDate = Date.parse(this.props.item.future_phase.replace(/ /g, 'T'))
+    newDate = Moment(newDate).format('DD.MM.YYYY')
+    return django.gettext('Participation: from ') + newDate
   }
 
   renderTopics () {
