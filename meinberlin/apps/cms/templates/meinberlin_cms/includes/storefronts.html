@@ -35,7 +35,7 @@
         <span class="status-bar__status"><i class="fas fa-clock"></i>{% blocktrans with time_left=item.project.time_left %} {{ time_left }} remaining {% endblocktrans %}</span>
     </div>
 
-    {% elif item.project.future_phases %}
+    {% elif item.item_type != 'external' and item.project.future_phases %}
     <div class="status-item status-item__position-storefront status__future">
       <span class="status-bar__status"><i class="fas fa-clock" ></i>{% blocktrans with date=item.project.future_phases.first.start_date.date|date:"d.m.Y" %} Participation: from {{ date }}{% endblocktrans %}</span>
     </div>
@@ -44,6 +44,9 @@
     <div class="status-item status-item__position-storefront status-bar__past">
       {% blocktrans %}Participation ended. Read result.{% endblocktrans %}
     </div>
+
+    {% elif item.item_type == 'external' %}
+    <div>test</div>
     {% endif %}
 </a>
 {% elif item.project and item.quote %}
