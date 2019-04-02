@@ -212,3 +212,13 @@
 .storefront__ending-icon-spacer {
     padding-bottom: $padding;
 }
+
+.storefront__stat-arrow {
+    font-size: 2*$font-size-xl;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 1.5*$font-size-xl;
+    top: 50%;
+}
