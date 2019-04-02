@@ -1710,7 +1710,7 @@ msgstr[1] "Projekte, zu denen wir Ihre Meinung wissen möchten!"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:57
 msgid "Scroll down"
-msgstr ""
+msgstr "Runterscrollen"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:6
 #, python-format
