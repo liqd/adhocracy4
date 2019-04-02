@@ -91,15 +91,6 @@ a {
     }
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-
-    .rich-text & {
-        height: auto !important;
-    }
-}
-
 a:not([href]) {
     color: inherit;
     text-decoration: inherit;
@@ -107,6 +98,15 @@ a:not([href]) {
     &:hover,
     &:focus {
         color: inherit;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+
+    .rich-text & {
+        height: auto !important;
     }
 }
 

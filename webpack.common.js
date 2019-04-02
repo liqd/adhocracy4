@@ -1,14 +1,15 @@
-var MiniCssExtractPlugin = require('mini-css-extract-plugin')
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var webpack = require('webpack')
-var path = require('path')
-var autoprefixer = require('autoprefixer')
+const webpack = require('webpack')
+const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
     adhocracy4: [
       './meinberlin/assets/scss/style.scss',
-      './meinberlin/assets/js/app.js'
+      './meinberlin/assets/js/app.js',
+      'shariff/dist/shariff.min.css',
+      'moment'
     ],
     vendor: [
       'classnames',
@@ -16,15 +17,12 @@ module.exports = {
       '@fortawesome/fontawesome-free-webfonts/scss/fa-brands.scss',
       '@fortawesome/fontawesome-free-webfonts/scss/fa-regular.scss',
       '@fortawesome/fontawesome-free-webfonts/scss/fa-solid.scss',
-      'jquery',
       'js-cookie',
       'react',
       'immutability-helper',
       'react-dom',
       'react-flip-move',
-      'react-sticky-box',
-      'shariff/dist/shariff.complete.js',
-      'shariff/dist/shariff.min.css'
+      'react-sticky-box'
     ],
     select2: [
       'select2'
@@ -40,9 +38,6 @@ module.exports = {
       './meinberlin/apps/plans/assets/plans_map.jsx',
       'react-bootstrap-typeahead',
       'react-bootstrap-typeahead/css/Typeahead.css'
-    ],
-    'mapboxgl': [
-      'mapbox-gl/dist/mapbox-gl.js'
     ],
     datepicker: [
       './meinberlin/assets/js/init-picker.js',
@@ -87,24 +82,9 @@ module.exports = {
       {
         test: /\.s?css$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: (loader) => [
-                autoprefixer()
-              ]
-            }
-          },
-          {
-            loader: 'sass-loader'
-          }
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
         ]
       },
       {
@@ -127,7 +107,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
       'jquery$': 'jquery/dist/jquery.min.js',
-      'shariff$': 'shariff/dist/shariff.complete.js'
+      'shariff$': 'shariff/dist/shariff.min.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.
@@ -137,7 +117,9 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      timeago: 'timeago.js'
+      timeago: 'timeago.js',
+      $: 'jquery',
+      jQuery: 'jquery'
     }),
     new webpack.optimize.SplitChunksPlugin({
       name: 'vendor',

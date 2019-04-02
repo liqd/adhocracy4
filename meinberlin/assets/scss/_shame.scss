@@ -51,3 +51,12 @@ input[type="search"] {
 .map-list [data-map] {
     min-height: 500px;
 }
+
+//add underline to links within paragraphs added by wagtail or ckeditor
+.rich-text {
+    p {
+        a {
+            text-decoration: underline;
+        }
+    }
+}

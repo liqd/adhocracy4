@@ -26,7 +26,8 @@ class MapTopic(module_models.Item):
                                     related_name='%(app_label)s_%(class)s')
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(max_length=120, verbose_name=_('Title'))
-    description = RichTextUploadingField(config_name='image-editor')
+    description = RichTextUploadingField(config_name='image-editor',
+                                         verbose_name=_('Description'))
     image = ConfiguredImageField(
         'idea_image',
         upload_to='ideas/images',

@@ -45,7 +45,7 @@ clean:
 
 .PHONY: fixtures
 fixtures:
-	$(VIRTUAL_ENV)/bin/python3 manage.py import_geodata
+	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/map-preset.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/site-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/users-dev.json
 	$(VIRTUAL_ENV)/bin/python3 manage.py loaddata meinberlin/fixtures/orga-dev.json
@@ -112,7 +112,7 @@ compilemessages:
 release: export DJANGO_SETTINGS_MODULE ?= meinberlin.config.settings.build
 release:
 	npm install --silent
-	npm run build
+	npm run build:prod
 	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements.txt -q
 	$(VIRTUAL_ENV)/bin/python3 manage.py compilemessages -v0
 	$(VIRTUAL_ENV)/bin/python3 manage.py collectstatic --noinput -v0
