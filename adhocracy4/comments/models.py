@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib.contenttypes.fields import (GenericForeignKey,
                                                 GenericRelation)
 from django.contrib.contenttypes.models import ContentType
@@ -6,7 +5,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
-from adhocracy4.generics import models_to_limit
 from adhocracy4.models import base
 from adhocracy4.ratings import models as rating_models
 
@@ -15,8 +13,7 @@ class Comment(base.UserGeneratedContentModel):
 
     content_type = models.ForeignKey(
         ContentType,
-        on_delete=models.CASCADE,
-        limit_choices_to=models_to_limit(settings.A4_COMMENTABLES)
+        on_delete=models.CASCADE
     )
     object_pk = models.PositiveIntegerField()
     content_object = GenericForeignKey(
