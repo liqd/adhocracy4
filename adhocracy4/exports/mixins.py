@@ -39,7 +39,8 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
 
         for field in fields:
             if field.concrete \
-                    and not (field.one_to_one and field.rel.parent_link) \
+                    and not (field.one_to_one
+                             and field.remote_field.parent_link) \
                     and field.name not in exclude \
                     and field.name not in virtual:
                 virtual[field.name] = str(field.verbose_name)
