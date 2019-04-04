@@ -30,9 +30,9 @@ urlpatterns = [
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(router.urls)),
     url(r'^api/', include(question_router.urls)),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^projects/', include(prj_urls)),
     url(r'^modules/', include(mod_urls)),
-    url(r'^accounts/login', views.login, name='account_login'),
+    url(r'^accounts/login', views.LoginView, name='account_login'),
     url(r'^dashboard/', include(dashboard_urls))
 ]
