@@ -21,7 +21,7 @@ class RatingViewSet(mixins.CreateModelMixin,
     serializer_class = RatingSerializer
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('object_pk', 'content_type')
+    filterset_fields = ('object_pk', 'content_type')
     content_type_filter = settings.A4_RATEABLES
 
     def perform_create(self, serializer):
