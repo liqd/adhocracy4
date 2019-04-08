@@ -15,12 +15,16 @@ const init = function () {
     let organisations = JSON.parse(element.getAttribute('data-organisations'))
     let districtnames = JSON.parse(element.getAttribute('data-district-names'))
     let topicChoices = JSON.parse(element.getAttribute('data-topic-choices'))
+    let token = element.getAttribute('data-token')
+    let useVectorMap = element.getAttribute('data-use_vector_map')
     ReactDOM.render(<ListMapBox
       selectedDistrict={selectedDistrict}
       selectedTopic={selectedTopic}
       initialitems={items}
       attribution={attribution}
       baseurl={baseurl}
+      token={token}
+      useVectorMap={useVectorMap}
       bounds={bounds}
       organisations={organisations}
       districts={districts}
