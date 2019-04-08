@@ -15,6 +15,7 @@ var init = function () {
     var points = JSON.parse(e.getAttribute('data-points'))
     var baseurl = e.getAttribute('data-baseurl')
     var usevectormap = e.getAttribute('data-usevectormap')
+    var token = e.getAttribute('data-token')
     var attribution = e.getAttribute('data-attribution')
     var initial = 0
 
@@ -26,14 +27,17 @@ var init = function () {
     )
 
     if (usevectormap === '1') {
+      var newToken = (this.props.token === '') ? 'no-token' : token
+      L.mapboxGL.accessToken = newToken
       L.mapboxGL({
-        accessToken: 'no-token',
+        accessToken: L.mapboxGL.accessToken,
         style: baseurl
       }).addTo(map)
     } else {
-      var basemap = baseurl + '{z}/{x}/{y}.png'
-      var baselayer = L.tileLayer(basemap, { attribution: attribution })
-      baselayer.addTo(map)
+      L.tileLayer(baseurl + '{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: attribution,
+        accessToken: token
+      }).addTo(map)
     }
 
     map.on('zoomend', function () {
