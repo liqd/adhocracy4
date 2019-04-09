@@ -27,7 +27,7 @@ var init = function () {
     )
 
     if (usevectormap === '1') {
-      var newToken = (this.props.token === '') ? 'no-token' : token
+      var newToken = (token === '') ? 'no-token' : token
       L.mapboxGL.accessToken = newToken
       L.mapboxGL({
         accessToken: L.mapboxGL.accessToken,
