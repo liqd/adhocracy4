@@ -44,10 +44,6 @@
     <div class="status-item status-item__position-storefront status-bar__past">
       {% blocktrans %}Participation ended. Read result.{% endblocktrans %}
     </div>
-
-    {% elif item.item_type == 'external' %}
-    <div>test</div>
-    {% endif %}
 </a>
 {% elif item.project and item.quote %}
 <a href="{{ item.project_url }}" {% if item.item_type == 'external' %}target="_blank"{% endif %} class="storefront__item storefront__proj-quote tile__md">
