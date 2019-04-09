@@ -1,4 +1,4 @@
-git+git://github.com/liqd/adhocracy4.git@mB-v2.1#egg=adhocracy4
+git+git://github.com/liqd/adhocracy4.git@4a209535cbf3b0e6c32e4f65314b476b40340483#egg=adhocracy4
 Django==1.11.20 # pyup: <2.0
 wagtail==2.3 # pyup: <2.4
 
