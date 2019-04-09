@@ -8,18 +8,21 @@ var init = function () {
     var pinSrc = JSON.parse(e.getAttribute('data-pin-src'))
     var baseurl = e.getAttribute('data-baseurl')
     var usevectormap = e.getAttribute('data-usevectormap')
+    var token = e.getAttribute('data-token')
     var attribution = e.getAttribute('data-attribution')
 
     var map = new L.Map(e, {scrollWheelZoom: false, zoomControl: false})
 
     if (usevectormap === '1') {
+      var newToken = (token === '') ? 'no-token' : token
+      L.mapboxGL.accessToken = newToken
       L.mapboxGL({
-        accessToken: 'no-token',
+        accessToken: L.mapboxGL.accessToken,
         style: baseurl
       }).addTo(map)
     } else {
-      var basemap = baseurl + '{z}/{x}/{y}.png'
-      var baselayer = L.tileLayer(basemap, { attribution: attribution })
+      var basemap = baseurl + '{z}/{x}/{y}.png?access_token={accessToken}'
+      var baselayer = L.tileLayer(basemap, { attribution: attribution, accessToken: token })
       baselayer.addTo(map)
     }
 

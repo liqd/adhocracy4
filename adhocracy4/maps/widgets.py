@@ -17,18 +17,24 @@ class MapChoosePolygonWidget(Widget):
         css = {'all': [
             'leaflet.css',
             'leaflet.draw.css',
+            'leaflet.css'
         ]}
 
     def render(self, name, value, attrs, renderer=None):
 
         use_vector_map = 0
+        token = ''
         if (hasattr(settings, 'A4_USE_VECTORMAP') and
            settings.A4_USE_VECTORMAP):
             use_vector_map = 1
+        if (hasattr(settings, 'MAP_SERVICE_TOKEN') and
+                settings.MAP_SERVICE_TOKEN):
+            token = settings.MAP_SERVICE_TOKEN
 
         context = {
             'baseurl': settings.A4_MAP_BASEURL,
             'usevectormap': use_vector_map,
+            'token': token,
             'attribution': settings.A4_MAP_ATTRIBUTION,
             'bbox': json.dumps(settings.A4_MAP_BOUNDING_BOX),
             'name': name,
@@ -59,13 +65,20 @@ class MapChoosePointWidget(Widget):
     def render(self, name, value, attrs, renderer=None):
 
         use_vector_map = 0
+        token = ''
+
         if (hasattr(settings, 'A4_USE_VECTORMAP') and
            settings.A4_USE_VECTORMAP):
             use_vector_map = 1
 
+        if (hasattr(settings, 'MAP_SERVICE_TOKEN') and
+                settings.MAP_SERVICE_TOKEN):
+            token = settings.MAP_SERVICE_TOKEN
+
         context = {
             'baseurl': settings.A4_MAP_BASEURL,
             'usevectormap': use_vector_map,
+            'token': token,
             'attribution': settings.A4_MAP_ATTRIBUTION,
             'name': name,
             'point': value,

@@ -1,15 +1,18 @@
-function createMap (L, baseurl, usevectormap, attribution, e) {
+function createMap (L, baseurl, usevectormap, token, attribution, e) {
   var map = new L.Map(e, {scrollWheelZoom: false, zoomControl: true, minZoom: 2})
 
   if (usevectormap === '1') {
+    var newToken = (token === '') ? 'no-token' : token
+    L.mapboxGL.accessToken = newToken
     L.mapboxGL({
-      accessToken: 'no-token',
+      accessToken: L.mapboxGL.accessToken,
       style: baseurl
     }).addTo(map)
   } else {
-    var basemap = baseurl + '{z}/{x}/{y}.png'
-    var baselayer = L.tileLayer(basemap, { attribution: attribution })
-    baselayer.addTo(map)
+    L.tileLayer(baseurl + '{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: attribution,
+      accessToken: token
+    }).addTo(map)
   }
 
   return map
@@ -36,9 +39,10 @@ var init = function () {
     var bbox = JSON.parse(e.getAttribute('data-bbox'))
     var baseurl = e.getAttribute('data-baseurl')
     var usevectormap = e.getAttribute('data-usevectormap')
+    var token = e.getAttribute('data-token')
     var attribution = e.getAttribute('data-attribution')
 
-    var map = createMap(L, baseurl, usevectormap, attribution, e)
+    var map = createMap(L, baseurl, usevectormap, token, attribution, e)
 
     var polygonStyle = {
       'color': '#0076ae',
