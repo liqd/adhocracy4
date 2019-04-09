@@ -209,12 +209,24 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                     projects_for_user,
                     many=True, now=now).data
 
+        use_vector_map = 0
+        token = ''
+        if (hasattr(settings, 'MAP_SERVICE_TOKEN') and
+                settings.MAP_SERVICE_TOKEN):
+            token = settings.MAP_SERVICE_TOKEN
+
+        if (hasattr(settings, 'A4_USE_VECTORMAP') and
+                settings.A4_USE_VECTORMAP):
+            use_vector_map = 1
+
         context['districts'] = self.get_district_polygons()
         context['organisations'] = self.get_organisations()
         context['district_names'] = self.get_district_names()
         context['topic_choices'] = self.get_topics()
         context['items'] = JSONRenderer().render(items)
         context['baseurl'] = settings.A4_MAP_BASEURL
+        context['token'] = token
+        context['use_vector_map'] = use_vector_map
         context['attribution'] = settings.A4_MAP_ATTRIBUTION
         context['bounds'] = json.dumps(settings.A4_MAP_BOUNDING_BOX)
         context['district'] = self.request.GET.get('district', -1)
