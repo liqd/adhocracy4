@@ -2,7 +2,7 @@ function createMap (L, baseurl, usevectormap, token, attribution, e) {
   var map = new L.Map(e, {scrollWheelZoom: false, zoomControl: false})
 
   if (usevectormap === '1') {
-    var newToken = (this.props.token === '') ? 'no-token' : token
+    var newToken = (token === '') ? 'no-token' : token
     L.mapboxGL.accessToken = newToken
     L.mapboxGL({
       accessToken: L.mapboxGL.accessToken,
