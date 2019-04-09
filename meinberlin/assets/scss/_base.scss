@@ -78,6 +78,7 @@ h6 {
 
     h3 {
         font-size: $font-size-base; //it's smaller than base if multiplied same as above
+        font-weight: bold; //it's a headline so need to have some differentiation from base
     }
 }
 
