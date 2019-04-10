@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const autoprefixer = require('autoprefixer')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -82,9 +83,24 @@ module.exports = {
       {
         test: /\.s?css$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader'
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: (loader) => [
+                autoprefixer({ browsers: ['last 3 versions', 'ie >= 11'] })
+              ]
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       },
       {
