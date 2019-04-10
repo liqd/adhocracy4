@@ -2663,7 +2663,7 @@ msgstr "Suchen Sie ein Projekt aus"
 
 #: meinberlin/apps/newsletters/forms.py:77
 msgid "Receivers are all users which follow the following project:"
-msgstr "Empfängerinnen sind alle, die diesem Projekt folgen:"
+msgstr "Empfänger*innen sind alle, die diesem Projekt folgen:"
 
 #: meinberlin/apps/newsletters/models.py:19
 msgid "Users following a specific project"
