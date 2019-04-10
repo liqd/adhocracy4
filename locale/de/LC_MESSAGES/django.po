@@ -1852,6 +1852,10 @@ msgid_plural "projects you can participate in!"
 msgstr[0] "Projekt, zu dem wir Ihre Meinung wissen möchten!"
 msgstr[1] "Projekte, zu denen wir Ihre Meinung wissen möchten!"
 
+#: meinberlin/apps/cms/templates/meinberlin_cms/home_page.html:57
+msgid "Scroll down"
+msgstr "Runterscrollen"
+
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:6
 #, python-format
 msgid "What is happening in <strong>%(district)s</strong>?"
@@ -1888,7 +1892,7 @@ msgstr " Beteiligung: ab %(date)s"
 msgid "Participation ended. Read result."
 msgstr "Beteiligung beendet. Ergebnis lesen."
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:54
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:57
 #, python-format
 msgid " What is your opinion on this: %(name)s?"
 msgstr "Was ist Ihre Meinung zum Projekt: %(name)s?"

@@ -212,3 +212,21 @@
 .storefront__ending-icon-spacer {
     padding-bottom: $padding;
 }
+
+.storefront__stat-arrow {
+    font-size: 2*$font-size-xl;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-width: 1.5*$font-size-xl;
+    top: 60%;
+
+    @media screen and (min-width: $breakpoint-md) {
+        top: 50%;
+    }
+}
+
+.storefront__stat-spacer {
+    height: 3*$r-spacer;
+}
