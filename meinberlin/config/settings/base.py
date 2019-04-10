@@ -456,8 +456,10 @@ A4_CATEGORY_ICONS = (
     ('zickzack', _('Zigzag'))
 )
 
-A4_MAP_BASEURL = 'https://vector.maps.berlinonline.de/styles/klokantech-basic/style.json'
 A4_USE_VECTORMAP = True
+A4_MAP_BASEURL = 'https://maps.berlinonline.de/styles/osm-bright/style.json'
+A4_OPENMAPTILES_TOKEN = '9aVUrssbx7PKNUKo3WtXY6MqETI6Q336u5D142QS'
+A4_MAPBOX_TOKEN = ''
 
 A4_PROJECT_TOPICS = (
     ('ANT', _('Anti-discrimination')),

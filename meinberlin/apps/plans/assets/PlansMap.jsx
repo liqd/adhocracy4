@@ -95,15 +95,32 @@ class PlansMap extends React.Component {
 
   addBackgroundMap (map) {
     if (this.props.useVectorMap === '1') {
-      let token = (this.props.token === '') ? 'no-token' : this.props.token
-      L.mapboxGL.accessToken = token
-      L.mapboxGL({
-        accessToken: L.mapboxGL.accessToken,
-        style: this.props.baseurl
-      }).addTo(map)
+      if (this.props.mapboxToken !== '') {
+        L.mapboxGL.accessToken = this.props.mapboxToken
+      } else {
+        L.mapboxGL.accessToken = 'no-token'
+      }
+      if (this.props.omtToken !== '') {
+        L.mapboxGL({
+          accessToken: L.mapboxGL.accessToken,
+          style: this.props.baseurl,
+          transformRequest: function (url, resourceType) {
+            if (resourceType === 'Tile' && url.indexOf('https://') === 0) {
+              return {
+                url: url + '?token=' + this.props.omtToken
+              }
+            }
+          }
+        }).addTo(map)
+      } else {
+        L.mapboxGL({
+          accessToken: L.mapboxGL.accessToken,
+          style: this.props.baseurl
+        }).addTo(map)
+      }
     } else {
       let basemap = this.props.baseurl + '{z}/{x}/{y}.png?access_token={accessToken}'
-      let baselayer = L.tileLayer(basemap, { attribution: this.props.attribution, accessToken: this.props.token })
+      let baselayer = L.tileLayer(basemap, { attribution: this.props.attribution, accessToken: this.props.mapboxToken })
       baselayer.addTo(map)
     }
   }
