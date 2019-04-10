@@ -52,6 +52,12 @@ class ContainerProjectsView(ProjectComponentFormView):
     def get_object(self, queryset=None):
         return self.project
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        kwargs['organisation'] = self.project.organisation
+        return kwargs
+
 
 class ContainerListView(dashboard_mixins.DashboardBaseMixin,
                         generic.ListView):
