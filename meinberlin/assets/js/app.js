@@ -45,10 +45,13 @@ var initialiseWidget = function (namespace, name, fn) {
 }
 
 var init = function () {
-  new Shariff($('.shariff'), {
-    services: '[&quot;twitter&quot;,&quot;facebook&quot;,&quot;info&quot;]',
-    infoUrl: '/shariff'
-  })
+  var shariffs = $('.shariff')
+  if (shariffs.length > 0) {
+    new Shariff(shariffs, {
+      services: '[&quot;twitter&quot;,&quot;facebook&quot;,&quot;info&quot;]',
+      infoUrl: '/shariff'
+    })
+  }
 
   if ($.fn.select2) {
     $('.js-select2').select2()
