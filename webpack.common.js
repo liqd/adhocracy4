@@ -39,6 +39,9 @@ module.exports = {
       './meinberlin/apps/plans/assets/plans_map.jsx',
       'react-bootstrap-typeahead',
       'react-bootstrap-typeahead/css/Typeahead.css',
+      'adhocracy4/adhocracy4/maps/static/a4maps/map_choose_point.js',
+      'adhocracy4/adhocracy4/maps/static/a4maps/map_choose_polygon.js',
+      'adhocracy4/adhocracy4/maps/static/a4maps/map_display_point.js',
       'adhocracy4/adhocracy4/maps/static/a4maps/map_display_points.js',
       'adhocracy4/adhocracy4/maps/static/a4maps/map_create.js'
     ],
