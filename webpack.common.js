@@ -38,7 +38,9 @@ module.exports = {
       'leaflet.markercluster/dist/MarkerCluster.css',
       './meinberlin/apps/plans/assets/plans_map.jsx',
       'react-bootstrap-typeahead',
-      'react-bootstrap-typeahead/css/Typeahead.css'
+      'react-bootstrap-typeahead/css/Typeahead.css',
+      'adhocracy4/adhocracy4/maps/static/a4maps/map_display_points.js',
+      'adhocracy4/adhocracy4/maps/static/a4maps/map_create.js'
     ],
     datepicker: [
       './meinberlin/assets/js/init-picker.js',
