@@ -1,4 +1,5 @@
 /* global $ location django */
+
 $(document).ready(function () {
   var $main = $('main')
   var currentPath
@@ -71,7 +72,7 @@ $(document).ready(function () {
     $main.append($top)
     $main.append($root.find('main').children())
     $(document).trigger('a4.embed.ready')
-
+    $(window.init_widgets)
     // jump to top after navigation, but not on inital load
     if (!isInitial) {
       $top.focus()

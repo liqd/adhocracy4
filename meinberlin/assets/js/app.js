@@ -69,7 +69,7 @@ var init = function () {
 }
 
 $(init)
-$(document).on('a4.embed.ready', init)
+window.init_widgets = init
 
 module.exports = {
   'getCurrentPath': getCurrentPath
