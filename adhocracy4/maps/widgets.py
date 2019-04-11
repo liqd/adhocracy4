@@ -9,32 +9,34 @@ class MapChoosePolygonWidget(Widget):
 
     class Media:
         js = (
-            'leaflet.js',
-            'leaflet.draw.js',
-            'a4maps/map_choose_polygon.js'
+            'a4maps_choose_polygon.js',
         )
 
         css = {'all': [
-            'leaflet.css',
-            'leaflet.draw.css',
-            'leaflet.css'
+            'a4maps_choose_polygon.css'
         ]}
 
     def render(self, name, value, attrs, renderer=None):
 
         use_vector_map = 0
-        token = ''
+        mapbox_token = ''
+        omt_token = ''
+
         if (hasattr(settings, 'A4_USE_VECTORMAP') and
-           settings.A4_USE_VECTORMAP):
+                settings.A4_USE_VECTORMAP):
             use_vector_map = 1
-        if (hasattr(settings, 'MAP_SERVICE_TOKEN') and
-                settings.MAP_SERVICE_TOKEN):
-            token = settings.MAP_SERVICE_TOKEN
+
+        if hasattr(settings, 'A4_MAPBOX_TOKEN'):
+            mapbox_token = settings.A4_MAPBOX_TOKEN
+
+        if hasattr(settings, 'A4_OPENMAPTILES_TOKEN'):
+            omt_token = settings.A4_OPENMAPTILES_TOKEN
 
         context = {
             'baseurl': settings.A4_MAP_BASEURL,
             'usevectormap': use_vector_map,
-            'token': token,
+            'mapbox_token': mapbox_token,
+            'omt_token': omt_token,
             'attribution': settings.A4_MAP_ATTRIBUTION,
             'bbox': json.dumps(settings.A4_MAP_BOUNDING_BOX),
             'name': name,
@@ -55,30 +57,34 @@ class MapChoosePointWidget(Widget):
 
     class Media:
         js = (
-            'leaflet.js',
-            'a4maps/map_choose_point.js'
+            'a4maps_choose_point.js',
         )
+
         css = {'all': [
-            'leaflet.css',
+            'a4maps_choose_point.css'
         ]}
 
     def render(self, name, value, attrs, renderer=None):
 
         use_vector_map = 0
-        token = ''
+        mapbox_token = ''
+        omt_token = ''
 
         if (hasattr(settings, 'A4_USE_VECTORMAP') and
-           settings.A4_USE_VECTORMAP):
+                settings.A4_USE_VECTORMAP):
             use_vector_map = 1
 
-        if (hasattr(settings, 'MAP_SERVICE_TOKEN') and
-                settings.MAP_SERVICE_TOKEN):
-            token = settings.MAP_SERVICE_TOKEN
+        if hasattr(settings, 'A4_MAPBOX_TOKEN'):
+            mapbox_token = settings.A4_MAPBOX_TOKEN
+
+        if hasattr(settings, 'A4_OPENMAPTILES_TOKEN'):
+            omt_token = settings.A4_OPENMAPTILES_TOKEN
 
         context = {
             'baseurl': settings.A4_MAP_BASEURL,
             'usevectormap': use_vector_map,
-            'token': token,
+            'mapbox_token': mapbox_token,
+            'omt_token': omt_token,
             'attribution': settings.A4_MAP_ATTRIBUTION,
             'name': name,
             'point': value,

@@ -1,3 +1,6 @@
+import { createMap } from 'a4maps_common'
+import 'leaflet.markercluster'
+
 var init = function () {
   var $ = window.jQuery
   var L = window.L
@@ -11,34 +14,20 @@ var init = function () {
   }
 
   $('[data-map="display_points"]').each(function (i, e) {
-    var polygon = JSON.parse(e.getAttribute('data-polygon'))
-    var points = JSON.parse(e.getAttribute('data-points'))
-    var baseurl = e.getAttribute('data-baseurl')
-    var usevectormap = e.getAttribute('data-usevectormap')
-    var token = e.getAttribute('data-token')
-    var attribution = e.getAttribute('data-attribution')
+    const polygon = JSON.parse(e.getAttribute('data-polygon'))
+    const points = JSON.parse(e.getAttribute('data-points'))
     var initial = 0
 
-    var map = new L.Map(e, {
+    const map = createMap(L, e, {
+      baseUrl: e.getAttribute('data-baseurl'),
+      useVectorMap: e.getAttribute('data-usevectormap'),
+      attribution: e.getAttribute('data-attribution'),
+      mapboxToken: e.getAttribute('data-mapbox-token'),
+      omtToken: e.getAttribute('data-omt-token'),
+      dragging: true,
       scrollWheelZoom: false,
       zoomControl: false,
-      maxZoom: 18
-    }
-    )
-
-    if (usevectormap === '1') {
-      var newToken = (token === '') ? 'no-token' : token
-      L.mapboxGL.accessToken = newToken
-      L.mapboxGL({
-        accessToken: L.mapboxGL.accessToken,
-        style: baseurl
-      }).addTo(map)
-    } else {
-      L.tileLayer(baseurl + '{z}/{x}/{y}.png?access_token={accessToken}', {
-        attribution: attribution,
-        accessToken: token
-      }).addTo(map)
-    }
+      maxZoom: 18 })
 
     map.on('zoomend', function () {
       var currentZoom = map.getZoom()

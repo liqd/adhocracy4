@@ -57,16 +57,19 @@ def get_points(items):
 
 @register.simple_tag()
 def map_display_points(items, polygon):
-    token = ''
     use_vector_map = 0
+    mapbox_token = ''
+    omt_token = ''
 
     if (hasattr(settings, 'A4_USE_VECTORMAP') and
-       settings.A4_USE_VECTORMAP):
+            settings.A4_USE_VECTORMAP):
         use_vector_map = 1
 
-    if (hasattr(settings, 'MAP_SERVICE_TOKEN') and
-       settings.MAP_SERVICE_TOKEN):
-        token = settings.MAP_SERVICE_TOKEN
+    if hasattr(settings, 'A4_MAPBOX_TOKEN'):
+        mapbox_token = settings.A4_MAPBOX_TOKEN
+
+    if hasattr(settings, 'A4_OPENMAPTILES_TOKEN'):
+        omt_token = settings.A4_OPENMAPTILES_TOKEN
 
     return format_html(
         (
@@ -75,7 +78,8 @@ def map_display_points(items, polygon):
             ' data-map="display_points"'
             ' data-baseurl="{baseurl}"'
             ' data-usevectormap="{usevectormap}"'
-            ' data-token="{token}"'
+            ' data-mapbox-token="{mapbox_token}"'
+            ' data-omt-token="{omt_token}"'
             ' data-attribution="{attribution}"'
             ' data-points="{points}"'
             ' data-polygon="{polygon}"'
@@ -83,7 +87,8 @@ def map_display_points(items, polygon):
         ),
         baseurl=settings.A4_MAP_BASEURL,
         usevectormap=use_vector_map,
-        token=token,
+        mapbox_token=mapbox_token,
+        omt_token=omt_token,
         attribution=settings.A4_MAP_ATTRIBUTION,
         points=get_points(items),
         polygon=json.dumps(polygon)
@@ -92,16 +97,19 @@ def map_display_points(items, polygon):
 
 @register.simple_tag()
 def map_display_point(point, polygon, pin_src=None):
-    token = ''
     use_vector_map = 0
+    mapbox_token = ''
+    omt_token = ''
 
     if (hasattr(settings, 'A4_USE_VECTORMAP') and
-       settings.A4_USE_VECTORMAP):
+            settings.A4_USE_VECTORMAP):
         use_vector_map = 1
 
-    if (hasattr(settings, 'MAP_SERVICE_TOKEN') and
-       settings.MAP_SERVICE_TOKEN):
-        token = settings.MAP_SERVICE_TOKEN
+    if hasattr(settings, 'A4_MAPBOX_TOKEN'):
+        mapbox_token = settings.A4_MAPBOX_TOKEN
+
+    if hasattr(settings, 'A4_OPENMAPTILES_TOKEN'):
+        omt_token = settings.A4_OPENMAPTILES_TOKEN
 
     return format_html(
         (
@@ -110,7 +118,8 @@ def map_display_point(point, polygon, pin_src=None):
             ' data-map="display_point"'
             ' data-baseurl="{baseurl}"'
             ' data-usevectormap="{usevectormap}"'
-            ' data-token="{token}"'
+            ' data-mapbox-token="{mapbox_token}"'
+            ' data-omt-token="{omt_token}"'
             ' data-attribution="{attribution}"'
             ' data-point="{point}"'
             ' data-polygon="{polygon}"'
@@ -119,7 +128,8 @@ def map_display_point(point, polygon, pin_src=None):
         ),
         baseurl=settings.A4_MAP_BASEURL,
         usevectormap=use_vector_map,
-        token=token,
+        mapbox_token=mapbox_token,
+        omt_token=omt_token,
         attribution=settings.A4_MAP_ATTRIBUTION,
         point=json.dumps(point),
         polygon=json.dumps(polygon),
