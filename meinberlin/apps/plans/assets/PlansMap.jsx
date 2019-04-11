@@ -110,7 +110,7 @@ class PlansMap extends React.Component {
                 url: url + '?token=' + this.props.omtToken
               }
             }
-          }
+          }.bind(this)
         }).addTo(map)
       } else {
         L.mapboxGL({
