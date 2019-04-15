@@ -74,6 +74,8 @@ class RestrictedNewsletterForm(forms.ModelForm):
             label=_('Project'),
             queryset=project_qs,
             required=False, empty_label=None)
+        self.fields['project'].label = _('Receivers are all users '
+                                         'which follow the following project:')
 
         self.fields['organisation'] = forms.ModelChoiceField(
             label=_('Organisation'),

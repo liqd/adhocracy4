@@ -40,9 +40,8 @@ class AccountAdapter(DefaultAccountAdapter):
             return url
 
     def send_mail(self, template_prefix, email, context):
-        user = context['user']
         return UserAccountEmail.send(
-            user,
+            email,
             template_name=template_prefix,
             **context
         )

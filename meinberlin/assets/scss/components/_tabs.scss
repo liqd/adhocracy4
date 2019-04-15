@@ -1,5 +1,6 @@
 .tabpanel {
     display: none;
+    overflow-wrap: break-word;
 
     &.active {
         display: block;

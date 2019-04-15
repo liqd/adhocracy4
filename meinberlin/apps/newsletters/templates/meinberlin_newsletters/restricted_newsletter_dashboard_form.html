@@ -14,7 +14,7 @@
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.sender %}
         </div>
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.subject %}
-        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.receivers %}
+        {{ form.receivers }}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.body %}
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project %}
 

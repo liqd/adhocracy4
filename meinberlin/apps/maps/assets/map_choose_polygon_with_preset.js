@@ -5,17 +5,36 @@ const $ = require('jquery')
 const FileSaver = require('file-saver')
 const shp = require('shpjs')
 
-function createMap (L, baseurl, usevectormap, attribution, e) {
+function createMap (L, baseUrl, useVectorMap, attribution, mapboxToken, omtToken, e) {
   const map = new L.Map(e, { scrollWheelZoom: false, zoomControl: true, minZoom: 2 })
 
-  if (usevectormap === '1') {
-    L.mapboxGL({
-      accessToken: 'no-token',
-      style: baseurl
-    }).addTo(map)
+  if (useVectorMap === '1') {
+    if (mapboxToken !== '') {
+      L.mapboxGL.accessToken = mapboxToken
+    } else {
+      L.mapboxGL.accessToken = 'no-token'
+    }
+    if (omtToken !== '') {
+      L.mapboxGL({
+        accessToken: L.mapboxGL.accessToken,
+        style: baseUrl,
+        transformRequest: function (url, resourceType) {
+          if (resourceType === 'Tile' && url.indexOf('https://') === 0) {
+            return {
+              url: url + '?token=' + omtToken
+            }
+          }
+        }
+      }).addTo(map)
+    } else {
+      L.mapboxGL({
+        accessToken: L.mapboxGL.accessToken,
+        style: baseUrl
+      }).addTo(map)
+    }
   } else {
-    var basemap = baseurl + '{z}/{x}/{y}.png'
-    var baselayer = L.tileLayer(basemap, { attribution: attribution })
+    let basemap = baseUrl + '{z}/{x}/{y}.png?access_token={accessToken}'
+    let baselayer = L.tileLayer(basemap, { attribution: attribution, accessToken: mapboxToken })
     baselayer.addTo(map)
   }
 
@@ -197,11 +216,13 @@ function getBaseBounds (L, polygon, bbox) {
     const name = e.getAttribute('data-name')
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
     const bbox = JSON.parse(e.getAttribute('data-bbox'))
-    const baseurl = e.getAttribute('data-baseurl')
-    const usevectormap = e.getAttribute('data-usevectormap')
+    const baseUrl = e.getAttribute('data-baseurl')
+    const useVectorMap = e.getAttribute('data-usevectormap')
     const attribution = e.getAttribute('data-attribution')
+    const mapboxToken = e.getAttribute('data-mapbox-token')
+    const omtToken = e.getAttribute('data-omt-token')
 
-    const map = createMap(L, baseurl, usevectormap, attribution, e)
+    const map = createMap(L, baseUrl, useVectorMap, attribution, mapboxToken, omtToken, e)
 
     const polygonStyle = {
       'color': '#0076ae',

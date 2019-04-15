@@ -2,7 +2,7 @@
 
 .portal-header {
     @include clearfix;
-    background-color: #bfd3ff;
+    background-color: $blue-light;
     background-image: linear-gradient(to bottom, #c7d9ff, #b2caff);
     border-top: 5px solid #2d509a;
     min-height: 40px;

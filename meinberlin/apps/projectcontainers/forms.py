@@ -62,12 +62,20 @@ class ContainerInformationForm(ProjectDashboardForm):
 class ContainerProjectsForm(ProjectDashboardForm):
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user')
+        self.organisation = kwargs.pop('organisation')
         super().__init__(*args, **kwargs)
 
-        # We tried to find a good balance between a short list and
-        # all necessary projects. The details may change over time.
-        # Projects that are already selected should remain in the queryset.
-        self.fields['projects'].queryset = self.fields['projects'].queryset \
+        projects = self.fields['projects']\
+            .queryset.filter(organisation=self.organisation)
+        if not self.organisation.has_initiator(self.user):
+            user_groups = self.user.groups.all()
+            org_groups = self.organisation.groups.all()
+            shared_groups = user_groups & org_groups
+            group = shared_groups.distinct().first()
+            projects = projects.filter(group=group)
+
+        self.fields['projects'].queryset = projects \
             .filter(projectcontainer=None)\
             .filter(Q(containers=self.instance) |
                     (Q(containers=None) &
