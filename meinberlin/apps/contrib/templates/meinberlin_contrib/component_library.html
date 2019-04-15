@@ -83,6 +83,12 @@
                             <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Bar</a>
                         </li>
                         <li class="dashboard-nav__page">
+                            <a href="#cl-filter-primary_menu" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Menu - Primary</a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#cl-filter-secondary_menu" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Menu - Secondary</a>
+                        </li>
+                        <li class="dashboard-nav__page">
                             <a href="#cl-footer" class="dashboard-nav__item dashboard-nav__item--interactive">Footer</a>
                         </li>
                         <li class="dashboard-nav__page">
@@ -856,6 +862,105 @@
                         </div>
                     </div>
                 </div>
+
+
+                <h2 id="cl-filter-primary_menu">Filter Menu - Primary</h2>
+
+                <div class="cl-example">
+                    <div class="filter-bar filter-bar--horizontal" role="group" aria-label="Filter bar">
+                        <span class="filter-bar__project-text">I am interested in projects from</span>
+                        <div class="filter-bar__dropdown">
+                            <button class="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_district">„ all Districts “<i class="fa fa-chevron-down"></i></button>
+                        </div>
+                        <span class="u-md-down-display-none"> in the area of </span>
+                        <div class="filter-bar__dropdown">
+                            <button class="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_topic">„ all Topics “<i class="fa fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div>
+                          <button class="btn btn--small btn--transparent filter-bar__btn--light">
+                            <i class="fas fa-sliders-h" aria-label="more filters"></i>
+                          </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <h2 id="cl-filter-primary_menu">Filter Menu - Stacked Primary</h2>
+
+                <div class="cl-example">
+                    <div class="filter-bar filter-bar--stacked" role="group" aria-label="Filter bar" style="width: 50%;">
+                        <span class="filter-bar__project-text">I am interested in projects from</span>
+                        <div className="filter-bar__dropdown">
+                            <button class="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_district">„ all Districts “<i class="fa fa-chevron-down"></i></button>
+                        </div>
+                        <div className="filter-bar__dropdown">
+                            <button class="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected" ariaExpanded="false" id="id_filter_topic">„ all Topics “<i class="fa fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <div>
+                          <button class="ml-0 u-spacer-top btn btn--small btn--transparent btn--full filter-bar__btn--light" style="margin-left: 0px;">
+                            more filters
+                          </button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <h2 id="cl-filter-secondary_menu">Filter Menu - Secondary</h2>
+
+                <div class="cl-example">
+                    <form class="filter-bar__menu">
+
+                        <label htmlFor="id-title-search">
+                            <input class="input-group__input filter-bar__search" type="text" id="id-title-search" placeholder="Search title" />
+                            <button class="input-group__after btn btn--light filter-bar__search--btn" type="submit" style="margin-left: -4px;">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                            <span class="sr-only">Search title</span>
+                        </label>
+
+                        <div class="filter-bar__menu-radio-group">
+                            <div class="filter-bar__menu-radio-part">
+                                <fieldset class="u-no-border u-no-margin u-no-padding">
+                                    <legend>
+                                        <h2 class="u-no-margin">Choice input - styled radios</h2>
+                                    </legend>
+                                    <div class="btn-group " role="group">
+                                        <label class="btn btn--light switch--btn">
+                                            <input class="radio__input" type="radio" />
+                                            <span>all</span>
+                                        </label>
+                                        <label class="btn btn--light switch--btn active">
+                                            <input class="radio__input" type="radio" />
+                                            <span> choice </span>
+                                        </label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="typeahead__input-label">
+                                <h2 class="u-no-margin">Look up input with autocomplete </h2>
+                            </div>
+                            <span class="typeahead__input-group">
+                                <span class="typeahead__input-group-prepend">
+                                    <span class="typeahead__input-group-text">
+                                        <i class="fas fa-sort-alpha-down"></i>
+                                    </span>
+                                </span>
+                                <input class="input-group__input" placeholder="Enter the name of the organisation" style="width: 85%;" />
+                            </span>
+                        </div>
+
+                        <button class="btn btn--primary filter-secondary__btn" type="submit">
+                            show projects
+                        </button>
+                    </form>
+                </div>
+
+
 
                 <h2 id="cl-footer">Footer</h2>
 
