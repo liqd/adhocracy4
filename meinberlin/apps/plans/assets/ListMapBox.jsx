@@ -280,6 +280,9 @@ class ListMapBox extends React.Component {
         nonValue={this.props.districtnames[this.props.districtnames.length - 1]}
         districts={this.props.districts}
         baseurl={this.props.baseurl}
+        mapboxToken={this.props.mapboxToken}
+        omtToken={this.props.omtToken}
+        useVectorMap={this.props.useVectorMap}
         districtnames={this.props.districtnames}
         topicChoices={this.props.topicChoices}
         draggingEnabled={draggingEnabled}

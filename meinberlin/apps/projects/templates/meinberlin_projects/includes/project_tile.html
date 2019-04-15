@@ -51,18 +51,6 @@
                         {% trans 'Participation projects: ' %}
                     </span>
                     <span>{{ project.projectcontainer.total_project_count }}</span>
-                    <br />
-                    <span class="maplist-item__status">
-                        <i class="fas fa-clock" aria-hidden="true"></i>
-                        {% trans 'Participation: ' %}
-                    </span>
-                    {% if project.projectcontainer.active_project_count > 0 %}
-                    <span class="maplist-item__status-active">{% trans 'running' %}</span>
-                    {% elif project.projectcontainer.future_project_count > 0 %}
-                    <span class="maplist-item__status-active">{% trans 'starts in the future' %}</span>
-                    {% else %}
-                    <span class="maplist-item__status-inactive">{% trans 'done' %}</span>
-                    {% endif %}
                 </div>
                 {% elif not project|is_external or project.externalproject.phase.start_date %}
                     {% if project.active_phase %}

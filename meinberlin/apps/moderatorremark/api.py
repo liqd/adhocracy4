@@ -24,7 +24,7 @@ class ModeratorRemarkViewSet(mixins.CreateModelMixin,
     serializer_class = ModeratorRemarkSerializer
     permission_classes = (ViewSetRulesPermission,)
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('item_object_id', 'item_content_type')
+    filterset_fields = ('item_object_id', 'item_content_type')
     content_type_filter = AllContentTypesFilter()
 
     def get_permission_object(self):
