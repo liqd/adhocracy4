@@ -21,3 +21,14 @@ class OrganisationFactory(factory.django.DjangoModelFactory):
         if extracted:
             for user in extracted:
                 self.initiators.add(user)
+
+    @factory.post_generation
+    def groups(self, create, extracted, **kwargs):
+        if not create:
+            # Simple build, do nothing.
+            return
+
+        if extracted:
+            # A list of groups were passed in, use them
+            for group in extracted:
+                self.groups.add(group)
