@@ -62,10 +62,6 @@ class ProjectAdmin(admin.ModelAdmin):
             'fields': ('contact_name', 'contact_address_text',
                        'contact_phone', 'contact_email', 'contact_url'),
         }),
-        (_('Topic and location'), {
-            'classes': ('collapse',),
-            'fields': ('topics', 'point', 'administrative_district'),
-        }),
     )
 
 
