@@ -25,25 +25,34 @@ module.exports = {
       'react-flip-move',
       'react-sticky-box'
     ],
-    select2: [
-      'select2'
-    ],
-    leaflet: [
-      'leaflet',
-      'mapbox-gl-leaflet',
-      'mapbox-gl/dist/mapbox-gl.js',
-      'mapbox-gl/dist/mapbox-gl.css',
+    mb_plans_map: [
       'leaflet/dist/leaflet.css',
-      'leaflet.markercluster',
+      'mapbox-gl/dist/mapbox-gl.css',
       'leaflet.markercluster/dist/MarkerCluster.css',
-      './meinberlin/apps/plans/assets/plans_map.jsx',
-      'react-bootstrap-typeahead',
       'react-bootstrap-typeahead/css/Typeahead.css',
-      'adhocracy4/adhocracy4/maps/static/a4maps/map_choose_point.js',
-      'adhocracy4/adhocracy4/maps/static/a4maps/map_choose_polygon.js',
-      'adhocracy4/adhocracy4/maps/static/a4maps/map_display_point.js',
-      'adhocracy4/adhocracy4/maps/static/a4maps/map_display_points.js',
-      'adhocracy4/adhocracy4/maps/static/a4maps/map_create.js'
+      './meinberlin/apps/plans/assets/plans_map.jsx'
+    ],
+    a4maps_display_point: [
+      'leaflet/dist/leaflet.css',
+      'mapbox-gl/dist/mapbox-gl.css',
+      'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_point.js'
+    ],
+    a4maps_display_points: [
+      'leaflet/dist/leaflet.css',
+      'mapbox-gl/dist/mapbox-gl.css',
+      'leaflet.markercluster/dist/MarkerCluster.css',
+      'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_points.js'
+    ],
+    a4maps_choose_point: [
+      'leaflet/dist/leaflet.css',
+      'mapbox-gl/dist/mapbox-gl.css',
+      'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_choose_point.js'
+    ],
+    a4maps_choose_polygon: [
+      'leaflet/dist/leaflet.css',
+      'mapbox-gl/dist/mapbox-gl.css',
+      'leaflet-draw/dist/leaflet.draw.css',
+      './meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js'
     ],
     datepicker: [
       './meinberlin/assets/js/init-picker.js',
@@ -55,13 +64,8 @@ module.exports = {
     'popup-close': [
       './meinberlin/assets/js/popup-close.js'
     ],
-    'map_choose_polygon_with_preset': [
-      './meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js',
-      'leaflet-draw',
-      'leaflet-draw/dist/leaflet.draw.css',
-      './meinberlin/assets/js/i18n-leaflet-draw.js',
-      'file-saver',
-      'shpjs'
+    select2: [
+      'select2'
     ]
   },
   output: {
@@ -128,7 +132,8 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
       'jquery$': 'jquery/dist/jquery.min.js',
-      'shariff$': 'shariff/dist/shariff.min.js'
+      'shariff$': 'shariff/dist/shariff.min.js',
+      'a4maps_common': 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_common.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.
