@@ -1,10 +1,11 @@
 /* global django */
 import { renderToString } from 'react-dom/server'
-const React = require('react')
-const L = require('leaflet')
-const $ = require('jquery')
-require('mapbox-gl-leaflet')
-let PopUp = require('./PopUp')
+import React, { Component } from 'react'
+import { $ } from 'jquery'
+import PopUp from './PopUp'
+import { createMap } from 'a4maps_common'
+import 'leaflet.markercluster'
+const L = window.L
 
 const addressIcon = L.icon({
   iconUrl: '/static/images/address_search_marker.svg',
@@ -37,7 +38,7 @@ const pointToLatLng = function (point) {
 
 const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
 
-class PlansMap extends React.Component {
+class PlansMap extends Component {
   constructor (props) {
     super(props)
 
@@ -58,8 +59,7 @@ class PlansMap extends React.Component {
   }
 
   componentDidMount () {
-    this.map = this.createMap()
-    this.addBackgroundMap(this.map)
+    this.map = this.setupMap()
     this.addDistrictLayers(this.map)
     this.cluster = L.markerClusterGroup({
       showCoverageOnHover: false
@@ -83,46 +83,19 @@ class PlansMap extends React.Component {
     this.mapElement = element
   }
 
-  createMap () {
-    var map = new L.Map(this.mapElement, {
+  setupMap () {
+    let map = createMap(L, this.mapElement, {
+      baseUrl: this.props.baseurl,
+      useVectorMap: this.props.useVectorMap,
+      mapboxToken: this.props.mapboxToken,
+      omtToken: this.props.omtToken,
       scrollWheelZoom: false,
       zoomControl: false,
       maxZoom: 18,
-      dragging: this.props.draggingEnabled })
+      dragging: this.props.draggingEnabled
+    })
     new L.Control.Zoom({ position: this.props.zoomPosition }).addTo(map)
     return map
-  }
-
-  addBackgroundMap (map) {
-    if (this.props.useVectorMap === '1') {
-      if (this.props.mapboxToken !== '') {
-        L.mapboxGL.accessToken = this.props.mapboxToken
-      } else {
-        L.mapboxGL.accessToken = 'no-token'
-      }
-      if (this.props.omtToken !== '') {
-        L.mapboxGL({
-          accessToken: L.mapboxGL.accessToken,
-          style: this.props.baseurl,
-          transformRequest: function (url, resourceType) {
-            if (resourceType === 'Tile' && url.indexOf('https://') === 0) {
-              return {
-                url: url + '?token=' + this.props.omtToken
-              }
-            }
-          }.bind(this)
-        }).addTo(map)
-      } else {
-        L.mapboxGL({
-          accessToken: L.mapboxGL.accessToken,
-          style: this.props.baseurl
-        }).addTo(map)
-      }
-    } else {
-      let basemap = this.props.baseurl + '{z}/{x}/{y}.png?access_token={accessToken}'
-      let baselayer = L.tileLayer(basemap, { attribution: this.props.attribution, accessToken: this.props.mapboxToken })
-      baselayer.addTo(map)
-    }
   }
 
   unsetLayerStyle (district) {

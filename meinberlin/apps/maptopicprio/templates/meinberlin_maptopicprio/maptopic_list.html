@@ -2,13 +2,13 @@
 {% load i18n module_tags rules static maps_tags %}
 
 {% block extra_js %}
-    <script type="text/javascript" src="{% static 'leaflet.js' %}"></script>
+    <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
 
     {{ block.super }}
 {% endblock %}
 
 {% block extra_css %}
-    <link type="text/css" href="{% static 'leaflet.css'%}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'a4maps_display_points.css'%}" rel="stylesheet" />
 {% endblock %}
 
 {% block phase_content %}
