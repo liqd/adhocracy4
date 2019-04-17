@@ -1,22 +1,5 @@
-function createMap (L, baseurl, usevectormap, token, attribution, e) {
-  var map = new L.Map(e, {scrollWheelZoom: false, zoomControl: true, minZoom: 2})
-
-  if (usevectormap === '1') {
-    var newToken = (token === '') ? 'no-token' : token
-    L.mapboxGL.accessToken = newToken
-    L.mapboxGL({
-      accessToken: L.mapboxGL.accessToken,
-      style: baseurl
-    }).addTo(map)
-  } else {
-    L.tileLayer(baseurl + '{z}/{x}/{y}.png?access_token={accessToken}', {
-      attribution: attribution,
-      accessToken: token
-    }).addTo(map)
-  }
-
-  return map
-}
+import { createMap } from 'a4maps_common'
+import 'leaflet-draw'
 
 function getBaseBounds (L, polygon, bbox) {
   if (polygon) {
@@ -34,17 +17,22 @@ var init = function () {
   var L = window.L
 
   $('[data-map="choose_polygon"]').each(function (i, e) {
-    var name = e.getAttribute('data-name')
-    var polygon = JSON.parse(e.getAttribute('data-polygon'))
-    var bbox = JSON.parse(e.getAttribute('data-bbox'))
-    var baseurl = e.getAttribute('data-baseurl')
-    var usevectormap = e.getAttribute('data-usevectormap')
-    var token = e.getAttribute('data-token')
-    var attribution = e.getAttribute('data-attribution')
+    const name = e.getAttribute('data-name')
+    const polygon = JSON.parse(e.getAttribute('data-polygon'))
+    const bbox = JSON.parse(e.getAttribute('data-bbox'))
 
-    var map = createMap(L, baseurl, usevectormap, token, attribution, e)
+    const map = createMap(L, e, {
+      baseUrl: e.getAttribute('data-baseurl'),
+      useVectorMap: e.getAttribute('data-usevectormap'),
+      attribution: e.getAttribute('data-attribution'),
+      mapboxToken: e.getAttribute('data-mapbox-token'),
+      omtToken: e.getAttribute('data-omt-token'),
+      dragging: true,
+      scrollWheelZoom: false,
+      zoomControl: true,
+      minZoom: 2 })
 
-    var polygonStyle = {
+    const polygonStyle = {
       'color': '#0076ae',
       'weight': 2,
       'opacity': 1,
