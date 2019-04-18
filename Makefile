@@ -1,5 +1,6 @@
 VIRTUAL_ENV ?= venv
 NODE_BIN = node_modules/.bin
+SOURCE_DIRS = meinberlin tests
 
 .PHONY: all
 all: help
@@ -24,7 +25,6 @@ help:
 	@echo "  make test-clean      -- test on new database"
 	@echo "  make coverage        -- write coverage report to dir htmlcov"
 	@echo "  make lint            -- lint all project files"
-	@echo "  make lint-quick      -- lint all files staged in git"
 	@echo "  make po              -- create new po files from the source"
 	@echo "  make compilemessages -- create new mo files from the translated po files"
 	@echo "  make release         -- build everything required for a release"
@@ -90,11 +90,12 @@ coverage:
 
 .PHONY: lint
 lint:
-	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint
-
-.PHONY: lint-quick
-lint-quick:
-	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint -SF
+	EXIT_STATUS=0; \
+	$(VIRTUAL_ENV)/bin/isort --diff -rc -c $(SOURCE_DIRS) ||  EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/flake8 $(SOURCE_DIRS) --exclude migrations,settings ||  EXIT_STATUS=$$?; \
+	npm run lint ||  EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
 
 .PHONY: po
 po:

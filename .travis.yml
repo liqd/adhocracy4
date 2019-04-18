@@ -16,7 +16,9 @@ script:
   - python manage.py collectstatic > /dev/null
   - py.test --cov
   - python manage.py makemigrations --dry-run --check --noinput
-  - ./node_modules/.bin/polylint -F
+  - isort --diff -rc -c meinberlin tests
+  - flake8 meinberlin tests --exclude migrations,settings
+  - npm run lint
 after_success:
   - coveralls
 deploy:

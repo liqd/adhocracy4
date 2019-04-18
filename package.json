@@ -72,7 +72,6 @@
     "eslint-plugin-standard": "4.0.0",
     "husky": "1.3.1",
     "markdownlint-cli": "0.15.0",
-    "polylint.sh": "0.0.4",
     "stylelint": "10.0.1",
     "stylelint-config-standard": "18.3.0",
     "stylelint-declaration-strict-value": "1.1.2",
@@ -81,12 +80,13 @@
   "scripts": {
     "build:prod": "webpack --config webpack.prod.js --mode production",
     "build": "webpack --config webpack.dev.js --mode development",
-    "watch": "webpack --config webpack.dev.js --watch --mode development"
+    "watch": "webpack --config webpack.dev.js --watch --mode development",
+    "lint": "eslint 'meinberlin/apps/**/*.{js,jsx}' && stylelint 'meinberlin/assets/scss/**/*.scss' --syntax scss"
   },
   "browserslist": "last 3 versions, ie >= 11",
   "husky": {
     "hooks": {
-      "pre-commit": "make lint-quick"
+      "pre-commit": "make lint"
     }
   }
 }
