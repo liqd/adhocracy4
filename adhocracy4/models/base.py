@@ -11,8 +11,8 @@ class TimeStampedModel(models.Model):
     class Meta:
         abstract = True
 
-    def save(self, *args, **kwargs):
-        if self.pk is not None:
+    def save(self, ignore_modified=False, *args, **kwargs):
+        if self.pk is not None and not ignore_modified:
             self.modified = timezone.now()
         super(TimeStampedModel, self).save(*args, **kwargs)
 

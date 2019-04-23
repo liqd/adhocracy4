@@ -20,18 +20,31 @@ class Comment(base.UserGeneratedContentModel):
     )
     object_pk = models.PositiveIntegerField()
     content_object = GenericForeignKey(
-        ct_field="content_type", fk_field="object_pk")
+        ct_field="content_type",
+        fk_field="object_pk"
+    )
     comment = models.TextField(max_length=4000)
     is_removed = models.BooleanField(default=False)
     is_censored = models.BooleanField(default=False)
-    ratings = GenericRelation(rating_models.Rating,
-                              related_query_name='comment',
-                              object_id_field='object_pk')
-    child_comments = GenericRelation('self',
-                                     related_query_name='parent_comment',
-                                     object_id_field='object_pk')
-    comment_categories = models.CharField(blank=True,
-                                          max_length=256)
+    ratings = GenericRelation(
+        rating_models.Rating,
+        related_query_name='comment',
+        object_id_field='object_pk'
+    )
+    child_comments = GenericRelation(
+        'self',
+        related_query_name='parent_comment',
+        object_id_field='object_pk'
+    )
+    comment_categories = models.CharField(
+        blank=True,
+        max_length=256
+    )
+    last_discussed = models.DateTimeField(
+        blank=True,
+        null=True,
+        editable=False
+    )
 
     class Meta:
         verbose_name = _("Comment")
