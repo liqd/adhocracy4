@@ -86,7 +86,7 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),
-          plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-transform-modules-commonjs']
+          plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-transform-modules-commonjs', '@babel/plugin-transform-arrow-functions']
         }
       },
       {
@@ -133,7 +133,8 @@ module.exports = {
     alias: {
       'jquery$': 'jquery/dist/jquery.min.js',
       'shariff$': 'shariff/dist/shariff.min.js',
-      'a4maps_common': 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_common.js'
+      'shpjs$': 'shpjs/dist/shp.min.js',
+      'a4maps_common$': 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_common.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.

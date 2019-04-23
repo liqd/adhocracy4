@@ -83,7 +83,7 @@
     "build": "webpack --config webpack.dev.js --mode development",
     "watch": "webpack --config webpack.dev.js --watch --mode development"
   },
-  "browserslist": "last 3 versions, ie >= 10",
+  "browserslist": "last 3 versions, ie >= 11",
   "husky": {
     "hooks": {
       "pre-commit": "make lint-quick"
