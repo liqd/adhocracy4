@@ -54,7 +54,7 @@
     "shpjs": "3.4.3",
     "style-loader": "0.23.1",
     "terser-webpack-plugin": "1.2.3",
-    "tether": "1.4.5",
+    "tether": "1.4.6",
     "timeago.js": "3.0.2",
     "webpack": "4.30.0",
     "webpack-merge": "4.2.1"
