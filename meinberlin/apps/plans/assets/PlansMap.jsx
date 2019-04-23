@@ -1,11 +1,11 @@
 /* global django */
 import { renderToString } from 'react-dom/server'
 import React, { Component } from 'react'
-import { $ } from 'jquery'
 import PopUp from './PopUp'
 import { createMap } from 'a4maps_common'
 import 'leaflet.markercluster'
 const L = window.L
+const $ = window.$
 
 const addressIcon = L.icon({
   iconUrl: '/static/images/address_search_marker.svg',
