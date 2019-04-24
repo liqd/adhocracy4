@@ -77,10 +77,10 @@ class Comment(base.UserGeneratedContentModel):
 
     def get_absolute_url(self):
         if hasattr(self.content_object, 'get_absolute_url'):
-            return "{}#comment_{}".format(
+            return "{}?comment={}".format(
                 self.content_object.get_absolute_url(), str(self.id))
         else:
-            return "{}#comment_{}".format(
+            return "{}?comment={}".format(
                 self.module.get_absolute_url(), str(self.id))
 
     @property
