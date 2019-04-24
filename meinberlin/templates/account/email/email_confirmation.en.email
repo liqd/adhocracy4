@@ -4,9 +4,9 @@
 
 {% block headline %}Your email address on {{ site.name }}{% endblock %}
 
-{% block content %}this email address has been added to the user account "{{ receiver.username }}" on "{{ site.name }}". Please confirm this address. If you did not add this email address, you can ignore this email. We will not send you any further emails.{% endblock %}
+{% block content %}this email address has been added to the user account "{{ user.username }}" on "{{ site.name }}". Please confirm this address. If you did not add this email address, you can ignore this email. We will not send you any further emails.{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}Confirm your email address{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. If you have any further questions, please contact us via {{ contact_email }}{% endblock %}
+{% block reason %}This email was sent to {{ receiver }}. If you have any further questions, please contact us via {{ contact_email }}{% endblock %}
