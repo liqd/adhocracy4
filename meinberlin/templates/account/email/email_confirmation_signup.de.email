@@ -4,7 +4,7 @@
 
 {% block headline %}Ihre Registrierung auf {{ site.name }}{% endblock %}
 
-{% block content %}Sie haben sich mit dieser E-Mail-Adresse und dem Benutzernamen "{{ receiver.username }}" auf der Beteiligungsplattform "{{ site.name }}" registriert. Um die Registrierung abzuschließen und Ihr Benutzerkonto zu aktivieren, bestätigen Sie bitte Ihre E-Mail-Adresse. Wenn Sie diese E-Mail-Adresse nicht zur Registrierung auf "{{ site.name }}" verwendet haben, können Sie diese Nachricht ignorieren. Wir werden Ihnen keine weiteren E-Mails senden.{% endblock %}
+{% block content %}Sie haben sich mit dieser E-Mail-Adresse und dem Benutzernamen "{{ user.username }}" auf der Beteiligungsplattform "{{ site.name }}" registriert. Um die Registrierung abzuschließen und Ihr Benutzerkonto zu aktivieren, bestätigen Sie bitte Ihre E-Mail-Adresse. Wenn Sie diese E-Mail-Adresse nicht zur Registrierung auf "{{ site.name }}" verwendet haben, können Sie diese Nachricht ignorieren. Wir werden Ihnen keine weiteren E-Mails senden.{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}Bestätigen Sie Ihre E-Mail-Adresse{% endblock %}
