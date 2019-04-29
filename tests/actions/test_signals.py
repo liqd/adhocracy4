@@ -8,7 +8,7 @@ from adhocracy4.actions.verbs import Verbs
 @pytest.mark.django_db
 def test_project_create(project_factory):
     project = project_factory()
-    _add_action(None, project, True)
+    _add_action(None, project, True, None)
     action = Action.objects.first()
     assert action.actor is None
     assert action.obj == project
@@ -19,7 +19,7 @@ def test_project_create(project_factory):
 @pytest.mark.django_db
 def test_item_add(question_factory):
     question = question_factory()
-    _add_action(None, question, True)
+    _add_action(None, question, True, None)
     action = Action.objects.last()
     assert action.actor == question.creator
     assert action.obj == question
@@ -31,7 +31,7 @@ def test_item_add(question_factory):
 @pytest.mark.django_db
 def test_item_update(question_factory):
     question = question_factory()
-    _add_action(None, question, False)
+    _add_action(None, question, False, None)
     action = Action.objects.last()
     assert action.actor == question.creator
     assert action.obj == question
@@ -43,7 +43,7 @@ def test_item_update(question_factory):
 @pytest.mark.django_db
 def test_item_delete(question_factory):
     question = question_factory()
-    _add_action(question_factory._meta.model, question, False)
+    _add_action(question_factory._meta.model, question, False, None)
     _delete_action(question_factory._meta.model, question)
     assert Action.objects.all().count() == 0
 
@@ -52,7 +52,7 @@ def test_item_delete(question_factory):
 def test_content_object_create(question_factory, comment_factory):
     question = question_factory()
     comment = comment_factory(content_object=question)
-    _add_action(None, comment, True)
+    _add_action(None, comment, True, None)
     action = Action.objects.last()
     assert action.actor == comment.creator
     assert action.obj == comment
@@ -65,7 +65,7 @@ def test_content_object_create(question_factory, comment_factory):
 def test_content_object_update(question_factory, comment_factory):
     question = question_factory()
     comment = comment_factory(content_object=question)
-    _add_action(None, comment, False)
+    _add_action(None, comment, False, None)
     action = Action.objects.last()
     assert action.actor == comment.creator
     assert action.obj == comment

@@ -16,4 +16,7 @@ def update_last_discussed(sender, instance, **kwargs):
                 and instance.last_discussed > last_discussed):
             last_discussed = instance.last_discussed
         instance.content_object.last_discussed = last_discussed
-        instance.content_object.save(ignore_modified=True)
+        instance.content_object.save(
+            ignore_modified=True,
+            update_fields=['last_discussed']
+        )
