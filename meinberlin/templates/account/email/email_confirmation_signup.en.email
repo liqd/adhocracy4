@@ -9,4 +9,4 @@
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}Confirm your email address{% endblock %}
 
-{% block reason %}This email was sent to {{ user }}. If you have any further questions, please contact us via {{ contact_email }}{% endblock %}
+{% block reason %}This email was sent to {{ user.email }}. If you have any further questions, please contact us via {{ contact_email }}{% endblock %}
