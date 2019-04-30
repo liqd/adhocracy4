@@ -10,6 +10,8 @@ from adhocracy4.generics import models_to_limit
 from adhocracy4.models import base
 from adhocracy4.ratings import models as rating_models
 
+from urllib.parse import urljoin
+
 
 class Comment(base.UserGeneratedContentModel):
 
@@ -77,11 +79,11 @@ class Comment(base.UserGeneratedContentModel):
 
     def get_absolute_url(self):
         if hasattr(self.content_object, 'get_absolute_url'):
-            return "{}?comment={}".format(
-                self.content_object.get_absolute_url(), str(self.id))
+            return urljoin(self.content_object.get_absolute_url(),
+                           "?comment={}".format(str(self.id)))
         else:
-            return "{}?comment={}".format(
-                self.module.get_absolute_url(), str(self.id))
+            return urljoin(self.module.get_absolute_url(),
+                           "?comment={}".format(str(self.id)))
 
     @property
     def notification_content(self):
