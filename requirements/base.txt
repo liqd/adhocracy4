@@ -8,7 +8,7 @@ django-ckeditor==5.7.0
 django-filter==2.1.0
 django-widget-tweaks==1.4.3
 djangorestframework==3.9.3
-easy-thumbnails==2.5
+easy-thumbnails==2.6
 html5lib==1.0.1
 jsonfield==2.0.2
 python-dateutil==2.7.0
