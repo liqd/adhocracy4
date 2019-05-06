@@ -45,6 +45,9 @@ class Comment(base.UserGeneratedContentModel):
         null=True,
         editable=False
     )
+    is_moderator_marked = models.BooleanField(
+        default=False
+    )
 
     class Meta:
         verbose_name = _("Comment")
