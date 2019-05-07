@@ -4,8 +4,6 @@ python:
   - "3.6"
 cache:
   pip: true
-  directories:
-    - node_modules
 install:
   - nvm install 8
   - npm install
