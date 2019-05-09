@@ -30,4 +30,4 @@ python-dateutil==2.8.0
 python-magic==0.4.15
 raven==6.10.0
 rules==2.0.1
-XlsxWriter==1.1.7
+XlsxWriter==1.1.8
