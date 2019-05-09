@@ -71,6 +71,9 @@ var init = function () {
 $(init)
 window.init_widgets = init
 
+// ugly hack to make ckeditor work with whitenoise
+window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/'
+
 module.exports = {
   'getCurrentPath': getCurrentPath
 }
