@@ -15,7 +15,8 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         read_only_fields = ('modified', 'created', 'id',
                             'user_name', 'ratings', 'content_type',
-                            'object_pk')
+                            'object_pk', 'last_discussed',
+                            'is_moderator_marked')
         exclude = ('creator', 'is_censored', 'is_removed')
 
     def to_representation(self, instance):
@@ -103,3 +104,15 @@ class ThreadSerializer(CommentSerializer):
     Serializes a comment including child comment (replies).
     """
     child_comments = CommentSerializer(many=True, read_only=True)
+
+
+class CommentModerateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Comment
+        fields = ('is_moderator_marked', 'modified', 'created', 'id',
+                  'content_type', 'object_pk', 'last_discussed', 'comment',
+                  'comment_categories')
+        read_only_fields = ('modified', 'created', 'id', 'content_type',
+                            'object_pk', 'last_discussed', 'comment',
+                            'comment_categories')

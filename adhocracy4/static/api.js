@@ -20,6 +20,7 @@ var api = (function () {
     pollvote: baseURL + 'polls/question/$questionId/vote/',
     follow: baseURL + 'follows/',
     comment: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comments/',
+    commentmoderate: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comment-moderate/',
     rating: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/ratings/',
     moderatorremark: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/moderatorremarks/'
   }
@@ -89,6 +90,13 @@ var api = (function () {
       delete: function (data, id) {
         return _sendRequest('comment', id, {
           type: 'DELETE'
+        }, data)
+      }
+    },
+    commentmoderate: {
+      change: function (data, id) {
+        return _sendRequest('commentmoderate', id, {
+          type: 'PATCH'
         }, data)
       }
     },
