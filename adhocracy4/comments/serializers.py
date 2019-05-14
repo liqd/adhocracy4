@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.utils.translation import ugettext as _
 from rest_framework import serializers
+from rest_framework.utils import model_meta
 
 from .models import Comment
 
@@ -107,6 +108,25 @@ class ThreadSerializer(CommentSerializer):
 
 
 class CommentModerateSerializer(serializers.ModelSerializer):
+
+    def update(self, instance, validated_data):
+        serializers.raise_errors_on_nested_writes('update', self,
+                                                  validated_data)
+        info = model_meta.get_field_info(instance)
+
+        # Simply set each attribute on the instance, and then save it.
+        # Note that unlike `.create()` we don't need to treat many-to-many
+        # relationships as being a special case. During updates we already
+        # have an instance pk for the relationships to be associated with.
+        for attr, value in validated_data.items():
+            if attr in info.relations and info.relations[attr].to_many:
+                field = getattr(instance, attr)
+                field.set(value)
+            else:
+                setattr(instance, attr, value)
+        instance.save(ignore_modified=True)
+
+        return instance
 
     class Meta:
         model = Comment
