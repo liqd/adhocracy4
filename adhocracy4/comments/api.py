@@ -63,7 +63,7 @@ class CommentModerateSet(mixins.CreateModelMixin,
 
     queryset = Comment.objects.all().order_by('-created')
     serializer_class = CommentModerateSerializer
-    # permission_classes = (ViewSetRulesPermission,)
+    permission_classes = (ViewSetRulesPermission,)
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ('object_pk', 'content_type')
     content_type_filter = settings.A4_COMMENTABLES
@@ -74,8 +74,8 @@ class CommentModerateSet(mixins.CreateModelMixin,
     @property
     def rules_method_map(self):
         return ViewSetRulesPermission.default_rules_method_map._replace(
-            POST='{app_label}.comment_{model}'.format(
-                app_label=self.content_type.app_label,
-                model=self.content_type.model
-            )
+            POST='a4_comments.moderate_comment',
+            PUT='a4_comments.moderate_comment',
+            PATCH='a4_comments.moderate_comment',
+            DELETE='a4_comments.moderate_comment'
         )
