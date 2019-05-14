@@ -64,3 +64,8 @@ rules.add_perm(
         module_predicates.is_owner
     )
 )
+
+rules.add_perm(
+    'a4comments.moderate_comment',
+    module_predicates.is_project_admin
+)
