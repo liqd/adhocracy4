@@ -5,7 +5,6 @@ from django.apps import apps
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils import timezone
@@ -17,7 +16,6 @@ from rules.contrib.views import LoginRequiredMixin
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
 from adhocracy4.dashboard import signals as a4dashboard_signals
-from adhocracy4.filters import views as filter_views
 from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.filters import DistinctOrderingFilter
@@ -28,7 +26,6 @@ from adhocracy4.projects.mixins import ProjectMixin
 
 from . import forms
 from . import models
-from . import query
 
 User = get_user_model()
 
@@ -123,29 +120,6 @@ class ProjectFilterSet(DefaultsFilterSet):
         model = project_models.Project
         fields = ['search', 'organisation', 'is_archived',
                   'created', 'administrative_district']
-
-
-class ProjectListView(filter_views.FilteredListView):
-    model = project_models.Project
-    paginate_by = 16
-    filter_set = ProjectFilterSet
-
-    def get_queryset(self):
-        queryset = super().get_queryset()\
-            .filter(
-                # Show only published projects
-                is_draft=False)\
-            .filter(
-                # Do not include archived bplan projects
-                Q(is_archived=False) |
-                Q(externalproject__bplan=None))\
-            .filter(
-                # Do not include projects belonging to containers
-                containers=None)
-        # Show only projects viewable by the current user
-        queryset = query.filter_viewable(queryset, self.request.user)
-        # List every project at most once
-        return queryset.distinct()
 
 
 class ParticipantInviteDetailView(generic.DetailView):
