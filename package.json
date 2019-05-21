@@ -56,7 +56,7 @@
     "terser-webpack-plugin": "1.2.4",
     "tether": "1.4.6",
     "timeago.js": "3.0.2",
-    "webpack": "4.31.0",
+    "webpack": "4.32.0",
     "webpack-merge": "4.2.1"
   },
   "devDependencies": {
