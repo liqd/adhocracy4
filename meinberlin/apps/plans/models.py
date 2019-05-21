@@ -148,7 +148,6 @@ class Plan(UserGeneratedContentModel):
 
     def save(self, *args, **kwargs):
         self.description = transforms.clean_html_field(self.description)
-        self.group = self._get_group(self.creator, self.organisation)
         super().save(*args, **kwargs)
 
     def _get_group(self, user, organisation):
