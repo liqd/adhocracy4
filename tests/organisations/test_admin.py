@@ -3,6 +3,7 @@ from django.urls import reverse
 
 from adhocracy4.projects.models import Project
 from meinberlin.apps.organisations.models import Organisation
+from meinberlin.apps.plans.models import Plan
 
 
 @pytest.mark.django_db
@@ -75,6 +76,7 @@ def test_organisation_admin_form(client, user_factory, group_factory):
 def test_group_removal(client,
                        organisation,
                        project_factory,
+                       plan_factory,
                        user_factory,
                        group_factory):
 
@@ -82,9 +84,12 @@ def test_group_removal(client,
     group2 = group_factory()
     organisation.groups.add(group1)
     project = project_factory(group=group1, organisation=organisation)
+    plan = plan_factory(group=group1, organisation=organisation)
 
     assert Project.objects.all().count() == 1
     assert Project.objects.get(slug=project.slug).group == group1
+    assert Plan.objects.all().count() == 1
+    assert Plan.objects.get(id=plan.id).group == group1
 
     admin = user_factory(is_superuser=True, is_staff=True)
     client.force_login(admin)
@@ -99,3 +104,4 @@ def test_group_removal(client,
 
     assert response.status_code == 302
     assert Project.objects.get(slug=project.slug).group is None
+    assert Plan.objects.get(id=plan.id).group is None

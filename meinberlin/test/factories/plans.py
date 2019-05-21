@@ -13,6 +13,7 @@ class PlanFactory(factory.django.DjangoModelFactory):
     title = factory.Faker('sentence')
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)
+    group = factory.SubFactory(a4_factories.GroupFactory)
     district = factory.SubFactory(AdministrativeDistrictFactory)
     point = {
         'type': 'Feature',
