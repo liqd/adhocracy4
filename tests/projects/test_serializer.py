@@ -116,8 +116,8 @@ def test_project_serializer(client, project_factory,
         assert not project_data[5]['active_phase']
 
         assert not project_data[0]['future_phase']
-        assert project_data[1]['future_phase'] == str(tomorrow.date())
-        assert project_data[2]['future_phase'] == str(tomorrow.date())
+        assert project_data[1]['future_phase'] == str(tomorrow)
+        assert project_data[2]['future_phase'] == str(tomorrow)
         assert not project_data[3]['future_phase']
         assert not project_data[4]['future_phase']
         assert not project_data[5]['future_phase']
@@ -125,7 +125,7 @@ def test_project_serializer(client, project_factory,
         assert not project_data[0]['past_phase']
         assert not project_data[1]['past_phase']
         assert not project_data[2]['past_phase']
-        assert project_data[3]['past_phase'] == str(yesterday.date())
+        assert project_data[3]['past_phase'] == str(yesterday)
         assert not project_data[4]['past_phase']
         assert not project_data[5]['past_phase']
 

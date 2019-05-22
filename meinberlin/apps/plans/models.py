@@ -136,7 +136,7 @@ class Plan(UserGeneratedContentModel):
         if future_phases_with_start_date:
             future_phase = future_phases_with_start_date.first()
             return _('starts at {}')\
-                .format(future_phase.start_date.date().strftime('%d.%m.%Y'))
+                .format(future_phase.start_date.strftime('%d.%m.%Y'))
 
     def __str__(self):
         return self.title
