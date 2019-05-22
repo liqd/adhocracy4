@@ -39,6 +39,14 @@ class PlanForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['district'].empty_label = _('City wide')
 
+    def save(self, commit=True):
+        plan = super().save(commit=False)
+        group = plan._get_group(plan.creator, plan.organisation)
+        plan.group = group
+        if commit:
+            plan.save()
+        return plan
+
 
 class CustomMultipleChoiceField(forms.ModelMultipleChoiceField):
 

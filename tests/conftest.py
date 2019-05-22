@@ -12,6 +12,7 @@ from meinberlin.test.factories.activities import ActivityFactory
 from meinberlin.test.factories.bplan import BplanFactory
 from meinberlin.test.factories.extprojects import ExternalProjectFactory
 from meinberlin.test.factories.organisations import OrganisationFactory
+from meinberlin.test.factories.plans import PlanFactory
 from meinberlin.test.factories.projectcontainers import ProjectContainerFactory
 
 
@@ -41,6 +42,7 @@ register(factories.ModeratorStatementFactory)
 register(factories.CategoryFactory)
 register(ActivityFactory)
 register(ProjectContainerFactory)
+register(PlanFactory)
 register(ExternalProjectFactory)
 register(BplanFactory)
 

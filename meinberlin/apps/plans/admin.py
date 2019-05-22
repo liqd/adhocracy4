@@ -4,7 +4,7 @@ from . import models
 
 
 @admin.register(models.Plan)
-class OfflineEventAdmin(admin.ModelAdmin):
+class PlanAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'organisation', 'created')
 
     date_hierarchy = 'created'
