@@ -97,7 +97,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                 try:
                     return (_('starts at {}').format
                             (project_phases.future_phases().first().
-                             start_date.date().strftime('%d.%m.%Y')),
+                             start_date.strftime('%d.%m.%Y')),
                             True)
                 except AttributeError as e:
                     print(e)
@@ -157,7 +157,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         if (instance.future_phases and
                 instance.future_phases.first().start_date):
             return str(
-                instance.future_phases.first().start_date.date())
+                instance.future_phases.first().start_date)
         return False
 
     def get_active_phase(self, instance):
@@ -173,7 +173,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         if (project_phases.past_phases() and
                 project_phases.past_phases().first().end_date):
             return str(
-                project_phases.past_phases().first().end_date.date())
+                project_phases.past_phases().first().end_date)
         return False
 
     def get_participation_string(self, instance):
@@ -283,7 +283,7 @@ class FutureProjectSerializer(ProjectSerializer):
         future_phase = self._future_phases\
             .filter(module__project=instance)\
             .first()
-        return str(future_phase.start_date.date())
+        return str(future_phase.start_date)
 
     def get_past_phase(self, instance):
         return False
@@ -314,7 +314,7 @@ class PastProjectSerializer(ProjectSerializer):
 
     def get_past_phase(self, instance):
         past_phase = self._past_phases.filter(module__project=instance).first()
-        return str(past_phase.end_date.date())
+        return str(past_phase.end_date)
 
     def get_participation_string(self, instance):
         return _('done')
