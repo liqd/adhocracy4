@@ -5,8 +5,6 @@ from adhocracy4.projects.urls import urlpatterns as a4_projects_urls
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.ProjectListView.as_view(),
-        name='project-list'),
     url(r'^participant-invites/(?P<invite_token>[-\w_]+)/$',
         views.ParticipantInviteDetailView.as_view(),
         name='project-participant-invite-detail'),
