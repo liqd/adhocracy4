@@ -3150,7 +3150,7 @@ msgstr "zur Projektsammlung %(name)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:143
 msgid "Responsible body"
-msgstr ""
+msgstr "Verantwortliche Stelle"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:201
 msgid "No results yet."
