@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Question',
             fields=[
-                ('item_ptr', models.OneToOneField(serialize=False, primary_key=True, to='a4modules.Item', auto_created=True, parent_link=True)),
+                ('item_ptr', models.OneToOneField(serialize=False, primary_key=True, to='a4modules.Item', auto_created=True, parent_link=True, on_delete=models.CASCADE)),
                 ('text', models.CharField(max_length=120, default='Can i haz cheezburger, pls?')),
             ],
             options={
