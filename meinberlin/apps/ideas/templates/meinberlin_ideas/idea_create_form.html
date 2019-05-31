@@ -17,8 +17,12 @@
 
         <h1>{% trans 'Submit a new idea for this project'%}</h1>
         <div class="u-bottom-divider">
-            <h3>{{ project.name }}</h3>
+            <h3>{{ module.name }}</h3>
+            {% if module.description %}
+            <p>{{ module.description }}</p>
+            {% else %}
             <p>{{ project.description }}</p>
+            {% endif %}
         </div>
         {% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=project.get_absolute_url %}
     </div>
