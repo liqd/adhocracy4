@@ -278,6 +278,13 @@ class Project(ProjectContactDetailMixin,
         return None
 
     @property
+    def active_phase_ends_next(self):
+        """
+        Return the currently active phase that ends next.
+        """
+        return self.phases.active_phases().order_by('end_date').first()
+
+    @property
     def days_left(self):
         """
         Return the number of days left in the currently active phase.
@@ -321,7 +328,7 @@ class Project(ProjectContactDetailMixin,
 
             return unit_totals
 
-        active_phase = self.active_phase
+        active_phase = self.active_phase_ends_next
         if active_phase:
             today = timezone.now()
             time_delta = active_phase.end_date - today
@@ -340,7 +347,7 @@ class Project(ProjectContactDetailMixin,
         Attention: This method is _deprecated_ as multiple phases may be
         active at the same time.
         """
-        active_phase = self.active_phase
+        active_phase = self.active_phase_ends_next
         if active_phase:
             time_gone = timezone.now() - active_phase.start_date
             total_time = active_phase.end_date - active_phase.start_date
