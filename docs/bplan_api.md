@@ -90,7 +90,7 @@ The participation will start end end automatically at the scheduled time.
 ## Updating a BPLAN Project
 
 To update a BPLAN setting send a PATCH request with the field to update using
-the *id* of the BPLAN from the create response.
+the *id* of the BPLAN from the create response. If you update an archived BPLAN it will only be unarchived if you set the end_date to a date in the future. Archived BPLANS are not shown in any lists on the platform. 
 
 API endpoint for PATCH:
 
