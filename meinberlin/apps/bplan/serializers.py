@@ -11,6 +11,7 @@ from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError
 from django.core.files.images import ImageFile
 from django.core.urlresolvers import reverse
+from django.utils import timezone
 from django.utils.translation import ugettext as _
 from rest_framework import serializers
 
@@ -100,6 +101,8 @@ class BplanSerializer(serializers.ModelSerializer):
         end_date = validated_data.pop('end_date', None)
         if start_date or end_date:
             self._update_phase(instance, start_date, end_date)
+            if end_date and end_date > timezone.localtime(timezone.now()):
+                instance.is_archived = False
 
         image_url = validated_data.pop('image_url', None)
         if image_url:
@@ -107,6 +110,7 @@ class BplanSerializer(serializers.ModelSerializer):
                 self._download_image_from_url(image_url)
 
         instance = super().update(instance, validated_data)
+
         self._send_component_updated_signal(instance)
         return instance
 
