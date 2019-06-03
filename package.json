@@ -20,7 +20,7 @@
     "@babel/preset-react": "7.0.0",
     "@fortawesome/fontawesome-free": "5.8.2",
     "acorn": "6.1.1",
-    "adhocracy4": "liqd/adhocracy4#mB-v2.1",
+    "adhocracy4": "liqd/adhocracy4#bdce05fa4639e55dda64d0660a65ac7dc8251098",
     "autoprefixer": "9.5.1",
     "babel-loader": "8.0.6",
     "bootstrap": "4.3.1",
