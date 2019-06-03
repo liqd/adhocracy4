@@ -161,10 +161,10 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return False
 
     def get_active_phase(self, instance):
-        if instance.active_phase:
+        if instance.active_phase_ends_next:
             progress = instance.active_phase_progress
             time_left = instance.time_left
-            end_date = str(instance.active_phase.end_date)
+            end_date = str(instance.active_phase_ends_next.end_date)
             return [progress, time_left, end_date]
         return False
 
@@ -208,12 +208,6 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
 
 class ActiveProjectSerializer(ProjectSerializer):
 
-    def active_phases(self):
-        return Phase.objects\
-            .filter(start_date__lte=self.now,
-                    end_date__gt=self.now)\
-            .order_by('start_date')
-
     def seconds_in_units(self, seconds):
         unit_totals = []
 
@@ -234,19 +228,9 @@ class ActiveProjectSerializer(ProjectSerializer):
         return unit_totals
 
     def get_active_phase(self, instance):
-        active_phase = self.active_phases()\
-            .filter(module__project=instance)\
-            .last()
-        time_gone = self.now - active_phase.start_date
-        total_time = active_phase.end_date - active_phase.start_date
-        progress = (time_gone / total_time * 100)
-
-        time_delta = active_phase.end_date - self.now
-        seconds = time_delta.total_seconds()
-        time_delta_list = self.seconds_in_units(seconds)
-        best_unit = time_delta_list[0]
-        time_left = '{} {}'.format(str(best_unit[1]), str(best_unit[0]))
-        end_date = str(active_phase.end_date)
+        progress = instance.active_phase_progress
+        time_left = instance.time_left
+        end_date = str(instance.active_phase_ends_next.end_date)
         return [progress, time_left, end_date]
 
     def get_status(self, instance):
