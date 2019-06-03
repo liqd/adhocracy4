@@ -101,7 +101,7 @@ class BplanSerializer(serializers.ModelSerializer):
         end_date = validated_data.pop('end_date', None)
         if start_date or end_date:
             self._update_phase(instance, start_date, end_date)
-            if end_date > timezone.localtime(timezone.now()):
+            if end_date and end_date > timezone.localtime(timezone.now()):
                 instance.is_archived = False
 
         image_url = validated_data.pop('image_url', None)
