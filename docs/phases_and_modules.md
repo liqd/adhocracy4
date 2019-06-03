@@ -52,6 +52,67 @@ way with the participation project's content.
 -   permissions are only set for participants
     -   moderators and initiators can always do everything
 
+### Current Implementation of Active, Past and Future Phases
+
+The states of the phases are implemented a bit differently in the different places (in the PhaseQuerySet and as properties of the Module and the Project model).
+
+#### PhaseQuerySet
+-   active_phases:
+    -   start date <= now < end date
+    -   ordered by weight (default from model)
+-   finished_phases:
+    -   end date <= now
+    -   ordered by weight (default from model)
+-   past_phases:
+    -   end date <= now
+    -   ordered by start
+-   future_phases:
+    -   start date > now or start date == None
+    -   ordered by start
+-   past_and_active_phases:
+    -   start date <= now < end date
+    -   ordered by start
+-   finish_next:
+    -   start date <= now < end date
+    -   end date within next 24 hours
+-   start_last:
+    -   start date < now
+    -   started within last hour
+
+#### Module (model)
+-   future_phases and past_phases use PhaseQuerySet
+    -   both ordered by start date
+-   active_phase
+    - active_phases.first()
+    - ordered by weight
+    - there should only be one active phase in the module though
+-   last_active_phase
+    - either active_phase or past_phases.last (the past phase the started last)
+
+#### Project (model)
+-   future_phases and past_phases use PhaseQuerySet
+    -   both ordered by start date
+-   last_active_phase
+    -   past_and_active_phases.last
+    -   the phase that started last
+-   active phase
+    -   last_active_phase if end date <= now
+-   active_phase_ends_next
+    -   active_phases.order_by('end_date').first
+    -   phase that ends next
+-   days_left are days left of active phase
+-   time_left is time left of active_phase_ends_next
+-   active_phase_progress id percent over of active_phase_ends_next
+-   has_started is True if past_and_active_phase exists
+-   has_finished is True if neither active_phases nor future_phases exist
+
+#### Things to keep in mind or fix
+-   finished_phases and past_phases are different by their order
+-   phases without dates are future phases
+-   past_and_active_phases are ordered by start date (while active_phases are ordered by weight)
+-   finish_next has all phases edning within 24 hours, not the next one to finish
+-   start_last has all phases that started in the last hour, not the last one to start
+-   active_phase from module and project are taken from QS with different orderings (weight for module, start date for project)
 
 ## Modules
 
