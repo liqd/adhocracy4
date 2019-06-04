@@ -101,8 +101,8 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               ident: 'postcss',
-              plugins: (loader) => [
-                autoprefixer({ browsers: ['last 3 versions', 'ie >= 11'] })
+              plugins: [
+                require('autoprefixer')
               ]
             }
           },
