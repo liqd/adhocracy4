@@ -1,7 +1,7 @@
 from allauth.socialaccount.providers.base import Provider
 from allauth.socialaccount.providers.base import ProviderAccount
 from allauth.utils import generate_unique_username
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.http import urlencode
 
 

@@ -1,7 +1,7 @@
 import json
 
 import pytest
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target

@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.auth import get_user_model
 from django.core import mail
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from adhocracy4.follows import models as follow_models
 from adhocracy4.test.helpers import redirect_target

@@ -1,6 +1,6 @@
 import pytest
 from dateutil.parser import parse
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from rest_framework import status
 
 from adhocracy4.modules import models as module_models
