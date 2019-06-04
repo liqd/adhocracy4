@@ -66,7 +66,8 @@ class Plan(UserGeneratedContentModel):
         AdministrativeDistrict,
         verbose_name=_('District'),
         null=True,
-        blank=True
+        blank=True,
+        on_delete=models.CASCADE
     )
     contact = models.TextField(max_length=1000, verbose_name=_('Contact'))
     cost = models.CharField(

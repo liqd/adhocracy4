@@ -25,7 +25,8 @@ class IdeaQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
 class AbstractIdea(module_models.Item, Moderateable):
     item_ptr = models.OneToOneField(to=module_models.Item,
                                     parent_link=True,
-                                    related_name='%(app_label)s_%(class)s')
+                                    related_name='%(app_label)s_%(class)s',
+                                    on_delete=models.CASCADE)
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(max_length=120, verbose_name=_('Title'))
     description = RichTextField(verbose_name=_('Description'))

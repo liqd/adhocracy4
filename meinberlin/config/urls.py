@@ -7,7 +7,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.views.decorators.cache import never_cache
 from django.views.generic import TemplateView
-from django.views.i18n import javascript_catalog
+from django.views.i18n import JavaScriptCatalog
 from rest_framework import routers
 from wagtail.contrib.sitemaps import views as wagtail_sitemap_views
 from wagtail.contrib.sitemaps.sitemap_generator import \
@@ -131,8 +131,7 @@ urlpatterns = [
         content_type="text/plain"), name="robots_file"),
 
     url(r'^components/$', contrib_views.ComponentLibraryView.as_view()),
-    url(r'^jsi18n/$', javascript_catalog,
-        js_info_dict, name='javascript-catalog'),
+    url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     url(r'', include('wagtail.core.urls')),
 ]
 

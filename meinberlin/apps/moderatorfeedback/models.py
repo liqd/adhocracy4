@@ -32,6 +32,7 @@ class Moderateable(models.Model):
         related_name='+',
         null=True,
         blank=True,
+        on_delete=models.CASCADE
     )
 
     class Meta:
