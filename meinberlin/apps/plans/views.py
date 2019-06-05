@@ -227,7 +227,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         context['organisations'] = self.get_organisations()
         context['district_names'] = self.get_district_names()
         context['topic_choices'] = self.get_topics()
-        context['items'] = JSONRenderer().render(items)
+        context['items'] = JSONRenderer().render(items).decode("utf-8")
         context['baseurl'] = settings.A4_MAP_BASEURL
         context['mapbox_token'] = mapbox_token
         context['omt_token'] = omt_token

@@ -21,14 +21,14 @@ def popover_remark(item):
 
     if remark:
         serializer = ModeratorRemarkSerializer(remark)
-        remark_json = JSONRenderer().render(serializer.data)
+        remark_json = JSONRenderer().render(serializer.data).decode("utf-8")
         context['attributes'] = remark_json
     else:
         content_type = ContentType.objects.get_for_model(item)
         empty_remark = ModeratorRemark(item_content_type=content_type,
                                        item_object_id=item.id)
         serializer = ModeratorRemarkSerializer(empty_remark)
-        remark_json = JSONRenderer().render(serializer.data)
+        remark_json = JSONRenderer().render(serializer.data).decode("utf-8")
         context['attributes'] = remark_json
 
     return context
