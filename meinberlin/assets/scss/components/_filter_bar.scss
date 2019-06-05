@@ -11,6 +11,7 @@ $divider-margin: 1.25rem;
     color: $white;
     font-size: $font-size-lg;
     line-height: $line-height;
+    z-index: 2;
 }
 
 .filter-bar--horizontal {
@@ -135,6 +136,8 @@ $divider-margin: 1.25rem;
 
 .filter-bar__menu {
     background-color: $bg-secondary;
+    position: relative;
+    z-index: 2;
 
     ul {
         list-style: none;
@@ -163,7 +166,7 @@ $divider-margin: 1.25rem;
     position: absolute;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 2;
 
     @media screen and (min-width: $breakpoint-md) {
         margin-top: $r-spacer;
@@ -319,4 +322,26 @@ $divider-margin: 1.25rem;
         width: 100%;
         margin: 2*$r-spacer 0 $r-spacer 0;
     }
+}
+
+//to close primary filter on click away
+.outer-handler {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    display: none;
+}
+
+//for large screen (general sibling selector)
+.filter-bar--open ~ .outer-handler {
+    z-index: 1;
+    display: block;
+}
+
+//for smaller screens
+.filter-bar--open.filter-bar--stacked {
+    position: relative;
 }
