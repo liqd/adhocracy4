@@ -33,8 +33,8 @@ $messages-margin-bottom: 25px;
 }
 
 .alert--warning {
-    background-color: $brand-warning;
-    color: contrast-stretch($brand-warning, $brand-warning, 7);
+    background-color: lighten($brand-warning, 45%);
+    color: $brand-warning;
 }
 
 .alert__close {
