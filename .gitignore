@@ -37,8 +37,7 @@ npm-debug.log*
 .idea/
 
 # Django databases
-*.sqlite3
-db.sqlite3*
+*.sqlite3*
 
 # Local instance specific settings
 meinberlin/config/settings/local.py

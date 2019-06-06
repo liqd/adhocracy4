@@ -1,6 +1,6 @@
 import factory
 import pytest
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
 

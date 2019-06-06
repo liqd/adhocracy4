@@ -1,6 +1,6 @@
 import django
 import pytest
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from rest_framework import status
 
 from meinberlin.apps.documents import models as document_models
@@ -17,7 +17,7 @@ def test_anonymous_user_can_not_retrieve_chapter_list(apiclient, module):
 def test_anonymous_user_can_not_retrieve_chapter_detail(
         apiclient, chapter, module):
     # Assert that no detail route exists
-    with pytest.raises(django.core.urlresolvers.NoReverseMatch):
+    with pytest.raises(django.urls.NoReverseMatch):
         url = reverse(
             'chapters-detail',
             kwargs={'module_pk': module.pk, 'pk': chapter.pk}

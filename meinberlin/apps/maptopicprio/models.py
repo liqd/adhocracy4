@@ -1,8 +1,8 @@
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.contenttypes.fields import GenericRelation
-from django.core.urlresolvers import reverse
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
@@ -23,7 +23,8 @@ class MapTopicQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
 class MapTopic(module_models.Item):
     item_ptr = models.OneToOneField(to=module_models.Item,
                                     parent_link=True,
-                                    related_name='%(app_label)s_%(class)s')
+                                    related_name='%(app_label)s_%(class)s',
+                                    on_delete=models.CASCADE)
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(max_length=120, verbose_name=_('Title'))
     description = RichTextUploadingField(config_name='image-editor',

@@ -21,13 +21,15 @@ class StorefrontItem(models.Model):
         'a4administrative_districts.AdministrativeDistrict',
         related_name='+',
         null=True,
-        blank=True
+        blank=True,
+        on_delete=models.CASCADE
     )
     project = models.ForeignKey(
         'a4projects.Project',
         related_name='+',
         null=True,
-        blank=True
+        blank=True,
+        on_delete=models.CASCADE
     )
     quote = models.TextField(
         blank=True,

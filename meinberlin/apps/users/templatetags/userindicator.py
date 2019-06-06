@@ -1,7 +1,7 @@
 from allauth.account import urls as account_urls
 from django import template
-from django.core.urlresolvers import Resolver404
-from django.core.urlresolvers import resolve
+from django.urls import Resolver404
+from django.urls import resolve
 
 INVALID_URL_NAME = object()
 

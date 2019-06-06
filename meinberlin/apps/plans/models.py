@@ -1,8 +1,8 @@
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import Group
-from django.core.urlresolvers import reverse
 from django.db import models
+from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
@@ -66,7 +66,8 @@ class Plan(UserGeneratedContentModel):
         AdministrativeDistrict,
         verbose_name=_('District'),
         null=True,
-        blank=True
+        blank=True,
+        on_delete=models.CASCADE
     )
     contact = models.TextField(max_length=1000, verbose_name=_('Contact'))
     cost = models.CharField(

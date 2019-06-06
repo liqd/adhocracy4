@@ -7,8 +7,8 @@ from allauth.socialaccount.providers.base import AuthError
 from allauth.socialaccount.providers.base import AuthProcess
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse
 from django.test import RequestFactory
+from django.urls import reverse
 
 from meinberlin.apps.servicekonto.provider import ServiceKontoProvider
 from meinberlin.apps.servicekonto.views import ServiceKontoApiError

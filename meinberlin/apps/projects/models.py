@@ -1,8 +1,8 @@
 import uuid
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
 from django.db import models
+from django.urls import reverse
 
 from adhocracy4.models import base
 from adhocracy4.projects.models import Project

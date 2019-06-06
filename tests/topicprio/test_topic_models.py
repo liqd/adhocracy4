@@ -2,7 +2,7 @@ import os
 
 import pytest
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from adhocracy4.comments import models as comments_models
 from adhocracy4.ratings import models as rating_models

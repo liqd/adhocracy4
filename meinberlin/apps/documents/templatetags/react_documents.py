@@ -15,11 +15,11 @@ register = template.Library()
 def react_documents(context, module, reload_on_success=False):
     chapters = Chapter.objects.filter(module=module)
     serializer = ChapterSerializer(chapters, many=True)
-    chapters_json = JSONRenderer().render(serializer.data)
+    chapters_json = JSONRenderer().render(serializer.data).decode("utf-8")
 
     widget = CKEditorUploadingWidget(config_name='image-editor')
     widget._set_config()
-    config = JSONRenderer().render(widget.config)
+    config = JSONRenderer().render(widget.config).decode("utf-8")
 
     context = {
         'chapters': chapters_json,

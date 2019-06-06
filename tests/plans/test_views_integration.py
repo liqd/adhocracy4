@@ -2,7 +2,7 @@ import json
 
 import pytest
 from dateutil.parser import parse
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils import timezone
 from freezegun import freeze_time
 
@@ -88,7 +88,7 @@ def test_list_view(client, plan_factory, project_factory,
 
         url = reverse('meinberlin_plans:plan-list')
         response = client.get(url)
-        items = json.loads(response.context_data['items'].decode('utf-8'))
+        items = json.loads(response.context_data['items'])
         assert len(items) == 9
         assert Project.objects.all().count() == 9
 

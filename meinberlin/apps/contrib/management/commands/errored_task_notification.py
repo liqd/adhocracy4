@@ -1,6 +1,6 @@
 from background_task.models_completed import CompletedTask
 from django.core.management.base import BaseCommand
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 
 class Command(BaseCommand):

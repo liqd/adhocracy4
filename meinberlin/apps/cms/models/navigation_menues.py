@@ -8,7 +8,10 @@ from wagtail.snippets.models import register_snippet
 
 class MenuItem(models.Model):
     title = models.CharField(max_length=255)
-    link_page = models.ForeignKey('wagtailcore.Page')
+    link_page = models.ForeignKey(
+        'wagtailcore.Page',
+        on_delete=models.CASCADE
+    )
 
     @property
     def url(self):
