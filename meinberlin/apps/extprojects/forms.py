@@ -20,10 +20,7 @@ class ExternalProjectForm(ProjectDashboardForm):
         time_format='%H:%M',
         required=False,
         require_all_fields=False,
-        label=(_('Start date'), _('Start time')),
-        help_text=_('Provide start and end dates if the external project '
-                    'allows participation. Either both, start and end date, '
-                    'have to be provided or none of them.')
+        label=(_('Start date'), _('Start time'))
     )
     end_date = DateTimeField(
         time_format='%H:%M',
@@ -35,14 +32,10 @@ class ExternalProjectForm(ProjectDashboardForm):
     class Meta:
         model = extproject_models.ExternalProject
         fields = ['name', 'url', 'description', 'tile_image',
-                  'tile_image_copyright', 'is_archived']
-        required_for_project_publish = ['name', 'url', 'description']
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.initial['start_date'] = self.instance.phase.start_date
-        self.initial['end_date'] = self.instance.phase.end_date
+                  'tile_image_copyright', 'is_archived',
+                  'start_date', 'end_date']
+        required_for_project_publish = ['name', 'url', 'description',
+                                        'start_date', 'end_date']
 
     def clean_end_date(self, *args, **kwargs):
         start_date = self.cleaned_data.get('start_date')
