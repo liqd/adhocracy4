@@ -6,6 +6,7 @@ from django.db import models
 
 
 class Migration(migrations.Migration):
+    atomic=False
 
     dependencies = [
         ('meinberlin_documents', '0001_initial'),
