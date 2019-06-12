@@ -48,7 +48,8 @@ class AccountAdapter(DefaultAccountAdapter):
         )
 
     def get_email_confirmation_redirect_url(self, request):
-        if 'next' in request.GET and is_safe_url(request.GET['next']):
+        if 'next' in request.GET and is_safe_url(request.GET['next'],
+                                                 allowed_hosts=None):
             return request.GET['next']
         else:
             return super().get_email_confirmation_redirect_url(request)
