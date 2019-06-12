@@ -34,7 +34,8 @@ class AccountAdapter(DefaultAccountAdapter):
 
     def get_email_confirmation_url(self, request, emailconfirmation):
         url = super().get_email_confirmation_url(request, emailconfirmation)
-        if 'next' in request.POST and is_safe_url(request.POST['next']):
+        if 'next' in request.POST and is_safe_url(request.POST['next'],
+                                                  allowed_hosts=None):
             return '{}?next={}'.format(url, quote(request.POST['next']))
         else:
             return url
