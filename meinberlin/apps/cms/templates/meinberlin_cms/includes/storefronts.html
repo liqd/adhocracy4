@@ -32,13 +32,7 @@
         <div class="status-bar__active">
             <span class="status-bar__active-fill" style="width:{{ item.project.active_phase_progress }}%"></span>
         </div>
-        <span class="status-bar__status"><i class="fas fa-clock"></i>
-          {% if (item.project.time_left < 365) %}
-          {% blocktrans with time_left=item.project.time_left %} {{ time_left }} remaining {% endblocktrans %}
-          {% else %}
-          <span>boo</span>
-          {% endif %}
-        </span>
+        <span class="status-bar__status"><i class="fas fa-clock"></i>{% blocktrans with time_left=item.project.time_left %} {{ time_left }} remaining {% endblocktrans %}</span>
     </div>
 
     {% elif item.item_type != 'external' and item.project.future_phases %}
