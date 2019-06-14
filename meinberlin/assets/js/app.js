@@ -85,12 +85,14 @@ $(document).on('click', function () {
 
 //carousel
 $(document).ready(function(){
-  $(".single-item").slick({
-    centerMode: true,
-  	dots: true,
+  $(".timeline-carousel__item").slick({
+  	dots: false,
+    arrows: true,
+    slidesToScroll: 1,
     infinite: false,
-    slidesToShow: 5,
-    appendDots: $(".dots"),
+    slidesToShow: 3,
+    focusOnSelect: true,
+    centerMode: true,
     responsive: [
     {
         breakpoint: 480,

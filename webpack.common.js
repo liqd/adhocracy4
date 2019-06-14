@@ -22,6 +22,7 @@ module.exports = {
       'immutability-helper',
       'slick-carousel/slick/slick.min.js',
       'slick-carousel/slick/slick.css',
+      'slick-carousel/slick/slick-theme.css',
       'react-dom',
       'react-flip-move',
       'react-sticky-box'
