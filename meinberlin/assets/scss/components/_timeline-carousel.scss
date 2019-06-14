@@ -1,0 +1,13 @@
+.carousel {
+    margin: 0 auto;
+    padding: 40px;
+    width: 80%;
+    color: $brand-secondary;
+    background: $bg-secondary;
+}
+
+.slick-slide {
+    text-align: center;
+    background: $bg-tertiary;
+    margin: $spacer;
+}

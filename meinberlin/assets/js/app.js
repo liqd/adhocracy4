@@ -11,6 +11,9 @@ var Shariff = window.Shariff
 // load bootstrap components
 require('bootstrap')
 
+require('slick-carousel')
+require("slick-carousel/slick/slick.css")
+
 var django = require('django')
 
 // expose react components
@@ -79,3 +82,23 @@ module.exports = {
 $(document).on('click', function () {
   $('.collapse').collapse('hide')
 })
+
+//carousel
+$(document).ready(function(){
+  $(".single-item").slick({
+    centerMode: true,
+  	dots: true,
+    infinite: false,
+    slidesToShow: 5,
+    appendDots: $(".dots"),
+    responsive: [
+    {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  });
+});

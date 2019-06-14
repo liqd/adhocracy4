@@ -18,6 +18,13 @@
 {% endblock %}
 
 {% block content %}
+
+<div class="timeline-carousel">
+    <div class="container">
+          {% include "meinberlin_projects/includes/project_timeline-carousel.html" %}
+    </div>
+</div>
+
     {% if project|is_container %}
         {% include 'meinberlin_projectcontainers/includes/container_detail.html' with container=project.projectcontainer %}
     {% elif project|project_type == 'bplan' %}

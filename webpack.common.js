@@ -20,6 +20,8 @@ module.exports = {
       'js-cookie',
       'react',
       'immutability-helper',
+      'slick-carousel/slick/slick.min.js',
+      'slick-carousel/slick/slick.css',
       'react-dom',
       'react-flip-move',
       'react-sticky-box'
