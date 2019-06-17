@@ -13,7 +13,7 @@ class PlansList extends React.Component {
 
   getTimespan (item) {
     let timeRemaining = item.active_phase[1].split(' ')
-    let daysRemaining = parseInt(timeRemaining)
+    let daysRemaining = parseInt(timeRemaining[0])
     if (daysRemaining > 365) {
       return (
         <span>{django.gettext('More than 1 year remaining')}</span>
