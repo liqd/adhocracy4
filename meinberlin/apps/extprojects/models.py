@@ -12,6 +12,11 @@ class ExternalProject(project_models.Project):
                                       'starts with https:// '
                                       'or http://'))
 
+    start_date = models.DateTimeField(blank=True, null=True,
+                                      verbose_name=_('Start date'))
+    end_date = models.DateTimeField(blank=True, null=True,
+                                    verbose_name=_('End date'))
+
     @property
     def phase(self):
         return self.phases.first()
