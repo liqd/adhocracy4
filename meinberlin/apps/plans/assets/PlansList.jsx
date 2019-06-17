@@ -11,6 +11,20 @@ class PlansList extends React.Component {
     return { width: item.active_phase[0] + '%' }
   }
 
+  getTimespan (item) {
+    let timeRemaining = item.active_phase[1].split(' ')
+    let daysRemaining = parseInt(timeRemaining[0])
+    if (daysRemaining > 365) {
+      return (
+        <span>{django.gettext('More than 1 year remaining')}</span>
+      )
+    } else {
+      return (
+        <span>{django.gettext('remaining')} {item.active_phase[1]}</span>
+      )
+    }
+  }
+
   getImage (item) {
     return {
       backgroundImage: `url(` + item.tile_image + ')',
@@ -91,7 +105,9 @@ class PlansList extends React.Component {
                 {item.active_phase &&
                 <div className="status-item status__active">
                   <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
-                  <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('remaining')} {item.active_phase[1]}</span>
+                  <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />
+                    {this.getTimespan(item)}
+                  </span>
                 </div>
                 }
                 {item.past_phase && !item.active_phase && !item.future_phase &&

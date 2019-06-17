@@ -12,6 +12,20 @@ class PopUp extends React.Component {
     return { width: this.props.item.active_phase[0] + '%' }
   }
 
+  getTimespan () {
+    let timeRemaining = this.props.item.active_phase[1].split(' ')
+    let daysRemaining = parseInt(timeRemaining[0])
+    if (daysRemaining > 365) {
+      return (
+        <span>{django.gettext('More than 1 year remaining')}</span>
+      )
+    } else {
+      return (
+        <span>{django.gettext('remaining')} {this.props.item.active_phase[1]}</span>
+      )
+    }
+  }
+
   getTranslation () {
     let newDate = Date.parse(this.props.item.future_phase.replace(/ /g, 'T'))
     newDate = Moment(newDate).format('DD.MM.YYYY')
@@ -46,7 +60,7 @@ class PopUp extends React.Component {
           {this.props.item.active_phase &&
           <div className="status__active">
             <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(this.props.item)} /></div>
-            <span className="maplist-item-popup__status"><i className="fas fa-clock" />{django.gettext('remaining')} {this.props.item.active_phase[1]}</span>
+            <span className="maplist-item-popup__status"><i className="fas fa-clock" />{this.getTimespan()}</span>
           </div>
           }
           {this.props.item.past_phase && !this.props.item.active_phase && !this.props.item.future_phase &&
