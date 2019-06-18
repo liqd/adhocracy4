@@ -101,7 +101,7 @@ lint:
 po:
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d django
 	$(VIRTUAL_ENV)/bin/python manage.py makemessages -d djangojs
-	gsed -i 's%#: .*/adhocracy4%#: adhocracy4%' locale/*/LC_MESSAGES/django*.po
+	sed -i 's%#: .*/adhocracy4%#: adhocracy4%' locale/*/LC_MESSAGES/django*.po
 	msgen locale/en_GB/LC_MESSAGES/django.po -o locale/en_GB/LC_MESSAGES/django.po
 	msgen locale/en_GB/LC_MESSAGES/djangojs.po -o locale/en_GB/LC_MESSAGES/djangojs.po
 

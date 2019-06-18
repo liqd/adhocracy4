@@ -2580,17 +2580,20 @@ msgstr "Zeit"
 
 #: meinberlin/apps/offlineevents/models.py:14
 msgid "Name of event"
-msgstr ""
+msgstr "Name der Veranstaltung"
 
 #: meinberlin/apps/offlineevents/models.py:16
 msgid "Event type"
-msgstr ""
+msgstr "Art der Veranstaltung"
 
 #: meinberlin/apps/offlineevents/models.py:17
 msgid ""
 "The content of this field is shown in the timeline. It should have no more "
 "than 30 characters e.g. Information event or 3rd public workshop."
 msgstr ""
+"Der Inhalt dieses Feldes erscheint in der Zeitleiste. Er darf maximal 30 "
+"Zeichen lang sein. Schreiben Sie z.B. Informationsveranstaltung oder "
+"3. öffentlicher Workshop."
 
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:4
 msgid "Confirm Offline Event Deletion"
