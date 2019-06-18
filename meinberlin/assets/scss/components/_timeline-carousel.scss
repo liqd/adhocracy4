@@ -43,7 +43,7 @@ $timeline-carousel__top-space: 11px;
     //slick overwrites
     .slick-slide {
         margin: 0 3*$spacer;
-        width: 270px !important;
+        min-width: 275px;
     }
 
     .slick-prev,

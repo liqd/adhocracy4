@@ -8,6 +8,7 @@ module.exports = {
   entry: {
     adhocracy4: [
       './meinberlin/assets/scss/style.scss',
+      './meinberlin/assets/extra_css/_slick-theme.css',
       'shariff/dist/shariff.min.css',
       './meinberlin/assets/js/app.js'
     ],
@@ -20,12 +21,11 @@ module.exports = {
       'js-cookie',
       'react',
       'immutability-helper',
-      'slick-carousel/slick/slick.min.js',
-      'slick-carousel/slick/slick.css',
-      'slick-carousel/slick/slick-theme.css',
       'react-dom',
       'react-flip-move',
-      'react-sticky-box'
+      'react-sticky-box',
+      'slick-carousel/slick/slick.min.js',
+      'slick-carousel/slick/slick.css'
     ],
     mb_plans_map: [
       'leaflet/dist/leaflet.css',

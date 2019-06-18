@@ -93,13 +93,21 @@ $(document).ready(function(){
     slidesToShow: 3,
     focusOnSelect: true,
     centerMode: true,
+    variableWidth: true,
     responsive: [
-    {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
+      {
+          breakpoint: 800,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+      },
+      {
+          breakpoint: 512,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
       }
     ]
   });
