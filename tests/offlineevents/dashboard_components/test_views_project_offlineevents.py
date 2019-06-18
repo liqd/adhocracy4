@@ -34,6 +34,7 @@ def test_offlineevent_create_view(client, phase_factory):
                   kwargs={'project_slug': project.slug})
     data = {
         'name': 'name',
+        'event_type': 'event_type',
         'description': 'desc',
         'date_0': '2013-01-01',
         'date_1': '18:00',
@@ -57,6 +58,7 @@ def test_offlineevent_update_view(
                   kwargs={'slug': event.slug})
     data = {
         'name': 'name',
+        'event_type': 'event_type',
         'description': 'desc',
         'date_0': '2013-01-01',
         'date_1': '18:00',
