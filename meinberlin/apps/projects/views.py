@@ -338,6 +338,8 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
 
     def get_permission_object(self):
         return self.project
+
+
 class ProjectDetailView(PermissionRequiredMixin,
                         generic.DetailView):
 
@@ -384,6 +386,15 @@ class ProjectDetailView(PermissionRequiredMixin,
                 next_cluster = self.get_module_dict(count, start_date)
                 clusters.append(next_cluster)
         return clusters
+
+    def get_events_list(self):
+        return self.project.offlineevent_set.values('date')
+
+    def get_full_list(self):
+        module_cluster = self.get_module_cluster()
+        event_list = self.get_events_list()
+        full_list = module_cluster + list(event_list)
+        return sorted(full_list, key=lambda k: k['date'])
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
