@@ -5,6 +5,8 @@ from django.apps import apps
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.db.models import Max
+from django.db.models import Min
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils import timezone
@@ -351,6 +353,12 @@ class ProjectDetailView(PermissionRequiredMixin,
     def module(self):
         return self.project.last_active_module
 
+    @cached_property
+    def modules(self):
+        return self.project.modules\
+            .annotate(start_date=Min('phase__start_date'))\
+            .annotate(end_date=Max('phase__end_date'))\
+            .order_by('start_date')
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
