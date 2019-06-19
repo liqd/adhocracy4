@@ -1,7 +1,5 @@
 from django.conf.urls import url
 
-from adhocracy4.projects.urls import urlpatterns as a4_projects_urls
-
 from . import views
 
 urlpatterns = [
@@ -17,6 +15,6 @@ urlpatterns = [
     url(r'^moderator-invites/(?P<invite_token>[-\w_]+)/accept/$',
         views.ModeratorInviteUpdateView.as_view(),
         name='project-moderator-invite-update'),
+    url(r'^(?P<slug>[-\w_]+)/$', views.ProjectDetailView.as_view(),
+        name='project-detail'),
 ]
-
-urlpatterns += a4_projects_urls

@@ -8,10 +8,12 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 from django.views import generic
 from rules.contrib.views import LoginRequiredMixin
+from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
@@ -334,3 +336,21 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
 
     def get_permission_object(self):
         return self.project
+class ProjectDetailView(PermissionRequiredMixin,
+                        generic.DetailView):
+
+    model = models.Project
+    permission_required = 'a4projects.view_project'
+    template_name = 'meinberlin_projects/project_detail.html'
+
+    @cached_property
+    def project(self):
+        return self.get_object()
+
+    @cached_property
+    def module(self):
+        return self.project.last_active_module
+
+    @property
+    def raise_exception(self):
+        return self.request.user.is_authenticated
