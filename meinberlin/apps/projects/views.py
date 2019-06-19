@@ -395,6 +395,10 @@ class ProjectDetailView(PermissionRequiredMixin,
         event_list = self.get_events_list()
         full_list = module_cluster + list(event_list)
         return sorted(full_list, key=lambda k: k['date'])
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['participation_dates'] = self.get_full_list()
+        return context
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
