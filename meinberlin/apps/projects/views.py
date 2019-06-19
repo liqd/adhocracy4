@@ -359,6 +359,31 @@ class ProjectDetailView(PermissionRequiredMixin,
             .annotate(start_date=Min('phase__start_date'))\
             .annotate(end_date=Max('phase__end_date'))\
             .order_by('start_date')
+
+    def get_module_dict(self, count, start_date):
+        return {
+            'title': 'Onlinebeteiligung {}'.format(str(count)),
+            'type': 'module',
+            'date': start_date
+        }
+
+    def get_module_cluster(self):
+        modules = self.modules
+        start_date = modules.first().start_date
+        end_date = modules.first().end_date
+        count = 1
+        clusters = []
+        first_cluster = self.get_module_dict(count, start_date)
+        clusters.append(first_cluster)
+
+        for module in modules[1:]:
+            if module.start_date > end_date:
+                start_date = module.start_date
+                end_date = module.end_date
+                count += 1
+                next_cluster = self.get_module_dict(count, start_date)
+                clusters.append(next_cluster)
+        return clusters
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
