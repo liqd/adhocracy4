@@ -1,47 +1,14 @@
 <div class="timeline-carousel">
   <div class="timeline-carousel__line"></div>
   <div class="timeline-carousel__item">
+      {% for date in dates %}
       <div>
         <div class="timeline-carousel__dot"></div>
         <div class="timeline-carousel__label">
-          <p>1. Hello World<br>
-          ab 17.04.2015</p>
+          <p>{{ date.title }}<br>
+          {% if date.type == 'module' %}ab {% else %} am {% endif %}{{ date.date | date }}</p>
         </div>
       </div>
-      <div>
-        <div class="timeline-carousel__dot"></div>
-        <div class="timeline-carousel__label">
-          <p>2. Hello World<br>
-          ab 17.04.2015</p>
-        </div>
-      </div>
-      <div>
-        <div class="timeline-carousel__dot"></div>
-        <div class="timeline-carousel__label">
-          <p>3. Hello World<br>
-          ab 17.04.2015</p>
-        </div>
-      </div>
-      <div>
-        <div class="timeline-carousel__dot"></div>
-        <div class="timeline-carousel__label">
-          <p>4. Hello World<br>
-          ab 17.04.2015</p>
-        </div>
-      </div>
-      <div>
-        <div class="timeline-carousel__dot"></div>
-        <div class="timeline-carousel__label">
-          <p>5. Hello World<br>
-          ab 17.04.2015</p>
-        </div>
-      </div>
-      <div>
-        <div class="timeline-carousel__dot"></div>
-        <div class="timeline-carousel__label">
-          <p>6. Hello World<br>
-          ab 17.04.2015</p>
-        </div>
-      </div>
+      {% endfor %}
   </div>
 </div>
