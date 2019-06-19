@@ -17,4 +17,4 @@ class OfflineEventForm(forms.ModelForm):
 
     class Meta:
         model = models.OfflineEvent
-        fields = ['name', 'date', 'description']
+        fields = ['name', 'event_type', 'date', 'description']

@@ -11,10 +11,17 @@ from adhocracy4.projects import models as project_models
 
 class OfflineEvent(UserGeneratedContentModel):
     slug = AutoSlugField(populate_from='name', unique=True)
-    name = models.CharField(max_length=120, verbose_name=_('Title'))
-    date = models.DateTimeField(verbose_name=_('Date'))
+    name = models.CharField(max_length=120, verbose_name=_('Name of event'))
+    event_type = models.CharField(
+        max_length=30, default='Veranstaltung', verbose_name=_('Event type'),
+        help_text=_('The content of this field is shown in the timeline. It '
+                    'should have no more than 30 characters e.g. Information '
+                    'event or 3rd public workshop.'))
+    date = models.DateTimeField(
+        verbose_name=_('Date'))
     description = RichTextUploadingField(
-        config_name='image-editor', verbose_name=_('Description'))
+        config_name='image-editor',
+        verbose_name=_('Description'))
     project = models.ForeignKey(
         project_models.Project, on_delete=models.CASCADE)
 

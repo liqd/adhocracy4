@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 16:54+0200\n"
+"POT-Creation-Date: 2019-06-18 16:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,33 +34,27 @@ msgstr "Body text"
 msgid "Collapsible element"
 msgstr "Collapsible element"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:26
-#, fuzzy
+#: adhocracy4/comments/static/comments/Comment.jsx:23
+#, fuzzy, javascript-format
 #| msgid "hide one reply"
 msgid "hide one reply"
-msgstr "hide one reply"
+msgid_plural "hide %s replies"
+msgstr[0] "hide one reply"
+msgstr[1] "hide one reply"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:26
-#, javascript-format
-msgid "hide %s replies"
-msgstr "hide %s replies"
-
-#: adhocracy4/comments/static/comments/Comment.jsx:28
-#, fuzzy
+#: adhocracy4/comments/static/comments/Comment.jsx:25
+#, fuzzy, javascript-format
 #| msgid "view one reply"
 msgid "view one reply"
-msgstr "view one reply"
+msgid_plural "view %s replies"
+msgstr[0] "view one reply"
+msgstr[1] "view one reply"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:28
-#, javascript-format
-msgid "view %s replies"
-msgstr "view %s replies"
-
-#: adhocracy4/comments/static/comments/Comment.jsx:128
+#: adhocracy4/comments/static/comments/Comment.jsx:125
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:130
+#: adhocracy4/comments/static/comments/Comment.jsx:127
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:93
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:96
@@ -73,20 +67,20 @@ msgstr "Do you really want to delete this comment?"
 msgid "Delete"
 msgstr "Delete"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:131
+#: adhocracy4/comments/static/comments/Comment.jsx:128
 #: adhocracy4/static/Modal.jsx:49
 msgid "Abort"
 msgstr "Abort"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:144
+#: adhocracy4/comments/static/comments/Comment.jsx:141
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments/static/comments/Comment.jsx:146
 msgid "Moderator"
 msgstr "Moderator"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:156
+#: adhocracy4/comments/static/comments/Comment.jsx:153
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -97,12 +91,12 @@ msgstr ""
 "moderation. The moderation will look at the reported content. The content "
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
-#: adhocracy4/comments/static/comments/Comment.jsx:179
+#: adhocracy4/comments/static/comments/Comment.jsx:176
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:26
 msgid "Answer"
 msgstr "Answer"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:218
+#: adhocracy4/comments/static/comments/Comment.jsx:215
 msgid "Your reply here"
 msgstr "Your reply here"
 
@@ -307,9 +301,9 @@ msgstr "Send Report"
 #: meinberlin/apps/contrib/assets/Alert.jsx:10
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:102
-#: meinberlin/apps/plans/assets/FilterNav.jsx:199
-#: meinberlin/assets/js/embed.js:29 meinberlin/assets/js/embed.js:30
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:82
+#: meinberlin/apps/plans/assets/FilterNav.jsx:209
+#: meinberlin/assets/js/embed.js:30 meinberlin/assets/js/embed.js:31
 msgid "Close"
 msgstr "Close"
 
@@ -365,110 +359,110 @@ msgstr "Headline"
 msgid "Paragraph"
 msgstr "Paragraph"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:84
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:64
 msgid "Export polygon as GeoJSON"
 msgstr "Export polygon as GeoJSON"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:85
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:95
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:107
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:65
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:75
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:87
 msgid "Import polygon via file upload"
 msgstr "Import polygon via file upload"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:109
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:89
 msgid ""
 "Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
 msgstr ""
 "Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:110
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:90
 msgid ""
 "Note that uploading Shapefiles is not supported with Internet Explorer 10"
 msgstr ""
 "Note that uploading Shapefiles is not supported with Internet Explorer 10"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:111
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:91
 msgid "Attention importing a file will delete the existing polygons."
 msgstr "Attention importing a file will delete the existing polygons."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:116
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:96
 msgid "Upload"
 msgstr "Upload"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:123
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:103
 msgid "Cancel"
 msgstr "Cancel"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:157
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:159
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:137
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:139
 msgid "The uploaded file is not a valid shapefile."
 msgstr "The uploaded file is not a valid shapefile."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:161
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:141
 msgid "The uploaded file could not be imported."
 msgstr "The uploaded file could not be imported."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:175
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:155
 msgid "The uploaded file is not a valid geojson file."
 msgstr "The uploaded file is not a valid geojson file."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:180
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:160
 msgid "Invalid file format."
 msgstr "Invalid file format."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:290
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:276
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:86
-#: meinberlin/apps/plans/assets/FilterNav.jsx:93
+#: meinberlin/apps/plans/assets/FilterNav.jsx:95
+#: meinberlin/apps/plans/assets/FilterNav.jsx:102
 #: meinberlin/apps/plans/assets/FilterOptions.jsx:27
 #: meinberlin/apps/plans/assets/FilterRadio.jsx:48
 msgid "all"
 msgstr "all"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:116
-#: meinberlin/apps/plans/assets/FilterNav.jsx:227
+#: meinberlin/apps/plans/assets/FilterNav.jsx:126
+#: meinberlin/apps/plans/assets/FilterNav.jsx:239
 msgid "Filter bar"
 msgstr "Filter bar"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:117
-#: meinberlin/apps/plans/assets/FilterNav.jsx:228
+#: meinberlin/apps/plans/assets/FilterNav.jsx:127
+#: meinberlin/apps/plans/assets/FilterNav.jsx:240
 msgid "I am interested in projects from"
 msgstr "I am interested in projects from"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:124
-#: meinberlin/apps/plans/assets/FilterNav.jsx:236
+#: meinberlin/apps/plans/assets/FilterNav.jsx:134
+#: meinberlin/apps/plans/assets/FilterNav.jsx:248
 msgid "„ all Districts “"
 msgstr "„ all Districts “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:138
-#: meinberlin/apps/plans/assets/FilterNav.jsx:250
+#: meinberlin/apps/plans/assets/FilterNav.jsx:148
+#: meinberlin/apps/plans/assets/FilterNav.jsx:262
 msgid "Which district are you interested in?"
 msgstr "Which district are you interested in?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:154
-#: meinberlin/apps/plans/assets/FilterNav.jsx:269
+#: meinberlin/apps/plans/assets/FilterNav.jsx:164
+#: meinberlin/apps/plans/assets/FilterNav.jsx:281
 msgid "„ all Topics “"
 msgstr "„ all Topics “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:168
-#: meinberlin/apps/plans/assets/FilterNav.jsx:283
+#: meinberlin/apps/plans/assets/FilterNav.jsx:178
+#: meinberlin/apps/plans/assets/FilterNav.jsx:295
 msgid "Which topic are you interested in?"
 msgstr "Which topic are you interested in?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:182
-#: meinberlin/apps/plans/assets/FilterNav.jsx:299
+#: meinberlin/apps/plans/assets/FilterNav.jsx:192
+#: meinberlin/apps/plans/assets/FilterNav.jsx:311
 msgid "display projects"
 msgstr "display projects"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:192
-#: meinberlin/apps/plans/assets/FilterNav.jsx:310
-#: meinberlin/apps/plans/assets/FilterNav.jsx:321
+#: meinberlin/apps/plans/assets/FilterNav.jsx:202
+#: meinberlin/apps/plans/assets/FilterNav.jsx:322
+#: meinberlin/apps/plans/assets/FilterNav.jsx:333
 msgid "more filters"
 msgstr "more filters"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:261
+#: meinberlin/apps/plans/assets/FilterNav.jsx:273
 msgid " in the area of "
 msgstr " in the area of "
 
@@ -531,49 +525,44 @@ msgstr "ongoing"
 msgid "done"
 msgstr "done"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:85
-#: meinberlin/apps/plans/assets/PopUp.jsx:79
-msgid "Participation: "
-msgstr "Participation: "
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:97
+#: meinberlin/apps/plans/assets/PlansList.jsx:94
 #: meinberlin/apps/plans/assets/PopUp.jsx:49
 msgid "remaining"
 msgstr "remaining"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:102
+#: meinberlin/apps/plans/assets/PlansList.jsx:99
 #: meinberlin/apps/plans/assets/PopUp.jsx:54
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:116
+#: meinberlin/apps/plans/assets/PlansList.jsx:113
 #: meinberlin/apps/plans/assets/PopUp.jsx:76
 msgid "Participation projects: "
 msgstr "Participation projects: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:119
+#: meinberlin/apps/plans/assets/PlansList.jsx:116
 msgid "Status: "
 msgstr "Status: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:150
-#: meinberlin/apps/plans/assets/PlansMap.jsx:278
+#: meinberlin/apps/plans/assets/PlansList.jsx:147
+#: meinberlin/apps/plans/assets/PlansMap.jsx:276
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:253
+#: meinberlin/apps/plans/assets/PlansMap.jsx:251
 msgid "Address Search"
 msgstr "Address Search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:254
-#: meinberlin/apps/plans/assets/PlansMap.jsx:255
+#: meinberlin/apps/plans/assets/PlansMap.jsx:252
+#: meinberlin/apps/plans/assets/PlansMap.jsx:253
 msgid "Address search"
 msgstr "Address search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:286
+#: meinberlin/apps/plans/assets/PlansMap.jsx:284
 msgid "Close information box"
 msgstr "Close information box"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:287
+#: meinberlin/apps/plans/assets/PlansMap.jsx:285
 msgid ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
@@ -588,6 +577,10 @@ msgstr "Participation: from "
 #: meinberlin/apps/plans/assets/PopUp.jsx:59
 msgid "Superordinate project: "
 msgstr "Superordinate project: "
+
+#: meinberlin/apps/plans/assets/PopUp.jsx:79
+msgid "Participation: "
+msgstr "Participation: "
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:40
 #: meinberlin/apps/plans/assets/Toggles.jsx:87
@@ -606,19 +599,19 @@ msgstr "Show List"
 msgid "Show Map"
 msgstr "Show Map"
 
-#: meinberlin/assets/js/embed.js:85
+#: meinberlin/assets/js/embed.js:86
 msgid "We couldn't find what you were looking for."
 msgstr "We couldn't find what you were looking for."
 
-#: meinberlin/assets/js/embed.js:89
+#: meinberlin/assets/js/embed.js:90
 msgid "You don't have the permission to view this page."
 msgstr "You don't have the permission to view this page."
 
-#: meinberlin/assets/js/embed.js:92
+#: meinberlin/assets/js/embed.js:93
 msgid "Something went wrong!"
 msgstr "Something went wrong!"
 
-#: meinberlin/assets/js/embed.js:191
+#: meinberlin/assets/js/embed.js:192
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
@@ -633,6 +626,12 @@ msgstr "No matches found within the project area"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Did you mean:"
+
+#~ msgid "hide %s replies"
+#~ msgstr "hide %s replies"
+
+#~ msgid "view %s replies"
+#~ msgstr "view %s replies"
 
 #~ msgid " participation projects in Berlin"
 #~ msgstr " Beteiligunsprojekte in Berlin"
