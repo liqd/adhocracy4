@@ -395,10 +395,28 @@ class ProjectDetailView(PermissionRequiredMixin,
         event_list = self.get_events_list()
         full_list = module_cluster + list(event_list)
         return sorted(full_list, key=lambda k: k['date'])
+
+    def dispatch(self, request, *args, **kwargs):
+        # Choose the appropriate view for the current active phase.
+        kwargs['project'] = self.project
+        kwargs['module'] = self.module
+
+        if self.modules.count() == 1:
+            return self._view_by_phase()(request, *args, **kwargs)
+        else:
+            return super().dispatch(request)
+
+    def _view_by_phase(self):
+        if self.module and self.module.last_active_phase:
+            return self.module.last_active_phase.view.as_view()
+        else:
+            return super().dispatch
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['participation_dates'] = self.get_full_list()
         return context
+
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
