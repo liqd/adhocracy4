@@ -369,6 +369,12 @@ class ProjectDetailView(PermissionRequiredMixin,
             'date': start_date
         }
 
+    def get_current_modules(self):
+        now = timezone.now()
+        return self.modules.filter(
+            start_date__lte=now,
+            end_date__gte=now)
+
     def get_module_cluster(self):
         modules = self.modules
         start_date = modules.first().start_date
@@ -414,6 +420,7 @@ class ProjectDetailView(PermissionRequiredMixin,
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['modules'] = self.get_current_modules()
         context['participation_dates'] = self.get_full_list()
         return context
 
