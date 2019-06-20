@@ -18,3 +18,7 @@ class OfflineEventForm(forms.ModelForm):
     class Meta:
         model = models.OfflineEvent
         fields = ['name', 'event_type', 'date', 'description']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['date'].label = _('Date and time')
