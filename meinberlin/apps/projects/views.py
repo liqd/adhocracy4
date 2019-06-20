@@ -1,4 +1,5 @@
 import itertools
+from datetime import datetime
 
 import django_filters
 from django.apps import apps
@@ -9,6 +10,7 @@ from django.db.models import Max
 from django.db.models import Min
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
@@ -368,18 +370,34 @@ class ProjectDetailView(PermissionRequiredMixin,
     def events(self):
         return self.project.offlineevent_set.all()
 
-    def get_module_dict(self, count, start_date):
+    def get_module_dict(self, count, start_date, end_date):
+        start_date_url = start_date.replace(tzinfo=None)
+        end_date_url = end_date.replace(tzinfo=None)
+        url = reverse('project-detail', args=(self.object.slug,))
         return {
             'title': 'Onlinebeteiligung {}'.format(str(count)),
             'type': 'module',
-            'date': start_date
+            'date': start_date,
+            'url': url + '?start_date={}&end_date={}'
+                         .format(str(start_date_url), str(end_date_url))
         }
 
     def get_current_modules(self):
-        now = timezone.now()
-        return self.modules.filter(
-            start_date__lte=now,
-            end_date__gte=now)
+        start_date = self.request.GET.get('start_date')
+        end_date = self.request.GET.get('end_date')
+        if start_date and end_date:
+            start_date = datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')
+            end_date = datetime.strptime(end_date, '%Y-%m-%d %H:%M:%S')
+            start_date_utc = start_date.replace(tzinfo=timezone.utc)
+            end_date_utc = end_date.replace(tzinfo=timezone.utc)
+            return self.modules.filter(
+                start_date__gte=start_date_utc,
+                end_date__lte=end_date_utc)
+        else:
+            now = timezone.now()
+            return self.modules.filter(
+                start_date__lte=now,
+                end_date__gte=now)
 
     def get_module_cluster(self):
         modules = self.modules
@@ -387,7 +405,8 @@ class ProjectDetailView(PermissionRequiredMixin,
         end_date = modules.first().end_date
         count = 1
         clusters = []
-        first_cluster = self.get_module_dict(count, start_date)
+        first_cluster = self.get_module_dict(
+            count, start_date, end_date)
         clusters.append(first_cluster)
 
         for module in modules[1:]:
@@ -395,7 +414,8 @@ class ProjectDetailView(PermissionRequiredMixin,
                 start_date = module.start_date
                 end_date = module.end_date
                 count += 1
-                next_cluster = self.get_module_dict(count, start_date)
+                next_cluster = self.get_module_dict(
+                    count, start_date, end_date)
                 clusters.append(next_cluster)
             else:
                 if module.end_date > end_date:

@@ -3,10 +3,11 @@
   <div class="timeline-carousel__item">
       {% for date in dates %}
       <div>
-        <div class="timeline-carousel__dot"></div>
-        <div class="timeline-carousel__label">
-          <p>{{ date.title }}<br>
-          {% if date.type == 'module' %}ab {% else %} am {% endif %}{{ date.date | date }}</p>
+            <div class="timeline-carousel__dot"></div>
+            <div class="timeline-carousel__label">
+            <p>{{ date.title }}<br>
+            {% if date.type == 'module' %}ab {% else %} am {% endif %}{{ date.date | date }}</p>
+            <a href="{{ date.url }}">Link</a>
         </div>
       </div>
       {% endfor %}
