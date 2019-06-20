@@ -18,6 +18,7 @@
 {% endblock %}
 
 {% block content %}
+
     {% if project|is_container %}
         {% include 'meinberlin_projectcontainers/includes/container_detail.html' with container=project.projectcontainer %}
     {% elif project|project_type == 'bplan' %}
@@ -164,7 +165,22 @@
             aria-labelledby="tab-project-{{ project.pk }}-participation"
             aria-expanded="true">
             <div class="l-wrapper">
-                {% include "meinberlin_projects/includes/timeline.html" with project=project %}
+                {% if participation_dates|length > 1 %}
+                <div class="timeline-carousel">
+                    <div class="container">
+                          {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
+                    </div>
+                </div>
+                {% endif %}
+                <div>
+                    {% for module in modules %}
+                        <div>
+                            <h3>{{ module.name }}</h3>
+                            <p>{{ module.description }}</p>
+                            <a href="{% url 'module-detail' module_slug=module.slug %}">Link</a>
+                        </div>
+                    {% endfor %}
+                </div>
 
                 <div class="l-center-6">
                     {% block project_action %}{% endblock %}

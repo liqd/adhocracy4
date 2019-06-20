@@ -42,21 +42,22 @@ def filter_has_perm(perm, user, objects):
 
 @register.simple_tag()
 def html_date(value, displayfmt=None, datetimefmt='c', **kwargs):
-    """Format a date and wrap it in a html <time> element.
+    if value:
+        """Format a date and wrap it in a html <time> element.
 
-    Additional html attributes may be provided as kwargs (e.g. 'class').
+        Additional html attributes may be provided as kwargs (e.g. 'class').
 
-    Note: Converts the value to localtime as we loose the expects_localtime
-    flag functionality by directly calling the date filter from django.
-    """
-    localtime_value = timezone.localtime(value)
-    displaydate = defaultfilters.date(localtime_value, displayfmt)
-    datetime = defaultfilters.date(localtime_value, datetimefmt)
-    attribs = flatatt(kwargs)
-    result = '<time %s datetime="%s">%s</time>' % (attribs,
-                                                   datetime,
-                                                   displaydate)
-    return mark_safe(result)
+        Note: Converts the value to localtime as we loose the expects_localtime
+        flag functionality by directly calling the date filter from django.
+        """
+        localtime_value = timezone.localtime(value)
+        displaydate = defaultfilters.date(localtime_value, displayfmt)
+        datetime = defaultfilters.date(localtime_value, datetimefmt)
+        attribs = flatatt(kwargs)
+        result = '<time %s datetime="%s">%s</time>' % (attribs,
+                                                       datetime,
+                                                       displaydate)
+        return mark_safe(result)
 
 
 @register.filter

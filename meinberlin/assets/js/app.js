@@ -11,6 +11,9 @@ var Shariff = window.Shariff
 // load bootstrap components
 require('bootstrap')
 
+require('slick-carousel')
+require("slick-carousel/slick/slick.css")
+
 var django = require('django')
 
 // expose react components
@@ -79,3 +82,40 @@ module.exports = {
 $(document).on('click', function () {
   $('.collapse').collapse('hide')
 })
+
+//carousel
+$(document).ready(function(){
+
+  function getInitialSlide() {
+    return $("#timeline-carousel").attr("data-initial-slide")
+  }
+
+
+  $(".timeline-carousel__item").slick({
+  	dots: false,
+    arrows: true,
+    slidesToScroll: 1,
+    infinite: false,
+    slidesToShow: 3,
+    initialSlide: getInitialSlide(),
+    focusOnSelect: true,
+    centerMode: true,
+    variableWidth: true,
+    responsive: [
+      {
+          breakpoint: 800,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+      },
+      {
+          breakpoint: 512,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+      }
+    ]
+  });
+});

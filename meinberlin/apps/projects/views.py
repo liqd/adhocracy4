@@ -5,13 +5,17 @@ from django.apps import apps
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+from django.db.models import Max
+from django.db.models import Min
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ungettext
 from django.views import generic
 from rules.contrib.views import LoginRequiredMixin
+from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
@@ -21,7 +25,9 @@ from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.filters import DistinctOrderingFilter
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
+from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
+from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 
 from . import forms
@@ -334,3 +340,161 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
 
     def get_permission_object(self):
         return self.project
+
+
+class ProjectDetailView(PermissionRequiredMixin,
+                        generic.DetailView):
+
+    model = models.Project
+    permission_required = 'a4projects.view_project'
+    template_name = 'meinberlin_projects/project_detail.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        kwargs['project'] = self.project
+        kwargs['module'] = self.module
+
+        if self.modules.count() == 1 and not self.events:
+            return self._view_by_phase()(request, *args, **kwargs)
+        else:
+            return super().dispatch(request)
+
+    def _view_by_phase(self):
+        if self.module and self.module.last_active_phase:
+            return self.module.last_active_phase.view.as_view()
+        else:
+            return super().dispatch
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['modules'] = self.get_current_modules()
+        context['participation_dates'] = self.full_list
+        context['initial_slide'] = self.initial_slide
+        return context
+
+    @cached_property
+    def project(self):
+        return self.get_object()
+
+    @cached_property
+    def module(self):
+        return self.project.last_active_module
+
+    @cached_property
+    def modules(self):
+        return self.project.modules\
+            .annotate(start_date=Min('phase__start_date'))\
+            .annotate(end_date=Max('phase__end_date'))\
+            .order_by('start_date')
+
+    @cached_property
+    def events(self):
+        return self.project.offlineevent_set.all()
+
+    def get_module_dict(self, count, start_date, end_date):
+        return {
+            'title': 'Onlinebeteiligung {}'.format(str(count)),
+            'type': 'module',
+            'date': start_date,
+            'end_date': end_date,
+            'modules': []
+        }
+
+    @cached_property
+    def module_clusters(self):
+        clusters = []
+        modules = self.modules
+        try:
+            start_date = modules.first().start_date
+            end_date = modules.first().end_date
+            count = 1
+            first_cluster = self.get_module_dict(
+                count, start_date, end_date)
+            first_cluster['modules'].append(modules.first())
+            current_cluster = first_cluster
+            clusters.append(first_cluster)
+
+            for module in modules[1:]:
+                if module.start_date > end_date:
+                    start_date = module.start_date
+                    end_date = module.end_date
+                    count += 1
+                    next_cluster = self.get_module_dict(
+                        count, start_date, end_date)
+                    next_cluster['modules'].append(module)
+                    current_cluster = next_cluster
+                    clusters.append(next_cluster)
+                else:
+                    current_cluster['modules'].append(module)
+                    if module.end_date > end_date:
+                        end_date = module.end_date
+                        current_cluster['end_date'] = end_date
+        except AttributeError:
+            return clusters
+        return clusters
+
+    @cached_property
+    def initial_slide(self):
+        initial_slide = self.request.GET.get('initialSlide')
+        if initial_slide:
+            return int(initial_slide)
+        else:
+            now = timezone.now()
+            for idx, val in enumerate(self.full_list):
+                if 'type' in val and val['type'] == 'module':
+                    start_date = val['date']
+                    end_date = val['end_date']
+                    if start_date and end_date:
+                        if now >= start_date and now <= end_date:
+                            return idx
+        return 0
+
+    def get_current_modules(self):
+        fl = self.full_list
+        idx = self.initial_slide
+        try:
+            current_dict = fl[idx]
+            if current_dict['type'] == 'module':
+                return self.full_list[self.initial_slide]['modules']
+        except (IndexError, KeyError):
+            return []
+
+    def get_events_list(self):
+        return self.events.values('date')
+
+    @cached_property
+    def full_list(self):
+        module_cluster = self.module_clusters
+        event_list = self.get_events_list()
+        full_list = module_cluster + list(event_list)
+        return sorted(full_list, key=lambda k: k['date'])
+
+    @property
+    def raise_exception(self):
+        return self.request.user.is_authenticated
+
+
+class ModuleDetailview(PermissionRequiredMixin,
+                       PhaseDispatchMixin):
+
+    model = module_models.Module
+    permission_required = 'a4projects.view_project'
+    slug_url_kwarg = 'module_slug'
+
+    @cached_property
+    def project(self):
+        return self.module.project
+
+    @cached_property
+    def module(self):
+        return self.get_object()
+
+    def get_permission_object(self):
+        return self.project
+
+    def get_context_data(self, **kwargs):
+        """Append project and module to the template context."""
+        if 'project' not in kwargs:
+            kwargs['project'] = self.project
+        if 'module' not in kwargs:
+            kwargs['module'] = self.module
+        return super().get_context_data(**kwargs)
