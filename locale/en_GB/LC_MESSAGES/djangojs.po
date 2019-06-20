@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-18 16:52+0200\n"
+"POT-Creation-Date: 2019-06-20 15:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -525,26 +525,31 @@ msgstr "ongoing"
 msgid "done"
 msgstr "done"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:94
-#: meinberlin/apps/plans/assets/PopUp.jsx:49
+#: meinberlin/apps/plans/assets/PlansList.jsx:19
+#: meinberlin/apps/plans/assets/PopUp.jsx:20
+msgid "More than 1 year remaining"
+msgstr "More than 1 year remaining"
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:23
+#: meinberlin/apps/plans/assets/PopUp.jsx:24
 msgid "remaining"
 msgstr "remaining"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:99
-#: meinberlin/apps/plans/assets/PopUp.jsx:54
+#: meinberlin/apps/plans/assets/PlansList.jsx:115
+#: meinberlin/apps/plans/assets/PopUp.jsx:68
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:113
-#: meinberlin/apps/plans/assets/PopUp.jsx:76
+#: meinberlin/apps/plans/assets/PlansList.jsx:129
+#: meinberlin/apps/plans/assets/PopUp.jsx:90
 msgid "Participation projects: "
 msgstr "Participation projects: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:116
+#: meinberlin/apps/plans/assets/PlansList.jsx:132
 msgid "Status: "
 msgstr "Status: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:147
+#: meinberlin/apps/plans/assets/PlansList.jsx:163
 #: meinberlin/apps/plans/assets/PlansMap.jsx:276
 msgid "Nothing to show"
 msgstr "Nothing to show"
@@ -570,15 +575,15 @@ msgstr ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:18
+#: meinberlin/apps/plans/assets/PopUp.jsx:32
 msgid "Participation: from "
 msgstr "Participation: from "
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:59
+#: meinberlin/apps/plans/assets/PopUp.jsx:73
 msgid "Superordinate project: "
 msgstr "Superordinate project: "
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:79
+#: meinberlin/apps/plans/assets/PopUp.jsx:93
 msgid "Participation: "
 msgstr "Participation: "
 

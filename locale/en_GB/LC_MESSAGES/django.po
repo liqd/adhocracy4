@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-18 16:52+0200\n"
+"POT-Creation-Date: 2019-06-20 15:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -536,16 +536,18 @@ msgid "Website"
 msgstr "Website"
 
 #: adhocracy4/dashboard/forms.py:135 adhocracy4/phases/models.py:72
-#: meinberlin/apps/extprojects/forms.py:32
+#: meinberlin/apps/extprojects/forms.py:29
+#: meinberlin/apps/extprojects/models.py:18
 msgid "End date"
 msgstr "End date"
 
-#: adhocracy4/dashboard/forms.py:135 meinberlin/apps/extprojects/forms.py:32
+#: adhocracy4/dashboard/forms.py:135 meinberlin/apps/extprojects/forms.py:29
 msgid "End time"
 msgstr "End time"
 
 #: adhocracy4/dashboard/forms.py:141 adhocracy4/phases/models.py:70
 #: meinberlin/apps/extprojects/forms.py:23
+#: meinberlin/apps/extprojects/models.py:16
 msgid "Start date"
 msgstr "Start date"
 
@@ -1630,21 +1632,25 @@ msgstr[1] "display %(counter)s projects"
 msgid "City wide"
 msgstr "City wide"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:35
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:37
 #, python-format
 msgid " %(time_left)s remaining "
 msgstr " %(time_left)s remaining "
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:40
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:39
+msgid "more than 1 year remaining"
+msgstr "more than 1 year remaining"
+
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:46
 #, python-format
 msgid " Participation: from %(date)s"
 msgstr " Participation: from %(date)s"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:45
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:51
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:54
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:60
 #, python-format
 msgid " What is your opinion on this: %(name)s?"
 msgstr " What is your opinion on this: %(name)s?"
@@ -2034,19 +2040,11 @@ msgstr "External project settings"
 msgid "Edit external project settings"
 msgstr "Edit external project settings"
 
-#: meinberlin/apps/extprojects/forms.py:24
-msgid ""
-"Provide start and end dates if the external project allows participation. "
-"Either both, start and end date, have to be provided or none of them."
-msgstr ""
-"Provide start and end dates if the external project allows participation. "
-"Either both, start and end date, have to be provided or none of them."
-
-#: meinberlin/apps/extprojects/forms.py:53
+#: meinberlin/apps/extprojects/forms.py:46
 msgid "Either both start and end date have to be provided or none of them."
 msgstr "Either both start and end date have to be provided or none of them."
 
-#: meinberlin/apps/extprojects/forms.py:58
+#: meinberlin/apps/extprojects/forms.py:51
 msgid "End date can not be smaller than the start date."
 msgstr "End date can not be smaller than the start date."
 
@@ -2453,6 +2451,10 @@ msgstr "Date"
 #: meinberlin/apps/offlineevents/forms.py:15
 msgid "Time"
 msgstr "Time"
+
+#: meinberlin/apps/offlineevents/forms.py:24
+msgid "Date and time"
+msgstr "Date and time"
 
 #: meinberlin/apps/offlineevents/models.py:14
 msgid "Name of event"
@@ -3717,6 +3719,13 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid ""
+#~ "Provide start and end dates if the external project allows participation. "
+#~ "Either both, start and end date, have to be provided or none of them."
+#~ msgstr ""
+#~ "Provide start and end dates if the external project allows participation. "
+#~ "Either both, start and end date, have to be provided or none of them."
 
 #~ msgid "External Project"
 #~ msgstr "External Project"

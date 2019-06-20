@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-18 16:52+0200\n"
+"POT-Creation-Date: 2019-06-20 15:31+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -597,18 +597,20 @@ msgstr "Webseite"
 
 #: adhocracy4/dashboard/forms.py:135
 #: adhocracy4/phases/models.py:72
-#: meinberlin/apps/extprojects/forms.py:32
+#: meinberlin/apps/extprojects/forms.py:29
+#: meinberlin/apps/extprojects/models.py:18
 msgid "End date"
 msgstr "Enddatum"
 
 #: adhocracy4/dashboard/forms.py:135
-#: meinberlin/apps/extprojects/forms.py:32
+#: meinberlin/apps/extprojects/forms.py:29
 msgid "End time"
 msgstr "Endzeit"
 
 #: adhocracy4/dashboard/forms.py:141
 #: adhocracy4/phases/models.py:70
 #: meinberlin/apps/extprojects/forms.py:23
+#: meinberlin/apps/extprojects/models.py:16
 msgid "Start date"
 msgstr "Anfangsdatum"
 
@@ -1723,21 +1725,25 @@ msgstr[1] "%(counter)s Projekte anzeigen"
 msgid "City wide"
 msgstr "Gesamtstädtisch"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:35
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:37
 #, python-format
 msgid " %(time_left)s remaining "
 msgstr " noch %(time_left)s"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:40
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:39
+msgid "more than 1 year remaining"
+msgstr ""
+
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:46
 #, python-format
 msgid " Participation: from %(date)s"
 msgstr " Beteiligung: ab %(date)s"
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:45
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:51
 msgid "Participation ended. Read result."
 msgstr "Beteiligung beendet. Ergebnis lesen."
 
-#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:54
+#: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:60
 #, python-format
 msgid " What is your opinion on this: %(name)s?"
 msgstr "Was ist Ihre Meinung zum Projekt: %(name)s?"
@@ -2146,22 +2152,13 @@ msgstr "Einstellungen"
 msgid "Edit external project settings"
 msgstr "Externes Projekt bearbeiten"
 
-#: meinberlin/apps/extprojects/forms.py:24
-msgid ""
-"Provide start and end dates if the external project allows participation. "
-"Either both, start and end date, have to be provided or none of them."
-msgstr ""
-"Geben Sie das Start- und Enddatum an, wenn das externe Projekt Beteiligung "
-"ermöglicht. Es muss entweder das Start- und das Enddatum oder keines der "
-"beiden angegeben werden."
-
-#: meinberlin/apps/extprojects/forms.py:53
+#: meinberlin/apps/extprojects/forms.py:46
 msgid "Either both start and end date have to be provided or none of them."
 msgstr ""
 "Entweder muss das Start- und das Enddatum oder keines der beiden angegeben "
 "werden."
 
-#: meinberlin/apps/extprojects/forms.py:58
+#: meinberlin/apps/extprojects/forms.py:51
 msgid "End date can not be smaller than the start date."
 msgstr "Das Enddatum kann nicht kleiner als das Startdatum sein."
 
@@ -2578,6 +2575,10 @@ msgstr "Datum"
 msgid "Time"
 msgstr "Zeit"
 
+#: meinberlin/apps/offlineevents/forms.py:24
+msgid "Date and time"
+msgstr ""
+
 #: meinberlin/apps/offlineevents/models.py:14
 msgid "Name of event"
 msgstr "Name der Veranstaltung"
@@ -2592,8 +2593,8 @@ msgid ""
 "than 30 characters e.g. Information event or 3rd public workshop."
 msgstr ""
 "Der Inhalt dieses Feldes erscheint in der Zeitleiste. Er darf maximal 30 "
-"Zeichen lang sein. Schreiben Sie z.B. Informationsveranstaltung oder "
-"3. öffentlicher Workshop."
+"Zeichen lang sein. Schreiben Sie z.B. Informationsveranstaltung oder 3. "
+"öffentlicher Workshop."
 
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:4
 msgid "Confirm Offline Event Deletion"
@@ -3846,6 +3847,14 @@ msgstr ""
 "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem %(site_name)s "
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
+
+#~ msgid ""
+#~ "Provide start and end dates if the external project allows participation. "
+#~ "Either both, start and end date, have to be provided or none of them."
+#~ msgstr ""
+#~ "Geben Sie das Start- und Enddatum an, wenn das externe Projekt "
+#~ "Beteiligung ermöglicht. Es muss entweder das Start- und das Enddatum oder "
+#~ "keines der beiden angegeben werden."
 
 #~ msgid "External Project"
 #~ msgstr "Externes Projekt"
