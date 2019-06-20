@@ -351,6 +351,28 @@ class ProjectDetailView(PermissionRequiredMixin,
     permission_required = 'a4projects.view_project'
     template_name = 'meinberlin_projects/project_detail.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        kwargs['project'] = self.project
+        kwargs['module'] = self.module
+
+        if self.modules.count() == 1 and not self.events:
+            return self._view_by_phase()(request, *args, **kwargs)
+        else:
+            return super().dispatch(request)
+
+    def _view_by_phase(self):
+        if self.module and self.module.last_active_phase:
+            return self.module.last_active_phase.view.as_view()
+        else:
+            return super().dispatch
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['modules'] = self.get_current_modules()
+        context['participation_dates'] = self.full_list
+        context['initial_slide'] = self.initial_slide
+        return context
+
     @cached_property
     def project(self):
         return self.get_object()
@@ -430,27 +452,6 @@ class ProjectDetailView(PermissionRequiredMixin,
         event_list = self.get_events_list()
         full_list = module_cluster + list(event_list)
         return sorted(full_list, key=lambda k: k['date'])
-
-    def dispatch(self, request, *args, **kwargs):
-        kwargs['project'] = self.project
-        kwargs['module'] = self.module
-
-        if self.modules.count() == 1 and not self.events:
-            return self._view_by_phase()(request, *args, **kwargs)
-        else:
-            return super().dispatch(request)
-
-    def _view_by_phase(self):
-        if self.module and self.module.last_active_phase:
-            return self.module.last_active_phase.view.as_view()
-        else:
-            return super().dispatch
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['modules'] = self.get_current_modules()
-        context['participation_dates'] = self.get_full_list()
-        return context
 
     @property
     def raise_exception(self):
