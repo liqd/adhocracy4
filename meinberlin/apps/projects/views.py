@@ -397,6 +397,9 @@ class ProjectDetailView(PermissionRequiredMixin,
                 count += 1
                 next_cluster = self.get_module_dict(count, start_date)
                 clusters.append(next_cluster)
+            else:
+                if module.end_date > end_date:
+                    end_date = module.end_date
         return clusters
 
     def get_events_list(self):
