@@ -600,7 +600,7 @@ msgstr "abgeschlossen"
 #: meinberlin/apps/plans/assets/PlansList.jsx:19
 #: meinberlin/apps/plans/assets/PopUp.jsx:20
 msgid "More than 1 year remaining"
-msgstr ""
+msgstr "noch länger als 1 Jahr"
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:23
 #: meinberlin/apps/plans/assets/PopUp.jsx:24
@@ -619,7 +619,7 @@ msgstr "Beteiligungsprojekte: "
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:132
 msgid "Status: "
-msgstr ""
+msgstr "Status: "
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:163
 #: meinberlin/apps/plans/assets/PlansMap.jsx:276

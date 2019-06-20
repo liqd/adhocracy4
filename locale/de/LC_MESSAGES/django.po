@@ -1732,7 +1732,7 @@ msgstr " noch %(time_left)s"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:39
 msgid "more than 1 year remaining"
-msgstr ""
+msgstr "noch länger als 1 Jahr"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:46
 #, python-format
@@ -2577,7 +2577,7 @@ msgstr "Zeit"
 
 #: meinberlin/apps/offlineevents/forms.py:24
 msgid "Date and time"
-msgstr ""
+msgstr "Datum und Uhrzeit"
 
 #: meinberlin/apps/offlineevents/models.py:14
 msgid "Name of event"
