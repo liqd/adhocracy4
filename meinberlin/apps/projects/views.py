@@ -401,32 +401,35 @@ class ProjectDetailView(PermissionRequiredMixin,
 
     @cached_property
     def module_clusters(self):
-        modules = self.modules
-        start_date = modules.first().start_date
-        end_date = modules.first().end_date
-        count = 1
         clusters = []
-        first_cluster = self.get_module_dict(
-            count, start_date, end_date)
-        first_cluster['modules'].append(modules.first())
-        current_cluster = first_cluster
-        clusters.append(first_cluster)
+        modules = self.modules
+        try:
+            start_date = modules.first().start_date
+            end_date = modules.first().end_date
+            count = 1
+            first_cluster = self.get_module_dict(
+                count, start_date, end_date)
+            first_cluster['modules'].append(modules.first())
+            current_cluster = first_cluster
+            clusters.append(first_cluster)
 
-        for module in modules[1:]:
-            if module.start_date > end_date:
-                start_date = module.start_date
-                end_date = module.end_date
-                count += 1
-                next_cluster = self.get_module_dict(
-                    count, start_date, end_date)
-                next_cluster['modules'].append(module)
-                current_cluster = next_cluster
-                clusters.append(next_cluster)
-            else:
-                current_cluster['modules'].append(module)
-                if module.end_date > end_date:
+            for module in modules[1:]:
+                if module.start_date > end_date:
+                    start_date = module.start_date
                     end_date = module.end_date
-                    current_cluster['end_date'] = end_date
+                    count += 1
+                    next_cluster = self.get_module_dict(
+                        count, start_date, end_date)
+                    next_cluster['modules'].append(module)
+                    current_cluster = next_cluster
+                    clusters.append(next_cluster)
+                else:
+                    current_cluster['modules'].append(module)
+                    if module.end_date > end_date:
+                        end_date = module.end_date
+                        current_cluster['end_date'] = end_date
+        except AttributeError:
+            return clusters
         return clusters
 
     @cached_property
@@ -440,8 +443,9 @@ class ProjectDetailView(PermissionRequiredMixin,
                 if 'type' in val and val['type'] == 'module':
                     start_date = val['date']
                     end_date = val['end_date']
-                    if now >= start_date and now <= end_date:
-                        return idx
+                    if start_date and end_date:
+                        if now >= start_date and now <= end_date:
+                            return idx
         return 0
 
     def get_current_modules(self):
