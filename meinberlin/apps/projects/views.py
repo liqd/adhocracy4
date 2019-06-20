@@ -420,3 +420,29 @@ class ProjectDetailView(PermissionRequiredMixin,
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
+
+class ModuleDetailview(PermissionRequiredMixin,
+                       PhaseDispatchMixin):
+
+    model = module_models.Module
+    permission_required = 'a4projects.view_project'
+    slug_url_kwarg = 'module_slug'
+
+    @cached_property
+    def project(self):
+        return self.module.project
+
+    @cached_property
+    def module(self):
+        return self.get_object()
+
+    def get_permission_object(self):
+        return self.project
+
+    def get_context_data(self, **kwargs):
+        """Append project and module to the template context."""
+        if 'project' not in kwargs:
+            kwargs['project'] = self.project
+        if 'module' not in kwargs:
+            kwargs['module'] = self.module
+        return super().get_context_data(**kwargs)
