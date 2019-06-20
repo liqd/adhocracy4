@@ -1,4 +1,4 @@
-<div class="timeline-carousel">
+<div class="timeline-carousel" id="timeline-carousel" data-initial-slide="{{ initial_slide }}">
   <div class="timeline-carousel__line"></div>
   <div class="timeline-carousel__item">
       {% for date in dates %}
@@ -7,7 +7,7 @@
             <div class="timeline-carousel__label">
             <p>{{ date.title }}<br>
             {% if date.type == 'module' %}ab {% else %} am {% endif %}{{ date.date | date }}</p>
-            <a href="{{ date.url }}">Link</a>
+            <a href="?initialSlide={{ forloop.counter0 }}">Link</a>
         </div>
       </div>
       {% endfor %}

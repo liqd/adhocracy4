@@ -1,5 +1,4 @@
 import itertools
-from datetime import datetime
 
 import django_filters
 from django.apps import apps
@@ -10,7 +9,6 @@ from django.db.models import Max
 from django.db.models import Min
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
-from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
@@ -393,35 +391,16 @@ class ProjectDetailView(PermissionRequiredMixin,
         return self.project.offlineevent_set.all()
 
     def get_module_dict(self, count, start_date, end_date):
-        start_date_url = start_date.replace(tzinfo=None)
-        end_date_url = end_date.replace(tzinfo=None)
-        url = reverse('project-detail', args=(self.object.slug,))
         return {
             'title': 'Onlinebeteiligung {}'.format(str(count)),
             'type': 'module',
             'date': start_date,
-            'url': url + '?start_date={}&end_date={}'
-                         .format(str(start_date_url), str(end_date_url))
+            'end_date': end_date,
+            'modules': []
         }
 
-    def get_current_modules(self):
-        start_date = self.request.GET.get('start_date')
-        end_date = self.request.GET.get('end_date')
-        if start_date and end_date:
-            start_date = datetime.strptime(start_date, '%Y-%m-%d %H:%M:%S')
-            end_date = datetime.strptime(end_date, '%Y-%m-%d %H:%M:%S')
-            start_date_utc = start_date.replace(tzinfo=timezone.utc)
-            end_date_utc = end_date.replace(tzinfo=timezone.utc)
-            return self.modules.filter(
-                start_date__gte=start_date_utc,
-                end_date__lte=end_date_utc)
-        else:
-            now = timezone.now()
-            return self.modules.filter(
-                start_date__lte=now,
-                end_date__gte=now)
-
-    def get_module_cluster(self):
+    @cached_property
+    def module_clusters(self):
         modules = self.modules
         start_date = modules.first().start_date
         end_date = modules.first().end_date
@@ -429,6 +408,8 @@ class ProjectDetailView(PermissionRequiredMixin,
         clusters = []
         first_cluster = self.get_module_dict(
             count, start_date, end_date)
+        first_cluster['modules'].append(modules.first())
+        current_cluster = first_cluster
         clusters.append(first_cluster)
 
         for module in modules[1:]:
@@ -438,17 +419,47 @@ class ProjectDetailView(PermissionRequiredMixin,
                 count += 1
                 next_cluster = self.get_module_dict(
                     count, start_date, end_date)
+                next_cluster['modules'].append(module)
+                current_cluster = next_cluster
                 clusters.append(next_cluster)
             else:
+                current_cluster['modules'].append(module)
                 if module.end_date > end_date:
                     end_date = module.end_date
+                    current_cluster['end_date'] = end_date
         return clusters
+
+    @cached_property
+    def initial_slide(self):
+        initial_slide = self.request.GET.get('initialSlide')
+        if initial_slide:
+            return int(initial_slide)
+        else:
+            now = timezone.now()
+            for idx, val in enumerate(self.full_list):
+                if 'type' in val and val['type'] == 'module':
+                    start_date = val['date']
+                    end_date = val['end_date']
+                    if now >= start_date and now <= end_date:
+                        return idx
+        return 0
+
+    def get_current_modules(self):
+        fl = self.full_list
+        idx = self.initial_slide
+        try:
+            current_dict = fl[idx]
+            if current_dict['type'] == 'module':
+                return self.full_list[self.initial_slide]['modules']
+        except (IndexError, KeyError):
+            return []
 
     def get_events_list(self):
         return self.events.values('date')
 
-    def get_full_list(self):
-        module_cluster = self.get_module_cluster()
+    @cached_property
+    def full_list(self):
+        module_cluster = self.module_clusters
         event_list = self.get_events_list()
         full_list = module_cluster + list(event_list)
         return sorted(full_list, key=lambda k: k['date'])
