@@ -6,6 +6,7 @@
             <div class="timeline-carousel__dot"></div>
             <div class="timeline-carousel__label">
             <p>{{ date.title }}<br>
+            <p>{% if date.type == 'module' %} {{ date.title }} {% else %} {{ date.event_type }} {% endif %}<br>
             {% if date.type == 'module' %}ab {% else %} am {% endif %}{{ date.date | date }}</p>
             <a href="?initialSlide={{ forloop.counter0 }}">Link</a>
         </div>

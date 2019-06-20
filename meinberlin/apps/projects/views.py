@@ -459,7 +459,7 @@ class ProjectDetailView(PermissionRequiredMixin,
             return []
 
     def get_events_list(self):
-        return self.events.values('date')
+        return self.events.values('date', 'event_type')
 
     @cached_property
     def full_list(self):
