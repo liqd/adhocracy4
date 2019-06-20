@@ -13,7 +13,7 @@ class OfflineEvent(UserGeneratedContentModel):
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(max_length=120, verbose_name=_('Name of event'))
     event_type = models.CharField(
-        max_length=30, default='Veranstaltung', verbose_name=_('Event type'),
+        max_length=30, verbose_name=_('Event type'),
         help_text=_('The content of this field is shown in the timeline. It '
                     'should have no more than 30 characters e.g. Information '
                     'event or 3rd public workshop.'))
