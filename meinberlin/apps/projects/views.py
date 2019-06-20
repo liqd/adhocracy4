@@ -25,7 +25,9 @@ from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.filters import DistinctOrderingFilter
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
+from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
+from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 
 from . import forms
@@ -362,6 +364,10 @@ class ProjectDetailView(PermissionRequiredMixin,
             .annotate(end_date=Max('phase__end_date'))\
             .order_by('start_date')
 
+    @cached_property
+    def events(self):
+        return self.project.offlineevent_set.all()
+
     def get_module_dict(self, count, start_date):
         return {
             'title': 'Onlinebeteiligung {}'.format(str(count)),
@@ -394,7 +400,7 @@ class ProjectDetailView(PermissionRequiredMixin,
         return clusters
 
     def get_events_list(self):
-        return self.project.offlineevent_set.values('date')
+        return self.events.values('date')
 
     def get_full_list(self):
         module_cluster = self.get_module_cluster()
@@ -403,11 +409,10 @@ class ProjectDetailView(PermissionRequiredMixin,
         return sorted(full_list, key=lambda k: k['date'])
 
     def dispatch(self, request, *args, **kwargs):
-        # Choose the appropriate view for the current active phase.
         kwargs['project'] = self.project
         kwargs['module'] = self.module
 
-        if self.modules.count() == 1:
+        if self.modules.count() == 1 and not self.events:
             return self._view_by_phase()(request, *args, **kwargs)
         else:
             return super().dispatch(request)
@@ -427,6 +432,7 @@ class ProjectDetailView(PermissionRequiredMixin,
     @property
     def raise_exception(self):
         return self.request.user.is_authenticated
+
 
 class ModuleDetailview(PermissionRequiredMixin,
                        PhaseDispatchMixin):
