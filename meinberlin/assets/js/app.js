@@ -98,7 +98,7 @@ $(document).ready(function(){
     infinite: false,
     slidesToShow: 3,
     initialSlide: getInitialSlide(),
-    focusOnSelect: true,
+    focusOnSelect: false,
     centerMode: true,
     variableWidth: true,
     responsive: [
