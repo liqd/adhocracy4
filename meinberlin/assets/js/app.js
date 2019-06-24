@@ -94,9 +94,9 @@ $(document).ready(function(){
   $(".timeline-carousel__item").slick({
   	dots: false,
     arrows: true,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     infinite: false,
-    slidesToShow: 3,
+    slidesToShow: 2,
     initialSlide: getInitialSlide(),
     focusOnSelect: false,
     centerMode: true,
