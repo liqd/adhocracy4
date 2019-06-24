@@ -2,14 +2,13 @@
   <div class="timeline-carousel__line"></div>
   <div class="timeline-carousel__item">
       {% for date in dates %}
-      <div>
+      <a href="?initialSlide={{ forloop.counter0 }}">
             <div class="timeline-carousel__dot {% if forloop.counter0 == initial_slide  %} initial {% endif %}"></div>
             <div class="timeline-carousel__label {% if forloop.counter0 == initial_slide  %} initial {% endif %}">
             <p>{% if date.type == 'module' %} {{ date.title }} {% else %} {{ date.event_type }} {% endif %}<br>
             {% if date.type == 'module' %}ab {% else %} am {% endif %}{{ date.date | date }}</p>
-            <a href="?initialSlide={{ forloop.counter0 }}">Link</a>
         </div>
-      </div>
+      </a>
       {% endfor %}
   </div>
 </div>
