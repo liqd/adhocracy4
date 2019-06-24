@@ -87,7 +87,7 @@ $(document).on('click', function () {
 $(document).ready(function(){
 
   function getInitialSlide() {
-    return $("#timeline-carousel").attr("data-initial-slide")
+    return parseInt($("#timeline-carousel").attr("data-initial-slide"))
   }
 
 
