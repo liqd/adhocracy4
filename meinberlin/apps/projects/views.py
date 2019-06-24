@@ -366,6 +366,7 @@ class ProjectDetailView(PermissionRequiredMixin,
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['event'] = self.get_current_event()
         context['modules'] = self.get_current_modules()
         context['participation_dates'] = self.full_list
         context['initial_slide'] = self.initial_slide
@@ -448,6 +449,17 @@ class ProjectDetailView(PermissionRequiredMixin,
                             return idx
         return 0
 
+    def get_current_event(self):
+        fl = self.full_list
+        idx = self.initial_slide
+        try:
+            current_dict = fl[idx]
+            if 'type' not in current_dict:
+                return self.full_list[self.initial_slide]
+        except (IndexError, KeyError):
+            return []
+        return []
+
     def get_current_modules(self):
         fl = self.full_list
         idx = self.initial_slide
@@ -459,7 +471,9 @@ class ProjectDetailView(PermissionRequiredMixin,
             return []
 
     def get_events_list(self):
-        return self.events.values('date', 'event_type')
+        return self.events.values('date', 'name',
+                                  'event_type',
+                                  'slug', 'description')
 
     @cached_property
     def full_list(self):
