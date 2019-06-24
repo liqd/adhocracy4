@@ -87,18 +87,18 @@ $(document).on('click', function () {
 $(document).ready(function(){
 
   function getInitialSlide() {
-    return $("#timeline-carousel").attr("data-initial-slide")
+    return parseInt($("#timeline-carousel").attr("data-initial-slide"))
   }
 
 
   $(".timeline-carousel__item").slick({
   	dots: false,
     arrows: true,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     infinite: false,
-    slidesToShow: 3,
+    slidesToShow: 2,
     initialSlide: getInitialSlide(),
-    focusOnSelect: true,
+    focusOnSelect: false,
     centerMode: true,
     variableWidth: true,
     responsive: [

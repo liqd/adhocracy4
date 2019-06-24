@@ -173,6 +173,11 @@
                 </div>
                 {% endif %}
                 <div>
+                {% if event %}
+                    <h2>{{ event.name }}</h2>
+                    <P>{{ event.description | safe}}</P>
+                {% endif %}
+                {% if modules %}
                     {% for module in modules %}
                         <div>
                             <h3>{{ module.name }}</h3>
@@ -180,6 +185,7 @@
                             <a href="{% url 'module-detail' module_slug=module.slug %}">Link</a>
                         </div>
                     {% endfor %}
+                 {% endif %}
                 </div>
 
                 <div class="l-center-6">
