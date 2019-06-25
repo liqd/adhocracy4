@@ -393,7 +393,7 @@ class ProjectDetailView(PermissionRequiredMixin,
 
     def get_module_dict(self, count, start_date, end_date):
         return {
-            'title': 'Onlinebeteiligung {}'.format(str(count)),
+            'title': _('{}. Online Participation').format(str(count)),
             'type': 'module',
             'date': start_date,
             'end_date': end_date,
@@ -431,6 +431,8 @@ class ProjectDetailView(PermissionRequiredMixin,
                         current_cluster['end_date'] = end_date
         except AttributeError:
             return clusters
+        if len(clusters) == 1:
+            clusters[0]['title'] = _('Online Participation')
         return clusters
 
     @cached_property
