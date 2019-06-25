@@ -3,4 +3,3 @@ source =
     meinberlin/apps
 omit =
     */migrations/*
-    */autofixtures.py
