@@ -3000,11 +3000,11 @@ msgstr "Beteiligung beendet. Ergebnis lesen."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:11
 msgid "from"
-msgstr ""
+msgstr "vom"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:14
 msgid "on"
-msgstr ""
+msgstr "am"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:9
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/removeable_invite_list.html:21
@@ -3248,11 +3248,11 @@ msgstr "Teilnehmer*in erfolgreich entfernt."
 
 #: meinberlin/apps/projects/views.py:396
 msgid "{}. Online Participation"
-msgstr ""
+msgstr "{}. Onlinebeteiligung"
 
 #: meinberlin/apps/projects/views.py:435
 msgid "Online Participation"
-msgstr ""
+msgstr "Onlinebeteiligung"
 
 #: meinberlin/apps/servicekonto/templates/meinberlin_servicekonto/login.html:4
 #: meinberlin/apps/servicekonto/templates/meinberlin_servicekonto/login.html:9
