@@ -2,41 +2,34 @@
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 
-<div class="project-module-tile">
-    <div class="maplist-item__vertical">
-        <a href="{{ project|project_url }}" target="{{ project|is_external|yesno:"_blank,_self" }}">
-            <div class="maplist-item__proj">
-                <div class="maplist-item__content">
-                    <h3 class="maplist-item__title">{{ project.name }}</h3>
-                    {% if project.active_phase %}
-                    <div class="status-item status__active">
-                        <div class="status-bar__active">
-                            <span class="status-bar__active-fill" style="width: {{ project.active_phase_progress }}%"></span>
-                        </div>
-                        <span class="maplist-item__status">
-                            <i class="fas fa-clock" aria-hidden="true"></i>
-                        {% blocktrans with time_left=project.time_left %}remaining {{ time_left }}{% endblocktrans %}
-                        </span>
+<div class="participation-tile__vertical">
+    <a href="{{ project|project_url }}" target="{{ project|is_external|yesno:"_blank,_self" }}">
+        <div class="maplist-item__proj">
+            <div class="maplist-item__content participation-tile__content">
+                <h3 class="maplist-item__title participation-tile__title">{{ project.name }}</h3>
+                {% if project.active_phase %}
+                <div class="status-item status__active">
+                    <div class="status-bar__active">
+                        <span class="status-bar__active-fill" style="width: {{ project.active_phase_progress }}%"></span>
                     </div>
-                    {% elif project.future_phases %}
-                    <div class="status-item status__future">
-                        <span class="maplist-item__status"><i class="fas fa-clock"  aria-hidden="true"></i>{% html_date project.future_phases.first.start_date 'd.m.Y' as start_date %}
-                        {% blocktrans with date=start_date %}Participation: starts on {{ date }}{% endblocktrans %}
-                        </span>
-                    </div>
-                    {% elif project.has_finished %}
-                        <div class="status-item status-bar__past">
-                        {% blocktrans %}Participation ended. Read result{% endblocktrans %}
-                        </div>
-                    {% endif %}
-                    <a class="btn btn--full btn--small" href="">{% trans 'Join now' %}</a>
+                    <span class="participation-tile__status">
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                    {% blocktrans with time_left=project.time_left %}remaining {{ time_left }}{% endblocktrans %}
+                    </span>
                 </div>
+                {% elif project.future_phases %}
+                <div class="status-item status__future">
+                    <span class="participation-tile__status"><i class="fas fa-clock"  aria-hidden="true"></i>{% html_date project.future_phases.first.start_date 'd.m.Y' as start_date %}
+                    {% blocktrans with date=start_date %}Participation: starts on {{ date }}{% endblocktrans %}
+                    </span>
+                </div>
+                {% elif project.has_finished %}
+                    <div class="status-item status-bar__past">
+                    {% blocktrans %}Participation ended. Read result{% endblocktrans %}
+                    </div>
+                {% endif %}
+                <a class="btn btn--full btn--small" href="">{% trans 'Join now' %}</a>
             </div>
-            {% if project|is_external %}
-            <div class="maplist-item__corner-badge maplist-item__corner-badge--external"></div>
-            {% elif not project.is_public %}
-            <div class="maplist-item__corner-badge maplist-item__corner-badge--private"></div>
-            {% endif %}
-        </a>
-    </div>
+        </div>
+    </a>
 </div>

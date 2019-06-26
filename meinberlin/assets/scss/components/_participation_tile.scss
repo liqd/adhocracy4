@@ -1,0 +1,82 @@
+.participation-tile__horizontal,
+.participation-tile__vertical {
+    border: 1px solid $border-color;
+    position: relative;
+    overflow-wrap: break-word;
+    background-color: $body-bg;
+}
+
+.participation-tile__horizontal {
+    width: 100%;
+    margin: 0 $r-spacer $r-spacer $r-spacer;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin: 0 $r-spacer $r-spacer 5*$r-spacer;
+    }
+}
+
+.participation-tile__vertical {
+    width: 100%;
+    margin: $r-spacer;
+    flex-grow: 1 0 100%;
+    min-height: 250px;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        flex-basis: auto;
+        flex-grow: 1;
+        max-width: calc(100% * (1 / 2) - 2rem - 1px);
+    }
+
+    @media screen and (min-width: $breakpoint) {
+        flex-basis: auto;
+        flex-grow: 1;
+        max-width: calc(100% * (1 / 3) - 2rem - 1px);
+    }
+
+    @media screen and (min-width: $breakpoint-lg) {
+        flex-basis: auto;
+        flex-grow: 1;
+        max-width: calc(100% * (1 / 4) - 2rem - 1px);
+    }
+}
+
+// .maplist-item__proj-count,
+// .maplist-item-popup__proj-count,
+// .maplist-item__status,
+// .maplist-item-popup__status {
+//     color: $text-color;
+//     font-size: $font-size-xs;
+//
+//     i {
+//         padding-right: $padding;
+//         color: $brand-secondary;
+//     }
+// }
+//
+// .participation-tile__proj-count,
+// .participation-tile__status {
+//     color: $text-color;
+//     font-size: $font-size-xs;
+//
+//     i {
+//         padding-right: $padding;
+//         color: $brand-secondary;
+//     }
+// }
+//
+// .participation-tile__content
+// .maplist-item__plan,
+// .maplist-item__content {
+//     padding: 1.5*$padding;
+// }
+//
+// .participation-tile
+// .maplist-item__proj-count {
+//     width: 100%;
+//     margin: $r-spacer;
+//     flex-grow: 1 0 100%;
+//     min-height: 250px;
+//
+//     .maplist-item__proj { // for image
+//         flex-direction: column;
+// }
