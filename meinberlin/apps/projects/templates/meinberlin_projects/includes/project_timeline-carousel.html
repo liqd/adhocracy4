@@ -7,11 +7,11 @@
             <div class="timeline-carousel__dot {% if forloop.counter0 == initial_slide  %} initial {% endif %}"></div>
             <div class="timeline-carousel__label {% if forloop.counter0 == initial_slide  %} initial {% endif %}">
             {% if  date.type == 'module'  %}
-                <p>{{ date.title }}<br>
-                    {% trans 'from' %} {{ date.date | date }}</p>
+                <span>{{ date.title }}<br>
+                    {% trans 'from' %} {{ date.date | date }}</span>
             {% else %}
-                <p>{{ date.event_type }}<br>
-                {% trans 'on' %} {{ date.date | date }}</p>
+                <span>{{ date.event_type }}<br>
+                {% trans 'on' %} {{ date.date | date }}</span>
             {% endif %}
         </div>
       </a>

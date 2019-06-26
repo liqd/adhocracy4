@@ -1,5 +1,9 @@
 $timeline-carousel__top-space: 11px;
 
+.timeline-carousel__wrapper {
+    overflow: hidden;
+}
+
 .timeline-carousel {
     position: relative;
     color: $brand-secondary;
@@ -75,5 +79,13 @@ $timeline-carousel__top-space: 11px;
     .initial {
         background: $brand-secondary;
         color: $text-color-inverted;
+
+        &.timeline-carousel__label {
+            padding: 1.5*$padding;
+        }
+
+        &.timeline-carousel__dot {
+            transform: scale(1.25);
+        }
     }
 }
