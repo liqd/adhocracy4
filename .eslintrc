@@ -7,7 +7,6 @@
   "rules": {
     "jsx-quotes": [2, "prefer-double"]
   },
-  "parser": "babel-eslint",
   "plugins": [
     "jsx-a11y"
   ]
