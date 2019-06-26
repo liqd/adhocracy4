@@ -1,11 +1,9 @@
-from django.conf import settings
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 
 from adhocracy4.models.base import UserGeneratedContentModel
-from adhocracy4.generics import models_to_limit
 
 
 class Rating(UserGeneratedContentModel):
@@ -15,8 +13,7 @@ class Rating(UserGeneratedContentModel):
 
     content_type = models.ForeignKey(
         ContentType,
-        on_delete=models.CASCADE,
-        limit_choices_to=models_to_limit(settings.A4_RATEABLES)
+        on_delete=models.CASCADE
     )
     object_pk = models.PositiveIntegerField()
     content_object = GenericForeignKey(

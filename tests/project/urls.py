@@ -15,24 +15,24 @@ from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.polls.routers import QuestionDefaultRouter
 
 router = routers.DefaultRouter()
-router.register(r'follows', FollowViewSet, base_name='follows')
-router.register(r'reports', ReportViewSet, base_name='reports')
-router.register(r'polls', PollViewSet, base_name='polls')
+router.register(r'follows', FollowViewSet, basename='follows')
+router.register(r'reports', ReportViewSet, basename='reports')
+router.register(r'polls', PollViewSet, basename='polls')
 
 question_router = QuestionDefaultRouter()
-question_router.register(r'vote', VoteViewSet, base_name='votes')
+question_router.register(r'vote', VoteViewSet, basename='votes')
 
 ct_router = a4routers.ContentTypeDefaultRouter()
-ct_router.register(r'comments', CommentViewSet, base_name='comments')
-ct_router.register(r'ratings', RatingViewSet, base_name='ratings')
+ct_router.register(r'comments', CommentViewSet, basename='comments')
+ct_router.register(r'ratings', RatingViewSet, basename='ratings')
 
 urlpatterns = [
     url(r'^api/', include(ct_router.urls)),
     url(r'^api/', include(router.urls)),
     url(r'^api/', include(question_router.urls)),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
     url(r'^projects/', include(prj_urls)),
     url(r'^modules/', include(mod_urls)),
-    url(r'^accounts/login', views.login, name='account_login'),
+    url(r'^accounts/login', views.LoginView, name='account_login'),
     url(r'^dashboard/', include(dashboard_urls))
 ]

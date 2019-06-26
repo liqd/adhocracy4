@@ -18,7 +18,7 @@ class FollowViewSet(AllowPUTAsCreateMixin,
     serializer_class = FollowSerializer
     permission_classes = (permissions.IsAuthenticated,)
     filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('enabled', )
+    filterset_fields = ('enabled', )
 
     def get_queryset(self):
         return self.queryset.filter(creator=self.request.user)

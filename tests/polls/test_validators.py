@@ -1,7 +1,7 @@
 import pytest
 
 from django.core.exceptions import ValidationError
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from adhocracy4.polls.models import Poll
 from adhocracy4.polls.validators import single_vote_per_user
 from adhocracy4.polls.validators import single_item_per_module

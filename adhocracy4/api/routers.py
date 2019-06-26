@@ -16,8 +16,8 @@ class CustomRouterMixin():
 class ContentTypeRouterMixin(CustomRouterMixin):
 
     prefix_regex = (
-        'contenttypes/(?P<content_type>[\d]+)/'
-        'objects/(?P<object_pk>[\d]+)/{prefix}'
+        r'contenttypes/(?P<content_type>[\d]+)/'
+        r'objects/(?P<object_pk>[\d]+)/{prefix}'
     )
 
 
@@ -32,7 +32,7 @@ class ContentTypeDefaultRouter(ContentTypeRouterMixin, routers.DefaultRouter):
 class ModuleRouterMixin(CustomRouterMixin):
 
     prefix_regex = (
-        'modules/(?P<module_pk>[\d]+)/{prefix}'
+        r'modules/(?P<module_pk>[\d]+)/{prefix}'
     )
 
 
@@ -47,7 +47,7 @@ class ModuleDefaultRouter(ModuleRouterMixin, routers.DefaultRouter):
 class OrganisationRouterMixin(CustomRouterMixin):
 
     prefix_regex = (
-        'organisations/(?P<organisation_pk>[\d]+)/{prefix}'
+        r'organisations/(?P<organisation_pk>[\d]+)/{prefix}'
     )
 
 
