@@ -13,6 +13,7 @@ from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib import filters
 from meinberlin.apps.contrib import forms as contrib_forms
+from meinberlin.apps.contrib import mixins as contrib_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.exports.views import DashboardExportView
 from meinberlin.apps.moderatorfeedback.forms import ModeratorStatementForm
@@ -57,7 +58,9 @@ class AbstractIdeaListView(ProjectMixin,
     paginate_by = 15
 
 
-class IdeaListView(AbstractIdeaListView):
+class IdeaListView(AbstractIdeaListView,
+                   contrib_mixins.DisplayProjectOrModuleMixin
+                   ):
     model = models.Idea
     filter_set = IdeaFilterSet
 
