@@ -1,5 +1,11 @@
 from django import forms
+from django.db.models import Max
+from django.db.models import Min
+from django.urls import resolve
 from django.utils.translation import ugettext_lazy as _
+from django.views import generic
+
+from adhocracy4.modules.models import Module
 
 RIGHT_OF_USE_LABEL = _('I hereby confirm that the copyrights for this '
                        'photo are with me or that I have received '
@@ -58,3 +64,83 @@ class ImageRightOfUseMixin(forms.ModelForm):
                            _("You want to upload an image. "
                              "Please check that you have the "
                              "right of use for the image."))
+
+
+class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
+
+    def module_clusters(self, modules):
+        clusters = []
+
+        start_date = modules.first().start_date
+        end_date = modules.first().end_date
+        first_cluster = {
+            'start_date': start_date,
+            'end_date': end_date,
+            'modules': []
+        }
+        first_cluster['modules'].append(modules.first())
+        current_cluster = first_cluster
+        clusters.append(first_cluster)
+
+        for module in modules[1:]:
+            if module.start_date > end_date:
+                start_date = module.start_date
+                end_date = module.end_date
+                next_cluster = {
+                    'start_date': start_date,
+                    'end_date': end_date,
+                    'modules': []
+                }
+                next_cluster['modules'].append(module)
+                current_cluster = next_cluster
+                clusters.append(next_cluster)
+            else:
+                current_cluster['modules'].append(module)
+                if module.end_date > end_date:
+                    end_date = module.end_date
+        return clusters
+
+    @property
+    def url_name(self):
+        return resolve(self.request.path_info).url_name
+
+    @property
+    def other_modules(self):
+        modules = Module.objects.filter(project=self.project)\
+            .annotate(start_date=Min('phase__start_date'))\
+            .annotate(end_date=Max('phase__end_date'))\
+            .order_by('start_date')
+
+        for cluster in self.module_clusters(modules):
+            if self.module in cluster['modules']:
+                return cluster['modules'], \
+                       cluster['modules'].index(self.module)
+        return []
+
+    @property
+    def extends(self):
+        if self.url_name == 'module-detail':
+            return 'a4modules/module_detail.html'
+        return 'meinberlin_projects/project_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['url_name'] = self.url_name
+        context['extends'] = self.extends
+        if self.url_name == 'module-detail':
+            cluster, idx = self.other_modules
+            next_module = None
+            previous_module = None
+            try:
+                next_module = cluster[idx + 1]
+            except IndexError:
+                pass
+            try:
+                previous_module = cluster[idx - 1]
+            except IndexError:
+                pass
+            context['other_modules'] = cluster
+            context['index'] = idx + 1
+            context['next'] = next_module
+            context['previous'] = previous_module
+        return context
