@@ -5,7 +5,7 @@
 <li class="participation-tile__vertical">
     <a href="{{ project|project_url }}" target="{{ project|is_external|yesno:"_blank,_self" }}">
 
-        <div class="maplist-item__proj">
+        <div class="participation-tile__body maplist-item__proj">
             {% if project_image %}
             <div class="maplist-item__img" alt="" style="background-image: url({{ project_image|thumbnail_url:'project_tile' }})">
                 {% if project.topics %}
@@ -22,7 +22,7 @@
                 {% endif %}
             </div>
             {% endif %}
-            <div class="maplist-item__content">
+            <div class="participation-tile__content">
                 {% if project.topics and not project_image %}
                 <div class="maplist-item__label-spacer">
                     {% for topic in project.topic_names %}
@@ -46,7 +46,7 @@
                 <div class="maplist-item__link"></div>
                 {% if project|is_container %}
                 <div class="maplist-item__stats">
-                    <span class="maplist-item__proj-count">
+                    <span class="participation-tile__proj-count">
                         <i class="fas fa-th" aria-hidden="true"></i>
                         {% trans 'Participation projects: ' %}
                     </span>
@@ -58,14 +58,14 @@
                         <div class="status-bar__active">
                             <span class="status-bar__active-fill" style="width: {{ project.active_phase_progress }}%"></span>
                         </div>
-                        <span class="maplist-item__status">
+                        <span class="participation-tile__status">
                             <i class="fas fa-clock" aria-hidden="true"></i>
                         {% blocktrans with time_left=project.time_left %}remaining {{ time_left }}{% endblocktrans %}
                         </span>
                     </div>
                     {% elif project.future_phases %}
                     <div class="status-item status__future">
-                        <span class="maplist-item__status"><i class="fas fa-clock"  aria-hidden="true"></i>{% html_date project.future_phases.first.start_date 'd.m.Y' as start_date %}
+                        <span class="participation-tile__status"><i class="fas fa-clock"  aria-hidden="true"></i>{% html_date project.future_phases.first.start_date 'd.m.Y' as start_date %}
                         {% blocktrans with date=start_date %}Participation: starts on {{ date }}{% endblocktrans %}
                         </span>
                     </div>

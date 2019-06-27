@@ -1,3 +1,34 @@
+.participation-tile__wrapper {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.participation-tile__list-container {
+    flex: 0 1 44vh;
+
+    @media (min-width: $breakpoint-xs) {
+        flex-grow: 2;
+        overflow-y: visible;
+    }
+}
+
+.participation-tile__list {
+    max-width: calc(100% + 2rem); //this is all to fit within the frame to be inline with above items
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin-left: -1rem !important;
+        margin-right: -1rem !important;
+    }
+}
+
+.participation-tile__content {
+    padding: 1.5*$padding;
+}
+
 .participation-tile__horizontal,
 .participation-tile__vertical {
     border: 1px solid $border-color;
@@ -13,13 +44,23 @@
     @media screen and (min-width: $breakpoint-md) {
         margin: 0 $r-spacer $r-spacer 5*$r-spacer;
     }
+
+    .participation-tile__body { // statusbar position
+        height: 250px;
+    }
+
+    .participation-tile__content { // for status bar flex for image
+        height: inherit;
+        position: relative;
+        flex: 1;
+    }
 }
 
 .participation-tile__vertical {
     width: 100%;
     margin: $r-spacer;
     flex-grow: 1 0 100%;
-    min-height: 250px;
+    min-height: 350px;
 
     @media screen and (min-width: $breakpoint-xs) {
         flex-basis: auto;
@@ -40,43 +81,37 @@
     }
 }
 
-// .maplist-item__proj-count,
-// .maplist-item-popup__proj-count,
-// .maplist-item__status,
-// .maplist-item-popup__status {
-//     color: $text-color;
-//     font-size: $font-size-xs;
-//
-//     i {
-//         padding-right: $padding;
-//         color: $brand-secondary;
-//     }
-// }
-//
-// .participation-tile__proj-count,
-// .participation-tile__status {
-//     color: $text-color;
-//     font-size: $font-size-xs;
-//
-//     i {
-//         padding-right: $padding;
-//         color: $brand-secondary;
-//     }
-// }
-//
-// .participation-tile__content
-// .maplist-item__plan,
-// .maplist-item__content {
-//     padding: 1.5*$padding;
-// }
-//
-// .participation-tile
-// .maplist-item__proj-count {
-//     width: 100%;
-//     margin: $r-spacer;
-//     flex-grow: 1 0 100%;
-//     min-height: 250px;
-//
-//     .maplist-item__proj { // for image
-//         flex-direction: column;
-// }
+.participation-tile__title {
+    margin-top: 0;
+}
+
+.participation-tile__btn {
+    position: absolute;
+    left: 3*$r-spacer;
+    right: 3*$r-spacer;
+    bottom: 3.5*$r-spacer;
+}
+
+.participation-tile__spacer {
+    height: 6.5*$r-spacer;
+}
+
+.participation-tile__item-count,
+.participation-tile__proj-count,
+.participation-tile__status {
+    color: $text-color;
+    font-size: $font-size-xs;
+
+    i {
+        padding-right: $padding;
+        color: $brand-secondary;
+    }
+}
+
+.participation-tile__status-active {
+    color: $brand-primary;
+}
+
+.participation-tile__status-inactive {
+    color: $gray;
+}
