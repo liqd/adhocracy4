@@ -1,9 +1,5 @@
 $timeline-carousel__top-space: 11px;
 
-.timeline-carousel__wrapper {
-    overflow: hidden;
-}
-
 .timeline-carousel {
     position: relative;
     color: $brand-secondary;
@@ -12,7 +8,7 @@ $timeline-carousel__top-space: 11px;
 
     .timeline-carousel__dot {
         display: inline-block;
-        background-color: $bg-tertiary;
+        background-color: $border-color;
         padding: 0;
         margin-bottom: 3px;
         border-radius: 50%;
@@ -41,7 +37,7 @@ $timeline-carousel__top-space: 11px;
         width: 200%;
         left: -50%;
         top: $timeline-carousel__top-space;
-        border-top: 1px dashed $border-color;
+        border-top: 2px dashed $border-color;
     }
 
     //slick overwrites
@@ -57,6 +53,7 @@ $timeline-carousel__top-space: 11px;
         text-align: center;
 
         &:before {
+            background: $body-bg;
             border-radius: 100%;
             border: 1px solid $border-color;
             opacity: 1;
@@ -87,5 +84,21 @@ $timeline-carousel__top-space: 11px;
         &.timeline-carousel__dot {
             transform: scale(1.25);
         }
+    }
+}
+
+//mobile
+
+@media screen and (max-width: $breakpoint-xs-down) {
+    .timeline-carousel__wrapper {
+        overflow: hidden;
+    }
+
+    .slick-next {
+        right: 0 !important;
+    }
+
+    .slick-prev {
+        left: 0 !important;
     }
 }
