@@ -52,6 +52,10 @@ $timeline-carousel__top-space: 11px;
     .slick-slide {
         margin: 0 3*$spacer;
         min-width: 275px;
+
+        :focus {
+            outline: none;
+        }
     }
 
     .slick-prev,
