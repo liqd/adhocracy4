@@ -1,5 +1,13 @@
 $timeline-carousel__top-space: 11px;
 
+.timeline-carousel__item { //to stop items displaying as a list before js is initialized
+    visibility: hidden;
+
+    &.slick-initialized {
+        visibility: visible;
+    }
+}
+
 .timeline-carousel {
     position: relative;
     color: $brand-secondary;
@@ -88,7 +96,6 @@ $timeline-carousel__top-space: 11px;
 }
 
 //mobile
-
 @media screen and (max-width: $breakpoint-xs-down) {
     .timeline-carousel__wrapper {
         overflow: hidden;
