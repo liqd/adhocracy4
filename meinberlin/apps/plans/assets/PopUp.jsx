@@ -43,7 +43,7 @@ class PopUp extends React.Component {
   }
 
   render () {
-    let statusClass = (this.props.item.participation_active === true) ? 'maplist-item__status-active' : 'maplist-item__status-inactive'
+    let statusClass = (this.props.item.participation_active === true) ? 'participation-tile__status-active' : 'participation-tile__status-inactive'
     if (this.props.item.type === 'project') {
       return (
         <div className="maps-popups-popup-text-content">

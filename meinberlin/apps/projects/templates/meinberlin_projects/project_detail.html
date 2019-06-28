@@ -178,13 +178,15 @@
                     <P>{{ event.description | safe}}</P>
                 {% endif %}
                 {% if modules %}
-                    {% for module in modules %}
-                        <div>
-                            <h3>{{ module.name }}</h3>
-                            <p>{{ module.description }}</p>
-                            <a href="{% url 'module-detail' module_slug=module.slug %}">Link</a>
+                    <div class="participation-tile__wrapper">
+                        <div class="participation-tile__list-container">
+                            <ul class="u-list-reset participation-tile__list">
+                            {% for module in modules %}
+                                {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
+                            {% endfor %}
+                            </ul>
                         </div>
-                    {% endfor %}
+                    </div>
                  {% endif %}
                 </div>
 

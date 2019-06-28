@@ -118,7 +118,7 @@
     <div class="item-detail-2__project-list">
         <div class="l-wrapper">
             <h3 class="item-detail-2__project-title" id="participation-plans">{% trans "Participation projects" %}</h3>
-            <ul class="u-list-reset maplist-list">
+            <ul class="u-list-reset participation-tile__list">
             {% for project in object.published_projects %}
 
                     {% include "meinberlin_projects/includes/project_tile.html" with project=project %}

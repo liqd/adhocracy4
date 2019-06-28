@@ -66,13 +66,13 @@ class PlansList extends React.Component {
   }
 
   renderListItem (item, i) {
-    let statusClass = (item.participation_active === true) ? 'maplist-item__status-active' : 'maplist-item__status-inactive'
+    let statusClass = (item.participation_active === true) ? 'participation-tile__status-active' : 'participation-tile__status-inactive'
     return (
-      <li className={this.props.isHorizontal ? 'maplist-item__horizontal' : 'maplist-item__vertical'} key={i}>
+      <li className={this.props.isHorizontal ? 'participation-tile__horizontal' : 'participation-tile__vertical'} key={i}>
 
         <a href={item.url} target={item.subtype === 'external' ? '_blank' : '_self'}>
           {item.type === 'project' &&
-            <div className="maplist-item__proj">
+            <div className="participation-tile__body maplist-item__proj">
               {item.tile_image &&
               <div className={this.props.isHorizontal ? 'u-lg-only-display maplist-item__img' : 'maplist-item__img'} style={this.getImage(item)} alt="">
                 {!this.props.isHorizontal && this.renderTopics(item)}
@@ -81,7 +81,7 @@ class PlansList extends React.Component {
                 }
               </div>
               }
-              <div className="maplist-item__content">
+              <div className="participation-tile__content">
                 {(this.props.isHorizontal || !item.tile_image) && this.renderTopics(item)}
                 <span className="maplist-item__roofline">{item.district}</span>
                 <h3 className="maplist-item__title">{item.title}</h3>
@@ -93,19 +93,19 @@ class PlansList extends React.Component {
                 <div className="maplist-item__link" />
                 {item.subtype === 'container' &&
                   <div className="maplist-item__stats">
-                    <span className="maplist-item__proj-count"><i className="fas fa-th" aria-hidden="true" />{django.gettext('Participation projects: ')}</span>
+                    <span className="participation-tile__proj-count"><i className="fas fa-th" aria-hidden="true" />{django.gettext('Participation projects: ')}</span>
                     <span>{item.published_projects_count}</span>
                   </div>
                 }
                 {item.future_phase && !item.active_phase &&
                   <div className="status-item status__future">
-                    <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Participation: from ')}{this.getDate(item)}</span>
+                    <span className="participation-tile__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Participation: from ')}{this.getDate(item)}</span>
                   </div>
                 }
                 {item.active_phase &&
                 <div className="status-item status__active">
                   <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
-                  <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />
+                  <span className="participation-tile__status"><i className="fas fa-clock" aria-hidden="true" />
                     {this.getTimespan(item)}
                   </span>
                 </div>
@@ -120,16 +120,16 @@ class PlansList extends React.Component {
             </div>
           }
           {item.type === 'plan' &&
-            <div className="maplist-item__plan">
+            <div className="participation-tile__body maplist-item__plan">
               {this.renderTopics(item)}
               <span className="maplist-item__roofline">{item.district}</span>
               <h3 className="maplist-item__title">{item.title}</h3>
               <div className="maplist-item__link" />
               <div className="maplist-item__stats">
-                <span className="maplist-item__proj-count"><i className="fas fa-th" aria-hidden="true" />{django.gettext('Participation projects: ')}</span>
+                <span className="participation-tile__proj-count"><i className="fas fa-th" aria-hidden="true" />{django.gettext('Participation projects: ')}</span>
                 <span>{item.published_projects_count}</span>
                 <br />
-                <span className="maplist-item__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Status: ')}</span>
+                <span className="participation-tile__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Status: ')}</span>
                 <span className={statusClass}>{item.participation_string }</span>
               </div>
               <div className="status-item_spacer" />
@@ -154,7 +154,7 @@ class PlansList extends React.Component {
 
     if (list.length > 0) {
       return (
-        <ul className="u-list-reset maplist-list">
+        <ul className="u-list-reset participation-tile__list">
           {list}
         </ul>
       )
