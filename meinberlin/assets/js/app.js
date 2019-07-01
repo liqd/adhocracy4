@@ -93,12 +93,13 @@ $(document).ready(function(){
   $(".timeline-carousel__item").slick({
     initialSlide: getInitialSlide(),
     focusOnSelect: false,
-    centerMode: false,
+    centerMode: true,
     dots: false,
     arrows: true,
     centerPadding: 30,
     mobileFirst: true,
     infinite: false,
+    variableWidth: true,
     responsive: [
       {
         breakpoint: 0,

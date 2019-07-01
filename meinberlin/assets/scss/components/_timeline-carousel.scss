@@ -22,6 +22,7 @@ $timeline-carousel__top-space: 11px;
         border-radius: 100%;
         border: 1px solid $border-color;
         background-color: $body-bg;
+        z-index: 1; //for when tile links overlap
 
         &:before {
             color: $brand-secondary;
@@ -29,6 +30,7 @@ $timeline-carousel__top-space: 11px;
             font-family: "Font Awesome 5 Free", sans-serif;
             font-weight: 900;
             font-size: $font-size-lg;
+            line-height: 0.8rem;
         }
     }
 
@@ -38,6 +40,11 @@ $timeline-carousel__top-space: 11px;
 
     .slick-next:before {
         content: '\f105'; // angle-right
+    }
+
+    .slick-prev:hover,
+    .slick-next:hover {
+        background-color: $body-bg;
     }
 }
 
@@ -78,6 +85,7 @@ $timeline-carousel__top-space: 11px;
 //slick overwrites
 .slick-slide {
     margin: 0 3*$spacer;
+    min-width: 275px;
 
     :focus {
         outline: none;
@@ -102,7 +110,7 @@ $timeline-carousel__top-space: 11px;
 }
 
 //mobile
-@media screen and (max-width: $breakpoint-md-down) {
+@media screen and (max-width: $breakpoint-lg-down) {
     .slick-next {
         right: 0 !important;
     }
