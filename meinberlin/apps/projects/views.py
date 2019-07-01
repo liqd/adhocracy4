@@ -378,7 +378,8 @@ class ProjectDetailView(PermissionRequiredMixin,
 
     @cached_property
     def module(self):
-        return self.project.last_active_module
+        if self.modules.count() == 1 and not self.events:
+            return self.modules.first()
 
     @cached_property
     def modules(self):
