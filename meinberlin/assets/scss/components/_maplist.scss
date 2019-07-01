@@ -1,4 +1,4 @@
-.maplist-list {
+.participation-tile__list {
     max-width: calc(100% + 2rem); //this is all to fit within the frame to be inline with above items
     display: flex;
     flex-wrap: wrap;
@@ -10,16 +10,7 @@
     }
 }
 
-.maplist-item__vertical,
-.maplist-item__horizontal {
-    border: 1px solid $border-color;
-    position: relative;
-    overflow-wrap: break-word;
-    background-color: $body-bg;
-}
-
-.maplist-item__plan,
-.maplist-item__content {
+.maplist-item__plan {
     padding: 1.5*$padding;
 }
 
@@ -30,7 +21,6 @@
 .maplist-item__img {
     position: relative;
     flex-basis: 250px;
-
     background-size: cover;
     background-position: 50%;
     background-repeat: no-repeat;
@@ -51,10 +41,6 @@
     color: $gray;
 }
 
-.maplist-popup-item__roofline {
-    font-size: $font-size-sm;
-}
-
 .maplist-item__title {
     margin-top: $r-spacer;
 }
@@ -66,113 +52,6 @@
 .maplist-item__stats {
     position: absolute;
     bottom: $padding;
-}
-
-.maplist-item__proj-count,
-.maplist-item-popup__proj-count,
-.maplist-item__status,
-.maplist-item-popup__status {
-    color: $text-color;
-    font-size: $font-size-xs;
-
-    i {
-        padding-right: $padding;
-        color: $brand-secondary;
-    }
-}
-
-.maplist-item-popup__proj-count,
-.maplist-item-popup__status {
-    i {
-        padding-right: 0.5*$padding;
-    }
-}
-
-.maplist-item-popup__status.status-bar__past {
-    padding: 0.25*$padding;
-}
-
-.maplist-item-popup__proj-plan {
-    background-color: $bg-secondary;
-    padding: 0.5*$padding $padding;
-    margin: 0.5*$padding (-$padding) auto;
-}
-
-.maplist-item__status-active {
-    color: $brand-primary;
-}
-
-.maplist-item__status-inactive {
-    color: $gray;
-}
-
-// vertical tile structure
-.maplist-item__vertical {
-    width: 100%;
-    margin: $r-spacer;
-    flex-grow: 1 0 100%;
-    min-height: 250px;
-
-    .maplist-item__proj { // for image
-        flex-direction: column;
-    }
-
-    //to make whole tile clickable even when empty
-    .maplist-item__link {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-    }
-
-    .maplist-item__label-img {
-        margin-top: $r-spacer;
-        margin-left: $r-spacer;
-    }
-
-    @media screen and (min-width: $breakpoint-xs) {
-        flex-basis: auto;
-        flex-grow: 1;
-        max-width: calc(100% * (1 / 2) - 2rem - 1px);
-    }
-
-    @media screen and (min-width: $breakpoint) {
-        flex-basis: auto;
-        flex-grow: 1;
-        max-width: calc(100% * (1 / 3) - 2rem - 1px);
-    }
-
-    @media screen and (min-width: $breakpoint-lg) {
-        flex-basis: auto;
-        flex-grow: 1;
-        max-width: calc(100% * (1 / 4) - 2rem - 1px);
-    }
-}
-
-// horizontal tile structure
-.maplist-item__horizontal {
-    width: 100%;
-    margin: 0 $r-spacer $r-spacer $r-spacer;
-
-    @media screen and (min-width: $breakpoint-md) {
-        margin: 0 $r-spacer $r-spacer 5*$r-spacer;
-    }
-
-    .maplist-item__proj,
-    .maplist-item__plan { // statusbar position
-        height: 250px;
-    }
-
-    .maplist-item__proj { // image
-        flex-direction: row;
-    }
-
-    .maplist-item__content { // for status bar flex for image
-        height: inherit;
-        position: relative;
-        flex: 1;
-    }
 }
 
 .maplist-item__corner-badge {
@@ -192,4 +71,58 @@
 
 .maplist-item__corner-badge--private {
     background-image: url('/static/images/badge_priva_projekt.png');
+}
+
+//popup specific styling
+.maplist-popup-item__roofline {
+    font-size: $font-size-sm;
+}
+
+.maplist-item-popup__proj-count,
+.maplist-item-popup__status {
+    color: $text-color;
+    font-size: $font-size-xs;
+
+    i {
+        padding-right: 0.5*$padding;
+        color: $brand-secondary;
+    }
+}
+
+.maplist-item-popup__status.status-bar__past {
+    padding: 0.25*$padding;
+}
+
+.maplist-item-popup__proj-plan {
+    background-color: $bg-secondary;
+    padding: 0.5*$padding $padding;
+    margin: 0.5*$padding (-$padding) auto;
+}
+
+// vertical tile structure
+.participation-tile__vertical {
+    .maplist-item__proj { // for image
+        flex-direction: column;
+    }
+
+    //to make whole tile clickable even when empty
+    .maplist-item__link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    .maplist-item__label-img {
+        margin-top: $r-spacer;
+        margin-left: $r-spacer;
+    }
+}
+
+// horizontal tile structure
+.participation-tile__horizontal {
+    .maplist-item__proj { // image
+        flex-direction: row;
+    }
 }

@@ -76,7 +76,7 @@
     <div class="l-wrapper">
         {% filter_has_perm 'a4projects.view_project' request.user container.published_not_archived_projects.all as filtered_projects %}
         {% if filtered_projects|length > 0 %}
-            <ul class="u-list-reset maplist-list">
+            <ul class="u-list-reset participation-tile__list">
                 {% for project in filtered_projects %}
                     {% include "meinberlin_projects/includes/project_tile.html" with project=project %}
                 {% endfor %}

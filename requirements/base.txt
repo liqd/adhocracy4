@@ -1,8 +1,8 @@
 # A4
-git+git://github.com/liqd/adhocracy4.git@django2-v1.0#egg=adhocracy4
+git+git://github.com/liqd/adhocracy4.git@3376387474983c979ce4f5e27d8e9c763e95aa2e#egg=adhocracy4
 
 # Additional requirements
-bcrypt==3.1.6
+bcrypt==3.1.7
 brotli==1.0.7
 django-cachalot==2.1.0
 django-capture-tag==1.0

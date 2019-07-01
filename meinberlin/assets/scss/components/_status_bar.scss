@@ -41,6 +41,10 @@
     left: 0;
 }
 
+.status-bar__past--sm {
+    padding: 0.5*$padding;
+}
+
 .status-bar__status {
     color: $text-color;
 

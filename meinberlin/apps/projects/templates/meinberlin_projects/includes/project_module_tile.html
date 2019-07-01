@@ -1,0 +1,43 @@
+{% load i18n project_tags meinberlin_project_tags contrib_tags thumbnail static %}
+{% project_tile_image project as project_image %}
+{% project_tile_image_copyright project as project_image_copyright %}
+<li class="participation-tile__vertical">
+    <a href="{% url 'module-detail' module.slug %}">
+        <div class="participation-tile__type">
+            <div class="participation-tile__content">
+                <h3 class="participation-tile__title">{{ module.name }}</h3>
+                <span class="participation-tile__item-count">
+                    <i class="fas fa-comments" aria-hidden="true"></i>
+                    {% get_num_entries module as num_entries %}
+                    {% blocktrans with num_entries=num_entries %}{{ num_entries }} Contributions{% endblocktrans %}
+                </span>
+                {% if module.module_running_time_left %}
+                <div class="status-item status__active">
+                    <div class="status-bar__active">
+                        <span class="status-bar__active-fill" style="width: {{ module.module_running_progress }}%"></span>
+                    </div>
+                    <span class="participation-tile__status">
+                        <i class="fas fa-clock" aria-hidden="true"></i>
+                    {% blocktrans with time_left=module.module_running_time_left %}remaining {{ time_left }}{% endblocktrans %}
+                    </span>
+                </div>
+                {% elif not module.module_has_started %}
+                <div class="status-item status__future">
+                    <span class="participation-tile__status"><i class="fas fa-clock"  aria-hidden="true"></i>{% html_date module.module_start 'd.m.Y' as start_date %}
+                    {% blocktrans with date=start_date %}Participation: starts on {{ date }}{% endblocktrans %}
+                    </span>
+                </div>
+                {% elif module.module_has_finished %}
+                <div class="status-item status-bar__past">
+                {% blocktrans %}Participation ended. Read result{% endblocktrans %}
+                </div>
+                {% endif %}
+                <div class="participation-tile__spacer"></div>
+                <div class="participation-tile__btn">
+                    <a class="btn btn--full btn--small" href="{% url 'module-detail' module.slug %}">{% trans 'Join now' %}</a>
+                </div>
+            </div>
+        </div>
+    </a>
+</li>
+
