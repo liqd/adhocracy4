@@ -7,6 +7,7 @@ from django.views import generic
 from adhocracy4.dashboard import mixins as dashboard_mixins
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.contrib import mixins as contrib_mixins
 from meinberlin.apps.exports.views import DashboardExportView
 
 from . import models
@@ -25,7 +26,8 @@ class DocumentDashboardView(ProjectMixin,
 
 class ChapterDetailView(ProjectMixin,
                         rules_mixins.PermissionRequiredMixin,
-                        generic.DetailView):
+                        generic.DetailView,
+                        contrib_mixins.DisplayProjectOrModuleMixin):
     model = models.Chapter
     permission_required = 'meinberlin_documents.view_chapter'
     get_context_from_object = True

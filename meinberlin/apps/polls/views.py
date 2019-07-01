@@ -7,6 +7,7 @@ from django.views import generic
 from adhocracy4.dashboard import mixins as dashboard_mixins
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
+from meinberlin.apps.contrib import mixins as contrib_mixins
 from meinberlin.apps.exports.views import DashboardExportView
 
 from . import models
@@ -14,7 +15,8 @@ from . import models
 
 class PollDetailView(ProjectMixin,
                      rules_mixins.PermissionRequiredMixin,
-                     generic.DetailView):
+                     generic.DetailView,
+                     contrib_mixins.DisplayProjectOrModuleMixin):
     model = models.Poll
     permission_required = 'meinberlin_polls.view_poll'
 

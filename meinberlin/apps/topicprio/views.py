@@ -9,6 +9,7 @@ from adhocracy4.filters import widgets as filters_widgets
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.contrib import filters
+from meinberlin.apps.contrib import mixins as contrib_mixins
 from meinberlin.apps.exports.views import DashboardExportView
 from meinberlin.apps.ideas import views as idea_views
 
@@ -42,7 +43,8 @@ class TopicFilterSet(a4_filters.DefaultsFilterSet):
         fields = ['search', 'category']
 
 
-class TopicListView(idea_views.AbstractIdeaListView):
+class TopicListView(idea_views.AbstractIdeaListView,
+                    contrib_mixins.DisplayProjectOrModuleMixin):
     model = models.Topic
     filter_set = TopicFilterSet
 
