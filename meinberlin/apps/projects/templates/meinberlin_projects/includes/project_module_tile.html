@@ -11,21 +11,25 @@
                     {% get_num_entries module as num_entries %}
                     {% blocktrans with num_entries=num_entries %}{{ num_entries }} Contributions{% endblocktrans %}
                 </span>
-                {% if module.active_phase %}
+                {% if module.module_running_time_left %}
                 <div class="status-item status__active">
                     <div class="status-bar__active">
-                        <span class="status-bar__active-fill" style="width: {{ project.active_phase_progress }}%"></span>
+                        <span class="status-bar__active-fill" style="width: {{ module.module_running_progress }}%"></span>
                     </div>
                     <span class="participation-tile__status">
                         <i class="fas fa-clock" aria-hidden="true"></i>
-                    {% blocktrans with time_left=project.time_left %}remaining {{ time_left }}{% endblocktrans %}
+                    {% blocktrans with time_left=module.module_running_time_left %}remaining {{ time_left }}{% endblocktrans %}
                     </span>
                 </div>
-                {% elif module.future_phases %}
+                {% elif not module.module_has_started %}
                 <div class="status-item status__future">
-                    <span class="participation-tile__status"><i class="fas fa-clock"  aria-hidden="true"></i>{% html_date project.future_phases.first.start_date 'd.m.Y' as start_date %}
+                    <span class="participation-tile__status"><i class="fas fa-clock"  aria-hidden="true"></i>{% html_date module.module_start 'd.m.Y' as start_date %}
                     {% blocktrans with date=start_date %}Participation: starts on {{ date }}{% endblocktrans %}
                     </span>
+                </div>
+                {% elif module.module_has_finished %}
+                <div class="status-item status-bar__past">
+                {% blocktrans %}Participation ended. Read result{% endblocktrans %}
                 </div>
                 {% endif %}
                 <div class="participation-tile__spacer"></div>
