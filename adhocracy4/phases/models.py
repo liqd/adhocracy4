@@ -14,10 +14,12 @@ from .validators import validate_content
 class PhasesQuerySet(models.QuerySet):
 
     def active_phases(self):
+        """Return active phases."""
         now = timezone.now()
         return self.filter(start_date__lte=now, end_date__gt=now)
 
     def finished_phases(self):
+        """Return past phases."""
         return self.filter(end_date__lte=timezone.now())
 
     def past_phases(self):
@@ -98,6 +100,7 @@ class Phase(models.Model):
 
     @property
     def is_over(self):
+        '''Test if phase is over.'''
         return self.end_date <= timezone.now()
 
     def has_feature(self, feature, model):

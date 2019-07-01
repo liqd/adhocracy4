@@ -1,3 +1,5 @@
+import warnings
+
 from autoslug import AutoSlugField
 from django.db import models
 from django.urls import reverse
@@ -48,30 +50,56 @@ class Module(models.Model):
             if hasattr(self, setting):
                 return getattr(self, setting)
 
+    @cached_property
+    def phases(self):
+        '''Return all phases for this module, ordered by weight.'''
+        return self.phase_set.all()
+
     @property
     def active_phase(self):
+        '''
+        Return the currently active phase of the module.
+
+        Even though this is not enforced, there should only be one phase
+        active at any given time.
+        '''
         return self.phase_set \
             .active_phases() \
             .first()
 
     @cached_property
-    def phases(self):
-        return self.phase_set.all()
-
-    @cached_property
     def future_phases(self):
+        '''Return all future phases for this module, ordered by start.'''
         return self.phase_set.future_phases()
 
     @cached_property
     def past_phases(self):
+        '''Return all past phases for this module, ordered by start.'''
         return self.phase_set.past_phases()
 
     @property
     def last_active_phase(self):
+        '''
+        Return the phase that is currently still active or the past phase
+        that started last.
+
+        The past phase that started last should also have ended last,
+        because there should only be one phase running at any time.
+        '''
         return self.active_phase or self.past_phases.last()
 
     @property
     def first_phase_start_date(self):
+        '''
+        Return the start date of the first phase in the module.
+
+        Attention: This method is _deprecated_. The property module_start
+        should be used instead.
+        '''
+        warnings.warn(
+            "first_phase_start_date is deprecated; use module_start.",
+            DeprecationWarning
+        )
         first_phase = self.phase_set.order_by('start_date').first()
         return first_phase.start_date
 
@@ -83,19 +111,23 @@ class Module(models.Model):
 
     @cached_property
     def module_start(self):
+        '''Return the start date of the module.'''
         return self.phase_set.order_by('start_date').first().start_date
 
     @cached_property
     def module_end(self):
+        '''Return the end date of the module.'''
         return self.phase_set.order_by('-end_date').first().end_date
 
     @cached_property
     def module_has_started(self):
+        '''Test if the module has already started.'''
         now = timezone.now()
         return now >= self.module_start
 
     @cached_property
     def module_has_finished(self):
+        '''Test if the module has already finished.'''
         now = timezone.now()
         return now > self.module_end
 

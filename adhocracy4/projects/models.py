@@ -1,3 +1,5 @@
+import warnings
+
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
@@ -247,6 +249,7 @@ class Project(ProjectContactDetailMixin,
 
         The last active phase is defined as the phase that out of all past
         and currently active phases started last.
+        This property is used to determine which phase view is shown.
         """
         return self.phases\
             .past_and_active_phases()\
@@ -254,7 +257,12 @@ class Project(ProjectContactDetailMixin,
 
     @property
     def last_active_module(self):
-        """Return the module of the last active phase."""
+        """
+        Return the module of the last active phase.
+
+        Attention: Might be _deprecated_ and replaced by logic coming from
+        the modules.
+        """
         last_active_phase = self.last_active_phase
         if last_active_phase:
             return last_active_phase.module
@@ -269,9 +277,14 @@ class Project(ProjectContactDetailMixin,
         currently active phases started last. This is analogous to the last
         active phase.
 
-        Attention: This method is _deprecated_ as multiple phases may be
-        active at the same time.
+        Attention: This method is _deprecated_ as multiple phases (in
+        different modules) may be active at the same time.
         """
+        warnings.warn(
+            "active_phase is deprecated; "
+            "use active_phase_ends_next or active_module_ends_next",
+            DeprecationWarning
+        )
         last_active_phase = self.last_active_phase
         if last_active_phase and not last_active_phase.is_over:
             return last_active_phase
@@ -292,6 +305,11 @@ class Project(ProjectContactDetailMixin,
         Attention: This method is _deprecated_ as multiple phases may be
         active at the same time.
         """
+        warnings.warn(
+            "days_left is deprecated as it relies on active_phase; "
+            "use time_left",
+            DeprecationWarning
+        )
         active_phase = self.active_phase
         if active_phase:
             today = timezone.now().replace(hour=0, minute=0, second=0)
@@ -302,10 +320,7 @@ class Project(ProjectContactDetailMixin,
     @property
     def time_left(self):
         """
-        Return the time left in the currently active phase.
-
-        Attention: This method is _deprecated_ as multiple phases may be
-        active at the same time.
+        Return the time left in the currently active phase that ends next.
         """
 
         def seconds_in_units(seconds):
@@ -342,10 +357,8 @@ class Project(ProjectContactDetailMixin,
     @property
     def active_phase_progress(self):
         """
-        Return the progress of the currently active phase in percent.
-
-        Attention: This method is _deprecated_ as multiple phases may be
-        active at the same time.
+        Return the progress of the currently active phase that ends next
+        in percent.
         """
         active_phase = self.active_phase_ends_next
         if active_phase:
