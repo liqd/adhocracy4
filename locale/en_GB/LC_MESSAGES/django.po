@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-25 14:20+0200\n"
+"POT-Creation-Date: 2019-07-01 16:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -412,7 +412,6 @@ msgstr "Edit basic settings"
 #: adhocracy4/dashboard/dashboard.py:23
 #: meinberlin/apps/projectcontainers/dashboard.py:47
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:41
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:80
 msgid "Information"
 msgstr "Information"
 
@@ -1633,11 +1632,13 @@ msgid "City wide"
 msgstr "City wide"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:37
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:64
 #, python-format
 msgid " %(time_left)s remaining "
 msgstr " %(time_left)s remaining "
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:39
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:66
 msgid "more than 1 year remaining"
 msgstr "more than 1 year remaining"
 
@@ -2852,23 +2853,34 @@ msgstr "Upload a csv file containing email addresses."
 msgid "Please enter email addresses or upload a file"
 msgstr "Please enter email addresses or upload a file"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:51
-msgid "Participation projects: "
-msgstr "Participation projects: "
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:12
+#, python-format
+msgid "%(num_entries)s Contributions"
+msgstr "%(num_entries)s Contributions"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:63
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:21
 #, python-format
 msgid "remaining %(time_left)s"
 msgstr "remaining %(time_left)s"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:69
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:27
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:73
 #, python-format
 msgid "Participation: starts on %(date)s"
 msgstr "Participation: starts on %(date)s"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:74
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:32
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:79
 msgid "Participation ended. Read result"
 msgstr "Participation ended. Read result"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:37
+msgid "Join now"
+msgstr "Join now"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:51
+msgid "Participation projects: "
+msgstr "Participation projects: "
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:11
 msgid "from"
@@ -3045,11 +3057,15 @@ msgstr "This project is in not published yet."
 msgid "to project collection %(name)s"
 msgstr "to project collection %(name)s"
 
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:80
+msgid "About the Project"
+msgstr "About the Project"
+
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:144
 msgid "Responsible body"
 msgstr "Responsible body"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:223
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:225
 msgid "No results yet."
 msgstr "No results yet."
 
