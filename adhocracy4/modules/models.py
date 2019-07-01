@@ -1,6 +1,7 @@
 from autoslug import AutoSlugField
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
@@ -79,6 +80,75 @@ class Module(models.Model):
             if phase.has_feature(feature, model):
                 return True
         return False
+
+    @cached_property
+    def module_start(self):
+        return self.phase_set.order_by('start_date').first().start_date
+
+    @cached_property
+    def module_end(self):
+        return self.phase_set.order_by('-end_date').first().end_date
+
+    @cached_property
+    def module_has_started(self):
+        now = timezone.now()
+        return now >= self.module_start
+
+    @cached_property
+    def module_has_finished(self):
+        now = timezone.now()
+        return now > self.module_end
+
+    @property
+    def module_running_time_left(self):
+        """
+        Return the time left of the module in percent
+        if it is currently running.
+        """
+
+        def seconds_in_units(seconds):
+            unit_totals = []
+
+            unit_limits = [
+                           ([_('day'), _('days')], 24 * 3600),
+                           ([_('hour'), _('hours')], 3600),
+                           ([_('minute'), _('minutes')], 60)
+                          ]
+
+            for unit_name, limit in unit_limits:
+                if seconds >= limit:
+                    amount = int(float(seconds) / limit)
+                    if amount > 1:
+                        unit_totals.append((unit_name[1], amount))
+                    else:
+                        unit_totals.append((unit_name[0], amount))
+                    seconds = seconds - (amount * limit)
+
+            return unit_totals
+
+        if self.module_has_started and not self.module_has_finished:
+            now = timezone.now()
+            time_delta = self.module_end - now
+            seconds = time_delta.total_seconds()
+            time_delta_list = seconds_in_units(seconds)
+            best_unit = time_delta_list[0]
+            time_delta_str = '{} {}'.format(str(best_unit[1]),
+                                            str(best_unit[0]))
+            return time_delta_str
+
+        return None
+
+    @property
+    def module_running_progress(self):
+        """
+        Return the progress of the module in percent
+        if it is currently running.
+        """
+        if self.module_has_started and not self.module_has_finished:
+            time_gone = timezone.now() - self.module_start
+            total_time = self.module_end - self.module_start
+            return round(time_gone / total_time * 100)
+        return None
 
 
 class Item(base.UserGeneratedContentModel):
