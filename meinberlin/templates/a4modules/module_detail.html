@@ -22,11 +22,34 @@
     <div>
         <div class="l-center-6">
         <a href="{% url 'project-detail' project.slug %}">{% trans 'Back to project' %}</a>
+            {% if other_modules|length > 1  %}
             {% if previous %}<a href="{% url 'module-detail' previous.slug %}">{% trans '<' %}</a>{% endif %}
             {{ index }} {% trans 'of' %} {{ other_modules|length }}
             {% if next %}<a href="{% url 'module-detail' next.slug %}">{% trans '>' %}</a>{% endif %}
+            {% endif %}
+            <h1>{{ module.name }}</h1>
+            <p>{{ module.description }}</p>
         {% block project_action %}{% endblock %}
         </div>
+        {% if not module.active_phase %}
+            <div class="l-center-6">
+                <div>
+                    <strong>
+                        {% trans 'Participation is not possible at the moment.' %}
+                        {% if not module.past_phases %}
+                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                            {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                        {% elif module.future_phases %}
+                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                            {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                        {% else %}
+                            {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
+                            {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                        {% endif %}
+                    </strong>
+                </div>
+            </div>
+        {% endif %}
         {% block phase_content %}{% endblock %}
     </div>
     {% for other_module in other_modules %}
