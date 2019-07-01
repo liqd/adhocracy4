@@ -65,7 +65,7 @@ class PopUp extends React.Component {
           }
           {this.props.item.past_phase && !this.props.item.active_phase && !this.props.item.future_phase &&
             <div className="maplist-item-popup__status status-bar__past">
-              {django.gettext('Participation ended. Read result.')}
+              <span className="maplist-item-popup__status">{django.gettext('Participation ended. Read result.')}</span>
             </div>
           }
           {this.props.item.plan_url &&

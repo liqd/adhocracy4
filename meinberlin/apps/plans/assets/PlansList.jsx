@@ -112,7 +112,7 @@ class PlansList extends React.Component {
                 }
                 {item.past_phase && !item.active_phase && !item.future_phase &&
                   <div className="status-item status-bar__past">
-                    {django.gettext('Participation ended. Read result.')}
+                    <span className="participation-tile__status">{django.gettext('Participation ended. Read result.')}</span>
                   </div>
                 }
               </div>
