@@ -441,7 +441,7 @@ msgstr "Vom Moderator gelöscht"
 
 #: adhocracy4/comments/serializers.py:51
 msgid "Please choose a category"
-msgstr ""
+msgstr "Bitte wählen Sie eine Kategorie"
 
 #: adhocracy4/comments/serializers.py:60
 msgid "unknown user"
@@ -3004,7 +3004,7 @@ msgstr "Beteiligung beendet. Ergebnis lesen."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:37
 msgid "Join now"
-msgstr ""
+msgstr "jetzt mitmachen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:51
 msgid "Participation projects: "
@@ -3186,7 +3186,7 @@ msgstr "zur Projektsammlung %(name)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:80
 msgid "About the Project"
-msgstr ""
+msgstr "über das Projekt"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:144
 msgid "Responsible body"
