@@ -8,46 +8,6 @@ $timeline-carousel__top-space: 11px;
     }
 }
 
-.timeline-carousel {
-    position: relative;
-    color: $brand-secondary;
-    text-align: center;
-    margin: $spacer 0;
-
-    //slick overwrites - nested for specificity
-    .slick-prev,
-    .slick-next {
-        top: $timeline-carousel__top-space;
-        text-align: center;
-        border-radius: 100%;
-        border: 1px solid $border-color;
-        background-color: $body-bg;
-        z-index: 1; //for when tile links overlap
-
-        &:before {
-            color: $brand-secondary;
-            opacity: 1;
-            font-family: "Font Awesome 5 Free", sans-serif;
-            font-weight: 900;
-            font-size: $font-size-lg;
-            line-height: 0.8rem;
-        }
-    }
-
-    .slick-prev:before {
-        content: '\f104'; // angle-left
-    }
-
-    .slick-next:before {
-        content: '\f105'; // angle-right
-    }
-
-    .slick-prev:hover,
-    .slick-next:hover {
-        background-color: $body-bg;
-    }
-}
-
 .timeline-carousel__dot {
     display: inline-block;
     background-color: $border-color;
@@ -67,11 +27,8 @@ $timeline-carousel__top-space: 11px;
     color: $brand-secondary;
     background-color: $blue-light;
     text-align: left;
-}
-
-.timeline-carousel__dot:hover,
-.timeline-carousel__dot:focus {
-    transform: scale(1.25);
+    transition: transform 0.2s;
+    transform-origin: 50% 50%;
 }
 
 .timeline-carousel__line {
@@ -87,12 +44,57 @@ $timeline-carousel__top-space: 11px;
     margin: 0 3*$spacer;
     min-width: 275px;
 
-    :focus {
+    :focus,
+    :hover {
         outline: none;
 
-        .timeline-carousel__label {
-            color: $link-color-btn;
+        .timeline-carousel__dot {
+            transform: scale(1.25);
         }
+
+        .timeline-carousel__label {
+            transform: scale(1.05);
+        }
+    }
+}
+
+.timeline-carousel {
+    position: relative;
+    color: $brand-secondary;
+    text-align: center;
+    margin: $spacer 0;
+
+    //slick overwrites - nested for specificity
+    .slick-prev,
+    .slick-next {
+        top: $timeline-carousel__top-space;
+        text-align: center;
+        border-radius: 100%;
+        border: 1px solid $border-color;
+        background-color: $body-bg;
+        z-index: 1; //for when tile links overlap
+
+        &:hover,
+        :focus {
+            background-color: $body-bg;
+        }
+
+        &:before {
+            color: $brand-secondary;
+            opacity: 1;
+            font-family: "Font Awesome 5 Free", sans-serif;
+            font-weight: 900;
+            font-size: $font-size-lg;
+            line-height: 0.8rem;
+        }
+    }
+
+    .slick-prev:before {
+        content: '\f104'; // angle-left
+    }
+
+    .slick-next:before {
+        content: '\f105'; // angle-right
     }
 }
 
