@@ -238,10 +238,6 @@ class Project(ProjectContactDetailMixin,
     def is_private(self):
         return not self.is_public
 
-    @cached_property
-    def modules(self):
-        return self.module_set.all()
-
     @property
     def last_active_phase(self):
         """
@@ -307,7 +303,7 @@ class Project(ProjectContactDetailMixin,
         """
         warnings.warn(
             "days_left is deprecated as it relies on active_phase; "
-            "use time_left",
+            "use module_running_time_left",
             DeprecationWarning
         )
         active_phase = self.active_phase
@@ -388,6 +384,85 @@ class Project(ProjectContactDetailMixin,
     def has_finished(self):
         return not self.phases.active_phases().exists()\
                and not self.phases.future_phases().exists()
+
+    @cached_property
+    def modules(self):
+        return self.module_set.all()
+
+    @cached_property
+    def active_modules(self):
+        return self.modules.active_modules()
+
+    @cached_property
+    def active_module_ends_next(self):
+        """
+        Return the currently active module that ends next.
+        """
+        return self.active_modules().order_by('module_end').first()
+
+    @cached_property
+    def past_modules(self):
+        """Return past modules ordered by start."""
+        return self.modules.past_modules()
+
+    @cached_property
+    def future_modules(self):
+        """
+        Return future modules ordered by start date.
+
+        Note: Modules without a start date are assumed to start in the future.
+        """
+        return self.modules.future_modules()
+
+    @property
+    def module_running_time_left(self):
+        """
+        Return the time left in the currently active module that ends next.
+        """
+
+        def seconds_in_units(seconds):
+            unit_totals = []
+
+            unit_limits = [
+                           ([_('day'), _('days')], 24 * 3600),
+                           ([_('hour'), _('hours')], 3600),
+                           ([_('minute'), _('minutes')], 60)
+                          ]
+
+            for unit_name, limit in unit_limits:
+                if seconds >= limit:
+                    amount = int(float(seconds) / limit)
+                    if amount > 1:
+                        unit_totals.append((unit_name[1], amount))
+                    else:
+                        unit_totals.append((unit_name[0], amount))
+                    seconds = seconds - (amount * limit)
+
+            return unit_totals
+
+        active_module = self.active_module_ends_next
+        if active_module:
+            today = timezone.now()
+            time_delta = active_module.end_date - today
+            seconds = time_delta.total_seconds()
+            time_delta_list = seconds_in_units(seconds)
+            best_unit = time_delta_list[0]
+            time_delta_str = '{} {}'.format(str(best_unit[1]),
+                                            str(best_unit[0]))
+            return time_delta_str
+
+    @property
+    def module_running_progress(self):
+        """
+        Return the progress of the currently active module that ends next
+        in percent.
+        """
+        active_module = self.active_module_ends_next
+        if active_module:
+            time_gone = timezone.now() - active_module.module_start
+            total_time = active_module.module_end - active_module.module_start
+            return round(time_gone / total_time * 100)
+        return None
 
     @property
     def is_archivable(self):

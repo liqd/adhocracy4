@@ -11,6 +11,43 @@ from adhocracy4.models import base
 from adhocracy4.projects import models as project_models
 
 
+class ModulesQuerySet(models.QuerySet):
+
+    def annotate_module_start(self):
+        return self.annotate(module_start=models.Min('phase__start_date'))
+
+    def annotate_module_end(self):
+        return self.annotate(module_end=models.Max('phase__end_date'))
+
+    def active_modules(self):
+        """Return active modules."""
+        now = timezone.now()
+        return self.filter(module_start__lte=now, module_end__gt=now)
+
+    def past_modules(self):
+        """Return past modules ordered by start."""
+        return self\
+            .filter(end_date__lte=timezone.now())\
+            .order_by('module_start')
+
+    def future_modules(self):
+        """
+        Return future modules ordered by start date.
+
+        Note: Modules without a start date are assumed to start in the future.
+        """
+        return self\
+            .filter(models.Q(module_start__gt=timezone.now())
+                    | models.Q(module_start=None))\
+            .order_by('module_start')
+
+    def past_and_active_modules(self):
+        """Return past and active modules ordered by start date."""
+        return self\
+            .filter(module_start__lte=timezone.now())\
+            .order_by('module_start')
+
+
 class Module(models.Model):
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(
@@ -32,6 +69,8 @@ class Module(models.Model):
     weight = models.PositiveIntegerField()
     project = models.ForeignKey(
         project_models.Project, on_delete=models.CASCADE)
+
+    objects = ModulesQuerySet.as_manager()
 
     class Meta:
         ordering = ['weight']
