@@ -113,8 +113,9 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
 
         for cluster in self.module_clusters(modules):
             if self.module in cluster['modules']:
-                return cluster['modules'], \
-                       cluster['modules'].index(self.module)
+                idx = cluster['modules'].index(self.module)
+                modules = cluster['modules']
+                return modules, idx
         return []
 
     @property
