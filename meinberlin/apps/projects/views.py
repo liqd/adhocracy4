@@ -359,10 +359,10 @@ class ProjectDetailView(PermissionRequiredMixin,
             return super().dispatch(request)
 
     def _view_by_phase(self):
-        if self.module and self.module.last_active_phase:
+        if self.module.last_active_phase:
             return self.module.last_active_phase.view.as_view()
         else:
-            return super().dispatch
+            return self.module.future_phases.first().view.as_view()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
