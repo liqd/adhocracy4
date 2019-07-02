@@ -90,32 +90,36 @@ $(document).ready(function(){
     return parseInt($("#timeline-carousel").attr("data-initial-slide"))
   }
 
-
   $(".timeline-carousel__item").slick({
-  	dots: false,
-    arrows: true,
-    slidesToScroll: 2,
-    infinite: false,
-    slidesToShow: 2,
     initialSlide: getInitialSlide(),
     focusOnSelect: false,
     centerMode: true,
+    dots: false,
+    arrows: true,
+    centerPadding: 30,
+    mobileFirst: true,
+    infinite: false,
     variableWidth: true,
     responsive: [
       {
-          breakpoint: 800,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
-          }
+        breakpoint: 0,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
       },
       {
-          breakpoint: 512,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-      }
+        breakpoint: 512,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
     ]
-  });
-});
+    })
+})
