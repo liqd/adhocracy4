@@ -1,1 +1,63 @@
-{% extends 'a4projects/project_detail.html' %}
+{% extends "base.html" %}
+{% load i18n %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags meinberlin_project_tags offlineevent_tags contrib_tags ckeditor_tags %}
+
+{% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}
+
+{% block extra_messages %}
+    {{ block.super }}
+
+    {% if project.is_draft %}
+        <ul class="messages">
+            <li class="alert alert--warning" role="alert">
+                <div class="l-wrapper">
+                    {% trans 'This project is in not published yet.' %}
+                </div>
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div>
+        <div class="l-center-6">
+        <a href="{% url 'project-detail' project.slug %}">{% trans 'Back to project' %}</a>
+            {% if other_modules|length > 1  %}
+            {% if previous %}<a href="{% url 'module-detail' previous.slug %}">{% trans '<' %}</a>{% endif %}
+            {{ index }} {% trans 'of' %} {{ other_modules|length }}
+            {% if next %}<a href="{% url 'module-detail' next.slug %}">{% trans '>' %}</a>{% endif %}
+            {% endif %}
+            <h1>{{ module.name }}</h1>
+            <p>{{ module.description }}</p>
+        {% block project_action %}{% endblock %}
+        </div>
+        {% if not module.active_phase %}
+            <div class="l-center-6">
+                <div>
+                    <strong>
+                        {% trans 'Participation is not possible at the moment.' %}
+                        {% if not module.past_phases %}
+                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                            {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                        {% elif module.future_phases %}
+                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                            {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                        {% else %}
+                            {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
+                            {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                        {% endif %}
+                    </strong>
+                </div>
+            </div>
+        {% endif %}
+        {% block phase_content %}{% endblock %}
+    </div>
+    {% for other_module in other_modules %}
+        {% if not other_module == module %}
+            <a href="{% url 'module-detail' other_module.slug %}">
+                <h2>{{ other_module.name }}</h2>
+            </a>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+

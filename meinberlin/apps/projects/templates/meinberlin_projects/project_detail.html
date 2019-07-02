@@ -164,6 +164,7 @@
             role="tabpanel"
             aria-labelledby="tab-project-{{ project.pk }}-participation"
             aria-expanded="true">
+
             <div class="l-wrapper timeline-carousel__wrapper">
                 {% if participation_dates|length > 1 %}
                 <div class="timeline-carousel">
@@ -177,7 +178,8 @@
                     <h2>{{ event.name }}</h2>
                     <P>{{ event.description | safe}}</P>
                 {% endif %}
-                {% if modules %}
+
+                {% if modules|length > 1 or view.events %}
                     <div class="participation-tile__wrapper">
                         <div class="participation-tile__list-container">
                             <ul class="u-list-reset participation-tile__list">
@@ -187,30 +189,33 @@
                             </ul>
                         </div>
                     </div>
-                 {% endif %}
-                </div>
-
-                <div class="l-center-6">
-                    {% block project_action %}{% endblock %}
+                {% else %}
+                    {% if not module.active_phase %}
+                    <div>
+                        <strong>
+                            {% trans 'Participation is not possible at the moment.' %}
+                            {% if not module.past_phases %}
+                                {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                                {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                            {% elif module.future_phases %}
+                                {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                                {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                            {% else %}
+                                {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
+                                {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                            {% endif %}
+                        </strong>
+                    </div>
+                    {% endif %}
+                {% endif %}
                 </div>
             </div>
 
-            {% to_class_name object as object_type %}
-            {% if object_type == 'Module' %}
-                {% if object|has_activity %}
-                {% include "meinberlin_activities/includes/activity_detail_content.html" with object=object.item_set.first.activity %}
-                {% endif %}
-            {% elif object_type == 'Project' %}
-                {% if object.modules.first|has_activity %}
-                {% with activity=object.modules.first.item_set.first.activity %}
-                {% include "meinberlin_activities/includes/activity_detail_content.html" with object=activity %}
-                {% endwith %}
-                {% endif %}
-            {% else %}
-                {% block phase_content %}{% endblock %}
-            {% endif %}
+            <div class="l-center-6">
+            {% block project_action %}{% endblock %}
+            </div>
+            {% block phase_content %}{% endblock %}
 
-        </div>
         <div
             class="tabpanel"
             id="tabpanel-project-{{ project.pk }}-result"
