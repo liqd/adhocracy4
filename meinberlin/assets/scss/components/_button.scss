@@ -51,6 +51,8 @@
 }
 
 .btn--light {
+    font-weight: inherit;
+
     @include button-color($body-bg, $bg-secondary);
 
     &,
@@ -187,5 +189,11 @@
         background-color: contrast-color($print-black);
         color: $print-black;
         border-color: $border-color;
+    }
+}
+
+.btn--icon {
+    i {
+        padding-right: 0.5rem;
     }
 }
