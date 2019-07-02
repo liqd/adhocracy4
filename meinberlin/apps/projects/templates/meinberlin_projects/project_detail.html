@@ -177,9 +177,8 @@
                 {% if event %}
                     <h2>{{ event.name }}</h2>
                     <P>{{ event.description | safe}}</P>
-                {% endif %}
-
-                {% if modules|length > 1 or view.events %}
+                {% elif participation_dates|length > 1 and modules %}
+                {% comment %}if in project view and timeline{% endcomment %}
                     <div class="participation-tile__wrapper">
                         <div class="participation-tile__list-container">
                             <ul class="u-list-reset participation-tile__list">
@@ -190,7 +189,7 @@
                         </div>
                     </div>
                 {% else %}
-                    {% if not module.active_phase %}
+                {% comment %}else in phase view{% endcomment %}
                     <div>
                         <strong>
                             {% trans 'Participation is not possible at the moment.' %}
@@ -206,7 +205,6 @@
                             {% endif %}
                         </strong>
                     </div>
-                    {% endif %}
                 {% endif %}
                 </div>
             </div>
