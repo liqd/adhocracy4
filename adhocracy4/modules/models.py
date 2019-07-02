@@ -19,8 +19,8 @@ class ModulesQuerySet(models.QuerySet):
     def annotate_module_end(self):
         return self.annotate(module_end=models.Max('phase__end_date'))
 
-    def active_modules(self):
-        """Return active modules."""
+    def running_modules(self):
+        """Return running modules."""
         now = timezone.now()
         return self.filter(module_start__lte=now, module_end__gt=now)
 
@@ -41,8 +41,8 @@ class ModulesQuerySet(models.QuerySet):
                     | models.Q(module_start=None))\
             .order_by('module_start')
 
-    def past_and_active_modules(self):
-        """Return past and active modules ordered by start date."""
+    def past_and_running_modules(self):
+        """Return past and running modules ordered by start date."""
         return self\
             .filter(module_start__lte=timezone.now())\
             .order_by('module_start')

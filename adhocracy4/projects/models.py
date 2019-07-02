@@ -317,7 +317,16 @@ class Project(ProjectContactDetailMixin,
     def time_left(self):
         """
         Return the time left in the currently active phase that ends next.
+
+        Attention: _deprecated_ as in the projects logic from the modules
+        should be used.
         """
+        warnings.warn(
+            "time_left is deprecated as in the projects "
+            "logic from the modules should be used; "
+            "use module_running_time_left",
+            DeprecationWarning
+        )
 
         def seconds_in_units(seconds):
             unit_totals = []
@@ -355,7 +364,16 @@ class Project(ProjectContactDetailMixin,
         """
         Return the progress of the currently active phase that ends next
         in percent.
+
+        Attention: _deprecated_ as in the projects logic from the modules
+        should be used.
         """
+        warnings.warn(
+            "active_phase_progress is deprecated as in the projects "
+            "logic from the modules should be used; "
+            "use module_running_progress",
+            DeprecationWarning
+        )
         active_phase = self.active_phase_ends_next
         if active_phase:
             time_gone = timezone.now() - active_phase.start_date
@@ -390,15 +408,15 @@ class Project(ProjectContactDetailMixin,
         return self.module_set.all()
 
     @cached_property
-    def active_modules(self):
-        return self.modules.active_modules()
+    def running_modules(self):
+        return self.modules.running_modules()
 
     @cached_property
-    def active_module_ends_next(self):
+    def running_module_ends_next(self):
         """
         Return the currently active module that ends next.
         """
-        return self.active_modules().order_by('module_end').first()
+        return self.running_modules().order_by('module_end').first()
 
     @cached_property
     def past_modules(self):
@@ -417,7 +435,7 @@ class Project(ProjectContactDetailMixin,
     @property
     def module_running_time_left(self):
         """
-        Return the time left in the currently active module that ends next.
+        Return the time left in the currently running module that ends next.
         """
 
         def seconds_in_units(seconds):
@@ -440,10 +458,10 @@ class Project(ProjectContactDetailMixin,
 
             return unit_totals
 
-        active_module = self.active_module_ends_next
-        if active_module:
+        running_module = self.running_module_ends_next
+        if running_module:
             today = timezone.now()
-            time_delta = active_module.end_date - today
+            time_delta = running_module.end_date - today
             seconds = time_delta.total_seconds()
             time_delta_list = seconds_in_units(seconds)
             best_unit = time_delta_list[0]
@@ -454,13 +472,14 @@ class Project(ProjectContactDetailMixin,
     @property
     def module_running_progress(self):
         """
-        Return the progress of the currently active module that ends next
+        Return the progress of the currently running module that ends next
         in percent.
         """
-        active_module = self.active_module_ends_next
-        if active_module:
-            time_gone = timezone.now() - active_module.module_start
-            total_time = active_module.module_end - active_module.module_start
+        running_module = self.running_module_ends_next
+        if running_module:
+            time_gone = timezone.now() - running_module.module_start
+            total_time = running_module.module_end \
+                - running_module.module_start
             return round(time_gone / total_time * 100)
         return None
 
