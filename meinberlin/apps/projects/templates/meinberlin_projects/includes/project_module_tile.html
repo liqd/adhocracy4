@@ -29,7 +29,7 @@
                 </div>
                 {% elif module.module_has_finished %}
                 <div class="status-item status-bar__past">
-                {% blocktrans %}Participation ended. Read result{% endblocktrans %}
+                    <span class="participation-tile__status">{% blocktrans %}Participation ended. Read result{% endblocktrans %}</span>
                 </div>
                 {% endif %}
                 <div class="participation-tile__spacer"></div>
@@ -40,4 +40,3 @@
         </div>
     </a>
 </li>
-

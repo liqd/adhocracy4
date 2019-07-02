@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-25 14:20+0200\n"
+"POT-Creation-Date: 2019-07-01 16:58+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -441,7 +441,7 @@ msgstr "Vom Moderator gelöscht"
 
 #: adhocracy4/comments/serializers.py:51
 msgid "Please choose a category"
-msgstr ""
+msgstr "Bitte wählen Sie eine Kategorie"
 
 #: adhocracy4/comments/serializers.py:60
 msgid "unknown user"
@@ -467,7 +467,6 @@ msgstr "Grundeinstellungen bearbeiten"
 #: adhocracy4/dashboard/dashboard.py:23
 #: meinberlin/apps/projectcontainers/dashboard.py:47
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:41
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:80
 msgid "Information"
 msgstr "Information"
 
@@ -1726,11 +1725,13 @@ msgid "City wide"
 msgstr "Gesamtstädtisch"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:37
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:64
 #, python-format
 msgid " %(time_left)s remaining "
 msgstr " noch %(time_left)s"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/includes/storefronts.html:39
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:66
 msgid "more than 1 year remaining"
 msgstr "noch länger als 1 Jahr"
 
@@ -2980,23 +2981,34 @@ msgstr "Laden Sie eine CSV-Datei hoch, die E-Mail Adressen beinhaltet."
 msgid "Please enter email addresses or upload a file"
 msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:51
-msgid "Participation projects: "
-msgstr "Beteiligungsprojekte: "
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:12
+#, python-format
+msgid "%(num_entries)s Contributions"
+msgstr ""
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:63
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:21
 #, python-format
 msgid "remaining %(time_left)s"
 msgstr "noch %(time_left)s"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:69
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:27
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:73
 #, python-format
 msgid "Participation: starts on %(date)s"
 msgstr "Beteiligung: startet am %(date)s"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:74
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:32
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:79
 msgid "Participation ended. Read result"
 msgstr "Beteiligung beendet. Ergebnis lesen."
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:37
+msgid "Join now"
+msgstr "jetzt mitmachen"
+
+#: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:51
+msgid "Participation projects: "
+msgstr "Beteiligungsprojekte: "
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:11
 msgid "from"
@@ -3172,11 +3184,15 @@ msgstr "Dieses Projekt ist noch nicht veröffentlicht."
 msgid "to project collection %(name)s"
 msgstr "zur Projektsammlung %(name)s"
 
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:80
+msgid "About the Project"
+msgstr "über das Projekt"
+
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:144
 msgid "Responsible body"
 msgstr "Verantwortliche Stelle"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:223
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:225
 msgid "No results yet."
 msgstr "Noch gibt es keine Ergebnisse."
 
