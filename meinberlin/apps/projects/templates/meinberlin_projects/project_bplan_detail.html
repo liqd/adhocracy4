@@ -1,0 +1,18 @@
+{% extends "meinberlin_projects/project_detail.html" %}
+{% load i18n rules react_follows thumbnail wagtailcore_tags meinberlin_project_tags offlineevent_tags contrib_tags ckeditor_tags %}
+
+{% block title %}{{project.name}} &mdash; {{ block.super }}{% endblock %}{
+
+{% block content %}
+        {# As bplan projects don't set the information and the result field, the default project detail, which is shown prior to the first phase, looks bad. #}
+        {# This replaces the default project detail by a simple notice that the participation has not started yet. #}
+        <div class="l-wrapper">
+            <div class="l-center-6">
+                <h1 class="u-first-heading">{% trans 'Participation is not possible at the moment.' %}</h1>
+                <p>
+                    {% html_date project.modules.first.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
+                    {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                </p>
+            </div>
+        </div>
+{% endblock %}

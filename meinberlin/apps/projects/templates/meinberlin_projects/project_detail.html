@@ -18,223 +18,207 @@
 {% endblock %}
 
 {% block content %}
-
-    {% if project|is_container %}
-        {% include 'meinberlin_projectcontainers/includes/container_detail.html' with container=project.projectcontainer %}
-    {% elif project|project_type == 'bplan' %}
-        {# As bplan projects don't set the information and the result field, the default project detail, which is shown prior to the first phase, looks bad. #}
-        {# This replaces the default project detail by a simple notice that the participation has not started yet. #}
+    <div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
+                   background-image: url({{ project.image |thumbnail_url:'heroimage' }});
+                   {% endif %}">
         <div class="l-wrapper">
             <div class="l-center-6">
-                <h1 class="u-first-heading">{% trans 'Participation is not possible at the moment.' %}</h1>
-                <p>
-                    {% html_date project.modules.first.future_phases.first.start_date 'DATE_FORMAT' as start_date %}
-                    {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
-                </p>
+                {% with container=project.containers.first %}
+                    {% if container %}
+                        <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
+                            <ul>
+                                <li>
+                                    <a href="{{ container.get_absolute_url }}" data-embed-target="external">
+                                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                        {% blocktrans with name=container.name %}to project collection {{ name }}{% endblocktrans %}
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    {% endif %}
+                {% endwith %}
+                <h1 class="project-header__title">{{ project.name }}</h1>
+                <p class="project-header__description">{{ project.description }}</p>
             </div>
         </div>
-    {% else %}
-        <div class="project-header{% if project.image %} project-header--image{% endif %}" style="{% if view.project.image %}
-                       background-image: url({{ project.image |thumbnail_url:'heroimage' }});
-                       {% endif %}">
-            <div class="l-wrapper">
-                <div class="l-center-6">
-                    {% with container=project.containers.first %}
-                        {% if container %}
-                            <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
-                                <ul>
-                                    <li>
-                                        <a href="{{ container.get_absolute_url }}" data-embed-target="external">
-                                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                            {% blocktrans with name=container.name %}to project collection {{ name }}{% endblocktrans %}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        {% endif %}
-                    {% endwith %}
-                    <h1 class="project-header__title">{{ project.name }}</h1>
-                    <p class="project-header__description">{{ project.description }}</p>
-                </div>
-            </div>
-            {% if project.image_copyright %}
-                <div class="project-header__copyright copyright">© {{ project.image_copyright }}</div>
+        {% if project.image_copyright %}
+            <div class="project-header__copyright copyright">© {{ project.image_copyright }}</div>
+        {% endif %}
+    </div>
+
+    <div class="tablist tablist--left">
+    <div class="l-wrapper">
+        <div class="tablist__right">
+            {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
+            {% if user_may_change %}
+                <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+                {% react_follows project %}
+>>>>>>> apps/projects: move type checks from template to view
             {% endif %}
         </div>
 
-        <div class="tablist tablist--left">
-            <div class="l-wrapper">
-                <div class="tablist__right">
-                    {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
-                    {% if user_may_change %}
-                        <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
-                    {% endif %}
-                    {% if request.user.is_authenticated %}
-                        {% react_follows project %}
-                    {% endif %}
-                </div>
+        <nav class="nav" role="tablist">
+            <a
+                id="tab-project-{{ project.pk }}-information"
+                class="tab"
+                data-toggle="tab"
+                href="#tabpanel-project-{{ project.pk }}-information"
+                role="tab"
+                aria-controls="tabpanel-project-{{ project.pk }}-information"
+                aria-expanded="false">
+                {% trans 'About the Project' %}
+            </a>
+            <a
+                id="tab-project-{{ project.pk }}-participation"
+                class="tab active"
+                data-toggle="tab"
+                href="#tabpanel-project-{{ project.pk }}-participation"
+                role="tab"
+                aria-controls="tabpanel-project-{{ project.pk }}-participation"
+                aria-expanded="true">
+                {% trans 'Participation' %}
+            </a>
+            <a
+                id="tab-project-{{ project.pk }}-result"
+                class="tab"
+                data-toggle="tab"
+                href="#tabpanel-project-{{ project.pk }}-result"
+                role="tab"
+                aria-controls="tabpanel-project-{{ project.pk }}-result"
+                aria-expanded="false">
+                {% trans 'Result' %}
+            </a>
+        </nav>
+    </div>
+    </div>
 
-                <nav class="nav" role="tablist">
-                    <a
-                        id="tab-project-{{ project.pk }}-information"
-                        class="tab"
-                        data-toggle="tab"
-                        href="#tabpanel-project-{{ project.pk }}-information"
-                        role="tab"
-                        aria-controls="tabpanel-project-{{ project.pk }}-information"
-                        aria-expanded="false">
-                        {% trans 'About the Project' %}
-                    </a>
-                    <a
-                        id="tab-project-{{ project.pk }}-participation"
-                        class="tab active"
-                        data-toggle="tab"
-                        href="#tabpanel-project-{{ project.pk }}-participation"
-                        role="tab"
-                        aria-controls="tabpanel-project-{{ project.pk }}-participation"
-                        aria-expanded="true">
-                        {% trans 'Participation' %}
-                    </a>
-                    <a
-                        id="tab-project-{{ project.pk }}-result"
-                        class="tab"
-                        data-toggle="tab"
-                        href="#tabpanel-project-{{ project.pk }}-result"
-                        role="tab"
-                        aria-controls="tabpanel-project-{{ project.pk }}-result"
-                        aria-expanded="false">
-                        {% trans 'Result' %}
-                    </a>
-                </nav>
-            </div>
-        </div>
-
-        <div
-            class="tabpanel"
-            id="tabpanel-project-{{ project.pk }}-information"
-            role="tabpanel"
-            aria-labelledby="tab-project-{{ project.pk }}-information"
-            aria-expanded="false">
-            <div class="l-wrapper">
-                <div class="l-center-8">
-                    {{ project.information | transform_collapsibles | richtext }}
-                    {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url or project.organisation.address or project.organisation.url %}
-                        <div class="l-tiles-2 u-top-divider">
-                        {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
-                            <div>
-                                <h3>{% trans 'Contact for questions' %}</h3>
-                                {% if project.contact_name %}
-                                <p>{{ project.contact_name }}</p>
-                                {% endif %}
-                                {% if project.contact_address_text %}
-                                <p>{{ project.contact_address_text|linebreaks }}</p>
-                                {% endif %}
-                                {% if project.contact_phone %}
-                                <p><strong>{% trans 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
-                                {% endif %}
-                                {% if project.contact_email %}
-                                <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
-                                    {% trans 'Email' %}
-                                </a>
-                                {% endif %}
-                                {% if project.contact_url %}
-                                <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
-                                    {% trans 'Website' %}
-                                </a>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-
-                        {% if project.organisation.address or project.organisation.url %}
-                            <div>
-                                <h3>{% trans 'Responsible body' %}</h3>
-                                {% if project.organisation.address %}
-                                <p>{{ project.organisation.name }}</p>
-                                <p>{{ project.organisation.address|linebreaks }}</p>
-                                {% endif %}
-                                {% if project.organisation.url %}
-                                <a class="btn btn--secondary" target="_blank" href="{{ project.organisation.url }}">
-                                    {% trans 'Website' %}
-                                </a>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-                        </div>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-        <div
-            class="tabpanel active"
-            id="tabpanel-project-{{ project.pk }}-participation"
-            role="tabpanel"
-            aria-labelledby="tab-project-{{ project.pk }}-participation"
-            aria-expanded="true">
-
-            <div class="l-wrapper timeline-carousel__wrapper">
-                {% if participation_dates|length > 1 %}
-                <div class="timeline-carousel">
-                    <div class="container">
-                          {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
-                    </div>
-                </div>
-                {% endif %}
-                <div>
-                {% if event %}
-                    <h2>{{ event.name }}</h2>
-                    <P>{{ event.description | safe}}</P>
-                {% elif participation_dates|length > 1 and modules %}
-                {% comment %}if in project view and timeline{% endcomment %}
-                    <div class="participation-tile__wrapper">
-                        <div class="participation-tile__list-container">
-                            <ul class="u-list-reset participation-tile__list">
-                            {% for module in modules %}
-                                {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
-                            {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                {% else %}
-                {% comment %}else in phase view{% endcomment %}
+    <div
+    class="tabpanel"
+    id="tabpanel-project-{{ project.pk }}-information"
+    role="tabpanel"
+    aria-labelledby="tab-project-{{ project.pk }}-information"
+    aria-expanded="false">
+    <div class="l-wrapper">
+        <div class="l-center-8">
+            {{ project.information | transform_collapsibles | richtext }}
+            {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url or project.organisation.address or project.organisation.url %}
+                <div class="l-tiles-2 u-top-divider">
+                {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
                     <div>
-                        <strong>
-                            {% trans 'Participation is not possible at the moment.' %}
-                            {% if not module.past_phases %}
-                                {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                                {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
-                            {% elif module.future_phases %}
-                                {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                                {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
-                            {% else %}
-                                {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
-                                {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
-                            {% endif %}
-                        </strong>
+                        <h3>{% trans 'Contact for questions' %}</h3>
+                        {% if project.contact_name %}
+                        <p>{{ project.contact_name }}</p>
+                        {% endif %}
+                        {% if project.contact_address_text %}
+                        <p>{{ project.contact_address_text|linebreaks }}</p>
+                        {% endif %}
+                        {% if project.contact_phone %}
+                        <p><strong>{% trans 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
+                        {% endif %}
+                        {% if project.contact_email %}
+                        <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
+                            {% trans 'Email' %}
+                        </a>
+                        {% endif %}
+                        {% if project.contact_url %}
+                        <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
+                            {% trans 'Website' %}
+                        </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                {% if project.organisation.address or project.organisation.url %}
+                    <div>
+                        <h3>{% trans 'Responsible body' %}</h3>
+                        {% if project.organisation.address %}
+                        <p>{{ project.organisation.name }}</p>
+                        <p>{{ project.organisation.address|linebreaks }}</p>
+                        {% endif %}
+                        {% if project.organisation.url %}
+                        <a class="btn btn--secondary" target="_blank" href="{{ project.organisation.url }}">
+                            {% trans 'Website' %}
+                        </a>
+                        {% endif %}
                     </div>
                 {% endif %}
                 </div>
-            </div>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+    <div
+    class="tabpanel active"
+    id="tabpanel-project-{{ project.pk }}-participation"
+    role="tabpanel"
+    aria-labelledby="tab-project-{{ project.pk }}-participation"
+    aria-expanded="true">
 
-            <div class="l-center-6">
-            {% block project_action %}{% endblock %}
-            </div>
-            {% block phase_content %}{% endblock %}
-
-        <div
-            class="tabpanel"
-            id="tabpanel-project-{{ project.pk }}-result"
-            role="tabpanel"
-            aria-labelledby="tab-project-{{ project.pk }}-result"
-            aria-expanded="false">
-            <div class="l-wrapper">
-                <div class="l-center-8">
-                    {% if project.result %}
-                        {{ project.result | richtext }}
-                    {% else %}
-                        {% trans 'No results yet.' %}
-                    {% endif %}
-                </div>
+    <div class="l-wrapper timeline-carousel__wrapper">
+        {% if participation_dates|length > 1 %}
+        <div class="timeline-carousel">
+            <div class="container">
+                  {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
             </div>
         </div>
-    {% endif %}
+        {% endif %}
+        <div>
+        {% if event %}
+            <h2>{{ event.name }}</h2>
+            <P>{{ event.description | safe}}</P>
+        {% elif participation_dates|length > 1 and modules %}
+        {% comment %}if in project view and timeline{% endcomment %}
+            <div class="participation-tile__wrapper">
+                <div class="participation-tile__list-container">
+                    <ul class="u-list-reset participation-tile__list">
+                    {% for module in modules %}
+                        {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% else %}
+        {% comment %}else in phase view{% endcomment %}
+            <div>
+                <strong>
+                    {% trans 'Participation is not possible at the moment.' %}
+                    {% if not module.past_phases %}
+                        {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                        {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                    {% elif module.future_phases %}
+                        {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                        {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                    {% else %}
+                        {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
+                        {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                    {% endif %}
+                </strong>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+
+    <div class="l-center-6">
+    {% block project_action %}{% endblock %}
+    </div>
+    {% block phase_content %}{% endblock %}
+
+    <div
+    class="tabpanel"
+    id="tabpanel-project-{{ project.pk }}-result"
+    role="tabpanel"
+    aria-labelledby="tab-project-{{ project.pk }}-result"
+    aria-expanded="false">
+        <div class="l-wrapper">
+            <div class="l-center-8">
+                {% if project.result %}
+                    {{ project.result | richtext }}
+                {% else %}
+                    {% trans 'No results yet.' %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

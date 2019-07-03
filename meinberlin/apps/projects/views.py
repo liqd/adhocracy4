@@ -32,6 +32,7 @@ from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 
 from . import forms
+from . import get_project_type
 from . import models
 
 User = get_user_model()
@@ -348,7 +349,14 @@ class ProjectDetailView(PermissionRequiredMixin,
 
     model = models.Project
     permission_required = 'a4projects.view_project'
-    template_name = 'meinberlin_projects/project_detail.html'
+
+    def get_template_names(self):
+        type = get_project_type(self.project)
+        if type == 'container':
+            return ['meinberlin_projects/project_container_detail.html']
+        if type == 'bplan':
+            return ['meinberlin_projects/project_bplan_detail.html']
+        return ['meinberlin_projects/project_detail.html']
 
     def dispatch(self, request, *args, **kwargs):
         kwargs['project'] = self.project
