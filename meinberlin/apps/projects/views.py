@@ -134,7 +134,7 @@ class ParticipantInviteDetailView(generic.DetailView):
     slug_url_kwarg = 'invite_token'
 
     def dispatch(self, request, invite_token, *args, **kwargs):
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             return redirect(
                 'project-participant-invite-update',
                 invite_token=invite_token
@@ -164,7 +164,7 @@ class ModeratorInviteDetailView(generic.DetailView):
     slug_url_kwarg = 'invite_token'
 
     def dispatch(self, request, invite_token, *args, **kwargs):
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             return redirect(
                 'project-moderator-invite-update',
                 invite_token=invite_token

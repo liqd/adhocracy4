@@ -39,7 +39,7 @@ class ProposalExportView(PermissionRequiredMixin,
 
     @property
     def raise_exception(self):
-        return self.request.user.is_authenticated()
+        return self.request.user.is_authenticated
 
 
 class ProposalCommentExportView(PermissionRequiredMixin,
@@ -75,4 +75,4 @@ class ProposalCommentExportView(PermissionRequiredMixin,
 
     @property
     def raise_exception(self):
-        return self.request.user.is_authenticated()
+        return self.request.user.is_authenticated

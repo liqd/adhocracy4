@@ -43,4 +43,4 @@ class DocumentExportView(
 
     @property
     def raise_exception(self):
-        return self.request.user.is_authenticated()
+        return self.request.user.is_authenticated
