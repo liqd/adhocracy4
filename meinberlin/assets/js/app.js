@@ -100,26 +100,7 @@ $(document).ready(function(){
     mobileFirst: true,
     infinite: false,
     variableWidth: true,
-    responsive: [
-      {
-        breakpoint: 0,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 512,
-        settings: {
-          slidesToShow: 2,
-        }
-      },
-      {
-        breakpoint: 800,
-        settings: {
-          slidesToShow: 3,
-        }
-      },
-    ]
+    slidesToShow: 1,
+    slidesToScroll: 1
     })
 })
