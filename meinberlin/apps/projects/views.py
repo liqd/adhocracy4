@@ -30,6 +30,7 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
+from meinberlin.apps.contrib.mixins import ModuleClusterMixin
 
 from . import forms
 from . import get_project_type
@@ -345,7 +346,8 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
 
 
 class ProjectDetailView(PermissionRequiredMixin,
-                        generic.DetailView):
+                        generic.DetailView,
+                        ModuleClusterMixin):
 
     model = models.Project
     permission_required = 'a4projects.view_project'
@@ -405,35 +407,7 @@ class ProjectDetailView(PermissionRequiredMixin,
 
     @cached_property
     def module_clusters(self):
-        clusters = []
-        modules = self.modules
-        try:
-            start_date = modules.first().start_date
-            end_date = modules.first().end_date
-            count = 1
-            first_cluster = self._get_module_dict(
-                count, start_date, end_date)
-            first_cluster['modules'].append(modules.first())
-            current_cluster = first_cluster
-            clusters.append(first_cluster)
-
-            for module in modules[1:]:
-                if module.start_date > end_date:
-                    start_date = module.start_date
-                    end_date = module.end_date
-                    count += 1
-                    next_cluster = self._get_module_dict(
-                        count, start_date, end_date)
-                    next_cluster['modules'].append(module)
-                    current_cluster = next_cluster
-                    clusters.append(next_cluster)
-                else:
-                    current_cluster['modules'].append(module)
-                    if module.end_date > end_date:
-                        end_date = module.end_date
-                        current_cluster['end_date'] = end_date
-        except AttributeError:
-            return clusters
+        clusters = super().get_module_clusters(self.modules)
         if len(clusters) == 1:
             clusters[0]['title'] = _('Online Participation')
         return clusters
