@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.db.models import Max
 from django.db.models import Min
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils import timezone
@@ -386,6 +387,7 @@ class ProjectDetailView(PermissionRequiredMixin,
         return self.project.modules\
             .annotate(start_date=Min('phase__start_date'))\
             .annotate(end_date=Max('phase__end_date'))\
+            .exclude(Q(start_date=None) | Q(end_date=None))\
             .order_by('start_date')
 
     @cached_property
