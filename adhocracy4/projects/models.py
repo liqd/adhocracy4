@@ -303,7 +303,7 @@ class Project(ProjectContactDetailMixin,
         """
         warnings.warn(
             "days_left is deprecated as it relies on active_phase; "
-            "use module_running_time_left",
+            "use module_running_days_left",
             DeprecationWarning
         )
         active_phase = self.active_phase
@@ -416,7 +416,7 @@ class Project(ProjectContactDetailMixin,
         """
         Return the currently active module that ends next.
         """
-        return self.running_modules().order_by('module_end').first()
+        return self.running_modules.order_by('module_end').first()
 
     @cached_property
     def past_modules(self):
@@ -431,6 +431,23 @@ class Project(ProjectContactDetailMixin,
         Note: Modules without a start date are assumed to start in the future.
         """
         return self.modules.future_modules()
+
+    @property
+    def module_running_days_left(self):
+        """
+        Return the number of days left in the currently running module that
+        ends next.
+
+        Attention: It's a bit coarse and should only be used for estimations
+        like 'ending soon', but NOT to display the number of days a project
+        is still running. For that use module_running_time_left.
+        """
+        running_module = self.running_module_ends_next
+        if running_module:
+            today = timezone.now().replace(hour=0, minute=0, second=0)
+            time_delta = running_module.module_end - today
+            return time_delta.days
+        return None
 
     @property
     def module_running_time_left(self):
@@ -461,13 +478,14 @@ class Project(ProjectContactDetailMixin,
         running_module = self.running_module_ends_next
         if running_module:
             today = timezone.now()
-            time_delta = running_module.end_date - today
+            time_delta = running_module.module_end - today
             seconds = time_delta.total_seconds()
             time_delta_list = seconds_in_units(seconds)
             best_unit = time_delta_list[0]
             time_delta_str = '{} {}'.format(str(best_unit[1]),
                                             str(best_unit[0]))
             return time_delta_str
+        return None
 
     @property
     def module_running_progress(self):

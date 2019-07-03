@@ -22,12 +22,17 @@ class ModulesQuerySet(models.QuerySet):
     def running_modules(self):
         """Return running modules."""
         now = timezone.now()
-        return self.filter(module_start__lte=now, module_end__gt=now)
+        return self\
+            .annotate(module_start=models.Min('phase__start_date'))\
+            .annotate(module_end=models.Max('phase__end_date'))\
+            .filter(module_start__lte=now, module_end__gt=now)
 
     def past_modules(self):
         """Return past modules ordered by start."""
         return self\
-            .filter(end_date__lte=timezone.now())\
+            .annotate(module_start=models.Min('phase__start_date'))\
+            .annotate(module_end=models.Max('phase__end_date'))\
+            .filter(module_end__lte=timezone.now())\
             .order_by('module_start')
 
     def future_modules(self):
@@ -37,6 +42,7 @@ class ModulesQuerySet(models.QuerySet):
         Note: Modules without a start date are assumed to start in the future.
         """
         return self\
+            .annotate(module_start=models.Min('phase__start_date'))\
             .filter(models.Q(module_start__gt=timezone.now())
                     | models.Q(module_start=None))\
             .order_by('module_start')
@@ -44,6 +50,7 @@ class ModulesQuerySet(models.QuerySet):
     def past_and_running_modules(self):
         """Return past and running modules ordered by start date."""
         return self\
+            .annotate(module_start=models.Min('phase__start_date'))\
             .filter(module_start__lte=timezone.now())\
             .order_by('module_start')
 
