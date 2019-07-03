@@ -37,7 +37,7 @@ class MapTopicExportView(PermissionRequiredMixin,
 
     @property
     def raise_exception(self):
-        return self.request.user.is_authenticated()
+        return self.request.user.is_authenticated
 
 
 class MapTopicCommentExportView(PermissionRequiredMixin,
@@ -71,4 +71,4 @@ class MapTopicCommentExportView(PermissionRequiredMixin,
 
     @property
     def raise_exception(self):
-        return self.request.user.is_authenticated()
+        return self.request.user.is_authenticated

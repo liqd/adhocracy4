@@ -38,7 +38,7 @@ class IdeaExportView(PermissionRequiredMixin,
 
     @property
     def raise_exception(self):
-        return self.request.user.is_authenticated()
+        return self.request.user.is_authenticated
 
 
 class IdeaCommentExportView(PermissionRequiredMixin,
@@ -72,4 +72,4 @@ class IdeaCommentExportView(PermissionRequiredMixin,
 
     @property
     def raise_exception(self):
-        return self.request.user.is_authenticated()
+        return self.request.user.is_authenticated
