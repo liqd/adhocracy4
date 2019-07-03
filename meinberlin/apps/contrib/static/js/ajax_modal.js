@@ -1,4 +1,4 @@
-/* globals $ django */
+/* globals django */
 $(function () {
   var modalHTML = (
     '<div class="modal" tabindex="-1" role="dialog">' +

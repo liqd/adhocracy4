@@ -1,6 +1,7 @@
 /* global django */
 import { renderToString } from 'react-dom/server'
 import React, { Component } from 'react'
+import { withCookies } from 'react-cookie'
 import PopUp from './PopUp'
 import { createMap } from 'a4maps_common'
 import 'leaflet.markercluster'
@@ -42,14 +43,15 @@ class PlansMap extends Component {
   constructor (props) {
     super(props)
 
+    let showInfoBox = !this.props.cookies.get('plansMapHideInfoBox')
     this.state = {
       searchResults: null,
       address: null,
       selected: null,
       displayError: false,
       displayResults: false,
-      showInfoBox: true,
-      showInfoBoxUser: true,
+      showInfoBox: showInfoBox,
+      showInfoBoxUser: showInfoBox,
       filters: {
         status: -1,
         participation: -1,
@@ -236,6 +238,7 @@ class PlansMap extends Component {
       { 'showInfoBox': false,
         'showInfoBoxUser': false }
     )
+    this.props.cookies.set('plansMapHideInfoBox', 1, { path: '/' })
   }
 
   render () {
@@ -290,4 +293,4 @@ class PlansMap extends Component {
   }
 }
 
-module.exports = PlansMap
+export default withCookies(PlansMap)

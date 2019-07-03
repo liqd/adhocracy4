@@ -1,11 +1,10 @@
-/* global history */
 /* global django */
 import StickyBox from 'react-sticky-box'
-const React = require('react')
-let PlansList = require('./PlansList')
-let PlansMap = require('./PlansMap')
-let FilterNav = require('./FilterNav')
-let Toggles = require('./Toggles')
+import React, { Component } from 'react'
+import PlansList from './PlansList'
+import PlansMap from './PlansMap'
+import FilterNav from './FilterNav'
+import Toggles from './Toggles'
 
 const breakpointXS = 512
 const breakpointMD = 1024
@@ -27,7 +26,7 @@ const statusNames = [
   django.gettext('done')
 ]
 
-class ListMapBox extends React.Component {
+class ListMapBox extends Component {
   constructor (props) {
     super(props)
 
@@ -402,4 +401,4 @@ class ListMapBox extends React.Component {
   }
 }
 
-module.exports = ListMapBox
+export default ListMapBox
