@@ -1,6 +1,7 @@
 from django import forms
 from django.db.models import Max
 from django.db.models import Min
+from django.db.models import Q
 from django.urls import resolve
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
@@ -77,6 +78,8 @@ class ModuleClusterMixin:
         }
 
     def get_module_clusters(self, modules):
+        modules = modules\
+            .exclude(Q(start_date=None) | Q(end_date=None))
         clusters = []
         try:
             start_date = modules.first().start_date
