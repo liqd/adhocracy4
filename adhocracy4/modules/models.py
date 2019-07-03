@@ -88,7 +88,7 @@ class Module(models.Model):
     def get_absolute_url(self):
         return reverse('module-detail', kwargs=dict(module_slug=self.slug))
 
-    @property
+    @cached_property
     def settings_instance(self):
         settingslist = [field.name for field in self._meta.get_fields()
                         if field.name.endswith('_settings')]
@@ -101,7 +101,7 @@ class Module(models.Model):
         '''Return all phases for this module, ordered by weight.'''
         return self.phase_set.all()
 
-    @property
+    @cached_property
     def active_phase(self):
         '''
         Return the currently active phase of the module.
@@ -123,7 +123,7 @@ class Module(models.Model):
         '''Return all past phases for this module, ordered by start.'''
         return self.phase_set.past_phases()
 
-    @property
+    @cached_property
     def last_active_phase(self):
         '''
         Return the phase that is currently still active or the past phase
@@ -134,7 +134,7 @@ class Module(models.Model):
         '''
         return self.active_phase or self.past_phases.last()
 
-    @property
+    @cached_property
     def first_phase_start_date(self):
         '''
         Return the start date of the first phase in the module.
@@ -177,7 +177,7 @@ class Module(models.Model):
         now = timezone.now()
         return now > self.module_end
 
-    @property
+    @cached_property
     def module_running_time_left(self):
         """
         Return the time left of the module in percent
@@ -216,7 +216,7 @@ class Module(models.Model):
 
         return None
 
-    @property
+    @cached_property
     def module_running_progress(self):
         """
         Return the progress of the module in percent
@@ -232,7 +232,7 @@ class Module(models.Model):
 class Item(base.UserGeneratedContentModel):
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
 
-    @property
+    @cached_property
     def project(self):
         return self.module.project
 

@@ -3,6 +3,7 @@ from datetime import timedelta
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.modules import models as modules_models
@@ -94,11 +95,11 @@ class Phase(models.Model):
                 })
         super().clean()
 
-    @property
+    @cached_property
     def view(self):
         return content[self.type].view
 
-    @property
+    @cached_property
     def is_over(self):
         '''Test if phase is over.'''
         return self.end_date <= timezone.now()

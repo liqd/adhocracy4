@@ -221,7 +221,7 @@ class Project(ProjectContactDetailMixin,
     def has_moderator(self, user):
         return user in self.moderators.all()
 
-    @property
+    @cached_property
     def topic_names(self):
         if hasattr(settings, 'A4_PROJECT_TOPICS'):
             choices = dict(settings.A4_PROJECT_TOPICS)
@@ -234,11 +234,11 @@ class Project(ProjectContactDetailMixin,
             .filter(is_draft=False, is_archived=False).exclude(slug=self.slug)
         return other_projects
 
-    @property
+    @cached_property
     def is_private(self):
         return not self.is_public
 
-    @property
+    @cached_property
     def last_active_phase(self):
         """
         Return the last active phase.
@@ -251,7 +251,7 @@ class Project(ProjectContactDetailMixin,
             .past_and_active_phases()\
             .last()
 
-    @property
+    @cached_property
     def last_active_module(self):
         """
         Return the module of the last active phase.
@@ -264,7 +264,7 @@ class Project(ProjectContactDetailMixin,
             return last_active_phase.module
         return None
 
-    @property
+    @cached_property
     def active_phase(self):
         """
         Return the currently active phase.
@@ -286,14 +286,14 @@ class Project(ProjectContactDetailMixin,
             return last_active_phase
         return None
 
-    @property
+    @cached_property
     def active_phase_ends_next(self):
         """
         Return the currently active phase that ends next.
         """
         return self.phases.active_phases().order_by('end_date').first()
 
-    @property
+    @cached_property
     def days_left(self):
         """
         Return the number of days left in the currently active phase.
@@ -313,7 +313,7 @@ class Project(ProjectContactDetailMixin,
             return time_delta.days
         return None
 
-    @property
+    @cached_property
     def time_left(self):
         """
         Return the time left in the currently active phase that ends next.
@@ -359,7 +359,7 @@ class Project(ProjectContactDetailMixin,
                                             str(best_unit[0]))
             return time_delta_str
 
-    @property
+    @cached_property
     def active_phase_progress(self):
         """
         Return the progress of the currently active phase that ends next
@@ -394,11 +394,11 @@ class Project(ProjectContactDetailMixin,
     def past_phases(self):
         return self.phases.past_phases()
 
-    @property
+    @cached_property
     def has_started(self):
         return self.phases.past_and_active_phases().exists()
 
-    @property
+    @cached_property
     def has_finished(self):
         return not self.phases.active_phases().exists()\
                and not self.phases.future_phases().exists()
@@ -432,7 +432,7 @@ class Project(ProjectContactDetailMixin,
         """
         return self.modules.future_modules()
 
-    @property
+    @cached_property
     def module_running_days_left(self):
         """
         Return the number of days left in the currently running module that
@@ -449,7 +449,7 @@ class Project(ProjectContactDetailMixin,
             return time_delta.days
         return None
 
-    @property
+    @cached_property
     def module_running_time_left(self):
         """
         Return the time left in the currently running module that ends next.
@@ -487,7 +487,7 @@ class Project(ProjectContactDetailMixin,
             return time_delta_str
         return None
 
-    @property
+    @cached_property
     def module_running_progress(self):
         """
         Return the progress of the currently running module that ends next
@@ -501,6 +501,6 @@ class Project(ProjectContactDetailMixin,
             return round(time_gone / total_time * 100)
         return None
 
-    @property
+    @cached_property
     def is_archivable(self):
         return not self.is_archived and self.has_finished
