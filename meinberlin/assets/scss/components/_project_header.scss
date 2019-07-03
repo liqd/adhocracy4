@@ -63,19 +63,6 @@
     right: 0;
 }
 
-.project-header__link {
-    text-decoration: none;
-    color: inherit;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: $font-size-xs;
-
-    &:focus,
-    &:hover {
-        color: inherit;
-    }
-}
-
 .project-header__logo {
     border: 1px solid $border-color;
 }

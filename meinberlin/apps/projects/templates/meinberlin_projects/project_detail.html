@@ -41,10 +41,16 @@
                 <div class="l-center-6">
                     {% with container=project.containers.first %}
                         {% if container %}
-                            <a href="{{ container.get_absolute_url }}" class="project-header__link" data-embed-target="external">
-                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                {% blocktrans with name=container.name %}to project collection {{ name }}{% endblocktrans %}
-                            </a>
+                            <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
+                                <ul>
+                                    <li>
+                                        <a href="{{ container.get_absolute_url }}" data-embed-target="external">
+                                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                            {% blocktrans with name=container.name %}to project collection {{ name }}{% endblocktrans %}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         {% endif %}
                     {% endwith %}
                     <h1 class="project-header__title">{{ project.name }}</h1>
