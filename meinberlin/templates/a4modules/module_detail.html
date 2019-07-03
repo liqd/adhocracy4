@@ -20,23 +20,33 @@
 
 {% block content %}
     <div class="l-wrapper">
-        <div class="u-spacer-bottom-double">
-            <a class="btn btn--light btn--icon u-secondary" href="{% url 'project-detail' project.slug %}"><i class="fa fa-chevron-left"></i><span class="u-md-down-display-none">{% trans 'Back to project' %}</span><span class="u-md-up-display-none">{% trans 'Back' %}</span></a>
-            {% if other_modules|length > 1  %}
-                <div class="u-float-right">
-                {% if previous %}
-                    <a class="btn btn--light u-secondary" href="{% url 'module-detail' previous.slug %}"><i class="fa fa-chevron-left u-md-up-display-none"></i><span class="u-md-down-display-none">{% trans 'Previous qustion' %}</span></a>
-                {% endif %}
-                <span class="u-spacer-left u-spacer-right">{{ index }} {% trans 'of' %} {{ other_modules|length }}</span>
-                {% if next %}
-                    <a class="btn btn--light u-secondary" href="{% url 'module-detail' next.slug %}"><i class="fa fa-chevron-right u-md-up-display-none"></i><span class="u-md-down-display-none">{% trans 'Next qustion' %}</a>
-                {% endif %}
-                </div>
+        {% if other_modules|length > 1  %}
+            <div class="u-align-right u-spacer-bottom-double">
+            {% if previous %}
+                <a class="btn btn--light u-secondary" href="{% url 'module-detail' previous.slug %}">
+                    <i class="fa fa-chevron-left u-md-up-display-none"></i>
+                    <span class="u-md-down-display-none">{% trans 'Previous question' %}</span>
+                </a>
             {% endif %}
-        </div>
-    </div>
-    <div class="l-wrapper project-header">
-        <div class="l-center-6">
+                <span class="u-spacer-left u-spacer-right">{{ index }} {% trans 'of' %} {{ other_modules|length }}</span>
+            {% if next %}
+                <a class="btn btn--light u-secondary" href="{% url 'module-detail' next.slug %}">
+                    <i class="fa fa-chevron-right u-md-up-display-none"></i>
+                    <span class="u-md-down-display-none">{% trans 'Next question' %}</span></a>
+            {% endif %}
+            </div>
+        {% endif %}
+        <div class="l-center-8 project-header">
+            <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
+                <ul>
+                    <li>
+                        <a href="{% url 'project-detail' project.slug %}">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            {{ project.name }}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
             <h1 class="project-header__title">{{ module.name }}</h1>
             <p class="project-header__description">{{ module.description }}</p>
         </div>
