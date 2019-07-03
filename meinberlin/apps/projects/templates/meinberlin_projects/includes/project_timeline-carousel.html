@@ -1,13 +1,18 @@
 {% load i18n %}
-<div class="timeline-carousel" id="timeline-carousel" data-initial-slide="{{ initial_slide }}">
-  <div class="timeline-carousel__line"></div>
-  <div class="timeline-carousel__item">
-      {% for date in dates %}
-      <a href="?initialSlide={{ forloop.counter0 }}" aria-labelledby="timeline_item timeline_entry_{{ forloop.counter }}">
-            <div id="timeline_item" class="timeline-carousel__dot {% if forloop.counter0 == initial_slide  %} initial {% endif %}"><span class="sr-only">{% trans 'Timeline item' %}</span></div>
-            <div class="timeline-carousel__label {% if forloop.counter0 == initial_slide  %} initial {% endif %}">
+<div class="timeline-carousel">
+    <div class="container">
+        <div class="timeline-carousel" id="timeline-carousel" data-initial-slide="{{ initial_slide }}">
+            <div class="timeline-carousel__line"></div>
+            <div class="timeline-carousel__item">
+                {% for date in dates %}
+                    <a href="?initialSlide={{ forloop.counter0 }}"
+                       aria-labelledby="timeline_item timeline_entry_{{ forloop.counter }}">
+                        <div id="timeline_item"
+                             class="timeline-carousel__dot {% if forloop.counter0 == initial_slide %} initial {% endif %}">
+                            <span class="sr-only">{% trans 'Timeline item' %}</span></div>
+                        <div class="timeline-carousel__label {% if forloop.counter0 == initial_slide %} initial {% endif %}">
                 <span id="timeline_entry_{{ forloop.counter }}">
-                    {% if  date.type == 'module'  %}
+                    {% if  date.type == 'module' %}
                         {{ date.title }}<br>
                         {% trans 'from' %} {{ date.date | date }}
                     {% else %}
@@ -15,8 +20,10 @@
                         {% trans 'on' %} {{ date.date | date }}
                     {% endif %}
                 </span>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
         </div>
-      </a>
-      {% endfor %}
-  </div>
+    </div>
 </div>

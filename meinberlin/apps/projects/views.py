@@ -367,14 +367,6 @@ class ProjectDetailView(PermissionRequiredMixin,
         else:
             return super().dispatch(request)
 
-    def _view_by_phase(self):
-        if self.module.last_active_phase:
-            return self.module.last_active_phase.view.as_view()
-        elif self.module.future_phases:
-            return self.module.future_phases.first().view.as_view()
-        else:
-            return super().dispatch
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['event'] = self.get_current_event()
@@ -404,14 +396,12 @@ class ProjectDetailView(PermissionRequiredMixin,
     def events(self):
         return self.project.offlineevent_set.all()
 
-    def get_module_dict(self, count, start_date, end_date):
-        return {
-            'title': _('{}. Online Participation').format(str(count)),
-            'type': 'module',
-            'date': start_date,
-            'end_date': end_date,
-            'modules': []
-        }
+    @cached_property
+    def full_list(self):
+        module_cluster = self.module_clusters
+        event_list = self.get_events_list()
+        full_list = module_cluster + list(event_list)
+        return sorted(full_list, key=lambda k: k['date'])
 
     @cached_property
     def module_clusters(self):
@@ -421,7 +411,7 @@ class ProjectDetailView(PermissionRequiredMixin,
             start_date = modules.first().start_date
             end_date = modules.first().end_date
             count = 1
-            first_cluster = self.get_module_dict(
+            first_cluster = self._get_module_dict(
                 count, start_date, end_date)
             first_cluster['modules'].append(modules.first())
             current_cluster = first_cluster
@@ -432,7 +422,7 @@ class ProjectDetailView(PermissionRequiredMixin,
                     start_date = module.start_date
                     end_date = module.end_date
                     count += 1
-                    next_cluster = self.get_module_dict(
+                    next_cluster = self._get_module_dict(
                         count, start_date, end_date)
                     next_cluster['modules'].append(module)
                     current_cluster = next_cluster
@@ -464,6 +454,31 @@ class ProjectDetailView(PermissionRequiredMixin,
                             return idx
         return 0
 
+    @cached_property
+    def display_timeline(self):
+        return len(self.full_list) > 1
+
+    @cached_property
+    def is_project_view_with_timeline(self):
+        return self.display_timeline and self.get_current_modules()
+
+    def _view_by_phase(self):
+        if self.module.last_active_phase:
+            return self.module.last_active_phase.view.as_view()
+        elif self.module.future_phases:
+            return self.module.future_phases.first().view.as_view()
+        else:
+            return super().dispatch
+
+    def _get_module_dict(self, count, start_date, end_date):
+        return {
+            'title': _('{}. Online Participation').format(str(count)),
+            'type': 'module',
+            'date': start_date,
+            'end_date': end_date,
+            'modules': []
+        }
+
     def get_current_event(self):
         fl = self.full_list
         idx = self.initial_slide
@@ -489,13 +504,6 @@ class ProjectDetailView(PermissionRequiredMixin,
         return self.events.values('date', 'name',
                                   'event_type',
                                   'slug', 'description')
-
-    @cached_property
-    def full_list(self):
-        module_cluster = self.module_clusters
-        event_list = self.get_events_list()
-        full_list = module_cluster + list(event_list)
-        return sorted(full_list, key=lambda k: k['date'])
 
     @property
     def raise_exception(self):

@@ -157,19 +157,18 @@
     aria-expanded="true">
 
     <div class="l-wrapper timeline-carousel__wrapper">
-        {% if participation_dates|length > 1 %}
-        <div class="timeline-carousel">
-            <div class="container">
-                  {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
-            </div>
-        </div>
+
+        {% if view.display_timeline %}
+        {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
         {% endif %}
-        <div>
+
+
         {% if event %}
-            <h2>{{ event.name }}</h2>
-            <P>{{ event.description | safe}}</P>
-        {% elif participation_dates|length > 1 and modules %}
-        {% comment %}if in project view and timeline{% endcomment %}
+            <div class="l-center-6">
+                <h2>{{ event.name }}</h2>
+                <P>{{ event.description | safe}}</P>
+            </div>
+        {% elif view.is_project_view_with_timeline %}
             <div class="participation-tile__wrapper">
                 <div class="participation-tile__list-container">
                     <ul class="u-list-reset participation-tile__list">
@@ -179,8 +178,7 @@
                     </ul>
                 </div>
             </div>
-        {% else %}
-        {% comment %}else in phase view{% endcomment %}
+        {% else %} <!-- else in phase view-->
             <div>
                 <strong>
                     {% trans 'Participation is not possible at the moment.' %}
@@ -197,9 +195,9 @@
                 </strong>
             </div>
         {% endif %}
-        </div>
     </div>
 
+    <!-- these blocks are only filled when in pahse view -->
     <div class="l-center-6">
     {% block project_action %}{% endblock %}
     </div>
