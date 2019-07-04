@@ -129,11 +129,13 @@ def test_questionsapp_phase_content(phase):
 
 
 @pytest.mark.django_db
-def test_is_over_property(phase):
-    with freeze_time(phase.start_date):
-        assert phase.is_over is False
-    with freeze_time(phase.end_date):
-        assert phase.is_over is True
+def test_is_over_property(phase_factory):
+    phase1 = phase_factory()
+    phase2 = phase_factory()
+    with freeze_time(phase1.start_date):
+        assert phase1.is_over is False
+    with freeze_time(phase2.end_date):
+        assert phase2.is_over is True
 
 
 @pytest.mark.django_db

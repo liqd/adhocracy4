@@ -5,12 +5,15 @@ from freezegun import freeze_time
 
 
 @pytest.mark.django_db
-def test_active_phase(phase):
-    module = phase.module
-    with freeze_time(phase.start_date):
-        assert module.active_phase == phase
-    with freeze_time(phase.start_date - timedelta(days=1)):
-        assert module.active_phase is None
+def test_active_phase(phase_factory):
+    phase1 = phase_factory()
+    phase2 = phase_factory()
+    with freeze_time(phase1.start_date):
+        module1 = phase1.module
+        assert module1.active_phase == phase1
+    with freeze_time(phase2.start_date - timedelta(days=1)):
+        module2 = phase2.module
+        assert module2.active_phase is None
 
 
 @pytest.mark.django_db
