@@ -1,6 +1,7 @@
 from django import forms
 from django.db.models import Max
 from django.db.models import Min
+from django.db.models import Q
 from django.urls import resolve
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
@@ -66,39 +67,57 @@ class ImageRightOfUseMixin(forms.ModelForm):
                              "right of use for the image."))
 
 
-class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
+class ModuleClusterMixin:
 
-    def module_clusters(self, modules):
-        clusters = []
-
-        start_date = modules.first().start_date
-        end_date = modules.first().end_date
-        first_cluster = {
-            'start_date': start_date,
+    def _get_module_dict(self, count, start_date, end_date):
+        return {
+            'count': count,
+            'date': start_date,
             'end_date': end_date,
             'modules': []
         }
-        first_cluster['modules'].append(modules.first())
-        current_cluster = first_cluster
-        clusters.append(first_cluster)
 
-        for module in modules[1:]:
-            if module.start_date > end_date:
-                start_date = module.start_date
-                end_date = module.end_date
-                next_cluster = {
-                    'start_date': start_date,
-                    'end_date': end_date,
-                    'modules': []
-                }
-                next_cluster['modules'].append(module)
-                current_cluster = next_cluster
-                clusters.append(next_cluster)
-            else:
-                current_cluster['modules'].append(module)
-                if module.end_date > end_date:
+    def get_module_clusters(self, modules):
+        modules = modules\
+            .exclude(Q(start_date=None) | Q(end_date=None))
+        clusters = []
+        try:
+            start_date = modules.first().start_date
+            end_date = modules.first().end_date
+            count = 1
+            first_cluster = self._get_module_dict(
+                count, start_date, end_date)
+            first_cluster['modules'].append(modules.first())
+            current_cluster = first_cluster
+            clusters.append(first_cluster)
+
+            for module in modules[1:]:
+                if module.start_date > end_date:
+                    start_date = module.start_date
                     end_date = module.end_date
+                    count += 1
+                    next_cluster = self._get_module_dict(
+                        count, start_date, end_date)
+                    next_cluster['modules'].append(module)
+                    current_cluster = next_cluster
+                    clusters.append(next_cluster)
+                else:
+                    current_cluster['modules'].append(module)
+                    if module.end_date > end_date:
+                        end_date = module.end_date
+                        current_cluster['end_date'] = end_date
+        except AttributeError:
+            return clusters
+        if len(clusters) == 1:
+            clusters[0]['title'] = _('Online Participation')
         return clusters
+
+
+class DisplayProjectOrModuleMixin(generic.base.ContextMixin,
+                                  ModuleClusterMixin):
+
+    def module_clusters(self, modules):
+        return super().get_module_clusters(modules)
 
     @property
     def url_name(self):

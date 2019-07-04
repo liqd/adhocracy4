@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.db.models import Max
 from django.db.models import Min
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.utils import timezone
@@ -29,8 +30,10 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
+from meinberlin.apps.contrib.mixins import ModuleClusterMixin
 
 from . import forms
+from . import get_project_type
 from . import models
 
 User = get_user_model()
@@ -343,11 +346,19 @@ class DashboardProjectParticipantsView(AbstractProjectUserInviteListView):
 
 
 class ProjectDetailView(PermissionRequiredMixin,
-                        generic.DetailView):
+                        generic.DetailView,
+                        ModuleClusterMixin):
 
     model = models.Project
     permission_required = 'a4projects.view_project'
-    template_name = 'meinberlin_projects/project_detail.html'
+
+    def get_template_names(self):
+        type = get_project_type(self.project)
+        if type == 'container':
+            return ['meinberlin_projects/project_container_detail.html']
+        if type == 'bplan':
+            return ['meinberlin_projects/project_bplan_detail.html']
+        return ['meinberlin_projects/project_detail.html']
 
     def dispatch(self, request, *args, **kwargs):
         kwargs['project'] = self.project
@@ -357,12 +368,6 @@ class ProjectDetailView(PermissionRequiredMixin,
             return self._view_by_phase()(request, *args, **kwargs)
         else:
             return super().dispatch(request)
-
-    def _view_by_phase(self):
-        if self.module.last_active_phase:
-            return self.module.last_active_phase.view.as_view()
-        else:
-            return self.module.future_phases.first().view.as_view()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -386,52 +391,23 @@ class ProjectDetailView(PermissionRequiredMixin,
         return self.project.modules\
             .annotate(start_date=Min('phase__start_date'))\
             .annotate(end_date=Max('phase__end_date'))\
+            .exclude(Q(start_date=None) | Q(end_date=None))\
             .order_by('start_date')
 
     @cached_property
     def events(self):
         return self.project.offlineevent_set.all()
 
-    def get_module_dict(self, count, start_date, end_date):
-        return {
-            'title': _('{}. Online Participation').format(str(count)),
-            'type': 'module',
-            'date': start_date,
-            'end_date': end_date,
-            'modules': []
-        }
+    @cached_property
+    def full_list(self):
+        module_cluster = self.module_clusters
+        event_list = self.get_events_list()
+        full_list = module_cluster + list(event_list)
+        return sorted(full_list, key=lambda k: k['date'])
 
     @cached_property
     def module_clusters(self):
-        clusters = []
-        modules = self.modules
-        try:
-            start_date = modules.first().start_date
-            end_date = modules.first().end_date
-            count = 1
-            first_cluster = self.get_module_dict(
-                count, start_date, end_date)
-            first_cluster['modules'].append(modules.first())
-            current_cluster = first_cluster
-            clusters.append(first_cluster)
-
-            for module in modules[1:]:
-                if module.start_date > end_date:
-                    start_date = module.start_date
-                    end_date = module.end_date
-                    count += 1
-                    next_cluster = self.get_module_dict(
-                        count, start_date, end_date)
-                    next_cluster['modules'].append(module)
-                    current_cluster = next_cluster
-                    clusters.append(next_cluster)
-                else:
-                    current_cluster['modules'].append(module)
-                    if module.end_date > end_date:
-                        end_date = module.end_date
-                        current_cluster['end_date'] = end_date
-        except AttributeError:
-            return clusters
+        clusters = super().get_module_clusters(self.modules)
         if len(clusters) == 1:
             clusters[0]['title'] = _('Online Participation')
         return clusters
@@ -451,6 +427,31 @@ class ProjectDetailView(PermissionRequiredMixin,
                         if now >= start_date and now <= end_date:
                             return idx
         return 0
+
+    @cached_property
+    def display_timeline(self):
+        return len(self.full_list) > 1
+
+    @cached_property
+    def is_project_view_with_timeline(self):
+        return self.display_timeline and self.get_current_modules()
+
+    def _view_by_phase(self):
+        if self.module.last_active_phase:
+            return self.module.last_active_phase.view.as_view()
+        elif self.module.future_phases:
+            return self.module.future_phases.first().view.as_view()
+        else:
+            return super().dispatch
+
+    def _get_module_dict(self, count, start_date, end_date):
+        return {
+            'title': _('{}. Online Participation').format(str(count)),
+            'type': 'module',
+            'date': start_date,
+            'end_date': end_date,
+            'modules': []
+        }
 
     def get_current_event(self):
         fl = self.full_list
@@ -477,13 +478,6 @@ class ProjectDetailView(PermissionRequiredMixin,
         return self.events.values('date', 'name',
                                   'event_type',
                                   'slug', 'description')
-
-    @cached_property
-    def full_list(self):
-        module_cluster = self.module_clusters
-        event_list = self.get_events_list()
-        full_list = module_cluster + list(event_list)
-        return sorted(full_list, key=lambda k: k['date'])
 
     @property
     def raise_exception(self):
