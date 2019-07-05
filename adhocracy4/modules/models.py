@@ -25,7 +25,8 @@ class ModulesQuerySet(models.QuerySet):
         return self\
             .annotate(module_start=models.Min('phase__start_date'))\
             .annotate(module_end=models.Max('phase__end_date'))\
-            .filter(module_start__lte=now, module_end__gt=now)
+            .filter(module_start__lte=now, module_end__gt=now)\
+            .order_by('module_start')
 
     def past_modules(self):
         """Return past modules ordered by start."""
@@ -180,8 +181,7 @@ class Module(models.Model):
     @cached_property
     def module_running_time_left(self):
         """
-        Return the time left of the module in percent
-        if it is currently running.
+        Return the time left of the module if it is currently running.
         """
 
         def seconds_in_units(seconds):
@@ -190,7 +190,8 @@ class Module(models.Model):
             unit_limits = [
                            ([_('day'), _('days')], 24 * 3600),
                            ([_('hour'), _('hours')], 3600),
-                           ([_('minute'), _('minutes')], 60)
+                           ([_('minute'), _('minutes')], 60),
+                           ([_('second'), _('seconds')], 1)
                           ]
 
             for unit_name, limit in unit_limits:
