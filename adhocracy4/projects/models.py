@@ -455,36 +455,9 @@ class Project(ProjectContactDetailMixin,
         Return the time left in the currently running module that ends next.
         """
 
-        def seconds_in_units(seconds):
-            unit_totals = []
-
-            unit_limits = [
-                           ([_('day'), _('days')], 24 * 3600),
-                           ([_('hour'), _('hours')], 3600),
-                           ([_('minute'), _('minutes')], 60)
-                          ]
-
-            for unit_name, limit in unit_limits:
-                if seconds >= limit:
-                    amount = int(float(seconds) / limit)
-                    if amount > 1:
-                        unit_totals.append((unit_name[1], amount))
-                    else:
-                        unit_totals.append((unit_name[0], amount))
-                    seconds = seconds - (amount * limit)
-
-            return unit_totals
-
         running_module = self.running_module_ends_next
         if running_module:
-            today = timezone.now()
-            time_delta = running_module.module_end - today
-            seconds = time_delta.total_seconds()
-            time_delta_list = seconds_in_units(seconds)
-            best_unit = time_delta_list[0]
-            time_delta_str = '{} {}'.format(str(best_unit[1]),
-                                            str(best_unit[0]))
-            return time_delta_str
+            return running_module.module_running_time_left
         return None
 
     @cached_property
@@ -495,10 +468,7 @@ class Project(ProjectContactDetailMixin,
         """
         running_module = self.running_module_ends_next
         if running_module:
-            time_gone = timezone.now() - running_module.module_start
-            total_time = running_module.module_end \
-                - running_module.module_start
-            return round(time_gone / total_time * 100)
+            return running_module.module_running_progress
         return None
 
     @cached_property
