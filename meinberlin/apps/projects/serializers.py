@@ -154,26 +154,25 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return _('Yes')
 
     def get_future_phase(self, instance):
-        if (instance.future_phases and
-                instance.future_phases.first().start_date):
+        if (instance.future_modules and
+                instance.future_modules.first().module_start):
             return str(
-                instance.future_phases.first().start_date)
+                instance.future_modules.first().module_start)
         return False
 
     def get_active_phase(self, instance):
         if instance.active_phase_ends_next:
-            progress = instance.active_phase_progress
-            time_left = instance.time_left
-            end_date = str(instance.active_phase_ends_next.end_date)
+            progress = instance.module_running_progress
+            time_left = instance.module_running_time_left
+            end_date = str(instance.running_module_ends_next.module_end)
             return [progress, time_left, end_date]
         return False
 
     def get_past_phase(self, instance):
-        project_phases = instance.phases
-        if (project_phases.past_phases() and
-                project_phases.past_phases().first().end_date):
+        if (instance.past_modules and
+                instance.past_modules.first().module_end):
             return str(
-                project_phases.past_phases().first().end_date)
+                instance.past_modules.first().module_end)
         return False
 
     def get_participation_string(self, instance):

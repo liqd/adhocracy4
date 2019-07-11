@@ -72,13 +72,9 @@ h6 {
         font-size: $mobile-headline-size*$font-size-xxl;
     }
 
-    h2 {
-        font-size: $mobile-headline-size*$font-size-xl;
-    }
-
+    h2,
     h3 {
-        font-size: $font-size-base; //it's smaller than base if multiplied same as above
-        font-weight: bold; //it's a headline so need to have some differentiation from base
+        font-size: $mobile-headline-size*$font-size-xl;
     }
 }
 

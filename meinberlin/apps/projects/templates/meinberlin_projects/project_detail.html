@@ -47,17 +47,16 @@
     </div>
 
     <div class="tablist tablist--left">
-        <div class="l-wrapper">
-            <div class="tablist__right">
-                {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
-                {% if user_may_change %}
-                    <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
-                {% endif %}
-                {% if request.user.is_authenticated %}
-                    {% react_follows project %}
-    >>>>>>> apps/projects: move type checks from template to view
-                {% endif %}
-            </div>
+    <div class="l-wrapper">
+        <div class="tablist__right">
+            {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
+            {% if user_may_change %}
+                <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+                {% react_follows project %}
+            {% endif %}
+        </div>
 
             <nav class="nav" role="tablist">
                 <a
@@ -161,11 +160,20 @@
             {% if view.display_timeline %}
                 {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
             {% endif %}
-
-            {% if event %}
-                <div class="l-center-6">
-                    <h2>{{ event.name }}</h2>
-                    <P>{{ event.description | safe}}</P>
+        {% if event %}
+            <div class="l-center-6">
+                <h2>{{ event.name }}</h2>
+                <P>{{ event.description | safe}}</P>
+            </div>
+        {% elif view.is_project_view_with_timeline %}
+            <div class="participation-tile__wrapper">
+                <div class="participation-tile__list-container">
+                    <h3 class="participation-tile__list-header">more questions from this online participation</h3>
+                    <ul class="u-list-reset participation-tile__list">
+                    {% for module in modules %}
+                        {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
+                    {% endfor %}
+                    </ul>
                 </div>
             {% elif view.is_project_view_with_timeline %}
                 <div class="participation-tile__wrapper">

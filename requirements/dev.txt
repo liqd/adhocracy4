@@ -10,3 +10,4 @@ pytest-cov==2.7.1
 pytest-django==3.5.0
 pytest-factoryboy==2.0.2
 pytest==4.6.3
+pydocstyle==3.0.0
