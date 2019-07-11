@@ -58,39 +58,39 @@
             {% endif %}
         </div>
 
-        <nav class="nav" role="tablist">
-            <a
-                id="tab-project-{{ project.pk }}-information"
-                class="tab"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ project.pk }}-information"
-                role="tab"
-                aria-controls="tabpanel-project-{{ project.pk }}-information"
-                aria-expanded="false">
-                {% trans 'About the Project' %}
-            </a>
-            <a
-                id="tab-project-{{ project.pk }}-participation"
-                class="tab active"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ project.pk }}-participation"
-                role="tab"
-                aria-controls="tabpanel-project-{{ project.pk }}-participation"
-                aria-expanded="true">
-                {% trans 'Participation' %}
-            </a>
-            <a
-                id="tab-project-{{ project.pk }}-result"
-                class="tab"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ project.pk }}-result"
-                role="tab"
-                aria-controls="tabpanel-project-{{ project.pk }}-result"
-                aria-expanded="false">
-                {% trans 'Result' %}
-            </a>
-        </nav>
-    </div>
+            <nav class="nav" role="tablist">
+                <a
+                    id="tab-project-{{ project.pk }}-information"
+                    class="tab"
+                    data-toggle="tab"
+                    href="#tabpanel-project-{{ project.pk }}-information"
+                    role="tab"
+                    aria-controls="tabpanel-project-{{ project.pk }}-information"
+                    aria-expanded="false">
+                    {% trans 'About the Project' %}
+                </a>
+                <a
+                    id="tab-project-{{ project.pk }}-participation"
+                    class="tab active"
+                    data-toggle="tab"
+                    href="#tabpanel-project-{{ project.pk }}-participation"
+                    role="tab"
+                    aria-controls="tabpanel-project-{{ project.pk }}-participation"
+                    aria-expanded="true">
+                    {% trans 'Participation' %}
+                </a>
+                <a
+                    id="tab-project-{{ project.pk }}-result"
+                    class="tab"
+                    data-toggle="tab"
+                    href="#tabpanel-project-{{ project.pk }}-result"
+                    role="tab"
+                    aria-controls="tabpanel-project-{{ project.pk }}-result"
+                    aria-expanded="false">
+                    {% trans 'Result' %}
+                </a>
+            </nav>
+        </div>
     </div>
 
     <div
@@ -155,13 +155,11 @@
     aria-labelledby="tab-project-{{ project.pk }}-participation"
     aria-expanded="true">
 
-    <div class="l-wrapper timeline-carousel__wrapper">
+        <div class="l-wrapper timeline-carousel__wrapper">
 
-        {% if view.display_timeline %}
-        {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
-        {% endif %}
-
-
+            {% if view.display_timeline %}
+                {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
+            {% endif %}
         {% if event %}
             <div class="l-center-6">
                 <h2>{{ event.name }}</h2>
@@ -177,33 +175,42 @@
                     {% endfor %}
                     </ul>
                 </div>
-            </div>
-        {% else %} <!-- if no timeline and just one module and no phase view to dispatch to -->
-            {% if not module.active_phase %}
-            <div class="l-center-6">
-                <strong>
-                    {% trans 'Participation is not possible at the moment.' %}
-                    {% if not module.past_phases %}
-                        {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                        {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
-                    {% elif module.future_phases %}
-                        {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                        {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
-                    {% else %}
-                        {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
-                        {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
-                    {% endif %}
-                </strong>
-            </div>
+            {% elif view.is_project_view_with_timeline %}
+                <div class="participation-tile__wrapper">
+                    <div class="participation-tile__list-container">
+                        <ul class="u-list-reset participation-tile__list">
+                        {% for module in modules %}
+                            {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% else %} <!-- if no timeline and just one module and no phase view to dispatch to -->
+                {% if not module.active_phase %}
+                <div class="l-center-6">
+                    <strong>
+                        {% trans 'Participation is not possible at the moment.' %}
+                        {% if not module.past_phases %}
+                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                            {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                        {% elif module.future_phases %}
+                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                            {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                        {% else %}
+                            {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
+                            {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                        {% endif %}
+                    </strong>
+                </div>
+                {% endif %}
             {% endif %}
-        {% endif %}
+        </div>
+        <!-- these blocks are only filled when in phase view -->
+        <div class="l-center-6">
+        {% block project_action %}{% endblock %}
+        </div>
+        {% block phase_content %}{% endblock %}
     </div>
-
-    <!-- these blocks are only filled when in phase view -->
-    <div class="l-center-6">
-    {% block project_action %}{% endblock %}
-    </div>
-    {% block phase_content %}{% endblock %}
 
     <div
     class="tabpanel"
