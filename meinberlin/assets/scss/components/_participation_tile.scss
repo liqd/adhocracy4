@@ -3,9 +3,15 @@
     flex-direction: row;
     position: relative;
     justify-content: center;
+    margin-left: -$r-spacer;
+    margin-right: -$r-spacer;
 
     @media screen and (min-width: $breakpoint-xs) {
         justify-content: flex-start;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin: 0;
     }
 }
 
