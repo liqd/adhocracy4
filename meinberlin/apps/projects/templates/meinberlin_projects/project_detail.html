@@ -47,51 +47,51 @@
     </div>
 
     <div class="tablist tablist--left">
-    <div class="l-wrapper">
-        <div class="tablist__right">
-            {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
-            {% if user_may_change %}
-                <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
-            {% endif %}
-            {% if request.user.is_authenticated %}
-                {% react_follows project %}
->>>>>>> apps/projects: move type checks from template to view
-            {% endif %}
-        </div>
+        <div class="l-wrapper">
+            <div class="tablist__right">
+                {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
+                {% if user_may_change %}
+                    <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                    {% react_follows project %}
+    >>>>>>> apps/projects: move type checks from template to view
+                {% endif %}
+            </div>
 
-        <nav class="nav" role="tablist">
-            <a
-                id="tab-project-{{ project.pk }}-information"
-                class="tab"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ project.pk }}-information"
-                role="tab"
-                aria-controls="tabpanel-project-{{ project.pk }}-information"
-                aria-expanded="false">
-                {% trans 'About the Project' %}
-            </a>
-            <a
-                id="tab-project-{{ project.pk }}-participation"
-                class="tab active"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ project.pk }}-participation"
-                role="tab"
-                aria-controls="tabpanel-project-{{ project.pk }}-participation"
-                aria-expanded="true">
-                {% trans 'Participation' %}
-            </a>
-            <a
-                id="tab-project-{{ project.pk }}-result"
-                class="tab"
-                data-toggle="tab"
-                href="#tabpanel-project-{{ project.pk }}-result"
-                role="tab"
-                aria-controls="tabpanel-project-{{ project.pk }}-result"
-                aria-expanded="false">
-                {% trans 'Result' %}
-            </a>
-        </nav>
-    </div>
+            <nav class="nav" role="tablist">
+                <a
+                    id="tab-project-{{ project.pk }}-information"
+                    class="tab"
+                    data-toggle="tab"
+                    href="#tabpanel-project-{{ project.pk }}-information"
+                    role="tab"
+                    aria-controls="tabpanel-project-{{ project.pk }}-information"
+                    aria-expanded="false">
+                    {% trans 'About the Project' %}
+                </a>
+                <a
+                    id="tab-project-{{ project.pk }}-participation"
+                    class="tab active"
+                    data-toggle="tab"
+                    href="#tabpanel-project-{{ project.pk }}-participation"
+                    role="tab"
+                    aria-controls="tabpanel-project-{{ project.pk }}-participation"
+                    aria-expanded="true">
+                    {% trans 'Participation' %}
+                </a>
+                <a
+                    id="tab-project-{{ project.pk }}-result"
+                    class="tab"
+                    data-toggle="tab"
+                    href="#tabpanel-project-{{ project.pk }}-result"
+                    role="tab"
+                    aria-controls="tabpanel-project-{{ project.pk }}-result"
+                    aria-expanded="false">
+                    {% trans 'Result' %}
+                </a>
+            </nav>
+        </div>
     </div>
 
     <div
@@ -159,9 +159,8 @@
         <div class="l-wrapper timeline-carousel__wrapper">
 
             {% if view.display_timeline %}
-            {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
+                {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
             {% endif %}
-
 
             {% if event %}
                 <div class="l-center-6">
@@ -198,15 +197,13 @@
                 {% endif %}
             {% endif %}
         </div>
+        <!-- these blocks are only filled when in phase view -->
+        <div class="l-center-6">
+        {% block project_action %}{% endblock %}
+        </div>
+        {% block phase_content %}{% endblock %}
     </div>
 
-    <!-- these blocks are only filled when in phase view -->
-    <div class="l-center-6">
-    {% block project_action %}{% endblock %}
-    </div>
-    <div>
-    {% block phase_content %}{% endblock %}
-    </div>
     <div
     class="tabpanel"
     id="tabpanel-project-{{ project.pk }}-result"
