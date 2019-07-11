@@ -2,6 +2,11 @@
     display: flex;
     flex-direction: row;
     position: relative;
+    justify-content: center;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        justify-content: flex-start;
+    }
 }
 
 .participation-tile__list-container {
