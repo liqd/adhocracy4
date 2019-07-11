@@ -2,6 +2,17 @@
     display: flex;
     flex-direction: row;
     position: relative;
+    justify-content: center;
+    margin-left: -$r-spacer;
+    margin-right: -$r-spacer;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        justify-content: flex-start;
+    }
+
+    @media screen and (min-width: $breakpoint-md) {
+        margin: 0;
+    }
 }
 
 .participation-tile__list-container {
@@ -11,6 +22,10 @@
         flex-grow: 2;
         overflow-y: visible;
     }
+}
+
+.participation-tile__list-header {
+    text-align: center;
 }
 
 .participation-tile__list {
