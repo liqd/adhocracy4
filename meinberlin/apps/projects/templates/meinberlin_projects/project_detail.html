@@ -168,7 +168,7 @@
                 <h2>{{ event.name }}</h2>
                 <P>{{ event.description | safe}}</P>
             </div>
-        {% elif view.is_project_view_with_timeline %}
+        {% elif view.is_project_view %}
             <div class="participation-tile__wrapper">
                 <div class="participation-tile__list-container">
                     <ul class="u-list-reset participation-tile__list">
