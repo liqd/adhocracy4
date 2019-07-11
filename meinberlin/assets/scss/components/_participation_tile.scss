@@ -13,6 +13,10 @@
     }
 }
 
+.participation-tile__list-header {
+    text-align: center;
+}
+
 .participation-tile__list {
     max-width: calc(100% + 2rem); //this is all to fit within the frame to be inline with above items
     display: flex;

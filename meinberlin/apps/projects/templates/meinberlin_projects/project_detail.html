@@ -171,6 +171,7 @@
         {% elif view.is_project_view_with_timeline %}
             <div class="participation-tile__wrapper">
                 <div class="participation-tile__list-container">
+                    <h3 class="participation-tile__list-header">more questions from this online participation</h3>
                     <ul class="u-list-reset participation-tile__list">
                     {% for module in modules %}
                         {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
