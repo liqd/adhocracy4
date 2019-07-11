@@ -8,29 +8,31 @@ from adhocracy4.projects import models
 
 
 @pytest.mark.django_db
-def test_days_left(project, phase_factory):
+def test_days_left(project_factory, phase_factory):
+    project1 = project_factory()
+    project2 = project_factory()
     phase1 = phase_factory(
         start_date=parse('2013-01-01 18:00:00 UTC'),
         end_date=parse('2013-01-02 18:00:00 UTC'),
-        module__project=project,
+        module__project=project1,
     )
-    phase_factory(
+    phase2 = phase_factory(
         start_date=parse('2013-02-01 18:00:00 UTC'),
         end_date=parse('2013-02-02 18:00:00 UTC'),
-        module__project=project,
+        module__project=project2,
     )
 
     with freeze_time(phase1.start_date):
-        assert project.days_left == 1
-        del project.days_left
+        assert project1.days_left == 1
+        del project1.days_left
     with freeze_time(phase1.end_date):
-        assert project.days_left == 0
-
-    # with freeze_time(phase2.start_date):
-    #     assert project.days_left == 1
-    #     del project.days_left
-    # with freeze_time(phase2.end_date):
-    #     assert project.days_left == 0
+        assert project1.days_left == 0
+        del project1.days_left
+    with freeze_time(phase2.start_date):
+        assert project2.days_left == 1
+        del project2.days_left
+    with freeze_time(phase2.end_date):
+        assert project2.days_left == 0
 
 
 @pytest.mark.django_db
