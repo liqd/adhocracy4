@@ -3012,7 +3012,7 @@ msgstr "Beteiligungsprojekte: "
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:11
 msgid "from"
-msgstr "vom"
+msgstr "ab"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:14
 msgid "on"
@@ -3264,11 +3264,11 @@ msgstr "Teilnehmer*in erfolgreich entfernt."
 
 #: meinberlin/apps/projects/views.py:396
 msgid "{}. Online Participation"
-msgstr "{}. Onlinebeteiligung"
+msgstr "{}. Online-Beteiligung"
 
 #: meinberlin/apps/projects/views.py:435
 msgid "Online Participation"
-msgstr "Onlinebeteiligung"
+msgstr "Online-Beteiligung"
 
 #: meinberlin/apps/servicekonto/templates/meinberlin_servicekonto/login.html:4
 #: meinberlin/apps/servicekonto/templates/meinberlin_servicekonto/login.html:9
