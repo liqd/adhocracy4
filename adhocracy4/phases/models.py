@@ -3,6 +3,7 @@ from datetime import timedelta
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.modules import models as modules_models
@@ -14,10 +15,12 @@ from .validators import validate_content
 class PhasesQuerySet(models.QuerySet):
 
     def active_phases(self):
+        """Return active phases."""
         now = timezone.now()
         return self.filter(start_date__lte=now, end_date__gt=now)
 
     def finished_phases(self):
+        """Return past phases."""
         return self.filter(end_date__lte=timezone.now())
 
     def past_phases(self):
@@ -92,12 +95,13 @@ class Phase(models.Model):
                 })
         super().clean()
 
-    @property
+    @cached_property
     def view(self):
         return content[self.type].view
 
-    @property
+    @cached_property
     def is_over(self):
+        '''Test if phase is over.'''
         return self.end_date <= timezone.now()
 
     def has_feature(self, feature, model):

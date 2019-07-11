@@ -1,3 +1,5 @@
+import warnings
+
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
@@ -219,7 +221,7 @@ class Project(ProjectContactDetailMixin,
     def has_moderator(self, user):
         return user in self.moderators.all()
 
-    @property
+    @cached_property
     def topic_names(self):
         if hasattr(settings, 'A4_PROJECT_TOPICS'):
             choices = dict(settings.A4_PROJECT_TOPICS)
@@ -232,35 +234,37 @@ class Project(ProjectContactDetailMixin,
             .filter(is_draft=False, is_archived=False).exclude(slug=self.slug)
         return other_projects
 
-    @property
+    @cached_property
     def is_private(self):
         return not self.is_public
 
     @cached_property
-    def modules(self):
-        return self.module_set.all()
-
-    @property
     def last_active_phase(self):
         """
         Return the last active phase.
 
         The last active phase is defined as the phase that out of all past
         and currently active phases started last.
+        This property is used to determine which phase view is shown.
         """
         return self.phases\
             .past_and_active_phases()\
             .last()
 
-    @property
+    @cached_property
     def last_active_module(self):
-        """Return the module of the last active phase."""
+        """
+        Return the module of the last active phase.
+
+        Attention: Might be _deprecated_ and replaced by logic coming from
+        the modules.
+        """
         last_active_phase = self.last_active_phase
         if last_active_phase:
             return last_active_phase.module
         return None
 
-    @property
+    @cached_property
     def active_phase(self):
         """
         Return the currently active phase.
@@ -269,22 +273,27 @@ class Project(ProjectContactDetailMixin,
         currently active phases started last. This is analogous to the last
         active phase.
 
-        Attention: This method is _deprecated_ as multiple phases may be
-        active at the same time.
+        Attention: This method is _deprecated_ as multiple phases (in
+        different modules) may be active at the same time.
         """
+        warnings.warn(
+            "active_phase is deprecated; "
+            "use active_phase_ends_next or active_module_ends_next",
+            DeprecationWarning
+        )
         last_active_phase = self.last_active_phase
         if last_active_phase and not last_active_phase.is_over:
             return last_active_phase
         return None
 
-    @property
+    @cached_property
     def active_phase_ends_next(self):
         """
         Return the currently active phase that ends next.
         """
         return self.phases.active_phases().order_by('end_date').first()
 
-    @property
+    @cached_property
     def days_left(self):
         """
         Return the number of days left in the currently active phase.
@@ -292,6 +301,11 @@ class Project(ProjectContactDetailMixin,
         Attention: This method is _deprecated_ as multiple phases may be
         active at the same time.
         """
+        warnings.warn(
+            "days_left is deprecated as it relies on active_phase; "
+            "use module_running_days_left",
+            DeprecationWarning
+        )
         active_phase = self.active_phase
         if active_phase:
             today = timezone.now().replace(hour=0, minute=0, second=0)
@@ -299,14 +313,20 @@ class Project(ProjectContactDetailMixin,
             return time_delta.days
         return None
 
-    @property
+    @cached_property
     def time_left(self):
         """
-        Return the time left in the currently active phase.
+        Return the time left in the currently active phase that ends next.
 
-        Attention: This method is _deprecated_ as multiple phases may be
-        active at the same time.
+        Attention: _deprecated_ as in the projects logic from the modules
+        should be used.
         """
+        warnings.warn(
+            "time_left is deprecated as in the projects "
+            "logic from the modules should be used; "
+            "use module_running_time_left",
+            DeprecationWarning
+        )
 
         def seconds_in_units(seconds):
             unit_totals = []
@@ -339,14 +359,21 @@ class Project(ProjectContactDetailMixin,
                                             str(best_unit[0]))
             return time_delta_str
 
-    @property
+    @cached_property
     def active_phase_progress(self):
         """
-        Return the progress of the currently active phase in percent.
+        Return the progress of the currently active phase that ends next
+        in percent.
 
-        Attention: This method is _deprecated_ as multiple phases may be
-        active at the same time.
+        Attention: _deprecated_ as in the projects logic from the modules
+        should be used.
         """
+        warnings.warn(
+            "active_phase_progress is deprecated as in the projects "
+            "logic from the modules should be used; "
+            "use module_running_progress",
+            DeprecationWarning
+        )
         active_phase = self.active_phase_ends_next
         if active_phase:
             time_gone = timezone.now() - active_phase.start_date
@@ -367,15 +394,83 @@ class Project(ProjectContactDetailMixin,
     def past_phases(self):
         return self.phases.past_phases()
 
-    @property
+    @cached_property
     def has_started(self):
         return self.phases.past_and_active_phases().exists()
 
-    @property
+    @cached_property
     def has_finished(self):
         return not self.phases.active_phases().exists()\
                and not self.phases.future_phases().exists()
 
-    @property
+    @cached_property
+    def modules(self):
+        return self.module_set.all()
+
+    @cached_property
+    def running_modules(self):
+        return self.modules.running_modules()
+
+    @cached_property
+    def running_module_ends_next(self):
+        """
+        Return the currently active module that ends next.
+        """
+        return self.running_modules.order_by('module_end').first()
+
+    @cached_property
+    def past_modules(self):
+        """Return past modules ordered by start."""
+        return self.modules.past_modules()
+
+    @cached_property
+    def future_modules(self):
+        """
+        Return future modules ordered by start date.
+
+        Note: Modules without a start date are assumed to start in the future.
+        """
+        return self.modules.future_modules()
+
+    @cached_property
+    def module_running_days_left(self):
+        """
+        Return the number of days left in the currently running module that
+        ends next.
+
+        Attention: It's a bit coarse and should only be used for estimations
+        like 'ending soon', but NOT to display the number of days a project
+        is still running. For that use module_running_time_left.
+        """
+        running_module = self.running_module_ends_next
+        if running_module:
+            today = timezone.now().replace(hour=0, minute=0, second=0)
+            time_delta = running_module.module_end - today
+            return time_delta.days
+        return None
+
+    @cached_property
+    def module_running_time_left(self):
+        """
+        Return the time left in the currently running module that ends next.
+        """
+
+        running_module = self.running_module_ends_next
+        if running_module:
+            return running_module.module_running_time_left
+        return None
+
+    @cached_property
+    def module_running_progress(self):
+        """
+        Return the progress of the currently running module that ends next
+        in percent.
+        """
+        running_module = self.running_module_ends_next
+        if running_module:
+            return running_module.module_running_progress
+        return None
+
+    @cached_property
     def is_archivable(self):
         return not self.is_archived and self.has_finished

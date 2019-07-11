@@ -1,3 +1,5 @@
+import warnings
+
 from autoslug import AutoSlugField
 from django.db import models
 from django.urls import reverse
@@ -7,6 +9,51 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.models import base
 from adhocracy4.projects import models as project_models
+
+
+class ModulesQuerySet(models.QuerySet):
+
+    def annotate_module_start(self):
+        return self.annotate(module_start=models.Min('phase__start_date'))
+
+    def annotate_module_end(self):
+        return self.annotate(module_end=models.Max('phase__end_date'))
+
+    def running_modules(self):
+        """Return running modules."""
+        now = timezone.now()
+        return self\
+            .annotate(module_start=models.Min('phase__start_date'))\
+            .annotate(module_end=models.Max('phase__end_date'))\
+            .filter(module_start__lte=now, module_end__gt=now)\
+            .order_by('module_start')
+
+    def past_modules(self):
+        """Return past modules ordered by start."""
+        return self\
+            .annotate(module_start=models.Min('phase__start_date'))\
+            .annotate(module_end=models.Max('phase__end_date'))\
+            .filter(module_end__lte=timezone.now())\
+            .order_by('module_start')
+
+    def future_modules(self):
+        """
+        Return future modules ordered by start date.
+
+        Note: Modules without a start date are assumed to start in the future.
+        """
+        return self\
+            .annotate(module_start=models.Min('phase__start_date'))\
+            .filter(models.Q(module_start__gt=timezone.now())
+                    | models.Q(module_start=None))\
+            .order_by('module_start')
+
+    def past_and_running_modules(self):
+        """Return past and running modules ordered by start date."""
+        return self\
+            .annotate(module_start=models.Min('phase__start_date'))\
+            .filter(module_start__lte=timezone.now())\
+            .order_by('module_start')
 
 
 class Module(models.Model):
@@ -31,6 +78,8 @@ class Module(models.Model):
     project = models.ForeignKey(
         project_models.Project, on_delete=models.CASCADE)
 
+    objects = ModulesQuerySet.as_manager()
+
     class Meta:
         ordering = ['weight']
 
@@ -40,7 +89,7 @@ class Module(models.Model):
     def get_absolute_url(self):
         return reverse('module-detail', kwargs=dict(module_slug=self.slug))
 
-    @property
+    @cached_property
     def settings_instance(self):
         settingslist = [field.name for field in self._meta.get_fields()
                         if field.name.endswith('_settings')]
@@ -48,30 +97,56 @@ class Module(models.Model):
             if hasattr(self, setting):
                 return getattr(self, setting)
 
-    @property
+    @cached_property
+    def phases(self):
+        '''Return all phases for this module, ordered by weight.'''
+        return self.phase_set.all()
+
+    @cached_property
     def active_phase(self):
+        '''
+        Return the currently active phase of the module.
+
+        Even though this is not enforced, there should only be one phase
+        active at any given time.
+        '''
         return self.phase_set \
             .active_phases() \
             .first()
 
     @cached_property
-    def phases(self):
-        return self.phase_set.all()
-
-    @cached_property
     def future_phases(self):
+        '''Return all future phases for this module, ordered by start.'''
         return self.phase_set.future_phases()
 
     @cached_property
     def past_phases(self):
+        '''Return all past phases for this module, ordered by start.'''
         return self.phase_set.past_phases()
 
-    @property
+    @cached_property
     def last_active_phase(self):
+        '''
+        Return the phase that is currently still active or the past phase
+        that started last.
+
+        The past phase that started last should also have ended last,
+        because there should only be one phase running at any time.
+        '''
         return self.active_phase or self.past_phases.last()
 
-    @property
+    @cached_property
     def first_phase_start_date(self):
+        '''
+        Return the start date of the first phase in the module.
+
+        Attention: This method is _deprecated_. The property module_start
+        should be used instead.
+        '''
+        warnings.warn(
+            "first_phase_start_date is deprecated; use module_start.",
+            DeprecationWarning
+        )
         first_phase = self.phase_set.order_by('start_date').first()
         return first_phase.start_date
 
@@ -83,27 +158,30 @@ class Module(models.Model):
 
     @cached_property
     def module_start(self):
+        '''Return the start date of the module.'''
         return self.phase_set.order_by('start_date').first().start_date
 
     @cached_property
     def module_end(self):
+        '''Return the end date of the module.'''
         return self.phase_set.order_by('-end_date').first().end_date
 
     @cached_property
     def module_has_started(self):
+        '''Test if the module has already started.'''
         now = timezone.now()
         return now >= self.module_start
 
     @cached_property
     def module_has_finished(self):
+        '''Test if the module has already finished.'''
         now = timezone.now()
         return now > self.module_end
 
-    @property
+    @cached_property
     def module_running_time_left(self):
         """
-        Return the time left of the module in percent
-        if it is currently running.
+        Return the time left of the module if it is currently running.
         """
 
         def seconds_in_units(seconds):
@@ -112,7 +190,8 @@ class Module(models.Model):
             unit_limits = [
                            ([_('day'), _('days')], 24 * 3600),
                            ([_('hour'), _('hours')], 3600),
-                           ([_('minute'), _('minutes')], 60)
+                           ([_('minute'), _('minutes')], 60),
+                           ([_('second'), _('seconds')], 1)
                           ]
 
             for unit_name, limit in unit_limits:
@@ -138,7 +217,7 @@ class Module(models.Model):
 
         return None
 
-    @property
+    @cached_property
     def module_running_progress(self):
         """
         Return the progress of the module in percent
@@ -154,7 +233,7 @@ class Module(models.Model):
 class Item(base.UserGeneratedContentModel):
     module = models.ForeignKey(Module, on_delete=models.CASCADE)
 
-    @property
+    @cached_property
     def project(self):
         return self.module.project
 

@@ -20,7 +20,9 @@ package-lock.json
 # tests
 /.coverage
 /htmlcov
-/db.sqlite3
 /media
 /.cache
 .pytest_cache
+
+# SQlite DBs
+*.sqlite3*
