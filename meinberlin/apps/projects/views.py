@@ -433,8 +433,8 @@ class ProjectDetailView(PermissionRequiredMixin,
         return len(self.full_list) > 1
 
     @cached_property
-    def is_project_view_with_timeline(self):
-        return self.display_timeline and self.get_current_modules()
+    def is_project_view(self):
+        return self.get_current_modules()
 
     def _view_by_phase(self):
         if self.module.last_active_phase:
