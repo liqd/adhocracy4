@@ -1,10 +1,4 @@
 {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es6": true,
-    "jquery": true
-  },
   "extends": [
     "standard",
     "standard-jsx",
