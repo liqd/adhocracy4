@@ -1,7 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { CookiesProvider } from 'react-cookie'
-import ListMapBox from './ListMapBox'
+const React = require('react')
+const ReactDOM = require('react-dom')
+const $ = require('jquery')
+var ListMapBox = require('./ListMapBox')
 
 const init = function () {
   $('[data-map="plans"]').each(function (i, element) {
@@ -18,25 +18,20 @@ const init = function () {
     let mapboxToken = element.getAttribute('data-mapbox-token')
     let omtToken = element.getAttribute('data-omt-token')
     let useVectorMap = element.getAttribute('data-use_vector_map')
-    ReactDOM.render(
-      <CookiesProvider>
-        <ListMapBox
-          selectedDistrict={selectedDistrict}
-          selectedTopic={selectedTopic}
-          initialitems={items}
-          attribution={attribution}
-          baseurl={baseurl}
-          mapboxToken={mapboxToken}
-          omtToken={omtToken}
-          useVectorMap={useVectorMap}
-          bounds={bounds}
-          organisations={organisations}
-          districts={districts}
-          districtnames={districtnames}
-          topicChoices={topicChoices}
-        />
-      </CookiesProvider>,
-      element)
+    ReactDOM.render(<ListMapBox
+      selectedDistrict={selectedDistrict}
+      selectedTopic={selectedTopic}
+      initialitems={items}
+      attribution={attribution}
+      baseurl={baseurl}
+      mapboxToken={mapboxToken}
+      omtToken={omtToken}
+      useVectorMap={useVectorMap}
+      bounds={bounds}
+      organisations={organisations}
+      districts={districts}
+      districtnames={districtnames}
+      topicChoices={topicChoices} />, element)
   })
 }
 
