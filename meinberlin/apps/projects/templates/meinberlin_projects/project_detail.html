@@ -165,7 +165,7 @@
                 <h2>{{ event.name }}</h2>
                 <P>{{ event.description | safe}}</P>
             </div>
-        {% elif view.is_project_view %}
+            {% elif view.is_project_view %}
             <div class="participation-tile__wrapper">
                 <div class="participation-tile__list-container">
                     <h3 class="participation-tile__list-header">more questions from this online participation</h3>
@@ -204,12 +204,13 @@
                 </div>
                 {% endif %}
             {% endif %}
+            </div>
+            <!-- these blocks are only filled when in phase view -->
+            <div class="l-center-6">
+            {% block project_action %}{% endblock %}
+            </div>
+            {% block phase_content %}{% endblock %}
         </div>
-        <!-- these blocks are only filled when in phase view -->
-        <div class="l-center-6">
-        {% block project_action %}{% endblock %}
-        </div>
-        {% block phase_content %}{% endblock %}
     </div>
 
     <div
