@@ -2995,7 +2995,7 @@ msgstr "noch %(time_left)s"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:73
 #, python-format
 msgid "Participation: starts on %(date)s"
-msgstr "Beteiligung: startet am %(date)s"
+msgstr "Beteiligung: ab %(date)s"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:32
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:79
