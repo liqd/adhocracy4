@@ -5,6 +5,7 @@ from meinberlin.apps.budgeting.models import Proposal as budget_proposal
 from meinberlin.apps.ideas.models import Idea
 from meinberlin.apps.kiezkasse.models import Proposal as kiezkasse_proposal
 from meinberlin.apps.mapideas.models import MapIdea
+from meinberlin.apps.polls.models import Vote
 from meinberlin.apps.projects import get_project_type
 
 register = template.Library()
@@ -53,5 +54,6 @@ def get_num_entries(module):
         + Comment.objects.filter(maptopic__module=module).count() \
         + Comment.objects.filter(paragraph__chapter__module=module).count() \
         + Comment.objects.filter(chapter__module=module).count() \
-        + Comment.objects.filter(poll__module=module).count()
+        + Comment.objects.filter(poll__module=module).count() \
+        + Vote.objects.filter(choice__question__poll__module=module).count()
     return item_count
