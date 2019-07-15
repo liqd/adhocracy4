@@ -14,8 +14,8 @@ $timeline-carousel__top-space: 11px;
     padding: 0;
     margin-bottom: 3px;
     border-radius: 50%;
-    height: 17px;
-    width: 17px;
+    height: 12px;
+    width: 12px;
     vertical-align: middle;
     transition: transform 0.2s;
     transform-origin: 50% 50%;
@@ -49,7 +49,7 @@ $timeline-carousel__top-space: 11px;
         outline: none;
 
         .timeline-carousel__dot {
-            transform: scale(1.25);
+            transform: scale(1.85);
         }
 
         .timeline-carousel__label {
@@ -69,6 +69,8 @@ $timeline-carousel__top-space: 11px;
     .slick-next {
         top: $timeline-carousel__top-space;
         text-align: center;
+        width: 30px;
+        height: 30px;
         border-radius: 100%;
         border: 1px solid $border-color;
         background-color: $body-bg;
@@ -84,8 +86,8 @@ $timeline-carousel__top-space: 11px;
             opacity: 1;
             font-family: "Font Awesome 5 Free", sans-serif;
             font-weight: 900;
-            font-size: $font-size-lg;
-            line-height: 0.8rem;
+            font-size: $font-size-xxl;
+            line-height: 1.3rem;
         }
     }
 
@@ -104,10 +106,14 @@ $timeline-carousel__top-space: 11px;
 
     &.timeline-carousel__label {
         padding: 1.5*$padding;
+
+        .timeline-carousel__title {
+            font-weight: bold;
+        }
     }
 
     &.timeline-carousel__dot {
-        transform: scale(1.25);
+        transform: scale(1.85);
     }
 }
 
