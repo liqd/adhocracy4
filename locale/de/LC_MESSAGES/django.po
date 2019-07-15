@@ -794,8 +794,8 @@ msgid ""
 "This title will appear in the timeline and the header on the module and "
 "project detail pages. It should be max. 512 characters long"
 msgstr ""
-"Der Modultitel wird in der Zeitleiste und auf der Projektseite erscheinen. "
-"Er sollte maximal 512 Zeichen lang sein."
+"Der Modultitel erscheint auf der Modulkachel und auf der Modulseite, "
+"sobald das Projekt mehr als ein Modul oder eine Veranstaltung hat. Er darf " "maximal 512 Zeichen lang sein."
 
 #: adhocracy4/modules/models.py:24
 msgid "Short description of the module"
@@ -807,8 +807,9 @@ msgid ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 msgstr ""
-"Die Kurzbeschreibung des Moduls erscheint auf der Projektseite. Sie sollte "
-"in maximal 512 Zeichen das Ziel des Moduls beschreiben."
+"Die Kurzbeschreibung des Moduls erscheint auf der Modulseite, sobald das "
+"Projekt mehr als ein Modul oder eine Veranstaltung hat. Sie sollte in "
+"maximal 512 Zeichen das Ziel des Moduls beschreiben."
 
 #: adhocracy4/phases/models.py:66
 #: meinberlin/apps/activities/models.py:21 meinberlin/apps/ideas/models.py:32
