@@ -147,7 +147,7 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin,
 
     @cached_property
     def other_modules(self):
-        for cluster in self.module_clusters(self.modules):
+        for cluster in self.module_clusters:
             if self.module in cluster['modules']:
                 idx = cluster['modules'].index(self.module)
                 modules = cluster['modules']
