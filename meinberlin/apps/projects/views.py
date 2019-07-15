@@ -392,7 +392,7 @@ class ProjectDetailView(PermissionRequiredMixin,
             .annotate(start_date=Min('phase__start_date'))\
             .annotate(end_date=Max('phase__end_date'))\
             .exclude(Q(start_date=None) | Q(end_date=None))\
-            .order_by('start_date')
+            .order_by('start_date', 'id')
 
     @cached_property
     def events(self):
