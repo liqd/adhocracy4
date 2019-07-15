@@ -416,7 +416,7 @@ class Project(ProjectContactDetailMixin,
         """
         Return the currently active module that ends next.
         """
-        return self.running_modules.order_by('module_end').first()
+        return self.running_modules.order_by('end_date').first()
 
     @cached_property
     def past_modules(self):
@@ -445,7 +445,7 @@ class Project(ProjectContactDetailMixin,
         running_module = self.running_module_ends_next
         if running_module:
             today = timezone.now().replace(hour=0, minute=0, second=0)
-            time_delta = running_module.module_end - today
+            time_delta = running_module.end_date - today
             return time_delta.days
         return None
 

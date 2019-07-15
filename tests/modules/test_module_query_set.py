@@ -39,8 +39,8 @@ def test_running_modules(phase_factory):
         assert module2 in all_running_modules
         assert module3 in all_running_modules
 
-        assert module2.module_start == parse('2013-01-01 17:00:00 UTC')
-        assert module2.module_end == parse('2013-01-01 18:00:01 UTC')
+        assert module2.start_date == parse('2013-01-01 17:00:00 UTC')
+        assert module2.end_date == parse('2013-01-01 18:00:01 UTC')
 
 
 @pytest.mark.django_db
@@ -65,8 +65,8 @@ def test_past_modules(phase_factory):
         past_modules = models.Module.objects.past_modules()
         assert module1 in past_modules
         assert module2 not in past_modules
-        assert module1.module_start == parse('2013-01-01 17:00:02 UTC')
-        assert module1.module_end == parse('2013-01-01 18:00:00 UTC')
+        assert module1.start_date == parse('2013-01-01 17:00:02 UTC')
+        assert module1.end_date == parse('2013-01-01 18:00:00 UTC')
 
     with freeze_time('2013-01-01 18:00:01 UTC'):
         past_modules = models.Module.objects.past_modules()

@@ -13,28 +13,28 @@ from adhocracy4.projects import models as project_models
 
 class ModulesQuerySet(models.QuerySet):
 
-    def annotate_module_start(self):
-        return self.annotate(module_start=models.Min('phase__start_date'))
+    def annotate_start_date(self):
+        return self.annotate(start_date=models.Min('phase__start_date'))
 
-    def annotate_module_end(self):
-        return self.annotate(module_end=models.Max('phase__end_date'))
+    def annotate_end_date(self):
+        return self.annotate(end_date=models.Max('phase__end_date'))
 
     def running_modules(self):
         """Return running modules."""
         now = timezone.now()
         return self\
-            .annotate(module_start=models.Min('phase__start_date'))\
-            .annotate(module_end=models.Max('phase__end_date'))\
-            .filter(module_start__lte=now, module_end__gt=now)\
-            .order_by('module_start')
+            .annotate(start_date=models.Min('phase__start_date'))\
+            .annotate(end_date=models.Max('phase__end_date'))\
+            .filter(start_date__lte=now, end_date__gt=now)\
+            .order_by('start_date')
 
     def past_modules(self):
         """Return past modules ordered by start."""
         return self\
-            .annotate(module_start=models.Min('phase__start_date'))\
-            .annotate(module_end=models.Max('phase__end_date'))\
-            .filter(module_end__lte=timezone.now())\
-            .order_by('module_start')
+            .annotate(start_date=models.Min('phase__start_date'))\
+            .annotate(end_date=models.Max('phase__end_date'))\
+            .filter(end_date__lte=timezone.now())\
+            .order_by('start_date')
 
     def future_modules(self):
         """
@@ -43,17 +43,17 @@ class ModulesQuerySet(models.QuerySet):
         Note: Modules without a start date are assumed to start in the future.
         """
         return self\
-            .annotate(module_start=models.Min('phase__start_date'))\
-            .filter(models.Q(module_start__gt=timezone.now())
-                    | models.Q(module_start=None))\
-            .order_by('module_start')
+            .annotate(start_date=models.Min('phase__start_date'))\
+            .filter(models.Q(start_date__gt=timezone.now())
+                    | models.Q(start_date=None))\
+            .order_by('start_date')
 
     def past_and_running_modules(self):
         """Return past and running modules ordered by start date."""
         return self\
-            .annotate(module_start=models.Min('phase__start_date'))\
-            .filter(module_start__lte=timezone.now())\
-            .order_by('module_start')
+            .annotate(start_date=models.Min('phase__start_date'))\
+            .filter(start_date__lte=timezone.now())\
+            .order_by('start_date')
 
 
 class Module(models.Model):
@@ -140,11 +140,11 @@ class Module(models.Model):
         '''
         Return the start date of the first phase in the module.
 
-        Attention: This method is _deprecated_. The property module_start
+        Attention: This method is _deprecated_. The property start_date
         should be used instead.
         '''
         warnings.warn(
-            "first_phase_start_date is deprecated; use module_start.",
+            "first_phase_start_date is deprecated; use start_date.",
             DeprecationWarning
         )
         first_phase = self.phase_set.order_by('start_date').first()
@@ -157,12 +157,12 @@ class Module(models.Model):
         return False
 
     @cached_property
-    def module_start(self):
+    def start_date(self):
         '''Return the start date of the module.'''
         return self.phase_set.order_by('start_date').first().start_date
 
     @cached_property
-    def module_end(self):
+    def end_date(self):
         '''Return the end date of the module.'''
         return self.phase_set.order_by('-end_date').first().end_date
 
@@ -170,13 +170,13 @@ class Module(models.Model):
     def module_has_started(self):
         '''Test if the module has already started.'''
         now = timezone.now()
-        return now >= self.module_start
+        return now >= self.start_date
 
     @cached_property
     def module_has_finished(self):
         '''Test if the module has already finished.'''
         now = timezone.now()
-        return now > self.module_end
+        return now > self.end_date
 
     @cached_property
     def module_running_time_left(self):
@@ -207,7 +207,7 @@ class Module(models.Model):
 
         if self.module_has_started and not self.module_has_finished:
             now = timezone.now()
-            time_delta = self.module_end - now
+            time_delta = self.end_date - now
             seconds = time_delta.total_seconds()
             time_delta_list = seconds_in_units(seconds)
             best_unit = time_delta_list[0]
@@ -224,8 +224,8 @@ class Module(models.Model):
         if it is currently running.
         """
         if self.module_has_started and not self.module_has_finished:
-            time_gone = timezone.now() - self.module_start
-            total_time = self.module_end - self.module_start
+            time_gone = timezone.now() - self.start_date
+            total_time = self.end_date - self.start_date
             return round(time_gone / total_time * 100)
         return None
 

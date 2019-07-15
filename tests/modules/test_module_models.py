@@ -111,10 +111,10 @@ def test_module_dates(phase_factory):
         end_date=parse('2013-01-01 20:00:00 UTC')
     )
 
-    assert module1.module_start == parse('2013-01-01 17:00:00 UTC')
-    assert module1.module_end == parse('2013-01-01 18:00:00 UTC')
-    assert module2.module_start == parse('2013-01-01 17:00:00 UTC')
-    assert module2.module_end == parse('2013-01-01 20:00:00 UTC')
+    assert module1.start_date == parse('2013-01-01 17:00:00 UTC')
+    assert module1.end_date == parse('2013-01-01 18:00:00 UTC')
+    assert module2.start_date == parse('2013-01-01 17:00:00 UTC')
+    assert module2.end_date == parse('2013-01-01 20:00:00 UTC')
 
 
 @pytest.mark.django_db
