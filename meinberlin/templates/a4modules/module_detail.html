@@ -49,8 +49,8 @@
             </nav>
             <h1 class="project-header__title">{{ module.name }}</h1>
             <p class="project-header__description">{{ module.description }}</p>
+            {% block project_action %}{% endblock %}
         </div>
-        {% block project_action %}{% endblock %}
         {% if not module.active_phase %}
         <div class="l-center-6 u-spacer-bottom">
             <strong>
