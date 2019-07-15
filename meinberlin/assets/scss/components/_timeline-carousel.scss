@@ -104,6 +104,10 @@ $timeline-carousel__top-space: 11px;
 
     &.timeline-carousel__label {
         padding: 1.5*$padding;
+
+        .timeline-carousel__title {
+            font-weight: bold;
+        }
     }
 
     &.timeline-carousel__dot {
