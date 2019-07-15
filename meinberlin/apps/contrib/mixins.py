@@ -156,7 +156,8 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin,
             except IndexError:
                 pass
             try:
-                previous_module = cluster[idx - 1]
+                if idx > 0:
+                    previous_module = cluster[idx - 1]
             except IndexError:
                 pass
             context['other_modules'] = cluster

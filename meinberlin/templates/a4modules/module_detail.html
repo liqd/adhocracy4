@@ -49,7 +49,7 @@
             </nav>
             <h1 class="project-header__title">{{ module.name }}</h1>
             <p class="project-header__description">{{ module.description }}</p>
-            {% block project_action %}{% endblock %}
+
         </div>
         {% if not module.active_phase %}
         <div class="l-center-6 u-spacer-bottom">
@@ -68,8 +68,39 @@
             </strong>
         </div>
         {% endif %}
+        {% with phase_count=module.phases.count %}
+        <div class="l-center-6">
+            {% for phase in module.phases %}
+                {% if phase.is_over or phase == module.active_phase %}
+                <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
+                    <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar{% endif %}">
+                        {% if phase == module.active_phase %}
+                            <span class="lr-bar__left">{{ phase.name }}</span>
+                            <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
+                        {% else %}
+                            {{ phase.name }}
+                        {% endif %}
+                    </div>
+                    <div class="phase-info__item__subtitle">
+                        {% html_date phase.start_date 'DATETIME_FORMAT' %}
+                        &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
+                    </div>
+                    <div class="phase-info__item__description">
+                        {{ phase.description }}
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+            {% endwith %}
+
     </div>
     <div>
+        <div class="l-wrapper">
+            <div class="l-center-6">
+            {% block project_action %}{% endblock %}
+            </div>
+        </div>
         {% block phase_content %}{% endblock %}
     </div>
     <div class="l-wrapper">
