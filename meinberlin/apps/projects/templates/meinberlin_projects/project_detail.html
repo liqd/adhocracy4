@@ -155,11 +155,12 @@
     aria-labelledby="tab-project-{{ project.pk }}-participation"
     aria-expanded="true">
 
-        <div class="l-wrapper timeline-carousel__wrapper">
-
+        <div class="l-wrapper">
+            <div class="timeline-carousel__wrapper">
             {% if view.display_timeline %}
                 {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
             {% endif %}
+            </div>
         {% if event %}
             <div class="l-center-6">
                 <h2>{{ event.name }}</h2>
