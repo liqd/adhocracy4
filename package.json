@@ -55,7 +55,7 @@
     "slick-carousel": "github:liqd/slick#pm-2019-07-overwrites",
     "style-loader": "0.23.1",
     "terser-webpack-plugin": "1.3.0",
-    "tether": "1.4.6",
+    "tether": "1.4.7",
     "timeago.js": "3.0.2",
     "webpack": "4.35.3",
     "webpack-merge": "4.2.1"
