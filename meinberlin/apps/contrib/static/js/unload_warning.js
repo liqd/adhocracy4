@@ -1,4 +1,4 @@
-/* global $ CKEDITOR django */
+/* global CKEDITOR django */
 
 $(function () {
   var submitted = false
