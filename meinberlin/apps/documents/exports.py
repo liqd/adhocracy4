@@ -18,12 +18,12 @@ class DocumentExportView(
 ):
 
     model = Comment
-    permission_required = 'meinberlin_documents.change_chapter'
+    permission_required = 'a4projects.change_project'
 
     fields = ['id', 'comment', 'created']
 
     def get_permission_object(self):
-        return self.module
+        return self.module.project
 
     def get_queryset(self):
         comments = (

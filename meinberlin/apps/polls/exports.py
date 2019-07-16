@@ -19,10 +19,10 @@ class PollCommentExportView(
     model = Comment
 
     fields = ['id', 'comment', 'created']
-    permission_required = 'meinberlin_polls.change_poll'
+    permission_required = 'a4projects.change_project'
 
     def get_permission_object(self):
-        return self.module
+        return self.module.project
 
     def get_queryset(self):
         comments = (

@@ -25,7 +25,7 @@ class MapIdeaExportView(PermissionRequiredMixin,
     model = models.MapIdea
     fields = ['name', 'description']
     html_fields = ['description']
-    permission_required = 'meinberlin_mapideas.moderate_mapidea'
+    permission_required = 'a4projects.change_project'
 
     def get_queryset(self):
         return super().get_queryset() \
@@ -35,7 +35,7 @@ class MapIdeaExportView(PermissionRequiredMixin,
             .annotate_negative_rating_count()
 
     def get_permission_object(self):
-        return self.module
+        return self.module.project
 
     @property
     def raise_exception(self):
@@ -53,7 +53,7 @@ class MapIdeaCommentExportView(PermissionRequiredMixin,
     model = Comment
 
     fields = ['id', 'comment', 'created']
-    permission_required = 'meinberlin_mapideas.moderate_mapidea'
+    permission_required = 'a4projects.change_project'
 
     def get_queryset(self):
         comments = (Comment.objects.filter(mapidea__module=self.module) |
@@ -63,7 +63,7 @@ class MapIdeaCommentExportView(PermissionRequiredMixin,
         return comments
 
     def get_permission_object(self):
-        return self.module
+        return self.module.project
 
     def get_virtual_fields(self, virtual):
         virtual.setdefault('id', _('ID'))
