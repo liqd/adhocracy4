@@ -4,8 +4,6 @@
     justify-content: center;
     padding: 1.3em inherit;
     position: relative;
-    height: 100px; //used for centering on IE - min-height overides it
-
     text-align: center;
 
     @media print {

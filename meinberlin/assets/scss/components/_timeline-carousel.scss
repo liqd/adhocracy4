@@ -100,6 +100,17 @@ $timeline-carousel__top-space: 11px;
     }
 }
 
+//mobile slick overwrites
+@media screen and (max-width: $breakpoint-lg-down) {
+    .slick-next {
+        right: 0 !important;
+    }
+
+    .slick-prev {
+        left: 0 !important;
+    }
+}
+
 .initial {
     background: $brand-secondary;
     color: $text-color-inverted;
@@ -117,13 +128,8 @@ $timeline-carousel__top-space: 11px;
     }
 }
 
-//mobile
-@media screen and (max-width: $breakpoint-lg-down) {
-    .slick-next {
-        right: 0 !important;
-    }
-
-    .slick-prev {
-        left: 0 !important;
+@media screen and (min-width: $breakpoint-md) {
+    .timeline-carousel__wrapper {
+        margin-bottom: 3*$r-spacer;
     }
 }
