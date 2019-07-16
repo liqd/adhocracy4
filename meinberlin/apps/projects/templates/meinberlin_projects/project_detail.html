@@ -47,16 +47,16 @@
     </div>
 
     <div class="tablist tablist--left">
-    <div class="l-wrapper">
-        <div class="tablist__right">
-            {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
-            {% if user_may_change %}
-                <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
-            {% endif %}
-            {% if request.user.is_authenticated %}
-                {% react_follows project %}
-            {% endif %}
-        </div>
+        <div class="l-wrapper">
+            <div class="tablist__right">
+                {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
+                {% if user_may_change %}
+                    <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                    {% react_follows project %}
+                {% endif %}
+            </div>
 
             <nav class="nav" role="tablist">
                 <a
@@ -99,54 +99,54 @@
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-information"
     aria-expanded="false">
-    <div class="l-wrapper">
-        <div class="l-center-8">
-            {{ project.information | transform_collapsibles | richtext }}
-            {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url or project.organisation.address or project.organisation.url %}
-                <div class="l-tiles-2 u-top-divider">
-                {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
-                    <div>
-                        <h3>{% trans 'Contact for questions' %}</h3>
-                        {% if project.contact_name %}
-                        <p>{{ project.contact_name }}</p>
-                        {% endif %}
-                        {% if project.contact_address_text %}
-                        <p>{{ project.contact_address_text|linebreaks }}</p>
-                        {% endif %}
-                        {% if project.contact_phone %}
-                        <p><strong>{% trans 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
-                        {% endif %}
-                        {% if project.contact_email %}
-                        <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
-                            {% trans 'Email' %}
-                        </a>
-                        {% endif %}
-                        {% if project.contact_url %}
-                        <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
-                            {% trans 'Website' %}
-                        </a>
-                        {% endif %}
-                    </div>
-                {% endif %}
+        <div class="l-wrapper">
+            <div class="l-center-8">
+                {{ project.information | transform_collapsibles | richtext }}
+                {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url or project.organisation.address or project.organisation.url %}
+                    <div class="l-tiles-2 u-top-divider">
+                    {% if project.contact_name or project.contact_address_text or project.contact_email or project.contact_phone or project.contact_url %}
+                        <div>
+                            <h3>{% trans 'Contact for questions' %}</h3>
+                            {% if project.contact_name %}
+                            <p>{{ project.contact_name }}</p>
+                            {% endif %}
+                            {% if project.contact_address_text %}
+                            <p>{{ project.contact_address_text|linebreaks }}</p>
+                            {% endif %}
+                            {% if project.contact_phone %}
+                            <p><strong>{% trans 'Telephone' %}: </strong>{{ project.contact_phone }}</p>
+                            {% endif %}
+                            {% if project.contact_email %}
+                            <a class="btn btn--secondary" href="mailto:{{ project.contact_email }}">
+                                {% trans 'Email' %}
+                            </a>
+                            {% endif %}
+                            {% if project.contact_url %}
+                            <a class="btn btn--secondary" target="_blank" href="{{ project.contact_url }}">
+                                {% trans 'Website' %}
+                            </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
 
-                {% if project.organisation.address or project.organisation.url %}
-                    <div>
-                        <h3>{% trans 'Responsible body' %}</h3>
-                        {% if project.organisation.address %}
-                        <p>{{ project.organisation.name }}</p>
-                        <p>{{ project.organisation.address|linebreaks }}</p>
-                        {% endif %}
-                        {% if project.organisation.url %}
-                        <a class="btn btn--secondary" target="_blank" href="{{ project.organisation.url }}">
-                            {% trans 'Website' %}
-                        </a>
-                        {% endif %}
+                    {% if project.organisation.address or project.organisation.url %}
+                        <div>
+                            <h3>{% trans 'Responsible body' %}</h3>
+                            {% if project.organisation.address %}
+                            <p>{{ project.organisation.name }}</p>
+                            <p>{{ project.organisation.address|linebreaks }}</p>
+                            {% endif %}
+                            {% if project.organisation.url %}
+                            <a class="btn btn--secondary" target="_blank" href="{{ project.organisation.url }}">
+                                {% trans 'Website' %}
+                            </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
                     </div>
                 {% endif %}
-                </div>
-            {% endif %}
+            </div>
         </div>
-    </div>
     </div>
     <div
     class="tabpanel active"
@@ -160,7 +160,7 @@
                 {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=participation_dates %}
             {% endif %}
             </div>
-        {% if event %}
+            {% if event %}
             <div class="l-center-6">
                 <h2>{{ event.name }}</h2>
                 <P>{{ event.description | safe}}</P>
@@ -174,16 +174,17 @@
                     {% endfor %}
                     </ul>
                 </div>
+            </div>
             {% elif view.is_project_view_with_timeline %}
-                <div class="participation-tile__wrapper">
-                    <div class="participation-tile__list-container">
-                        <ul class="u-list-reset participation-tile__list">
-                        {% for module in modules %}
-                            {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
-                        {% endfor %}
-                        </ul>
-                    </div>
+            <div class="participation-tile__wrapper">
+                <div class="participation-tile__list-container">
+                    <ul class="u-list-reset participation-tile__list">
+                    {% for module in modules %}
+                        {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=module %}
+                    {% endfor %}
+                    </ul>
                 </div>
+            </div>
             {% else %} <!-- if no timeline and just one module and no phase view to dispatch to -->
                 {% if not module.active_phase %}
                 <div class="l-center-6">
@@ -226,16 +227,15 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-            {% endwith %}
+                {% endwith %}
             {% endif %}
-            </div>
-            <!-- these blocks are only filled when in phase view -->
-            <div class="l-wrapper">
-                <div class="l-center-6">
+        </div>
+        <!-- these blocks are only filled when in phase view -->
+        <div class="l-wrapper">
+            <div class="l-center-6">
                 {% block project_action %}{% endblock %}
-                </div>
             </div>
-            {% block phase_content %}{% endblock %}
+        {% block phase_content %}{% endblock %}
         </div>
     </div>
 
