@@ -1,4 +1,4 @@
-/* global $,django */
+/* global django */
 
 var apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
 

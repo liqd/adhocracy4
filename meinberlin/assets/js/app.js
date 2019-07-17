@@ -1,5 +1,4 @@
 /* eslint no-unused-vars: "off", no-new: "off" */
-/* global location */
 
 // make jquery available for non-webpack js
 var $ = window.jQuery = window.$ = require('jquery')

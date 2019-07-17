@@ -1,4 +1,4 @@
-/* global $ location django */
+/* global django */
 
 $(document).ready(function () {
   var $main = $('main')
