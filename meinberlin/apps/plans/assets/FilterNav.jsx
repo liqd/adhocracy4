@@ -64,7 +64,7 @@ class FilterNav extends React.Component {
   }
 
   clickDistrict (event) {
-    let district = event.currentTarget.value
+    const district = event.currentTarget.value
     this.props.selectDistrict(district)
     this.setState({
       displayDistrictOptions: false,
@@ -73,7 +73,7 @@ class FilterNav extends React.Component {
   }
 
   clickTopic (event) {
-    let topic = event.currentTarget.value
+    const topic = event.currentTarget.value
     this.props.selectTopic(topic)
     this.setState({
       displayTopicOptions: false,

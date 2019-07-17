@@ -74,7 +74,7 @@ $(init)
 window.init_widgets = init
 
 module.exports = {
-  'getCurrentPath': getCurrentPath
+  getCurrentPath: getCurrentPath
 }
 
 // Closes bootstrap collapse on click elsewhere

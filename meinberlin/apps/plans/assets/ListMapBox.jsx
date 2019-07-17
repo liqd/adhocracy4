@@ -57,7 +57,7 @@ class ListMapBox extends Component {
   }
 
   handleWindowSizeChange () {
-    let width = window.innerWidth
+    const width = window.innerWidth
     this.setState({
       width: width
     })
@@ -82,13 +82,13 @@ class ListMapBox extends Component {
   }
 
   compareItems (item1, item2) {
-    let item1Type = (item1.subtype === 'default' || item1.subtype === 'external') ? 'project' : item1.subtype
-    let item2Type = (item2.subtype === 'default' || item2.subtype === 'external') ? 'project' : item2.subtype
+    const item1Type = (item1.subtype === 'default' || item1.subtype === 'external') ? 'project' : item1.subtype
+    const item2Type = (item2.subtype === 'default' || item2.subtype === 'external') ? 'project' : item2.subtype
 
-    let sortByPhase = (phase1, phase2, earliestFirst) => {
+    const sortByPhase = (phase1, phase2, earliestFirst) => {
       if (phase1 && phase2) {
-        let date1 = Date.parse(phase1.replace(/ /g, 'T'))
-        let date2 = Date.parse(phase2.replace(/ /g, 'T'))
+        const date1 = Date.parse(phase1.replace(/ /g, 'T'))
+        const date2 = Date.parse(phase2.replace(/ /g, 'T'))
         if (earliestFirst) {
           return date1 <= date2 ? -1 : 1
         } else {
@@ -106,15 +106,15 @@ class ListMapBox extends Component {
       3. projects with past phase
       4. projects without phase (can happen for external ones) */
       if (item1Type === 'project') {
-        let active = sortByPhase(item1.active_phase[2], item2.active_phase[2], true)
+        const active = sortByPhase(item1.active_phase[2], item2.active_phase[2], true)
         if (active) {
           return active
         }
-        let future = sortByPhase(item1.future_phase, item2.future_phase, true)
+        const future = sortByPhase(item1.future_phase, item2.future_phase, true)
         if (future) {
           return future
         }
-        let past = sortByPhase(item1.past_phase, item2.past_phase, false)
+        const past = sortByPhase(item1.past_phase, item2.past_phase, false)
         if (past) {
           return past
         }
@@ -136,15 +136,15 @@ class ListMapBox extends Component {
   }
 
   sortItems (items) {
-    let sortedItems = items.sort(this.compareItems)
+    const sortedItems = items.sort(this.compareItems)
     return sortedItems
   }
 
   isInTitle (title) {
-    let titleLower = title.toLowerCase().trim().replace(/\s/g, '')
-    let searchString = this.state.titleSearch.toLowerCase().trim()
-    let searchList = searchString.split(/\s/)
-    for (let i in searchList) {
+    const titleLower = title.toLowerCase().trim().replace(/\s/g, '')
+    const searchString = this.state.titleSearch.toLowerCase().trim()
+    const searchList = searchString.split(/\s/)
+    for (const i in searchList) {
       if (titleLower.indexOf(searchList[i]) === -1) {
         return false
       }
@@ -162,7 +162,7 @@ class ListMapBox extends Component {
   }
 
   updateList () {
-    let items = []
+    const items = []
     this.sortedItems.forEach((item, i) => {
       if (this.isInFilter(item)) {
         items.push(item)
@@ -180,7 +180,7 @@ class ListMapBox extends Component {
   }
 
   toggleSwitch () {
-    let newValue = !this.state.showListMap
+    const newValue = !this.state.showListMap
     this.setState({ showListMap: newValue })
   }
 
@@ -199,8 +199,8 @@ class ListMapBox extends Component {
   }
 
   updateUrl (topic, district) {
-    let params = '?district=' + district + '&topic=' + topic
-    let newUrl = this.location + params
+    const params = '?district=' + district + '&topic=' + topic
+    const newUrl = this.location + params
     if (window.history && history.pushState) {
       window.history.replaceState({}, '', newUrl)
     }

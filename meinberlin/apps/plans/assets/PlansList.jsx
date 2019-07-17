@@ -12,8 +12,8 @@ class PlansList extends React.Component {
   }
 
   getTimespan (item) {
-    let timeRemaining = item.active_phase[1].split(' ')
-    let daysRemaining = parseInt(timeRemaining[0])
+    const timeRemaining = item.active_phase[1].split(' ')
+    const daysRemaining = parseInt(timeRemaining[0])
     if (daysRemaining > 365) {
       return (
         <span>{django.gettext('More than 1 year remaining')}</span>
@@ -34,14 +34,14 @@ class PlansList extends React.Component {
   }
 
   getTopicList (item) {
-    let topicList = item.topics.map((val) => {
+    const topicList = item.topics.map((val) => {
       return this.props.topicChoices[val]
     })
     return topicList
   }
 
   renderTopics (item) {
-    let topicsList = this.getTopicList(item)
+    const topicsList = this.getTopicList(item)
     if (item.topics) {
       return (
         <div className={item.tile_image ? 'maplist-item__label-img' : 'maplist-item__label-spacer'}>
@@ -66,7 +66,7 @@ class PlansList extends React.Component {
   }
 
   renderListItem (item, i) {
-    let statusClass = (item.participation_active === true) ? 'participation-tile__status-active' : 'participation-tile__status-inactive'
+    const statusClass = (item.participation_active === true) ? 'participation-tile__status-active' : 'participation-tile__status-inactive'
     return (
       <li className={this.props.isHorizontal ? 'participation-tile__horizontal' : 'participation-tile__vertical'} key={i}>
 
@@ -147,7 +147,7 @@ class PlansList extends React.Component {
   }
 
   renderList () {
-    let list = []
+    const list = []
     this.props.items.forEach((item, i) => {
       list.push(this.renderListItem(item, i))
     })

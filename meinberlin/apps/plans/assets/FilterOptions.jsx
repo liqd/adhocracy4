@@ -94,7 +94,7 @@ class FilterOptions extends React.Component {
     if (lastElement && this.props.hasNoneValue) {
       sliceEndLast = -1
     }
-    let slicedList = Object.keys(this.props.options).slice(sliceStart, sliceEndLast)
+    const slicedList = Object.keys(this.props.options).slice(sliceStart, sliceEndLast)
     return (
       <OptionList
         key={'list-' + i.toString()}
@@ -111,15 +111,15 @@ class FilterOptions extends React.Component {
   }
 
   getLists () {
-    let lists = []
+    const lists = []
     for (let i = 0; i < this.props.numColumns; i++) {
-      let firstElement = (i === 0)
-      let lastElement = (i === (this.props.numColumns - 1))
+      const firstElement = (i === 0)
+      const lastElement = (i === (this.props.numColumns - 1))
       let sliceStart = i * this.getListLength()
       if (!firstElement) {
         sliceStart -= 2
       }
-      let sliceEnd = (this.getListLength() - 2) + i * this.getListLength()
+      const sliceEnd = (this.getListLength() - 2) + i * this.getListLength()
       lists.push(this.getList(sliceStart, sliceEnd, i, firstElement, lastElement))
     }
     return lists

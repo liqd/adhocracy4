@@ -1,5 +1,5 @@
 const React = require('react')
-let FilterNav = require('./FilterNav')
+const FilterNav = require('./FilterNav')
 
 const breakpointXS = 800
 const breakpointMD = 1024
@@ -19,7 +19,7 @@ class MapTeaserBox extends React.Component {
   }
 
   handleWindowSizeChange () {
-    let width = window.innerWidth
+    const width = window.innerWidth
     this.setState({
       width: width
     })
@@ -38,7 +38,7 @@ class MapTeaserBox extends React.Component {
     if (district === '-1') {
       districtName = '-1'
     }
-    let newLinkUrl = this.props.url + '?district=' + districtName + '&topic=' + this.state.topic
+    const newLinkUrl = this.props.url + '?district=' + districtName + '&topic=' + this.state.topic
     this.setState({
       district: districtName,
       linkUrl: newLinkUrl
@@ -46,7 +46,7 @@ class MapTeaserBox extends React.Component {
   }
 
   selectTopic (topic) {
-    let newLinkUrl = this.props.url + '?district=' + this.state.district + '&topic=' + topic
+    const newLinkUrl = this.props.url + '?district=' + this.state.district + '&topic=' + topic
     this.setState({
       topic: topic,
       linkUrl: newLinkUrl

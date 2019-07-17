@@ -11,7 +11,7 @@ class FilterRadio extends React.Component {
   }
 
   handleOnChange (event) {
-    let choiceId = parseInt(event.target.value)
+    const choiceId = parseInt(event.target.value)
     this.props.onSelect(choiceId)
     this.setState({
       selectedChoice: choiceId
