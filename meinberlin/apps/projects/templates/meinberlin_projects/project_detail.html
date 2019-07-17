@@ -231,10 +231,12 @@
             {% endif %}
         </div>
         <!-- these blocks are only filled when in phase view -->
-        <div class="l-center-6">
-        {% block project_action %}{% endblock %}
-        </div>
+        <div class="l-wrapper">
+            <div class="l-center-6">
+                {% block project_action %}{% endblock %}
+            </div>
         {% block phase_content %}{% endblock %}
+        </div>
     </div>
 
     <div

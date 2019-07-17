@@ -36,7 +36,7 @@
             {% endif %}
             </div>
         {% endif %}
-        <div class="l-center-8 project-header">
+        <div class="l-center-6 project-header">
             <nav class="breadcrumbs u-spacer-bottom-double" aria-label="{% trans 'breadcrumbs' %}">
                 <ul>
                     <li>
@@ -103,11 +103,12 @@
         </div>
         {% block phase_content %}{% endblock %}
     </div>
+    {% if module %}
     <div class="l-wrapper">
         <div class="participation-tile__wrapper">
             <div class="participation-tile__list-container">
-                <h3 class="participation-tile__list-header">More questions from this online participation</h3>
                 <ul class="u-list-reset participation-tile__list">
+                    <h3 class="participation-tile__list-header">More questions from this online participation</h3>
                     {% for other_module in other_modules %}
                         {% if not other_module == module %}
                             {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=other_module %}
@@ -117,4 +118,5 @@
             </div>
         </div>
     </div>
+    {% endif %}
 {% endblock %}
