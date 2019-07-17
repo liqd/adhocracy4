@@ -46,7 +46,7 @@ class FilterSecondary extends React.Component {
   }
 
   changeTitleSearch (e) {
-    let value = e.currentTarget.value
+    const value = e.currentTarget.value
     this.setState({
       titleSearchChoice: value
     })

@@ -176,7 +176,7 @@ class PollManagement extends React.Component {
   handleSubmit (e) {
     e.preventDefault()
 
-    let data = {
+    const data = {
       questions: this.state.questions
     }
 

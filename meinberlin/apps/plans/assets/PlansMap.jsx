@@ -43,7 +43,7 @@ class PlansMap extends Component {
   constructor (props) {
     super(props)
 
-    let showInfoBox = !this.props.cookies.get('plansMapHideInfoBox')
+    const showInfoBox = !this.props.cookies.get('plansMapHideInfoBox')
     this.state = {
       searchResults: null,
       address: null,
@@ -86,7 +86,7 @@ class PlansMap extends Component {
   }
 
   setupMap () {
-    let map = createMap(L, this.mapElement, {
+    const map = createMap(L, this.mapElement, {
       baseUrl: this.props.baseurl,
       useVectorMap: this.props.useVectorMap,
       mapboxToken: this.props.mapboxToken,
@@ -102,14 +102,14 @@ class PlansMap extends Component {
 
   unsetLayerStyle (district) {
     if (district !== '-1' && district !== this.props.nonValue) {
-      let layer = this.disctrictLayerLookup[district]
+      const layer = this.disctrictLayerLookup[district]
       layer.setStyle({ weight: 1 })
     }
   }
 
   zoomToDistrict (district) {
     if (district !== '-1' && district !== this.props.nonValue) {
-      let layer = this.disctrictLayerLookup[district]
+      const layer = this.disctrictLayerLookup[district]
       this.map.fitBounds(layer.getBounds())
       layer.setStyle({ weight: 3 })
     } else {
@@ -118,14 +118,14 @@ class PlansMap extends Component {
   }
 
   addDistrictLayers (map) {
-    let districtStyle = {
-      'color': '#253276',
-      'weight': 1,
-      'opacity': 1,
-      'fillOpacity': 0
+    const districtStyle = {
+      color: '#253276',
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0
     }
-    let districLayers = L.geoJSON(this.props.districts, { style: districtStyle }).addTo(map)
-    let districtNames = this.props.districtnames
+    const districLayers = L.geoJSON(this.props.districts, { style: districtStyle }).addTo(map)
+    const districtNames = this.props.districtnames
     this.disctrictLayerLookup = {}
     districLayers.getLayers().map((layer, i) => {
       this.disctrictLayerLookup[districtNames[i].toString()] = layer
@@ -134,7 +134,7 @@ class PlansMap extends Component {
   }
 
   getTopicList (item) {
-    let topicList = item.topics.map((val) => {
+    const topicList = item.topics.map((val) => {
       return this.props.topicChoices[val]
     })
     return topicList
@@ -152,7 +152,7 @@ class PlansMap extends Component {
   addMarkers (cluster) {
     this.props.items.map((item, i) => {
       if (item.point !== '' && item.point.geometry) {
-        let marker = L.marker(pointToLatLng(item.point), { icon: itemIcon })
+        const marker = L.marker(pointToLatLng(item.point), { icon: itemIcon })
         cluster.addLayer(marker)
         marker.bindPopup(this.getPopUpContent(item))
         return marker
@@ -162,21 +162,21 @@ class PlansMap extends Component {
 
   displayResults (geojson) {
     this.setState(
-      { 'displayResults': true,
-        'showInfoBox': false,
-        'searchResults': geojson.features }
+      { displayResults: true,
+        showInfoBox: false,
+        searchResults: geojson.features }
     )
   }
 
   displayErrorMessage () {
     this.setState(
-      { 'displayError': true,
-        'showInfoBox': false }
+      { displayError: true,
+        showInfoBox: false }
     )
     setTimeout(function () {
       this.setState(
-        { 'displayError': false,
-          'showInfoBox': this.state.showInfoBoxUser })
+        { displayError: false,
+          showInfoBox: this.state.showInfoBoxUser })
     }.bind(this), 2000)
   }
 
@@ -184,26 +184,26 @@ class PlansMap extends Component {
     if (this.state.address) {
       this.map.removeLayer(this.state.address)
     }
-    let addressMarker = L.geoJSON(geojson, {
+    const addressMarker = L.geoJSON(geojson, {
       pointToLayer: function (feature, latlng) {
         return L.marker(latlng, { icon: addressIcon })
       }
     }).addTo(this.map)
-    this.map.flyToBounds(addressMarker.getBounds(), { 'maxZoom': 13 })
+    this.map.flyToBounds(addressMarker.getBounds(), { maxZoom: 13 })
     this.setState(
-      { 'address': addressMarker,
-        'showInfoBox': this.state.showInfoBoxUser }
+      { address: addressMarker,
+        showInfoBox: this.state.showInfoBoxUser }
     )
   }
 
   onAddressSearchSubmit (event) {
     event.preventDefault()
-    let address = event.target.search.value
+    const address = event.target.search.value
     $.ajax(apiUrl, {
       data: { address: address },
       context: this,
       success: function (geojson) {
-        let count = geojson.count
+        const count = geojson.count
         if (count === 0) {
           this.displayErrorMessage()
         } else if (count === 1) {
@@ -219,24 +219,24 @@ class PlansMap extends Component {
     if (event.target.value === '' && this.state.address) {
       this.map.removeLayer(this.state.address)
       this.setState({
-        'address': null
+        address: null
       })
     }
   }
 
   selectSearchResult (event) {
-    let index = parseInt(event.target.value, 10)
-    let address = this.state.searchResults[index]
+    const index = parseInt(event.target.value, 10)
+    const address = this.state.searchResults[index]
     this.displayAdressMarker(address)
     this.setState(
-      { 'displayResults': false }
+      { displayResults: false }
     )
   }
 
   closeInfoBox () {
     this.setState(
-      { 'showInfoBox': false,
-        'showInfoBoxUser': false }
+      { showInfoBox: false,
+        showInfoBoxUser: false }
     )
     this.props.cookies.set('plansMapHideInfoBox', 1, { path: '/' })
   }

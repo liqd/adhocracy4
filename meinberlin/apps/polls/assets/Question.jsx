@@ -33,9 +33,9 @@ class Question extends React.Component {
       return false
     }
 
-    let newChoices = this.state.selectedChoices
+    const newChoices = this.state.selectedChoices
 
-    let submitData = {
+    const submitData = {
       choices: newChoices,
       urlReplaces: { questionId: this.state.question.id }
     }
@@ -83,9 +83,9 @@ class Question extends React.Component {
 
     var diff = {}
     if (index === -1) {
-      diff = { '$push': [choiceId] }
+      diff = { $push: [choiceId] }
     } else {
-      diff = { '$splice': [[index, 1]] }
+      diff = { $splice: [[index, 1]] }
     }
 
     this.setState({
@@ -159,10 +159,10 @@ class Question extends React.Component {
         <div className="poll__rows">
           {
             this.state.question.choices.map((choice, i) => {
-              let checked = this.state.selectedChoices.indexOf(choice.id) !== -1
-              let chosen = this.state.question.userChoices.indexOf(choice.id) !== -1
-              let percent = total === 0 ? 0 : Math.round(choice.count / total * 100)
-              let highlight = choice.count === max && max > 0
+              const checked = this.state.selectedChoices.indexOf(choice.id) !== -1
+              const chosen = this.state.question.userChoices.indexOf(choice.id) !== -1
+              const percent = total === 0 ? 0 : Math.round(choice.count / total * 100)
+              const highlight = choice.count === max && max > 0
 
               if (this.state.showResult) {
                 return (

@@ -13,8 +13,8 @@ class PopUp extends React.Component {
   }
 
   getTimespan () {
-    let timeRemaining = this.props.item.active_phase[1].split(' ')
-    let daysRemaining = parseInt(timeRemaining[0])
+    const timeRemaining = this.props.item.active_phase[1].split(' ')
+    const daysRemaining = parseInt(timeRemaining[0])
     if (daysRemaining > 365) {
       return (
         <span>{django.gettext('More than 1 year remaining')}</span>
@@ -43,7 +43,7 @@ class PopUp extends React.Component {
   }
 
   render () {
-    let statusClass = (this.props.item.participation_active === true) ? 'participation-tile__status-active' : 'participation-tile__status-inactive'
+    const statusClass = (this.props.item.participation_active === true) ? 'participation-tile__status-active' : 'participation-tile__status-inactive'
     if (this.props.item.type === 'project') {
       return (
         <div className="maps-popups-popup-text-content">

@@ -129,7 +129,7 @@ var init = function () {
           const buffer = e.target.result
           shp(buffer).then((geoJson) => {
             try {
-              let shape = L.geoJson(geoJson, {
+              const shape = L.geoJson(geoJson, {
                 style: this.options.polygonStyle
               })
               this._addToMap(map, shape)
@@ -143,11 +143,11 @@ var init = function () {
         }
         reader.readAsArrayBuffer(file)
       } else if (file.name.slice(-4) === 'json') {
-        let reader = new window.FileReader()
+        const reader = new window.FileReader()
         reader.onload = (e) => {
           try {
             const geoJson = JSON.parse(e.target.result)
-            let shape = L.geoJson(geoJson, {
+            const shape = L.geoJson(geoJson, {
               style: this.options.polygonStyle
             })
             this._addToMap(map, shape)
@@ -190,10 +190,10 @@ var init = function () {
       minZoom: 2 })
 
     const polygonStyle = {
-      'color': '#0076ae',
-      'weight': 2,
-      'opacity': 1,
-      'fillOpacity': 0.2
+      color: '#0076ae',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.2
     }
 
     let drawnItems
