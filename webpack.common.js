@@ -147,7 +147,8 @@ module.exports = {
     new webpack.ProvidePlugin({
       timeago: 'timeago.js',
       $: 'jquery',
-      jQuery: 'jquery'
+      jQuery: 'jquery',
+      Promise: ['es6-promise', 'Promise']
     }),
     new webpack.optimize.SplitChunksPlugin({
       name: 'vendor',
