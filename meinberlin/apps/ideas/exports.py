@@ -21,13 +21,14 @@ class IdeaExportView(PermissionRequiredMixin,
                      export_mixins.ItemExportWithModeratorRemark,
                      export_mixins.UserGeneratedContentExportMixin,
                      a4_export_views.BaseItemExportView):
+
     model = models.Idea
     fields = ['name', 'description']
     html_fields = ['description']
-    permission_required = 'meinberlin_ideas.moderate_idea'
+    permission_required = 'a4projects.change_project'
 
     def get_permission_object(self):
-        return self.module
+        return self.module.project
 
     def get_queryset(self):
         return super().get_queryset() \
@@ -52,10 +53,10 @@ class IdeaCommentExportView(PermissionRequiredMixin,
     model = Comment
 
     fields = ['id', 'comment', 'created']
-    permission_required = 'meinberlin_ideas.moderate_idea'
+    permission_required = 'a4projects.change_project'
 
     def get_permission_object(self):
-        return self.module
+        return self.module.project
 
     def get_queryset(self):
         comments = (Comment.objects.filter(idea__module=self.module) |

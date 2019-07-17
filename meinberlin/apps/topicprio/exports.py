@@ -22,10 +22,10 @@ class TopicExportView(PermissionRequiredMixin,
     model = models.Topic
     fields = ['name', 'description']
     html_fields = ['description']
-    permission_required = 'meinberlin_topicprio.change_topic'
+    permission_required = 'a4projects.change_project'
 
     def get_permission_object(self):
-        return self.module
+        return self.module.project
 
     def get_queryset(self):
         return super().get_queryset() \
@@ -50,10 +50,10 @@ class TopicCommentExportView(PermissionRequiredMixin,
     model = Comment
 
     fields = ['id', 'comment', 'created']
-    permission_required = 'meinberlin_topicprio.change_topic'
+    permission_required = 'a4projects.change_project'
 
     def get_permission_object(self):
-        return self.module
+        return self.module.project
 
     def get_queryset(self):
         comments = (Comment.objects.filter(topic__module=self.module) |

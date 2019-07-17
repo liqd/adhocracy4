@@ -23,10 +23,10 @@ class MapTopicExportView(PermissionRequiredMixin,
     model = models.MapTopic
     fields = ['name', 'description']
     html_fields = ['description']
-    permission_required = 'meinberlin_maptopicprio.change_maptopic'
+    permission_required = 'a4projects.change_project'
 
     def get_permission_object(self):
-        return self.module
+        return self.module.project
 
     def get_queryset(self):
         return super().get_queryset() \
@@ -51,10 +51,10 @@ class MapTopicCommentExportView(PermissionRequiredMixin,
     model = Comment
 
     fields = ['id', 'comment', 'created']
-    permission_required = 'meinberlin_maptopicprio.change_maptopic'
+    permission_required = 'a4projects.change_project'
 
     def get_permission_object(self):
-        return self.module
+        return self.module.project
 
     def get_queryset(self):
         comments = (Comment.objects.filter(maptopic__module=self.module) |
