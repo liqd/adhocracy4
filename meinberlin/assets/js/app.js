@@ -12,7 +12,7 @@ var Shariff = window.Shariff
 require('bootstrap')
 
 require('slick-carousel')
-require("slick-carousel/slick/slick.css")
+require('slick-carousel/slick/slick.css')
 
 var django = require('django')
 
@@ -83,14 +83,13 @@ $(document).on('click', function () {
   $('.collapse').collapse('hide')
 })
 
-//carousel
-$(document).ready(function(){
-
-  function getInitialSlide() {
-    return parseInt($("#timeline-carousel").attr("data-initial-slide"))
+// carousel
+$(document).ready(function () {
+  function getInitialSlide () {
+    return parseInt($('#timeline-carousel').attr('data-initial-slide'))
   }
 
-  $(".timeline-carousel__item").slick({
+  $('.timeline-carousel__item').slick({
     initialSlide: getInitialSlide(),
     focusOnSelect: false,
     centerMode: true,
@@ -102,5 +101,5 @@ $(document).ready(function(){
     variableWidth: true,
     slidesToShow: 1,
     slidesToScroll: 1
-    })
+  })
 })
