@@ -399,9 +399,32 @@ class Project(ProjectContactDetailMixin,
         return self.phases.past_and_active_phases().exists()
 
     @cached_property
+    def end_date(self):
+        last_phase = self.phases.order_by('end_date').last()
+        end_date = last_phase.end_date
+        if self.events:
+            last_event = self.events.order_by('date').last()
+            if last_event.date > end_date:
+                end_date = last_event.date
+        return end_date
+
+    @cached_property
+    def events(self):
+        if hasattr(self, 'offlineevent_set'):
+            return self.offlineevent_set.all()
+
+    @cached_property
+    def has_future_events(self):
+        if self.events:
+            now = timezone.now()
+            return self.events.filter(date__gt=now).exists()
+        return False
+
+    @cached_property
     def has_finished(self):
         return not self.phases.active_phases().exists()\
-               and not self.phases.future_phases().exists()
+               and not self.phases.future_phases().exists()\
+               and not self.has_future_events
 
     @cached_property
     def modules(self):

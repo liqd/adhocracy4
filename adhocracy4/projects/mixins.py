@@ -251,7 +251,7 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin,
                         if now >= start_date and now <= end_date:
                             return idx
             for idx, val in enumerate(self.full_list):
-                if not 'type' in val:
+                if 'type' not in val:
                     date = val['date']
                     if date:
                         if now <= date:
