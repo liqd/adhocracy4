@@ -25,9 +25,9 @@ from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
+from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
-from meinberlin.apps.contrib.mixins import DisplayProjectOrModuleMixin
 
 from . import forms
 from . import get_project_type
