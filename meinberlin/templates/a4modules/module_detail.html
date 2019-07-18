@@ -25,14 +25,14 @@
             {% if previous %}
                 <a class="btn btn--light u-secondary" href="{% url 'module-detail' previous.slug %}">
                     <i class="fa fa-chevron-left u-md-up-display-none"></i>
-                    <span class="u-md-down-display-none">{% trans 'Previous question' %}</span>
+                    <span class="u-md-down-display-none">{% trans 'Previous' %}</span>
                 </a>
             {% endif %}
             <span class="u-spacer-left u-spacer-right">{{ index }} {% trans 'of' %} {{ other_modules|length }}</span>
             {% if next %}
                 <a class="btn btn--light u-secondary" href="{% url 'module-detail' next.slug %}">
                     <i class="fa fa-chevron-right u-md-up-display-none"></i>
-                    <span class="u-md-down-display-none">{% trans 'Next question' %}</span>
+                    <span class="u-md-down-display-none">{% trans 'Next' %}</span>
                 </a>
             {% endif %}
             </div>
