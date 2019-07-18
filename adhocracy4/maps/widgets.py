@@ -9,11 +9,12 @@ class MapChoosePolygonWidget(Widget):
 
     class Media:
         js = (
+            'leaflet.js',
             'a4maps_choose_polygon.js',
         )
 
         css = {'all': [
-            'a4maps_choose_polygon.css'
+            'leaflet.css'
         ]}
 
     def render(self, name, value, attrs, renderer=None):
@@ -57,11 +58,12 @@ class MapChoosePointWidget(Widget):
 
     class Media:
         js = (
+            'leaflet.js',
             'a4maps_choose_point.js',
         )
 
         css = {'all': [
-            'a4maps_choose_point.css'
+            'leaflet.css'
         ]}
 
     def render(self, name, value, attrs, renderer=None):
