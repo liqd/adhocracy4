@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-18 11:39+0200\n"
+"POT-Creation-Date: 2019-07-18 12:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2873,8 +2873,10 @@ msgstr "Please enter email addresses or upload a file"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:12
 #, python-format
-msgid "%(num_entries)s Contributions"
-msgstr "%(num_entries)s Contributions"
+msgid "%(num_entries)s Contribution"
+msgid_plural "%(num_entries)s Contributions"
+msgstr[0] "%(num_entries)s Contribution"
+msgstr[1] "%(num_entries)s Contributions"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:21
 #, python-format
@@ -3788,6 +3790,9 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid "%(num_entries)s Contributions"
+#~ msgstr "%(num_entries)s Contributions"
 
 #~ msgid ""
 #~ "Provide start and end dates if the external project allows participation. "
