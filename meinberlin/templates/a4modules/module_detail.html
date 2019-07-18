@@ -28,11 +28,12 @@
                     <span class="u-md-down-display-none">{% trans 'Previous question' %}</span>
                 </a>
             {% endif %}
-                <span class="u-spacer-left u-spacer-right">{{ index }} {% trans 'of' %} {{ other_modules|length }}</span>
+            <span class="u-spacer-left u-spacer-right">{{ index }} {% trans 'of' %} {{ other_modules|length }}</span>
             {% if next %}
                 <a class="btn btn--light u-secondary" href="{% url 'module-detail' next.slug %}">
                     <i class="fa fa-chevron-right u-md-up-display-none"></i>
-                    <span class="u-md-down-display-none">{% trans 'Next question' %}</span></a>
+                    <span class="u-md-down-display-none">{% trans 'Next question' %}</span>
+                </a>
             {% endif %}
             </div>
         {% endif %}
@@ -49,7 +50,6 @@
             </nav>
             <h1 class="project-header__title">{{ module.name }}</h1>
             <p class="project-header__description">{{ module.description }}</p>
-
         </div>
         {% if not module.active_phase %}
         <div class="l-center-6 u-spacer-bottom">
@@ -92,17 +92,16 @@
                 {% endif %}
             {% endfor %}
         </div>
-            {% endwith %}
+        {% endwith %}
+    </div>
 
-    </div>
-    <div>
-        <div class="l-wrapper">
-            <div class="l-center-6">
-            {% block project_action %}{% endblock %}
-            </div>
+    <div class="l-wrapper">
+        <div class="l-center-6">
+        {% block project_action %}{% endblock %}
         </div>
-        {% block phase_content %}{% endblock %}
     </div>
+    {% block phase_content %}{% endblock %}
+
     {% if module %}
     <div class="l-wrapper">
         <div class="participation-tile__wrapper">
