@@ -18,9 +18,6 @@ class DateTimeInput(form_widgets.SplitDateTimeWidget):
         js = (
             'datepicker.js',
         )
-        css = {'all': [
-            'datepicker.css',
-        ]}
 
     def render(self, name, value, attrs=None, renderer=None):
         date_attrs = self.build_attrs(attrs)
