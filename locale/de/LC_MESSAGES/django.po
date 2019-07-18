@@ -3011,8 +3011,8 @@ msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 #, python-format
 msgid "%(num_entries)s Contribution"
 msgid_plural "%(num_entries)s Contributions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num_entries)s Beitrag"
+msgstr[1] "%(num_entries)s Beiträge"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:21
 #, python-format
