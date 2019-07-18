@@ -9,7 +9,7 @@
                 <span class="participation-tile__item-count">
                     <i class="fas fa-comments" aria-hidden="true"></i>
                     {% get_num_entries module as num_entries %}
-                    {% blocktrans with num_entries=num_entries %}{{ num_entries }} Contributions{% endblocktrans %}
+                    {% blocktrans count num_entries=num_entries %}{{ num_entries }} Contribution{% plural %}{{ num_entries }} Contributions{% endblocktrans %}
                 </span>
                 {% if module.module_running_time_left %}
                 <div class="status-item status__active">
