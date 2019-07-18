@@ -850,11 +850,11 @@ msgstr "Minuten"
 
 #: adhocracy4/modules/models.py:194
 msgid "second"
-msgstr ""
+msgstr "Sekunde"
 
 #: adhocracy4/modules/models.py:194
 msgid "seconds"
-msgstr ""
+msgstr "Sekunden"
 
 #: adhocracy4/phases/models.py:69
 #: meinberlin/apps/activities/models.py:21 meinberlin/apps/ideas/models.py:32
@@ -3010,7 +3010,7 @@ msgstr "Bitte E-Mail Adressen eingeben oder Datei hochladen"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:12
 #, python-format
 msgid "%(num_entries)s Contributions"
-msgstr ""
+msgstr "%(num_entries)s Beiträge"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:21
 #, python-format
@@ -3038,7 +3038,7 @@ msgstr "Beteiligungsprojekte: "
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:12
 msgid "Timeline item"
-msgstr ""
+msgstr "Zeitleistenkachel"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_timeline-carousel.html:18
 msgid "from"
@@ -3640,15 +3640,15 @@ msgstr ""
 
 #: meinberlin/templates/a4modules/module_detail.html:28
 msgid "Previous"
-msgstr ""
+msgstr "Vorherige"
 
 #: meinberlin/templates/a4modules/module_detail.html:31
 msgid "of"
-msgstr ""
+msgstr "von"
 
 #: meinberlin/templates/a4modules/module_detail.html:35
 msgid "Next"
-msgstr ""
+msgstr "Nächste"
 
 #: meinberlin/templates/account/email.html:6
 #: meinberlin/templates/account/email.html:9
