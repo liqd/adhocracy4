@@ -251,11 +251,10 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin,
                         if now >= start_date and now <= end_date:
                             return idx
             for idx, val in enumerate(self.full_list):
-                if 'type' not in val:
-                    date = val['date']
-                    if date:
-                        if now <= date:
-                            return idx
+                date = val['date']
+                if date:
+                    if now <= date:
+                        return idx
         return 0
 
     def get_current_event(self):
