@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-01 16:58+0200\n"
+"POT-Creation-Date: 2019-07-18 11:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -493,35 +493,35 @@ msgstr "Project status"
 msgid "show projects"
 msgstr "show projects"
 
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:14
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:13
 msgid "with"
 msgstr "with"
 
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:15
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:14
 msgid "without"
 msgstr "without"
 
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:16
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:15
 msgid "undecided"
 msgstr "undecided"
 
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:20
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:19
 msgid "with participation"
 msgstr "with participation"
 
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:21
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:20
 msgid "without participation"
 msgstr "without participation"
 
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:22
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:21
 msgid "participation undecided"
 msgstr "participation undecided"
 
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:26
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:25
 msgid "ongoing"
 msgstr "ongoing"
 
-#: meinberlin/apps/plans/assets/ListMapBox.jsx:27
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:26
 msgid "done"
 msgstr "done"
 
@@ -550,24 +550,24 @@ msgid "Status: "
 msgstr "Status: "
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:163
-#: meinberlin/apps/plans/assets/PlansMap.jsx:276
+#: meinberlin/apps/plans/assets/PlansMap.jsx:279
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:251
+#: meinberlin/apps/plans/assets/PlansMap.jsx:254
 msgid "Address Search"
 msgstr "Address Search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:252
-#: meinberlin/apps/plans/assets/PlansMap.jsx:253
+#: meinberlin/apps/plans/assets/PlansMap.jsx:255
+#: meinberlin/apps/plans/assets/PlansMap.jsx:256
 msgid "Address search"
 msgstr "Address search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:284
+#: meinberlin/apps/plans/assets/PlansMap.jsx:287
 msgid "Close information box"
 msgstr "Close information box"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:285
+#: meinberlin/apps/plans/assets/PlansMap.jsx:288
 msgid ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
