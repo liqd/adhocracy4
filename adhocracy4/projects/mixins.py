@@ -310,3 +310,36 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin,
             context['participation_dates'] = self.full_list
             context['initial_slide'] = self.initial_slide
         return context
+
+
+class ProjectModuleDispatchMixin(generic.DetailView):
+
+    @cached_property
+    def project(self):
+        return self.get_object()
+
+    @cached_property
+    def module(self):
+        if self.modules.count() == 1 and not self.events:
+            return self.modules.first()
+        elif len(self.get_current_modules()) == 1:
+            return self.get_current_modules()[0]
+
+    def dispatch(self, request, *args, **kwargs):
+        kwargs['project'] = self.project
+        kwargs['module'] = self.module
+
+        if self.modules.count() == 1 and not self.events:
+            return self._view_by_phase()(request, *args, **kwargs)
+        elif len(self.get_current_modules()) == 1:
+            return self._view_by_phase()(request, *args, **kwargs)
+        else:
+            return super().dispatch(request)
+
+    def _view_by_phase(self):
+        if self.module.last_active_phase:
+            return self.module.last_active_phase.view.as_view()
+        elif self.module.future_phases:
+            return self.module.future_phases.first().view.as_view()
+        else:
+            return super().dispatch
