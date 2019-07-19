@@ -5,9 +5,9 @@ from adhocracy4.categories import filters as category_filters
 from adhocracy4.dashboard import mixins
 from adhocracy4.filters import filters as a4_filters
 from adhocracy4.filters import views as filter_views
+from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.contrib import filters
-from meinberlin.apps.contrib import mixins as contrib_mixins
 from meinberlin.apps.exports.views import DashboardExportView
 from meinberlin.apps.ideas import views as idea_views
 
@@ -64,7 +64,7 @@ class MapTopicDetailView(idea_views.AbstractIdeaDetailView):
 
 
 class MapTopicListView(idea_views.AbstractIdeaListView,
-                       contrib_mixins.DisplayProjectOrModuleMixin):
+                       DisplayProjectOrModuleMixin):
     model = models.MapTopic
     filter_set = MapTopicFilterSet
 

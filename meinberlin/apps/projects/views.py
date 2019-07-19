@@ -25,9 +25,9 @@ from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.widgets import DropdownLinkWidget
 from adhocracy4.modules import models as module_models
 from adhocracy4.projects import models as project_models
+from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import PhaseDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
-from meinberlin.apps.contrib.mixins import DisplayProjectOrModuleMixin
 
 from . import forms
 from . import get_project_type
@@ -377,7 +377,7 @@ class ProjectDetailView(PermissionRequiredMixin,
         if self.modules.count() == 1 and not self.events:
             return self.modules.first()
         elif len(self.get_current_modules()) == 1:
-            return self.modules.first()
+            return self.get_current_modules()[0]
 
     @cached_property
     def is_project_view(self):
