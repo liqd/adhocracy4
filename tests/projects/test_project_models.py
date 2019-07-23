@@ -60,7 +60,7 @@ def test_image_validation_image_too_small(project_factory, image_factory):
     project = project_factory(image=image_factory((200, 200)))
     with pytest.raises(Exception) as e:
         project.full_clean()
-    assert 'Image must be at least 600 pixels high' in str(e)
+    assert 'Image must be at least 600 pixels high' in str(e.value)
 
 
 @override_settings(ALLOWED_UPLOAD_IMAGES=('image/jpeg'))
