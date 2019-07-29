@@ -407,8 +407,9 @@ class Project(ProjectContactDetailMixin,
             end_date = last_phase.end_date
         if self.events:
             last_event = self.events.order_by('date').last()
-            if end_date and last_event.date > end_date:
-                end_date = last_event.date
+            if end_date:
+                if last_event.date > end_date:
+                    end_date = last_event.date
             else:
                 end_date = last_event.date
         return end_date
