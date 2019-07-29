@@ -371,3 +371,19 @@ def test_past_phases(project, module_factory, phase_factory):
         assert phase2 in project.past_phases
         assert phase3 not in project.past_phases
         assert phase4 not in project.past_phases
+
+
+@pytest.mark.django_db
+def test_end_date(project_factory, phase_factory):
+
+    phase = phase_factory(start_date=None, end_date=None)
+    assert not phase.module.project.end_date
+
+    module = phase.module
+
+    phase_factory(
+        module=module,
+        end_date=parse('2013-01-01 20:00:00 UTC'))
+    del module.project.end_date
+
+    assert str(module.project.end_date) == '2013-01-01 20:00:00+00:00'
