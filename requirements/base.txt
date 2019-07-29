@@ -19,7 +19,7 @@ zeep==3.4.0
 bleach==3.1.0
 Django==2.2.3 # pyup: <2.3
 django-allauth==0.39.1
-django-autoslug==1.9.4
+django-autoslug==1.9.5
 django-background-tasks==1.2.0
 django-ckeditor==5.7.1
 django-filter==2.2.0
