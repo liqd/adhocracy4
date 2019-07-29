@@ -400,12 +400,16 @@ class Project(ProjectContactDetailMixin,
 
     @cached_property
     def end_date(self):
+        end_date = None
         last_phase = self.phases.exclude(end_date=None)\
             .order_by('end_date').last()
-        end_date = last_phase.end_date
+        if last_phase and last_phase.end_date:
+            end_date = last_phase.end_date
         if self.events:
             last_event = self.events.order_by('date').last()
-            if last_event.date > end_date:
+            if end_date and last_event.date > end_date:
+                end_date = last_event.date
+            else:
                 end_date = last_event.date
         return end_date
 
