@@ -107,7 +107,7 @@
         <div class="participation-tile__wrapper">
             <div class="participation-tile__list-container">
                 <ul class="u-list-reset participation-tile__list">
-                    <h3 class="participation-tile__list-header">More from this online participation</h3>
+                    <h3 class="participation-tile__list-header">{% trans 'More from this online participation:' %}</h3>
                     {% for other_module in other_modules %}
                         {% if not other_module == module %}
                             {% include "meinberlin_projects/includes/project_module_tile.html" with project=project module=other_module %}
