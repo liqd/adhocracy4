@@ -3654,7 +3654,7 @@ msgstr "Nächste"
 
 #: meinberlin/templates/a4modules/module_detail.html:110
 msgid "More from this online participation:"
-msgstr ""
+msgstr "Mehr aus diesem Projekt:"
 
 #: meinberlin/templates/account/email.html:6
 #: meinberlin/templates/account/email.html:9
