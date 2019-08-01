@@ -38,7 +38,7 @@ def test_menu(module, dashboard_test_component_factory):
             'is_active': True,
             'url': 'pc1_url',
             'is_complete': True
-         }
+        }
     ]
 
     module_component = module_components[0]
@@ -49,7 +49,7 @@ def test_menu(module, dashboard_test_component_factory):
             'is_active': True,
             'url': 'mc1_url',
             'is_complete': True
-         }
+        }
     ]
 
     assert project_dashboard.get_menu(None, project_component) == {

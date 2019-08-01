@@ -1,16 +1,6 @@
-import random
 import factory
 
-from dateutil.parser import parse
-from django.conf import settings
-from django.contrib.auth.models import User, Group
-
-from adhocracy4.administrative_districts.models import AdministrativeDistrict
-from adhocracy4.projects.models import Project
 from tests.apps.organisations.models import Organisation
-from adhocracy4.modules.models import Module
-from adhocracy4.phases.models import Phase
-
 
 
 class OrganisationFactory(factory.django.DjangoModelFactory):

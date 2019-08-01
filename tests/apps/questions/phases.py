@@ -13,8 +13,8 @@ class AskPhase(phases.PhaseContent):
     module_name = 'test questions'
 
     features = {
-         'crud': (models.Question, ),
-         'comment': (models.Question, )
+        'crud': (models.Question, ),
+        'comment': (models.Question, )
     }
 
 
@@ -31,7 +31,7 @@ class RatePhase(phases.PhaseContent):
     module_name = 'test questions'
 
     features = {
-         'rate': (models.Question, ),
+        'rate': (models.Question, ),
     }
 
 

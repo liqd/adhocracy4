@@ -188,11 +188,11 @@ class Module(models.Model):
             unit_totals = []
 
             unit_limits = [
-                           ([_('day'), _('days')], 24 * 3600),
-                           ([_('hour'), _('hours')], 3600),
-                           ([_('minute'), _('minutes')], 60),
-                           ([_('second'), _('seconds')], 1)
-                          ]
+                ([_('day'), _('days')], 24 * 3600),
+                ([_('hour'), _('hours')], 3600),
+                ([_('minute'), _('minutes')], 60),
+                ([_('second'), _('seconds')], 1)
+            ]
 
             for unit_name, limit in unit_limits:
                 if seconds >= limit:
@@ -228,6 +228,7 @@ class Module(models.Model):
             total_time = self.module_end - self.module_start
             return round(time_gone / total_time * 100)
         return None
+
 
 
 class Item(base.UserGeneratedContentModel):

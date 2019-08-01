@@ -9,6 +9,7 @@ class PlatformEmailMixin:
     Attaches the static file images/logo.png so it can be used in an html
     email.
     """
+
     def get_attachments(self):
         attachments = super().get_attachments()
         filename = (
@@ -58,4 +59,4 @@ Mail sample:
             message=self.report_message_template.format(
                 errors='\n'.join(str(i) for i in mail_exceptions),
                 mail_sample=mails[0].message() if mails else None)
-            )
+        )

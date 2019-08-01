@@ -44,7 +44,7 @@ class ProjectContactDetailMixin(models.Model):
     contact_address_text = models.TextField(
         blank=True,
         verbose_name=_('Postal address')
-        )
+    )
 
     contact_email = models.EmailField(
         blank=True)
@@ -53,13 +53,13 @@ class ProjectContactDetailMixin(models.Model):
         max_length=120,
         blank=True,
         verbose_name=_('Contact person')
-        )
+    )
 
     contact_phone = models.CharField(
         validators=[phone_regex],
         max_length=20,
         blank=True
-        )
+    )
 
     contact_url = models.URLField(
         blank=True)
@@ -332,10 +332,10 @@ class Project(ProjectContactDetailMixin,
             unit_totals = []
 
             unit_limits = [
-                           ([_('day'), _('days')], 24 * 3600),
-                           ([_('hour'), _('hours')], 3600),
-                           ([_('minute'), _('minutes')], 60)
-                          ]
+                ([_('day'), _('days')], 24 * 3600),
+                ([_('hour'), _('hours')], 3600),
+                ([_('minute'), _('minutes')], 60)
+            ]
 
             for unit_name, limit in unit_limits:
                 if seconds >= limit:
@@ -429,8 +429,8 @@ class Project(ProjectContactDetailMixin,
     @cached_property
     def has_finished(self):
         return not self.phases.active_phases().exists()\
-               and not self.phases.future_phases().exists()\
-               and not self.has_future_events
+            and not self.phases.future_phases().exists()\
+            and not self.has_future_events
 
     @cached_property
     def modules(self):
