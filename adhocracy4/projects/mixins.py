@@ -1,15 +1,15 @@
-from django.db.models import Q
 from django.http import Http404
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import resolve
 from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.modules.models import Module
 from adhocracy4.projects.models import Project
+from adhocracy4.projects.utils import get_module_clusters
+from adhocracy4.projects.utils import get_module_clusters_dict
 
 
 class PhaseDispatchMixin(generic.DetailView):
@@ -135,63 +135,13 @@ class ProjectMixin(generic.base.ContextMixin):
         return super().get_context_data(**kwargs)
 
 
-class ModuleClusterMixin:
-
-    def _get_module_dict(self, count, start_date, end_date):
-        return {
-            'title': _('{}. Online Participation').format(str(count)),
-            'type': 'module',
-            'count': count,
-            'date': start_date,
-            'end_date': end_date,
-            'modules': []
-        }
-
-    def get_module_clusters(self, modules):
-        modules = modules \
-            .annotate_module_start() \
-            .annotate_module_start() \
-            .exclude(Q(module_start=None) | Q(module_end=None))\
-            .order_by('module_start')
-        clusters = []
-        try:
-            start_date = modules.first().module_start
-            end_date = modules.first().module_end
-            count = 1
-            first_cluster = self._get_module_dict(
-                count, start_date, end_date)
-            first_cluster['modules'].append(modules.first())
-            current_cluster = first_cluster
-            clusters.append(first_cluster)
-
-            for module in modules[1:]:
-                if module.module_start > end_date:
-                    start_date = module.module_start
-                    end_date = module.module_end
-                    count += 1
-                    next_cluster = self._get_module_dict(
-                        count, start_date, end_date)
-                    next_cluster['modules'].append(module)
-                    current_cluster = next_cluster
-                    clusters.append(next_cluster)
-                else:
-                    current_cluster['modules'].append(module)
-                    if module.module_end > end_date:
-                        end_date = module.module_end
-                        current_cluster['end_date'] = end_date
-        except AttributeError:
-            return clusters
-        if len(clusters) == 1:
-            clusters[0]['title'] = _('Online Participation')
-        return clusters
-
-
-class DisplayProjectOrModuleMixin(generic.base.ContextMixin,
-                                  ModuleClusterMixin):
+class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
 
     @cached_property
     def module_clusters(self):
-        return super().get_module_clusters(self.modules)
+        module_clusters = get_module_clusters(self.modules)
+        module_cluster_dict = get_module_clusters_dict(module_clusters)
+        return module_cluster_dict
 
     @cached_property
     def url_name(self):
