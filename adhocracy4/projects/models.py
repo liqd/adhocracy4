@@ -19,6 +19,8 @@ from adhocracy4 import transforms as html_transforms
 from adhocracy4.images import fields
 
 from .fields import TopicField
+from .utils import get_module_clusters
+from .utils import get_module_clusters_dict
 
 
 class ProjectManager(models.Manager):
@@ -435,6 +437,15 @@ class Project(ProjectContactDetailMixin,
     @cached_property
     def modules(self):
         return self.module_set.all()
+
+    @cached_property
+    def module_clusters(self):
+        modules = self.module_set
+        return get_module_clusters(modules)
+
+    @cached_property
+    def module_cluster_dict(self):
+        return get_module_clusters_dict(self.module_clusters)
 
     @cached_property
     def running_modules(self):
