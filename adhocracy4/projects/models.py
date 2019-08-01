@@ -113,6 +113,7 @@ class TimelinePropertiesMixin:
             return self.events.values('date', 'name',
                                   'event_type',
                                   'slug', 'description')
+        return []
 
     @cached_property
     def participation_dates(self):
