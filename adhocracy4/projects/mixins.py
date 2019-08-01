@@ -165,15 +165,6 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
         return sorted(full_list, key=lambda k: k['date'])
 
     @cached_property
-    def other_modules(self):
-        for cluster in self.module_clusters:
-            if self.module in cluster['modules']:
-                idx = cluster['modules'].index(self.module)
-                modules = cluster['modules']
-                return modules, idx
-        return []
-
-    @cached_property
     def extends(self):
         if self.url_name == 'module-detail':
             return 'a4modules/module_detail.html'
@@ -234,24 +225,7 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
         context = super().get_context_data(**kwargs)
         context['url_name'] = self.url_name
         context['extends'] = self.extends
-        if self.url_name == 'module-detail':
-            cluster, idx = self.other_modules
-            next_module = None
-            previous_module = None
-            try:
-                next_module = cluster[idx + 1]
-            except IndexError:
-                pass
-            try:
-                if idx > 0:
-                    previous_module = cluster[idx - 1]
-            except IndexError:
-                pass
-            context['other_modules'] = cluster
-            context['index'] = idx + 1
-            context['next'] = next_module
-            context['previous'] = previous_module
-        else:
+        if not self.url_name == 'module-detail':
             context['event'] = self.get_current_event()
             context['modules'] = self.get_current_modules()
             context['participation_dates'] = self.full_list
