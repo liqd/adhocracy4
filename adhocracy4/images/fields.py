@@ -73,7 +73,7 @@ class ConfiguredImageField(models.ImageField):
                 '{max_size_mb} MB.'
             ),
             help_prefix=self.help_prefix,
-            max_size_mb=int(self.image_config['max_size']/(10**6)),
+            max_size_mb=int(self.image_config['max_size'] / (10**6)),
             fileformats_str=', '.join(
                 f.split('/')[1] for f in config['fileformats']
             ),
@@ -93,7 +93,7 @@ class ImageCopyrightField(models.CharField):
                 _('Copyright shown in the {image_name}.'),
                 image_name=image_name),
             'max_length': 120,
-            'blank':  True,
+            'blank': True,
         }
         defaults.update(kwargs)
         super().__init__(*args, **defaults)

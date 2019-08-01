@@ -49,7 +49,7 @@ class CommentSerializer(serializers.ModelSerializer):
             if value == '' or value == '[]':
                 raise serializers.ValidationError({
                     'comment_categories': _('Please choose a category')
-                    })
+                })
         return data
 
     def get_user_name(self, obj):
