@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-18 12:41+0200\n"
+"POT-Creation-Date: 2019-07-30 14:28+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -278,7 +278,7 @@ msgstr "Wir konnten keine Projekte finden."
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: meinberlin/apps/ideas/views.py:27 meinberlin/apps/projects/views.py:53
+#: meinberlin/apps/ideas/views.py:27 meinberlin/apps/projects/views.py:54
 #: meinberlin/apps/topicprio/views.py:21
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:4
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:10
@@ -509,18 +509,18 @@ msgid "Edit areasettings"
 msgstr "Kartenbereich bearbeiten"
 
 #: adhocracy4/dashboard/filter.py:15
-#: meinberlin/apps/projects/views.py:57
+#: meinberlin/apps/projects/views.py:58
 msgid "Archived"
 msgstr "Archiviert"
 
 #: adhocracy4/dashboard/filter.py:19
 #: adhocracy4/filters/widgets.py:32
-#: meinberlin/apps/projects/views.py:61
+#: meinberlin/apps/projects/views.py:62
 msgid "All"
 msgstr "Alle"
 
 #: adhocracy4/dashboard/filter.py:20
-#: meinberlin/apps/projects/views.py:62
+#: meinberlin/apps/projects/views.py:63
 msgid "No"
 msgstr "Nein"
 
@@ -533,7 +533,7 @@ msgstr "Nein"
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
 #: meinberlin/apps/projects/serializers.py:154
-#: meinberlin/apps/projects/views.py:63
+#: meinberlin/apps/projects/views.py:64
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
 msgid "Yes"
 msgstr "Ja"
@@ -939,6 +939,14 @@ msgstr "Bilder"
 #: meinberlin/templates/newsletter_base.txt:13
 msgid "Contact"
 msgstr "Kontakt"
+
+#: adhocracy4/projects/mixins.py:144
+msgid "{}. Online Participation"
+msgstr "{}. Online-Beteiligung"
+
+#: adhocracy4/projects/mixins.py:184
+msgid "Online Participation"
+msgstr "Online-Beteiligung"
 
 #: adhocracy4/projects/models.py:40
 msgid ""
@@ -1661,7 +1669,7 @@ msgstr "Vorschlag bearbeiten"
 #: meinberlin/apps/budgeting/views.py:18 meinberlin/apps/ideas/views.py:31
 #: meinberlin/apps/kiezkasse/views.py:16 meinberlin/apps/mapideas/views.py:16
 #: meinberlin/apps/maptopicprio/views.py:19
-#: meinberlin/apps/projects/views.py:92
+#: meinberlin/apps/projects/views.py:93
 msgid "Most recent"
 msgstr "am aktuellsten"
 
@@ -1818,11 +1826,11 @@ msgstr "Bitte wählen Sie mindestens %(limit_value)d Felder aus."
 msgid "You must select a maximum of  %(limit_value)d choices."
 msgstr "Sie können max. %(limit_value)d Felder auswählen."
 
-#: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:40
+#: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:41
 msgid "Ordering"
 msgstr "Sortierung"
 
-#: meinberlin/apps/contrib/mixins.py:11
+#: meinberlin/apps/contrib/mixins.py:4
 msgid ""
 "I hereby confirm that the copyrights for this photo are with me or that I "
 "have received rights of use from the author. I also confirm that the privacy "
@@ -1833,21 +1841,13 @@ msgstr ""
 "habe. Ich bestätige außerdem, dass die Persönlichkeitsrechte abgebildeter "
 "dritter Personen nicht verletzt werden."
 
-#: meinberlin/apps/contrib/mixins.py:65
+#: meinberlin/apps/contrib/mixins.py:58
 msgid ""
 "You want to upload an image. Please check that you have the right of use for "
 "the image."
 msgstr ""
 "Sie wollen ein Bild hochladen. Bitte bestätigen Sie, dass Sie die "
 "entsprechenden Nutzungsrechte haben."
-
-#: meinberlin/apps/contrib/mixins.py:74
-msgid "{}. Online Participation"
-msgstr "{}. Online-Beteiligung"
-
-#: meinberlin/apps/contrib/mixins.py:114
-msgid "Online Participation"
-msgstr "Online-Beteiligung"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/filter_and_sort.html:3
 msgid "Filter bar "
@@ -2323,7 +2323,7 @@ msgstr "Ihre Idee wurde gelöscht"
 #: meinberlin/apps/newsletters/forms.py:40
 #: meinberlin/apps/newsletters/forms.py:81 meinberlin/apps/plans/models.py:42
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:38
-#: meinberlin/apps/projects/views.py:45
+#: meinberlin/apps/projects/views.py:46
 msgid "Organisation"
 msgstr "Organisation"
 
@@ -2741,7 +2741,7 @@ msgstr ""
 "Die Ortsbezeichnung erscheint im Steckbrief der Detailansicht zu Ihrem "
 "Vorhaben."
 
-#: meinberlin/apps/plans/models.py:67 meinberlin/apps/projects/views.py:49
+#: meinberlin/apps/plans/models.py:67 meinberlin/apps/projects/views.py:50
 msgid "District"
 msgstr "Bezirk"
 
@@ -2991,11 +2991,11 @@ msgstr "Bezirk und Ort"
 msgid "Edit district and location"
 msgstr "Bezirk und Verortung bearbeiten"
 
-#: meinberlin/apps/projects/forms.py:50 meinberlin/apps/projects/views.py:332
+#: meinberlin/apps/projects/forms.py:50 meinberlin/apps/projects/views.py:333
 msgid "Invite users via email"
 msgstr "Nutzer*innen via E-Mail einladen"
 
-#: meinberlin/apps/projects/forms.py:55 meinberlin/apps/projects/views.py:333
+#: meinberlin/apps/projects/forms.py:55 meinberlin/apps/projects/views.py:334
 msgid "Invite users via file upload"
 msgstr "Nutzer*innen aus Datei einladen"
 
@@ -3252,56 +3252,56 @@ msgstr "Ausstehende Einladungen"
 msgid "Edit Participants"
 msgstr "Teilnehmer*innen bearbeiten"
 
-#: meinberlin/apps/projects/views.py:69
+#: meinberlin/apps/projects/views.py:70
 msgid "Year"
 msgstr "Jahr"
 
-#: meinberlin/apps/projects/views.py:72
+#: meinberlin/apps/projects/views.py:73
 msgid "Any"
 msgstr "Alle"
 
-#: meinberlin/apps/projects/views.py:220
+#: meinberlin/apps/projects/views.py:221
 msgid "Invitation succesfully removed."
 msgstr "Einladung erfolgreich entfernt."
 
-#: meinberlin/apps/projects/views.py:261
+#: meinberlin/apps/projects/views.py:262
 msgid "Following users already accepted an invitation: "
 msgstr ""
 "Die folgenden Nutzerinnen und Nutzer haben bereits eine Einladung angenommen:"
 
-#: meinberlin/apps/projects/views.py:269
+#: meinberlin/apps/projects/views.py:270
 msgid "Following users are already invited: "
 msgstr "Die folgenden Nutzerinnen und Nutzer wurden bereits eingeladen:"
 
-#: meinberlin/apps/projects/views.py:312
+#: meinberlin/apps/projects/views.py:313
 msgid "Invite moderators via email"
 msgstr "Moderator*innen via E-Mail einladen"
 
-#: meinberlin/apps/projects/views.py:313
+#: meinberlin/apps/projects/views.py:314
 msgid "Invite moderators via file upload"
 msgstr "Moderator*innen aus Datei einladen"
 
-#: meinberlin/apps/projects/views.py:314
+#: meinberlin/apps/projects/views.py:315
 msgid "{} moderator invited."
 msgstr "{} Moderator*in eingeladen."
 
-#: meinberlin/apps/projects/views.py:314
+#: meinberlin/apps/projects/views.py:315
 msgid "{} moderators invited."
 msgstr "{} Moderator*innen eingeladen."
 
-#: meinberlin/apps/projects/views.py:315
+#: meinberlin/apps/projects/views.py:316
 msgid "Moderator successfully removed."
 msgstr "Moderator*in erfolgreich entfernt."
 
-#: meinberlin/apps/projects/views.py:335
+#: meinberlin/apps/projects/views.py:336
 msgid "{} participant invited."
 msgstr "{} Teilnehmer*in eingeladen"
 
-#: meinberlin/apps/projects/views.py:336
+#: meinberlin/apps/projects/views.py:337
 msgid "{} participants invited."
 msgstr "{} Teilnehmer*innen eingeladen"
 
-#: meinberlin/apps/projects/views.py:337
+#: meinberlin/apps/projects/views.py:338
 msgid "Participant successfully removed."
 msgstr "Teilnehmer*in erfolgreich entfernt."
 
@@ -3651,6 +3651,10 @@ msgstr "von"
 #: meinberlin/templates/a4modules/module_detail.html:35
 msgid "Next"
 msgstr "Nächste"
+
+#: meinberlin/templates/a4modules/module_detail.html:110
+msgid "More from this online participation:"
+msgstr "Mehr aus diesem Projekt:"
 
 #: meinberlin/templates/account/email.html:6
 #: meinberlin/templates/account/email.html:9

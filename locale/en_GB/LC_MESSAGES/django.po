@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-18 12:41+0200\n"
+"POT-Creation-Date: 2019-07-30 14:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -242,7 +242,7 @@ msgstr "We could not find any projects."
 
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11 meinberlin/apps/ideas/views.py:27
-#: meinberlin/apps/projects/views.py:53 meinberlin/apps/topicprio/views.py:21
+#: meinberlin/apps/projects/views.py:54 meinberlin/apps/topicprio/views.py:21
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:4
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:10
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:11
@@ -453,16 +453,16 @@ msgstr "Areasettings"
 msgid "Edit areasettings"
 msgstr "Edit areasettings"
 
-#: adhocracy4/dashboard/filter.py:15 meinberlin/apps/projects/views.py:57
+#: adhocracy4/dashboard/filter.py:15 meinberlin/apps/projects/views.py:58
 msgid "Archived"
 msgstr "Archived"
 
 #: adhocracy4/dashboard/filter.py:19 adhocracy4/filters/widgets.py:32
-#: meinberlin/apps/projects/views.py:61
+#: meinberlin/apps/projects/views.py:62
 msgid "All"
 msgstr "All"
 
-#: adhocracy4/dashboard/filter.py:20 meinberlin/apps/projects/views.py:62
+#: adhocracy4/dashboard/filter.py:20 meinberlin/apps/projects/views.py:63
 msgid "No"
 msgstr "No"
 
@@ -475,7 +475,7 @@ msgstr "No"
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
 #: meinberlin/apps/projects/serializers.py:154
-#: meinberlin/apps/projects/views.py:63
+#: meinberlin/apps/projects/views.py:64
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
 msgid "Yes"
 msgstr "Yes"
@@ -849,6 +849,14 @@ msgstr "Images"
 #: meinberlin/templates/newsletter_base.txt:13
 msgid "Contact"
 msgstr "Contact"
+
+#: adhocracy4/projects/mixins.py:144
+msgid "{}. Online Participation"
+msgstr "{}. Online Participation"
+
+#: adhocracy4/projects/mixins.py:184
+msgid "Online Participation"
+msgstr "Online Participation"
 
 #: adhocracy4/projects/models.py:40
 msgid ""
@@ -1560,7 +1568,7 @@ msgstr "Edit proposal"
 #: meinberlin/apps/budgeting/views.py:18 meinberlin/apps/ideas/views.py:31
 #: meinberlin/apps/kiezkasse/views.py:16 meinberlin/apps/mapideas/views.py:16
 #: meinberlin/apps/maptopicprio/views.py:19
-#: meinberlin/apps/projects/views.py:92
+#: meinberlin/apps/projects/views.py:93
 msgid "Most recent"
 msgstr "Most recent"
 
@@ -1716,11 +1724,11 @@ msgstr "You must select a minimum of  %(limit_value)d choices."
 msgid "You must select a maximum of  %(limit_value)d choices."
 msgstr "You must select a maximum of  %(limit_value)d choices."
 
-#: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:40
+#: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:41
 msgid "Ordering"
 msgstr "Ordering"
 
-#: meinberlin/apps/contrib/mixins.py:11
+#: meinberlin/apps/contrib/mixins.py:4
 msgid ""
 "I hereby confirm that the copyrights for this photo are with me or that I "
 "have received rights of use from the author. I also confirm that the privacy "
@@ -1730,21 +1738,13 @@ msgstr ""
 "have received rights of use from the author. I also confirm that the privacy "
 "rights of depicted third persons are not violated. "
 
-#: meinberlin/apps/contrib/mixins.py:65
+#: meinberlin/apps/contrib/mixins.py:58
 msgid ""
 "You want to upload an image. Please check that you have the right of use for "
 "the image."
 msgstr ""
 "You want to upload an image. Please check that you have the right of use for "
 "the image."
-
-#: meinberlin/apps/contrib/mixins.py:74
-msgid "{}. Online Participation"
-msgstr "{}. Online Participation"
-
-#: meinberlin/apps/contrib/mixins.py:114
-msgid "Online Participation"
-msgstr "Online Participation"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/filter_and_sort.html:3
 msgid "Filter bar "
@@ -2197,7 +2197,7 @@ msgstr "Your Idea has been deleted"
 #: meinberlin/apps/newsletters/forms.py:40
 #: meinberlin/apps/newsletters/forms.py:81 meinberlin/apps/plans/models.py:42
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:38
-#: meinberlin/apps/projects/views.py:45
+#: meinberlin/apps/projects/views.py:46
 msgid "Organisation"
 msgstr "Organisation"
 
@@ -2607,7 +2607,7 @@ msgstr "Label of the location"
 msgid "The label of the location is displayed in the detail view of the plan"
 msgstr "The label of the location is displayed in the detail view of the plan"
 
-#: meinberlin/apps/plans/models.py:67 meinberlin/apps/projects/views.py:49
+#: meinberlin/apps/plans/models.py:67 meinberlin/apps/projects/views.py:50
 msgid "District"
 msgstr "District"
 
@@ -2855,11 +2855,11 @@ msgstr "District and Location"
 msgid "Edit district and location"
 msgstr "Edit district and location"
 
-#: meinberlin/apps/projects/forms.py:50 meinberlin/apps/projects/views.py:332
+#: meinberlin/apps/projects/forms.py:50 meinberlin/apps/projects/views.py:333
 msgid "Invite users via email"
 msgstr "Invite users via email"
 
-#: meinberlin/apps/projects/forms.py:55 meinberlin/apps/projects/views.py:333
+#: meinberlin/apps/projects/forms.py:55 meinberlin/apps/projects/views.py:334
 msgid "Invite users via file upload"
 msgstr "Invite users via file upload"
 
@@ -3117,55 +3117,55 @@ msgstr "Pending Invitations"
 msgid "Edit Participants"
 msgstr "Edit Participants"
 
-#: meinberlin/apps/projects/views.py:69
+#: meinberlin/apps/projects/views.py:70
 msgid "Year"
 msgstr "Year"
 
-#: meinberlin/apps/projects/views.py:72
+#: meinberlin/apps/projects/views.py:73
 msgid "Any"
 msgstr "Any"
 
-#: meinberlin/apps/projects/views.py:220
+#: meinberlin/apps/projects/views.py:221
 msgid "Invitation succesfully removed."
 msgstr "Invitation succesfully removed."
 
-#: meinberlin/apps/projects/views.py:261
+#: meinberlin/apps/projects/views.py:262
 msgid "Following users already accepted an invitation: "
 msgstr "Following users already accepted an invitation: "
 
-#: meinberlin/apps/projects/views.py:269
+#: meinberlin/apps/projects/views.py:270
 msgid "Following users are already invited: "
 msgstr "Following users are already invited: "
 
-#: meinberlin/apps/projects/views.py:312
+#: meinberlin/apps/projects/views.py:313
 msgid "Invite moderators via email"
 msgstr "Invite moderators via email"
 
-#: meinberlin/apps/projects/views.py:313
+#: meinberlin/apps/projects/views.py:314
 msgid "Invite moderators via file upload"
 msgstr "Invite moderators via file upload"
 
-#: meinberlin/apps/projects/views.py:314
+#: meinberlin/apps/projects/views.py:315
 msgid "{} moderator invited."
 msgstr "{} moderator invited."
 
-#: meinberlin/apps/projects/views.py:314
+#: meinberlin/apps/projects/views.py:315
 msgid "{} moderators invited."
 msgstr "{} moderators invited."
 
-#: meinberlin/apps/projects/views.py:315
+#: meinberlin/apps/projects/views.py:316
 msgid "Moderator successfully removed."
 msgstr "Moderator successfully removed."
 
-#: meinberlin/apps/projects/views.py:335
+#: meinberlin/apps/projects/views.py:336
 msgid "{} participant invited."
 msgstr "{} participant invited."
 
-#: meinberlin/apps/projects/views.py:336
+#: meinberlin/apps/projects/views.py:337
 msgid "{} participants invited."
 msgstr "{} participants invited."
 
-#: meinberlin/apps/projects/views.py:337
+#: meinberlin/apps/projects/views.py:338
 msgid "Participant successfully removed."
 msgstr "Participant successfully removed."
 
@@ -3518,6 +3518,10 @@ msgstr "of"
 msgid "Next"
 msgstr "Next"
 
+#: meinberlin/templates/a4modules/module_detail.html:110
+msgid "More from this online participation:"
+msgstr "More from this online participation:"
+
 #: meinberlin/templates/account/email.html:6
 #: meinberlin/templates/account/email.html:9
 msgid "Email Addresses"
@@ -3790,6 +3794,9 @@ msgstr ""
 "Please <a href=\"%(login_url)s\">sign in</a> to your existing %(site_name)s "
 "account\n"
 "        and connect %(provider_name)s from the account settings."
+
+#~ msgid "More from this online participation"
+#~ msgstr "More from this online participation"
 
 #~ msgid "%(num_entries)s Contributions"
 #~ msgstr "%(num_entries)s Contributions"
