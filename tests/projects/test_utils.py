@@ -3,14 +3,13 @@ from dateutil.parser import parse
 
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
-from adhocracy4.projects import mixins
+from adhocracy4.projects.utils import get_module_clusters
+from adhocracy4.projects.utils import get_module_clusters_dict
 
 
 @pytest.mark.django_db
 def test_module_cluster_mixin_modules_overlapping(
-     phase_factory, module_factory):
-
-    cluster_mixin = mixins.ModuleClusterMixin()
+        phase_factory, module_factory):
 
     module1 = module_factory()
     module2 = module_factory()
@@ -43,22 +42,23 @@ def test_module_cluster_mixin_modules_overlapping(
     )
 
     modules = Module.objects.annotate_module_start().annotate_module_end()
-    module_clusters = cluster_mixin.get_module_clusters(modules)
+    module_clusters = get_module_clusters(modules)
+    module_cluster_dict = get_module_clusters_dict(module_clusters)
 
     assert len(module_clusters) == 1
+    assert len(module_cluster_dict) == 1
 
     start_date = Phase.objects.all().order_by('start_date').first().start_date
     end_date = Phase.objects.all().order_by('end_date').last().end_date
 
-    assert module_clusters[0]['date'] == start_date
-    assert module_clusters[0]['end_date'] == end_date
+    assert module_clusters[0][0].module_start == start_date
+    assert module_cluster_dict[0]['date'] == start_date
+    assert module_cluster_dict[0]['end_date'] == end_date
 
 
 @pytest.mark.django_db
 def test_module_cluster_mixin_modules_successively(
-     phase_factory, module_factory):
-
-    cluster_mixin = mixins.ModuleClusterMixin()
+        phase_factory, module_factory):
 
     module1 = module_factory()
     module2 = module_factory()
@@ -82,15 +82,13 @@ def test_module_cluster_mixin_modules_successively(
     assert str(module2.module_end) == '2013-02-01 18:05:00+00:00'
 
     modules = Module.objects.annotate_module_start().annotate_module_end()
-    module_clusters = cluster_mixin.get_module_clusters(modules)
+    module_clusters = get_module_clusters(modules)
 
     assert len(module_clusters) == 2
 
 
 @pytest.mark.django_db
 def test_module_cluster_mixin_modules_same_time(phase_factory, module_factory):
-
-    cluster_mixin = mixins.ModuleClusterMixin()
 
     module1 = module_factory()
     module2 = module_factory()
@@ -114,12 +112,15 @@ def test_module_cluster_mixin_modules_same_time(phase_factory, module_factory):
     assert str(module2.module_end) == '2013-01-13 18:05:00+00:00'
 
     modules = Module.objects.annotate_module_start().annotate_module_end()
-    module_clusters = cluster_mixin.get_module_clusters(modules)
+    module_clusters = get_module_clusters(modules)
 
     assert len(module_clusters) == 1
 
     start_date = Phase.objects.all().order_by('start_date').first().start_date
     end_date = Phase.objects.all().order_by('end_date').last().end_date
 
-    assert module_clusters[0]['date'] == start_date
-    assert module_clusters[0]['end_date'] == end_date
+    assert module_clusters[0][0].module_start == start_date
+    assert module_clusters[0][0].module_end == end_date
+
+    assert module_clusters[0][1].module_start == start_date
+    assert module_clusters[0][1].module_end == end_date

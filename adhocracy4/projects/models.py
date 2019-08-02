@@ -19,6 +19,8 @@ from adhocracy4 import transforms as html_transforms
 from adhocracy4.images import fields
 
 from .fields import TopicField
+from .utils import get_module_clusters
+from .utils import get_module_clusters_dict
 
 
 class ProjectManager(models.Manager):
@@ -88,9 +90,85 @@ class ProjectLocationMixin(models.Model):
     )
 
 
+class ModuleClusterPropertiesMixin:
+
+    @cached_property
+    def module_clusters(self):
+        modules = self.module_set
+        return get_module_clusters(modules)
+
+    @cached_property
+    def module_cluster_dict(self):
+        return get_module_clusters_dict(self.module_clusters)
+
+    @cached_property
+    def running_modules(self):
+        return self.modules.running_modules()
+
+
+class TimelinePropertiesMixin:
+
+    def get_events_list(self):
+        if self.events:
+            return self.events.values('date', 'name',
+                                      'event_type',
+                                      'slug', 'description')
+        return []
+
+    @cached_property
+    def participation_dates(self):
+        module_clusters = self.module_cluster_dict
+        event_list = self.get_events_list()
+        full_list = module_clusters + list(event_list)
+        return sorted(full_list, key=lambda k: k['date'])
+
+    @cached_property
+    def display_timeline(self):
+        return len(self.participation_dates) > 1
+
+    def get_current_participation_date(self):
+        now = timezone.now()
+        for idx, val in enumerate(self.participation_dates):
+            if 'type' in val and val['type'] == 'module':
+                start_date = val['date']
+                end_date = val['end_date']
+                if start_date and end_date:
+                    if now >= start_date and now <= end_date:
+                        return idx
+        for idx, val in enumerate(self.participation_dates):
+            date = val['date']
+            if date:
+                if now <= date:
+                    return idx
+
+    def get_current_event(self, idx):
+        if idx:
+            pd = self.participation_dates
+            try:
+                current_dict = pd[idx]
+                if 'type' not in current_dict:
+                    return current_dict
+            except (IndexError, KeyError):
+                return []
+        return []
+
+    def get_current_modules(self, idx):
+        if idx:
+            pd = self.participation_dates
+            try:
+                current_dict = pd[idx]
+                if current_dict['type'] == 'module':
+                    return current_dict['modules']
+            except (IndexError, KeyError):
+                return []
+        return []
+
+
 class Project(ProjectContactDetailMixin,
               ProjectLocationMixin,
-              base.TimeStampedModel):
+              base.TimeStampedModel,
+              ModuleClusterPropertiesMixin,
+              TimelinePropertiesMixin):
     slug = AutoSlugField(populate_from='name', unique=True)
     name = models.CharField(
         max_length=120,
@@ -435,10 +513,6 @@ class Project(ProjectContactDetailMixin,
     @cached_property
     def modules(self):
         return self.module_set.all()
-
-    @cached_property
-    def running_modules(self):
-        return self.modules.running_modules()
 
     @cached_property
     def running_module_ends_next(self):

@@ -229,6 +229,60 @@ class Module(models.Model):
             return round(time_gone / total_time * 100)
         return None
 
+    @cached_property
+    def project_modules(self):
+        return self.project.module_set
+
+    @cached_property
+    def other_modules(self):
+        return self.project_modules.exclude(id=self.id)
+
+    @cached_property
+    def module_cluster(self):
+        for cluster in self.project.module_clusters:
+            if self in cluster:
+                return cluster
+        return []
+
+    @cached_property
+    def index_in_cluster(self):
+        try:
+            return self.module_cluster.index(self)
+        except IndexError:
+            return None
+
+    @cached_property
+    def readable_index_in_cluster(self):
+        if self.index_in_cluster:
+            return self.index_in_cluster + 1
+
+    @cached_property
+    def is_in_module_cluster(self):
+        if not self.other_modules:
+            return False
+        else:
+            return len(self.module_cluster) != 0
+
+    @cached_property
+    def next_module_in_cluster(self):
+        if self.is_in_module_cluster:
+            cluster = self.module_cluster
+            idx = self.index_in_cluster
+            try:
+                return cluster[idx + 1]
+            except IndexError:
+                return None
+
+    @cached_property
+    def previous_module_in_cluster(self):
+        if self.is_in_module_cluster:
+            cluster = self.module_cluster
+            idx = self.index_in_cluster
+            try:
+                if idx > 0:
+                    return cluster[idx - 1]
+            except IndexError:
+                return None
 
 
 class Item(base.UserGeneratedContentModel):

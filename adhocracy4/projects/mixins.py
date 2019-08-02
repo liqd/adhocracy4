@@ -1,11 +1,8 @@
-from django.db.models import Q
 from django.http import Http404
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.urls import resolve
-from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.modules.models import Module
@@ -135,93 +132,11 @@ class ProjectMixin(generic.base.ContextMixin):
         return super().get_context_data(**kwargs)
 
 
-class ModuleClusterMixin:
-
-    def _get_module_dict(self, count, start_date, end_date):
-        return {
-            'title': _('{}. Online Participation').format(str(count)),
-            'type': 'module',
-            'count': count,
-            'date': start_date,
-            'end_date': end_date,
-            'modules': []
-        }
-
-    def get_module_clusters(self, modules):
-        modules = modules \
-            .annotate_module_start() \
-            .annotate_module_start() \
-            .exclude(Q(module_start=None) | Q(module_end=None))\
-            .order_by('module_start')
-        clusters = []
-        try:
-            start_date = modules.first().module_start
-            end_date = modules.first().module_end
-            count = 1
-            first_cluster = self._get_module_dict(
-                count, start_date, end_date)
-            first_cluster['modules'].append(modules.first())
-            current_cluster = first_cluster
-            clusters.append(first_cluster)
-
-            for module in modules[1:]:
-                if module.module_start > end_date:
-                    start_date = module.module_start
-                    end_date = module.module_end
-                    count += 1
-                    next_cluster = self._get_module_dict(
-                        count, start_date, end_date)
-                    next_cluster['modules'].append(module)
-                    current_cluster = next_cluster
-                    clusters.append(next_cluster)
-                else:
-                    current_cluster['modules'].append(module)
-                    if module.module_end > end_date:
-                        end_date = module.module_end
-                        current_cluster['end_date'] = end_date
-        except AttributeError:
-            return clusters
-        if len(clusters) == 1:
-            clusters[0]['title'] = _('Online Participation')
-        return clusters
-
-
-class DisplayProjectOrModuleMixin(generic.base.ContextMixin,
-                                  ModuleClusterMixin):
-
-    @cached_property
-    def module_clusters(self):
-        return super().get_module_clusters(self.modules)
+class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
 
     @cached_property
     def url_name(self):
         return resolve(self.request.path_info).url_name
-
-    @cached_property
-    def modules(self):
-        return self.project.modules
-
-    @cached_property
-    def events(self):
-        if hasattr(self.project, 'offlineevent_set'):
-            return self.project.offlineevent_set.all()
-        return []
-
-    @cached_property
-    def full_list(self):
-        module_cluster = self.module_clusters
-        event_list = self.get_events_list()
-        full_list = module_cluster + list(event_list)
-        return sorted(full_list, key=lambda k: k['date'])
-
-    @cached_property
-    def other_modules(self):
-        for cluster in self.module_clusters:
-            if self.module in cluster['modules']:
-                idx = cluster['modules'].index(self.module)
-                modules = cluster['modules']
-                return modules, idx
-        return []
 
     @cached_property
     def extends(self):
@@ -230,81 +145,29 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin,
         return 'a4projects/project_detail.html'
 
     @cached_property
-    def display_timeline(self):
-        return len(self.full_list) > 1
-
-    @cached_property
     def initial_slide(self):
         initial_slide = self.request.GET.get('initialSlide')
         if initial_slide:
             return int(initial_slide)
         else:
-            now = timezone.now()
-            for idx, val in enumerate(self.full_list):
-                if 'type' in val and val['type'] == 'module':
-                    start_date = val['date']
-                    end_date = val['end_date']
-                    if start_date and end_date:
-                        if now >= start_date and now <= end_date:
-                            return idx
-            for idx, val in enumerate(self.full_list):
-                date = val['date']
-                if date:
-                    if now <= date:
-                        return idx
+            return self.project.get_current_participation_date()
         return 0
 
     def get_current_event(self):
-        fl = self.full_list
         idx = self.initial_slide
-        try:
-            current_dict = fl[idx]
-            if 'type' not in current_dict:
-                return self.full_list[self.initial_slide]
-        except (IndexError, KeyError):
-            return []
-        return []
+        return self.project.get_current_event(idx)
 
     def get_current_modules(self):
-        fl = self.full_list
         idx = self.initial_slide
-        try:
-            current_dict = fl[idx]
-            if current_dict['type'] == 'module':
-                return self.full_list[self.initial_slide]['modules']
-        except (IndexError, KeyError):
-            return []
-
-    def get_events_list(self):
-        return self.events.values('date', 'name',
-                                  'event_type',
-                                  'slug', 'description')
+        return self.project.get_current_modules(idx)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['url_name'] = self.url_name
         context['extends'] = self.extends
-        if self.url_name == 'module-detail':
-            cluster, idx = self.other_modules
-            next_module = None
-            previous_module = None
-            try:
-                next_module = cluster[idx + 1]
-            except IndexError:
-                pass
-            try:
-                if idx > 0:
-                    previous_module = cluster[idx - 1]
-            except IndexError:
-                pass
-            context['other_modules'] = cluster
-            context['index'] = idx + 1
-            context['next'] = next_module
-            context['previous'] = previous_module
-        else:
+        if not self.url_name == 'module-detail':
             context['event'] = self.get_current_event()
             context['modules'] = self.get_current_modules()
-            context['participation_dates'] = self.full_list
             context['initial_slide'] = self.initial_slide
         return context
 
@@ -317,8 +180,8 @@ class ProjectModuleDispatchMixin(generic.DetailView):
 
     @cached_property
     def module(self):
-        if self.modules.count() == 1 and not self.events:
-            return self.modules.first()
+        if self.project.modules.count() == 1 and not self.project.events:
+            return self.project.modules.first()
         elif len(self.get_current_modules()) == 1:
             return self.get_current_modules()[0]
 
@@ -326,7 +189,7 @@ class ProjectModuleDispatchMixin(generic.DetailView):
         kwargs['project'] = self.project
         kwargs['module'] = self.module
 
-        if self.modules.count() == 1 and not self.events:
+        if self.project.modules.count() == 1 and not self.project.events:
             return self._view_by_phase()(request, *args, **kwargs)
         elif len(self.get_current_modules()) == 1:
             return self._view_by_phase()(request, *args, **kwargs)
