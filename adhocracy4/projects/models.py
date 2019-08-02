@@ -111,8 +111,8 @@ class TimelinePropertiesMixin:
     def get_events_list(self):
         if self.events:
             return self.events.values('date', 'name',
-                                  'event_type',
-                                  'slug', 'description')
+                                      'event_type',
+                                      'slug', 'description')
         return []
 
     @cached_property
@@ -142,23 +142,26 @@ class TimelinePropertiesMixin:
                     return idx
 
     def get_current_event(self, idx):
-        pd = self.participation_dates
-        try:
-            current_dict = pd[idx]
-            if 'type' not in current_dict:
-                return current_dict
-        except (IndexError, KeyError):
-            return []
+        if idx:
+            pd = self.participation_dates
+            try:
+                current_dict = pd[idx]
+                if 'type' not in current_dict:
+                    return current_dict
+            except (IndexError, KeyError):
+                return []
         return []
 
     def get_current_modules(self, idx):
-        pd = self.participation_dates
-        try:
-            current_dict = pd[idx]
-            if current_dict['type'] == 'module':
-                return current_dict['modules']
-        except (IndexError, KeyError):
-            return []
+        if idx:
+            pd = self.participation_dates
+            try:
+                current_dict = pd[idx]
+                if current_dict['type'] == 'module':
+                    return current_dict['modules']
+            except (IndexError, KeyError):
+                return []
+        return []
 
 
 class Project(ProjectContactDetailMixin,

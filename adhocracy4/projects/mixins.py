@@ -180,8 +180,8 @@ class ProjectModuleDispatchMixin(generic.DetailView):
 
     @cached_property
     def module(self):
-        if self.modules.count() == 1 and not self.project.events:
-            return self.modules.first()
+        if self.project.modules.count() == 1 and not self.project.events:
+            return self.project.modules.first()
         elif len(self.get_current_modules()) == 1:
             return self.get_current_modules()[0]
 
@@ -189,7 +189,7 @@ class ProjectModuleDispatchMixin(generic.DetailView):
         kwargs['project'] = self.project
         kwargs['module'] = self.module
 
-        if self.modules.count() == 1 and not self.project.events:
+        if self.project.modules.count() == 1 and not self.project.events:
             return self._view_by_phase()(request, *args, **kwargs)
         elif len(self.get_current_modules()) == 1:
             return self._view_by_phase()(request, *args, **kwargs)
