@@ -1596,7 +1596,7 @@ msgstr "breadcrumbs"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:21
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:13
 msgid "go back"
-msgstr ""
+msgstr "zurück"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:18
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_create_form.html:18
