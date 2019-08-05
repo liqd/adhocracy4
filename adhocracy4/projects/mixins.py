@@ -149,7 +149,7 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
         initial_slide = self.request.GET.get('initialSlide')
         if initial_slide:
             return int(initial_slide)
-        else:
+        elif self.project.get_current_participation_date():
             return self.project.get_current_participation_date()
         return 0
 
