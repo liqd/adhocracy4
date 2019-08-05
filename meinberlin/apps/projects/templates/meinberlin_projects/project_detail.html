@@ -157,7 +157,7 @@
         <div class="l-wrapper">
             <div class="timeline-carousel__wrapper">
             {% if project.display_timeline %}
-                {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates %}
+                {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
             {% endif %}
             </div>
             {% if event %}

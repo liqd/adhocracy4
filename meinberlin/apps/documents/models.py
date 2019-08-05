@@ -24,6 +24,12 @@ class Chapter(module_models.Item):
         return "{}_chapter_{}".format(str(self.module), self.pk)
 
     def get_absolute_url(self):
+        if (self.project.display_timeline
+                and not self.module.is_in_module_cluster):
+            return ('{}?initialSlide={}'
+                    .format(reverse('meinberlin_documents:chapter-detail',
+                                    args=[str(self.pk)]),
+                            self.module.get_timeline_index))
         return reverse('meinberlin_documents:chapter-detail',
                        args=[str(self.pk)])
 
