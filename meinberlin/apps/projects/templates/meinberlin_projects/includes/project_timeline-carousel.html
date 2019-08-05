@@ -5,7 +5,7 @@
             <div class="timeline-carousel__line"></div>
             <div class="timeline-carousel__item">
                 {% for date in dates %}
-                    <a href="?initialSlide={{ forloop.counter0 }}"
+                    <a href="{{ project.get_absolute_url }}?initialSlide={{ forloop.counter0 }}"
                        aria-labelledby="timeline_item timeline_entry_{{ forloop.counter }}">
                         <div id="timeline_item"
                              class="timeline-carousel__dot {% if forloop.counter0 == initial_slide %} initial {% endif %}">
