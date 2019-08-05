@@ -253,7 +253,7 @@ class Module(models.Model):
 
     @cached_property
     def readable_index_in_cluster(self):
-        if self.index_in_cluster:
+        if self.index_in_cluster is not None:
             return self.index_in_cluster + 1
 
     @cached_property
