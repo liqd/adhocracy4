@@ -1,5 +1,6 @@
 from django.http import Http404
 from django.urls import reverse
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
@@ -32,13 +33,22 @@ class ChapterDetailView(ProjectMixin,
     get_context_from_object = True
 
     def get_context_data(self, **kwargs):
-        context = super(ChapterDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['chapter_list'] = self.chapter_list
         return context
 
     @property
     def chapter_list(self):
         return models.Chapter.objects.filter(module=self.module)
+
+    @cached_property
+    def extends(self):
+        if self.url_name == 'module-detail':
+            return 'a4modules/module_detail.html'
+        if self.url_name == 'chapter-detail':
+            if self.module.is_in_module_cluster:
+                return 'a4modules/module_detail.html'
+        return 'a4projects/project_detail.html'
 
 
 class DocumentDetailView(ChapterDetailView):
