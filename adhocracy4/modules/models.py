@@ -253,15 +253,12 @@ class Module(models.Model):
 
     @cached_property
     def readable_index_in_cluster(self):
-        if self.index_in_cluster:
+        if self.index_in_cluster is not None:
             return self.index_in_cluster + 1
 
     @cached_property
     def is_in_module_cluster(self):
-        if not self.other_modules:
-            return False
-        else:
-            return len(self.module_cluster) != 0
+        return len(self.module_cluster) > 1
 
     @cached_property
     def next_module_in_cluster(self):
@@ -283,6 +280,27 @@ class Module(models.Model):
                     return cluster[idx - 1]
             except IndexError:
                 return None
+
+    @cached_property
+    def get_timeline_index(self):
+        if self.project.display_timeline:
+            for count, cluster in enumerate(self.project.module_clusters):
+                if self in cluster:
+                    return count
+        return 0
+
+    @cached_property
+    def get_detail_url(self):
+        """
+        Return either project or module detail url, depending on cluster
+        and timeline logic.
+        """
+        if self.is_in_module_cluster and self.project.display_timeline:
+            return self.get_absolute_url()
+        elif self.project.display_timeline:
+            return '{}?initialSlide={}'.format(self.project.get_absolute_url(),
+                                               self.get_timeline_index)
+        return self.project.get_absolute_url()
 
 
 class Item(base.UserGeneratedContentModel):
