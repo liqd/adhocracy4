@@ -8,9 +8,10 @@
         <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
             <ul>
                 <li>
-                    <a href="{{ project.get_absolute_url }}">
+                    <a href="{{ module.get_detail_url }}">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'back to project' %}</a>
+                        {% trans 'go back' %}
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -24,7 +25,7 @@
             <p>{{ project.description }}</p>
             {% endif %}
         </div>
-        {% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=project.get_absolute_url %}
+        {% include "meinberlin_ideas/includes/idea_form.html" with idea=idea cancel=module.get_detail_url %}
     </div>
 </div>
 {% endblock %}
