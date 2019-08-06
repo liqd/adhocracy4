@@ -33,9 +33,11 @@
                 </div>
                 {% endif %}
                 <div class="participation-tile__spacer"></div>
+                {% if not module.module_has_finished %}
                 <div class="participation-tile__btn">
                     <a class="btn btn--full btn--small" href="{% url 'module-detail' module.slug %}">{% trans 'Join now' %}</a>
                 </div>
+                {% endif %}
             </div>
         </div>
     </a>
