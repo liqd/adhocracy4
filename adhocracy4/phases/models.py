@@ -104,7 +104,7 @@ class Phase(models.Model):
         '''Test if phase is over.'''
         if self.end_date:
             return self.end_date <= timezone.now()
-        return False
+        return True
 
     def has_feature(self, feature, model):
         return content[self.type].has_feature(feature, model)
