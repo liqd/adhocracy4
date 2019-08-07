@@ -43,8 +43,4 @@ class Organisation(models.Model):
         return user in self.initiators.all()
 
     def get_absolute_url(self):
-        from django.utils.http import urlencode
-        return '%s?%s' % (
-            reverse('project-list'),
-            urlencode({'organisation': self.pk})
-        )
+        return reverse('plan-list')
