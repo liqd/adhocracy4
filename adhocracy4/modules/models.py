@@ -284,8 +284,8 @@ class Module(models.Model):
     @cached_property
     def get_timeline_index(self):
         if self.project.display_timeline:
-            for count, cluster in enumerate(self.project.module_clusters):
-                if self in cluster:
+            for count, cluster in enumerate(self.project.participation_dates):
+                if 'modules' in cluster and self in cluster['modules']:
                     return count
         return 0
 
