@@ -102,7 +102,9 @@ class Phase(models.Model):
     @cached_property
     def is_over(self):
         '''Test if phase is over.'''
-        return self.end_date <= timezone.now()
+        if self.end_date:
+            return self.end_date <= timezone.now()
+        return False
 
     def has_feature(self, feature, model):
         return content[self.type].has_feature(feature, model)
