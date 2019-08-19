@@ -30,7 +30,7 @@ html5lib==1.0.1
 jsonfield==2.0.2
 python-dateutil==2.8.0
 python-magic==0.4.15
-rules==2.0.1
+rules==2.1
 XlsxWriter==1.1.8
 
 # Project is currently unmaintained. Use our own fork in the meantime
