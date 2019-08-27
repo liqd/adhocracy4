@@ -60,7 +60,7 @@
     "tether": "1.4.7",
     "timeago.js": "3.0.2",
     "webpack": "4.39.3",
-    "webpack-merge": "4.2.1"
+    "webpack-merge": "4.2.2"
   },
   "devDependencies": {
     "babel-eslint": "10.0.3",
