@@ -35,11 +35,11 @@
 
 .item-detail__basic-content {
     @include clearfix;
-    margin-bottom: 1em;
+    position: relative;
+    margin-bottom: 1.5em;
 }
 
 .item-detail__image {
-    margin-bottom: 0.5em;
     width: 100%;
 
     @media screen and (min-width: $breakpoint-xs) {
@@ -48,4 +48,10 @@
         margin-left: 0.5em;
         width: auto;
     }
+}
+
+.item-detail__copyright {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
