@@ -51,11 +51,13 @@ class Plan(UserGeneratedContentModel):
         blank=True,
         null=True)
     point = map_fields.PointField(
+        blank=True,
         verbose_name=_('Where can the plan be located on a map?'),
         help_text=_('Click inside the marked area '
                     'or type in an address to set the marker. A set '
                     'marker can be dragged when pressed.'))
     point_label = models.CharField(
+        blank=True,
         default='',
         max_length=255,
         verbose_name=_('Label of the location'),
@@ -65,6 +67,8 @@ class Plan(UserGeneratedContentModel):
     district = models.ForeignKey(
         AdministrativeDistrict,
         verbose_name=_('District'),
+        help_text=_('Please enter the district, in which your project is '
+                    'located, or whether your project is citywide.'),
         null=True,
         blank=True,
         on_delete=models.CASCADE
@@ -84,6 +88,11 @@ class Plan(UserGeneratedContentModel):
         help_prefix=_(
             'Visualize your plan.'
         ),
+    )
+    description_image_copyright = models.CharField(
+        verbose_name=_('Image copyright'),
+        blank=True,
+        max_length=120
     )
     topics = TopicField(
         verbose_name=_('Topics'),

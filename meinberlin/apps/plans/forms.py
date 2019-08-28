@@ -16,6 +16,7 @@ class PlanForm(forms.ModelForm):
         fields = [
             'title',
             'description_image',
+            'description_image_copyright',
             'contact',
             'point',
             'point_label',
