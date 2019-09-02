@@ -1,9 +1,11 @@
 import collections
 
 from django import forms
+from django.contrib.admin import widgets
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 from django.utils.translation import ngettext
+from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.projects.models import Project
 from meinberlin.apps.plans.models import Plan
@@ -17,6 +19,9 @@ class OrganisationForm(forms.ModelForm):
     class Meta:
         model = models.Organisation
         fields = '__all__'
+        widgets = {
+            'groups': widgets.FilteredSelectMultiple(_('Groups'), False),
+        }
 
     def clean(self):
         groups = self.cleaned_data.get('groups')
