@@ -2,3 +2,144 @@
     border: 0.2em solid $border-color;
     padding: $padding;
 }
+
+.cl-colour-list {
+    line-height: 2*$padding;
+}
+
+.cl-colour-block {
+    padding: 0 $padding;
+    margin-left: $spacer;
+}
+
+.primary.cl-colour-block {
+    background-color: $brand-primary;
+}
+
+.primary-tint.cl-colour-block {
+    background-color: $brand-primary-tint;
+}
+
+.secondary.cl-colour-block {
+    background-color: $brand-secondary;
+}
+
+.sucess.cl-colour-block {
+    background-color: $brand-success;
+}
+
+.info.cl-colour-block {
+    background-color: $brand-secondary;
+}
+
+.warning.cl-colour-block {
+    background-color: $brand-warning;
+}
+
+.danger.cl-colour-block {
+    background-color: $brand-danger;
+}
+
+.gray.cl-colour-block {
+    background-color: $gray;
+}
+
+.gray-lighter.cl-colour-block {
+    background-color: $gray-lighter;
+}
+
+.background.cl-colour-block {
+    background-color: $body-bg;
+}
+
+.bg-secondary.cl-colour-block {
+    background-color: $bg-secondary;
+}
+
+.bg-tertiary.cl-colour-block {
+    background-color: $bg-tertiary;
+}
+
+.text-colour.cl-colour-block {
+    background-color: $text-color;
+}
+
+.text-inverted.cl-colour-block {
+    background-color: $text-color-inverted;
+}
+
+.text-gray.cl-colour-block {
+    background-color: $text-color-gray;
+}
+
+.blue-light.cl-colour-block {
+    background-color: $blue-light;
+}
+
+.print-black.cl-colour-block {
+    background-color: $print-black;
+}
+
+.print-link.cl-colour-block {
+    background-color: $print-link;
+}
+
+.link-color.cl-colour-block {
+    background-color: $link-color;
+}
+
+.link-hover-color.cl-colour-block {
+    background-color: $link-hover-color;
+}
+
+.border.cl-colour-block {
+    background-color: $border-color;
+}
+
+.input-border.cl-colour-block {
+    background-color: $input-border-color;
+}
+
+.feedback-accepted.cl-colour-block {
+    background-color: $feedback-color-accepted;
+}
+
+.feedback-rejected.cl-colour-block {
+    background-color: $feedback-color-rejected;
+}
+
+.feedback-color-consideration.cl-colour-block {
+    background-color: $feedback-color-consideration;
+}
+
+.idea-remark-bg.cl-colour-block {
+    background-color: $idea-remark-bg;
+}
+
+.idea-remark-colour.cl-colour-block {
+    background-color: $idea-remark-color;
+}
+
+.fs-xxxl {
+    font-size: $font-size-xxxl;
+}
+
+.fs-xxl {
+    font-size: $font-size-xxl;
+}
+
+.fs-xl {
+    font-size: $font-size-xl;
+}
+
+.fs-lg {
+    font-size: $font-size-lg;
+}
+
+.fs-sm {
+    font-size: $font-size-sm;
+}
+
+.fs-xs {
+    font-size: $font-size-xs;
+}
