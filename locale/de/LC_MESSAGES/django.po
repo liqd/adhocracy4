@@ -2752,7 +2752,7 @@ msgstr "Bezirk"
 msgid ""
 "Please enter the district, in which your project is located, or whether your "
 "project is citywide."
-msgstr "Tragen sie ein, in welchem Bezirk das Vorhaben räumlich verortet wird "
+msgstr "Tragen Sie ein, in welchem Bezirk das Vorhaben räumlich verortet wird "
 "bzw. ob es ein gesamtstädtisches Projekt ist."
 
 #: meinberlin/apps/plans/models.py:81

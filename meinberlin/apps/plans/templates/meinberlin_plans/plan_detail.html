@@ -38,9 +38,11 @@
                             <dt>{% trans 'Organisation' %}</dt> <dd>{{ object.organisation.name }}</dd>
                         </dl>
 
+                        {% if object.point_label %}
                         <dl>
                             <dt>{% trans 'Location' %}</dt><dd>{{ object.point_label|default:'no val' }}</dd>
                         </dl>
+                        {% endif %}
 
                         <dl>
                             <dt>{% trans 'Topic' %}</dt><dd>{{ object.topic_names.0 }}{% if object.topic_names.1 %}, {{ object.topic_names.1 }}{% endif %}</dd>
