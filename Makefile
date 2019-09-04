@@ -40,8 +40,9 @@ install:
 
 .PHONY: clean
 clean:
-	if [ -d node_modules ]; then rm -r node_modules; fi
-	if [ -d venv ]; then rm -r venv; fi
+	if [ -f package-lock.json ]; then rm package-lock.json; fi
+	if [ -d node_modules ]; then rm -rf node_modules; fi
+	if [ -d venv ]; then rm -rf venv; fi
 
 .PHONY: fixtures
 fixtures:
