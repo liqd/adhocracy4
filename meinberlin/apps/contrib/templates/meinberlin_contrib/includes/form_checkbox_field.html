@@ -4,11 +4,11 @@
     <label class="form-check__label">
         {{ field }}
         {{ field.label }}
+        {% if field.help_text %}
+        <div class="form-hint">
+            {{ field.help_text }}
+        </div>
+        {% endif %}
     </label>
-    {% if field.help_text %}
-    <div class="form-hint">
-        {{ field.help_text }}
-    </div>
-    {% endif %}
     {{ field.errors }}
 </div>

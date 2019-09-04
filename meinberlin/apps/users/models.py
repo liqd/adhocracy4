@@ -17,8 +17,7 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         max_length=60,
         unique=True,
         help_text=_(
-            'Required. 60 characters or fewer. Letters, digits, spaces and '
-            '@/./+/-/_ only.'),
+            'Your username will appear publicly next to your posts.'),
         validators=[
             validators.RegexValidator(
                 USERNAME_REGEX, USERNAME_INVALID_MESSAGE, 'invalid')],
@@ -54,20 +53,21 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     )
 
     get_notifications = models.BooleanField(
-        verbose_name=_('Send me email notifications'),
+        verbose_name=_('Notifications'),
         default=True,
         help_text=_(
-            'Designates whether you want to receive notifications about '
-            'content you follow. '
-            'Unselect if you do not want to receive notifications.')
+            'Yes, I would like to be notified by e-mail about the start '
+            'and end of participation opportunities. This applies to all '
+            'projects I follow. I also receive an e-mail when someone '
+            'comments on one of my contributions.')
     )
 
     get_newsletters = models.BooleanField(
-        verbose_name=_('Send me newsletters'),
+        verbose_name=_('Newsletter'),
         default=False,
         help_text=_(
-            'Designates whether you want to receive newsletters. '
-            'Unselect if you do not want to receive newsletters.')
+            'Yes, I would like to receive e-mail newsletters about '
+            'the projects I am following.')
     )
 
     objects = auth_models.UserManager()

@@ -42,10 +42,18 @@ class TermsSignupForm(auth_forms.UserCreationForm):
         'required': _('Please accept the terms of use.')
     })
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].help_text = _(
+            'Your username will appear publicly next to your posts.'
+        )
+
     def signup(self, request, user):
 
         # without the allaouth plugin, this would typically be inside .save
         user.get_newsletters = self.cleaned_data["get_newsletters"]
+
+        user.get_notifications = self.cleaned_data["get_notifications"]
 
         user.signup(
             self.cleaned_data['username'],
@@ -55,4 +63,4 @@ class TermsSignupForm(auth_forms.UserCreationForm):
     class Meta:
         model = User
         fields = ('email', 'username', 'password1', 'password2',
-                  'get_newsletters', 'terms_of_use')
+                  'get_newsletters', 'get_notifications', 'terms_of_use')
