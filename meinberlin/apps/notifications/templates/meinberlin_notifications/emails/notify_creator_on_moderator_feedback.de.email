@@ -1,0 +1,20 @@
+{% extends 'email_base.'|add:part_type %}
+{% load verbose_name %}
+
+{% block subject %}Rückmeldung zu Ihrem Beitrag auf {{ site.name }}{% endblock %}
+
+{% block headline %}Rückmeldung zu Ihrem Beitrag{% endblock  %}
+
+{% block greeting %}Hallo {{ receiver.username }},{% endblock %}
+
+{% block content %}
+{{ object.module.project.organisation.name }} hat auf Ihren Beitrag reagiert:
+{% if object.moderator_feedback %}Status: {{ object.get_moderator_feedback_display }}{% endif %}
+{% if object.moderator_statement.statement %}Offizielle Rückmeldung: {{ object.moderator_statement.statement | safe }}{% endif %}
+Möchten Sie antworten?
+{% endblock %}
+
+{% block cta_url %}{% if object.get_absolute_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% else %}{{ email.get_host }}{{ object.project.get_absolute_url }}{% endif %}{% endblock %}
+{% block cta_label %}{% if object.get_absolute_url %}Beitrag anzeigen{% else %}Projekt anzeigen{% endif %}{% endblock %}
+
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie einen Beitrag in einem Projekt erstellt haben. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie dem Projekt auf der Projektseite entfolgen oder Benachrichtigungen in Ihren Benutzerkonto Einstellungen komplett deaktivieren.{% endblock %}

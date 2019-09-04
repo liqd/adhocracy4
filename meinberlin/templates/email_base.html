@@ -21,7 +21,9 @@
                 <tr>
                     <td>
                         <p>
+                            {% block greeting %}
                             {% trans 'Hello' %},
+                            {% endblock %}
                         </p>
                         <p>
                             {% block content_html %}
