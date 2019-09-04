@@ -129,7 +129,7 @@ class PollManagement extends React.Component {
   handleUpdateChoiceLabel (questionIndex, choiceIndex, label) {
     var diff = {}
     diff[questionIndex] = { choices: {} }
-    diff[questionIndex]['choices'][choiceIndex] = { $merge: { label: label } }
+    diff[questionIndex].choices[choiceIndex] = { $merge: { label: label } }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -242,7 +242,8 @@ class PollManagement extends React.Component {
           <button
             className="btn btn--light btn--small"
             onClick={this.handleAppendQuestion.bind(this)}
-            type="button">
+            type="button"
+          >
             <i className="fa fa-plus" /> {django.gettext('Add a new question')}
           </button>
         </p>

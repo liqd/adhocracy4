@@ -39,40 +39,46 @@ class Toggles extends React.Component {
           <div className="l-frame switch-container">
             <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{django.gettext(' search results')}</div>
             <div className="switch-filter__btn-group">
-              { this.props.displayButtons && this.props.statusSelected &&
+              {this.props.displayButtons && this.props.statusSelected &&
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickStatusButton.bind(this)}
-                  type="button">{this.props.statusString} {this.props.statusCount} <i className="fa fa-times" /></button>
-              }
-              { this.props.displayButtons && this.props.participationSelected &&
+                  type="button"
+                >{this.props.statusString} {this.props.statusCount} <i className="fa fa-times" />
+                </button>}
+              {this.props.displayButtons && this.props.participationSelected &&
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickParticipationButton.bind(this)}
-                  type="button">{this.props.participationString} {this.props.participationCount} <i className="fa fa-times" /></button>
-              }
-              { this.props.displayButtons && this.props.organisationSelected &&
+                  type="button"
+                >{this.props.participationString} {this.props.participationCount} <i className="fa fa-times" />
+                </button>}
+              {this.props.displayButtons && this.props.organisationSelected &&
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickOrganisationButton.bind(this)}
-                  type="button">{this.organisationButtonString()} {this.props.organisationCount} <i className="fa fa-times" /></button>
-              }
-              { this.props.displayButtons && this.props.titleSearchSelected &&
+                  type="button"
+                >{this.organisationButtonString()} {this.props.organisationCount} <i className="fa fa-times" />
+                </button>}
+              {this.props.displayButtons && this.props.titleSearchSelected &&
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickTitleSearchButton.bind(this)}
-                  type="button">{this.titleSearchButtonString()} {this.props.titleSearchCount} <i className="fa fa-times" /></button>
-              }
+                  type="button"
+                >{this.titleSearchButtonString()} {this.props.titleSearchCount} <i className="fa fa-times" />
+                </button>}
             </div>
             <div className="switch">
               <div className="switch-group" role="group" aria-labelledby="id-switch-label">
                 <label htmlFor="switch-primary" className="switch-label">
                   <span className="switch-label__text">{django.gettext('Show map')}</span>
-                  <input className="switch-input"
+                  <input
+                    className="switch-input"
                     id="switch-primary"
-                    onChange={this.props.toggleSwitch}
+                    onChange={this.props.toggleSwitch} /* eslint-disable-line */
                     name="switch-primary"
-                    type="checkbox" />
+                    type="checkbox"
+                  />
                   <span className="switch__toggle" />
                 </label>
               </div>
@@ -86,38 +92,50 @@ class Toggles extends React.Component {
           <div className="l-frame switch-container">
             <div className={this.props.displayButtons ? 'switch-filter__label' : 'd-none'}>{this.props.projectCount}{django.gettext(' search results')}</div>
             <div className="switch-filter__btn-group">
-              { this.props.displayButtons && this.props.statusSelected &&
+              {this.props.displayButtons && this.props.statusSelected &&
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickStatusButton.bind(this)}
-                  type="button">{this.props.statusString} <i className="fa fa-times" /></button>
-              }
-              { this.props.displayButtons && this.props.participationSelected &&
+                  type="button"
+                >{this.props.statusString} <i className="fa fa-times" />
+                </button>}
+              {this.props.displayButtons && this.props.participationSelected &&
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickParticipationButton.bind(this)}
-                  type="button">{this.props.participationString} <i className="fa fa-times" /></button>
-              }
-              { this.props.displayButtons && this.props.organisationSelected &&
+                  type="button"
+                >{this.props.participationString} <i className="fa fa-times" />
+                </button>}
+              {this.props.displayButtons && this.props.organisationSelected &&
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickOrganisationButton.bind(this)}
-                  type="button">{this.props.organisationString} <i className="fa fa-times" /></button>
-              }
-              { this.props.displayButtons && this.props.titleSearchSelected &&
+                  type="button"
+                >{this.props.organisationString} <i className="fa fa-times" />
+                </button>}
+              {this.props.displayButtons && this.props.titleSearchSelected &&
                 <button
                   className="btn btn--transparent btn--small"
                   onClick={this.clickTitleSearchButton.bind(this)}
-                  type="button">{this.titleSearchButtonString()} <i className="fa fa-times" /></button>
-              }
+                  type="button"
+                >{this.titleSearchButtonString()} <i className="fa fa-times" />
+                </button>}
             </div>
             <div className="switch-btn-group-container">
               <div className="btn-group switch-btn-group" role="group">
-                <label className={!this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'} onClick={this.props.showList} htmlFor="show_list">
+                <label
+                  className={!this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'}
+                  onClick={this.props.showList} // eslint-disable-line
+                  htmlFor="show_list"
+                >
                   <span className="sr-only">{django.gettext('Show List')}</span>
                   <input className="radio__input" type="radio" value="list" id="show_list" /> <i className="fa fa-list" />
                 </label>
-                <label className={this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'} onClick={this.props.showMap} htmlFor="show_map">
+                <label
+                  className={this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'}
+                  onClick={this.props.showMap} // eslint-disable-line
+                  htmlFor="show_map"
+                >
                   <span className="sr-only">{django.gettext('Show Map')}</span>
                   <input className="radio__input" type="radio" value="map" id="show_map" /> <i className="fa fa-map" />
                 </label>

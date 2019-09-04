@@ -5,10 +5,10 @@ $(function () {
   const dropdown = $('#idea-remark__dropdown')
   const attributes = dropdown.data('attributes')
   if (typeof attributes !== 'undefined') {
-    var objectPk = attributes['item_object_id']
-    var contentTypeId = attributes['item_content_type']
-    var remarkId = attributes['id']
-    var remarkVal = attributes['remark']
+    var objectPk = attributes.item_object_id
+    var contentTypeId = attributes.item_content_type
+    var remarkId = attributes.id
+    var remarkVal = attributes.remark
   }
 
   if (remarkId) {

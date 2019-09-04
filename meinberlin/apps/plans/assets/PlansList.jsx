@@ -27,7 +27,7 @@ class PlansList extends React.Component {
 
   getImage (item) {
     return {
-      backgroundImage: `url(` + item.tile_image + ')',
+      backgroundImage: 'url(' + item.tile_image + ')',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'
     }
@@ -74,51 +74,43 @@ class PlansList extends React.Component {
           {item.type === 'project' &&
             <div className="participation-tile__body maplist-item__proj">
               {item.tile_image &&
-              <div className={this.props.isHorizontal ? 'u-lg-only-display maplist-item__img' : 'maplist-item__img'} style={this.getImage(item)} alt="">
-                {!this.props.isHorizontal && this.renderTopics(item)}
-                { item.tile_image_copyright &&
-                  <span className="maplist-item__img-copyright copyright">© {item.tile_image_copyright}</span>
-                }
-              </div>
-              }
+                <div className={this.props.isHorizontal ? 'u-lg-only-display maplist-item__img' : 'maplist-item__img'} style={this.getImage(item)} alt="">
+                  {!this.props.isHorizontal && this.renderTopics(item)}
+                  {item.tile_image_copyright &&
+                    <span className="maplist-item__img-copyright copyright">© {item.tile_image_copyright}</span>}
+                </div>}
               <div className="participation-tile__content">
                 {(this.props.isHorizontal || !item.tile_image) && this.renderTopics(item)}
                 <span className="maplist-item__roofline">{item.district}</span>
                 <h3 className="maplist-item__title">{item.title}</h3>
                 {!this.props.isHorizontal &&
-                <div className="maplist-item__description">
-                  <span>{this.getText(item.description)}</span>
-                </div>
-                }
+                  <div className="maplist-item__description">
+                    <span>{this.getText(item.description)}</span>
+                  </div>}
                 <div className="maplist-item__link" />
                 {item.subtype === 'container' &&
                   <div className="maplist-item__stats">
                     <span className="participation-tile__proj-count"><i className="fas fa-th" aria-hidden="true" />{django.gettext('Participation projects: ')}</span>
                     <span>{item.published_projects_count}</span>
-                  </div>
-                }
+                  </div>}
                 {item.future_phase && !item.active_phase &&
                   <div className="status-item status__future">
                     <span className="participation-tile__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Participation: from ')}{this.getDate(item)}</span>
-                  </div>
-                }
+                  </div>}
                 {item.active_phase &&
-                <div className="status-item status__active">
-                  <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
-                  <span className="participation-tile__status"><i className="fas fa-clock" aria-hidden="true" />
-                    {this.getTimespan(item)}
-                  </span>
-                </div>
-                }
+                  <div className="status-item status__active">
+                    <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
+                    <span className="participation-tile__status"><i className="fas fa-clock" aria-hidden="true" />
+                      {this.getTimespan(item)}
+                    </span>
+                  </div>}
                 {item.past_phase && !item.active_phase && !item.future_phase &&
                   <div className="status-item status-bar__past">
                     <span className="participation-tile__status">{django.gettext('Participation ended. Read result.')}</span>
-                  </div>
-                }
+                  </div>}
               </div>
               <div className="status-item_spacer" />
-            </div>
-          }
+            </div>}
           {item.type === 'plan' &&
             <div className="participation-tile__body maplist-item__plan">
               {this.renderTopics(item)}
@@ -130,17 +122,14 @@ class PlansList extends React.Component {
                 <span>{item.published_projects_count}</span>
                 <br />
                 <span className="participation-tile__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Status: ')}</span>
-                <span className={statusClass}>{item.participation_string }</span>
+                <span className={statusClass}>{item.participation_string}</span>
               </div>
               <div className="status-item_spacer" />
-            </div>
-          }
+            </div>}
           {item.subtype === 'external' &&
-          <div className="maplist-item__corner-badge maplist-item__corner-badge--external" />
-          }
+            <div className="maplist-item__corner-badge maplist-item__corner-badge--external" />}
           {!item.is_public && item.type === 'project' &&
-          <div className="maplist-item__corner-badge maplist-item__corner-badge--private" />
-          }
+            <div className="maplist-item__corner-badge maplist-item__corner-badge--private" />}
         </a>
       </li>
     )

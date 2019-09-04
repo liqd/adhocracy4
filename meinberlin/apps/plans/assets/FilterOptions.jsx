@@ -7,7 +7,8 @@ class OptionButton extends React.Component {
       <button
         type="button"
         value={this.props.identifier}
-        onClick={this.props.onSelect}>
+        onClick={this.props.onSelect}
+      >
         {this.props.name}
       </button>
     )
@@ -23,17 +24,18 @@ class OptionList extends React.Component {
             <button
               type="button"
               value="-1"
-              onClick={this.props.onSelect}>
+              onClick={this.props.onSelect}
+            >
               {django.gettext('all')}
             </button>
-          </div>
-        }
+          </div>}
         {this.props.firstElement &&
-          <div className="filter-bar__option-divider" />
-        }
+          <div className="filter-bar__option-divider" />}
         {this.props.listItems.map((key, i) => (
-          <div key={key}
-            className={this.props.getClassNameInput(this.props.options[key])}>
+          <div
+            key={key}
+            className={this.props.getClassNameInput(this.props.options[key])}
+          >
             <OptionButton
               identifier={key}
               onSelect={this.props.onSelect.bind(this)}
@@ -42,13 +44,14 @@ class OptionList extends React.Component {
           </div>
         ))}
         {this.props.hasNoneValue && this.props.lastElement &&
-          <div className="filter-bar__option-divider" />
-        }
+          <div className="filter-bar__option-divider" />}
         {this.props.hasNoneValue && this.props.lastElement &&
           Object.keys(this.props.options).slice(-1).map((key, i) => {
             return (
-              <div key={key}
-                className={this.props.getClassNameInput(this.props.options[key])}>
+              <div
+                key={key}
+                className={this.props.getClassNameInput(this.props.options[key])}
+              >
                 <OptionButton
                   identifier={key}
                   onSelect={this.props.onSelect.bind(this)}
@@ -56,8 +59,7 @@ class OptionList extends React.Component {
                 />
               </div>
             )
-          })
-        }
+          })}
       </div>
     )
   }
@@ -106,7 +108,8 @@ class FilterOptions extends React.Component {
         selectedChoice={this.props.selectedChoice}
         getClassNameInput={this.getClassNameInput.bind(this)}
         firstElement={firstElement}
-        lastElement={lastElement} />
+        lastElement={lastElement}
+      />
     )
   }
 

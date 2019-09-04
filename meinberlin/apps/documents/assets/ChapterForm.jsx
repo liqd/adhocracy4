@@ -16,7 +16,8 @@ const ChapterForm = (props) => {
               name={'chapters-' + props.id + '-name'}
               type="text"
               value={props.chapter.name}
-              onChange={(e) => { props.onChapterNameChange(e.target.value) }} />
+              onChange={(e) => { props.onChapterNameChange(e.target.value) }}
+            />
           </label>
           <ErrorList errors={props.errors} field="name" />
         </div>
@@ -49,7 +50,8 @@ const ChapterForm = (props) => {
       <button
         className="btn btn--light btn--small"
         onClick={props.onParagraphAppend}
-        type="button">
+        type="button"
+      >
         <i className="fa fa-plus" /> {django.gettext('Add a new paragraph')}
       </button>
     </section>

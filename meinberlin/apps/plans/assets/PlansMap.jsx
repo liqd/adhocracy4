@@ -162,21 +162,27 @@ class PlansMap extends Component {
 
   displayResults (geojson) {
     this.setState(
-      { displayResults: true,
+      {
+        displayResults: true,
         showInfoBox: false,
-        searchResults: geojson.features }
+        searchResults: geojson.features
+      }
     )
   }
 
   displayErrorMessage () {
     this.setState(
-      { displayError: true,
-        showInfoBox: false }
+      {
+        displayError: true,
+        showInfoBox: false
+      }
     )
     setTimeout(function () {
       this.setState(
-        { displayError: false,
-          showInfoBox: this.state.showInfoBoxUser })
+        {
+          displayError: false,
+          showInfoBox: this.state.showInfoBoxUser
+        })
     }.bind(this), 2000)
   }
 
@@ -191,8 +197,10 @@ class PlansMap extends Component {
     }).addTo(this.map)
     this.map.flyToBounds(addressMarker.getBounds(), { maxZoom: 13 })
     this.setState(
-      { address: addressMarker,
-        showInfoBox: this.state.showInfoBoxUser }
+      {
+        address: addressMarker,
+        showInfoBox: this.state.showInfoBoxUser
+      }
     )
   }
 
@@ -235,8 +243,10 @@ class PlansMap extends Component {
 
   closeInfoBox () {
     this.setState(
-      { showInfoBox: false,
-        showInfoBoxUser: false }
+      {
+        showInfoBox: false,
+        showInfoBoxUser: false
+      }
     )
     this.props.cookies.set('plansMapHideInfoBox', 1, { path: '/' })
   }
@@ -251,43 +261,41 @@ class PlansMap extends Component {
               className="input-group__input"
               name="search"
               type="search"
-              placeholder={django.gettext('Address Search')} />
+              placeholder={django.gettext('Address Search')}
+            />
             <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Address search')}>
               <i className="fas fa-search" aria-label={django.gettext('Address search')} />
             </button>
 
             {this.state.displayResults &&
               <ul aria-labelledby="id_filter_address">
-                { this.state.searchResults.map((name, i) => {
+                {this.state.searchResults.map((name, i) => {
                   return (
                     <li key={i}>
                       <button
                         type="button"
                         value={i}
-                        onClick={this.selectSearchResult.bind(this)}>
+                        onClick={this.selectSearchResult.bind(this)}
+                      >
                         {name.properties.strname} {name.properties.hsnr} in {name.properties.plz} {name.properties.bezirk_name}
                       </button>
                     </li>
                   )
-                })
-                }
-              </ul>
-            }
+                })}
+              </ul>}
 
             {this.state.displayError &&
               <ul aria-labelledby="id_filter_address" className="map-list-combined__map__search__error">
                 <li>{django.gettext('Nothing to show')}</li>
-              </ul>
-            }
+              </ul>}
 
           </form>
         </div>
         {this.state.showInfoBox &&
-        <div className="map-infobox">
-          <button className="infobox__close" id="close" aria-label={django.gettext('Close information box')} onClick={this.closeInfoBox.bind(this)}><i className="fa fa-times" /></button>
-          <i className="fa fa-info-circle" aria-hidden="true" /><span>{django.gettext('Projects without spacial reference are not shown on the map. Please have a look at the project list.')}</span>
-        </div>
-        }
+          <div className="map-infobox">
+            <button className="infobox__close" id="close" aria-label={django.gettext('Close information box')} onClick={this.closeInfoBox.bind(this)}><i className="fa fa-times" /></button>
+            <i className="fa fa-info-circle" aria-hidden="true" /><span>{django.gettext('Projects without spacial reference are not shown on the map. Please have a look at the project list.')}</span>
+          </div>}
       </div>
     )
   }

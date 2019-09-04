@@ -271,7 +271,8 @@ class ListMapBox extends Component {
 
   getPlansMap (draggingEnabled, zoomPosition) {
     return (
-      <PlansMap key="content"
+      <PlansMap
+        key="content"
         resize={this.state.resizeMap}
         items={this.state.items}
         bounds={this.props.bounds}
@@ -355,47 +356,43 @@ class ListMapBox extends Component {
           {this.getFilterNav(1, true, isTablet)}
           {this.getToggles(false)}
           {!this.state.showListMap &&
-            this.getPlansList(false)
-          }
+            this.getPlansList(false)}
           {this.state.showListMap &&
-            this.getPlansMap(false, 'bottomright')
-          }
+            this.getPlansMap(false, 'bottomright')}
         </div>)
     } else if (isTablet) {
-      return (<div>
-        {this.getFilterNav(2, false, isTablet)}
-        {this.getToggles(false)}
-        {!this.state.showListMap &&
-          this.getPlansList(false)
-        }
-        {this.state.showListMap &&
-          this.getPlansMap(true, 'topright')
-        }
-      </div>)
+      return (
+        <div>
+          {this.getFilterNav(2, false, isTablet)}
+          {this.getToggles(false)}
+          {!this.state.showListMap &&
+            this.getPlansList(false)}
+          {this.state.showListMap &&
+            this.getPlansMap(true, 'topright')}
+        </div>)
     } else {
       return (
         <div>
           {this.getFilterNav(3, false, isTablet)}
           {this.getToggles(true)}
-          { this.state.showListMap
+          {this.state.showListMap
             ? <div className="map-list-combined">
               <div id="list" className="list-container map-list-combined__list">
-                { this.getPlansList(true) }
+                {this.getPlansList(true)}
               </div>
               <div id="map" className="map-container map-list-combined__map">
                 <StickyBox offsetTop={0} offsetBottom={0}>
-                  { this.getPlansMap(true, 'topright') }
+                  {this.getPlansMap(true, 'topright')}
                 </StickyBox>
               </div>
-            </div>
+            </div> // eslint-disable-line
             : <div className="l-frame">
               <div className="map-list-combined">
                 <div className="list-container map-list-combined__list">
-                  { this.getPlansList(false) }
+                  {this.getPlansList(false)}
                 </div>
               </div>
-            </div>
-          }
+            </div> /* eslint-disable-line */ }
         </div>)
     }
   }

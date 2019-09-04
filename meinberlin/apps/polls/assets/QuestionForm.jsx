@@ -10,13 +10,15 @@ const QuestionForm = (props) => {
       <div className="commenting__content commenting__content--border">
         <div className="form-group">
           <label
-            htmlFor={'id_questions-' + props.id + '-name'}>
+            htmlFor={'id_questions-' + props.id + '-name'}
+          >
             {django.gettext('Question')}
             <textarea
               id={'id_questions-' + props.id + '-name'}
               name={'questions-' + props.id + '-name'}
               value={props.question.label}
-              onChange={(e) => { props.onLabelChange(e.target.value) }} />
+              onChange={(e) => { props.onLabelChange(e.target.value) }}
+            />
           </label>
           <ErrorList errors={props.errors} field="label" />
         </div>
@@ -60,7 +62,8 @@ const QuestionForm = (props) => {
         <button
           className="btn btn--light btn--small"
           onClick={props.onAppendChoice}
-          type="button">
+          type="button"
+        >
           <i className="fa fa-plus" /> {django.gettext('Add a new choice')}
         </button>
       </div>
@@ -71,26 +74,35 @@ const QuestionForm = (props) => {
           onClick={props.onMoveUp}
           disabled={!props.onMoveUp}
           title={django.gettext('Move up')}
-          type="button">
-          <i className="fa fa-chevron-up"
-            aria-label={django.gettext('Move up')} />
+          type="button"
+        >
+          <i
+            className="fa fa-chevron-up"
+            aria-label={django.gettext('Move up')}
+          />
         </button>
         <button
           className="btn btn--light btn--small"
           onClick={props.onMoveDown}
           disabled={!props.onMoveDown}
           title={django.gettext('Move down')}
-          type="button">
-          <i className="fa fa-chevron-down"
-            aria-label={django.gettext('Move down')} />
+          type="button"
+        >
+          <i
+            className="fa fa-chevron-down"
+            aria-label={django.gettext('Move down')}
+          />
         </button>
         <button
           className="btn btn--light btn--small"
           onClick={props.onDelete}
           title={django.gettext('Delete')}
-          type="button">
-          <i className="fas fa-trash-alt"
-            aria-label={django.gettext('Delete')} />
+          type="button"
+        >
+          <i
+            className="fas fa-trash-alt"
+            aria-label={django.gettext('Delete')}
+          />
         </button>
       </div>
     </section>

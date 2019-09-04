@@ -104,14 +104,15 @@ class Question extends React.Component {
         <button
           type="submit"
           className="btn btn--primary"
-          disabled={disabled}>
-          { django.gettext('Vote') }
+          disabled={disabled}
+        >
+          {django.gettext('Vote')}
         </button>
       )
     } else {
       return (
         <a href={config.getLoginUrl()} className="btn btn--primary">
-          { django.gettext('Please login to vote') }
+          {django.gettext('Please login to vote')}
         </a>
       )
     }
@@ -154,7 +155,7 @@ class Question extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit.bind(this)} className="poll">
-        <h2>{ this.state.question.label }</h2>
+        <h2>{this.state.question.label}</h2>
 
         <div className="poll__rows">
           {
@@ -167,11 +168,13 @@ class Question extends React.Component {
               if (this.state.showResult) {
                 return (
                   <div className="poll-row" key={choice.id}>
-                    <div className="poll-row__number">{ percent }%</div>
-                    <div className="poll-row__label">{ choice.label }</div>
-                    { chosen ? <i className="fa fa-check-circle u-primary" aria-label={django.gettext('Your choice')} /> : '' }
-                    <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
-                      ref={node => this.doBarTransition(node, { width: percent + '%' })} />
+                    <div className="poll-row__number">{percent}%</div>
+                    <div className="poll-row__label">{choice.label}</div>
+                    {chosen ? <i className="fa fa-check-circle u-primary" aria-label={django.gettext('Your choice')} /> : ''}
+                    <div
+                      className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
+                      ref={node => this.doBarTransition(node, { width: percent + '%' })}
+                    />
                   </div>
                 )
               } else {
@@ -188,7 +191,7 @@ class Question extends React.Component {
                         onChange={this.handleOnChange.bind(this)}
                         disabled={!this.state.question.authenticated}
                       />
-                      <span className="radio__text">{ choice.label }</span>
+                      <span className="radio__text">{choice.label}</span>
                     </label>
                   )
                 } else {
@@ -204,7 +207,7 @@ class Question extends React.Component {
                         onChange={this.handleOnMultiChange.bind(this)}
                         disabled={!this.state.question.authenticated}
                       />
-                      <span className="radio__text radio__text--checkbox">{ choice.label }</span>
+                      <span className="radio__text radio__text--checkbox">{choice.label}</span>
                     </label>
                   )
                 }

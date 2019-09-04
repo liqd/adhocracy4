@@ -34,9 +34,11 @@ class FilterRadio extends React.Component {
       <fieldset className="u-no-border u-no-margin u-no-padding">
         <legend><h2 className="u-no-margin">{this.props.question}</h2></legend>
         <div className="btn-group " role="group">
-          <label className={this.getClassNameInput(-1)}
+          <label
+            className={this.getClassNameInput(-1)}
             key={this.props.filterId + 'all'}
-            htmlFor={'id_choice-' + this.props.filterId + '-all'}>
+            htmlFor={'id_choice-' + this.props.filterId + '-all'}
+          >
             <input
               className="radio__input"
               type="radio"
@@ -49,9 +51,11 @@ class FilterRadio extends React.Component {
           </label>
           {this.props.choiceNames.map((choice, i) => {
             return (
-              <label className={this.getClassNameInput(i)}
+              <label
+                className={this.getClassNameInput(i)}
                 key={this.props.filterId + i}
-                htmlFor={'id_choice-' + this.props.filterId + '-' + i}>
+                htmlFor={'id_choice-' + this.props.filterId + '-' + i}
+              >
                 <input
                   className="radio__input"
                   type="radio"
@@ -60,7 +64,7 @@ class FilterRadio extends React.Component {
                   checked={this.isChecked(i)}
                   onChange={this.handleOnChange.bind(this)}
                 />
-                <span className="">{ choice }</span>
+                <span className="">{choice}</span>
               </label>
             )
           })}

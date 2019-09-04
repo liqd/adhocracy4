@@ -133,7 +133,7 @@ class FilterNav extends React.Component {
                 id="id_filter_district"
                 buttonText={django.gettext('„ all Districts “')}
                 iClassName="fa fa-chevron-down"
-              />
+              /> // eslint-disable-line
               : <FilterButton
                 className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
                 ariaExpanded={this.state.displayDistrictOptions}
@@ -141,9 +141,8 @@ class FilterNav extends React.Component {
                 id="id_filter_district"
                 buttonText={this.getDistrictFilterName()}
                 iClassName="fa fa-chevron-down"
-              />
-            }
-            { this.state.displayDistrictOptions &&
+              /> /* eslint-disable-line */ }
+            {this.state.displayDistrictOptions &&
               <FilterOptions
                 question={django.gettext('Which district are you interested in?')}
                 options={this.props.districtnames}
@@ -153,8 +152,7 @@ class FilterNav extends React.Component {
                 numColumns={this.props.numColumns}
                 hasNoneValue
                 selectedChoice={this.props.district}
-              />
-            }
+              />}
             {this.props.topic === '-1'
               ? <FilterButton
                 className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
@@ -163,7 +161,7 @@ class FilterNav extends React.Component {
                 id="id_filter_topic"
                 buttonText={django.gettext('„ all Topics “')}
                 iClassName="fa fa-chevron-down"
-              />
+              /> // eslint-disable-line
               : <FilterButton
                 className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
                 ariaExpanded={this.state.displayTopicOptions}
@@ -171,38 +169,36 @@ class FilterNav extends React.Component {
                 id="id_filter_topic"
                 buttonText={this.getTopicFilterName()}
                 iClassName="fa fa-chevron-down"
-              />
-            }
-            { this.state.displayTopicOptions &&
-            <FilterOptions
-              question={django.gettext('Which topic are you interested in?')}
-              options={this.props.topicChoices}
-              onSelect={this.clickTopic.bind(this)}
-              ariaLabelledby="id_filter_topic"
-              isStacked={this.props.isStacked}
-              numColumns={this.props.numColumns}
-              hasNoneValue={false}
-              selectedChoice={this.getSelectedTopicOption(this.props.topic)}
-            />
-            }
-            { this.props.linkUrl &&
+              /> /* eslint-disable-line */ }
+            {this.state.displayTopicOptions &&
+              <FilterOptions
+                question={django.gettext('Which topic are you interested in?')}
+                options={this.props.topicChoices}
+                onSelect={this.clickTopic.bind(this)}
+                ariaLabelledby="id_filter_topic"
+                isStacked={this.props.isStacked}
+                numColumns={this.props.numColumns}
+                hasNoneValue={false}
+                selectedChoice={this.getSelectedTopicOption(this.props.topic)}
+              />}
+            {this.props.linkUrl &&
               <div>
                 <a
                   href={this.props.linkUrl}
-                  className="u-spacer-top btn btn--small btn--primary btn--full filter-bar__btn--light-homepage">{django.gettext('display projects')}
+                  className="u-spacer-top btn btn--small btn--primary btn--full filter-bar__btn--light-homepage"
+                >{django.gettext('display projects')}
                 </a>
-              </div>
-            }
-            { !this.props.linkUrl &&
+              </div>}
+            {!this.props.linkUrl &&
               <button
                 onClick={this.showSecondaryFilters.bind(this)}
                 className="u-spacer-top btn btn--small btn--transparent btn--full filter-bar__btn--light"
                 aria-haspopup="true"
-                aria-expanded={this.state.displaySecondaryFilters}>
+                aria-expanded={this.state.displaySecondaryFilters}
+              >
                 {django.gettext('more filters')}
-              </button>
-            }
-            { this.state.displaySecondaryFilters &&
+              </button>}
+            {this.state.displaySecondaryFilters &&
               <div className="modal filter-secondary__modal" id="filter-modal" role="dialog">
                 <div className="modal-dialog modal-lg" role="document">
                   <div className="modal-content filter-secondary__modal-content">
@@ -227,8 +223,7 @@ class FilterNav extends React.Component {
                     </div>
                   </div>
                 </div>
-              </div>
-            }
+              </div>}
           </div>
           <div className="outer-handler" onClick={() => this.closeFilters()} role="none" />
         </div>
@@ -247,7 +242,7 @@ class FilterNav extends React.Component {
                   id="id_filter_district"
                   buttonText={django.gettext('„ all Districts “')}
                   iClassName="fa fa-chevron-down"
-                />
+                /> // eslint-disable-line
                 : <FilterButton
                   className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
                   ariaExpanded={this.state.displayDistrictOptions}
@@ -255,20 +250,18 @@ class FilterNav extends React.Component {
                   id="id_filter_district"
                   buttonText={this.getDistrictFilterName()}
                   iClassName="fa fa-chevron-down"
-                />
-              }
-              { this.state.displayDistrictOptions &&
-              <FilterOptions
-                question={django.gettext('Which district are you interested in?')}
-                options={this.props.districtnames}
-                onSelect={this.clickDistrict.bind(this)}
-                ariaLabelledby="id_filter_district"
-                isStacked={this.props.isStacked}
-                numColumns={this.props.numColumns}
-                hasNoneValue
-                selectedChoice={this.props.district}
-              />
-              }
+                /> /* eslint-disable-line */ }
+              {this.state.displayDistrictOptions &&
+                <FilterOptions
+                  question={django.gettext('Which district are you interested in?')}
+                  options={this.props.districtnames}
+                  onSelect={this.clickDistrict.bind(this)}
+                  ariaLabelledby="id_filter_district"
+                  isStacked={this.props.isStacked}
+                  numColumns={this.props.numColumns}
+                  hasNoneValue
+                  selectedChoice={this.props.district}
+                />}
             </div>
             <span className="u-md-down-display-none">{django.gettext(' in the area of ')}</span>
             <div className="filter-bar__dropdown">
@@ -280,7 +273,7 @@ class FilterNav extends React.Component {
                   id="id_filter_topic"
                   buttonText={django.gettext('„ all Topics “')}
                   iClassName="fa fa-chevron-down"
-                />
+                /> // eslint-disable-line
                 : <FilterButton
                   className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
                   ariaExpanded={this.state.displayTopicOptions}
@@ -288,54 +281,52 @@ class FilterNav extends React.Component {
                   id="id_filter_topic"
                   buttonText={this.getTopicFilterName()}
                   iClassName="fa fa-chevron-down"
-                />
-              }
-              { this.state.displayTopicOptions &&
-              <FilterOptions
-                question={django.gettext('Which topic are you interested in?')}
-                options={this.props.topicChoices}
-                onSelect={this.clickTopic.bind(this)}
-                ariaLabelledby="id_filter_topic"
-                isStacked={this.props.isStacked}
-                numColumns={this.props.numColumns}
-                hasNoneValue={false}
-                selectedChoice={this.getSelectedTopicOption(this.props.topic)}
-              />
-              }
+                /> /* eslint-disable-line */ }
+              {this.state.displayTopicOptions &&
+                <FilterOptions
+                  question={django.gettext('Which topic are you interested in?')}
+                  options={this.props.topicChoices}
+                  onSelect={this.clickTopic.bind(this)}
+                  ariaLabelledby="id_filter_topic"
+                  isStacked={this.props.isStacked}
+                  numColumns={this.props.numColumns}
+                  hasNoneValue={false}
+                  selectedChoice={this.getSelectedTopicOption(this.props.topic)}
+                />}
             </div>
             <span className="u-md-down-display-none">.</span>
-            { this.props.linkUrl &&
+            {this.props.linkUrl &&
               <div>
                 <a
                   href={this.props.linkUrl}
-                  className="btn btn--small btn--primary filter-bar__btn--light-homepage">{django.gettext('display projects')}
+                  className="btn btn--small btn--primary filter-bar__btn--light-homepage"
+                >{django.gettext('display projects')}
                 </a>
-              </div>
-            }
-            { (!this.props.linkUrl && this.props.isTablet) &&
+              </div>}
+            {(!this.props.linkUrl && this.props.isTablet) &&
               <div>
                 <button
                   onClick={this.showSecondaryFilters.bind(this)}
                   className="btn btn--small btn--transparent filter-bar__btn--light"
                   aria-haspopup="true"
-                  aria-expanded={this.state.displaySecondaryFilters}>
+                  aria-expanded={this.state.displaySecondaryFilters}
+                >
                   <i className="fas fa-sliders-h" aria-label={django.gettext('more filters')} />
                 </button>
-              </div>
-            }
-            { (!this.props.linkUrl && !this.props.isTablet) &&
+              </div>}
+            {(!this.props.linkUrl && !this.props.isTablet) &&
               <div>
                 <button
                   onClick={this.showSecondaryFilters.bind(this)}
                   className="btn btn--small btn--transparent filter-bar__btn--light"
                   aria-haspopup="true"
-                  aria-expanded={this.state.displaySecondaryFilters}>
+                  aria-expanded={this.state.displaySecondaryFilters}
+                >
                   {django.gettext('more filters')}
                 </button>
-              </div>
-            }
+              </div>}
           </div>
-          { this.state.displaySecondaryFilters &&
+          {this.state.displaySecondaryFilters &&
             <FilterSecondary
               organisationFilterOnTop={this.props.isStacked || this.props.isTablet}
               selectParticipation={this.props.selectParticipation.bind(this)}
@@ -351,8 +342,7 @@ class FilterNav extends React.Component {
               organisations={this.props.organisations}
               numColumns={this.props.numColumns}
               titleSearch={this.props.titleSearch}
-            />
-          }
+            />}
           <div className="outer-handler" onClick={() => this.closeFilters()} role="none" />
         </div>
       )

@@ -200,7 +200,7 @@ class DocumentManagement extends React.Component {
   handleParagraphNameChange (chapterIndex, paragraphIndex, name) {
     const diff = {}
     diff[chapterIndex] = { paragraphs: [] }
-    diff[chapterIndex]['paragraphs'][paragraphIndex] = {
+    diff[chapterIndex].paragraphs[paragraphIndex] = {
       $merge: {
         name: name
       }
@@ -213,7 +213,7 @@ class DocumentManagement extends React.Component {
   handleParagraphTextChange (chapterIndex, paragraphIndex, text) {
     const diff = {}
     diff[chapterIndex] = { paragraphs: [] }
-    diff[chapterIndex]['paragraphs'][paragraphIndex] = {
+    diff[chapterIndex].paragraphs[paragraphIndex] = {
       $merge: {
         text: text
       }
