@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-04 11:26+0200\n"
+"POT-Creation-Date: 2019-09-05 11:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,56 +48,6 @@ msgid_plural "view %s replies"
 msgstr[0] "view one reply"
 msgstr[1] "view %s replies"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:125
-msgid "Do you really want to delete this comment?"
-msgstr "Do you really want to delete this comment?"
-
-#: adhocracy4/comments/static/comments/Comment.jsx:127
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:19
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:93
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:96
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:52
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:125
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:90
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:93
-msgid "Delete"
-msgstr "Delete"
-
-#: adhocracy4/comments/static/comments/Comment.jsx:128
-#: adhocracy4/static/Modal.jsx:49
-msgid "Abort"
-msgstr "Abort"
-
-#: adhocracy4/comments/static/comments/Comment.jsx:141
-msgid "Latest edit on"
-msgstr "Latest edit on"
-
-#: adhocracy4/comments/static/comments/Comment.jsx:146
-msgid "Moderator"
-msgstr "Moderator"
-
-#: adhocracy4/comments/static/comments/Comment.jsx:153
-#: adhocracy4/reports/static/reports/react_reports.jsx:20
-msgid ""
-"You want to report this content? Your message will be sent to the "
-"moderation. The moderation will look at the reported content. The content "
-"will be deleted if it does not meet our discussion rules (netiquette)."
-msgstr ""
-"You want to report this content? Your message will be sent to the "
-"moderation. The moderation will look at the reported content. The content "
-"will be deleted if it does not meet our discussion rules (netiquette)."
-
-#: adhocracy4/comments/static/comments/Comment.jsx:176
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:26
-msgid "Answer"
-msgstr "Answer"
-
-#: adhocracy4/comments/static/comments/Comment.jsx:215
-msgid "Your reply here"
-msgstr "Your reply here"
-
 #: adhocracy4/comments/static/comments/CommentBox.jsx:167
 msgid "comment"
 msgid_plural "comments"
@@ -134,10 +84,6 @@ msgstr "The currently active phase doesn't allow to comment."
 msgid "Edit"
 msgstr "Edit"
 
-#: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:22
-msgid "Report"
-msgstr "Report"
-
 #: adhocracy4/follows/static/follows/FollowButton.jsx:51
 msgid "Not following"
 msgstr "Not following"
@@ -164,8 +110,8 @@ msgstr "Follow"
 
 #: adhocracy4/polls/static/polls/ChoiceForm.jsx:24
 #: adhocracy4/polls/static/polls/ChoiceForm.jsx:27
-#: meinberlin/apps/polls/assets/ChoiceForm.jsx:22
-#: meinberlin/apps/polls/assets/ChoiceForm.jsx:25
+#: meinberlin/apps/polls/assets/ChoiceForm.jsx:23
+#: meinberlin/apps/polls/assets/ChoiceForm.jsx:28
 msgid "remove"
 msgstr "remove"
 
@@ -180,13 +126,13 @@ msgid "The poll could not be updated."
 msgstr "The poll could not be updated."
 
 #: adhocracy4/polls/static/polls/PollManagement.jsx:246
-#: meinberlin/apps/polls/assets/PollManagement.jsx:246
+#: meinberlin/apps/polls/assets/PollManagement.jsx:247
 msgid "Add a new question"
 msgstr "Add a new question"
 
 #: adhocracy4/polls/static/polls/PollManagement.jsx:252
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:324
-#: meinberlin/apps/polls/assets/PollManagement.jsx:252
+#: meinberlin/apps/polls/assets/PollManagement.jsx:253
 msgid "Save"
 msgstr "Save"
 
@@ -201,12 +147,12 @@ msgid "Vote has not been counted due to a server error."
 msgstr "Vote has not been counted due to a server error."
 
 #: adhocracy4/polls/static/polls/Question.jsx:108
-#: meinberlin/apps/polls/assets/Question.jsx:108
+#: meinberlin/apps/polls/assets/Question.jsx:109
 msgid "Vote"
 msgstr "Vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:114
-#: meinberlin/apps/polls/assets/Question.jsx:114
+#: meinberlin/apps/polls/assets/Question.jsx:115
 msgid "Please login to vote"
 msgstr "Please login to vote"
 
@@ -215,73 +161,30 @@ msgid "Multiple answers are possible for this question"
 msgstr "Multiple answers are possible for this question"
 
 #: adhocracy4/polls/static/polls/Question.jsx:141
-#: meinberlin/apps/polls/assets/Question.jsx:136
+#: meinberlin/apps/polls/assets/Question.jsx:137
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "vote"
 msgstr[1] "votes"
 
-#: adhocracy4/polls/static/polls/Question.jsx:142
-#: meinberlin/apps/polls/assets/Question.jsx:137
-msgid "To poll"
-msgstr "To poll"
-
-#: adhocracy4/polls/static/polls/Question.jsx:145
-#: meinberlin/apps/polls/assets/Question.jsx:140
-msgid "Change vote"
-msgstr "Change vote"
-
-#: adhocracy4/polls/static/polls/Question.jsx:149
-#: meinberlin/apps/polls/assets/Question.jsx:144
-msgid "Show preliminary results"
-msgstr "Show preliminary results"
-
-#: adhocracy4/polls/static/polls/Question.jsx:177
-#: meinberlin/apps/polls/assets/Question.jsx:172
-msgid "Your choice"
-msgstr "Your choice"
-
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:15
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:14
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:15
 msgid "Question"
 msgstr "Question"
 
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:26
+msgid "Answer"
+msgstr "Answer"
+
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:37
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:34
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:36
 msgid "Users can select more than one answer."
 msgstr "Users can select more than one answer."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:45
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:42
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:44
 msgid "Choice"
 msgstr "Choice"
-
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:67
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:64
-msgid "Add a new choice"
-msgstr "Add a new choice"
-
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:76
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:79
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:31
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:34
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:105
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:108
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:73
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:76
-msgid "Move up"
-msgstr "Move up"
-
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:85
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:88
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:40
-#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:43
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:114
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:117
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:82
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:85
-msgid "Move down"
-msgstr "Move down"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:57
 msgid "Thank you! We are taking care of it."
@@ -295,12 +198,23 @@ msgstr "Your message"
 msgid "Send Report"
 msgstr "Send Report"
 
-#: adhocracy4/static/Alert.jsx:10 adhocracy4/static/Alert.jsx:11
-#: meinberlin/apps/contrib/assets/Alert.jsx:10
-#: meinberlin/apps/contrib/assets/Alert.jsx:11
+#: adhocracy4/reports/static/reports/react_reports.jsx:20
+msgid ""
+"You want to report this content? Your message will be sent to the "
+"moderation. The moderation will look at the reported content. The content "
+"will be deleted if it does not meet our discussion rules (netiquette)."
+msgstr ""
+"You want to report this content? Your message will be sent to the "
+"moderation. The moderation will look at the reported content. The content "
+"will be deleted if it does not meet our discussion rules (netiquette)."
+
+#: adhocracy4/static/Modal.jsx:49
+msgid "Abort"
+msgstr "Abort"
+
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:82
-#: meinberlin/apps/plans/assets/FilterNav.jsx:209
+#: meinberlin/apps/plans/assets/FilterNav.jsx:205
 #: meinberlin/assets/js/embed.js:30 meinberlin/assets/js/embed.js:31
 msgid "Close"
 msgstr "Close"
@@ -313,7 +227,7 @@ msgstr "If you leave this page changes you made will not be saved."
 msgid "Chapter title"
 msgstr "Chapter title"
 
-#: meinberlin/apps/documents/assets/ChapterForm.jsx:53
+#: meinberlin/apps/documents/assets/ChapterForm.jsx:55
 msgid "Add a new paragraph"
 msgstr "Add a new paragraph"
 
@@ -321,9 +235,30 @@ msgstr "Add a new paragraph"
 msgid "Chapter navigation"
 msgstr "Chapter navigation"
 
-#: meinberlin/apps/documents/assets/ChapterNav.jsx:37
+#: meinberlin/apps/documents/assets/ChapterNav.jsx:38
 msgid "Add a new chapter"
 msgstr "Add a new chapter"
+
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:32
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:37
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:110
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:115
+msgid "Move up"
+msgstr "Move up"
+
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:44
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:127
+msgid "Move down"
+msgstr "Move down"
+
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:56
+#: meinberlin/apps/documents/assets/ChapterNavItem.jsx:61
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:133
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:138
+msgid "Delete"
+msgstr "Delete"
 
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:18
 msgid "first chapter"
@@ -349,11 +284,11 @@ msgstr "Contents"
 msgid "Edit chapter"
 msgstr "Edit chapter"
 
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:70
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:71
 msgid "Headline"
 msgstr "Headline"
 
-#: meinberlin/apps/documents/assets/ParagraphForm.jsx:85
+#: meinberlin/apps/documents/assets/ParagraphForm.jsx:88
 msgid "Paragraph"
 msgstr "Paragraph"
 
@@ -408,86 +343,86 @@ msgstr "The uploaded file is not a valid geojson file."
 msgid "Invalid file format."
 msgstr "Invalid file format."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:276
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:277
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:95
 #: meinberlin/apps/plans/assets/FilterNav.jsx:102
-#: meinberlin/apps/plans/assets/FilterOptions.jsx:27
-#: meinberlin/apps/plans/assets/FilterRadio.jsx:48
+#: meinberlin/apps/plans/assets/FilterOptions.jsx:29
+#: meinberlin/apps/plans/assets/FilterRadio.jsx:50
 msgid "all"
 msgstr "all"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:126
-#: meinberlin/apps/plans/assets/FilterNav.jsx:239
+#: meinberlin/apps/plans/assets/FilterNav.jsx:234
 msgid "Filter bar"
 msgstr "Filter bar"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:127
-#: meinberlin/apps/plans/assets/FilterNav.jsx:240
+#: meinberlin/apps/plans/assets/FilterNav.jsx:235
 msgid "I am interested in projects from"
 msgstr "I am interested in projects from"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:134
-#: meinberlin/apps/plans/assets/FilterNav.jsx:248
+#: meinberlin/apps/plans/assets/FilterNav.jsx:243
 msgid "„ all Districts “"
 msgstr "„ all Districts “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:148
-#: meinberlin/apps/plans/assets/FilterNav.jsx:262
+#: meinberlin/apps/plans/assets/FilterNav.jsx:147
+#: meinberlin/apps/plans/assets/FilterNav.jsx:256
 msgid "Which district are you interested in?"
 msgstr "Which district are you interested in?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:164
-#: meinberlin/apps/plans/assets/FilterNav.jsx:281
+#: meinberlin/apps/plans/assets/FilterNav.jsx:162
+#: meinberlin/apps/plans/assets/FilterNav.jsx:274
 msgid "„ all Topics “"
 msgstr "„ all Topics “"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:178
-#: meinberlin/apps/plans/assets/FilterNav.jsx:295
+#: meinberlin/apps/plans/assets/FilterNav.jsx:175
+#: meinberlin/apps/plans/assets/FilterNav.jsx:287
 msgid "Which topic are you interested in?"
 msgstr "Which topic are you interested in?"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:192
-#: meinberlin/apps/plans/assets/FilterNav.jsx:311
+#: meinberlin/apps/plans/assets/FilterNav.jsx:189
+#: meinberlin/apps/plans/assets/FilterNav.jsx:303
 msgid "display projects"
 msgstr "display projects"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:202
-#: meinberlin/apps/plans/assets/FilterNav.jsx:322
-#: meinberlin/apps/plans/assets/FilterNav.jsx:333
+#: meinberlin/apps/plans/assets/FilterNav.jsx:199
+#: meinberlin/apps/plans/assets/FilterNav.jsx:314
+#: meinberlin/apps/plans/assets/FilterNav.jsx:325
 msgid "more filters"
 msgstr "more filters"
 
-#: meinberlin/apps/plans/assets/FilterNav.jsx:273
+#: meinberlin/apps/plans/assets/FilterNav.jsx:266
 msgid " in the area of "
 msgstr " in the area of "
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:80
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:88
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:81
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:92
 msgid "Search title"
 msgstr "Search title"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:94
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:138
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:98
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:140
 msgid "Organisation"
 msgstr "Organisation"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:109
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:153
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:113
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:155
 msgid "Enter the name of the organisation"
 msgstr "Enter the name of the organisation"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:119
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:121
 msgid "Participation"
 msgstr "Participation"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:128
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:130
 msgid "Project status"
 msgstr "Project status"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:162
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:164
 msgid "show projects"
 msgstr "show projects"
 
@@ -533,39 +468,39 @@ msgstr "More than 1 year remaining"
 msgid "remaining"
 msgstr "remaining"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:115
-#: meinberlin/apps/plans/assets/PopUp.jsx:68
+#: meinberlin/apps/plans/assets/PlansList.jsx:109
+#: meinberlin/apps/plans/assets/PopUp.jsx:66
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:129
-#: meinberlin/apps/plans/assets/PopUp.jsx:90
+#: meinberlin/apps/plans/assets/PlansList.jsx:121
+#: meinberlin/apps/plans/assets/PopUp.jsx:86
 msgid "Participation projects: "
 msgstr "Participation projects: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:132
+#: meinberlin/apps/plans/assets/PlansList.jsx:124
 msgid "Status: "
 msgstr "Status: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:163
-#: meinberlin/apps/plans/assets/PlansMap.jsx:279
+#: meinberlin/apps/plans/assets/PlansList.jsx:152
+#: meinberlin/apps/plans/assets/PlansMap.jsx:289
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:254
+#: meinberlin/apps/plans/assets/PlansMap.jsx:264
 msgid "Address Search"
 msgstr "Address Search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:255
-#: meinberlin/apps/plans/assets/PlansMap.jsx:256
+#: meinberlin/apps/plans/assets/PlansMap.jsx:266
+#: meinberlin/apps/plans/assets/PlansMap.jsx:267
 msgid "Address search"
 msgstr "Address search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:287
+#: meinberlin/apps/plans/assets/PlansMap.jsx:296
 msgid "Close information box"
 msgstr "Close information box"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:288
+#: meinberlin/apps/plans/assets/PlansMap.jsx:297
 msgid ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
@@ -577,28 +512,28 @@ msgstr ""
 msgid "Participation: from "
 msgstr "Participation: from "
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:73
+#: meinberlin/apps/plans/assets/PopUp.jsx:70
 msgid "Superordinate project: "
 msgstr "Superordinate project: "
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:93
+#: meinberlin/apps/plans/assets/PopUp.jsx:90
 msgid "Participation: "
 msgstr "Participation: "
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:40
-#: meinberlin/apps/plans/assets/Toggles.jsx:87
+#: meinberlin/apps/plans/assets/Toggles.jsx:93
 msgid " search results"
 msgstr " search results"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:70
+#: meinberlin/apps/plans/assets/Toggles.jsx:74
 msgid "Show map"
 msgstr "Show map"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:117
+#: meinberlin/apps/plans/assets/Toggles.jsx:131
 msgid "Show List"
 msgstr "Show List"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:121
+#: meinberlin/apps/plans/assets/Toggles.jsx:139
 msgid "Show Map"
 msgstr "Show Map"
 
@@ -629,6 +564,36 @@ msgstr "No matches found within the project area"
 #: meinberlin/assets/js/map-address.js:92
 msgid "Did you mean:"
 msgstr "Did you mean:"
+
+#~ msgid "Do you really want to delete this comment?"
+#~ msgstr "Do you really want to delete this comment?"
+
+#~ msgid "Latest edit on"
+#~ msgstr "Latest edit on"
+
+#~ msgid "Moderator"
+#~ msgstr "Moderator"
+
+#~ msgid "Your reply here"
+#~ msgstr "Your reply here"
+
+#~ msgid "Report"
+#~ msgstr "Report"
+
+#~ msgid "To poll"
+#~ msgstr "To poll"
+
+#~ msgid "Change vote"
+#~ msgstr "Change vote"
+
+#~ msgid "Show preliminary results"
+#~ msgstr "Show preliminary results"
+
+#~ msgid "Your choice"
+#~ msgstr "Your choice"
+
+#~ msgid "Add a new choice"
+#~ msgstr "Add a new choice"
 
 #~ msgid " participation projects in Berlin"
 #~ msgstr " Beteiligunsprojekte in Berlin"
