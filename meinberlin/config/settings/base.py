@@ -262,6 +262,7 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # seconds
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_SIGNUP_FORM_CLASS = 'meinberlin.apps.users.forms.TermsSignupForm'
+SOCIALACCOUNT_ADAPTER = 'meinberlin.apps.servicekonto.adapters.ServiceKontoSocialAccountAdapter'
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_URL = 'account_login'
