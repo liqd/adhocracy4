@@ -7,9 +7,7 @@ from django.utils.http import urlencode
 
 class ServiceKontoAccount(ProviderAccount):
     def to_str(self):
-        return '%s %s (%s)' % (self.account.extra_data['firstname'],
-                               self.account.extra_data['lastname'],
-                               self.account.extra_data['email'])
+        return '%s' % (self.account.extra_data['email'])
 
 
 class ServiceKontoProvider(Provider):
@@ -24,22 +22,13 @@ class ServiceKontoProvider(Provider):
         return url
 
     def extract_uid(self, data):
-        return data['userid']
+        return data['email']
 
     def extract_common_fields(self, data):
         return {
-            'username': ServiceKontoProvider._generate_username(data),
-            'first_name': data['firstname'],
-            'last_name': data['lastname'],
+            'username': generate_unique_username(data['email']),
             'email': data['email'],
         }
-
-    @staticmethod
-    def _generate_username(data):
-        basename = data['firstname'] + ' ' + data['lastname']
-        # Attention: Replaces whitespaces with underscores
-        username = generate_unique_username([basename])
-        return username
 
     def get_settings(self):
         settings = {
