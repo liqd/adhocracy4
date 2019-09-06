@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-04 11:31+0200\n"
+"POT-Creation-Date: 2019-09-05 11:22+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -250,7 +250,6 @@ msgstr "privat"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:45
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:45
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:96
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:43
@@ -278,7 +277,7 @@ msgstr "Wir konnten keine Projekte finden."
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
 #: adhocracy4/dashboard/filter.py:11
 #: adhocracy4/filters/templates/a4filters/widgets/free_text_filter.html:15
-#: meinberlin/apps/ideas/views.py:27 meinberlin/apps/projects/views.py:54
+#: meinberlin/apps/ideas/views.py:29 meinberlin/apps/projects/views.py:54
 #: meinberlin/apps/topicprio/views.py:21
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:4
 #: meinberlin/templates/a4filters/widgets/free_text_filter.html:10
@@ -933,7 +932,7 @@ msgstr "Bilder"
 #: adhocracy4/projects/admin.py:60
 #: meinberlin/apps/plans/models.py:76
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:86
-#: meinberlin/apps/projects/admin.py:55 meinberlin/templates/email_base.html:60
+#: meinberlin/apps/projects/admin.py:55 meinberlin/templates/email_base.html:62
 #: meinberlin/templates/email_base.txt:15
 #: meinberlin/templates/newsletter_base.html:51
 #: meinberlin/templates/newsletter_base.txt:13
@@ -1101,7 +1100,6 @@ msgid "Online Participation"
 msgstr "Online-Beteiligung"
 
 #: adhocracy4/reports/templatetags/react_reports.py:30
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:107
 msgid "Report"
 msgstr "Melden"
 
@@ -1367,7 +1365,7 @@ msgstr "E-Mail Adresse der Sachbearbeiter*in"
 msgid "Your Name"
 msgstr "Ihr Name"
 
-#: meinberlin/apps/bplan/models.py:49 meinberlin/apps/users/models.py:30
+#: meinberlin/apps/bplan/models.py:49 meinberlin/apps/users/models.py:29
 msgid "Email address"
 msgstr "E-Mail Adresse"
 
@@ -1636,7 +1634,6 @@ msgid "Nothing to show"
 msgstr "Keine Einträge"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:4
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:102
 msgid "Moderate"
 msgstr "Moderieren"
 
@@ -1669,21 +1666,21 @@ msgstr "%(title)s bearbeiten"
 msgid "Edit proposal"
 msgstr "Vorschlag bearbeiten"
 
-#: meinberlin/apps/budgeting/views.py:18 meinberlin/apps/ideas/views.py:31
+#: meinberlin/apps/budgeting/views.py:18 meinberlin/apps/ideas/views.py:33
 #: meinberlin/apps/kiezkasse/views.py:16 meinberlin/apps/mapideas/views.py:16
 #: meinberlin/apps/maptopicprio/views.py:19
 #: meinberlin/apps/projects/views.py:93
 msgid "Most recent"
 msgstr "am aktuellsten"
 
-#: meinberlin/apps/budgeting/views.py:20 meinberlin/apps/ideas/views.py:33
+#: meinberlin/apps/budgeting/views.py:20 meinberlin/apps/ideas/views.py:35
 #: meinberlin/apps/kiezkasse/views.py:18 meinberlin/apps/mapideas/views.py:18
 #: meinberlin/apps/maptopicprio/views.py:21
 #: meinberlin/apps/topicprio/views.py:32
 msgid "Most popular"
 msgstr "am beliebtesten"
 
-#: meinberlin/apps/budgeting/views.py:21 meinberlin/apps/ideas/views.py:34
+#: meinberlin/apps/budgeting/views.py:21 meinberlin/apps/ideas/views.py:36
 #: meinberlin/apps/kiezkasse/views.py:19 meinberlin/apps/mapideas/views.py:19
 #: meinberlin/apps/maptopicprio/views.py:22
 #: meinberlin/apps/topicprio/views.py:33
@@ -1883,13 +1880,21 @@ msgstr "Referenznr."
 msgid "Actions"
 msgstr "Aktionen"
 
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:96
+msgid "edit"
+msgstr "bearbeiten"
+
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:98
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:24
-#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:25
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:48
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:24
-msgid "Delete"
-msgstr "Löschen"
+msgid "delete"
+msgstr "löschen"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:102
+msgid "feedback"
+msgstr "rückmeldung"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:107
+msgid "report"
+msgstr "melden"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:122
 #: meinberlin/apps/exports/mixins.py:26
@@ -2318,7 +2323,7 @@ msgstr "Idee moderieren"
 msgid "Edit idea"
 msgstr "Idee bearbeiten"
 
-#: meinberlin/apps/ideas/views.py:155 meinberlin/apps/mapideas/views.py:79
+#: meinberlin/apps/ideas/views.py:157 meinberlin/apps/mapideas/views.py:79
 msgid "Your Idea has been deleted"
 msgstr "Ihre Idee wurde gelöscht"
 
@@ -2465,6 +2470,13 @@ msgstr "Orte priorisieren und kommentieren"
 msgid "place prioritization"
 msgstr "Ortspriorisierung"
 
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:24
+#: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:25
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:48
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:24
+msgid "Delete"
+msgstr "Löschen"
+
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:4
 msgid "Confirm Place Deletion"
 msgstr "Bestätigung der Löschung des Ortes"
@@ -2510,6 +2522,30 @@ msgstr "nicht umgesetzt"
 #: meinberlin/apps/moderatorfeedback/models.py:13
 msgid "Accepted"
 msgstr "wird umgesetzt"
+
+#: meinberlin/apps/moderatorfeedback/models.py:20
+msgid "Official feedback"
+msgstr "Offizielle Rückmeldung"
+
+#: meinberlin/apps/moderatorfeedback/models.py:22
+msgid ""
+"The official feedback will appear below the idea, indicating your "
+"organisation. The idea provider receives a notification."
+msgstr ""
+"Die offizielle Rückmeldung erscheint unterhalb der Idee unter Angabe "
+"Ihrer Organisation. Der oder die Ideengeber*in erhält eine Benachrichtigung."
+
+#: meinberlin/apps/moderatorfeedback/models.py:36
+msgid "Processing status"
+msgstr "Bearbeitungsstatus"
+
+#: meinberlin/apps/moderatorfeedback/models.py:38
+msgid ""
+"The editing status appears below the title of the idea in red, yellow or "
+"green. The idea provider receives a notification."
+msgstr ""
+"Der Bearbeitungsstatus erscheint unterhalb des Titels der Idee in den Farben "
+"rot, gelb oder grün. Der oder die Ideengeber*in erhält eine Benachrichtigung."
 
 #: meinberlin/apps/moderatorremark/templates/meinberlin_moderatorremark/includes/popover_remark.html:15
 msgid "Moderator remark"
@@ -2570,6 +2606,7 @@ msgstr "Senden"
 
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:4
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:4
+#: meinberlin/apps/users/models.py:66
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html:27
 #: meinberlin/templates/a4dashboard/base_dashboard.html:55
 msgid "Newsletter"
@@ -2668,7 +2705,7 @@ msgstr "Die Veranstaltung wurde gelöscht."
 
 #: meinberlin/apps/organisations/forms.py:23
 msgid "Groups"
-msgstr ""
+msgstr "Gruppen"
 
 #: meinberlin/apps/organisations/forms.py:59
 #, python-format
@@ -3092,7 +3129,7 @@ msgstr "Zeitleiste"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:18
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:76
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:204
-#: meinberlin/apps/users/models.py:44
+#: meinberlin/apps/users/models.py:43
 #: meinberlin/templates/a4modules/module_detail.html:79
 msgid "active"
 msgstr "aktiv"
@@ -3172,7 +3209,7 @@ msgstr "Weiter zur Anmeldung"
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html:55
 #: meinberlin/templates/account/signup.html:4
 #: meinberlin/templates/account/signup.html:7
-#: meinberlin/templates/account/signup.html:38
+#: meinberlin/templates/account/signup.html:42
 msgid "Register"
 msgstr "Registrieren"
 
@@ -3415,7 +3452,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: meinberlin/apps/users/forms.py:41 meinberlin/templates/email_base.html:61
+#: meinberlin/apps/users/forms.py:41 meinberlin/templates/email_base.html:63
 #: meinberlin/templates/email_base.txt:16
 #: meinberlin/templates/newsletter_base.html:52
 #: meinberlin/templates/newsletter_base.txt:14
@@ -3426,36 +3463,33 @@ msgstr "Nutzungsbedingungen"
 msgid "Please accept the terms of use."
 msgstr "Bitte akzeptieren sie die Nutzungsbedingungen."
 
+#: meinberlin/apps/users/forms.py:48 meinberlin/apps/users/models.py:20
+msgid "Your username will appear publicly next to your posts."
+msgstr "Ihr Benutzername erscheint öffentlich neben Ihren Beiträgen."
+
 #: meinberlin/apps/users/models.py:16
 msgid "username"
 msgstr "Nutzername"
 
-#: meinberlin/apps/users/models.py:20
-msgid ""
-"Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ only."
-msgstr ""
-"Erforderlich. Max. 60 Zeichen. Buchstaben, Zahlen, Leerzeichen und nur @/./"
-"+/-/_ "
-
-#: meinberlin/apps/users/models.py:26
+#: meinberlin/apps/users/models.py:25
 msgid "A user with that username already exists."
 msgstr "Der Nutzer mit diesem Nutzernamen existiert bereits."
 
-#: meinberlin/apps/users/models.py:33
+#: meinberlin/apps/users/models.py:32
 msgid "A user with that email address already exists."
 msgstr "Der Nutzer mit dieser E-Mail Adresse existiert bereits."
 
-#: meinberlin/apps/users/models.py:37
+#: meinberlin/apps/users/models.py:36
 msgid "staff status"
 msgstr "Mitarbeiterstatus"
 
-#: meinberlin/apps/users/models.py:40
+#: meinberlin/apps/users/models.py:39
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 "Bitte bestätigen Sie, dass der Nutzer auf dieser Seite als Admin agieren "
 "kann."
 
-#: meinberlin/apps/users/models.py:47
+#: meinberlin/apps/users/models.py:46
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -3463,30 +3497,26 @@ msgstr ""
 "Bitte setzen Sie einen Haken, um den Nutzer aktiv zu schalten. Nehmen Sie "
 "den Haken raus, um den Nutzer inaktiv zu schalten."
 
-#: meinberlin/apps/users/models.py:57
-msgid "Send me email notifications"
-msgstr "Bitte senden Sie mir E-Mail Benachrichtigungen"
+#: meinberlin/apps/users/models.py:56
+msgid "Notifications"
+msgstr "Benachrichtigungen"
 
-#: meinberlin/apps/users/models.py:60
+#: meinberlin/apps/users/models.py:59
 msgid ""
-"Designates whether you want to receive notifications about content you "
-"follow. Unselect if you do not want to receive notifications."
+"Yes, I would like to be notified by e-mail about the start and end of "
+"participation opportunities. This applies to all projects I follow. I also "
+"receive an e-mail when someone comments on one of my contributions."
 msgstr ""
-"Bitte setzen Sie einen Haken, falls Sie für Inhalte denen Sie folgen "
-"Benachrichtigungen per E-Mail erhalten möchten. Nehmen Sie den Haken raus, "
-"falls Sie keine Benachrichtigungen per E-Mail erhalten möchten."
-
-#: meinberlin/apps/users/models.py:66
-msgid "Send me newsletters"
-msgstr "Bitte senden Sie mir E-Mail Newsletter"
+"Ja, ich möchte per E-Mail über Beginn und Ende von Beteiligungsmöglichkeiten "
+"benachrichtigt werden. Dies gilt für alle Projekte, denen ich folge. Außerdem "
+"erhalte ich eine E-Mail, wenn jemand einen meiner Beiträge kommentiert."
 
 #: meinberlin/apps/users/models.py:69
 msgid ""
-"Designates whether you want to receive newsletters. Unselect if you do not "
-"want to receive newsletters."
+"Yes, I would like to receive e-mail newsletters about the projects I am "
+"following."
 msgstr ""
-"Bitte setzen Sie einen Haken, falls Sie Newsletter erhalten möchten. Nehmen "
-"Sie den Haken raus, falls Sie keine Newsletter erhalten möchten."
+"Ja, ich möchte E-Mail-Newsletter erhalten zu den Projekten, denen ich folge."
 
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html:20
 msgid "Account Settings"
@@ -3833,32 +3863,47 @@ msgstr ""
 "Haben Sie schon ein Nutzerkonto? Dann <a href=\"%(login_url)s\">melden Sie "
 "sich bitte an</a>."
 
-#: meinberlin/templates/account/signup.html:26
+#: meinberlin/templates/account/signup.html:12
+msgid ""
+"If you register on mein.berlin.de, you can write ideas and comments for "
+"ongoing participation processes and rate the contributors of other users."
+msgstr ""
+"Wenn Sie sich auf mein.berlin.de registrieren, können Sie Ideen und "
+"Kommentare für laufende Beteiligungsverfahren schreiben und die Beiträger "
+"anderer Nutzer*innen bewerten."
+
+#: meinberlin/templates/account/signup.html:30
 #, python-format
 msgid ""
 "\n"
-"                 I have read and accept the <a href=\"%(terms_of_use_url)s\" "
-"target=\"_blank\">terms of use</a> and the <a href=\"%(privacy_policy)s\" "
+"                 I hereby expressly consent to the collection and processing "
+"(storage) of my data and expressly consent to the processing and publication "
+"of my ideas, comments and contributions as described in the privacy policy. "
+"I also confirm that I have read and accept the <a href=\"%(terms_of_use_url)s"
+"\" target=\"_blank\">terms of use</a> and the <a href=\"%(privacy_policy)s\" "
 "target=\"_blank\">privacy policy</a>.\n"
 "                "
 msgstr ""
 "\n"
-"                 Hiermit bestätige ich, dass ich die <a href="
-"\"%(terms_of_use_url)s\" target=\"_blank\">Nutzungsbedingungen</a> und die "
-"<a href=\"%(privacy_policy)s\" target=\"_blank\">Datenschutzerklärung</a> "
-"gelesen habe und akzeptiere.\n"
-"                "
+"Hiermit willige ich ausdrücklich in die Erhebung und Verarbeitung "
+"(Speicherung) meiner Daten und willige ausdrücklich in die Verarbeitung und "
+"Veröffentlichung meiner Ideen, Kommentare und Beiträge, wie in der "
+"Datenschutzerklärung beschrieben, ein. Zudem bestätige ich, dass ich die "
+"<a href=\"%(terms_of_use_url)s" "\" target=\"_blank\">Nutzungsbedingungen</a>"
+" und die <a href=\"%(privacy_policy)s\" target=\"_blank\"> "
+"Datenschutzerklärung</a> gelesen habe und akzeptiere."
+"               "
 
 #: meinberlin/templates/base_errors.html:4
 msgid "Error"
 msgstr "Fehler"
 
-#: meinberlin/templates/email_base.html:24
+#: meinberlin/templates/email_base.html:25
 #: meinberlin/templates/email_base.txt:4
 msgid "Hello"
 msgstr "Guten Tag"
 
-#: meinberlin/templates/email_base.html:56
+#: meinberlin/templates/email_base.html:58
 #: meinberlin/templates/email_base.txt:12
 #: meinberlin/templates/newsletter_base.html:47
 #: meinberlin/templates/newsletter_base.txt:10
@@ -3949,6 +3994,49 @@ msgstr ""
 "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem %(site_name)s "
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
+
+#~ msgid ""
+#~ "Required. 60 characters or fewer. Letters, digits, spaces and @/./+/-/_ "
+#~ "only."
+#~ msgstr ""
+#~ "Erforderlich. Max. 60 Zeichen. Buchstaben, Zahlen, Leerzeichen und nur "
+#~ "@/./+/-/_ "
+
+#~ msgid "Send me email notifications"
+#~ msgstr "Bitte senden Sie mir E-Mail Benachrichtigungen"
+
+#~ msgid ""
+#~ "Designates whether you want to receive notifications about content you "
+#~ "follow. Unselect if you do not want to receive notifications."
+#~ msgstr ""
+#~ "Bitte setzen Sie einen Haken, falls Sie für Inhalte denen Sie folgen "
+#~ "Benachrichtigungen per E-Mail erhalten möchten. Nehmen Sie den Haken "
+#~ "raus, falls Sie keine Benachrichtigungen per E-Mail erhalten möchten."
+
+#~ msgid "Send me newsletters"
+#~ msgstr "Bitte senden Sie mir E-Mail Newsletter"
+
+#~ msgid ""
+#~ "Designates whether you want to receive newsletters. Unselect if you do "
+#~ "not want to receive newsletters."
+#~ msgstr ""
+#~ "Bitte setzen Sie einen Haken, falls Sie Newsletter erhalten möchten. "
+#~ "Nehmen Sie den Haken raus, falls Sie keine Newsletter erhalten möchten."
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "                 I have read and accept the <a href=\"%(terms_of_use_url)s"
+#~ "\" target=\"_blank\">terms of use</a> and the <a href=\"%(privacy_policy)s"
+#~ "\" target=\"_blank\">privacy policy</a>.\n"
+#~ "                "
+#~ msgstr ""
+#~ "\n"
+#~ "                 Hiermit bestätige ich, dass ich die <a href="
+#~ "\"%(terms_of_use_url)s\" target=\"_blank\">Nutzungsbedingungen</a> und "
+#~ "die <a href=\"%(privacy_policy)s\" target=\"_blank"
+#~ "\">Datenschutzerklärung</a> gelesen habe und akzeptiere.\n"
+#~ "                "
 
 #~ msgid "back to project"
 #~ msgstr "Zurück zum Projekt"

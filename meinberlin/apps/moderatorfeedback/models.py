@@ -15,7 +15,14 @@ DEFAULT_CHOICES = (
 
 
 class ModeratorStatement(UserGeneratedContentModel):
-    statement = RichTextField(blank=True)
+    statement = RichTextField(
+        blank=True,
+        verbose_name=_('Official feedback'),
+        help_text=_(
+            'The official feedback will appear below the idea, '
+            'indicating your organisation. The idea provider receives '
+            'a notification.')
+    )
 
     def save(self, *args, **kwargs):
         self.statement = transforms.clean_html_field(self.statement)
@@ -25,7 +32,13 @@ class ModeratorStatement(UserGeneratedContentModel):
 class Moderateable(models.Model):
     moderator_feedback_choices = DEFAULT_CHOICES
 
-    moderator_feedback = fields.ModeratorFeedbackField()
+    moderator_feedback = fields.ModeratorFeedbackField(
+        verbose_name=_('Processing status'),
+        help_text=_(
+            'The editing status appears below the title of the '
+            'idea in red, yellow or green. The idea provider receives a '
+            'notification.')
+    )
 
     moderator_statement = models.OneToOneField(
         ModeratorStatement,

@@ -93,18 +93,18 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="idea-{{ object.pk }}-actions">
                             {% if user_may_change %}
                                     {% get_item_update_url object as change_url %}
-                                    <a class="dropdown-item" href="{{ change_url }}">{% trans 'Edit' %}</a>
+                                    <a class="dropdown-item" href="{{ change_url }}">{% trans 'edit' %}</a>
                                     {% get_item_delete_url object as delete_url %}
-                                    <a class="dropdown-item" href="{{ delete_url }}">{% trans 'Delete' %}</a>
+                                    <a class="dropdown-item" href="{{ delete_url }}">{% trans 'delete' %}</a>
                             {% endif %}
                             {% get_item_url object 'moderate' False as moderate_url %}
                             {% if is_moderator and moderate_url %}
-                                    <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'Moderate' %}</a>
+                                    <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'feedback' %}</a>
                             {% endif %}
 
                             {% block dropdown_items %}{% endblock %}
                             <li>
-                                {% trans 'Report' as report_text %}
+                                {% trans 'report' as report_text %}
                                 {% react_reports object text=report_text class='dropdown-item' %}
                             </li>
                         </div>
