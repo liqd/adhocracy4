@@ -1890,7 +1890,7 @@ msgstr "löschen"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:102
 msgid "give feedback"
-msgstr ""
+msgstr "zurück melden"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:107
 msgid "report"
@@ -2301,7 +2301,7 @@ msgstr "Idee anlegen"
 
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:4
 msgid "Give feedback"
-msgstr ""
+msgstr "Rückmeldung geben"
 
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:18
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:19
@@ -2312,7 +2312,7 @@ msgstr "Zurück zur Idee"
 
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:23
 msgid "Feedback on this idea"
-msgstr ""
+msgstr "Rückmeldung zu dieser Idee"
 
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_update_form.html:24
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_update_form.html:24
