@@ -14,6 +14,7 @@
 
 {% endif %}
 {% if object.moderator_statement.statement %}Offizielle Rückmeldung: {{ object.moderator_statement.statement | safe }}
+
 {% endif %}
 Möchten Sie antworten?
 {% endblock %}
