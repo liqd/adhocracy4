@@ -99,7 +99,7 @@
                             {% endif %}
                             {% get_item_url object 'moderate' False as moderate_url %}
                             {% if is_moderator and moderate_url %}
-                                    <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'feedback' %}</a>
+                                    <a class="dropdown-item" href="{{ moderate_url }}">{% trans 'give feedback' %}</a>
                             {% endif %}
 
                             {% block dropdown_items %}{% endblock %}

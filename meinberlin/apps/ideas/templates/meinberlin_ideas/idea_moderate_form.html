@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% blocktrans with name=object.name %}Moderate {{ name }}{% endblocktrans %}{% endblock %}
+{% block title %}{{ object.name }} &mdash; {% trans 'Give feedback' %}{% endblock %}
 {% block content %}
 <div class="l-wrapper">
     <div class="l-center-6">
