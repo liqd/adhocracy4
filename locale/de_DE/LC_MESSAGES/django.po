@@ -3869,7 +3869,7 @@ msgid ""
 "ongoing participation processes and rate the contributors of other users."
 msgstr ""
 "Wenn Sie sich auf mein.berlin.de registrieren, können Sie Ideen und "
-"Kommentare für laufende Beteiligungsverfahren schreiben und die Beiträger "
+"Kommentare für laufende Beteiligungsverfahren schreiben und die Beiträge "
 "anderer Nutzer*innen bewerten."
 
 #: meinberlin/templates/account/signup.html:30
