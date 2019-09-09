@@ -1,5 +1,5 @@
 bleach==3.1.0
-Django==2.2.4 # pyup: <2.3
+Django==2.2.5 # pyup: <2.3
 django-allauth==0.39.1
 django-autoslug==1.9.6
 django-background-tasks==1.2.0
