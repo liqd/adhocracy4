@@ -2814,7 +2814,7 @@ msgstr "Visualisieren Sie das Vorhaben."
 
 #: meinberlin/apps/plans/models.py:93
 msgid "Image copyright"
-msgstr "Urheber*in der Bildes"
+msgstr "Urheber*in des Bildes"
 
 #: meinberlin/apps/plans/models.py:98 meinberlin/apps/projects/dashboard.py:57
 #: meinberlin/apps/topicprio/dashboard.py:15
