@@ -14,6 +14,7 @@
 
 {% endif %}
 {% if object.moderator_statement.statement %}Official feedback: {{ object.moderator_statement.statement | safe }}
+
 {% endif %}
 Do you want to answer?
 {% endblock %}
