@@ -1150,7 +1150,7 @@ msgstr "Ihr Nutzerprofil"
 
 #: meinberlin/apps/account/templates/meinberlin_account/profile.html:7
 msgid "Your profile"
-msgstr "Dein Profil"
+msgstr "Ihr Profil"
 
 #: meinberlin/apps/account/templates/meinberlin_account/profile.html:18
 #: meinberlin/apps/organisations/templates/meinberlin_organisations/organisation_form.html:17
