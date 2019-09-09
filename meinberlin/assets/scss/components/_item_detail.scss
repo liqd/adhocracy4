@@ -39,7 +39,8 @@
     margin-bottom: 1.5em;
 }
 
-.item-detail__image {
+.item-detail__image,
+.item-detail__image--background {
     width: 100%;
 
     @media screen and (min-width: $breakpoint-xs) {
@@ -48,6 +49,15 @@
         margin-left: 0.5em;
         width: auto;
     }
+}
+
+.item-detail__image--background {
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 330px; //size is same as anticipated ratio
+    height: 220px;
 }
 
 .item-detail__copyright {
