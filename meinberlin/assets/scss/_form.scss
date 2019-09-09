@@ -114,6 +114,7 @@ div.cke_focus {
 
     label {
         padding-bottom: 0.5*$padding;
+        padding-left: 1.25*$padding;
 
         @extend .form-check__label;
     }
