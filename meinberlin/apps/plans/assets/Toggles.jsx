@@ -75,7 +75,7 @@ class Toggles extends React.Component {
                   <input
                     className="switch-input"
                     id="switch-primary"
-                    onChange={this.props.toggleSwitch} /* eslint-disable-line */
+                    onChange={this.props.toggleSwitch} /* eslint-disable-line react/jsx-handler-names */
                     name="switch-primary"
                     type="checkbox"
                   />
@@ -125,7 +125,7 @@ class Toggles extends React.Component {
               <div className="btn-group switch-btn-group" role="group">
                 <label
                   className={!this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'}
-                  onClick={this.props.showList} // eslint-disable-line
+                  onClick={this.props.showList} // eslint-disable-line react/jsx-handler-names
                   htmlFor="show_list"
                 >
                   <span className="sr-only">{django.gettext('Show List')}</span>
@@ -133,7 +133,7 @@ class Toggles extends React.Component {
                 </label>
                 <label
                   className={this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'}
-                  onClick={this.props.showMap} // eslint-disable-line
+                  onClick={this.props.showMap} // eslint-disable-line react/jsx-handler-names
                   htmlFor="show_map"
                 >
                   <span className="sr-only">{django.gettext('Show Map')}</span>
