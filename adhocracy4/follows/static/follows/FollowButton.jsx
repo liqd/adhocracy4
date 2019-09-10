@@ -24,7 +24,7 @@ class FollowButton extends React.Component {
   toggleFollow () {
     var messages
     if (this.state.followed) {
-      messages = django.gettext('You will no longer be notified about this project')
+      messages = django.gettext('You unfollowed this project. You will no longer receive e-mails regarding this project.')
     } else {
       messages = django.gettext('Thank you for your interest! From now on you will be kept up to date via e-mail.')
     }
@@ -53,23 +53,23 @@ class FollowButton extends React.Component {
       .fail((response) => {
         if (response.status === 404) {
           this.setState({
-            followed: false,
-            alert: {
-              type: 'danger',
-              message: django.gettext('You are not following')
-            }
+            followed: false
           })
         }
       })
   }
 
   render () {
+    var notFollowingLabel = django.gettext('Follow')
+    var followingLabel = django.gettext('Following')
     return (
-      <span>
+      <span class="follow__btn">
         <button className={this.state.followed ? 'btn btn--sm btn--transparent' : 'btn btn--sm btn--secondary'} type="button" onClick={this.toggleFollow.bind(this)}>
-          <i className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} aria-hidden="true" />&nbsp;<span className="follow__btn--content">{this.state.followed ? django.gettext('Following') : django.gettext('Follow project')}</span>
+          <i className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} aria-hidden="true" />&nbsp;<span className="follow__btn--content">{this.state.followed ? {followingLabel} : {notFollowingLabel}}</span>
         </button>
-        <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
+        <span class="follow__notification">
+          <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
+        </span>
       </span>
     )
   }
