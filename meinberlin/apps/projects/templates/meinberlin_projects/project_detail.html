@@ -39,6 +39,9 @@
                 {% endwith %}
                 <h1 class="project-header__title">{{ project.name }}</h1>
                 <p class="project-header__description">{{ project.description }}</p>
+                {% if request.user.is_authenticated %}
+                    {% react_follows project %}
+                {% endif %}
             </div>
         </div>
         {% if project.image_copyright %}
@@ -52,9 +55,6 @@
                 {% has_perm 'a4projects.change_project' request.user view.project as user_may_change %}
                 {% if user_may_change %}
                     <a href="{% url 'a4dashboard:project-edit' project_slug=project.slug %}" class="btn btn--light btn--small" data-embed-target="external">{% trans 'Edit' %}</a>
-                {% endif %}
-                {% if request.user.is_authenticated %}
-                    {% react_follows project %}
                 {% endif %}
             </div>
 
