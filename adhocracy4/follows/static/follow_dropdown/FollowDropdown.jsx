@@ -2,7 +2,7 @@ var api = require('../../../static/api')
 var django = require('django')
 var React = require('react')
 
-class FollowButton extends React.Component {
+class FollowDropdown extends React.Component {
   constructor (props) {
     super(props)
 
@@ -84,4 +84,4 @@ class FollowButton extends React.Component {
   }
 }
 
-module.exports = FollowButton
+module.exports = FollowDropdown
