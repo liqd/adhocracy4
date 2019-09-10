@@ -9,7 +9,7 @@ class FilterButton extends React.Component {
         data-flip="false"
         aria-haspopup="true"
         aria-expanded={this.props.ariaExpanded}
-        onClick={this.props.showOptions} // eslint-disable-line
+        onClick={this.props.showOptions} // eslint-disable-line react/jsx-handler-names
         id={this.props.id}
       >
         {this.props.buttonText}

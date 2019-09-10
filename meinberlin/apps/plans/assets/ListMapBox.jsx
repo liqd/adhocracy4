@@ -376,23 +376,27 @@ class ListMapBox extends Component {
           {this.getFilterNav(3, false, isTablet)}
           {this.getToggles(true)}
           {this.state.showListMap
-            ? <div className="map-list-combined">
-              <div id="list" className="list-container map-list-combined__list">
-                {this.getPlansList(true)}
-              </div>
-              <div id="map" className="map-container map-list-combined__map">
-                <StickyBox offsetTop={0} offsetBottom={0}>
-                  {this.getPlansMap(true, 'topright')}
-                </StickyBox>
-              </div>
-            </div> // eslint-disable-line
-            : <div className="l-frame">
+            ? (
               <div className="map-list-combined">
-                <div className="list-container map-list-combined__list">
-                  {this.getPlansList(false)}
+                <div id="list" className="list-container map-list-combined__list">
+                  {this.getPlansList(true)}
+                </div>
+                <div id="map" className="map-container map-list-combined__map">
+                  <StickyBox offsetTop={0} offsetBottom={0}>
+                    {this.getPlansMap(true, 'topright')}
+                  </StickyBox>
                 </div>
               </div>
-            </div> /* eslint-disable-line */ }
+            )
+            : (
+              <div className="l-frame">
+                <div className="map-list-combined">
+                  <div className="list-container map-list-combined__list">
+                    {this.getPlansList(false)}
+                  </div>
+                </div>
+              </div>
+            )}
         </div>)
     }
   }

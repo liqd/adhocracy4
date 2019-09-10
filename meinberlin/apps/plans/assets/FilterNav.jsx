@@ -126,22 +126,26 @@ class FilterNav extends React.Component {
           <div className={this.getFilterBarClassName('--stacked')} role="group" aria-label={django.gettext('Filter bar')}>
             <span className="">{django.gettext('I am interested in projects from')}</span>
             {this.props.district === '-1'
-              ? <FilterButton
-                className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
-                ariaExpanded={this.state.displayDistrictOptions}
-                showOptions={this.showDistrictOptions.bind(this)}
-                id="id_filter_district"
-                buttonText={django.gettext('„ all Districts “')}
-                iClassName="fa fa-chevron-down"
-              /> // eslint-disable-line
-              : <FilterButton
-                className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
-                ariaExpanded={this.state.displayDistrictOptions}
-                showOptions={this.showDistrictOptions.bind(this)}
-                id="id_filter_district"
-                buttonText={this.getDistrictFilterName()}
-                iClassName="fa fa-chevron-down"
-              /> /* eslint-disable-line */ }
+              ? (
+                <FilterButton
+                  className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
+                  ariaExpanded={this.state.displayDistrictOptions}
+                  showOptions={this.showDistrictOptions.bind(this)}
+                  id="id_filter_district"
+                  buttonText={django.gettext('„ all Districts “')}
+                  iClassName="fa fa-chevron-down"
+                />
+              )
+              : (
+                <FilterButton
+                  className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
+                  ariaExpanded={this.state.displayDistrictOptions}
+                  showOptions={this.showDistrictOptions.bind(this)}
+                  id="id_filter_district"
+                  buttonText={this.getDistrictFilterName()}
+                  iClassName="fa fa-chevron-down"
+                />
+              )}
             {this.state.displayDistrictOptions &&
               <FilterOptions
                 question={django.gettext('Which district are you interested in?')}
@@ -154,22 +158,26 @@ class FilterNav extends React.Component {
                 selectedChoice={this.props.district}
               />}
             {this.props.topic === '-1'
-              ? <FilterButton
-                className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
-                ariaExpanded={this.state.displayTopicOptions}
-                showOptions={this.showTopicOptions.bind(this)}
-                id="id_filter_topic"
-                buttonText={django.gettext('„ all Topics “')}
-                iClassName="fa fa-chevron-down"
-              /> // eslint-disable-line
-              : <FilterButton
-                className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
-                ariaExpanded={this.state.displayTopicOptions}
-                showOptions={this.showTopicOptions.bind(this)}
-                id="id_filter_topic"
-                buttonText={this.getTopicFilterName()}
-                iClassName="fa fa-chevron-down"
-              /> /* eslint-disable-line */ }
+              ? (
+                <FilterButton
+                  className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--unselected"
+                  ariaExpanded={this.state.displayTopicOptions}
+                  showOptions={this.showTopicOptions.bind(this)}
+                  id="id_filter_topic"
+                  buttonText={django.gettext('„ all Topics “')}
+                  iClassName="fa fa-chevron-down"
+                />
+              )
+              : (
+                <FilterButton
+                  className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
+                  ariaExpanded={this.state.displayTopicOptions}
+                  showOptions={this.showTopicOptions.bind(this)}
+                  id="id_filter_topic"
+                  buttonText={this.getTopicFilterName()}
+                  iClassName="fa fa-chevron-down"
+                />
+              )}
             {this.state.displayTopicOptions &&
               <FilterOptions
                 question={django.gettext('Which topic are you interested in?')}
@@ -235,22 +243,26 @@ class FilterNav extends React.Component {
             <span className="filter-bar__project-text">{django.gettext('I am interested in projects from')}</span>
             <div className="filter-bar__dropdown">
               {this.props.district === '-1'
-                ? <FilterButton
-                  className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
-                  ariaExpanded={this.state.displayDistrictOptions}
-                  showOptions={this.showDistrictOptions.bind(this)}
-                  id="id_filter_district"
-                  buttonText={django.gettext('„ all Districts “')}
-                  iClassName="fa fa-chevron-down"
-                /> // eslint-disable-line
-                : <FilterButton
-                  className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
-                  ariaExpanded={this.state.displayDistrictOptions}
-                  showOptions={this.showDistrictOptions.bind(this)}
-                  id="id_filter_district"
-                  buttonText={this.getDistrictFilterName()}
-                  iClassName="fa fa-chevron-down"
-                /> /* eslint-disable-line */ }
+                ? (
+                  <FilterButton
+                    className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
+                    ariaExpanded={this.state.displayDistrictOptions}
+                    showOptions={this.showDistrictOptions.bind(this)}
+                    id="id_filter_district"
+                    buttonText={django.gettext('„ all Districts “')}
+                    iClassName="fa fa-chevron-down"
+                  />
+                )
+                : (
+                  <FilterButton
+                    className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
+                    ariaExpanded={this.state.displayDistrictOptions}
+                    showOptions={this.showDistrictOptions.bind(this)}
+                    id="id_filter_district"
+                    buttonText={this.getDistrictFilterName()}
+                    iClassName="fa fa-chevron-down"
+                  />
+                )}
               {this.state.displayDistrictOptions &&
                 <FilterOptions
                   question={django.gettext('Which district are you interested in?')}
@@ -266,22 +278,26 @@ class FilterNav extends React.Component {
             <span className="u-md-down-display-none">{django.gettext(' in the area of ')}</span>
             <div className="filter-bar__dropdown">
               {this.props.topic === '-1'
-                ? <FilterButton
-                  className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
-                  ariaExpanded={this.state.displayTopicOptions}
-                  showOptions={this.showTopicOptions.bind(this)}
-                  id="id_filter_topic"
-                  buttonText={django.gettext('„ all Topics “')}
-                  iClassName="fa fa-chevron-down"
-                /> // eslint-disable-line
-                : <FilterButton
-                  className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
-                  ariaExpanded={this.state.displayTopicOptions}
-                  showOptions={this.showTopicOptions.bind(this)}
-                  id="id_filter_topic"
-                  buttonText={this.getTopicFilterName()}
-                  iClassName="fa fa-chevron-down"
-                /> /* eslint-disable-line */ }
+                ? (
+                  <FilterButton
+                    className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--unselected"
+                    ariaExpanded={this.state.displayTopicOptions}
+                    showOptions={this.showTopicOptions.bind(this)}
+                    id="id_filter_topic"
+                    buttonText={django.gettext('„ all Topics “')}
+                    iClassName="fa fa-chevron-down"
+                  />
+                )
+                : (
+                  <FilterButton
+                    className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
+                    ariaExpanded={this.state.displayTopicOptions}
+                    showOptions={this.showTopicOptions.bind(this)}
+                    id="id_filter_topic"
+                    buttonText={this.getTopicFilterName()}
+                    iClassName="fa fa-chevron-down"
+                  />
+                )}
               {this.state.displayTopicOptions &&
                 <FilterOptions
                   question={django.gettext('Which topic are you interested in?')}
