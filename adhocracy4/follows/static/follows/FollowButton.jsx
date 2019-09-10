@@ -1,4 +1,4 @@
-var api = require('adhocracy4').api
+var api = require('../../../static/api')
 var django = require('django')
 var PropTypes = require('prop-types')
 var React = require('react')
@@ -42,8 +42,8 @@ class FollowButton extends React.Component {
 
   render () {
     return (
-      <span className="btn btn-secondary">
-        <button className="btn btn-sm btn-dark btn-primary" type="button" onClick={this.toggleFollow.bind(this)}>
+      <span>
+        <button className={this.state.followed ? 'btn btn-sm btn-secondary' : 'btn btn-sm btn-transparent'} type="button" onClick={this.toggleFollow.bind(this)}>
           <i className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} aria-hidden="true" />&nbsp;<span className="follow__btn--content">{this.state.followed ? django.gettext('Following') : django.gettext('Follow project')}</span>
         </button>
       </span>
