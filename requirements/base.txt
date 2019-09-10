@@ -24,7 +24,7 @@ django-background-tasks==1.2.0
 django-ckeditor==5.7.1
 django-filter==2.2.0
 django-widget-tweaks==1.4.5
-djangorestframework==3.10.2
+djangorestframework==3.10.3
 easy-thumbnails==2.6
 html5lib==1.0.1
 jsonfield==2.0.2
