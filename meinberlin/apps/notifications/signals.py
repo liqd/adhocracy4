@@ -24,7 +24,6 @@ def send_notifications(instance, created, **kwargs):
 
         if action.project:
             emails.NotifyModeratorsEmail.send(action)
-            emails.NotifyFollowersOnNewItemCreated.send(action)
 
     elif action.type == 'phase' and verb == Verbs.SCHEDULE:
         emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)

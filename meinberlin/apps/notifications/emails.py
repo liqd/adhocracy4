@@ -106,22 +106,3 @@ class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
         )
         receivers = _exclude_notifications_disabled(receivers)
         return receivers
-
-
-class NotifyFollowersOnNewItemCreated(Email):
-    template_name = 'meinberlin_notifications/emails/notify_followers_new_item'
-
-    def get_receivers(self):
-        action = self.object
-        receivers = User.objects.filter(
-            follow__project=action.project,
-            follow__enabled=True,
-        )
-        receivers = _exclude_notifications_disabled(receivers)
-        receivers = _exclude_actor(receivers, action.actor)
-        receivers = _exclude_moderators(receivers, action)
-
-        if hasattr(action.target, 'creator'):
-            receivers = _exclude_actor(receivers, action.target.creator)
-
-        return receivers
