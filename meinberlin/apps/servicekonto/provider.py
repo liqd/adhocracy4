@@ -22,12 +22,13 @@ class ServiceKontoProvider(Provider):
         return url
 
     def extract_uid(self, data):
-        return data['email']
+        return data['userid']
 
     def extract_common_fields(self, data):
         return {
-            'username': generate_unique_username(data['email']),
+            'username': generate_unique_username(data['loginname']),
             'email': data['email'],
+            'levelid': data['levelid'],
         }
 
     def get_settings(self):

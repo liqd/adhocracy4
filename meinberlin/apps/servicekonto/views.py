@@ -117,6 +117,7 @@ def _parse_user_data_xml(xml: str) -> dict:
 
 
 def _is_user_data_valid(user_data: dict) -> bool:
-    is_valid = (user_data.get('loginname') and
-                user_data.get('email'))
-    return is_valid
+    return (user_data.get('userid') and
+            user_data.get('loginname') and
+            user_data.get('email') and
+            user_data.get('levelid'))
