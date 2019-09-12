@@ -118,14 +118,17 @@ class Comment extends React.Component {
   }
 
   renderDeleteModal () {
+    const confirmDeleteText = django.gettext('Do you really want to delete this comment?')
+    const deleteTag = django.gettext('Delete')
+    const abortTag = django.gettext('Abort')
     if (this.isOwner() || this.context.isModerator) {
       return (
         <Modal
           name={`comment_delete_${this.props.id}`}
-          partials={{title: django.gettext('Do you really want to delete this comment?')}}
+          partials={{title: confirmDeleteText}}
           submitHandler={() => this.props.handleCommentDelete(this.props.index, this.props.parentIndex)}
-          action={django.gettext('Delete')}
-          abort={django.gettext('Abort')}
+          action={deleteTag}
+          abort={abortTag}
           btnStyle="cta"
         />
       )
@@ -133,24 +136,30 @@ class Comment extends React.Component {
   }
 
   render () {
+    const reportText = django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')
+    const answerTag = django.gettext('Answer')
+    const answerPlaceholderText = django.gettext('Your reply here')
+    const moderatorTag = django.gettext('Moderator')
+    const lastEditText = django.gettext('Latest edit on')
+
     let CommentList = require('./CommentList')
     let lastDate
     if (this.props.modified === null || this.props.is_deleted) {
       lastDate = localeDate(this.props.created)
     } else {
-      lastDate = django.gettext('Latest edit on') + ' ' + localeDate(this.props.modified)
+      lastDate = {lastEditText} + ' ' + localeDate(this.props.modified)
     }
 
     let moderatorLabel
     if (this.props.authorIsModerator && !this.props.is_deleted) {
-      moderatorLabel = <span className="label label-subtle">{django.gettext('Moderator')}</span>
+      moderatorLabel = <span className="label label-subtle">{moderatorTag}</span>
     }
 
     return (
       <div className="comment">
         <ReportModal
           name={`report_comment_${this.props.id}`}
-          title={django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')}
+          title={reportText}
           btnStyle="cta"
           objectId={this.props.id}
           contentType={this.context.comments_contenttype}
@@ -173,7 +182,7 @@ class Comment extends React.Component {
               className="btn comment-answer-button"
               type="button"
               onClick={this.replyComments.bind(this)}>
-              <i className="fa fa-reply" aria-hidden="true" /> {django.gettext('Answer')}
+              <i className="fa fa-reply" aria-hidden="true" /> {answerTag}
             </button>
             }
             {this.context.isAuthenticated && !this.props.is_deleted &&
@@ -212,7 +221,7 @@ class Comment extends React.Component {
               subjectId={this.props.id}
               onCommentSubmit={this.props.handleCommentSubmit}
               parentIndex={this.props.index}
-              placeholder={django.gettext('Your reply here')}
+              placeholder={answerPlaceholderText}
               error={this.props.replyError}
               errorMessage={this.props.errorMessage}
               handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}

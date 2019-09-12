@@ -28,6 +28,9 @@ class CommentEditForm extends React.Component {
     })
   }
   render () {
+    const yourCommentText = django.gettext('Your comment here')
+    const saveChangesTag = django.gettext('save changes')
+    const cancelTag = django.gettext('cancel')
     return (
       <form className="general-form" onSubmit={this.handleSubmit.bind(this)}>
         {this.props.error &&
@@ -35,12 +38,12 @@ class CommentEditForm extends React.Component {
         }
         <div className="form-group">
           <textarea rows={this.props.rows} className="form-control"
-            placeholder={django.gettext('Your comment here')}
+            placeholder={yourCommentText}
             onChange={this.handleTextChange.bind(this)} required="required" defaultValue={this.state.comment} />
         </div>
-        <input type="submit" value={django.gettext('save changes')} className="submit-button" />
+        <input type="submit" value={saveChangesTag} className="submit-button" />
         &nbsp;
-        <input type="submit" value={django.gettext('cancel')} className="cancel-button"
+        <input type="submit" value={cancelTag} className="cancel-button"
           onClick={this.props.handleCancel} />
       </form>
     )
