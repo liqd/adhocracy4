@@ -120,3 +120,17 @@ class NotifyFollowersOnPhaseIsOverSoonEmail(Email):
         )
         receivers = _exclude_notifications_disabled(receivers)
         return receivers
+
+
+class NotifyFollowersOnUpcommingEventEmail(Email):
+    template_name = 'meinberlin_notifications/emails' \
+                    '/notify_followers_event_upcomming'
+
+    def get_receivers(self):
+        action = self.object
+        receivers = User.objects.filter(
+            follow__project=action.project,
+            follow__enabled=True,
+        )
+        receivers = _exclude_notifications_disabled(receivers)
+        return receivers

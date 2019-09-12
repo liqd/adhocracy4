@@ -1,0 +1,12 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}{{ action.project.name }} startet jetzt!{% endblock %}
+
+{% block headline %}Los geht’s! {{ action.project.name }}{% endblock %}
+
+{% block content %}Hallo  {{ receiver.username }}, die Online-Beteiligung im oben genannten Projekt hat begonnen. Sie können bis zum {{ action.obj.end_date }} Uhr daran teilnehmen.{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
+{% block cta_label %}Visit the project{% endblock %}
+
+{% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you follow a project. If you don’t want to receive these notifications anymore, you can unfollow the project on the project page or disable notifications completely in your account settings.{% endblock %}
