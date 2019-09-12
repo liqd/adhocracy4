@@ -35,4 +35,4 @@ lint-quick:
 
 .PHONY: test
 test:
-	$(VIRTUAL_ENV)/bin/pytest
+	$(VIRTUAL_ENV)/bin/pytest --reuse-db
