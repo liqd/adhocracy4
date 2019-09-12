@@ -7,6 +7,9 @@ from freezegun import freeze_time
 
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
+from adhocracy4.projects.models import Project
+
+from django.contrib.contenttypes.models import ContentType
 
 SCHEDULE = Verbs.SCHEDULE.value
 START = Verbs.START.value
@@ -152,14 +155,18 @@ def test_project_start_last_hour(phase_factory):
     )
 
     project = phase.module.project
+    content_type = ContentType.objects.get_for_model(Project)
 
-    action_count = Action.objects.filter(verb=START).count()
+    action_count = Action.objects \
+        .filter(verb=START, obj_content_type=content_type).count()
     assert action_count == 0
 
     with freeze_time(phase.start_date + timedelta(minutes=30)):
         call_command('create_system_actions')
-        action_count = Action.objects.filter(verb=START).count()
-        action = Action.objects.filter(verb=START).last()
+        action_count = Action.objects \
+            .filter(verb=START, obj_content_type=content_type).count()
+        action = Action.objects.filter(verb=START,
+                                       obj_content_type=content_type).last()
         assert action_count == 1
         assert action.obj == project
         assert action.verb == START
@@ -169,8 +176,10 @@ def test_project_start_last_hour(phase_factory):
     # but that may not trigger a project start action
     with freeze_time(phase2.start_date + timedelta(minutes=30)):
         call_command('create_system_actions')
-        action_count = Action.objects.filter(verb=START).count()
-        action = Action.objects.filter(verb=START).last()
+        action_count = Action.objects \
+            .filter(verb=START, obj_content_type=content_type).count()
+        action = Action.objects.filter(verb=START,
+                                       obj_content_type=content_type).last()
         assert action_count == 1
 
 
@@ -182,18 +191,23 @@ def test_project_start_single_action(phase_factory):
         end_date=parse('2013-01-01 18:00:00 UTC')
     )
 
-    action_count = Action.objects.filter(verb=START).count()
+    content_type = ContentType.objects.get_for_model(Project)
+
+    action_count = Action.objects \
+        .filter(verb=START, obj_content_type=content_type).count()
     assert action_count == 0
 
     with freeze_time(phase.start_date + timedelta(minutes=30)):
         call_command('create_system_actions')
-        action_count = Action.objects.filter(verb=START).count()
+        action_count = Action.objects \
+            .filter(verb=START, obj_content_type=content_type).count()
         assert action_count == 1
 
     # first phase starts within the last hour but script has already run
     with freeze_time(phase.start_date + timedelta(minutes=45)):
         call_command('create_system_actions')
-        action_count = Action.objects.filter(verb=START).count()
+        action_count = Action.objects \
+            .filter(verb=START, obj_content_type=content_type).count()
         assert action_count == 1
 
 
@@ -205,10 +219,13 @@ def test_project_start_reschedule(phase_factory):
         end_date=parse('2013-01-01 18:00:00 UTC')
     )
 
+    content_type = ContentType.objects.get_for_model(Project)
+
     # first phase starts within an hour
     with freeze_time(phase.start_date + timedelta(minutes=30)):
         call_command('create_system_actions')
-        action_count = Action.objects.filter(verb=START).count()
+        action_count = Action.objects \
+            .filter(verb=START, obj_content_type=content_type).count()
         assert action_count == 1
 
     # first phases start date has been moved forward
@@ -217,7 +234,9 @@ def test_project_start_reschedule(phase_factory):
     phase.save()
     with freeze_time(phase.start_date + timedelta(minutes=30)):
         call_command('create_system_actions')
-        action_count = Action.objects.filter(verb=START).count()
+        action_count = Action.objects \
+            .filter(verb=START, obj_content_type=content_type).count()
         assert action_count == 1
-        action = Action.objects.filter(verb=START).first()
+        action = Action.objects \
+            .filter(verb=START, obj_content_type=content_type).first()
         assert action.timestamp == phase.start_date
