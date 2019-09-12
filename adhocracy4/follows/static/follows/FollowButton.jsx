@@ -22,11 +22,11 @@ class FollowButton extends React.Component {
   }
 
   toggleFollow () {
-    var followAlertText
+    let followAlertText
     if (this.state.followed) {
-      followAlertText = django.gettext('You unfollowed this project. You will no longer receive e-mails regarding this project.')
+      followAlertText = django.gettext('You will no longer be updated via email.')
     } else {
-      followAlertText = django.gettext('Thank you for your interest! From now on you will be kept up to date via e-mail.')
+      followAlertText = django.gettext('You will be updated via email.')
     }
     api.follow.change({ enabled: !this.state.followed }, this.props.project)
       .done((follow) => {
@@ -60,8 +60,8 @@ class FollowButton extends React.Component {
   }
 
   render () {
-    var followTag = django.gettext('Follow')
-    var followingTag = django.gettext('Following')
+    const followTag = django.gettext('Follow')
+    const followingTag = django.gettext('Following')
     return (
       <span className="follow">
         <button className={this.state.followed ? 'btn btn--sm btn--light' : 'btn btn--sm btn--secondary'} type="button" onClick={this.toggleFollow.bind(this)}>
