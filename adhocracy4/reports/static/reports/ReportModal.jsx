@@ -52,9 +52,12 @@ class ReportModal extends React.Component {
       }.bind(this))
   }
   render () {
+    const thankyouText = django.gettext('Thank you! We are taking care of it.')
+    const placeholderText = django.gettext('Your message')
+    const sendReportTag = django.gettext('Send Report')
     let partials = {}
     if (this.state.showSuccessMessage) {
-      partials.title = (<span><i className="fa fa-check" /> {django.gettext('Thank you! We are taking care of it.')}</span>)
+      partials.title = (<span><i className="fa fa-check" /> {thankyouText}</span>)
       partials.hideFooter = true
       partials.bodyClass = 'success'
     } else if (this.state.showReportForm) {
@@ -62,7 +65,7 @@ class ReportModal extends React.Component {
       partials.body = (
         <div className="form-group">
           <textarea rows="5" className="form-control report-message" value={this.state.report}
-            placeholder={django.gettext('Your message')} onChange={this.handleTextChange.bind(this)} />
+            placeholder={placeholderText} onChange={this.handleTextChange.bind(this)} />
           {this.state.errors && <span className="help-block">{this.state.errors.description}</span>}
         </div>
       )
@@ -74,7 +77,7 @@ class ReportModal extends React.Component {
         name={this.props.name}
         closeHandler={this.closeModal.bind(this)}
         submitHandler={this.submitReport.bind(this)}
-        action={django.gettext('Send Report')}
+        action={sendReportTag}
         partials={partials}
         dismissOnSubmit={false}
       />

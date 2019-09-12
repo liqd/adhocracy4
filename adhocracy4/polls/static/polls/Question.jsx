@@ -29,6 +29,9 @@ class Question extends React.Component {
   handleSubmit (event) {
     event.preventDefault()
 
+    const voteCountText = django.gettext('Vote counted')
+    const voteNoCountText = django.gettext('Vote has not been counted due to a server error.')
+
     if (this.state.question.isReadOnly) {
       return false
     }
@@ -48,7 +51,7 @@ class Question extends React.Component {
           question: data.question,
           alert: {
             type: 'success',
-            message: django.gettext('Vote counted')
+            message: voteCountText
           }
         })
       })
@@ -58,7 +61,7 @@ class Question extends React.Component {
           selectedChoices: newChoices,
           alert: {
             type: 'danger',
-            message: django.gettext('Vote has not been counted due to a server error.')
+            message: voteNoCountText
           }
         })
       })
@@ -94,6 +97,9 @@ class Question extends React.Component {
   }
 
   getVoteButton () {
+    const voteTag = django.gettext('Vote')
+    const loginVoteText = django.gettext('Please login to vote')
+
     if (this.state.question.isReadOnly) {
       return null
     }
@@ -105,13 +111,13 @@ class Question extends React.Component {
           type="submit"
           className="btn btn--primary"
           disabled={disabled}>
-          { django.gettext('Vote') }
+          {voteTag}
         </button>
       )
     } else {
       return (
         <a href={config.getLoginUrl()} className="btn btn--primary">
-          { django.gettext('Please login to vote') }
+          {loginVoteText}
         </a>
       )
     }
@@ -126,6 +132,7 @@ class Question extends React.Component {
   render () {
     const total = this.state.question.totalVoteCount
     const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
+    const yourChoiceText = django.gettext('Your choice')
 
     let showTotalOrVoteButton
     let toggleShowResultButton
@@ -174,7 +181,7 @@ class Question extends React.Component {
                   <div className="poll-row" key={choice.id}>
                     <div className="poll-row__number">{ percent }%</div>
                     <div className="poll-row__label">{ choice.label }</div>
-                    { chosen ? <i className="fa fa-check-circle u-primary" aria-label={django.gettext('Your choice')} /> : '' }
+                    { chosen ? <i className="fa fa-check-circle u-primary" aria-label={yourChoiceText} /> : '' }
                     <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
                       ref={node => this.doBarTransition(node, {width: percent + '%'})} />
                   </div>

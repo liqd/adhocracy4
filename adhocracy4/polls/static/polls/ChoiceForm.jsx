@@ -3,6 +3,7 @@ var django = require('django')
 var ErrorList = require('../../../static/ErrorList')
 
 const ChoiceForm = (props) => {
+  const removeTag = django.gettext('remove')
   return (
     <div className="form-group form-group--narrow">
       <label
@@ -21,10 +22,10 @@ const ChoiceForm = (props) => {
         <button
           className="input-group__after btn btn--light"
           onClick={props.onDelete}
-          title={django.gettext('remove')}
+          title={removeTag}
           type="button">
           <i className="fa fa-times"
-            aria-label={django.gettext('remove')} />
+            aria-label={removeTag} />
         </button>
       </div>
       <ErrorList errors={props.errors} field="label" />

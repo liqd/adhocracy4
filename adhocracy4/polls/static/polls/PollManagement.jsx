@@ -176,6 +176,9 @@ class PollManagement extends React.Component {
   handleSubmit (e) {
     e.preventDefault()
 
+    const pollUpdatedText = django.gettext('The poll has been updated.')
+    const pollNotUpdatedText = django.gettext('The poll could not be updated.')
+
     let data = {
       questions: this.state.questions
     }
@@ -185,7 +188,7 @@ class PollManagement extends React.Component {
         this.setState({
           alert: {
             type: 'success',
-            message: django.gettext('The poll has been updated.')
+            message: pollUpdatedText
           },
           errors: []
         })
@@ -202,7 +205,7 @@ class PollManagement extends React.Component {
         this.setState({
           alert: {
             type: 'danger',
-            message: django.gettext('The poll could not be updated.')
+            message: pollNotUpdatedText
           },
           errors: errors
         })
@@ -210,6 +213,8 @@ class PollManagement extends React.Component {
   }
 
   render () {
+    const newQuestionText = django.gettext('Add a new question')
+    const saveTag = django.gettext('Save')
     return (
       <form onSubmit={this.handleSubmit.bind(this)} onChange={this.removeAlert.bind(this)}>
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
@@ -243,13 +248,13 @@ class PollManagement extends React.Component {
             className="btn btn--light btn--small"
             onClick={this.handleAppendQuestion.bind(this)}
             type="button">
-            <i className="fa fa-plus" /> {django.gettext('Add a new question')}
+            <i className="fa fa-plus" /> {newQuestionText}
           </button>
         </p>
 
         <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
 
-        <button type="submit" className="btn btn--primary">{django.gettext('Save')}</button>
+        <button type="submit" className="btn btn--primary">{saveTag}</button>
       </form>
     )
   }

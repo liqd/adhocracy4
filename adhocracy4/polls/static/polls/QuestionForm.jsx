@@ -5,6 +5,13 @@ var ChoiceForm = require('./ChoiceForm')
 var ErrorList = require('../../../static/ErrorList')
 
 const QuestionForm = (props) => {
+  const questionTag = django.gettext('Question')
+  const answerTag = django.gettext('Answer')
+  const selectAnswerText = django.gettext('Users can select more than one answer.')
+  const newChoiceText = django.gettext('Add a new choice')
+  const moveUpTag = django.gettext('Move up')
+  const moveDownTag = django.gettext('Move down')
+  const deleteTag = django.gettext('Delete')
   return (
     <section className="questionform">
       <div className="questionform__content questionform__content--border">
@@ -12,7 +19,7 @@ const QuestionForm = (props) => {
           <label
             className="questionform__label"
             htmlFor={'id_questions-' + props.id + '-name'}>
-            {django.gettext('Question')}
+            {questionTag}
           </label>
           <textarea
             className="questionform__textarea"
@@ -23,7 +30,7 @@ const QuestionForm = (props) => {
           <ErrorList errors={props.errors} field="label" />
         </div>
 
-        <label>{django.gettext('Answer')}</label>
+        <label>{answerTag}</label>
         <div className="form-check">
           <label className="form-check__label">
             <input
@@ -34,7 +41,7 @@ const QuestionForm = (props) => {
               onChange={(e) => { props.onMultipleChoiceChange(e.target.checked) }}
             />
             &nbsp;
-            {django.gettext('Users can select more than one answer.')}
+            {selectAnswerText}
           </label>
         </div>
 
@@ -64,7 +71,7 @@ const QuestionForm = (props) => {
           className="btn btn--light btn--small"
           onClick={props.onAppendChoice}
           type="button">
-          <i className="fa fa-plus" /> {django.gettext('Add a new choice')}
+          <i className="fa fa-plus" /> {newChoiceText}
         </button>
       </div>
 
@@ -73,27 +80,27 @@ const QuestionForm = (props) => {
           className="btn btn--light btn--small"
           onClick={props.onMoveUp}
           disabled={!props.onMoveUp}
-          title={django.gettext('Move up')}
+          title={moveUpTag}
           type="button">
           <i className="fa fa-chevron-up"
-            aria-label={django.gettext('Move up')} />
+            aria-label={moveUpTag} />
         </button>
         <button
           className="btn btn--light btn--small"
           onClick={props.onMoveDown}
           disabled={!props.onMoveDown}
-          title={django.gettext('Move down')}
+          title={moveDownTag}
           type="button">
           <i className="fa fa-chevron-down"
-            aria-label={django.gettext('Move down')} />
+            aria-label={moveDownTag} />
         </button>
         <button
           className="btn btn--light btn--small"
           onClick={props.onDelete}
-          title={django.gettext('Delete')}
+          title={deleteTag}
           type="button">
           <i className="fas fa-trash-alt"
-            aria-label={django.gettext('Delete')} />
+            aria-label={deleteTag} />
         </button>
       </div>
     </section>

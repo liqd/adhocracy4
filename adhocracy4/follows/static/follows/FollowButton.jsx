@@ -22,11 +22,11 @@ class FollowButton extends React.Component {
   }
 
   toggleFollow () {
-    var messages
+    var followAlertText
     if (this.state.followed) {
-      messages = django.gettext('You unfollowed this project. You will no longer receive e-mails regarding this project.')
+      followAlertText = django.gettext('You unfollowed this project. You will no longer receive e-mails regarding this project.')
     } else {
-      messages = django.gettext('Thank you for your interest! From now on you will be kept up to date via e-mail.')
+      followAlertText = django.gettext('Thank you for your interest! From now on you will be kept up to date via e-mail.')
     }
     api.follow.change({ enabled: !this.state.followed }, this.props.project)
       .done((follow) => {
@@ -35,7 +35,7 @@ class FollowButton extends React.Component {
           follows: follow.follows,
           alert: {
             type: 'success',
-            message: messages
+            message: followAlertText
           }
         })
       })
@@ -63,8 +63,8 @@ class FollowButton extends React.Component {
     var followTag = django.gettext('Follow')
     var followingTag = django.gettext('Following')
     return (
-      <span class="follow__btn">
-        <button className={this.state.followed ? 'btn btn--sm btn--transparent' : 'btn btn--sm btn--secondary'} type="button" onClick={this.toggleFollow.bind(this)}>
+      <span className="follow">
+        <button className={this.state.followed ? 'btn btn--sm btn--light' : 'btn btn--sm btn--secondary'} type="button" onClick={this.toggleFollow.bind(this)}>
           <i className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} aria-hidden="true" />&nbsp;<span className="follow__btn--content">{this.state.followed ? followingTag : followTag}</span>
         </button>
         <span class="follow__notification">
