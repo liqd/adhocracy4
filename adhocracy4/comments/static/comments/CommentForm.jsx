@@ -34,6 +34,11 @@ class CommentForm extends React.Component {
   }
 
   render () {
+    const yourCommentText = django.gettext('Your comment here')
+    const postTag = django.gettext('post')
+    const loginCommentText = django.gettext('Please login to comment')
+    const noCommentText = django.gettext('The currently active phase doesn\'t allow to comment.')
+
     if (this.context.isAuthenticated && !this.props.isReadOnly) {
       return (
         <form className="general-form" onSubmit={this.handleSubmit.bind(this)}>
@@ -45,22 +50,22 @@ class CommentForm extends React.Component {
               autoFocus={this.props.grabFocus}
               rows={this.props.rows}
               className="form-control"
-              placeholder={django.gettext('Your comment here')}
+              placeholder={yourCommentText}
               onChange={this.handleTextChange.bind(this)} required="required" value={this.state.comment} />
           </div>
-          <input type="submit" value={django.gettext('post')} className="submit-button" />
+          <input type="submit" value={postTag} className="submit-button" />
         </form>
       )
     } else if (!this.props.isReadOnly) {
       return (
         <div className="comments_login">
-          <a href={config.getLoginUrl()}>{django.gettext('Please login to comment')}</a>
+          <a href={config.getLoginUrl()}>{loginCommentText}</a>
         </div>
       )
     } else {
       return (
         <div>
-          {django.gettext('The currently active phase doesn\'t allow to comment.')}
+          {noCommentText}
         </div>
       )
     }

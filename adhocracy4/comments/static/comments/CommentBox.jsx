@@ -162,12 +162,13 @@ class CommentBox extends React.Component {
   }
 
   render () {
+    const yourCommentText = django.gettext('Your comment here')
     return (
       <div>
         <div className="black-divider">{this.state.comments.length + ' ' + django.ngettext('comment', 'comments', this.state.comments.length)}</div>
         <div className="comment-box">
           <CommentForm subjectType={this.props.subjectType} subjectId={this.props.subjectId}
-            onCommentSubmit={this.handleCommentSubmit.bind(this)} placeholder={django.gettext('Your comment here')}
+            onCommentSubmit={this.handleCommentSubmit.bind(this)} placeholder={yourCommentText}
             rows="5" isReadOnly={this.props.isReadOnly} error={this.state.error} errorMessage={this.state.errorMessage} handleErrorClick={this.hideNewError.bind(this)} />
           <div className="comment-list">
             <CommentList

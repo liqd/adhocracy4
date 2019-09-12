@@ -3,6 +3,9 @@ var PropTypes = require('prop-types')
 var django = require('django')
 
 const CommentManageDropdown = (props) => {
+  const editTag = django.gettext('Edit')
+  const deleteTag = django.gettext('Delete')
+  const reportTag = django.gettext('Report')
   return (
     <ul className="nav navbar-nav">
       <li className="dropdown">
@@ -13,13 +16,13 @@ const CommentManageDropdown = (props) => {
         <ul className="dropdown-menu">
           {props.renderModeratorOptions && [
             <li key="1">
-              <button type="button" onClick={props.toggleEdit}>{django.gettext('Edit')}</button>
+              <button type="button" onClick={props.toggleEdit}>{editTag}</button>
             </li>,
             <li className="divider" key="2" />,
-            <li key="3"><a href={`#comment_delete_${props.id}`} data-toggle="modal">{django.gettext('Delete')}</a></li>,
+            <li key="3"><a href={`#comment_delete_${props.id}`} data-toggle="modal">{deleteTag}</a></li>,
             <li className="divider" key="4" />
           ]}
-          <li><a href={`#report_comment_${props.id}`} data-toggle="modal">{django.gettext('Report')}</a>
+          <li><a href={`#report_comment_${props.id}`} data-toggle="modal">{reportTag}</a>
           </li>
         </ul>
       </li>
