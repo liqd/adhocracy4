@@ -19,6 +19,12 @@ CONFIG_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = os.path.dirname(CONFIG_DIR)
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+# General settings
+
+CONTACT_EMAIL = 'support-berlin@liqd.net'
+SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
+TRACKING_ENABLED = False
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -182,6 +188,10 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'de-DE'
+
+# The default language is used for emails and strings
+# that are stored translated to the database.
+DEFAULT_LANGUAGE = 'de'
 
 TIME_ZONE = 'Europe/Berlin'
 
@@ -483,12 +493,3 @@ A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
 A4_DASHBOARD = {
     'PROJECT_DASHBOARD_CLASS': 'meinberlin.apps.dashboard.TypedProjectDashboard',
     'BLUEPRINTS': 'meinberlin.apps.dashboard.blueprints.blueprints'}
-
-CONTACT_EMAIL = 'support-berlin@liqd.net'
-SUPERVISOR_EMAIL = 'berlin-supervisor@liqd.net'
-
-# The default language is used for emails and strings
-# that are stored translated to the database.
-DEFAULT_LANGUAGE = 'de'
-
-TRACKING_ENABLED = False
