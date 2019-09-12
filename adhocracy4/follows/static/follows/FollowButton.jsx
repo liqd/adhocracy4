@@ -60,12 +60,12 @@ class FollowButton extends React.Component {
   }
 
   render () {
-    var notFollowingLabel = django.gettext('Follow')
-    var followingLabel = django.gettext('Following')
+    const notFollowingLabel = django.gettext('Follow')
+    const followingLabel = django.gettext('Following')
     return (
       <span class="follow__btn">
         <button className={this.state.followed ? 'btn btn--sm btn--transparent' : 'btn btn--sm btn--secondary'} type="button" onClick={this.toggleFollow.bind(this)}>
-          <i className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} aria-hidden="true" />&nbsp;<span className="follow__btn--content">{this.state.followed ? {followingLabel} : {notFollowingLabel}}</span>
+          <i className={this.state.followed ? 'fa fa-check' : 'fa fa-plus'} aria-hidden="true" />&nbsp;<span className="follow__btn--content">{this.state.followed ? followingLabel : notFollowingLabel}</span>
         </button>
         <span class="follow__notification">
           <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
