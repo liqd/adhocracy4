@@ -493,3 +493,5 @@ A4_MAP_BOUNDING_BOX = ([[52.3517, 13.8229], [52.6839, 12.9543]])
 A4_DASHBOARD = {
     'PROJECT_DASHBOARD_CLASS': 'meinberlin.apps.dashboard.TypedProjectDashboard',
     'BLUEPRINTS': 'meinberlin.apps.dashboard.blueprints.blueprints'}
+
+A4_ACTIONS_PHASE_ENDS_HOURS = 48
