@@ -5,8 +5,9 @@
 {% block headline %}Event
 {{ action.project.name }}{% endblock %}
 
-{% block content %}Hallo  {{ receiver.username }},
-The following event takes place on {{ action.obj.date }}:
+{% block greeting %}Hello {{ receiver.username }},{% endblock %}
+
+{% block content %}The following event takes place on {{ action.obj.date }}:
 {{ action.obj.title }}
 Further information about the event can be found in the project.{% endblock %}
 

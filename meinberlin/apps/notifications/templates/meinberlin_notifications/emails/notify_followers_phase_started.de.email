@@ -5,8 +5,9 @@
 {% block headline %}Los geht’s!
 {{ action.project.name }}{% endblock %}
 
-{% block content %}Hallo  {{ receiver.username }},
-die Online-Beteiligung im oben genannten Projekt hat begonnen. Sie können bis zum {{ action.obj.end_date }} Uhr daran teilnehmen.{% endblock %}
+{% block greeting %}Hallo {{ receiver.username }},{% endblock %}
+
+{% block content %}die Online-Beteiligung im oben genannten Projekt hat begonnen. Sie können bis zum {{ action.obj.end_date }} Uhr daran teilnehmen.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
 {% block cta_label %}Join now{% endblock %}

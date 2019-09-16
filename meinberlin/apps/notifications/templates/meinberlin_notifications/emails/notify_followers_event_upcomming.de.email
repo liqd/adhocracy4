@@ -5,7 +5,9 @@
 {% block headline %}Verstalting
 {{ action.project.name }}{% endblock %}
 
-{% block content %}Hallo  {{ receiver.username }},
+{% block greeting %}Hallo  {{ receiver.username }},{% endblock %}
+
+{% block content %}
 am {{ action.obj.date }} findet folgende Veranstaltung statt:
 {{ action.obj.title }}
 Weitere Informationen zu der Veranstaltung finden Sie im Projekt.

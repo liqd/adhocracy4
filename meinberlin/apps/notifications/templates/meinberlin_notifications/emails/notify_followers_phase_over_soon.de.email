@@ -5,8 +5,9 @@
 {% block headline %}Beteiligung endet bald!
 {{ action.project.name }}{% endblock %}
 
-{% block content %}Hello  {{ receiver.username }},
-die Online-Beteiligung im oben genannten Projekt endet bald.
+{% block greeting %}Hallo {{ receiver.username }},{% endblock %}
+
+{% block content %}die Online-Beteiligung im oben genannten Projekt endet bald.
 Sie können noch bis zum {{ action.obj.end_date }} Uhr daran teilnehmen.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}

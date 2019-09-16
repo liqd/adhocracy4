@@ -5,8 +5,9 @@
 {% block headline %}Here we go!
 {{ action.project.name }}{% endblock %}
 
-{% block content %}Hello  {{ receiver.username }},
-Online participation for the above project has started. You can participate untill {{ action.obj.end_date }}.{% endblock %}
+{% block greeting %}Hello {{ receiver.username }},{% endblock %}
+
+{% block content %}Online participation for the above project has started. You can participate untill {{ action.obj.end_date }}.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
 {% block cta_label %}Join now{% endblock %}
