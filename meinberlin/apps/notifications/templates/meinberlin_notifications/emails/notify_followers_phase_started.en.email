@@ -2,11 +2,13 @@
 
 {% block subject %}{{ action.project.name }} startet jetzt!{% endblock %}
 
-{% block headline %}Los geht’s! {{ action.project.name }}{% endblock %}
+{% block headline %}Here we go!
+{{ action.project.name }}{% endblock %}
 
-{% block content %}Hallo  {{ receiver.username }}, die Online-Beteiligung im oben genannten Projekt hat begonnen. Sie können bis zum {{ action.obj.end_date }} Uhr daran teilnehmen.{% endblock %}
+{% block content %}Hello  {{ receiver.username }},
+Online participation for the above project has started. You can participate untill {{ action.obj.end_date }}.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
-{% block cta_label %}Visit the project{% endblock %}
+{% block cta_label %}Join now{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you follow a project. If you don’t want to receive these notifications anymore, you can unfollow the project on the project page or disable notifications completely in your account settings.{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the project {{ email.get_host }}{{ action.obj.module.get_absolute_url }} or change the settings for your account {{ }}.{% endblock %}

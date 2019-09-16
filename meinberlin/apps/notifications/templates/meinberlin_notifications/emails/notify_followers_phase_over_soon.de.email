@@ -1,12 +1,15 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Es bleiben nur noch wenige Stunden zur Beteiligung an dem Projekt "{{ action.project.name }}"{% endblock %}
+{% block subject %}Beteiligung endet bald für {{ action.project.name }}{% endblock %}
 
-{% block headline %}Es bleiben nur noch wenige Stunden zur Beteiligung an dem Projekt "{{ action.project.name }}"{% endblock %}
+{% block headline %}Beteiligung endet bald!
+{{ action.project.name }}{% endblock %}
 
-{% block content %}die aktuelle Beteiligungsphase für das Projekt "{{ action.project.name }}" endet am {{ action.obj.end_date }}. Wenn Sie sich noch beteiligen möchten, besuchen Sie jetzt die Projektseite.{% endblock %}
+{% block content %}Hello  {{ receiver.username }},
+die Online-Beteiligung im oben genannten Projekt endet bald.
+Sie können noch bis zum {{ action.obj.end_date }} Uhr daran teilnehmen.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
-{% block cta_label %}Projekt anzeigen{% endblock %}
+{% block cta_label %}Jetzt mitmachen{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie einem Projekt folgen. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie dem Projekt auf der Projektseite entfolgen oder Benachrichtigungen in Ihren Benutzerkonto Einstellungen komplett deaktivieren.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie oben genanntem Projekt folgen. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, entfolgen Sie dem Projekt {{}} oder ändern Sie die Einstellungen zu Ihrem Account {{}}.{% endblock %}

@@ -1,12 +1,15 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}Only a few hours left to participate in the project {{ action.project.name }}{% endblock %}
+{% block subject %}Participation ends soon for {{ action.project.name }}{% endblock %}
 
-{% block headline %}Only a few hours left to participate in the project {{ action.project.name }}{% endblock %}
+{% block headline %}Participation ends soon!
+{{ action.project.name }}{% endblock %}
 
-{% block content %}the current participation phase of the project "{{ action.project.name }}" by "{{ action.project.organisation.name }}" will be over at {{ action.obj.end_date }}. If you want to participate, visit the project page now.{% endblock %}
+{% block content %}Hello  {{ receiver.username }},
+the online participation in the above mentioned project will end soon.
+You can still participate until {{ action.obj.end_date }}.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
-{% block cta_label %}Visit the project{% endblock %}
+{% block cta_label %}Join now{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you follow a project. If you don’t want to receive these notifications anymore, you can unfollow the project on the project page or disable notifications completely in your account settings.{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the project {{ email.get_host }}{{ action.obj.module.get_absolute_url }} or change the settings for your account {{ }}.{% endblock %}
