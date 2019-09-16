@@ -3,7 +3,7 @@
 
 {% block subject %}Neue Reaktion auf Ihren Beitrag auf {{ site.name }}{% endblock %}
 
-{% block headline %}{{ action.actor.username }} hat auf Ihren Beitrag reagiert{% endblock  %}
+{% block headline %}Reaktion auf Ihren Beitrag{% endblock  %}
 
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 

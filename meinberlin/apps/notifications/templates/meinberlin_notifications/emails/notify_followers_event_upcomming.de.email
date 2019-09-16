@@ -2,16 +2,14 @@
 
 {% block subject %}{{ action.project.name }} startet jetzt!{% endblock %}
 
-{% block headline %}Verstalting
-{{ action.project.name }}{% endblock %}
+{% block headline %}Verstalting{% endblock %}
+{% block sub-headline %}{{ action.project.name }}{% endblock %}
 
 {% block greeting %}Hallo  {{ receiver.username }},{% endblock %}
 
-{% block content %}
-am {{ action.obj.date }} findet folgende Veranstaltung statt:
-{{ action.obj.title }}
-Weitere Informationen zu der Veranstaltung finden Sie im Projekt.
-{% endblock %}
+{% block content %}am {{ action.obj.date }} findet folgende Veranstaltung statt:
+{% block content_bold %}{{ action.obj.title }}{% endblock %}
+Weitere Informationen zu der Veranstaltung finden Sie im Projekt.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.event.get_absolute_url }}{% endblock %}
 {% block cta_label %}Veranstaltung anzeigen{% endblock %}

@@ -14,12 +14,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding-top: 20px;">
+                    <td style="padding-top: 20px; text-align: center;" align="center">
                         <h2>{% block headline %}{% endblock %}</h2>
+                        <h3 style="color: #818181;">{% block sub-headline %}{% endblock %}</h3>
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="padding-top: 20px; text-align: center;" align="center">
                         <p>
                             {% block greeting %}
                             {% trans 'Hello' %},
@@ -28,7 +29,7 @@
                         <p>
                             {% block content_html %}
                                 {% load capture_tags %}
-                                {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
+                                {% capture as content silent %}{% block content %}<b>{% block content_bold %}{% endblock %}</b>{% endblock %}{% endcapture %}
                                 {{ content|linebreaks }}
                             {% endblock %}
                         </p>
@@ -36,7 +37,7 @@
                 </tr>
                 {% block cta %}
                     <tr>
-                        <td style="padding-top: 20px;">
+                        <td style="padding-top: 20px; text-align: center;" align="center">
                             <a href="{% block cta_url %}{% endblock %}"
                                style="padding: 0 20px; font-weight: bold; line-height: 40px; margin: 0 auto; color: #fff;
                                     background-color: #253276; border-color: #253276; display: inline-block;
@@ -50,11 +51,11 @@
                     <td style="color: #818181; font-size: x-small; padding-top: 20px;">
                         <hr />
                         {% block reason %}
-                        <a href="{% block project_url %}{% endblock %}">
-                            {% block project_label %}{% endblock %}
-                        </a>
                         <a href="{% block account_url %}{% endblock %}">
                             {% block account_label %}{% endblock %}
+                        </a>
+                        <a href="{% block project_url %}{% endblock %}">
+                            {% block project_label %}{% endblock %}
                         </a>
                         {% endblock %}
                     </td>

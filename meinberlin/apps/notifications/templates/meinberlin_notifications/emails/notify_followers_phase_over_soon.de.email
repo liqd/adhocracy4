@@ -2,13 +2,13 @@
 
 {% block subject %}Beteiligung endet bald für {{ action.project.name }}{% endblock %}
 
-{% block headline %}Beteiligung endet bald!
-{{ action.project.name }}{% endblock %}
+{% block headline %}Beteiligung endet bald!{% endblock %}
+{% block sub-headline %}{{ action.project.name }}{% endblock %}
 
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
 {% block content %}die Online-Beteiligung im oben genannten Projekt endet bald.
-Sie können noch bis zum {{ action.obj.end_date }} Uhr daran teilnehmen.{% endblock %}
+{% block content_bold %}Sie können noch bis zum {{ action.obj.end_date }} Uhr daran teilnehmen.{% endblock %}{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
 {% block cta_label %}Jetzt mitmachen{% endblock %}

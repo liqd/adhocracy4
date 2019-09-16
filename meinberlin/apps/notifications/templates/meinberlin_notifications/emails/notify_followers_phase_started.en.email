@@ -2,12 +2,13 @@
 
 {% block subject %}{{ action.project.name }} startet jetzt!{% endblock %}
 
-{% block headline %}Here we go!
-{{ action.project.name }}{% endblock %}
+{% block headline %}Here we go!{% endblock %}
+{% block sub-headline %}{{ action.project.name }}{% endblock %}
 
 {% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
-{% block content %}Online participation for the above project has started. You can participate untill {{ action.obj.end_date }}.{% endblock %}
+{% block content %}Online participation for the above project has started.
+{% block content_bold %}You can participate untill {{ action.obj.end_date }}.{% endblock %}{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
 {% block cta_label %}Join now{% endblock %}

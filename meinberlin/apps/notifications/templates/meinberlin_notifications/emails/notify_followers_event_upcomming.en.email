@@ -2,13 +2,13 @@
 
 {% block subject %}{{ action.project.name }} new event!{% endblock %}
 
-{% block headline %}Event
-{{ action.project.name }}{% endblock %}
+{% block headline %}Event{% endblock %}
+{% block sub-headline %}{{ action.project.name }}{% endblock %}
 
 {% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
 {% block content %}The following event takes place on {{ action.obj.date }}:
-{{ action.obj.title }}
+{% block content_bold %}{{ action.obj.title }}{% endblock %}
 Further information about the event can be found in the project.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.event.get_absolute_url }}{% endblock %}
