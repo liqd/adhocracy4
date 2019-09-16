@@ -13,4 +13,4 @@
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
 {% block cta_label %}Join now{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the project {{ email.get_host }}{{ action.obj.module.get_absolute_url }} or change the settings for your account {{ }}.{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the {% block project_url %}{{ email.get_host }}{{action.obj.module.get_absolute_url }}{% endblock %}{% block project_label %}Project{% endblock %} or change the settings for your {% block account_url %}{{ email.get_host }}{{ receiver.account.get_absolute_url }}{% endblock %}{% block account_label %}account{% endblock %}.{% endblock %}
