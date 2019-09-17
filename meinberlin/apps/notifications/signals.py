@@ -25,8 +25,14 @@ def send_notifications(instance, created, **kwargs):
         if action.project:
             emails.NotifyModeratorsEmail.send(action)
 
-    elif action.type == 'phase' and verb == Verbs.SCHEDULE:
-        emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
+    elif action.type == 'phase':
+        if verb == Verbs.Start:
+            emails.NotifyFollowersOnPhaseStartedEmail.send(action)
+        elif verb == Verbs.SCHEDULE:
+            emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
+
+    elif action.type == 'offlineevent' and verb == Verbs.Start:
+        emails.NotifyFollowersOnUpcommingEventEmail.send(action)
 
 
 @receiver(dashboard_signals.project_created)

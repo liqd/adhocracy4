@@ -1,12 +1,24 @@
+from datetime import timedelta
+
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects import models as project_models
+
+
+class OfflineEventsQuerySet(models.QuerySet):
+
+    def starts_within(self, hours=72):
+        """All offlineevents starting within the given time."""
+        now = timezone.now()
+        return self.filter(date__gt=now,
+                           date__lt=(now + timedelta(hours=hours)))
 
 
 class OfflineEvent(UserGeneratedContentModel):
@@ -24,6 +36,8 @@ class OfflineEvent(UserGeneratedContentModel):
         verbose_name=_('Description'))
     project = models.ForeignKey(
         project_models.Project, on_delete=models.CASCADE)
+
+    objects = OfflineEventsQuerySet.as_manager()
 
     class Meta:
         ordering = ['-date']
