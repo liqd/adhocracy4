@@ -129,45 +129,47 @@ class Question extends React.Component {
     }
   }
 
-  render () {
-    const total = this.state.question.totalVoteCount
-    const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
-    const yourChoiceText = django.gettext('Your choice')
-
-    let showTotalOrVoteButton
-    let toggleShowResultButton
+  toggleShowResultButton () {
     let toggleShowResultButtonText
-    let multipleChoiceText
-
-    if (this.state.question.multiple_choice) {
-      multipleChoiceText = django.gettext('Multiple answers are possible for this question')
-    }
-
     if (this.state.showResult) {
-      showTotalOrVoteButton =
-        `${total} ${django.ngettext('vote', 'votes', total)}`
       toggleShowResultButtonText = django.gettext('To poll')
-
       if (this.state.selectedChoices.length !== 0) {
         toggleShowResultButtonText = django.gettext('Change vote')
       }
     } else {
-      showTotalOrVoteButton = this.getVoteButton()
       toggleShowResultButtonText = django.gettext('Show preliminary results')
     }
+    return (
+      toggleShowResultButtonText
+    )
+  }
 
-    if (!this.state.question.isReadOnly) {
-      toggleShowResultButton = (
-        <button type="button" className="btn btn--link" onClick={this.toggleShowResult.bind(this)}>
-          {toggleShowResultButtonText}
-        </button>
-      )
+  toggleTotalOrVoteButton () {
+    const total = this.state.question.totalVoteCount
+    let showTotalOrVoteButton
+    if (this.state.showResult) {
+      showTotalOrVoteButton =
+        `${total} ${django.ngettext('vote', 'votes', total)}`
+    } else {
+      showTotalOrVoteButton = this.getVoteButton()
     }
+    return (
+      showTotalOrVoteButton
+    )
+  }
+
+  render () {
+    const total = this.state.question.totalVoteCount
+    const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
+    const yourChoiceText = django.gettext('Your choice')
+    const multipleChoiceText = django.gettext('Multiple answers are possible for this question')
 
     return (
       <form onSubmit={this.handleSubmit.bind(this)} className="poll">
         <h2>{ this.state.question.label }</h2>
+        { this.state.question.multiple_choice &&
         {multipleChoiceText}
+        }
         <div className="poll__rows">
           {
             this.state.question.choices.map((choice, i) => {
@@ -225,9 +227,9 @@ class Question extends React.Component {
 
         <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
         <div className="poll__actions">
-          {showTotalOrVoteButton}
+          {this.toggleTotalOrVoteButton()}
           &nbsp;
-          {toggleShowResultButton}
+          {this.toggleShowResultButton()}
         </div>
       </form>
     )
