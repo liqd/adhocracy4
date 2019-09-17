@@ -88,6 +88,28 @@ class Comment extends React.Component {
     }
   }
 
+  renderModeratorLabel () {
+    const moderatorTag = django.gettext('Moderator')
+    if (this.props.authorIsModerator && !this.props.is_deleted) {
+      return (
+        <span className="label label-subtle">{moderatorTag}</span>
+      )
+    }
+  }
+
+  renderLastDate () {
+    const lastEditText = django.gettext('Latest edit on')
+    let lastDate
+    if (this.props.modified === null || this.props.is_deleted) {
+      lastDate = localeDate(this.props.created)
+    } else {
+      lastDate = lastEditText + ' ' + localeDate(this.props.modified)
+    }
+    return (
+      <span className="comment-submission-date">{lastDate}</span>
+    )
+  }
+
   renderComment () {
     let comment
     if (this.state.edit) {
@@ -139,21 +161,7 @@ class Comment extends React.Component {
     const reportText = django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')
     const answerTag = django.gettext('Answer')
     const answerPlaceholderText = django.gettext('Your reply here')
-    const moderatorTag = django.gettext('Moderator')
-    const lastEditText = django.gettext('Latest edit on')
-
     let CommentList = require('./CommentList')
-    let lastDate
-    if (this.props.modified === null || this.props.is_deleted) {
-      lastDate = localeDate(this.props.created)
-    } else {
-      lastDate = {lastEditText} + ' ' + localeDate(this.props.modified)
-    }
-
-    let moderatorLabel
-    if (this.props.authorIsModerator && !this.props.is_deleted) {
-      moderatorLabel = <span className="label label-subtle">{moderatorTag}</span>
-    }
 
     return (
       <div className="comment">
@@ -169,9 +177,9 @@ class Comment extends React.Component {
           {this.props.is_deleted ? this.props.user_name
             : <a href={`/profile/${this.props.user_name}`} data-embed-target="external">{this.props.user_name}</a>
           }
-          {moderatorLabel}
+          {this.renderModeratorLabel()}
         </h3>
-        <span className="comment-submission-date">{lastDate}</span>
+        {this.renderLastDate()}
         {this.renderComment()}
         <div className="action-bar">
           <nav className="navbar navbar-default navbar-static">

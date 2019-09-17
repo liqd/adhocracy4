@@ -34,7 +34,6 @@ class CommentForm extends React.Component {
   }
 
   render () {
-    const yourCommentText = django.gettext('Your comment here')
     const postTag = django.gettext('post')
     const loginCommentText = django.gettext('Please login to comment')
     const noCommentText = django.gettext('The currently active phase doesn\'t allow to comment.')
@@ -50,7 +49,7 @@ class CommentForm extends React.Component {
               autoFocus={this.props.grabFocus}
               rows={this.props.rows}
               className="form-control"
-              placeholder={yourCommentText}
+              placeholder={this.props.placeholder}
               onChange={this.handleTextChange.bind(this)} required="required" value={this.state.comment} />
           </div>
           <input type="submit" value={postTag} className="submit-button" />
