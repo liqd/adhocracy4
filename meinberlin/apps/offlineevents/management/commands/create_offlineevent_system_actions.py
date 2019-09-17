@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import BaseCommand
@@ -33,14 +35,17 @@ class Command(BaseCommand):
                 obj_object_id=event.id
             ).first()
 
-            if not existing_action:
+            # If the event date has been modified and moved more than
+            # event_starting_hours ahead, schedule a new action
+            if not existing_action \
+                or (existing_action.timestamp +
+                    timedelta(hours=self.event_starting_hours)) < event.date:
                 Action.objects.create(
                     project=event.project,
                     verb=Verbs.START.value,
                     obj=event,
                     timestamp=event.date
                 )
-
             elif existing_action.timestamp != event.date:
                 existing_action.timestamp = event.date
                 existing_action.save()
