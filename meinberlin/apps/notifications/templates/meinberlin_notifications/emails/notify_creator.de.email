@@ -8,10 +8,12 @@
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
 {% block content %}{{ action.actor.username }} hat Ihren Beitrag kommentiert:
-{{ action.obj.text }}
+{% if action.obj.comment %}
+{{ action.obj.comment }}
+{% endif %}
 Möchten Sie antworten?{% endblock %}
 
 {% block cta_url %}{% if action.target.get_absolute_url %}{{ email.get_host }}{{ action.target.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
 {% block cta_label %}{% if action.target.get_absolute_url %}Beitrag anzeigen{% else %}Projekt anzeigen{% endif %}{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie oben genanntem Projekt folgen. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, entfolgen Sie dem {% block project_url %}{{ email.get_host }}{{action.obj.module.get_absolute_url }}{% endblock %}{% block project_label %}Projekt{% endblock %} oder ändern Sie die Einstellungen zu Ihrem {% block account_url %}{{ email.get_host }}{{ receiver.account.get_absolute_url }}{% endblock %}{% block account_label %}Account{% endblock %}.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie oben genanntem Projekt folgen. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, entfolgen Sie dem <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">Projekt</a> oder ändern Sie die Einstellungen zu Ihrem <a href="{{ email.get_host }}{% url 'account' %}">Account</a>.{% endblock %}

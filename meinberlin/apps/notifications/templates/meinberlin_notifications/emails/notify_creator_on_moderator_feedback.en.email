@@ -22,4 +22,4 @@ Do you want to answer?
 {% if object.get_absolute_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% else %}{{ email.get_host }}{{ object.project.get_absolute_url }}{% endif %}{% endblock %}
 {% block cta_label %}{% if object.get_absolute_url %}Check your contribution{% else %}Visit the project{% endif %}{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you created content in a project. If you don’t want to receive these notifications anymore, you can unfollow the project on the project page or disable notifications completely in your account settings.{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the <a href="{{ email.get_host }}{{ object.project.get_absolute_url }}">project</a> or change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}

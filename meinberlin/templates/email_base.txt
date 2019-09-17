@@ -1,7 +1,7 @@
 {% load i18n %}{# Hack to ensure german mails are sent regardless of the current users browser language setting #}{% language 'de' %}
 {% block headline %}{% endblock %}
 
-{% trans 'Hello' %},
+{% block greeting %}{% trans 'Hello' %},{% endblock %}
 {% block content %}{% endblock %}
 
 {% block cta %}{% block cta_label %}{% endblock %}: {% block cta_url %}{% endblock %}{% endblock %}

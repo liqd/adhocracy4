@@ -9,15 +9,12 @@
 {% block greeting %}Hello  {{ receiver.username }},{% endblock %}
 
 {% block content %}{{ action.actor.username }} commented on your post:
-{{ action.obj.text }}
+{% if action.obj.comment %}
+{{ action.obj.comment }}
+{% endif %}
 Would you like to answer?{% endblock %}
 
 {% block cta_url %}{% if action.target.get_absolute_url %}{{ email.get_host }}{{ action.target.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
 {% block cta_label %}{% if action.target.get_absolute_url %}View Post{% else %}Visit the project{% endif %}{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the {% block project_url %}{{ email.get_host }}{{action.obj.module.get_absolute_url }}{% endblock %}{% block project_label %}Project{% endblock %} or change the settings for your {% block account_url %}{{ email.get_host }}{{ receiver.account.get_absolute_url }}{% endblock %}{% block account_label %}account{% endblock %}.{% endblock %}
-
-
-
-
-project
+{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">project</a> or change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}
