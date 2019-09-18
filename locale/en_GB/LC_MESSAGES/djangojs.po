@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-16 10:15+0200\n"
+"POT-Creation-Date: 2019-09-18 13:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,11 +48,39 @@ msgid_plural "view %s replies"
 msgstr[0] "view one reply"
 msgstr[1] "view %s replies"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:121
+#: adhocracy4/comments/static/comments/Comment.jsx:30
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:9
+msgid "Answer"
+msgstr "Answer"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:31
+msgid "Your reply here"
+msgstr "Your reply here"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:32
+#: adhocracy4/reports/static/reports/react_reports.jsx:20
+msgid ""
+"You want to report this content? Your message will be sent to the "
+"moderation. The moderation will look at the reported content. The content "
+"will be deleted if it does not meet our discussion rules (netiquette)."
+msgstr ""
+"You want to report this content? Your message will be sent to the "
+"moderation. The moderation will look at the reported content. The content "
+"will be deleted if it does not meet our discussion rules (netiquette)."
+
+#: adhocracy4/comments/static/comments/Comment.jsx:96
+msgid "Moderator"
+msgstr "Moderator"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:105
+msgid "Latest edit on"
+msgstr "Latest edit on"
+
+#: adhocracy4/comments/static/comments/Comment.jsx:147
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:122
+#: adhocracy4/comments/static/comments/Comment.jsx:148
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:14
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:56
@@ -62,14 +90,13 @@ msgstr "Do you really want to delete this comment?"
 msgid "Delete"
 msgstr "Delete"
 
-#: adhocracy4/comments/static/comments/Comment.jsx:123
+#: adhocracy4/comments/static/comments/Comment.jsx:149
 #: adhocracy4/static/Modal.jsx:49
 msgid "Abort"
 msgstr "Abort"
 
 #: adhocracy4/comments/static/comments/CommentBox.jsx:165
 #: adhocracy4/comments/static/comments/CommentEditForm.jsx:31
-#: adhocracy4/comments/static/comments/CommentForm.jsx:37
 msgid "Your comment here"
 msgstr "Your comment here"
 
@@ -87,15 +114,15 @@ msgstr "save changes"
 msgid "cancel"
 msgstr "cancel"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:38
+#: adhocracy4/comments/static/comments/CommentForm.jsx:37
 msgid "post"
 msgstr "post"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:39
+#: adhocracy4/comments/static/comments/CommentForm.jsx:38
 msgid "Please login to comment"
 msgstr "Please login to comment"
 
-#: adhocracy4/comments/static/comments/CommentForm.jsx:40
+#: adhocracy4/comments/static/comments/CommentForm.jsx:39
 msgid "The currently active phase doesn't allow to comment."
 msgstr "The currently active phase doesn't allow to comment."
 
@@ -107,37 +134,6 @@ msgstr "Edit"
 msgid "Report"
 msgstr "Report"
 
-#: adhocracy4/follows/static/follow_dropdown/FollowDropdown.jsx:51
-#: meinberlin/apps/follows/static/follows/FollowButton.jsx:56
-msgid "Not following"
-msgstr "Not following"
-
-#: adhocracy4/follows/static/follow_dropdown/FollowDropdown.jsx:52
-#: meinberlin/apps/follows/static/follows/FollowButton.jsx:57
-msgid "Never be notified."
-msgstr "Never be notified."
-
-#: adhocracy4/follows/static/follow_dropdown/FollowDropdown.jsx:53
-#: adhocracy4/follows/static/follows/FollowButton.jsx:64
-#: meinberlin/apps/follows/static/follows/FollowButton.jsx:58
-#: meinberlin/apps/follows/static/follows/FollowButtonNew.jsx:46
-msgid "Following"
-msgstr "Following"
-
-#: adhocracy4/follows/static/follow_dropdown/FollowDropdown.jsx:54
-#: meinberlin/apps/follows/static/follows/FollowButton.jsx:59
-msgid "Receive email notifications about this project."
-msgstr "Receive email notifications about this project."
-
-#: adhocracy4/follows/static/follow_dropdown/FollowDropdown.jsx:61
-msgid "Unfollow"
-msgstr "Unfollow"
-
-#: adhocracy4/follows/static/follow_dropdown/FollowDropdown.jsx:61
-#: adhocracy4/follows/static/follows/FollowButton.jsx:63
-msgid "Follow"
-msgstr "Follow"
-
 #: adhocracy4/follows/static/follows/FollowButton.jsx:27
 msgid "You will no longer be updated via email."
 msgstr "You will no longer be updated via email."
@@ -145,6 +141,14 @@ msgstr "You will no longer be updated via email."
 #: adhocracy4/follows/static/follows/FollowButton.jsx:29
 msgid "You will be updated via email."
 msgstr "You will be updated via email."
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:63
+msgid "Follow"
+msgstr "Follow"
+
+#: adhocracy4/follows/static/follows/FollowButton.jsx:64
+msgid "Following"
+msgstr "Following"
 
 #: adhocracy4/polls/static/polls/ChoiceForm.jsx:6
 #: meinberlin/apps/polls/assets/ChoiceForm.jsx:23
@@ -173,35 +177,47 @@ msgstr "Add a new question"
 msgid "Save"
 msgstr "Save"
 
-#: adhocracy4/polls/static/polls/Question.jsx:32
+#: adhocracy4/polls/static/polls/Question.jsx:9
+msgid "Your choice"
+msgstr "Your choice"
+
+#: adhocracy4/polls/static/polls/Question.jsx:10
+msgid "Multiple answers are possible for this question"
+msgstr "Multiple answers are possible for this question"
+
+#: adhocracy4/polls/static/polls/Question.jsx:36
 #: meinberlin/apps/polls/assets/Question.jsx:51
 msgid "Vote counted"
 msgstr "Vote counted"
 
-#: adhocracy4/polls/static/polls/Question.jsx:33
+#: adhocracy4/polls/static/polls/Question.jsx:37
 #: meinberlin/apps/polls/assets/Question.jsx:61
 msgid "Vote has not been counted due to a server error."
 msgstr "Vote has not been counted due to a server error."
 
-#: adhocracy4/polls/static/polls/Question.jsx:100
+#: adhocracy4/polls/static/polls/Question.jsx:104
 #: meinberlin/apps/polls/assets/Question.jsx:109
 msgid "Vote"
 msgstr "Vote"
 
-#: adhocracy4/polls/static/polls/Question.jsx:101
+#: adhocracy4/polls/static/polls/Question.jsx:105
 #: meinberlin/apps/polls/assets/Question.jsx:115
 msgid "Please login to vote"
 msgstr "Please login to vote"
 
-#: adhocracy4/polls/static/polls/Question.jsx:135
-msgid "Your choice"
-msgstr "Your choice"
+#: adhocracy4/polls/static/polls/Question.jsx:139
+msgid "To poll"
+msgstr "To poll"
 
-#: adhocracy4/polls/static/polls/Question.jsx:143
-msgid "Multiple answers are possible for this question"
-msgstr "Multiple answers are possible for this question"
+#: adhocracy4/polls/static/polls/Question.jsx:141
+msgid "Change vote"
+msgstr "Change vote"
 
-#: adhocracy4/polls/static/polls/Question.jsx:148
+#: adhocracy4/polls/static/polls/Question.jsx:144
+msgid "Show preliminary results"
+msgstr "Show preliminary results"
+
+#: adhocracy4/polls/static/polls/Question.jsx:156
 #: meinberlin/apps/polls/assets/Question.jsx:137
 msgid "vote"
 msgid_plural "votes"
@@ -212,10 +228,6 @@ msgstr[1] "votes"
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:15
 msgid "Question"
 msgstr "Question"
-
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:9
-msgid "Answer"
-msgstr "Answer"
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:10
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:36
@@ -258,16 +270,6 @@ msgstr "Your message"
 #: adhocracy4/reports/static/reports/ReportModal.jsx:57
 msgid "Send Report"
 msgstr "Send Report"
-
-#: adhocracy4/reports/static/reports/react_reports.jsx:20
-msgid ""
-"You want to report this content? Your message will be sent to the "
-"moderation. The moderation will look at the reported content. The content "
-"will be deleted if it does not meet our discussion rules (netiquette)."
-msgstr ""
-"You want to report this content? Your message will be sent to the "
-"moderation. The moderation will look at the reported content. The content "
-"will be deleted if it does not meet our discussion rules (netiquette)."
 
 #: adhocracy4/static/Alert.jsx:5
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
@@ -328,14 +330,6 @@ msgstr "Headline"
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:88
 msgid "Paragraph"
 msgstr "Paragraph"
-
-#: meinberlin/apps/follows/static/follows/FollowButton.jsx:66
-msgid "Test"
-msgstr "Test"
-
-#: meinberlin/apps/follows/static/follows/FollowButtonNew.jsx:46
-msgid "Follow project"
-msgstr "Follow project"
 
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:64
 msgid "Export polygon as GeoJSON"
@@ -610,6 +604,24 @@ msgstr "No matches found within the project area"
 msgid "Did you mean:"
 msgstr "Did you mean:"
 
+#~ msgid "Not following"
+#~ msgstr "Not following"
+
+#~ msgid "Never be notified."
+#~ msgstr "Never be notified."
+
+#~ msgid "Receive email notifications about this project."
+#~ msgstr "Receive email notifications about this project."
+
+#~ msgid "Unfollow"
+#~ msgstr "Unfollow"
+
+#~ msgid "Test"
+#~ msgstr "Test"
+
+#~ msgid "Follow project"
+#~ msgstr "Follow project"
+
 #~ msgid ""
 #~ "You unfollowed this project. You will no longer receive e-mails regarding "
 #~ "this project."
@@ -623,24 +635,6 @@ msgstr "Did you mean:"
 #~ msgstr ""
 #~ "Thank you for your interest! From now on you will be kept up to date via "
 #~ "e-mail."
-
-#~ msgid "Latest edit on"
-#~ msgstr "Latest edit on"
-
-#~ msgid "Moderator"
-#~ msgstr "Moderator"
-
-#~ msgid "Your reply here"
-#~ msgstr "Your reply here"
-
-#~ msgid "To poll"
-#~ msgstr "To poll"
-
-#~ msgid "Change vote"
-#~ msgstr "Change vote"
-
-#~ msgid "Show preliminary results"
-#~ msgstr "Show preliminary results"
 
 #~ msgid " participation projects in Berlin"
 #~ msgstr " Beteiligunsprojekte in Berlin"
