@@ -27,6 +27,10 @@ var getViewRepliesText = function (number, hide) {
   return django.interpolate(fmts, [number])
 }
 
+const answerTag = django.gettext('Answer')
+const answerPlaceholderText = django.gettext('Your reply here')
+const reportText = django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')
+
 class Comment extends React.Component {
   constructor (props) {
     super(props)
@@ -158,9 +162,6 @@ class Comment extends React.Component {
   }
 
   render () {
-    const reportText = django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')
-    const answerTag = django.gettext('Answer')
-    const answerPlaceholderText = django.gettext('Your reply here')
     let CommentList = require('./CommentList')
 
     return (

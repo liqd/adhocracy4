@@ -6,11 +6,15 @@ var update = require('immutability-helper')
 var api = require('../../../static/api')
 var config = require('../../../static/config')
 
+const yourChoiceText = django.gettext('Your choice')
+const multipleChoiceText = django.gettext('Multiple answers are possible for this question')
+
 class Question extends React.Component {
   constructor (props) {
     super(props)
 
     const question = this.props.question
+
     this.state = {
       question: question,
       selectedChoices: question.userChoices,
@@ -161,14 +165,12 @@ class Question extends React.Component {
   render () {
     const total = this.state.question.totalVoteCount
     const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
-    const yourChoiceText = django.gettext('Your choice')
-    const multipleChoiceText = django.gettext('Multiple answers are possible for this question')
 
     return (
       <form onSubmit={this.handleSubmit.bind(this)} className="poll">
         <h2>{ this.state.question.label }</h2>
         { this.state.question.multiple_choice &&
-        {multipleChoiceText}
+        multipleChoiceText
         }
         <div className="poll__rows">
           {
