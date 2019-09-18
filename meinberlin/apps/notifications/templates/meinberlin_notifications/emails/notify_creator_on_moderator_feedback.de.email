@@ -4,6 +4,7 @@
 {% block subject %}Rückmeldung zu Ihrem Beitrag auf {{ site.name }}{% endblock %}
 
 {% block headline %}Rückmeldung zu Ihrem Beitrag{% endblock  %}
+{% block sub-headline %}{{ object.project.name }}{% endblock  %}
 
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 

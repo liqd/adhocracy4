@@ -8,9 +8,9 @@
 {% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
 {% block content %}the online participation in the above mentioned project will end soon.
-{% block content_bold %}You can still participate until {{ action.obj.end_date }}.{% endblock %}{% endblock %}
+<b>You can still participate until {{ action.obj.end_date }}.</b>{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
 {% block cta_label %}Join now{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the {% block project_url %}{{ email.get_host }}{{action.obj.module.get_absolute_url }}{% endblock %}{% block project_label %}Project{% endblock %} or change the settings for your {% block account_url %}{{ email.get_host }}{{ receiver.account.get_absolute_url }}{% endblock %}{% block account_label %}account{% endblock %}.{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">project</a> or change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}

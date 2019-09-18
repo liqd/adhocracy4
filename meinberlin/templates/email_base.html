@@ -16,7 +16,8 @@
                 <tr>
                     <td style="padding-top: 20px; text-align: center;" align="center">
                         <h2>{% block headline %}{% endblock %}</h2>
-                        <h3 style="color: #818181;">{% block sub-headline %}{% endblock %}</h3>
+                        <h3 style="color: #818181;">
+                        {% block sub-headline %}{% endblock %}</h3>
                     </td>
                 </tr>
                 <tr>
@@ -29,7 +30,7 @@
                         <p>
                             {% block content_html %}
                                 {% load capture_tags %}
-                                {% capture as content silent %}{% block content %}<b>{% block content_bold %}{% endblock %}</b>{% endblock %}{% endcapture %}
+                                {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
                                 {{ content|linebreaks }}
                             {% endblock %}
                         </p>

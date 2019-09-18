@@ -4,6 +4,7 @@
 {% block subject %}Neue Reaktion auf Ihren Beitrag auf {{ site.name }}{% endblock %}
 
 {% block headline %}Reaktion auf Ihren Beitrag{% endblock  %}
+{% block sub-headline %}{{ action.project.name }}{% endblock  %}
 
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 

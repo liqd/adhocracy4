@@ -3,7 +3,7 @@
 
 {% block subject %}A {{ action.obj | verbose_name }} was added to your {{ action.target | verbose_name }}{% endblock %}
 
-{% block headline %}Reaction to your contribution{% endbock %}
+{% block headline %}Reaction to your contribution{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock  %}
 
 {% block greeting %}Hello  {{ receiver.username }},{% endblock %}
