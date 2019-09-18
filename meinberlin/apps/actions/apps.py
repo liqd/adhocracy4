@@ -34,6 +34,10 @@ class Config(AppConfig):
             ('meinberlin_kiezkasse', 'proposal'),
             ('meinberlin_mapideas', 'mapidea')
         )
+        configure_type(
+            'offlineevent',
+            ('meinberlin_offlineevents', 'offlineevent')
+        )
 
         configure_icon('far fa-comment', type='comment')
         configure_icon('far fa-lightbulb', type='item')
