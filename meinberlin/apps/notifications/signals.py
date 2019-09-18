@@ -26,12 +26,12 @@ def send_notifications(instance, created, **kwargs):
             emails.NotifyModeratorsEmail.send(action)
 
     elif action.type == 'phase':
-        if verb == Verbs.Start:
+        if verb == Verbs.START:
             emails.NotifyFollowersOnPhaseStartedEmail.send(action)
         elif verb == Verbs.SCHEDULE:
             emails.NotifyFollowersOnPhaseIsOverSoonEmail.send(action)
 
-    elif action.type == 'offlineevent' and verb == Verbs.Start:
+    elif action.type == 'offlineevent' and verb == Verbs.START:
         emails.NotifyFollowersOnUpcommingEventEmail.send(action)
 
 
