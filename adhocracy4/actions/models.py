@@ -12,7 +12,7 @@ from . import verbs
 
 
 _ACTION_TYPES = {}
-_DEFAULT_TYPE = 'unkown'
+_DEFAULT_TYPE = 'unknown'
 _ACTION_ICONS = OrderedDict()
 _DEFAULT_ICON = 'star'
 

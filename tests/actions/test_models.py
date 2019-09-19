@@ -98,7 +98,7 @@ def test_type_property(question):
         obj=question,
     )
 
-    assert action.type == 'unkown'
+    assert action.type == 'unknown'
 
     configure_type(
         'thing',
