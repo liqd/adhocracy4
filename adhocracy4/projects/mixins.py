@@ -189,17 +189,12 @@ class ProjectModuleDispatchMixin(generic.DetailView):
         kwargs['project'] = self.project
         kwargs['module'] = self.module
 
-        if self.project.modules.count() == 1 and not self.project.events:
-            return self._view_by_phase()(request, *args, **kwargs)
-        elif len(self.get_current_modules()) == 1:
-            return self._view_by_phase()(request, *args, **kwargs)
-        else:
-            return super().dispatch(request)
+        return self._view_by_phase()(request, *args, **kwargs)
 
     def _view_by_phase(self):
-        if self.module.last_active_phase:
+        if self.module and self.module.last_active_phase:
             return self.module.last_active_phase.view.as_view()
-        elif self.module.future_phases:
+        elif self.module and self.module.future_phases:
             return self.module.future_phases.first().view.as_view()
         else:
             return super().dispatch
