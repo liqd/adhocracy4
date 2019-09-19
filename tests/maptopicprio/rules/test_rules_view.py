@@ -23,8 +23,8 @@ def test_pre_phase(phase_factory, maptopic_factory, user):
 
     assert project.is_public
     with freeze_pre_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, item)
-        assert not rules.has_perm(perm_name, user, item)
+        assert rules.has_perm(perm_name, anonymous, item)
+        assert rules.has_perm(perm_name, user, item)
         assert rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
 

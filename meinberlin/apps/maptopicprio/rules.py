@@ -1,7 +1,6 @@
 import rules
 
 from adhocracy4.modules import predicates as module_predicates
-from meinberlin.apps.contrib import predicates as contrib_predicates
 
 rules.add_perm(
     'meinberlin_maptopicprio.add_maptopic',
@@ -16,8 +15,7 @@ rules.add_perm(
 rules.add_perm(
     'meinberlin_maptopicprio.view_maptopic',
     (module_predicates.is_project_admin |
-     (module_predicates.is_allowed_view_item &
-      contrib_predicates.has_context_started))
+     module_predicates.is_allowed_view_item)
 )
 
 rules.add_perm(

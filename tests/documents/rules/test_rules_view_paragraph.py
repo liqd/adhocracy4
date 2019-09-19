@@ -24,8 +24,8 @@ def test_pre_phase(phase_factory, chapter_factory, paragraph_factory, user):
 
     assert project.is_public
     with freeze_pre_phase(phase):
-        assert not rules.has_perm(perm_name, anonymous, paragraph)
-        assert not rules.has_perm(perm_name, user, paragraph)
+        assert rules.has_perm(perm_name, anonymous, paragraph)
+        assert rules.has_perm(perm_name, user, paragraph)
         assert rules.has_perm(perm_name, moderator, paragraph)
         assert rules.has_perm(perm_name, initiator, paragraph)
 
