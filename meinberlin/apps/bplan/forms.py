@@ -25,6 +25,7 @@ class BplanProjectForm(ExternalProjectForm):
     class Meta:
         model = models.Bplan
         fields = ['name', 'identifier', 'url', 'description', 'tile_image',
-                  'tile_image_copyright', 'is_archived', 'office_worker_email']
+                  'tile_image_copyright', 'is_archived', 'office_worker_email',
+                  'start_date', 'end_date']
         required_for_project_publish = ['name', 'url', 'description',
                                         'office_worker_email']
