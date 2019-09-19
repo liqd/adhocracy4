@@ -8,7 +8,7 @@
 {% block greeting %}Hello {{ receiver.username }},{% endblock %}
 
 {% block content %}The following event takes place on {{ action.obj.date }}:
-<b>{{ action.obj.title }}</b>
+<b>{{ action.obj.name }}</b>
 Further information about the event can be found in the project.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.event.get_absolute_url }}{% endblock %}

@@ -2,13 +2,13 @@
 
 {% block subject %}{{ action.project.name }} startet jetzt!{% endblock %}
 
-{% block headline %}Verstalting{% endblock %}
+{% block headline %}Verstaltung{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock %}
 
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
-{% block content %}am {{ action.obj.date }} findet folgende Veranstaltung statt:
-<b>{{ action.obj.title }}</b>
+{% block content %}am {{ action.obj.date }} findet die folgende Veranstaltung statt:
+<b>{{ action.obj.name }}</b>
 Weitere Informationen zu der Veranstaltung finden Sie im Projekt.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.event.get_absolute_url }}{% endblock %}
