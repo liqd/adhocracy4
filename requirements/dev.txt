@@ -4,7 +4,7 @@ Faker==2.0.2
 flake8==3.7.8
 freezegun==0.3.12
 isort==4.3.21
-pytest==5.1.2
+pytest==5.1.3
 pytest-cov==2.7.1
 pytest-django==3.5.1
 pytest-factoryboy==2.0.3
