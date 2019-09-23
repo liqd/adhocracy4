@@ -3,8 +3,8 @@ from datetime import timedelta
 from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
-from django.urls import reverse
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
@@ -50,6 +50,16 @@ class OfflineEvent(UserGeneratedContentModel):
             self.description, 'image-editor')
         super().save(*args, **kwargs)
 
+    @cached_property
+    def get_timeline_index(self):
+        if self.project.display_timeline:
+            for count, cluster in enumerate(self.project.participation_dates):
+                if 'event_type' in cluster and self.slug == cluster['slug']:
+                    return count
+        return 0
+
     def get_absolute_url(self):
-        return reverse('meinberlin_offlineevents:offlineevent-detail',
-                       args=[str(self.slug)])
+        if self.project.display_timeline:
+            return '{}?initialSlide={}'.format(self.project.get_absolute_url(),
+                                               self.get_timeline_index)
+        return self.project.get_absolute_url()

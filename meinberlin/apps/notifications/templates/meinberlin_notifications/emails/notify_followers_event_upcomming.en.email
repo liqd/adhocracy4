@@ -11,7 +11,7 @@
 <b>{{ action.obj.name }}</b>
 Further information about the event can be found in the project.{% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ action.obj.module.event.get_absolute_url }}{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% endblock %}
 {% block cta_label %}Show Event{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are following the above project. If you no longer want to receive notifications, unsubscribe from the <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">project</a> or change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}

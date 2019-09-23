@@ -13,7 +13,7 @@
 
 Weitere Informationen zu der Veranstaltung finden Sie im Projekt.{% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ action.obj.module.event.get_absolute_url }}{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% endblock %}
 {% block cta_label %}Veranstaltung anzeigen{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie oben genanntem Projekt folgen. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, entfolgen Sie dem <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">Projekt</a> oder ändern Sie die Einstellungen zu Ihrem <a href="{{ email.get_host }}{% url 'account' %}">Account</a>.{% endblock %}
