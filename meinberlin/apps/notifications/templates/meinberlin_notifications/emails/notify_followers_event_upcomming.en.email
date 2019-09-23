@@ -1,6 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}{{ action.project.name }} new event!{% endblock %}
+{% block subject %}Invitation to an event in project {{ action.project.name }}{% endblock %}
 
 {% block headline %}Event{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock %}

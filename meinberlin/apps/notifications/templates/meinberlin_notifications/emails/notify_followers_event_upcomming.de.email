@@ -1,14 +1,16 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}{{ action.project.name }} startet jetzt!{% endblock %}
+{% block subject %}Einladung zu einer Veranstaltung im Projekt {{ action.project.name }}{% endblock %}
 
-{% block headline %}Verstaltung{% endblock %}
+{% block headline %}Veranstaltung{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock %}
 
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
-{% block content %}am {{ action.obj.date }} findet die folgende Veranstaltung statt:
+{% block content %}am {{ action.obj.date }} Uhr findet die folgende Veranstaltung statt:
+
 <b>{{ action.obj.name }}</b>
+
 Weitere Informationen zu der Veranstaltung finden Sie im Projekt.{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ action.obj.module.event.get_absolute_url }}{% endblock %}
