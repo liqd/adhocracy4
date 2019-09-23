@@ -1,6 +1,6 @@
 {% extends 'email_base.'|add:part_type %}
 
-{% block subject %}{{ action.project.name }} startet jetzt!{% endblock %}
+{% block subject %}Los geht's: {{ action.project.name }} startet jetzt!{% endblock %}
 
 {% block headline %}Los geht’s!{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock %}
@@ -8,9 +8,10 @@
 {% block greeting %}Hallo {{ receiver.username }},{% endblock %}
 
 {% block content %}die Online-Beteiligung im oben genannten Projekt hat begonnen.
+
 <b>Sie können bis zum {{ action.obj.end_date }} Uhr daran teilnehmen.</b>{% endblock %}
 
-{% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_absolute_url }}{% endblock %}
-{% block cta_label %}Join now{% endblock %}
+{% block cta_url %}{{ email.get_host }}{{ action.obj.module.get_detail_url }}{% endblock %}
+{% block cta_label %}Jetzt mitmachen{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie oben genanntem Projekt folgen. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, entfolgen Sie dem <a href="{{ email.get_host }}{{ action.project.get_absolute_url }}">Projekt</a> oder ändern Sie die Einstellungen zu Ihrem <a href="{{ email.get_host }}{% url 'account' %}">Account</a>.{% endblock %}
