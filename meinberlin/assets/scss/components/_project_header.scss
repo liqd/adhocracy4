@@ -66,6 +66,10 @@
     border: 1px solid $border-color;
 }
 
+.project-header__follow {
+    margin-bottom: 2* $r-spacer;
+}
+
 @media (min-width: $breakpoint) {
     .project-header__logo-wrapper {
         display: flex;
