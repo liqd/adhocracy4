@@ -1,7 +1,7 @@
 {% extends 'email_base.'|add:part_type %}
 {% load verbose_name %}
 
-{% block subject %}Neue Reaktion auf Ihren Beitrag auf {{ site.name }}{% endblock %}
+{% block subject %}Reaktion auf Ihren Beitrag im Projekt {{ action.project.name }}{% endblock %}
 
 {% block headline %}Reaktion auf Ihren Beitrag{% endblock  %}
 {% block sub-headline %}{{ action.project.name }}{% endblock  %}
@@ -10,7 +10,7 @@
 
 {% block content %}{{ action.actor.username }} hat Ihren Beitrag kommentiert:
 {% if action.obj.comment %}
-{{ action.obj.comment }}
+<i>"{{ action.obj.comment|truncatewords:75 }}"</i>
 {% endif %}
 Möchten Sie antworten?{% endblock %}
 

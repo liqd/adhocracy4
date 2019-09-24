@@ -1,7 +1,7 @@
 {% extends 'email_base.'|add:part_type %}
 {% load verbose_name %}
 
-{% block subject %}A {{ action.obj | verbose_name }} was added to your {{ action.target | verbose_name }}{% endblock %}
+{% block subject %}Reaction to your contribution in project{{ action.project.name }}{% endblock %}
 
 {% block headline %}Reaction to your contribution{% endblock %}
 {% block sub-headline %}{{ action.project.name }}{% endblock  %}
@@ -10,7 +10,7 @@
 
 {% block content %}{{ action.actor.username }} commented on your post:
 {% if action.obj.comment %}
-{{ action.obj.comment }}
+<i>"{{ action.obj.comment|truncatewords:75 }}"</i>
 {% endif %}
 Would you like to answer?{% endblock %}
 
