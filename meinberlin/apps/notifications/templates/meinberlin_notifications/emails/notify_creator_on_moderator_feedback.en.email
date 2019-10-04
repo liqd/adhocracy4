@@ -20,7 +20,7 @@
 Do you want to answer?
 {% endblock %}
 
-{% if object.get_absolute_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% else %}{{ email.get_host }}{{ object.project.get_absolute_url }}{% endif %}{% endblock %}
+{% block cta_url %}{% if object.get_absolute_url %}{{ email.get_host }}{{ object.get_absolute_url }}{% else %}{{ email.get_host }}{{ object.project.get_absolute_url }}{% endif %}{% endblock %}
 {% block cta_label %}{% if object.get_absolute_url %}Check your contribution{% else %}Visit the project{% endif %}{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you added a contribution to the above project. If you no longer want to receive notifications, change the settings for your <a href="{{ email.get_host }}{% url 'account' %}">account</a>.{% endblock %}
