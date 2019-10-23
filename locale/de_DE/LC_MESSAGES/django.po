@@ -1066,6 +1066,8 @@ msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
 msgstr ""
+"Archivierte Projekte werden nicht in der Projektübersicht angezeigt. "
+"Für Projektinitiator*innen sind sie weiterhin im Dashboard einsehbar."
 
 #: adhocracy4/projects/models.py:260
 msgid "Project topics"
