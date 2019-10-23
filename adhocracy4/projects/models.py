@@ -252,8 +252,9 @@ class Project(ProjectContactDetailMixin,
     is_archived = models.BooleanField(
         default=False,
         verbose_name=_('Project is archived'),
-        help_text=_('Exclude this project from all listings by default. '
-                    'You can still access this project by using filters.'),
+        help_text=_('Archived projects are not shown in the project overview. '
+                    'For project initiators they are still visible in the '
+                    'dashboard.'),
     )
     topics = TopicField(
         verbose_name=_('Project topics'),
