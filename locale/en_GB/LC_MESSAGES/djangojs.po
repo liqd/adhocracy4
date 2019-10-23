@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-18 13:42+0200\n"
+"POT-Creation-Date: 2019-10-23 17:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,6 +87,8 @@ msgstr "Do you really want to delete this comment?"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:61
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:133
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:138
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:99
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:104
 msgid "Delete"
 msgstr "Delete"
 
@@ -178,6 +180,7 @@ msgid "Save"
 msgstr "Save"
 
 #: adhocracy4/polls/static/polls/Question.jsx:9
+#: meinberlin/apps/polls/assets/Question.jsx:173
 msgid "Your choice"
 msgstr "Your choice"
 
@@ -206,14 +209,17 @@ msgid "Please login to vote"
 msgstr "Please login to vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:139
+#: meinberlin/apps/polls/assets/Question.jsx:138
 msgid "To poll"
 msgstr "To poll"
 
 #: adhocracy4/polls/static/polls/Question.jsx:141
+#: meinberlin/apps/polls/assets/Question.jsx:141
 msgid "Change vote"
 msgstr "Change vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:144
+#: meinberlin/apps/polls/assets/Question.jsx:145
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
@@ -235,6 +241,7 @@ msgid "Users can select more than one answer."
 msgstr "Users can select more than one answer."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:67
 msgid "Add a new choice"
 msgstr "Add a new choice"
 
@@ -243,6 +250,8 @@ msgstr "Add a new choice"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:37
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:110
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:115
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:76
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:81
 msgid "Move up"
 msgstr "Move up"
 
@@ -251,6 +260,8 @@ msgstr "Move up"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:127
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:88
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:93
 msgid "Move down"
 msgstr "Move down"
 
@@ -271,7 +282,8 @@ msgstr "Your message"
 msgid "Send Report"
 msgstr "Send Report"
 
-#: adhocracy4/static/Alert.jsx:5
+#: adhocracy4/static/Alert.jsx:5 meinberlin/apps/contrib/assets/Alert.jsx:10
+#: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/contrib/static/js/ajax_modal.js:8
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:82
 #: meinberlin/apps/plans/assets/FilterNav.jsx:213
