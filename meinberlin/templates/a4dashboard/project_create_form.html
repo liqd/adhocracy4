@@ -6,7 +6,7 @@
 {% block dashboard_content %}
     <div class="l-menu">
         <div class="l-menu__content l-menu__content--aside">
-            <h1 class="u-first-heading">{% trans "Create project based on" %} {{ view.blueprint.title }}</h1>
+            <h1 class="u-first-heading">{% trans "Create project" %}</h1>
 
             {% for error in form.non_field_errors %}
                 <span>{{ error }}</span>
@@ -26,7 +26,7 @@
 
                 <div class="u-spacer-bottom">
                     <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Create draft' %}"/>
-                    <a href="{% url 'a4dashboard:blueprint-list' organisation_slug=view.organisation.slug %}"
+                    <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
                        class="btn btn--light">{% trans 'Cancel' %}</a>
                 </div>
             </form>

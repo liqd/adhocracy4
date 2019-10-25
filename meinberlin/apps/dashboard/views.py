@@ -1,8 +1,8 @@
-
-
 from django.apps import apps
+from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 from django.views.generic.detail import SingleObjectMixin
 
@@ -10,6 +10,7 @@ from adhocracy4.dashboard import mixins
 from adhocracy4.dashboard import signals
 from adhocracy4.dashboard import views as a4dashboard_views
 from adhocracy4.dashboard.blueprints import get_blueprints
+from adhocracy4.dashboard.forms import ProjectCreateForm
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
@@ -91,3 +92,36 @@ class ModuleCreateView(ProjectMixin,
 class DashboardProjectListView(a4dashboard_views.ProjectListView):
     def get_queryset(self):
         return super().get_queryset().filter(projectcontainer=None)
+
+
+class ProjectCreateView(mixins.DashboardBaseMixin,
+                        SuccessMessageMixin,
+                        generic.CreateView):
+    model = project_models.Project
+    slug_url_kwarg = 'project_slug'
+    form_class = ProjectCreateForm
+    template_name = 'a4dashboard/project_create_form.html'
+    permission_required = 'a4projects.add_project'
+    menu_item = 'project'
+    success_message = _('Project successfully created.')
+
+    def get_permission_object(self):
+        return self.organisation
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['organisation'] = self.organisation
+        kwargs['creator'] = self.request.user
+        return kwargs
+
+    def get_success_url(self):
+        return reverse('a4dashboard:project-edit',
+                       kwargs={'project_slug': self.object.slug})
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        signals.project_created.send(sender=None,
+                                     project=self.object,
+                                     user=self.request.user)
+
+        return response
