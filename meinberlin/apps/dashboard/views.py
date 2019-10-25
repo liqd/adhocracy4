@@ -10,11 +10,11 @@ from adhocracy4.dashboard import mixins
 from adhocracy4.dashboard import signals
 from adhocracy4.dashboard import views as a4dashboard_views
 from adhocracy4.dashboard.blueprints import get_blueprints
-from adhocracy4.dashboard.forms import ProjectCreateForm
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import ProjectMixin
+from meinberlin.apps.dashboard.forms import DashboardProjectCreateForm
 
 
 class ModuleBlueprintListView(ProjectMixin,
@@ -99,7 +99,7 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
                         generic.CreateView):
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
-    form_class = ProjectCreateForm
+    form_class = DashboardProjectCreateForm
     template_name = 'a4dashboard/project_create_form.html'
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
