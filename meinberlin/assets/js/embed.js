@@ -115,7 +115,8 @@ $(document).ready(function () {
 
   $(document).on('click', 'a[href]', function (event) {
     // NOTE: event.target.href is resolved against /embed/
-    var href = event.target.getAttribute('href')
+
+    var href = event.currentTarget.getAttribute('href')
     var $link = $(event.target)
     var embedTarget = getEmbedTarget($link, href)
 
