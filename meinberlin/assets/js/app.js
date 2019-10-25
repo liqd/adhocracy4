@@ -68,22 +68,8 @@ var init = function () {
   initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
   initialiseWidget('mb', 'mapTeaser', ReactMapTeaser.renderFilter)
   initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)
-}
 
-$(init)
-window.init_widgets = init
-
-module.exports = {
-  getCurrentPath: getCurrentPath
-}
-
-// Closes bootstrap collapse on click elsewhere
-$(document).on('click', function () {
-  $('.collapse').collapse('hide')
-})
-
-// carousel
-$(document).ready(function () {
+  // carousel
   function getInitialSlide () {
     return parseInt($('#timeline-carousel').attr('data-initial-slide'))
   }
@@ -101,4 +87,16 @@ $(document).ready(function () {
     slidesToShow: 1,
     slidesToScroll: 1
   })
+}
+
+$(init)
+window.init_widgets = init
+
+module.exports = {
+  getCurrentPath: getCurrentPath
+}
+
+// Closes bootstrap collapse on click elsewhere
+$(document).on('click', function () {
+  $('.collapse').collapse('hide')
 })
