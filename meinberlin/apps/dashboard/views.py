@@ -1,4 +1,5 @@
 from django.apps import apps
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -13,6 +14,7 @@ from adhocracy4.dashboard.blueprints import get_blueprints
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
+from adhocracy4.projects.mixins import ModuleDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.dashboard.forms import DashboardProjectCreateForm
 
@@ -87,6 +89,86 @@ class ModuleCreateView(ProjectMixin,
 
     def get_permission_object(self):
         return self.organisation
+
+
+class ModulePublishView(ModuleDispatchMixin,
+                        SingleObjectMixin,
+                        generic.View):
+    permission_required = 'a4projects.change_project'
+    model = module_models.Module
+    slug_url_kwarg = 'module_slug'
+
+    def get_permission_object(self):
+        return self.project
+
+    def post(self, request, *args, **kwargs):
+        action = request.POST.get('action', None)
+        if action == 'publish':
+            self.publish_module()
+        elif action == 'unpublish':
+            self.unpublish_module()
+        else:
+            messages.warning(self.request, _('Invalid action'))
+
+        return HttpResponseRedirect(self.get_next())
+
+    def get_next(self):
+        if 'referrer' in self.request.POST:
+            return self.request.POST['referrer']
+        elif 'HTTP_REFERER' in self.request.META:
+            return self.request.META['HTTP_REFERER']
+
+        return reverse('a4dashboard:project-edit', kwargs={
+            'project_slug': self.project.slug
+        })
+
+    def publish_module(self):
+        module = self.module
+        if not module.is_draft:
+            messages.info(self.request, _('Module is already added'))
+            return
+
+        module.is_draft = False
+        module.save()
+
+        messages.success(self.request,
+                         _('Module successfully added.'))
+
+    def unpublish_module(self):
+        module = self.module
+        if module.is_draft:
+            messages.info(self.request, _('Module is already removed'))
+            return
+
+        module.is_draft = True
+        module.save()
+        messages.success(self.request,
+                         _('Module successfully removed.'))
+
+
+class ModuleDeleteView(ModuleDispatchMixin,
+                       generic.DeleteView):
+
+    permission_required = 'a4projects.change_project'
+    model = module_models.Module
+    success_message = _('The plan has been deleted')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, self.success_message)
+        return super().delete(request, *args, **kwargs)
+
+    def get_permission_object(self):
+        return self.project
+
+    def get_success_url(self):
+        if 'referrer' in self.request.POST:
+            return self.request.POST['referrer']
+        elif 'HTTP_REFERER' in self.request.META:
+            return self.request.META['HTTP_REFERER']
+
+        return reverse('a4dashboard:project-edit', kwargs={
+            'project_slug': self.project.slug
+        })
 
 
 class DashboardProjectListView(a4dashboard_views.ProjectListView):

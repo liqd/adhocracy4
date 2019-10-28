@@ -57,6 +57,25 @@
                             </li>
                         {% endfor %}
                     </ul>
+                    <form action="{% url 'a4dashboard:module-publish' module_slug=module_menu.module.slug %}" method="post" data-ignore-submit="true">
+                        {% csrf_token %}
+                        <input type="hidden" name="referrer" value="{{ request.path }}" />
+                        {% if module_menu.module.is_draft %}
+                            <button name="action" value="publish" class="btn btn--primary">
+                                {% trans 'Add module to project' %}
+                            </button>
+                        {% else %}
+                            <button name="action" value="unpublish" class="btn btn--secondary">
+                                {% trans 'Remove module from project' %}
+                            </button>
+                        {% endif %}
+                    </form>
+                    <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn--light" value="{% trans 'Delete' %}">
+                            <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
+                        </button>
+                    </form>
                 </div>
             {% endfor %}
 

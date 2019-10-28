@@ -46,6 +46,12 @@ urlpatterns = [
         r'(?P<blueprint_slug>[-\w_]+)/$',
         views.ModuleCreateView.as_view(),
         name='module-create'),
+    url(r'^publish/module/(?P<module_slug>[-\w_]+)/$',
+        views.ModulePublishView.as_view(),
+        name='module-publish'),
+    url(r'^delete/module/(?P<slug>[-\w_]+)/$',
+        views.ModuleDeleteView.as_view(),
+        name='module-delete'),
 
     # Overwrite adhocracy4 core urls with meinBerlin urls
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
