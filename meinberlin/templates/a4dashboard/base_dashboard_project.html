@@ -1,6 +1,22 @@
 {% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n static meinberlin_project_tags %}
 
+{% block dashboard_nav %}
+<div class="l-wrapper">
+    <div class="l-center-6 u-spacer-bottom-double">
+        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+            <ul>
+                <li>
+                    <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'To main menu' %}</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
 {% block dashboard_content %}
     <div class="l-menu">
         <nav class="l-menu__menu" aria-label="{% trans 'Project Settings' %}">
