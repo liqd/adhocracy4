@@ -54,6 +54,7 @@ class ModuleCreateView(ProjectMixin,
             name=self.blueprint.title,
             weight=len(project.modules) + 1,
             project=project,
+            is_draft=True,
         )
         module.save()
         signals.module_created.send(sender=None,
