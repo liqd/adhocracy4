@@ -505,8 +505,7 @@ class Project(ProjectContactDetailMixin,
 
     @cached_property
     def has_finished(self):
-        return self.modules.exists()\
-            and not self.phases.active_phases().exists()\
+        return not self.phases.active_phases().exists()\
             and not self.phases.future_phases().exists()\
             and not self.has_future_events
 
