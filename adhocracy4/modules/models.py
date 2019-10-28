@@ -77,7 +77,6 @@ class Module(models.Model):
     weight = models.PositiveIntegerField()
     project = models.ForeignKey(
         project_models.Project, on_delete=models.CASCADE)
-    is_draft = models.BooleanField(default=True)
 
     objects = ModulesQuerySet.as_manager()
 
