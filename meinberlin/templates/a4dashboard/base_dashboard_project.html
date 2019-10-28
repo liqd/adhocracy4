@@ -72,6 +72,7 @@
                     </form>
                     <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug %}" method="post">
                         {% csrf_token %}
+                        <input type="hidden" name="referrer" value="{{ request.path }}" />
                         <button type="submit" class="btn btn--light" {% if project.modules.count == 1 %}disabled{% endif %} value="{% trans 'Delete' %}">
                             <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
                         </button>

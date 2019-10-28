@@ -14,7 +14,6 @@ from adhocracy4.dashboard.blueprints import get_blueprints
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
-from adhocracy4.projects.mixins import ModuleDispatchMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.dashboard.forms import DashboardProjectCreateForm
 
@@ -92,15 +91,14 @@ class ModuleCreateView(ProjectMixin,
         return self.organisation
 
 
-class ModulePublishView(ModuleDispatchMixin,
-                        SingleObjectMixin,
+class ModulePublishView(SingleObjectMixin,
                         generic.View):
     permission_required = 'a4projects.change_project'
     model = module_models.Module
     slug_url_kwarg = 'module_slug'
 
     def get_permission_object(self):
-        return self.project
+        return self.get_object().project
 
     def post(self, request, *args, **kwargs):
         action = request.POST.get('action', None)
@@ -124,7 +122,7 @@ class ModulePublishView(ModuleDispatchMixin,
         })
 
     def publish_module(self):
-        module = self.module
+        module = self.get_object()
         if not module.is_draft:
             messages.info(self.request, _('Module is already added'))
             return
@@ -136,7 +134,7 @@ class ModulePublishView(ModuleDispatchMixin,
                          _('Module successfully added.'))
 
     def unpublish_module(self):
-        module = self.module
+        module = self.get_object()
         if module.is_draft:
             messages.info(self.request, _('Module is already removed'))
             return
@@ -147,19 +145,18 @@ class ModulePublishView(ModuleDispatchMixin,
                          _('Module successfully removed.'))
 
 
-class ModuleDeleteView(ModuleDispatchMixin,
-                       generic.DeleteView):
+class ModuleDeleteView(generic.DeleteView):
 
     permission_required = 'a4projects.change_project'
     model = module_models.Module
-    success_message = _('The plan has been deleted')
+    success_message = _('The module has been deleted')
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)
 
     def get_permission_object(self):
-        return self.project
+        return self.get_object().project
 
     def get_success_url(self):
         if 'referrer' in self.request.POST:
@@ -168,7 +165,7 @@ class ModuleDeleteView(ModuleDispatchMixin,
             return self.request.META['HTTP_REFERER']
 
         return reverse('a4dashboard:project-edit', kwargs={
-            'project_slug': self.project.slug
+            'project_slug': self.get_object().project.slug
         })
 
 
