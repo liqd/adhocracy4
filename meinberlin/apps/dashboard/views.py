@@ -50,9 +50,14 @@ class ModuleCreateView(ProjectMixin,
 
     def post(self, request, *args, **kwargs):
         project = self.get_object()
+        weight = 1
+        if project.modules:
+            weight = max(
+                project.modules.values_list('weight', flat=True)
+            ) + 1
         module = module_models.Module(
             name=self.blueprint.title,
-            weight=max([module.weight for module in project.modules]) + 1,
+            weight=weight,
             project=project,
             is_draft=True,
         )
