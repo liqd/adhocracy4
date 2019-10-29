@@ -1,7 +1,5 @@
-from django.http import Http404
 from django.urls import reverse
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
 from adhocracy4.dashboard import mixins as dashboard_mixins
@@ -58,9 +56,6 @@ class DocumentDetailView(ChapterDetailView):
         first_chapter = models.Chapter.objects \
             .filter(module=self.module) \
             .first()
-
-        if not first_chapter:
-            raise Http404(_('Document has no chapters defined.'))
         return first_chapter
 
 
