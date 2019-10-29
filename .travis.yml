@@ -2,11 +2,12 @@ language: python
 dist: bionic
 python:
 - '3.6'
+node_js:
+- '8'
 cache:
   pip: true
   npm: true
 install:
-- nvm install 8
 - npm install
 - npm run build
 - pip install -r requirements/dev.txt
