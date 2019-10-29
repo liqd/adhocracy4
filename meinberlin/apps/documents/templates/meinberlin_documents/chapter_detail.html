@@ -10,6 +10,7 @@
     {% endif %}
 
     <article class="module-content">
+        {% if chapter_list %}
         <div class="l-wrapper">
             <div class="l-center-8">
                 {% if chapter_list|length > 1 %}
@@ -64,6 +65,13 @@
                 </div>
             </div>
         </div>
+        {% else %}
+        <div class="l-wrapper">
+            <div class="l-center-8">
+                {% trans 'A Document has not been added yet' %}
+            </div>
+        </div>
+        {% endif %}
     </article>
 
     {% if chapter_list|length > 1 %}
@@ -75,7 +83,9 @@
 
     <div class="l-wrapper">
         <div class="l-center-8">
+            {% if object %}
             {% react_comments object %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}
