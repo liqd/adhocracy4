@@ -2,6 +2,7 @@ from django.apps import apps
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http import HttpResponseRedirect
+from django.urls import resolve
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
@@ -146,7 +147,6 @@ class ModulePublishView(SingleObjectMixin,
 
 
 class ModuleDeleteView(generic.DeleteView):
-
     permission_required = 'a4projects.change_project'
     model = module_models.Module
     success_message = _('The module has been deleted')
@@ -159,10 +159,13 @@ class ModuleDeleteView(generic.DeleteView):
         return self.get_object().project
 
     def get_success_url(self):
-        if 'referrer' in self.request.POST:
-            return self.request.POST['referrer']
-        elif 'HTTP_REFERER' in self.request.META:
-            return self.request.META['HTTP_REFERER']
+        referrer = self.request.POST.get('referrer', None) \
+            or self.request.META.get('HTTP_REFERER', None)
+        if referrer:
+            view, args, kwargs = resolve(referrer)
+            if 'module_slug' not in kwargs \
+                    or not kwargs['module_slug'] == self.get_object().slug:
+                return referrer
 
         return reverse('a4dashboard:project-edit', kwargs={
             'project_slug': self.get_object().project.slug
