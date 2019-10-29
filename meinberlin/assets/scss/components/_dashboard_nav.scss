@@ -1,28 +1,11 @@
 .dashboard-nav {
     border: 1px solid $border-color;
-    border-radius: 0.3em;
+    border-radius: 0.3em 0.3em 0 0;
     overflow: hidden;
-    margin-bottom: 0.5em;
 }
 
 .dashboard-nav__dropdown {
     background-color: $bg-secondary;
-
-    .dropdown,
-    &.dropdown,
-    .dropdown-toggle {
-        margin: 0;
-    }
-
-    .dropdown-toggle {
-        width: 100%;
-        text-align: left;
-        border: 0;
-    }
-
-    i {
-        float: right;
-    }
 }
 
 .dashboard-nav__pages {
@@ -39,9 +22,18 @@
     display: block;
     padding: 0.7em;
     border-left: 0.3em solid transparent;
-
     color: $text-color;
     text-decoration: none;
+}
+
+.dashboard-nav__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard-nav__breadcrumb {
+    padding-top: 1.5*$padding;
+    padding-bottom: 1.5*$padding;
 }
 
 .dashboard-nav__item--interactive {
@@ -61,7 +53,40 @@
     }
 }
 
-.dashboard-nav__breadcrumb {
-    padding-top: 1.5*$padding;
-    padding-bottom: 1.5*$padding;
+.dashboard-nav__collapsible-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dashboard-nav__collapsible-menu {
+    a {
+        display: block;
+    }
+
+    label {
+        display: block;
+        cursor: pointer;
+        margin: 0;
+    }
+
+    input {
+        display: none;
+    }
+}
+
+.dashboard-nav__menu-content {
+    max-height: 0;
+    overflow: hidden;
+}
+
+/* Toggle Effect */
+input:checked ~ .dashboard-nav__menu-content {
+    max-height: 100%;
+}
+
+.dashboard-nav__module-control {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 $spacer 0;
 }

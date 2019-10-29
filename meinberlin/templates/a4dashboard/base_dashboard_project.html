@@ -21,43 +21,65 @@
     <div class="l-menu">
         <nav class="l-menu__menu" aria-label="{% trans 'Project Settings' %}">
             <div class="dashboard-nav">
-                <div class="dashboard-nav__dropdown">
-                    <div class="dashboard-nav__item">{{ project.name }}
-                        {% if project_progress.project_is_complete %}
-                        <i class="fas fa-check-circle u-success" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
-                        {% else %}
-                        <i class="fas fa-exclamation-circle u-danger" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
-                        {% endif %}
+                <div class="dashboard-nav__collapsible-menu">
+                    <input type="checkbox" id="dashboard-nav__project" checked>
+                    <label class="dashboard-nav__dropdown" for="dashboard-nav__project">
+                        <div class="dashboard-nav__item">
+                            <div class="dashboard-nav__header">
+                                <span>{% trans 'Project' %}</span>
+                                <span>
+                                    {% if project_progress.project_is_complete %}
+                                    <i class="fas fa-check-circle u-success" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+                                    {% else %}
+                                    <i class="fas fa-exclamation-circle u-danger" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
+                                    {% endif %}
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            {{ project.name }}
+                        </div>
+                    </label>
+                    <div class="dashboard-nav__menu-content">
+                        <ul>
+                        {% for item in dashboard_menu.project %}
+                            <li class="dashboard-nav__page">
+                                <a href="{{ item.url }}"
+                                   class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
+                                    {{ item.label }}
+                                    {% if not item.is_complete %}
+                                        <i class="fa fa-exclamation-circle u-danger" title="{% trans 'Missing fields for publication' %}" aria-label="{% trans 'Missing fields for publication' %}"></i>
+                                    {% endif %}
+                                </a>
+                            </li>
+                        {% endfor %}
+                        </ul>
                     </div>
                 </div>
-                <ul class="dashboard-nav__pages">
-                    {% for item in dashboard_menu.project %}
-                        <li class="dashboard-nav__page">
-                            <a href="{{ item.url }}"
-                               class="dashboard-nav__item dashboard-nav__item--interactive {{ item.is_active|yesno:"is-active," }}">
-                                {{ item.label }}
-                                {% if not item.is_complete %}
-                                    <i class="fas fa-exclamation-circle u-danger" title="{% trans 'Missing required fields' %}" aria-label="{% trans 'Missing required fields' %}"></i>
-                                {% endif %}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
             </div>
 
+            <h4>{% trans 'Participation Module' %}</h4>
             {% for module_menu in dashboard_menu.modules %}
-                <div class="dashboard-nav">
-                    <div class="dashboard-nav__dropdown">
+            <div class="dashboard-nav">
+                <div class="dashboard-nav__collapsible-menu">
+                    <input type="checkbox" id="dashboard-nav__module--{{ forloop.counter }}" checked>
+                    <label class="dashboard-nav__dropdown" for="dashboard-nav__module--{{ forloop.counter }}">
                         <div class="dashboard-nav__item">
+                            <div class="dashboard-nav__header">
+                                <span>{{ module.blueprint.title }}</span>
+                                <span>
+                                    {% if module_menu.menu.is_complete %}
+                                        <i class="fas fa-check-circle u-success" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
+                                    {% else %}
+                                        <i class="fas fa-exclamation-circle u-danger" title="{% trans 'Module not ready for addition' %}" aria-label="{% trans 'Module not ready for addition' %}"></i>
+                                    {% endif %}
+                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </span>
+                            </div>
                             {{ module_menu.module.name }}
-                            {% if module_menu.is_complete %}
-                                <i class="fas fa-check-circle u-success" title="{% trans 'Module ready for addition' %}" aria-label="{% trans 'Module ready for addition' %}"></i>
-                            {% else %}
-                                <i class="fas fa-exclamation-circle u-danger" title="{% trans 'Module not ready for addition' %}" aria-label="{% trans 'Module not ready for addition' %}"></i>
-                            {% endif %}
                         </div>
-                    </div>
-                    <ul class="dashboard-nav__pages">
+                    </label>
+                    <div class="dashboard-nav__menu-content">
+                        <ul>
                         {% for item in module_menu.menu %}
                             <li class="dashboard-nav__page">
                                 <a href="{{ item.url }}"
@@ -69,33 +91,39 @@
                                 </a>
                             </li>
                         {% endfor %}
-                    </ul>
-                    <form action="{% url 'a4dashboard:module-publish' module_slug=module_menu.module.slug %}" method="post" data-ignore-submit="true">
-                        {% csrf_token %}
-                        <input type="hidden" name="referrer" value="{{ request.path }}" />
-                        {% if module_menu.module.is_draft %}
-                            <button name="action" value="publish" class="btn btn--primary" {% if not module_menu.is_complete %}disabled{% endif %}>
-                                {% trans 'Add module to project' %}
-                            </button>
-                        {% else %}
-                            <button name="action" value="unpublish" class="btn btn--secondary">
-                                {% trans 'Remove module from project' %}
-                            </button>
-                        {% endif %}
-                    </form>
-                    <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug %}" method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="referrer" value="{{ request.path }}" />
-                        <button type="submit" class="btn btn--light" {% if project.modules.count == 1 or not module_menu.module.is_draft %}disabled{% endif %} value="{% trans 'Delete' %}">
-                            <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
-                        </button>
-                    </form>
+                        </ul>
+                    </div>
                 </div>
-            {% endfor %}
-            {% has_perm 'a4projects.add_project' request.user view.project.organisation as user_may_add %}
-            {% if user_may_add and not project|is_container and not project|is_external %}
-                <a class="btn btn--secondary btn--full" href="{% url 'a4dashboard:module-blueprint-list' project_slug=project.slug %}">{% trans 'Add Module' %}</a>
-            {% endif %}
+            </div>
+            <div class="dashboard-nav__module-control btn-group form-row">
+                <form class="u-flex-grow-1" action="{% url 'a4dashboard:module-publish' module_slug=module_menu.module.slug %}" method="post" data-ignore-submit="true">
+                    {% csrf_token %}
+                    <input type="hidden" name="referrer" value="{{ request.path }}" />
+                    {% if module_menu.module.is_draft %}
+                        <button name="action" value="publish" {% if not module_menu.is_complete %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top">
+                            {% trans 'Add module to project' %}
+                        </button>
+                    {% else %}
+                        <button name="action" value="unpublish" class="btn btn--secondary btn--full btn--attached-top">
+                            {% trans 'Remove module from project' %}
+                        </button>
+                    {% endif %}
+                </form>
+                <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="referrer" value="{{ request.path }}" />
+                    <button type="submit" class="btn btn--light btn--attached-top" {% if project.modules.count == 1 %}disabled{% endif %} value="{% trans 'Delete' %}">
+                        <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
+                    </button>
+                </form>
+            </div>
+        {% empty %}
+        <div>
+            <p>{% trans 'You have not added a participation module yet.' %}</p>
+        </div>
+    {% endfor %}
+    {% has_perm 'a4projects.add_project' request.user view.project.organisation as user_may_add %}
+    {% if user_may_add and not project|is_container and not project|is_external %}
         </nav>
 
         <div class="l-menu__content l-menu__content--aside">

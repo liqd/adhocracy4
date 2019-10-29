@@ -138,6 +138,10 @@
     overflow-wrap: break-word;
 }
 
+.u-flex-grow-1 {
+    flex-grow: 1;
+}
+
 .u-xs-down-display-none {
     @media screen and (max-width: $breakpoint-xs-down) {
         display: none !important;
