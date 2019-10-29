@@ -7,13 +7,13 @@
     <nav class="l-menu__menu" aria-label="{% trans 'Participation projects' %}">
         <div class="dashboard-nav">
             <div class="dashboard-nav__dropdown">
-                <div class="dashboard-nav__item">{% trans "Participation projects" %}</div>
+                <div class="dashboard-nav__item">{% trans "Overview" %}</div>
             </div>
             <ul class="dashboard-nav__pages">
                 <li class="dashboard-nav__page">
                     <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}"
                         class="dashboard-nav__item dashboard-nav__item--interactive {% if request.resolver_match.url_name == 'project-list' %}is-active{% endif %}">
-                        {% trans "Projects" %}
+                        {% trans "Participation projects" %}
                     </a>
                 </li>
                 <li class="dashboard-nav__page">
