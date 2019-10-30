@@ -2,14 +2,13 @@ from datetime import timedelta
 
 import pytest
 from dateutil.parser import parse
+from django.contrib.contenttypes.models import ContentType
 from django.core.management import call_command
 from freezegun import freeze_time
 
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs
 from adhocracy4.projects.models import Project
-
-from django.contrib.contenttypes.models import ContentType
 
 SCHEDULE = Verbs.SCHEDULE.value
 START = Verbs.START.value

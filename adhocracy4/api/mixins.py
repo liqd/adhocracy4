@@ -1,7 +1,6 @@
 from django.apps import apps
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from rest_framework import status

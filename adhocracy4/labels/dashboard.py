@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
-from adhocracy4.dashboard import ModuleFormSetComponent, components
+from adhocracy4.dashboard import ModuleFormSetComponent
+from adhocracy4.dashboard import components
 
 from . import forms
 

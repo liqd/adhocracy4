@@ -1,7 +1,7 @@
 from django.conf import settings
-
 from django_filters import rest_framework as filters
-from rest_framework import mixins, viewsets
+from rest_framework import mixins
+from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.serializers import ValidationError
 

@@ -1,8 +1,9 @@
+import re
 from contextlib import contextmanager
 from datetime import timedelta
+
 from django.utils import timezone
 from freezegun import freeze_time
-import re
 
 
 @contextmanager

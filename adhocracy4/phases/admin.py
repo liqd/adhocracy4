@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib import admin
 
-from . import content, models
+from . import content
+from . import models
 
 
 class PhaseForm(forms.ModelForm):

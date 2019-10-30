@@ -1,5 +1,5 @@
-from collections import OrderedDict
 import numbers
+from collections import OrderedDict
 
 import xlsxwriter
 from django.http import HttpResponse

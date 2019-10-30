@@ -1,7 +1,7 @@
 import pytest
-
-from rest_framework import status
 from django.urls import reverse
+from rest_framework import status
+
 from adhocracy4.polls.models import Vote
 from adhocracy4.polls.phases import VotingPhase
 from tests.helpers import active_phase

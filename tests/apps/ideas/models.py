@@ -1,15 +1,14 @@
 from ckeditor.fields import RichTextField
-
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
 from adhocracy4.categories.fields import CategoryField
 from adhocracy4.comments.models import Comment
+from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.query import CommentableQuerySet
 from adhocracy4.models.query import RateableQuerySet
 from adhocracy4.modules.models import Item
 from adhocracy4.ratings.models import Rating
-from adhocracy4.maps import fields as map_fields
 
 
 class IdeaQuerySet(RateableQuerySet, CommentableQuerySet):

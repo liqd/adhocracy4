@@ -1,5 +1,7 @@
 from django_filters import rest_framework as filters
-from rest_framework import mixins, permissions, viewsets
+from rest_framework import mixins
+from rest_framework import permissions
+from rest_framework import viewsets
 
 from adhocracy4.api.mixins import AllowPUTAsCreateMixin
 

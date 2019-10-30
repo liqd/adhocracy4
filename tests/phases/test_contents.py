@@ -1,6 +1,7 @@
 import pytest
 
-from adhocracy4.phases import PhaseContent, content
+from adhocracy4.phases import PhaseContent
+from adhocracy4.phases import content
 from tests.apps.questions import models
 from tests.apps.questions.phases import AskPhase
 

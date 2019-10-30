@@ -10,7 +10,6 @@ from adhocracy4.projects.models import Project
 
 from . import verbs
 
-
 _ACTION_TYPES = {}
 _DEFAULT_TYPE = 'unknown'
 _ACTION_ICONS = OrderedDict()

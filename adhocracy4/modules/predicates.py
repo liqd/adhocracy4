@@ -1,13 +1,12 @@
 import rules
-
 from rules import predicates as rules_predicates
 
 from adhocracy4.organisations.predicates import is_initiator
 from adhocracy4.phases import predicates as phase_predicates
+from adhocracy4.projects.predicates import is_live
 from adhocracy4.projects.predicates import is_member
 from adhocracy4.projects.predicates import is_moderator
 from adhocracy4.projects.predicates import is_public
-from adhocracy4.projects.predicates import is_live
 
 
 @rules.predicate

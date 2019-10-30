@@ -1,7 +1,10 @@
 from django.apps import apps
-from django.db.models.signals import post_delete, post_init, post_save
+from django.db.models.signals import post_delete
+from django.db.models.signals import post_init
+from django.db.models.signals import post_save
 
 from adhocracy4.images import services
+
 from .fields import ConfiguredImageField
 
 _PREFIX = '_a4images_'

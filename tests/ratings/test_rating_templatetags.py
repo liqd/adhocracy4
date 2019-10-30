@@ -1,8 +1,8 @@
 import html
 import json
-import pytest
 import re
 
+import pytest
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.contenttypes.models import ContentType
 

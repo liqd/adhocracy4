@@ -2,8 +2,8 @@ from django import forms
 from django.forms import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 
-from adhocracy4.labels import models as labels_models
 from adhocracy4.dashboard.components.forms import ModuleDashboardFormSet
+from adhocracy4.labels import models as labels_models
 from adhocracy4.modules import models as module_models
 
 

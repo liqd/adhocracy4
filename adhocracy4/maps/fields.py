@@ -1,5 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
-from jsonfield.fields import JSONField, JSONFormField
+from jsonfield.fields import JSONField
+from jsonfield.fields import JSONFormField
 
 
 class GeoJSONFormField(JSONFormField):

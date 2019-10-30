@@ -2,12 +2,12 @@ import pytest
 from pytest_factoryboy import register
 from rest_framework.test import APIClient
 
-from tests.images import factories as img_factories
-from tests.apps.locations import factories as location_factories
-from tests.apps.questions import factories as q_factories
 from adhocracy4.test import factories
-from tests.apps.organisations.factories import OrganisationFactory
 from adhocracy4.test import helpers
+from tests.apps.locations import factories as location_factories
+from tests.apps.organisations.factories import OrganisationFactory
+from tests.apps.questions import factories as q_factories
+from tests.images import factories as img_factories
 
 
 def pytest_configure(config):

@@ -1,5 +1,7 @@
-from django.contrib.contenttypes.fields import (GenericForeignKey,
-                                                GenericRelation)
+from urllib.parse import urljoin
+
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -7,8 +9,6 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4 import transforms
 from adhocracy4.models import base
 from adhocracy4.ratings import models as rating_models
-
-from urllib.parse import urljoin
 
 
 class Comment(base.UserGeneratedContentModel):

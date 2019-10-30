@@ -7,7 +7,6 @@ from .components.forms import ModuleFormComponent
 from .components.forms import ModuleFormSetComponent
 from .components.forms import ProjectFormComponent
 
-
 default_app_config = 'adhocracy4.dashboard.apps.Config'
 
 __all__ = ['components', 'DashboardComponent',

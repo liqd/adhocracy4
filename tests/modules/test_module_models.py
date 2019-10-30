@@ -1,6 +1,7 @@
 from datetime import timedelta
-from dateutil.parser import parse
+
 import pytest
+from dateutil.parser import parse
 from freezegun import freeze_time
 
 

@@ -1,9 +1,8 @@
 import pytest
 
-from tests.apps.questions.models import Question
-
-from adhocracy4.filters.filters import ClassBasedViewFilterSet
 from adhocracy4.categories.filters import CategoryFilter
+from adhocracy4.filters.filters import ClassBasedViewFilterSet
+from tests.apps.questions.models import Question
 
 
 class ExampleFilterSet(ClassBasedViewFilterSet):

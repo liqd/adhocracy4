@@ -1,4 +1,5 @@
 import factory
+
 from adhocracy4.test import factories
 
 from . import models

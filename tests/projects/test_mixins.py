@@ -3,12 +3,13 @@ from unittest import mock
 import pytest
 from dateutil.parser import parse
 from django.http import HttpResponse
-from django.views.generic import ListView, View
+from django.views.generic import ListView
+from django.views.generic import View
 from freezegun import freeze_time
 
-from adhocracy4.projects import mixins, models
+from adhocracy4.projects import mixins
+from adhocracy4.projects import models
 from adhocracy4.test.helpers import dispatch_view
-
 from tests.apps.questions import models as question_models
 
 

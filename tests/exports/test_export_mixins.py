@@ -1,14 +1,14 @@
-import pytest
-
 from collections import OrderedDict
 
-from adhocracy4.exports.mixins import (ExportModelFieldsMixin,
-                                       ItemExportWithCategoriesMixin,
-                                       ItemExportWithCommentCountMixin,
-                                       ItemExportWithCommentsMixin,
-                                       ItemExportWithLinkMixin,
-                                       ItemExportWithLocationMixin,
-                                       ItemExportWithRatesMixin)
+import pytest
+
+from adhocracy4.exports.mixins import ExportModelFieldsMixin
+from adhocracy4.exports.mixins import ItemExportWithCategoriesMixin
+from adhocracy4.exports.mixins import ItemExportWithCommentCountMixin
+from adhocracy4.exports.mixins import ItemExportWithCommentsMixin
+from adhocracy4.exports.mixins import ItemExportWithLinkMixin
+from adhocracy4.exports.mixins import ItemExportWithLocationMixin
+from adhocracy4.exports.mixins import ItemExportWithRatesMixin
 from adhocracy4.ratings.models import Rating
 from tests.apps.ideas.models import Idea
 

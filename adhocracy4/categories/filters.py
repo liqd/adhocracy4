@@ -7,7 +7,9 @@ from django_filters.fields import ModelChoiceField
 
 from adhocracy4.filters.widgets import DropdownLinkWidget
 
-from . import get_category_icon_url, has_icons, models
+from . import get_category_icon_url
+from . import has_icons
+from . import models
 
 
 class CategoryFilterWidget(DropdownLinkWidget):

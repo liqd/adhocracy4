@@ -1,6 +1,5 @@
 import pytest
 from dateutil.parser import parse
-
 from django import forms
 
 from adhocracy4.forms.fields import DateTimeField

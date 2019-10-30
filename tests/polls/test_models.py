@@ -1,8 +1,8 @@
 import pytest
-
 from django.contrib.auth.models import AnonymousUser
 
-from adhocracy4.polls.models import Question, Choice
+from adhocracy4.polls.models import Choice
+from adhocracy4.polls.models import Question
 
 
 @pytest.mark.django_db

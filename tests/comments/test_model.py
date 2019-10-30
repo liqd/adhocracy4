@@ -1,7 +1,7 @@
 import pytest
 
-from adhocracy4.ratings import models as rating_models
 from adhocracy4.comments import models as comments_models
+from adhocracy4.ratings import models as rating_models
 
 
 @pytest.mark.django_db

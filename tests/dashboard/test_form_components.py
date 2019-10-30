@@ -1,18 +1,17 @@
 import pytest
-
 from django import forms
 from django.forms import inlineformset_factory
 from django.utils.timezone import now
 
-from adhocracy4.dashboard.components.forms import ProjectFormComponent
+from adhocracy4.dashboard.components.forms import ModuleDashboardForm
+from adhocracy4.dashboard.components.forms import ModuleDashboardFormSet
 from adhocracy4.dashboard.components.forms import ModuleFormComponent
 from adhocracy4.dashboard.components.forms import ModuleFormSetComponent
 from adhocracy4.dashboard.components.forms import ProjectDashboardForm
-from adhocracy4.dashboard.components.forms import ModuleDashboardForm
-from adhocracy4.dashboard.components.forms import ModuleDashboardFormSet
-from adhocracy4.projects import models as project_models
+from adhocracy4.dashboard.components.forms import ProjectFormComponent
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
+from adhocracy4.projects import models as project_models
 
 
 @pytest.mark.django_db

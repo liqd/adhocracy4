@@ -1,7 +1,8 @@
 from io import BytesIO
-from PIL import Image
 
-from django.core.files import base, images
+from django.core.files import base
+from django.core.files import images
+from PIL import Image
 
 
 class ImageFactory():

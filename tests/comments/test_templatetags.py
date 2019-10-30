@@ -1,11 +1,11 @@
 import html
 import json
-import pytest
 import re
-from freezegun import freeze_time
 
+import pytest
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.contenttypes.models import ContentType
+from freezegun import freeze_time
 
 from adhocracy4.comments.serializers import ThreadSerializer
 from adhocracy4.test import helpers

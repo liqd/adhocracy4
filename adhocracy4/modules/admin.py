@@ -1,9 +1,9 @@
 from django.contrib import admin
 
 from adhocracy4.phases import admin as phase_admin
+from adhocracy4.projects.admin import ProjectAdminFilter
 
 from . import models
-from adhocracy4.projects.admin import ProjectAdminFilter
 
 
 class ProjectFilter(ProjectAdminFilter):

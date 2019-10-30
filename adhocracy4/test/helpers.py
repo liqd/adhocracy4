@@ -5,8 +5,9 @@ from unittest import mock
 from urllib.parse import urlparse
 
 from django.conf import settings
+from django.template import Context
+from django.template import Template
 from django.urls import resolve
-from django.template import Context, Template
 from easy_thumbnails.files import get_thumbnailer
 
 

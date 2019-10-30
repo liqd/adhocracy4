@@ -1,8 +1,9 @@
+import operator
+from functools import reduce
+
 import django_filters
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import Q
-from functools import reduce
-import operator
 
 
 class ClassBasedViewFilterSet(django_filters.FilterSet):
