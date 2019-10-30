@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models import F
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
@@ -38,7 +39,7 @@ class PhasesQuerySet(models.QuerySet):
         return self\
             .filter(models.Q(start_date__gt=timezone.now())
                     | models.Q(start_date=None))\
-            .order_by('start_date')
+            .order_by(F('start_date').asc(nulls_first=True))
 
     def past_and_active_phases(self):
         """Return past and active phases ordered by start date."""
