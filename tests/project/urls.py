@@ -1,18 +1,20 @@
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth import views
 from rest_framework import routers
 
 from adhocracy4.api import routers as a4routers
+from adhocracy4.comments.api import CommentViewSet
 from adhocracy4.dashboard import urls as dashboard_urls
-from adhocracy4.modules import urls as mod_urls
-from adhocracy4.projects import urls as prj_urls
 from adhocracy4.follows.api import FollowViewSet
+from adhocracy4.modules import urls as mod_urls
+from adhocracy4.polls.api import PollViewSet
+from adhocracy4.polls.api import VoteViewSet
+from adhocracy4.polls.routers import QuestionDefaultRouter
+from adhocracy4.projects import urls as prj_urls
 from adhocracy4.ratings.api import RatingViewSet
 from adhocracy4.reports.api import ReportViewSet
-from adhocracy4.polls.api import PollViewSet, VoteViewSet
-from adhocracy4.comments.api import CommentViewSet
-from adhocracy4.polls.routers import QuestionDefaultRouter
 
 router = routers.DefaultRouter()
 router.register(r'follows', FollowViewSet, basename='follows')

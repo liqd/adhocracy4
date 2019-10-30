@@ -1,5 +1,4 @@
 import pytest
-
 from django.core.exceptions import ObjectDoesNotExist
 
 from adhocracy4.comments import models

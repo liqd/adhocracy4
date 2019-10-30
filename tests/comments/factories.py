@@ -1,8 +1,8 @@
 import factory
 from django.db.models import signals
 
-from tests.apps.questions import factories
 from adhocracy4.test.factories import UserFactory
+from tests.apps.questions import factories
 
 
 @factory.django.mute_signals(signals.post_save)

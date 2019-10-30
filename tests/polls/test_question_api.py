@@ -1,7 +1,7 @@
 import pytest
-
-from rest_framework import status
 from django.urls import reverse
+from rest_framework import status
+
 from adhocracy4.polls.models import Question
 
 

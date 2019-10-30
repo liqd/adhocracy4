@@ -2,9 +2,9 @@ from django.core.exceptions import FieldDoesNotExist
 from django.urls import reverse
 
 from .. import DashboardComponent
-from .forms import ProjectDashboardForm
 from .forms import ModuleDashboardForm
 from .forms import ModuleDashboardFormSet
+from .forms import ProjectDashboardForm
 
 __all__ = ['ProjectFormComponent', 'ProjectDashboardForm',
            'ModuleFormComponent', 'ModuleDashboardForm',

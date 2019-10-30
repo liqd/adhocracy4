@@ -1,4 +1,5 @@
 import factory
+
 from adhocracy4.dashboard import DashboardComponent
 
 

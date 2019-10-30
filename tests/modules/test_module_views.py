@@ -1,11 +1,11 @@
-import pytest
 from datetime import timedelta
+
+import pytest
 from dateutil.parser import parse
 from freezegun import freeze_time
 
 from adhocracy4.modules.views import ModuleDetailView
 from adhocracy4.test.helpers import redirect_target
-
 from tests.apps.questions.views import QuestionList
 
 

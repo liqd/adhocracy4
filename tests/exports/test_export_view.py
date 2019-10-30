@@ -1,6 +1,7 @@
 import pytest
 
-from adhocracy4.exports.views import AbstractXlsxExportView, BaseExport
+from adhocracy4.exports.views import AbstractXlsxExportView
+from adhocracy4.exports.views import BaseExport
 
 
 @pytest.mark.django_db

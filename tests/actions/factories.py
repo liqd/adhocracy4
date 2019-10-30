@@ -1,12 +1,10 @@
 import factory
-
 from django.conf import settings
 
-from adhocracy4.actions import models, verbs
+from adhocracy4.actions import models
+from adhocracy4.actions import verbs
 from adhocracy4.test.factories import UserFactory
-
 from tests.apps.questions.factories import QuestionFactory
-
 
 USER_FACTORY = getattr(settings, 'A4_USER_FACTORY', UserFactory)
 

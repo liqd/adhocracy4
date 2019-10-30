@@ -1,11 +1,10 @@
-import pytest
-
 import django_filters
+import pytest
 from django.core.exceptions import ImproperlyConfigured
-from tests.apps.questions import models as question_models
 
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.filters.views import FilteredListView
+from tests.apps.questions import models as question_models
 
 
 class SearchFilterSet(django_filters.FilterSet):

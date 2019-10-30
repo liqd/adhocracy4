@@ -1,6 +1,5 @@
-from tests.apps.questions import models as question_models
-
 from adhocracy4.filters.filters import PagedFilterSet
+from tests.apps.questions import models as question_models
 
 
 class TextFilterSet(PagedFilterSet):

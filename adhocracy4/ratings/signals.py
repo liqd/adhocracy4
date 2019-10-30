@@ -1,4 +1,5 @@
 from django.conf import settings
+
 from adhocracy4 import generics
 
 from .models import Rating

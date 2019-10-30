@@ -4,9 +4,10 @@ from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.utils.html import format_html
 
+from adhocracy4.rules.discovery import NormalUser
+
 from ..models import Comment
 from ..serializers import ThreadSerializer
-from adhocracy4.rules.discovery import NormalUser
 
 register = template.Library()
 

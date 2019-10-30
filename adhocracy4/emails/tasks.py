@@ -1,6 +1,7 @@
-from django.apps import apps
 import importlib
+
 from background_task import background
+from django.apps import apps
 
 
 @background(schedule=1)

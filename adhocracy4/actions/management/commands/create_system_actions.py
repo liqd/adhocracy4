@@ -1,7 +1,8 @@
 from datetime import timedelta
+
 from django.conf import settings
-from django.core.management.base import BaseCommand
 from django.contrib.contenttypes.models import ContentType
+from django.core.management.base import BaseCommand
 
 from adhocracy4.actions.models import Action
 from adhocracy4.actions.verbs import Verbs

@@ -1,7 +1,8 @@
 import pytest
 
 from adhocracy4.actions.models import Action
-from adhocracy4.actions.signals import _add_action, _delete_action
+from adhocracy4.actions.signals import _add_action
+from adhocracy4.actions.signals import _delete_action
 from adhocracy4.actions.verbs import Verbs
 
 

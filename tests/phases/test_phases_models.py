@@ -1,10 +1,12 @@
+from datetime import timedelta
+
 import pytest
 from dateutil.parser import parse
-from datetime import timedelta
 from django.core.exceptions import ValidationError
 from freezegun import freeze_time
 
-from adhocracy4.phases import models, content
+from adhocracy4.phases import content
+from adhocracy4.phases import models
 from tests.apps.questions import models as q_models
 from tests.apps.questions import views as q_views
 

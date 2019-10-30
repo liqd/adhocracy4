@@ -1,4 +1,5 @@
 import html
+
 from django.utils.html import strip_tags
 
 

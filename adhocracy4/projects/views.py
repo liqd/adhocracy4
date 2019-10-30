@@ -1,7 +1,8 @@
 from django.views import generic
 from rules.contrib import views as rules_views
 
-from . import mixins, models
+from . import mixins
+from . import models
 
 
 class ProjectDetailView(rules_views.PermissionRequiredMixin,

@@ -1,7 +1,12 @@
-from autofixture import AutoFixture, constraints, generators, register
 from faker import Factory
 
-from . import content, models
+from autofixture import AutoFixture
+from autofixture import constraints
+from autofixture import generators
+from autofixture import register
+
+from . import content
+from . import models
 
 fake = Factory.create()
 

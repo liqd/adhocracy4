@@ -1,6 +1,5 @@
 from adhocracy4.maps.models import AreaSettings
 
-
 from . import SettingsFactory
 
 

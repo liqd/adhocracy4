@@ -1,8 +1,9 @@
+import time
+
 from django import template
 from django.template.loader import render_to_string
 from html5lib import parseFragment
 from html5lib.serializer import serialize
-import time
 
 register = template.Library()
 

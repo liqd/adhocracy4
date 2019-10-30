@@ -1,9 +1,8 @@
 import pytest
 
-from tests.apps.questions import models as question_models
-
 from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.views import FilteredListView
+from tests.apps.questions import models as question_models
 
 
 class TextFilter(DefaultsFilterSet):

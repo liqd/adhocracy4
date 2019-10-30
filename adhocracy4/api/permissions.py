@@ -1,7 +1,8 @@
 from collections import namedtuple
 
 from django.core.exceptions import PermissionDenied
-from rest_framework import exceptions, permissions
+from rest_framework import exceptions
+from rest_framework import permissions
 
 
 class IsModerator(permissions.BasePermission):

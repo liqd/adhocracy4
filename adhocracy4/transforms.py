@@ -1,5 +1,4 @@
 import bleach
-
 from django.conf import settings
 
 

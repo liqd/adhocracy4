@@ -1,4 +1,5 @@
-from autofixture import AutoFixture, register
+from autofixture import AutoFixture
+from autofixture import register
 
 from .models import Module
 

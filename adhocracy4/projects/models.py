@@ -4,19 +4,19 @@ from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.contrib.auth.models import Group
-from django.urls import reverse
 from django.core.validators import RegexValidator
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4 import transforms as html_transforms
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
+from adhocracy4.images import fields
 from adhocracy4.maps.fields import PointField
 from adhocracy4.models import base
-from adhocracy4 import transforms as html_transforms
-from adhocracy4.images import fields
 
 from .fields import TopicField
 from .utils import get_module_clusters

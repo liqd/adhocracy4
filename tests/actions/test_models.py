@@ -1,9 +1,10 @@
 import pytest
+from django.utils import timezone
 from freezegun import freeze_time
 
-from django.utils import timezone
-
-from adhocracy4.actions.models import Action, configure_icon, configure_type
+from adhocracy4.actions.models import Action
+from adhocracy4.actions.models import configure_icon
+from adhocracy4.actions.models import configure_type
 from adhocracy4.actions.verbs import Verbs
 
 

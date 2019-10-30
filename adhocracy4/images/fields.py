@@ -1,9 +1,10 @@
-from django.db import models
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
+from django.db import models
 from django.utils.functional import lazy
+from django.utils.translation import ugettext_lazy as _
 
-from . import forms, validators
+from . import forms
+from . import validators
 
 
 # FIXME: backportet from django 1.11. remove this after update

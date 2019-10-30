@@ -1,8 +1,10 @@
 from itertools import chain
+
 from django.apps import apps
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from django.db.models.signals import post_delete, post_save
+from django.db.models.signals import post_delete
+from django.db.models.signals import post_save
 
 from .models import Action
 from .verbs import Verbs

@@ -1,7 +1,7 @@
 from email.mime.image import MIMEImage
 
-from django.core.mail import mail_admins
 from django.contrib.staticfiles import finders
+from django.core.mail import mail_admins
 
 
 class PlatformEmailMixin:

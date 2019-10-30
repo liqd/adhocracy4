@@ -1,5 +1,4 @@
 from autoslug import AutoSlugField
-
 from django.db import models
 
 from adhocracy4.maps.fields import PointField

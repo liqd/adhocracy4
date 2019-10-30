@@ -1,5 +1,4 @@
 import pytest
-
 from django import forms
 
 from adhocracy4.categories.forms import CategorizableFieldMixin

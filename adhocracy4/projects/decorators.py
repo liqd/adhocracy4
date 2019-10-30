@@ -1,7 +1,8 @@
-from adhocracy4.projects.models import Project
 from django.apps import apps
 from django.conf import settings
 from django.contrib.auth.decorators import user_passes_test
+
+from adhocracy4.projects.models import Project
 
 Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
 

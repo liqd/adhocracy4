@@ -3,8 +3,8 @@ import os
 import pytest
 from dateutil.parser import parse
 from django.conf import settings
-from django.urls import reverse
 from django.test.utils import override_settings
+from django.urls import reverse
 from freezegun import freeze_time
 
 from adhocracy4.projects import models
