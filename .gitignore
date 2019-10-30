@@ -26,3 +26,6 @@ package-lock.json
 
 # SQlite DBs
 *.sqlite3*
+
+# Local instance specific settings
+/tests/project/local.py
