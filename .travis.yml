@@ -1,22 +1,27 @@
 language: python
 dist: bionic
 python:
-  - "3.6"
+- "3.6"
+node_js:
+- '8'
 cache:
   pip: true
+  npm: true
 services:
 - postgresql
 addons:
   postgresql: '10'
 install:
-  - pip install -r requirements/dev.txt
-  - pip install coveralls
-  - "! python manage.py makemigrations --dry-run --noinput --exit"
+- npm install
+- pip install -r requirements/dev.txt
+- pip install coveralls
 before_script:
 - psql -c 'create database django;' -U postgres
 - psql -c 'create database django_test;' -U postgres
 script:
   - py.test --cov
+  - python manage.py makemigrations --dry-run --check --noinput
+  - "./node_modules/.bin/polylint -F"
 after_success:
   - coveralls
 
