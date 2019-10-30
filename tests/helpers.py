@@ -31,7 +31,7 @@ class pytest_regex:
         self._regex = re.compile(pattern, flags)
 
     def __eq__(self, actual):
-        return bool(self._regex.match(actual))
+        return bool(self._regex.match(str(actual)))
 
     def __repr__(self):
         return self._regex.pattern
