@@ -21,7 +21,7 @@ class QuestionFactory(factory.django.DjangoModelFactory):
         model = models.Question
 
     label = factory.Faker('sentence')
-    weight = factory.Faker('random_number')
+    weight = factory.Faker('random_number', digits=4)
     poll = factory.SubFactory(PollFactory)
 
 
