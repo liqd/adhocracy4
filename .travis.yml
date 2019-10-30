@@ -4,12 +4,22 @@ python:
   - "3.6"
 cache:
   pip: true
-  npm: true
+services:
+- postgresql
+addons:
+  postgresql: '10'
 install:
   - pip install -r requirements/dev.txt
   - pip install coveralls
   - "! python manage.py makemigrations --dry-run --noinput --exit"
+before_script:
+- psql -c 'create database django;' -U postgres
+- psql -c 'create database django_test;' -U postgres
 script:
   - py.test --cov
 after_success:
   - coveralls
+
+env:
+  global:
+  - DJANGO_SETTINGS_MODULE='tests.project.travis'
