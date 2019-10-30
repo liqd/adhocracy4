@@ -230,3 +230,8 @@ IMAGE_ALIASES = {
     'heroimage': {'min_resolution': (1300, 600)},
     'tileimage': {'min_resolution': (500, 300)},
 }
+
+try:
+    from .local import *
+except ImportError:
+    pass
