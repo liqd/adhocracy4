@@ -79,7 +79,7 @@ class Phase(models.Model):
     objects = PhasesQuerySet.as_manager()
 
     class Meta:
-        ordering = ['weight']
+        ordering = ['weight', 'id']
 
     def __str__(self):
         return '{} ({})'.format(self.name, self.type)
