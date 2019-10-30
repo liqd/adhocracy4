@@ -39,7 +39,7 @@ class ProjectDashboard:
     def get_module_components(self):
         return components.get_module_components()
 
-    def get_progress(self):
+    def get_project_progress(self):
         num_valid = 0
         num_required = 0
 
@@ -49,12 +49,32 @@ class ProjectDashboard:
                 num_valid = num_valid + nums[0]
                 num_required = num_required + nums[1]
 
+        return num_valid, num_required
+
+    def get_module_progress(self, module):
+        num_valid = 0
+        num_required = 0
+
+        for component in self.get_module_components():
+            if component.is_effective(module):
+                nums = component.get_progress(module)
+                num_valid = num_valid + nums[0]
+                num_required = num_required + nums[1]
+
+        return num_valid, num_required
+
+    def get_progress(self):
+        num_valid = 0
+        num_required = 0
+
+        nums = self.get_project_progress()
+        num_valid = num_valid + nums[0]
+        num_required = num_required + nums[1]
+
         for module in self.project.modules:
-            for component in self.get_module_components():
-                if component.is_effective(module):
-                    nums = component.get_progress(module)
-                    num_valid = num_valid + nums[0]
-                    num_required = num_required + nums[1]
+            nums = self.get_module_progress(module)
+            num_valid = num_valid + nums[0]
+            num_required = num_required + nums[1]
 
         return num_valid, num_required
 
@@ -65,10 +85,14 @@ class ProjectDashboard:
         for module in self.project.modules:
             menu_module = self.get_module_menu(module, current_module,
                                                current_component)
+            num_valid, num_required = self.get_module_progress(module)
+            is_complete = (num_valid == num_required)
+
             if menu_module:
                 menu_modules.append({
                     'module': module,
                     'menu': menu_module,
+                    'is_complete': is_complete
                 })
 
         return {'project': project_menu, 'modules': menu_modules}

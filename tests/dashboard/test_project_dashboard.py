@@ -66,6 +66,7 @@ def test_menu(module, dashboard_test_component_factory):
                 'is_active': False,
                 'url': 'mc1_url',
                 'is_complete': True
-            }]
+            }],
+            'is_complete': True,
         }]
     }

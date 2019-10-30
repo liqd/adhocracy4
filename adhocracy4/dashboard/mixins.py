@@ -97,9 +97,13 @@ class DashboardComponentMixin(base.ContextMixin):
                                                        self.component)
 
         num_valid, num_required = dashboard.get_progress()
+        project_num_valid, project_num_required = \
+            dashboard.get_project_progress()
+        project_is_complete = (project_num_valid == project_num_required)
         context['project_progress'] = {
             'valid': num_valid,
-            'required': num_required
+            'required': num_required,
+            'project_is_complete': project_is_complete
         }
 
         return context
