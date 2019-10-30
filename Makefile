@@ -2,6 +2,7 @@ all: help
 
 VIRTUAL_ENV ?= venv
 SOURCE_DIRS = adhocracy4 tests
+NODE_BIN = node_modules/.bin
 
 help:
 	@echo Adhocracy4 development tools
@@ -27,11 +28,17 @@ clean:
 
 .PHONY: lint
 lint:
-	. $(VIRTUAL_ENV)/bin/activate && node_modules/.bin/polylint
+	EXIT_STATUS=0; \
+	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint || EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
 
 .PHONY: lint-quick
 lint-quick:
-	. $(VIRTUAL_ENV)/bin/activate && node_modules/.bin/polylint -SF
+	EXIT_STATUS=0; \
+	. $(VIRTUAL_ENV)/bin/activate && $(NODE_BIN)/polylint -SF || EXIT_STATUS=$$?; \
+	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
 
 .PHONY: test
 test:
