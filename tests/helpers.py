@@ -2,6 +2,7 @@ from contextlib import contextmanager
 from datetime import timedelta
 from django.utils import timezone
 from freezegun import freeze_time
+import re
 
 
 @contextmanager
@@ -20,3 +21,16 @@ def active_phase(module, phase_type):
         yield
 
     phase.delete()
+
+
+class pytest_regex:
+    """Assert that a given string meets some expectations."""
+
+    def __init__(self, pattern, flags=0):
+        self._regex = re.compile(pattern, flags)
+
+    def __eq__(self, actual):
+        return bool(self._regex.match(actual))
+
+    def __repr__(self):
+        return self._regex.pattern
