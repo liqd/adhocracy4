@@ -135,4 +135,4 @@ class AdministrativeDistrictFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = AdministrativeDistrict
 
-    name = factory.Faker('text')
+    name = factory.Faker('name')
