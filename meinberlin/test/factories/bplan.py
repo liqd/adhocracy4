@@ -9,5 +9,5 @@ class BplanFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = bplan_models.Bplan
 
-    name = factory.Faker('sentence')
+    name = factory.Faker('sentence', nb_words=4)
     organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)

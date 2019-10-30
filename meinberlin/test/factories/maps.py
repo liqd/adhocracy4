@@ -14,7 +14,7 @@ class MapPresetFactory(factory.DjangoModelFactory):
     class Meta:
         model = map_models.MapPreset
 
-    name = factory.Faker('sentence')
+    name = factory.Faker('sentence', nb_words=4)
     polygon = {
         'type': 'Feature',
         'properties': {},

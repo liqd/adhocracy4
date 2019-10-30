@@ -6,6 +6,7 @@ from rest_framework import status
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from meinberlin.apps.bplan import models as bplan_models
+from tests.helpers import pytest_regex
 
 
 @pytest.mark.django_db
@@ -207,6 +208,6 @@ def test_add_bplan_response(apiclient, organisation):
         'src="https://example.com/embed/projects/bplan-1/" ' \
         'frameborder="0"></iframe>'
     assert response.data == {
-        'id': 1,
+        'id': pytest_regex('^[0-9]*$'),
         'embed_code': embed_code
     }

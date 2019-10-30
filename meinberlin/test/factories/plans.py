@@ -10,7 +10,7 @@ class PlanFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Plan
 
-    title = factory.Faker('sentence')
+    title = factory.Faker('sentence', nb_words=4)
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)
     group = factory.SubFactory(a4_factories.GroupFactory)

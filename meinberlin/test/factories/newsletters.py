@@ -22,7 +22,7 @@ class NewsletterFactory(factory.django.DjangoModelFactory):
 
     sender = factory.Faker('email')
     sender_name = factory.Faker('name')
-    subject = factory.Faker('sentence')
+    subject = factory.Faker('sentence', nb_words=4)
     body = factory.Faker('text')
 
     receivers = models.PROJECT

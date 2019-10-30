@@ -9,7 +9,7 @@ class MapIdeaFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = mapidea_models.MapIdea
 
-    name = factory.Faker('sentence')
+    name = factory.Faker('sentence', nb_words=4)
     description = 'Description'
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     module = factory.SubFactory(a4_factories.ModuleFactory)

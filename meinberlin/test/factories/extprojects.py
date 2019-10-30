@@ -9,5 +9,5 @@ class ExternalProjectFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = extproject_models.ExternalProject
 
-    name = factory.Faker('sentence')
+    name = factory.Faker('sentence', nb_words=4)
     organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)
