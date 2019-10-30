@@ -9,6 +9,7 @@ from django.utils.html import escape
 
 from adhocracy4.maps.templatetags import maps_tags
 from adhocracy4.test import helpers
+from tests.helpers import pytest_regex
 
 
 def test_get_points_empty():
@@ -41,7 +42,7 @@ def test_get_points_one(location_factory):
             'properties': {
                 'name': '',
                 'slug': 'location',
-                'url': '/location/1/',
+                'url': pytest_regex('^/location/[0-9]*/$'),
                 'image': '',
                 'category_icon': '',
                 'comments_count': '',
@@ -87,7 +88,7 @@ def test_get_points_with_properties(location_factory):
             'properties': {
                 'name': '',
                 'slug': 'location',
-                'url': '/location/1/',
+                'url': pytest_regex('^/location/[0-9]*/$'),
                 'image': '',
                 'category_icon': '',
                 'comments_count': 2,
@@ -113,7 +114,7 @@ def test_map_display_points(area_settings, location_factory):
                 "properties": {
                     "name": "",
                     "comments_count": "",
-                    "url": "/location/1/",
+                    "url": pytest_regex('^/location/[0-9]*/$'),
                     "positive_rating_count": "",
                     "slug": "location",
                     "image": "",
