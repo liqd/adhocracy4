@@ -8,7 +8,7 @@ charset = utf-8
 indent_style = space
 indent_size = 4
 
-[*.{js,jsx}]
+[*.{js,jsx,json}]
 indent_size = 2
 
 [Makefile]
@@ -16,5 +16,6 @@ indent_style = tab
 
 # isort configuration
 [*.py]
-skip=migrations
-known_first_party=adhocracy4, tests, euth, euth_wagtail
+skip=migrations,node_modules,venv
+known_first_party=adhocracy4, tests
+force_single_line = true
