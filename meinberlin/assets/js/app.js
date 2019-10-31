@@ -1,5 +1,7 @@
 /* eslint no-unused-vars: "off", no-new: "off" */
 
+import Cookies from 'js-cookie'
+
 // make jquery available for non-webpack js
 var $ = window.jQuery = window.$ = require('jquery')
 window.Tether = require('tether/dist/js/tether.js')
@@ -86,6 +88,15 @@ var init = function () {
     variableWidth: true,
     slidesToShow: 1,
     slidesToScroll: 1
+  })
+
+  $('#dashboard-nav__project').change(function (e) {
+    var currentCookie = Cookies.get('#dashboard-nav__project')
+    if (currentCookie === '1') {
+      Cookies.set('#dashboard-nav__project', 0)
+    } else {
+      Cookies.set('#dashboard-nav__project', 1)
+    }
   })
 }
 

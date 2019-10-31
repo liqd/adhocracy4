@@ -22,7 +22,7 @@
         <nav class="l-menu__menu" aria-label="{% trans 'Project Settings' %}">
             <div class="dashboard-nav">
                 <div class="dashboard-nav__collapsible-menu">
-                    <input type="checkbox" id="dashboard-nav__project" checked>
+                    <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__project" checked>
                     <label class="dashboard-nav__dropdown" for="dashboard-nav__project">
                         <div class="dashboard-nav__item">
                             <div class="dashboard-nav__header">
@@ -57,13 +57,13 @@
                 </div>
             </div>
             <h4 class="dashboard-nav__header">
-            {% blocktrans count counter=dashboard_menu.modules|length %}Participation Module{% plural %}Participation Modules{% endblocktrans %}
+            {% blocktrans count counter=dashboard_menu.modules|length %}Module{% plural %}Modules{% endblocktrans %}
             </h4>
             {% for module_menu in dashboard_menu.modules %}
             <div class="dashboard-nav">
                 <div class="dashboard-nav__collapsible-menu">
-                    <input type="checkbox" id="dashboard-nav__module--{{ forloop.counter }}" checked>
-                    <label class="dashboard-nav__dropdown" for="dashboard-nav__module--{{ forloop.counter }}">
+                    <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__module--{{ module_menu.module.pk }}" checked>
+                    <label class="dashboard-nav__dropdown" for="dashboard-nav__module--{{ module_menu.module.pk }}">
                         <div class="dashboard-nav__item">
                             <div class="dashboard-nav__header">
                                 <span>{% trans 'Module' %}</span>
@@ -120,11 +120,13 @@
             </div>
         {% empty %}
         <div>
-            <p>{% trans 'You have not added a participation module yet.' %}</p>
+            <p>{% trans 'You have not created a module yet.' %}</p>
         </div>
     {% endfor %}
-    {% has_perm 'a4projects.add_project' request.user view.project.organisation as user_may_add %}
-    {% if user_may_add and not project|is_container and not project|is_external %}
+            {% has_perm 'a4projects.add_project' request.user view.project.organisation as user_may_add %}
+            {% if user_may_add and not project|is_container and not project|is_external %}
+                <a class="btn btn--secondary btn--full" href="{% url 'a4dashboard:module-blueprint-list' project_slug=project.slug %}">{% trans 'Add Module' %}</a>
+            {% endif %}
         </nav>
 
         <div class="l-menu__content l-menu__content--aside">
