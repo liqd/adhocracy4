@@ -29,11 +29,20 @@
 .dashboard-nav__header {
     display: flex;
     justify-content: space-between;
+    font-weight: bold;
 }
 
 .dashboard-nav__breadcrumb {
     padding-top: 1.5*$padding;
     padding-bottom: 1.5*$padding;
+}
+
+.dashboard-nav__icon {
+    margin-right: 1.4*$spacer;
+}
+
+.dashboard-nav__dropdown-icon {
+    margin-right: 0.5*$spacer;
 }
 
 .dashboard-nav__item--interactive {
