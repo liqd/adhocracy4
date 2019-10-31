@@ -1,5 +1,4 @@
-const timeago = require('timeago.js')
-require('timeago.js/src/timeago.locales.js')
+const timeago = require('timeago.js/dist/timeago.min.js')
 const $ = require('jquery')
 
 $(function () {
