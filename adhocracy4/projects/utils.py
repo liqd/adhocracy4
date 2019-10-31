@@ -4,6 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 def get_module_clusters(modules):
     modules = modules \
+        .filter(is_draft=False) \
         .annotate_module_start() \
         .annotate_module_end() \
         .exclude(Q(module_start=None) | Q(module_end=None)) \

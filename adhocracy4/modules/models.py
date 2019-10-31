@@ -23,6 +23,7 @@ class ModulesQuerySet(models.QuerySet):
         """Return running modules."""
         now = timezone.now()
         return self\
+            .filter(is_draft=False)\
             .annotate(module_start=models.Min('phase__start_date'))\
             .annotate(module_end=models.Max('phase__end_date'))\
             .filter(module_start__lte=now, module_end__gt=now)\
@@ -31,6 +32,7 @@ class ModulesQuerySet(models.QuerySet):
     def past_modules(self):
         """Return past modules ordered by start."""
         return self\
+            .filter(is_draft=False)\
             .annotate(module_start=models.Min('phase__start_date'))\
             .annotate(module_end=models.Max('phase__end_date'))\
             .filter(module_end__lte=timezone.now())\
@@ -43,6 +45,7 @@ class ModulesQuerySet(models.QuerySet):
         Note: Modules without a start date are assumed to start in the future.
         """
         return self\
+            .filter(is_draft=False)\
             .annotate(module_start=models.Min('phase__start_date'))\
             .filter(models.Q(module_start__gt=timezone.now())
                     | models.Q(module_start=None))\
@@ -51,6 +54,7 @@ class ModulesQuerySet(models.QuerySet):
     def past_and_running_modules(self):
         """Return past and running modules ordered by start date."""
         return self\
+            .filter(is_draft=False)\
             .annotate(module_start=models.Min('phase__start_date'))\
             .filter(module_start__lte=timezone.now())\
             .order_by('module_start')
@@ -232,10 +236,19 @@ class Module(models.Model):
 
     @cached_property
     def project_modules(self):
-        return self.project.module_set
+        """
+        Return published modules of project.
+
+        Used in timeline/cluster logic, so needs to be filtered for
+        unpublished modules.
+        """
+        return self.project.module_set.filter(is_draft=False)
 
     @cached_property
     def other_modules(self):
+        """
+        Return all other published modules of project.
+        """
         return self.project_modules.exclude(id=self.id)
 
     @cached_property

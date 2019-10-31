@@ -94,7 +94,7 @@ class ModuleClusterPropertiesMixin:
 
     @cached_property
     def module_clusters(self):
-        modules = self.module_set
+        modules = self.module_set.filter(is_draft=False)
         return get_module_clusters(modules)
 
     @cached_property
@@ -324,7 +324,9 @@ class Project(ProjectContactDetailMixin,
         and currently active phases started last.
         This property is used to determine which phase view is shown.
         """
+        # FIXME: project properties should rely on modules, not phases.
         return self.phases\
+            .filter(module__is_draft=False)\
             .past_and_active_phases()\
             .last()
 
@@ -336,6 +338,7 @@ class Project(ProjectContactDetailMixin,
         Attention: Might be _deprecated_ and replaced by logic coming from
         the modules.
         """
+        # FIXME: project properties should rely on modules, not phases.
         last_active_phase = self.last_active_phase
         if last_active_phase:
             return last_active_phase.module
@@ -368,7 +371,10 @@ class Project(ProjectContactDetailMixin,
         """
         Return the currently active phase that ends next.
         """
-        return self.phases.active_phases().order_by('end_date').first()
+        # FIXME: project properties should rely on modules, not phases.
+        return self.phases.active_phases()\
+            .filter(module__is_draft=False)\
+            .order_by('end_date').first()
 
     @cached_property
     def days_left(self):
@@ -460,25 +466,38 @@ class Project(ProjectContactDetailMixin,
 
     @cached_property
     def phases(self):
+        # FIXME: project properties should rely on modules, not phases.
         from adhocracy4.phases import models as phase_models
-        return phase_models.Phase.objects.filter(module__project=self)
+        return phase_models.Phase.objects\
+            .filter(module__project=self)
+
+    @cached_property
+    def published_phases(self):
+        # FIXME: project properties should rely on modules, not phases.
+        from adhocracy4.phases import models as phase_models
+        return phase_models.Phase.objects\
+            .filter(module__project=self, module__is_draft=False)
 
     @cached_property
     def future_phases(self):
-        return self.phases.future_phases()
+        # FIXME: project properties should rely on modules, not phases.
+        return self.published_phases.future_phases()
 
     @cached_property
     def past_phases(self):
-        return self.phases.past_phases()
+        # FIXME: project properties should rely on modules, not phases.
+        return self.published_phases.past_phases()
 
     @cached_property
     def has_started(self):
-        return self.phases.past_and_active_phases().exists()
+        # FIXME: project properties should rely on modules, not phases.
+        return self.published_phases.past_and_active_phases().exists()
 
     @cached_property
     def end_date(self):
+        # FIXME: project properties should rely on modules, not phases.
         end_date = None
-        last_phase = self.phases.exclude(end_date=None)\
+        last_phase = self.published_phases.exclude(end_date=None)\
             .order_by('end_date').last()
         if last_phase and last_phase.end_date:
             end_date = last_phase.end_date
@@ -505,14 +524,19 @@ class Project(ProjectContactDetailMixin,
 
     @cached_property
     def has_finished(self):
+        # FIXME: project properties should rely on modules, not phases.
         return self.modules.exists()\
-            and not self.phases.active_phases().exists()\
-            and not self.phases.future_phases().exists()\
+            and not self.published_phases.active_phases().exists()\
+            and not self.published_phases.future_phases().exists()\
             and not self.has_future_events
 
     @cached_property
     def modules(self):
         return self.module_set.all()
+
+    @cached_property
+    def published_modules(self):
+        return self.module_set.filter(is_draft=False)
 
     @cached_property
     def running_module_ends_next(self):
@@ -524,7 +548,7 @@ class Project(ProjectContactDetailMixin,
     @cached_property
     def past_modules(self):
         """Return past modules ordered by start."""
-        return self.modules.past_modules()
+        return self.published_modules.past_modules()
 
     @cached_property
     def future_modules(self):
@@ -533,7 +557,7 @@ class Project(ProjectContactDetailMixin,
 
         Note: Modules without a start date are assumed to start in the future.
         """
-        return self.modules.future_modules()
+        return self.published_modules.future_modules()
 
     @cached_property
     def module_running_days_left(self):
