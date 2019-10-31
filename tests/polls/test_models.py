@@ -21,10 +21,10 @@ def test_question_choice_list(user,
 
     assert question.user_choices_list(anonym) == []
 
-    vote = vote_factory(creator=user, choice=choice1)
+    vote_factory(creator=user, choice=choice1)
 
     assert len(question.user_choices_list(user)) == 1
-    assert question.user_choices_list(user)[0] == vote.id
+    assert question.user_choices_list(user)[0] == choice1.id
 
 
 @pytest.mark.django_db
