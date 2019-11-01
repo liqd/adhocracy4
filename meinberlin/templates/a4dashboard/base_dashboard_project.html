@@ -18,11 +18,12 @@
 {% endblock %}
 
 {% block dashboard_content %}
+    {% closed_accordeons as closed_accordeons %}
     <div class="l-menu">
         <nav class="l-menu__menu" aria-label="{% trans 'Project Settings' %}">
             <div class="dashboard-nav">
                 <div class="dashboard-nav__collapsible-menu">
-                    <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__project" checked>
+                    <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__project" {% if not -1 in closed_accordeons %}checked{% endif %}>
                     <label class="dashboard-nav__dropdown" for="dashboard-nav__project">
                         <div class="dashboard-nav__item">
                             <div class="dashboard-nav__header">
@@ -62,7 +63,7 @@
             {% for module_menu in dashboard_menu.modules %}
             <div class="dashboard-nav">
                 <div class="dashboard-nav__collapsible-menu">
-                    <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__module--{{ module_menu.module.pk }}" checked>
+                    <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__module--{{ module_menu.module.pk }}" {% if not module_menu.module.pk in closed_accordeons %}checked{% endif %}>
                     <label class="dashboard-nav__dropdown" for="dashboard-nav__module--{{ module_menu.module.pk }}">
                         <div class="dashboard-nav__item">
                             <div class="dashboard-nav__header">
