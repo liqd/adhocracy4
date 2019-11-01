@@ -19,6 +19,7 @@ from adhocracy4.maps.fields import PointField
 from adhocracy4.models import base
 
 from .fields import TopicField
+from .fields import TypeField
 from .utils import get_module_clusters
 from .utils import get_module_clusters_dict
 
@@ -260,6 +261,7 @@ class Project(ProjectContactDetailMixin,
         verbose_name=_('Project topics'),
         help_text=_('Add topics to your project.')
     )
+    project_type = TypeField()
 
     objects = ProjectManager()
 
