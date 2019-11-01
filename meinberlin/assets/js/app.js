@@ -90,12 +90,23 @@ var init = function () {
     slidesToScroll: 1
   })
 
-  $('#dashboard-nav__project').change(function (e) {
-    var currentCookie = Cookies.get('#dashboard-nav__project')
-    if (currentCookie === '1') {
-      Cookies.set('#dashboard-nav__project', 0)
+  if (Cookies.get('closed_accordeons') === undefined) {
+    Cookies.set('closed_accordeons', '')
+  }
+
+  $('.dashboard-nav__checkbox').change(function (e) {
+    var currentId = this.id
+    var currentList = Cookies.get('closed_accordeons')
+    if (!this.checked) {
+      if (!currentList.includes(currentId)) {
+        currentList = currentList + ',' + currentId
+        Cookies.set('closed_accordeons', currentList)
+      }
     } else {
-      Cookies.set('#dashboard-nav__project', 1)
+      if (currentList.includes(currentId)) {
+        var newList = currentList.replace(',' + currentId, '')
+        Cookies.set('closed_accordeons', newList)
+      }
     }
   })
 }
