@@ -57,3 +57,16 @@ def get_num_entries(module):
         + Comment.objects.filter(poll__module=module).count() \
         + Vote.objects.filter(choice__question__poll__module=module).count()
     return item_count
+
+
+@register.simple_tag(takes_context=True)
+def closed_accordeons(context):
+    request = context['request']
+    closed = request.COOKIES.get('closed_accordeons', '')
+    closed_list = closed.split('%')
+    ids = [int(entry.split('--')[1])
+           for entry in closed_list
+           if '--' in entry]
+    if 'project' in closed:
+        ids.append(-1)
+    return ids
