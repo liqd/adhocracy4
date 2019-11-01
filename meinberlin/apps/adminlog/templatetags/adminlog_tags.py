@@ -12,8 +12,14 @@ def logentry_icon_class(logentry):
     elif logentry.action == models.MODULE_COMPONENT_UPDATED:
         return 'fas fa-pencil-alt'
     elif logentry.action == models.PROJECT_CREATED:
-        return 'fas fa-plus'
+        return 'fas fa-check'
     elif logentry.action == models.PROJECT_PUBLISHED:
         return 'fas fa-play'
     elif logentry.action == models.PROJECT_UNPUBLISHED:
         return 'fas fa-stop'
+    elif logentry.action == models.MODULE_CREATED:
+        return 'fas fa-check'
+    elif logentry.action == models.MODULE_PUBLISHED:
+        return 'fas fa-plus'
+    elif logentry.action == models.MODULE_UNPUBLISHED:
+        return 'fas fa-minus'

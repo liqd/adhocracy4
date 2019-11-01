@@ -12,13 +12,19 @@ MODULE_COMPONENT_UPDATED = 2
 PROJECT_CREATED = 3
 PROJECT_PUBLISHED = 4
 PROJECT_UNPUBLISHED = 5
+MODULE_CREATED = 6
+MODULE_PUBLISHED = 7
+MODULE_UNPUBLISHED = 8
 
 ACTION_CHOICES = (
     (PROJECT_COMPONENT_UPDATED, _('Project updated')),
     (MODULE_COMPONENT_UPDATED, _('Module updated')),
     (PROJECT_CREATED, _('Project created')),
     (PROJECT_PUBLISHED, _('Project published')),
-    (PROJECT_UNPUBLISHED, _('Project unpublished'))
+    (PROJECT_UNPUBLISHED, _('Project unpublished')),
+    (MODULE_CREATED, _('Module created')),
+    (MODULE_PUBLISHED, _('Module published')),
+    (MODULE_UNPUBLISHED, _('Module unpublished'))
 )
 
 

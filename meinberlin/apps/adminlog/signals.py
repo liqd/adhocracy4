@@ -102,3 +102,58 @@ def log_project_unpublished(sender, project, user, **kwargs):
         module=None,
         component_identifier=''
     )
+
+
+@receiver(a4dashboard_signals.module_created)
+def log_module_created(sender, module, user, **kwargs):
+    with translation.override(settings.DEFAULT_LANGUAGE):
+        message = _(
+            '"{username}" created the module "{module_name}".') \
+            .format(username=user.username,
+                    module_name=module.name)
+
+    models.LogEntry.objects.create(
+        message=message,
+        action=models.MODULE_CREATED,
+        actor=user,
+        project=module.project,
+        module=module,
+        component_identifier=''
+    )
+
+
+@receiver(a4dashboard_signals.module_published)
+def log_module_published(sender, module, user, **kwargs):
+    with translation.override(settings.DEFAULT_LANGUAGE):
+        message = _(
+            '"{username}" added the module "{module_name}" to the project.') \
+            .format(username=user.username,
+                    module_name=module.name)
+
+    models.LogEntry.objects.create(
+        message=message,
+        action=models.MODULE_PUBLISHED,
+        actor=user,
+        project=module.project,
+        module=module,
+        component_identifier=''
+    )
+
+
+@receiver(a4dashboard_signals.module_unpublished)
+def log_module_unpublished(sender, module, user, **kwargs):
+    with translation.override(settings.DEFAULT_LANGUAGE):
+        message = _(
+            '"{username}" removed the module "{module_name}" '
+            'from the project.') \
+            .format(username=user.username,
+                    module_name=module.name)
+
+    models.LogEntry.objects.create(
+        message=message,
+        action=models.MODULE_UNPUBLISHED,
+        actor=user,
+        project=module.project,
+        module=module,
+        component_identifier=''
+    )

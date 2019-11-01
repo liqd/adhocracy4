@@ -136,6 +136,10 @@ class ModulePublishView(SingleObjectMixin,
         module.is_draft = False
         module.save()
 
+        signals.module_published.send(sender=None,
+                                      module=module,
+                                      user=self.request.user)
+
         messages.success(self.request,
                          _('Module successfully added.'))
 
@@ -147,6 +151,11 @@ class ModulePublishView(SingleObjectMixin,
 
         module.is_draft = True
         module.save()
+
+        signals.module_unpublished.send(sender=None,
+                                        module=module,
+                                        user=self.request.user)
+
         messages.success(self.request,
                          _('Module successfully removed.'))
 
