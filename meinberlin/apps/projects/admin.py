@@ -20,7 +20,8 @@ set_is_archived_false.short_description = _('dearchive')
 
 class ProjectAdmin(admin.ModelAdmin):
     list_display = (
-        '__str__', 'organisation', 'is_draft', 'is_archived', 'created'
+        '__str__', 'organisation', 'is_draft', 'is_archived',
+        'project_type', 'created'
     )
     list_filter = ('is_draft', 'is_archived', 'organisation')
     search_fields = ('name',)
@@ -45,7 +46,7 @@ class ProjectAdmin(admin.ModelAdmin):
         (_('Settings'), {
             'classes': ('collapse',),
             'fields': ('is_public', 'is_draft', 'is_archived',
-                       'moderators', 'participants')
+                       'moderators', 'participants', 'project_type')
         }),
         (_('Images'), {
             'classes': ('collapse',),
