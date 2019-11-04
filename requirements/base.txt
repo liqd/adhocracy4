@@ -23,7 +23,7 @@ django-autoslug==1.9.6
 django-background-tasks==1.2.0
 django-ckeditor==5.7.1
 django-filter==2.2.0
-django-multiselectfield==0.1.9
+django-multiselectfield==0.1.10
 django-widget-tweaks==1.4.5
 djangorestframework==3.10.3
 easy-thumbnails==2.6
