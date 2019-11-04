@@ -260,6 +260,11 @@ class Project(ProjectContactDetailMixin,
         verbose_name=_('Project topics'),
         help_text=_('Add topics to your project.')
     )
+    project_type = models.CharField(
+        blank=True,
+        max_length=256,
+        default='a4projects.Project'
+    )
 
     objects = ProjectManager()
 
