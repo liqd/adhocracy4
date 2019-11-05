@@ -1272,15 +1272,15 @@ msgstr "Projekt depubliziert"
 
 #: meinberlin/apps/adminlog/models.py:25
 msgid "Module created"
-msgstr ""
+msgstr "Modul angelegt"
 
 #: meinberlin/apps/adminlog/models.py:26
 msgid "Module published"
-msgstr ""
+msgstr "Modul zum Projekt hinzu gefügt"
 
 #: meinberlin/apps/adminlog/models.py:27
 msgid "Module unpublished"
-msgstr ""
+msgstr "Modul aus dem Projekt entfernt"
 
 #: meinberlin/apps/adminlog/models.py:34
 msgid "action time"
@@ -1352,17 +1352,17 @@ msgstr "\"{username}\" hat das Projekt \"{project_name}\" depubliziert."
 #: meinberlin/apps/adminlog/signals.py:111
 #, python-brace-format
 msgid "\"{username}\" created the module \"{module_name}\"."
-msgstr ""
+msgstr "\"{username}\" hat das Modul \"{module_name}\" angelegt."
 
 #: meinberlin/apps/adminlog/signals.py:129
 #, python-brace-format
 msgid "\"{username}\" added the module \"{module_name}\" to the project."
-msgstr ""
+msgstr "\"{username}\" hat das Modul \"{module_name}\" zum Projekt hinzu gefügt."
 
 #: meinberlin/apps/adminlog/signals.py:147
 #, python-brace-format
 msgid "\"{username}\" removed the module \"{module_name}\" from the project."
-msgstr ""
+msgstr "\"{username}\" hat das Modul \"{module_name}\" aus dem Projekt entfernt."
 
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:4
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:8
@@ -2085,23 +2085,23 @@ msgstr "Neues Modul"
 
 #: meinberlin/apps/dashboard/views.py:133
 msgid "Module is already added"
-msgstr ""
+msgstr "Modul ist bereits hinzugefügt"
 
 #: meinberlin/apps/dashboard/views.py:144
 msgid "Module successfully added."
-msgstr ""
+msgstr "Modul erfolgreich hinzugefügt."
 
 #: meinberlin/apps/dashboard/views.py:149
 msgid "Module is already removed"
-msgstr ""
+msgstr "Modul ist bereits entfernt"
 
 #: meinberlin/apps/dashboard/views.py:160
 msgid "Module successfully removed."
-msgstr ""
+msgstr "Modul erfolgreich entfernt."
 
 #: meinberlin/apps/dashboard/views.py:166
 msgid "The module has been deleted"
-msgstr ""
+msgstr "Das Modul wurde gelöscht"
 
 #: meinberlin/apps/documents/dashboard.py:15
 msgid "Document"
@@ -2133,7 +2133,7 @@ msgstr[1] "%(count)s Kommentare"
 
 #: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:71
 msgid "A Document has not been added yet"
-msgstr ""
+msgstr "Es wurde noch kein Dokument hinzu gefügt."
 
 #: meinberlin/apps/documents/templates/meinberlin_documents/document_dashboard.html:5
 msgid "Edit document"
@@ -2736,7 +2736,7 @@ msgstr "Sind Sie sicher, dass Sie diese Veranstaltung löschen möchten?"
 
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_create_form.html:4
 msgid "Create a new event"
-msgstr ""
+msgstr "Neue Veranstaltung anlegen"
 
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_create_form.html:7
 msgid "Add a new offline event"
@@ -2947,7 +2947,7 @@ msgstr "Beteiligungsprojekte"
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:12
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:12
 msgid "To main menu"
-msgstr ""
+msgstr "Zum Hauptmenü"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_update_form.html:23
 msgid "Edit plan"
@@ -3743,39 +3743,39 @@ msgstr "Organisationen"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:33
 msgid "Project ready for publication"
-msgstr ""
+msgstr "Projekt bereit zur Veröffentlichung"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:35
 msgid "Project not ready for publication"
-msgstr ""
+msgstr "Projekt noch nicht bereit zur Veröffentlichung"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:73
 msgid "Module ready for addition"
-msgstr ""
+msgstr "Modul bereit zum hinzu fügen"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:75
 msgid "Module not ready for addition"
-msgstr ""
+msgstr "Modul noch nicht bereit zum hinzu fügen"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:91
 msgid "Missing required fields"
-msgstr ""
+msgstr "Fehlende Pflichtfelder"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:106
 msgid "Add module to project"
-msgstr ""
+msgstr "Modul zum Projekt hinzu fügen"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:110
 msgid "Remove module from project"
-msgstr ""
+msgstr "Modul aus dem Projekt entfernen"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:118
 msgid "Delete module"
-msgstr ""
+msgstr "Modul löschen"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:124
 msgid "You have not created a module yet."
-msgstr ""
+msgstr "Sie haben noch kein Modul erstellt."
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:129
 msgid "Add Module"
@@ -3783,7 +3783,7 @@ msgstr "Modul hinzufügen"
 
 #: meinberlin/templates/a4dashboard/base_project_list.html:10
 msgid "Overview"
-msgstr ""
+msgstr "Übersicht"
 
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:56
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:58
@@ -3793,7 +3793,7 @@ msgstr "mehr"
 #: meinberlin/templates/a4dashboard/project_create_form.html:4
 #: meinberlin/templates/a4dashboard/project_create_form.html:9
 msgid "Create project"
-msgstr ""
+msgstr "Projekt anlegen"
 
 #: meinberlin/templates/a4images/image_upload_widget.html:29
 msgid ""
