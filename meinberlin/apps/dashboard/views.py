@@ -188,7 +188,10 @@ class ModuleDeleteView(generic.DeleteView):
 
 class DashboardProjectListView(a4dashboard_views.ProjectListView):
     def get_queryset(self):
-        return super().get_queryset().filter(projectcontainer=None)
+        return super().get_queryset().filter(
+            projectcontainer=None,
+            externalproject=None
+        )
 
 
 class ProjectCreateView(mixins.DashboardBaseMixin,

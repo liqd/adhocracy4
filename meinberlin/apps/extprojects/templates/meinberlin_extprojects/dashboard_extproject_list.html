@@ -1,0 +1,34 @@
+{% extends "a4dashboard/base_project_list.html" %}
+{% load i18n rules %}
+
+{% block title %}{% trans "Linkages" %} &mdash; {{ block.super }}{% endblock%}
+
+{% block project_list %}
+    <div class="lr-bar lr-bar--with-margin">
+        <h1 class="lr-bar__left">
+            {% trans 'Linkages' %}
+        </h1>
+        <div class="lr-bar__right">
+            <a href="{% url 'a4dashboard:external-project-create' organisation_slug=view.organisation.slug %}" class="btn">
+                {% trans 'New Linkage' %}
+            </a>
+        </div>
+    </div>
+
+    {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
+
+    {% if externalproject_list|length > 0 %}
+        <ul class="u-list-reset">
+            {% for linkage in externalproject_list %}
+                {% has_perm 'a4projects.change_project' request.user linkage as can_change_project %}
+                {% if can_change_project %}
+                {% include "a4dashboard/includes/project_list_item.html" with project=linkage %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{% trans 'We could not find any linkages.' %}</p>
+    {% endif %}
+
+    {% include "meinberlin_contrib/includes/pagination.html" %}
+{% endblock %}

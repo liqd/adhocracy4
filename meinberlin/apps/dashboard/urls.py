@@ -1,8 +1,8 @@
 from django.conf.urls import url
 
 from adhocracy4.dashboard.urls import urlpatterns as a4dashboard_urlpatterns
-from meinberlin.apps.bplan.views import BplanProjectCreateView
-from meinberlin.apps.extprojects.views import ExternalProjectCreateView
+from meinberlin.apps.bplan import views as bplan_views
+from meinberlin.apps.extprojects import views as extproject_views
 from meinberlin.apps.newsletters import views as newsletter_views
 from meinberlin.apps.organisations import views as organisation_views
 from meinberlin.apps.plans import views as plan_views
@@ -22,6 +22,12 @@ urlpatterns = [
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/containers/$',
         container_views.ContainerListView.as_view(),
         name='container-list'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/bplans/$',
+        bplan_views.BplanProjectListView.as_view(),
+        name='bplan-list'),
+    url(r'^organisations/(?P<organisation_slug>[-\w_]+)/external-projects/$',
+        extproject_views.ExternalProjectListView.as_view(),
+        name='extproject-list'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/plans/$',
         plan_views.DashboardPlanListView.as_view(),
         name='plan-list'),
@@ -56,11 +62,11 @@ urlpatterns = [
     # Overwrite adhocracy4 core urls with meinBerlin urls
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
         r'external-project/$',
-        ExternalProjectCreateView.as_view(),
+        extproject_views.ExternalProjectCreateView.as_view(),
         name='external-project-create'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
         r'bplan/$',
-        BplanProjectCreateView.as_view(),
+        bplan_views.BplanProjectCreateView.as_view(),
         name='bplan-project-create'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/blueprints/'
         r'container/$',

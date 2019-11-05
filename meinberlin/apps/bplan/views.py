@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 
 from adhocracy4.dashboard.components.forms.views import \
     ProjectComponentFormView
+from adhocracy4.dashboard.mixins import DashboardBaseMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.extprojects.views import ExternalProjectCreateView
@@ -64,3 +65,20 @@ class BplanProjectUpdateView(ProjectComponentFormView):
 
     def get_object(self, queryset=None):
         return self.project
+
+
+class BplanProjectListView(DashboardBaseMixin,
+                           generic.ListView):
+    model = models.Bplan
+    paginate_by = 12
+    template_name = 'meinberlin_bplan/dashboard_bplan_list.html'
+    permission_required = 'a4projects.add_project'
+    menu_item = 'project'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(
+            organisation=self.organisation
+        )
+
+    def get_permission_object(self):
+        return self.organisation
