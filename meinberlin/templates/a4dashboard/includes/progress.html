@@ -23,7 +23,7 @@
     <input type="hidden" name="referrer" value="{{ request.path }}" />
 
     {% if project.is_draft %}
-        <button name="action" value="publish" {% if value != max %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top">
+        <button name="action" value="publish" {% if value != max or project.published_modules.count == 0 %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top">
             {% trans 'Publish' %}
         </button>
     {% else %}
