@@ -60,13 +60,13 @@ def get_num_entries(module):
 
 
 @register.simple_tag(takes_context=True)
-def closed_accordeons(context):
+def closed_accordeons(context, project_id):
     request = context['request']
     closed = request.COOKIES.get('closed_accordeons', '')
     closed_list = closed.split('%')
     ids = [int(entry.split('--')[1])
            for entry in closed_list
            if '--' in entry]
-    if 'project' in closed:
+    if 'project--{}'.format(project_id) in closed:
         ids.append(-1)
     return ids
