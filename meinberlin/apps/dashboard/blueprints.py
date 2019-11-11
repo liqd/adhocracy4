@@ -117,7 +117,7 @@ blueprints = [
      )),
     ('topic-prioritization',
      ProjectBlueprint(
-         title=_('Topic Prioritization'),
+         title=_('Topic Priorization'),
          description=_(
              'Comment and prioritize topics.'
          ),
