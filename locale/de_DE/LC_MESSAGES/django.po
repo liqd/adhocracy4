@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-05 13:38+0100\n"
+"POT-Creation-Date: 2019-11-11 10:31+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -812,37 +812,37 @@ msgstr ""
 "maximal 512 Zeichen das Ziel des Moduls beschreiben."
 
 #: adhocracy4/modules/models.py:196
-#: adhocracy4/projects/models.py:418
+#: adhocracy4/projects/models.py:428
 #: meinberlin/apps/projects/serializers.py:214
 msgid "day"
 msgstr "Tag"
 
 #: adhocracy4/modules/models.py:196
-#: adhocracy4/projects/models.py:418
+#: adhocracy4/projects/models.py:428
 #: meinberlin/apps/projects/serializers.py:214
 msgid "days"
 msgstr "Tage"
 
 #: adhocracy4/modules/models.py:197
-#: adhocracy4/projects/models.py:419
+#: adhocracy4/projects/models.py:429
 #: meinberlin/apps/projects/serializers.py:215
 msgid "hour"
 msgstr "Stunde"
 
 #: adhocracy4/modules/models.py:197
-#: adhocracy4/projects/models.py:419
+#: adhocracy4/projects/models.py:429
 #: meinberlin/apps/projects/serializers.py:215
 msgid "hours"
 msgstr "Stunden"
 
 #: adhocracy4/modules/models.py:198
-#: adhocracy4/projects/models.py:420
+#: adhocracy4/projects/models.py:430
 #: meinberlin/apps/projects/serializers.py:216
 msgid "minute"
 msgstr "Minute"
 
 #: adhocracy4/modules/models.py:198
-#: adhocracy4/projects/models.py:420
+#: adhocracy4/projects/models.py:430
 #: meinberlin/apps/projects/serializers.py:216
 msgid "minutes"
 msgstr "Minuten"
@@ -914,25 +914,25 @@ msgid "Project"
 msgstr "Projekt"
 
 #: adhocracy4/projects/admin.py:47
-#: meinberlin/apps/projects/admin.py:42
+#: meinberlin/apps/projects/admin.py:43
 msgid "Information and result"
 msgstr "Informationen und Ergebnis"
 
 #: adhocracy4/projects/admin.py:50
 #: meinberlin/apps/organisations/templates/meinberlin_organisations/organisation_form.html:4
-#: meinberlin/apps/projects/admin.py:45
+#: meinberlin/apps/projects/admin.py:46
 msgid "Settings"
 msgstr "Einstellungen"
 
 #: adhocracy4/projects/admin.py:55
-#: meinberlin/apps/projects/admin.py:50
+#: meinberlin/apps/projects/admin.py:51
 msgid "Images"
 msgstr "Bilder"
 
 #: adhocracy4/projects/admin.py:60
 #: meinberlin/apps/plans/models.py:76
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:90
-#: meinberlin/apps/projects/admin.py:55 meinberlin/templates/email_base.html:65
+#: meinberlin/apps/projects/admin.py:56 meinberlin/templates/email_base.html:65
 #: meinberlin/templates/email_base.txt:16
 #: meinberlin/templates/newsletter_base.html:51
 #: meinberlin/templates/newsletter_base.txt:13
@@ -1357,12 +1357,14 @@ msgstr "\"{username}\" hat das Modul \"{module_name}\" angelegt."
 #: meinberlin/apps/adminlog/signals.py:129
 #, python-brace-format
 msgid "\"{username}\" added the module \"{module_name}\" to the project."
-msgstr "\"{username}\" hat das Modul \"{module_name}\" zum Projekt hinzu gefügt."
+msgstr ""
+"\"{username}\" hat das Modul \"{module_name}\" zum Projekt hinzu gefügt."
 
 #: meinberlin/apps/adminlog/signals.py:147
 #, python-brace-format
 msgid "\"{username}\" removed the module \"{module_name}\" from the project."
-msgstr "\"{username}\" hat das Modul \"{module_name}\" aus dem Projekt entfernt."
+msgstr ""
+"\"{username}\" hat das Modul \"{module_name}\" aus dem Projekt entfernt."
 
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:4
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog.html:8
@@ -1779,7 +1781,7 @@ msgstr[1] "%(counter)s Projekte anzeigen"
 #: meinberlin/apps/plans/forms.py:41
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
 #: meinberlin/apps/plans/views.py:119 meinberlin/apps/plans/views.py:284
-#: meinberlin/apps/projects/admin.py:64 meinberlin/apps/projects/forms.py:98
+#: meinberlin/apps/projects/admin.py:65 meinberlin/apps/projects/forms.py:98
 #: meinberlin/apps/projects/serializers.py:16
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:39
 msgid "City wide"
@@ -2023,8 +2025,8 @@ msgstr ""
 "Umfrage kommentieren."
 
 #: meinberlin/apps/dashboard/blueprints.py:120
-msgid "Topic Prioritization"
-msgstr "Themenpriorisierung"
+msgid "Topic Priorization"
+msgstr ""
 
 #: meinberlin/apps/dashboard/blueprints.py:122
 msgid "Comment and prioritize topics."
@@ -3087,7 +3089,7 @@ msgstr "archivieren"
 msgid "dearchive"
 msgstr "unarchivieren"
 
-#: meinberlin/apps/projects/admin.py:39
+#: meinberlin/apps/projects/admin.py:40
 msgid "Topic and location"
 msgstr "Thema und Ort"
 
@@ -4107,6 +4109,9 @@ msgstr ""
 "Bitte <a href=\"%(login_url)s\">melden</a> Sie sich mit Ihrem %(site_name)s "
 "Nutzerkonto an und verbinden die dieses mit dem %(provider_name)s über die "
 "Nutzerkonto Einstellungen."
+
+#~ msgid "Topic Prioritization"
+#~ msgstr "Themenpriorisierung"
 
 #~ msgid "Document has no chapters defined."
 #~ msgstr "Für dieses Dokument wurden noch keine Kapitel angelegt"
