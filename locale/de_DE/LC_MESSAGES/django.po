@@ -2026,7 +2026,7 @@ msgstr ""
 
 #: meinberlin/apps/dashboard/blueprints.py:120
 msgid "Topic Priorization"
-msgstr ""
+msgstr "Themenpriorisierung"
 
 #: meinberlin/apps/dashboard/blueprints.py:122
 msgid "Comment and prioritize topics."
