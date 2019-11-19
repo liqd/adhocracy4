@@ -1,15 +1,14 @@
 import collections
 
+from allauth.account.forms import SignupForm
+from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django import forms
 from django.contrib.auth import forms as auth_forms
-from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils.translation import ngettext
 from django.utils.translation import ugettext_lazy as _
 
 from meinberlin.apps.organisations.models import Organisation
-
-User = get_user_model()
 
 
 class UserAdminForm(auth_forms.UserChangeForm):
@@ -37,30 +36,72 @@ class UserAdminForm(auth_forms.UserChangeForm):
         return self.cleaned_data
 
 
-class TermsSignupForm(auth_forms.UserCreationForm):
-    terms_of_use = forms.BooleanField(label=_('Terms of use'), error_messages={
-        'required': _('Please accept the terms of use.')
-    })
+class TermsSignupForm(SignupForm):
+    terms_of_use = forms.BooleanField(
+        label=_('Terms of use')
+    )
+    get_newsletters = forms.BooleanField(
+        label=_('Newsletter'),
+        help_text=_('Yes, I would like to receive e-mail newsletters about '
+                    'the projects I am following.'),
+        required=False
+    )
+    get_notifications = forms.BooleanField(
+        label=_('Notifications'),
+        help_text=_('Yes, I would like to be notified by e-mail about the '
+                    'start and end of participation opportunities. This '
+                    'applies to all projects I follow. I also receive an '
+                    'e-mail when someone comments on one of my '
+                    'contributions.'),
+        required=False,
+        initial=True
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].help_text = _(
-            'Your username will appear publicly next to your posts.'
-        )
+        self.fields['username'].help_text = \
+            _("Your username will appear publicly next to your posts.")
 
-    def signup(self, request, user):
+    def save(self, request):
+        user = super(TermsSignupForm, self).save(request)
+        user.get_newsletters = self.cleaned_data['get_newsletters']
+        user.get_notifications = self.cleaned_data['get_notifications']
+        user.save()
+        return user
 
-        # without the allaouth plugin, this would typically be inside .save
-        user.get_newsletters = self.cleaned_data["get_newsletters"]
 
-        user.get_notifications = self.cleaned_data["get_notifications"]
+class SocialTermsSignupForm(SocialSignupForm):
+    terms_of_use = forms.BooleanField(
+        label=_('Terms of use')
+    )
+    get_newsletters = forms.BooleanField(
+        label=_('Newsletter'),
+        help_text=_('Yes, I would like to receive e-mail newsletters about '
+                    'the projects I am following.'),
+        required=False
+    )
+    get_notifications = forms.BooleanField(
+        label=_('Notifications'),
+        help_text=_('Yes, I would like to be notified by e-mail about the '
+                    'start and end of participation opportunities. This '
+                    'applies to all projects I follow. I also receive an '
+                    'e-mail when someone comments on one of my '
+                    'contributions.'),
+        required=False,
+        initial=True
+    )
+    email = forms.EmailField(
+        widget=forms.HiddenInput()
+    )
 
-        user.signup(
-            self.cleaned_data['username'],
-            self.cleaned_data['email'],
-        )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].help_text = \
+            _("Your username will appear publicly next to your posts.")
 
-    class Meta:
-        model = User
-        fields = ('email', 'username', 'password1', 'password2',
-                  'get_newsletters', 'get_notifications', 'terms_of_use')
+    def save(self, request):
+        user = super(SocialTermsSignupForm, self).save(request)
+        user.get_newsletters = self.cleaned_data['get_newsletters']
+        user.get_notifications = self.cleaned_data['get_notifications']
+        user.save()
+        return user

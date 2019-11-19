@@ -1,23 +1,42 @@
 {% extends "socialaccount/base.html" %}
-{% comment %}
-By default, if the email address is already registered with an existing account, the user will be prompted to enter
-another email address, for which a new account will be created. The new account will be linked to the social account.
-In meinBerlin, instead of showing the form to create the new account, users will be notified that they should login
-to the existing account and connect the social account from the account settings.
-Attention: Providers that won't pass the users email address won't work with this page, as in that case it would be
-mandatory for users to provide an email address to be able to create a new, valid account.
-{% endcomment %}
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Email address is already in use" %}{% endblock %}
+{% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans "Email address is already in use" %}</h1>
+    <h1>{% trans "Sign Up" %}</h1>
 
-    {% url 'socialaccount_connections' as login_url %}
-    <p>{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You tried to use your {{ provider_name }} account to login to {{ site_name }},
-        but the email address passed from {{ provider_name }} is already registered to an existing user account.{% endblocktrans %}</p>
-    <p>{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}Please <a href="{{ login_url }}">sign in</a> to your existing {{ site_name }} account
-        and connect {{ provider_name }} from the account settings.{% endblocktrans %}</p>
+<p>{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your {{provider_name}} account to login to
+{{site_name}}. As a final step, please complete the following form:{% endblocktrans %}</p>
+
+<form id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
+        {{ form.non_field_errors }}
+        {% csrf_token %}
+        {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+                {{ hidden.errors }}
+        {% endfor %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.username %}
+        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_notifications %}
+        {% include 'meinberlin_contrib/includes/form_checkbox_field.html' with field=form.get_newsletters %}
+
+        <div class="form-check">
+            <label class="form-check__label">
+                {{ form.terms_of_use }}
+                {% blocktrans with terms_of_use_url="/terms-of-use" privacy_policy="/datenschutz" %}
+                 I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the <a href="{{terms_of_use_url}}" target="_blank">terms of use</a> and the <a href="{{privacy_policy}}" target="_blank">privacy policy</a>.
+                {% endblocktrans %}
+            </label>
+            {{ form.terms_of_use.errors }}
+        </div>
+        {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <div class="u-spacer-bottom-double">
+            <button class="btn btn--primary" type="submit">{% trans "Register" %}</button>
+        </div>
+    </form>
+
 {% endblock %}

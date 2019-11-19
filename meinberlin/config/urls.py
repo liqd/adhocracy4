@@ -73,7 +73,6 @@ urlpatterns = [
 
     url(r'^admin/', include('wagtail.admin.urls')),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^accounts/social/', include('allauth.socialaccount.urls')),
     url(r'^documents/', include('wagtail.documents.urls')),
     url(r'^projects/', include('meinberlin.apps.projects.urls')),
 

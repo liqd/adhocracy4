@@ -1,6 +1,5 @@
 from allauth.socialaccount.providers.base import Provider
 from allauth.socialaccount.providers.base import ProviderAccount
-from allauth.utils import generate_unique_username
 from django.urls import reverse
 from django.utils.http import urlencode
 
@@ -26,7 +25,6 @@ class ServiceKontoProvider(Provider):
 
     def extract_common_fields(self, data):
         return {
-            'username': generate_unique_username(data['loginname']),
             'email': data['email'],
             'levelid': data['levelid'],
         }
