@@ -172,7 +172,13 @@ def test_create_account_on_login(monkeypatch, client, settings):
     assert response.status_code == 302
 
     response_url = urlparse(response.url)
-    assert response_url.path == '/login_successful'
+    assert response_url.path == '/accounts/social/signup/'
+
+    response = client.post('/accounts/social/signup/',
+                           {'email': service_konto.hhgw['email'],
+                            'username': 'username',
+                            'terms_of_use': 'on'})
+    assert response.status_code == 302
 
     user = User.objects.get(email=service_konto.hhgw['email'])
     assert user.last_login is not None
@@ -187,10 +193,10 @@ def test_create_account_on_login(monkeypatch, client, settings):
 
 
 @pytest.mark.django_db
-def test_create_account_on_login_with_existing_username(monkeypatch,
-                                                        client,
-                                                        user_factory,
-                                                        settings):
+def test_error_on_login_with_existing_username(monkeypatch,
+                                               client,
+                                               user_factory,
+                                               settings):
     settings.LOGIN_REDIRECT_URL = '/login_successful'
 
     user_factory(username='first_last')
@@ -203,15 +209,23 @@ def test_create_account_on_login_with_existing_username(monkeypatch,
     assert response.status_code == 302
 
     response_url = urlparse(response.url)
-    assert response_url.path == '/login_successful'
+    assert response_url.path == '/accounts/social/signup/'
 
-    user = User.objects.get(email=service_konto.hhgw['email'])
-    assert user.last_login is not None
-    assert user.username != 'first_last'
+    response = client.post('/accounts/social/signup/',
+                           {'email': service_konto.hhgw['email'],
+                            'username': 'first_last',
+                            'terms_of_use': 'on'})
+    # return to the form with an error message
+    assert response.status_code == 200
+
+    assert not User.objects.filter(email=service_konto.hhgw['email']).exists()
 
 
 @pytest.mark.django_db
-def test_skip_create_if_exists(monkeypatch, client, user_factory, settings):
+def test_error_on_login_with_existing_email(monkeypatch,
+                                            client,
+                                            user_factory,
+                                            settings):
     settings.LOGIN_REDIRECT_URL = '/login_successful'
 
     email_address = 'duplicated@liqd.de'
@@ -224,13 +238,47 @@ def test_skip_create_if_exists(monkeypatch, client, user_factory, settings):
     assert response.status_code == 302
 
     response_url = urlparse(response.url)
-    assert response_url.path != '/login_successful'
+    assert response_url.path == '/accounts/social/signup/'
+
+    response = client.post('/accounts/social/signup/',
+                           {'email': service_konto.hhgw['email'],
+                            'username': 'username',
+                            'terms_of_use': 'on'})
+    # return to the form with an error message
+    assert response.status_code == 200
 
     with pytest.raises(ObjectDoesNotExist):
         SocialAccount.objects.get(
             uid=service_konto.hhgw['userid'],
             provider=ServiceKontoProvider.id
         )
+
+
+@pytest.mark.django_db
+def test_on_on_login_no_terms_of_use(monkeypatch,
+                                     client,
+                                     user_factory,
+                                     settings):
+    settings.LOGIN_REDIRECT_URL = '/login_successful'
+
+    service_konto = ServiceKontoResponse(
+        hhgw={'firstname': 'first', 'lastname': 'last'})
+    _mock_servicekonto_response(monkeypatch, service_konto)
+
+    response = client.post(reverse('servicekonto_callback'),
+                           {'Token': '1234567'})
+    assert response.status_code == 302
+
+    response_url = urlparse(response.url)
+    assert response_url.path == '/accounts/social/signup/'
+
+    response = client.post('/accounts/social/signup/',
+                           {'email': service_konto.hhgw['email'],
+                            'username': 'username'})
+    # return to the form with an error message
+    assert response.status_code == 200
+
+    assert not User.objects.filter(email=service_konto.hhgw['email']).exists()
 
 
 @pytest.mark.django_db
