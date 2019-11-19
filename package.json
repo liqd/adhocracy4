@@ -21,7 +21,7 @@
     "@fortawesome/fontawesome-free": "5.11.2",
     "acorn": "7.1.0",
     "adhocracy4": "liqd/adhocracy4#6a831884b4251ccd373d00628a0c836290eaea47",
-    "autoprefixer": "9.7.1",
+    "autoprefixer": "9.7.2",
     "babel-loader": "8.0.6",
     "bootstrap": "4.3.1",
     "copy-webpack-plugin": "5.0.5",
