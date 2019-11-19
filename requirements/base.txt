@@ -11,7 +11,7 @@ django-sites==0.10
 django_csp==3.5
 raven==6.10.0
 requests==2.22.0
-wagtail==2.6.3
+wagtail==2.7 # pyup: <2.8
 whitenoise==4.1.4
 zeep==3.4.0
 
