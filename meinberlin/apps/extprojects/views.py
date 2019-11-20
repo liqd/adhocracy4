@@ -1,36 +1,37 @@
-from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
 
+from adhocracy4.dashboard.blueprints import ProjectBlueprint
 from adhocracy4.dashboard.components.forms.views import \
     ProjectComponentFormView
 from adhocracy4.dashboard.mixins import DashboardBaseMixin
 from adhocracy4.dashboard.views import ProjectCreateView
-from adhocracy4.projects.mixins import ProjectMixin
+from meinberlin.apps.extprojects import phases as extprojects_phases
 
 from . import apps
 from . import forms
 from . import models
 
 
-class ExternalProjectRedirectView(ProjectMixin,
-                                  generic.RedirectView):
-    permanent = True
-
-    def get_redirect_url(self, *args, **kwargs):
-        extproject = get_object_or_404(models.ExternalProject,
-                                       module=self.module)
-        return extproject.url
-
-
 class ExternalProjectCreateView(ProjectCreateView):
 
     model = models.ExternalProject
     slug_url_kwarg = 'project_slug'
-    blueprint_key = 'external-project'
     form_class = forms.ExternalProjectCreateForm
     template_name = 'meinberlin_extprojects/external_project_create_form.html'
     success_message = _('External project successfully created.')
+
+    blueprint = ProjectBlueprint(
+        title=_('Linkage'),
+        description=_(
+            'Linkages are handled on a different platform.'
+        ),
+        content=[
+            extprojects_phases.ExternalPhase(),
+        ],
+        image='',
+        settings_model=None,
+    )
 
 
 class ExternalProjectUpdateView(ProjectComponentFormView):

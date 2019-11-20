@@ -1,10 +1,8 @@
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard.blueprints import ProjectBlueprint
-from meinberlin.apps.bplan import phases as bplan_phases
 from meinberlin.apps.budgeting import phases as budgeting_phases
 from meinberlin.apps.documents import phases as documents_phases
-from meinberlin.apps.extprojects import phases as extprojects_phases
 from meinberlin.apps.ideas import phases as ideas_phases
 from meinberlin.apps.kiezkasse import phases as kiezkasse_phases
 from meinberlin.apps.mapideas import phases as mapideas_phases
@@ -90,18 +88,6 @@ blueprints = [
          image='images/participatory-budgeting.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
-    ('external-project',
-     ProjectBlueprint(
-         title=_('External project'),
-         description=_(
-             'External projects are handled on a different platform.'
-         ),
-         content=[
-             extprojects_phases.ExternalPhase(),
-         ],
-         image='images/external-project.svg',
-         settings_model=None,
-     )),
     ('poll',
      ProjectBlueprint(
          title=_('Poll'),
@@ -138,17 +124,6 @@ blueprints = [
          ],
          image='images/place-priotization.svg',
          settings_model=('a4maps', 'AreaSettings'),
-     )),
-    ('bplan',
-     ProjectBlueprint(
-         title=_('Development Plan'),
-         description=_('Create a statement formular for development plans'
-                       ' to be embedded on external sites.'),
-         content=[
-             bplan_phases.StatementPhase(),
-         ],
-         image='images/bplan.svg',
-         settings_model=None,
      )),
     ('kiezkasse',
      ProjectBlueprint(
