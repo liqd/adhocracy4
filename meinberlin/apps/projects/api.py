@@ -1,15 +1,19 @@
 from django.utils import timezone
-from rest_framework import mixins
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
-from rest_framework.response import Response
 
 from adhocracy4.projects.models import Project
 from meinberlin.apps.projects import serializers as project_serializers
+from meinberlin.apps.projects.filters import StatusFilter
 
 
-class ProjectListViewSet(mixins.ListModelMixin,
-                         viewsets.ViewSet):
-    serializer_class = project_serializers.ProjectSerializer
+class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
+    filter_backends = (DjangoFilterBackend, StatusFilter)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        now = timezone.now()
+        self.now = now
 
     def allowed_projects(self):
         private_projects = Project.objects.filter(is_public=False)
@@ -20,7 +24,7 @@ class ProjectListViewSet(mixins.ListModelMixin,
                      'a4projects.view_project', project)]
             return private_projects.exclude(id__in=not_allowed_projects)
 
-    def list(self, request, content_type=None, object_pk=None):
+    def get_queryset(self):
         projects = Project.objects \
             .filter(is_draft=False, is_archived=False) \
             .exclude(project_type__contains=('﻿meinberlin_projectcontainers.'
@@ -34,43 +38,19 @@ class ProjectListViewSet(mixins.ListModelMixin,
                               'plans',
                               'organisation__initiators',
                               'module_set__phase_set')
-        now = timezone.now()
+        return projects
 
-        active_projects = projects \
-            .filter(
-                module__phase__start_date__lte=now,
-                module__phase__end_date__gt=now) \
-            .distinct()
-
-        future_projects = projects.filter(
-                module__phase__start_date__gt=now
-        ).distinct().exclude(
-            id__in=active_projects.values('id'))
-
-        past_projects = projects.filter(
-            module__phase__end_date__lt=now
-        ).distinct()\
-            .exclude(
-                id__in=active_projects.values('id'))\
-            .exclude(id__in=future_projects.values('id'))
-
-        active_projects_projects_serializer = \
-            project_serializers.ActiveProjectSerializer(
-                active_projects, many=True, now=now).data
-
-        future_projects_serializer = \
-            project_serializers.FutureProjectSerializer(
-                future_projects, many=True, now=now).data
-
-        past_project_serializer = \
-            project_serializers.PastProjectSerializer(
-                past_projects, many=True, now=now).data
-
-        allowed_projects = project_serializers.ProjectSerializer(
-                    self.allowed_projects(),
-                    many=True, now=now).data
-
-        return Response(active_projects_projects_serializer +
-                        future_projects_serializer +
-                        past_project_serializer +
-                        allowed_projects)
+    def get_serializer(self, *args, **kwargs):
+        if 'status' in self.request.GET:
+            statustype = self.request.GET["status"]
+            if statustype == 'activeParticipation':
+                return project_serializers.ActiveProjectSerializer(
+                    now=self.now, *args, **kwargs)
+            if statustype == 'futureParticipation':
+                return project_serializers.FutureProjectSerializer(
+                    now=self.now, *args, **kwargs)
+            if statustype == 'pastParticipation':
+                return project_serializers.PastProjectSerializer(
+                    now=self.now, *args, **kwargs)
+        return project_serializers.ProjectSerializer(
+            now=self.now, *args, **kwargs)
