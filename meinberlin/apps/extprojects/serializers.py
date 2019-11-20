@@ -1,5 +1,3 @@
-from django.utils.translation import ugettext as _
-
 from meinberlin.apps.extprojects.models import ExternalProject
 from meinberlin.apps.projects.serializers import ProjectSerializer
 
@@ -21,9 +19,6 @@ class ExternalProjectSerializer(ProjectSerializer):
                   'past_phase', 'plan_url', 'plan_title',
                   'published_projects_count', 'created_or_modified']
 
-    def _get_participation_status_project(self, instance):
-        return _('done'), False
-
     def get_url(self, instance):
         return instance.externalproject.url
 
@@ -32,18 +27,6 @@ class ExternalProjectSerializer(ProjectSerializer):
 
     def get_subtype(self, instance):
         return 'external'
-
-    def get_status(self, instance):
-        return 1
-
-    def get_future_phase(self, instance):
-        return False
-
-    def get_active_phase(self, instance):
-        return False
-
-    def get_past_phase(self, instance):
-        return False
 
     def get_published_projects_count(self, instance):
         return 0
