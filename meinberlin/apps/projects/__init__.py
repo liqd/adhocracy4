@@ -5,12 +5,15 @@ default_app_config = 'meinberlin.apps.projects.apps.Config'
 
 @lru_cache(maxsize=32)
 def get_project_type(project):
-    if (hasattr(project, 'externalproject') and
-            hasattr(project.externalproject, 'bplan')):
+    if (project.project_type == '﻿meinberlin_bplan.Bplan'):
         return 'bplan'
-    elif hasattr(project, 'externalproject'):
+    elif (project.project_type ==
+            ('﻿meinberlin_extprojects.'
+             'ExternalProject')):
         return 'external'
-    elif hasattr(project, 'projectcontainer'):
+    elif (project.project_type ==
+            ('﻿meinberlin_projectcontainers.'
+             'ProjectContainer')):
         return 'container'
     else:
         return 'default'
