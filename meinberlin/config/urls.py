@@ -24,10 +24,13 @@ from meinberlin.apps.contrib.sitemaps.adhocracy4_sitemap import \
     Adhocracy4Sitemap
 from meinberlin.apps.contrib.sitemaps.static_sitemap import StaticSitemap
 from meinberlin.apps.documents.api import DocumentViewSet
+from meinberlin.apps.extprojects.api import ExternalProjectListViewSet
 from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
+from meinberlin.apps.plans.api import PlansListViewSet
 from meinberlin.apps.polls.api import PollViewSet
 from meinberlin.apps.polls.api import VoteViewSet
 from meinberlin.apps.polls.routers import QuestionDefaultRouter
+from meinberlin.apps.projectcontainers.api import ProjectContainerListViewSet
 from meinberlin.apps.projects.api import ProjectListViewSet
 from meinberlin.apps.users.decorators import user_is_project_admin
 
@@ -40,6 +43,11 @@ router.register(r'follows', FollowViewSet, basename='follows')
 router.register(r'reports', ReportViewSet, basename='reports')
 router.register(r'polls', PollViewSet, basename='polls')
 router.register(r'projects', ProjectListViewSet, base_name='projects')
+router.register(r'plans', PlansListViewSet, base_name='plans')
+router.register(r'extprojects',
+                ExternalProjectListViewSet, base_name='extprojects')
+router.register(r'containers',
+                ProjectContainerListViewSet, base_name='containers')
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
