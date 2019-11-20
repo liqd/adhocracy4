@@ -72,11 +72,22 @@ class ListMapBox extends Component {
   }
 
   componentDidMount () {
-    fetch(this.props.projectApiUrl)
-      .then(response => response.json())
+    const urls = [
+      this.props.projectApiUrl + '?status=activeParticipation',
+      this.props.projectApiUrl + '?status=futureParticipation',
+      this.props.projectApiUrl + '?status=pastParticipation',
+      this.props.plansApiUrl,
+      this.props.extprojectApiUrl,
+      this.props.containersApiUrl
+    ]
+
+    Promise.all(urls.map(url =>
+      fetch(url)
+        .then(response => response.json())
+    ))
       .then(data => {
-        const allItems = data.concat(this.props.initialitems)
-        const allItemsSorted = this.sortedItems.concat(this.sortItems(allItems))
+        const mergedData = [].concat.apply([], data)
+        const allItemsSorted = this.sortedItems.concat(this.sortItems(mergedData))
         this.sortedItems = allItemsSorted
         this.updateList()
       })

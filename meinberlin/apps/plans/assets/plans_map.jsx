@@ -5,8 +5,10 @@ import ListMapBox from './ListMapBox'
 
 const init = function () {
   $('[data-map="plans"]').each(function (i, element) {
-    const items = JSON.parse(element.getAttribute('data-items'))
     const projectApiUrl = element.getAttribute('data-projects-url')
+    const containersApiUrl = element.getAttribute('data-containers-url')
+    const extprojectApiUrl = element.getAttribute('data-extprojects-url')
+    const plansApiUrl = element.getAttribute('data-plans-url')
     const attribution = element.getAttribute('data-attribution')
     const baseurl = element.getAttribute('data-baseurl')
     const bounds = JSON.parse(element.getAttribute('data-bounds'))
@@ -24,8 +26,10 @@ const init = function () {
         <ListMapBox
           selectedDistrict={selectedDistrict}
           selectedTopic={selectedTopic}
-          initialitems={items}
           projectApiUrl={projectApiUrl}
+          containersApiUrl={containersApiUrl}
+          extprojectApiUrl={extprojectApiUrl}
+          plansApiUrl={plansApiUrl}
           attribution={attribution}
           baseurl={baseurl}
           mapboxToken={mapboxToken}
