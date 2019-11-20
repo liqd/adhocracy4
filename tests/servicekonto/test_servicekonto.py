@@ -180,6 +180,9 @@ def test_create_account_on_login(monkeypatch, client, settings):
                             'terms_of_use': 'on'})
     assert response.status_code == 302
 
+    response_url = urlparse(response.url)
+    assert response_url.path == '/login_successful'
+
     user = User.objects.get(email=service_konto.hhgw['email'])
     assert user.last_login is not None
 
