@@ -10,7 +10,6 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
-from rest_framework.renderers import JSONRenderer
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
@@ -19,19 +18,12 @@ from adhocracy4.exports import unescape_and_strip_html
 from adhocracy4.exports import views as export_views
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
-from meinberlin.apps.extprojects.models import ExternalProject
-from meinberlin.apps.extprojects.serializers import ExternalProjectSerializer
 from meinberlin.apps.maps.models import MapPreset
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
-from meinberlin.apps.projectcontainers.models import ProjectContainer
-from meinberlin.apps.projectcontainers.serializers import \
-    ProjectContainerSerializer
-from meinberlin.apps.projects.models import Project
 
 from . import models
-from .serializers import PlanSerializer
 
 
 class PlanDetailView(rules_mixins.PermissionRequiredMixin,
@@ -58,49 +50,6 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
                 category__name='Bezirke - Berlin')
         except ObjectDoesNotExist:
             return []
-
-    @cached_property
-    def external_projects(self):
-        return ExternalProject.objects.filter(
-            is_draft=False,
-            is_public=True,
-            module__phase__start_date=None,
-            module__phase__end_date=None
-        )
-
-    @cached_property
-    def containers(self):
-        containers = ProjectContainer.objects.filter(
-            is_draft=False,
-            is_public=True
-        )
-        return containers
-
-    @cached_property
-    def projects(self):
-        projects = Project.objects.all()\
-            .filter(is_draft=False, is_archived=False) \
-            .exclude(id__in=self.containers.values('id')) \
-            .exclude(id__in=self.external_projects.values('id')) \
-            .order_by('created')\
-            .select_related('administrative_district',
-                            'organisation',
-                            'externalproject',
-                            'projectcontainer')\
-            .prefetch_related('moderators',
-                              'plans',
-                              'organisation__initiators',
-                              'module_set__phase_set')
-        return projects
-
-    def allowed_projects(self):
-        private_projects = self.projects.filter(is_public=False)
-        if private_projects:
-            not_allowed_projects = \
-                [project.id for project in private_projects if
-                 not self.request.user.has_perm(
-                     'a4projects.view_project', project)]
-            return private_projects.exclude(id__in=not_allowed_projects)
 
     def get_organisations(self):
         organisations = Organisation\
@@ -132,18 +81,6 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        plans_serializer = PlanSerializer(context['object_list'], many=True)
-
-        now = timezone.now()
-        container_data = ProjectContainerSerializer(
-            self.containers, many=True, now=now).data
-
-        external_projects = ExternalProjectSerializer(
-            self.external_projects, many=True, now=now)
-
-        items = plans_serializer.data \
-            + external_projects.data \
-            + container_data
 
         use_vector_map = 0
         mapbox_token = ''
@@ -163,8 +100,10 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         context['organisations'] = self.get_organisations()
         context['district_names'] = self.get_district_names()
         context['topic_choices'] = self.get_topics()
-        context['items'] = JSONRenderer().render(items).decode("utf-8")
+        context['containers_api_url'] = reverse('containers-list')
+        context['extprojects_api_url'] = reverse('extprojects-list')
         context['projects_api_url'] = reverse('projects-list')
+        context['plans_api_url'] = reverse('plans-list')
         context['baseurl'] = settings.A4_MAP_BASEURL
         context['mapbox_token'] = mapbox_token
         context['omt_token'] = omt_token
