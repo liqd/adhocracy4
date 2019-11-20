@@ -61,6 +61,8 @@ class TermsSignupForm(SignupForm):
         super().__init__(*args, **kwargs)
         self.fields['username'].help_text = \
             _("Your username will appear publicly next to your posts.")
+        del self.fields['username'].widget.attrs['autofocus']
+        self.fields['email'].widget.attrs['autofocus'] = True
 
     def save(self, request):
         user = super(TermsSignupForm, self).save(request)
