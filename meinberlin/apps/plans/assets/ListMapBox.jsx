@@ -30,7 +30,7 @@ class ListMapBox extends Component {
   constructor (props) {
     super(props)
 
-    this.sortedItems = this.sortItems(this.props.initialitems)
+    this.sortedItems = []
 
     this.windowSizeChange = this.handleWindowSizeChange.bind(this)
     this.location = window.location.pathname
@@ -72,7 +72,14 @@ class ListMapBox extends Component {
   }
 
   componentDidMount () {
-    this.updateList()
+    fetch(this.props.projectApiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const allItems = data.concat(this.props.initialitems)
+        const allItemsSorted = this.sortedItems.concat(this.sortItems(allItems))
+        this.sortedItems = allItemsSorted
+        this.updateList()
+      })
   }
 
   componentDidUpdate () {
