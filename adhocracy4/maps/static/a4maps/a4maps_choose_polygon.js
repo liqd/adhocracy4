@@ -1,4 +1,4 @@
-import { createMap } from 'a4maps_common'
+import { createMap } from './a4maps_common'
 import 'leaflet-draw'
 
 function getBaseBounds (L, polygon, bbox) {

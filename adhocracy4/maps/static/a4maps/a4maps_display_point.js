@@ -1,4 +1,4 @@
-import { createMap } from 'a4maps_common'
+import { createMap } from './a4maps_common'
 
 var init = function () {
   var $ = window.jQuery
