@@ -19,10 +19,7 @@
 
                 {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
 
-                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.tile_image %}
-                {% include 'meinberlin_contrib/includes/form_field.html' with field=form.tile_image_copyright %}
-
-                <p>{% trans 'After saving the container you can add projects to it eventually publish it.' %}</p>
+                <p>{% trans 'After saving the container you can add projects to it and eventually publish it.' %}</p>
 
                 <div class="u-spacer-bottom">
                     <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send' %}"/>
