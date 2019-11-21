@@ -5,7 +5,6 @@
 
 {% block extra_js %}
     {{ block.super }}
-    <script src="{% static 'mb_plans_map.js' %}"></script>
 {% endblock %}
 
 {% block extra_css %}
@@ -28,4 +27,8 @@
          data-use_vector_map="{{ use_vector_map }}"
          data-baseurl="{{ baseurl }}"
          data-bounds="{{ bounds }}"></div>
+{% endblock %}
+
+{% block extra_js_deferred %}
+    <script src="{% static 'mb_plans_map.js' %}"></script>
 {% endblock %}
