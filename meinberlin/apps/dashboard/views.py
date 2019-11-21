@@ -23,7 +23,7 @@ class ModuleBlueprintListView(ProjectMixin,
                               mixins.DashboardBaseMixin,
                               mixins.BlueprintMixin,
                               generic.DetailView):
-    template_name = 'meinberlin_dashboard/module_blueprint_list.html'
+    template_name = 'meinberlin_dashboard/module_blueprint_list_dashboard.html'
     permission_required = 'a4projects.add_project'
     model = project_models.Project
     slug_url_kwarg = 'project_slug'

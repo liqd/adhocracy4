@@ -17,4 +17,4 @@ def test_edit_view(client, phase_factory):
     client.login(username=initiator.email, password='password')
     response = client.get(url)
     assert_template_response(
-        response, 'meinberlin_adminlog/project_adminlog.html')
+        response, 'meinberlin_adminlog/project_adminlog_dashboard.html')

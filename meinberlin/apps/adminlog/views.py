@@ -11,7 +11,7 @@ class AdminLogProjectDashboardView(ProjectMixin,
                                    mixins.DashboardComponentMixin,
                                    generic.ListView):
     model = models.LogEntry
-    template_name = 'meinberlin_adminlog/project_adminlog.html'
+    template_name = 'meinberlin_adminlog/project_adminlog_dashboard.html'
     permission_required = 'a4projects.change_project'
     paginate_by = 15
 

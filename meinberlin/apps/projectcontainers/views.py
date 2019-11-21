@@ -15,7 +15,8 @@ class ContainerCreateView(ProjectCreateView):
     model = models.ProjectContainer
     slug_url_kwarg = 'project_slug'
     form_class = forms.ContainerCreateForm
-    template_name = 'meinberlin_projectcontainers/container_create_form.html'
+    template_name = \
+        'meinberlin_projectcontainers/container_create_dashboard.html'
     success_message = _('Container successfully created.')
 
     blueprint = ProjectBlueprint(
@@ -63,7 +64,8 @@ class ContainerListView(dashboard_mixins.DashboardBaseMixin,
                         generic.ListView):
     model = models.ProjectContainer
     paginate_by = 12
-    template_name = 'meinberlin_projectcontainers/container_list.html'
+    template_name = \
+        'meinberlin_projectcontainers/container_list_dashboard.html'
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
 

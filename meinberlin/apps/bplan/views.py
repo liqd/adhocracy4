@@ -26,7 +26,8 @@ class BplanProjectCreateView(ExternalProjectCreateView):
     model = models.Bplan
     slug_url_kwarg = 'project_slug'
     form_class = forms.BplanProjectCreateForm
-    template_name = 'meinberlin_extprojects/external_project_create_form.html'
+    template_name = \
+        'meinberlin_extprojects/external_project_create_dashboard.html'
     success_message = _('Development plan successfully created.')
 
     blueprint = ProjectBlueprint(
@@ -58,7 +59,7 @@ class BplanProjectListView(DashboardBaseMixin,
                            generic.ListView):
     model = models.Bplan
     paginate_by = 12
-    template_name = 'meinberlin_bplan/dashboard_bplan_list.html'
+    template_name = 'meinberlin_bplan/bplan_list_dashboard.html'
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
 

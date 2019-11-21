@@ -331,7 +331,7 @@ class DashboardPlanCreateView(a4dashboard_mixins.DashboardBaseMixin,
     model = Plan
     form_class = PlanForm
     permission_required = 'meinberlin_plans.add_plan'
-    template_name = 'meinberlin_plans/plan_create_form.html'
+    template_name = 'meinberlin_plans/plan_create_dashboard.html'
     menu_item = 'project'
 
     def form_valid(self, form):

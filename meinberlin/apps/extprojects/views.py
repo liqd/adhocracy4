@@ -18,7 +18,8 @@ class ExternalProjectCreateView(ProjectCreateView):
     model = models.ExternalProject
     slug_url_kwarg = 'project_slug'
     form_class = forms.ExternalProjectCreateForm
-    template_name = 'meinberlin_extprojects/external_project_create_form.html'
+    template_name = \
+        'meinberlin_extprojects/external_project_create_dashboard.html'
     success_message = _('External project successfully created.')
 
     blueprint = ProjectBlueprint(
@@ -51,7 +52,7 @@ class ExternalProjectListView(DashboardBaseMixin,
                               generic.ListView):
     model = models.ExternalProject
     paginate_by = 12
-    template_name = 'meinberlin_extprojects/dashboard_extproject_list.html'
+    template_name = 'meinberlin_extprojects/extproject_list_dashboard.html'
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
 
