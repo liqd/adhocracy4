@@ -276,6 +276,7 @@ SOCIALACCOUNT_AUTO_SIGNUP = False
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 SOCIALACCOUNT_FORMS = {'signup': 'meinberlin.apps.users.forms.SocialTermsSignupForm'}
 SOCIALACCOUNT_QUERY_EMAIL = True
+SESSION_COOKIE_SAMESITE = None # This is currently needed for servicekonto account connection
 
 LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = '/'
