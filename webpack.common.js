@@ -77,7 +77,7 @@ module.exports = {
     filename: '[name].js'
   },
   externals: {
-    'django': 'django'
+    django: 'django'
   },
   module: {
     rules: [
@@ -132,10 +132,10 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
-      'jquery$': 'jquery/dist/jquery.min.js',
-      'shariff$': 'shariff/dist/shariff.min.js',
-      'shpjs$': 'shpjs/dist/shp.min.js',
-      'a4maps_common$': 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_common.js'
+      jquery$: 'jquery/dist/jquery.min.js',
+      shariff$: 'shariff/dist/shariff.min.js',
+      shpjs$: 'shpjs/dist/shp.min.js',
+      a4maps_common$: 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_common.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.
