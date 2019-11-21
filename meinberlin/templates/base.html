@@ -57,5 +57,8 @@
     </main>
 
     {% include 'footer.html' %}
+    {% block extra_js_deferred %}
+        {# Override this in templates to add extra javascript #}
+    {% endblock %}
 </body>
 </html>
