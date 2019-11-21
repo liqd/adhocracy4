@@ -31,7 +31,6 @@ from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.projects.mixins import ProjectModuleDispatchMixin
 
 from . import forms
-from . import get_project_type
 from . import models
 
 User = get_user_model()
@@ -354,10 +353,10 @@ class ProjectDetailView(PermissionRequiredMixin,
         return self.project
 
     def get_template_names(self):
-        type = get_project_type(self.project)
-        if type == 'container':
+        if self.project.project_type == \
+                'meinberlin_projectcontainers.ProjectContainer':
             return ['meinberlin_projects/project_container_detail.html']
-        if type == 'bplan':
+        if self.project.project_type == 'meinberlin_bplan.Bplan':
             return ['meinberlin_projects/project_bplan_detail.html']
         return ['meinberlin_projects/project_detail.html']
 

@@ -21,6 +21,7 @@ from meinberlin.apps.dashboard.forms import DashboardProjectCreateForm
 
 class ModuleBlueprintListView(ProjectMixin,
                               mixins.DashboardBaseMixin,
+                              mixins.BlueprintMixin,
                               generic.DetailView):
     template_name = 'meinberlin_dashboard/module_blueprint_list.html'
     permission_required = 'a4projects.add_project'
@@ -30,10 +31,7 @@ class ModuleBlueprintListView(ProjectMixin,
 
     @property
     def blueprints(self):
-        return [
-            (key, data) for key, data in get_blueprints()
-            if key not in ['bplan', 'external-project']
-        ]
+        return get_blueprints()
 
     def get_permission_object(self):
         return self.organisation
