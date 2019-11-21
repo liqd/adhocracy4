@@ -99,8 +99,7 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
                             (project_phases.future_phases().first().
                              start_date.strftime('%d.%m.%Y')),
                             True)
-                except AttributeError as e:
-                    print(e)
+                except AttributeError:
                     return (_('starts in the future'),
                             True)
             else:
