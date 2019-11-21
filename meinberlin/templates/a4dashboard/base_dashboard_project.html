@@ -57,6 +57,7 @@
                     </div>
                 </div>
             </div>
+            {% if not project|is_external and not project|is_container %}
             <h4 class="dashboard-nav__header">
             {% blocktrans count counter=dashboard_menu.modules|length %}Module{% plural %}Modules{% endblocktrans %}
             </h4>
@@ -119,11 +120,13 @@
                     </button>
                 </form>
             </div>
-        {% empty %}
-        <div>
-            <p>{% trans 'You have not created a module yet.' %}</p>
-        </div>
-    {% endfor %}
+            {% empty %}
+            <div>
+                <p>{% trans 'You have not created a module yet.' %}</p>
+            </div>
+            {% endfor %}
+            {% endif %}
+
             {% has_perm 'a4projects.add_project' request.user view.project.organisation as user_may_add %}
             {% if user_may_add and not project|is_container and not project|is_external %}
                 <a class="btn btn--secondary btn--full" href="{% url 'a4dashboard:module-blueprint-list' project_slug=project.slug %}">{% trans 'Add Module' %}</a>
