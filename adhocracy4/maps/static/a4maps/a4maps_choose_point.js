@@ -1,4 +1,4 @@
-import { createMap } from 'a4maps_common'
+import { createMap } from './a4maps_common'
 
 function createMarker ($, L, newlatln, oldlatln, basePolygon, map, name) {
   var icon = L.icon({
