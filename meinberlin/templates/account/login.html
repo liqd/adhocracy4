@@ -1,12 +1,12 @@
 {% extends "account/base.html" %}
-{% load i18n account socialaccount %}
+{% load i18n account socialaccount contrib_tags %}
 
 {% block head_title %}{% trans "Login" %}{% endblock %}
 
 {% block content %}
     <h1>{% trans "Login" %}</h1>
 
-    <p>{% blocktrans %}If you have not created an account yet, then please <a href="{{ signup_url }}">register</a> first.{% endblocktrans %}</p>
+    <p>{% trans "If you have not created an account yet, then please " %}<a href="{{ signup_url }}" {% if tracking %}onclick="javascript:_paq.push(['trackEvent', 'User', 'Register-link']);"{% endif %}>{% trans "register" %}</a>{% trans " first." %}</p>
 
     <form method="POST" action="{% url 'account_login' %}" class="u-spacer-bottom-double">
         {{ form.non_field_errors }}
@@ -23,8 +23,8 @@
         {% endif %}
 
         <div class="u-spacer-bottom">
-            <button class="btn btn--primary" type="submit">{% trans "Login" %}</button>
-            <a class="btn btn--link" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+            <button class="btn btn--primary" type="submit" {% if tracking %}onclick="javascript:_paq.push(['trackEvent', 'User', 'Login']);"{% endif %}>{% trans "Login" %}</button>
+            <a class="btn btn--link" href="{% url 'account_reset_password' %}" {% if tracking %}onclick="javascript:_paq.push(['trackEvent', 'User', 'Reset-password-link']);"{% endif %}>{% trans "Forgot Password?" %}</a>
         </div>
     </form>
 
