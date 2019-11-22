@@ -1,5 +1,3 @@
-import json
-
 import pytest
 from dateutil.parser import parse
 from django.urls import reverse
@@ -22,7 +20,8 @@ def test_list_view(client, plan_factory, project_factory,
     project_future = project_factory(name='future')
     project_active_and_future = project_factory(name='active and future')
     project_past = project_factory(name='past')
-    project_container_factory(name='project container')
+    project_container_factory(
+        name='project container', projects=[project_active])
     ep = external_project_factory(
         name='external project active', is_draft=False)
     external_project_factory(name='external project no phase', is_draft=False)
@@ -86,40 +85,75 @@ def test_list_view(client, plan_factory, project_factory,
 
     with freeze_time(now):
 
-        url = reverse('meinberlin_plans:plan-list')
-        response = client.get(url)
-        items = json.loads(response.context_data['items'])
-        assert len(items) == 9
-        assert Project.objects.all().count() == 9
+        assert Project.objects.all().count() == 8
 
+        # query qpi for active projects
+        url = reverse('projects-list') + '?status=activeParticipation'
+        response = client.get(url)
+        items = response.data
+        assert len(items) == 3
         assert items[0]['title'] == 'active'
         assert items[1]['title'] == 'active and future'
-        assert items[2]['title'] == 'external project active'
-        assert items[3]['title'] == 'bplan'
-        assert items[4]['title'] == 'future'
-        assert items[5]['title'] == 'past'
-        assert items[6]['title'] == 'plan'
-        assert items[7]['title'] == 'external project no phase'
-        assert items[8]['title'] == 'project container'
-
+        assert items[2]['title'] == 'bplan'
         assert items[0]['type'] == 'project'
         assert items[1]['type'] == 'project'
         assert items[2]['type'] == 'project'
-        assert items[3]['type'] == 'project'
-        assert items[4]['type'] == 'project'
-        assert items[5]['type'] == 'project'
-        assert items[6]['type'] == 'plan'
-        assert items[7]['type'] == 'project'
-
         assert items[0]['subtype'] == 'default'
         assert items[1]['subtype'] == 'default'
         assert items[2]['subtype'] == 'external'
-        assert items[3]['subtype'] == 'external'
-        assert items[4]['subtype'] == 'default'
-        assert items[5]['subtype'] == 'default'
-        assert items[6]['subtype'] == 'plan'
-        assert items[7]['subtype'] == 'external'
-        assert items[8]['subtype'] == 'container'
+
+        # query qpi for future projects
+        url = reverse('projects-list') + '?status=futureParticipation'
+        response = client.get(url)
+        items = response.data
+        assert len(items) == 1
+
+        assert items[0]['title'] == 'future'
+        assert items[0]['type'] == 'project'
+        assert items[0]['subtype'] == 'default'
+
+        # query qpi for past projects
+        url = reverse('projects-list') + '?status=pastParticipation'
+        response = client.get(url)
+        items = response.data
+        assert len(items) == 1
+
+        assert items[0]['title'] == 'past'
+        assert items[0]['type'] == 'project'
+        assert items[0]['subtype'] == 'default'
+
+        # query qpi for past plans
+        url = reverse('plans-list')
+        response = client.get(url)
+        items = response.data
+        assert len(items) == 1
+
+        assert items[0]['title'] == 'plan'
+        assert items[0]['type'] == 'plan'
+        assert items[0]['subtype'] == 'plan'
+
+        # query qpi for external projects
+        url = reverse('extprojects-list')
+        response = client.get(url)
+        items = response.data
+        assert len(items) == 2
+
+        assert items[0]['title'] == 'external project no phase'
+        assert items[1]['title'] == 'external project active'
+        assert items[0]['type'] == 'project'
+        assert items[1]['type'] == 'project'
+        assert items[0]['subtype'] == 'external'
+        assert items[1]['subtype'] == 'external'
+
+        # query qpi for containers
+        url = reverse('containers-list')
+        response = client.get(url)
+        items = response.data
+        assert len(items) == 1
+
+        assert items[0]['title'] == 'project container'
+        assert items[0]['type'] == 'project'
+        assert items[0]['subtype'] == 'container'
 
 
 @pytest.mark.django_db

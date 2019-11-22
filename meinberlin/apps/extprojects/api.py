@@ -9,6 +9,7 @@ class ExternalProjectListViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         return ExternalProject.objects.filter(
+            project_type='meinberlin_extprojects.ExternalProject',
             is_draft=False,
             is_public=True
         )

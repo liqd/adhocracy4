@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
@@ -26,11 +27,9 @@ class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         projects = Project.objects \
-            .filter(is_draft=False, is_archived=False) \
-            .exclude(project_type__contains=('﻿meinberlin_projectcontainers.'
-                                             'ProjectContainer')) \
-            .exclude(project_type__contains=('meinberlin_extprojects.'
-                                             'ExternalProject')) \
+            .filter(Q(project_type='a4projects.Project') |
+                    Q(project_type='meinberlin_bplan.Bplan')) \
+            .filter(is_draft=False, is_archived=False)\
             .order_by('created') \
             .select_related('administrative_district',
                             'organisation') \
