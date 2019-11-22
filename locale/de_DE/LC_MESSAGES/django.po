@@ -1435,7 +1435,7 @@ msgstr "Bebauungsplan Stellungnahmephase"
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:25
 #, python-format
 msgid "Create %(blueprint_title)s"
-msgstr ""
+msgstr "%(blueprint_title)s anlegen"
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:9
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:8
@@ -1481,6 +1481,10 @@ msgid ""
 "After saving the draft development plan you can further customize and edit "
 "your development plan and eventually publish it."
 msgstr ""
+"Nachdem der Entwurf des Bebaungsplanprojektes gespeichert wurde, können in einem weiteren "
+"Schritt Einstellungen angepasst und zusätzliche Informationen angegeben "
+"werden. Wenn alle benötigten Informationen eingegeben sind, kann das Projekt "
+"veröffentlicht werden."
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:41
 #: meinberlin/apps/cms/templates/meinberlin_cms/email_form_page.html:24
@@ -1508,15 +1512,15 @@ msgstr "Es können keine Stellungnahmen mehr eingereicht werden."
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_list_dashboard.html:9
 #: meinberlin/templates/a4dashboard/base_project_list.html:22
 msgid "Development plans"
-msgstr ""
+msgstr "Bebauungspläne"
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_list_dashboard.html:13
 msgid "New Development plan"
-msgstr ""
+msgstr "Neuer Benauungsplan"
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_list_dashboard.html:30
 msgid "We could not find any development plans."
-msgstr ""
+msgstr "Wir konnten keine Bebauungspläne finden."
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:4
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/statement_create_form.html:9
@@ -1557,7 +1561,7 @@ msgstr ""
 
 #: meinberlin/apps/bplan/views.py:31
 msgid "Development plan successfully created."
-msgstr ""
+msgstr "Bebauungsplan erfolgreich angelegt"
 
 #: meinberlin/apps/bplan/views.py:34
 msgid "Development Plan"
@@ -2314,32 +2318,38 @@ msgid ""
 "After saving the draft linkage you can further customize and edit your "
 "linkage and eventually publish it."
 msgstr ""
+"Nachdem der Entwurf des Verlinkungsprojektes gespeichert wurde, können in einem weiteren "
+"Schritt Einstellungen angepasst und zusätzliche Informationen angegeben "
+"werden. Wenn alle benötigten Informationen eingegeben sind, kann das Projekt "
+"veröffentlicht werden."
 
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/extproject_list_dashboard.html:4
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/extproject_list_dashboard.html:9
 #: meinberlin/templates/a4dashboard/base_project_list.html:40
 msgid "Linkages"
-msgstr ""
+msgstr "Verlinkungen"
 
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/extproject_list_dashboard.html:13
 msgid "New Linkage"
-msgstr ""
+msgstr "Neue Verlinkung"
 
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/extproject_list_dashboard.html:30
 msgid "We could not find any linkages."
-msgstr ""
+msgstr "Wir konnten keine Verlinkungen finden."
 
 #: meinberlin/apps/extprojects/views.py:23
 msgid "External project successfully created."
-msgstr ""
+msgstr "Verlinkung erfolgreich angelegt."
 
 #: meinberlin/apps/extprojects/views.py:26
 msgid "Linkage"
-msgstr ""
+msgstr "Verlinkung"
 
 #: meinberlin/apps/extprojects/views.py:28
 msgid "Linkages are handled on a different platform."
 msgstr ""
+"Verlinkungen sind auf einer anderen Plattform zu finden und werden "
+"auf meinBerlin verlinkt."
 
 #: meinberlin/apps/ideas/models.py:35 meinberlin/apps/plans/models.py:85
 #: meinberlin/apps/topicprio/models.py:32
@@ -2984,7 +2994,7 @@ msgstr "Liste herunterladen"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:17
 msgid "New Plan"
-msgstr ""
+msgstr "Neues Vorhaben"
 
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:21
 msgid "back to overview of projects"
@@ -3106,6 +3116,8 @@ msgid ""
 "After saving the container you can add projects to it and eventually publish "
 "it."
 msgstr ""
+"Nachdem die Projektsammlung gespeichert wurde, können Sie Projekte "
+"hinzufügen und die Projektsammlung schließlich veröffentlichen."
 
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_list_dashboard.html:4
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_list_dashboard.html:9
@@ -3817,8 +3829,8 @@ msgstr "Projekt noch nicht bereit zur Veröffentlichung"
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:62
 msgid "Participation Module"
 msgid_plural "Participation Modules"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Beteiligungsmodul"
+msgstr[1] "Beteiligungsmodule"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:74
 msgid "Module ready for addition"
@@ -3834,11 +3846,11 @@ msgstr "Fehlende Pflichtfelder"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:107
 msgid "Add to project"
-msgstr ""
+msgstr "dem Projekt hinzufügen"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:111
 msgid "Remove from project"
-msgstr ""
+msgstr "aus Projekt entfernen"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:119
 msgid "Delete module"
@@ -3846,11 +3858,11 @@ msgstr "Modul löschen"
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:125
 msgid "You have not set up a participation module yet."
-msgstr ""
+msgstr "Sie haben noch kein Beteiligungsmodul angelegt."
 
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:132
 msgid "Create Module"
-msgstr ""
+msgstr "Modul anlegen"
 
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:56
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:58
