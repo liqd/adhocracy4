@@ -3,6 +3,22 @@
 
 {% block title %}{% trans "Add a new plan" %} &mdash; {{ block.super }}{% endblock %}
 
+{% block dashboard_nav %}
+<div class="u--bg-secondary u-spacer-bottom-double">
+    <div class="l-wrapper dashboard-nav__breadcrumb">
+        <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
+            <ul>
+                <li>
+                    <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        {% trans 'To main menu' %}</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
 {% block project_list %}
     <h1 class="u-first-heading">{% trans 'Add a new plan' %}</h1>
 
