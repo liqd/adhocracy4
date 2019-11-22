@@ -59,7 +59,7 @@
             </div>
             {% if not project|is_external and not project|is_container %}
             <h4 class="dashboard-nav__header">
-            {% blocktrans count counter=dashboard_menu.modules|length %}Module{% plural %}Modules{% endblocktrans %}
+            {% blocktrans count counter=dashboard_menu.modules|length %}Participation Module{% plural %}Participation Modules{% endblocktrans %}
             </h4>
             {% for module_menu in dashboard_menu.modules %}
             <div class="dashboard-nav">
@@ -104,11 +104,11 @@
                     <input type="hidden" name="referrer" value="{{ request.path }}" />
                     {% if module_menu.module.is_draft %}
                         <button name="action" value="publish" {% if not module_menu.is_complete %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top">
-                            {% trans 'Add module to project' %}
+                            {% trans 'Add to project' %}
                         </button>
                     {% else %}
                         <button name="action" value="unpublish" class="btn btn--secondary btn--full btn--attached-top">
-                            {% trans 'Remove module from project' %}
+                            {% trans 'Remove from project' %}
                         </button>
                     {% endif %}
                 </form>
@@ -122,14 +122,14 @@
             </div>
             {% empty %}
             <div>
-                <p>{% trans 'You have not created a module yet.' %}</p>
+                <p>{% trans 'You have not set up a participation module yet.' %}</p>
             </div>
             {% endfor %}
             {% endif %}
 
             {% has_perm 'a4projects.add_project' request.user view.project.organisation as user_may_add %}
             {% if user_may_add and not project|is_container and not project|is_external %}
-                <a class="btn btn--secondary btn--full" href="{% url 'a4dashboard:module-blueprint-list' project_slug=project.slug %}">{% trans 'Add Module' %}</a>
+                <a class="btn btn--secondary btn--full" href="{% url 'a4dashboard:module-blueprint-list' project_slug=project.slug %}">{% trans 'Create Module' %}</a>
             {% endif %}
         </nav>
 
