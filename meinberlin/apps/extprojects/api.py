@@ -11,7 +11,8 @@ class ExternalProjectListViewSet(viewsets.ReadOnlyModelViewSet):
         return ExternalProject.objects.filter(
             project_type='meinberlin_extprojects.ExternalProject',
             is_draft=False,
-            is_public=True
+            is_public=True,
+            is_archived=False
         )
 
     def get_serializer(self, *args, **kwargs):

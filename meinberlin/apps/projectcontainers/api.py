@@ -11,7 +11,8 @@ class ProjectContainerListViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         containers = ProjectContainer.objects.filter(
             is_draft=False,
-            is_public=True
+            is_public=True,
+            is_archived=False
         )
         return containers
 
