@@ -102,6 +102,7 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
         context['topic_choices'] = self.get_topics()
         context['containers_api_url'] = reverse('containers-list')
         context['extprojects_api_url'] = reverse('extprojects-list')
+        context['privateprojects_api_url'] = reverse('privateprojects-list')
         context['projects_api_url'] = reverse('projects-list')
         context['plans_api_url'] = reverse('plans-list')
         context['baseurl'] = settings.A4_MAP_BASEURL

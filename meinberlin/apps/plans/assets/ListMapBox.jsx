@@ -78,7 +78,8 @@ class ListMapBox extends Component {
       this.props.projectApiUrl + '?status=pastParticipation',
       this.props.plansApiUrl,
       this.props.extprojectApiUrl,
-      this.props.containersApiUrl
+      this.props.containersApiUrl,
+      this.props.privateprojectApiUrl
     ]
 
     Promise.all(urls.map(url =>
