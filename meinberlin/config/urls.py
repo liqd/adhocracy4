@@ -31,6 +31,7 @@ from meinberlin.apps.polls.api import PollViewSet
 from meinberlin.apps.polls.api import VoteViewSet
 from meinberlin.apps.polls.routers import QuestionDefaultRouter
 from meinberlin.apps.projectcontainers.api import ProjectContainerListViewSet
+from meinberlin.apps.projects.api import PrivateProjectListViewSet
 from meinberlin.apps.projects.api import ProjectListViewSet
 from meinberlin.apps.users.decorators import user_is_project_admin
 
@@ -43,6 +44,8 @@ router.register(r'follows', FollowViewSet, basename='follows')
 router.register(r'reports', ReportViewSet, basename='reports')
 router.register(r'polls', PollViewSet, basename='polls')
 router.register(r'projects', ProjectListViewSet, base_name='projects')
+router.register(r'privateprojects', PrivateProjectListViewSet,
+                base_name='privateprojects')
 router.register(r'plans', PlansListViewSet, base_name='plans')
 router.register(r'extprojects',
                 ExternalProjectListViewSet, base_name='extprojects')

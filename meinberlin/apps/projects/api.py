@@ -16,20 +16,13 @@ class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
         now = timezone.now()
         self.now = now
 
-    def allowed_projects(self):
-        private_projects = Project.objects.filter(is_public=False)
-        if private_projects:
-            not_allowed_projects = \
-                [project.id for project in private_projects if
-                 not self.request.user.has_perm(
-                     'a4projects.view_project', project)]
-            return private_projects.exclude(id__in=not_allowed_projects)
-
     def get_queryset(self):
         projects = Project.objects \
             .filter(Q(project_type='a4projects.Project') |
                     Q(project_type='meinberlin_bplan.Bplan')) \
-            .filter(is_draft=False, is_archived=False)\
+            .filter(is_draft=False,
+                    is_archived=False,
+                    is_public=True)\
             .order_by('created') \
             .select_related('administrative_district',
                             'organisation') \
@@ -51,5 +44,31 @@ class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
             if statustype == 'pastParticipation':
                 return project_serializers.PastProjectSerializer(
                     now=self.now, *args, **kwargs)
+        return project_serializers.ProjectSerializer(
+            now=self.now, *args, **kwargs)
+
+
+class PrivateProjectListViewSet(viewsets.ReadOnlyModelViewSet):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        now = timezone.now()
+        self.now = now
+
+    def get_queryset(self):
+        private_projects = Project.objects.filter(
+            is_draft=False,
+            is_archived=False,
+            is_public=False)
+        if private_projects:
+            not_allowed_projects = \
+                [project.id for project in private_projects if
+                 not self.request.user.has_perm(
+                     'a4projects.view_project', project)]
+            return private_projects.exclude(id__in=not_allowed_projects)
+        else:
+            return private_projects
+
+    def get_serializer(self, *args, **kwargs):
         return project_serializers.ProjectSerializer(
             now=self.now, *args, **kwargs)

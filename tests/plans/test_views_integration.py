@@ -14,9 +14,12 @@ def test_list_view(client, plan_factory, project_factory,
                    project_container_factory,
                    external_project_factory,
                    bplan_factory,
-                   phase_factory):
+                   phase_factory, user, apiclient):
 
     project_active = project_factory(name='active')
+    project_private = project_factory(name='private', is_public=False)
+    project_private.participants.add(user)
+    project_private.save()
     project_future = project_factory(name='future')
     project_active_and_future = project_factory(name='active and future')
     project_past = project_factory(name='past')
@@ -39,6 +42,13 @@ def test_list_view(client, plan_factory, project_factory,
         start_date=last_week,
         end_date=next_week,
         module__project=project_active,
+    )
+
+    # active phase
+    phase_factory(
+        start_date=last_week,
+        end_date=next_week,
+        module__project=project_private,
     )
 
     # active phase
@@ -85,11 +95,12 @@ def test_list_view(client, plan_factory, project_factory,
 
     with freeze_time(now):
 
-        assert Project.objects.all().count() == 8
+        assert Project.objects.all().count() == 9
+        apiclient.force_authenticate(user=user)
 
-        # query qpi for active projects
+        # query api for active projects
         url = reverse('projects-list') + '?status=activeParticipation'
-        response = client.get(url)
+        response = apiclient.get(url)
         items = response.data
         assert len(items) == 3
         assert items[0]['title'] == 'active'
@@ -102,9 +113,9 @@ def test_list_view(client, plan_factory, project_factory,
         assert items[1]['subtype'] == 'default'
         assert items[2]['subtype'] == 'external'
 
-        # query qpi for future projects
+        # query api for future projects
         url = reverse('projects-list') + '?status=futureParticipation'
-        response = client.get(url)
+        response = apiclient.get(url)
         items = response.data
         assert len(items) == 1
 
@@ -112,9 +123,9 @@ def test_list_view(client, plan_factory, project_factory,
         assert items[0]['type'] == 'project'
         assert items[0]['subtype'] == 'default'
 
-        # query qpi for past projects
+        # query api for past projects
         url = reverse('projects-list') + '?status=pastParticipation'
-        response = client.get(url)
+        response = apiclient.get(url)
         items = response.data
         assert len(items) == 1
 
@@ -122,9 +133,9 @@ def test_list_view(client, plan_factory, project_factory,
         assert items[0]['type'] == 'project'
         assert items[0]['subtype'] == 'default'
 
-        # query qpi for past plans
+        # query api for past plans
         url = reverse('plans-list')
-        response = client.get(url)
+        response = apiclient.get(url)
         items = response.data
         assert len(items) == 1
 
@@ -132,9 +143,9 @@ def test_list_view(client, plan_factory, project_factory,
         assert items[0]['type'] == 'plan'
         assert items[0]['subtype'] == 'plan'
 
-        # query qpi for external projects
+        # query api for external projects
         url = reverse('extprojects-list')
-        response = client.get(url)
+        response = apiclient.get(url)
         items = response.data
         assert len(items) == 2
 
@@ -145,15 +156,20 @@ def test_list_view(client, plan_factory, project_factory,
         assert items[0]['subtype'] == 'external'
         assert items[1]['subtype'] == 'external'
 
-        # query qpi for containers
+        # query api for containers
         url = reverse('containers-list')
-        response = client.get(url)
+        response = apiclient.get(url)
         items = response.data
         assert len(items) == 1
 
         assert items[0]['title'] == 'project container'
         assert items[0]['type'] == 'project'
         assert items[0]['subtype'] == 'container'
+
+        url = reverse('privateprojects-list')
+        response = apiclient.get(url)
+        items = response.data
+        assert len(items) == 1
 
 
 @pytest.mark.django_db
