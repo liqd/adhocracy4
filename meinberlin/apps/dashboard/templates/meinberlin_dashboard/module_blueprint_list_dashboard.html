@@ -4,9 +4,8 @@
 {% block title %}{% trans "New Module" %} &mdash; {{ block.super }}{% endblock%}
 
 {% block dashboard_content %}
-<div class="l-center-8" id="module-blueprint-list">
-    <h1>{% trans "New Module" %}</h1>
-
+<h1>{% trans "Choose Participation Module" %}</h1>
+<div id="module-blueprint-list">
     <ul class="l-tiles-3">
         {% for blueprint_slug, blueprint in view.blueprints %}
             {% include "meinberlin_dashboard/includes/module_blueprint_list_tile.html" with blueprint=blueprint %}
