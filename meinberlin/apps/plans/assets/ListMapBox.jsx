@@ -36,6 +36,7 @@ class ListMapBox extends Component {
     this.location = window.location.pathname
 
     this.state = {
+      loading: true,
       width: window.innerWidth,
       items: [],
       searchResults: null,
@@ -91,6 +92,9 @@ class ListMapBox extends Component {
         const allItemsSorted = this.sortedItems.concat(this.sortItems(mergedData))
         this.sortedItems = allItemsSorted
         this.updateList()
+        this.setState({
+          loading: false
+        })
       })
   }
 
@@ -278,14 +282,24 @@ class ListMapBox extends Component {
   }
 
   getPlansList (isHorizontal) {
-    return (
-      <PlansList
-        key="content"
-        items={this.state.items}
-        topicChoices={this.props.topicChoices}
-        isHorizontal={isHorizontal}
-      />
-    )
+    if (!this.state.loading) {
+      return (
+        <PlansList
+          key="content"
+          items={this.state.items}
+          topicChoices={this.props.topicChoices}
+          isHorizontal={isHorizontal}
+        />
+      )
+    } else {
+      return (
+        <div className="l-wrapper u-align-center u-spacer-top">
+          <div className="spinner-border float-right" role="status">
+            <span className="sr-only">Loading...</span>
+          </div>
+        </div>
+      )
+    }
   }
 
   getPlansMap (draggingEnabled, zoomPosition) {
@@ -311,29 +325,33 @@ class ListMapBox extends Component {
   }
 
   getToggles (isSlider) {
-    return (
-      <Toggles
-        toggleSwitch={this.toggleSwitch.bind(this)}
-        showMap={this.showMap.bind(this)}
-        showList={this.showList.bind(this)}
-        titleSearchString={this.state.titleSearch}
-        titleSearchSelected={this.state.titleSearch !== '-1'}
-        changeTitleSearchSelection={this.selectTitleSearch.bind(this)}
-        organisationString={this.state.organisation}
-        organisationSelected={this.state.organisation !== '-1'}
-        changeOrganisationSelection={this.selectOrganisation.bind(this)}
-        statusString={statusNames[this.state.status]}
-        statusSelected={this.state.status !== -1}
-        changeStatusSelection={this.selectStatus.bind(this)}
-        participationString={participationButtonNames[this.state.participation]}
-        participationSelected={this.state.participation !== -1}
-        changeParticipationSelection={this.selectParticipation.bind(this)}
-        isSlider={isSlider}
-        displayButtons={!this.state.filterOpen}
-        displayMap={this.state.showListMap}
-        projectCount={this.state.items.length}
-      />
-    )
+    if (!this.state.loading) {
+      return (
+        <Toggles
+          toggleSwitch={this.toggleSwitch.bind(this)}
+          showMap={this.showMap.bind(this)}
+          showList={this.showList.bind(this)}
+          titleSearchString={this.state.titleSearch}
+          titleSearchSelected={this.state.titleSearch !== '-1'}
+          changeTitleSearchSelection={this.selectTitleSearch.bind(this)}
+          organisationString={this.state.organisation}
+          organisationSelected={this.state.organisation !== '-1'}
+          changeOrganisationSelection={this.selectOrganisation.bind(this)}
+          statusString={statusNames[this.state.status]}
+          statusSelected={this.state.status !== -1}
+          changeStatusSelection={this.selectStatus.bind(this)}
+          participationString={participationButtonNames[this.state.participation]}
+          participationSelected={this.state.participation !== -1}
+          changeParticipationSelection={this.selectParticipation.bind(this)}
+          isSlider={isSlider}
+          displayButtons={!this.state.filterOpen}
+          displayMap={this.state.showListMap}
+          projectCount={this.state.items.length}
+        />
+      )
+    } else {
+      return (<div />)
+    }
   }
 
   getFilterNav (numColumns, isStacked, isTablet) {
