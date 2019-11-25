@@ -118,16 +118,18 @@ class ListMapBox extends Component {
           return date1 >= date2 ? -1 : 1
         }
       }
-      if (phase1 || phase2) { return phase1 ? -1 : 1 }
+      if (phase1 || phase2) {
+        return phase1 ? -1 : 1
+      }
       return false
     }
 
     if (item1Type === item2Type) {
       /* show
-      1. projects with active phase
-      2. projects with future phase
-      3. projects with past phase
-      4. projects without phase (can happen for external ones) */
+       1. projects with active phase
+       2. projects with future phase
+       3. projects with past phase
+       4. projects without phase (can happen for external ones) */
       if (item1Type === 'project') {
         const active = sortByPhase(item1.active_phase[2], item2.active_phase[2], true)
         if (active) {
@@ -393,9 +395,9 @@ class ListMapBox extends Component {
           {this.getFilterNav(1, true, isTablet)}
           {this.getToggles(false)}
           {!this.state.showListMap &&
-            this.getPlansList(false)}
+          this.getPlansList(false)}
           {this.state.showListMap &&
-            this.getPlansMap(false, 'bottomright')}
+          this.getPlansMap(false, 'bottomright')}
         </div>)
     } else if (isTablet) {
       return (
@@ -403,9 +405,9 @@ class ListMapBox extends Component {
           {this.getFilterNav(2, false, isTablet)}
           {this.getToggles(false)}
           {!this.state.showListMap &&
-            this.getPlansList(false)}
+          this.getPlansList(false)}
           {this.state.showListMap &&
-            this.getPlansMap(true, 'topright')}
+          this.getPlansMap(true, 'topright')}
         </div>)
     } else {
       return (
