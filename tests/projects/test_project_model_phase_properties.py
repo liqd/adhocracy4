@@ -276,7 +276,7 @@ def test_active_phase_ends_next(project, module_factory, phase_factory):
 
 
 @pytest.mark.django_db
-def test_time_left(project, module_factory, phase_factory):
+def test_time_left_plural(project, module_factory, phase_factory):
     module1 = module_factory(project=project, weight=1)
     module2 = module_factory(project=project, weight=2)
     phase_factory(
@@ -291,6 +291,18 @@ def test_time_left(project, module_factory, phase_factory):
     )
     with freeze_time('2013-01-01 17:30:00 UTC'):
         assert project.time_left == '30 minutes'
+
+
+@pytest.mark.django_db
+def test_time_left_singular(project, module_factory, phase_factory):
+    module1 = module_factory(project=project, weight=1)
+    phase_factory(
+        module=module1,
+        start_date=parse('2013-01-01 16:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00 UTC')
+    )
+    with freeze_time('2013-01-01 17:00:00 UTC'):
+        assert project.time_left == '1 hour'
 
 
 @pytest.mark.django_db
@@ -309,6 +321,19 @@ def test_active_phase_progress(project, module_factory, phase_factory):
     )
     with freeze_time('2013-01-01 17:30:00 UTC'):
         assert project.active_phase_progress == 45
+
+
+@pytest.mark.django_db
+def test_active_phase_progress_no_active_phase(
+        project, module_factory, phase_factory):
+    module1 = module_factory(project=project, weight=1)
+    phase_factory(
+        module=module1,
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:05:00 UTC')
+    )
+    with freeze_time('2013-01-01 18:30:00 UTC'):
+        assert project.active_phase_progress is None
 
 
 @pytest.mark.django_db

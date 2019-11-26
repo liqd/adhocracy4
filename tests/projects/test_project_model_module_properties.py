@@ -36,9 +36,13 @@ def test_running_modules(project, module_factory, phase_factory):
     )
     with freeze_time('2013-01-01 18:30:00 UTC'):
         assert module1 in project.running_modules
+        assert module1 in project.modules
         assert module2 in project.running_modules
+        assert module2 in project.modules
         assert module3 not in project.running_modules
+        assert module3 in project.modules
         assert module4 not in project.running_modules
+        assert module4 in project.modules
 
 
 @pytest.mark.django_db
@@ -195,3 +199,34 @@ def test_module_running_progress(project, module_factory, phase_factory):
     )
     with freeze_time('2013-01-01 18:30:00 UTC'):
         assert project.module_running_progress == 6
+
+
+@pytest.mark.django_db
+def test_module_not_running_time_left(project, module_factory, phase_factory):
+    module1 = module_factory(project=project, weight=1)
+    phase_factory(
+        module=module1,
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:05:00 UTC')
+    )
+    phase_factory(
+        module=module1,
+        start_date=parse('2013-01-01 19:00:00 UTC'),
+        end_date=parse('2013-01-02 19:05:00 UTC')
+    )
+    with freeze_time('2013-01-02 19:30:00 UTC'):
+        assert project.module_running_time_left is None
+        assert project.module_running_days_left is None
+        assert project.module_running_progress is None
+
+
+@pytest.mark.django_db
+def test_published_modules(project, module_factory):
+    module1 = module_factory(project=project, weight=1, is_draft=True)
+    module2 = module_factory(project=project, weight=2)
+    assert module1 in project.modules
+    assert module1 not in project.published_modules
+    assert module1 in project.unpublished_modules
+    assert module2 in project.modules
+    assert module2 in project.published_modules
+    assert module2 not in project.unpublished_modules
