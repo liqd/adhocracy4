@@ -7,22 +7,62 @@ class LazyBackground extends React.Component {
     super(props)
 
     this.state = {
-      source: null
+      source: null,
+      isVisible: false
     }
   }
 
   componentDidMount () {
+    window.addEventListener('scroll', this.handleScroll.bind(this))
+    const isInViewpoort = this.isInViewport()
+    if (isInViewpoort) {
+      this.loadImage()
+    }
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('scroll', this.handleScroll.bind(this))
+  }
+
+  loadImage () {
     const src = this.props.item.tile_image
     const imageLoader = new Image()
     imageLoader.src = src
     imageLoader.onload = () => {
-      this.setState({ source: src })
+      this.setState({
+        source: src,
+        isVisible: true
+      })
+    }
+  }
+
+  isInViewport () {
+    if (!this.lazyBackground) return false
+    const rect = this.lazyBackground.getBoundingClientRect()
+    const windowHeight = (window.innerHeight || document.documentElement.clientHeight)
+
+    const res = !(Math.floor(100 - (((rect.top >= 0 ? 0 : rect.top) / +-(rect.height / 1)) * 100)) < 1 ||
+      Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < 1
+    )
+    return res
+  }
+
+  handleScroll () {
+    if (this.isInViewport() && !this.state.source) {
+      this.loadImage()
     }
   }
 
   render () {
     return (
-      <div className={this.props.isHorizontal ? 'u-lg-only-display maplist-item__img' : 'maplist-item__img'} style={{ backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundImage: `url(${this.state.source})` }} alt="">
+      <div
+        ref={(el) => (this.lazyBackground = el)}
+        className={this.props.isHorizontal ? 'u-lg-only-display maplist-item__img' : 'maplist-item__img'} style={{
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundImage: `url(${this.state.source})`
+        }} alt=""
+      >
         {!this.props.isHorizontal && this.props.renderTopics(this.props.item)}
         {this.props.item.tile_image_copyright &&
           <span className="maplist-item__img-copyright copyright">© {this.props.item.tile_image_copyright}</span>}
@@ -66,7 +106,9 @@ class PlansList extends React.Component {
     if (item.topics) {
       return (
         <div className={item.tile_image ? 'maplist-item__label-img' : 'maplist-item__label-spacer'}>
-          {topicsList.map(topic => <span key={topic} className="label label--secondary maplist-item__label u-spacer-bottom">{topic}</span>)}
+          {topicsList.map(topic =>
+            <span key={topic} className="label label--secondary maplist-item__label u-spacer-bottom">{topic}</span>
+          )}
         </div>
       )
     }
@@ -89,7 +131,10 @@ class PlansList extends React.Component {
   renderListItem (item, i) {
     const statusClass = (item.participation_active === true) ? 'participation-tile__status-active' : 'participation-tile__status-inactive'
     return (
-      <li className={this.props.isHorizontal ? 'participation-tile__horizontal' : 'participation-tile__vertical'} key={i}>
+      <li
+        className={this.props.isHorizontal ? 'participation-tile__horizontal' : 'participation-tile__vertical'}
+        key={i}
+      >
 
         <a href={item.url} target={item.subtype === 'external' ? '_blank' : '_self'}>
           {item.type === 'project' &&
@@ -111,23 +156,43 @@ class PlansList extends React.Component {
                 <div className="maplist-item__link" />
                 {item.subtype === 'container' &&
                   <div className="maplist-item__stats">
-                    <span className="participation-tile__proj-count"><i className="fas fa-th" aria-hidden="true" />{django.gettext('Participation projects: ')}</span>
+                    <span className="participation-tile__proj-count">
+                      <i
+                        className="fas fa-th"
+                        aria-hidden="true"
+                      />{
+                        django.gettext('Participation projects: ')
+                      }
+                    </span>
                     <span>{item.published_projects_count}</span>
                   </div>}
                 {item.future_phase && !item.active_phase &&
                   <div className="status-item status__future">
-                    <span className="participation-tile__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Participation: from ')}{this.getDate(item)}</span>
+                    <span className="participation-tile__status">
+                      <i
+                        className="fas fa-clock"
+                        aria-hidden="true"
+                      />{django.gettext('Participation: from ')}{this.getDate(item)}
+                    </span>
                   </div>}
                 {item.active_phase &&
                   <div className="status-item status__active">
-                    <div className="status-bar__active"><span className="status-bar__active-fill" style={this.getWidth(item)} /></div>
+                    <div className="status-bar__active">
+                      <span
+                        className="status-bar__active-fill"
+                        style={this.getWidth(item)}
+                      />
+                    </div>
                     <span className="participation-tile__status"><i className="fas fa-clock" aria-hidden="true" />
                       {this.getTimespan(item)}
                     </span>
                   </div>}
                 {item.past_phase && !item.active_phase && !item.future_phase &&
                   <div className="status-item status-bar__past">
-                    <span className="participation-tile__status">{django.gettext('Participation ended. Read result.')}</span>
+                    <span
+                      className="participation-tile__status"
+                    >{django.gettext('Participation ended. Read result.')}
+                    </span>
                   </div>}
               </div>
               <div className="status-item_spacer" />
@@ -139,10 +204,22 @@ class PlansList extends React.Component {
               <h3 className="maplist-item__title">{item.title}</h3>
               <div className="maplist-item__link" />
               <div className="maplist-item__stats">
-                <span className="participation-tile__proj-count"><i className="fas fa-th" aria-hidden="true" />{django.gettext('Participation projects: ')}</span>
+                <span className="participation-tile__proj-count">
+                  <i
+                    className="fas fa-th"
+                    aria-hidden="true"
+                  />{
+                    django.gettext('Participation projects: ')
+                  }
+                </span>
                 <span>{item.published_projects_count}</span>
                 <br />
-                <span className="participation-tile__status"><i className="fas fa-clock" aria-hidden="true" />{django.gettext('Status: ')}</span>
+                <span className="participation-tile__status">
+                  <i
+                    className="fas fa-clock"
+                    aria-hidden="true"
+                  />{django.gettext('Status: ')}
+                </span>
                 <span className={statusClass}>{item.participation_string}</span>
               </div>
               <div className="status-item_spacer" />
