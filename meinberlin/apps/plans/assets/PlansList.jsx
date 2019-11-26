@@ -2,6 +2,35 @@
 const React = require('react')
 const Moment = require('moment')
 
+class LazyBackground extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      source: null
+    }
+  }
+
+  componentDidMount () {
+    const src = this.props.item.tile_image
+    const imageLoader = new Image()
+    imageLoader.src = src
+    imageLoader.onload = () => {
+      this.setState({ source: src })
+    }
+  }
+
+  render () {
+    return (
+      <div className={this.props.isHorizontal ? 'u-lg-only-display maplist-item__img' : 'maplist-item__img'} style={{ backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundImage: `url(${this.state.source})` }} alt="">
+        {!this.props.isHorizontal && this.props.renderTopics(this.props.item)}
+        {this.props.item.tile_image_copyright &&
+          <span className="maplist-item__img-copyright copyright">© {this.props.item.tile_image_copyright}</span>}
+      </div>
+    )
+  }
+}
+
 class PlansList extends React.Component {
   bindList (element) {
     this.listElement = element
@@ -22,14 +51,6 @@ class PlansList extends React.Component {
       return (
         <span>{django.gettext('remaining')} {item.active_phase[1]}</span>
       )
-    }
-  }
-
-  getImage (item) {
-    return {
-      backgroundImage: 'url(' + item.tile_image + ')',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
     }
   }
 
@@ -74,11 +95,11 @@ class PlansList extends React.Component {
           {item.type === 'project' &&
             <div className="participation-tile__body maplist-item__proj">
               {item.tile_image &&
-                <div className={this.props.isHorizontal ? 'u-lg-only-display maplist-item__img' : 'maplist-item__img'} style={this.getImage(item)} alt="">
-                  {!this.props.isHorizontal && this.renderTopics(item)}
-                  {item.tile_image_copyright &&
-                    <span className="maplist-item__img-copyright copyright">© {item.tile_image_copyright}</span>}
-                </div>}
+                <LazyBackground
+                  item={item}
+                  renderTopics={this.renderTopics.bind(this)}
+                  isHorizontal={this.props.isHorizontal}
+                />}
               <div className="participation-tile__content">
                 {(this.props.isHorizontal || !item.tile_image) && this.renderTopics(item)}
                 <span className="maplist-item__roofline">{item.district}</span>
