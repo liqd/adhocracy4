@@ -536,6 +536,7 @@ class Project(ProjectContactDetailMixin,
     def has_finished(self):
         # FIXME: project properties should rely on modules, not phases.
         return self.modules.exists()\
+            and self.published_modules.exists()\
             and not self.published_phases.active_phases().exists()\
             and not self.published_phases.future_phases().exists()\
             and not self.has_future_events
@@ -547,6 +548,10 @@ class Project(ProjectContactDetailMixin,
     @cached_property
     def published_modules(self):
         return self.module_set.filter(is_draft=False)
+
+    @cached_property
+    def unpublished_modules(self):
+        return self.module_set.filter(is_draft=True)
 
     @cached_property
     def running_module_ends_next(self):
