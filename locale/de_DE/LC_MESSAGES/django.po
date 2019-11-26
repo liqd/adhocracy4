@@ -3866,22 +3866,22 @@ msgstr "Modul anlegen"
 
 #: meinberlin/templates/a4dashboard/includes/progress.html:39
 msgid "Are you sure you want to publish your project?"
-msgstr ""
+msgstr "Möchten Sie Ihr Projekt veröffentlichen?"
 
 #: meinberlin/templates/a4dashboard/includes/progress.html:40
 msgid "Close"
-msgstr ""
+msgstr "Schließen"
 
 #: meinberlin/templates/a4dashboard/includes/progress.html:47
 #, python-format
 msgid "One module has not been added to the project."
 msgid_plural "%(counter)s modules have not been added to the project."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ein Beteiligungsmodul wurde noch nicht dem Projekt hinzugefügt."
+msgstr[1] "%(counter)s Beteiligungsmodule wurden noch nicht dem Projekt hinzugefügt."
 
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:21
 msgid "Private"
-msgstr ""
+msgstr "Privat"
 
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:56
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:58
