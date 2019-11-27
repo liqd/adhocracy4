@@ -1292,7 +1292,6 @@ msgstr "Nutzer*innen"
 
 #: meinberlin/apps/adminlog/models.py:47
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:71
-#, fuzzy
 #| msgid "Module"
 msgid "Module"
 msgstr "Modul"
