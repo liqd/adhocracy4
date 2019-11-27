@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-26 11:30+0100\n"
+"POT-Creation-Date: 2019-11-27 17:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,21 +74,17 @@ msgstr "Save"
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:4
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:7
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:9
-#: meinberlin/templates/a4dashboard/blueprint_list.html:4
-#: meinberlin/templates/a4dashboard/blueprint_list.html:8
 #: meinberlin/templates/a4dashboard/project_list.html:13
 msgid "New Project"
 msgstr "New Project"
 
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/includes/module_blueprint_list_tile.html:16
-#: meinberlin/templates/a4dashboard/includes/blueprint_list_tile.html:14
 msgid "Phase"
 msgstr "Phase"
 
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/includes/module_blueprint_list_tile.html:21
-#: meinberlin/templates/a4dashboard/includes/blueprint_list_tile.html:21
 msgid "Select"
 msgstr "Select"
 
@@ -1996,9 +1992,12 @@ msgid "Organisation name"
 msgstr "Organisation name"
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/module_blueprint_list_dashboard.html:4
-#: meinberlin/apps/dashboard/templates/meinberlin_dashboard/module_blueprint_list_dashboard.html:8
 msgid "New Module"
 msgstr "New Module"
+
+#: meinberlin/apps/dashboard/templates/meinberlin_dashboard/module_blueprint_list_dashboard.html:7
+msgid "Choose Participation Module"
+msgstr "Choose Participation Module"
 
 #: meinberlin/apps/dashboard/views.py:131
 msgid "Module is already added"
