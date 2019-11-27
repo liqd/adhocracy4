@@ -64,15 +64,12 @@ class ListMapBox extends Component {
     })
   }
 
-  componentWillMount () {
-    window.addEventListener('resize', this.windowSizeChange)
-  }
-
   componentWillUnmount () {
     window.removeEventListener('resize', this.windowSizeChange)
   }
 
   componentDidMount () {
+    window.addEventListener('resize', this.windowSizeChange)
     const urls = [
       this.props.projectApiUrl + '?status=activeParticipation',
       this.props.projectApiUrl + '?status=futureParticipation',

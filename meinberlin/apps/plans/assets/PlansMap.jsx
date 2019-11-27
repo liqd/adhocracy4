@@ -69,14 +69,11 @@ class PlansMap extends Component {
     this.markers = this.addMarkers(this.cluster)
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.currentDistrict !== this.props.currentDistrict) {
-      this.zoomToDistrict(nextProps.currentDistrict)
-      this.unsetLayerStyle(this.props.currentDistrict)
+  componentDidUpdate (prevProps) {
+    if (prevProps.currentDistrict !== this.props.currentDistrict) {
+      this.zoomToDistrict(this.props.currentDistrict)
+      this.unsetLayerStyle(prevProps.currentDistrict)
     }
-  }
-
-  componentDidUpdate () {
     this.cluster.clearLayers()
     this.markers = this.addMarkers(this.cluster)
   }
