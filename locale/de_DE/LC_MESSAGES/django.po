@@ -1517,7 +1517,7 @@ msgstr "Bebauungspläne"
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_list_dashboard.html:13
 msgid "New Development plan"
-msgstr "Neuer Benauungsplan"
+msgstr "Neuer Bebauungsplan"
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_list_dashboard.html:30
 msgid "We could not find any development plans."
