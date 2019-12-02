@@ -107,7 +107,7 @@
                             {% trans 'Add to project' %}
                         </button>
                     {% else %}
-                        <button name="action" value="unpublish" class="btn btn--secondary btn--full btn--attached-top">
+                        <button name="action" value="unpublish" {% if not project.is_draft and project.published_modules.count <= 1 %}disabled{% endif %} class="btn btn--secondary btn--full btn--attached-top">
                             {% trans 'Remove from project' %}
                         </button>
                     {% endif %}
@@ -115,7 +115,7 @@
                 <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="referrer" value="{{ request.path }}" />
-                    <button type="submit" class="btn btn--light btn--attached-top" {% if project.modules.count == 1 %}disabled{% endif %} value="{% trans 'Delete' %}">
+                    <button type="submit" class="btn btn--light btn--attached-top" {% if not module_menu.module.is_draft or project.published_modules.count <= 1 %}disabled{% endif %} value="{% trans 'Delete' %}">
                         <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
                     </button>
                 </form>
