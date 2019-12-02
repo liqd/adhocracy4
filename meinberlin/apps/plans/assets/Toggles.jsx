@@ -69,7 +69,7 @@ class Toggles extends React.Component {
                 </button>}
             </div>
             <div className="switch">
-              <div className="switch-group" role="group" aria-labelledby="id-switch-label">
+              <div className="switch-group" role="group" aria-labelledby="switch-primary">
                 <label htmlFor="switch-primary" className="switch-label">
                   <span className="switch-label__text">{django.gettext('Show map')}</span>
                   <input
@@ -78,6 +78,7 @@ class Toggles extends React.Component {
                     onChange={this.props.toggleSwitch} /* eslint-disable-line react/jsx-handler-names */
                     name="switch-primary"
                     type="checkbox"
+                    aria-label={django.gettext('show map')}
                   />
                   <span className="switch__toggle" />
                 </label>
@@ -123,22 +124,22 @@ class Toggles extends React.Component {
             </div>
             <div className="switch-btn-group-container">
               <div className="btn-group switch-btn-group" role="group">
-                <label
+                <switch
                   className={!this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'}
                   onClick={this.props.showList} // eslint-disable-line react/jsx-handler-names
                   htmlFor="show_list"
                 >
                   <span className="sr-only">{django.gettext('Show List')}</span>
-                  <input className="radio__input" type="radio" value="list" id="show_list" /> <i className="fa fa-list" />
-                </label>
-                <label
+                  <input className="radio__input" type="radio" value="list" id="show_list" aria-label={django.gettext('show list')} /> <i className="fa fa-list" />
+                </switch>
+                <switch
                   className={this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'}
                   onClick={this.props.showMap} // eslint-disable-line react/jsx-handler-names
                   htmlFor="show_map"
                 >
                   <span className="sr-only">{django.gettext('Show Map')}</span>
-                  <input className="radio__input" type="radio" value="map" id="show_map" /> <i className="fa fa-map" />
-                </label>
+                  <input className="radio__input" type="radio" value="map" id="show_map" aria-label={django.gettext('show map')} /> <i className="fa fa-map" />
+                </switch>
               </div>
             </div>
           </div>
