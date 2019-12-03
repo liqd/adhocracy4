@@ -35,8 +35,6 @@
 
                 {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
 
-                <p>{% trans 'After saving the draft linkage you can further customize and edit your linkage and eventually publish it.' %}</p>
-
                 <div class="u-spacer-bottom">
                     <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send' %}"/>
                     <a href="{% url 'a4dashboard:extproject-list' organisation_slug=view.organisation.slug %}"

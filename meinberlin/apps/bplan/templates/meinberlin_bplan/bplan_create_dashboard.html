@@ -35,8 +35,6 @@
 
                 {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
 
-                <p>{% trans 'After saving the draft development plan you can further customize and edit your development plan and eventually publish it.' %}</p>
-
                 <div class="u-spacer-bottom">
                     <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send' %}"/>
                     <a href="{% url 'a4dashboard:bplan-list' organisation_slug=view.organisation.slug %}"
