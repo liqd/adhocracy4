@@ -3,6 +3,10 @@
 $(function () {
   var submitted = false
   var changeHandler = function () {
+    var target = event.target.id
+    if (target.includes('dashboard-nav')) {
+      submitted = true
+    }
     $(window).on('beforeunload', function (e) {
       if (!submitted) {
         var string = django.gettext('If you leave this page changes you made will not be saved.')
