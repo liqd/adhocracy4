@@ -19,14 +19,14 @@
 </div>
 
 {% if project.is_draft %}
-    <button {% if value != max or project.published_modules.count == 0 %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top" data-toggle="modal" data-target="#publish-modal">
+    <button {% if value != max or project.published_modules.count == 0 %}disabled{% endif %} class="btn btn--primary btn--full u-spacer-bottom btn--attached-top" data-toggle="modal" data-target="#publish-modal">
         {% trans 'Publish' %}
     </button>
 {% else %}
 <form action="{% url 'a4dashboard:project-publish' project_slug=project.slug %}" method="post" data-ignore-submit="true">
     {% csrf_token %}
     <input type="hidden" name="referrer" value="{{ request.path }}" />
-    <button name="action" value="unpublish" class="btn btn--light btn--full btn--attached-top">
+    <button name="action" value="unpublish" class="btn btn--light btn--full u-spacer-bottom btn--attached-top">
         {% trans 'Unpublish' %}
     </button>
 </form>

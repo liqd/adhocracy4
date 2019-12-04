@@ -193,14 +193,14 @@ class FilterNav extends React.Component {
               <div>
                 <a
                   href={this.props.linkUrl}
-                  className="u-spacer-top btn btn--small btn--primary btn--full filter-bar__btn--light-homepage"
+                  className="u-spacer-top btn btn--small btn--primary btn--full u-spacer-bottom filter-bar__btn--light-homepage"
                 >{django.gettext('display projects')}
                 </a>
               </div>}
             {!this.props.linkUrl &&
               <button
                 onClick={this.showSecondaryFilters.bind(this)}
-                className="u-spacer-top btn btn--small btn--transparent btn--full filter-bar__btn--light"
+                className="u-spacer-top btn btn--small btn--transparent btn--full u-spacer-bottom filter-bar__btn--light"
                 aria-haspopup="true"
                 aria-expanded={this.state.displaySecondaryFilters}
               >

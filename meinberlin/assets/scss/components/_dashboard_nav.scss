@@ -96,6 +96,39 @@ input:checked ~ .dashboard-nav__menu-content {
 
 .dashboard-nav__module-control {
     display: flex;
-    justify-content: space-between;
     margin: 0 0 $spacer 0;
+}
+
+.dashboard_nav__form--project {
+    flex-grow: 1;
+}
+
+.dashboard_nav__btn--project {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.dashboard_nav__btn--delete {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    max-width: 48px;
+}
+
+//delete btn positioned under project btn
+@media screen and (min-width: $breakpoint) and (max-width: $breakpoint-lg-down) {
+    .dashboard_nav__btn--project {
+        border-bottom-left-radius: 0;
+    }
+
+    .dashboard_nav__btn--delete {
+        max-width: 100%;
+        border-bottom-left-radius: 0.3em;
+    }
+
+    .dashboard_nav__form--delete,
+    .dashboard_nav__form--project {
+        width: 100%;
+    }
 }

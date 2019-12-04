@@ -2,7 +2,7 @@
 
 <a href="{{ project|project_url }}"
    target="{{ project|is_external|yesno:"_blank,_self" }}"
-   class="btn btn--light btn--full">
+   class="btn btn--light btn--full u-spacer-bottom">
     <i class="fa fa-eye" aria-hidden="true"></i>
     {% if project.is_draft %}
     {% trans 'Preview' %}
