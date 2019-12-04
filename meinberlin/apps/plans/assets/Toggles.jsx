@@ -78,7 +78,7 @@ class Toggles extends React.Component {
                     onChange={this.props.toggleSwitch} /* eslint-disable-line react/jsx-handler-names */
                     name="switch-primary"
                     type="checkbox"
-                    aria-label={django.gettext('show map')}
+                    aria-label={django.gettext('hide map')}
                   />
                   <span className="switch__toggle" />
                 </label>
