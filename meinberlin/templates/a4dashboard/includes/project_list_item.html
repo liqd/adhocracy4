@@ -41,7 +41,7 @@
                         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                         {% trans 'Edit'%}
                     </a>
-                    {% if not project|is_container %}
+                    {% if not project|is_container and not project|is_external %}
                         <div class="dropdown">
                             <button
                                     type="button"
@@ -51,13 +51,10 @@
                                     aria-haspopup="true"
                                     aria-expanded="false"
                                     id="project-actions"
-                                    {# Temporary solution, as duplicate currently the only list item and the future of the dropdown is still undecided #}
-                                    {{ project|is_external|yesno:"disabled," }}
                                     title="{% trans 'more' %}"
                             >
                                 <i class="fa fa-caret-down" aria-label="{% trans 'more' %}"></i>
                             </button>
-                            {% if not project|is_external %}
                             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="project-actions">
                                 <li>
                                     <form method="post" class="list-item__action">
@@ -71,7 +68,6 @@
                                     </form>
                                 </li>
                             </ul>
-                            {% endif %}
                         </div>
                     {% endif %}
                 {% endspaceless %}
