@@ -24,7 +24,7 @@ class ModuleBlueprintListView(ProjectMixin,
                               mixins.BlueprintMixin,
                               generic.DetailView):
     template_name = 'meinberlin_dashboard/module_blueprint_list_dashboard.html'
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
     menu_item = 'project'
@@ -34,7 +34,7 @@ class ModuleBlueprintListView(ProjectMixin,
         return get_blueprints()
 
     def get_permission_object(self):
-        return self.organisation
+        return self.project
 
 
 class ModuleCreateView(ProjectMixin,
@@ -42,7 +42,7 @@ class ModuleCreateView(ProjectMixin,
                        mixins.BlueprintMixin,
                        SingleObjectMixin,
                        generic.View):
-    permission_required = 'a4projects.add_project'
+    permission_required = 'a4projects.change_project'
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
 
@@ -92,7 +92,7 @@ class ModuleCreateView(ProjectMixin,
         })
 
     def get_permission_object(self):
-        return self.organisation
+        return self.project
 
 
 class ModulePublishView(SingleObjectMixin,

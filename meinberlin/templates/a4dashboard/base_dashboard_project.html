@@ -145,8 +145,7 @@
             {% endfor %}
             {% endif %}
 
-            {% has_perm 'a4projects.add_project' request.user view.project.organisation as user_may_add %}
-            {% if user_may_add and not project|is_container and not project|is_external %}
+            {% if not project|is_container and not project|is_external %}
                 <a class="btn btn--secondary btn--full u-spacer-bottom" href="{% url 'a4dashboard:module-blueprint-list' project_slug=project.slug %}" data-toggle="ajax-modal" data-target-selector="#module-blueprint-list">{% trans 'Create Module' %}</a>
             {% endif %}
         </nav>
