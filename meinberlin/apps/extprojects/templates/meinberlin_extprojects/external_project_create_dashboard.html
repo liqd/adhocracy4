@@ -9,9 +9,10 @@
         <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">
             <ul>
                 <li>
-                    <a href="{% url 'a4dashboard:project-list' organisation_slug=view.organisation.slug %}">
+                    <a href="{% url 'a4dashboard:extproject-list' organisation_slug=view.organisation.slug %}">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                        {% trans 'To main menu' %}</a>
+                        {% trans 'All linkages' %}
+                    </a>
                 </li>
             </ul>
         </nav>
