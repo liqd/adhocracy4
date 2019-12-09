@@ -114,6 +114,10 @@ input:checked ~ .dashboard-nav__menu-content {
     border-top-right-radius: 0;
     border-bottom-left-radius: 0;
     max-width: 48px;
+
+    i {
+        font-size: 1rem;
+    }
 }
 
 //delete btn positioned under project btn
