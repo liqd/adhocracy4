@@ -43,6 +43,8 @@ def test_edit_view(client, phase_factory, external_project, module_factory):
     assert external_project.is_archived == data.get('is_archived')
     assert external_project.is_public == data.get('is_public')
     assert external_project.url == data.get('url')
+    assert external_project.project_type == \
+        'meinberlin_extprojects.ExternalProject'
     phase.refresh_from_db()
     assert phase.start_date == parse("2013-01-01 17:00:00 UTC")
     assert phase.end_date == parse("2013-01-10 17:00:00 UTC")
