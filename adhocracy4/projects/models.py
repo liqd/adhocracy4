@@ -279,11 +279,12 @@ class Project(ProjectContactDetailMixin,
             self.information, 'collapsible-image-editor')
         self.result = html_transforms.clean_html_field(
             self.result, 'image-editor')
-        project_type = '{}.{}'.format(
-            self._meta.app_label,
-            self.__class__.__name__
-        )
-        self.project_type = project_type
+        if self.pk is None:
+            project_type = '{}.{}'.format(
+                self._meta.app_label,
+                self.__class__.__name__
+            )
+            self.project_type = project_type
         super(Project, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
