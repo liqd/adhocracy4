@@ -24,3 +24,5 @@ def test_edit_view(client, project_factory, project_container):
     project_container.refresh_from_db()
     assert redirect_target(response) == 'dashboard-container-projects'
     assert list(project_container.projects.all()) == [project]
+    assert project_container.project_type == \
+        'meinberlin_projectcontainers.ProjectContainer'

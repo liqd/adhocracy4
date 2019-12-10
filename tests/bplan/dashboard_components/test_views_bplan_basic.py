@@ -33,7 +33,6 @@ def test_edit_view(client, phase_factory, bplan, module_factory):
         'start_date_1': '18:00',
         'end_date_0': '2013-01-10',
         'end_date_1': '18:00',
-
     }
     response = client.post(url, data)
     assert redirect_target(response) == 'dashboard-bplan-project-edit'
@@ -49,3 +48,4 @@ def test_edit_view(client, phase_factory, bplan, module_factory):
     phase.refresh_from_db()
     assert phase.start_date == parse("2013-01-01 17:00:00 UTC")
     assert phase.end_date == parse("2013-01-10 17:00:00 UTC")
+    assert bplan.project_type == 'meinberlin_bplan.Bplan'

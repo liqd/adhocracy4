@@ -22,3 +22,5 @@ def test_edit_view(client, project, project_container_factory):
     response = client.post(url, data)
     assert_dashboard_form_component_edited(
         response, component, project_container, data)
+    assert project_container.project_type == \
+        'meinberlin_projectcontainers.ProjectContainer'

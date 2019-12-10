@@ -124,3 +124,11 @@ class CategoryFactory(factory.django.DjangoModelFactory):
 
     name = factory.Faker('job')
     module = factory.SubFactory(factories.ModuleFactory)
+
+
+class AdministrativeDistrictFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'a4administrative_districts.AdministrativeDistrict'
+
+    name = factory.Faker('city')
