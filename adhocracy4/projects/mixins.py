@@ -180,7 +180,8 @@ class ProjectModuleDispatchMixin(generic.DetailView):
 
     @cached_property
     def module(self):
-        if self.project.published_modules.count() == 1 and not self.project.events:
+        if (self.project.published_modules.count()
+                == 1 and not self.project.events):
             return self.project.published_modules.first()
         elif len(self.get_current_modules()) == 1:
             return self.get_current_modules()[0]
