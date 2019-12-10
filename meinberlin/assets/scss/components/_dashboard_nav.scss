@@ -6,6 +6,17 @@
 
 .dashboard-nav__dropdown {
     background-color: $bg-secondary;
+
+    .fa-caret-down {
+        font-size: 1.7rem;
+        transition: transform 0.3s;
+    }
+}
+
+input:checked ~ .dashboard-nav__dropdown {
+    .fa-caret-down {
+        transform: rotate(180deg);
+    }
 }
 
 .dashboard-nav__pages {
@@ -27,6 +38,7 @@
 }
 
 .dashboard-nav__header {
+    position: relative;
     display: flex;
     justify-content: space-between;
     font-weight: bold;
@@ -38,11 +50,12 @@
 }
 
 .dashboard-nav__icon {
-    margin-right: 1.4*$spacer;
+    margin-right: 1.9*$spacer;
 }
 
 .dashboard-nav__dropdown-icon {
     margin-right: 0.5*$spacer;
+    vertical-align: super;
 }
 
 .dashboard-nav__item--interactive {
