@@ -119,28 +119,55 @@
                     </div>
                 </div>
             </div>
-            <div class="dashboard-nav__module-control btn-group form-row">
+            <div class="dashboard-nav__module-control form-row">
                 <form class="dashboard_nav__form--project" action="{% url 'a4dashboard:module-publish' module_slug=module_menu.module.slug %}" method="post" data-ignore-submit="true">
                     {% csrf_token %}
                     <input type="hidden" name="referrer" value="{{ request.path }}" />
                     {% if module_menu.module.is_draft %}
-                        <button name="action" value="publish" {% if not module_menu.is_complete %}disabled{% endif %} class="btn btn--primary btn--full dashboard_nav__btn--project">
+                        <button name="action" value="publish" {% if not module_menu.is_complete %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top u-spacer-bottom-half">
                             {% trans 'Add to project' %}
                         </button>
                     {% else %}
-                        <button name="action" value="unpublish" {% if not project.is_draft and project.published_modules.count <= 1 %}disabled{% endif %} class="btn btn--secondary btn--full dashboard_nav__btn--project">
+                        <button name="action" value="unpublish" {% if not project.is_draft and project.published_modules.count <= 1 %}disabled{% endif %} class="btn btn--secondary btn--full btn--attached-top u-spacer-bottom-half">
                             {% trans 'Remove from project' %}
                         </button>
                     {% endif %}
                 </form>
-                <form class="dashboard_nav__form--delete" enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="referrer" value="{{ request.path }}" />
-                    <button type="submit" class="btn btn--light btn--full u-spacer-bottom dashboard_nav__btn--delete" {% if not module_menu.module.is_draft %}disabled{% endif %} value="{% trans 'Delete' %}">
-                        <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
-                    </button>
-                </form>
+                {% if module_menu.module.is_draft %}
+                <button type="submit" class="btn btn--full btn--danger u-spacer-bottom dashboard_nav__btn--delete" value="{% trans 'Delete' %}" data-toggle="modal" data-target="#delete-modal">
+                    <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
+                    {% trans 'Delete module' %}
+                </button>
+                {% endif %}
             </div>
+
+            <div class="modal" tabindex="-1" role="dialog" id="delete-modal" aria-labelledby="delete-modal-label">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title u-first-heading" id="delete-modal-label">{% trans "Are you sure you want to delete your module?" %}</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="{% trans 'Close'%}">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="u-spacer-bottom">
+                                <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug %}" method="post" class="u-inline">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="referrer" value="{{ request.path }}" />
+                                    <button type="submit" class="btn btn--danger" value="{% trans 'Delete' %}" data-toggle="modal" data-target="#delete-modal">
+                                        <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
+                                        {% trans 'Delete module' %}
+                                    </button>
+                                </form>
+                                <button type="button" data-dismiss="modal" class="btn btn--light">{% trans 'Cancel'%}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {% empty %}
             <div>
                 <p>{% trans 'You have not set up a participation module yet.' %}</p>
