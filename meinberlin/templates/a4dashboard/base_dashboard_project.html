@@ -125,11 +125,11 @@
                     <input type="hidden" name="referrer" value="{{ request.path }}" />
                     {% if module_menu.module.is_draft %}
                         <button name="action" value="publish" {% if not module_menu.is_complete %}disabled{% endif %} class="btn btn--primary btn--full btn--attached-top u-spacer-bottom-half">
-                            {% trans 'Add to project' %}
+                            {% trans 'Show in project' %}
                         </button>
                     {% else %}
                         <button name="action" value="unpublish" {% if not project.is_draft and project.published_modules.count <= 1 %}disabled{% endif %} class="btn btn--secondary btn--full btn--attached-top u-spacer-bottom-half">
-                            {% trans 'Remove from project' %}
+                            {% trans 'Hide from project' %}
                         </button>
                     {% endif %}
                 </form>
