@@ -67,7 +67,14 @@ class ModuleCreateView(ProjectMixin,
         self._create_module_settings(module)
         self._create_phases(module, self.blueprint.content)
 
-        return HttpResponseRedirect(self.get_next(module))
+        closed = request.COOKIES.get('closed_accordeons', '')
+        closed_project_accordeon = \
+            'dashboard-nav__project--{}'.format(str(self.project.id))
+        if closed_project_accordeon not in closed:
+            closed = closed_project_accordeon + closed
+        response = HttpResponseRedirect(self.get_next(module))
+        response.set_cookie('closed_accordeons', closed)
+        return response
 
     def _create_module_settings(self, module):
         if self.blueprint.settings_model:
