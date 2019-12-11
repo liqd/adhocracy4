@@ -104,7 +104,7 @@ var init = function () {
       }
     } else {
       if (currentList.includes(currentId)) {
-        var newList = currentList.replace(',' + currentId, '')
+        var newList = currentList.replace(',' + currentId, '').replace(currentId, '')
         Cookies.set('closed_accordeons', newList)
       }
     }
