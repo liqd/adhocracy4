@@ -99,7 +99,7 @@
                                     <i class="fa fa-caret-down" aria-hidden="true"></i>
                                 </span>
                             </div>
-                            {{ module_menu.module.name }}
+                            {{ module_menu.module.name }} {% if module_menu.module.module_start and module_menu.module.module_end  %} <br> <small>{{ module_menu.module.module_start | date:"SHORT_DATE_FORMAT" }} - {{ module_menu.module.module_end | date:"SHORT_DATE_FORMAT"}}</small>{% endif %}
                         </div>
                     </label>
                     <div class="dashboard-nav__menu-content">
