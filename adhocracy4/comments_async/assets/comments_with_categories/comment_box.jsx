@@ -5,11 +5,11 @@ import django from 'django'
 import update from 'immutability-helper'
 import axios from 'axios'
 
-import { api } from 'adhocracy4'
-
 import CommentForm from './comment_form'
 import CommentList from './comment_list'
 import { getDocumentHeight } from '../util'
+
+const api = require('../../../static/api')
 
 const sorts = {
   new: django.gettext('Newest'),
@@ -541,15 +541,15 @@ export default class CommentBox extends React.Component {
                 <div className={this.state.search !== '' ? 'a4-comments__nav__text' : 'd-none'}>
                   <span className="a4-comments__nav__span">{this.state.commentCount + ' ' + django.ngettext('entry found for ', 'entries found for ', this.state.commentCount)}</span>
 
-                  <button className="btn btn--sm a4-comments__nav__search-result" type="button" onClick={this.handleClickResult}>{this.state.search}<i className="fas fa-times" aria-label={django.gettext('Clear search')} /></button>
+                  <button className="btn btn--small a4-comments__nav__search-result" type="button" onClick={this.handleClickResult}>{this.state.search}<i className="fas fa-times" aria-label={django.gettext('Clear search')} /></button>
                 </div>
 
                 <div className={this.state.search === '' ? 'a4-comments__nav__text' : 'd-none'}>
                   {this.state.commentCount + ' ' + django.ngettext('entry', 'entries', this.state.commentCount)}
                 </div>
 
-                <div className="a4-comments__nav__search">
-                  <input type="search" id="search-input" onKeyPress={this.handleEnterSearch} placeholder={django.gettext('SEARCH CONTRIBUTIONS')} className="a4-comments__nav__search-input" />
+                <div className="input-group a4-comments__nav__search">
+                  <input type="search" id="search-input" onKeyPress={this.handleEnterSearch} placeholder={django.gettext('SEARCH CONTRIBUTIONS')} className="a4-comments__nav__search-input mb-0" />
                   <button className="a4-comments__nav__search-btn btn" type="button" onClick={this.handleClickSearch}><i className="fas fa-search a4-comments__nav__search-icon" aria-label={django.gettext('Search contributions')} /></button>
                 </div>
 

@@ -30,12 +30,12 @@ export default class ModerateModal extends React.Component {
     const partials = {}
     partials.title = django.gettext('Recommend comment')
     partials.body = (
-      <div>
+      <div className="form-inline">
         <label htmlFor="markedCheck" className="form-check-label font-weight-bold">
           {django.gettext('Is recommended')}
         </label>
         <input
-          className="form-check-input customform__check--lg mt-0 ml-4"
+          className="form-check-input ml-4 mt-3"
           type="checkbox"
           id="markedCheck"
           name="markedCheck"
