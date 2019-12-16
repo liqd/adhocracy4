@@ -60,6 +60,6 @@ def react_comments_async_with_categories(context, obj):
     }
 
     return format_html(
-        '<div data-a4-widget="comment_categories" '
+        '<div data-a4-widget="comment_async_with_categories" '
         'data-attributes="{attributes}"></div>',
         attributes=json.dumps(attributes))
