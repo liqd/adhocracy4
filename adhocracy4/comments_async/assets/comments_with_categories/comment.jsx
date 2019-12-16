@@ -11,7 +11,7 @@ import CommentForm from './comment_form'
 import CommentManageDropdown from './comment_manage_dropdown'
 import CommentList from './comment_list'
 
-var RatingBox = require('../../../ratings/static/ratings/react_ratings').RatingBox
+const RatingBox = require('../../../ratings/static/ratings/react_ratings').RatingBox
 
 const safeHtml = function (text) {
   return { __html: text }
@@ -268,10 +268,12 @@ export default class Comment extends React.Component {
             <div className="a4-comments__box row">
               {(this.props.is_moderator_marked && this.displayCategories()) &&
                 <span className={this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) ? 'a4-comments__featured--menu' : 'a4-comments__featured'}>
-                  <img src="/static/images/badge_featured.png" alt="Featured comment" />
+                  <i class="fas fa-bookmark" alt="Featured comment" />
                 </span>}
               <div className="a4-comments__box--left">
-                {userImage}
+                {this.props.userImage &&
+                  {userImage}
+                }
                 <h5 className={this.props.is_deleted ? 'a4-comments__deleted-author' : 'a4-comments__author'}>
                   {this.props.is_deleted ? this.props.user_name
                     : <a href={userProfile} >{this.props.user_name}</a>}
@@ -291,21 +293,20 @@ export default class Comment extends React.Component {
                     isParentComment={this.displayCategories()}
                   />}
                 {this.renderComment()}
-                {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--sm" onClick={this.showMore.bind(this)}>{django.gettext('Read more...')}</button>}
-                {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--sm" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
+                {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--link" onClick={this.showMore.bind(this)}>{django.gettext('Read more...')}</button>}
+                {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--link" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
                 <div className="action-bar">
                   <nav className="navbar navbar-default navbar-static a4-comments__navbar">
                     {this.renderRatingBox()}
                     <div className="a4-comments__nav">
                       {this.props.child_comments && this.props.child_comments.length > 0 &&
-                        <button className="btn comment-reply-button" type="button" onClick={this.toggleShowComments.bind(this)}>
-                          <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" />
-                          {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
+                        <button className="btn a4-comments__nav-btn" type="button" onClick={this.toggleShowComments.bind(this)}>
+                          <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" /> {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
                         </button>}
                       {this.allowForm() && !this.props.is_deleted &&
                         <button
                           disabled={this.state.showChildComments}
-                          className="btn a4-comments__answer-btn"
+                          className="btn a4-comments__nav-btn"
                           type="button"
                           onClick={this.replyComments.bind(this)}
                         >
@@ -313,13 +314,13 @@ export default class Comment extends React.Component {
                         </button>}
                       {!this.props.is_deleted &&
                         <a
-                          className="btn a4-comments__report-link" href={`?comment_${this.props.id}`}
+                          className="btn a4-comments__nav-btn" href={`?comment_${this.props.id}`}
                           data-toggle="modal" data-target={`#share_comment_${this.props.id}`}
-                        >{django.gettext('Share')}
+                        ><i className="fas fa-share" /> {django.gettext('Share')}
                         </a>}
                       {!this.props.is_deleted && !this.isOwner() &&
                         <a
-                          className="btn a4-comments__report-link" href={`#report_comment_${this.props.id}`}
+                          className="btn a4-comments__nav-btn" href={`#report_comment_${this.props.id}`}
                           data-toggle="modal"
                         >{django.gettext('Report')}
                         </a>}
@@ -335,7 +336,7 @@ export default class Comment extends React.Component {
         <div className="container">
           {this.state.showChildComments
             ? (
-              <div className="a4-comments__child-list">
+              <div className="a4-comments__child--list">
                 <div className="a4-comments__list">
                   <CommentList
                     filter="all"

@@ -7,7 +7,7 @@ const CommentManageDropdown = (props) => {
     <ul className="nav navbar-nav a4-comments__dropdown">
       <li className="dropdown">
         <button
-          type="button" className="dropdown-toggle btn btn--sm btn--no-border" aria-haspopup="true"
+          type="button" className="dropdown-toggle btn btn--link" aria-haspopup="true"
           aria-expanded="false" data-toggle="dropdown"
         >
           <i className="fas fa-ellipsis-v" aria-hidden="true" />

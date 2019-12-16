@@ -49,7 +49,7 @@ export default class CommentForm extends React.Component {
               />
             </div>
             <div className="a4-comments__submit">
-              <input type="submit" value={django.gettext('post')} className="a4-comments__submit-input" />
+              <input type="submit" value={django.gettext('post')} className="btn a4-comments__submit-input" />
             </div>
           </form>
         </div>

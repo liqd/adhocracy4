@@ -66,7 +66,7 @@ export default class CommentForm extends React.Component {
     if (this.context.isAuthenticated && !this.props.isReadOnly) {
       return (
         <div>
-          <label htmlFor="id-comment-form" className="mt-3 mb-2"> {django.gettext('The maximal length of your contribution is 4000 characters')}</label>
+          <label htmlFor="id-comment-form" className="pt-3 pb-2"> {django.gettext('The maximal length of your contribution is 4000 characters')}</label>
           <form id="id-comment-form" className="general-form" onSubmit={this.handleSubmit.bind(this)}>
             {this.props.error &&
               <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
@@ -86,7 +86,7 @@ export default class CommentForm extends React.Component {
               />
             </div>
             <div className="a4-comments__submit">
-              <input type="submit" value={django.gettext('post')} className="a4-comments__submit-input" />
+              <input type="submit" value={django.gettext('post')} className="btn a4-comments__submit-input" />
             </div>
           </form>
         </div>

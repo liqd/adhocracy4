@@ -11,7 +11,7 @@ const Modal = (props) => {
     >
       <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div className="modal-content">
-          <span className="modal--close">
+          <span className="modal--close p-3">
             <button
               className="close" aria-label={props.abort}
               data-dismiss="modal" onClick={props.handleClose}
@@ -21,17 +21,19 @@ const Modal = (props) => {
           </span>
           {!props.partials.hideHeader &&
             <div className="modal-header">
-              <h4 className="modal-title">{props.partials.title}</h4>
+              <h4 className="modal-title mt-0">{props.partials.title}</h4>
             </div>}
-          <div
-            className={'modal-body ' + (props.partials.bodyClass || '')}
-          >
-            {props.partials.body}
-          </div>
+          {props.partials.body &&
+            <div
+              className={'modal-body ' + (props.partials.bodyClass || '')}
+            >
+              {props.partials.body}
+            </div>
+          }
           {!props.partials.hideFooter &&
-            <div className="row modal-footer">
+            <div className="modal-footer">
               <button
-                className="mx-auto mx-lg-4 cancel-button btn--upper" data-dismiss="modal"
+                className="mx-auto mx-lg-4 cancel-button" data-dismiss="modal"
                 onClick={props.handleClose}
               >{props.abort}
               </button>

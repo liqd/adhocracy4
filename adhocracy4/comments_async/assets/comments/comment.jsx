@@ -10,7 +10,7 @@ import CommentForm from './comment_form'
 import CommentManageDropdown from './comment_manage_dropdown'
 import CommentList from './comment_list'
 
-var RatingBox = require('../../../ratings/static/ratings/react_ratings').RatingBox
+const RatingBox = require('../../../ratings/static/ratings/react_ratings').RatingBox
 
 const safeHtml = function (text) {
   return { __html: text }
@@ -218,7 +218,6 @@ export default class Comment extends React.Component {
                 {moderatorLabel}
               </div>
               <div className={this.state.anchored ? 'a4-comments__box--right a4-comments__border--highlighted' : 'a4-comments__box--right'}>
-                <span className="sr-only">{django.gettext('Categories: ')}</span>
                 {this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) &&
                   <CommentManageDropdown
                     id={this.props.id}
@@ -226,16 +225,15 @@ export default class Comment extends React.Component {
                     renderModeratorOptions={(this.isOwner() || this.context.isModerator) && !this.props.isReadOnly}
                   />}
                 {this.renderComment()}
-                {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--sm" onClick={this.showMore.bind(this)}>{django.gettext('Read more...')}</button>}
-                {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--sm" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
+                {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--small" onClick={this.showMore.bind(this)}>{django.gettext('Read more...')}</button>}
+                {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--small" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
                 <div className="action-bar">
                   <nav className="navbar navbar-default navbar-static a4-comments__navbar">
                     {this.renderRatingBox()}
                     <div className="a4-comments__nav">
                       {this.props.child_comments && this.props.child_comments.length > 0 &&
-                        <button className="btn comment-reply-button" type="button" onClick={this.toggleShowComments.bind(this)}>
-                          <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" />
-                          {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
+                        <button className="btn a4-comments__nav-btn" type="button" onClick={this.toggleShowComments.bind(this)}>
+                          <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" /> {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
                         </button>}
                       {this.allowForm() && !this.props.is_deleted &&
                         <button
@@ -264,7 +262,7 @@ export default class Comment extends React.Component {
         <div className="container">
           {this.state.showChildComments
             ? (
-              <div className="a4-comments__child-list">
+              <div className="a4-comments__child--list">
                 <div className="a4-comments__list">
                   <CommentList
                     filter="all"
