@@ -1,8 +1,9 @@
+from faker import Factory
+
 from autofixture import AutoFixture
 from autofixture import constraints
 from autofixture import generators
 from autofixture import register
-from faker import Factory
 
 from . import content
 from . import models
