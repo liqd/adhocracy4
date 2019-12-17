@@ -18,7 +18,7 @@ const CategoryList = (props) => (
               id={inputId}
               value={categoryCheck}
             />
-          <span className="badge a4-comments__category__text"> {categoryCheck}</span>
+            <span className="badge a4-comments__category__text"> {categoryCheck}</span>
           </label>
         </div>
       )
