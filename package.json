@@ -56,7 +56,7 @@
     "shpjs": "3.4.3",
     "slick-carousel": "github:liqd/slick#pm-2019-07-overwrites",
     "style-loader": "1.0.1",
-    "terser-webpack-plugin": "2.2.3",
+    "terser-webpack-plugin": "2.3.0",
     "tether": "1.4.7",
     "timeago.js": "4.0.1",
     "webpack": "4.41.2",
