@@ -268,7 +268,7 @@ export default class Comment extends React.Component {
             <div className="a4-comments__box row">
               {(this.props.is_moderator_marked && this.displayCategories()) &&
                 <span className={this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) ? 'a4-comments__featured--menu' : 'a4-comments__featured'}>
-                  <i class="fas fa-bookmark" alt="Featured comment" />
+                  <i className="fas fa-bookmark" alt="Featured comment" />
                 </span>}
               <div className="a4-comments__box--left">
                 {this.props.userImage &&
