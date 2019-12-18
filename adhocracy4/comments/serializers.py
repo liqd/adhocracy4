@@ -109,6 +109,40 @@ class ThreadSerializer(CommentSerializer):
 
 class CommentModerateSerializer(serializers.ModelSerializer):
 
+    def to_representation(self, instance):
+        """
+        Create a dictionary form categories.
+
+        Gets the categories and adds them along with their values
+        to a dictionary.
+        """
+        ret = super().to_representation(instance)
+        categories = {}
+        if ret['comment_categories']:
+            category_choices = getattr(settings,
+                                       'A4_COMMENT_CATEGORIES', '')
+            if category_choices:
+                category_choices = dict((x, str(y)) for x, y
+                                        in category_choices)
+            category_list = ret['comment_categories'].strip('[]').split(',')
+            for category in category_list:
+                if category in category_choices:
+                    categories[category] = category_choices[category]
+                else:
+                    categories[category] = category
+        ret['comment_categories'] = categories
+        return ret
+
+    def to_internal_value(self, data):
+        data = super().to_internal_value(data)
+        if 'comment_categories' in data:
+            value = data.get('comment_categories')
+            if value == '' or value == '[]':
+                raise serializers.ValidationError({
+                    'comment_categories': _('Please choose a category')
+                })
+        return data
+
     def update(self, instance, validated_data):
         serializers.raise_errors_on_nested_writes('update', self,
                                                   validated_data)
