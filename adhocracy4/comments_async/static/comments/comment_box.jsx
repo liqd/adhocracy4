@@ -453,55 +453,57 @@ export default class CommentBox extends React.Component {
               commentCategoryChoices={this.props.commentCategoryChoices}
             />
           </div>
-          <div className={(this.state.comments.length === 0 && this.state.loading) ? 'd-none' : 'a4-a4-comments__nav_parent'}>
-            <nav className={this.state.showSearch === 0 ? 'd-none' : 'bg-faded a4-comments__nav'}>
-              <div className="container">
-                <div className="row px-sm-3">
-                  <div className={this.state.search !== '' ? 'a4-comments__nav__text a4-comments__nav__text--wide' : 'd-none'}>
-                    <span className="a4-comments__nav__span">{this.state.commentCount + ' ' + django.ngettext('entry found for ', 'entries found for ', this.state.commentCount)}</span>
+          <div className={(this.state.comments.length === 0 && this.state.loading) ? 'd-none' : 'container a4-a4-comments__nav_parent'}>
+            <nav className={this.state.showSearch === 0 ? 'd-none' : 'a4-comments__nav'}>
 
-                    <button className="btn btn--small a4-comments__nav__search-result" type="button" onClick={this.handleClickResult}>{this.state.search}<i className="fas fa-times" aria-label={django.gettext('Clear search')} /></button>
-                  </div>
+              <div className="row">
+                <div className="input-group a4-comments__nav__search">
+                  <input type="search" id="search-input" onKeyPress={this.handleEnterSearch} placeholder={django.gettext('Search contributions')} className="a4-comments__nav__search-input mb-0" />
+                  <button className="a4-comments__nav__search-btn btn" type="button" onClick={this.handleClickSearch}><i className="fas fa-search a4-comments__nav__search-icon" aria-label={django.gettext('Search contributions')} /></button>
+                </div>
 
-                  <div className={this.state.search === '' ? 'a4-comments__nav__text a4-comments__nav__text--wide' : 'd-none'}>
-                    {this.state.commentCount + ' ' + django.ngettext('entry', 'entries', this.state.commentCount)}
-                  </div>
-
-                  <div className="input-group a4-comments__nav__search">
-                    <input type="search" id="search-input" onKeyPress={this.handleEnterSearch} placeholder={django.gettext('SEARCH CONTRIBUTIONS')} className="a4-comments__nav__search-input mb-0" />
-                    <button className="a4-comments__nav__search-btn btn" type="button" onClick={this.handleClickSearch}><i className="fas fa-search a4-comments__nav__search-icon" aria-label={django.gettext('Search contributions')} /></button>
-                  </div>
-
-                  <div className="a4-comments__nav__dropdown">
-                    <div className="dropdown">
-                      <button
-                        className="btn dropdown-toggle a4-comments__nav__btn" type="button"
-                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                      >
-                        <span className={this.state.sort === 'new' ? 'a4-comments__nav__btn-text btn--upper' : 'd-none'}>{django.gettext('sorted by: ')}{sorts[this.state.sort]}</span>
-                        <span className={this.state.sort !== 'new' ? 'a4-comments__nav__btn-text small-screen btn--capitalize' : 'd-none'}>{sorts[this.state.sort]}</span>
-                        <i className={this.state.sort === 'new' ? 'icon-arrow_dropdown a4-comments__nav__btn-icon' : 'fas fa-checka4-comments__nav__btn-icon'} aria-hidden="true" />
-                      </button>
-                      <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                        {Object.keys(sorts).map(objectKey => {
-                          var name = sorts[objectKey]
-                          if (objectKey !== this.state.sort) {
-                            return (
-                              <button
-                                className="dropdown-item" onClick={this.handleClickSorted} id={objectKey}
-                                key={objectKey} href="#"
-                              >{name}
-                              </button>
-                            )
-                          }
-                        })}
-                      </div>
+                <div className="a4-comments__nav__dropdown">
+                  <div className="dropdown">
+                    <button
+                      className="btn dropdown-toggle btn--select a4-comments__nav__btn" type="button"
+                      id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    >
+                      <span className={this.state.sort === 'new' ? 'a4-comments__nav__btn-text' : 'd-none'}>{django.gettext('sorted by: ')}{sorts[this.state.sort]}</span>
+                      <span className={this.state.sort !== 'new' ? 'a4-comments__nav__btn-text small-screen' : 'd-none'}>{sorts[this.state.sort]}</span>
+                      <i className={this.state.sort === 'new' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
+                    </button>
+                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                      {Object.keys(sorts).map(objectKey => {
+                        var name = sorts[objectKey]
+                        if (objectKey !== this.state.sort) {
+                          return (
+                            <button
+                              className="dropdown-item" onClick={this.handleClickSorted} id={objectKey}
+                              key={objectKey} href="#"
+                            >{name}
+                            </button>
+                          )
+                        }
+                      })}
                     </div>
                   </div>
                 </div>
               </div>
+
+              <div className="row">
+                <div className={this.state.search !== '' ? 'a4-comments__nav__text a4-comments__nav__text--wide' : 'd-none'}>
+                  <span className="a4-comments__nav__span">{this.state.commentCount + ' ' + django.ngettext('entry found for ', 'entries found for ', this.state.commentCount)}</span>
+
+                  <button className="btn btn--transparent btn--round a4-comments__nav__search-result" type="button" onClick={this.handleClickResult}>{this.state.search}<i className="fas fa-times" aria-label={django.gettext('Clear search')} /></button>
+                </div>
+
+                <div className={this.state.search === '' ? 'a4-comments__nav__text a4-comments__nav__text--wide' : 'd-none'}>
+                  {this.state.commentCount + ' ' + django.ngettext('entry', 'entries', this.state.commentCount)}
+                </div>
+              </div>
+
             </nav>
-            <div className={this.state.loadingFilter ? 'row justify-content-center loading loading-nav' : 'd-none'}>
+            <div className={this.state.loadingFilter ? 'row p-3 justify-content-center a4-comments__loading' : 'd-none'}>
               <i className="fa fa-spinner fa-pulse" />
             </div>
           </div>
@@ -518,7 +520,7 @@ export default class CommentBox extends React.Component {
               onEditErrorClick={this.handleHideEditError}
             />
           </div>
-          <div className={this.state.loading ? 'row justify-content-center loading' : 'd-none'}>
+          <div className={this.state.loading ? 'row p-3 justify-content-center a4-comments__loading' : 'd-none'}>
             <i className="fa fa-spinner fa-pulse" />
           </div>
         </div>
