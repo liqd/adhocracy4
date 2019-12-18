@@ -39,7 +39,7 @@ class CommentViewSet(mixins.CreateModelMixin,
     ordering = ('-created')
     content_type_filter = settings.A4_COMMENTABLES
     pagination_class = CommentSetPagination
-    search_fields = ('comment', '=creator__firstname', '=creator__lastname')
+    search_fields = ('comment', '=creator__username')
 
     def list(self, request, content_type=None, object_pk=None):
         queryset = self.filter_queryset(self.get_queryset())
