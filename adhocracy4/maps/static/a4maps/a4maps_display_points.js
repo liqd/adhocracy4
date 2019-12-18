@@ -107,12 +107,13 @@ var init = function () {
         var popupContent = getImage(feature) +
                           '<div class="maps-popups-popup-text-content">' +
                             '<div class="maps-popups-popup-meta">' +
-                                '<span class="map-popup-upvotes">' +
-                                feature.properties.positive_rating_count + ' <i class="fa fa-chevron-up" aria-hidden="true"></i>' +
-                                '</span>' +
-                                '<span class="map-popup-downvotes">' +
-                                feature.properties.negative_rating_count + ' <i class="fa fa-chevron-down" aria-hidden="true"></i>' +
-                                '</span>' +
+                                // removed for moment as map-brainstorm ideas have no ratings
+                                // '<span class="map-popup-upvotes">' +
+                                // feature.properties.positive_rating_count + ' <i class="fa fa-chevron-up" aria-hidden="true"></i>' +
+                                // '</span>' +
+                                // '<span class="map-popup-downvotes">' +
+                                // feature.properties.negative_rating_count + ' <i class="fa fa-chevron-down" aria-hidden="true"></i>' +
+                                // '</span>' +
                                 '<span class="map-popup-comments-count">' +
                                 feature.properties.comments_count + ' <i class="far fa-comment" aria-hidden="true"></i>' +
                                 '</span>' +
