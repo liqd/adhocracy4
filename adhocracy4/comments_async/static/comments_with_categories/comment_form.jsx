@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import django from 'django'
 
-import { alert as Alert, config } from 'adhocracy4'
-
 import CategoryList from './category_list'
+
+import * as config from '../../../static/config'
+import Alert from '../../../static/Alert'
 
 export default class CommentForm extends React.Component {
   constructor (props) {
