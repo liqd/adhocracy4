@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+from django.urls import NoReverseMatch
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import base
@@ -201,7 +202,14 @@ class DashboardProjectDuplicateMixin:
 
             messages.success(request,
                              _('Project successfully duplicated.'))
-            return redirect('a4dashboard:project-edit',
-                            project_slug=project_clone.slug)
+
+            try:
+                org_slug = project_clone.organisation.slug
+                return redirect('a4dashboard:project-edit',
+                                organisation_slug=org_slug,
+                                project_slug=project_clone.slug)
+            except NoReverseMatch:
+                return redirect('a4dashboard:project-edit',
+                                project_slug=project_clone.slug)
         else:
             return super().post(request, *args, **kwargs)
