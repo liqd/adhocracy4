@@ -213,28 +213,29 @@ class Comment extends React.Component {
           </div>}
 
         {this.state.showChildComments
-          ? <div className="comment-child-list">
-            <CommentList
-              comments={this.props.child_comments}
-              parentIndex={this.props.index}
-              handleCommentDelete={this.props.handleCommentDelete}
-              handleCommentModify={this.props.handleCommentModify}
-              isReadOnly={this.props.isReadOnly}
-              handleEditErrorClick={this.props.handleEditErrorClick}
-            />
-            <CommentForm
-              subjectType={this.context.comments_contenttype}
-              subjectId={this.props.id}
-              onCommentSubmit={this.props.handleCommentSubmit}
-              parentIndex={this.props.index}
-              placeholder={answerPlaceholderText}
-              error={this.props.replyError}
-              errorMessage={this.props.errorMessage}
-              handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
-              rows="3"
-              grabFocus={this.state.replyFormHasFocus}
-            />
-          </div> : null}
+          ? (
+            <div className="comment-child-list">
+              <CommentList
+                comments={this.props.child_comments}
+                parentIndex={this.props.index}
+                handleCommentDelete={this.props.handleCommentDelete}
+                handleCommentModify={this.props.handleCommentModify}
+                isReadOnly={this.props.isReadOnly}
+                handleEditErrorClick={this.props.handleEditErrorClick}
+              />
+              <CommentForm
+                subjectType={this.context.comments_contenttype}
+                subjectId={this.props.id}
+                onCommentSubmit={this.props.handleCommentSubmit}
+                parentIndex={this.props.index}
+                placeholder={answerPlaceholderText}
+                error={this.props.replyError}
+                errorMessage={this.props.errorMessage}
+                handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
+                rows="3"
+                grabFocus={this.state.replyFormHasFocus}
+              />
+            </div>) : null}
       </div>
     )
   }
