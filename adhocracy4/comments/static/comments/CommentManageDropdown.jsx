@@ -18,7 +18,7 @@ const CommentManageDropdown = (props) => {
         <ul className="dropdown-menu">
           {props.renderModeratorOptions && [
             <li key="1">
-              <button type="button" onClick={props.toggleEdit}>{editTag}</button>
+              <button type="button" onClick={props.handleToggleEdit}>{editTag}</button>
             </li>,
             <li className="divider" key="2" />,
             <li key="3"><a href={`#comment_delete_${props.id}`} data-toggle="modal">{deleteTag}</a></li>,
@@ -33,7 +33,7 @@ const CommentManageDropdown = (props) => {
 }
 
 CommentManageDropdown.propTypes = {
-  toggleEdit: PropTypes.func,
+  handleToggleEdit: PropTypes.func,
   id: PropTypes.number,
   renderModeratorOptions: PropTypes.bool
 }

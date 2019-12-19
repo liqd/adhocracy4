@@ -82,8 +82,8 @@ class ReportModal extends React.Component {
       <Modal
         abort={this.props.abort}
         name={this.props.name}
-        closeHandler={this.closeModal.bind(this)}
-        submitHandler={this.submitReport.bind(this)}
+        handleClose={this.closeModal.bind(this)}
+        handleSubmit={this.submitReport.bind(this)}
         action={sendReportTag}
         partials={partials}
         dismissOnSubmit={false}

@@ -14,7 +14,7 @@ export const Modal = (props) => {
           <div className="modal-header">
             <button
               className="close" aria-label={props.abort}
-              data-dismiss="modal" onClick={props.closeHandler}
+              data-dismiss="modal" onClick={props.handleClose}
             >
               <i className="fa fa-times" />
             </button>
@@ -31,14 +31,14 @@ export const Modal = (props) => {
               <div className="row">
                 <button
                   className="submit-button" data-dismiss={dismiss}
-                  onClick={props.submitHandler}
+                  onClick={props.handleSubmit}
                 >{props.action}
                 </button>
               </div>
               <div className="row">
                 <button
                   className="cancel-button" data-dismiss="modal"
-                  onClick={props.closeHandler}
+                  onClick={props.handleClose}
                 >{props.abort}
                 </button>
               </div>
@@ -50,8 +50,8 @@ export const Modal = (props) => {
 }
 
 Modal.propTypes = {
-  submitHandler: PropTypes.func,
-  closeHandler: PropTypes.func
+  handleSubmit: PropTypes.func,
+  handleClose: PropTypes.func
 }
 
 Modal.defaultProps = {
