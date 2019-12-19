@@ -9,11 +9,11 @@ class CommentForm extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {comment: ''}
+    this.state = { comment: '' }
   }
 
   handleTextChange (e) {
-    this.setState({comment: e.target.value})
+    this.setState({ comment: e.target.value })
   }
 
   handleSubmit (e) {
@@ -29,7 +29,7 @@ class CommentForm extends React.Component {
         contentTypeId: this.props.subjectType
       }
     }, this.props.parentIndex).then(() => {
-      this.setState({comment: ''})
+      this.setState({ comment: '' })
     })
   }
 
@@ -42,15 +42,15 @@ class CommentForm extends React.Component {
       return (
         <form className="general-form" onSubmit={this.handleSubmit.bind(this)}>
           {this.props.error &&
-            <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />
-          }
+            <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
           <div className="form-group">
             <textarea
               autoFocus={this.props.grabFocus}
               rows={this.props.rows}
               className="form-control"
               placeholder={this.props.placeholder}
-              onChange={this.handleTextChange.bind(this)} required="required" value={this.state.comment} />
+              onChange={this.handleTextChange.bind(this)} required="required" value={this.state.comment}
+            />
           </div>
           <input type="submit" value={postTag} className="submit-button" />
         </form>

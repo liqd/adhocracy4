@@ -3,6 +3,6 @@ var React = require('react')
 var ReactDOM = require('react-dom')
 
 module.exports.renderFollow = function (el) {
-  let project = el.getAttribute('data-project')
+  const project = el.getAttribute('data-project')
   ReactDOM.render(<FollowButton project={project} />, el)
 }

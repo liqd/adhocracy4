@@ -47,7 +47,7 @@ class Comment extends React.Component {
       e.preventDefault()
     }
     var newEdit = !this.state.edit
-    this.setState({edit: newEdit})
+    this.setState({ edit: newEdit })
   }
 
   toggleShowComments (e) {
@@ -151,7 +151,7 @@ class Comment extends React.Component {
       return (
         <Modal
           name={`comment_delete_${this.props.id}`}
-          partials={{title: confirmDeleteText}}
+          partials={{ title: confirmDeleteText }}
           submitHandler={() => this.props.handleCommentDelete(this.props.index, this.props.parentIndex)}
           action={deleteTag}
           abort={abortTag}
@@ -162,7 +162,7 @@ class Comment extends React.Component {
   }
 
   render () {
-    let CommentList = require('./CommentList')
+    const CommentList = require('./CommentList')
 
     return (
       <div className="comment">
@@ -176,8 +176,7 @@ class Comment extends React.Component {
         {this.renderDeleteModal()}
         <h3 className={this.props.is_deleted ? 'comment-deleted-author' : 'comment-author'}>
           {this.props.is_deleted ? this.props.user_name
-            : <a href={`/profile/${this.props.user_name}`} data-embed-target="external">{this.props.user_name}</a>
-          }
+            : <a href={`/profile/${this.props.user_name}`} data-embed-target="external">{this.props.user_name}</a>}
           {this.renderModeratorLabel()}
         </h3>
         {this.renderLastDate()}
@@ -186,21 +185,20 @@ class Comment extends React.Component {
           <nav className="navbar navbar-default navbar-static">
             {this.renderRatingBox()}
             {this.allowForm() &&
-            <button
-              disabled={this.state.showChildComments}
-              className="btn comment-answer-button"
-              type="button"
-              onClick={this.replyComments.bind(this)}>
-              <i className="fa fa-reply" aria-hidden="true" /> {answerTag}
-            </button>
-            }
+              <button
+                disabled={this.state.showChildComments}
+                className="btn comment-answer-button"
+                type="button"
+                onClick={this.replyComments.bind(this)}
+              >
+                <i className="fa fa-reply" aria-hidden="true" /> {answerTag}
+              </button>}
             {this.context.isAuthenticated && !this.props.is_deleted &&
               <CommentManageDropdown
                 id={this.props.id}
                 toggleEdit={this.toggleEdit.bind(this)}
                 renderModeratorOptions={(this.isOwner() || this.context.isModerator) && !this.props.isReadOnly}
-              />
-            }
+              />}
           </nav>
         </div>
 
@@ -212,8 +210,7 @@ class Comment extends React.Component {
                 {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
               </button>
             </div>
-          </div>
-        }
+          </div>}
 
         {this.state.showChildComments
           ? <div className="comment-child-list">
@@ -237,8 +234,7 @@ class Comment extends React.Component {
               rows="3"
               grabFocus={this.state.replyFormHasFocus}
             />
-          </div> : null
-        }
+          </div> : null}
       </div>
     )
   }

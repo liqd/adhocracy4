@@ -56,7 +56,7 @@ class PollManagement extends React.Component {
 
   handleUpdateQuestionLabel (index, label) {
     var diff = {}
-    diff[index] = {$merge: {label: label}}
+    diff[index] = { $merge: { label: label } }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -65,7 +65,7 @@ class PollManagement extends React.Component {
 
   handleUpdateMultipleChoice (index, multipleChoice) {
     var diff = {}
-    diff[index] = {$merge: {multiple_choice: multipleChoice}}
+    diff[index] = { $merge: { multiple_choice: multipleChoice } }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -74,7 +74,7 @@ class PollManagement extends React.Component {
 
   handleMoveQuestionUp (index) {
     var question = this.state.questions[index]
-    var diff = {$splice: [[index, 1], [index - 1, 0, question]]}
+    var diff = { $splice: [[index, 1], [index - 1, 0, question]] }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -83,7 +83,7 @@ class PollManagement extends React.Component {
 
   handleMoveQuestionDown (index) {
     var question = this.state.questions[index]
-    var diff = {$splice: [[index, 1], [index + 1, 0, question]]}
+    var diff = { $splice: [[index, 1], [index + 1, 0, question]] }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -92,7 +92,7 @@ class PollManagement extends React.Component {
 
   handleAppendQuestion () {
     var newQuestion = this.getNewQuestion()
-    var diff = {$push: [newQuestion]}
+    var diff = { $push: [newQuestion] }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -100,7 +100,7 @@ class PollManagement extends React.Component {
   }
 
   handleDeleteQuestion (index) {
-    var diff = {$splice: [[index, 1]]}
+    var diff = { $splice: [[index, 1]] }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -128,8 +128,8 @@ class PollManagement extends React.Component {
 
   handleUpdateChoiceLabel (questionIndex, choiceIndex, label) {
     var diff = {}
-    diff[questionIndex] = {choices: {}}
-    diff[questionIndex]['choices'][choiceIndex] = {$merge: {label: label}}
+    diff[questionIndex] = { choices: {} }
+    diff[questionIndex].choices[choiceIndex] = { $merge: { label: label } }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -139,7 +139,7 @@ class PollManagement extends React.Component {
   handleAppendChoice (questionIndex) {
     var newChoice = this.getNewChoice()
     var diff = {}
-    diff[questionIndex] = {choices: {$push: [newChoice]}}
+    diff[questionIndex] = { choices: { $push: [newChoice] } }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -148,7 +148,7 @@ class PollManagement extends React.Component {
 
   handleDeleteChoice (questionIndex, choiceIndex) {
     var diff = {}
-    diff[questionIndex] = {choices: {$splice: [[choiceIndex, 1]]}}
+    diff[questionIndex] = { choices: { $splice: [[choiceIndex, 1]] } }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -179,7 +179,7 @@ class PollManagement extends React.Component {
     const pollUpdatedText = django.gettext('The poll has been updated.')
     const pollNotUpdatedText = django.gettext('The poll could not be updated.')
 
-    let data = {
+    const data = {
       questions: this.state.questions
     }
 
@@ -247,7 +247,8 @@ class PollManagement extends React.Component {
           <button
             className="btn btn--light btn--small"
             onClick={this.handleAppendQuestion.bind(this)}
-            type="button">
+            type="button"
+          >
             <i className="fa fa-plus" /> {newQuestionText}
           </button>
         </p>
