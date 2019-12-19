@@ -8,7 +8,8 @@ const ChoiceForm = (props) => {
     <div className="form-group form-group--narrow">
       <label
         className="sr-only"
-        htmlFor={'id_choices-' + props.id + '-name'}>
+        htmlFor={'id_choices-' + props.id + '-name'}
+      >
         {props.label}
       </label>
       <div className="input-group">
@@ -18,14 +19,18 @@ const ChoiceForm = (props) => {
           type="text"
           className="input-group__input"
           value={props.choice.label}
-          onChange={(e) => { props.onLabelChange(e.target.value) }} />
+          onChange={(e) => { props.onLabelChange(e.target.value) }}
+        />
         <button
           className="input-group__after btn btn--light"
           onClick={props.onDelete}
           title={removeTag}
-          type="button">
-          <i className="fa fa-times"
-            aria-label={removeTag} />
+          type="button"
+        >
+          <i
+            className="fa fa-times"
+            aria-label={removeTag}
+          />
         </button>
       </div>
       <ErrorList errors={props.errors} field="label" />

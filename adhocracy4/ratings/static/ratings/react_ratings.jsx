@@ -17,6 +17,7 @@ class RatingBox extends React.Component {
       userRatingId: this.props.userRatingId
     }
   }
+
   handleRatingCreate (number) {
     api.rating.add({
       urlReplaces: {
@@ -46,6 +47,7 @@ class RatingBox extends React.Component {
         }
       }.bind(this))
   }
+
   handleRatingModify (number, id) {
     api.rating.change({
       urlReplaces: {
@@ -62,9 +64,11 @@ class RatingBox extends React.Component {
         })
       }.bind(this))
   }
+
   updateUserRating (data) {
     this.state.ratings[this.state.userRatingIndex] = data
   }
+
   ratingUp (e) {
     e.preventDefault()
     if (this.props.authenticatedAs === null) {
@@ -86,6 +90,7 @@ class RatingBox extends React.Component {
       this.handleRatingCreate(1)
     }
   }
+
   ratingDown (e) {
     e.preventDefault()
     if (this.props.authenticatedAs === null) {
@@ -107,9 +112,10 @@ class RatingBox extends React.Component {
       this.handleRatingCreate(-1)
     }
   }
+
   render () {
-    let getRatingClasses = ratingType => {
-      let valueForRatingType = ratingType === 'up' ? 1 : -1
+    const getRatingClasses = ratingType => {
+      const valueForRatingType = ratingType === 'up' ? 1 : -1
       return classnames(`rating-button rating-${ratingType}`, {
         'is-selected': this.state.userRating === valueForRatingType
       })
@@ -120,14 +126,16 @@ class RatingBox extends React.Component {
         <button
           className={getRatingClasses('up')}
           disabled={this.props.isReadOnly}
-          onClick={this.ratingUp.bind(this)}>
+          onClick={this.ratingUp.bind(this)}
+        >
           <i className="fa fa-chevron-up" aria-hidden="true" />
           {this.state.positiveRatings}
         </button>
         <button
           className={getRatingClasses('down')}
           disabled={this.props.isReadOnly}
-          onClick={this.ratingDown.bind(this)}>
+          onClick={this.ratingDown.bind(this)}
+        >
           <i className="fa fa-chevron-down" aria-hidden="true" />
           {this.state.negativeRatings}
         </button>
@@ -139,6 +147,6 @@ class RatingBox extends React.Component {
 module.exports.RatingBox = RatingBox
 
 module.exports.renderRatings = function (el) {
-  let props = JSON.parse(el.getAttribute('data-attributes'))
+  const props = JSON.parse(el.getAttribute('data-attributes'))
   ReactDOM.render(<RatingBox {...props} />, el)
 }

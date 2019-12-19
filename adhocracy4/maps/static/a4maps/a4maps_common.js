@@ -11,13 +11,15 @@ export function createMap (L, e, {
   useVectorMap = '0',
   attribution = '',
   mapboxToken = '',
-  omtToken = '' } = {}) {
-  let map = new L.Map(e, {
+  omtToken = ''
+} = {}) {
+  const map = new L.Map(e, {
     dragging: dragging,
     scrollWheelZoom: scrollWheelZoom,
     zoomControl: zoomControl,
     minZoom: minZoom,
-    maxZoom: maxZoom })
+    maxZoom: maxZoom
+  })
 
   if (useVectorMap === '1') {
     if (mapboxToken !== '') {
@@ -55,7 +57,7 @@ export function createMap (L, e, {
       basemap = baseUrl + '{z}/{x}/{y}.png?token={accessToken}'
       accessToken = omtToken
     }
-    let baselayer = L.tileLayer(basemap, { attribution: attribution, accessToken: accessToken })
+    const baselayer = L.tileLayer(basemap, { attribution: attribution, accessToken: accessToken })
     baselayer.addTo(map)
   }
 

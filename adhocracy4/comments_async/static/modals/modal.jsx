@@ -28,8 +28,7 @@ const Modal = (props) => {
               className={'modal-body ' + (props.partials.bodyClass || '')}
             >
               {props.partials.body}
-            </div>
-          }
+            </div>}
           {!props.partials.hideFooter &&
             <div className="modal-footer">
               <button

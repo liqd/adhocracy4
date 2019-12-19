@@ -212,7 +212,7 @@ export default class Comment extends React.Component {
               <div className="a4-comments__box--left">
                 <h5 className={this.props.is_deleted ? 'a4-comments__deleted-author' : 'a4-comments__author'}>
                   {this.props.is_deleted ? this.props.user_name
-                    : <a href={userProfile} >{this.props.user_name}</a>}
+                    : <a href={userProfile}>{this.props.user_name}</a>}
                 </h5>
                 <a href={`./?comment=${this.props.id}`} id={`comment_${this.props.id}`} className="a4-comments__submission-date a4-comments__anchor">{lastDate}</a>
                 {moderatorLabel}

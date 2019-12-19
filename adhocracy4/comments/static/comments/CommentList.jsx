@@ -33,7 +33,8 @@ var CommentList = (props) => {
             handleReplyErrorClick={props.handleReplyErrorClick}
             editError={comment.editError}
             handleEditErrorClick={props.handleEditErrorClick}
-          >{comment.comment}</Comment>
+          >{comment.comment}
+          </Comment>
         })
       }
     </div>

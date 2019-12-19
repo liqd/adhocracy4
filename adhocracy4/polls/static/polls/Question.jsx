@@ -40,11 +40,11 @@ class Question extends React.Component {
       return false
     }
 
-    let newChoices = this.state.selectedChoices
+    const newChoices = this.state.selectedChoices
 
-    let submitData = {
+    const submitData = {
       choices: newChoices,
-      urlReplaces: {questionId: this.state.question.id}
+      urlReplaces: { questionId: this.state.question.id }
     }
 
     api.poll.vote(submitData)
@@ -90,9 +90,9 @@ class Question extends React.Component {
 
     var diff = {}
     if (index === -1) {
-      diff = {'$push': [choiceId]}
+      diff = { $push: [choiceId] }
     } else {
-      diff = {'$splice': [[index, 1]]}
+      diff = { $splice: [[index, 1]] }
     }
 
     this.setState({
@@ -114,7 +114,8 @@ class Question extends React.Component {
         <button
           type="submit"
           className="btn btn--primary"
-          disabled={disabled}>
+          disabled={disabled}
+        >
           {voteTag}
         </button>
       )
@@ -168,26 +169,27 @@ class Question extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit.bind(this)} className="poll">
-        <h2>{ this.state.question.label }</h2>
-        { this.state.question.multiple_choice &&
-        multipleChoiceText
-        }
+        <h2>{this.state.question.label}</h2>
+        {this.state.question.multiple_choice &&
+        multipleChoiceText}
         <div className="poll__rows">
           {
             this.state.question.choices.map((choice, i) => {
-              let checked = this.state.selectedChoices.indexOf(choice.id) !== -1
-              let chosen = this.state.question.userChoices.indexOf(choice.id) !== -1
-              let percent = total === 0 ? 0 : Math.round(choice.count / total * 100)
-              let highlight = choice.count === max && max > 0
+              const checked = this.state.selectedChoices.indexOf(choice.id) !== -1
+              const chosen = this.state.question.userChoices.indexOf(choice.id) !== -1
+              const percent = total === 0 ? 0 : Math.round(choice.count / total * 100)
+              const highlight = choice.count === max && max > 0
 
               if (this.state.showResult) {
                 return (
                   <div className="poll-row" key={choice.id}>
-                    <div className="poll-row__number">{ percent }%</div>
-                    <div className="poll-row__label">{ choice.label }</div>
-                    { chosen ? <i className="fa fa-check-circle u-primary" aria-label={yourChoiceText} /> : '' }
-                    <div className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
-                      ref={node => this.doBarTransition(node, {width: percent + '%'})} />
+                    <div className="poll-row__number">{percent}%</div>
+                    <div className="poll-row__label">{choice.label}</div>
+                    {chosen ? <i className="fa fa-check-circle u-primary" aria-label={yourChoiceText} /> : ''}
+                    <div
+                      className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
+                      ref={node => this.doBarTransition(node, { width: percent + '%' })}
+                    />
                   </div>
                 )
               } else {
@@ -203,7 +205,7 @@ class Question extends React.Component {
                         onChange={this.handleOnChange.bind(this)}
                         disabled={!this.state.question.authenticated}
                       />
-                      <span className="radio__text">{ choice.label }</span>
+                      <span className="radio__text">{choice.label}</span>
                     </label>
                   )
                 } else {
@@ -218,7 +220,7 @@ class Question extends React.Component {
                         onChange={this.handleOnMultiChange.bind(this)}
                         disabled={!this.state.question.authenticated}
                       />
-                      <span className="radio__text radio__text--checkbox">{ choice.label }</span>
+                      <span className="radio__text radio__text--checkbox">{choice.label}</span>
                     </label>
                   )
                 }

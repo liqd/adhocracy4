@@ -27,7 +27,8 @@ var init = function () {
       dragging: true,
       scrollWheelZoom: false,
       zoomControl: false,
-      maxZoom: 18 })
+      maxZoom: 18
+    })
 
     map.on('zoomend', function () {
       var currentZoom = map.getZoom()
@@ -44,13 +45,13 @@ var init = function () {
     })
 
     var polygonStyle = {
-      'color': '#0076ae',
-      'weight': 2,
-      'opacity': 1,
-      'fillOpacity': 0.2
+      color: '#0076ae',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.2
     }
 
-    var basePolygon = L.geoJson(polygon, {style: polygonStyle}).addTo(map)
+    var basePolygon = L.geoJson(polygon, { style: polygonStyle }).addTo(map)
     basePolygon.on('dblclick', function (event) {
       map.zoomIn()
     })
@@ -64,7 +65,7 @@ var init = function () {
 
     var customOptions =
       {
-        'className': 'maps-popups',
+        className: 'maps-popups',
         closeButton: false
       }
 
@@ -102,7 +103,7 @@ var init = function () {
           })
         }
 
-        var marker = L.marker(latlng, {icon: icon})
+        var marker = L.marker(latlng, { icon: icon })
         cluster.addLayer(marker)
         var popupContent = getImage(feature) +
                           '<div class="maps-popups-popup-text-content">' +

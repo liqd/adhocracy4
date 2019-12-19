@@ -35,9 +35,9 @@ class CommentBox extends React.Component {
         var comments = this.state.comments
         var diff = {}
         if (typeof parentIndex !== 'undefined') {
-          diff[parentIndex] = { child_comments: { $push: [ comment ] } }
+          diff[parentIndex] = { child_comments: { $push: [comment] } }
         } else {
-          diff = { $unshift: [ comment ] }
+          diff = { $unshift: [comment] }
         }
         this.setState({
           comments: update(comments, diff)
@@ -176,7 +176,8 @@ class CommentBox extends React.Component {
             isReadOnly={this.props.isReadOnly}
             error={this.state.error}
             errorMessage={this.state.errorMessage}
-            handleErrorClick={this.hideNewError.bind(this)} />
+            handleErrorClick={this.hideNewError.bind(this)}
+          />
           <div className="comment-list">
             <CommentList
               comments={this.state.comments}

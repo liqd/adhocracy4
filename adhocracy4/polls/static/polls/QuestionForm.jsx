@@ -18,7 +18,8 @@ const QuestionForm = (props) => {
         <div className="form-group">
           <label
             className="questionform__label"
-            htmlFor={'id_questions-' + props.id + '-name'}>
+            htmlFor={'id_questions-' + props.id + '-name'}
+          >
             {questionTag}
           </label>
           <textarea
@@ -26,7 +27,8 @@ const QuestionForm = (props) => {
             id={'id_questions-' + props.id + '-name'}
             name={'questions-' + props.id + '-name'}
             value={props.question.label}
-            onChange={(e) => { props.onLabelChange(e.target.value) }} />
+            onChange={(e) => { props.onLabelChange(e.target.value) }}
+          />
           <ErrorList errors={props.errors} field="label" />
         </div>
 
@@ -70,7 +72,8 @@ const QuestionForm = (props) => {
         <button
           className="btn btn--light btn--small"
           onClick={props.onAppendChoice}
-          type="button">
+          type="button"
+        >
           <i className="fa fa-plus" /> {newChoiceText}
         </button>
       </div>
@@ -81,26 +84,35 @@ const QuestionForm = (props) => {
           onClick={props.onMoveUp}
           disabled={!props.onMoveUp}
           title={moveUpTag}
-          type="button">
-          <i className="fa fa-chevron-up"
-            aria-label={moveUpTag} />
+          type="button"
+        >
+          <i
+            className="fa fa-chevron-up"
+            aria-label={moveUpTag}
+          />
         </button>
         <button
           className="btn btn--light btn--small"
           onClick={props.onMoveDown}
           disabled={!props.onMoveDown}
           title={moveDownTag}
-          type="button">
-          <i className="fa fa-chevron-down"
-            aria-label={moveDownTag} />
+          type="button"
+        >
+          <i
+            className="fa fa-chevron-down"
+            aria-label={moveDownTag}
+          />
         </button>
         <button
           className="btn btn--light btn--small"
           onClick={props.onDelete}
           title={deleteTag}
-          type="button">
-          <i className="fas fa-trash-alt"
-            aria-label={deleteTag} />
+          type="button"
+        >
+          <i
+            className="fas fa-trash-alt"
+            aria-label={deleteTag}
+          />
         </button>
       </div>
     </section>

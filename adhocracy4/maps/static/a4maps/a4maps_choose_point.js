@@ -95,16 +95,17 @@ var init = function () {
       omtToken: e.getAttribute('data-omt-token'),
       dragging: true,
       scrollWheelZoom: false,
-      zoomControl: false })
+      zoomControl: false
+    })
 
     const polygonStyle = {
-      'color': '#0076ae',
-      'weight': 2,
-      'opacity': 1,
-      'fillOpacity': 0.2
+      color: '#0076ae',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.2
     }
 
-    var basePolygon = L.geoJson(polygon, {style: polygonStyle}).addTo(map)
+    var basePolygon = L.geoJson(polygon, { style: polygonStyle }).addTo(map)
     map.fitBounds(basePolygon.getBounds())
     map.options.minZoom = map.getZoom()
     L.control.zoom({

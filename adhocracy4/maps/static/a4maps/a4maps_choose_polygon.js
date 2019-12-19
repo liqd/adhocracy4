@@ -30,13 +30,14 @@ var init = function () {
       dragging: true,
       scrollWheelZoom: false,
       zoomControl: true,
-      minZoom: 2 })
+      minZoom: 2
+    })
 
     const polygonStyle = {
-      'color': '#0076ae',
-      'weight': 2,
-      'opacity': 1,
-      'fillOpacity': 0.2
+      color: '#0076ae',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.2
     }
 
     var drawnItems
