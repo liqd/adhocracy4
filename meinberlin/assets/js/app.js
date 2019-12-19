@@ -1,7 +1,5 @@
 /* eslint no-unused-vars: "off", no-new: "off" */
 
-import Cookies from 'js-cookie'
-
 // make jquery available for non-webpack js
 var $ = window.jQuery = window.$ = require('jquery')
 window.Tether = require('tether/dist/js/tether.js')
@@ -31,6 +29,8 @@ var relativeTimestamps = require('../../apps/actions/assets/timestamps.js')
 var mapAddress = require('./map-address.js')
 var remarkpopover = require('../../apps/moderatorremark/assets/idea_remarks.js')
 var dynamicFields = require('../../apps/contrib/assets/dynamic_fields.js')
+
+var initAccordeonsCookie = require('../../apps/dashboard/assets/init_accordeons_cookie.js')
 
 // This function is overwritten with custom behavior in embed.js.
 var getCurrentPath = function () {
@@ -88,26 +88,6 @@ var init = function () {
     variableWidth: true,
     slidesToShow: 1,
     slidesToScroll: 1
-  })
-
-  if (Cookies.get('closed_accordeons') === undefined) {
-    Cookies.set('closed_accordeons', '')
-  }
-
-  $('.dashboard-nav__checkbox').change(function (e) {
-    var currentId = this.id
-    var currentList = Cookies.get('closed_accordeons')
-    if (!this.checked) {
-      if (!currentList.includes(currentId)) {
-        currentList = currentList + ',' + currentId
-        Cookies.set('closed_accordeons', currentList)
-      }
-    } else {
-      if (currentList.includes(currentId)) {
-        var newList = currentList.replace(',' + currentId, '').replace(currentId, '')
-        Cookies.set('closed_accordeons', newList)
-      }
-    }
   })
 }
 
