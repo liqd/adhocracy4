@@ -21,9 +21,9 @@ var CommentList = (props) => {
               is_deleted={comment.is_deleted}
               index={index}
               parentIndex={props.parentIndex}
-              handleCommentDelete={props.handleCommentDelete}
-              handleCommentSubmit={props.handleCommentSubmit}
-              handleCommentModify={props.handleCommentModify}
+              onCommentDelete={props.onCommentDelete}
+              onCommentSubmit={props.onCommentSubmit}
+              onCommentModify={props.onCommentModify}
               positiveRatings={comment.ratings.positive_ratings}
               negativeRatings={comment.ratings.negative_ratings}
               userRating={comment.ratings.current_user_rating_value}
@@ -31,9 +31,9 @@ var CommentList = (props) => {
               isReadOnly={props.isReadOnly}
               replyError={comment.replyError}
               errorMessage={comment.errorMessage}
-              handleReplyErrorClick={props.handleReplyErrorClick}
+              onReplyErrorClick={props.onReplyErrorClick}
               editError={comment.editError}
-              handleEditErrorClick={props.handleEditErrorClick}
+              onEditErrorClick={props.onEditErrorClick}
             >{comment.comment}
             </Comment>
           )

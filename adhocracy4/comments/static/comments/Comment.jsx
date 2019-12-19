@@ -124,11 +124,11 @@ class Comment extends React.Component {
           comment={this.props.children}
           error={this.props.editError}
           errorMessage={this.props.errorMessage}
-          handleErrorClick={() => this.props.handleEditErrorClick(this.props.index, this.props.parentIndex)}
+          handleErrorClick={() => this.props.onEditErrorClick(this.props.index, this.props.parentIndex)}
           rows="5"
           handleCancel={this.toggleEdit.bind(this)}
           onCommentSubmit={newComment => {
-            this.props.handleCommentModify(newComment, this.props.index, this.props.parentIndex)
+            this.props.onCommentModify(newComment, this.props.index, this.props.parentIndex)
               .then(() => {
                 this.setState({
                   edit: false
@@ -152,7 +152,7 @@ class Comment extends React.Component {
         <Modal
           name={`comment_delete_${this.props.id}`}
           partials={{ title: confirmDeleteText }}
-          submitHandler={() => this.props.handleCommentDelete(this.props.index, this.props.parentIndex)}
+          handleSubmit={() => this.props.onCommentDelete(this.props.index, this.props.parentIndex)}
           action={deleteTag}
           abort={abortTag}
           btnStyle="cta"
@@ -196,7 +196,7 @@ class Comment extends React.Component {
             {this.context.isAuthenticated && !this.props.is_deleted &&
               <CommentManageDropdown
                 id={this.props.id}
-                toggleEdit={this.toggleEdit.bind(this)}
+                handleToggleEdit={this.toggleEdit.bind(this)}
                 renderModeratorOptions={(this.isOwner() || this.context.isModerator) && !this.props.isReadOnly}
               />}
           </nav>
@@ -218,15 +218,15 @@ class Comment extends React.Component {
               <CommentList
                 comments={this.props.child_comments}
                 parentIndex={this.props.index}
-                handleCommentDelete={this.props.handleCommentDelete}
-                handleCommentModify={this.props.handleCommentModify}
+                onCommentDelete={this.props.onCommentDelete}
+                onCommentModify={this.props.onCommentModify}
                 isReadOnly={this.props.isReadOnly}
-                handleEditErrorClick={this.props.handleEditErrorClick}
+                onEditErrorClick={this.props.onEditErrorClick}
               />
               <CommentForm
                 subjectType={this.context.comments_contenttype}
                 subjectId={this.props.id}
-                onCommentSubmit={this.props.handleCommentSubmit}
+                onCommentSubmit={this.props.onCommentSubmit}
                 parentIndex={this.props.index}
                 placeholder={answerPlaceholderText}
                 error={this.props.replyError}

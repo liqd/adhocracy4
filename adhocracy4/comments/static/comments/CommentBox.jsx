@@ -181,12 +181,12 @@ class CommentBox extends React.Component {
           <div className="comment-list">
             <CommentList
               comments={this.state.comments}
-              handleCommentDelete={this.handleCommentDelete.bind(this)}
-              handleCommentSubmit={this.handleCommentSubmit.bind(this)}
-              handleCommentModify={this.handleCommentModify.bind(this)}
+              onCommentDelete={this.handleCommentDelete.bind(this)}
+              onCommentSubmit={this.handleCommentSubmit.bind(this)}
+              onCommentModify={this.handleCommentModify.bind(this)}
               isReadOnly={this.props.isReadOnly}
-              handleReplyErrorClick={this.hideReplyError.bind(this)}
-              handleEditErrorClick={this.hideEditError.bind(this)}
+              onReplyErrorClick={this.hideReplyError.bind(this)}
+              onEditErrorClick={this.hideEditError.bind(this)}
             />
           </div>
         </div>
