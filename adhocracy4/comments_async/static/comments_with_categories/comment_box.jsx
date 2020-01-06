@@ -403,7 +403,8 @@ export default class CommentBox extends React.Component {
   }
 
   handleClickSearch (e) {
-    var search = e.target.parentElement.firstChild.value
+    e.preventDefault()
+    var search = e.currentTarget.parentElement.firstChild.value
     this.fetchSearch(search)
     this.setState({
       loadingFilter: true
@@ -536,14 +537,13 @@ export default class CommentBox extends React.Component {
         <div className={(this.state.comments.length === 0 && this.state.loading) ? 'd-none' : 'container a4-comments__nav__parent'}>
           <nav className="a4-comments__nav">
 
-            <div className="row">
-
+            <div className="row flex-md-nowrap">
               <div className="input-group a4-comments__nav__search">
                 <input type="search" id="search-input" onKeyPress={this.handleEnterSearch} placeholder={django.gettext('Search contributions')} className="a4-comments__nav__search-input mb-0" />
-                <button className="a4-comments__nav__search-btn btn btn--transparent" type="button" onClick={this.handleClickSearch}><i className="fas fa-search" aria-label={django.gettext('Search contributions')} /></button>
+                <button className="input-group-append a4-comments__nav__search-btn btn btn--transparent" type="button" onClick={this.handleClickSearch}><i className="fas fa-search" aria-label={django.gettext('Search contributions')} /></button>
               </div>
 
-              <div className="a4-comments__nav__dropdown">
+              <div className="a4-comments__nav__dropdown ml-auto mr-1">
                 <div className="dropdown">
                   <button
                     className="btn btn--transparent btn--select dropdown-toggle a4-comments__nav__btn" type="button"
@@ -600,14 +600,14 @@ export default class CommentBox extends React.Component {
             </div>
 
             <div className="row">
-              <div className={this.state.search === '' ? 'a4-comments__nav__text' : 'd-none'}>
+              <div className={this.state.search === '' ? 'a4-comments__nav__text mt-2' : 'd-none'}>
                 {this.state.commentCount + ' ' + django.ngettext('entry', 'entries', this.state.commentCount)}
               </div>
 
-              <div className={this.state.search !== '' ? 'a4-comments__nav__text' : 'd-none'}>
-                <span className="a4-comments__nav__span">{this.state.commentCount + ' ' + django.ngettext('entry found for ', 'entries found for ', this.state.commentCount)} {this.state.search} </span>
+              <div className={this.state.search !== '' ? 'a4-comments__nav__text mt-2' : 'd-none'}>
+                <span className="a4-comments__nav__span">{this.state.commentCount + ' ' + django.ngettext('entry found for ', 'entries found for ', this.state.commentCount)} </span>
 
-                <button className="btn btn--transparent btn--round a4-comments__nav__search-result" type="button" onClick={this.handleClickResult}><i className="fas fa-times" aria-label={django.gettext('Clear search')} /></button>
+                <button className="btn btn--transparent btn--round btn--small a4-comments__nav__search-result" type="button" onClick={this.handleClickResult}>{this.state.search}<i className="fas fa-times ml-1" aria-label={django.gettext('Clear search')} /></button>
               </div>
             </div>
 
