@@ -281,16 +281,22 @@ export default class Comment extends React.Component {
                 <div className="a4-comments__submission-date">{lastDate}</div>
               </div>
               <div className={this.state.anchored ? 'a4-comments__box--right a4-comments__border--highlighted' : 'a4-comments__box--right'}>
-                <span className="sr-only">{django.gettext('Categories: ')}</span>
-                {this.renderCategories()}
-                {this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) &&
-                  <CommentManageDropdown
-                    id={this.props.id}
-                    handleToggleEdit={this.toggleEdit.bind(this)}
-                    renderOwnerOptions={this.isOwner() && !this.props.isReadOnly}
-                    renderModeratorOptions={this.context.isModerator && !this.props.isReadOnly}
-                    isParentComment={this.displayCategories()}
-                  />}
+                <div class="row">
+                  <div class="col-10">
+                    <span className="sr-only">{django.gettext('Categories: ')}</span>
+                    {this.renderCategories()}
+                  </div>
+                  <div class="col-2">
+                    {this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) &&
+                      <CommentManageDropdown
+                        id={this.props.id}
+                        handleToggleEdit={this.toggleEdit.bind(this)}
+                        renderOwnerOptions={this.isOwner() && !this.props.isReadOnly}
+                        renderModeratorOptions={this.context.isModerator && !this.props.isReadOnly}
+                        isParentComment={this.displayCategories()}
+                      />}
+                  </div>
+                </div>
                 {this.renderComment()}
                 {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--link" onClick={this.showMore.bind(this)}>{django.gettext('Read more...')}</button>}
                 {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--link" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
