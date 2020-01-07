@@ -16,6 +16,7 @@ var init = function () {
   $('[data-map="display_points"]').each(function (i, e) {
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
     const points = JSON.parse(e.getAttribute('data-points'))
+    const hideRatings = e.getAttribute('data-hide-ratings')
     var initial = 0
 
     const map = createMap(L, e, {
@@ -76,6 +77,24 @@ var init = function () {
       return '<div class="maps-popups-popup-image maps-popups-popup-no-image"></div>'
     }
 
+    function getRatings (feature) {
+      if (hideRatings === 'false' || hideRatings === null) {
+        return '<div class="maps-popups-popup-meta">' +
+            '<span class="map-popup-upvotes">' +
+            feature.properties.positive_rating_count + ' <i class="fa fa-chevron-up" aria-hidden="true"></i>' +
+            '</span>' +
+            '<span class="map-popup-downvotes">' +
+            feature.properties.negative_rating_count + ' <i class="fa fa-chevron-down" aria-hidden="true"></i>' +
+            '</span>' +
+            '<span class="map-popup-comments-count">' +
+            feature.properties.comments_count + ' <i class="far fa-comment" aria-hidden="true"></i>' +
+            '</span>' +
+        '</div>'
+      } else if (hideRatings === 'true') {
+        return ''
+      }
+    }
+
     var defaultIcon = L.icon({
       iconUrl: '/static/images/map_pin_default.svg',
       shadowUrl: '/static/images/map_shadow_01.svg',
@@ -107,18 +126,7 @@ var init = function () {
         cluster.addLayer(marker)
         var popupContent = getImage(feature) +
                           '<div class="maps-popups-popup-text-content">' +
-                            '<div class="maps-popups-popup-meta">' +
-                                // removed for moment as map-brainstorm ideas have no ratings
-                                // '<span class="map-popup-upvotes">' +
-                                // feature.properties.positive_rating_count + ' <i class="fa fa-chevron-up" aria-hidden="true"></i>' +
-                                // '</span>' +
-                                // '<span class="map-popup-downvotes">' +
-                                // feature.properties.negative_rating_count + ' <i class="fa fa-chevron-down" aria-hidden="true"></i>' +
-                                // '</span>' +
-                                '<span class="map-popup-comments-count">' +
-                                feature.properties.comments_count + ' <i class="far fa-comment" aria-hidden="true"></i>' +
-                                '</span>' +
-                            '</div>' +
+                          getRatings(feature) +
                             '<div class="maps-popups-popup-name">' +
                                 '<a href="' + feature.properties.url + '">' + escapeHtml(feature.properties.name) + '</a>' +
                             '</div>' +
