@@ -242,7 +242,7 @@ export default class Comment extends React.Component {
       userImage = <span className="user-avatar user-initial user-avatar--small user-avatar--shadow mb-2">{this.props.user_fallback}</span>
     }
 
-    const userProfile = '/profile/' + this.props.user_pk
+    const userProfile = this.props.user_profile_url
 
     return (
       <div>
@@ -274,7 +274,7 @@ export default class Comment extends React.Component {
                 {this.props.userImage &&
                   { userImage }}
                 <h5 className={this.props.is_deleted ? 'a4-comments__deleted-author' : 'a4-comments__author'}>
-                  {this.props.is_deleted ? this.props.user_name
+                  {userProfile === '' ? this.props.user_name
                     : <a href={userProfile}>{this.props.user_name}</a>}
                 </h5>
                 <div className="a4-comments__moderator">{moderatorLabel}</div>
