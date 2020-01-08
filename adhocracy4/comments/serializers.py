@@ -8,6 +8,7 @@ from .models import Comment
 
 class CommentSerializer(serializers.ModelSerializer):
     user_name = serializers.SerializerMethodField()
+    user_profile_url = serializers.SerializerMethodField()
     is_deleted = serializers.SerializerMethodField()
     ratings = serializers.SerializerMethodField()
     is_moderator = serializers.SerializerMethodField()
@@ -59,6 +60,14 @@ class CommentSerializer(serializers.ModelSerializer):
         if(obj.is_censored or obj.is_removed):
             return _('unknown user')
         return str(obj.creator.username)
+
+    def get_user_profile_url(self, obj):
+        if obj.is_censored or obj.is_removed:
+            return ''
+        try:
+            return obj.creator.get_absolute_url()
+        except AttributeError:
+            return ''
 
     def get_is_moderator(self, obj):
         return obj.project.has_moderator(obj.creator)
