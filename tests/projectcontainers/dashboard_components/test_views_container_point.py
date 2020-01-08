@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 from adhocracy4.dashboard import components
@@ -20,10 +22,15 @@ def test_edit_view(client, project_container, administrative_district):
                  '"geometry":{"type":"Point",'
                  '"coordinates":[13.382721,52.512121]}}'
     }
-    response = client.post(url, data)
+    client.post(url, data)
     project_container.refresh_from_db()
     assert project_container.administrative_district == \
         administrative_district
-    assert project_container.point == data.get('point')
+    point = json.loads(project_container.point)
+    data = json.loads(data.get('point'))
+
+    for key in point.keys():
+        assert point[key] == data[key]
+
     assert project_container.project_type == \
         'meinberlin_projectcontainers.ProjectContainer'

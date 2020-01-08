@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 from adhocracy4.dashboard import components
@@ -26,6 +28,11 @@ def test_edit_view(client, external_project, administrative_district):
     external_project.refresh_from_db()
     assert external_project.administrative_district == \
         administrative_district
-    assert external_project.point == data.get('point')
+    point = json.loads(external_project.point)
+    data = json.loads(data.get('point'))
+
+    for key in point.keys():
+        assert point[key] == data[key]
+
     assert external_project.project_type == \
         'meinberlin_extprojects.ExternalProject'
