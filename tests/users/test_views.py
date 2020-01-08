@@ -5,6 +5,7 @@ from allauth.account.models import EmailAddress
 from django.contrib import auth
 from django.core import mail
 from django.urls import reverse
+from django.urls.exceptions import NoReverseMatch
 
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.users import models
@@ -214,10 +215,8 @@ def test_reset_password_error(client):
 
 @pytest.mark.django_db
 def test_profile(client, user):
-    url = reverse('profile', kwargs={'slug': user.username})
-    response = client.get(url)
-    assert response.status_code == 200
-    assert response.context['user'] == user
+    with pytest.raises(NoReverseMatch):
+        reverse('profile', kwargs={'slug': user.username})
 
 
 @pytest.mark.django_db
@@ -233,9 +232,5 @@ def test_profile_edit(client, user):
 
     assert response.status_code == 302
 
-    profile_url = reverse('profile', kwargs={'slug': user.username})
-    profile_response = client.get(profile_url)
-
-    assert profile_response.status_code == 200
-    assert profile_response.context['user'] == user
-    assert profile_response.context['user'].get_newsletters
+    with pytest.raises(NoReverseMatch):
+        reverse('profile', kwargs={'slug': user.username})

@@ -7,11 +7,9 @@ User = auth.get_user_model()
 
 
 @pytest.mark.django_db
-def test_absolute_url(client, user):
-    url = user.get_absolute_url()
-    response = client.get(url)
-    assert response.status_code == 200
-    assert response.context['user'] == user
+def test_absolute_url(user):
+    with pytest.raises(AttributeError):
+        user.get_absolute_url()
 
 
 @pytest.mark.django_db
