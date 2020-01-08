@@ -11,6 +11,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
     user_name = serializers.SerializerMethodField()
     user_pk = serializers.SerializerMethodField()
+    user_profile_url = serializers.SerializerMethodField()
     user_image = serializers.SerializerMethodField()
     is_deleted = serializers.SerializerMethodField()
     ratings = serializers.SerializerMethodField()
@@ -61,6 +62,14 @@ class CommentSerializer(serializers.ModelSerializer):
         if (obj.is_censored or obj.is_removed):
             return -1
         return str(obj.creator.id)
+
+    def get_user_profile_url(self, obj):
+        if obj.is_censored or obj.is_removed:
+            return ''
+        try:
+            return obj.creator.get_absolute_url()
+        except AttributeError:
+            return ''
 
     def get_user_name(self, obj):
         """Don't show username if comment is marked removed or censored."""
