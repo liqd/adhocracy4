@@ -175,8 +175,8 @@ class Comment extends React.Component {
         />
         {this.renderDeleteModal()}
         <h3 className={this.props.is_deleted ? 'comment-deleted-author' : 'comment-author'}>
-          {this.props.is_deleted ? this.props.user_name
-            : <a href={`/profile/${this.props.user_name}`} data-embed-target="external">{this.props.user_name}</a>}
+          {this.props.user_profile_url === '' ? this.props.user_name
+            : <a href={this.props.user_profile_url} data-embed-target="external">{this.props.user_name}</a>}
           {this.renderModeratorLabel()}
         </h3>
         {this.renderLastDate()}

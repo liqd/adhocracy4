@@ -12,6 +12,7 @@ export default function (props) {
               key={comment.id}
               user_name={comment.user_name}
               user_pk={comment.user_pk}
+              user_profile_url={comment.user_profile_url}
               child_comments={comment.child_comments}
               created={comment.created}
               modified={comment.modified}

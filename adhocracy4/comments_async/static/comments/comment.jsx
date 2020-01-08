@@ -187,7 +187,7 @@ export default class Comment extends React.Component {
       moderatorLabel = <span className="label a4-comments__label">{django.gettext('Moderator')}</span>
     }
 
-    const userProfile = '/profile/' + this.props.user_pk
+    const userProfile = this.props.user_profile_url
 
     return (
       <div>
@@ -211,7 +211,7 @@ export default class Comment extends React.Component {
             <div className="a4-comments__box row">
               <div className="a4-comments__box--left">
                 <h5 className={this.props.is_deleted ? 'a4-comments__deleted-author' : 'a4-comments__author'}>
-                  {this.props.is_deleted ? this.props.user_name
+                  {userProfile === '' ? this.props.user_name
                     : <a href={userProfile}>{this.props.user_name}</a>}
                 </h5>
                 <a href={`./?comment=${this.props.id}`} id={`comment_${this.props.id}`} className="a4-comments__submission-date a4-comments__anchor">{lastDate}</a>
