@@ -143,6 +143,7 @@ def test_map_display_points(area_settings, location_factory):
         r' data-attribution="{attribution}"'
         r' data-points="(?P<points>{{.+}})"'
         r' data-polygon="(?P<polygon>{{.+}})"'
+        ' data-hide-ratings="false"'
         r'></div>$'
     ).format(baseurl=escape(settings.A4_MAP_BASEURL),
              attribution=escape(settings.A4_MAP_ATTRIBUTION))
