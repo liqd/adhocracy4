@@ -1,5 +1,5 @@
 {% extends extends %}
-{% load i18n discovery_tags static maps_tags %}
+{% load i18n discovery_tags static maps_tags module_tags %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
@@ -37,7 +37,15 @@
                     </div>
                 </div>
             </div>
+            {% if object_list %}
+            {% if object_list.0|has_feature:"rate" %}
+                {% map_display_points object_list module.settings_instance.polygon %}
+            {% else %}
+                {% map_display_points object_list module.settings_instance.polygon 'true' %}
+            {% endif %}
+            {% else %}
             {% map_display_points object_list module.settings_instance.polygon %}
+            {% endif %}
         </div>
     {% else %}
         <div class="module-content">
