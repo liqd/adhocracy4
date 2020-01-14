@@ -1,3 +1,5 @@
+/* This code is used to save closed accordeons in the dashboard in a cookie */
+
 import Cookies from 'js-cookie'
 
 $(function () {
