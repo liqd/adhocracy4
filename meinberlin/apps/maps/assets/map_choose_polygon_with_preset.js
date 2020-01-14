@@ -1,3 +1,5 @@
+/* Adds extra select dropdown to choose predefined polygon instead of drawing one */
+
 /* global django */
 import { createMap } from 'a4maps_common'
 import 'leaflet-draw'
