@@ -1,3 +1,6 @@
+/* this code is used in the newsletter form to display a project
+   dropdown when the user selects that he/she wants to send the
+   newsletter to all followers of a project */
 
 var $ = require('jquery')
 $(function () {

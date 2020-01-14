@@ -25,12 +25,11 @@ var ReactDocuments = require('../../apps/documents/assets/react_documents.jsx')
 var ReactPolls = require('../../apps/polls/assets/react_polls.jsx')
 var ReactMapTeaser = require('../../apps/plans/assets/react_map_teaser.jsx')
 
-var relativeTimestamps = require('../../apps/actions/assets/timestamps.js')
-var mapAddress = require('./map-address.js')
-var remarkpopover = require('../../apps/moderatorremark/assets/idea_remarks.js')
-var dynamicFields = require('../../apps/contrib/assets/dynamic_fields.js')
-
-var initAccordeonsCookie = require('../../apps/dashboard/assets/init_accordeons_cookie.js')
+require('../../apps/actions/assets/timestamps.js')
+require('./map-address.js')
+require('../../apps/moderatorremark/assets/idea_remarks.js')
+require('../../apps/newsletters/assets/dynamic_fields.js')
+require('../../apps/dashboard/assets/init_accordeons_cookie.js')
 
 // This function is overwritten with custom behavior in embed.js.
 var getCurrentPath = function () {
