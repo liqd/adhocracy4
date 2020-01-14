@@ -1,3 +1,7 @@
+/* This code is used to generate a modal with contents
+   from a different page and the content is loaded via
+   ajax as soon as the 'toggle modal' is clicked */
+
 /* globals django */
 $(function () {
   var modalHTML = (

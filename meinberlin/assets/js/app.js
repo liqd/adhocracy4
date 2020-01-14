@@ -29,6 +29,7 @@ require('../../apps/actions/assets/timestamps.js')
 require('./map-address.js')
 require('../../apps/moderatorremark/assets/idea_remarks.js')
 require('../../apps/newsletters/assets/dynamic_fields.js')
+require('../../apps/dashboard/assets/ajax_modal.js')
 require('../../apps/dashboard/assets/init_accordeons_cookie.js')
 
 // This function is overwritten with custom behavior in embed.js.
