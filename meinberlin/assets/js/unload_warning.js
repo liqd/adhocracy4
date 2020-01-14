@@ -1,3 +1,6 @@
+/* This code checks if something has been changed in a form but not submitted.
+   If the user wants to leave the the page there will be warning. */
+
 /* global CKEDITOR django */
 
 $(function () {
