@@ -1,3 +1,19 @@
+/* This code is used to replace the html from a
+different page with the html from the current page.
+This is how it works:
+1) embed.html is delivered to client
+2) js reads the url from the body-tag attribute 'data-url'
+3) js loads the data from the url in step 2
+4) js retrieves all elements from inside the main tags from the loaded html from step3
+5) js puts the data from step 4 into the dom from step 1
+
+If a link is clicked, it is also handled by js
+6) js checks if the achor tag has an embedTarget-attribute
+7) if not the restart from step 2
+6) if attribute is set to external, redirect to platform
+7) if login is required for next step, login opens in popover
+*/
+
 /* global django */
 
 $(document).ready(function () {
