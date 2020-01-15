@@ -22,7 +22,7 @@
     <header class="embed-header">
         {% if not object|is_external %}
             {% if request.user.is_anonymous %}
-                <a href="{% url 'account_login' %}" class="btn btn--light">{% trans 'Login' %}</a>
+                <a href="{% url 'account_login' %}?next={% url 'embed-login-success' %}" class="btn btn--light">{% trans 'Login' %}</a>
             {% else %}
                 {% trans 'You are logged in as ' %} {{ request.user.username }}
                 <form class="u-inline">

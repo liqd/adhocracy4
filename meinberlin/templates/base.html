@@ -16,9 +16,6 @@
     <script src="{% static 'vendor.js' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>
     <meta name="viewport" content="width=device-width" />
-    {% if request.user.is_authenticated %}
-        <script src="{% static 'popup-close.js' %}"></script>
-    {% endif %}
     {% block header %}{% endblock %}
 
     {% block extra_js %}
