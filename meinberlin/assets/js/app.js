@@ -26,7 +26,7 @@ var ReactPolls = require('../../apps/polls/assets/react_polls.jsx')
 var ReactMapTeaser = require('../../apps/plans/assets/react_map_teaser.jsx')
 
 require('../../apps/actions/assets/timestamps.js')
-require('./map-address.js')
+require('../../apps/maps/assets/map-address.js')
 require('../../apps/moderatorremark/assets/idea_remarks.js')
 require('../../apps/newsletters/assets/dynamic_fields.js')
 require('../../apps/dashboard/assets/ajax_modal.js')
