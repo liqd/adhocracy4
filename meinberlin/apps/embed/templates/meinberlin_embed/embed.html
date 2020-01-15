@@ -25,7 +25,10 @@
                 <a href="{% url 'account_login' %}" class="btn btn--light">{% trans 'Login' %}</a>
             {% else %}
                 {% trans 'You are logged in as ' %} {{ request.user.username }}
-                <a href="{% url 'account_logout' %}" class="js-embed-logout btn btn--light" target="_blank">{% trans 'Logout' %}</a>
+                <form class="u-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="js-embed-logout btn btn--light">{% trans "Logout" %}</button>
+                </form>
             {% endif %}
         {% endif %}
         <div id="embed-status" class="embed-status"></div>

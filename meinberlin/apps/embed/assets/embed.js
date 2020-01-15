@@ -182,6 +182,7 @@ $(document).ready(function () {
     e.preventDefault()
     $.post(
       '/accounts/logout/',
+      { csrfmiddlewaretoken: $('[name=csrfmiddlewaretoken]').val() },
       function () {
         location.reload()
       }
