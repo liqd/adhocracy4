@@ -60,11 +60,8 @@ module.exports = {
       'datepicker/css/datepicker.min.css'
     ],
     embed: [
-      './meinberlin/apps/embed/assets/embed.js',
-      'bootstrap/js/dist/modal.js'
-    ],
-    'popup-close': [
-      './meinberlin/apps/embed/assets/popup-close.js'
+      'bootstrap/js/dist/modal.js',
+      './meinberlin/apps/embed/assets/embed.js'
     ],
     select2: [
       'select2'

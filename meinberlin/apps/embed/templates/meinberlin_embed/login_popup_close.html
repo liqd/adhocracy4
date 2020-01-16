@@ -2,8 +2,6 @@
 {% load static %}
 
 {% block extra_js %}
-    {% if request.user.is_authenticated %}
-        <script src="{% static 'popup-close.js' %}"></script>
-    {% endif %}
+    <script src="{% static 'embed.js' %}"></script>
 {% endblock %}
 

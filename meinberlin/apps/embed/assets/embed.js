@@ -16,6 +16,14 @@ If a link is clicked, it is also handled by js
 
 /* global django */
 
+// if this was opened from an embed for login, notify it about success
+if (window.opener) {
+  window.opener.postMessage(
+    JSON.stringify({ name: 'popup-close' }),
+    location.origin
+  )
+}
+
 $(document).ready(function () {
   var $main = $('main')
   var currentPath
