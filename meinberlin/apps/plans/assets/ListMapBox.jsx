@@ -293,7 +293,7 @@ class ListMapBox extends Component {
     } else {
       return (
         <div className="l-wrapper u-align-center u-spacer-top">
-          <div className="spinner-border float-right" role="status">
+          <div className="spinner-border" role="status">
             <span className="sr-only">Loading...</span>
           </div>
         </div>

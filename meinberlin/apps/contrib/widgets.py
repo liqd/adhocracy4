@@ -12,11 +12,6 @@ class Select2Mixin:
 
         super().__init__(*args, **kwargs)
 
-    class Media:
-        js = (
-            'select2.js',
-        )
-
 
 class Select2Widget(Select2Mixin, forms.Select):
     pass

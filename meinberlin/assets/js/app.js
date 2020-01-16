@@ -2,7 +2,7 @@
 
 // make jquery available for non-webpack js
 var $ = window.jQuery = window.$ = require('jquery')
-window.Tether = require('tether/dist/js/tether.js')
+window.Tether = require('tether')
 
 require('shariff')
 var Shariff = window.Shariff
@@ -11,9 +11,11 @@ var Shariff = window.Shariff
 require('bootstrap')
 
 require('slick-carousel')
-require('slick-carousel/slick/slick.css')
 
-var django = require('django')
+// used to select projects in containers
+require('select2')
+
+require('django')
 
 // expose react components
 var ReactComments = require('adhocracy4').comments

@@ -6,9 +6,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
   entry: {
     adhocracy4: [
-      './meinberlin/assets/scss/style.scss',
-      './meinberlin/assets/extra_css/_slick-theme.css',
       'shariff/dist/shariff.min.css',
+      'select2/dist/css/select2.min.css',
+      'slick-carousel/slick/slick.css',
+      './meinberlin/assets/extra_css/_slick-theme.css',
+      './meinberlin/assets/scss/style.scss',
       './meinberlin/assets/js/app.js'
     ],
     vendor: [
@@ -22,9 +24,7 @@ module.exports = {
       'immutability-helper',
       'react-dom',
       'react-flip-move',
-      'react-sticky-box',
-      'slick-carousel/slick/slick.min.js',
-      'slick-carousel/slick/slick.css'
+      'react-sticky-box'
     ],
     mb_plans_map: [
       'leaflet/dist/leaflet.css',
@@ -62,9 +62,6 @@ module.exports = {
     embed: [
       'bootstrap/js/dist/modal.js',
       './meinberlin/apps/embed/assets/embed.js'
-    ],
-    select2: [
-      'select2'
     ]
   },
   output: {
@@ -81,7 +78,7 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules\/(?!(adhocracy4|bootstrap)\/).*/, // exclude most dependencies
+        exclude: /node_modules\/(?!(adhocracy4)\/).*/, // exclude most dependencies
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', '@babel/preset-react'].map(require.resolve),
@@ -130,10 +127,14 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
+      a4maps_common$: 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_common.js',
+      bootstrap$: 'bootstrap/dist/js/bootstrap.bundle.min.js',
       jquery$: 'jquery/dist/jquery.min.js',
+      select2$: 'select2/dist/js/select2.min.js',
       shariff$: 'shariff/dist/shariff.min.js',
       shpjs$: 'shpjs/dist/shp.min.js',
-      a4maps_common$: 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_common.js'
+      tether$: 'tether/dist/js/tether.min.js',
+      'slick-carousel$': 'slick-carousel/slick/slick.min.js'
     },
     // when using `npm link`, dependencies are resolved against the linked
     // folder by default. This may result in dependencies being included twice.
