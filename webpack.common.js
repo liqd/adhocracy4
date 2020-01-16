@@ -64,7 +64,7 @@ module.exports = {
       'bootstrap/js/dist/modal.js'
     ],
     'popup-close': [
-      './meinberlin/assets/js/popup-close.js'
+      './meinberlin/apps/embed/assets/popup-close.js'
     ],
     select2: [
       'select2'
