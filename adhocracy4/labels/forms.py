@@ -18,7 +18,7 @@ class LabelForm(forms.ModelForm):
     ))
 
     class Media:
-        js = ('js/category_formset.js',)
+        js = ('category_formset.js',)
 
     class Meta:
         model = labels_models.Label
