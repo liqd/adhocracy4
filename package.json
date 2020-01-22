@@ -40,7 +40,9 @@
     "type": "git",
     "url": "git@github.com:liqd/adhocracy4.git"
   },
-  "scripts": {
-    "precommit": "make lint-quick"
+  "husky": {
+    "hooks": {
+      "pre-commit": "make lint-quick"
+    }
   }
 }
