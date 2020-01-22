@@ -524,7 +524,7 @@ export default class CommentBox extends React.Component {
   render () {
     return (
       <div>
-        <div className={this.state.displayForm ? 'a4-comments__commentbox__form container' : 'a4-comments__commentbox__form--hidden'}>
+        <div className={this.state.displayForm ? 'a4-comments__commentbox__form' : 'a4-comments__commentbox__form--hidden'}>
           <CommentForm
             subjectType={this.props.subjectType} subjectId={this.props.subjectId}
             onCommentSubmit={this.handleCommentSubmit}

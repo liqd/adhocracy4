@@ -237,9 +237,9 @@ export default class Comment extends React.Component {
       var sectionStyle = {
         backgroundImage: 'url(' + this.props.user_image + ')'
       }
-      userImage = <span className="user-avatar user-avatar--small user-avatar--shadow mb-1" style={sectionStyle} />
+      userImage = <div className="user-avatar user-avatar--small user-avatar--shadow mb-1 userindicator__btn-img" style={sectionStyle} />
     } else if (!this.props.is_deleted && this.displayCategories()) {
-      userImage = <span className="user-avatar user-initial user-avatar--small user-avatar--shadow mb-2">{this.props.user_fallback}</span>
+      userImage = <div className="user-avatar user-initial user-avatar--small user-avatar--shadow mb-2 userindicator__btn-img">{this.props.user_fallback}</div>
     }
 
     const userProfile = this.props.user_profile_url
@@ -248,96 +248,122 @@ export default class Comment extends React.Component {
       <div>
         <div className={(this.isOwner() ? 'a4-comments__comment a4-comments__comment-owner' : 'a4-comments__comment')}>
           <a className="a4-comments__anchor" id={`comment_${this.props.id}`} href={`./?comment=${this.props.id}`}>{`Comment ${this.props.id}`}</a>
-          <div className="container">
-            <ReportModal
-              name={`report_comment_${this.props.id}`}
-              title={django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')}
-              btnStyle="cta"
-              objectId={this.props.id}
-              contentType={this.context.comments_contenttype}
-            />
-            <UrlModal
-              name={`share_comment_${this.props.id}`}
-              title={django.gettext('Share link')}
-              btnStyle="cta"
-              objectId={this.props.id}
-              url={this.getCommentUrl()}
-            />
-            {this.renderDeleteModal()}
-            {this.renderModerateModal()}
-            <div className="a4-comments__box row">
-              {(this.props.is_moderator_marked && this.displayCategories()) &&
-                <span className={this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) ? 'a4-comments__featured--menu' : 'a4-comments__featured'}>
-                  <i className="fas fa-bookmark" alt="Featured comment" />
-                </span>}
-              <div className="a4-comments__box--left">
-                {this.props.userImage &&
-                  { userImage }}
-                <h5 className={this.props.is_deleted ? 'a4-comments__deleted-author' : 'a4-comments__author'}>
-                  {userProfile === '' ? this.props.user_name
-                    : <a href={userProfile}>{this.props.user_name}</a>}
-                </h5>
-                <div className="a4-comments__moderator">{moderatorLabel}</div>
-                <div className="a4-comments__submission-date">{lastDate}</div>
-              </div>
-              <div className={this.state.anchored ? 'a4-comments__box--right a4-comments__border--highlighted' : 'a4-comments__box--right'}>
-                <div class="row">
-                  <div class="col-10">
-                    <span className="sr-only">{django.gettext('Categories: ')}</span>
-                    {this.renderCategories()}
-                  </div>
-                  <div class="col-2">
-                    {this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) &&
-                      <CommentManageDropdown
-                        id={this.props.id}
-                        handleToggleEdit={this.toggleEdit.bind(this)}
-                        renderOwnerOptions={this.isOwner() && !this.props.isReadOnly}
-                        renderModeratorOptions={this.context.isModerator && !this.props.isReadOnly}
-                        isParentComment={this.displayCategories()}
-                      />}
-                  </div>
+          <ReportModal
+            name={`report_comment_${this.props.id}`}
+            title={django.gettext('You want to report this content? Your message will be sent to the moderation. The moderation will look at the reported content. The content will be deleted if it does not meet our discussion rules (netiquette).')}
+            btnStyle="cta"
+            objectId={this.props.id}
+            contentType={this.context.comments_contenttype}
+          />
+          <UrlModal
+            name={`share_comment_${this.props.id}`}
+            title={django.gettext('Share link')}
+            btnStyle="cta"
+            objectId={this.props.id}
+            url={this.getCommentUrl()}
+          />
+          {this.renderDeleteModal()}
+          {this.renderModerateModal()}
+          <div className="a4-comments__box">
+            <div className="a4-comments__box--user">
+              <div className="row">
+
+                <div className="col-1">
+                  {userImage}
+                  <div className="a4-comments__moderator">{moderatorLabel}</div>
                 </div>
-                {this.renderComment()}
-                {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--link" onClick={this.showMore.bind(this)}>{django.gettext('Read more...')}</button>}
-                {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--link" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
-                <div className="action-bar">
-                  <nav className="navbar navbar-default navbar-static a4-comments__navbar">
-                    {this.renderRatingBox()}
-                    <div className="a4-comments__nav">
-                      {this.props.child_comments && this.props.child_comments.length > 0 &&
-                        <button className="btn a4-comments__nav-btn" type="button" onClick={this.toggleShowComments.bind(this)}>
-                          <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment'} aria-hidden="true" /> {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
-                        </button>}
-                      {this.allowForm() && !this.props.is_deleted &&
-                        <button
-                          disabled={this.state.showChildComments}
-                          className="btn a4-comments__nav-btn"
-                          type="button"
-                          onClick={this.replyComments.bind(this)}
-                        >
-                          <i className="fa fa-reply" aria-hidden="true" /> {django.gettext('Answer')}
-                        </button>}
-                      {!this.props.is_deleted &&
-                        <a
-                          className="btn a4-comments__nav-btn" href={`?comment_${this.props.id}`}
-                          data-toggle="modal" data-target={`#share_comment_${this.props.id}`}
-                        ><i className="fas fa-share" /> {django.gettext('Share')}
-                        </a>}
-                      {!this.props.is_deleted && !this.isOwner() &&
-                        <a
-                          className="btn a4-comments__nav-btn" href={`#report_comment_${this.props.id}`}
-                          data-toggle="modal"
-                        >{django.gettext('Report')}
-                        </a>}
-                    </div>
-                  </nav>
+                <div className="col-8">
+                  <h5 className={this.props.is_deleted ? 'a4-comments__deleted-author mt-0 mb-1' : 'a4-comments__author mt-0 mb-1'}>
+                    {userProfile === '' ? this.props.user_name
+                      : <a href={userProfile}>{this.props.user_name}</a>}
+                  </h5>
+                  <div className="a4-comments__submission-date">{lastDate}</div>
+                </div>
+
+                <div className="col-1">
+                  {(this.props.is_moderator_marked && this.displayCategories()) &&
+                    <span className={this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) ? 'a4-comments__featured--menu' : 'a4-comments__featured'}>
+                      <i className="fas fa-bookmark" alt="Featured comment" />
+                    </span>}
+                </div>
+
+                <div className="col-2">
+                  {this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) &&
+                    <CommentManageDropdown
+                      id={this.props.id}
+                      handleToggleEdit={this.toggleEdit.bind(this)}
+                      renderOwnerOptions={this.isOwner() && !this.props.isReadOnly}
+                      renderModeratorOptions={this.context.isModerator && !this.props.isReadOnly}
+                      isParentComment={this.displayCategories()}
+                    />}
+                </div>
+
+              </div>
+            </div>
+
+            <div className="row">
+              <div className={this.state.anchored ? 'a4-comments__box--comment a4-comments__box--highlighted' : 'a4-comments__box--comment'}>
+                <div className="col-12">
+                  <span className="sr-only">{django.gettext('Categories: ')}</span>
+                  {this.renderCategories()}
                 </div>
               </div>
             </div>
-            {this.state.displayNotification &&
-              <div className="a4-comments__success-notification"><i className="fas fa-check" /> {successMessage}</div>}
+
+            <div className="row">
+              <div className="col-12">
+                {this.renderComment()}
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-3">
+                {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--link" onClick={this.showMore.bind(this)}>{django.gettext('Read more...')}</button>}
+                {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--link" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
+              </div>
+              <div className="offset-6 col-3 text-muted pt-2 text-right">
+                {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
+              </div>
+            </div>
+
+            <div className="row">
+              <nav className="col-12 navbar navbar-default navbar-static">
+                {this.renderRatingBox()}
+                <div className="a4-comments__action-bar">
+                  {this.props.child_comments && this.props.child_comments.length > 0 &&
+                    <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
+                      <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment-alt'} aria-hidden="true" /> {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
+                    </button>}
+                  {this.allowForm() && !this.props.is_deleted &&
+                    <button
+                      disabled={this.state.showChildComments}
+                      className="btn btn--no-border a4-comments__action-bar__btn"
+                      type="button"
+                      onClick={this.replyComments.bind(this)}
+                    >
+                      <i className="fa fa-reply" aria-hidden="true" /> {django.gettext('Answer')}
+                    </button>}
+                  {!this.props.is_deleted &&
+                    <a
+                      className="btn btn--no-border a4-comments__action-bar__btn" href={`?comment_${this.props.id}`}
+                      data-toggle="modal" data-target={`#share_comment_${this.props.id}`}
+                    ><i className="fas fa-share" /> {django.gettext('Share')}
+                    </a>}
+                  {!this.props.is_deleted && !this.isOwner() &&
+                    <a
+                      className="btn btn--no-border a4-comments__action-bar__btn" href={`#report_comment_${this.props.id}`}
+                      data-toggle="modal"
+                    ><i class="fas fa-exclamation-triangle" />{django.gettext(' Report')}
+                    </a>}
+                </div>
+              </nav>
+            </div>
+
           </div>
         </div>
+        {this.state.displayNotification &&
+          <div className="a4-comments__success-notification"><i className="fas fa-check" /> {successMessage}</div>}
+
         <div className="container">
           {this.state.showChildComments
             ? (
