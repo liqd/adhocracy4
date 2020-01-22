@@ -15,7 +15,7 @@ class ImageInputWidget(widgets.ClearableFileInput):
     using the positional `attrs` argument and hard codes css files.
     """
     class Media:
-        js = ('a4images/imageUploader.js'),
+        js = ('imageUploader.js'),
 
     def render(self, name, value, attrs=None, renderer=None):
         html_id = attrs and attrs.get('id', name) or name

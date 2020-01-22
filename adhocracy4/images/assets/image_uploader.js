@@ -1,5 +1,5 @@
+/* global $ */
 var init = function () {
-  var $ = window.jQuery
   var clearInputs = $('input[data-upload-clear]')
   var previewImages = $('img[data-upload-preview]')
 
@@ -28,5 +28,5 @@ var init = function () {
   })
 }
 
-window.jQuery(init)
-window.jQuery(document).on('a4.embed.ready', init)
+$(init)
+$(document).on('a4.embed.ready', init)
