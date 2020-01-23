@@ -24,12 +24,17 @@ const localeDate = function (dateStr) {
   return new Date(dateStr).toLocaleString(document.documentElement.lang, options)
 }
 
-const getViewRepliesText = function (number, hide) {
+const getRepliesCount = function (number) {
+  const grc = django.ngettext('1 comment', '%s comments', number)
+  return django.interpolate(grc, [number])
+}
+
+const getAnswerForm = function (number, hide) {
   var fmts
   if (hide) {
     fmts = django.ngettext('hide one reply', 'hide %s replies', number)
   } else {
-    fmts = django.ngettext('view one reply', 'view %s replies', number)
+    fmts = django.ngettext('Comment', '%s Comments', number)
   }
   return django.interpolate(fmts, [number])
 }
@@ -317,9 +322,12 @@ export default class Comment extends React.Component {
             </div>
 
             <div className="row">
-              <div className="col-3">
+              <div className="col-6 col-sm-3">
                 {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--link" onClick={this.showMore.bind(this)}>{django.gettext('Read more...')}</button>}
                 {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--link" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
+              </div>
+              <div className="col-6 col-sm-6 ml-auto text-right text-muted pt-2">
+                {getRepliesCount(this.props.child_comments.length)}
               </div>
             </div>
 
@@ -329,19 +337,9 @@ export default class Comment extends React.Component {
 
                 <div className="a4-comments__action-bar">
 
-                  {this.props.child_comments && this.props.child_comments.length > 0 &&
+                  {this.props.child_comments &&
                     <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
-                      <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment-alt'} aria-hidden="true" /> {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
-                    </button>}
-
-                  {this.allowForm() && !this.props.is_deleted &&
-                    <button
-                      disabled={this.state.showChildComments}
-                      className="btn btn--no-border a4-comments__action-bar__btn"
-                      type="button"
-                      onClick={this.replyComments.bind(this)}
-                    >
-                      <i className="fa fa-reply" aria-hidden="true" /> {django.gettext('Answer')}
+                      <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment-alt'} aria-hidden="true" /> {getAnswerForm(this.props.child_comments.length, this.state.showChildComments)}
                     </button>}
 
                   {!this.props.is_deleted &&
