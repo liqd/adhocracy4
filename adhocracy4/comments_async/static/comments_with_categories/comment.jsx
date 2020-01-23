@@ -233,7 +233,7 @@ export default class Comment extends React.Component {
     }
 
     let userImage
-    if (this.props.user_image && this.displayCategories()) {
+    if (this.props.user_image) {
       var sectionStyle = {
         backgroundImage: 'url(' + this.props.user_image + ')'
       }
@@ -321,19 +321,19 @@ export default class Comment extends React.Component {
                 {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--link" onClick={this.showMore.bind(this)}>{django.gettext('Read more...')}</button>}
                 {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--link" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
               </div>
-              <div className="offset-6 col-3 text-muted pt-2 text-right">
-                {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
-              </div>
             </div>
 
             <div className="row">
               <nav className="col-12 navbar navbar-default navbar-static">
                 {this.renderRatingBox()}
+
                 <div className="a4-comments__action-bar">
+
                   {this.props.child_comments && this.props.child_comments.length > 0 &&
                     <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
                       <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment-alt'} aria-hidden="true" /> {getViewRepliesText(this.props.child_comments.length, this.state.showChildComments)}
                     </button>}
+
                   {this.allowForm() && !this.props.is_deleted &&
                     <button
                       disabled={this.state.showChildComments}
@@ -343,18 +343,21 @@ export default class Comment extends React.Component {
                     >
                       <i className="fa fa-reply" aria-hidden="true" /> {django.gettext('Answer')}
                     </button>}
+
                   {!this.props.is_deleted &&
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={`?comment_${this.props.id}`}
                       data-toggle="modal" data-target={`#share_comment_${this.props.id}`}
                     ><i className="fas fa-share" /> {django.gettext('Share')}
                     </a>}
+
                   {!this.props.is_deleted && !this.isOwner() &&
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={`#report_comment_${this.props.id}`}
                       data-toggle="modal"
-                    ><i class="fas fa-exclamation-triangle" />{django.gettext(' Report')}
+                    ><i className="fas fa-exclamation-triangle" />{django.gettext(' Report')}
                     </a>}
+
                 </div>
               </nav>
             </div>
@@ -368,31 +371,37 @@ export default class Comment extends React.Component {
           {this.state.showChildComments
             ? (
               <div className="a4-comments__child--list">
-                <div className="a4-comments__list">
-                  <CommentList
-                    filter="all"
-                    comments={this.props.child_comments}
-                    anchoredCommentId={this.props.anchoredCommentId}
-                    anchoredCommentParentId={this.props.anchoredCommentParentId}
-                    parentIndex={this.props.index}
-                    onCommentDelete={this.props.onCommentDelete}
-                    onCommentModify={this.props.onCommentModify}
-                    onCommentModerate={this.props.onCommentModerate}
-                    isReadOnly={this.props.isReadOnly}
-                    onEditErrorClick={this.props.handleEditErrorClick}
-                  />
+                <div className="row a4-comments__list">
+                  <div className="col-12 ml-4">
+                    <CommentList
+                      filter="all"
+                      comments={this.props.child_comments}
+                      anchoredCommentId={this.props.anchoredCommentId}
+                      anchoredCommentParentId={this.props.anchoredCommentParentId}
+                      parentIndex={this.props.index}
+                      onCommentDelete={this.props.onCommentDelete}
+                      onCommentModify={this.props.onCommentModify}
+                      onCommentModerate={this.props.onCommentModerate}
+                      isReadOnly={this.props.isReadOnly}
+                      onEditErrorClick={this.props.handleEditErrorClick}
+                    />
+                  </div>
                 </div>
-                <CommentForm
-                  subjectType={this.context.comments_contenttype}
-                  subjectId={this.props.id}
-                  onCommentSubmit={this.props.onCommentSubmit}
-                  parentIndex={this.props.index}
-                  placeholder={django.gettext('Your reply here')}
-                  error={this.props.replyError}
-                  errorMessage={this.props.errorMessage}
-                  handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
-                  rows="3"
-                />
+                <div className="row">
+                  <div className="col-12 ml-4">
+                    <CommentForm
+                      subjectType={this.context.comments_contenttype}
+                      subjectId={this.props.id}
+                      onCommentSubmit={this.props.onCommentSubmit}
+                      parentIndex={this.props.index}
+                      placeholder={django.gettext('Your reply here')}
+                      error={this.props.replyError}
+                      errorMessage={this.props.errorMessage}
+                      handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
+                      rows="3"
+                    />
+                  </div>
+                </div>
               </div>) : null}
         </div>
       </div>

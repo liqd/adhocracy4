@@ -86,8 +86,8 @@ export default class CommentForm extends React.Component {
                 onChange={this.handleTextChange.bind(this)} required="required" value={this.state.comment}
               />
             </div>
-            <div className="a4-comments__submit">
-              <input type="submit" value={django.gettext('post')} className="btn a4-comments__submit-input" />
+            <div className="a4-comments__submit d-flex ">
+              <button type="submit" value={django.gettext('post')} className="btn a4-comments__submit-input ml-auto">{django.gettext('post')}</button>
             </div>
           </form>
         </div>
