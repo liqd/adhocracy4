@@ -80,6 +80,7 @@ export default class CommentForm extends React.Component {
                   handleControlFunc={this.handleCategorySelection.bind(this)}
                 />}
               <textarea
+                id={this.props.id}
                 rows={this.props.rows}
                 className="form-control"
                 placeholder={django.gettext('Write contribution')}

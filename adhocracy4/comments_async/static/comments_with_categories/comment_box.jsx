@@ -543,7 +543,7 @@ export default class CommentBox extends React.Component {
                 <button className="input-group-append a4-comments__nav__search-btn btn btn--transparent" type="button" onClick={this.handleClickSearch}><i className="fas fa-search" aria-label={django.gettext('Search contributions')} /></button>
               </div>
 
-              <div className="a4-comments__nav__dropdown ml-auto mr-1">
+              <div className="a4-comments__nav__dropdown ml-md-auto mr-1">
                 <div className="dropdown">
                   <button
                     className="btn btn--transparent btn--select dropdown-toggle a4-comments__nav__btn" type="button"
