@@ -273,11 +273,11 @@ export default class Comment extends React.Component {
             <div className="a4-comments__box--user">
               <div className="row">
 
-                <div className="col-1">
+                <div className="col-2 col-md-1">
                   {userImage}
                   <div className="a4-comments__moderator">{moderatorLabel}</div>
                 </div>
-                <div className="col-8">
+                <div className="col-7 col-md-8">
                   <h5 className={this.props.is_deleted ? 'a4-comments__deleted-author mt-0 mb-1' : 'a4-comments__author mt-0 mb-1'}>
                     {userProfile === '' ? this.props.user_name
                       : <a href={userProfile}>{this.props.user_name}</a>}
@@ -285,14 +285,14 @@ export default class Comment extends React.Component {
                   <div className="a4-comments__submission-date">{lastDate}</div>
                 </div>
 
-                <div className="col-1">
+                <div className="col-1 col-md-1">
                   {(this.props.is_moderator_marked && this.displayCategories()) &&
                     <span className={this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) ? 'a4-comments__featured--menu' : 'a4-comments__featured'}>
                       <i className="fas fa-bookmark" alt="Featured comment" />
                     </span>}
                 </div>
 
-                <div className="col-2">
+                <div className="col-1 col-md-1 ml-auto">
                   {this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) &&
                     <CommentManageDropdown
                       id={this.props.id}
@@ -322,11 +322,11 @@ export default class Comment extends React.Component {
             </div>
 
             <div className="row">
-              <div className="col-6 col-sm-3">
+              <div className="col-6 col-md-3">
                 {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--link" onClick={this.showMore.bind(this)}>{django.gettext('Read more...')}</button>}
                 {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--link" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
               </div>
-              <div className="col-6 col-sm-6 ml-auto text-right text-muted pt-2">
+              <div className="col-6 col-md-6 ml-auto text-right text-muted pt-2">
                 {getRepliesCount(this.props.child_comments.length)}
               </div>
             </div>
@@ -370,7 +370,7 @@ export default class Comment extends React.Component {
             ? (
               <div className="a4-comments__child--list">
                 <div className="row a4-comments__list">
-                  <div className="col-12 ml-4">
+                  <div className="col-12 ml-3">
                     <CommentList
                       filter="all"
                       comments={this.props.child_comments}
@@ -386,7 +386,7 @@ export default class Comment extends React.Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-12 ml-4">
+                  <div className="col-12 ml-3">
                     <CommentForm
                       subjectType={this.context.comments_contenttype}
                       subjectId={this.props.id}
@@ -397,6 +397,7 @@ export default class Comment extends React.Component {
                       errorMessage={this.props.errorMessage}
                       handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
                       rows="3"
+                      id="child-comment-form"
                     />
                   </div>
                 </div>
