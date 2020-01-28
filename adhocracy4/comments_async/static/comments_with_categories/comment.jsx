@@ -29,14 +29,14 @@ const getRepliesCount = function (number) {
   return django.interpolate(grc, [number])
 }
 
-const getAnswerForm = function (number, hide) {
+const getAnswerForm = function (hide) {
   var fmts
   if (hide) {
-    fmts = django.ngettext('hide one reply', 'hide %s replies', number)
+    fmts = django.gettext('hide comments')
   } else {
-    fmts = django.ngettext('Comment', '%s Comments', number)
+    fmts = django.gettext('Comment')
   }
-  return django.interpolate(fmts, [number])
+  return (fmts)
 }
 
 export default class Comment extends React.Component {
@@ -339,7 +339,9 @@ export default class Comment extends React.Component {
 
                   {this.props.child_comments &&
                     <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
-                      <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment-alt'} aria-hidden="true" /> {getAnswerForm(this.props.child_comments.length, this.state.showChildComments)}
+                      <a href="#child-comment-form">
+                        <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment-alt'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments)}
+                      </a>
                     </button>}
 
                   {!this.props.is_deleted &&
