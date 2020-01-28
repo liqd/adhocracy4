@@ -326,9 +326,10 @@ export default class Comment extends React.Component {
                 {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--link" onClick={this.showMore.bind(this)}>{django.gettext('Read more...')}</button>}
                 {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--link" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
               </div>
-              <div className="col-6 col-md-6 ml-auto text-right text-muted pt-2">
-                {getRepliesCount(this.props.child_comments.length)}
-              </div>
+              {this.props.child_comments &&
+                <div className="col-6 col-md-6 ml-auto text-right text-muted pt-2">
+                  {getRepliesCount(this.props.child_comments.length)}
+                </div>}
             </div>
 
             <div className="row">
