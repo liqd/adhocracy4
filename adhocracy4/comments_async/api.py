@@ -35,7 +35,7 @@ class CommentViewSet(mixins.CreateModelMixin,
                        CommentOrderingFilterBackend,
                        CommentCategoryFilterBackend,
                        CustomSearchFilter)
-    filter_fields = ('object_pk', 'content_type')
+    filterset_fields = ('object_pk', 'content_type')
     ordering = ('-created')
     content_type_filter = settings.A4_COMMENTABLES
     pagination_class = CommentSetPagination
