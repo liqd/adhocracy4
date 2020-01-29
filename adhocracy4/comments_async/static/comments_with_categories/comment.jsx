@@ -399,8 +399,8 @@ export default class Comment extends React.Component {
                       error={this.props.replyError}
                       errorMessage={this.props.errorMessage}
                       handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
-                      rows="3"
-                      id="child-comment-form"
+                      rows="1"
+                      autoFocus
                     />
                   </div>
                 </div>
