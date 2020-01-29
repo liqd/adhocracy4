@@ -6,6 +6,7 @@ from rest_framework import routers
 
 from adhocracy4.api import routers as a4routers
 from adhocracy4.comments.api import CommentViewSet
+from adhocracy4.comments_async.api import CommentViewSet as CommentViewSetAsync
 from adhocracy4.dashboard import urls as dashboard_urls
 from adhocracy4.follows.api import FollowViewSet
 from adhocracy4.modules import urls as mod_urls
@@ -26,6 +27,8 @@ question_router.register(r'vote', VoteViewSet, basename='votes')
 
 ct_router = a4routers.ContentTypeDefaultRouter()
 ct_router.register(r'comments', CommentViewSet, basename='comments')
+ct_router.register(r'comments_async', CommentViewSetAsync,
+                   basename='comments_async')
 ct_router.register(r'ratings', RatingViewSet, basename='ratings')
 
 urlpatterns = [

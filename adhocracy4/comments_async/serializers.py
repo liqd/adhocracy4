@@ -81,9 +81,12 @@ class CommentSerializer(serializers.ModelSerializer):
         """Load small thumbnail images for user images."""
         if(obj.is_censored or obj.is_removed):
             return None
-        elif obj.creator.avatar:
-            avatar = get_thumbnailer(obj.creator.avatar)['avatar']
-            return avatar.url
+        try:
+            if obj.creator.avatar:
+                avatar = get_thumbnailer(obj.creator.avatar)['avatar']
+                return avatar.url
+        except AttributeError:
+            pass
         return None
 
     def get_is_moderator(self, obj):
