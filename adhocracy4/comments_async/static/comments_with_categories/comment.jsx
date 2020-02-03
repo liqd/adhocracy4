@@ -273,7 +273,7 @@ export default class Comment extends React.Component {
             <div className="a4-comments__box--user">
               <div className="row">
 
-                <div className="col-2 col-md-1">
+                <div className={this.props.is_deleted ? 'd-none' : 'col-2 col-md-1'}>
                   {userImage}
                   <div className="a4-comments__moderator">{moderatorLabel}</div>
                 </div>
@@ -327,8 +327,10 @@ export default class Comment extends React.Component {
                 {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--link" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
               </div>
               {this.props.child_comments &&
-                <div className="col-6 col-md-6 ml-auto text-right text-muted pt-2">
-                  {getRepliesCount(this.props.child_comments.length)}
+                <div className="col-6 col-md-6 ml-auto text-right">
+                  <button className="button-none text-muted pt-2" onClick={this.toggleShowComments.bind(this)}>
+                    {getRepliesCount(this.props.child_comments.length)}
+                  </button>
                 </div>}
             </div>
 
@@ -338,7 +340,7 @@ export default class Comment extends React.Component {
 
                 <div className="a4-comments__action-bar">
 
-                  {this.props.child_comments &&
+                  {this.allowForm() && !this.props.is_deleted &&
                     <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
                       <a href="#child-comment-form">
                         <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment-alt'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments)}
