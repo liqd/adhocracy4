@@ -256,7 +256,7 @@ export default class Comment extends React.Component {
               </div>
             </div>
             {this.state.displayNotification &&
-              <div className="a4-comments__success-notification"><i className="fas fa-check" aria-hidden="true" /> {successMessage}</div>}
+              <div className="alert alert--success a4-comments__success-notification"><i className="fas fa-check" aria-hidden="true" /> {successMessage}</div>}
           </div>
         </div>
         <div className="container">
