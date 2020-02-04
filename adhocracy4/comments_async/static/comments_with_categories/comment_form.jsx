@@ -74,7 +74,9 @@ export default class CommentForm extends React.Component {
   }
 
   componentDidMount () {
-    this.textareaHeight()
+    if (this.context.isAuthenticated && !this.props.isReadOnly) {
+      this.textareaHeight()
+    }
   }
 
   render () {
