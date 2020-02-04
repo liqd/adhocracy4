@@ -55,7 +55,10 @@ class CommentOrderingFilterBackend(BaseFilterBackend):
                         distinct=True))
                 return queryset.order_by('-negative_rating_count', '-created')
             elif ordering == 'dis':
-                return queryset.order_by('-last_discussed', '-created')
+                return queryset.order_by(
+                    models.F('last_discussed').desc(nulls_last=True),
+                    '-created'
+                )
             elif ordering == 'mom':
                 return queryset.order_by('-is_moderator_marked', '-created')
 
