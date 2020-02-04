@@ -21,7 +21,8 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         read_only_fields = ('modified', 'created', 'id',
                             'user_name', 'user_pk', 'user_image',
-                            'ratings', 'content_type', 'object_pk')
+                            'user_image_fallback', 'ratings',
+                            'content_type', 'object_pk')
         exclude = ('creator', 'is_censored', 'is_removed')
 
     def to_representation(self, instance):
@@ -77,6 +78,17 @@ class CommentSerializer(serializers.ModelSerializer):
             return _('unknown user')
         return obj.creator.get_short_name()
 
+    def get_user_image_fallback(self, obj):
+        """Load small thumbnail images for default user images."""
+        if(obj.is_censored or obj.is_removed):
+            return None
+        try:
+            if obj.creator.avatar_fallback:
+                return obj.creator.avatar_fallback
+        except AttributeError:
+            pass
+        return None
+
     def get_user_image(self, obj):
         """Load small thumbnail images for user images."""
         if(obj.is_censored or obj.is_removed):
@@ -87,7 +99,7 @@ class CommentSerializer(serializers.ModelSerializer):
                 return avatar.url
         except AttributeError:
             pass
-        return None
+        return self.get_user_image_fallback(obj)
 
     def get_is_moderator(self, obj):
         return obj.project.has_moderator(obj.creator)

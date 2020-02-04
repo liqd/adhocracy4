@@ -238,13 +238,13 @@ export default class Comment extends React.Component {
     }
 
     let userImage
-    if (this.props.user_image) {
-      var sectionStyle = {
-        backgroundImage: 'url(' + this.props.user_image + ')'
+    if (!this.props.is_deleted) {
+      if (this.props.user_image) {
+        var sectionStyle = {
+          backgroundImage: 'url(' + this.props.user_image + ')'
+        }
+        userImage = <div className="user-avatar user-avatar--small user-avatar--shadow mb-1 userindicator__btn-img" style={sectionStyle} />
       }
-      userImage = <div className="user-avatar user-avatar--small user-avatar--shadow mb-1 userindicator__btn-img" style={sectionStyle} />
-    } else if (!this.props.is_deleted && this.displayCategories()) {
-      userImage = <div className="user-avatar user-initial user-avatar--small user-avatar--shadow mb-2 userindicator__btn-img">{this.props.user_fallback}</div>
     }
 
     const userProfile = this.props.user_profile_url
