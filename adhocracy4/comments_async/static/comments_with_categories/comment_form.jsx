@@ -87,26 +87,29 @@ export default class CommentForm extends React.Component {
           <form id="id-comment-form" className="general-form" onSubmit={this.handleSubmit.bind(this)}>
             {this.props.error &&
               <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
-            <div className="">
-              {this.props.commentCategoryChoices &&
-                <CategoryList
-                  idPrefix="new"
-                  categoriesChecked={this.state.selectedCategories}
-                  categoryChoices={this.props.commentCategoryChoices}
-                  handleControlFunc={this.handleCategorySelection.bind(this)}
-                />}
-              <textarea
-                id="textarea-top"
-                className="a4-comments__textarea form-group"
-                placeholder={django.gettext('Write contribution')}
-                onChange={this.handleTextChange.bind(this)} required="required" value={this.state.comment}
-                onInput={this.handleTextareaGrow}
-                rows="1"
-                autoFocus
-              />
-            </div>
-            <div className="a4-comments__submit d-flex ">
-              <button type="submit" value={django.gettext('post')} onClick={this.textareaHeight.bind(this)} className="btn a4-comments__submit-input ml-auto">{django.gettext('post')}</button>
+            {this.props.commentCategoryChoices &&
+              <CategoryList
+                idPrefix="new"
+                categoriesChecked={this.state.selectedCategories}
+                categoryChoices={this.props.commentCategoryChoices}
+                handleControlFunc={this.handleCategorySelection.bind(this)}
+              />}
+            <textarea
+              id="textarea-top"
+              className="a4-comments__textarea form-group"
+              placeholder={django.gettext('Write contribution')}
+              onChange={this.handleTextChange.bind(this)}
+              required="required"
+              value={this.state.comment}
+              onInput={this.handleTextareaGrow}
+              rows="1"
+              autoFocus
+            />
+          <div className="row">
+              <label htmlFor="id-comment-form" className="col-6 text-muted">{this.state.commentCharCount}/4000{django.gettext(' characters')}</label>
+              <div className="a4-comments__submit d-flex col-6">
+                <button type="submit" value={django.gettext('post')} onClick={this.textareaHeight.bind(this)} className="btn a4-comments__submit-input ml-auto">{django.gettext('post')}</button>
+              </div>
             </div>
           </form>
         </div>
