@@ -11,7 +11,7 @@ const Modal = (props) => {
     >
       <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div className="modal-content">
-          <span className="modal--close p-3">
+          <span className="modal--close pt-3 pr-3">
             <button
               className="close" aria-label={props.abort}
               data-dismiss="modal" onClick={props.handleClose}
