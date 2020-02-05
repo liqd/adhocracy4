@@ -4,6 +4,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.utils.translation import pgettext
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
@@ -49,7 +50,7 @@ class Comment(base.UserGeneratedContentModel):
     )
 
     class Meta:
-        verbose_name = _("Comment")
+        verbose_name = pgettext("noun", "Comment")
         verbose_name_plural = _("Comments")
         ordering = ('created',)
         index_together = [('content_type', 'object_pk')]
