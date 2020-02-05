@@ -20,11 +20,11 @@ export default class CommentForm extends React.Component {
 
   textareaHeight () {
     var e = document.getElementById('textarea-top')
-    e.style.height = '50px'
+    e.style.height = '46px'
   }
 
   handleTextareaGrow (e) {
-    e.target.style.height = '50px'
+    e.target.style.height = '46px'
     e.target.style.height = (e.target.scrollHeight) + 'px'
   }
 

@@ -47,7 +47,6 @@ export default class CommentBox extends React.Component {
       comments: [],
       nextComments: null,
       commentCount: 0,
-      displayForm: false,
       filter: 'all',
       filterDisplay: django.gettext('all'),
       sort: 'mom',
@@ -143,8 +142,7 @@ export default class CommentBox extends React.Component {
         }
         this.setState({
           comments: update(comments, diff),
-          commentCount: commentCount,
-          displayForm: false
+          commentCount: commentCount
         })
         $('#sticky-footer').fadeIn()
         $('body').addClass('body-sticky-footer')
@@ -319,14 +317,6 @@ export default class CommentBox extends React.Component {
       comments_contenttype: this.props.comments_contenttype,
       user_name: this.props.user_name
     }
-  }
-
-  displayForm () {
-    this.setState({
-      displayForm: true
-    })
-    $('#sticky-footer').hide()
-    $('body').removeClass('body-sticky-footer')
   }
 
   handleClickFilter (e) {
@@ -524,7 +514,7 @@ export default class CommentBox extends React.Component {
   render () {
     return (
       <div>
-        <div className={this.state.displayForm ? 'a4-comments__commentbox__form' : 'a4-comments__commentbox__form--hidden'}>
+        <div className="a4-comments__commentbox__form">
           <CommentForm
             subjectType={this.props.subjectType} subjectId={this.props.subjectId}
             onCommentSubmit={this.handleCommentSubmit}
