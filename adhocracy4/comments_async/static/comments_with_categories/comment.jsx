@@ -34,7 +34,7 @@ const getAnswerForm = function (hide) {
   if (hide) {
     fmts = django.gettext('hide comments')
   } else {
-    fmts = django.gettext('Comment')
+    fmts = django.pgettext('verb', 'Comment')
   }
   return (fmts)
 }
