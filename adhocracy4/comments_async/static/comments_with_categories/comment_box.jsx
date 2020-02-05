@@ -600,14 +600,14 @@ export default class CommentBox extends React.Component {
             </div>
 
             <div className="row">
-              <div className={this.state.search === '' ? 'a4-comments__nav__text mt-2' : 'd-none'}>
+              <div className={this.state.search === '' ? 'a4-comments__nav__text text-muted mt-2' : 'd-none'}>
                 {this.state.commentCount + ' ' + django.ngettext('entry', 'entries', this.state.commentCount)}
               </div>
 
-              <div className={this.state.search !== '' ? 'a4-comments__nav__text mt-2' : 'd-none'}>
+              <div className={this.state.search !== '' ? 'a4-comments__nav__text text-muted mt-2' : 'd-none'}>
                 <span className="a4-comments__nav__span">{this.state.commentCount + ' ' + django.ngettext('entry found for ', 'entries found for ', this.state.commentCount)} </span>
 
-                <button className="btn btn--transparent btn--round btn--small a4-comments__nav__search-result" type="button" onClick={this.handleClickResult}>{this.state.search}<i className="fas fa-times ml-1" aria-label={django.gettext('Clear search')} /></button>
+                <button className="a4-comments__nav__search-result" type="button" onClick={this.handleClickResult}>{this.state.search}<i className="fas fa-times ml-1 text-dark" aria-label={django.gettext('Clear search')} /></button>
               </div>
             </div>
 
