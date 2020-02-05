@@ -13,6 +13,7 @@ export default class CommentForm extends React.Component {
 
     this.state = {
       comment: '',
+      commentCharCount: 0,
       selectedCategories: []
     }
   }
@@ -28,7 +29,7 @@ export default class CommentForm extends React.Component {
   }
 
   handleTextChange (e) {
-    this.setState({ comment: e.target.value })
+    this.setState({ comment: e.target.value, commentCharCount: e.target.value.length })
   }
 
   handleCategorySelection (e) {
@@ -46,6 +47,7 @@ export default class CommentForm extends React.Component {
   clearForm () {
     this.setState({
       comment: '',
+      commentCharCount: 0,
       selectedCategories: []
     })
   }
@@ -83,7 +85,6 @@ export default class CommentForm extends React.Component {
     if (this.context.isAuthenticated && !this.props.isReadOnly) {
       return (
         <div>
-          <label htmlFor="id-comment-form" className="pt-3 pb-2"> {django.gettext('The maximal length of your contribution is 4000 characters')}</label>
           <form id="id-comment-form" className="general-form" onSubmit={this.handleSubmit.bind(this)}>
             {this.props.error &&
               <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
@@ -105,7 +106,7 @@ export default class CommentForm extends React.Component {
               rows="1"
               autoFocus
             />
-          <div className="row">
+            <div className="row">
               <label htmlFor="id-comment-form" className="col-6 text-muted">{this.state.commentCharCount}/4000{django.gettext(' characters')}</label>
               <div className="a4-comments__submit d-flex col-6">
                 <button type="submit" value={django.gettext('post')} onClick={this.textareaHeight.bind(this)} className="btn a4-comments__submit-input ml-auto">{django.gettext('post')}</button>
