@@ -2,7 +2,7 @@ import $ from 'jquery'
 import React from 'react'
 import django from 'django'
 
-import { api } from 'adhocracy4'
+import api from '../../../static/api'
 import Modal from './modal'
 
 export default class ReportModal extends React.Component {
