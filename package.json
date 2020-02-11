@@ -79,7 +79,7 @@
     "stylelint": "13.1.0",
     "stylelint-config-standard": "19.0.0",
     "stylelint-declaration-strict-value": "1.1.8",
-    "webpack-cli": "3.3.10"
+    "webpack-cli": "3.3.11"
   },
   "scripts": {
     "build:prod": "webpack --config webpack.prod.js --mode production",
