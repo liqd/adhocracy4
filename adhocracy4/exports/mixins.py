@@ -182,15 +182,21 @@ class ItemExportWithLocationMixin(VirtualFieldMixin):
     def get_location_lon_data(self, item):
         if hasattr(item, 'point'):
             point = item.point
-            if 'geometry' in point:
-                return point['geometry']['coordinates'][0]
+            try:
+                if 'geometry' in point:
+                    return point['geometry']['coordinates'][0]
+            except TypeError:
+                pass
         return ''
 
     def get_location_lat_data(self, item):
         if hasattr(item, 'point'):
             point = item.point
-            if 'geometry' in point:
-                return point['geometry']['coordinates'][1]
+            try:
+                if 'geometry' in point:
+                    return point['geometry']['coordinates'][1]
+            except TypeError:
+                pass
         return ''
 
     def get_location_label_data(self, item):
