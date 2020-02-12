@@ -234,7 +234,7 @@ export default class Comment extends React.Component {
 
     let moderatorLabel
     if (this.props.authorIsModerator && !this.props.is_deleted) {
-      moderatorLabel = <span className="label a4-comments__label">{django.gettext('Moderator')}</span>
+      moderatorLabel = <span className="a4-comments__moderator">{django.gettext('Moderator')}</span>
     }
 
     let userImage
@@ -251,6 +251,8 @@ export default class Comment extends React.Component {
 
     return (
       <div>
+        {this.state.displayNotification &&
+          <div className="alert alert--success a4-comments__success-notification"><i className="fas fa-check" /> {successMessage}</div>}
         <div className={(this.isOwner() ? 'a4-comments__comment a4-comments__comment-owner' : 'a4-comments__comment')}>
           <a className="a4-comments__anchor" id={`comment_${this.props.id}`} href={`./?comment=${this.props.id}`}>{`Comment ${this.props.id}`}</a>
           <ReportModal
@@ -275,13 +277,13 @@ export default class Comment extends React.Component {
 
                 <div className={this.props.is_deleted ? 'd-none' : 'col-2 col-md-1'}>
                   {userImage}
-                  <div className="a4-comments__moderator">{moderatorLabel}</div>
                 </div>
                 <div className="col-7 col-md-8">
-                  <h5 className={this.props.is_deleted ? 'a4-comments__deleted-author mt-0 mb-1' : 'a4-comments__author mt-0 mb-1'}>
+                  <h5 className={this.props.is_deleted ? 'a4-comments__deleted-author' : 'a4-comments__author'}>
                     {userProfile === '' ? this.props.user_name
                       : <a href={userProfile}>{this.props.user_name}</a>}
                   </h5>
+                  {moderatorLabel}
                   <div className="a4-comments__submission-date">{lastDate}</div>
                 </div>
 
@@ -367,8 +369,6 @@ export default class Comment extends React.Component {
 
           </div>
         </div>
-        {this.state.displayNotification &&
-          <div className="alert alert--success a4-comments__success-notification"><i className="fas fa-check" /> {successMessage}</div>}
 
         <div className="container">
           {this.state.showChildComments
