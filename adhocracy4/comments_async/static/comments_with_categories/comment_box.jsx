@@ -42,11 +42,13 @@ export default class CommentBox extends React.Component {
     this.hideNewError = this.hideNewError.bind(this)
     this.handleHideReplyError = this.handleHideReplyError.bind(this)
     this.updateStateComment = this.updateStateComment.bind(this)
+    this.handleToggleFilters = this.handleToggleFilters.bind(this)
 
     this.state = {
       comments: [],
       nextComments: null,
       commentCount: 0,
+      showFilters: false,
       filter: 'all',
       filterDisplay: django.gettext('all'),
       sort: 'mom',
@@ -319,6 +321,11 @@ export default class CommentBox extends React.Component {
     }
   }
 
+  handleToggleFilters (e) {
+    e.preventDefault()
+    this.setState(s => ({ showFilters: !s.showFilters }))
+  }
+
   handleClickFilter (e) {
     e.preventDefault()
     var filter = e.target.id
@@ -402,7 +409,7 @@ export default class CommentBox extends React.Component {
   }
 
   handleEnterSearch (e) {
-    var search = e.target.parentElement.firstChild.value
+    var search = e.currentTarget.value
     if (e.key === 'Enter') {
       this.fetchSearch(search)
       this.setState({
@@ -524,88 +531,102 @@ export default class CommentBox extends React.Component {
             commentCategoryChoices={this.props.commentCategoryChoices}
           />
         </div>
-        <div className={(this.state.comments.length === 0 && this.state.loading) ? 'd-none' : 'container a4-comments__nav__parent'}>
-          <nav className="a4-comments__nav">
 
-            <div className="row flex-md-nowrap">
-              <div className="input-group a4-comments__nav__search">
-                <input type="search" id="search-input" onKeyPress={this.handleEnterSearch} placeholder={django.gettext('Search contributions')} className="a4-comments__nav__search-input mb-0" />
-                <button className="input-group-append a4-comments__nav__search-btn btn btn--transparent" type="button" onClick={this.handleClickSearch}><i className="fas fa-search" aria-label={django.gettext('Search contributions')} /></button>
-              </div>
+        <div className={(this.state.comments.length === 0 && this.state.loading) ? 'd-none' : 'container a4-comments__filters__parent'}>
 
-              <div className="a4-comments__nav__dropdown ml-md-auto mr-1">
-                <div className="dropdown">
-                  <button
-                    className="btn btn--transparent btn--select dropdown-toggle a4-comments__nav__btn" type="button"
-                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                  >
-                    <span className={this.state.filter === 'all' ? 'a4-comments__nav__btn-text' : 'd-none'}>{django.gettext('display: ')}{this.state.filterDisplay}</span>
-                    <span className={this.state.filter !== 'all' ? 'a4-comments__nav__btn-text small-screen' : 'd-none'}>{this.state.filterDisplay}</span>
+          {this.state.showFilters &&
+            <nav className="a4-comments__filters">
 
-                    <i className={this.state.filter === 'all' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
-                  </button>
-                  <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    {this.state.filter !== 'all' &&
-                      <button className="dropdown-item" onClick={this.handleClickFilter} id="all" key="all" href="#">
-                        {django.gettext('all')}
-                      </button>}
-                    {Object.keys(this.props.commentCategoryChoices).map(objectKey => {
-                      var name = this.props.commentCategoryChoices[objectKey]
-                      if (objectKey !== this.state.filter) {
-                        return (
-                          <button className="dropdown-item" onClick={this.handleClickFilter} id={objectKey} key={objectKey} href="#">{name}</button>
-                        )
-                      }
-                    })}
+              <div className="row flex-md-nowrap justify-content-between">
+
+                <div className="input-group a4-comments__filters__search mr-md-3">
+                  <input className="form-control a4-comments__filters__search-input mb-0" type="search" id="search-input" onKeyPress={this.handleEnterSearch} placeholder={django.gettext('Search contributions')} />
+
+                  <button className={this.state.search !== '' ? 'a4-comments__filters__search-result text-muted' : 'd-none'} type="button" onClick={this.handleClickResult}><span className="fa-stack fa-2x"><i className="far fa-circle fa-stack-2x" /><i className="fas fa-times fa-stack-1x" aria-label={django.gettext('Clear search')} /></span></button>
+
+                  <button className="input-group-append a4-comments__filters__search-btn btn btn--transparent" type="button" onClick={this.handleClickSearch}><i className="fas fa-search" aria-label={django.gettext('Search contributions')} /></button>
+                </div>
+
+                <div className="a4-comments__filters__dropdown mr-md-3">
+                  <div className="dropdown">
+                    <button
+                      className="btn btn--transparent btn--select dropdown-toggle a4-comments__filters__btn" type="button"
+                      id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    >
+                      <span className={this.state.filter === 'all' ? 'a4-comments__filters__btn-text' : 'd-none'}>{django.gettext('display: ')}{this.state.filterDisplay}</span>
+                      <span className={this.state.filter !== 'all' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{this.state.filterDisplay}</span>
+
+                      <i className={this.state.filter === 'all' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
+                    </button>
+                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                      {this.state.filter !== 'all' &&
+                        <button className="dropdown-item" onClick={this.handleClickFilter} id="all" key="all" href="#">
+                          {django.gettext('all')}
+                        </button>}
+                      {Object.keys(this.props.commentCategoryChoices).map(objectKey => {
+                        var name = this.props.commentCategoryChoices[objectKey]
+                        if (objectKey !== this.state.filter) {
+                          return (
+                            <button className="dropdown-item" onClick={this.handleClickFilter} id={objectKey} key={objectKey} href="#">{name}</button>
+                          )
+                        }
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="a4-comments__filters__dropdown">
+                  <div className="dropdown">
+                    <button
+                      className="btn btn--transparent btn--select dropdown-toggle a4-comments__filters__btn" type="button"
+                      id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    >
+                      <span className={this.state.sort === 'mom' ? 'a4-comments__filters__btn-text' : 'd-none'}>{django.gettext('sorted by: ')}{sorts[this.state.sort]}</span>
+                      <span className={this.state.sort !== 'mom' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{sorts[this.state.sort]}</span>
+                      <i className={this.state.sort === 'mom' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
+                    </button>
+                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                      {Object.keys(sorts).map(objectKey => {
+                        var name = sorts[objectKey]
+                        if (objectKey !== this.state.sort) {
+                          return (
+                            <button
+                              className="dropdown-item" onClick={this.handleClickSorted} id={objectKey}
+                              key={objectKey} href="#"
+                            >{name}
+                            </button>
+                          )
+                        }
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
+            </nav>}
 
-              <div className="a4-comments__nav__dropdown">
-                <div className="dropdown">
-                  <button
-                    className="btn btn--transparent btn--select dropdown-toggle a4-comments__nav__btn" type="button"
-                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                  >
-                    <span className={this.state.sort === 'mom' ? 'a4-comments__nav__btn-text' : 'd-none'}>{django.gettext('sorted by: ')}{sorts[this.state.sort]}</span>
-                    <span className={this.state.sort !== 'mom' ? 'a4-comments__nav__btn-text small-screen' : 'd-none'}>{sorts[this.state.sort]}</span>
-                    <i className={this.state.sort === 'mom' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
-                  </button>
-                  <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    {Object.keys(sorts).map(objectKey => {
-                      var name = sorts[objectKey]
-                      if (objectKey !== this.state.sort) {
-                        return (
-                          <button
-                            className="dropdown-item" onClick={this.handleClickSorted} id={objectKey}
-                            key={objectKey} href="#"
-                          >{name}
-                          </button>
-                        )
-                      }
-                    })}
-                  </div>
-                </div>
-              </div>
+          <div className="row justify-content-between">
+            <div className={this.state.search === '' ? 'a4-comments__filters__text text-muted mt-2' : 'd-none'}>
+              {this.state.commentCount + ' ' + django.ngettext('entry', 'entries', this.state.commentCount)}
             </div>
 
-            <div className="row">
-              <div className={this.state.search === '' ? 'a4-comments__nav__text text-muted mt-2' : 'd-none'}>
-                {this.state.commentCount + ' ' + django.ngettext('entry', 'entries', this.state.commentCount)}
-              </div>
-
-              <div className={this.state.search !== '' ? 'a4-comments__nav__text text-muted mt-2' : 'd-none'}>
-                <span className="a4-comments__nav__span">{this.state.commentCount + ' ' + django.ngettext('entry found for ', 'entries found for ', this.state.commentCount)} </span>
-
-                <button className="a4-comments__nav__search-result" type="button" onClick={this.handleClickResult}>{this.state.search}<i className="fas fa-times ml-1 text-dark" aria-label={django.gettext('Clear search')} /></button>
-              </div>
+            <div className={this.state.search !== '' ? 'a4-comments__filters__text text-muted mt-2' : 'd-none'}>
+              <span className="a4-comments__filters__span">{this.state.commentCount + ' ' + django.ngettext('entry found for ', 'entries found for ', this.state.commentCount)}{this.state.search}</span>
             </div>
 
-          </nav>
+            {!this.state.showFilters &&
+              <button className="btn btn--none text-muted a4-comments__filters__show-btn pr-0" type="button" onClick={this.handleToggleFilters}>{django.gettext('Filters')}<i className="fas fa-sliders-h ml-2" aria-label={django.gettext('Show filters')} />
+              </button>}
+            {this.state.showFilters &&
+              <button className="btn btn--none text-muted a4-comments__filters__show-btn pr-0" type="button" onClick={this.handleToggleFilters}>{django.gettext('Hide Filters')}<i className="fas fa-times ml-2" aria-label={django.gettext('Hide filters')} />
+              </button>}
+          </div>
+
           <div className={this.state.loadingFilter ? 'row p-3 justify-content-center a4-comments__loading' : 'd-none'}>
             <i className="fa fa-spinner fa-pulse" />
           </div>
+
         </div>
+
         <div className="a4-comments__box">
           <div className="a4-comments__list">
             <CommentList
