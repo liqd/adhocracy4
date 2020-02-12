@@ -55,7 +55,8 @@ class CommentSerializer(serializers.ModelSerializer):
             value = data.get('comment_categories')
             if value == '' or value == '[]':
                 raise serializers.ValidationError({
-                    'comment_categories': _('Please choose a category')
+                    'comment_categories': _('Please choose one or more '
+                                            'categories.')
                 })
         return data
 
