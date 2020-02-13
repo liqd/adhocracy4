@@ -29,7 +29,6 @@ export default function (props) {
               onCommentDelete={props.onCommentDelete}
               onCommentSubmit={props.onCommentSubmit}
               onCommentModify={props.onCommentModify}
-              onCommentModerate={props.onCommentModerate}
               positiveRatings={comment.ratings.positive_ratings}
               negativeRatings={comment.ratings.negative_ratings}
               userRating={comment.ratings.current_user_rating_value}

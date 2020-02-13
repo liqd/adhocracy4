@@ -23,12 +23,6 @@ const CommentManageDropdown = (props) => {
             </li>,
             <li className="divider" key="4" />
           ]}
-          {props.renderModeratorOptions && props.isParentComment && [
-            <li key="5">
-              <a className="dropdown-item" href={`#comment_moderate_${props.id}`} data-toggle="modal">{django.gettext('Recommend')}</a>
-            </li>,
-            <li className="divider" key="6" />
-          ]}
         </ul>
       </li>
     </ul>
