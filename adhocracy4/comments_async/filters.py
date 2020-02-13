@@ -59,8 +59,6 @@ class CommentOrderingFilterBackend(BaseFilterBackend):
                     models.F('last_discussed').desc(nulls_last=True),
                     '-created'
                 )
-            elif ordering == 'mom':
-                return queryset.order_by('-is_moderator_marked', '-created')
 
         return queryset
 

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import django from 'django'
 
 import Modal from '../modals/modal'
-import ModerateModal from '../modals/moderate_modal'
 import ReportModal from '../modals/report_modal'
 import UrlModal from '../modals/url_modal'
 import CommentEditForm from './comment_edit_form'
@@ -204,22 +203,6 @@ export default class Comment extends React.Component {
     }
   }
 
-  renderModerateModal () {
-    if (this.context.isModerator && this.displayCategories()) {
-      return (
-        <ModerateModal
-          onCommentModerate={this.props.onCommentModerate}
-          is_moderator_marked={this.props.is_moderator_marked}
-          content_type={this.props.content_type}
-          object_pk={this.props.object_pk}
-          index={this.props.index}
-          parentIndex={this.props.parentIndex}
-          id={this.props.id}
-        />
-      )
-    }
-  }
-
   getCommentUrl () {
     return window.location.href.split('?')[0].split('#')[0] + '?comment=' + `${this.props.id}`
   }
@@ -268,7 +251,6 @@ export default class Comment extends React.Component {
             url={this.getCommentUrl()}
           />
           {this.renderDeleteModal()}
-          {this.renderModerateModal()}
           <div className="a4-comments__box">
             <div className="a4-comments__box--user">
               <div className="row">
@@ -283,13 +265,6 @@ export default class Comment extends React.Component {
                       : <a href={userProfile}>{this.props.user_name}</a>}
                   </h5>
                   <div className="a4-comments__submission-date">{lastDate}</div>
-                </div>
-
-                <div className="col-1 col-md-1">
-                  {(this.props.is_moderator_marked && this.displayCategories()) &&
-                    <span className={this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) ? 'a4-comments__featured--menu' : 'a4-comments__featured'}>
-                      <i className="fas fa-bookmark" alt="Featured comment" />
-                    </span>}
                 </div>
 
                 <div className="col-1 col-md-1 ml-auto">
@@ -384,7 +359,6 @@ export default class Comment extends React.Component {
                       parentIndex={this.props.index}
                       onCommentDelete={this.props.onCommentDelete}
                       onCommentModify={this.props.onCommentModify}
-                      onCommentModerate={this.props.onCommentModerate}
                       isReadOnly={this.props.isReadOnly}
                       onEditErrorClick={this.props.handleEditErrorClick}
                     />

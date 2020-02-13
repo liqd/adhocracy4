@@ -357,7 +357,6 @@ def test_fields(user, apiclient, question_ct, question):
     assert 'id' in commentDict
     assert 'is_deleted' in commentDict
     assert 'is_moderator' in commentDict
-    assert 'is_moderator_marked' in commentDict
     assert 'last_discussed' in commentDict
     assert 'modified' in commentDict
     assert 'object_pk' in commentDict

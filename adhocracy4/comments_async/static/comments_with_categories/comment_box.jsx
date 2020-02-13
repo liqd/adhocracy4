@@ -16,8 +16,7 @@ const sorts = {
   pos: django.gettext('Most up votes'),
   neg: django.gettext('Most down votes'),
   ans: django.gettext('Most answers'),
-  dis: django.gettext('Last discussed'),
-  mom: django.gettext('Recommended')
+  dis: django.gettext('Last discussed')
 }
 
 const autoScrollThreshold = 500
@@ -36,7 +35,6 @@ export default class CommentBox extends React.Component {
     this.handleCommentDelete = this.handleCommentDelete.bind(this)
     this.handleCommentModify = this.handleCommentModify.bind(this)
     this.handleCommentSubmit = this.handleCommentSubmit.bind(this)
-    this.handleCommentModerate = this.handleCommentModerate.bind(this)
     this.handleScroll = this.handleScroll.bind(this)
     this.handleHideEditError = this.handleHideEditError.bind(this)
     this.hideNewError = this.hideNewError.bind(this)
@@ -49,7 +47,7 @@ export default class CommentBox extends React.Component {
       commentCount: 0,
       filter: 'all',
       filterDisplay: django.gettext('all'),
-      sort: 'mom',
+      sort: 'new',
       loading: true,
       search: '',
       anchoredCommentId: props.anchoredCommentId ? parseInt(props.anchoredCommentId) : null,
@@ -238,36 +236,6 @@ export default class CommentBox extends React.Component {
             editError: false,
             errorMessage: undefined
           })
-      })
-      .fail((xhr, status, err) => {
-        var errorMessage = Object.values(xhr.responseJSON)[0]
-        this.updateStateComment(
-          index,
-          parentIndex,
-          {
-            editError: true,
-            errorMessage: errorMessage
-          })
-      })
-  }
-
-  handleCommentModerate (modifiedComment, index, parentIndex) {
-    var comments = this.state.comments
-    var comment = comments[index]
-    if (typeof parentIndex !== 'undefined') {
-      comment = comments[parentIndex].child_comments[index]
-    }
-
-    return api.commentmoderate.change(modifiedComment, comment.id)
-      .done(changed => {
-        this.updateStateComment(index, parentIndex, changed)
-        this.updateStateComment(
-          index,
-          parentIndex, {
-            editError: false,
-            errorMessage: undefined
-          }
-        )
       })
       .fail((xhr, status, err) => {
         var errorMessage = Object.values(xhr.responseJSON)[0]
@@ -561,15 +529,15 @@ export default class CommentBox extends React.Component {
                 </div>
               </div>
 
-              <div className="a4-comments__nav__dropdown">
+              <div className="a4-comments__filters__dropdown">
                 <div className="dropdown">
                   <button
-                    className="btn btn--transparent btn--select dropdown-toggle a4-comments__nav__btn" type="button"
+                    className="btn btn--transparent btn--select dropdown-toggle a4-comments__filters__btn" type="button"
                     id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                   >
-                    <span className={this.state.sort === 'mom' ? 'a4-comments__nav__btn-text' : 'd-none'}>{django.gettext('sorted by: ')}{sorts[this.state.sort]}</span>
-                    <span className={this.state.sort !== 'mom' ? 'a4-comments__nav__btn-text small-screen' : 'd-none'}>{sorts[this.state.sort]}</span>
-                    <i className={this.state.sort === 'mom' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
+                    <span className={this.state.sort === 'new' ? 'a4-comments__filters__btn-text' : 'd-none'}>{django.gettext('sorted by: ')}{sorts[this.state.sort]}</span>
+                    <span className={this.state.sort !== 'new' ? 'a4-comments__filters__btn-text small-screen' : 'd-none'}>{sorts[this.state.sort]}</span>
+                    <i className={this.state.sort === 'new' ? 'fa fa-caret-down' : 'fas fa-check'} aria-hidden="true" />
                   </button>
                   <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     {Object.keys(sorts).map(objectKey => {
@@ -615,7 +583,6 @@ export default class CommentBox extends React.Component {
               onCommentDelete={this.handleCommentDelete}
               onCommentSubmit={this.handleCommentSubmit}
               onCommentModify={this.handleCommentModify}
-              onCommentModerate={this.handleCommentModerate}
               isReadOnly={this.props.isReadOnly}
               commentCategoryChoices={this.props.commentCategoryChoices}
               onReplyErrorClick={this.handleHideReplyError}

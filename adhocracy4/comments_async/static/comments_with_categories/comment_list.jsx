@@ -23,7 +23,6 @@ export default function (props) {
               content_type={comment.content_type}
               object_pk={comment.object_pk}
               is_deleted={comment.is_deleted}
-              is_moderator_marked={comment.is_moderator_marked}
               index={index}
               parentIndex={props.parentIndex}
               onCommentDelete={props.onCommentDelete}
