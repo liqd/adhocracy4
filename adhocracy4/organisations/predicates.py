@@ -13,6 +13,19 @@ def is_initiator(user, subject):
 
 
 @rules.predicate
+def is_org_member(user, subject):
+    if subject:
+        if hasattr(subject, 'has_org_member'):
+            organisation = subject
+            return organisation.has_org_member(user)
+        elif (hasattr(subject, 'organisation') and
+              hasattr(subject.organisation, 'has_org_member')):
+            organisation = subject.organisation
+            return organisation.has_org_member(user)
+    return False
+
+
+@rules.predicate
 def is_org_group_member(user, organisation):
     if organisation:
         if hasattr(organisation, 'groups'):

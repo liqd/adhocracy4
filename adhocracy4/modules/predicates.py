@@ -2,10 +2,11 @@ import rules
 from rules import predicates as rules_predicates
 
 from adhocracy4.organisations.predicates import is_initiator
+from adhocracy4.organisations.predicates import is_org_member
 from adhocracy4.phases import predicates as phase_predicates
 from adhocracy4.projects.predicates import is_live
-from adhocracy4.projects.predicates import is_member
 from adhocracy4.projects.predicates import is_moderator
+from adhocracy4.projects.predicates import is_project_member
 from adhocracy4.projects.predicates import is_public
 
 
@@ -26,7 +27,8 @@ def is_context_moderator(user, item):
 @rules.predicate
 def is_context_member(user, item):
     if item:
-        return is_member(user, item.project)
+        return (is_project_member(user, item.project) |
+                is_org_member(user, item.project.organisation))
     return False
 
 

@@ -1,3 +1,5 @@
+import warnings
+
 import rules
 
 
@@ -10,6 +12,17 @@ def is_prj_group_member(user, project):
 
 @rules.predicate
 def is_member(user, project):
+    warnings.warn(
+        "is_member is deprecated; use is_project_member.",
+        DeprecationWarning
+    )
+    if project:
+        return project.has_member(user)
+    return False
+
+
+@rules.predicate
+def is_project_member(user, project):
     if project:
         return project.has_member(user)
     return False
