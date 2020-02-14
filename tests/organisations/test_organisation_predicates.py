@@ -41,6 +41,44 @@ def test_is_initiator(user_factory, organisation_factory,
 
 
 @pytest.mark.django_db
+def test_is_org_member(user_factory, organisation_factory,
+                       project_factory, member_factory):
+    user = user_factory()
+    admin = user_factory(is_superuser=True)
+    member1 = user_factory()
+    member2 = user_factory()
+
+    organisation1 = organisation_factory()
+    member_factory(member=member1, organisation=organisation1)
+    organisation2 = organisation_factory()
+    member_factory(member=member1, organisation=organisation2)
+    member_factory(member=member2, organisation=organisation2)
+    project1 = project_factory(organisation=organisation1)
+    project2 = project_factory(organisation=organisation2)
+
+    assert not predicates.is_org_member(user, organisation1)
+    assert not predicates.is_org_member(user, organisation2)
+    assert not predicates.is_org_member(user, project1)
+    assert not predicates.is_org_member(user, project2)
+    assert not predicates.is_org_member(user, False)
+    assert not predicates.is_org_member(admin, organisation1)
+    assert not predicates.is_org_member(admin, organisation2)
+    assert not predicates.is_org_member(admin, project1)
+    assert not predicates.is_org_member(admin, project2)
+    assert not predicates.is_org_member(admin, False)
+    assert predicates.is_org_member(member1, organisation1)
+    assert predicates.is_org_member(member1, organisation2)
+    assert predicates.is_org_member(member1, project1)
+    assert predicates.is_org_member(member1, project2)
+    assert not predicates.is_org_member(member1, False)
+    assert not predicates.is_org_member(member2, organisation1)
+    assert predicates.is_org_member(member2, organisation2)
+    assert not predicates.is_org_member(member2, project1)
+    assert predicates.is_org_member(member2, project2)
+    assert not predicates.is_org_member(member2, False)
+
+
+@pytest.mark.django_db
 def test_is_org_group_member(user_factory, organisation_factory,
                              group_factory):
     user = user_factory()

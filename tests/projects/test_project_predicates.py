@@ -38,6 +38,31 @@ def test_is_org_group_member(user_factory, project_factory,
 
 
 @pytest.mark.django_db
+def test_is_member(user_factory, project_factory):
+    user = user_factory()
+    admin = user_factory(is_superuser=True)
+
+    member = user_factory()
+    project1 = project_factory(is_public=False)
+    project1.participants.add(member)
+    project2 = project_factory(is_public=False)
+    project3 = project_factory(is_public=True)
+
+    assert not predicates.is_project_member(user, project1)
+    assert not predicates.is_project_member(user, project2)
+    assert predicates.is_project_member(user, project3)
+    assert not predicates.is_project_member(user, False)
+    assert not predicates.is_project_member(admin, project1)
+    assert not predicates.is_project_member(admin, project2)
+    assert predicates.is_project_member(admin, project3)
+    assert not predicates.is_project_member(admin, False)
+    assert predicates.is_project_member(member, project1)
+    assert not predicates.is_project_member(member, project2)
+    assert predicates.is_project_member(member, project3)
+    assert not predicates.is_project_member(member, False)
+
+
+@pytest.mark.django_db
 def test_is_project_member(user_factory, project_factory):
     user = user_factory()
     admin = user_factory(is_superuser=True)
