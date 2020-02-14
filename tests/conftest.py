@@ -5,6 +5,7 @@ from rest_framework.test import APIClient
 from adhocracy4.test import factories
 from adhocracy4.test import helpers
 from tests.apps.locations import factories as location_factories
+from tests.apps.organisations.factories import MemberFactory
 from tests.apps.organisations.factories import OrganisationFactory
 from tests.apps.questions import factories as q_factories
 from tests.images import factories as img_factories
@@ -27,6 +28,7 @@ def image_factory():
 
 register(OrganisationFactory)
 register(factories.UserFactory)
+register(MemberFactory)
 register(factories.GroupFactory)
 register(factories.AdminFactory, 'admin')
 register(factories.UserFactory, 'another_user')
