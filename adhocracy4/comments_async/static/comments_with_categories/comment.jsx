@@ -17,6 +17,10 @@ const safeHtml = function (text) {
 }
 
 const successMessage = django.gettext('Entry successfully created')
+const readMore = django.gettext('Read more...')
+const readLess = django.gettext('Read less')
+const share = django.gettext('Share')
+const report = django.gettext(' Report')
 
 const localeDate = function (dateStr) {
   var options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' }
@@ -300,8 +304,8 @@ export default class Comment extends React.Component {
 
             <div className="row">
               <div className="col-6 col-md-4">
-                {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--none text-muted px-0" onClick={this.showMore.bind(this)}>{django.gettext('Read more...')}</button>}
-                {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--none text-muted px-0" onClick={this.showLess.bind(this)}>{django.gettext('Read less')}</button>}
+                {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--none text-muted px-0" onClick={this.showMore.bind(this)}>{readMore}</button>}
+                {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--none text-muted px-0" onClick={this.showLess.bind(this)}>{readLess}</button>}
               </div>
               {this.props.child_comments &&
                 <div className="col-6 col-md-6 ml-auto text-right">
@@ -328,14 +332,14 @@ export default class Comment extends React.Component {
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={`?comment_${this.props.id}`}
                       data-toggle="modal" data-target={`#share_comment_${this.props.id}`}
-                    ><i className="fas fa-share" /> {django.gettext('Share')}
+                    ><i className="fas fa-share" /> {share}
                     </a>}
 
                   {!this.props.is_deleted && !this.isOwner() &&
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={`#report_comment_${this.props.id}`}
                       data-toggle="modal"
-                    ><i className="fas fa-exclamation-triangle" />{django.gettext(' Report')}
+                    ><i className="fas fa-exclamation-triangle" />{report}
                     </a>}
 
                 </div>
