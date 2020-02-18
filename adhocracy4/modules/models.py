@@ -102,6 +102,13 @@ class Module(models.Model):
             if hasattr(self, setting):
                 return getattr(self, setting)
 
+    def has_feature(self, feature, model):
+        for phase in self.phase_set.all():
+            if phase.has_feature(feature, model):
+                return True
+        return False
+
+    # Phase properties to access the modules phases
     @cached_property
     def phases(self):
         '''Return all phases for this module, ordered by weight.'''
@@ -137,30 +144,11 @@ class Module(models.Model):
 
         The past phase that started last should also have ended last,
         because there should only be one phase running at any time.
+        This is the phase that's content is shown in the module view.
         '''
         return self.active_phase or self.past_phases.last()
 
-    @cached_property
-    def first_phase_start_date(self):
-        '''
-        Return the start date of the first phase in the module.
-
-        Attention: This method is _deprecated_. The property module_start
-        should be used instead.
-        '''
-        warnings.warn(
-            "first_phase_start_date is deprecated; use module_start.",
-            DeprecationWarning
-        )
-        first_phase = self.phase_set.order_by('start_date').first()
-        return first_phase.start_date
-
-    def has_feature(self, feature, model):
-        for phase in self.phase_set.all():
-            if phase.has_feature(feature, model):
-                return True
-        return False
-
+    # module properties combining all phases of self
     @cached_property
     def module_start(self):
         '''Return the start date of the module.'''
@@ -234,6 +222,8 @@ class Module(models.Model):
             return round(time_gone / total_time * 100)
         return None
 
+    # properties to determine the timeline/cluster logic to enable multiple
+    # modules in one project
     @cached_property
     def project_modules(self):
         """
@@ -315,6 +305,22 @@ class Module(models.Model):
             return '{}?initialSlide={}'.format(self.project.get_absolute_url(),
                                                self.get_timeline_index)
         return self.project.get_absolute_url()
+
+    # Deprecated properties
+    @cached_property
+    def first_phase_start_date(self):
+        '''
+        Return the start date of the first phase in the module.
+
+        Attention: This method is _deprecated_. The property module_start
+        should be used instead.
+        '''
+        warnings.warn(
+            "first_phase_start_date is deprecated; use module_start.",
+            DeprecationWarning
+        )
+        first_phase = self.phase_set.order_by('start_date').first()
+        return first_phase.start_date
 
 
 class Item(base.UserGeneratedContentModel):

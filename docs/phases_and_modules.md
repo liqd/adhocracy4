@@ -5,8 +5,8 @@
 ### Definition
 
 A phase is a fixed time interval inside the linear time line of
-a participation project. It enables participants to interact in a certain
-way with the participation project's content.
+a participation module. It enables participants to interact in a certain
+way with the participation module's content.
 
 ### Details
 
@@ -16,7 +16,6 @@ way with the participation project's content.
 -   each phase has an initiator-configurable start and end date
     -   phases are active if start date <= now < end date
     -   only one phase in a module can be active at any point
-    -   optional as long as project is in draft
 -   if a phase is active:
     -   it provides a view for (all?) module content
     -   it sets permissions for creation/modification of content
@@ -27,7 +26,7 @@ way with the participation project's content.
 
 ### Use cases
 
--   an initiator can create a project by combining any arbitrary phases
+-   an initiator can choose a module with a preconfigured set of phases and has to set the times of the phases
     -   only have to obey some rules (dates and order given)
 
 ### Current Implementation
@@ -35,7 +34,7 @@ way with the participation project's content.
 -   abstract concept "phase" is split into "phase type" and "phase"
 -   phase type is inconsistently called phase content or phase identifier sometimes
     -   it's yves' fault
--   phase type defines:
+-   phase type (or content or identifier) defines:
     -   permissions
     -   view to use
 -   phase contains:
@@ -47,7 +46,7 @@ way with the participation project's content.
 -   phases are ordered by weight
     -   weights are usually initialised from the position of the phase type in
         the blueprint
--   no checking of start and end dates between phases (if set or overlap)
+-   no checking of start and end dates between phases (if overlap)
 -   view of phase displayed from start date to start date of next phase / or indefinitely
 -   permissions are only set for participants
     -   moderators and initiators can always do everything
@@ -79,7 +78,15 @@ The states of the phases are implemented a bit differently in the different plac
     -   start date < now
     -   started within last hour
 
-#### Module (model)
+#### Phase (model) properties
+-   is_over
+    -   returns True when no end_date is set (contrary to future_phases with also contains the phases without end_date)
+    -   returns True is end date is past
+-   is_first_of_project (function, not a property)
+    -   is meant to return if it is the first phase of the project
+    -   as the order is not defined when multiple modules exist, this shouldn't be used
+
+#### Module (model) properties
 -   future_phases and past_phases use PhaseQuerySet
     -   both ordered by start date
 -   active_phase
@@ -89,7 +96,7 @@ The states of the phases are implemented a bit differently in the different plac
 -   last_active_phase
     - either active_phase or past_phases.last (the past phase the started last)
 
-#### Project (model)
+#### Project (model) properties
 -   future_phases and past_phases use PhaseQuerySet
     -   both ordered by start date
 -   last_active_phase
@@ -108,10 +115,11 @@ The states of the phases are implemented a bit differently in the different plac
 
 #### Things to keep in mind or fix
 -   finished_phases and past_phases are different by their order
--   phases without dates are future phases
+-   phases without dates are future phases, but is_over returns True if no end_date is set
 -   past_and_active_phases are ordered by start date (while active_phases are ordered by weight)
--   finish_next has all phases edning within 24 hours, not the next one to finish
+-   finish_next has all phases ending within 24 hours, not the next one to finish
 -   start_last has all phases that started in the last hour, not the last one to start
+-   is_first_of_project will only work for single modules
 -   active_phase from module and project are taken from QS with different orderings (weight for module, start date for project)
 
 ## Modules
