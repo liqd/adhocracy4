@@ -7,6 +7,7 @@ const CategoryList = (props) => (
     {Object.keys(props.categoryChoices).map(objectKey => {
       var categoryCheck = props.categoryChoices[objectKey]
       var inputId = props.idPrefix + '_' + objectKey
+      var categoryClass = 'badge a4-comments__category__text a4-comments__category__' + objectKey
       return (
         <div className="a4-comments__category" key={objectKey}>
           <label className="a4-comments__category__row" htmlFor={inputId}>
@@ -18,7 +19,7 @@ const CategoryList = (props) => (
               id={inputId}
               value={categoryCheck}
             />
-            <span className="badge a4-comments__category__text"> {categoryCheck}</span>
+            <span className={categoryClass}> {categoryCheck}</span>
           </label>
         </div>
       )
