@@ -1,9 +1,9 @@
 from django.utils.translation import ugettext_lazy as _
 from jsonfield.fields import JSONField
-from jsonfield.fields import JSONFormField
+from jsonfield.fields import forms
 
 
-class GeoJSONFormField(JSONFormField):
+class GeoJSONFormField(forms.JSONField):
 
     def to_python(self, value):
         featureset = super().to_python(value)
