@@ -1,3 +1,4 @@
+import warnings
 from datetime import timedelta
 
 from django.core.exceptions import ValidationError
@@ -102,7 +103,7 @@ class Phase(models.Model):
 
     @cached_property
     def is_over(self):
-        '''Test if phase is over.'''
+        """Test if phase is over."""
         if self.end_date:
             return self.end_date <= timezone.now()
         return True
@@ -111,5 +112,14 @@ class Phase(models.Model):
         return content[self.type].has_feature(feature, model)
 
     def is_first_of_project(self):
-        """Test if this is the first phase of the project."""
+        """Test if this is the first phase of the project.
+
+        Attention: _deprecated_ as this only wroks for one module where the
+        phase order is determined by weight.
+        """
+        warnings.warn(
+            "is_first_of_project is deprecated as it relies "
+            "on the project only having one module",
+            DeprecationWarning
+        )
         return self == self.module.project.phases.first()
