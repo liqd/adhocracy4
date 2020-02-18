@@ -290,6 +290,7 @@ class Project(ProjectContactDetailMixin,
     def get_absolute_url(self):
         return reverse('project-detail', kwargs=dict(slug=self.slug))
 
+    # functions needed to determine permissions
     def has_member(self, user):
         """
         Everybody is member of all public projects and private projects can
@@ -309,6 +310,7 @@ class Project(ProjectContactDetailMixin,
     def has_moderator(self, user):
         return user in self.moderators.all()
 
+    # properties
     @cached_property
     def topic_names(self):
         if hasattr(settings, 'A4_PROJECT_TOPICS'):
@@ -326,6 +328,114 @@ class Project(ProjectContactDetailMixin,
     def is_private(self):
         return not self.is_public
 
+    @cached_property
+    def is_archivable(self):
+        return not self.is_archived and self.has_finished
+
+    # module properties
+    @cached_property
+    def modules(self):
+        return self.module_set.all()
+
+    @cached_property
+    def published_modules(self):
+        return self.module_set.filter(is_draft=False)
+
+    @cached_property
+    def unpublished_modules(self):
+        return self.module_set.filter(is_draft=True)
+
+    @cached_property
+    def running_module_ends_next(self):
+        """
+        Return the currently active module that ends next.
+        """
+        return self.running_modules.order_by('module_end').first()
+
+    @cached_property
+    def past_modules(self):
+        """Return past modules ordered by start."""
+        return self.published_modules.past_modules()
+
+    @cached_property
+    def future_modules(self):
+        """
+        Return future modules ordered by start date.
+
+        Note: Modules without a start date are assumed to start in the future.
+        """
+        return self.published_modules.future_modules()
+
+    @cached_property
+    def module_running_days_left(self):
+        """
+        Return the number of days left in the currently running module that
+        ends next.
+
+        Attention: It's a bit coarse and should only be used for estimations
+        like 'ending soon', but NOT to display the number of days a project
+        is still running. For that use module_running_time_left.
+        """
+        running_module = self.running_module_ends_next
+        if running_module:
+            today = timezone.now().replace(hour=0, minute=0, second=0)
+            time_delta = running_module.module_end - today
+            return time_delta.days
+        return None
+
+    @cached_property
+    def module_running_time_left(self):
+        """
+        Return the time left in the currently running module that ends next.
+        """
+
+        running_module = self.running_module_ends_next
+        if running_module:
+            return running_module.module_running_time_left
+        return None
+
+    @cached_property
+    def module_running_progress(self):
+        """
+        Return the progress of the currently running module that ends next
+        in percent.
+        """
+        running_module = self.running_module_ends_next
+        if running_module:
+            return running_module.module_running_progress
+        return None
+
+    # properties used in timeline/module cluster logic
+    @cached_property
+    def end_date(self):
+        # FIXME: project properties should rely on modules, not phases.
+        end_date = None
+        last_phase = self.published_phases.exclude(end_date=None)\
+            .order_by('end_date').last()
+        if last_phase and last_phase.end_date:
+            end_date = last_phase.end_date
+        if self.events:
+            last_event = self.events.order_by('date').last()
+            if end_date:
+                if last_event.date > end_date:
+                    end_date = last_event.date
+            else:
+                end_date = last_event.date
+        return end_date
+
+    @cached_property
+    def events(self):
+        if hasattr(self, 'offlineevent_set'):
+            return self.offlineevent_set.all()
+
+    @cached_property
+    def has_future_events(self):
+        if self.events:
+            now = timezone.now()
+            return self.events.filter(date__gt=now).exists()
+        return False
+
+    # properties relying on phases
     @cached_property
     def last_active_phase(self):
         """
@@ -356,6 +466,55 @@ class Project(ProjectContactDetailMixin,
         return None
 
     @cached_property
+    def active_phase_ends_next(self):
+        """
+        Return the currently active phase that ends next.
+        """
+        # FIXME: project properties should rely on modules, not phases.
+        return self.phases.active_phases()\
+            .filter(module__is_draft=False)\
+            .order_by('end_date').first()
+
+    @cached_property
+    def phases(self):
+        # FIXME: project properties should rely on modules, not phases.
+        from adhocracy4.phases import models as phase_models
+        return phase_models.Phase.objects\
+            .filter(module__project=self)
+
+    @cached_property
+    def published_phases(self):
+        # FIXME: project properties should rely on modules, not phases.
+        from adhocracy4.phases import models as phase_models
+        return phase_models.Phase.objects\
+            .filter(module__project=self, module__is_draft=False)
+
+    @cached_property
+    def future_phases(self):
+        # FIXME: project properties should rely on modules, not phases.
+        return self.published_phases.future_phases()
+
+    @cached_property
+    def past_phases(self):
+        # FIXME: project properties should rely on modules, not phases.
+        return self.published_phases.past_phases()
+
+    @cached_property
+    def has_started(self):
+        # FIXME: project properties should rely on modules, not phases.
+        return self.published_phases.past_and_active_phases().exists()
+
+    @cached_property
+    def has_finished(self):
+        # FIXME: project properties should rely on modules, not phases.
+        return self.modules.exists()\
+            and self.published_modules.exists()\
+            and not self.published_phases.active_phases().exists()\
+            and not self.published_phases.future_phases().exists()\
+            and not self.has_future_events
+
+    # deprecated properties
+    @cached_property
     def active_phase(self):
         """
         Return the currently active phase.
@@ -376,16 +535,6 @@ class Project(ProjectContactDetailMixin,
         if last_active_phase and not last_active_phase.is_over:
             return last_active_phase
         return None
-
-    @cached_property
-    def active_phase_ends_next(self):
-        """
-        Return the currently active phase that ends next.
-        """
-        # FIXME: project properties should rely on modules, not phases.
-        return self.phases.active_phases()\
-            .filter(module__is_draft=False)\
-            .order_by('end_date').first()
 
     @cached_property
     def days_left(self):
@@ -474,146 +623,3 @@ class Project(ProjectContactDetailMixin,
             total_time = active_phase.end_date - active_phase.start_date
             return round(time_gone / total_time * 100)
         return None
-
-    @cached_property
-    def phases(self):
-        # FIXME: project properties should rely on modules, not phases.
-        from adhocracy4.phases import models as phase_models
-        return phase_models.Phase.objects\
-            .filter(module__project=self)
-
-    @cached_property
-    def published_phases(self):
-        # FIXME: project properties should rely on modules, not phases.
-        from adhocracy4.phases import models as phase_models
-        return phase_models.Phase.objects\
-            .filter(module__project=self, module__is_draft=False)
-
-    @cached_property
-    def future_phases(self):
-        # FIXME: project properties should rely on modules, not phases.
-        return self.published_phases.future_phases()
-
-    @cached_property
-    def past_phases(self):
-        # FIXME: project properties should rely on modules, not phases.
-        return self.published_phases.past_phases()
-
-    @cached_property
-    def has_started(self):
-        # FIXME: project properties should rely on modules, not phases.
-        return self.published_phases.past_and_active_phases().exists()
-
-    @cached_property
-    def end_date(self):
-        # FIXME: project properties should rely on modules, not phases.
-        end_date = None
-        last_phase = self.published_phases.exclude(end_date=None)\
-            .order_by('end_date').last()
-        if last_phase and last_phase.end_date:
-            end_date = last_phase.end_date
-        if self.events:
-            last_event = self.events.order_by('date').last()
-            if end_date:
-                if last_event.date > end_date:
-                    end_date = last_event.date
-            else:
-                end_date = last_event.date
-        return end_date
-
-    @cached_property
-    def events(self):
-        if hasattr(self, 'offlineevent_set'):
-            return self.offlineevent_set.all()
-
-    @cached_property
-    def has_future_events(self):
-        if self.events:
-            now = timezone.now()
-            return self.events.filter(date__gt=now).exists()
-        return False
-
-    @cached_property
-    def has_finished(self):
-        # FIXME: project properties should rely on modules, not phases.
-        return self.modules.exists()\
-            and self.published_modules.exists()\
-            and not self.published_phases.active_phases().exists()\
-            and not self.published_phases.future_phases().exists()\
-            and not self.has_future_events
-
-    @cached_property
-    def modules(self):
-        return self.module_set.all()
-
-    @cached_property
-    def published_modules(self):
-        return self.module_set.filter(is_draft=False)
-
-    @cached_property
-    def unpublished_modules(self):
-        return self.module_set.filter(is_draft=True)
-
-    @cached_property
-    def running_module_ends_next(self):
-        """
-        Return the currently active module that ends next.
-        """
-        return self.running_modules.order_by('module_end').first()
-
-    @cached_property
-    def past_modules(self):
-        """Return past modules ordered by start."""
-        return self.published_modules.past_modules()
-
-    @cached_property
-    def future_modules(self):
-        """
-        Return future modules ordered by start date.
-
-        Note: Modules without a start date are assumed to start in the future.
-        """
-        return self.published_modules.future_modules()
-
-    @cached_property
-    def module_running_days_left(self):
-        """
-        Return the number of days left in the currently running module that
-        ends next.
-
-        Attention: It's a bit coarse and should only be used for estimations
-        like 'ending soon', but NOT to display the number of days a project
-        is still running. For that use module_running_time_left.
-        """
-        running_module = self.running_module_ends_next
-        if running_module:
-            today = timezone.now().replace(hour=0, minute=0, second=0)
-            time_delta = running_module.module_end - today
-            return time_delta.days
-        return None
-
-    @cached_property
-    def module_running_time_left(self):
-        """
-        Return the time left in the currently running module that ends next.
-        """
-
-        running_module = self.running_module_ends_next
-        if running_module:
-            return running_module.module_running_time_left
-        return None
-
-    @cached_property
-    def module_running_progress(self):
-        """
-        Return the progress of the currently running module that ends next
-        in percent.
-        """
-        running_module = self.running_module_ends_next
-        if running_module:
-            return running_module.module_running_progress
-        return None
-
-    @cached_property
-    def is_archivable(self):
-        return not self.is_archived and self.has_finished
