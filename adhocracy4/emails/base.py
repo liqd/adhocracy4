@@ -23,7 +23,10 @@ class EmailBase:
     enable_reporting = False
 
     def get_site(self):
-        return site_models.Site.objects.get(pk=self.site_id)
+        try:
+            return site_models.Site.objects.get(pk=self.site_id)
+        except site_models.Site.DoesNotExist:
+            return
 
     def get_host(self):
         site = self.get_site()
