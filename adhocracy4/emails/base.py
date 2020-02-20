@@ -3,7 +3,7 @@ from smtplib import SMTPException
 
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.sites import models as site_models
+from django.contrib.sites.models import Site
 from django.core.mail.message import EmailMultiAlternatives
 from django.template.loader import select_template
 from django.utils import translation
@@ -12,7 +12,7 @@ from . import tasks
 
 
 class EmailBase:
-    site_id = 1
+    site_id = None
     object = None
     template_name = None
     fallback_language = 'en'
@@ -23,10 +23,12 @@ class EmailBase:
     enable_reporting = False
 
     def get_site(self):
-        try:
-            return site_models.Site.objects.get(pk=self.site_id)
-        except site_models.Site.DoesNotExist:
-            return
+        if self.site_id is not None:
+            return Site.objects.get(pk=self.site_id)
+        elif hasattr(settings, 'SITE_ID'):
+            return Site.objects.get(pk=settings.SITE_ID)
+        else:
+            return None
 
     def get_host(self):
         site = self.get_site()
