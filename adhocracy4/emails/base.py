@@ -30,6 +30,9 @@ class EmailBase:
 
     def get_host(self):
         site = self.get_site()
+        if site is None:
+            return ''
+
         ssl_enabled = True
         if site.domain.startswith('localhost:'):
             ssl_enabled = False
