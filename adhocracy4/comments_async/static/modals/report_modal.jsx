@@ -59,7 +59,7 @@ export default class ReportModal extends React.Component {
   render () {
     const partials = {}
     if (this.state.showSuccessMessage) {
-      partials.title = (<span><i className="fas fa-check" aria-hidden="true" /> {django.gettext('Thank you! We are taking care of it.')}</span>)
+      partials.title = (<span><i className="fas fa-check" aria-hidden="true" /> {django.gettext('Thanks for the feedback. It will be checked by the moderators as soon as possible.')}</span>)
       partials.hideFooter = true
       partials.bodyClass = 'success'
     } else if (this.state.showReportForm) {
