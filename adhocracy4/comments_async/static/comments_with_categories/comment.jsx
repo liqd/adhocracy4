@@ -307,7 +307,8 @@ export default class Comment extends React.Component {
                 {this.props.children.length > 400 && this.state.shorten && <button className="btn btn--none text-muted px-0" onClick={this.showMore.bind(this)}>{readMore}</button>}
                 {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--none text-muted px-0" onClick={this.showLess.bind(this)}>{readLess}</button>}
               </div>
-              {this.props.child_comments &&
+
+              {this.props.child_comments && this.props.child_comments.length > 0 &&
                 <div className="col-6 col-md-6 ml-auto text-right">
                   <button className="btn btn--none text-muted px-0" onClick={this.toggleShowComments.bind(this)}>
                     {getRepliesCount(this.props.child_comments.length)}
@@ -320,7 +321,6 @@ export default class Comment extends React.Component {
                 {this.renderRatingBox()}
 
                 <div className="a4-comments__action-bar">
-
                   {this.allowForm() && !this.props.is_deleted &&
                     <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
                       <a href="#child-comment-form">
