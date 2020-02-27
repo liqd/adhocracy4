@@ -14,18 +14,16 @@ export default class CommentForm extends React.Component {
     this.state = {
       comment: '',
       commentCharCount: 0,
-      selectedCategories: []
+      selectedCategories: [],
+      textareaHeight: 46
     }
   }
 
-  textareaHeight () {
-    var e = document.getElementById('textarea-top')
-    e.style.height = '46px'
-  }
-
   handleTextareaGrow (e) {
-    e.target.style.height = '46px'
-    e.target.style.height = (e.target.scrollHeight) + 'px'
+    var newHeight = (e.target.scrollHeight)
+    if (newHeight !== this.state.textareaHeight) {
+      this.setState({ textareaHeight: newHeight })
+    }
   }
 
   handleTextChange (e) {
@@ -48,7 +46,8 @@ export default class CommentForm extends React.Component {
     this.setState({
       comment: '',
       commentCharCount: 0,
-      selectedCategories: []
+      selectedCategories: [],
+      textareaHeight: 46
     })
   }
 
@@ -75,13 +74,9 @@ export default class CommentForm extends React.Component {
     )
   }
 
-  componentDidMount () {
-    if (this.context.isAuthenticated && !this.props.isReadOnly) {
-      this.textareaHeight()
-    }
-  }
-
   render () {
+    const textareaStyle = { height: (this.state.textareaHeight) + 'px' }
+
     if (this.context.isAuthenticated && !this.props.isReadOnly) {
       return (
         <div>
@@ -102,14 +97,15 @@ export default class CommentForm extends React.Component {
               onChange={this.handleTextChange.bind(this)}
               required="required"
               value={this.state.comment}
-              onInput={this.handleTextareaGrow}
+              onInput={this.handleTextareaGrow.bind(this)}
               rows="1"
+              style={textareaStyle}
               autoFocus
             />
             <div className="row">
               <label htmlFor="id-comment-form" className="col-6 text-muted">{this.state.commentCharCount}/4000{django.gettext(' characters')}</label>
               <div className="a4-comments__submit d-flex col-6">
-                <button type="submit" value={django.gettext('post')} onClick={this.textareaHeight.bind(this)} className="btn a4-comments__submit-input ml-auto">{django.gettext('post')}</button>
+                <button type="submit" value={django.gettext('post')} className="btn a4-comments__submit-input ml-auto">{django.gettext('post')}</button>
               </div>
             </div>
           </form>

@@ -65,7 +65,7 @@ export default class CommentEditForm extends React.Component {
           />}
         <div className="form-group">
           <textarea
-            rows={this.props.rows} className="form-control"
+            rows={this.props.rows} className="a4-comments__textarea form-group"
             placeholder={django.gettext('Write contribution')}
             onChange={this.handleTextChange.bind(this)} required="required" defaultValue={this.state.comment}
           />
