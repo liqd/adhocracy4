@@ -14,7 +14,7 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def react_comments_async_with_categories(context, obj):
+def react_comments_async(context, obj, debate_app=True):
     request = context['request']
     user = request.user
     is_authenticated = bool(user.is_authenticated)
@@ -32,6 +32,8 @@ def react_comments_async_with_categories(context, obj):
 
     comments_contenttype = ContentType.objects.get_for_model(Comment)
     pk = obj.pk
+
+    module_type = bool(debate_app)
 
     comments_api_url = reverse('comments-list',
                                kwargs={'content_type': contenttype.pk,
@@ -56,7 +58,8 @@ def react_comments_async_with_categories(context, obj):
         'isReadOnly': (not has_comment_permission
                        and not would_have_comment_permission),
         'commentCategoryChoices': comment_category_choices,
-        'anchoredCommentId': anchoredCommentId
+        'anchoredCommentId': anchoredCommentId,
+        'moduleType': module_type
     }
 
     return format_html(
