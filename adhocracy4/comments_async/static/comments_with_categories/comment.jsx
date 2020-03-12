@@ -1,3 +1,4 @@
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import django from 'django'
@@ -102,6 +103,12 @@ export default class Comment extends React.Component {
     return this.props.content_type !== this.context.comments_contenttype
   }
 
+  commentCategoryChoices () {
+    if (this.props.moduleType === true) {
+      return this.props.commentCategoryChoices
+    }
+  }
+
   isOwner () {
     return this.props.user_pk === this.context.user_name
   }
@@ -144,7 +151,7 @@ export default class Comment extends React.Component {
           subjectId={this.props.object_pk}
           comment={this.props.children}
           displayCategories={this.displayCategories()}
-          commentCategoryChoices={this.props.commentCategoryChoices}
+          commentCategoryChoices={this.commentCategoryChoices()}
           comment_categories={this.props.comment_categories}
           error={this.props.editError}
           errorMessage={this.props.errorMessage}
