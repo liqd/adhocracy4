@@ -32,4 +32,4 @@ psycopg2-binary==2.8.4
 python-dateutil==2.8.1
 python-magic==0.4.15
 rules==2.2
-XlsxWriter==1.2.6
+XlsxWriter==1.2.8
