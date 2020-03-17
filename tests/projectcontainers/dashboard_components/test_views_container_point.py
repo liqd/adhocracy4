@@ -26,7 +26,7 @@ def test_edit_view(client, project_container, administrative_district):
     project_container.refresh_from_db()
     assert project_container.administrative_district == \
         administrative_district
-    point = json.loads(project_container.point)
+    point = project_container.point
     data = json.loads(data.get('point'))
 
     for key in point.keys():

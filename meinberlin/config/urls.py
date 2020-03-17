@@ -43,14 +43,14 @@ router = routers.DefaultRouter()
 router.register(r'follows', FollowViewSet, basename='follows')
 router.register(r'reports', ReportViewSet, basename='reports')
 router.register(r'polls', PollViewSet, basename='polls')
-router.register(r'projects', ProjectListViewSet, base_name='projects')
+router.register(r'projects', ProjectListViewSet, basename='projects')
 router.register(r'privateprojects', PrivateProjectListViewSet,
-                base_name='privateprojects')
-router.register(r'plans', PlansListViewSet, base_name='plans')
+                basename='privateprojects')
+router.register(r'plans', PlansListViewSet, basename='plans')
 router.register(r'extprojects',
-                ExternalProjectListViewSet, base_name='extprojects')
+                ExternalProjectListViewSet, basename='extprojects')
 router.register(r'containers',
-                ProjectContainerListViewSet, base_name='containers')
+                ProjectContainerListViewSet, basename='containers')
 
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
