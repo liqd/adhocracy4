@@ -1,9 +1,7 @@
 import json
 
 from django import template
-from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import ImproperlyConfigured
 from django.urls import reverse
 from django.utils.html import format_html
 
@@ -14,8 +12,9 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def react_comments_async(context, obj, debate_app=True):
+def react_comments_async_none(context, obj):
     request = context['request']
+
     user = request.user
     is_authenticated = bool(user.is_authenticated)
     is_moderator = user.is_superuser or user in obj.project.moderators.all()
@@ -28,24 +27,16 @@ def react_comments_async(context, obj, debate_app=True):
     has_comment_permission = user.has_perm(permission, obj)
 
     would_have_comment_permission = NormalUser().would_have_perm(
-        permission, obj)
-
-    comments_contenttype = ContentType.objects.get_for_model(Comment)
-    pk = obj.pk
-
-    module_type = bool(debate_app)
+        permission, obj
+    )
 
     comments_api_url = reverse('comments-list',
                                kwargs={'content_type': contenttype.pk,
                                        'object_pk': obj.pk}
                                )
 
-    comment_category_choices = getattr(settings, 'A4_COMMENT_CATEGORIES', None)
-    if comment_category_choices:
-        comment_category_choices = dict(
-            (x, str(y)) for x, y in comment_category_choices)
-    else:
-        raise ImproperlyConfigured('set A4_COMMENT_CATEGORIES in settings')
+    comments_contenttype = ContentType.objects.get_for_model(Comment)
+    pk = obj.pk
 
     attributes = {
         'commentsApiUrl': comments_api_url,
@@ -55,14 +46,13 @@ def react_comments_async(context, obj, debate_app=True):
         'isAuthenticated': is_authenticated,
         'isModerator': is_moderator,
         'user_name': user_name,
-        'isReadOnly': (not has_comment_permission
-                       and not would_have_comment_permission),
-        'commentCategoryChoices': comment_category_choices,
-        'anchoredCommentId': anchoredCommentId,
-        'moduleType': module_type
+        'isReadOnly': (not has_comment_permission and
+                       not would_have_comment_permission),
+        'anchoredCommentId': anchoredCommentId
     }
 
     return format_html(
-        '<div data-a4-widget="comment_async_with_categories" '
+        '<div data-a4-widget="comment_async" '
         'data-attributes="{attributes}"></div>',
-        attributes=json.dumps(attributes))
+        attributes=json.dumps(attributes)
+    )
