@@ -26,6 +26,15 @@ module.exports = {
       'react-flip-move',
       'react-sticky-box'
     ],
+    datepicker: [
+      './meinberlin/assets/js/init-picker.js',
+      'datepicker/css/datepicker.min.css'
+    ],
+    embed: [
+      'bootstrap/js/dist/modal.js',
+      './meinberlin/apps/embed/assets/embed.js'
+    ],
+    // A4 dependencies - we want all of them to go through webpack
     mb_plans_map: [
       'leaflet/dist/leaflet.css',
       'mapbox-gl/dist/mapbox-gl.css',
@@ -55,13 +64,14 @@ module.exports = {
       'leaflet-draw/dist/leaflet.draw.css',
       './meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js'
     ],
-    datepicker: [
-      './meinberlin/assets/js/init-picker.js',
-      'datepicker/css/datepicker.min.css'
+    category_formset: [
+      'adhocracy4/adhocracy4/categories/assets/category_formset.js'
     ],
-    embed: [
-      'bootstrap/js/dist/modal.js',
-      './meinberlin/apps/embed/assets/embed.js'
+    image_uploader: [
+      'adhocracy4/adhocracy4/images/assets/image_uploader.js'
+    ],
+    select_dropdown_init: [
+      'adhocracy4/adhocracy4/categories/assets/select_dropdown_init.js'
     ]
   },
   output: {
