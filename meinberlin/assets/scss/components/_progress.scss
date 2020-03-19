@@ -3,24 +3,32 @@
     padding: $padding 0 $padding 2*$padding;
 
     &__entry {
+        display: flex;
         position: relative;
         color: $text-color-gray;
         padding-top: 4*$padding;
     }
 
+    &__entry--published {
+        display: flex;
+        position: relative;
+        font-weight: bold;
+        color: $text-color;
+    }
+
     &__entry.active {
         color: $text-color;
+    }
+
+    &__icon {
+        margin-right: $spacer;
     }
 }
 
 .progress-line__line {
     position: absolute;
     left: 7px;
-    top: 0;
+    top: -4px;
     height: 4*$padding;
     border-left: 2px solid $text-color-gray;
-}
-
-.progress__check-unpublished {
-    fill: $bg-tertiary;
 }
