@@ -37,6 +37,11 @@
     .form-group {
         margin-bottom: $spacer / 2;
     }
+
+    // firfox workaround for not shrinking felx item
+    .input-group__input {
+        min-width: 0;
+    }
 }
 
 .control-bar__top-overlap {
