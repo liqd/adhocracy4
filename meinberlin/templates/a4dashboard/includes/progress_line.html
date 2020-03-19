@@ -1,0 +1,90 @@
+{% load i18n a4dashboard_tags meinberlin_dashboard_tags meinberlin_project_tags rules static %}
+
+      <ul class="progress-line u-spacer-bottom">
+
+        <!-- if filled  -->
+        <li class="progress-line__entry">
+            {% if project_progress.project_is_complete %}
+            <i class="fas fa-check-circle u-success dashboard-nav__dropdown-icon" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+            {% else %}
+            <i class="far fa-circle dashboard-nav__dropdown-icon" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
+            {% endif %}
+                <span>Create {{ project.project_type }}</span>
+                <span class="progress-line__line"></span>
+        </li>
+
+          <li class="progress-line__entry{% if view.form_number == forloop.counter0 %} active{% endif %} filled">
+            <!-- if active this one -->
+            <i class="fas fa-circle dashboard-nav__dropdown-icon" title="{% trans 'Project is currently being worked on' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+                <span>Fill in {{ project.project_type }} details</span>
+                <span class="progress-line__line"></span>
+          </li>
+
+
+          {% if project.project_type == 'a4projects.Project' %}
+              <li class="progress-line__entry">
+                <!-- not active or filled -->
+                  <i class="far fa-circle dashboard-nav__dropdown-icon" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
+                      <span>Create module</span>
+                      <span class="progress-line__line"></span>
+              </li>
+              <li class="progress-line__entry">
+                {% if module_menu.is_complete %}
+                    <i class="fas fa-check-circle u-success dashboard-nav__dropdown-icon" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+
+                {% else %}
+                    <i class="far fa-circle dashboard-nav__dropdown-icon" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
+
+                {% endif %}
+                    <span>Fill in module details</span>
+                    <span class="progress-line__line"></span>
+              </li>
+          {% endif %}
+      </ul>
+
+{% include "a4dashboard/includes/preview.html" with project=project %}
+
+{% if project.is_draft %}
+    <button {% if value != max or project.published_modules.count == 0 %}disabled{% endif %} class="btn btn--primary btn--full u-spacer-bottom" data-toggle="modal" data-target="#publish-modal">
+        {% trans 'Publish' %}
+    </button>
+{% else %}
+<form action="{% url 'a4dashboard:project-publish' project_slug=project.slug %}" method="post" data-ignore-submit="true">
+    {% csrf_token %}
+    <input type="hidden" name="referrer" value="{{ request.path }}" />
+    <button name="action" value="unpublish" class="btn btn--light btn--full u-spacer-bottom">
+        {% trans 'Unpublish' %}
+    </button>
+</form>
+{% endif %}
+
+<div class="modal" tabindex="-1" role="dialog" id="publish-modal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title u-first-heading">{% trans "Are you sure you want to publish your project?" %}</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="{% trans 'Close'%}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {% if project.unpublished_modules %}
+                <p>
+                {% blocktrans count counter=project.unpublished_modules|length %}One module has not been added to the project.{% plural %}{{ counter }} modules have not been added to the project.{% endblocktrans %}
+                </p>
+                {% endif %}
+                <div class="u-spacer-bottom">
+                    <form action="{% url 'a4dashboard:project-publish' project_slug=project.slug %}" method="post" data-ignore-submit="true" class="u-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="referrer" value="{{ request.path }}" />
+                        <button name="action" value="publish" class="btn btn--primary">
+                        {% trans 'Publish' %}
+                        </button>
+                    </form>
+                    <button type="button" data-dismiss="modal" class="btn btn--light">{% trans 'Cancel'%}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

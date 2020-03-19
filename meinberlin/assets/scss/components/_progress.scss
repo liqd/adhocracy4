@@ -1,46 +1,40 @@
-.progress__background,
-.progress__value {
-    stroke-width: 3;
-    fill: none;
+.progress-line {
+    list-style: none;
+    padding: $padding 0 $padding 2*$padding;
+
+    &__entry {
+        position: relative;
+        color: $text-color-gray;
+        padding-bottom: 4*$padding;
+    }
+
+    &__entry.active {
+        color: $text-color;
+    }
 }
 
-.progress__background {
-    stroke: $bg-tertiary;
+.progress-line__line {
+    position: absolute;
+    left: 7px;
+    top: 21px;
+    height: 4*$padding;
+    border-left: 2px solid $text-color-gray;
 }
 
-.progress__value {
-    stroke: $brand-primary;
-    transform: rotate(-90deg);
-    transform-origin: center;
-}
-
-.progress__label {
-    text-anchor: middle;
-    font-size: 6px;
-}
-
-.progress__check {
-    fill: $brand-primary;
-}
-
-.progress-box {
-    display: flex;
-    align-items: center;
-    padding: $padding;
-    border: 1px solid $border-color;
-    border-top-left-radius: 0.3em;
-    border-top-right-radius: 0.3em;
-    border-bottom: 0;
-}
-
-.progress-box__progress {
-    flex: 1 1 40%;
-}
-
-.progress-box__description {
-    flex: 1 1 60%;
-    margin-left: $padding;
-}
+//might need?
+// .progress-line__icon {
+//     font-family: "Font Awesome 5 Free", sans-serif;
+//     font-weight: 900;
+//     content: '\f111'; //circle
+// }
+//
+// .progress-line__entry.active {
+//   .progress-line__icon {
+//       font-family: "Font Awesome 5 Free", sans-serif;
+//       font-weight: 900;
+//       content: '\f111'; //circle
+//   }
+// }
 
 .progress__check-unpublished {
     fill: $bg-tertiary;

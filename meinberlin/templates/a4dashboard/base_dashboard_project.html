@@ -181,9 +181,8 @@
         </div>
 
         <div class="l-menu__aside">
-            {% include "a4dashboard/includes/progress.html" with value=project_progress.valid max=project_progress.required project=project %}
+            {% include "a4dashboard/includes/progress_line.html" with project=project %}
 
-            {% include "a4dashboard/includes/preview.html" with project=project %}
         </div>
     </div>
 {% endblock %}
