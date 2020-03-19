@@ -335,13 +335,13 @@ BLEACH_LIST = {
     'default': {
         'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a'],
         'attributes': {
-            'a': ['href', 'rel'],
+            'a': ['href', 'rel', 'target'],
         },
     },
     'image-editor': {
         'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img'],
         'attributes': {
-            'a': ['href', 'rel'],
+            'a': ['href', 'rel', 'target'],
             'img': ['src', 'alt', 'style']
         },
         'styles': [
@@ -360,7 +360,7 @@ BLEACH_LIST = {
         'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img',
                  'div'],
         'attributes': {
-            'a': ['href', 'rel'],
+            'a': ['href', 'rel', 'target'],
             'img': ['src', 'alt', 'style'],
             'div': ['class']
         },
