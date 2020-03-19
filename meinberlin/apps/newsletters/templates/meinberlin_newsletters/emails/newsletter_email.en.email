@@ -1,4 +1,4 @@
-{% extends 'newsletter_base.'|add:part_type %}
+{% extends 'email_base.'|add:part_type %}
 
 {% load verbose_name %}
 
