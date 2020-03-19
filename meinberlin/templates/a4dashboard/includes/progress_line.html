@@ -1,45 +1,29 @@
 {% load i18n a4dashboard_tags meinberlin_dashboard_tags meinberlin_project_tags rules static %}
 
       <ul class="progress-line u-spacer-bottom">
-
-        <!-- if filled  -->
         <li class="progress-line__entry">
-            {% if project_progress.project_is_complete %}
-            <i class="fas fa-check-circle u-success dashboard-nav__dropdown-icon" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
-            {% else %}
-            <i class="far fa-circle dashboard-nav__dropdown-icon" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
-            {% endif %}
-                <span>Create {{ project.project_type }}</span>
-                <span class="progress-line__line"></span>
+            <i class="fas fa-check-circle u-success" title="{% trans 'Section ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+            <span>Create {{ project.project_type }}</span>
         </li>
+        <li class="progress-line__entry">
+            <span class="progress-line__line"></span>
 
-          <li class="progress-line__entry{% if view.form_number == forloop.counter0 %} active{% endif %} filled">
-            <!-- if active this one -->
-            <i class="fas fa-circle dashboard-nav__dropdown-icon" title="{% trans 'Project is currently being worked on' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
-                <span>Fill in {{ project.project_type }} details</span>
-                <span class="progress-line__line"></span>
-          </li>
+            {% if true %}
+            <!-- completed -->
+              <i class="fas fa-check-circle u-success" title="{% trans 'Section ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+            {% else %}
+              {% if true %}
+            <!-- active -->
+                <i class="fas fa-circle" title="{% trans 'Section is currently being worked on' %}" aria-label="{% trans 'Project being updated currently' %}"></i>
+              {% else %}
+            <!-- inactive -->
+              <i class="far fa-circle" title="{% trans 'Section not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
+              {% endif %}
+            {% endif %}
 
+            <span>Fill in {{ project.project_type }} details</span>
 
-          {% if project.project_type == 'a4projects.Project' %}
-              <li class="progress-line__entry">
-                <!-- not active or filled -->
-                  <i class="far fa-circle dashboard-nav__dropdown-icon" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
-                      <span>Create module</span>
-                      <span class="progress-line__line"></span>
-              </li>
-              <li class="progress-line__entry">
-                {% if module_menu.is_complete %}
-                    <i class="fas fa-check-circle u-success dashboard-nav__dropdown-icon" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
-
-                {% else %}
-                    <i class="far fa-circle dashboard-nav__dropdown-icon" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
-
-                {% endif %}
-                    <span>Fill in module details</span>
-                    <span class="progress-line__line"></span>
-              </li>
-          {% endif %}
+        </li>
       </ul>
 
 {% include "a4dashboard/includes/preview.html" with project=project %}
