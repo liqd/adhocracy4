@@ -57,3 +57,11 @@ def get_num_entries(module):
         + Comment.objects.filter(poll__module=module).count() \
         + Vote.objects.filter(choice__question__poll__module=module).count()
     return item_count
+
+
+@register.filter
+def has_publishable_module(dashboard_menu_modules):
+    for module_menu in dashboard_menu_modules:
+        if module_menu['is_complete']:
+            return True
+    return False
