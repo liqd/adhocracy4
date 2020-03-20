@@ -1,52 +1,25 @@
 {% load i18n a4dashboard_tags meinberlin_dashboard_tags meinberlin_project_tags rules static %}
 
 {% if project.is_draft %}
+    {% include "a4dashboard/includes/progress_line_in_progress.html" %}
+{% else %}
+    {% include "a4dashboard/includes/progress_line_done.html" %}
+{% endif %}
 
-      <ul class="progress-line u-spacer-bottom">
-        <li class="progress-line__entry">
-            <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Section ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
-            <span>Create {{ project.project_type }}</span>
-        </li>
-        <li class="progress-line__entry">
-            <span class="progress-line__line"></span>
+    {% include "a4dashboard/includes/preview.html" with project=project %}
 
-            {% if true %}
-            <!-- completed -->
-              <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Section ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
-            {% else %}
-              {% if true %}
-            <!-- active -->
-                <i class="fas fa-circle progress-line__icon" title="{% trans 'Section is currently being worked on' %}" aria-label="{% trans 'Project being updated currently' %}"></i>
-              {% else %}
-            <!-- inactive -->
-              <i class="far fa-circle progress-line__icon" title="{% trans 'Section not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
-              {% endif %}
-            {% endif %}
-
-            <span>Fill in {{ project.project_type }} details</span>
-
-        </li>
-      </ul>
-
-{% include "a4dashboard/includes/preview.html" with project=project %}
-
+{% if project.is_draft %}
     <button {% if value != max or project.published_modules.count == 0 %}disabled{% endif %} class="btn btn--primary btn--full u-spacer-bottom" data-toggle="modal" data-target="#publish-modal">
         {% trans 'Publish' %}
     </button>
 {% else %}
-<ul class="progress-line u-spacer-bottom">
-  <li class="progress-line__entry--published">
-      <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Section ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
-      <span>{% trans 'The project has been published. You can add further modules.' %}</span>
-  </li>
-</ul>
-<form action="{% url 'a4dashboard:project-publish' project_slug=project.slug %}" method="post" data-ignore-submit="true">
-    {% csrf_token %}
-    <input type="hidden" name="referrer" value="{{ request.path }}" />
-    <button name="action" value="unpublish" class="btn btn--light btn--full u-spacer-bottom">
-        {% trans 'Unpublish' %}
-    </button>
-</form>
+    <form action="{% url 'a4dashboard:project-publish' project_slug=project.slug %}" method="post" data-ignore-submit="true">
+        {% csrf_token %}
+        <input type="hidden" name="referrer" value="{{ request.path }}" />
+        <button name="action" value="unpublish" class="btn btn--light btn--full u-spacer-bottom">
+            {% trans 'Unpublish' %}
+        </button>
+    </form>
 {% endif %}
 
 <div class="modal" tabindex="-1" role="dialog" id="publish-modal">

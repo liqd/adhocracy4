@@ -1,0 +1,27 @@
+{% load i18n a4dashboard_tags meinberlin_dashboard_tags meinberlin_project_tags rules static %}
+
+<ul class="progress-line u-spacer-bottom">
+    <li class="progress-line__entry">
+        <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Section ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+        <span>Create {{ project.project_type }}</span>
+    </li>
+    <li class="progress-line__entry">
+        <span class="progress-line__line"></span>
+
+        {% if true %}
+        <!-- completed -->
+          <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Section ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+        {% else %}
+          {% if true %}
+        <!-- active -->
+            <i class="fas fa-circle progress-line__icon" title="{% trans 'Section is currently being worked on' %}" aria-label="{% trans 'Project being updated currently' %}"></i>
+          {% else %}
+        <!-- inactive -->
+          <i class="far fa-circle progress-line__icon" title="{% trans 'Section not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
+          {% endif %}
+        {% endif %}
+
+        <span>Fill in {{ project.project_type }} details</span>
+
+    </li>
+</ul>
