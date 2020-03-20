@@ -6,6 +6,8 @@
 
 {% block subject %}{{ newsletter.subject }}{% endblock %}
 
+{% block greeting %}{% endblock %}
+
 {% block content %}{{ newsletter.body_with_absolute_urls|safe }}{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie auf {{ site.name }} registriert sind. Wenn Sie keine Newsletter mehr erhalten wollen, können Sie diese in Ihrem Benutzerkonto deaktivieren.{% endblock %}
