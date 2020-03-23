@@ -64,4 +64,22 @@
     </li>
     {% endif %}
 
+    <li class="progress-line__entry">
+        <span class="progress-line__line"></span>
+        {% if project.is_draft and project_progress.valid != project_progress.required or project.published_modules.count == 0 %}
+        <i class="far fa-circle progress-line__icon" title="{% trans 'Project not ready for publication' %}" aria-label="{% trans 'Project not ready for publication' %}"></i>
+        {% elif project.is_draft %}
+        <i class="fas fa-circle progress-line__icon" title="{% trans 'Project ready for publication' %}" aria-label="{% trans 'Project ready for publication' %}"></i>
+        {% endif %}
+        {% if project.project_type == 'meinberlin_bplan.Bplan' %}
+        <span>{% trans 'Publish development plan' %}</span>
+        {% elif project.project_type == 'meinberlin_extprojects.ExternalProject' %}
+        <span>{% trans 'Publish linkage' %}</span>
+        {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
+        <span>{% trans 'Publish container' %}</span>
+        {% else %}
+        <span>{% trans 'Publish project' %}</span>
+        {% endif %}
+    </li>
+
 </ul>
