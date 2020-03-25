@@ -3,11 +3,22 @@
 
 {% block subject %}A {{ action.obj | verbose_name }} was added to the project {{ action.project.name }}{% endblock %}
 
-{% block headline %}{{ action.actor.username }} created a {{ action.obj | verbose_name }} on the project {{ action.project.name }}{% endblock  %}
+{% block headline %}New input{% endblock  %}
 
-{% block content %}on the project {{ action.project.name }} a {{ action.obj | verbose_name }} was added by {{ action.actor.username }}. Checkout what happend on the project {{ action.project.name }} on {{ site.name }} by clicking the {% if part_type == 'txt' %}link{% else %}button{% endif %} below.{% endblock %}
+{% block sub-headline%}{{ action.project.name }}{% endblock %}
+
+{% block greeting %}Hello {{ receiver.username }},{% endblock %}
+
+{% block content %}
+there is a new post in the project you are moderating.
+
+{{ action.actor.username }} wrote on {{ action.timestamp }}:
+
+<i style="color: #818181;">"{{ action.obj }}"</i>
+{% endblock %}
 
 {% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
-{% block cta_label %}{% if action.obj.get_absolute_url %}Check your {{ action.target | verbose_name }}{% else %}Visit the project{% endif %}{% endblock %}
+{% block cta_label %}{% if action.obj.get_absolute_url %}Show input{% else %}Visit the project{% endif %}{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you are a moderator in the project. If you don’t want to receive these notifications anymore, you can disable notifications completely in your account settings.{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. You have received the e-mail because you are registered as moderator for the project. If you no longer wish to receive notifications, change your <a href="{{ email.get_host }}{% url 'account_profile' %}">
+acount settings</a>.{% endblock %}

@@ -1,14 +1,24 @@
 {% extends 'email_base.'|add:part_type %}
 {% load verbose_name %}
 
-{% block subject %}Neuer Beitrag im Projekt {{ action.project.name }} auf {{ site.name }}{% endblock %}
+{% block subject %}Neuer Beitrag auf {{ site.name }}{% endblock %}
 
-{% block headline %}Neuer Beitrag im Projekt {{ action.project.name }}{% endblock  %}
+{% block headline %}Neuer Beitrag{% endblock  %}
 
-{% block content %}{{ action.actor.username }} hat einen neuen Beitrag im Projekt {{ action.project.name }} erstellt. Schauen Sie nach, was in dem Projekt aktuell passiert.{% endblock %}
+{% block sub-headline%}{{ action.project.name }}{% endblock %}
 
+{% block greeting %}Hallo {{ receiver.username }},{% endblock %}
+
+{% block content %}
+es gibt einen neuen Beitrag in dem Projekt, das Sie moderieren.
+
+{{ action.actor.username }} schrieb am {{ action.timestamp }}:
+
+<i style="color: #818181;">„{{ action.obj }}“</i>
+{% endblock%}
 
 {% block cta_url %}{% if action.obj.get_absolute_url %}{{ email.get_host }}{{ action.obj.get_absolute_url }}{% else %}{{ email.get_host }}{{ action.project.get_absolute_url }}{% endif %}{% endblock %}
 {% block cta_label %}{% if action.obj.get_absolute_url %}Beitrag anzeigen{% else %}Projekt anzeigen{% endif %}{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie Moderator des Projekts sind. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie Benachrichtigungen in Ihren Benutzerkonto Einstellungen komplett deaktivieren.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie als Moderator*in für das Projekt eingetragen sind. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, ändern Sie die <a href="{{ email.get_host }}{% url 'account_profile' %}">
+Einstellungen zu Ihrem Nutzerkonto</a>.{% endblock %}

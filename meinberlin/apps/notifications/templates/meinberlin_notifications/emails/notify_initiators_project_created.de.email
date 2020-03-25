@@ -3,12 +3,19 @@
 
 {% block subject %}Neues Projekt {{ project.name }} auf {{ site.name }}{% endblock %}
 
-{% block headline %}Neues Projekt {{ project.name }} bei {{ project.organisation.name }}{% endblock  %}
+{% block headline %}Neues Projekt{% endblock  %}
 
-{% block content %}{{ creator.username }} hat ein neues Projekt {{ action.project.name }} bei {{ project.organisation.name }} erstellt{% endblock %}
+{% block sub-headline%}{{ project.name }}{% endblock %}
+
+{% block greeting %}Hallo {{ receiver.username }},{% endblock %}
+
+{% block content %}
+{{ creator.username }} hat ein neues Projekt für {{ project.organisation.name }} angelegt.
+{% endblock %}
 
 
 {% block cta_url %}{{ email.get_host }}{{ project.get_absolute_url }}{% endblock %}
 {% block cta_label %}Projekt anzeigen{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie Initiator der Organisation {{ project.organisation.name }} sind. Wenn Sie diese E-Mails nicht länger erhalten möchten, können Sie Benachrichtigungen in Ihren Benutzerkonto-Einstellungen komplett deaktivieren.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie Projektinitiator*in der oben genannten Organisation sind. Wenn Sie keine Benachrichtigungen mehr erhalten möchten, ändern Sie die <a href="{{ email.get_host }}{% url 'account_profile' %}">
+Einstellungen zu Ihrem Nutzerkonto</a>.{% endblock %}
