@@ -4,6 +4,10 @@
     overflow: hidden;
 }
 
+.dashboard-nav:first-child {
+    border-radius: 0.3em;
+}
+
 .dashboard-nav__dropdown {
     background-color: $bg-secondary;
 
