@@ -1,2 +1,31 @@
 {# Hack to ensure german mails are sent regardless of the current users browser language setting #}
 {% extends 'a4reports/emails/report_moderators.de.email' %}
+
+{% comment %}
+
+{% extends 'email_base.'|add:part_type %}
+{% load reports_tags i18n %}
+
+{% block subject %}Moderation request for project {{ report.project }} on {{ site.name }}{% endblock %}
+
+{% block headline %}Reported contribution{% endblock %}
+
+{% block sub-headline%}{{ report.project.name }}{% endblock %}
+
+{% block greeting %}Hello {{ receiver.username }},{% endblock %}
+
+{% block content %}
+in the project you moderate, a contribution was reported as inappropriate.
+
+Reported contribution: <i style="color: #818181;">"{{ report.content_object }}"</i>,
+created by {{ report.content_object.creator.username }} on {% language 'de' %} {{ report.content_object.created }} {% endlanguage %}
+
+As a moderator*you can delete the post if it does not comply with our <a href="{{ email.get_host }}/netiquette/">netiquette</a>.
+{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{% firstof report.content_object.get_absolute_url report.content_object.content_object.get_absolute_url report.content_object.content_object.content_object.get_absolute_url report.project %}{% endblock %}
+{% block cta_label %}Check contribution{% endblock %}
+
+{% block reason %}This e-mail was sent to {{ receiver.email }}. You have received the e-mail because you are registered as moderator for the project.{% endblock %}
+
+{% endcomment %}
