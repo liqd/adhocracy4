@@ -22,7 +22,7 @@ class MapIdeaForm(CategorizableFieldMixin,
             'Please locate your proposal on the map.')
 
     class Media:
-        js = ('js/select_dropdown_init.js',)
+        js = ('select_dropdown_init.js',)
 
     class Meta:
         model = models.MapIdea
