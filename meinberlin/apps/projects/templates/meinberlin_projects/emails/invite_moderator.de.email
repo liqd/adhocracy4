@@ -3,11 +3,21 @@
 
 {% block subject %}Einladung zum Moderieren des Projekts {{ moderatorinvite.project.name }}{% endblock %}
 
-{% block headline %}Einladung zum Moderieren des Projekts {{ moderatorinvite.project.name }}{% endblock  %}
+{% block headline %}Einladung zur Moderation{% endblock %}
 
-{% block content %}Sie wurden als Moderator*in im Projekt "{{ moderatorinvite.project.name }}" auf der Beteiligungsplattform {{ site.name }} eingeladen. Um das Projekt modifizieren zu können, klicken Sie auf "Einladung annehmen". {% endblock %}
+{% block sub-headline%}{{ moderatorinvite.project.name }}{% endblock %}
+
+{% block content %}
+Sie wurden von „{{moderatorinvite.project.organisation}}“ eingeladen, das oben genannte Projekt auf der Beteiligungsplattform {{ site.name }} zu moderieren.
+
+Wenn Sie die Einladung annehmen, können Sie das Projekt und alle eingereichten Beiträge bearbeiten oder löschen. Außerdem können Sie sich als Moderator*in gekennzeichnet an der Diskussion beteiligen.
+
+In unserer <a href="{{ email.get_host }}/netiquette/">Netiquette</a> finden Sie unsere Diskussionsregeln.
+
+Sie haben Fragen? Schreiben Sie an {{ contact_email }}.
+{% endblock %}
 
 {% block cta_url %}{{ email.get_host }}{{ moderatorinvite.get_absolute_url }}{% endblock %}
 {% block cta_label %}Einladung annehmen{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ moderatorinvite.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie als Moderator*in in einem Projekt eingeladen wurden.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ moderatorinvite.email }} gesendet. Sie haben die E-Mail erhalten, weil jemand Sie eingeladen hat, das oben genannte Projekt zu moderieren.{% endblock %}
