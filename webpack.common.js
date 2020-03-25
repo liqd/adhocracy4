@@ -172,11 +172,6 @@ module.exports = {
         from: './meinberlin/assets/images/**/*',
         to: 'images/',
         flatten: true
-      },
-      {
-        from: './meinberlin/assets/info',
-        to: 'info/',
-        flatten: false
       }
     ])
   ]
