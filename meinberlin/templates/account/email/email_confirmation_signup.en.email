@@ -2,11 +2,19 @@
 
 {% block subject %}Please confirm your registration on {{ site.name }}{% endblock %}
 
-{% block headline %}Your registration on {{ site.name }}{% endblock %}
+{% block headline %}Confirm e-mail address{% endblock %}
 
-{% block content %}you have registered with this email and the username "{{ user.username }}" on "{{ site.name }}". To finish the registration and activate your account, please confirm your email. If you did not register on "{{ site.name }}" using this email address, you can ignore this email. We will not send you any further emails.{% endblock %}
+{% block greeting %}Hello {{ user.username }},{% endblock %}
+
+{% block content %}
+please confirm your e-mail address to activate your account on {{ site.name }}.
+
+After confirmation you can create and rate ideas and comments and participate in polls.
+
+If you have any questions, please contact {{ contact_email }}.
+{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
-{% block cta_label %}Confirm your email address{% endblock %}
+{% block cta_label %}Confirm e-mail address{% endblock %}
 
-{% block reason %}This email was sent to {{ user.email }}. If you have any further questions, please contact us via {{ contact_email }}{% endblock %}
+{% block reason %}This email was sent to {{ user.email }}. You received the e-mail because you registered on {{ site.name }}.{% endblock %}

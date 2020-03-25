@@ -2,11 +2,23 @@
 
 {% block subject %}Please confirm your email address on {{ site.name }}{% endblock %}
 
-{% block headline %}Your email address on {{ site.name }}{% endblock %}
+{% block headline %}Add e-mail address{% endblock %}
 
-{% block content %}this email address has been added to the user account "{{ user.username }}" on "{{ site.name }}". Please confirm this address. If you did not add this email address, you can ignore this email. We will not send you any further emails.{% endblock %}
+{% block greeting %}Hello {{ user.username }},{% endblock %}
+
+{% block content %}
+should this e-mail address be added to your account on {{ site.name }}?
+
+Please confirm by clicking on "Add e-mail address".
+
+If you have changed your mind, you can ignore this e-mail.
+
+If you have not requested this e-mail or need help, please contact {{ contact_email }}.
+
+Great that you are using {{ site.name }} to shape Berlin with us!
+{% endblock %}
 
 {% block cta_url %}{{ activate_url }}{% endblock %}
-{% block cta_label %}Confirm your email address{% endblock %}
+{% block cta_label %}Add e-mail address{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver }}. If you have any further questions, please contact us via {{ contact_email }}{% endblock %}
+{% block reason %}This email was sent to {{ receiver }}. You have received this e-mail because you wish to add this e-mail address to your account on {{ site.name }}.{% endblock %}
