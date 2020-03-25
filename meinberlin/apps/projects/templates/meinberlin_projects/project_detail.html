@@ -165,6 +165,9 @@
             {% if event %}
             <div class="l-center-6">
                 <h2>{{ event.name }}</h2>
+                <div class="phase-info__item__subtitle">
+                  {% html_date event.date 'DATETIME_FORMAT' %}
+                </div>
                 <P>{{ event.description | safe}}</P>
             </div>
             {% elif view.is_project_view %}
