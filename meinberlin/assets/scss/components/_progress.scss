@@ -9,6 +9,11 @@
         padding-top: 4*$padding;
     }
 
+    &__entry--active {
+        font-weight: bold;
+        color: $text-color;
+    }
+
     &__entry--published {
         display: flex;
         position: relative;
@@ -16,11 +21,15 @@
         color: $text-color;
     }
 
-    &__entry.active {
-        color: $text-color;
+    &__icon {
+        color: $border-color;
     }
 
-    &__icon {
+    &__icon--active {
+        color: $text-color-gray;
+    }
+
+    i {
         margin-right: $spacer;
     }
 }
@@ -30,5 +39,5 @@
     left: 7px;
     top: -4px;
     height: 4*$padding;
-    border-left: 2px solid $text-color-gray;
+    border-left: 2px solid $border-color;
 }
