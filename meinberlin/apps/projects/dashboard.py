@@ -58,7 +58,7 @@ class TopicComponent(ProjectFormComponent):
 
     form_title = _('Edit topics')
     form_class = forms.TopicForm
-    form_template_name = 'meinberlin_projects/project_topics.html'
+    form_template_name = 'meinberlin_projects/dashboard/project_topics.html'
 
 
 class PointComponent(ProjectFormComponent):
@@ -68,7 +68,7 @@ class PointComponent(ProjectFormComponent):
 
     form_title = _('Edit district and location')
     form_class = forms.PointForm
-    form_template_name = 'meinberlin_projects/project_point.html'
+    form_template_name = 'meinberlin_projects/dashboard/project_point.html'
 
 
 components.register_project(ModeratorsComponent())
