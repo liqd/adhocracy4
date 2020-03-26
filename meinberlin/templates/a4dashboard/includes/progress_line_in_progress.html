@@ -56,7 +56,7 @@
         {% elif not dashboard_menu.modules|has_publishable_module %}
             <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Fill in module details' %}" aria-label="{% trans 'Fill in module details' %}"></i>
         {% else %}
-            <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Module ready for publication' %}" aria-label="{% trans 'Module ready for publication' %}"></i>
+            <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Module ready to be added to project' %}" aria-label="{% trans 'Module ready to be added to project' %}"></i>
         {% endif %}
 
         <span class="{% for module_menu in dashboard_menu.modules reversed %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-26 11:30+0100\n"
+"POT-Creation-Date: 2020-03-26 17:18+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,7 +39,9 @@ msgid "Collapsible element"
 msgstr "Aufklappbares Element"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:23
+#: adhocracy4/comments_async/static/comments/comment.jsx:29
 #: adhocracy4/comments/static/comments/Comment.jsx:23
+#: adhocracy4/comments_async/static/comments/comment.jsx:29
 #, javascript-format
 msgid "hide one reply"
 msgid_plural "hide %s replies"
@@ -47,7 +49,9 @@ msgstr[0] "Antwort ausblenden"
 msgstr[1] "%s Antworten ausblenden"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:25
+#: adhocracy4/comments_async/static/comments/comment.jsx:31
 #: adhocracy4/comments/static/comments/Comment.jsx:25
+#: adhocracy4/comments_async/static/comments/comment.jsx:31
 #, javascript-format
 msgid "view one reply"
 msgid_plural "view %s replies"
@@ -104,21 +108,21 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:61
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:133
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:138
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:99
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:104
 msgid "Delete"
 msgstr "Löschen"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:149
-#: adhocracy4/static/Modal.jsx:49
+#: adhocracy4/comments_async/static/modals/modal.jsx:58
+#: adhocracy4/static/Modal.jsx:59
 #: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments_async/static/modals/modal.jsx:58
 msgid "Abort"
 msgstr "Abbrechen"
 
 #: adhocracy4/comments/static/comments/CommentBox.jsx:165
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:31
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:34
 #: adhocracy4/comments/static/comments/CommentBox.jsx:165
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:31
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:34
 msgid "Your comment here"
 msgstr "Ihr Kommentar hier"
 
@@ -129,33 +133,57 @@ msgid_plural "comments"
 msgstr[0] "Kommentar"
 msgstr[1] "Kommentare"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:32
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:32
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:35
+#: adhocracy4/comments_async/static/comments/comment_edit_form.jsx:45
+#: adhocracy4/comments_async/static/comments_with_categories/comment_edit_form.jsx:73
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:35
+#: adhocracy4/comments_async/static/comments/comment_edit_form.jsx:45
+#: adhocracy4/comments_async/static/comments_with_categories/comment_edit_form.jsx:73
 msgid "save changes"
 msgstr "Änderungen speichern"
 
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
-#: adhocracy4/comments/static/comments/CommentEditForm.jsx:33
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:36
+#: adhocracy4/comments_async/static/comments/comment_edit_form.jsx:48
+#: adhocracy4/comments_async/static/comments_with_categories/comment_edit_form.jsx:76
+#: adhocracy4/comments/static/comments/CommentEditForm.jsx:36
+#: adhocracy4/comments_async/static/comments/comment_edit_form.jsx:48
+#: adhocracy4/comments_async/static/comments_with_categories/comment_edit_form.jsx:76
 msgid "cancel"
 msgstr "Abbrechen"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:37
+#: adhocracy4/comments_async/static/comments/comment_form.jsx:53
+#: adhocracy4/comments_async/static/comments_with_categories/comment_form.jsx:108
 #: adhocracy4/comments/static/comments/CommentForm.jsx:37
+#: adhocracy4/comments_async/static/comments/comment_form.jsx:53
+#: adhocracy4/comments_async/static/comments_with_categories/comment_form.jsx:108
 msgid "post"
 msgstr "Senden"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:38
+#: adhocracy4/comments_async/static/comments/comment_form.jsx:61
+#: adhocracy4/comments_async/static/comments_with_categories/comment_form.jsx:117
 #: adhocracy4/comments/static/comments/CommentForm.jsx:38
+#: adhocracy4/comments_async/static/comments/comment_form.jsx:61
+#: adhocracy4/comments_async/static/comments_with_categories/comment_form.jsx:117
 msgid "Please login to comment"
 msgstr "Bitte melden Sie sich zum Kommentieren an."
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:39
+#: adhocracy4/comments_async/static/comments/comment_form.jsx:67
+#: adhocracy4/comments_async/static/comments_with_categories/comment_form.jsx:123
 #: adhocracy4/comments/static/comments/CommentForm.jsx:39
+#: adhocracy4/comments_async/static/comments/comment_form.jsx:67
+#: adhocracy4/comments_async/static/comments_with_categories/comment_form.jsx:123
 msgid "The currently active phase doesn't allow to comment."
 msgstr "Die aktuell laufende Phase erlaubt keine Kommentare."
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
+#: adhocracy4/comments_async/static/comments/comment_manage_dropdown.jsx:18
+#: adhocracy4/comments_async/static/comments_with_categories/comment_manage_dropdown.jsx:18
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
+#: adhocracy4/comments_async/static/comments/comment_manage_dropdown.jsx:18
+#: adhocracy4/comments_async/static/comments_with_categories/comment_manage_dropdown.jsx:18
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -163,6 +191,243 @@ msgstr "Bearbeiten"
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:8
 msgid "Report"
 msgstr "Melden"
+
+#: adhocracy4/comments_async/static/comments/comment.jsx:19
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:19
+#: adhocracy4/comments_async/static/comments/comment.jsx:19
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:19
+msgid "Entry successfully created"
+msgstr "Beitrag erstellt"
+
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:14
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:15
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:14
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:15
+msgid "Newest"
+msgstr "Neueste"
+
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:15
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:16
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:15
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:16
+msgid "Most up votes"
+msgstr "Meiste Zustimmung"
+
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:16
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:17
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:16
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:17
+msgid "Most down votes"
+msgstr "Meiste Ablehnung"
+
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:17
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:18
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:17
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:18
+msgid "Most answers"
+msgstr "Meiste Antworten"
+
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:18
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:19
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:18
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:19
+msgid "Last discussed"
+msgstr "Zuletzt diskutiert"
+
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:49
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:51
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:310
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:532
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:49
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:51
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:310
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:532
+#: meinberlin/apps/plans/assets/FilterNav.jsx:95
+#: meinberlin/apps/plans/assets/FilterNav.jsx:102
+#: meinberlin/apps/plans/assets/FilterOptions.jsx:29
+#: meinberlin/apps/plans/assets/FilterRadio.jsx:50
+msgid "all"
+msgstr "Alle"
+
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:451
+#: adhocracy4/comments_async/static/comments/comment_edit_form.jsx:41
+#: adhocracy4/comments_async/static/comments/comment_form.jsx:48
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:496
+#: adhocracy4/comments_async/static/comments_with_categories/comment_edit_form.jsx:69
+#: adhocracy4/comments_async/static/comments_with_categories/comment_form.jsx:96
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:451
+#: adhocracy4/comments_async/static/comments/comment_edit_form.jsx:41
+#: adhocracy4/comments_async/static/comments/comment_form.jsx:48
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:496
+#: adhocracy4/comments_async/static/comments_with_categories/comment_edit_form.jsx:69
+#: adhocracy4/comments_async/static/comments_with_categories/comment_form.jsx:96
+msgid "Write contribution"
+msgstr "Beitrag verfassen"
+
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:462
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:463
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:511
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:515
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:462
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:463
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:511
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:515
+msgid "Search contributions"
+msgstr "Beiträge durchsuchen"
+
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:472
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:552
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:472
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:552
+msgid "sorted by: "
+msgstr "sortiert nach: "
+
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:496
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:581
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:496
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:581
+msgid "entry found for "
+msgid_plural "entries found for "
+msgstr[0] "Beitrag"
+msgstr[1] "Beiträge"
+
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:498
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:513
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:498
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:513
+msgid "Clear search"
+msgstr "Suche aufheben"
+
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:502
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:577
+#: adhocracy4/comments_async/static/comments/comment_box.jsx:502
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:577
+msgid "entry"
+msgid_plural "entries"
+msgstr[0] "Beitrag"
+msgstr[1] "Beiträge"
+
+#: adhocracy4/comments_async/static/comments/comment_form.jsx:40
+#: adhocracy4/comments_async/static/comments/comment_form.jsx:40
+msgid "The maximal length of your contribution is 4000 characters"
+msgstr "Die maximale Länge des Beitrags beträgt 4.000 Zeichen"
+
+#: adhocracy4/comments_async/static/comments_with_categories/category_list.jsx:6
+#: adhocracy4/comments_async/static/comments_with_categories/category_list.jsx:6
+msgid "Choose categories for your comment"
+msgstr "Wähle mindestens eine Kategorie"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:20
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:20
+msgid "Read more..."
+msgstr "Weiterlesen..."
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:21
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:21
+msgid "Read less"
+msgstr "Weniger anzeigen"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:22
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:22
+msgid "Share"
+msgstr "Teilen"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:23
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:23
+msgid " Report"
+msgstr " Melden"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:31
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:31
+#, javascript-format
+msgid "1 comment"
+msgid_plural "%s comments"
+msgstr[0] "1 Kommentar"
+msgstr[1] "%s Kommentare"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:38
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:38
+msgid "hide comments"
+msgstr "Kommentare verbergen"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:40
+#: adhocracy4/comments_async/static/comments_with_categories/comment.jsx:40
+msgctxt "verb"
+msgid "Comment"
+msgstr "Kommentieren"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:524
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:524
+msgid "display: "
+msgstr "anzeigen: "
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:585
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:585
+msgid "Filters"
+msgstr "Filter"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:585
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:585
+msgid "Show filters"
+msgstr "Filter ausblenden"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:588
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:588
+msgid "Hide Filters"
+msgstr "Filter ausblenden"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:588
+#: adhocracy4/comments_async/static/comments_with_categories/comment_box.jsx:588
+msgid "Hide filters"
+msgstr "Filter ausblenden"
+
+#: adhocracy4/comments_async/static/comments_with_categories/comment_form.jsx:106
+#: adhocracy4/comments_async/static/comments_with_categories/comment_form.jsx:106
+msgid " characters"
+msgstr " Zeichen"
+
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:31
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:31
+msgid "Recommend comment"
+msgstr "Kommentar empfehlen"
+
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:35
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:35
+msgid "Is recommended"
+msgstr "Wird empfohlen"
+
+#: adhocracy4/comments_async/static/modals/report_modal.jsx:62
+#: adhocracy4/comments_async/static/modals/report_modal.jsx:62
+msgid ""
+"Thanks for the feedback. It will be checked by the moderators as soon as "
+"possible."
+msgstr ""
+"Danke für die Rückmeldung. Der Beitrag wird so schnell wie möglich von der "
+"Moderation geprüft."
+
+#: adhocracy4/comments_async/static/modals/report_modal.jsx:71
+#: adhocracy4/reports/static/reports/ReportModal.jsx:61
+#: adhocracy4/comments_async/static/modals/report_modal.jsx:71
+#: adhocracy4/reports/static/reports/ReportModal.jsx:61
+msgid "Your message"
+msgstr "Ihre Nachricht"
+
+#: adhocracy4/comments_async/static/modals/report_modal.jsx:84
+#: adhocracy4/reports/static/reports/ReportModal.jsx:62
+#: adhocracy4/comments_async/static/modals/report_modal.jsx:84
+#: adhocracy4/reports/static/reports/ReportModal.jsx:62
+msgid "Send Report"
+msgstr "Meldung senden"
+
+#: adhocracy4/comments_async/static/modals/url_modal.jsx:23
+#: adhocracy4/comments_async/static/modals/url_modal.jsx:23
+msgid "Copy"
+msgstr "Kopieren"
+
+#: adhocracy4/comments_async/static/modals/url_modal.jsx:24
+#: adhocracy4/comments_async/static/modals/url_modal.jsx:24
+msgid "Copied"
+msgstr "Kopiert"
 
 #: adhocracy4/follows/static/follows/FollowButton.jsx:27
 #: adhocracy4/follows/static/follows/FollowButton.jsx:27
@@ -218,7 +483,6 @@ msgstr "Speichern"
 
 #: adhocracy4/polls/static/polls/Question.jsx:9
 #: adhocracy4/polls/static/polls/Question.jsx:9
-#: meinberlin/apps/polls/assets/Question.jsx:173
 msgid "Your choice"
 msgstr "Ihre Wahl"
 
@@ -251,26 +515,23 @@ msgstr "Stimme abgeben"
 msgid "Please login to vote"
 msgstr "Bitte melden Sie sich zum Abstimmen an."
 
-#: adhocracy4/polls/static/polls/Question.jsx:139
-#: adhocracy4/polls/static/polls/Question.jsx:139
-#: meinberlin/apps/polls/assets/Question.jsx:138
+#: adhocracy4/polls/static/polls/Question.jsx:140
+#: adhocracy4/polls/static/polls/Question.jsx:140
 msgid "To poll"
 msgstr "Zur Umfrage"
 
-#: adhocracy4/polls/static/polls/Question.jsx:141
-#: adhocracy4/polls/static/polls/Question.jsx:141
-#: meinberlin/apps/polls/assets/Question.jsx:141
+#: adhocracy4/polls/static/polls/Question.jsx:142
+#: adhocracy4/polls/static/polls/Question.jsx:142
 msgid "Change vote"
 msgstr "Stimme ändern"
 
-#: adhocracy4/polls/static/polls/Question.jsx:144
-#: adhocracy4/polls/static/polls/Question.jsx:144
-#: meinberlin/apps/polls/assets/Question.jsx:145
+#: adhocracy4/polls/static/polls/Question.jsx:145
+#: adhocracy4/polls/static/polls/Question.jsx:145
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
-#: adhocracy4/polls/static/polls/Question.jsx:156
-#: adhocracy4/polls/static/polls/Question.jsx:156
+#: adhocracy4/polls/static/polls/Question.jsx:157
+#: adhocracy4/polls/static/polls/Question.jsx:157
 #: meinberlin/apps/polls/assets/Question.jsx:137
 msgid "vote"
 msgid_plural "votes"
@@ -291,7 +552,6 @@ msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:67
 msgid "Add a new choice"
 msgstr "Neue Antwort"
 
@@ -301,8 +561,6 @@ msgstr "Neue Antwort"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:37
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:110
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:115
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:76
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:81
 msgid "Move up"
 msgstr "nach oben"
 
@@ -312,47 +570,28 @@ msgstr "nach oben"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:127
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:88
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:93
 msgid "Move down"
 msgstr "nach unten"
 
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:52
-#: adhocracy4/polls/static/polls/QuestionForm.jsx:52
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:54
+#: adhocracy4/polls/static/polls/QuestionForm.jsx:54
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:44
 msgid "Choice"
 msgstr "Auswahl"
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:55
-#: adhocracy4/reports/static/reports/ReportModal.jsx:55
+#: adhocracy4/reports/static/reports/ReportModal.jsx:60
+#: adhocracy4/reports/static/reports/ReportModal.jsx:60
 msgid "Thank you! We are taking care of it."
 msgstr "Vielen Dank! Wir werden uns darum kümmern."
 
-#: adhocracy4/reports/static/reports/ReportModal.jsx:56
-#: adhocracy4/reports/static/reports/ReportModal.jsx:56
-msgid "Your message"
-msgstr "Ihre Nachricht"
-
-#: adhocracy4/reports/static/reports/ReportModal.jsx:57
-#: adhocracy4/reports/static/reports/ReportModal.jsx:57
-msgid "Send Report"
-msgstr "Meldung senden"
-
 #: adhocracy4/static/Alert.jsx:5
-#: meinberlin/apps/contrib/assets/Alert.jsx:10
-#: meinberlin/apps/contrib/assets/Alert.jsx:11
-#: meinberlin/apps/contrib/static/js/ajax_modal.js:8
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:82
+#: meinberlin/apps/dashboard/assets/ajax_modal.js:12
+#: meinberlin/apps/embed/assets/embed.js:54
+#: meinberlin/apps/embed/assets/embed.js:55
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:84
 #: meinberlin/apps/plans/assets/FilterNav.jsx:213
-#: meinberlin/assets/js/embed.js:30 meinberlin/assets/js/embed.js:31
 msgid "Close"
 msgstr "Schließen"
-
-#: meinberlin/apps/contrib/static/js/unload_warning.js:8
-msgid "If you leave this page changes you made will not be saved."
-msgstr ""
-"Wenn Sie diese Seite verlassen ohne zu speichern, gehen die von Ihnen "
-"vorgenommenen Änderungen verloren."
 
 #: meinberlin/apps/documents/assets/ChapterForm.jsx:13
 msgid "Chapter title"
@@ -402,73 +641,94 @@ msgstr "Überschrift"
 msgid "Paragraph"
 msgstr "Absatz"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:64
+#: meinberlin/apps/embed/assets/embed.js:110
+msgid "We couldn't find what you were looking for."
+msgstr "Wir konnten diese Seite nicht finden."
+
+#: meinberlin/apps/embed/assets/embed.js:114
+msgid "You don't have the permission to view this page."
+msgstr "Sie haben nicht die nötigen Rechte, um diese Seite anzuschauen."
+
+#: meinberlin/apps/embed/assets/embed.js:117
+msgid "Something went wrong!"
+msgstr "Etwas ging schief!"
+
+#: meinberlin/apps/embed/assets/embed.js:218
+msgid ""
+"You have third party cookies disabled. You can still view the content of "
+"this project but won't be able to login."
+msgstr ""
+"Sie haben Third Party Cookies deaktiviert. Sie können sich dieses Projekt "
+"zwar anschauen, werden sich aber nicht anmelden können."
+
+#: meinberlin/apps/maps/assets/map-address.js:89
+msgid "No matches found within the project area"
+msgstr "Keine Treffer im Bereich des Projekts gefunden"
+
+#: meinberlin/apps/maps/assets/map-address.js:92
+msgid "Did you mean:"
+msgstr "Meinten Sie:"
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:66
 msgid "Export polygon as GeoJSON"
 msgstr "Polygon als GeoJSON exportierten"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:65
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:75
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:87
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:67
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:77
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:89
 msgid "Import polygon via file upload"
 msgstr "Polygon aus Datei importieren"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:89
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:91
 msgid ""
 "Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
 msgstr ""
 "Laden Sie eine GeoJSON Datei (.geojson) oder ein gepacktes Shapefile (.zip) "
 "hoch."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:90
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:92
 msgid ""
 "Note that uploading Shapefiles is not supported with Internet Explorer 10"
 msgstr ""
 "Beachten Sie, dass der Import von Shapefiles mit dem Internet Explorer 10 "
 "nicht unterstützt wird"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:91
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:93
 msgid "Attention importing a file will delete the existing polygons."
 msgstr ""
 "Achtung der Import einer Datei wird alle vorher ausgewählten Polygone "
 "entfernen."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:96
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:98
 msgid "Upload"
 msgstr "Hochladen"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:103
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:105
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:137
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:139
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:141
 msgid "The uploaded file is not a valid shapefile."
 msgstr "Die hochgeladene Datei ist kein gültiges Shapefile."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:141
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:143
 msgid "The uploaded file could not be imported."
 msgstr "Die hochgeladene Datei kann nicht importiert werden."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:155
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:157
 msgid "The uploaded file is not a valid geojson file."
 msgstr "Die hochgeladene Datei ist keine gültiges GeoJSON Datei."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:160
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:162
 msgid "Invalid file format."
 msgstr "Ungültiges Dateiformat."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:277
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:279
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr ""
 "Möchten Sie diesen Kartenausschnitt auswählen und alle vorher ausgewählten "
 "entfernen?"
-
-#: meinberlin/apps/plans/assets/FilterNav.jsx:95
-#: meinberlin/apps/plans/assets/FilterNav.jsx:102
-#: meinberlin/apps/plans/assets/FilterOptions.jsx:29
-#: meinberlin/apps/plans/assets/FilterRadio.jsx:50
-msgid "all"
-msgstr "Alle"
 
 #: meinberlin/apps/plans/assets/FilterNav.jsx:126
 #: meinberlin/apps/plans/assets/FilterNav.jsx:242
@@ -521,24 +781,24 @@ msgid "Search title"
 msgstr "nach Projekttitel suchen"
 
 #: meinberlin/apps/plans/assets/FilterSecondary.jsx:98
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:140
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:141
 msgid "Organisation"
 msgstr "Organisation"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:113
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:155
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:114
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:157
 msgid "Enter the name of the organisation"
 msgstr "Name der Organisation eingeben"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:121
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:122
 msgid "Participation"
 msgstr "Beteiligung"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:130
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:131
 msgid "Project status"
 msgstr "Projektstatus"
 
-#: meinberlin/apps/plans/assets/FilterSecondary.jsx:164
+#: meinberlin/apps/plans/assets/FilterSecondary.jsx:166
 msgid "show projects"
 msgstr "Projekte anzeigen"
 
@@ -574,49 +834,24 @@ msgstr "laufend"
 msgid "done"
 msgstr "abgeschlossen"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:19
-#: meinberlin/apps/plans/assets/PopUp.jsx:20
-msgid "More than 1 year remaining"
-msgstr "noch länger als 1 Jahr"
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:23
-#: meinberlin/apps/plans/assets/PopUp.jsx:24
-msgid "remaining"
-msgstr "noch"
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:109
-#: meinberlin/apps/plans/assets/PopUp.jsx:66
-msgid "Participation ended. Read result."
-msgstr "Beteiligung beendet. Ergebnis lesen."
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:121
-#: meinberlin/apps/plans/assets/PopUp.jsx:86
-msgid "Participation projects: "
-msgstr "Beteiligungsprojekte: "
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:124
-msgid "Status: "
-msgstr "Status: "
-
-#: meinberlin/apps/plans/assets/PlansList.jsx:152
-#: meinberlin/apps/plans/assets/PlansMap.jsx:289
-msgid "Nothing to show"
-msgstr "Keine Ergebnisse"
-
-#: meinberlin/apps/plans/assets/PlansMap.jsx:264
+#: meinberlin/apps/plans/assets/PlansMap.jsx:261
 msgid "Address Search"
 msgstr "Adresssuche"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:266
-#: meinberlin/apps/plans/assets/PlansMap.jsx:267
+#: meinberlin/apps/plans/assets/PlansMap.jsx:263
+#: meinberlin/apps/plans/assets/PlansMap.jsx:264
 msgid "Address search"
 msgstr "Adresssuche"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:296
+#: meinberlin/apps/plans/assets/PlansMap.jsx:286
+msgid "Nothing to show"
+msgstr "Keine Ergebnisse"
+
+#: meinberlin/apps/plans/assets/PlansMap.jsx:293
 msgid "Close information box"
 msgstr "Informationsfenster schließen"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:297
+#: meinberlin/apps/plans/assets/PlansMap.jsx:294
 msgid ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
@@ -624,20 +859,36 @@ msgstr ""
 "Projekte ohne räumlichen Bezug werden nicht auf der Karte angezeigt. Bitte "
 "beachten Sie daher auch die Projektliste. "
 
+#: meinberlin/apps/plans/assets/PopUp.jsx:20
+msgid "More than 1 year remaining"
+msgstr "noch länger als 1 Jahr"
+
+#: meinberlin/apps/plans/assets/PopUp.jsx:24
+msgid "remaining"
+msgstr "noch"
+
 #: meinberlin/apps/plans/assets/PopUp.jsx:32
 msgid "Participation: from "
 msgstr "Beteiligung: ab "
 
+#: meinberlin/apps/plans/assets/PopUp.jsx:66
+msgid "Participation ended. Read result."
+msgstr "Beteiligung beendet. Ergebnis lesen."
+
 #: meinberlin/apps/plans/assets/PopUp.jsx:70
 msgid "Superordinate project: "
 msgstr "Übergeordnetes Projekt: "
+
+#: meinberlin/apps/plans/assets/PopUp.jsx:86
+msgid "Participation projects: "
+msgstr "Beteiligungsprojekte: "
 
 #: meinberlin/apps/plans/assets/PopUp.jsx:90
 msgid "Participation: "
 msgstr "Beteiligung: "
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:40
-#: meinberlin/apps/plans/assets/Toggles.jsx:93
+#: meinberlin/apps/plans/assets/Toggles.jsx:94
 msgid " search results"
 msgstr " Suchergebnisse"
 
@@ -645,41 +896,34 @@ msgstr " Suchergebnisse"
 msgid "Show map"
 msgstr "Karte anzeigen"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:131
+#: meinberlin/apps/plans/assets/Toggles.jsx:81
+msgid "hide map"
+msgstr "Karte ausblenden"
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:132
 msgid "Show List"
 msgstr "Liste anzeigen"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:139
+#: meinberlin/apps/plans/assets/Toggles.jsx:133
+msgid "show list"
+msgstr "Liste anzeigen"
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:140
 msgid "Show Map"
 msgstr "Karte anzeigen"
 
-#: meinberlin/assets/js/embed.js:86
-msgid "We couldn't find what you were looking for."
-msgstr "Wir konnten diese Seite nicht finden."
+#: meinberlin/apps/plans/assets/Toggles.jsx:141
+msgid "show map"
+msgstr "Karte anzeigen"
 
-#: meinberlin/assets/js/embed.js:90
-msgid "You don't have the permission to view this page."
-msgstr "Sie haben nicht die nötigen Rechte, um diese Seite anzuschauen."
-
-#: meinberlin/assets/js/embed.js:93
-msgid "Something went wrong!"
-msgstr "Etwas ging schief!"
-
-#: meinberlin/assets/js/embed.js:193
-msgid ""
-"You have third party cookies disabled. You can still view the content of "
-"this project but won't be able to login."
+#: meinberlin/assets/js/unload_warning.js:15
+msgid "If you leave this page changes you made will not be saved."
 msgstr ""
-"Sie haben Third Party Cookies deaktiviert. Sie können sich dieses Projekt "
-"zwar anschauen, werden sich aber nicht anmelden können."
+"Wenn Sie diese Seite verlassen ohne zu speichern, gehen die von Ihnen "
+"vorgenommenen Änderungen verloren."
 
-#: meinberlin/assets/js/map-address.js:89
-msgid "No matches found within the project area"
-msgstr "Keine Treffer im Bereich des Projekts gefunden"
-
-#: meinberlin/assets/js/map-address.js:92
-msgid "Did you mean:"
-msgstr "Meinten Sie:"
+#~ msgid "Status: "
+#~ msgstr "Status: "
 
 #~ msgid "Not following"
 #~ msgstr "Nicht folgen"
