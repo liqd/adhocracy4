@@ -7,6 +7,10 @@
         position: relative;
         color: $text-color-gray;
         padding-top: 4*$padding;
+
+        &:first-child {
+            padding-top: 0;
+        }
     }
 
     &__entry--active {
