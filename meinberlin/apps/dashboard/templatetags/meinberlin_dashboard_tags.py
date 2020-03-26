@@ -14,3 +14,14 @@ def closed_accordeons(context, project_id):
     if project_id in ids:
         ids.append(-1)
     return ids
+
+
+@register.filter
+def has_unpublishable_modules(project):
+    """Check if modules can be removed from project.
+
+    Modules can be removed if the project is not yet published and there is
+    another module published for (added to) the project.
+    """
+    return (project.is_draft
+            and project.published_modules.count() <= 1)
