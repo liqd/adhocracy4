@@ -6,8 +6,8 @@
 {% block content %}
     <h1>{% trans "Register" %}</h1>
 
-    <p>{% trans "Already have an account? Then please " %}
-        <a href="{{ login_url }}" {% if tracking %}onclick="javascript:_paq.push(['trackEvent', 'User', 'Login-link']);"{% endif %}>{% trans "login" %}</a>.</p>
+    <p>{% blocktrans %}Already have an account? Then please
+        <a href="{{ login_url }}">login</a>.{% endblocktrans %}</p>
 
     <p>{% trans "If you register on mein.berlin.de, you can write ideas and comments for ongoing participation processes and rate the contributors of other users." %}</p>
 
@@ -39,7 +39,7 @@
         {% endif %}
 
         <div class="u-spacer-bottom">
-            <button class="btn btn--primary" type="submit" {% if tracking %}onclick="javascript:_paq.push(['trackEvent', 'User', 'Register']);"{% endif %}>{% trans "Register" %}</button>
+            <button class="btn btn--primary" type="submit">{% trans "Register" %}</button>
         </div>
 
     </form>
