@@ -62,11 +62,3 @@ def get_num_entries(module):
 @register.filter
 def is_a4_project(project):
     return (project.project_type == 'a4projects.Project')
-
-
-@register.filter
-def has_publishable_module(dashboard_menu_modules):
-    for module_menu in dashboard_menu_modules:
-        if module_menu['is_complete']:
-            return True
-    return False

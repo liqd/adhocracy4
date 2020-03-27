@@ -1,54 +1,97 @@
-{% load i18n a4dashboard_tags meinberlin_dashboard_tags meinberlin_project_tags rules static %}
+{% load i18n meinberlin_dashboard_tags meinberlin_project_tags rules static %}
 
-{% if project.is_draft %}
-    {% include "a4dashboard/includes/progress_line_in_progress.html" %}
-{% else %}
-    {% include "a4dashboard/includes/progress_line_done.html" %}
-{% endif %}
+<ul class="progress-line u-spacer-bottom">
+    <li class="progress-line__entry">
+        <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Project type created' %}" aria-label="{% trans 'Project type created' %}"></i>
+        {% if project.project_type == 'meinberlin_bplan.Bplan' %}
+        <span>{% trans 'Create development plan' %}</span>
+        {% elif project.project_type == 'meinberlin_extprojects.ExternalProject' %}
+        <span>{% trans 'Create linkage' %}</span>
+        {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
+        <span>{% trans 'Create container' %}</span>
+        {% else %}
+        <span>{% trans 'Create project' %}</span>
+        {% endif %}
+    </li>
 
-    {% include "a4dashboard/includes/preview.html" with project=project %}
+    <li class="progress-line__entry">
+        <span class="progress-line__line"></span>
+        {% if project_progress.project_is_complete %}
+            <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Project type ready for publication' %}" aria-label="{% trans 'Project type ready for publication' %}"></i>
+        {% else %}
+            <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Project type not ready for publication' %}" aria-label="{% trans 'Project type not ready for publication' %}"></i>
+        {% endif %}
 
-{% if project.is_draft %}
-    <button {% if project_progress.valid != project_progress.required or project.published_modules.count == 0 %}disabled{% endif %} class="btn btn--primary btn--full u-spacer-bottom" data-toggle="modal" data-target="#publish-modal">
-        {% trans 'Publish' %}
-    </button>
-{% else %}
-    <form action="{% url 'a4dashboard:project-publish' project_slug=project.slug %}" method="post" data-ignore-submit="true">
-        {% csrf_token %}
-        <input type="hidden" name="referrer" value="{{ request.path }}" />
-        <button name="action" value="unpublish" class="btn btn--light btn--full u-spacer-bottom">
-            {% trans 'Unpublish' %}
-        </button>
-    </form>
-{% endif %}
 
-<div class="modal" tabindex="-1" role="dialog" id="publish-modal">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title u-first-heading">{% trans "Are you sure you want to publish your project?" %}</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="{% trans 'Close'%}">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                {% if project.unpublished_modules %}
-                <p>
-                {% blocktrans count counter=project.unpublished_modules|length %}One module has not been added to the project.{% plural %}{{ counter }} modules have not been added to the project.{% endblocktrans %}
-                </p>
-                {% endif %}
-                <div class="u-spacer-bottom">
-                    <form action="{% url 'a4dashboard:project-publish' project_slug=project.slug %}" method="post" data-ignore-submit="true" class="u-inline">
-                        {% csrf_token %}
-                        <input type="hidden" name="referrer" value="{{ request.path }}" />
-                        <button name="action" value="publish" class="btn btn--primary">
-                        {% trans 'Publish' %}
-                        </button>
-                    </form>
-                    <button type="button" data-dismiss="modal" class="btn btn--light">{% trans 'Cancel'%}
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+        <span {% if dashboard_menu.project|project_nav_is_active %}class="progress-line__entry--active"{% endif %}>
+            {% if project.project_type == 'meinberlin_bplan.Bplan' %}
+            <span>{% trans 'Fill in development plan details' %}</span>
+            {% elif project.project_type == 'meinberlin_extprojects.ExternalProject' %}
+            <span>{% trans 'Fill in linkage details' %}</span>
+            {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
+            <span>{% trans 'Fill in container details' %}</span>
+            {% else %}
+            <span>{% trans 'Fill in project details' %}</span>
+            {% endif %}
+        </span>
+    </li>
+
+
+    {% if project|is_a4_project %}
+    <li class="progress-line__entry">
+        <span class="progress-line__line"></span>
+        {% if dashboard_menu.modules|length == 0 %}
+            <i class="fas fa-circle progress-line__icon--active" title="{% trans 'No module created' %}" aria-label="{% trans 'No module created' %}"></i>
+        {% else %}
+            <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Module created' %}" aria-label="{% trans 'Module created' %}"></i>
+        {% endif %}
+        <span>{% trans 'Create module(s)' %}</span>
+    </li>
+
+    <li class="progress-line__entry">
+        <span class="progress-line__line"></span>
+        {% if dashboard_menu.modules|length == 0 %}
+            <i class="far fa-circle progress-line__icon" title="{% trans 'Module not ready to be filled in' %}" aria-label="{% trans 'Module not ready to be filled in' %}"></i>
+        {% elif not dashboard_menu.modules|has_publishable_module %}
+            <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Fill in module details' %}" aria-label="{% trans 'Fill in module details' %}"></i>
+        {% else %}
+            <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Module ready to be added to project' %}" aria-label="{% trans 'Module ready to be added to project' %}"></i>
+        {% endif %}
+
+        <span {% if dashboard_menu.modules|module_nav_is_active %}class="progress-line__entry--active"{% endif %}>
+            <span>{% trans 'Fill in module(s) details' %}</span>
+        </span>
+
+    </li>
+    <li class="progress-line__entry">
+        <span class="progress-line__line"></span>
+        {% if dashboard_menu.modules|length == 0 or not dashboard_menu.modules|has_publishable_module %}
+            <i class="far fa-circle progress-line__icon" title="{% trans 'Module not ready to be added to project' %}" aria-label="{% trans 'Module not ready to be added to project' %}"></i>
+        {% elif dashboard_menu.modules|has_publishable_module and project.published_modules.count == 0 %}
+            <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Show module(s) in project' %}" aria-label="{% trans 'Show module(s) in project' %}"></i>
+        {% else %}
+            <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Module added to project' %}" aria-label="{% trans 'Module added to project' %}"></i>
+        {% endif %}
+        <span>{% trans 'Show module(s) in project' %}</span>
+    </li>
+    {% endif %}
+
+    <li class="progress-line__entry">
+        <span class="progress-line__line"></span>
+        {% if not project|is_publishable:project_progress %}
+        <i class="far fa-circle progress-line__icon" title="{% trans 'Project type not ready for publication' %}" aria-label="{% trans 'Project type not ready for publication' %}"></i>
+        {% elif project.is_draft %}
+        <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Project type ready for publication' %}" aria-label="{% trans 'Project type ready for publication' %}"></i>
+        {% endif %}
+        {% if project.project_type == 'meinberlin_bplan.Bplan' %}
+        <span>{% trans 'Publish development plan' %}</span>
+        {% elif project.project_type == 'meinberlin_extprojects.ExternalProject' %}
+        <span>{% trans 'Publish linkage' %}</span>
+        {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
+        <span>{% trans 'Publish container' %}</span>
+        {% else %}
+        <span>{% trans 'Publish project' %}</span>
+        {% endif %}
+    </li>
+
+</ul>

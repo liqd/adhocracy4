@@ -1,4 +1,4 @@
-{% load i18n a4dashboard_tags meinberlin_dashboard_tags meinberlin_project_tags rules static %}
+{% load i18n %}
 
 <ul class="progress-line u-spacer-bottom">
     <li class="progress-line__entry--published">
@@ -11,7 +11,7 @@
         {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
         <span>{% trans 'The container has been published.' %}</span>
         {% else %}
-          <span>{% trans 'The project has been published. You can add further modules.' %}</span>
+        <span>{% trans 'The project has been published. You can add further modules.' %}</span>
         {% endif %}
     </li>
 </ul>
