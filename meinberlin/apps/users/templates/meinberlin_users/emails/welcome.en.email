@@ -1,0 +1,22 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}Welcome on {{ site.name }}!{% endblock %}
+
+{% block headline %}Welcome!{% endblock %}
+
+{% block greeting %}Hello {{ user.username }},{% endblock %}
+
+{% block content %}
+welcome to {{ site.name }}, the participation platform of the state of Berlin!
+
+Here you will find projects of the Berlin administration in which you can participate online and offline.
+
+Take your chance and help shape Berlin. Your opinion is important to us!
+
+If you have any questions, please contact {{ contact_email }}.
+{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{% url 'meinberlin_plans:plan-list' %}{% endblock %}
+{% block cta_label %}To project overview{% endblock %}
+
+{% block reason %}This e-mail was sent to {{ user.email }}. You have received the e-mail because you have registered on {{ site.name }}.{% endblock %}

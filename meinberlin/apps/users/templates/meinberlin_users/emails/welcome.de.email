@@ -1,0 +1,22 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% block subject %}Willkommen auf {{ site.name }}!{% endblock %}
+
+{% block headline %}Willkommen!{% endblock %}
+
+{% block greeting %}Hallo {{ user.username }},{% endblock %}
+
+{% block content %}
+herzlich Willkommen auf {{ site.name }}, der Partizipationsplattform des Landes Berlin!
+
+Hier finden Sie Projekte der Berliner Verwaltung, an denen Sie sich online und offline beteiligen können.
+
+Nutzen Sie Ihre Chance und gestalten Sie Berlin mit. Ihre Meinung ist uns wichtig!
+
+Bei Fragen können Sie sich an {{ contact_email }} wenden.
+{% endblock %}
+
+{% block cta_url %}{{ email.get_host }}{% url 'meinberlin_plans:plan-list' %}{% endblock %}
+{% block cta_label %}zur Projektübersicht{% endblock %}
+
+{% block reason %}Diese E-Mail wurde an {{ user.email }} gesendet. Sie haben die E-Mail erhalten, weil Sie sich auf {{ site.name }} registriert haben.{% endblock %}
