@@ -44,7 +44,7 @@
                   <span>{{ project.description }}</span>
                 </div>
                 <div class="maplist-item__link"></div>
-                {% if project|is_container %}
+                {% if project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
                 <div class="maplist-item__stats">
                     <span class="participation-tile__proj-count">
                         <i class="fas fa-th" aria-hidden="true"></i>

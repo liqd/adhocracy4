@@ -13,7 +13,7 @@
             <div class="lr-bar__left">
                 <h2 class="list-item__title">
                     {{ project.name }}
-                    {% if not project|is_container %}
+                    {% if not project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
                         {% if project.has_finished %}
                             <span class="label label--primary">{% trans "Finished" %}</span>
                         {% endif %}
@@ -41,7 +41,7 @@
                         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                         {% trans 'Edit'%}
                     </a>
-                    {% if not project|is_container and not project|is_external %}
+                    {% if project|is_a4_project %}
                         <div class="dropdown">
                             <button
                                     type="button"

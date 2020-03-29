@@ -13,7 +13,9 @@ register = template.Library()
 
 @register.filter
 def project_url(project):
-    if get_project_type(project) in ('external', 'bplan'):
+    if (project.project_type == 'meinberlin_bplan.Bplan'
+            or project.project_type ==
+            'meinberlin_extprojects.ExternalProject'):
         return project.externalproject.url
     return project.get_absolute_url()
 
@@ -25,17 +27,14 @@ def project_type(project):
 
 @register.filter
 def is_external(project):
-    return get_project_type(project) in ('external', 'bplan')
+    return (project.project_type == 'meinberlin_bplan.Bplan'
+            or project.project_type ==
+            'meinberlin_extprojects.ExternalProject')
 
 
 @register.filter
-def is_container(project):
-    return get_project_type(project) == 'container'
-
-
-@register.simple_tag
-def to_class_name(value):
-    return value.__class__.__name__
+def is_a4_project(project):
+    return (project.project_type == 'a4projects.Project')
 
 
 @register.simple_tag
@@ -57,8 +56,3 @@ def get_num_entries(module):
         + Comment.objects.filter(poll__module=module).count() \
         + Vote.objects.filter(choice__question__poll__module=module).count()
     return item_count
-
-
-@register.filter
-def is_a4_project(project):
-    return (project.project_type == 'a4projects.Project')
