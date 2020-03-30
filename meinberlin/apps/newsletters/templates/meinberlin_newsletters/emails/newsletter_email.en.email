@@ -8,6 +8,6 @@
 
 {% block greeting %}{% endblock %}
 
-{% block content %}{{ newsletter.body_with_absolute_urls|safe }}{% endblock %}
+{% block newsletter_content %}{{ newsletter.body_with_absolute_urls|safe }}{% endblock %}
 
 {% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you are registered on {{ site.name }}. If you don't want to receive newsletters anymore, you may disable them in your user account settings.{% endblock %}
