@@ -154,7 +154,7 @@ class ModulePublishView(SingleObjectMixin,
                                       user=self.request.user)
 
         messages.success(self.request,
-                         _('Module successfully added.'))
+                         _('The module is displayed in the project.'))
 
     def unpublish_module(self):
         module = self.get_object()
@@ -170,7 +170,8 @@ class ModulePublishView(SingleObjectMixin,
                                         user=self.request.user)
 
         messages.success(self.request,
-                         _('Module successfully removed.'))
+                         _('The module is no longer displayed in the project.'
+                           ))
 
 
 class ModuleDeleteView(generic.DeleteView):
@@ -216,7 +217,7 @@ class ProjectCreateView(mixins.DashboardBaseMixin,
     template_name = 'a4dashboard/project_create_form.html'
     permission_required = 'a4projects.add_project'
     menu_item = 'project'
-    success_message = _('Project successfully created.')
+    success_message = _('Project was created.')
 
     def get_permission_object(self):
         return self.organisation

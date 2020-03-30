@@ -28,7 +28,7 @@ class BplanProjectCreateView(ExternalProjectCreateView):
     form_class = forms.BplanProjectCreateForm
     template_name = \
         'meinberlin_bplan/bplan_create_dashboard.html'
-    success_message = _('Development plan successfully created.')
+    success_message = _('Development plan was created.')
 
     blueprint = ProjectBlueprint(
         title=_('Development Plan'),
