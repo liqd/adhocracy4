@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-26 17:17+0100\n"
+"POT-Creation-Date: 2020-03-30 15:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -394,12 +394,12 @@ msgid "Please choose one or more categories."
 msgstr "Please choose one or more categories."
 
 #: adhocracy4/dashboard/components/forms/views.py:22
-msgid "Project successfully updated."
-msgstr "Project successfully updated."
+msgid "The project has been updated."
+msgstr "The project has been updated."
 
 #: adhocracy4/dashboard/components/forms/views.py:47
-msgid "Module successfully updated."
-msgstr "Module successfully updated."
+msgid "The module has been updated."
+msgstr "The module has been updated."
 
 #: adhocracy4/dashboard/dashboard.py:13
 #: meinberlin/apps/projectcontainers/dashboard.py:15
@@ -559,11 +559,11 @@ msgstr "Start time"
 msgid "Project successfully duplicated."
 msgstr "Project successfully duplicated."
 
-#: adhocracy4/dashboard/views.py:69 meinberlin/apps/dashboard/views.py:217
+#: adhocracy4/dashboard/views.py:69
 msgid "Project successfully created."
 msgstr "Project successfully created."
 
-#: adhocracy4/dashboard/views.py:154 meinberlin/apps/dashboard/views.py:127
+#: adhocracy4/dashboard/views.py:154 meinberlin/apps/dashboard/views.py:129
 msgid "Invalid action"
 msgstr "Invalid action"
 
@@ -580,16 +580,16 @@ msgid "Project cannot be published."
 msgstr "Project cannot be published."
 
 #: adhocracy4/dashboard/views.py:201
-msgid "Project successfully published."
-msgstr "Project successfully published."
+msgid "the project has been published."
+msgstr "the project has been published."
 
 #: adhocracy4/dashboard/views.py:206
 msgid "Project is already unpublished"
 msgstr "Project is already unpublished"
 
 #: adhocracy4/dashboard/views.py:215
-msgid "Project successfully unpublished."
-msgstr "Project successfully unpublished."
+msgid "the project has been unpublished."
+msgstr "the project has been unpublished."
 
 #: adhocracy4/exports/mixins.py:18
 msgid "Link"
@@ -1174,7 +1174,7 @@ msgid "Project unpublished"
 msgstr "Project unpublished"
 
 #: meinberlin/apps/adminlog/models.py:25
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:47
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:50
 msgid "Module created"
 msgstr "Module created"
 
@@ -1436,8 +1436,8 @@ msgstr ""
 "address."
 
 #: meinberlin/apps/bplan/views.py:31
-msgid "Development plan successfully created."
-msgstr "Development plan successfully created."
+msgid "Development plan was created."
+msgstr "Development plan was created."
 
 #: meinberlin/apps/bplan/views.py:34
 msgid "Development Plan"
@@ -2001,25 +2001,33 @@ msgstr "New Module"
 msgid "Choose Participation Module"
 msgstr "Choose Participation Module"
 
-#: meinberlin/apps/dashboard/views.py:144
+#: meinberlin/apps/dashboard/views.py:51
+msgid "The module was created"
+msgstr "The module was created"
+
+#: meinberlin/apps/dashboard/views.py:146
 msgid "Module is already added"
 msgstr "Module is already added"
 
-#: meinberlin/apps/dashboard/views.py:155
-msgid "Module successfully added."
-msgstr "Module successfully added."
+#: meinberlin/apps/dashboard/views.py:157
+msgid "The module is displayed in the project."
+msgstr "The module is displayed in the project."
 
-#: meinberlin/apps/dashboard/views.py:160
+#: meinberlin/apps/dashboard/views.py:162
 msgid "Module is already removed"
 msgstr "Module is already removed"
 
-#: meinberlin/apps/dashboard/views.py:171
-msgid "Module successfully removed."
-msgstr "Module successfully removed."
+#: meinberlin/apps/dashboard/views.py:173
+msgid "The module is no longer displayed in the project."
+msgstr "The module is no longer displayed in the project."
 
-#: meinberlin/apps/dashboard/views.py:177
+#: meinberlin/apps/dashboard/views.py:180
 msgid "The module has been deleted"
 msgstr "The module has been deleted"
+
+#: meinberlin/apps/dashboard/views.py:220
+msgid "Project was created."
+msgstr "Project was created."
 
 #: meinberlin/apps/documents/dashboard.py:15
 msgid "Document"
@@ -2198,8 +2206,8 @@ msgid "We could not find any linkages."
 msgstr "We could not find any linkages."
 
 #: meinberlin/apps/extprojects/views.py:23
-msgid "External project successfully created."
-msgstr "External project successfully created."
+msgid "External project was created."
+msgstr "External project was created."
 
 #: meinberlin/apps/extprojects/views.py:26
 msgid "Linkage"
@@ -3788,104 +3796,104 @@ msgstr "The container has been published."
 msgid "The project has been published. You can add further modules."
 msgstr "The project has been published. You can add further modules."
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:5
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:6
 msgid "Project type created"
 msgstr "Project type created"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:7
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:8
 msgid "Create development plan"
 msgstr "Create development plan"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:9
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:10
 msgid "Create linkage"
 msgstr "Create linkage"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:11
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:12
 msgid "Create container"
 msgstr "Create container"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:13
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:14
 #: meinberlin/templates/a4dashboard/project_create_form.html:4
 #: meinberlin/templates/a4dashboard/project_create_form.html:26
 msgid "Create project"
 msgstr "Create project"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:21
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:86
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:23
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:91
 msgid "Project type ready for publication"
 msgstr "Project type ready for publication"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:23
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:84
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:25
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:89
 msgid "Project type not ready for publication"
 msgstr "Project type not ready for publication"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:29
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:31
 msgid "Fill in development plan details"
 msgstr "Fill in development plan details"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:31
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:33
 msgid "Fill in linkage details"
 msgstr "Fill in linkage details"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:33
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:35
 msgid "Fill in container details"
 msgstr "Fill in container details"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:35
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:37
 msgid "Fill in project details"
 msgstr "Fill in project details"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:45
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:48
 msgid "No module created"
 msgstr "No module created"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:49
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:52
 msgid "Create module(s)"
 msgstr "Create module(s)"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:55
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:59
 msgid "Module not ready to be filled in"
 msgstr "Module not ready to be filled in"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:57
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:61
 msgid "Fill in module details"
 msgstr "Fill in module details"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:59
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:63
 msgid "Module ready to be added to project"
 msgstr "Module ready to be added to project"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:64
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:68
 msgid "Fill in module(s) details"
 msgstr "Fill in module(s) details"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:71
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:76
 msgid "Module not ready to be added to project"
 msgstr "Module not ready to be added to project"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:73
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:77
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:78
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:82
 msgid "Show module(s) in project"
 msgstr "Show module(s) in project"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:75
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:80
 msgid "Module added to project"
 msgstr "Module added to project"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:89
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:94
 msgid "Publish development plan"
 msgstr "Publish development plan"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:91
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:96
 msgid "Publish linkage"
 msgstr "Publish linkage"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:93
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:98
 msgid "Publish container"
 msgstr "Publish container"
 
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:95
+#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:100
 msgid "Publish project"
 msgstr "Publish project"
 
@@ -4192,6 +4200,30 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid "Project successfully updated."
+#~ msgstr "Project successfully updated."
+
+#~ msgid "Module successfully updated."
+#~ msgstr "Module successfully updated."
+
+#~ msgid "Project successfully published."
+#~ msgstr "Project successfully published."
+
+#~ msgid "Project successfully unpublished."
+#~ msgstr "Project successfully unpublished."
+
+#~ msgid "Development plan successfully created."
+#~ msgstr "Development plan successfully created."
+
+#~ msgid "Module successfully added."
+#~ msgstr "Module successfully added."
+
+#~ msgid "Module successfully removed."
+#~ msgstr "Module successfully removed."
+
+#~ msgid "External project successfully created."
+#~ msgstr "External project successfully created."
 
 #~ msgid "If you have not created an account yet, then please "
 #~ msgstr "If you have not created an account yet, then please "
