@@ -7,7 +7,7 @@
 {% block greeting %}Hallo {{ user.username }},{% endblock %}
 
 {% block content %}
-soll diese E-Mail-Adresse Ihrem Account auf {{ site.name }} hinzugefügt werden?
+soll diese E-Mail-Adresse Ihrem Nutzerkonto auf {{ site.name }} hinzugefügt werden?
 
 Bitte bestätigen Sie dies durch Klick auf „E-Mail-Adresse hinzufügen“.
 
@@ -21,4 +21,4 @@ Schön, dass Sie {{ site.name }} nutzen um mit uns Berlin zu gestalten!
 {% block cta_url %}{{ activate_url }}{% endblock %}
 {% block cta_label %}E-Mail-Adresse hinzufügen{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver }} gesendet. Sie haben die E-Mail erhalten, weil Sie diese E-Mail-Adresse Ihrem Account auf {{ site.name }} hinzufügen möchten.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver }} gesendet. Sie haben die E-Mail erhalten, weil Sie diese E-Mail-Adresse Ihrem Nutzerkonto auf {{ site.name }} hinzufügen möchten.{% endblock %}
