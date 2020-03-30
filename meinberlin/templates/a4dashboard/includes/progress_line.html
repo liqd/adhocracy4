@@ -1,5 +1,4 @@
 {% load i18n meinberlin_dashboard_tags meinberlin_project_tags rules static %}
-
 <ul class="progress-line u-spacer-bottom">
     <li class="progress-line__entry">
         <span class="progress-line__line--bottom"></span>
@@ -16,7 +15,8 @@
     </li>
 
     <li class="progress-line__entry">
-        <span class="progress-line__line"></span>
+        <span class="progress-line__line--top"></span>
+        <span class="progress-line__line--bottom"></span>
         {% if project_progress.project_is_complete %}
             <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Project type ready for publication' %}" aria-label="{% trans 'Project type ready for publication' %}"></i>
         {% else %}
@@ -26,15 +26,16 @@
 
         <span {% if dashboard_menu.project|project_nav_is_active %}class="progress-line__entry--active"{% endif %}>
             {% if project.project_type == 'meinberlin_bplan.Bplan' %}
-            <span>{% trans 'Create development plan' %}</span>
+            <span>{% trans 'Fill in development plan details' %}</span>
             {% elif project.project_type == 'meinberlin_extprojects.ExternalProject' %}
-            <span>{% trans 'Create linkage' %}</span>
+            <span>{% trans 'Fill in linkage details' %}</span>
             {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
-            <span>{% trans 'Create container' %}</span>
+            <span>{% trans 'Fill in container details' %}</span>
             {% else %}
-            <span>{% trans 'Create project' %}</span>
+            <span>{% trans 'Fill in project details' %}</span>
             {% endif %}
-        </li>
+        </span>
+    </li>
 
 
     {% if project|is_a4_project %}
@@ -49,15 +50,38 @@
         <span>{% trans 'Create module(s)' %}</span>
     </li>
 
+    <li class="progress-line__entry">
+        <span class="progress-line__line--top"></span>
+        <span class="progress-line__line--bottom"></span>
+        {% if dashboard_menu.modules|length == 0 %}
+            <i class="far fa-circle progress-line__icon" title="{% trans 'Module not ready to be filled in' %}" aria-label="{% trans 'Module not ready to be filled in' %}"></i>
+        {% elif not dashboard_menu.modules|has_publishable_module %}
+            <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Fill in module details' %}" aria-label="{% trans 'Fill in module details' %}"></i>
+        {% else %}
+            <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Module ready to be added to project' %}" aria-label="{% trans 'Module ready to be added to project' %}"></i>
+        {% endif %}
 
         <span {% if dashboard_menu.modules|module_nav_is_active %}class="progress-line__entry--active"{% endif %}>
             <span>{% trans 'Fill in module(s) details' %}</span>
         </span>
 
-
+    </li>
     <li class="progress-line__entry">
         <span class="progress-line__line--top"></span>
         <span class="progress-line__line--bottom"></span>
+        {% if dashboard_menu.modules|length == 0 or not dashboard_menu.modules|has_publishable_module %}
+            <i class="far fa-circle progress-line__icon" title="{% trans 'Module not ready to be added to project' %}" aria-label="{% trans 'Module not ready to be added to project' %}"></i>
+        {% elif dashboard_menu.modules|has_publishable_module and project.published_modules.count == 0 %}
+            <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Show module(s) in project' %}" aria-label="{% trans 'Show module(s) in project' %}"></i>
+        {% else %}
+            <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Module added to project' %}" aria-label="{% trans 'Module added to project' %}"></i>
+        {% endif %}
+        <span>{% trans 'Show module(s) in project' %}</span>
+    </li>
+    {% endif %}
+
+    <li class="progress-line__entry">
+        <span class="progress-line__line--top"></span>
         {% if not project|is_publishable:project_progress %}
         <i class="far fa-circle progress-line__icon" title="{% trans 'Project type not ready for publication' %}" aria-label="{% trans 'Project type not ready for publication' %}"></i>
         {% elif project.is_draft %}
@@ -72,23 +96,6 @@
         {% else %}
         <span>{% trans 'Publish project' %}</span>
         {% endif %}
+    </li>
 
-        <li class="progress-line__entry">
-            <span class="progress-line__line--top"></span>
-            {% if project.is_draft and project_progress.valid != project_progress.required or project.published_modules.count == 0 %}
-            <i class="far fa-circle progress-line__icon" title="{% trans 'Project type not ready for publication' %}" aria-label="{% trans 'Project type not ready for publication' %}"></i>
-            {% elif project.is_draft %}
-            <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Project type ready for publication' %}" aria-label="{% trans 'Project type ready for publication' %}"></i>
-            {% endif %}
-            {% if project.project_type == 'meinberlin_bplan.Bplan' %}
-            <span>{% trans 'Publish development plan' %}</span>
-            {% elif project.project_type == 'meinberlin_extprojects.ExternalProject' %}
-            <span>{% trans 'Publish linkage' %}</span>
-            {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
-            <span>{% trans 'Publish container' %}</span>
-            {% else %}
-            <span>{% trans 'Publish project' %}</span>
-            {% endif %}
-        </li>
-    </ul>
-</div>
+</ul>
