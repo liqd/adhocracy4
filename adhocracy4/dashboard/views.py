@@ -198,7 +198,7 @@ class ProjectPublishView(ProjectMixin,
                                        user=self.request.user)
 
         messages.success(self.request,
-                         _('Project successfully published.'))
+                         _('the project has been published.'))
 
     def unpublish_project(self):
         project = self.project
@@ -212,4 +212,4 @@ class ProjectPublishView(ProjectMixin,
                                          project=project,
                                          user=self.request.user)
         messages.success(self.request,
-                         _('Project successfully unpublished.'))
+                         _('the project has been unpublished.'))
