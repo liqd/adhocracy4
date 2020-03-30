@@ -19,7 +19,7 @@ class ProjectComponentFormView(ProjectMixin,
     permission_required = 'a4projects.change_project'
     model = project_models.Project
     template_name = 'a4dashboard/base_form_project.html'
-    success_message = _('Project successfully updated.')
+    success_message = _('The project has been updated.')
 
     # Properties to be set when calling as_view()
     component = None
@@ -44,7 +44,7 @@ class ModuleComponentFormView(ProjectMixin,
     permission_required = 'a4projects.change_project'
     model = module_models.Module
     template_name = 'a4dashboard/base_form_module.html'
-    success_message = _('Module successfully updated.')
+    success_message = _('The module has been updated.')
 
     # Properties to be set when calling as_view()
     component = None
