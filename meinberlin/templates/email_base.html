@@ -33,6 +33,7 @@
                         </p>
                         <p>
                             {% block content_html %}
+                                <div style="text-align: left;">{% block newsletter_content %}{% endblock %} </div>
                                 {% load capture_tags %}
                                 {% capture as content silent %}{% block content %}{% endblock %}{% endcapture %}
                                 {{ content|linebreaks }}
