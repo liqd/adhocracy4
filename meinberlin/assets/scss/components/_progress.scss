@@ -4,9 +4,9 @@
 
     &__entry {
         display: flex;
-        position: relative;
         color: $text-color-gray;
-        padding-top: 4*$padding;
+        margin-top: 4*$padding;
+        position: relative;
 
         &:first-child {
             padding-top: 0;
@@ -38,10 +38,19 @@
     }
 }
 
-.progress-line__line {
+.progress-line__line--top,
+.progress-line__line--bottom {
     position: absolute;
-    left: 7px;
-    top: -4px;
-    height: 4*$padding;
     border-left: 2px solid $border-color;
+    left: 7px;
+}
+
+.progress-line__line--top {
+    top: -(3.5*$padding);
+    height: 3*$padding;
+}
+
+.progress-line__line--bottom {
+    top: 1.5*$padding;
+    bottom: -$padding;
 }
