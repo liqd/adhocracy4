@@ -12,7 +12,7 @@
 {% block content %}
 es gibt einen neuen Beitrag in dem Projekt, das Sie moderieren.
 
-{{ action.actor.username }} schrieb am {{ action.timestamp }}:
+{{ action.actor.username }} schrieb am {{ action.timestamp|date:"d. F Y, H:i"}} Uhr:
 
 <i style="color: #818181;">„{{ action.obj }}“</i>
 {% endblock%}
