@@ -48,6 +48,7 @@ class ModuleCreateView(ProjectMixin,
     permission_required = 'a4projects.change_project'
     model = project_models.Project
     slug_url_kwarg = 'project_slug'
+    success_message = _('The module was created')
 
     def post(self, request, *args, **kwargs):
         project = self.get_object()
@@ -69,6 +70,7 @@ class ModuleCreateView(ProjectMixin,
 
         self._create_module_settings(module)
         self._create_phases(module, self.blueprint.content)
+        messages.success(self.request, self.success_message)
 
         cookie = request.COOKIES.get('dashboard_projects_closed_accordeons',
                                      '[]')
