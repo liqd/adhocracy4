@@ -171,9 +171,19 @@ class ProjectPublishView(ProjectMixin,
             messages.info(self.request, _('Project is already published'))
             return
 
-        dashboard = get_project_dashboard(project)
+        if project.published_modules.count() == 0:
+            messages.error(self.request,
+                           _('Project cannot be published. '
+                             'No module is added.'))
+            return
 
-        num_valid, num_required = dashboard.get_progress()
+        dashboard = get_project_dashboard(project)
+        num_valid, num_required = dashboard.get_project_progress()
+        for module in project.published_modules:
+            nums = dashboard.get_module_progress(module)
+            num_valid = num_valid + nums[0]
+            num_required = num_required + nums[1]
+
         is_complete = (num_valid == num_required)
 
         if not is_complete:
