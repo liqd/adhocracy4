@@ -92,13 +92,12 @@ export default class CommentForm extends React.Component {
               />}
             <textarea
               id="textarea-top"
-              className="a4-comments__textarea form-group"
+              className={this.props.commentCategoryChoices ? 'a4-comments__textarea--small form-group' : 'a4-comments__textarea--big form-group'}
               placeholder={django.gettext('Write contribution')}
               onChange={this.handleTextChange.bind(this)}
               required="required"
               value={this.state.comment}
               onInput={this.handleTextareaGrow.bind(this)}
-              rows="1"
               style={textareaStyle}
               autoFocus
             />
