@@ -32,7 +32,7 @@
     "feature-detect": "1.0.0",
     "file-loader": "6.0.0",
     "file-saver": "2.0.2",
-    "immutability-helper": "3.0.1",
+    "immutability-helper": "3.0.2",
     "jquery": "3.4.1",
     "leaflet": "1.6.0",
     "leaflet-draw": "1.0.4",
