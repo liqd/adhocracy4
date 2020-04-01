@@ -52,6 +52,8 @@ def test_initiator_add_bplan(apiclient, organisation):
     assert bplan.is_draft is False
     assert bplan.information == ''
     assert bplan.result == ''
+    assert bplan.start_date == parse("2013-01-01 17:00:00 UTC")
+    assert bplan.end_date == parse("2021-01-01 17:00:00 UTC")
     module = module_models.Module.objects.get(project=bplan)
     assert module is not None
     phase = phase_models.Phase.objects.get(module=module)
@@ -88,6 +90,14 @@ def test_initiator_update_bplan(apiclient, bplan, phase):
     bplan = bplan_models.Bplan.objects.first()
     assert bplan.is_draft is True
     assert bplan.tile_image_copyright == data.get('image_copyright')
+    assert bplan.start_date == parse("2013-01-01 17:00:00 UTC")
+    assert bplan.end_date == parse("2021-01-01 17:00:00 UTC")
+    module = module_models.Module.objects.get(project=bplan)
+    assert module is not None
+    phase = phase_models.Phase.objects.get(module=module)
+    assert phase is not None
+    assert phase.start_date == parse("2013-01-01 17:00:00 UTC")
+    assert phase.end_date == parse("2021-01-01 17:00:00 UTC")
 
 
 @pytest.mark.django_db
@@ -167,6 +177,9 @@ def test_initiator_update_bplan_phase(apiclient, bplan_factory, phase):
     apiclient.force_authenticate(user=user)
     response = apiclient.patch(url, data, format='json')
     assert response.status_code == status.HTTP_200_OK
+    bplan = bplan_models.Bplan.objects.first()
+    assert bplan.start_date == parse("2013-01-01 17:00:00 UTC")
+    assert bplan.end_date == parse("2021-01-01 17:00:00 UTC")
     phase = phase_models.Phase.objects.get(module=phase.module)
     assert phase.start_date == parse("2013-01-01 17:00:00 UTC")
     assert phase.end_date == parse("2021-01-01 17:00:00 UTC")
