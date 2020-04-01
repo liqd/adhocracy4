@@ -14,7 +14,7 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def react_comments_async(context, obj, debate_app=True):
+def react_comments_async(context, obj, with_categories=False):
     request = context['request']
     user = request.user
     is_authenticated = bool(user.is_authenticated)
@@ -33,19 +33,20 @@ def react_comments_async(context, obj, debate_app=True):
     comments_contenttype = ContentType.objects.get_for_model(Comment)
     pk = obj.pk
 
-    module_type = bool(debate_app)
-
     comments_api_url = reverse('comments-list',
                                kwargs={'content_type': contenttype.pk,
                                        'object_pk': obj.pk}
                                )
 
+    with_categories = bool(with_categories)
+
     comment_category_choices = getattr(settings, 'A4_COMMENT_CATEGORIES', None)
-    if comment_category_choices:
-        comment_category_choices = dict(
-            (x, str(y)) for x, y in comment_category_choices)
-    else:
-        raise ImproperlyConfigured('set A4_COMMENT_CATEGORIES in settings')
+    if with_categories:
+        if comment_category_choices:
+            comment_category_choices = dict(
+                (x, str(y)) for x, y in comment_category_choices)
+        else:
+            raise ImproperlyConfigured('set A4_COMMENT_CATEGORIES in settings')
 
     attributes = {
         'commentsApiUrl': comments_api_url,
@@ -59,10 +60,10 @@ def react_comments_async(context, obj, debate_app=True):
                        and not would_have_comment_permission),
         'commentCategoryChoices': comment_category_choices,
         'anchoredCommentId': anchoredCommentId,
-        'moduleType': module_type
+        'withCategories': with_categories
     }
 
     return format_html(
-        '<div data-a4-widget="comment_async_with_categories" '
+        '<div data-a4-widget="comment_async" '
         'data-attributes="{attributes}"></div>',
         attributes=json.dumps(attributes))
