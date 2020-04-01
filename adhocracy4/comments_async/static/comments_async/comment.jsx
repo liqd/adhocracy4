@@ -104,7 +104,7 @@ export default class Comment extends React.Component {
   }
 
   commentCategoryChoices () {
-    if (this.props.moduleType === true) {
+    if (this.props.withCategories === true) {
       return this.props.commentCategoryChoices
     }
   }
