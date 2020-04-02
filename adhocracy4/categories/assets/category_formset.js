@@ -1,7 +1,7 @@
 /* global $ */
 (function (init) {
-  $(init)
-  $(document).on('a4.embed.ready', init)
+  document.addEventListener('DOMContentLoaded', init, false)
+  document.addEventListener('a4.embed.ready', init, false)
 })(function () {
   // Dynamically add or remove subforms to a formset.
 
