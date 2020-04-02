@@ -40,7 +40,7 @@ var getCurrentPath = function () {
   return location.pathname
 }
 
-var initialiseWidget = function (namespace, name, fn) {
+function initialiseWidget (namespace, name, fn) {
   var key = 'data-' + namespace + '-widget'
   var selector = '[' + key + '=' + name + ']'
   $(selector).each(function (i, el) {
@@ -51,7 +51,7 @@ var initialiseWidget = function (namespace, name, fn) {
   })
 }
 
-var init = function () {
+function init () {
   var shariffs = $('.shariff')
   if (shariffs.length > 0) {
     new Shariff(shariffs, {
@@ -94,8 +94,8 @@ var init = function () {
   })
 }
 
-$(init)
-window.init_widgets = init
+document.addEventListener('DOMContentLoaded', init, false)
+document.addEventListener('a4.embed.ready', init, false)
 
 module.exports = {
   getCurrentPath: getCurrentPath

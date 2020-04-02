@@ -18,7 +18,7 @@ function getBaseBounds (L, polygon, bbox) {
   }
 }
 
-var init = function () {
+function init () {
   const $ = window.jQuery
   const L = window.L
 
@@ -290,5 +290,5 @@ var init = function () {
   })
 }
 
-window.jQuery(init)
-window.jQuery(document).on('a4.embed.ready', init)
+document.addEventListener('DOMContentLoaded', init, false)
+document.addEventListener('a4.embed.ready', init, false)

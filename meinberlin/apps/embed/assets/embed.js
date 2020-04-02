@@ -95,8 +95,9 @@ $(document).ready(function () {
     $main.empty()
     $main.append($top)
     $main.append($root.find('main').children())
-    $(document).trigger('a4.embed.ready')
-    $(window.init_widgets)
+
+    document.dispatchEvent(new Event('a4.embed.ready'))
+
     // jump to top after navigation, but not on inital load
     if (!isInitial) {
       $top.focus()
