@@ -78,7 +78,7 @@ function isMarkerInsidePolygon (marker, poly) {
   return inside
 }
 
-var init = function () {
+function init () {
   var $ = window.jQuery
   var L = window.L
 
@@ -148,5 +148,5 @@ var init = function () {
   })
 }
 
-window.jQuery(init)
-window.jQuery(document).on('a4.embed.ready', init)
+document.addEventListener('DOMContentLoaded', init, false)
+document.addEventListener('a4.embed.ready', init, false)
