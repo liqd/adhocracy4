@@ -40,8 +40,10 @@ def react_comments_async(context, obj, with_categories=False):
 
     with_categories = bool(with_categories)
 
-    comment_category_choices = getattr(settings, 'A4_COMMENT_CATEGORIES', None)
+    comment_category_choices = {}
     if with_categories:
+        comment_category_choices = getattr(settings,
+                                           'A4_COMMENT_CATEGORIES', None)
         if comment_category_choices:
             comment_category_choices = dict(
                 (x, str(y)) for x, y in comment_category_choices)
