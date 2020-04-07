@@ -157,7 +157,8 @@ module.exports = {
       timeago: 'timeago.js',
       $: 'jquery',
       jQuery: 'jquery',
-      Promise: ['es6-promise', 'Promise']
+      Promise: ['es6-promise', 'Promise'],
+      fetch: ['whatwg-fetch', 'fetch']
     }),
     new webpack.optimize.SplitChunksPlugin({
       name: 'vendor',
