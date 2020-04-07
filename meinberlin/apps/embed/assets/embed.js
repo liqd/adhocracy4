@@ -96,7 +96,14 @@ $(document).ready(function () {
     $main.append($top)
     $main.append($root.find('main').children())
 
-    document.dispatchEvent(new Event('a4.embed.ready'))
+    var event
+    if (typeof (Event) === 'function') {
+      event = new Event('a4.embed.ready')
+    } else {
+      event = document.createEvent('Event')
+      event.initEvent('a4.embed.ready', false, true)
+    }
+    document.dispatchEvent(event)
 
     // jump to top after navigation, but not on inital load
     if (!isInitial) {
