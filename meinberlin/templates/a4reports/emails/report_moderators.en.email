@@ -1,8 +1,3 @@
-{# Hack to ensure german mails are sent regardless of the current users browser language setting #}
-{% extends 'a4reports/emails/report_moderators.de.email' %}
-
-{% comment %}
-
 {% extends 'email_base.'|add:part_type %}
 {% load reports_tags i18n %}
 
@@ -29,5 +24,3 @@ As a moderator* you can delete the post if it does not comply with our <a href="
 {% block cta_label %}Check contribution{% endblock %}
 
 {% block reason %}This e-mail was sent to {{ receiver.email }}. You have received the e-mail because you are registered as moderator for the project.{% endblock %}
-
-{% endcomment %}
