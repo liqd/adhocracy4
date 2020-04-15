@@ -50,5 +50,6 @@ class NewsletterEmailAll(NewsletterEmail):
 
     def get_receivers(self):
         return User.objects\
+            .filter(get_newsletters=True)\
             .filter(is_active=True)\
             .distinct()
