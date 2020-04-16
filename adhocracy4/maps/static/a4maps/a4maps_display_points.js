@@ -91,7 +91,11 @@ function init () {
             '</span>' +
         '</div>'
       } else if (hideRatings === 'true') {
-        return ''
+        return '<div class="maps-popups-popup-meta">' +
+            '<span class="map-popup-comments-count">' +
+            feature.properties.comments_count + ' <i class="far fa-comment" aria-hidden="true"></i>' +
+            '</span>' +
+        '</div>'
       }
     }
 
