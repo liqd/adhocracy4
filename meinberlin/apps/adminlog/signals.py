@@ -126,7 +126,8 @@ def log_module_created(sender, module, user, **kwargs):
 def log_module_published(sender, module, user, **kwargs):
     with translation.override(settings.DEFAULT_LANGUAGE):
         message = _(
-            '"{username}" added the module "{module_name}" to the project.') \
+            'module "{module_name}" has been shown in project by '
+            '"{username}"') \
             .format(username=user.username,
                     module_name=module.name)
 
@@ -144,8 +145,8 @@ def log_module_published(sender, module, user, **kwargs):
 def log_module_unpublished(sender, module, user, **kwargs):
     with translation.override(settings.DEFAULT_LANGUAGE):
         message = _(
-            '"{username}" removed the module "{module_name}" '
-            'from the project.') \
+            'module "{module_name}" has no longer been shown in '
+            'project by "{username}"') \
             .format(username=user.username,
                     module_name=module.name)
 
