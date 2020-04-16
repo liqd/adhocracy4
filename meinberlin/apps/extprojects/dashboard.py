@@ -14,7 +14,7 @@ class ExternalProjectComponent(ProjectFormComponent):
     weight = 10
     label = _('External project settings')
 
-    form_title = _('Edit external project settings')
+    form_title = _('Edit basic settings')
     form_class = forms.ExternalProjectForm
     form_template_name = 'meinberlin_extprojects/includes' \
                          '/external_project_form.html'

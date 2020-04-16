@@ -20,7 +20,7 @@ class ExternalProjectCreateView(ProjectCreateView):
     form_class = forms.ExternalProjectCreateForm
     template_name = \
         'meinberlin_extprojects/external_project_create_dashboard.html'
-    success_message = _('External project was created.')
+    success_message = _('Project was created.')
 
     blueprint = ProjectBlueprint(
         title=_('Linkage'),

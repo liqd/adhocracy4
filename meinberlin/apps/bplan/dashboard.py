@@ -14,7 +14,7 @@ class BplanProjectComponent(ProjectFormComponent):
     weight = 10
     label = _('Development plan settings')
 
-    form_title = _('Edit development plan settings')
+    form_title = _('Edit basic settings')
     form_class = forms.BplanProjectForm
     form_template_name = 'meinberlin_bplan/includes' \
                          '/bplan_project_form.html'

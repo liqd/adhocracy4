@@ -3,11 +3,7 @@
     <li class="progress-line__entry">
         <span class="progress-line__line--bottom"></span>
         <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Project type created' %}" aria-label="{% trans 'Project type created' %}"></i>
-        {% if project.project_type == 'meinberlin_bplan.Bplan' %}
-        <span>{% trans 'Create development plan' %}</span>
-        {% elif project.project_type == 'meinberlin_extprojects.ExternalProject' %}
-        <span>{% trans 'Create linkage' %}</span>
-        {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
+        {% if project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
         <span>{% trans 'Create container' %}</span>
         {% else %}
         <span>{% trans 'Create project' %}</span>
@@ -25,11 +21,7 @@
 
 
         <span {% if dashboard_menu.project|project_nav_is_active %}class="progress-line__entry--active"{% endif %}>
-            {% if project.project_type == 'meinberlin_bplan.Bplan' %}
-            <span>{% trans 'Fill in development plan details' %}</span>
-            {% elif project.project_type == 'meinberlin_extprojects.ExternalProject' %}
-            <span>{% trans 'Fill in linkage details' %}</span>
-            {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
+            {% if project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
             <span>{% trans 'Fill in container details' %}</span>
             {% else %}
             <span>{% trans 'Fill in project details' %}</span>
@@ -87,11 +79,7 @@
         {% elif project.is_draft %}
         <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Project type ready for publication' %}" aria-label="{% trans 'Project type ready for publication' %}"></i>
         {% endif %}
-        {% if project.project_type == 'meinberlin_bplan.Bplan' %}
-        <span>{% trans 'Publish development plan' %}</span>
-        {% elif project.project_type == 'meinberlin_extprojects.ExternalProject' %}
-        <span>{% trans 'Publish linkage' %}</span>
-        {% elif project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
+        {% if project.project_type == 'meinberlin_projectcontainers.ProjectContainer' %}
         <span>{% trans 'Publish container' %}</span>
         {% else %}
         <span>{% trans 'Publish project' %}</span>
