@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-30 15:42+0200\n"
+"POT-Creation-Date: 2020-04-16 16:24+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -43,7 +43,7 @@ msgstr "Organisationsverwaltung"
 
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:5
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:41
+#: meinberlin/templates/a4dashboard/base_dashboard_project.html:40
 msgid "Project Settings"
 msgstr "Projekteinstellungen"
 
@@ -51,7 +51,7 @@ msgstr "Projekteinstellungen"
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:69
+#: meinberlin/templates/a4dashboard/includes/nav_project.html:33
 msgid "Missing fields for publication"
 msgstr "Benötigte Felder zur Veröffentlichung"
 
@@ -136,30 +136,25 @@ msgstr "Ansicht"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:16
-#: meinberlin/templates/a4dashboard/includes/progress.html:16
 #, python-format
 msgid "%(value)s from %(max)s"
 msgstr "%(value)s von %(max)s"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:17
-#: meinberlin/templates/a4dashboard/includes/progress.html:17
 msgid "required fields for publication"
 msgstr "benötigte Felder zur Veröffentlichung"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:27
-#: meinberlin/templates/a4dashboard/includes/progress.html:23
-#: meinberlin/templates/a4dashboard/includes/progress.html:55
-#: meinberlin/templates/a4dashboard/includes/progress_line.html:13
-#: meinberlin/templates/a4dashboard/includes/progress_line.html:45
+#: meinberlin/templates/a4dashboard/includes/progress.html:13
+#: meinberlin/templates/a4dashboard/includes/progress.html:45
 msgid "Publish"
 msgstr "Veröffentlichen"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
 #: adhocracy4/dashboard/templates/a4dashboard/includes/progress.html:31
-#: meinberlin/templates/a4dashboard/includes/progress.html:30
-#: meinberlin/templates/a4dashboard/includes/progress_line.html:20
+#: meinberlin/templates/a4dashboard/includes/progress.html:20
 msgid "Unpublish"
 msgstr "Depublizieren"
 
@@ -215,9 +210,8 @@ msgstr "Projektentwurf anlegen"
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_create_dashboard.html:43
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_form.html:22
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:15
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:163
-#: meinberlin/templates/a4dashboard/includes/progress.html:58
-#: meinberlin/templates/a4dashboard/includes/progress_line.html:48
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:81
+#: meinberlin/templates/a4dashboard/includes/progress.html:48
 #: meinberlin/templates/a4dashboard/project_create_form.html:44
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -462,6 +456,8 @@ msgid "Basic settings"
 msgstr "Grundeinstellungen"
 
 #: adhocracy4/dashboard/dashboard.py:15
+#: meinberlin/apps/bplan/dashboard.py:17
+#: meinberlin/apps/extprojects/dashboard.py:17
 msgid "Edit basic settings"
 msgstr "Grundeinstellungen bearbeiten"
 
@@ -638,24 +634,28 @@ msgstr "Ungültige Aktion"
 msgid "Project is already published"
 msgstr "Das Projekt wurde bereits veröffentlicht"
 
-#: adhocracy4/dashboard/views.py:181
+#: adhocracy4/dashboard/views.py:176
+msgid "Project cannot be published. No module is added."
+msgstr ""
+
+#: adhocracy4/dashboard/views.py:191
 msgid "Project cannot be published. Required fields are missing."
 msgstr ""
 "Das Projekt kann nicht veröffentlicht werden. Es fehlen benötigte Felder."
 
-#: adhocracy4/dashboard/views.py:190
+#: adhocracy4/dashboard/views.py:200
 msgid "Project cannot be published."
 msgstr "Das Projekt kann nicht veröffentlicht werden."
 
-#: adhocracy4/dashboard/views.py:201
+#: adhocracy4/dashboard/views.py:211
 msgid "the project has been published."
 msgstr "Das Projekt wurde veröffentlicht."
 
-#: adhocracy4/dashboard/views.py:206
+#: adhocracy4/dashboard/views.py:216
 msgid "Project is already unpublished"
 msgstr "Das Projekt wurde bereits depubliziert."
 
-#: adhocracy4/dashboard/views.py:215
+#: adhocracy4/dashboard/views.py:225
 msgid "the project has been unpublished."
 msgstr "Das Projekt wurde depubliziert."
 
@@ -914,7 +914,7 @@ msgstr "Die Auswahl muss zu der richtigen Frage gehören."
 #: meinberlin/apps/adminlog/models.py:42
 #: meinberlin/apps/newsletters/forms.py:35
 #: meinberlin/apps/newsletters/forms.py:74
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:48
+#: meinberlin/templates/a4dashboard/includes/nav_project.html:11
 msgid "Project"
 msgstr "Projekt"
 
@@ -937,7 +937,7 @@ msgstr "Bilder"
 #: adhocracy4/projects/admin.py:59
 #: meinberlin/apps/plans/models.py:76
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:90
-#: meinberlin/apps/projects/admin.py:56 meinberlin/templates/email_base.html:77
+#: meinberlin/apps/projects/admin.py:56 meinberlin/templates/email_base.html:78
 #: meinberlin/templates/email_base.txt:16
 msgid "Contact"
 msgstr "Kontakt"
@@ -1274,7 +1274,7 @@ msgid "Project unpublished"
 msgstr "Projekt depubliziert"
 
 #: meinberlin/apps/adminlog/models.py:25
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:50
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:40
 msgid "Module created"
 msgstr "Modul angelegt"
 
@@ -1295,7 +1295,7 @@ msgid "User"
 msgstr "Nutzer*innen"
 
 #: meinberlin/apps/adminlog/models.py:47
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:92
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:10
 msgid "Module"
 msgstr "Modul"
 
@@ -1355,15 +1355,15 @@ msgstr "\"{username}\" hat das Modul \"{module_name}\" angelegt."
 
 #: meinberlin/apps/adminlog/signals.py:129
 #, python-brace-format
-msgid "\"{username}\" added the module \"{module_name}\" to the project."
+msgid "module \"{module_name}\" has been shown in project by \"{username}\""
 msgstr ""
-"\"{username}\" hat das Modul \"{module_name}\" zum Projekt hinzu gefügt."
 
-#: meinberlin/apps/adminlog/signals.py:147
+#: meinberlin/apps/adminlog/signals.py:148
 #, python-brace-format
-msgid "\"{username}\" removed the module \"{module_name}\" from the project."
+msgid ""
+"module \"{module_name}\" has no longer been shown in project by "
+"\"{username}\""
 msgstr ""
-"\"{username}\" hat das Modul \"{module_name}\" aus dem Projekt entfernt."
 
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog_dashboard.html:4
 #: meinberlin/apps/adminlog/templates/meinberlin_adminlog/project_adminlog_dashboard.html:8
@@ -1373,10 +1373,6 @@ msgstr "Änderungsprotokoll des Projekts"
 #: meinberlin/apps/bplan/dashboard.py:15
 msgid "Development plan settings"
 msgstr "Einstellungen"
-
-#: meinberlin/apps/bplan/dashboard.py:17
-msgid "Edit development plan settings"
-msgstr "Bebauungsplan bearbeiten"
 
 #: meinberlin/apps/bplan/models.py:12
 msgid "Identifier"
@@ -1436,9 +1432,11 @@ msgstr "Bebauungsplan Stellungnahmephase"
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:25
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:4
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:26
-#, python-format
-msgid "Create %(blueprint_title)s"
-msgstr "%(blueprint_title)s anlegen"
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:9
+#: meinberlin/templates/a4dashboard/project_create_form.html:4
+#: meinberlin/templates/a4dashboard/project_create_form.html:26
+msgid "Create project"
+msgstr "Projekt anlegen"
 
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:9
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_create_form.html:8
@@ -1537,9 +1535,10 @@ msgstr ""
 "Danke! Ihre Stellungnahme wurde versandt! Eine Antwort erhalten Sie per E-"
 "Mail."
 
-#: meinberlin/apps/bplan/views.py:31
-msgid "Development plan was created."
-msgstr "Der Bebauungsplan wurde angelegt."
+#: meinberlin/apps/bplan/views.py:31 meinberlin/apps/dashboard/views.py:220
+#: meinberlin/apps/extprojects/views.py:23
+msgid "Project was created."
+msgstr "Das Projekt wurde angelegt."
 
 #: meinberlin/apps/bplan/views.py:34
 msgid "Development Plan"
@@ -2144,10 +2143,6 @@ msgstr "Das Modul wird nicht mehr im Projekt angezeigt."
 msgid "The module has been deleted"
 msgstr "Das Modul wurde gelöscht"
 
-#: meinberlin/apps/dashboard/views.py:220
-msgid "Project was created."
-msgstr "Das Projekt wurde angelegt."
-
 #: meinberlin/apps/documents/dashboard.py:15
 msgid "Document"
 msgstr "Dokument"
@@ -2283,10 +2278,6 @@ msgstr "hier können Sie alle Kommentare exportieren"
 msgid "External project settings"
 msgstr "Einstellungen"
 
-#: meinberlin/apps/extprojects/dashboard.py:17
-msgid "Edit external project settings"
-msgstr "Externes Projekt bearbeiten"
-
 #: meinberlin/apps/extprojects/forms.py:46
 msgid "Either both start and end date have to be provided or none of them."
 msgstr ""
@@ -2327,10 +2318,6 @@ msgstr "Neue Verlinkung"
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/extproject_list_dashboard.html:30
 msgid "We could not find any linkages."
 msgstr "Wir konnten keine Verlinkungen finden."
-
-#: meinberlin/apps/extprojects/views.py:23
-msgid "External project was created."
-msgstr "Die Verlinkung wurde angelegt."
 
 #: meinberlin/apps/extprojects/views.py:26
 msgid "Linkage"
@@ -2605,8 +2592,8 @@ msgstr "Ortspriorisierung"
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:25
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:63
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:24
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:137
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:158
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:55
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:76
 msgid "Delete"
 msgstr "Löschen"
 
@@ -3614,7 +3601,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: meinberlin/apps/users/forms.py:41 meinberlin/apps/users/forms.py:77
-#: meinberlin/templates/email_base.html:78
+#: meinberlin/templates/email_base.html:79
 #: meinberlin/templates/email_base.txt:17
 msgid "Terms of use"
 msgstr "Nutzungsbedingungen"
@@ -3838,78 +3825,146 @@ msgstr "Organisationen"
 msgid "All participation projects"
 msgstr "Alle Beteiligungsprojekte"
 
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:51
-msgid "Project ready for publication"
-msgstr "Projekt bereit zur Veröffentlichung"
-
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:53
-msgid "Project not ready for publication"
-msgstr "Projekt noch nicht bereit zur Veröffentlichung"
-
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:80
+#: meinberlin/templates/a4dashboard/includes/nav_modules.html:4
 msgid "Participation Module"
 msgid_plural "Participation Modules"
 msgstr[0] "Beteiligungsmodul"
 msgstr[1] "Beteiligungsmodule"
 
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:83
+#: meinberlin/templates/a4dashboard/includes/nav_modules.html:7
 msgid "Create Module"
 msgstr "Modul anlegen"
 
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:95
-msgid "Module ready for addition"
-msgstr "Modul bereit zum hinzu fügen"
-
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:97
-msgid "Module not ready for addition"
-msgstr "Modul noch nicht bereit zum hinzu fügen"
-
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:113
-msgid "Missing required fields"
-msgstr "Fehlende Pflichtfelder"
-
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:128
-msgid "Show in project"
-msgstr "im Projekt anzeigen"
-
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:132
-msgid "Hide from project"
-msgstr "nicht mehr anzeigen"
-
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:138
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:139
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:159
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:160
-msgid "Delete module"
-msgstr "Modul löschen"
-
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:148
-msgid "Are you sure you want to delete your module?"
-msgstr "Wollen Sie das Beteiligungsmodul wirklich löschen?"
-
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:149
-#: meinberlin/templates/a4dashboard/includes/progress.html:40
-#: meinberlin/templates/a4dashboard/includes/progress_line.html:30
-msgid "Close"
-msgstr "Schließen"
-
-#: meinberlin/templates/a4dashboard/base_dashboard_project.html:173
+#: meinberlin/templates/a4dashboard/includes/nav_modules.html:13
 msgid "You have not set up a participation module yet."
 msgstr "Sie haben noch kein Beteiligungsmodul angelegt."
 
-#: meinberlin/templates/a4dashboard/includes/progress.html:39
-#: meinberlin/templates/a4dashboard/includes/progress_line.html:29
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:13
+msgid "Module ready for addition"
+msgstr "Modul bereit zum hinzu fügen"
+
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:15
+msgid "Module not ready for addition"
+msgstr "Modul noch nicht bereit zum hinzu fügen"
+
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:31
+msgid "Missing required fields"
+msgstr "Fehlende Pflichtfelder"
+
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:46
+msgid "Show in project"
+msgstr "im Projekt anzeigen"
+
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:50
+msgid "Hide from project"
+msgstr "nicht mehr anzeigen"
+
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:56
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:57
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:77
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:78
+msgid "Delete module"
+msgstr "Modul löschen"
+
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:66
+msgid "Are you sure you want to delete your module?"
+msgstr "Wollen Sie das Beteiligungsmodul wirklich löschen?"
+
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:67
+#: meinberlin/templates/a4dashboard/includes/progress.html:30
+msgid "Close"
+msgstr "Schließen"
+
+#: meinberlin/templates/a4dashboard/includes/nav_project.html:14
+msgid "Project ready for publication"
+msgstr "Projekt bereit zur Veröffentlichung"
+
+#: meinberlin/templates/a4dashboard/includes/nav_project.html:16
+msgid "Project not ready for publication"
+msgstr "Projekt noch nicht bereit zur Veröffentlichung"
+
+#: meinberlin/templates/a4dashboard/includes/progress.html:29
 msgid "Are you sure you want to publish your project?"
 msgstr "Möchten Sie Ihr Projekt veröffentlichen?"
 
-#: meinberlin/templates/a4dashboard/includes/progress.html:47
-#: meinberlin/templates/a4dashboard/includes/progress_line.html:37
+#: meinberlin/templates/a4dashboard/includes/progress.html:37
 #, python-format
 msgid "One module has not been added to the project."
 msgid_plural "%(counter)s modules have not been added to the project."
 msgstr[0] "Ein Beteiligungsmodul wurde noch nicht dem Projekt hinzugefügt."
 msgstr[1] ""
 "%(counter)s Beteiligungsmodule wurden noch nicht dem Projekt hinzugefügt."
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:5
+msgid "Project type created"
+msgstr "Projekttyp wurde erstellt."
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:7
+msgid "Create container"
+msgstr "Projektsammlung erstellen"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:17
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:80
+msgid "Project type ready for publication"
+msgstr "Projekttyp zur Veröffentlichung bereit"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:19
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:78
+msgid "Project type not ready for publication"
+msgstr "Projekttyp nicht zur Veröffentlichung bereit"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:25
+msgid "Fill in container details"
+msgstr "Details zur Projektsammlung ausfüllen"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:27
+msgid "Fill in project details"
+msgstr "Projektdetails ausfüllen"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:38
+msgid "No module created"
+msgstr "Kein Modul erstellt"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:42
+msgid "Create module(s)"
+msgstr "Beteiligungsmodul(e) anlegen"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:49
+msgid "Module not ready to be filled in"
+msgstr "Modul nicht ausfüllbar"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:51
+msgid "Fill in module details"
+msgstr "Moduldetails ausfüllen"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:53
+msgid "Module ready to be added to project"
+msgstr "Modul bereit zum Hinzufügen zum Projekt"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:57
+msgid "Fill in module(s) details"
+msgstr "Moduldetails ausfüllen"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:65
+msgid "Module not ready to be added to project"
+msgstr "Modul nicht bereit, dem Projekt hinzugefügt zu werden"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:67
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:71
+msgid "Show module(s) in project"
+msgstr "Modul(e) im Projekt anzeigen"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:69
+msgid "Module added to project"
+msgstr "Modul wurde zum Projekt hinzugefügt"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:83
+msgid "Publish container"
+msgstr "Projektsammlung veröffentlichen"
+
+#: meinberlin/templates/a4dashboard/includes/progress_line.html:85
+msgid "Publish project"
+msgstr "Projekt veröffentlichen"
 
 #: meinberlin/templates/a4dashboard/includes/progress_line_done.html:5
 msgid "Project type has been published"
@@ -3931,107 +3986,6 @@ msgstr "Die Projektsammlung wurde veröffentlicht."
 msgid "The project has been published. You can add further modules."
 msgstr ""
 "Das Projekt wurde veröffentlicht. Sie können weitere Module hinzufügen."
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:6
-msgid "Project type created"
-msgstr "Projekttyp wurde erstellt."
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:8
-msgid "Create development plan"
-msgstr "Bebauungsplan erstellen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:10
-msgid "Create linkage"
-msgstr "Verlinkung erstellen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:12
-msgid "Create container"
-msgstr "Projektsammlung erstellen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:14
-#: meinberlin/templates/a4dashboard/project_create_form.html:4
-#: meinberlin/templates/a4dashboard/project_create_form.html:26
-msgid "Create project"
-msgstr "Projekt anlegen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:23
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:91
-msgid "Project type ready for publication"
-msgstr "Projekttyp zur Veröffentlichung bereit"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:25
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:89
-msgid "Project type not ready for publication"
-msgstr "Projekttyp nicht zur Veröffentlichung bereit"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:31
-msgid "Fill in development plan details"
-msgstr "Details zum Bebauungsplan ausfüllen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:33
-msgid "Fill in linkage details"
-msgstr "Details zur Verlinkung ausfüllen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:35
-msgid "Fill in container details"
-msgstr "Details zur Projektsammlung ausfüllen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:37
-msgid "Fill in project details"
-msgstr "Projektdetails ausfüllen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:48
-msgid "No module created"
-msgstr "Kein Modul erstellt"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:52
-msgid "Create module(s)"
-msgstr "Beteiligungsmodul(e) anlegen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:59
-msgid "Module not ready to be filled in"
-msgstr "Modul nicht ausfüllbar"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:61
-msgid "Fill in module details"
-msgstr "Moduldetails ausfüllen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:63
-msgid "Module ready to be added to project"
-msgstr "Modul bereit zum Hinzufügen zum Projekt"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:68
-msgid "Fill in module(s) details"
-msgstr "Moduldetails ausfüllen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:76
-msgid "Module not ready to be added to project"
-msgstr "Modul nicht bereit, dem Projekt hinzugefügt zu werden"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:78
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:82
-msgid "Show module(s) in project"
-msgstr "Modul(e) im Projekt anzeigen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:80
-msgid "Module added to project"
-msgstr "Modul wurde zum Projekt hinzugefügt"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:94
-msgid "Publish development plan"
-msgstr "Bebauungsplan veröffentlichen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:96
-msgid "Publish linkage"
-msgstr "Verlinkung veröffentlichen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:98
-msgid "Publish container"
-msgstr "Projektsammlung veröffentlichen"
-
-#: meinberlin/templates/a4dashboard/includes/progress_line_in_progress.html:100
-msgid "Publish project"
-msgstr "Projekt veröffentlichen"
 
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:21
 msgid "Private"
@@ -4259,7 +4213,7 @@ msgstr "Fehler"
 msgid "Hello"
 msgstr "Guten Tag"
 
-#: meinberlin/templates/email_base.html:73
+#: meinberlin/templates/email_base.html:74
 #: meinberlin/templates/email_base.txt:13
 msgid "meinBerlin is a participation platform operated by"
 msgstr "meinBerlin ist die Plattform für Beteiligung, betrieben durch"
@@ -4338,6 +4292,48 @@ msgid ""
 msgstr ""
 "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
 "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
+
+#~ msgid "\"{username}\" added the module \"{module_name}\" to the project."
+#~ msgstr ""
+#~ "\"{username}\" hat das Modul \"{module_name}\" zum Projekt hinzu gefügt."
+
+#~ msgid ""
+#~ "\"{username}\" removed the module \"{module_name}\" from the project."
+#~ msgstr ""
+#~ "\"{username}\" hat das Modul \"{module_name}\" aus dem Projekt entfernt."
+
+#~ msgid "Edit development plan settings"
+#~ msgstr "Bebauungsplan bearbeiten"
+
+#~ msgid "Create %(blueprint_title)s"
+#~ msgstr "%(blueprint_title)s anlegen"
+
+#~ msgid "Development plan was created."
+#~ msgstr "Der Bebauungsplan wurde angelegt."
+
+#~ msgid "Edit external project settings"
+#~ msgstr "Externes Projekt bearbeiten"
+
+#~ msgid "External project was created."
+#~ msgstr "Die Verlinkung wurde angelegt."
+
+#~ msgid "Create development plan"
+#~ msgstr "Bebauungsplan erstellen"
+
+#~ msgid "Create linkage"
+#~ msgstr "Verlinkung erstellen"
+
+#~ msgid "Fill in development plan details"
+#~ msgstr "Details zum Bebauungsplan ausfüllen"
+
+#~ msgid "Fill in linkage details"
+#~ msgstr "Details zur Verlinkung ausfüllen"
+
+#~ msgid "Publish development plan"
+#~ msgstr "Bebauungsplan veröffentlichen"
+
+#~ msgid "Publish linkage"
+#~ msgstr "Verlinkung veröffentlichen"
 
 #~ msgid "Project successfully updated."
 #~ msgstr "Projekt erfolgreich aktualisiert."
