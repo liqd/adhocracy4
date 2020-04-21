@@ -35,7 +35,7 @@ def has_unpublishable_modules(project):
     another module published for (added to) the project.
     """
     return (project.is_draft
-            and project.published_modules.count() <= 1)
+            and project.published_modules.count() > 1)
 
 
 @register.filter

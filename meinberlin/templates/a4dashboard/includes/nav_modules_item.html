@@ -46,7 +46,7 @@
                 {% trans 'Show in project' %}
             </button>
         {% else %}
-            <button name="action" value="unpublish" {% if project|has_unpublishable_modules %}disabled{% endif %} class="btn btn--secondary btn--full btn--attached-top u-spacer-bottom-half">
+            <button name="action" value="unpublish" {% if not project|has_unpublishable_modules %}disabled{% endif %} class="btn btn--secondary btn--full btn--attached-top u-spacer-bottom-half">
                 {% trans 'Hide from project' %}
             </button>
         {% endif %}
