@@ -43,4 +43,4 @@ class Organisation(models.Model):
         return user in self.initiators.all()
 
     def get_absolute_url(self):
-        return reverse('plan-list')
+        return reverse('meinberlin_plans:plan-list')
