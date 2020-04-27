@@ -7,6 +7,7 @@ import Modal from '../modals/modal'
 import ReportModal from '../modals/report_modal'
 import UrlModal from '../modals/url_modal'
 import CommentEditForm from './comment_edit_form'
+import CommentCategoryEditForm from './comment_category_edit_form'
 import CommentForm from './comment_form'
 import CommentManageDropdown from './comment_manage_dropdown'
 import CommentList from './comment_list'
@@ -145,29 +146,53 @@ export default class Comment extends React.Component {
   renderComment () {
     let comment
     if (this.state.edit) {
-      comment = (
-        <CommentEditForm
-          subjectType={this.props.content_type}
-          subjectId={this.props.object_pk}
-          comment={this.props.children}
-          displayCategories={this.displayCategories()}
-          commentCategoryChoices={this.commentCategoryChoices()}
-          comment_categories={this.props.comment_categories}
-          error={this.props.editError}
-          errorMessage={this.props.errorMessage}
-          handleErrorClick={() => this.props.handleEditErrorClick(this.props.index, this.props.parentIndex)}
-          rows="5"
-          handleCancel={this.toggleEdit.bind(this)}
-          onCommentSubmit={newComment => {
-            this.props.onCommentModify(newComment, this.props.index, this.props.parentIndex)
-              .then(() => {
-                this.setState({
-                  edit: false
+      if (!this.props.commentCategoryChoices) {
+        comment = (
+          <CommentEditForm
+            subjectType={this.props.content_type}
+            subjectId={this.props.object_pk}
+            comment={this.props.children}
+            error={this.props.editError}
+            errorMessage={this.props.errorMessage}
+            handleErrorClick={() => this.props.handleEditErrorClick(this.props.index, this.props.parentIndex)}
+            rows="5"
+            handleCancel={this.toggleEdit.bind(this)}
+            onCommentSubmit={newComment => {
+              this.props.onCommentModify(newComment, this.props.index, this.props.parentIndex)
+                .then(() => {
+                  this.setState({
+                    edit: false
+                  })
                 })
-              })
-          }}
-        />
-      )
+            }}
+          />
+        )
+      } else {
+        comment = (
+          <CommentCategoryEditForm
+            subjectType={this.props.content_type}
+            subjectId={this.props.object_pk}
+            comment={this.props.children}
+            withCategories={this.props.withCategories}
+            displayCategories={this.displayCategories()}
+            commentCategoryChoices={this.commentCategoryChoices()}
+            comment_categories={this.props.comment_categories}
+            error={this.props.editError}
+            errorMessage={this.props.errorMessage}
+            handleErrorClick={() => this.props.handleEditErrorClick(this.props.index, this.props.parentIndex)}
+            rows="5"
+            handleCancel={this.toggleEdit.bind(this)}
+            onCommentSubmit={newComment => {
+              this.props.onCommentModify(newComment, this.props.index, this.props.parentIndex)
+                .then(() => {
+                  this.setState({
+                    edit: false
+                  })
+                })
+            }}
+          />
+        )
+      }
     } else {
       if (this.props.children.length > 400 && this.state.shorten) {
         comment = <div className={'a4-comments__text' + (this.state.anchored ? ' a4-comments__text--highlighted' : '')} dangerouslySetInnerHTML={safeHtml(this.props.children.substring(0, 400) + '...')} />
