@@ -4,13 +4,32 @@ import django from 'django'
 
 import { alert as Alert } from 'adhocracy4'
 
-export default class CommentEditForm extends React.Component {
+import CategoryList from './category_list'
+
+export default class CommentCategoryEditForm extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      comment: this.props.comment
+      comment: this.props.comment,
+      selectedCategories: Object.keys(this.props.comment_categories)
     }
+  }
+
+  handleCategorySelection (e) {
+    const newSelection = e.target.id.split('_')[1]
+    var newSelectionArray = this.state.selectedCategories
+    var index = this.state.selectedCategories.indexOf(newSelection)
+    if (index > -1) {
+      newSelectionArray.splice(index, 1)
+    } else {
+      newSelectionArray.push(newSelection)
+    }
+    this.setState({ selectedCategories: newSelectionArray })
+  }
+
+  displayCategories () {
+    return this.props.content_type !== this.context.comments_contenttype
   }
 
   handleTextChange (e) {
@@ -27,6 +46,9 @@ export default class CommentEditForm extends React.Component {
         contentTypeId: this.props.subjectType
       }
     }
+    if (this.props.commentCategoryChoices) {
+      data.comment_categories = this.state.selectedCategories.toString()
+    }
     if (!comment) {
       return
     }
@@ -38,6 +60,12 @@ export default class CommentEditForm extends React.Component {
       <form className="general-form" onSubmit={this.handleSubmit.bind(this)}>
         {this.props.error &&
           <Alert type="danger" message={this.props.errorMessage} onClick={this.props.handleErrorClick} />}
+        <CategoryList
+          idPrefix={this.props.comment.id}
+          categoriesChecked={this.state.selectedCategories}
+          categoryChoices={this.props.commentCategoryChoices}
+          handleControlFunc={this.handleCategorySelection.bind(this)}
+        />
         <div className="form-group">
           <textarea
             rows={this.props.rows} className="a4-comments__textarea form-group"
@@ -56,6 +84,6 @@ export default class CommentEditForm extends React.Component {
   }
 }
 
-CommentEditForm.contextTypes = {
+CommentCategoryEditForm.contextTypes = {
   isAuthenticated: PropTypes.bool
 }
