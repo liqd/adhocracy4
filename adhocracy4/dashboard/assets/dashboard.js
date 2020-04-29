@@ -1,5 +1,5 @@
 const $ = require('jquery')
-const elementsToUpdate = ['.l-menu__menu', '.l-menu__aside', '#update_dashboard']
+const elementsToUpdate = ['.l-menu__menu', '.l-menu__aside', '.js-selector-update-dashboard']
 
 module.exports = {
   /**
