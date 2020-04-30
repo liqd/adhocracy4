@@ -34,6 +34,9 @@ module.exports = {
       'bootstrap/js/dist/modal.js',
       './meinberlin/apps/embed/assets/embed.js'
     ],
+    unload_warning: [
+      './meinberlin/assets/js/unload_warning.js'
+    ],
     // A4 dependencies - we want all of them to go through webpack
     mb_plans_map: [
       'leaflet/dist/leaflet.css',
