@@ -7,8 +7,7 @@ class LazyBackground extends React.Component {
     super(props)
 
     this.state = {
-      source: null,
-      isVisible: false
+      source: null
     }
   }
 
@@ -17,6 +16,14 @@ class LazyBackground extends React.Component {
     const isInViewpoort = this.isInViewport()
     if (isInViewpoort) {
       this.loadImage()
+    }
+  }
+
+  componentDidUpdate (prevProps, prevState, snapshot) {
+    if (this.props.item.tile_image !== prevProps.item.tile_image) {
+      this.setState({
+        source: this.isInViewport() ? this.props.item.tile_image : null
+      })
     }
   }
 
@@ -30,8 +37,7 @@ class LazyBackground extends React.Component {
     imageLoader.src = src
     imageLoader.onload = () => {
       this.setState({
-        source: src,
-        isVisible: true
+        source: src
       })
     }
   }
