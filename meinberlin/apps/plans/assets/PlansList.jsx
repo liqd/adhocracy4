@@ -13,10 +13,11 @@ class LazyBackground extends React.Component {
 
   componentDidMount () {
     window.addEventListener('scroll', this.handleScroll.bind(this))
-    const isInViewpoort = this.isInViewport()
-    if (isInViewpoort) {
-      this.loadImage()
-    }
+    this.checkLoadImage()
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('scroll', this.handleScroll.bind(this))
   }
 
   componentDidUpdate (prevProps, prevState, snapshot) {
@@ -27,17 +28,14 @@ class LazyBackground extends React.Component {
     }
   }
 
-  componentWillUnmount () {
-    window.removeEventListener('scroll', this.handleScroll.bind(this))
+  handleScroll () {
+    this.checkLoadImage()
   }
 
-  loadImage () {
-    const src = this.props.item.tile_image
-    const imageLoader = new Image()
-    imageLoader.src = src
-    imageLoader.onload = () => {
+  checkLoadImage () {
+    if (this.isInViewport() && !this.state.source) {
       this.setState({
-        source: src
+        source: this.props.item.tile_image
       })
     }
   }
@@ -51,12 +49,6 @@ class LazyBackground extends React.Component {
       Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < 1
     )
     return res
-  }
-
-  handleScroll () {
-    if (this.isInViewport() && !this.state.source) {
-      this.loadImage()
-    }
   }
 
   render () {
