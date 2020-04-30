@@ -3,7 +3,7 @@
     "config:base"
   ],
 
-  "automerge": true,
+  "automerge": false,
   "major": {
     "automerge": false
   },
