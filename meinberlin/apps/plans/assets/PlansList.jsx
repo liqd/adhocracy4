@@ -60,7 +60,7 @@ class LazyBackground extends React.Component {
         className={this.props.isHorizontal ? 'u-lg-only-display maplist-item__img' : 'maplist-item__img'} style={{
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          backgroundImage: `url(${this.state.source})`
+          backgroundImage: this.state.source ? `url(${this.state.source})` : 'none'
         }} alt=""
       >
         {!this.props.isHorizontal && this.props.renderTopics(this.props.item)}
