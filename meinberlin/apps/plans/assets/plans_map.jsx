@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { CookiesProvider } from 'react-cookie'
 import ListMapBox from './ListMapBox'
 
-const init = function () {
+function init () {
   $('[data-map="plans"]').each(function (i, element) {
     const projectApiUrl = element.getAttribute('data-projects-url')
     const containersApiUrl = element.getAttribute('data-containers-url')
@@ -48,5 +48,5 @@ const init = function () {
   })
 }
 
-$(init)
-$(document).on('a4.embed.ready', init)
+document.addEventListener('DOMContentLoaded', init, false)
+document.addEventListener('a4.embed.ready', init, false)
