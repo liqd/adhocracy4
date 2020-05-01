@@ -15,7 +15,7 @@
   "dependencies": {
     "classnames": "2.2.6",
     "immutability-helper": "3.0.2",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "js-cookie": "2.2.1",
     "leaflet": "1.6.0",
     "leaflet-draw": "1.0.4",
