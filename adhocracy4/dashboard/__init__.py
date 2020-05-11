@@ -70,7 +70,7 @@ class ProjectDashboard:
         num_valid = num_valid + nums[0]
         num_required = num_required + nums[1]
 
-        for module in self.project.modules:
+        for module in self.project.modules.filter(is_draft=False):
             nums = self.get_module_progress(module)
             num_valid = num_valid + nums[0]
             num_required = num_required + nums[1]
