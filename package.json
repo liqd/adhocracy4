@@ -45,7 +45,7 @@
     "popper.js": "1.16.1",
     "postcss-loader": "3.0.0",
     "react": "16.13.1",
-    "react-bootstrap-typeahead": "4.2.2",
+    "react-bootstrap-typeahead": "4.2.3",
     "react-cookie": "4.0.3",
     "react-dom": "16.13.1",
     "react-flip-move": "3.0.4",
