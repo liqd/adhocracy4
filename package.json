@@ -24,7 +24,7 @@
     "autoprefixer": "9.7.6",
     "axios": "0.19.2",
     "babel-loader": "8.1.0",
-    "bootstrap": "4.4.1",
+    "bootstrap": "4.5.0",
     "copy-webpack-plugin": "5.1.1",
     "css-loader": "3.5.3",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
