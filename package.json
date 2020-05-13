@@ -41,7 +41,7 @@
     "mapbox-gl-leaflet": "0.0.12",
     "mini-css-extract-plugin": "0.9.0",
     "moment": "2.25.3",
-    "node-sass": "4.14.0",
+    "node-sass": "4.14.1",
     "popper.js": "1.16.1",
     "postcss-loader": "3.0.0",
     "react": "16.13.1",
