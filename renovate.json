@@ -3,15 +3,13 @@
     "config:base"
   ],
 
-  "automerge": false,
-  "major": {
-    "automerge": false
-  },
-  "devDependencies": {
+  "dependencies": {
+    "updateTypes": ["patch"],
     "automerge": true
   },
-  "digest": {
-    "enabled": false
+  "devDependencies": {
+    "updateTypes": ["minor", "patch"],
+    "automerge": true
   },
 
   "labels": [
