@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     url(r'^create/$',
-        views.NewsletterCreateView.as_view(), name='newsletter-create'),
+        views.PlatformEmailCreateView.as_view(), name='create'),
 ]

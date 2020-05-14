@@ -108,6 +108,7 @@ INSTALLED_APPS = (
     'meinberlin.apps.offlineevents',
     'meinberlin.apps.plans',
     'meinberlin.apps.projects',
+    'meinberlin.apps.platformemails',
 
     # Apps defining phases
     'meinberlin.apps.activities',

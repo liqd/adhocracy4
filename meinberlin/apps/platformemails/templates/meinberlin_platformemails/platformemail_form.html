@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans 'Create newsletter' %}{% endblock %}
+{% block title %}{% trans 'Create platform email' %}{% endblock %}
 {% block content %}
 <div class="l-wrapper">
     <div class="l-center-6">
-        <h1>{% trans 'Create newsletter'%}</h1>
+        <h1>{% trans 'Create platform email'%}</h1>
 
         <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
             {% csrf_token %}
@@ -18,16 +18,7 @@
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.subject %}
 
             {% include 'meinberlin_contrib/includes/form_field.html' with field=form.body %}
-            <div id="receiver-selection">
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.receivers %}
-            </div>
-            <div id="selection-project">
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project %}
-            </div>
 
-            <div id="selection-organisation">
-            {% include 'meinberlin_contrib/includes/form_field.html' with field=form.organisation %}
-            </div>
             <div class="u-spacer-bottom">
                 <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Send'%}" />
                 <a href="/" class="btn btn--light">{% trans 'Cancel'%}</a>

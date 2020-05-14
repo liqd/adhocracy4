@@ -24,7 +24,7 @@
             </a>
         {% endfor %}
         {% if request.user.is_superuser %}
-                <a class="dropdown-item" href="{% url 'meinberlin_newsletters:newsletter-create' %}">{% trans "Newsletter" %}</a>
+                <a class="dropdown-item" href="{% url 'meinberlin_platformemails:create' %}">{% trans "Newsletter" %}</a>
         {% endif %}
             <form class="u-inline" action="{% url 'account_logout' %}" method="post" aria-label="{% trans 'Logout' %}">
                 {% csrf_token %}
