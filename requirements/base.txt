@@ -19,7 +19,7 @@ bleach==3.1.5
 Django==2.2.12 # pyup: <2.3
 django-allauth==0.41.0
 django-autoslug==1.9.7
-django-background-tasks==1.2.0
+django-background-tasks==1.2.5
 django-ckeditor==5.9.0
 django-filter==2.2.0
 django-multiselectfield==0.1.12
