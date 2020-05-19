@@ -1,5 +1,6 @@
 from email.mime.image import MIMEImage
 
+from allauth.account.models import EmailAddress
 from django.apps import apps
 from django.conf import settings
 from django.contrib import auth
@@ -27,10 +28,14 @@ class NewsletterEmail(ReportToAdminEmailMixin, Email):
         return ['{} <{}>'.format(self.object.sender_name, self.object.sender)]
 
     def get_receivers(self):
+        verified_emails = EmailAddress.objects \
+            .filter(verified=True) \
+            .values('email')
         return User.objects\
             .filter(id__in=self.kwargs['participant_ids'])\
             .filter(get_newsletters=True)\
-            .filter(is_active=True)\
+            .filter(is_active=True) \
+            .filter(email__in=verified_emails) \
             .distinct()
 
     def get_attachments(self):
@@ -49,7 +54,11 @@ class NewsletterEmail(ReportToAdminEmailMixin, Email):
 class NewsletterEmailAll(NewsletterEmail):
 
     def get_receivers(self):
+        verified_emails = EmailAddress.objects \
+            .filter(verified=True) \
+            .values('email')
         return User.objects\
             .filter(get_newsletters=True)\
             .filter(is_active=True)\
+            .filter(email__in=verified_emails)\
             .distinct()

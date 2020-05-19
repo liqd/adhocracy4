@@ -1,6 +1,5 @@
 from django.apps import apps
 from django.conf import settings
-from django.contrib import auth
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
 from django.http.response import HttpResponseRedirect
@@ -19,7 +18,6 @@ from .forms import NewsletterForm
 from .forms import RestrictedNewsletterForm
 
 Organisation = apps.get_model(settings.A4_ORGANISATIONS_MODEL)
-User = auth.get_user_model()
 
 
 class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
@@ -106,10 +104,6 @@ class DashboardNewsletterCreateView(a4dashboard_mixins.DashboardBaseMixin,
                 project__organisation=organisation.pk,
                 enabled=True
             ).values_list('creator', flat=True).distinct()
-
-        elif receivers == models.PLATFORM:
-            participant_ids = User.objects.all().values_list('pk',
-                                                             flat=True)
 
         elif receivers == models.INITIATOR:
             participant_ids = Organisation.objects.get(
