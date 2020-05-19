@@ -1,85 +1,55 @@
-/* eslint no-unused-vars: "off", no-new: "off" */
+import 'bootstrap' // load bootstrap components
+import 'django'
+import 'select2' // used to select projects in containers
+import 'shariff'
+import 'slick-carousel'
 
-// make jquery available for non-webpack js
-var $ = window.jQuery = window.$ = require('jquery')
-window.Tether = require('tether')
-
-require('shariff')
-var Shariff = window.Shariff
-
-// load bootstrap components
-require('bootstrap')
-
-require('slick-carousel')
-
-// used to select projects in containers
-require('select2')
-
-require('django')
+import '../../apps/actions/assets/timestamps.js'
+import '../../apps/maps/assets/map-address.js'
+import '../../apps/moderatorremark/assets/idea_remarks.js'
+import '../../apps/newsletters/assets/dynamic_fields.js'
+import '../../apps/dashboard/assets/ajax_modal.js'
+import '../../apps/dashboard/assets/init_accordeons_cookie.js'
 
 // expose react components
-var ReactComments = require('adhocracy4').comments
-var ReactRatings = require('adhocracy4').ratings
-var ReactReports = require('adhocracy4').reports
-var ReactFollows = require('adhocracy4').follows
+import {
+  comments as ReactComments,
+  ratings as ReactRatings,
+  reports as ReactReports,
+  follows as ReactFollows,
+  widget as ReactWidget
+} from 'adhocracy4'
 
-var ReactDocuments = require('../../apps/documents/assets/react_documents.jsx')
-var ReactPolls = require('../../apps/polls/assets/react_polls.jsx')
-var ReactMapTeaser = require('../../apps/plans/assets/react_map_teaser.jsx')
+import * as ReactDocuments from '../../apps/documents/assets/react_documents.jsx'
+import * as ReactPolls from '../../apps/polls/assets/react_polls.jsx'
+import * as ReactMapTeaser from '../../apps/plans/assets/react_map_teaser.jsx'
 
-require('../../apps/actions/assets/timestamps.js')
-require('../../apps/maps/assets/map-address.js')
-require('../../apps/moderatorremark/assets/idea_remarks.js')
-require('../../apps/newsletters/assets/dynamic_fields.js')
-require('../../apps/dashboard/assets/ajax_modal.js')
-require('../../apps/dashboard/assets/init_accordeons_cookie.js')
+import * as Tether from 'tether'
 
-// This function is overwritten with custom behavior in embed.js.
-var getCurrentPath = function () {
-  return location.pathname
-}
-
-function initialiseWidget (namespace, name, fn) {
-  var key = 'data-' + namespace + '-widget'
-  var selector = '[' + key + '=' + name + ']'
-  $(selector).each(function (i, el) {
-    fn(el)
-
-    // avoid double-initialisation
-    el.removeAttribute(key)
-  })
-}
+window.Tether = Tether
 
 function init () {
-  var shariffs = $('.shariff')
+  const shariffs = $('.shariff')
   if (shariffs.length > 0) {
-    new Shariff(shariffs, {
+    /* eslint-disable no-new */
+    new window.Shariff(shariffs, {
       services: '[&quot;twitter&quot;,&quot;facebook&quot;,&quot;info&quot;]',
       infoUrl: '/shariff'
     })
   }
 
-  if ($.fn.select2) {
-    $('.js-select2').select2()
-  }
+  ReactWidget.initialise('a4', 'comment', ReactComments.renderComment)
+  ReactWidget.initialise('a4', 'follows', ReactFollows.renderFollow)
+  ReactWidget.initialise('a4', 'ratings', ReactRatings.renderRatings)
+  ReactWidget.initialise('a4', 'reports', ReactReports.renderReports)
 
-  initialiseWidget('a4', 'comment', ReactComments.renderComment)
-  initialiseWidget('a4', 'follows', ReactFollows.renderFollow)
-  initialiseWidget('a4', 'ratings', ReactRatings.renderRatings)
-  initialiseWidget('a4', 'reports', ReactReports.renderReports)
-
-  initialiseWidget('mb', 'document-management', ReactDocuments.renderDocumentManagement)
-  initialiseWidget('mb', 'polls', ReactPolls.renderPolls)
-  initialiseWidget('mb', 'mapTeaser', ReactMapTeaser.renderFilter)
-  initialiseWidget('mb', 'poll-management', ReactPolls.renderPollManagement)
-
-  // carousel
-  function getInitialSlide () {
-    return parseInt($('#timeline-carousel').attr('data-initial-slide'))
-  }
+  ReactWidget.initialise('mb', 'document-management', ReactDocuments.renderDocumentManagement)
+  ReactWidget.initialise('mb', 'polls', ReactPolls.renderPolls)
+  ReactWidget.initialise('mb', 'mapTeaser', ReactMapTeaser.renderFilter)
+  ReactWidget.initialise('mb', 'poll-management', ReactPolls.renderPollManagement)
 
   $('.timeline-carousel__item').slick({
-    initialSlide: getInitialSlide(),
+    initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide')),
     focusOnSelect: false,
     centerMode: true,
     dots: false,
@@ -91,16 +61,21 @@ function init () {
     slidesToShow: 1,
     slidesToScroll: 1
   })
+
+  if ($.fn.select2) {
+    $('.js-select2').select2()
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init, false)
 document.addEventListener('a4.embed.ready', init, false)
 
-module.exports = {
-  getCurrentPath: getCurrentPath
-}
-
 // Closes bootstrap collapse on click elsewhere
 $(document).on('click', function () {
   $('.collapse').collapse('hide')
 })
+
+// This function is overwritten with custom behavior in embed.js.
+export function getCurrentPath () {
+  return location.pathname
+}
