@@ -2,7 +2,7 @@
 
 {% load wagtailcore_tags %}
 
-{% block subject %}Ihre Stellungnahme zum Bebauungsplan "{{ project.name }}" von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
+{% block subject %}Ihre Stellungnahme zum Bebauungsplan "{{ project.name }}"{% endblock %}
 
 {% block headline %}Ihre Stellungnahme{% endblock %}
 
