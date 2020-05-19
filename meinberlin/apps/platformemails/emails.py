@@ -1,3 +1,4 @@
+from allauth.account.models import EmailAddress
 from django.contrib import auth
 
 from adhocracy4.emails.mixins import ReportToAdminEmailMixin
@@ -13,4 +14,9 @@ class PlatformEmail(ReportToAdminEmailMixin, Email):
         return ['{} <{}>'.format(self.object.sender_name, self.object.sender)]
 
     def get_receivers(self):
-        return User.objects.filter(is_active=True).distinct()
+        verified_emails = EmailAddress.objects\
+            .filter(verified=True)\
+            .values('email')
+        return User.objects.filter(is_active=True)\
+            .filter(email__in=verified_emails)\
+            .distinct()
