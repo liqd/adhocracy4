@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.dashboard.forms import ProjectDashboardForm
 from adhocracy4.maps import widgets as maps_widgets
 from adhocracy4.projects.models import Project
+from meinberlin.apps.contrib.widgets import Select2Widget
 from meinberlin.apps.users import fields as user_fields
 
 from .models import ModeratorInvite
@@ -89,6 +90,7 @@ class PointForm(ProjectDashboardForm):
         fields = ['administrative_district', 'point']
         required_for_project_publish = []
         widgets = {
+            'administrative_district': Select2Widget,
             'point': maps_widgets.MapChoosePointWidget(
                 polygon=settings.BERLIN_POLYGON)
         }

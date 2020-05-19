@@ -5,6 +5,7 @@ from adhocracy4.categories.forms import CategorizableFieldMixin
 from adhocracy4.labels.mixins import LabelsAddableFieldMixin
 from adhocracy4.maps import widgets as maps_widgets
 from meinberlin.apps.contrib.mixins import ImageRightOfUseMixin
+from meinberlin.apps.contrib.widgets import Select2Widget
 
 from . import models
 
@@ -21,13 +22,13 @@ class MapIdeaForm(CategorizableFieldMixin,
         self.fields['point'].error_messages['required'] = _(
             'Please locate your proposal on the map.')
 
-    class Media:
-        js = ('select_dropdown_init.js',)
-
     class Meta:
         model = models.MapIdea
         fields = ['name', 'description', 'image', 'category',
                   'labels', 'point', 'point_label']
+        widgets = {
+            'category': Select2Widget,
+        }
 
 
 class MapIdeaModerateForm(forms.ModelForm):

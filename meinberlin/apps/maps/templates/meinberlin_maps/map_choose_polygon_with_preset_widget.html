@@ -5,7 +5,7 @@
         <span class="form-hint">
             {% trans 'You can choose a preset for further customization.' %}
         </span>
-        <select id="select_{{ name }}">
+        <select id="select_{{ name }}" class="js-select2">
             <option value="">---</option>
             {% for preset in presets_uncategorized %}
                 <option value="{{ preset.polygon }}">{{ preset.name }}</option>

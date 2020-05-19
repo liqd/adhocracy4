@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.dashboard.components.forms import ProjectDashboardForm
 from adhocracy4.maps import widgets as maps_widgets
 from adhocracy4.projects import models as project_models
+from meinberlin.apps.contrib.widgets import Select2Widget
 
 from . import models
 
@@ -67,6 +68,9 @@ class ProjectPlansDashboardForm(ProjectDashboardForm):
         model = project_models.Project
         fields = ['plans']
         required = False
+        widgets = {
+            'plans': Select2Widget,
+        }
 
     def save(self, commit=False):
         plans = self.cleaned_data['plans']
