@@ -2,12 +2,12 @@
 
 {% load verbose_name %}
 
-{% block headline %}{{ newsletter.subject }}{% endblock %}
+{% block headline %}{{ platformemail.subject }}{% endblock %}
 
-{% block subject %}{{ newsletter.subject }}{% endblock %}
+{% block subject %}{{ platformemail.subject }}{% endblock %}
 
 {% block greeting %}{% endblock %}
 
-{% block newsletter_content %}{{ newsletter.body_with_absolute_urls|safe }}{% endblock %}
+{% block newsletter_content %}{{ platformemail.body_with_absolute_urls|safe }}{% endblock %}
 
 {% block reason %}Diese E-Mail wurde an {{ receiver.email }} gesendet. Die E-Mail wurde an Sie gesendet, da Sie auf {{ site.name }} registriert sind. Wenn Sie keine Newsletter mehr erhalten wollen, können Sie diese in Ihrem Benutzerkonto deaktivieren.{% endblock %}
