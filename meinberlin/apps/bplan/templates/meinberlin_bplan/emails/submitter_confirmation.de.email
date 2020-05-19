@@ -1,11 +1,14 @@
 {% extends 'email_base.'|add:part_type %}
+
 {% load wagtailcore_tags %}
 
 {% block subject %}Ihre Stellungnahme zum Bebauungsplan "{{ project.name }}" von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
 
-{% block headline %}Ihre Stellungnahme zum Bebauungsplan "{{ project.name }}" von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
+{% block headline %}Ihre Stellungnahme{% endblock %}
 
-{% block content %}vielen Dank für Ihre Stellungnahme. Sie ist an die zuständige Stelle weitergeleitet worden und geht in die Abwägung der öffentlichen und privaten Belange ein. Wenn Sie sich an einer öffentlichen Auslegung beteiligt haben, werden Sie außerdem nach Festsetzung des Bebauungsplans von der verantwortlichen Stelle schriftlich (per E-Mail oder postalisch) über das Ergebnis informiert, sofern Sie Ihre Adresse angegeben haben.
+{% block sub-headline %} "{{ project.name }}" {% endblock %}
+
+{% block content_left_aligned %}vielen Dank für Ihre Stellungnahme. Sie ist an die zuständige Stelle weitergeleitet worden und geht in die Abwägung der öffentlichen und privaten Belange ein. Wenn Sie sich an einer öffentlichen Auslegung beteiligt haben, werden Sie außerdem nach Festsetzung des Bebauungsplans von der verantwortlichen Stelle schriftlich (per E-Mail oder postalisch) über das Ergebnis informiert, sofern Sie Ihre Adresse angegeben haben.
 
 Ihre Angaben in der Übersicht:
 
