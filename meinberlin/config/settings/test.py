@@ -8,3 +8,5 @@ A4_ORGANISATION_FACTORY = \
 A4_USER_FACTORY = 'meinberlin.test.factories.UserFactory'
 
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
+
+CAPTCHA_TEST_ACCEPTED_ANSWER = 'test_pass'

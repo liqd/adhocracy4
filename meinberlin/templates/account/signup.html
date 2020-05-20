@@ -13,6 +13,7 @@
 
     <form id="signup_form" method="post" action="{% url 'account_signup' %}">
         {{ form.non_field_errors }}
+        {{ form.media }}
         {% csrf_token %}
 
         {% include 'meinberlin_contrib/includes/form_field.html' with field=form.email %}
@@ -33,6 +34,8 @@
             </label>
             {{ form.terms_of_use.errors }}
         </div>
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.captcha %}
 
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>

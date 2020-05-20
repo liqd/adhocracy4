@@ -26,6 +26,9 @@ module.exports = {
       'react-flip-move',
       'react-sticky-box'
     ],
+    captcheck: [
+      './meinberlin/apps/captcha/assets/captcheck.js'
+    ],
     datepicker: [
       './meinberlin/assets/js/init-picker.js',
       'datepicker/css/datepicker.min.css'

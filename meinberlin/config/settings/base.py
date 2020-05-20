@@ -88,6 +88,7 @@ INSTALLED_APPS = (
 
     # General components that define models or helpers
     'meinberlin.apps.actions',
+    'meinberlin.apps.captcha',
     'meinberlin.apps.cms',
     'meinberlin.apps.contrib',
     'meinberlin.apps.maps',
@@ -289,6 +290,9 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptPasswordHasher',  # a3
     'meinberlin.apps.users.hashers.A2PasswordHasher',
 ]
+
+# captcha
+CAPTCHA_URL = u'https://meinberlin-captcha.liqd.net/api.php'
 
 # ckeditor
 
