@@ -1,10 +1,9 @@
-/* global $ */
 (function (init) {
   document.addEventListener('DOMContentLoaded', init, false)
   document.addEventListener('a4.embed.ready', init, false)
 })(function () {
   // Dynamically add or remove subforms to a formset.
-
+  const $ = window.jQuery
   var $formsets = $('.js-formset')
   var PLACEHOLDER = /__prefix__/g
   var dynamicFormSets = []
