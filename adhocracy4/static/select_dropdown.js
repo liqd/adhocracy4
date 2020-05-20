@@ -1,4 +1,3 @@
-/* global jQuery */
 /*
 This adds a jQuery plugin called `selectdropdown` which transforms a html <select> into a bootstrap dropdown.
 The idea is borrowed from https://github.com/silviomoreto/bootstrap-select which provides a lot more functionality
@@ -131,4 +130,4 @@ The following classes are available:
       }
     })
   }
-}(jQuery))
+}(window.jQuery))
