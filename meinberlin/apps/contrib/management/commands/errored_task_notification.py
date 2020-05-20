@@ -1,4 +1,4 @@
-from background_task.models_completed import CompletedTask
+from background_task.models import CompletedTask
 from django.core.management.base import BaseCommand
 from django.urls import reverse
 
