@@ -1,4 +1,5 @@
 import factory
+from allauth.account.models import EmailAddress
 
 from adhocracy4.follows import models as follow_models
 from adhocracy4.test import factories as a4_factories
@@ -29,4 +30,9 @@ class NewsletterFactory(factory.django.DjangoModelFactory):
 
     creator = factory.SubFactory(a4_factories.USER_FACTORY)
     project = factory.SubFactory(a4_factories.ProjectFactory)
-    organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)
+
+
+class EmailAddressFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = EmailAddress
