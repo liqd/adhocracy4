@@ -1,33 +1,33 @@
 {% extends 'email_base.'|add:part_type %}
 {% load wagtailcore_tags %}
 
-{% block subject %}Neue Stellungnahme zum Bebauungsplan "{{ project.name }}" von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
+{% block subject %}Neue Stellungnahme zu {{ identifier }}{% endblock %}
 
-{% block headline %}Neue Stellungnahme zum Bebauungsplan "{{ project.name }}" von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }}{% endblock %}
+{% block logo %}{% endblock %}
 
-{% block content %}es wurde eine neue Stellungnahme für den Bebauungsplan "{{ project.name }}" von {{ module.active_phase.start_date|date:'d.m.Y' }} - {{ module.active_phase.end_date|date:'d.m.Y' }} abgegeben.
+{% block headline %}Neue Stellungnahme{% endblock %}
 
-Angaben in der Übersicht:
+{% block sub-headline %}{{ identifier }}: {{ project.name }}{% endblock %}
 
-Name
+{% block greeting %}{% endblock %}
+
+{% block content_left_aligned %}
+Name:
 {{ statement.name }}
 
-Straße, Hausnummer
+Straße, Hausnummer:
 {{ statement.street_number }}
 
-PLZ, Ort
+PLZ, Ort:
 {{ statement.postal_code_city }}
 
-E-Mail-Adresse
+E-Mail Adresse:
 {{ statement.email }}
 
-Stellungnahme
-
+Stellungnahme:
 {{ statement.statement }}
-
 {% endblock %}
 
-{% block cta_label %}Bebauungsplan anzeigen{% endblock %}
-{% block cta_url %}{{ project.externalproject.url }}{% endblock %}
+{% block cta %}{% endblock %}
 
-{% block reason %}Diese E-Mail wurde an {{ receiver }} gesendet, da Sie als Sachbearbeiter*in des Projekts angegeben sind. Bei Fragen können Sie sich gerne unter {{ contact_email }} an uns wenden.{% endblock %}
+{% block reason %}Diese E-Mail wurde an {{ receiver }} gesendet. Sie haben die E-Mail erhalten, weil Sie als Sachbearbeiter*in für eine digitale Öffentlichkeitsbeteiligung zu einem Bebauungsplan eingetragen wurden.{% endblock %}

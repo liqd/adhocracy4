@@ -11,6 +11,11 @@ class OfficeWorkerNotification(Email):
         project = self.object.module.project
         return project.externalproject.bplan.office_worker_email
 
+    @property
+    def bplan_identifier(self):
+        project = self.object.module.project
+        return project.externalproject.bplan.identifier
+
     def get_receivers(self):
         return [self.office_worker_email]
 
@@ -19,6 +24,7 @@ class OfficeWorkerNotification(Email):
         context['module'] = self.object.module
         context['project'] = self.object.module.project
         context['contact_email'] = settings.CONTACT_EMAIL
+        context['identifier'] = self.bplan_identifier
         return context
 
 
