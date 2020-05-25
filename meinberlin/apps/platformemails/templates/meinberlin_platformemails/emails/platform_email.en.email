@@ -10,4 +10,4 @@
 
 {% block newsletter_content %}{{ platformemail.body_with_absolute_urls|safe }}{% endblock %}
 
-{% block reason %}This email was sent to {{ receiver.email }}. This email was sent to you because you are registered on {{ site.name }}. If you don't want to receive newsletters anymore, you may disable them in your user account settings.{% endblock %}
+{% block reason %}This email was sent to {{ receiver.email }}. You have received this e-mail because you are registered on {{ site.name }}. {% endblock %}
