@@ -4,6 +4,7 @@
 
 {% block greeting %}{% trans 'Hello' %},{% endblock %}
 {% block content %}{% endblock %}
+{% block content_left_aligned %}{% endblock %}
 
 {% block cta %}{% block cta_label %}{% endblock %}: {% block cta_url %}{% endblock %}{% endblock %}
 
