@@ -344,7 +344,7 @@ msgstr " Zeichen"
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:109
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:109
 msgid "Comment"
-msgstr ""
+msgstr "Kommentar"
 
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:31
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:31

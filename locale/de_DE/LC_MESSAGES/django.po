@@ -637,7 +637,7 @@ msgstr "Das Projekt wurde bereits veröffentlicht"
 
 #: adhocracy4/dashboard/views.py:176
 msgid "Project cannot be published. No module is added."
-msgstr ""
+msgstr "Das Projekt kann nicht veröffentlicht werden. Kein Modul hinzugefügt."
 
 #: adhocracy4/dashboard/views.py:191
 msgid "Project cannot be published. Required fields are missing."
@@ -2149,11 +2149,13 @@ msgstr "Modul ist bereits entfernt"
 
 #: meinberlin/apps/dashboard/views.py:166
 msgid "Module cannot be removed from a published project."
-msgstr ""
+msgstr "Module können nicht aus einem veröffentlichten Projekt entfernt werden."
 
 #: meinberlin/apps/dashboard/views.py:171
 msgid "Module cannot be removed. It is the only module added to the project."
 msgstr ""
+"Modul kann nicht entfernt werden. Es ist das einzige dem Projekt "
+"hinzugefügte Modul."
 
 #: meinberlin/apps/dashboard/views.py:183
 msgid "The module is no longer displayed in the project."
@@ -3078,17 +3080,20 @@ msgstr "Vorhaben wurde gelöscht"
 #: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:4
 #: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:8
 msgid "Create platform email"
-msgstr ""
+msgstr "Plattform-E-Mail erstellen"
 
 #: meinberlin/apps/platformemails/templates/meinberlin_platformemails/platformemail_form.html:9
 msgid ""
 "This email will be sent to all registered and verified users of mein.berlin."
 "de."
 msgstr ""
+"Diese E-Mail wird an alle registrierten und verifizierten Nutzer von "
+"mein.berlin.de verschickt."
 
 #: meinberlin/apps/platformemails/views.py:47
 msgid "Platform email has been saved and will be sent to the recipients."
 msgstr ""
+"Die Plattform-E-Mail wurde gespeichert und wird an die Empfänger versendet."
 
 #: meinberlin/apps/projectcontainers/dashboard.py:17
 msgid "Edit container settings"
@@ -3705,7 +3710,7 @@ msgstr "Nutzerkonto Einstellungen"
 
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html:27
 msgid "Platform Email"
-msgstr ""
+msgstr "Plattform-Mail"
 
 #: meinberlin/config/settings/base.py:306
 #: meinberlin/config/settings/base.py:316
