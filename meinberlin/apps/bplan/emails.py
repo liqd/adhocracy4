@@ -27,6 +27,9 @@ class OfficeWorkerNotification(Email):
         context['identifier'] = self.bplan_identifier
         return context
 
+    def get_attachments(self):
+        return []
+
 
 class SubmitterConfirmation(Email):
     template_name = 'meinberlin_bplan/emails/submitter_confirmation'
