@@ -246,7 +246,7 @@ ALLOWED_UPLOAD_IMAGES = ('png', 'jpeg', 'gif')
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = 'meinberlin'
+WAGTAIL_SITE_NAME = 'meinBerlin'
 WAGTAILIMAGES_IMAGE_MODEL = 'meinberlin_cms.CustomImage'
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
