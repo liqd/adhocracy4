@@ -174,12 +174,12 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[name].css'
     }),
-    new CopyWebpackPlugin([
-      {
+    new CopyWebpackPlugin({
+      patterns: [{
         from: './meinberlin/assets/images/**/*',
         to: 'images/',
         flatten: true
-      }
-    ])
+      }]
+    })
   ]
 }
