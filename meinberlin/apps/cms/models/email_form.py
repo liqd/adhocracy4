@@ -7,7 +7,6 @@ from wagtail.contrib.forms.models import AbstractFormField
 from wagtail.core import fields
 
 from meinberlin.apps.captcha.fields import CaptcheckCaptchaField
-from meinberlin.apps.captcha.mixins import CaptcheckCaptchaFormMixin
 from meinberlin.apps.cms import emails
 
 
@@ -15,30 +14,20 @@ class EmailFormField(AbstractFormField):
     page = ParentalKey('EmailFormPage', related_name='form_fields')
 
 
-class WagtailCaptchaFormBuilder(CaptcheckCaptchaFormMixin, FormBuilder):
+class WagtailCaptchaFormBuilder(FormBuilder):
     @property
     def formfields(self):
         # Add captcha to formfields property
-        fields = super(WagtailCaptchaFormBuilder, self).formfields
+        fields = super().formfields
         fields['captcha'] = CaptcheckCaptchaField()
 
         return fields
-
-
-def remove_captcha_field(form):
-    form.fields.pop('captcha', None)
-    form.cleaned_data.pop('captcha', None)
 
 
 class WagtailCaptchaEmailForm(AbstractEmailForm):
     """For pages implementing AbstractEmailForms with captcha."""
 
     form_builder = WagtailCaptchaFormBuilder
-
-    def process_form_submission(self, form):
-        remove_captcha_field(form)
-        return super(WagtailCaptchaEmailForm,
-                     self).process_form_submission(form)
 
     class Meta:
         abstract = True

@@ -32,25 +32,47 @@ const textTextMode = '&gt; ' + django.gettext('Text mode')
 const textLabel = django.gettext('Switch between image and text question')
 
 window.onload = function () {
-  function chooseAnswer (idp, ans) {
-    var box = document.getElementById('captcheck_' + idp + '_answer_' + ans)
-    box.checked = true
-    return false
+  function chooseAnswer (idp, ans, session, combinedAnswerId) {
+    const inputField = document.getElementById(combinedAnswerId)
+    inputField.value = ans + ':' + session
+
+    const box = document.getElementById('captcheck_' + idp + '_answer_' + ans)
+    if (box) {
+      box.checked = true
+    }
   }
 
-  function switchMode (idp) {
-    var switchLabel = document.getElementById('captcheck_' + idp + '_alt_question_button')
-    var imgQ = document.getElementById('captcheck_' + idp + '_question_image')
-    var accQ = document.getElementById('captcheck_' + idp + '_question_access')
-    var imgA = document.getElementById('captcheck_' + idp + '_answer_images')
-    var accA = document.getElementById('captcheck_' + idp + '_answer_access')
+  function clearAnswer (idp, combinedAnswerId) {
+    const inputField = document.getElementById(combinedAnswerId)
+    inputField.value = ''
+
+    const imgA = document.getElementById('captcheck_' + idp + '_answer_images')
+    imgA.childNodes.forEach(e => {
+      e.firstElementChild.checked = false
+    })
+  }
+
+  function switchMode (idp, session, combinedAnswerId) {
+    const switchLabel = document.getElementById('captcheck_' + idp + '_alt_question_button')
+    const imgQ = document.getElementById('captcheck_' + idp + '_question_image')
+    const accQ = document.getElementById('captcheck_' + idp + '_question_access')
+    const imgA = document.getElementById('captcheck_' + idp + '_answer_images')
+    const accA = document.getElementById('captcheck_' + idp + '_answer_access')
+
+    clearAnswer(idp, combinedAnswerId)
+
     if (switchLabel.innerHTML === textTextMode) {
       switchLabel.innerHTML = textImageMode
       imgQ.style.display = 'none'
       accQ.style.display = 'initial'
       imgA.style.display = 'none'
       accA.style.display = 'initial'
+
       accA.innerHTML = "<input type='text' name='captcheck_selected_answer' aria-label='Type your answer here.' autocomplete='off' autofill='off'/>"
+      accA.firstElementChild.addEventListener('input', function (ev) {
+        ev.preventDefault()
+        chooseAnswer(idp, this.value, session, combinedAnswerId)
+      })
     } else {
       switchLabel.innerHTML = textTextMode
       imgQ.style.display = 'initial'
@@ -68,6 +90,7 @@ window.onload = function () {
       nonce = container.dataset.stylenonce
     }
     var apiUrl = container.getAttribute('data-api_url')
+    var combinedAnswerId = container.getAttribute('combined_answer_id')
     var xhr = new XMLHttpRequest()
     xhr.open('GET', apiUrl + '?action=new', true)
     xhr.onreadystatechange = function () {
@@ -114,24 +137,24 @@ window.onload = function () {
           var answerButtons = document.querySelectorAll('.captcheck_answer_label[data-prefix="' + idp + '"]')
           for (var k = 0; k < answerButtons.length; k++) {
             answerButtons[k].addEventListener('click', function (ev) {
-              chooseAnswer(ev.target.getAttribute('data-prefix'), ev.target.getAttribute('data-answer'))
+              chooseAnswer(ev.target.getAttribute('data-prefix'), ev.target.getAttribute('data-answer'), data.session, combinedAnswerId)
               ev.preventDefault()
             })
             answerButtons[k].addEventListener('keydown', function (ev) {
               if (ev.key === 'Enter' || ev.which === 13 || ev.keyCode === 13 || ev.key === ' ' || ev.which === 32 || ev.keyCode === 32) {
-                chooseAnswer(ev.target.getAttribute('data-prefix'), ev.target.getAttribute('data-answer'))
+                chooseAnswer(ev.target.getAttribute('data-prefix'), ev.target.getAttribute('data-answer'), data.session, combinedAnswerId)
                 ev.preventDefault()
               }
             })
           }
           document.querySelector('.captcheck_alt_question_button[data-prefix="' + idp + '"]').addEventListener('click', function (ev) {
-            switchMode(ev.target.getAttribute('data-prefix'))
             ev.preventDefault()
+            switchMode(ev.target.getAttribute('data-prefix'), data.session, combinedAnswerId)
           })
           document.querySelector('.captcheck_alt_question_button[data-prefix="' + idp + '"]').addEventListener('keydown', function (ev) {
             if (ev.key === 'Enter' || ev.which === 13 || ev.keyCode === 13 || ev.key === ' ' || ev.which === 32 || ev.keyCode === 32) {
-              switchMode(ev.target.getAttribute('data-prefix'))
               ev.preventDefault()
+              switchMode(ev.target.getAttribute('data-prefix'), data.session, combinedAnswerId)
             }
           })
         } else {

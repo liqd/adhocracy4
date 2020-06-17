@@ -9,7 +9,6 @@ from django.utils.translation import ngettext
 from django.utils.translation import ugettext_lazy as _
 
 from meinberlin.apps.captcha.fields import CaptcheckCaptchaField
-from meinberlin.apps.captcha.mixins import CaptcheckCaptchaFormMixin
 from meinberlin.apps.organisations.models import Organisation
 
 
@@ -38,8 +37,7 @@ class UserAdminForm(auth_forms.UserChangeForm):
         return self.cleaned_data
 
 
-class TermsSignupForm(SignupForm,
-                      CaptcheckCaptchaFormMixin):
+class TermsSignupForm(SignupForm):
     terms_of_use = forms.BooleanField(
         label=_('Terms of use')
     )
