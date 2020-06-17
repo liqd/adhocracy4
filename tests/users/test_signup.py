@@ -14,8 +14,7 @@ def test_signup_user_newsletter_checked(client):
             'password1': 'password',
             'password2': 'password',
             'terms_of_use': 'on',
-            'captcha': 0,
-            'captcheck_selected_answer': 'test_pass',
+            'captcha': 'testpass:0'
         })
     assert resp.status_code == 302
     user = User.objects.get()
@@ -31,8 +30,7 @@ def test_signup_user_newsletter_not_checked(client):
             'password1': 'password',
             'password2': 'password',
             'terms_of_use': 'on',
-            'captcha': 0,
-            'captcheck_selected_answer': 'test_pass',
+            'captcha': 'testpass:0'
         })
     assert resp.status_code == 302
     user = User.objects.get()
@@ -47,8 +45,7 @@ def test_signup_user_unchecked_terms_of_use(client):
             'email': 'mail@example.com',
             'password1': 'password',
             'password2': 'password',
-            'captcha': 0,
-            'captcheck_selected_answer': 'test_pass',
+            'captcha': 'testpass:0'
         })
     assert User.objects.count() == 0
     assert not resp.context['form'].is_valid()
