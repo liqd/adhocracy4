@@ -29,6 +29,11 @@ class WagtailCaptchaEmailForm(AbstractEmailForm):
 
     form_builder = WagtailCaptchaFormBuilder
 
+    def process_form_submission(self, form):
+        form.fields.pop('captcha', None)
+        form.cleaned_data.pop('captcha', None)
+        return super().process_form_submission(form)
+
     class Meta:
         abstract = True
 
