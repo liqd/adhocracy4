@@ -106,7 +106,7 @@ def test_register_with_next(client, signup_url):
             'password1': 'password',
             'password2': 'password',
             'terms_of_use': 'on',
-            'next': '/projects/pppp/',
+            'next': '/projekte/pppp/',
             'captcha': 'testpass:0'
         }
     )
@@ -116,7 +116,7 @@ def test_register_with_next(client, signup_url):
     ).count() == 1
     assert len(mail.outbox) == 1
     confirmation_url = re.search(
-        r'(http://testserver/.*/?next=/projects/pppp/)',
+        r'(http://testserver/.*/?next=/projekte/pppp/)',
         str(mail.outbox[0].body)
     ).group(0)
     confirm_email_response = client.get(confirmation_url)
