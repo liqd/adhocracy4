@@ -21,3 +21,9 @@ def send_notification(sender, instance, created, **kwargs):
 
         if instance.email:
             emails.SubmitterConfirmation.send(instance)
+
+
+@receiver(post_save, sender=Bplan)
+def send_update(sender, instance, update_fields, **kwargs):
+    if update_fields:
+        emails.OfficeWorkerUpdateConfirmation.send(instance)

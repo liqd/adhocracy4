@@ -1,0 +1,25 @@
+{% extends 'email_base.'|add:part_type %}
+
+{% load wagtailcore_tags %}
+
+{% block subject %}Betreff: Ihr Bebauungsplan auf {{ site.name }}: {{ identifier }}{% endblock %}
+
+{% block headline %}Ihr Bebauungsplan auf {{ site.name }}{% endblock %}
+
+{% block sub-headline %}{{ bplan.name }}{% endblock %}
+
+{% block content %}
+
+der oben genannte Bebauungsplan wurde auf {{ site.name }} veröffentlicht, geändert oder als Entwurf angelegt. Alle eingehenden Stellungnahmen werden an {{ bplan.office_worker_email }} weitergeleitet.
+
+Bebauungsplan-Nr.: {{ identifier }}
+Beteiligungszeitraum: {{ bplan.start_date }} – {{ bplan.end_date }}
+
+Falls der Bebauungsplan nicht korrekt angezeigt wird, können Sie sich an support@mein.berlin.de wenden.
+
+{% endblock %}
+
+{% block cta_label %}Zur Projektünersicht{% endblock %}
+{% block cta_url %}{{ project.externalproject.url }}{% endblock %}
+
+{% block reason %}Diese E-Mail wurde an {{ receiver }} gesendet. Sie haben die E-Mail erhalten, weil Sie als Sachbearbeiter*in für eine digitale Öffentlichkeitsbeteiligung zu einem Bebauungsplan eingetragen wurden.{% endblock %}

@@ -1,0 +1,1 @@
+{% extends 'meinberlin_bplan/emails/office_worker_update_confirmation.de.email' %}
