@@ -86,7 +86,7 @@ urlpatterns = [
     url(r'^admin/', include('wagtail.admin.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^documents/', include('wagtail.documents.urls')),
-    url(r'^projects/', include('meinberlin.apps.projects.urls')),
+    url(r'^projekte/', include('meinberlin.apps.projects.urls')),
 
     url(r'^ideas/', include(('meinberlin.apps.ideas.urls',
                              'meinberlin_ideas'),
