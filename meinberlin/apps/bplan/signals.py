@@ -25,5 +25,5 @@ def send_notification(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Bplan)
 def send_update(sender, instance, update_fields, **kwargs):
-    if update_fields:
+    if not update_fields or 'point' not in update_fields:
         emails.OfficeWorkerUpdateConfirmation.send(instance)
