@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from modelcluster.fields import ParentalKey
 from wagtail.admin import edit_handlers
 from wagtail.contrib.forms.forms import FormBuilder
@@ -19,7 +20,9 @@ class WagtailCaptchaFormBuilder(FormBuilder):
     def formfields(self):
         # Add captcha to formfields property
         fields = super().formfields
-        fields['captcha'] = CaptcheckCaptchaField()
+        fields['captcha'] = CaptcheckCaptchaField(
+            label=_('I am not a robot')
+        )
 
         return fields
 

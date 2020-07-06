@@ -57,7 +57,9 @@ class TermsSignupForm(SignupForm):
         required=False,
         initial=True
     )
-    captcha = CaptcheckCaptchaField()
+    captcha = CaptcheckCaptchaField(
+        label=_('I am not a robot')
+    )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
