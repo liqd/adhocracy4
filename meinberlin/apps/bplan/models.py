@@ -47,8 +47,7 @@ class Statement(AnonymousItem):
                             verbose_name=_('Your Name'))
     email = models.EmailField(blank=True,
                               verbose_name=_('Email address'))
-    statement = models.TextField(max_length=17500,
-                                 verbose_name=_('Statement'))
+    statement = models.TextField(verbose_name=_('Statement'))
 
     street_number = models.CharField(max_length=255,
                                      verbose_name=_('Street, House number'))
