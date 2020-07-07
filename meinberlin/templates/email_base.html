@@ -6,16 +6,18 @@
         <title>{% block subject %}{% endblock %}</title>
     </head>
     <body style="margin: 0; padding: 0; min-width: 100% !important; line-height: 1.2;">
-        <div style="margin: 20px auto; padding: 20px; width: 100%; max-width: 650px; background-color: #fff; box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);">
+        <div style="margin: 20px auto; padding: 24px; width: 100%; max-width: 650px; background-color: #fff; box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);">
             <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
                 <tr>
                     {% block logo %}
                     <td style="padding-top: 20px; text-align: center; margin-left: auto; margin-right: auto;" align="center">
+                        <div style="margin-left: auto; margin-right: auto;">
                         {% if organisation.logo %}
                             <img width="15%" src="cid:organisation_logo" style="width: 15%;" alt="Logo" >
                         {% else %}
                             <img width="15%" src="cid:logo" style="width: 15%;" alt="Logo" >
                         {% endif %}
+                        </div>
                     </td>
                     {% endblock %}
                 </tr>
