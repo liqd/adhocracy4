@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-25 17:38+0200\n"
+"POT-Creation-Date: 2020-07-07 15:26+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -938,7 +938,7 @@ msgstr "Bilder"
 #: adhocracy4/projects/admin.py:59
 #: meinberlin/apps/plans/models.py:76
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:90
-#: meinberlin/apps/projects/admin.py:56 meinberlin/templates/email_base.html:82
+#: meinberlin/apps/projects/admin.py:56 meinberlin/templates/email_base.html:84
 #: meinberlin/templates/email_base.txt:17
 msgid "Contact"
 msgstr "Kontakt"
@@ -1403,15 +1403,15 @@ msgstr "Ihr Name"
 msgid "Email address"
 msgstr "E-Mail Adresse"
 
-#: meinberlin/apps/bplan/models.py:51
+#: meinberlin/apps/bplan/models.py:50
 msgid "Statement"
 msgstr "Stellungnahme"
 
-#: meinberlin/apps/bplan/models.py:54
+#: meinberlin/apps/bplan/models.py:53
 msgid "Street, House number"
 msgstr "Straße, Hausnummer"
 
-#: meinberlin/apps/bplan/models.py:56
+#: meinberlin/apps/bplan/models.py:55
 msgid "Postal code, City"
 msgstr "Postleitzahl, Stadt"
 
@@ -1787,13 +1787,13 @@ msgstr "meist kommentiert"
 msgid "Your budget request has been deleted"
 msgstr "Ihr Vorschlag wurde gelöscht"
 
-#: meinberlin/apps/captcha/mixins.py:35
-msgid "Your answer to the captcha was wrong."
-msgstr ""
+#: meinberlin/apps/captcha/fields.py:37 meinberlin/apps/captcha/fields.py:45
+msgid "Something about the answer to the captcha was wrong."
+msgstr "Etwas an der Antwort auf das Captcha war falsch."
 
-#: meinberlin/apps/captcha/mixins.py:37
-msgid "Please answer the captcha"
-msgstr ""
+#: meinberlin/apps/captcha/fields.py:50
+msgid "Your answer to the captcha was wrong."
+msgstr "Ihre Antwort auf das Captcha war falsch."
 
 #: meinberlin/apps/cms/emails.py:33
 msgid "Form Field"
@@ -1802,6 +1802,11 @@ msgstr "Formularfeld"
 #: meinberlin/apps/cms/emails.py:34
 msgid "Response"
 msgstr "Antwort"
+
+#: meinberlin/apps/cms/models/email_form.py:24
+#: meinberlin/apps/users/forms.py:61
+msgid "I am not a robot"
+msgstr "Ich bin kein Roboter"
 
 #: meinberlin/apps/cms/templates/meinberlin_cms/blocks/projects_block.html:12
 msgid "Show all projects"
@@ -2149,7 +2154,8 @@ msgstr "Modul ist bereits entfernt"
 
 #: meinberlin/apps/dashboard/views.py:166
 msgid "Module cannot be removed from a published project."
-msgstr "Module können nicht aus einem veröffentlichten Projekt entfernt werden."
+msgstr ""
+"Module können nicht aus einem veröffentlichten Projekt entfernt werden."
 
 #: meinberlin/apps/dashboard/views.py:171
 msgid "Module cannot be removed. It is the only module added to the project."
@@ -2702,7 +2708,7 @@ msgid "Note only visible internally within project."
 msgstr "Notiz ist nur projektintern sichtbar."
 
 #: meinberlin/apps/newsletters/forms.py:25
-#: meinberlin/apps/newsletters/models.py:43
+#: meinberlin/apps/newsletters/models.py:46
 msgid "Receivers"
 msgstr "Empfänger*innen"
 
@@ -2745,14 +2751,21 @@ msgstr "Betreff"
 msgid "Email body"
 msgstr "Inhalt der E-Mail"
 
-#: meinberlin/apps/newsletters/models.py:40
+#: meinberlin/apps/newsletters/models.py:39
+msgid ""
+"When adding images, please ensure to set the width no larger than 650px."
+msgstr ""
+"Falls Sie dem Newsletter ein Foto hinzufügen, geben Sie in den Einstellungen"
+" eine Breite von max. 650 Pixel an."
+
+#: meinberlin/apps/newsletters/models.py:43
 #: meinberlin/apps/platformemails/models.py:26
 msgid "Sent"
 msgstr "Senden"
 
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:4
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:4
-#: meinberlin/apps/users/forms.py:47 meinberlin/apps/users/forms.py:84
+#: meinberlin/apps/users/forms.py:45 meinberlin/apps/users/forms.py:84
 #: meinberlin/apps/users/models.py:65
 #: meinberlin/templates/a4dashboard/base_dashboard.html:50
 msgid "Newsletter"
@@ -3087,8 +3100,8 @@ msgid ""
 "This email will be sent to all registered and verified users of mein.berlin."
 "de."
 msgstr ""
-"Diese E-Mail wird an alle registrierten und verifizierten Nutzer von "
-"mein.berlin.de verschickt."
+"Diese E-Mail wird an alle registrierten und verifizierten Nutzer von mein."
+"berlin.de verschickt."
 
 #: meinberlin/apps/platformemails/views.py:47
 msgid "Platform email has been saved and will be sent to the recipients."
@@ -3629,7 +3642,7 @@ msgstr "Wichtige Daten"
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Bitte korrigieren Sie Ihre E-Mail Adresse, getrennt durch Kommata."
 
-#: meinberlin/apps/users/forms.py:30
+#: meinberlin/apps/users/forms.py:29
 #, python-format
 msgid ""
 "User is member in more than one group in this organisation: %(duplicates)s."
@@ -3638,13 +3651,13 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: meinberlin/apps/users/forms.py:44 meinberlin/apps/users/forms.py:81
-#: meinberlin/templates/email_base.html:83
+#: meinberlin/apps/users/forms.py:42 meinberlin/apps/users/forms.py:81
+#: meinberlin/templates/email_base.html:85
 #: meinberlin/templates/email_base.txt:18
 msgid "Terms of use"
 msgstr "Nutzungsbedingungen"
 
-#: meinberlin/apps/users/forms.py:48 meinberlin/apps/users/forms.py:85
+#: meinberlin/apps/users/forms.py:46 meinberlin/apps/users/forms.py:85
 #: meinberlin/apps/users/models.py:68
 msgid ""
 "Yes, I would like to receive e-mail newsletters about the projects I am "
@@ -3652,12 +3665,12 @@ msgid ""
 msgstr ""
 "Ja, ich möchte E-Mail-Newsletter erhalten zu den Projekten, denen ich folge."
 
-#: meinberlin/apps/users/forms.py:53 meinberlin/apps/users/forms.py:90
+#: meinberlin/apps/users/forms.py:51 meinberlin/apps/users/forms.py:90
 #: meinberlin/apps/users/models.py:55
 msgid "Notifications"
 msgstr "Benachrichtigungen"
 
-#: meinberlin/apps/users/forms.py:54 meinberlin/apps/users/forms.py:91
+#: meinberlin/apps/users/forms.py:52 meinberlin/apps/users/forms.py:91
 #: meinberlin/apps/users/models.py:58
 msgid ""
 "Yes, I would like to be notified by e-mail about the start and end of "
@@ -4250,12 +4263,12 @@ msgstr ""
 msgid "Error"
 msgstr "Fehler"
 
-#: meinberlin/templates/email_base.html:33
+#: meinberlin/templates/email_base.html:35
 #: meinberlin/templates/email_base.txt:5
 msgid "Hello"
 msgstr "Guten Tag"
 
-#: meinberlin/templates/email_base.html:78
+#: meinberlin/templates/email_base.html:80
 #: meinberlin/templates/email_base.txt:14
 msgid "meinBerlin is a participation platform operated by"
 msgstr "meinBerlin ist die Plattform für Beteiligung, betrieben durch"
