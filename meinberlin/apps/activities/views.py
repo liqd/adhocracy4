@@ -1,6 +1,6 @@
 from django.views import generic
 
-import adhocracy4.dashboard.mixins as dashboard_mixins
+from adhocracy4.dashboard import mixins as dashboard_mixins
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 
