@@ -10,19 +10,19 @@
             <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
                 <tr>
                     {% block logo %}
-                    <td style="padding-top: 20px; text-align: center; margin-left: auto; margin-right: auto;" align="center">
-                        <div style="width: 200px; height: auto;">
+                    <td style="padding-top: 20px; text-align: center; display: flex; justify-content: center;" align="center">
+                        <div style="width: 15%; min-width: 100px; height: auto; margin-left: auto; margin-right: auto; text-align: center;">
                         {% if organisation.logo %}
-                            <img width="15%" src="cid:organisation_logo" style="width: 15%; max-width: 200px;" alt="Logo" >
+                            <img src="cid:organisation_logo" alt="Logo" style="width: 100%;">
                         {% else %}
-                            <img width="15%" src="cid:logo" style="width: 15%; max-width: 200px;" alt="Logo" >
+                            <img src="cid:logo" alt="Logo" style="width: 100%;">
                         {% endif %}
                         </div>
                     </td>
                     {% endblock %}
                 </tr>
                 <tr>
-                    <td style="padding-top: 20px; text-align: center;" align="center">
+                    <td style="padding-top: 20px; text-align: center; margin-left: auto; margin-right: auto;" align="center">
                         <h2>{% block headline %}{% endblock %}</h2>
                         <h3 style="color: #818181;">
                         {% block sub-headline %}{% endblock %}</h3>

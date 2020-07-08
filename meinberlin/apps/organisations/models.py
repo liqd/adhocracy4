@@ -23,7 +23,8 @@ class Organisation(models.Model):
         'logo',
         verbose_name=_('Logo'),
         help_prefix=_(
-            'The image will be shown in the newsletter in the banner.'
+            'The image will be shown in the newsletter in the banner, '
+            'as such it should not be wider than 650 pixels.'
         ),
         upload_to='organisation/logos',
         blank=True)
