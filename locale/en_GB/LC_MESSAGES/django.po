@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 15:26+0200\n"
+"POT-Creation-Date: 2020-07-08 17:24+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -857,7 +857,7 @@ msgstr ""
 "Phone numbers can only contain digits, spaces and the following characters: "
 "-, +, (, ). It has to be between 8 and 20 characters long."
 
-#: adhocracy4/projects/models.py:48 meinberlin/apps/organisations/models.py:32
+#: adhocracy4/projects/models.py:48 meinberlin/apps/organisations/models.py:33
 msgid "Postal address"
 msgstr "Postal address"
 
@@ -2736,10 +2736,14 @@ msgid "Logo"
 msgstr "Logo"
 
 #: meinberlin/apps/organisations/models.py:26
-msgid "The image will be shown in the newsletter in the banner."
-msgstr "The image will be shown in the newsletter in the banner."
+msgid ""
+"The image will be shown in the newsletter in the banner, as such it should "
+"not be wider than 650 pixels."
+msgstr ""
+"The image will be shown in the newsletter in the banner, as such it should "
+"not be wider than 650 pixels."
 
-#: meinberlin/apps/organisations/models.py:36
+#: meinberlin/apps/organisations/models.py:37
 msgid "Website of organisation"
 msgstr "Website of organisation"
 
@@ -4204,6 +4208,9 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid "The image will be shown in the newsletter in the banner."
+#~ msgstr "The image will be shown in the newsletter in the banner."
 
 #~ msgid "Please answer the captcha"
 #~ msgstr "Please answer the captcha"

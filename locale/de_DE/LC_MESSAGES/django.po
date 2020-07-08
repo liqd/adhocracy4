@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-07 15:26+0200\n"
+"POT-Creation-Date: 2020-07-08 17:24+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -952,7 +952,7 @@ msgstr ""
 "enthalten: -, +, (, ). Sie müssen zwischen 8 und 20 Zeichen lang sein."
 
 #: adhocracy4/projects/models.py:48
-#: meinberlin/apps/organisations/models.py:32
+#: meinberlin/apps/organisations/models.py:33
 msgid "Postal address"
 msgstr "Postadresse"
 
@@ -2755,8 +2755,8 @@ msgstr "Inhalt der E-Mail"
 msgid ""
 "When adding images, please ensure to set the width no larger than 650px."
 msgstr ""
-"Falls Sie dem Newsletter ein Foto hinzufügen, geben Sie in den Einstellungen"
-" eine Breite von max. 650 Pixel an."
+"Falls Sie dem Newsletter ein Foto hinzufügen, geben Sie in den Einstellungen "
+"eine Breite von max. 650 Pixel an."
 
 #: meinberlin/apps/newsletters/models.py:43
 #: meinberlin/apps/platformemails/models.py:26
@@ -2875,10 +2875,14 @@ msgid "Logo"
 msgstr "Logo"
 
 #: meinberlin/apps/organisations/models.py:26
-msgid "The image will be shown in the newsletter in the banner."
-msgstr "Das Bild wird in der Kopfzeile von Newslettern angezeigt."
+msgid ""
+"The image will be shown in the newsletter in the banner, as such it should "
+"not be wider than 650 pixels."
+msgstr ""
+"Das Bild wird in der Kopfzeile von Newslettern angezeigt und darf an dieser "
+"Stelle nicht breiter als 650 pixels sein."
 
-#: meinberlin/apps/organisations/models.py:36
+#: meinberlin/apps/organisations/models.py:37
 msgid "Website of organisation"
 msgstr "Webseite der Organisation"
 
@@ -4347,6 +4351,9 @@ msgid ""
 msgstr ""
 "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
 "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
+
+#~ msgid "The image will be shown in the newsletter in the banner."
+#~ msgstr "Das Bild wird in der Kopfzeile von Newslettern angezeigt."
 
 #~ msgid "Create newsletter"
 #~ msgstr "Newsletter erstellen"
