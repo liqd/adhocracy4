@@ -103,12 +103,6 @@ class Command(BaseCommand):
             action,
             receiver=[self.user],
             template_name=notification_emails.
-            NotifyFollowersOnNewItemCreated.template_name)
-
-        TestEmail.send(
-            action,
-            receiver=[self.user],
-            template_name=notification_emails.
             NotifyModeratorsEmail.template_name)
 
     def _send_notification_phase(self):
@@ -154,7 +148,7 @@ class Command(BaseCommand):
         # Send notification for bplan update
         bplan = Bplan.objects.first()
         if not bplan:
-            raise CommandError('At least one bplan field update is required')
+            raise CommandError('At least one bplan is required')
 
         TestEmail.send(
             bplan,
@@ -167,12 +161,6 @@ class Command(BaseCommand):
         report = Report.objects.first()
         if not report:
             raise CommandError('At least on report is required')
-
-        TestEmail.send(
-            report,
-            receiver=[self.user],
-            template_name=reports_emails.ReportCreatorEmail.template_name
-        )
 
         TestEmail.send(
             report,
