@@ -29,3 +29,9 @@ class BplanProjectForm(ExternalProjectForm):
                   'start_date', 'end_date']
         required_for_project_publish = ['name', 'url', 'description',
                                         'office_worker_email']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs.update({
+            'autocomplete': 'off', 'autofill': 'off'
+        })
