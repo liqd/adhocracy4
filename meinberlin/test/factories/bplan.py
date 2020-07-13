@@ -10,4 +10,5 @@ class BplanFactory(factory.django.DjangoModelFactory):
         model = bplan_models.Bplan
 
     name = factory.Faker('sentence', nb_words=4)
+    office_worker_email = factory.Faker('email')
     organisation = factory.SubFactory(a4_factories.ORGANISATION_FACTORY)

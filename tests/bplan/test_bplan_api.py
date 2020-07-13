@@ -1,5 +1,6 @@
 import pytest
 from dateutil.parser import parse
+from django.core import mail
 from django.urls import reverse
 from rest_framework import status
 
@@ -60,12 +61,15 @@ def test_initiator_add_bplan(apiclient, organisation):
     assert phase is not None
     assert phase.start_date == parse("2013-01-01 17:00:00 UTC")
     assert phase.end_date == parse("2021-01-01 17:00:00 UTC")
+    assert len(mail.outbox) == 1
+    assert mail.outbox[0].to == ["test@liqd.de"]
 
 
 @pytest.mark.django_db
 def test_initiator_update_bplan(apiclient, bplan, phase):
     phase.module.project = bplan
     phase.module.save()
+    assert len(mail.outbox) == 1
     url = reverse(
         'bplan-detail',
         kwargs={
@@ -98,6 +102,8 @@ def test_initiator_update_bplan(apiclient, bplan, phase):
     assert phase is not None
     assert phase.start_date == parse("2013-01-01 17:00:00 UTC")
     assert phase.end_date == parse("2021-01-01 17:00:00 UTC")
+    assert len(mail.outbox) == 2
+    assert mail.outbox[1].to == ["test@liqd.de"]
 
 
 @pytest.mark.django_db
@@ -105,6 +111,7 @@ def test_unarchive_bplan(apiclient, bplan, phase):
     bplan.is_archived = True
     phase.module.project = bplan
     phase.module.save()
+    assert len(mail.outbox) == 1
     url = reverse(
         'bplan-detail',
         kwargs={
@@ -130,6 +137,8 @@ def test_unarchive_bplan(apiclient, bplan, phase):
     assert bplan.is_draft is True
     assert bplan.is_archived is False
     assert bplan.tile_image_copyright == data.get('image_copyright')
+    assert len(mail.outbox) == 2
+    assert mail.outbox[1].to == ["test@liqd.de"]
 
 
 @pytest.mark.django_db
@@ -137,6 +146,7 @@ def test_initiator_update_bplan_field(apiclient, bplan_factory, phase):
     bplan = bplan_factory(is_draft=False)
     phase.module.project = bplan
     phase.module.save()
+    assert len(mail.outbox) == 1
     assert bplan.is_draft is False
     url = reverse(
         'bplan-detail',
@@ -154,6 +164,8 @@ def test_initiator_update_bplan_field(apiclient, bplan_factory, phase):
     assert response.status_code == status.HTTP_200_OK
     bplan = bplan_models.Bplan.objects.first()
     assert bplan.is_draft is True
+    assert len(mail.outbox) == 2
+    assert mail.outbox[1].to == [bplan.office_worker_email]
 
 
 @pytest.mark.django_db
@@ -161,6 +173,7 @@ def test_initiator_update_bplan_phase(apiclient, bplan_factory, phase):
     bplan = bplan_factory(is_draft=False)
     phase.module.project = bplan
     phase.module.save()
+    assert len(mail.outbox) == 1
     assert bplan.is_draft is False
     url = reverse(
         'bplan-detail',
@@ -183,6 +196,8 @@ def test_initiator_update_bplan_phase(apiclient, bplan_factory, phase):
     phase = phase_models.Phase.objects.get(module=phase.module)
     assert phase.start_date == parse("2013-01-01 17:00:00 UTC")
     assert phase.end_date == parse("2021-01-01 17:00:00 UTC")
+    assert len(mail.outbox) == 2
+    assert mail.outbox[1].to == [bplan.office_worker_email]
 
 
 @pytest.mark.django_db
@@ -224,3 +239,5 @@ def test_add_bplan_response(apiclient, organisation):
         'id': pytest_regex('^[0-9]*$'),
         'embed_code': embed_code
     }
+    assert len(mail.outbox) == 1
+    assert mail.outbox[0].to == ["test@liqd.de"]
