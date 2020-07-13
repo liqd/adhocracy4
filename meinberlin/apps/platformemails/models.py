@@ -20,7 +20,10 @@ class PlatformEmail(UserGeneratedContentModel):
                                verbose_name=_('Subject'))
     body = RichTextUploadingField(blank=True,
                                   config_name='image-editor',
-                                  verbose_name=_('Email body'))
+                                  verbose_name=_('Email body'),
+                                  help_text=_(
+                                      'When adding images, please ensure to '
+                                      'set the width no larger than 650px.'))
     sent = models.DateTimeField(blank=True,
                                 null=True,
                                 verbose_name=_('Sent'))
