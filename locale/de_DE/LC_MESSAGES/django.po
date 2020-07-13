@@ -3104,8 +3104,8 @@ msgid ""
 "This email will be sent to all registered and verified users of mein.berlin."
 "de."
 msgstr ""
-"Diese E-Mail wird an alle registrierten und verifizierten Nutzer von mein."
-"berlin.de verschickt."
+"Diese E-Mail wird an alle registrierten und verifizierten Nutzer*innen "
+"von mein.berlin.de verschickt."
 
 #: meinberlin/apps/platformemails/views.py:47
 msgid "Platform email has been saved and will be sent to the recipients."
