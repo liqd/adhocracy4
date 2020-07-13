@@ -1,5 +1,6 @@
 import pytest
 from dateutil.parser import parse
+from django.core import mail
 
 from adhocracy4.dashboard import components
 from adhocracy4.test.helpers import redirect_target
@@ -18,6 +19,7 @@ def test_edit_view(client, phase_factory, bplan, module_factory):
     client.login(username=initiator.email, password='password')
     response = client.get(url)
     assert_dashboard_form_component_response(response, component)
+    assert len(mail.outbox) == 1
 
     data = {
         'name': 'name',
@@ -49,3 +51,5 @@ def test_edit_view(client, phase_factory, bplan, module_factory):
     assert phase.start_date == parse("2013-01-01 17:00:00 UTC")
     assert phase.end_date == parse("2013-01-10 17:00:00 UTC")
     assert bplan.project_type == 'meinberlin_bplan.Bplan'
+    assert len(mail.outbox) == 2
+    assert mail.outbox[1].to == ["test@foo.bar"]
