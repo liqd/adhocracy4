@@ -2121,7 +2121,7 @@ msgstr ""
 #: meinberlin/apps/extprojects/models.py:10
 msgid "Please enter a full url which starts with https:// or http://"
 msgstr ""
-"Bitte geben Sie eine vollständige URL ein, die mit https:// or http:// "
+"Bitte geben Sie eine vollständige URL ein, die mit https:// oder http:// "
 "beginnt."
 
 #: meinberlin/apps/dashboard/forms.py:24
@@ -2880,7 +2880,7 @@ msgid ""
 "not be wider than 650 pixels."
 msgstr ""
 "Das Bild wird in der Kopfzeile von Newslettern angezeigt und darf an dieser "
-"Stelle nicht breiter als 650 pixels sein."
+"Stelle nicht breiter als 650 Pixel sein."
 
 #: meinberlin/apps/organisations/models.py:37
 msgid "Website of organisation"
