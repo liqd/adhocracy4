@@ -18,9 +18,9 @@ participation process model
 ---------------------------
 
 The adhocracy4 process model always replicates the following data model: A set
-of organisations on the platform runs each their own participation projects.
+of organisations on the platform each run their own participation projects.
 Each project will be structured into a consecutive number of steps (called
-phases). In a phase objects in a data collection (called module) can be
+phases). In a phase (or step) objects in a data collection (called a module) can be
 created, updated or enhanced with more information and feedback. Phases can
 share their dataset among each other, and are likely to do so if they are
 defined in the same django app. Phases from different django apps should not
@@ -51,7 +51,7 @@ entity relation model
 -   follows automatically a given timeline (phases)
 -   exposes moderators / members (via `has_member` or `has_moderator` method)
 -   provides an `is_archived` flag, allowing to distinguish projects with
-    finished participation phases that may still be active in other ways from 
+    finished participation phases that may still be active in other ways from
     truly archived projects.
 
 ### modules
@@ -67,7 +67,7 @@ entity relation model
 
 ### phase types (also called phase content)
 
--   not stored in database, registered at startup
+-   not stored in database, registered at setup
 -   each django app can define new phase types
 -   describes possible actions in current phase
     -   used for permissions
@@ -95,8 +95,8 @@ comment belongs to.
 ### extending item model
 
 Extending the item model (part of `a4modules`) will create a new model that
-belongs to module and therefore to a specific project. This is usually the best
-option if the user should create new content within a project. Examples are
+belongs to a module and therefore to a specific project. This is usually the
+best option if the user should create new content within a project. Examples are
 ideas, documents.
 
 Advantages:
@@ -107,13 +107,13 @@ Advantages:
 
 An item might be composed of various smaller parts. An example is the document
 which consists of paragraphs. In that case only a container for the parts
-should be an item (eg. document for paragraphs), but all parts should still
-implement the `project` property.
+should be an item (eg. document containing paragraphs), but all parts should
+still implement the `project` property.
 
 Open questions:
 
--   Do we need the item class at all? Wouldn't be a foreign key to a module
-    enough for all use cases?
+-   Do we need the item class at all? Wouldn't a foreign key to a module
+    be enough for all use cases?
 
     -   benefit: one table less
     -   down side: mixed list of different item types are harder
@@ -129,7 +129,7 @@ Open questions:
 
 ### using generic foreign keys
 
-A model can have a generic key, which allows to attach it to every django
+A model can have a generic key, which allows it to attach to every django
 model. This is usually the best option when a user does something in relation
 to existing user generated content. An example is rating of existing ideas.
 

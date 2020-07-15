@@ -114,7 +114,7 @@ class Phase(models.Model):
     def is_first_of_project(self):
         """Test if this is the first phase of the project.
 
-        Attention: _deprecated_ as this only wroks for one module where the
+        Attention: _deprecated_ as this only works for one module where the
         phase order is determined by weight.
         """
         warnings.warn(
