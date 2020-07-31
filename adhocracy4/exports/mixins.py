@@ -54,7 +54,8 @@ class ExportModelFieldsMixin(VirtualFieldMixin):
         for field in html_fields:
             get_field_attr_name = 'get_%s_data' % field
             setattr(self, get_field_attr_name,
-                    lambda item: unescape_and_strip_html(getattr(item, field)))
+                    lambda item, field_name=field:
+                    unescape_and_strip_html(getattr(item, field_name)))
 
 
 class ItemExportWithRatesMixin(VirtualFieldMixin):
