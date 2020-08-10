@@ -4,23 +4,32 @@ adhocracy4 data model
 Adhocracy4 is a library to implement online participation software. It
 heavily relies on the Django webframework.
 
-This document describes some important constrains concerning the data model
-used of a software based on adhocracy4. It also shows the available options
+Examples of using adhocracy4 are [a+](https://github.com/liqd/adhocracy-plus),
+[meinBerlin](https://github.com/liqd/a4-meinberlin) and
+[Civic Europe](https://github.com/liqd/a4-civic-europe). The first two being
+online participation platforms implementing different processes like idea
+collections or debates, and the latter using adhocracy4 as the basis for a
+transparent idea challenge.
+
+This document describes some important constraints concerning the data models
+of the software using adhocracy4. It also shows the available options
 to extend the data model.
 
 The adhocracy4 data model is composed of various django apps. The `a4projects`,
 `a4modules` and `a4phases` provide the basic infrastructure to model
 participation processes. In order to write a well adapted participation
-software, additional apps can be created that base on the functionality on the
-core and provide more features.
+software, additional apps can be created that base on the functionality on
+adhocracy4 and provide more features.
 
 participation process model
 ---------------------------
 
 The adhocracy4 process model always replicates the following data model: A set
 of organisations on the platform each run their own participation projects.
-Each project will be structured into a consecutive number of steps (called
-phases). In a phase (or step) objects in a data collection (called a module) can be
+A project can have different modules concerning the same topic. Most commonly
+only one module per project is used, though.
+Each module shares its data and will be structured into a consecutive number of
+steps (called phases). In a phase (or step) objects in the data collection can be
 created, updated or enhanced with more information and feedback. Phases can
 share their dataset among each other, and are likely to do so if they are
 defined in the same django app. Phases from different django apps should not
@@ -48,21 +57,21 @@ entity relation model
 -   map a participation project / process in the real world
 -   allow to specify local moderators and participants (user roles)
 -   contains containers of participation content (modules)
--   follows automatically a given timeline (phases)
 -   exposes moderators / members (via `has_member` or `has_moderator` method)
 -   provides an `is_archived` flag, allowing to distinguish projects with
     finished participation phases that may still be active in other ways from
-    truly archived projects.
+    truly archived projects
 
 ### modules
 
+-   follows automatically a given timeline (phases)
 -   container of items produced by a specific django app in the context of a
     project
 
 ### phases
 
 -   a period in which participation is possible (has start and end date)
--   limits which and how items can be created, or altered
+-   limits which and how items can be created, or altered via rules and permissions
 -   has a phase type set
 
 ### phase types (also called phase content)
@@ -71,7 +80,7 @@ entity relation model
 -   each django app can define new phase types
 -   describes possible actions in current phase
     -   used for permissions
-    -   used to enabled / disable call-to-actions
+    -   used to enable / disable call-to-actions
 -   sets content of the participation tab in project detail view
 
 user generated content
