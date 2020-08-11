@@ -108,7 +108,10 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader
           },
           {
-            loader: 'css-loader'
+            loader: 'css-loader',
+            options: {
+                url: url => !url.startsWith('/')
+            }
           },
           {
             loader: 'postcss-loader',
