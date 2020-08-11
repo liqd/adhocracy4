@@ -33,7 +33,7 @@ way with the participation module's content.
 ### Current Implementation
 
 -   abstract concept "phase" is split into "phase type" and "phase"
--   phase type is called phase content or phase identifier in one case
+-   phase type is sometimes called phase content or phase identifier
 -   phase type (or content) defines:
     -   permissions
     -   view to use
@@ -46,14 +46,12 @@ way with the participation module's content.
 -   phases are ordered by weight
     -   weights are usually initialised from the position of the phase type in
         the blueprint.
-        -   Attention: _deprecated_ as this only works for one module where the
-            phase order is determined by weight.
 -   no checking of start and end dates between phases (if overlap)
 -   view of phase displayed from start date to start date of next phase / or
     indefinitely?
 -   view of phase displayed from start date to end date
 -   permissions are only set for participants
-    -   ~~moderators and~~ initiators can always do everything?
+    - moderators and initiators can always do everything on item-level
 
 ### Current Implementation of Active, Past and Future Phases
 
@@ -62,10 +60,10 @@ The states of the phases are implemented a bit differently in the different plac
 #### PhasesQuerySet
 -   active_phases:
     -   start date <= now < end date
-    -   ordered by weight (default from model)?
+    -   ordered by weight (default from model)
 -   finished_phases:
     -   end date <= now
-    -   ordered by weight (default from model)?
+    -   ordered by weight (default from model)
 -   past_phases:
     -   end date <= now
     -   ordered by start
@@ -95,7 +93,7 @@ The states of the phases are implemented a bit differently in the different plac
     -   both ordered by start date
 -   active_phase
     - active_phases.first()
-    - ordered by weight?
+    - ordered by weight
     - there should only be one active phase in the module though
 -   last_active_phase
     - either active_phase or past_phases.last (the past phase the started last)
@@ -138,7 +136,8 @@ modules may overlap or run simultaneously this is called a multi module project.
 
 -   each module belongs to a project
 -   each module only has phases from one app
--   modules are ordered by start date of first phase
+-   modules are ordered by weight per default
+-   if a project has more than one module, the modules are either clustered if they are overlapping or ordered by module start
 -   a project defines a "last active" module as
     -   the module of the last active phase
     -   the last active phase is defined as the last starting phase out of all past
@@ -146,10 +145,9 @@ modules may overlap or run simultaneously this is called a multi module project.
 
 ### Use cases
 
--   an initiator can select a blueprint
+-   an initiator can select a blueprint in the dashboard
     -   blueprints define which module and phase combinations are possible
--   an initiator can add multiple offline events before/after each phase?
--   an initiator can add an offline phase before/after each phase (only OPIN)
+-   an initiator can add multiple offline events
 
 ## (Upcoming) challenges
 
