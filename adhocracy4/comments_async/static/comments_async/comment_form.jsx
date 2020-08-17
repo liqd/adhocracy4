@@ -99,7 +99,7 @@ export default class CommentForm extends React.Component {
               value={this.state.comment}
               onInput={this.handleTextareaGrow.bind(this)}
               style={textareaStyle}
-              autoFocus
+              autoFocus={this.props.commentCategoryChoices}
             />
             <div className="row">
               <label htmlFor="id-comment-form" className="col-6 text-muted">{this.state.commentCharCount}/4000{django.gettext(' characters')}</label>
