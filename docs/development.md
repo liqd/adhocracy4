@@ -1,6 +1,9 @@
 Setting up development env
 ==========================
 
+To develop a4, a project using it is needed. To start it is recommended to
+checkout [adhocracy-plus](https://github.com/liqd/adhocracy-plus).
+
 Preqrequisites:
 
 - checkout of your A4-project
@@ -26,7 +29,7 @@ Start development mode:
     cd ../$PROJECT
     pip install -e ../adhocracy4/
     npm link adhocracy4
-   
+
 Leave development mode:
 
     cd $PROJECT
