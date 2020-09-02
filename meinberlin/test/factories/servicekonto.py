@@ -5,7 +5,7 @@ from adhocracy4.test import factories as a4_factories
 from meinberlin.apps.servicekonto.provider import ServiceKontoProvider
 
 
-class SocialAccountFactory(factory.DjangoModelFactory):
+class SocialAccountFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = SocialAccount

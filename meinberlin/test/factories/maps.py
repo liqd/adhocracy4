@@ -3,13 +3,13 @@ import factory
 from meinberlin.apps.maps import models as map_models
 
 
-class MapPresetCategoryFactory(factory.DjangoModelFactory):
+class MapPresetCategoryFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = map_models.MapPresetCategory
 
 
-class MapPresetFactory(factory.DjangoModelFactory):
+class MapPresetFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = map_models.MapPreset
