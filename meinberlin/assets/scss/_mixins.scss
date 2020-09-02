@@ -1,5 +1,6 @@
 // mimic native browser focus
 // see https://ghinda.net/article/mimic-native-focus-css/
+
 @mixin fake-focus {
     // stylelint-disable scale-unlimited/declaration-strict-value
     outline: 2px solid Highlight;
