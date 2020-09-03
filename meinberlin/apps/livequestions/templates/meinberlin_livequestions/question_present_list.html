@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load react_questions static i18n %}
+
+{% block header %}{% endblock %}
+{% block content %}
+    {% react_questions_present view.module %}
+
+<div id="id-present-infographic" class="d-none">
+    <div class="container infographic">
+        <div class="row justify-content-center infographic__link my-3">
+          <span>{% trans "join in " %}<a href="{{ project.get_absolute_url }}">{{ view.get_full_url }}</a></span>
+        </div>
+        <div class="infographic__body">
+            <div class="infographic__icon-block">
+                <div class="infographic__icon">
+                    <img src="{% static 'images/icon_infografik_1_start_app.svg' %}" alt="">
+                </div>
+                <div class="infographic__text">
+                {% trans "Enter event link" %}
+                </div>
+            </div>
+            <div class="infographic__arrow">
+                <img src="{% static 'images/icon_infografik_arrow_up_purple.svg' %}" alt="">
+            </div>
+            <div class="infographic__icon-block">
+                <div class="infographic__icon">
+                    <img src="{% static 'images/icon_infografik_2_like.svg' %}" alt="">
+                </div>
+                <div class="infographic__text">
+                  {% trans "Like questions" %}
+                </div>
+            </div>
+            <div class="infographic__arrow">
+                <img src="{% static 'images/icon_infografik_arrow_down_purple.svg' %}" alt="">
+            </div>
+            <div class="infographic__icon-block">
+                <div class="infographic__icon">
+                    <img src="{% static 'images/icon_infografik_3_ask.svg' %}" alt="">
+                </div>
+                <div class="infographic__text">
+                  {% trans "Ask a question yourself!" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load widget_tweaks i18n thumbnail %}
+
+{% block content %}
+<div class="container">
+    <div class="offset-md-1 col-md-10 mb-5">
+        <div>
+            <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+                {% csrf_token %}
+                {% for hidden_field in form.hidden_fields %}
+                {{ hidden_field }}
+                {% endfor %}
+
+                {% for field in form.visible_fields %}
+                    {% include 'meinberlin_contrib/includes/form_field.html' with field=field %}
+                {% endfor %}
+
+                <div class="row">
+                    <div class="col-12 col-sm-2">
+                        <button type="submit" class="btn btn-primary btn-block">{% trans 'post'%}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        {% block extra_js %}
+            {{ block.super }}
+            {{ form.media.js }}
+        {% endblock %}
+        {% block extra_css %}
+            {{ form.media.css }}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
