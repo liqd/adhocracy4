@@ -310,8 +310,12 @@ CKEDITOR_CONFIGS = {
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
             ['NumberedList', 'BulletedList'],
-            ['Link', 'Unlink']
-        ]
+            ['Link', 'Unlink'],
+            ['Embed', 'EmbedBase']
+        ],
+        'removePlugins': 'stylesheetparser',
+        'extraAllowedContent': 'iframe[*]',
+        'extraPlugins': ','.join(['embed', 'embedbase']),
     },
     'image-editor': {
         'width': '100%',
@@ -321,8 +325,12 @@ CKEDITOR_CONFIGS = {
             ['Bold', 'Italic', 'Underline'],
             ['Image'],
             ['NumberedList', 'BulletedList'],
-            ['Link', 'Unlink']
-        ]
+            ['Link', 'Unlink'],
+            ['Embed', 'EmbedBase']
+        ],
+        'removePlugins': 'stylesheetparser',
+        'extraAllowedContent': 'iframe[*]',
+        'extraPlugins': ','.join(['embed', 'embedbase']),
     },
     'collapsible-image-editor': {
         'width': '100%',
@@ -333,23 +341,31 @@ CKEDITOR_CONFIGS = {
             ['Image'],
             ['NumberedList', 'BulletedList'],
             ['Link', 'Unlink'],
-            ['CollapsibleItem']
-        ]
+            ['CollapsibleItem'],
+            ['Embed', 'EmbedBase']
+        ],
+        'removePlugins': 'stylesheetparser',
+        'extraAllowedContent': 'iframe[*]',
     }
 }
 
 BLEACH_LIST = {
     'default': {
-        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a'],
+        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img',
+                 'iframe', 'div'],
         'attributes': {
             'a': ['href', 'rel', 'target'],
+            'img': ['src', 'alt', 'style'],
+            'iframe': ['src', 'alt', 'style']
         },
     },
     'image-editor': {
-        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img'],
+        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img',
+                 'iframe', 'div'],
         'attributes': {
             'a': ['href', 'rel', 'target'],
-            'img': ['src', 'alt', 'style']
+            'img': ['src', 'alt', 'style'],
+            'iframe': ['src', 'alt', 'style']
         },
         'styles': [
             'float',
@@ -365,11 +381,12 @@ BLEACH_LIST = {
     },
     'collapsible-image-editor': {
         'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img',
-                 'div'],
+                 'div', 'iframe'],
         'attributes': {
             'a': ['href', 'rel', 'target'],
             'img': ['src', 'alt', 'style'],
-            'div': ['class']
+            'div': ['class'],
+            'iframe': ['src', 'alt', 'style']
         },
         'styles': [
             'float',

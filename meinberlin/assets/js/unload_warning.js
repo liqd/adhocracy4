@@ -1,7 +1,8 @@
 /* This code checks if something has been changed in a form but not submitted.
    If the user wants to leave the the page there will be warning. */
 
-/* global CKEDITOR django */
+// /* global CKEDITOR */
+/* global django */
 
 $(function () {
   var submitted = false
@@ -19,11 +20,13 @@ $(function () {
     })
   }
 
-  if (window.CKEDITOR) {
-    CKEDITOR.on('instanceReady', function (e) {
-      e.editor.on('change', changeHandler)
-    })
-  }
+  // This clashes with the embed plugin and so is commented out for now until we have time to fix
+
+  // if (window.CKEDITOR) {
+  //   CKEDITOR.on('instanceReady', function (e) {
+  //     e.editor.on('change', changeHandler)
+  //   })
+  // }
 
   $(document).one('change', changeHandler)
     .on('submit', function (e) {
