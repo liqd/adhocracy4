@@ -25,6 +25,9 @@ from meinberlin.apps.contrib.sitemaps.adhocracy4_sitemap import \
 from meinberlin.apps.contrib.sitemaps.static_sitemap import StaticSitemap
 from meinberlin.apps.documents.api import DocumentViewSet
 from meinberlin.apps.extprojects.api import ExternalProjectListViewSet
+from meinberlin.apps.likes.api import LikesViewSet
+from meinberlin.apps.likes.routers import LikesDefaultRouter
+from meinberlin.apps.livequestions.api import LiveQuestionViewSet
 from meinberlin.apps.moderatorremark.api import ModeratorRemarkViewSet
 from meinberlin.apps.plans.api import PlansListViewSet
 from meinberlin.apps.polls.api import PollViewSet
@@ -55,6 +58,10 @@ router.register(r'containers',
 module_router = a4routers.ModuleDefaultRouter()
 # FIXME: rename to 'chapters'
 module_router.register(r'documents', DocumentViewSet, basename='chapters')
+module_router.register(r'questions', LiveQuestionViewSet, basename='questions')
+
+likes_router = LikesDefaultRouter()
+likes_router.register(r'likes', LikesViewSet, basename='likes')
 
 orga_router = a4routers.OrganisationDefaultRouter()
 orga_router.register(r'bplan', BplanViewSet, basename='bplan')
@@ -118,11 +125,15 @@ urlpatterns = [
     url(r'^platform-emails/', include(('meinberlin.apps.platformemails.urls',
                                        'meinberlin_platformemails'),
                                       'meinberlin_platformemails')),
+    url(r'^questions/', include(('meinberlin.apps.livequestions.urls',
+                                 'meinberlin_livequestions'),
+                                'meinberlin_livequestions')),
     url(r'', include(('meinberlin.apps.plans.urls',
                       'meinberlin_plans'),
                      'meinberlin_plans')),
 
     url(r'^api/', include(ct_router.urls)),
+    url(r'^api/', include(likes_router.urls)),
     url(r'^api/', include(module_router.urls)),
     url(r'^api/', include(orga_router.urls)),
     url(r'^api/', include(question_router.urls)),

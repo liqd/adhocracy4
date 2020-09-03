@@ -91,6 +91,8 @@ INSTALLED_APPS = (
     'meinberlin.apps.captcha',
     'meinberlin.apps.cms',
     'meinberlin.apps.contrib',
+    'meinberlin.apps.likes',
+    'meinberlin.apps.livequestions',
     'meinberlin.apps.maps',
     'meinberlin.apps.moderatorfeedback',
     'meinberlin.apps.moderatorremark',
@@ -443,6 +445,7 @@ A4_CATEGORIZABLE = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_kiezkasse', 'proposal'),
+    ('meinberlin_livequestions', 'question'),
     ('meinberlin_topicprio', 'topic'),
     ('meinberlin_maptopicprio', 'maptopic'),
 )
