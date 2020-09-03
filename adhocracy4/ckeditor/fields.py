@@ -1,7 +1,7 @@
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
-_extra_plugins = ['collapsibleItem']
+_extra_plugins = ['collapsibleItem', 'embed', 'embedbase']
 _external_plugin_resources = [(
     'collapsibleItem',
     '/static/ckeditor_collapsible/',
