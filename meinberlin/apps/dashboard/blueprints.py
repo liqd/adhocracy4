@@ -5,6 +5,7 @@ from meinberlin.apps.budgeting import phases as budgeting_phases
 from meinberlin.apps.documents import phases as documents_phases
 from meinberlin.apps.ideas import phases as ideas_phases
 from meinberlin.apps.kiezkasse import phases as kiezkasse_phases
+from meinberlin.apps.livequestions import phases as livequestion_phases
 from meinberlin.apps.mapideas import phases as mapideas_phases
 from meinberlin.apps.maptopicprio import phases as maptopicprio_phases
 from meinberlin.apps.polls import phases as poll_phases
@@ -138,5 +139,20 @@ blueprints = [
          ],
          image='images/kiezkasse.svg',
          settings_model=('a4maps', 'AreaSettings'),
+     )),
+    ('interactive-event',
+     ProjectBlueprint(
+         title=_('Interactive Event'),
+         description=_(
+             'The participants of an event can ask their questions online. '
+             'Other participants can support the question. You as the '
+             'moderator can sort the questions by support or '
+             'characteristic.'
+         ),
+         content=[
+             livequestion_phases.IssuePhase(),
+         ],
+         image='images/text-review.svg',
+         settings_model=None,
      )),
 ]
