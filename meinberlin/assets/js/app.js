@@ -23,6 +23,8 @@ import {
 import * as ReactDocuments from '../../apps/documents/assets/react_documents.jsx'
 import * as ReactPolls from '../../apps/polls/assets/react_polls.jsx'
 import * as ReactMapTeaser from '../../apps/plans/assets/react_map_teaser.jsx'
+import * as ReactQuestions from '../../apps/livequestions/assets/react_questions.jsx'
+import * as ReactQuestionsPresent from '../../apps/livequestions/assets/react_questions_present.jsx'
 
 import * as Tether from 'tether'
 
@@ -47,6 +49,9 @@ function init () {
   ReactWidget.initialise('mb', 'polls', ReactPolls.renderPolls)
   ReactWidget.initialise('mb', 'mapTeaser', ReactMapTeaser.renderFilter)
   ReactWidget.initialise('mb', 'poll-management', ReactPolls.renderPollManagement)
+
+  ReactWidget.initialise('ie', 'questions', ReactQuestions.renderQuestions)
+  ReactWidget.initialise('ie', 'present', ReactQuestionsPresent.renderData)
 
   $('.timeline-carousel__item').slick({
     initialSlide: parseInt($('#timeline-carousel').attr('data-initial-slide')),
