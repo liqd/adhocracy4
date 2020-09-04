@@ -7,16 +7,17 @@ from adhocracy4.phases.predicates import phase_allows_add
 
 from .models import LiveQuestion
 
-rules.add_perm('meinberlin_livequestions.change_question',
+rules.add_perm('meinberlin_livequestions.change_livequestion',
                is_superuser | is_context_moderator | is_context_initiator)
 
 
-rules.add_perm('meinberlin_livequestions.propose_question',
+rules.add_perm('meinberlin_livequestions.propose_livequestion',
                phase_allows_add(LiveQuestion))
 
 
-rules.add_perm('meinberlin_livequestions.view_question', rules.always_allow)
+rules.add_perm('meinberlin_livequestions.view_livequestion',
+               rules.always_allow)
 
 
-rules.add_perm('meinberlin_livequestions.moderate_questions',
+rules.add_perm('meinberlin_livequestions.moderate_livequestions',
                is_superuser | is_context_moderator | is_context_initiator)

@@ -32,7 +32,7 @@ class LiveQuestionViewSet(ModuleMixin,
             .order_by('created')\
             .annotate_like_count()
         if not self.request.user.has_perm(
-            'meinberlin_livequestions.moderate_questions', self.module
+            'meinberlin_livequestions.moderate_livequestions', self.module
         ):
             live_questions = live_questions.filter(is_hidden=False)
         return live_questions

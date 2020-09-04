@@ -20,7 +20,7 @@ class LiveQuestionPresentationListView(ProjectMixin,
                                        generic.ListView):
 
     model = models.LiveQuestion
-    permission_required = 'meinberlin_livequestions.change_question'
+    permission_required = 'meinberlin_livequestions.change_livequestion'
 
     def get_permission_object(self):
         return self.module
@@ -41,7 +41,7 @@ class LiveQuestionPresentationListView(ProjectMixin,
 class LiveQuestionCreateView(PermissionRequiredMixin, generic.CreateView):
     model = models.LiveQuestion
     form_class = forms.LiveQuestionForm
-    permission_required = 'meinberlin_livequestions.propose_question'
+    permission_required = 'meinberlin_livequestions.propose_livequestion'
 
     def dispatch(self, *args, **kwargs):
         mod_slug = self.kwargs[self.slug_url_kwarg]
