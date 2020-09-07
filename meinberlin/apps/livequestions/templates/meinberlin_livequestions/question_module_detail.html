@@ -28,7 +28,7 @@
                 <div class="mb-3">
                     {{ module.description | transform_collapsibles | richtext }}
                 </div>
-                <a class="btn btn--primary" href="{% url 'module-detail' module.project.organisation.slug module.slug %}">{% trans 'Go to event' %}</a>
+                <a class="btn btn--primary" href="{% url 'module-detail' module.slug %}">{% trans 'Go to event' %}</a>
             </div>
         </div>
     </div>
