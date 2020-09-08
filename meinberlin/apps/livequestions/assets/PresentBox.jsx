@@ -49,7 +49,7 @@ export default class PresentBox extends React.Component {
   render () {
     if (this.state.questions.length > 0) {
       return (
-        <div className="container">
+        <div className="l-wrapper">
           <div className="list-group mt-5">
             {this.state.questions.map((question, index) => {
               return (
@@ -67,8 +67,8 @@ export default class PresentBox extends React.Component {
       )
     } else {
       return (
-        <div className="row justify-content-center mt-5">
-          <div className="col-8 text-center py-5">
+        <div className="l-wrapper">
+          <div className="l-center-6">
             <h1 class="u-serif-header">{this.props.title}</h1>
           </div>
         </div>

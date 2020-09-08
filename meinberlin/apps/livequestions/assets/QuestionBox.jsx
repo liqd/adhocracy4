@@ -163,7 +163,7 @@ export default class QuestionBox extends React.Component {
     return (
       <div>
         <div className="tablist tablist--bg-secondary mb-0">
-          <div className="container">
+          <div className="l-wrapper">
             <nav className="nav justify-content-center">
               <a
                 id="tab-information"
@@ -208,7 +208,7 @@ export default class QuestionBox extends React.Component {
           aria-labelledby="tab-information"
           aria-hidden="false"
         >
-          <div className="container">
+          <div className="l-wrapper">
             <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
               {this.props.information}
             </div>
@@ -222,55 +222,53 @@ export default class QuestionBox extends React.Component {
           aria-labelledby="tab-questions"
           aria-hidden="true"
         >
-          <div className="container">
-            <div className="row mb-5">
-              <div className="col-12">
-                {this.props.isModerator &&
-                  <div className="d-flex justify-content-center justify-content-lg-end">
-                    <a className="btn btn--secondary" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
-                      <span className="fa-stack fa-1x">
-                        <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
-                        <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
-                      </span>
-                      {django.gettext('display on screen')}
-                    </a>
-                  </div>}
-                <Filters
-                  categories={this.props.categories}
-                  currentCategory={this.state.category}
-                  currentCategoryName={this.state.categoryName}
-                  setCategories={this.setCategory.bind(this)}
-                  orderedByLikes={this.state.orderedByLikes}
-                  toggleOrdering={this.toggleOrdering.bind(this)}
-                  displayOnShortlist={this.state.displayOnShortlist}
-                  displayNotHiddenOnly={this.state.displayNotHiddenOnly}
-                  toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
-                  toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
-                  isModerator={this.props.isModerator}
-                />
-                <InfoBox
-                  isModerator={this.props.isModerator}
-                />
-                <QuestionList
-                  questions={this.state.filteredQuestions}
-                  removeFromList={this.removeFromList.bind(this)}
-                  updateQuestion={this.updateQuestion.bind(this)}
-                  handleLike={this.handleLike.bind(this)}
-                  isModerator={this.props.isModerator}
-                  togglePollingPaused={this.togglePollingPaused.bind(this)}
-                  hasLikingPermission={this.props.hasLikingPermission}
-                />
-                {this.props.hasAskQuestionsPermission &&
-                  <a
-                    href={this.props.askQuestionUrl}
-                    className="btn btn--primary btn--full btn--huge question-list-button mb-4"
-                    id="question-create"
-                  >
-                    <i className="fa fa-plus question-list-button-icon" aria-hidden="true" />
-                    {django.gettext('Add Question')}
-                  </a>}
-              </div>
+          <div className="l-wrapper">
+            <div className="l-center-8">
+              {this.props.isModerator &&
+                <div className="u-align-right">
+                  <a className="btn btn--secondary" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
+                    <span className="fa-stack fa-1x">
+                      <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
+                      <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
+                    </span>
+                    {django.gettext('display on screen')}
+                  </a>
+                </div>}
+              <Filters
+                categories={this.props.categories}
+                currentCategory={this.state.category}
+                currentCategoryName={this.state.categoryName}
+                setCategories={this.setCategory.bind(this)}
+                orderedByLikes={this.state.orderedByLikes}
+                toggleOrdering={this.toggleOrdering.bind(this)}
+                displayOnShortlist={this.state.displayOnShortlist}
+                displayNotHiddenOnly={this.state.displayNotHiddenOnly}
+                toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
+                toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
+                isModerator={this.props.isModerator}
+              />
+              <InfoBox
+                isModerator={this.props.isModerator}
+              />
+              <QuestionList
+                questions={this.state.filteredQuestions}
+                removeFromList={this.removeFromList.bind(this)}
+                updateQuestion={this.updateQuestion.bind(this)}
+                handleLike={this.handleLike.bind(this)}
+                isModerator={this.props.isModerator}
+                togglePollingPaused={this.togglePollingPaused.bind(this)}
+                hasLikingPermission={this.props.hasLikingPermission}
+              />
             </div>
+            {this.props.hasAskQuestionsPermission &&
+              <a
+                href={this.props.askQuestionUrl}
+                className="btn btn--primary btn--full btn--huge question-list-button mb-4"
+                id="question-create"
+              >
+                <i className="fa fa-plus question-list-button-icon" aria-hidden="true" />
+                {django.gettext('Add Question')}
+              </a>}
           </div>
         </div>
         <div
@@ -280,7 +278,7 @@ export default class QuestionBox extends React.Component {
           aria-labelledby="tab-statistics"
           aria-hidden="false"
         >
-          <div className="container">
+          <div className="l-wrapper">
             <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
               <StatisticsBox
                 answeredQuestions={this.state.answeredQuestions}

@@ -22,9 +22,9 @@ export default class Filter extends React.Component {
     const displayNotHiddenText = django.gettext('display only questions which are not hidden')
     const orderLikesText = django.gettext('order by likes')
     return (
-      <div className="mb-4">
-        <div className="justify-content-center form-inline">
-          <div className="dropdown mt-3">
+      <div className="l-center-6">
+        <div className="u-inline-flex">
+          <div className="dropdown u-spacer-right">
             <button
               className={this.getButtonClass()} type="button" id="dropdownMenuButton"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -39,8 +39,8 @@ export default class Filter extends React.Component {
             </div>
           </div>
           {this.props.isModerator &&
-            <div>
-              <div className="checkbox-btn mt-3">
+            <div className="u-inline-flex">
+              <div className="checkbox-btn u-spacer-right">
                 <label htmlFor="markedCheck" className="checkbox-btn__label--primary pl-3">
                   <input
                     className="checkbox-btn__input"
@@ -51,11 +51,11 @@ export default class Filter extends React.Component {
                     onChange={this.props.toggleDisplayOnShortlist} // eslint-disable-line react/jsx-handler-names
                   />
                   <span className="checkbox-btn__text">
-                    <i className="icon-in-list" aria-label={onlyShowMarkedText} />
+                    <i className="far fa-list-alt" aria-label={onlyShowMarkedText} />
                   </span>
                 </label>
               </div>
-              <div className="checkbox-btn mt-3">
+              <div className="checkbox-btn u-spacer-right">
                 <label htmlFor="displayNotHiddenOnly" className="checkbox-btn__label--primary pl-3">
                   <input
                     className="checkbox-btn__input"
@@ -70,7 +70,7 @@ export default class Filter extends React.Component {
                   </span>
                 </label>
               </div>
-              <div className="checkbox-btn mt-3">
+              <div className="checkbox-btn">
                 <label htmlFor="orderedByLikes" className="checkbox-btn__label--primary">
                   <input
                     className="checkbox-btn__input"
@@ -81,7 +81,7 @@ export default class Filter extends React.Component {
                     onChange={this.props.toggleOrdering} // eslint-disable-line react/jsx-handler-names
                   />
                   <span className="checkbox-btn__text">
-                    <i className="icon-like" aria-label={orderLikesText} /> likes
+                    <i className="far fa-thumbs-up" aria-label={orderLikesText} />
                   </span>
                 </label>
               </div>

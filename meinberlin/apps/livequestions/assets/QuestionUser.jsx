@@ -54,7 +54,7 @@ export default class QuestionUser extends React.Component {
     const undoLikeTag = django.gettext('undo like')
 
     return (
-      <div className="list-group-item border mb-2">
+      <div className="list-item">
         <div>
           <p>
             {this.props.is_on_shortlist &&
@@ -73,14 +73,14 @@ export default class QuestionUser extends React.Component {
                   <button type="button" className={this.state.session_like ? 'btn btn--primary-filled u-body float-right px-3' : 'btn btn--primary float-right px-3'} onClick={this.handleLike.bind(this)}>
                     <span>{this.state.likes} </span>
                     <span className="sr-only">{likesTag}</span>
-                    <i className="icon-like" aria-label={this.state.session_like ? addLikeTag : undoLikeTag} />
+                    <i className="far fa-thumbs-up" aria-label={this.state.session_like ? addLikeTag : undoLikeTag} />
                   </button>
                 )
                 : (
                   <div className="float-right">
                     <span className="text-muted">{this.state.likes}</span>
                     <span className="sr-only">{likesTag}</span>
-                    <i className="icon-like text-muted ml-1" aria-hidden="true" />
+                    <i className="far fa-thumbs-up text-muted" aria-hidden="true" />
                   </div>
                 )}
             </div>

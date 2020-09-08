@@ -28,7 +28,7 @@ export default class QuestionPresent extends React.Component {
   render () {
     const likesTag = django.gettext('likes')
     return (
-      <div className="list-group-item border-top-0 border-right-0 border-bottom border-left-0 mb-2">
+      <div className="list-item">
         <div>
           <p>{this.props.children}</p>
         </div>

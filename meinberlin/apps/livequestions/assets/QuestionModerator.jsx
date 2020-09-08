@@ -103,17 +103,17 @@ export default class QuestionModerator extends React.Component {
     const removeShortlistText = django.gettext('remove from shortlist')
 
     return (
-      <div className="list-group-item border border-bottom rounded-0 mb-2">
+      <div className="list-item">
         <div>
           <p className={this.props.is_hidden ? 'text-muted u-text-decoration-line-through' : ''}>{this.props.children}</p>
         </div>
-        <div className="row justify-content-between">
+        <div className="u-inline-flex">
           <div className="col-12 col-md-4 col-sm-5 mb-3 mb-sm-0">
             {this.props.category &&
               <span className="label label--big mr-1">{this.props.category}</span>}
             <span className="label label--big bg-primary">{this.state.likes}<i className="icon-like ml-2" /></span>
           </div>
-          <div className="col-12 col-md-8 col-sm-7">
+          <div className="u-align-right">
             {this.props.displayIsHidden &&
               <button
                 type="button" className="btn btn--transparent border-0 float-sm-right px-3"
@@ -128,7 +128,7 @@ export default class QuestionModerator extends React.Component {
                 onClick={this.toggleIsAnswered.bind(this)}
               >
                 <i
-                  className={this.props.is_answered ? 'icon-answered u-text-tertiary px-1 text-muted' : 'icon-answered u-text-tertiary px-1 u-text-tertiary'}
+                  className={this.props.is_answered ? 'far fa-check-square u-text-tertiary px-1 text-muted' : 'far fa-check-square u-text-tertiary px-1 u-text-tertiary'}
                   aria-label={doneText}
                 />
               </button>}
@@ -141,7 +141,7 @@ export default class QuestionModerator extends React.Component {
               </button>}
             {this.props.displayIsOnShortlist &&
               <button type="button" className="btn btn--transparent border-0 float-sm-right px-3" onClick={this.toggleIsOnShortList.bind(this)}>
-                <i className={this.state.is_on_shortlist ? 'icon-in-list text-muted' : 'icon-push-in-list u-text-tertiary'} aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText} />
+                <i className={this.state.is_on_shortlist ? 'fas fa-desktop text-muted' : 'fas fa-desktop u-text-tertiary'} aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText} />
               </button>}
           </div>
         </div>

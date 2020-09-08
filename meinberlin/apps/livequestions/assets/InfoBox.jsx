@@ -32,23 +32,23 @@ export default class InfoBox extends React.Component {
           ? (
             <div className="alert alert--success alert-dismissible mb-2">
               {this.props.isModerator &&
-                <div className="row pt-4">
-                  <div className="col-lg-3 pb-2 pb-xl-0">
+                <div className="l-center-6">
+                  <div className="">
                     <i className="icon-push-in-list" /> <span>{textAddQuestion}</span>
                   </div>
-                  <div className="col-lg-3 pb-2 pb-xl-0">
+                  <div className="">
                     <span className="fa-stack fa-1x"><i className="fas fa-tv fa-stack-2x" /><i className="fas fa-arrow-up fa-stack-1x" /></span> <span>{textDisplayQuestion}</span>
                   </div>
-                  <div className="col-lg-3 pb-2 pb-xl-0">
+                  <div className="">
                     <i className="icon-answered" /> <span>{textMarkAnswered}</span>
                   </div>
-                  <div className="col-lg-3 pb-2 pb-xl-0">
+                  <div className="">
                     <i className="far fa-eye" /> <span>{textHideQuestion}</span>
                   </div>
                 </div>}
               {!this.props.isModerator &&
-                <div className="row mb-2">
-                  <div className="col-12">
+                <div className="l-center-6">
+                  <div className="">
                     <i className="icon-in-list" /> {textMarkedModeration}
                   </div>
                 </div>}
@@ -58,8 +58,8 @@ export default class InfoBox extends React.Component {
             </div>
           )
           : (
-            <div className="row mb-2">
-              <div className="col-12 d-flex justify-content-end">
+            <div className="">
+              <div className="u-align-right">
                 <button type="button" className="btn btn--primary" onClick={this.toggleInformation.bind(this)}>
                   <span aria-label={ariaOpenInfo}><i className="fas fa-info-circle" /></span>
                 </button>
