@@ -1,0 +1,85 @@
+.live_questions__filters {
+    @media screen and (min-width: $breakpoint-xs) {
+        display: inline-flex;
+    }
+}
+
+.live_questions__filters--parent {
+    width: 100%;
+    justify-content: space-between;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        display: inline-flex;
+    }
+}
+
+.live_questions__filters--dropdown {
+    width: 100%;
+}
+
+.live_questions__filters--btns {
+    width: 100%;
+    display: inline-flex;
+    justify-content: flex-end;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        margin-left: $spacer;
+    }
+}
+
+.live_questions__filters--screen-btn {
+    width: 100%;
+}
+
+.live-question__action-bar {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.infobox__box {
+    background-color: $bg-secondary;
+    padding: 0.5*$spacer;
+    margin-right: $spacer;
+
+    i {
+        color: $brand-primary;
+    }
+}
+
+.infobox > div:last-child {
+    margin-right: 0;
+}
+
+.progress-bar {
+    display: flex;
+    height: 1.5rem;
+    background-color: $bg-secondary;
+    border-radius: 0.25rem;
+}
+
+.checkbox-btn {
+    display: inline-block;
+}
+
+.checkbox-btn__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.checkbox-btn__label--primary {
+    .checkbox-btn__text {
+        @extend .btn;
+        @extend .btn--transparent;
+    }
+
+    input[type="checkbox"]:checked + .checkbox-btn__text {
+        @extend .btn--secondary;
+    }
+}

@@ -30,37 +30,42 @@ export default class InfoBox extends React.Component {
       <div>
         {this.state.displayInfo
           ? (
-            <div className="alert alert--success alert-dismissible mb-2">
+            <div className="">
               {this.props.isModerator &&
-                <div className="l-center-6">
-                  <div className="">
-                    <i className="icon-push-in-list" /> <span>{textAddQuestion}</span>
-                  </div>
-                  <div className="">
-                    <span className="fa-stack fa-1x"><i className="fas fa-tv fa-stack-2x" /><i className="fas fa-arrow-up fa-stack-1x" /></span> <span>{textDisplayQuestion}</span>
-                  </div>
-                  <div className="">
-                    <i className="icon-answered" /> <span>{textMarkAnswered}</span>
-                  </div>
-                  <div className="">
-                    <i className="far fa-eye" /> <span>{textHideQuestion}</span>
+                <div className="alert-dismissible">
+                  <button type="button" className="close" onClick={this.toggleInformation.bind(this)}>
+                    <span aria-label={ariaCloseInfo}>&times;</span>
+                  </button>
+                  <div className="infobox u-inline-flex">
+                    <div className="infobox__box">
+                      <i className="far fa-thumbs-up" />
+                      <div>{textAddQuestion}</div>
+                    </div>
+                    <div className="infobox__box">
+                      <span className="fa-stack fa-1x"><i className="fas fa-tv fa-stack-2x" /><i className="fas fa-arrow-up fa-stack-1x" /></span> <div>{textDisplayQuestion}</div>
+                    </div>
+                    <div className="infobox__box">
+                      <i className="far fa-thumbs-up" />
+                      <div>{textMarkAnswered}</div>
+                    </div>
+                    <div className="infobox__box">
+                      <i className="far fa-eye" />
+                      <div>{textHideQuestion}</div>
+                    </div>
                   </div>
                 </div>}
               {!this.props.isModerator &&
-                <div className="l-center-6">
+                <div className="infobox__box">
                   <div className="">
-                    <i className="icon-in-list" /> {textMarkedModeration}
+                    <i className="far fa-thumbs-up" /> {textMarkedModeration}
                   </div>
                 </div>}
-              <button type="button" className="close" onClick={this.toggleInformation.bind(this)}>
-                <span aria-label={ariaCloseInfo}>&times;</span>
-              </button>
             </div>
           )
           : (
             <div className="">
               <div className="u-align-right">
-                <button type="button" className="btn btn--primary" onClick={this.toggleInformation.bind(this)}>
+                <button type="button" className="btn btn--none" onClick={this.toggleInformation.bind(this)}>
                   <span aria-label={ariaOpenInfo}><i className="fas fa-info-circle" /></span>
                 </button>
               </div>

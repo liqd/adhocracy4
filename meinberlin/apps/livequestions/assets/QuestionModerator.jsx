@@ -107,16 +107,18 @@ export default class QuestionModerator extends React.Component {
         <div>
           <p className={this.props.is_hidden ? 'text-muted u-text-decoration-line-through' : ''}>{this.props.children}</p>
         </div>
-        <div className="u-inline-flex">
-          <div className="col-12 col-md-4 col-sm-5 mb-3 mb-sm-0">
-            {this.props.category &&
-              <span className="label label--big mr-1">{this.props.category}</span>}
-            <span className="label label--big bg-primary">{this.state.likes}<i className="icon-like ml-2" /></span>
+        {this.props.category &&
+          <div>
+            <span className="label label--big">{this.props.category}</span>
+          </div>}
+        <div className="live-question__action-bar">
+          <div className="">
+            <span><i className="far fa-eye-slash" />{this.state.likes}</span>
           </div>
-          <div className="u-align-right">
+          <div className="">
             {this.props.displayIsHidden &&
               <button
-                type="button" className="btn btn--transparent border-0 float-sm-right px-3"
+                type="button" className="btn btn--none"
                 onClick={this.toggleIshidden.bind(this)}
               >
                 <i className={this.props.is_hidden ? 'far fa-eye-slash text-muted' : 'far fa-eye u-text-tertiary'} aria-label={this.props.is_hidden ? hiddenText : undoHiddenText} />
@@ -124,23 +126,23 @@ export default class QuestionModerator extends React.Component {
 
             {this.props.displayIsAnswered &&
               <button
-                type="button" className="btn btn--transparent border-0 float-sm-right px-3"
+                type="button" className="btn btn--none"
                 onClick={this.toggleIsAnswered.bind(this)}
               >
                 <i
-                  className={this.props.is_answered ? 'far fa-check-square u-text-tertiary px-1 text-muted' : 'far fa-check-square u-text-tertiary px-1 u-text-tertiary'}
+                  className={this.props.is_answered ? 'far fa-check-square' : 'far fa-check-square'}
                   aria-label={doneText}
                 />
               </button>}
             {this.props.displayIsLive &&
-              <button type="button" className="btn btn--transparent border-0 float-sm-right px-3" onClick={this.toggleIslive.bind(this)}>
+              <button type="button" className="btn btn--none" onClick={this.toggleIslive.bind(this)}>
                 <span className="fa-stack fa-1x">
                   <i className={this.state.is_live ? 'fas fa-tv fa-stack-2x text-muted' : 'fas fa-tv fa-stack-2x u-text-tertiary'} aria-label={this.state.is_live ? addLiveText : removeLiveText} />
                   <i className={this.state.is_live ? 'fas fa-arrow-up fa-stack-1x fa-inverse text-muted' : 'fas fa-arrow-up fa-stack-1x u-text-tertiary'} aria-hidden="true" />
                 </span>
               </button>}
             {this.props.displayIsOnShortlist &&
-              <button type="button" className="btn btn--transparent border-0 float-sm-right px-3" onClick={this.toggleIsOnShortList.bind(this)}>
+              <button type="button" className="btn btn--none" onClick={this.toggleIsOnShortList.bind(this)}>
                 <i className={this.state.is_on_shortlist ? 'fas fa-desktop text-muted' : 'fas fa-desktop u-text-tertiary'} aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText} />
               </button>}
           </div>

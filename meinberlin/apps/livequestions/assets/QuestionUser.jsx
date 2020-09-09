@@ -58,33 +58,30 @@ export default class QuestionUser extends React.Component {
         <div>
           <p>
             {this.props.is_on_shortlist &&
-              <i className="icon-in-list pr-1 text-muted" aria-label={shortlistText} />}
+              <i className="icon-in-list text-muted" aria-label={shortlistText} />}
             {this.props.children}
           </p>
         </div>
-        <div className="row">
-          <div className="col-12">
-            {this.props.category &&
-              <span className="label label--big mr-1">{this.props.category}</span>}
-
-            <div>
-              {this.props.hasLikingPermission
-                ? (
-                  <button type="button" className={this.state.session_like ? 'btn btn--primary-filled u-body float-right px-3' : 'btn btn--primary float-right px-3'} onClick={this.handleLike.bind(this)}>
-                    <span>{this.state.likes} </span>
-                    <span className="sr-only">{likesTag}</span>
-                    <i className="far fa-thumbs-up" aria-label={this.state.session_like ? addLikeTag : undoLikeTag} />
-                  </button>
-                )
-                : (
-                  <div className="float-right">
-                    <span className="text-muted">{this.state.likes}</span>
-                    <span className="sr-only">{likesTag}</span>
-                    <i className="far fa-thumbs-up text-muted" aria-hidden="true" />
-                  </div>
-                )}
-            </div>
-          </div>
+        {this.props.category &&
+          <div>
+            <span className="label label--big">{this.props.category}</span>
+          </div>}
+        <div className="live-question__action-bar">
+          {this.props.hasLikingPermission
+            ? (
+              <button type="button" className={this.state.session_like ? 'btn btn--none' : 'btn btn--primary'} onClick={this.handleLike.bind(this)}>
+                <span>{this.state.likes} </span>
+                <span className="sr-only">{likesTag}</span>
+                <i className="far fa-thumbs-up" aria-label={this.state.session_like ? addLikeTag : undoLikeTag} />
+              </button>
+            )
+            : (
+              <div className="">
+                <span className="text-muted">{this.state.likes}</span>
+                <span className="sr-only">{likesTag}</span>
+                <i className="far fa-thumbs-up text-muted" aria-hidden="true" />
+              </div>
+            )}
         </div>
       </div>)
   }

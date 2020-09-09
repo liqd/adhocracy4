@@ -209,7 +209,7 @@ export default class QuestionBox extends React.Component {
           aria-hidden="false"
         >
           <div className="l-wrapper">
-            <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
+            <div className="l-center-8">
               {this.props.information}
             </div>
           </div>
@@ -222,54 +222,68 @@ export default class QuestionBox extends React.Component {
           aria-labelledby="tab-questions"
           aria-hidden="true"
         >
-          <div className="l-wrapper">
-            <div className="l-center-8">
-              {this.props.isModerator &&
-                <div className="u-align-right">
-                  <a className="btn btn--secondary" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
-                    <span className="fa-stack fa-1x">
-                      <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
-                      <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
-                    </span>
-                    {django.gettext('display on screen')}
-                  </a>
-                </div>}
-              <Filters
-                categories={this.props.categories}
-                currentCategory={this.state.category}
-                currentCategoryName={this.state.categoryName}
-                setCategories={this.setCategory.bind(this)}
-                orderedByLikes={this.state.orderedByLikes}
-                toggleOrdering={this.toggleOrdering.bind(this)}
-                displayOnShortlist={this.state.displayOnShortlist}
-                displayNotHiddenOnly={this.state.displayNotHiddenOnly}
-                toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
-                toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
-                isModerator={this.props.isModerator}
-              />
-              <InfoBox
-                isModerator={this.props.isModerator}
-              />
-              <QuestionList
-                questions={this.state.filteredQuestions}
-                removeFromList={this.removeFromList.bind(this)}
-                updateQuestion={this.updateQuestion.bind(this)}
-                handleLike={this.handleLike.bind(this)}
-                isModerator={this.props.isModerator}
-                togglePollingPaused={this.togglePollingPaused.bind(this)}
-                hasLikingPermission={this.props.hasLikingPermission}
-              />
+          <div>
+            <div className="l-wrapper">
+              <div className="l-center-8">
+                <InfoBox
+                  isModerator={this.props.isModerator}
+                />
+                <div className="live_questions__filters--parent">
+                  <Filters
+                    categories={this.props.categories}
+                    currentCategory={this.state.category}
+                    currentCategoryName={this.state.categoryName}
+                    setCategories={this.setCategory.bind(this)}
+                    orderedByLikes={this.state.orderedByLikes}
+                    toggleOrdering={this.toggleOrdering.bind(this)}
+                    displayOnShortlist={this.state.displayOnShortlist}
+                    displayNotHiddenOnly={this.state.displayNotHiddenOnly}
+                    toggleDisplayOnShortlist={this.toggleDisplayOnShortlist.bind(this)}
+                    toggledisplayNotHiddenOnly={this.toggledisplayNotHiddenOnly.bind(this)}
+                    isModerator={this.props.isModerator}
+                  />
+                  {this.props.isModerator &&
+                    <div className="">
+                      <a className="btn btn--transparent live_questions__filters--screen-btn" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
+                        <span className="fa-stack fa-1x">
+                          <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
+                          <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
+                        </span>
+                        {django.gettext('display on screen')}
+                      </a>
+                    </div>}
+                </div>
+              </div>
             </div>
-            {this.props.hasAskQuestionsPermission &&
-              <a
-                href={this.props.askQuestionUrl}
-                className="btn btn--primary btn--full btn--huge question-list-button mb-4"
-                id="question-create"
-              >
-                <i className="fa fa-plus question-list-button-icon" aria-hidden="true" />
-                {django.gettext('Add Question')}
-              </a>}
+            <div className="module-content">
+              <div className="l-wrapper">
+                <div className="l-center-8">
+                  <QuestionList
+                    questions={this.state.filteredQuestions}
+                    removeFromList={this.removeFromList.bind(this)}
+                    updateQuestion={this.updateQuestion.bind(this)}
+                    handleLike={this.handleLike.bind(this)}
+                    isModerator={this.props.isModerator}
+                    togglePollingPaused={this.togglePollingPaused.bind(this)}
+                    hasLikingPermission={this.props.hasLikingPermission}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
+          {this.props.hasAskQuestionsPermission &&
+            <div className="l-wrapper">
+              <div className="l-center-6">
+                <a
+                  href={this.props.askQuestionUrl}
+                  className="btn btn--primary btn--full btn--huge question-list-button mb-4"
+                  id="question-create"
+                >
+                  <i className="fa fa-plus question-list-button-icon" aria-hidden="true" />
+                  {django.gettext('Add Question')}
+                </a>
+              </div>
+            </div>}
         </div>
         <div
           className="tabpanel tabpanel--bg-secondary"
@@ -278,16 +292,12 @@ export default class QuestionBox extends React.Component {
           aria-labelledby="tab-statistics"
           aria-hidden="false"
         >
-          <div className="l-wrapper">
-            <div className="col-md-10 col-lg-8 offset-md-1 offset-lg-2">
-              <StatisticsBox
-                answeredQuestions={this.state.answeredQuestions}
-                questions_api_url={this.props.questions_api_url}
-                categories={this.props.categories}
-                isModerator={this.props.isModerator}
-              />
-            </div>
-          </div>
+          <StatisticsBox
+            answeredQuestions={this.state.answeredQuestions}
+            questions_api_url={this.props.questions_api_url}
+            categories={this.props.categories}
+            isModerator={this.props.isModerator}
+          />
         </div>
       </div>
     )

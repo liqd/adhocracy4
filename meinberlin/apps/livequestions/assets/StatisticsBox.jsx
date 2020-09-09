@@ -44,74 +44,82 @@ export default class StatisticsBox extends React.Component {
     const questionAnsweredTag = django.gettext('Questions Answered')
     return (
       <div>
-        <div className="row m-0 bg-white justify-content-center pb-4">
-          <div className="col-12 col-md-8">
-            {this.props.categories.map((category, index) => {
-              const countPerCategory = this.countCategory(category)
-              const style = { width: countPerCategory + '%' }
-              return (
-                <div key={index} className="mt-3">
-                  <span>{category}</span>
-                  <div className="progress">
-                    <div
-                      className="progress-bar" style={style} role="progressbar" aria-valuenow="25" aria-valuemin="0"
-                      aria-valuemax="100"
-                    >{countPerCategory}%
+        <div className="l-wrapper">
+          <div className="l-center-8">
+            <div className="list-item">
+              {this.props.categories.map((category, index) => {
+                const countPerCategory = this.countCategory(category)
+                const style = { width: countPerCategory + '%' }
+                return (
+                  <div key={index} className="">
+                    <span>{category}</span>
+                    <div className="progress">
+                      <div
+                        className="progress-bar" style={style} role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                        aria-valuemax="100"
+                      >{countPerCategory}%
+                      </div>
                     </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
         </div>
-        <h3 className="u-serif-header text-center mt-5">{questionAnsweredTag}</h3>
-        {this.props.isModerator
-          ? (
-            <div className="list-group mt-md-4">
-              {this.state.answeredQuestions.map((question, index) => {
-                return (
-                  <QuestionModerator
-                    updateQuestion={this.updateQuestion.bind(this)}
-                    displayIsOnShortlist={false}
-                    displayIsLive={false}
-                    displayIsHidden={false}
-                    displayIsAnswered={question.is_answered}
-                    removeFromList={this.removeFromList.bind(this)}
-                    key={question.id}
-                    id={question.id}
-                    is_answered={question.is_answered}
-                    is_on_shortlist={question.is_on_shortlist}
-                    is_live={question.is_live}
-                    is_hidden={question.is_hidden}
-                    category={question.category}
-                    likes={question.likes}
-                  >
-                    {question.text}
-                  </QuestionModerator>
+        <div className="module-content">
+          <div className="l-wrapper">
+            <div className="l-center-8">
+              <span className="">{questionAnsweredTag}</span>
+              {this.props.isModerator
+                ? (
+                  <div className="list-group">
+                    {this.state.answeredQuestions.map((question, index) => {
+                      return (
+                        <QuestionModerator
+                          updateQuestion={this.updateQuestion.bind(this)}
+                          displayIsOnShortlist={false}
+                          displayIsLive={false}
+                          displayIsHidden={false}
+                          displayIsAnswered={question.is_answered}
+                          removeFromList={this.removeFromList.bind(this)}
+                          key={question.id}
+                          id={question.id}
+                          is_answered={question.is_answered}
+                          is_on_shortlist={question.is_on_shortlist}
+                          is_live={question.is_live}
+                          is_hidden={question.is_hidden}
+                          category={question.category}
+                          likes={question.likes}
+                        >
+                          {question.text}
+                        </QuestionModerator>
+                      )
+                    })}
+                  </div>
                 )
-              })}
+                : (
+                  <div className="list-group">
+                    {this.state.answeredQuestions.map((question, index) => {
+                      return (
+                        <QuestionUser
+                          key={question.id}
+                          id={question.id}
+                          is_answered={question.is_answered}
+                          is_on_shortlist={question.is_on_shortlist}
+                          is_live={question.is_live}
+                          is_hidden={question.is_hidden}
+                          category={question.category}
+                          likes={question.likes}
+                        >
+                          {question.text}
+                        </QuestionUser>
+                      )
+                    })}
+                  </div>
+                )}
             </div>
-          )
-          : (
-            <div className="list-group mt-3 mt-md-4">
-              {this.state.answeredQuestions.map((question, index) => {
-                return (
-                  <QuestionUser
-                    key={question.id}
-                    id={question.id}
-                    is_answered={question.is_answered}
-                    is_on_shortlist={question.is_on_shortlist}
-                    is_live={question.is_live}
-                    is_hidden={question.is_hidden}
-                    category={question.category}
-                    likes={question.likes}
-                  >
-                    {question.text}
-                  </QuestionUser>
-                )
-              })}
-            </div>
-          )}
+          </div>
+        </div>
       </div>
     )
   }
