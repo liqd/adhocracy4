@@ -10,9 +10,9 @@ export default class Filter extends React.Component {
 
   getButtonClass () {
     if (this.props.currentCategory === '-1') {
-      return 'btn btn--light live_questions__filters--dropdown dropdown-toggle'
+      return 'btn btn--light btn--select live_questions__filters--dropdown dropdown-toggle'
     } else {
-      return 'btn btn--secondary live_questions__filters--dropdown dropdown-toggle'
+      return 'btn btn--secondary btn--select live_questions__filters--dropdown dropdown-toggle'
     }
   }
 
@@ -29,6 +29,7 @@ export default class Filter extends React.Component {
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
           >
             {this.props.currentCategoryName}
+            <i className="fa fa-caret-down" aria-label={onlyShowMarkedText} />
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <button className="dropdown-item" data-value={-1} onClick={this.selectCategory.bind(this)} href="#">{allTag}</button>

@@ -8,6 +8,7 @@ const textMarkAnswered = django.gettext('mark question as answered')
 const textMarkedModeration = django.gettext('is shown in front of a question? It has been marked by the moderation.')
 const ariaCloseInfo = django.gettext('Close information')
 const ariaOpenInfo = django.gettext('Open information')
+const btnHide = django.gettext('Hide')
 
 export default class InfoBox extends React.Component {
   constructor (props) {
@@ -33,12 +34,14 @@ export default class InfoBox extends React.Component {
             <div className="u-spacer-bottom">
               {this.props.isModerator &&
                 <div className="alert-dismissible">
-                  <button type="button" className="close" onClick={this.toggleInformation.bind(this)}>
-                    <span aria-label={ariaCloseInfo}>&times;</span>
-                  </button>
+                  <div className="u-align-right">
+                    <button type="button" className="u-muted" onClick={this.toggleInformation.bind(this)}>
+                      <span aria-label={ariaCloseInfo}>{btnHide} <i className="fa fa-times" /></span>
+                    </button>
+                  </div>
                   <div className="infobox u-inline-flex">
                     <div className="infobox__box">
-                      <i className="far fa-thumbs-up" />
+                      <i className="far fa-list-alt" />
                       <div>{textAddQuestion}</div>
                     </div>
                     <div className="infobox__box">
@@ -46,27 +49,35 @@ export default class InfoBox extends React.Component {
                       <div>{textDisplayQuestion}</div>
                     </div>
                     <div className="infobox__box">
-                      <i className="far fa-thumbs-up" />
+                      <i className="far fa-check-square" />
                       <div>{textMarkAnswered}</div>
                     </div>
-                    <div className="infobox__box">
+                    <div className="infobox__box infobox__box--last">
                       <i className="far fa-eye" />
                       <div>{textHideQuestion}</div>
                     </div>
                   </div>
                 </div>}
               {!this.props.isModerator &&
-                <div className="infobox__box">
-                  <div className="">
-                    <i className="far fa-thumbs-up" /> {textMarkedModeration}
+                <div className="alert-dismissible">
+                  <div className="u-align-right">
+                    <button type="button" className="u-muted" onClick={this.toggleInformation.bind(this)}>
+                      <span aria-label={ariaCloseInfo}>{btnHide} <i className="fa fa-times" /></span>
+                    </button>
+                  </div>
+                  <div className="infobox__box infobox__box--last">
+                    <i className="far fa-list-alt" />
+                    <div>
+                      {textMarkedModeration}
+                    </div>
                   </div>
                 </div>}
             </div>
           )
           : (
-            <div className="">
+            <div>
               <div className="u-align-right">
-                <button type="button" className="btn btn--none" onClick={this.toggleInformation.bind(this)}>
+                <button type="button" className="btn btn--none u-muted" onClick={this.toggleInformation.bind(this)}>
                   <span aria-label={ariaOpenInfo}><i className="fas fa-info-circle" /></span>
                 </button>
               </div>

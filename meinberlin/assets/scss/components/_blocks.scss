@@ -188,6 +188,16 @@
     }
 }
 
+.block--infographic__arrow--down {
+    margin: auto;
+    width: 15%;
+    transform: rotate(90deg);
+
+    @media screen and (min-width: $breakpoint-xs) {
+        display: none;
+    }
+}
+
 .block--map-teaser {
     background-size: cover;
     background-position: top;

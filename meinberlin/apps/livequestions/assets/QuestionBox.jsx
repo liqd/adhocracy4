@@ -228,7 +228,7 @@ export default class QuestionBox extends React.Component {
                 <InfoBox
                   isModerator={this.props.isModerator}
                 />
-                <div className="live_questions__filters--parent control-bar__top-overlap">
+                <div className="control-bar__top-overlap live_questions__filters--parent">
                   <Filters
                     categories={this.props.categories}
                     currentCategory={this.state.category}
@@ -243,9 +243,12 @@ export default class QuestionBox extends React.Component {
                     isModerator={this.props.isModerator}
                   />
                   {this.props.isModerator &&
-                    <div className="">
+                    <div>
                       <a className="btn btn--light live_questions__filters--screen-btn" rel="noopener noreferrer" href={this.props.present_url} target="_blank">
-                        <i className="fas fa-tv" aria-label="hidden"> </i>
+                        <span className="fa-stack fa-1x">
+                          <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
+                          <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
+                        </span>
                         {django.gettext('display on screen')}
                       </a>
                     </div>}
@@ -273,7 +276,7 @@ export default class QuestionBox extends React.Component {
               <div className="l-center-6">
                 <a
                   href={this.props.askQuestionUrl}
-                  className="btn btn--primary btn--full btn--huge question-list-button mb-4"
+                  className="btn btn--primary btn--full btn--huge u-spacer-top"
                   id="question-create"
                 >
                   <i className="fa fa-plus question-list-button-icon" aria-hidden="true" />

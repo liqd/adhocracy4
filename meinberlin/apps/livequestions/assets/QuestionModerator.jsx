@@ -103,28 +103,30 @@ export default class QuestionModerator extends React.Component {
     const removeShortlistText = django.gettext('remove from shortlist')
 
     return (
-      <div className="list-item">
+      <div className="list-item list-item--squashed">
         <div>
-          <p className={this.props.is_hidden ? 'text-muted u-text-decoration-line-through' : ''}>{this.props.children}</p>
+          <p className={this.props.is_hidden ? 'u-muted u-text-decoration-line-through' : ''}>{this.props.children}</p>
         </div>
         {this.props.category &&
           <div>
             <span className="label label--big">{this.props.category}</span>
           </div>}
         <div className="live-question__action-bar">
-          <div className="">
-            <span><i className="far fa-eye-slash" />{this.state.likes}</span>
+          <div>
+            <span><i className="far fa-thumbs-up" />{this.state.likes}</span>
           </div>
-          <div className="">
-            {this.props.displayIsHidden &&
-              <button
-                type="button" className="btn btn--none"
-                onClick={this.toggleIshidden.bind(this)}
-                title={this.props.is_hidden ? hiddenText : undoHiddenText}
-              >
-                <i className={this.props.is_hidden ? 'far fa-eye-slash text-muted' : 'far fa-eye u-text-tertiary'} aria-label={this.props.is_hidden ? hiddenText : undoHiddenText} />
+          <div>
+            {this.props.displayIsOnShortlist &&
+              <button type="button" className="btn btn--none" onClick={this.toggleIsOnShortList.bind(this)}>
+                <i className={this.state.is_on_shortlist ? 'far fa-list-alt u-primary' : 'far fa-list-alt'} aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText} />
               </button>}
-
+            {this.props.displayIsLive &&
+              <button type="button" className="btn btn--none" onClick={this.toggleIslive.bind(this)}>
+                <span className="fa-stack fa-1x">
+                  <i className={this.state.is_live ? 'fas fa-tv fa-stack-2x u-primary' : 'fas fa-tv fa-stack-2x u-muted'} aria-label={this.state.is_live ? addLiveText : removeLiveText} />
+                  <i className={this.state.is_live ? 'fas fa-arrow-up fa-stack-1x fa-inverse u-primary' : 'fas fa-arrow-up fa-stack-1x u-muted'} aria-hidden="true" />
+                </span>
+              </button>}
             {this.props.displayIsAnswered &&
               <button
                 type="button" className="btn btn--none"
@@ -132,17 +134,16 @@ export default class QuestionModerator extends React.Component {
                 title={doneText}
               >
                 <i
-                  className={this.props.is_answered ? 'far fa-check-square' : 'far fa-check-square'}
+                  className={this.props.is_answered ? 'far fa-check-square u-primary' : 'far fa-check-square u-muted'}
                   aria-label={doneText}
                 />
               </button>}
-            {this.props.displayIsLive &&
-              <button type="button" className="btn btn--none" onClick={this.toggleIslive.bind(this)} title={this.state.is_live ? addLiveText : removeLiveText}>
-                <i className={this.state.is_live ? 'fas fa-tv text-muted' : 'fas fa-tv u-text-tertiary'} aria-label={this.state.is_live ? addLiveText : removeLiveText} />
-              </button>}
-            {this.props.displayIsOnShortlist &&
-              <button type="button" className="btn btn--none" onClick={this.toggleIsOnShortList.bind(this)} title={this.state.is_on_shortlist ? addShortlistText : removeShortlistText}>
-                <i className={this.state.is_on_shortlist ? 'fas fa-desktop text-muted' : 'fas fa-desktop u-text-tertiary'} aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText} />
+            {this.props.displayIsHidden &&
+              <button
+                type="button" className="btn btn--none"
+                onClick={this.toggleIshidden.bind(this)}
+              >
+                <i className={this.props.is_hidden ? 'far fa-eye-slash u-muted' : 'far fa-eye u-primary'} aria-label={this.props.is_hidden ? hiddenText : undoHiddenText} />
               </button>}
           </div>
         </div>

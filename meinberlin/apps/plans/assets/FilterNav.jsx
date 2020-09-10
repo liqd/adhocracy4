@@ -124,7 +124,7 @@ class FilterNav extends React.Component {
       return (
         <div>
           <div className={this.getFilterBarClassName('--stacked')} role="group" aria-label={django.gettext('Filter bar')}>
-            <span className="">{django.gettext('I am interested in projects from')}</span>
+            <span>{django.gettext('I am interested in projects from')}</span>
             {this.props.district === '-1'
               ? (
                 <FilterButton

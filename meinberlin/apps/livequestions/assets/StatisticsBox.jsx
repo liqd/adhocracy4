@@ -42,81 +42,77 @@ export default class StatisticsBox extends React.Component {
 
   render () {
     const questionAnsweredTag = django.gettext('Questions Answered')
+    const categoriesAnswerdTag = django.gettext('Categories Answered')
     return (
-      <div>
+      <div className="module-content">
         <div className="l-wrapper">
           <div className="l-center-8">
-            <div className="list-item">
+            <h3>{categoriesAnswerdTag}</h3>
+            <div className="list-item list-item--squashed">
               {this.props.categories.map((category, index) => {
                 const countPerCategory = this.countCategory(category)
                 const style = { width: countPerCategory + '%' }
                 return (
-                  <div key={index}>
+                  <div key={index} className="u-spacer-bottom-half">
                     <div className="progress">
                       <div
                         className="progress-bar" style={style} role="progressbar" aria-valuenow="25" aria-valuemin="0"
                         aria-valuemax="100"
-                      >&nbsp;{countPerCategory}%&nbsp;<span>{category}</span>
+                      ><span>&nbsp;{category}&nbsp;</span>{countPerCategory}%
                       </div>
                     </div>
                   </div>
                 )
               })}
             </div>
-          </div>
-        </div>
-        <div className="module-content">
-          <div className="l-wrapper">
-            <div className="l-center-8">
-              <span className="">{questionAnsweredTag}</span>
-              {this.props.isModerator
-                ? (
-                  <div className="list-group">
-                    {this.state.answeredQuestions.map((question, index) => {
-                      return (
-                        <QuestionModerator
-                          updateQuestion={this.updateQuestion.bind(this)}
-                          displayIsOnShortlist={false}
-                          displayIsLive={false}
-                          displayIsHidden={false}
-                          displayIsAnswered={question.is_answered}
-                          removeFromList={this.removeFromList.bind(this)}
-                          key={question.id}
-                          id={question.id}
-                          is_answered={question.is_answered}
-                          is_on_shortlist={question.is_on_shortlist}
-                          is_live={question.is_live}
-                          is_hidden={question.is_hidden}
-                          category={question.category}
-                          likes={question.likes}
-                        >
-                          {question.text}
-                        </QuestionModerator>
-                      )
-                    })}
-                  </div>
-                )
-                : (
-                  <div className="list-group">
-                    {this.state.answeredQuestions.map((question, index) => {
-                      return (
-                        <QuestionUser
-                          key={question.id}
-                          id={question.id}
-                          is_answered={question.is_answered}
-                          is_on_shortlist={question.is_on_shortlist}
-                          is_live={question.is_live}
-                          is_hidden={question.is_hidden}
-                          category={question.category}
-                          likes={question.likes}
-                        >
-                          {question.text}
-                        </QuestionUser>
-                      )
-                    })}
-                  </div>
-                )}
-            </div>
+            <h3>{questionAnsweredTag}</h3>
+            {this.props.isModerator
+              ? (
+                <div className="list-group">
+                  {this.state.answeredQuestions.map((question, index) => {
+                    return (
+                      <QuestionModerator
+                        updateQuestion={this.updateQuestion.bind(this)}
+                        displayIsOnShortlist={false}
+                        displayIsLive={false}
+                        displayIsHidden={false}
+                        displayIsAnswered={question.is_answered}
+                        removeFromList={this.removeFromList.bind(this)}
+                        key={question.id}
+                        id={question.id}
+                        is_answered={question.is_answered}
+                        is_on_shortlist={question.is_on_shortlist}
+                        is_live={question.is_live}
+                        is_hidden={question.is_hidden}
+                        category={question.category}
+                        likes={question.likes}
+                      >
+                        {question.text}
+                      </QuestionModerator>
+                    )
+                  })}
+                </div>
+              )
+              : (
+                <div className="list-group">
+                  {this.state.answeredQuestions.map((question, index) => {
+                    return (
+                      <QuestionUser
+                        key={question.id}
+                        id={question.id}
+                        is_answered={question.is_answered}
+                        is_on_shortlist={question.is_on_shortlist}
+                        is_live={question.is_live}
+                        is_hidden={question.is_hidden}
+                        category={question.category}
+                        likes={question.likes}
+                      >
+                        {question.text}
+                      </QuestionUser>
+                    )
+                  })}
+                </div>
+              )}
           </div>
         </div>
       </div>

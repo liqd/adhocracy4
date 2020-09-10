@@ -47,7 +47,7 @@ class FilterRadio extends React.Component {
               checked={this.isChecked(-1)}
               onChange={this.handleOnChange.bind(this)}
             />
-            <span className="">{django.gettext('all')}</span>
+            <span>{django.gettext('all')}</span>
           </label>
           {this.props.choiceNames.map((choice, i) => {
             return (
@@ -64,7 +64,7 @@ class FilterRadio extends React.Component {
                   checked={this.isChecked(i)}
                   onChange={this.handleOnChange.bind(this)}
                 />
-                <span className="">{choice}</span>
+                <span>{choice}</span>
               </label>
             )
           })}

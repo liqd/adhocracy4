@@ -38,16 +38,17 @@
 }
 
 .infobox__box {
-    background-color: $bg-secondary;
+    background-color: $bg-tertiary;
     padding: 0.5*$spacer;
     margin-right: $spacer;
+    text-align: center;
 
     i {
         color: $brand-primary;
     }
 }
 
-.infobox > div:last-child {
+.infobox__box--last {
     margin-right: 0;
 }
 
@@ -58,7 +59,7 @@
 .progress-bar {
     display: flex;
     height: 1.5rem;
-    background-color: $bg-secondary;
+    background-color: $brand-primary-tint;
     border-radius: 0.25rem;
 }
 
@@ -88,5 +89,52 @@
 
     input[type="checkbox"]:checked + .checkbox-btn__text {
         @extend .btn--secondary;
+    }
+}
+
+.live_questions_infographic__footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.live_questions_infographic__logo-container {
+    width: 100%;  // required when used in a flex container
+    max-width: $wrapper-width;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    max-height: 2*$spacer;
+
+    @media screen and (min-width: $breakpoint) {
+        justify-content: flex-start;
+    }
+}
+
+.live_questions_infographic__logo {
+    position: relative;
+    top: -5rem;
+
+    @media screen and (min-width: $breakpoint-lg) {
+        left: -5rem;
+    }
+}
+
+.live_questions_infographic {
+    padding-bottom: 2*$spacer;
+
+    .block--infographic__icon-block {
+        margin: auto;
+    }
+
+    .block--infographic__icon {
+        padding-right: 0;
+    }
+
+    a {
+        color: $body-bg;
+        text-decoration: underline;
+        display: block;
     }
 }

@@ -115,7 +115,7 @@
     font-size: $font-size-sm;
 
     @media print {
-        color: $text-muted;
+        color: $print-black;
     }
 }
 
