@@ -16,7 +16,7 @@
     <script src="{% static 'vendor.js' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>
     <meta name="viewport" content="width=device-width" />
-    {% block header %}{% endblock %}
+    {% block header_meta %}{% endblock %}
 
     {% block extra_js %}
         {# Override this in templates to add extra javascript #}
@@ -26,9 +26,12 @@
 </head>
 <body>
     <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
-
-    {% include 'portal_header.html' %}
-    {% include 'header.html' %}
+    {% block portal_header %}
+      {% include 'portal_header.html' %}
+    {% endblock %}
+    {% block header %}
+      {% include 'header.html' %}
+    {% endblock %}
     <main id="main">
 
         {% if messages %}
@@ -52,8 +55,10 @@
         {% wagtailuserbar %}
 
     </main>
+    {% block footer %}
+      {% include 'footer.html' %}
+    {% endblock %}
 
-    {% include 'footer.html' %}
     {% block extra_js_deferred %}
         {# Override this in templates to add extra javascript #}
     {% endblock %}
