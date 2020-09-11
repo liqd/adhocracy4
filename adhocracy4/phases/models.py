@@ -92,8 +92,8 @@ class Phase(models.Model):
         if self.end_date and self.start_date:
             if self.end_date < self.start_date:
                 raise ValidationError({
-                    'end_date': _('End date can not be smaller'
-                                  'than the start date.')
+                    'end_date': _('End date can not be before '
+                                  'start date.')
                 })
         super().clean()
 
