@@ -5,6 +5,9 @@
     // make border-radius work with contents
     overflow: hidden;
     margin-bottom: $padding * 1.8;
+
+    //remove padding inherited from ck_embed div
+    padding-top: 0 !important;
 }
 
 .accordion__title {
