@@ -3,6 +3,7 @@ from django.contrib import admin
 
 from . import content
 from . import models
+from .forms import PhaseInlineFormSet
 
 
 class PhaseForm(forms.ModelForm):
@@ -16,5 +17,6 @@ class PhaseForm(forms.ModelForm):
 class PhaseInline(admin.TabularInline):
     model = models.Phase
     form = PhaseForm
+    formset = PhaseInlineFormSet
     extra = 0
     min_num = 1
