@@ -10,7 +10,7 @@ export default class Filter extends React.Component {
 
   getButtonClass () {
     if (this.props.currentCategory === '-1') {
-      return 'btn btn--transparent live_questions__filters--dropdown dropdown-toggle'
+      return 'btn btn--light live_questions__filters--dropdown dropdown-toggle'
     } else {
       return 'btn btn--secondary live_questions__filters--dropdown dropdown-toggle'
     }
@@ -40,7 +40,7 @@ export default class Filter extends React.Component {
         {this.props.isModerator &&
           <div className="live_questions__filters--btns">
             <div className="checkbox-btn u-spacer-right">
-              <label htmlFor="markedCheck" className="checkbox-btn__label--primary">
+              <label htmlFor="markedCheck" className="checkbox-btn__label--primary" title={onlyShowMarkedText}>
                 <input
                   className="checkbox-btn__input"
                   type="checkbox"
@@ -55,7 +55,7 @@ export default class Filter extends React.Component {
               </label>
             </div>
             <div className="checkbox-btn u-spacer-right">
-              <label htmlFor="displayNotHiddenOnly" className="checkbox-btn__label--primary">
+              <label htmlFor="displayNotHiddenOnly" className="checkbox-btn__label--primary" title={displayNotHiddenText}>
                 <input
                   className="checkbox-btn__input"
                   type="checkbox"
@@ -70,7 +70,7 @@ export default class Filter extends React.Component {
               </label>
             </div>
             <div className="checkbox-btn">
-              <label htmlFor="orderedByLikes" className="checkbox-btn__label--primary">
+              <label htmlFor="orderedByLikes" className="checkbox-btn__label--primary" title={orderLikesText}>
                 <input
                   className="checkbox-btn__input"
                   type="checkbox"

@@ -120,6 +120,7 @@ export default class QuestionModerator extends React.Component {
               <button
                 type="button" className="btn btn--none"
                 onClick={this.toggleIshidden.bind(this)}
+                title={this.props.is_hidden ? hiddenText : undoHiddenText}
               >
                 <i className={this.props.is_hidden ? 'far fa-eye-slash text-muted' : 'far fa-eye u-text-tertiary'} aria-label={this.props.is_hidden ? hiddenText : undoHiddenText} />
               </button>}
@@ -128,6 +129,7 @@ export default class QuestionModerator extends React.Component {
               <button
                 type="button" className="btn btn--none"
                 onClick={this.toggleIsAnswered.bind(this)}
+                title={doneText}
               >
                 <i
                   className={this.props.is_answered ? 'far fa-check-square' : 'far fa-check-square'}
@@ -135,14 +137,11 @@ export default class QuestionModerator extends React.Component {
                 />
               </button>}
             {this.props.displayIsLive &&
-              <button type="button" className="btn btn--none" onClick={this.toggleIslive.bind(this)}>
-                <span className="fa-stack fa-1x">
-                  <i className={this.state.is_live ? 'fas fa-tv fa-stack-2x text-muted' : 'fas fa-tv fa-stack-2x u-text-tertiary'} aria-label={this.state.is_live ? addLiveText : removeLiveText} />
-                  <i className={this.state.is_live ? 'fas fa-arrow-up fa-stack-1x fa-inverse text-muted' : 'fas fa-arrow-up fa-stack-1x u-text-tertiary'} aria-hidden="true" />
-                </span>
+              <button type="button" className="btn btn--none" onClick={this.toggleIslive.bind(this)} title={this.state.is_live ? addLiveText : removeLiveText}>
+                <i className={this.state.is_live ? 'fas fa-tv text-muted' : 'fas fa-tv u-text-tertiary'} aria-label={this.state.is_live ? addLiveText : removeLiveText} />
               </button>}
             {this.props.displayIsOnShortlist &&
-              <button type="button" className="btn btn--none" onClick={this.toggleIsOnShortList.bind(this)}>
+              <button type="button" className="btn btn--none" onClick={this.toggleIsOnShortList.bind(this)} title={this.state.is_on_shortlist ? addShortlistText : removeShortlistText}>
                 <i className={this.state.is_on_shortlist ? 'fas fa-desktop text-muted' : 'fas fa-desktop u-text-tertiary'} aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText} />
               </button>}
           </div>

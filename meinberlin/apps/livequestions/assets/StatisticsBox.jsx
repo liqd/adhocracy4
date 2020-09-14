@@ -51,13 +51,12 @@ export default class StatisticsBox extends React.Component {
                 const countPerCategory = this.countCategory(category)
                 const style = { width: countPerCategory + '%' }
                 return (
-                  <div key={index} className="">
-                    <span>{category}</span>
+                  <div key={index}>
                     <div className="progress">
                       <div
                         className="progress-bar" style={style} role="progressbar" aria-valuenow="25" aria-valuemin="0"
                         aria-valuemax="100"
-                      >{countPerCategory}%
+                      >&nbsp;{countPerCategory}%&nbsp;<span>{category}</span>
                       </div>
                     </div>
                   </div>

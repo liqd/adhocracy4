@@ -30,7 +30,7 @@ export default class InfoBox extends React.Component {
       <div>
         {this.state.displayInfo
           ? (
-            <div className="">
+            <div className="u-spacer-bottom">
               {this.props.isModerator &&
                 <div className="alert-dismissible">
                   <button type="button" className="close" onClick={this.toggleInformation.bind(this)}>
@@ -42,7 +42,8 @@ export default class InfoBox extends React.Component {
                       <div>{textAddQuestion}</div>
                     </div>
                     <div className="infobox__box">
-                      <span className="fa-stack fa-1x"><i className="fas fa-tv fa-stack-2x" /><i className="fas fa-arrow-up fa-stack-1x" /></span> <div>{textDisplayQuestion}</div>
+                      <i className="fas fa-tv" />
+                      <div>{textDisplayQuestion}</div>
                     </div>
                     <div className="infobox__box">
                       <i className="far fa-thumbs-up" />
