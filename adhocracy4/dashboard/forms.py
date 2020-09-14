@@ -11,6 +11,7 @@ from adhocracy4.forms.fields import DateTimeField
 from adhocracy4.maps import models as map_models
 from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
+from adhocracy4.phases.forms import PhaseInlineFormSet
 from adhocracy4.projects import models as project_models
 
 from .components.forms import ModuleDashboardForm
@@ -159,33 +160,19 @@ class PhaseForm(forms.ModelForm):
         }
 
 
-class PhaseInlineFormSet(ModuleDashboardFormSet):
-    def clean(self):
-        """
-        Make sure phases of the same module don't overlap.
-        """
-        super().clean()
-        phase_dates = []
-        for form in self.forms:
-            start_date = form.cleaned_data['start_date']
-            end_date = form.cleaned_data['end_date']
-            if phase_dates:
-                for phase_date in phase_dates:
-                    if (start_date < phase_date[1]
-                            and phase_date[0] < end_date):
-                        msg = _('Phases cannot run at the same time '
-                                'and must follow after each other.')
-                        form.add_error('end_date', msg)
-            phase_dates.append((start_date, end_date))
+class DashboardPhaseInlineFormSet(ModuleDashboardFormSet,
+                                  PhaseInlineFormSet):
+    pass
 
 
-PhaseFormSet = inlineformset_factory(module_models.Module,
-                                     phase_models.Phase,
-                                     form=PhaseForm,
-                                     formset=PhaseInlineFormSet,
-                                     extra=0,
-                                     can_delete=False,
-                                     )
+PhaseFormSet = inlineformset_factory(
+    module_models.Module,
+    phase_models.Phase,
+    form=PhaseForm,
+    formset=DashboardPhaseInlineFormSet,
+    extra=0,
+    can_delete=False,
+)
 
 
 class AreaSettingsForm(ModuleDashboardForm):
