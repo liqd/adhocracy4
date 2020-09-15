@@ -202,7 +202,7 @@ export default class QuestionBox extends React.Component {
           </div>
         </div>
         <div
-          className="tabpanel tabpanel--bg-secondary"
+          className="tabpanel"
           id="tabpanel-information"
           role="tabpanel"
           aria-labelledby="tab-information"
@@ -216,7 +216,7 @@ export default class QuestionBox extends React.Component {
         </div>
 
         <div
-          className="tabpanel tabpanel--bg-secondary active"
+          className="tabpanel module-content active"
           id="tabpanel-questions"
           role="tabpanel"
           aria-labelledby="tab-questions"
@@ -286,7 +286,7 @@ export default class QuestionBox extends React.Component {
             </div>}
         </div>
         <div
-          className="tabpanel tabpanel--bg-secondary"
+          className="tabpanel module-content"
           id="tabpanel-statistics"
           role="tabpanel"
           aria-labelledby="tab-statistics"

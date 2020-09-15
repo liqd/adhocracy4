@@ -42,12 +42,12 @@ export default class StatisticsBox extends React.Component {
 
   render () {
     const questionAnsweredTag = django.gettext('Questions Answered')
-    const categoriesAnswerdTag = django.gettext('Categories Answered')
+    const categoriesAnsweredTag = django.gettext('Categories Answered')
     return (
       <div className="module-content">
         <div className="l-wrapper">
           <div className="l-center-8">
-            <h3>{categoriesAnswerdTag}</h3>
+            <h3>{categoriesAnsweredTag}</h3>
             <div className="list-item list-item--squashed">
               {this.props.categories.map((category, index) => {
                 const countPerCategory = this.countCategory(category)
