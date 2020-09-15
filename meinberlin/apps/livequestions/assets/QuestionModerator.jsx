@@ -112,8 +112,8 @@ export default class QuestionModerator extends React.Component {
             <span className="label label--big">{this.props.category}</span>
           </div>}
         <div className="live-question__action-bar">
-          <div>
-            <span><i className="far fa-thumbs-up" />{this.state.likes}</span>
+          <div className="live_questions__like">
+            <span><i className="far fa-thumbs-up" /> {this.state.likes}</span>
           </div>
           <div>
             {this.props.displayIsOnShortlist &&
@@ -124,7 +124,7 @@ export default class QuestionModerator extends React.Component {
               <button type="button" className="btn btn--none" onClick={this.toggleIslive.bind(this)}>
                 <span className="fa-stack fa-1x">
                   <i className={this.state.is_live ? 'fas fa-tv fa-stack-2x u-primary' : 'fas fa-tv fa-stack-2x u-muted'} aria-label={this.state.is_live ? addLiveText : removeLiveText} />
-                  <i className={this.state.is_live ? 'fas fa-arrow-up fa-stack-1x fa-inverse u-primary' : 'fas fa-arrow-up fa-stack-1x u-muted'} aria-hidden="true" />
+                  <i className={this.state.is_live ? 'fas fa-check fa-stack-1x fa-inverse u-primary' : 'fas fa-check fa-stack-1x u-muted'} aria-hidden="true" />
                 </span>
               </button>}
             {this.props.displayIsAnswered &&
@@ -134,7 +134,7 @@ export default class QuestionModerator extends React.Component {
                 title={doneText}
               >
                 <i
-                  className={this.props.is_answered ? 'far fa-check-square u-primary' : 'far fa-check-square u-muted'}
+                  className={this.props.is_answered ? 'far fa-check-circle u-primary' : 'far fa-check-circle u-muted'}
                   aria-label={doneText}
                 />
               </button>}

@@ -216,7 +216,7 @@ export default class QuestionBox extends React.Component {
         </div>
 
         <div
-          className="tabpanel module-content active"
+          className="tabpanel active"
           id="tabpanel-questions"
           role="tabpanel"
           aria-labelledby="tab-questions"

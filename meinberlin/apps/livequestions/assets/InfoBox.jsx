@@ -45,11 +45,14 @@ export default class InfoBox extends React.Component {
                       <div>{textAddQuestion}</div>
                     </div>
                     <div className="infobox__box">
-                      <i className="fas fa-tv" />
+                      <span className="fa-stack fa-1x">
+                        <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
+                        <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
+                      </span>
                       <div>{textDisplayQuestion}</div>
                     </div>
                     <div className="infobox__box">
-                      <i className="far fa-check-square" />
+                      <i className="far fa-check-circle" />
                       <div>{textMarkAnswered}</div>
                     </div>
                     <div className="infobox__box infobox__box--last">
