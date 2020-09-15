@@ -138,3 +138,22 @@
         display: block;
     }
 }
+
+.live_questions__like {
+    padding-top: 0.5*$spacer;
+}
+
+.live_question__presentation {
+    margin-top: 5*$spacer;
+}
+
+.fa-stack,
+.fa-stack-2x {
+    font-size: 1rem;
+    line-height: 1rem;
+    height: 1rem;
+}
+
+.fa-stack-1x {
+    font-size: 0.7rem;
+}

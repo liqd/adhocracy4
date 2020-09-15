@@ -20,7 +20,7 @@ fieldset {
 
 html {
     overflow-y: scroll;
-    background-color: $body-bg;
+    background-color: $body-bg !important;
     color: contrast-color($body-bg);
     box-sizing: border-box;
     font-family: $font-family-base;
