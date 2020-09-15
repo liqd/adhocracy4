@@ -42,7 +42,7 @@ export default class StatisticsBox extends React.Component {
 
   render () {
     const questionAnsweredTag = django.gettext('Questions Answered')
-    const categoriesAnswerdTag = django.gettext('Categories Answered')
+    const categoriesAnsweredTag = django.gettext('Categories Answered')
     return (
       <div className="module-content">
         <div className="l-wrapper">
