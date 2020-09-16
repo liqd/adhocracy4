@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-08 17:25+0200\n"
+"POT-Creation-Date: 2020-09-16 14:51+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,13 +62,17 @@ msgid "Answer"
 msgstr "Antworten"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:410
 #: adhocracy4/comments/static/comments/Comment.jsx:31
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:410
 msgid "Your reply here"
 msgstr "Ihre Antwort hier"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:32
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:279
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 #: adhocracy4/comments/static/comments/Comment.jsx:32
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:279
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -80,38 +84,54 @@ msgstr ""
 "er nicht unseren Diskussionsregeln (Netiquette) entspricht."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:256
 #: adhocracy4/comments/static/comments/Comment.jsx:96
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:256
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:251
 #: adhocracy4/comments/static/comments/Comment.jsx:105
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:251
 msgid "Latest edit on"
 msgstr "Letzte Änderung am"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:147
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:232
 #: adhocracy4/comments/static/comments/Comment.jsx:147
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:232
 msgid "Do you really want to delete this comment?"
 msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:148
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:234
+#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:22
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:14
 #: adhocracy4/comments/static/comments/Comment.jsx:148
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:234
+#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:22
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:14
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:56
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:61
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:133
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:138
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:99
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:104
 msgid "Delete"
 msgstr "Löschen"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:235
 #: adhocracy4/comments_async/static/modals/modal.jsx:58
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
 #: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:235
 #: adhocracy4/comments_async/static/modals/modal.jsx:58
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 msgid "Abort"
 msgstr "Abbrechen"
 
@@ -148,25 +168,25 @@ msgid "cancel"
 msgstr "Abbrechen"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:37
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:107
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:108
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:109
 #: adhocracy4/comments/static/comments/CommentForm.jsx:37
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:107
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:108
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:109
 msgid "post"
 msgstr "Senden"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:38
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:118
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:117
 #: adhocracy4/comments/static/comments/CommentForm.jsx:38
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:118
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:117
 msgid "Please login to comment"
 msgstr "Bitte melden Sie sich zum Kommentieren an."
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:39
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:124
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:123
 #: adhocracy4/comments/static/comments/CommentForm.jsx:39
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:124
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:123
 msgid "The currently active phase doesn't allow to comment."
 msgstr "Die aktuell laufende Phase erlaubt keine Kommentare."
 
@@ -231,6 +251,16 @@ msgctxt "verb"
 msgid "Comment"
 msgstr "Kommentieren"
 
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:286
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:286
+msgid "Share link"
+msgstr ""
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:325
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:325
+msgid "Categories: "
+msgstr ""
+
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 msgid "Newest"
@@ -262,6 +292,7 @@ msgstr "Zuletzt diskutiert"
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:51
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:310
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:543
+#: meinberlin/apps/livequestions/assets/Filters.jsx:20
 #: meinberlin/apps/plans/assets/FilterNav.jsx:95
 #: meinberlin/apps/plans/assets/FilterNav.jsx:102
 #: meinberlin/apps/plans/assets/FilterOptions.jsx:29
@@ -336,13 +367,13 @@ msgstr "Filter ausblenden"
 msgid "Hide filters"
 msgstr "Filter ausblenden"
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:105
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:104
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:104
 msgid " characters"
 msgstr " Zeichen"
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:109
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:109
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:108
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:108
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -355,6 +386,11 @@ msgstr "Kommentar empfehlen"
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:35
 msgid "Is recommended"
 msgstr "Wird empfohlen"
+
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
+msgid "Submit"
+msgstr ""
 
 #: adhocracy4/comments_async/static/modals/report_modal.jsx:62
 #: adhocracy4/comments_async/static/modals/report_modal.jsx:62
@@ -443,6 +479,7 @@ msgstr "Speichern"
 
 #: adhocracy4/polls/static/polls/Question.jsx:9
 #: adhocracy4/polls/static/polls/Question.jsx:9
+#: meinberlin/apps/polls/assets/Question.jsx:173
 msgid "Your choice"
 msgstr "Ihre Wahl"
 
@@ -477,16 +514,19 @@ msgstr "Bitte melden Sie sich zum Abstimmen an."
 
 #: adhocracy4/polls/static/polls/Question.jsx:140
 #: adhocracy4/polls/static/polls/Question.jsx:140
+#: meinberlin/apps/polls/assets/Question.jsx:138
 msgid "To poll"
 msgstr "Zur Umfrage"
 
 #: adhocracy4/polls/static/polls/Question.jsx:142
 #: adhocracy4/polls/static/polls/Question.jsx:142
+#: meinberlin/apps/polls/assets/Question.jsx:141
 msgid "Change vote"
 msgstr "Stimme ändern"
 
 #: adhocracy4/polls/static/polls/Question.jsx:145
 #: adhocracy4/polls/static/polls/Question.jsx:145
+#: meinberlin/apps/polls/assets/Question.jsx:145
 msgid "Show preliminary results"
 msgstr "Vorläufiges Ergebnis zeigen"
 
@@ -512,6 +552,7 @@ msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:67
 msgid "Add a new choice"
 msgstr "Neue Antwort"
 
@@ -521,6 +562,8 @@ msgstr "Neue Antwort"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:37
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:110
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:115
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:76
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:81
 msgid "Move up"
 msgstr "nach oben"
 
@@ -530,6 +573,8 @@ msgstr "nach oben"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:127
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:88
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:93
 msgid "Move down"
 msgstr "nach unten"
 
@@ -545,6 +590,8 @@ msgid "Thank you! We are taking care of it."
 msgstr "Vielen Dank! Wir werden uns darum kümmern."
 
 #: adhocracy4/static/Alert.jsx:5
+#: meinberlin/apps/contrib/assets/Alert.jsx:10
+#: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/dashboard/assets/ajax_modal.js:12
 #: meinberlin/apps/embed/assets/embed.js:54
 #: meinberlin/apps/embed/assets/embed.js:55
@@ -632,6 +679,128 @@ msgid ""
 msgstr ""
 "Sie haben Third Party Cookies deaktiviert. Sie können sich dieses Projekt "
 "zwar anschauen, werden sich aber nicht anmelden können."
+
+#: meinberlin/apps/livequestions/assets/Filters.jsx:21
+msgid "only show marked questions"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/Filters.jsx:22
+msgid "display only questions which are not hidden"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/Filters.jsx:23
+msgid "order by likes"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:4
+msgid "display question on screen"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:5
+msgid "add question to shortlist"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:6
+msgid "hide question from audience"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:7
+msgid "mark question as answered"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:8
+msgid "is shown in front of a question? It has been marked by the moderation."
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:9
+msgid "Close information"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:10
+msgid "Open information"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:11
+msgid "Hide"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:18
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:47
+msgid "select characteristic"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:177
+msgid "Information"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:188
+msgid "Questions"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:199
+msgid "Statistics"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:252
+msgid "display on screen"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:283
+msgid "Add Question"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:97
+msgid "mark as hidden"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:98
+msgid "undo mark as hidden"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:99
+msgid "mark as done"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:100
+msgid "added to live list"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:101
+msgid "remove from live list"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:102
+msgid "added to shortlist"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:103
+msgid "remove from shortlist"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionPresent.jsx:29
+#: meinberlin/apps/livequestions/assets/QuestionUser.jsx:52
+msgid "likes"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionUser.jsx:51
+msgid "on shortlist"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionUser.jsx:53
+msgid "add like"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/QuestionUser.jsx:54
+msgid "undo like"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/StatisticsBox.jsx:44
+msgid "Questions Answered"
+msgstr ""
+
+#: meinberlin/apps/livequestions/assets/StatisticsBox.jsx:45
+msgid "Categories Answered"
+msgstr ""
 
 #: meinberlin/apps/maps/assets/map-address.js:89
 msgid "No matches found within the project area"
@@ -806,6 +975,35 @@ msgstr "laufend"
 msgid "done"
 msgstr "abgeschlossen"
 
+#: meinberlin/apps/plans/assets/PlansList.jsx:86
+#: meinberlin/apps/plans/assets/PopUp.jsx:20
+msgid "More than 1 year remaining"
+msgstr "noch länger als 1 Jahr"
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:90
+#: meinberlin/apps/plans/assets/PopUp.jsx:24
+msgid "remaining"
+msgstr "noch"
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:192
+#: meinberlin/apps/plans/assets/PopUp.jsx:66
+msgid "Participation ended. Read result."
+msgstr "Beteiligung beendet. Ergebnis lesen."
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:210
+#: meinberlin/apps/plans/assets/PopUp.jsx:86
+msgid "Participation projects: "
+msgstr "Beteiligungsprojekte: "
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:219
+msgid "Status: "
+msgstr "Status: "
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:248
+#: meinberlin/apps/plans/assets/PlansMap.jsx:286
+msgid "Nothing to show"
+msgstr "Keine Ergebnisse"
+
 #: meinberlin/apps/plans/assets/PlansMap.jsx:261
 msgid "Address Search"
 msgstr "Adresssuche"
@@ -814,10 +1012,6 @@ msgstr "Adresssuche"
 #: meinberlin/apps/plans/assets/PlansMap.jsx:264
 msgid "Address search"
 msgstr "Adresssuche"
-
-#: meinberlin/apps/plans/assets/PlansMap.jsx:286
-msgid "Nothing to show"
-msgstr "Keine Ergebnisse"
 
 #: meinberlin/apps/plans/assets/PlansMap.jsx:293
 msgid "Close information box"
@@ -831,29 +1025,13 @@ msgstr ""
 "Projekte ohne räumlichen Bezug werden nicht auf der Karte angezeigt. Bitte "
 "beachten Sie daher auch die Projektliste. "
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:20
-msgid "More than 1 year remaining"
-msgstr "noch länger als 1 Jahr"
-
-#: meinberlin/apps/plans/assets/PopUp.jsx:24
-msgid "remaining"
-msgstr "noch"
-
 #: meinberlin/apps/plans/assets/PopUp.jsx:32
 msgid "Participation: from "
 msgstr "Beteiligung: ab "
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:66
-msgid "Participation ended. Read result."
-msgstr "Beteiligung beendet. Ergebnis lesen."
-
 #: meinberlin/apps/plans/assets/PopUp.jsx:70
 msgid "Superordinate project: "
 msgstr "Übergeordnetes Projekt: "
-
-#: meinberlin/apps/plans/assets/PopUp.jsx:86
-msgid "Participation projects: "
-msgstr "Beteiligungsprojekte: "
 
 #: meinberlin/apps/plans/assets/PopUp.jsx:90
 msgid "Participation: "
@@ -888,14 +1066,11 @@ msgstr "Karte anzeigen"
 msgid "show map"
 msgstr "Karte anzeigen"
 
-#: meinberlin/assets/js/unload_warning.js:15
+#: meinberlin/assets/js/unload_warning.js:16
 msgid "If you leave this page changes you made will not be saved."
 msgstr ""
 "Wenn Sie diese Seite verlassen ohne zu speichern, gehen die von Ihnen "
 "vorgenommenen Änderungen verloren."
-
-#~ msgid "Status: "
-#~ msgstr "Status: "
 
 #~ msgid "The maximal length of your contribution is 4000 characters"
 #~ msgstr "Die maximale Länge des Beitrags beträgt 4.000 Zeichen"

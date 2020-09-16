@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-08 17:25+0200\n"
+"POT-Creation-Date: 2020-09-16 14:51+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,10 +54,12 @@ msgid "Answer"
 msgstr "Answer"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:410
 msgid "Your reply here"
 msgstr "Your reply here"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:32
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:279
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -69,29 +71,38 @@ msgstr ""
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:256
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:251
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:147
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:232
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:148
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:234
+#: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:22
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:14
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:56
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:61
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:133
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:138
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:99
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:104
 msgid "Delete"
 msgstr "Delete"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:149
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:235
 #: adhocracy4/comments_async/static/modals/modal.jsx:58
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
 msgid "Abort"
 msgstr "Abort"
@@ -120,18 +131,18 @@ msgid "cancel"
 msgstr "cancel"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:37
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:107
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:108
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:109
 msgid "post"
 msgstr "post"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:38
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:118
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:117
 msgid "Please login to comment"
 msgstr "Please login to comment"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:39
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:124
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:123
 msgid "The currently active phase doesn't allow to comment."
 msgstr "The currently active phase doesn't allow to comment."
 
@@ -184,6 +195,14 @@ msgctxt "verb"
 msgid "Comment"
 msgstr "Comment"
 
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:286
+msgid "Share link"
+msgstr "Share link"
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:325
+msgid "Categories: "
+msgstr "Categories: "
+
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 msgid "Newest"
 msgstr "Newest"
@@ -207,6 +226,7 @@ msgstr "Last discussed"
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:51
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:310
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:543
+#: meinberlin/apps/livequestions/assets/Filters.jsx:20
 #: meinberlin/apps/plans/assets/FilterNav.jsx:95
 #: meinberlin/apps/plans/assets/FilterNav.jsx:102
 #: meinberlin/apps/plans/assets/FilterOptions.jsx:29
@@ -266,11 +286,11 @@ msgstr "Hide Filters"
 msgid "Hide filters"
 msgstr "Hide filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:105
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:104
 msgid " characters"
 msgstr " characters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:109
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:108
 msgid "Comment"
 msgstr "Comment"
 
@@ -281,6 +301,10 @@ msgstr "Recommend comment"
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:35
 msgid "Is recommended"
 msgstr "Is recommended"
+
+#: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
+msgid "Submit"
+msgstr "Submit"
 
 #: adhocracy4/comments_async/static/modals/report_modal.jsx:62
 msgid ""
@@ -352,6 +376,7 @@ msgid "Save"
 msgstr "Save"
 
 #: adhocracy4/polls/static/polls/Question.jsx:9
+#: meinberlin/apps/polls/assets/Question.jsx:173
 msgid "Your choice"
 msgstr "Your choice"
 
@@ -380,14 +405,17 @@ msgid "Please login to vote"
 msgstr "Please login to vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:140
+#: meinberlin/apps/polls/assets/Question.jsx:138
 msgid "To poll"
 msgstr "To poll"
 
 #: adhocracy4/polls/static/polls/Question.jsx:142
+#: meinberlin/apps/polls/assets/Question.jsx:141
 msgid "Change vote"
 msgstr "Change vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:145
+#: meinberlin/apps/polls/assets/Question.jsx:145
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
@@ -409,6 +437,7 @@ msgid "Users can select more than one answer."
 msgstr "Users can select more than one answer."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:67
 msgid "Add a new choice"
 msgstr "Add a new choice"
 
@@ -417,6 +446,8 @@ msgstr "Add a new choice"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:37
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:110
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:115
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:76
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:81
 msgid "Move up"
 msgstr "Move up"
 
@@ -425,6 +456,8 @@ msgstr "Move up"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:127
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:88
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:93
 msgid "Move down"
 msgstr "Move down"
 
@@ -437,7 +470,8 @@ msgstr "Choice"
 msgid "Thank you! We are taking care of it."
 msgstr "Thank you! We are taking care of it."
 
-#: adhocracy4/static/Alert.jsx:5
+#: adhocracy4/static/Alert.jsx:5 meinberlin/apps/contrib/assets/Alert.jsx:10
+#: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/dashboard/assets/ajax_modal.js:12
 #: meinberlin/apps/embed/assets/embed.js:54
 #: meinberlin/apps/embed/assets/embed.js:55
@@ -525,6 +559,128 @@ msgid ""
 msgstr ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
+
+#: meinberlin/apps/livequestions/assets/Filters.jsx:21
+msgid "only show marked questions"
+msgstr "only show marked questions"
+
+#: meinberlin/apps/livequestions/assets/Filters.jsx:22
+msgid "display only questions which are not hidden"
+msgstr "display only questions which are not hidden"
+
+#: meinberlin/apps/livequestions/assets/Filters.jsx:23
+msgid "order by likes"
+msgstr "order by likes"
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:4
+msgid "display question on screen"
+msgstr "display question on screen"
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:5
+msgid "add question to shortlist"
+msgstr "add question to shortlist"
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:6
+msgid "hide question from audience"
+msgstr "hide question from audience"
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:7
+msgid "mark question as answered"
+msgstr "mark question as answered"
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:8
+msgid "is shown in front of a question? It has been marked by the moderation."
+msgstr "is shown in front of a question? It has been marked by the moderation."
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:9
+msgid "Close information"
+msgstr "Close information"
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:10
+msgid "Open information"
+msgstr "Open information"
+
+#: meinberlin/apps/livequestions/assets/InfoBox.jsx:11
+msgid "Hide"
+msgstr "Hide"
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:18
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:47
+msgid "select characteristic"
+msgstr "select characteristic"
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:177
+msgid "Information"
+msgstr "Information"
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:188
+msgid "Questions"
+msgstr "Questions"
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:199
+msgid "Statistics"
+msgstr "Statistics"
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:252
+msgid "display on screen"
+msgstr "display on screen"
+
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:283
+msgid "Add Question"
+msgstr "Add Question"
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:97
+msgid "mark as hidden"
+msgstr "mark as hidden"
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:98
+msgid "undo mark as hidden"
+msgstr "undo mark as hidden"
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:99
+msgid "mark as done"
+msgstr "mark as done"
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:100
+msgid "added to live list"
+msgstr "added to live list"
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:101
+msgid "remove from live list"
+msgstr "remove from live list"
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:102
+msgid "added to shortlist"
+msgstr "added to shortlist"
+
+#: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:103
+msgid "remove from shortlist"
+msgstr "remove from shortlist"
+
+#: meinberlin/apps/livequestions/assets/QuestionPresent.jsx:29
+#: meinberlin/apps/livequestions/assets/QuestionUser.jsx:52
+msgid "likes"
+msgstr "likes"
+
+#: meinberlin/apps/livequestions/assets/QuestionUser.jsx:51
+msgid "on shortlist"
+msgstr "on shortlist"
+
+#: meinberlin/apps/livequestions/assets/QuestionUser.jsx:53
+msgid "add like"
+msgstr "add like"
+
+#: meinberlin/apps/livequestions/assets/QuestionUser.jsx:54
+msgid "undo like"
+msgstr "undo like"
+
+#: meinberlin/apps/livequestions/assets/StatisticsBox.jsx:44
+msgid "Questions Answered"
+msgstr "Questions Answered"
+
+#: meinberlin/apps/livequestions/assets/StatisticsBox.jsx:45
+msgid "Categories Answered"
+msgstr "Categories Answered"
 
 #: meinberlin/apps/maps/assets/map-address.js:89
 msgid "No matches found within the project area"
@@ -693,6 +849,35 @@ msgstr "ongoing"
 msgid "done"
 msgstr "done"
 
+#: meinberlin/apps/plans/assets/PlansList.jsx:86
+#: meinberlin/apps/plans/assets/PopUp.jsx:20
+msgid "More than 1 year remaining"
+msgstr "More than 1 year remaining"
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:90
+#: meinberlin/apps/plans/assets/PopUp.jsx:24
+msgid "remaining"
+msgstr "remaining"
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:192
+#: meinberlin/apps/plans/assets/PopUp.jsx:66
+msgid "Participation ended. Read result."
+msgstr "Participation ended. Read result."
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:210
+#: meinberlin/apps/plans/assets/PopUp.jsx:86
+msgid "Participation projects: "
+msgstr "Participation projects: "
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:219
+msgid "Status: "
+msgstr "Status: "
+
+#: meinberlin/apps/plans/assets/PlansList.jsx:248
+#: meinberlin/apps/plans/assets/PlansMap.jsx:286
+msgid "Nothing to show"
+msgstr "Nothing to show"
+
 #: meinberlin/apps/plans/assets/PlansMap.jsx:261
 msgid "Address Search"
 msgstr "Address Search"
@@ -701,10 +886,6 @@ msgstr "Address Search"
 #: meinberlin/apps/plans/assets/PlansMap.jsx:264
 msgid "Address search"
 msgstr "Address search"
-
-#: meinberlin/apps/plans/assets/PlansMap.jsx:286
-msgid "Nothing to show"
-msgstr "Nothing to show"
 
 #: meinberlin/apps/plans/assets/PlansMap.jsx:293
 msgid "Close information box"
@@ -718,29 +899,13 @@ msgstr ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:20
-msgid "More than 1 year remaining"
-msgstr "More than 1 year remaining"
-
-#: meinberlin/apps/plans/assets/PopUp.jsx:24
-msgid "remaining"
-msgstr "remaining"
-
 #: meinberlin/apps/plans/assets/PopUp.jsx:32
 msgid "Participation: from "
 msgstr "Participation: from "
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:66
-msgid "Participation ended. Read result."
-msgstr "Participation ended. Read result."
-
 #: meinberlin/apps/plans/assets/PopUp.jsx:70
 msgid "Superordinate project: "
 msgstr "Superordinate project: "
-
-#: meinberlin/apps/plans/assets/PopUp.jsx:86
-msgid "Participation projects: "
-msgstr "Participation projects: "
 
 #: meinberlin/apps/plans/assets/PopUp.jsx:90
 msgid "Participation: "
@@ -775,21 +940,9 @@ msgstr "Show Map"
 msgid "show map"
 msgstr "show map"
 
-#: meinberlin/assets/js/unload_warning.js:15
+#: meinberlin/assets/js/unload_warning.js:16
 msgid "If you leave this page changes you made will not be saved."
 msgstr "If you leave this page changes you made will not be saved."
-
-#~ msgid "Share link"
-#~ msgstr "Share link"
-
-#~ msgid "Categories: "
-#~ msgstr "Categories: "
-
-#~ msgid "Submit"
-#~ msgstr "Submit"
-
-#~ msgid "Status: "
-#~ msgstr "Status: "
 
 #~ msgid "The maximal length of your contribution is 4000 characters"
 #~ msgstr "The maximal length of your contribution is 4000 characters"
