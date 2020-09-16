@@ -8,7 +8,7 @@ blueprints = [
      ProjectBlueprint(
          title='Questions',
          description=_(
-             'Collect questions questions first and rate them afterwards.'
+             'Collect questions first and rate them afterwards.'
          ),
          content=[
              question_phases.AskPhase(),
