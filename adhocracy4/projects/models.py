@@ -1,7 +1,6 @@
 import warnings
 
 from autoslug import AutoSlugField
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.contrib.auth.models import Group
 from django.core.validators import RegexValidator
@@ -202,9 +201,9 @@ class Project(ProjectContactDetailMixin,
                     'participation will look like. It will be always visible '
                     'in the „Info“ tab on your project’s page.')
     )
-    result = RichTextUploadingField(
+    result = RichTextCollapsibleUploadingField(
         blank=True,
-        config_name='image-editor',
+        config_name='collapsible-image-editor',
         verbose_name=_('Results of your project'),
         help_text=_('Here you should explain what the expected outcome of the '
                     'project will be and how you are planning to use the '
@@ -278,7 +277,7 @@ class Project(ProjectContactDetailMixin,
         self.information = html_transforms.clean_html_field(
             self.information, 'collapsible-image-editor')
         self.result = html_transforms.clean_html_field(
-            self.result, 'image-editor')
+            self.result, 'collapsible-image-editor')
         if self.pk is None:
             project_type = '{}.{}'.format(
                 self._meta.app_label,
