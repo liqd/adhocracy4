@@ -1,13 +1,13 @@
 from datetime import timedelta
 
 from autoslug import AutoSlugField
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
+from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.projects import models as project_models
 
@@ -31,8 +31,8 @@ class OfflineEvent(UserGeneratedContentModel):
                     'event or 3rd public workshop.'))
     date = models.DateTimeField(
         verbose_name=_('Date'))
-    description = RichTextUploadingField(
-        config_name='image-editor',
+    description = RichTextCollapsibleUploadingField(
+        config_name='collapsible-image-editor',
         verbose_name=_('Description'))
     project = models.ForeignKey(
         project_models.Project, on_delete=models.CASCADE)
@@ -47,7 +47,7 @@ class OfflineEvent(UserGeneratedContentModel):
 
     def save(self, *args, **kwargs):
         self.description = transforms.clean_html_field(
-            self.description, 'image-editor')
+            self.description, 'collapsible-image-editor')
         super().save(*args, **kwargs)
 
     @cached_property

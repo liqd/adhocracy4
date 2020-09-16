@@ -15,7 +15,7 @@
 
 
                 <div class="item-detail__content">
-                    {{ object.description | richtext }}
+                    {{ object.description | transform_collapsibles | richtext }}
 
                     {% block additional_content %}{% endblock %}
                 </div>

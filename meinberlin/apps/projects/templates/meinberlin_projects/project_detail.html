@@ -168,7 +168,7 @@
                 <div class="phase-info__item__subtitle">
                   {% html_date event.date 'DATETIME_FORMAT' %}
                 </div>
-                <P>{{ event.description | safe}}</P>
+                <P>{{ event.description | safe | transform_collapsibles | richtext }}</P>
             </div>
             {% elif view.is_project_view %}
             <div class="participation-tile__wrapper">
