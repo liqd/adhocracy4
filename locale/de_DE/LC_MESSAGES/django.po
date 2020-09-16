@@ -2120,7 +2120,7 @@ msgstr ""
 #: meinberlin/apps/dashboard/blueprints.py:145
 #: meinberlin/apps/livequestions/phases.py:17
 msgid "Interactive Event"
-msgstr ""
+msgstr "Interaktive Veranstaltung"
 
 #: meinberlin/apps/dashboard/blueprints.py:147
 msgid ""
@@ -2128,6 +2128,10 @@ msgid ""
 "participants can support the question. You as the moderator can sort the "
 "questions by support or characteristic."
 msgstr ""
+"Die Teilnehmer*innen einer Veranstaltung können ihre Fragen live online "
+"stellen. Andere Teilnehmer*innen können die Frage unterstützen. Sie als "
+"Moderation können die Fragen anhand von Unterstützung und Merkmalen "
+"sortieren."
 
 #: meinberlin/apps/dashboard/forms.py:15
 #: meinberlin/apps/extprojects/models.py:10
@@ -2545,51 +2549,51 @@ msgstr "%(name)s moderieren"
 
 #: meinberlin/apps/livequestions/models.py:44
 msgid "Question"
-msgstr ""
+msgstr "Frage"
 
 #: meinberlin/apps/livequestions/models.py:52
 msgid "Characteristic"
-msgstr ""
+msgstr "Merkmal"
 
 #: meinberlin/apps/livequestions/phases.py:16
 msgid "Add question."
-msgstr ""
+msgstr "Füge Frage hinzu."
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/livequestion_form.html:7
 msgid "Here you can ask your question"
-msgstr ""
+msgstr "Hier können Sie Ihre Fragen stellen"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/livequestion_form.html:21
 msgid "post"
-msgstr ""
+msgstr "abschicken"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_module_detail.html:7
 msgid "is live"
-msgstr ""
+msgstr "live"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_module_detail.html:26
 msgid "During this event you can hand in questions with your smartphone"
-msgstr ""
+msgstr "Während dieser Veranstaltung können Sie Fragen per Handy stellen."
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_module_detail.html:31
 msgid "Go to event"
-msgstr ""
+msgstr "Zur Veranstaltung"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_present_list.html:25
 msgid "Enter event link"
-msgstr ""
+msgstr "Link zur veranstaltung eingeben"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_present_list.html:39
 msgid "Like questions"
-msgstr ""
+msgstr "Fragen liken"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_present_list.html:53
 msgid "Ask a question yourself!"
-msgstr ""
+msgstr "Selber fragen!"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_present_list.html:58
 msgid "join in "
-msgstr ""
+msgstr "Mitmachen"
 
 #: meinberlin/apps/mapideas/forms.py:23
 #: meinberlin/apps/maptopicprio/forms.py:25
@@ -2929,8 +2933,8 @@ msgstr "Gruppen"
 msgid "%(duplicates)s is member of several groups in that organisation."
 msgid_plural ""
 "%(duplicates)s are member of several groups in that organisation."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(duplicates)s gehört in dieser Organisation mehreren Gruppen an."
+msgstr[1] "%(duplicates)s gehören in dieser Organisation mehreren Gruppen an."
 
 #: meinberlin/apps/organisations/models.py:24
 #: meinberlin/apps/projectcontainers/forms.py:13
@@ -3716,7 +3720,9 @@ msgid ""
 msgid_plural ""
 "User is member in more than one group in these organisations: %(duplicates)s."
 msgstr[0] ""
+"Benutzer gehört in dieser Organisation mehr als einer Gruppe an: %(duplicates)s."
 msgstr[1] ""
+"Benutzer gehört in diesen Organisationen mehr als einer Gruppe an: %(duplicates)s."
 
 #: meinberlin/apps/users/forms.py:42 meinberlin/apps/users/forms.py:81
 #: meinberlin/templates/email_base.html:85

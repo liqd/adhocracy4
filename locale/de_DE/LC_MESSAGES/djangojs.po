@@ -254,12 +254,12 @@ msgstr "Kommentieren"
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:286
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:286
 msgid "Share link"
-msgstr ""
+msgstr "Link teilen"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:325
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:325
 msgid "Categories: "
-msgstr ""
+msgstr "Kategorien: "
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:15
@@ -390,7 +390,7 @@ msgstr "Wird empfohlen"
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:53
 msgid "Submit"
-msgstr ""
+msgstr "Einreichen"
 
 #: adhocracy4/comments_async/static/modals/report_modal.jsx:62
 #: adhocracy4/comments_async/static/modals/report_modal.jsx:62
@@ -682,125 +682,127 @@ msgstr ""
 
 #: meinberlin/apps/livequestions/assets/Filters.jsx:21
 msgid "only show marked questions"
-msgstr ""
+msgstr "nur gemerkte Fragen anzeigen"
 
 #: meinberlin/apps/livequestions/assets/Filters.jsx:22
 msgid "display only questions which are not hidden"
-msgstr ""
+msgstr "nur Fragen anzeigen die nicht verborgen sind"
 
 #: meinberlin/apps/livequestions/assets/Filters.jsx:23
 msgid "order by likes"
-msgstr ""
+msgstr "nach Unterstützung sortieren"
 
 #: meinberlin/apps/livequestions/assets/InfoBox.jsx:4
 msgid "display question on screen"
-msgstr ""
+msgstr "Frage auf dem Bildschirm anzeigen"
 
 #: meinberlin/apps/livequestions/assets/InfoBox.jsx:5
 msgid "add question to shortlist"
-msgstr ""
+msgstr "Frage der Redeliste hinzufügen"
 
 #: meinberlin/apps/livequestions/assets/InfoBox.jsx:6
 msgid "hide question from audience"
-msgstr ""
+msgstr "Frage vor dem Publikum verbergen"
 
 #: meinberlin/apps/livequestions/assets/InfoBox.jsx:7
 msgid "mark question as answered"
-msgstr ""
+msgstr "Frage als beantwortet markieren"
 
 #: meinberlin/apps/livequestions/assets/InfoBox.jsx:8
 msgid "is shown in front of a question? It has been marked by the moderation."
 msgstr ""
+"wird vor einer Frage angezeigt? Dann wurde sie von der Moderation "
+"vorgemerkt."
 
 #: meinberlin/apps/livequestions/assets/InfoBox.jsx:9
 msgid "Close information"
-msgstr ""
+msgstr "Information schließen"
 
 #: meinberlin/apps/livequestions/assets/InfoBox.jsx:10
 msgid "Open information"
-msgstr ""
+msgstr "Information öffnen"
 
 #: meinberlin/apps/livequestions/assets/InfoBox.jsx:11
 msgid "Hide"
-msgstr ""
+msgstr "Ausblenden"
 
 #: meinberlin/apps/livequestions/assets/QuestionBox.jsx:18
 #: meinberlin/apps/livequestions/assets/QuestionBox.jsx:47
 msgid "select characteristic"
-msgstr ""
+msgstr "Merkmal auswählen"
 
 #: meinberlin/apps/livequestions/assets/QuestionBox.jsx:177
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #: meinberlin/apps/livequestions/assets/QuestionBox.jsx:188
 msgid "Questions"
-msgstr ""
+msgstr "Fragen"
 
 #: meinberlin/apps/livequestions/assets/QuestionBox.jsx:199
 msgid "Statistics"
-msgstr ""
+msgstr "Statistik"
 
 #: meinberlin/apps/livequestions/assets/QuestionBox.jsx:252
 msgid "display on screen"
-msgstr ""
+msgstr "auf Bildschirm anzeigen"
 
 #: meinberlin/apps/livequestions/assets/QuestionBox.jsx:283
 msgid "Add Question"
-msgstr ""
+msgstr "Frage stellen"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:97
 msgid "mark as hidden"
-msgstr ""
+msgstr "als verborgen markieren"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:98
 msgid "undo mark as hidden"
-msgstr ""
+msgstr "nicht mehr als verborgen markieren"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:99
 msgid "mark as done"
-msgstr ""
+msgstr "als beantwortet markieren"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:100
 msgid "added to live list"
-msgstr ""
+msgstr "zur live list hinzugefügt"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:101
 msgid "remove from live list"
-msgstr ""
+msgstr "von live list entfernen"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:102
 msgid "added to shortlist"
-msgstr ""
+msgstr "der Redeliste hinzugefügt"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:103
 msgid "remove from shortlist"
-msgstr ""
+msgstr "von der Redeliste entfernen"
 
 #: meinberlin/apps/livequestions/assets/QuestionPresent.jsx:29
 #: meinberlin/apps/livequestions/assets/QuestionUser.jsx:52
 msgid "likes"
-msgstr ""
+msgstr "likes"
 
 #: meinberlin/apps/livequestions/assets/QuestionUser.jsx:51
 msgid "on shortlist"
-msgstr ""
+msgstr "auf Redeliste"
 
 #: meinberlin/apps/livequestions/assets/QuestionUser.jsx:53
 msgid "add like"
-msgstr ""
+msgstr "like hinzufügen"
 
 #: meinberlin/apps/livequestions/assets/QuestionUser.jsx:54
 msgid "undo like"
-msgstr ""
+msgstr "like zurück nehmen"
 
 #: meinberlin/apps/livequestions/assets/StatisticsBox.jsx:44
 msgid "Questions Answered"
-msgstr ""
+msgstr "Beantwortete Fragen"
 
 #: meinberlin/apps/livequestions/assets/StatisticsBox.jsx:45
 msgid "Categories Answered"
-msgstr ""
+msgstr "Ausgewählte Merkmale"
 
 #: meinberlin/apps/maps/assets/map-address.js:89
 msgid "No matches found within the project area"
