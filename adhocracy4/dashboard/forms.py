@@ -1,7 +1,10 @@
+import datetime
+
 from django import forms
 from django.contrib.auth import get_user_model
 from django.forms import RadioSelect
 from django.forms import inlineformset_factory
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.forms.fields import DateTimeField
@@ -130,6 +133,8 @@ class ModuleBasicForm(ModuleDashboardForm):
 class PhaseForm(forms.ModelForm):
     end_date = DateTimeField(
         time_format='%H:%M',
+        time_default=datetime.time(hour=23, minute=59,
+                                   tzinfo=timezone.get_default_timezone()),
         required=False,
         require_all_fields=False,
         label=(_('End date'), _('End time'))
