@@ -40,6 +40,10 @@ module.exports = {
     unload_warning: [
       './meinberlin/assets/js/unload_warning.js'
     ],
+    dsgvo_video_embed: [
+      'dsgvo-video-embed/js/dsgvo-video-embed.js',
+      'dsgvo-video-embed/css/dsgvo-video-embed.css'
+    ],
     // A4 dependencies - we want all of them to go through webpack
     mb_plans_map: [
       'leaflet/dist/leaflet.css',
@@ -110,7 +114,7 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-                url: url => !url.startsWith('/')
+              url: url => !url.startsWith('/')
             }
           },
           {

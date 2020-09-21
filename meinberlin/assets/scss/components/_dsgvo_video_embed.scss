@@ -1,0 +1,12 @@
+// Overwrites of the default styling
+
+.video-wall {
+    font-family: $font-family-sans-serif;
+    min-width: 100% !important;
+    border: 0.5em solid $border-color;
+}
+
+.video-wall button {
+    background-color: $brand-info;
+    border-radius: 0.3em;
+}
