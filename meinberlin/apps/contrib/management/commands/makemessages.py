@@ -28,5 +28,8 @@ class Command(makemessages.Command):
         meinberlin_paths = super().find_files(
             path.relpath(get_module_dir('meinberlin'))
         )
+        external_forked_paths = super().find_files(path.join(
+            settings.BASE_DIR, 'node_modules', 'dsgvo-video-embed'
+        ))
 
-        return a4js_paths + a4_paths + meinberlin_paths
+        return a4js_paths + a4_paths + meinberlin_paths + external_forked_paths
