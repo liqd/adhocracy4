@@ -13,7 +13,7 @@ class IssuePhase(phases.PhaseContent):
     view = views.LiveQuestionModuleDetail
 
     name = _('Issue phase')
-    description = _('Add question.')
+    description = _('Add questions and support.')
     module_name = _('Interactive Event')
     icon = 'lightbulb-o'
 
