@@ -279,7 +279,6 @@ export default class QuestionBox extends React.Component {
                   className="btn btn--primary btn--full btn--huge u-spacer-top"
                   id="question-create"
                 >
-                  <i className="fa fa-plus question-list-button-icon" aria-hidden="true" />
                   {django.gettext('Add Question')}
                 </a>
               </div>
