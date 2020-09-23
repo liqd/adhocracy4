@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-16 14:51+0200\n"
+"POT-Creation-Date: 2020-09-23 14:08+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -711,8 +711,7 @@ msgstr "Frage als beantwortet markieren"
 #: meinberlin/apps/livequestions/assets/InfoBox.jsx:8
 msgid "is shown in front of a question? It has been marked by the moderation."
 msgstr ""
-"wird vor einer Frage angezeigt? Dann wurde sie von der Moderation "
-"vorgemerkt."
+"wird vor einer Frage angezeigt? Dann wurde sie von der Moderation vorgemerkt."
 
 #: meinberlin/apps/livequestions/assets/InfoBox.jsx:9
 msgid "Close information"
@@ -1073,6 +1072,54 @@ msgid "If you leave this page changes you made will not be saved."
 msgstr ""
 "Wenn Sie diese Seite verlassen ohne zu speichern, gehen die von Ihnen "
 "vorgenommenen Änderungen verloren."
+
+#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:13
+#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:18
+msgid "External Video"
+msgstr "Externes Video"
+
+#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:14
+msgid ""
+"Here you can find a video from YouTube. To protect your data the content "
+"will only be loaded after you give your consent. Only then will YouTube set "
+"Cookies that collect information on user behaviour."
+msgstr ""
+"Hier befindet sich ein Video von dem Anbieter YouTube. Um Ihre Daten zu "
+"schützen, laden wir dieses YouTube nur mit Ihrer Zustimmung. Erst dann "
+"werden vom Anbieter Cookies gesetzt, die Hinweise über das Nutzerverhalten "
+"sammeln."
+
+#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:15
+msgid "More information can be found in the privacy policy of YouTube under: "
+msgstr ""
+"Weitere Informationen finden Sie in der Datenschutzerklärung von YouTube "
+"unter: "
+
+#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:17
+#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:22
+msgid "Link to Video: "
+msgstr "Link zum Video: "
+
+#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:17
+#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:22
+msgid "Play video"
+msgstr "Video abspielen"
+
+#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:19
+msgid ""
+"Here you can find a video from Vimeo. To protect your data the content will "
+"only be loaded after you give your consent. Only then will Vimeo set Cookies "
+"that collect information on user behaviour."
+msgstr ""
+"Hier befindet sich ein Video von dem Anbieter Vimeo. Um Ihre Daten zu "
+"schützen, laden wir dieses Video nur mit Ihrer Zustimmung. Erst dann werden "
+"vom Anbieter Cookies gesetzt, die Hinweise über das Nutzerverhalten sammeln."
+
+#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:20
+msgid "More information can be found in the privacy policy of Vimeo under: "
+msgstr ""
+"Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
+"unter: "
 
 #~ msgid "The maximal length of your contribution is 4000 characters"
 #~ msgstr "Die maximale Länge des Beitrags beträgt 4.000 Zeichen"
