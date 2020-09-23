@@ -50,9 +50,9 @@ export default class Filter extends React.Component {
                   checked={this.props.displayOnShortlist}
                   onChange={this.props.toggleDisplayOnShortlist} // eslint-disable-line react/jsx-handler-names
                 />
-                <span className="checkbox-btn__text">
+                <div className="checkbox-btn__text">
                   <i className="far fa-list-alt" aria-label={onlyShowMarkedText} />
-                </span>
+                </div>
               </label>
             </div>
             <div className="checkbox-btn u-spacer-right">

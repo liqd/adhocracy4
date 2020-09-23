@@ -268,6 +268,17 @@ export default class QuestionBox extends React.Component {
                     hasLikingPermission={this.props.hasLikingPermission}
                   />
                 </div>
+                {this.props.hasAskQuestionsPermission &&
+                  <div className="l-center-6">
+                    <a
+                      href={this.props.askQuestionUrl}
+                      className="btn btn--primary btn--full btn--huge u-spacer-top"
+                      id="question-create"
+                    >
+                      <i className="fa fa-plus question-list-button-icon" aria-hidden="true" />
+                      {django.gettext('Add Question')}
+                    </a>
+                  </div>}
               </div>
             </div>
           </div>

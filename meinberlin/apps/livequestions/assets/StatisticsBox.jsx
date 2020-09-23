@@ -43,6 +43,7 @@ export default class StatisticsBox extends React.Component {
   render () {
     const questionAnsweredTag = django.gettext('Questions Answered')
     const categoriesAnsweredTag = django.gettext('Categories Answered')
+
     return (
       <div className="module-content">
         <div className="l-wrapper">
@@ -58,8 +59,8 @@ export default class StatisticsBox extends React.Component {
                       <div
                         className="progress-bar" style={style} role="progressbar" aria-valuenow="25" aria-valuemin="0"
                         aria-valuemax="100"
-                      ><span>&nbsp;{category}&nbsp;</span>{countPerCategory}%
-                      </div>
+                      />
+                      <span className="progress-bar__stats">&nbsp;{category}&nbsp;{countPerCategory}%</span>
                     </div>
                   </div>
                 )

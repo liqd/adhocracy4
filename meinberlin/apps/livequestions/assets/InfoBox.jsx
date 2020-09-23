@@ -35,29 +35,29 @@ export default class InfoBox extends React.Component {
               {this.props.isModerator &&
                 <div className="alert-dismissible">
                   <div className="u-align-right">
-                    <button type="button" className="u-muted" onClick={this.toggleInformation.bind(this)}>
+                    <button type="button" className="btn btn--none u-muted" onClick={this.toggleInformation.bind(this)}>
                       <span aria-label={ariaCloseInfo}>{btnHide} <i className="fa fa-times" /></span>
                     </button>
                   </div>
-                  <div className="infobox u-inline-flex">
+                  <div className="infobox">
                     <div className="infobox__box">
                       <i className="far fa-list-alt" />
-                      <div>{textAddQuestion}</div>
+                      <span className="infobox__text">{textAddQuestion}</span>
                     </div>
                     <div className="infobox__box">
-                      <span className="fa-stack fa-1x">
+                      <span className="fa-stack fa-1x infobox__icon">
                         <i className="fas fa-tv fa-stack-2x" aria-label="hidden"> </i>
-                        <i className="fas fa-arrow-up fa-stack-1x" aria-label="hidden"> </i>
+                        <i className="fas fa-check fa-stack-1x" aria-label="hidden"> </i>
                       </span>
-                      <div>{textDisplayQuestion}</div>
+                      <span className="infobox__text">{textDisplayQuestion}</span>
                     </div>
                     <div className="infobox__box">
                       <i className="far fa-check-circle" />
-                      <div>{textMarkAnswered}</div>
+                      <span className="infobox__text">{textMarkAnswered}</span>
                     </div>
                     <div className="infobox__box infobox__box--last">
                       <i className="far fa-eye" />
-                      <div>{textHideQuestion}</div>
+                      <span className="infobox__text">{textHideQuestion}</span>
                     </div>
                   </div>
                 </div>}

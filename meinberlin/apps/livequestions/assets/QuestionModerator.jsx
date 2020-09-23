@@ -105,7 +105,7 @@ export default class QuestionModerator extends React.Component {
     return (
       <div className="list-item list-item--squashed">
         <div>
-          <p className={this.props.is_hidden ? 'u-muted u-text-decoration-line-through' : ''}>{this.props.children}</p>
+          <p className={this.props.is_hidden ? 'u-muted u-text-decoration-line-through live_questions__question' : 'live_questions__question'}>{this.props.children}</p>
         </div>
         {this.props.category &&
           <div>
@@ -118,7 +118,7 @@ export default class QuestionModerator extends React.Component {
           <div>
             {this.props.displayIsOnShortlist &&
               <button type="button" className="btn btn--none" onClick={this.toggleIsOnShortList.bind(this)}>
-                <i className={this.state.is_on_shortlist ? 'far fa-list-alt u-primary' : 'far fa-list-alt'} aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText} />
+                <i className={this.state.is_on_shortlist ? 'far fa-list-alt u-primary' : 'far fa-list-alt u-muted'} aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText} />
               </button>}
             {this.props.displayIsLive &&
               <button type="button" className="btn btn--none" onClick={this.toggleIslive.bind(this)}>

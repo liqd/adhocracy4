@@ -152,7 +152,7 @@ blueprints = [
          content=[
              livequestion_phases.IssuePhase(),
          ],
-         image='images/text-review.svg',
+         image='images/interactive-event.svg',
          settings_model=None,
      )),
 ]
