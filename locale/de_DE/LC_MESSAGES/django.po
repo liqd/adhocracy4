@@ -2557,7 +2557,7 @@ msgstr "Merkmal"
 
 #: meinberlin/apps/livequestions/phases.py:16
 msgid "Add questions and support."
-msgstr ""
+msgstr "Fragen hinzufügen und unterstützen."
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/livequestion_form.html:7
 msgid "Here you can ask your question"
@@ -2581,7 +2581,7 @@ msgstr "Zur Veranstaltung"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_present_list.html:25
 msgid "Enter event link"
-msgstr "Link zur veranstaltung eingeben"
+msgstr "Link zur Veranstaltung eingeben"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_present_list.html:39
 msgid "Like questions"
@@ -2593,7 +2593,7 @@ msgstr "Selber fragen!"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_present_list.html:58
 msgid "join in here"
-msgstr ""
+msgstr "Mitmachen unter"
 
 #: meinberlin/apps/mapideas/forms.py:23
 #: meinberlin/apps/maptopicprio/forms.py:25
