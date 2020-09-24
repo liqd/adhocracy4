@@ -10,7 +10,8 @@ from .models import Statement
 @receiver(post_save, sender=Bplan)
 def get_location(sender, instance, update_fields, **kwargs):
     if instance.identifier and (not update_fields or
-                                'point' not in update_fields):
+                                ('point' not in update_fields and
+                                 'is_archived' not in update_fields)):
         tasks.get_location_information(instance.pk)
 
 
@@ -25,5 +26,6 @@ def send_notification(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Bplan)
 def send_update(sender, instance, update_fields, **kwargs):
-    if not update_fields or 'point' not in update_fields:
+    if (not update_fields or ('point' not in update_fields and
+                              'is_archived' not in update_fields)):
         emails.OfficeWorkerUpdateConfirmation.send(instance)

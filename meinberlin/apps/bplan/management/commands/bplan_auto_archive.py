@@ -14,7 +14,9 @@ class Command(BaseCommand):
         for bplan in bplans:
             if bplan.has_finished and not bplan.is_archived:
                 bplan.is_archived = True
-                bplan.save()
+                bplan.save(
+                    update_fields=['is_archived']
+                )
                 self.stdout.write('Archived bplan {}.'.format(bplan.name))
 
         # Delete statements of archived projects
