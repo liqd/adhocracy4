@@ -34,15 +34,30 @@
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-node": "11.1.0",
     "husky": "4.3.0",
-    "polylint.sh": "0.0.4"
+    "lint-staged": "10.2.11"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:liqd/adhocracy4.git"
   },
+  "scripts": {
+    "lint": "eslint adhocracy4 --ext .js,.jsx",
+    "lint-staged": "lint-staged"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "make lint-quick"
     }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint"
+    ],
+    "*.scss": [
+      "stylelint"
+    ],
+    "*.py": [
+      "make lint-python-files"
+    ]
   }
 }

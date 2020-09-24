@@ -1,3 +1,0 @@
-py:flake8 --exclude */migrations/*,settings.py,travis.py,setup.py %s
-py:isort --diff -rc -c
-js\\|jsx:node_modules/.bin/eslint -c .eslintrc --ext js,jsx %s
