@@ -1085,10 +1085,16 @@ msgid ""
 "content will only be loaded after you give your consent. Only then will "
 "YouTube set Cookies that collect information on user behaviour."
 msgstr ""
+"Hier befindet sich ein Video von dem Anbieter YouTube. Um Ihre Daten zu "
+"schützen, laden wir dieses Video nur mit Ihrer Zustimmung. Erst dann "
+"werden vom Anbieter Cookies gesetzt, die Hinweise über das "
+"Nutzerverhalten sammeln."
 
 #: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "More information can be found in the privacy policy of Google under: "
 msgstr ""
+"Weitere Informationen finden Sie in der Datenschutzerklärung von Google "
+"unter: "
 
 #: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:17
 #: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:22
