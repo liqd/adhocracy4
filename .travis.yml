@@ -21,7 +21,9 @@ before_script:
 script:
   - py.test --cov
   - python manage.py makemigrations --dry-run --check --noinput
-  - "./node_modules/.bin/polylint -F"
+  - isort --diff -c adhocracy4 tests
+  - flake8 adhocracy4 tests --exclude migrations,settings
+  - npm run lint
 after_success:
   - coveralls
 
