@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-23 14:53+0200\n"
+"POT-Creation-Date: 2020-09-24 17:19+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -746,7 +746,8 @@ msgstr "Statistik"
 msgid "display on screen"
 msgstr "auf Bildschirm anzeigen"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:282
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:279
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:293
 msgid "Add Question"
 msgstr "Frage stellen"
 
@@ -1080,20 +1081,14 @@ msgstr "Externes Video"
 
 #: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:14
 msgid ""
-"Here you can find a video from YouTube. To protect your data the content "
-"will only be loaded after you give your consent. Only then will YouTube set "
-"Cookies that collect information on user behaviour."
+"Here you can find a video from Google (YouTube). To protect your data the "
+"content will only be loaded after you give your consent. Only then will "
+"YouTube set Cookies that collect information on user behaviour."
 msgstr ""
-"Hier befindet sich ein Video von dem Anbieter YouTube. Um Ihre Daten zu "
-"schützen, laden wir dieses YouTube nur mit Ihrer Zustimmung. Erst dann "
-"werden vom Anbieter Cookies gesetzt, die Hinweise über das Nutzerverhalten "
-"sammeln."
 
 #: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:15
-msgid "More information can be found in the privacy policy of YouTube under: "
+msgid "More information can be found in the privacy policy of Google under: "
 msgstr ""
-"Weitere Informationen finden Sie in der Datenschutzerklärung von YouTube "
-"unter: "
 
 #: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:17
 #: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:22
@@ -1120,6 +1115,22 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
+
+#~ msgid ""
+#~ "Here you can find a video from YouTube. To protect your data the content "
+#~ "will only be loaded after you give your consent. Only then will YouTube "
+#~ "set Cookies that collect information on user behaviour."
+#~ msgstr ""
+#~ "Hier befindet sich ein Video von dem Anbieter YouTube. Um Ihre Daten zu "
+#~ "schützen, laden wir dieses YouTube nur mit Ihrer Zustimmung. Erst dann "
+#~ "werden vom Anbieter Cookies gesetzt, die Hinweise über das "
+#~ "Nutzerverhalten sammeln."
+
+#~ msgid ""
+#~ "More information can be found in the privacy policy of YouTube under: "
+#~ msgstr ""
+#~ "Weitere Informationen finden Sie in der Datenschutzerklärung von YouTube "
+#~ "unter: "
 
 #~ msgid "The maximal length of your contribution is 4000 characters"
 #~ msgstr "Die maximale Länge des Beitrags beträgt 4.000 Zeichen"
