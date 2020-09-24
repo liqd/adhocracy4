@@ -576,7 +576,8 @@ class Project(ProjectContactDetailMixin,
             unit_limits = [
                 ([_('day'), _('days')], 24 * 3600),
                 ([_('hour'), _('hours')], 3600),
-                ([_('minute'), _('minutes')], 60)
+                ([_('minute'), _('minutes')], 60),
+                ([_('second'), _('seconds')], 1)
             ]
 
             for unit_name, limit in unit_limits:
