@@ -114,7 +114,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
@@ -155,7 +154,8 @@ MEDIA_URL = '/media/'
 # Adhcoracy 4
 
 A4_ORGANISATIONS_MODEL = 'a4test_organisations.Organisation'
-A4_ORGANISATION_FACTORY = 'tests.apps.organisations.factories.OrganisationFactory'
+A4_ORGANISATION_FACTORY = \
+    'tests.apps.organisations.factories.OrganisationFactory'
 A4_RATEABLES = (('a4test_questions', 'question'), ('a4comments', 'comment'),)
 A4_REPORTABLES = (('a4test_questions', 'question'),)
 A4_COMMENTABLES = (('a4test_questions', 'question'),
@@ -172,14 +172,14 @@ A4_DASHBOARD = {
 # Rich text fields
 
 BLEACH_LIST = {
-    'default' : {
-        'tags': ['p','strong','em','u','ol','li','ul','a'],
+    'default': {
+        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a'],
         'attributes': {
             'a': ['href', 'rel'],
         },
     },
     'image-editor': {
-        'tags': ['p','strong','em','u','ol','li','ul','a','img'],
+        'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img'],
         'attributes': {
             'a': ['href', 'rel'],
             'img': ['src', 'alt', 'style']
@@ -197,7 +197,9 @@ BLEACH_LIST = {
         ],
     },
     'collapsible-image-editor': {
-        'tags': ['p','strong','em','u','ol','li','ul','a','img','div'],
+        'tags': [
+            'p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img', 'div'
+        ],
         'attributes': {
             'a': ['href', 'rel'],
             'img': ['src', 'alt', 'style'],
@@ -226,12 +228,13 @@ A4_PROJECT_TOPICS = (
 LOGIN_URL = "/accounts/login"
 
 IMAGE_ALIASES = {
-    '*': {'max_size': 5*10**6, 'fileformats': ('image/png', 'image/jpeg', 'image/gif')},
+    '*': {'max_size': 5 * 10 ** 6,
+          'fileformats': ('image/png', 'image/jpeg', 'image/gif')},
     'heroimage': {'min_resolution': (1300, 600)},
     'tileimage': {'min_resolution': (500, 300)},
 }
 
 try:
-    from .local import *
+    from .local import *  # noqa: F403, F401
 except ImportError:
     pass
