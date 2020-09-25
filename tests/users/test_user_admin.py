@@ -1,5 +1,6 @@
 import pytest
 from django.urls import reverse
+from django.utils.translation import ngettext
 
 from meinberlin.apps.users.models import User
 
@@ -44,8 +45,9 @@ def test_user_admin_form(client,
             }
     response = client.post(url, data)
 
-    msg = 'User is member in more than one group in ' \
-          'this organisation: {}.'.format(organisation.name)
+    msg = ngettext('User is member in more than one group in this '
+                   'organisation: %(duplicates)s.', '',
+                   1) % {'duplicates': organisation.name}
 
     assert msg in response.context['errors'][0]
     assert response.status_code == 200

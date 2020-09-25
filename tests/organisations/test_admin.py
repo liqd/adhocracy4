@@ -1,5 +1,6 @@
 import pytest
 from django.urls import reverse
+from django.utils.translation import ngettext
 
 from adhocracy4.projects.models import Project
 from meinberlin.apps.organisations.models import Organisation
@@ -54,8 +55,8 @@ def test_organisation_admin_form(client, user_factory, group_factory):
             }
     response = client.post(url, data)
 
-    msg = '{} is member of several groups ' \
-          'in that organisation.'.format(user.email)
+    msg = ngettext('%(duplicates)s is member of several groups in '
+                   'that organisation.', '', 1) % {'duplicates': user.email}
     assert msg in response.context['errors'][0]
     assert response.status_code == 200
 
