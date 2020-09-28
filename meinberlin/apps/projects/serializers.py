@@ -226,9 +226,9 @@ class ActiveProjectSerializer(ProjectSerializer):
         return unit_totals
 
     def get_active_phase(self, instance):
-        progress = instance.active_phase_progress
-        time_left = instance.time_left
-        end_date = str(instance.active_phase_ends_next.end_date)
+        progress = instance.module_running_progress
+        time_left = instance.module_running_time_left
+        end_date = str(instance.running_module_ends_next.module_end)
         return [progress, time_left, end_date]
 
     def get_status(self, instance):
@@ -252,7 +252,8 @@ class FutureProjectSerializer(ProjectSerializer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._future_phases = Phase.objects\
-            .filter(start_date__gt=self.now)\
+            .filter(start_date__gt=self.now,
+                    module__is_draft=False)\
             .order_by('start_date')
 
     def get_active_phase(self, instance):
@@ -282,7 +283,8 @@ class PastProjectSerializer(ProjectSerializer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._past_phases = Phase.objects\
-            .filter(end_date__lt=timezone.now())\
+            .filter(end_date__lt=timezone.now(),
+                    module__is_draft=False)\
             .order_by('start_date')
 
     def get_active_phase(self, instance):

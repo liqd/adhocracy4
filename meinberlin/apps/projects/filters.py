@@ -12,11 +12,13 @@ class StatusFilter(filters.BaseFilterBackend):
             active_projects = queryset \
                 .filter(
                     module__phase__start_date__lte=now,
-                    module__phase__end_date__gt=now) \
+                    module__phase__end_date__gt=now,
+                    module__is_draft=False) \
                 .distinct()
 
             future_projects = queryset.filter(
-                module__phase__start_date__gt=now
+                module__phase__start_date__gt=now,
+                module__is_draft=False
             ).distinct().exclude(
                 id__in=active_projects.values('id'))
 
@@ -28,7 +30,8 @@ class StatusFilter(filters.BaseFilterBackend):
 
             if statustype == 'pastParticipation':
                 past_projects = queryset.filter(
-                    module__phase__end_date__lt=now
+                    module__phase__end_date__lt=now,
+                    module__is_draft=False
                 ).distinct() \
                     .exclude(
                     id__in=active_projects.values('id')) \
