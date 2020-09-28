@@ -21,7 +21,7 @@ django-allauth==0.42.0
 django-autoslug==1.9.8
 django-background-tasks==1.2.5
 django-ckeditor==6.0.0
-django-filter==2.3.0
+django-filter==2.4.0
 django-multiselectfield==0.1.12
 django-widget-tweaks==1.4.8
 djangorestframework==3.11.1
