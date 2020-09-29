@@ -22,6 +22,10 @@
     margin-top: $spacer;
 }
 
+.u-spacer-top-double {
+    margin-top: ($spacer * 2);
+}
+
 .u-spacer-bottom-half {
     margin-bottom: ($spacer / 2);
 }
