@@ -15,7 +15,6 @@ class EmailBase:
     site_id = None
     object = None
     template_name = None
-    fallback_language = 'en'
     for_moderator = False
 
     # will aggregate exceptions instead of raising them
@@ -59,8 +58,15 @@ class EmailBase:
     def get_attachments(self):
         return []
 
+    def get_fallback_language(self):
+        if hasattr(settings, 'DEFAULT_LANGUAGE'):
+            return settings.DEFAULT_LANGUAGE
+        elif hasattr(settings, 'DEFAULT_USER_LANGUAGE_CODE'):
+            return settings.DEFAULT_USER_LANGUAGE_CODE
+        return 'en'
+
     def get_languages(self, receiver):
-        return [translation.get_language(), self.fallback_language]
+        return [translation.get_language(), self.get_fallback_language()]
 
     def get_reply_to(self):
         return None
