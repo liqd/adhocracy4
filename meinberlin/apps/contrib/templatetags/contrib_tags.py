@@ -101,4 +101,9 @@ def tracking_code():
         url = settings.MATOMO_URL
     except AttributeError:
         raise ImproperlyConfigured('MATOMO_URL does not exist.')
-    return {'id': id, 'url': url}
+    cookie_disabled = False
+    try:
+        cookie_disabled = settings.TRACKING_COOKIE_DISABLED
+    except AttributeError:
+        pass
+    return {'id': id, 'url': url, 'cookie_disabled': cookie_disabled}
