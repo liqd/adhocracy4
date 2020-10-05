@@ -3,6 +3,7 @@ import random
 import factory
 from dateutil.parser import parse
 from django.conf import settings
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 
@@ -23,12 +24,9 @@ class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = User
 
-    username = factory.Faker('name')
-    email = factory.Faker('email')
-    password = (  # password = "password"
-        "pbkdf2_sha256$20000$"
-        "qMYSzezfIiw3$w3A0xY/kOgE8yA4m3RDFItXTqWCV3N7v2CLy2fD8gyw="
-    )
+    username = factory.Sequence(lambda n: 'user%d' % n)
+    email = factory.Sequence(lambda n: 'user%d@liqd.net' % n)
+    password = make_password('password')
     is_staff = False
     is_superuser = False
 
