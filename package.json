@@ -78,6 +78,7 @@
     "eslint-plugin-react": "7.20.6",
     "eslint-plugin-standard": "4.0.1",
     "husky": "4.3.0",
+    "lint-staged": "10.4.0",
     "markdownlint-cli": "0.24.0",
     "stylelint": "13.7.2",
     "stylelint-config-standard": "20.0.0",
@@ -88,12 +89,24 @@
     "build:prod": "webpack --config webpack.prod.js --mode production",
     "build": "webpack --config webpack.dev.js --mode development",
     "watch": "webpack --config webpack.dev.js --watch --mode development",
-    "lint": "eslint meinberlin/apps meinberlin/assets --ext .js,.jsx && stylelint 'meinberlin/assets/scss/**/*.scss' --syntax scss"
+    "lint": "eslint meinberlin/apps meinberlin/assets --ext .js,.jsx && stylelint 'meinberlin/assets/scss/**/*.scss' --syntax scss",
+    "lint-staged": "lint-staged"
   },
   "browserslist": "last 3 versions, ie >= 11",
   "husky": {
     "hooks": {
-      "pre-commit": "make lint && make check-migrations"
+      "pre-commit": "make lint-quick"
     }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint"
+    ],
+    "*.scss": [
+      "stylelint"
+    ],
+    "*.py": [
+      "make lint-python-files"
+    ]
   }
 }
