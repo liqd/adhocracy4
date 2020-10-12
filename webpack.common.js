@@ -8,6 +8,7 @@ module.exports = {
     adhocracy4: [
       'shariff/dist/shariff.min.css',
       'select2/dist/css/select2.min.css',
+      'dsgvo-video-embed/css/dsgvo-video-embed.css',
       'slick-carousel/slick/slick.css',
       './meinberlin/assets/extra_css/_slick-theme.css',
       './meinberlin/assets/scss/style.scss',
@@ -41,8 +42,7 @@ module.exports = {
       './meinberlin/assets/js/unload_warning.js'
     ],
     dsgvo_video_embed: [
-      'dsgvo-video-embed/js/dsgvo-video-embed.js',
-      'dsgvo-video-embed/css/dsgvo-video-embed.css'
+      'dsgvo-video-embed/js/dsgvo-video-embed.js'
     ],
     // A4 dependencies - we want all of them to go through webpack
     mb_plans_map: [
