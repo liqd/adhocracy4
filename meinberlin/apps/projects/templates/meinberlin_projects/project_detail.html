@@ -251,7 +251,7 @@
         <div class="l-wrapper">
             <div class="l-center-8">
                 {% if project.result %}
-                    {{ project.result | richtext }}
+                    {{ project.result | transform_collapsibles | richtext }}
                 {% else %}
                     {% trans 'No results yet.' %}
                 {% endif %}
