@@ -41,8 +41,8 @@ module.exports = {
       './meinberlin/assets/js/unload_warning.js'
     ],
     dsgvo_video_embed: [
-      'dsgvo-video-embed/dist/dsgvo-video-embed.min.css',
-      'dsgvo-video-embed/dist/dsgvo-video-embed.min.js'
+      'dsgvo-video-embed/css/dsgvo-video-embed.css',
+      'dsgvo-video-embed/js/dsgvo-video-embed.js'
     ],
     // A4 dependencies - we want all of them to go through webpack
     mb_plans_map: [
