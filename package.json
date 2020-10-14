@@ -62,7 +62,7 @@
     "terser-webpack-plugin": "4.2.3",
     "tether": "1.4.7",
     "timeago.js": "4.0.2",
-    "webpack": "5.1.0",
+    "webpack": "4.44.2",
     "webpack-merge": "5.1.4",
     "whatwg-fetch": "3.4.1"
   },
