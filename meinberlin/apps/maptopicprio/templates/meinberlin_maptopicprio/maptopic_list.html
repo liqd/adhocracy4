@@ -2,12 +2,12 @@
 {% load i18n module_tags rules static maps_tags %}
 
 {% block extra_js %}
-    <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
-
     {{ block.super }}
+    <script type="text/javascript" src="{% static 'a4maps_display_points.js' %}"></script>
 {% endblock %}
 
 {% block extra_css %}
+    {{ block.super }}
     <link type="text/css" href="{% static 'a4maps_display_points.css'%}" rel="stylesheet" />
 {% endblock %}
 

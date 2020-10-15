@@ -2,10 +2,12 @@
 {% load static maps_tags categories_tags %}
 
 {% block extra_js %}
+    {{ block.super }}
     <script type="text/javascript" src="{% static 'a4maps_display_point.js' %}"></script>
 {% endblock %}
 
 {% block extra_css %}
+    {{ block.super }}
     <link type="text/css" href="{% static 'a4maps_display_point.css'%}" rel="stylesheet" />
 {% endblock %}
 
