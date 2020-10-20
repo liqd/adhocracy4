@@ -27,4 +27,4 @@ This isn't a real role, but the logged-out user.
 ## Permissions
 The apps that define the roles normally also define permissions.
 
-As described in [phases and modules](./docs/phases_and_modules.md), the rules define what the user (or participant) can do before, during and after the phases.
+As described in [phases and modules](./phases_and_modules.md), the rules define what the user (or participant) can do before, during and after the phases.
