@@ -47,7 +47,7 @@
     "postcss": "8.1.2",
     "postcss-loader": "4.0.4",
     "react": "16.13.1",
-    "react-bootstrap-typeahead": "5.1.1",
+    "react-bootstrap-typeahead": "5.1.2",
     "react-cookie": "4.0.3",
     "react-dom": "16.13.1",
     "react-flip-move": "3.0.4",
