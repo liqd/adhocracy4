@@ -35,7 +35,7 @@
     "file-saver": "2.0.2",
     "immutability-helper": "3.1.1",
     "jquery": "3.5.1",
-    "leaflet": "1.7.1",
+    "leaflet": "1.6.0",
     "leaflet-draw": "1.0.4",
     "leaflet.markercluster": "github:liqd/Leaflet.markercluster#5ed89b26922c51083fc9632a2c01425b9261a0f5",
     "mapbox-gl": "1.12.0",
