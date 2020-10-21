@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
+from adhocracy4.projects.models import Access
 from adhocracy4.projects.models import Project
 
 
@@ -71,7 +72,7 @@ class ProjectFactory(factory.django.DjangoModelFactory):
     organisation = factory.SubFactory(ORGANISATION_FACTORY)
     description = factory.Faker('text', max_nb_chars=120)
     information = factory.Faker('text')
-    is_public = True
+    access = Access.PUBLIC
     is_draft = False
 
     @factory.post_generation

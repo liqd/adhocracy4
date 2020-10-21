@@ -244,7 +244,7 @@ def test_project_duplicate(client, another_user,
     assert project_clone.is_draft is True
     assert project_clone.is_archived is False
     assert project_clone.created > project.created
-    for attr in ('description', 'information', 'result', 'is_public'):
+    for attr in ('description', 'information', 'result', 'access'):
         assert getattr(project_clone, attr) == getattr(project, attr)
 
     module_clone = project_clone.module_set.first()

@@ -1,6 +1,7 @@
 import pytest
 
 from adhocracy4.phases import predicates
+from adhocracy4.projects.models import Access
 from tests.apps.questions.models import Question
 from tests.apps.questions.phases import AskPhase
 from tests.apps.questions.phases import RatePhase
@@ -13,7 +14,7 @@ def test_phase_allows_change_active(user_factory, question_factory,
                                     project_factory, organisation):
     user = user_factory()
     admin = user_factory(is_superuser=True)
-    project = project_factory(is_public=True)
+    project = project_factory(access=Access.PUBLIC)
     question = question_factory(module__project=project)
 
     with active_phase(question.module, AskPhase):
@@ -27,7 +28,7 @@ def test_phase_allows_change_past(user_factory, question_factory,
                                   project_factory, organisation):
     user = user_factory()
     admin = user_factory(is_superuser=True)
-    project = project_factory(is_public=True)
+    project = project_factory(access=Access.PUBLIC)
     question = question_factory(module__project=project)
 
     with past_phase(question.module, AskPhase):
@@ -41,7 +42,7 @@ def test_phase_allows_change_other(user_factory, question_factory,
                                    project_factory, organisation):
     user = user_factory()
     admin = user_factory(is_superuser=True)
-    project = project_factory(is_public=True)
+    project = project_factory(access=Access.PUBLIC)
     question = question_factory(module__project=project)
 
     with active_phase(question.module, RatePhase):
@@ -55,7 +56,7 @@ def test_phase_allows_add_active(user_factory, question_factory,
                                  project_factory, organisation):
     user = user_factory()
     admin = user_factory(is_superuser=True)
-    project = project_factory(is_public=True)
+    project = project_factory(access=Access.PUBLIC)
     question = question_factory(module__project=project)
 
     with active_phase(question.module, AskPhase):
@@ -69,7 +70,7 @@ def test_phase_allows_add_past(user_factory, question_factory,
                                project_factory, organisation):
     user = user_factory()
     admin = user_factory(is_superuser=True)
-    project = project_factory(is_public=True)
+    project = project_factory(access=Access.PUBLIC)
     question = question_factory(module__project=project)
 
     with past_phase(question.module, AskPhase):
@@ -87,7 +88,7 @@ def test_phase_allows_add_other(user_factory, question_factory,
                                 project_factory, organisation):
     user = user_factory()
     admin = user_factory(is_superuser=True)
-    project = project_factory(is_public=True)
+    project = project_factory(access=Access.PUBLIC)
     question = question_factory(module__project=project)
 
     with active_phase(question.module, RatePhase):
@@ -105,7 +106,7 @@ def test_phase_allows_comment_active(user_factory, question_factory,
                                      project_factory, organisation):
     user = user_factory()
     admin = user_factory(is_superuser=True)
-    project = project_factory(is_public=True)
+    project = project_factory(access=Access.PUBLIC)
     question = question_factory(module__project=project)
 
     with active_phase(question.module, AskPhase):
@@ -119,7 +120,7 @@ def test_phase_allows_comment_past(user_factory, question_factory,
                                    project_factory, organisation):
     user = user_factory()
     admin = user_factory(is_superuser=True)
-    project = project_factory(is_public=True)
+    project = project_factory(access=Access.PUBLIC)
     question = question_factory(module__project=project)
 
     with past_phase(question.module, AskPhase):
@@ -133,7 +134,7 @@ def test_phase_allows_comment_other(user_factory, question_factory,
                                     project_factory, organisation):
     user = user_factory()
     admin = user_factory(is_superuser=True)
-    project = project_factory(is_public=True)
+    project = project_factory(access=Access.PUBLIC)
     question = question_factory(module__project=project)
 
     with active_phase(question.module, RatePhase):
@@ -147,7 +148,7 @@ def test_phase_allows_rate_active(user_factory, question_factory,
                                   project_factory, organisation):
     user = user_factory()
     admin = user_factory(is_superuser=True)
-    project = project_factory(is_public=True)
+    project = project_factory(access=Access.PUBLIC)
     question = question_factory(module__project=project)
 
     with active_phase(question.module, RatePhase):
@@ -161,7 +162,7 @@ def test_phase_allows_rate_past(user_factory, question_factory,
                                 project_factory, organisation):
     user = user_factory()
     admin = user_factory(is_superuser=True)
-    project = project_factory(is_public=True)
+    project = project_factory(access=Access.PUBLIC)
     question = question_factory(module__project=project)
 
     with past_phase(question.module, RatePhase):
@@ -175,7 +176,7 @@ def test_phase_allows_rate_other(user_factory, question_factory,
                                  project_factory, organisation):
     user = user_factory()
     admin = user_factory(is_superuser=True)
-    project = project_factory(is_public=True)
+    project = project_factory(access=Access.PUBLIC)
     question = question_factory(module__project=project)
 
     with active_phase(question.module, AskPhase):

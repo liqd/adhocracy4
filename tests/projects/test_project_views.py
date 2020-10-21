@@ -1,6 +1,7 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.projects.models import Access
 from adhocracy4.test.helpers import redirect_target
 
 
@@ -13,7 +14,7 @@ def test_detail_view(client, project):
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize('project__is_public', [False])
+@pytest.mark.parametrize('project__access', [Access.PRIVATE])
 def test_detail_private_project(client, project, user):
     project_url = reverse('project-detail', args=[project.slug])
     response = client.get(project_url)

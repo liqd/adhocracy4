@@ -3,6 +3,7 @@ from datetime import timedelta
 import pytest
 from freezegun import freeze_time
 
+from adhocracy4.projects.models import Access
 from adhocracy4.test.helpers import render_template
 
 
@@ -41,7 +42,7 @@ def test_get_class_finished(phase):
         assert 'finished' == render_template(template, {'project': project})
 
 
-@pytest.mark.parametrize('project__is_public', [False])
+@pytest.mark.parametrize('project__access', [Access.PRIVATE])
 @pytest.mark.django_db
 def test_get_class_privat(project):
     template = '{% load project_tags %}{% get_class project as x %}{{x}}'
