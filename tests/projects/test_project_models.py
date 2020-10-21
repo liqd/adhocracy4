@@ -29,7 +29,7 @@ def test_is_public(project):
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize('project__is_public', [False])
+@pytest.mark.parametrize('project__access', [models.Access.PRIVATE])
 def test_is_private(project):
     assert not project.is_public
     assert project.is_private

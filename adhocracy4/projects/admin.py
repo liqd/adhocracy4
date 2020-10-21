@@ -48,7 +48,7 @@ class ProjectAdmin(admin.ModelAdmin):
             'fields': ('description', 'information', 'result'),
         }),
         (_('Settings'), {
-            'fields': ('is_public', 'is_draft', 'is_archived',
+            'fields': ('access', 'is_draft', 'is_archived',
                        'moderators', 'participants')
         }),
         (_('Images'), {

@@ -1,6 +1,7 @@
 import pytest
 
 from adhocracy4.dashboard import components
+from adhocracy4.projects.models import Access
 from adhocracy4.test.helpers import redirect_target
 
 component = components.projects.get('basic')
@@ -19,7 +20,7 @@ def test_edit_view(client, project, admin):
         'image_copyright': 'copyright',
         'tile_image_copyright': 'tile_copyright',
         'is_archived': False,
-        'is_public': True,
+        'access': Access.SEMIPUBLIC.value,
     }
     response = client.post(url, data)
     assert redirect_target(response) == 'dashboard-basic-edit'
@@ -29,4 +30,4 @@ def test_edit_view(client, project, admin):
     assert project.tile_image_copyright == \
         data.get('tile_image_copyright')
     assert project.is_archived == data.get('is_archived')
-    assert project.is_public == data.get('is_public')
+    assert project.access == data.get('access')

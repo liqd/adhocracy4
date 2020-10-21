@@ -1,6 +1,7 @@
 import pytest
 
 from adhocracy4.modules import predicates
+from adhocracy4.projects.models import Access
 
 
 @pytest.mark.django_db
@@ -13,8 +14,8 @@ def test_is_context_initiator(user_factory, question_factory, project_factory,
     project_member = user_factory()
     org_member = user_factory()
 
-    project = project_factory(is_public=True, organisation=organisation)
-    private_project = project_factory(is_public=False,
+    project = project_factory(access=Access.PUBLIC, organisation=organisation)
+    private_project = project_factory(access=Access.PRIVATE,
                                       organisation=organisation)
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)
@@ -56,8 +57,8 @@ def test_is_context_moderator(user_factory, question_factory, project_factory,
     project_member = user_factory()
     org_member = user_factory()
 
-    project = project_factory(is_public=True, organisation=organisation)
-    private_project = project_factory(is_public=False,
+    project = project_factory(access=Access.PUBLIC, organisation=organisation)
+    private_project = project_factory(access=Access.PRIVATE,
                                       organisation=organisation)
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)
@@ -99,8 +100,8 @@ def test_is_context_member(user_factory, question_factory, project_factory,
     project_member = user_factory()
     org_member = user_factory()
 
-    project = project_factory(is_public=True, organisation=organisation)
-    private_project = project_factory(is_public=False,
+    project = project_factory(access=Access.PUBLIC, organisation=organisation)
+    private_project = project_factory(access=Access.PRIVATE,
                                       organisation=organisation)
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)
@@ -205,8 +206,8 @@ def test_is_project_admin(user_factory, question_factory, project_factory,
     project_member = user_factory()
     org_member = user_factory()
 
-    project = project_factory(is_public=True, organisation=organisation)
-    private_project = project_factory(is_public=False,
+    project = project_factory(access=Access.PUBLIC, organisation=organisation)
+    private_project = project_factory(access=Access.PRIVATE,
                                       organisation=organisation)
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)
@@ -247,8 +248,8 @@ def test_is_allowed_view_item(user_factory, question_factory, project_factory,
     project_member = user_factory()
     org_member = user_factory()
 
-    project = project_factory(is_public=True, organisation=organisation)
-    private_project = project_factory(is_public=False,
+    project = project_factory(access=Access.PUBLIC, organisation=organisation)
+    private_project = project_factory(access=Access.PRIVATE,
                                       organisation=organisation)
     organisation.initiators.add(initiator)
     private_project.participants.add(project_member)

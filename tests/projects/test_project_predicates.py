@@ -3,6 +3,7 @@ from dateutil.parser import parse
 from freezegun import freeze_time
 
 from adhocracy4.projects import predicates
+from adhocracy4.projects.models import Access
 
 
 @pytest.mark.django_db
@@ -43,10 +44,10 @@ def test_is_member(user_factory, project_factory):
     admin = user_factory(is_superuser=True)
 
     member = user_factory()
-    project1 = project_factory(is_public=False)
+    project1 = project_factory(access=Access.PRIVATE)
     project1.participants.add(member)
-    project2 = project_factory(is_public=False)
-    project3 = project_factory(is_public=True)
+    project2 = project_factory(access=Access.PRIVATE)
+    project3 = project_factory(access=Access.PUBLIC)
 
     assert not predicates.is_project_member(user, project1)
     assert not predicates.is_project_member(user, project2)
@@ -68,10 +69,10 @@ def test_is_project_member(user_factory, project_factory):
     admin = user_factory(is_superuser=True)
 
     member = user_factory()
-    project1 = project_factory(is_public=False)
+    project1 = project_factory(access=Access.PRIVATE)
     project1.participants.add(member)
-    project2 = project_factory(is_public=False)
-    project3 = project_factory(is_public=True)
+    project2 = project_factory(access=Access.PRIVATE)
+    project3 = project_factory(access=Access.PUBLIC)
 
     assert not predicates.is_project_member(user, project1)
     assert not predicates.is_project_member(user, project2)
@@ -92,8 +93,8 @@ def test_is_public(user_factory, project_factory):
     user = user_factory()
     admin = user_factory(is_superuser=True)
 
-    project1 = project_factory(is_public=False)
-    project2 = project_factory(is_public=True)
+    project1 = project_factory(access=Access.PRIVATE)
+    project2 = project_factory(access=Access.PUBLIC)
 
     assert not predicates.is_public(user, project1)
     assert predicates.is_public(user, project2)

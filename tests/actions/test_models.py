@@ -6,6 +6,7 @@ from adhocracy4.actions.models import Action
 from adhocracy4.actions.models import configure_icon
 from adhocracy4.actions.models import configure_type
 from adhocracy4.actions.verbs import Verbs
+from adhocracy4.projects.models import Access
 
 
 @pytest.mark.django_db
@@ -145,7 +146,7 @@ def test_icon_property(question):
 
 @pytest.mark.django_db
 def test_queryset_filter_public(action_factory):
-    action_factory(obj__module__project__is_public=False)
+    action_factory(obj__module__project__access=Access.PRIVATE)
     action_factory(obj__module__project__is_draft=True)
     action1 = action_factory(obj=None)
     action2 = action_factory(obj=None)

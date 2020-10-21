@@ -4,6 +4,7 @@ from rest_framework import status
 
 from adhocracy4.polls.models import Vote
 from adhocracy4.polls.phases import VotingPhase
+from adhocracy4.projects.models import Access
 from tests.helpers import active_phase
 
 
@@ -142,7 +143,7 @@ def test_user_cant_vote_in_private_project(user,
 
     poll = poll_factory()
     project = poll.module.project
-    project.is_public = False
+    project.access = Access.PRIVATE
     project.save()
     question = question_factory(poll=poll)
     choice1 = choice_factory(question=question)
@@ -178,7 +179,7 @@ def test_participant_can_vote_in_private_project(user,
 
     poll = poll_factory()
     project = poll.module.project
-    project.is_public = False
+    project.access = Access.PRIVATE
     project.participants.add(user)
     project.save()
     question = question_factory(poll=poll)
