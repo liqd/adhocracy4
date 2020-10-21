@@ -66,13 +66,15 @@ class ProjectBasicForm(ProjectDashboardForm):
         model = project_models.Project
         fields = ['name', 'description', 'image', 'image_copyright',
                   'tile_image', 'tile_image_copyright',
-                  'is_archived', 'is_public']
+                  'is_archived', 'access']
         required_for_project_publish = ['name', 'description']
         widgets = {
-            'is_public': RadioSelect(
+            'access': RadioSelect(
                 choices=[
-                    (True, _('All users can participate (public).')),
-                    (False, _('Only invited users can participate (private).'))
+                    (project_models.Access.PUBLIC,
+                     _('All users can participate (public).')),
+                    (project_models.Access.PRIVATE,
+                     _('Only invited users can participate (private).'))
                 ]
             ),
         }

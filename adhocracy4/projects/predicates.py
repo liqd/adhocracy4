@@ -36,6 +36,13 @@ def is_public(user, project):
 
 
 @rules.predicate
+def is_semipublic(user, project):
+    if project:
+        return project.is_semipublic
+    return False
+
+
+@rules.predicate
 def is_live(user, project):
     if project:
         return not project.is_draft

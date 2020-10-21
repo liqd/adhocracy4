@@ -1,4 +1,5 @@
 import warnings
+from enum import auto
 
 from autoslug import AutoSlugField
 from django.conf import settings
@@ -9,6 +10,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
+from django_enumfield import enum
 
 from adhocracy4 import transforms as html_transforms
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
@@ -161,6 +163,18 @@ class TimelinePropertiesMixin:
         return []
 
 
+class Access(enum.Enum):
+    PRIVATE = auto()
+    PUBLIC = auto()
+    SEMIPUBLIC = auto()
+
+    __labels__ = {
+        PRIVATE: _("private"),
+        PUBLIC: _("public"),
+        SEMIPUBLIC: _("semipublic")
+    }
+
+
 class Project(ProjectContactDetailMixin,
               ProjectLocationMixin,
               base.TimeStampedModel,
@@ -210,8 +224,9 @@ class Project(ProjectContactDetailMixin,
                     'results. If the project is finished you should add a '
                     'summary of the results.')
     )
-    is_public = models.BooleanField(
-        default=True,
+    access = enum.EnumField(
+        Access,
+        default=Access.PUBLIC,
         verbose_name=_('Access to the project'),
         help_text=_('Please indicate whether this project should be public '
                     'or restricted to invited users. Teasers for your project '
@@ -325,7 +340,15 @@ class Project(ProjectContactDetailMixin,
 
     @cached_property
     def is_private(self):
-        return not self.is_public
+        return self.access == Access.PRIVATE
+
+    @cached_property
+    def is_public(self):
+        return self.access == Access.PUBLIC
+
+    @cached_property
+    def is_semipublic(self):
+        return self.access == Access.SEMIPUBLIC
 
     @cached_property
     def is_archivable(self):

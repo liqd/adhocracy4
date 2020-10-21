@@ -23,12 +23,14 @@ def get_days(number):
 
 @register.simple_tag
 def get_class(project):
-    if not project.is_public:
+    if project.is_private:
         return 'private'
     elif project.has_finished:
         return 'finished'
     elif project.days_left and project.days_left <= 5:
         return 'running-out'
+    elif project.is_semipublic:
+        return 'semipublic'
     else:
         return 'public'
 

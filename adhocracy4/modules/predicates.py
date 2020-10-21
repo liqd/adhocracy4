@@ -9,6 +9,7 @@ from adhocracy4.projects.predicates import is_moderator
 from adhocracy4.projects.predicates import is_prj_group_member
 from adhocracy4.projects.predicates import is_project_member
 from adhocracy4.projects.predicates import is_public
+from adhocracy4.projects.predicates import is_semipublic
 
 
 @rules.predicate
@@ -43,7 +44,8 @@ def is_owner(user, item):
 @rules.predicate
 def is_public_context(user, item):
     if item:
-        return is_public(user, item.project)
+        return (is_public(user, item.project) |
+                is_semipublic(user, item.project))
     return False
 
 
