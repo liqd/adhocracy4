@@ -23,7 +23,10 @@
                         {% if project.has_finished %}
                             ({% trans "Finished" %})
                         {% endif %}
-                        {% if not project.is_public %}
+                        {% if project.is_semipublic %}
+                            ({% trans 'semipublic' %})
+                        {% endif %}
+                        {% if project.is_private %}
                             ({% trans 'private' %})
                         {% endif %}
                     </h2>
