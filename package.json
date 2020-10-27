@@ -22,7 +22,7 @@
     "acorn": "8.0.4",
     "adhocracy4": "liqd/adhocracy4#mB-v2.6.2",
     "autoprefixer": "10.0.1",
-    "axios": "0.20.0",
+    "axios": "0.21.0",
     "babel-loader": "8.1.0",
     "bootstrap": "4.5.3",
     "copy-webpack-plugin": "6.2.1",
