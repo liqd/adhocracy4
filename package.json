@@ -40,7 +40,7 @@
     "leaflet.markercluster": "github:liqd/Leaflet.markercluster#5ed89b26922c51083fc9632a2c01425b9261a0f5",
     "mapbox-gl": "1.12.0",
     "mapbox-gl-leaflet": "0.0.13",
-    "mini-css-extract-plugin": "1.1.0",
+    "mini-css-extract-plugin": "1.2.1",
     "moment": "2.29.1",
     "node-sass": "4.14.1",
     "popper.js": "1.16.1",
