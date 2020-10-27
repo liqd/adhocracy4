@@ -6,6 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils import timezone
 
+from adhocracy4.projects.models import Access
 from adhocracy4.projects.models import Project
 
 from . import verbs
@@ -32,7 +33,8 @@ class ActionQuerySet(models.QuerySet):
         return self.filter(
             (
                 models.Q(project__is_draft=False)
-                & models.Q(project__is_public=True)
+                & (models.Q(project__access=Access.PUBLIC) |
+                   models.Q(project__access=Access.SEMIPUBLIC))
             )
             | models.Q(project__isnull=True)
         )
