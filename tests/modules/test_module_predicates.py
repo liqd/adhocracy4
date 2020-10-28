@@ -1,7 +1,7 @@
 import pytest
 
 from adhocracy4.modules import predicates
-from adhocracy4.projects.models import Access
+from adhocracy4.projects.enums import Access
 
 
 @pytest.mark.django_db

@@ -1,7 +1,7 @@
 import pytest
 from django.urls import reverse
 
-from adhocracy4.projects.models import Access
+from adhocracy4.projects.enums import Access
 from adhocracy4.test.helpers import redirect_target
 
 

@@ -3,7 +3,7 @@ from datetime import timedelta
 import pytest
 from freezegun import freeze_time
 
-from adhocracy4.projects.models import Access
+from adhocracy4.projects.enums import Access
 from adhocracy4.test.helpers import render_template
 
 

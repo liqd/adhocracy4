@@ -8,6 +8,7 @@ from django.urls import reverse
 from freezegun import freeze_time
 
 from adhocracy4.projects import models
+from adhocracy4.projects.enums import Access
 from adhocracy4.test import helpers
 
 
@@ -29,7 +30,7 @@ def test_is_public(project):
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize('project__access', [models.Access.PRIVATE])
+@pytest.mark.parametrize('project__access', [Access.PRIVATE])
 def test_is_private(project):
     assert not project.is_public
     assert project.is_private

@@ -6,7 +6,7 @@ from adhocracy4.actions.models import Action
 from adhocracy4.actions.models import configure_icon
 from adhocracy4.actions.models import configure_type
 from adhocracy4.actions.verbs import Verbs
-from adhocracy4.projects.models import Access
+from adhocracy4.projects.enums import Access
 
 
 @pytest.mark.django_db

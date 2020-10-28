@@ -6,7 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils import timezone
 
-from adhocracy4.projects.models import Access
+from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
 
 from . import verbs

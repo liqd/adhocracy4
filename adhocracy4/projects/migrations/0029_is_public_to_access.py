@@ -2,7 +2,7 @@
 
 from django.db import migrations
 
-from adhocracy4.projects.models import Access
+from adhocracy4.projects.enums import Access
 
 
 def initialize_access(apps, schema_editor):

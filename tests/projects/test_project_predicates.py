@@ -3,7 +3,7 @@ from dateutil.parser import parse
 from freezegun import freeze_time
 
 from adhocracy4.projects import predicates
-from adhocracy4.projects.models import Access
+from adhocracy4.projects.enums import Access
 
 
 @pytest.mark.django_db
