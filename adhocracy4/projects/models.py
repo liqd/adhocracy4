@@ -1,5 +1,4 @@
 import warnings
-from enum import auto
 
 from autoslug import AutoSlugField
 from django.conf import settings
@@ -10,7 +9,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
-from django_enumfield import enum
+from django_enumfield.enum import EnumField
 
 from adhocracy4 import transforms as html_transforms
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
@@ -19,6 +18,7 @@ from adhocracy4.images import fields
 from adhocracy4.maps.fields import PointField
 from adhocracy4.models import base
 
+from .enums import Access
 from .fields import TopicField
 from .utils import get_module_clusters
 from .utils import get_module_clusters_dict
@@ -163,18 +163,6 @@ class TimelinePropertiesMixin:
         return []
 
 
-class Access(enum.Enum):
-    PRIVATE = auto()
-    PUBLIC = auto()
-    SEMIPUBLIC = auto()
-
-    __labels__ = {
-        PRIVATE: _("private"),
-        PUBLIC: _("public"),
-        SEMIPUBLIC: _("semipublic")
-    }
-
-
 class Project(ProjectContactDetailMixin,
               ProjectLocationMixin,
               base.TimeStampedModel,
@@ -224,7 +212,7 @@ class Project(ProjectContactDetailMixin,
                     'results. If the project is finished you should add a '
                     'summary of the results.')
     )
-    access = enum.EnumField(
+    access = EnumField(
         Access,
         default=Access.PUBLIC,
         verbose_name=_('Access to the project'),

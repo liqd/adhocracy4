@@ -13,6 +13,7 @@ from adhocracy4.modules import models as module_models
 from adhocracy4.phases import models as phase_models
 from adhocracy4.phases.forms import PhaseInlineFormSet
 from adhocracy4.projects import models as project_models
+from adhocracy4.projects.enums import Access
 
 from .components.forms import ModuleDashboardForm
 from .components.forms import ModuleDashboardFormSet
@@ -71,9 +72,9 @@ class ProjectBasicForm(ProjectDashboardForm):
         widgets = {
             'access': RadioSelect(
                 choices=[
-                    (project_models.Access.PUBLIC,
+                    (Access.PUBLIC,
                      _('All users can participate (public).')),
-                    (project_models.Access.PRIVATE,
+                    (Access.PRIVATE,
                      _('Only invited users can participate (private).'))
                 ]
             ),

@@ -1,7 +1,7 @@
 import pytest
 
 from adhocracy4.phases import predicates
-from adhocracy4.projects.models import Access
+from adhocracy4.projects.enums import Access
 from tests.apps.questions.models import Question
 from tests.apps.questions.phases import AskPhase
 from tests.apps.questions.phases import RatePhase

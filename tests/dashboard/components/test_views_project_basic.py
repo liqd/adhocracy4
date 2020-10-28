@@ -1,7 +1,7 @@
 import pytest
 
 from adhocracy4.dashboard import components
-from adhocracy4.projects.models import Access
+from adhocracy4.projects.enums import Access
 from adhocracy4.test.helpers import redirect_target
 
 component = components.projects.get('basic')

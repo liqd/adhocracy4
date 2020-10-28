@@ -4,7 +4,7 @@ from rest_framework import status
 
 from adhocracy4.polls.models import Vote
 from adhocracy4.polls.phases import VotingPhase
-from adhocracy4.projects.models import Access
+from adhocracy4.projects.enums import Access
 from tests.helpers import active_phase
 
 

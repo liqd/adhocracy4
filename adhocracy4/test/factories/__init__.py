@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.modules.models import Module
 from adhocracy4.phases.models import Phase
-from adhocracy4.projects.models import Access
+from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
 
 
