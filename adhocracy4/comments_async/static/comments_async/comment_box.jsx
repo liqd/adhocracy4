@@ -507,6 +507,7 @@ export default class CommentBox extends React.Component {
             handleErrorClick={this.hideNewError}
             commentCategoryChoices={this.commentCategoryChoices()}
             withCategories={this.props.withCategories}
+            isContextMember={this.props.isContextMember}
           />
         </div>
 

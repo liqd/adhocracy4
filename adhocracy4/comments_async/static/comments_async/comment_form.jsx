@@ -117,6 +117,12 @@ export default class CommentForm extends React.Component {
           <a href={config.getLoginUrl()}>{django.gettext('Please login to comment')}</a>
         </div>
       )
+    } else if (!this.props.isContextMember) {
+      return (
+        <div>
+          {django.gettext('Only invited users can actively participate.')}
+        </div>
+      )
     } else {
       return (
         <div>
