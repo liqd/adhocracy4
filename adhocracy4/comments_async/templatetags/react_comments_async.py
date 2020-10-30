@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.utils.html import format_html
 
 from adhocracy4.comments.models import Comment
+from adhocracy4.modules.predicates import is_context_member
 from adhocracy4.rules.discovery import NormalUser
 
 register = template.Library()
@@ -50,6 +51,13 @@ def react_comments_async(context, obj, with_categories=False):
         else:
             raise ImproperlyConfigured('set A4_COMMENT_CATEGORIES in settings')
 
+    '''
+    isReadOnly - true if phase does not allow comment or project is non-public
+                 and user is not participant or project is draft
+                 (negation of modules.predicates.is_allowed_comment_item)
+    isContextMember - true if project is public or user is
+                      participant/moderator/org_member
+    '''
     attributes = {
         'commentsApiUrl': comments_api_url,
         'comments_contenttype': comments_contenttype.pk,
@@ -62,7 +70,9 @@ def react_comments_async(context, obj, with_categories=False):
                        and not would_have_comment_permission),
         'commentCategoryChoices': comment_category_choices,
         'anchoredCommentId': anchoredCommentId,
-        'withCategories': with_categories
+        'withCategories': with_categories,
+        'isContextMember': (is_context_member(user, obj)
+                            or is_context_member(NormalUser(), obj))
     }
 
     return format_html(
