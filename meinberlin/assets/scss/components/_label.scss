@@ -24,6 +24,12 @@
     color: contrast-color($brand-secondary);
 }
 
+.label--active {
+    color: $brand-primary;
+    background-color: contrast-color($brand-primary);
+    font-weight: bold;
+}
+
 .label--CONSIDERATION {
     background-color: $feedback-color-consideration;
     color: contrast-color($feedback-color-consideration);

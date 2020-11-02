@@ -1,0 +1,29 @@
+{% extends "a4dashboard/base_dashboard_project.html" %}
+{% load i18n static %}
+
+{% block dashboard_project_content %}
+    <h1 class="u-first-heading">{% trans 'Edit live stream' %}</h1>
+
+    {% for error in form.non_field_errors %}
+        <span>{{ error }}</span>
+    {% endfor %}
+
+
+    <form enctype="multipart/form-data" action="{{ request.path }}" method="post">
+        {% csrf_token %}
+
+        {% include 'meinberlin_contrib/includes/form_field.html' with field=form.live_stream %}
+
+        <div class="u-spacer-bottom">
+            <input type="submit" class="btn btn--primary" value="{% trans 'Save'%}" />
+        </div>
+    </form>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    {{ form.media.js }}
+{% endblock %}
+{% block extra_css %}
+    {{ form.media.css }}
+{% endblock %}

@@ -1,17 +1,6 @@
 {% extends extends %}
 {% load i18n discovery_tags react_questions ckeditor_tags wagtailcore_tags %}
 
-{% block module_description %}
-    <h1 class="project-header__title">{{ module.name }}</h1>
-    {% if module.active_phase %}
-    <span><div class="label label--big label--active"><i class="fas fa-circle text-danger" aria-hidden="true"></i> {% trans 'is live' %}</div></span>
-    {% endif %}
-{% endblock %}
-
-{% block phase_info %}{% endblock %}
-
-{% block module_nav %}{% endblock %}
-
 {% block phase_content %}
     {% if url_name == 'module-detail' %}
         {% react_questions view.module %}

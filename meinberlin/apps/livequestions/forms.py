@@ -20,3 +20,9 @@ class LiveQuestionForm(category_forms.CategorizableFieldMixin,
                 self.initial['category'] = self.category_initial
         else:
             del self.fields['category']
+
+
+class LiveStreamForm(forms.ModelForm):
+    class Meta:
+        model = models.LiveStream
+        fields = ['live_stream']

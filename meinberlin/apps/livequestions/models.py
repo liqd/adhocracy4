@@ -3,7 +3,9 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
+from adhocracy4 import transforms
 from adhocracy4.categories.fields import CategoryField
+from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.models.base import TimeStampedModel
 from adhocracy4.modules import models as module_models
 
@@ -60,3 +62,16 @@ class LiveQuestion(AnonymousItem):
     def get_absolute_url(self):
         return reverse('module-detail',
                        args=[str(self.module.slug)])
+
+
+class LiveStream(module_models.Item):
+    live_stream = RichTextCollapsibleUploadingField(
+        verbose_name='Live Stream',
+        blank=True,
+        config_name='video-editor'
+    )
+
+    def save(self, *args, **kwargs):
+        self.live_stream = transforms.clean_html_field(
+            self.live_stream, 'video-editor')
+        super().save(*args, **kwargs)

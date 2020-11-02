@@ -48,6 +48,13 @@
                     </li>
                 </ul>
             </nav>
+            {% for phase in module.phases %}
+              {% if phase == module.active_phase and live_stream %}
+                  {{ live_stream.live_stream | transform_collapsibles | richtext }}
+                  <span class="label label--active">•{% trans ' Live now' %}</span>
+              {% endif %}
+            {% endfor %}
+
             <h1 class="project-header__title">{{ module.name }}</h1>
             <p class="project-header__description">{{ module.description }}</p>
         </div>

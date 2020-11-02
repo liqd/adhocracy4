@@ -338,6 +338,16 @@ CKEDITOR_CONFIGS = {
         ],
         'removePlugins': 'stylesheetparser',
         'extraAllowedContent': 'iframe[*]; div[*]',
+    },
+    'video-editor': {
+        'width': '100%',
+        'title': _('Rich text editor'),
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Embed', 'EmbedBase']
+        ],
+        'removePlugins': 'stylesheetparser',
+        'extraAllowedContent': 'iframe[*]; div[*]',
     }
 }
 
@@ -389,6 +399,15 @@ BLEACH_LIST = {
             'margin-left',
             'margin-right',
         ],
+    },
+    'video-editor': {
+        'tags': ['a', 'img', 'div', 'iframe'],
+        'attributes': {
+            'a': ['href', 'rel', 'target'],
+            'img': ['src', 'alt', 'style'],
+            'div': ['class'],
+            'iframe': ['src', 'alt', 'style']
+        }
     }
 }
 
