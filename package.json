@@ -82,7 +82,7 @@
     "markdownlint-cli": "0.24.0",
     "stylelint": "13.7.2",
     "stylelint-config-standard": "20.0.0",
-    "stylelint-declaration-strict-value": "1.6.0",
+    "stylelint-declaration-strict-value": "1.6.1",
     "webpack-cli": "4.1.0"
   },
   "scripts": {
