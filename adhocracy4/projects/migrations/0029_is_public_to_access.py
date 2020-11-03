@@ -6,14 +6,22 @@ from adhocracy4.projects.enums import Access
 
 
 def initialize_access(apps, schema_editor):
-    # We can't import the Person model directly as it may be a newer
-    # version than this migration expects. We use the historical version.
     Project = apps.get_model('a4projects', 'Project')
     for project in Project.objects.all():
         if project.is_public:
             project.access = Access.PUBLIC
         else:
             project.access = Access.PRIVATE
+        project.save()
+
+
+def backward_function(apps, schema_editor):
+    Project = apps.get_model('a4projects', 'Project')
+    for project in Project.objects.all():
+        if project.access == Access.PUBLIC:
+            project.is_public = True
+        else:
+            project.is_public = False
         project.save()
 
 
@@ -24,5 +32,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(initialize_access),
+        migrations.RunPython(initialize_access, backward_function),
     ]
