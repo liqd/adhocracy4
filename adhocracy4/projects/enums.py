@@ -5,12 +5,12 @@ from django_enumfield.enum import Enum
 
 
 class Access(Enum):
-    PRIVATE = auto()
     PUBLIC = auto()
     SEMIPUBLIC = auto()
+    PRIVATE = auto()
 
     __labels__ = {
-        PRIVATE: _("private"),
         PUBLIC: _("public"),
-        SEMIPUBLIC: _("semipublic")
+        SEMIPUBLIC: _("semipublic"),
+        PRIVATE: _("private")
     }
