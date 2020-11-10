@@ -132,3 +132,11 @@ class AdministrativeDistrictFactory(factory.django.DjangoModelFactory):
         model = 'a4administrative_districts.AdministrativeDistrict'
 
     name = factory.Faker('city')
+
+
+class LiveStreamFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = 'meinberlin_livequestions.LiveStream'
+
+    module = factory.SubFactory(factories.ModuleFactory)
