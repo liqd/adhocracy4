@@ -14,8 +14,7 @@ class LiveStreamComponent(DashboardComponent):
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app
-        return (module_app == 'meinberlin_livequestions' and
-                not module.project.is_draft)
+        return (module_app == 'meinberlin_livequestions')
 
     def get_progress(self, module):
         return 0, 0
