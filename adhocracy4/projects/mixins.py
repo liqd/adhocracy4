@@ -148,7 +148,9 @@ class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
     def initial_slide(self):
         initial_slide = self.request.GET.get('initialSlide')
         if initial_slide:
-            return int(initial_slide)
+            initial_slide = ''.join(i for i in initial_slide if i.isdigit())
+            if initial_slide:
+                return int(initial_slide)
         elif self.project.get_current_participation_date():
             return self.project.get_current_participation_date()
         return 0
