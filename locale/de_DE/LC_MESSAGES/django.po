@@ -866,7 +866,7 @@ msgstr "Sekunden"
 
 #: adhocracy4/phases/forms.py:21
 msgid "Phases cannot run at the same time and must follow after each other."
-msgstr ""
+msgstr "Phasen könnnen nicht gleichzeitig laufen und dürfen sich nicht überschneiden."
 
 #: adhocracy4/phases/models.py:71
 #: meinberlin/apps/activities/models.py:21 meinberlin/apps/ideas/models.py:32
@@ -879,7 +879,7 @@ msgstr "Beschreibung"
 
 #: adhocracy4/phases/models.py:95
 msgid "End date can not be before start date."
-msgstr ""
+msgstr "Das Enddatum kann nicht vor dem Startdatum liegen."
 
 #: adhocracy4/polls/dashboard.py:14
 #: meinberlin/apps/dashboard/blueprints.py:94
@@ -2556,7 +2556,7 @@ msgstr "%(name)s moderieren"
 
 #: meinberlin/apps/livequestions/dashboard.py:13
 msgid "Livestream"
-msgstr ""
+msgstr "Livestream"
 
 #: meinberlin/apps/livequestions/models.py:46
 msgid "Question"
@@ -2572,6 +2572,9 @@ msgid ""
 "shown when the module phase is active. For description text please use "
 "module or phase description."
 msgstr ""
+"Sie können einen Livestream von YouTube oder Vimeo einfügen. Der "
+"Livestream wird während der aktiven Modulphase angezeigt. Für "
+"Beschreibungstexte nutzen Sie bitte die Modul- oder Phasenbeschreibung."
 
 #: meinberlin/apps/livequestions/phases.py:16
 msgid "Add questions and support."
@@ -2587,7 +2590,7 @@ msgstr "abschicken"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/livestream_dashboard_form.html:5
 msgid "Edit livestream"
-msgstr ""
+msgstr "Livestream bearbeiten"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/question_module_detail.html:15
 msgid "During this event you can hand in questions with your smartphone"
