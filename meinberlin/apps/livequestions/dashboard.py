@@ -10,7 +10,7 @@ from . import views
 class LiveStreamComponent(DashboardComponent):
     identifier = 'live_stream'
     weight = 20
-    label = _('Live Stream')
+    label = _('Livestream')
 
     def is_effective(self, module):
         module_app = module.phases[0].content().app

@@ -66,9 +66,15 @@ class LiveQuestion(AnonymousItem):
 
 class LiveStream(module_models.Item):
     live_stream = RichTextCollapsibleUploadingField(
-        verbose_name='Live Stream',
+        verbose_name='Livestream',
         blank=True,
-        config_name='video-editor'
+        config_name='video-editor',
+        help_text=_(
+            'You can enter a livestream from YouTube or Vimeo. '
+            'The livestream will be shown when the module phase '
+            'is active. For description text please use module '
+            'or phase description.'
+        )
     )
 
     def save(self, *args, **kwargs):
