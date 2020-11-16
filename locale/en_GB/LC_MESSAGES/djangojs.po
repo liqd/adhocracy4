@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-16 16:46+0100\n"
+"POT-Creation-Date: 2020-11-16 17:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -944,12 +944,12 @@ msgstr "show map"
 msgid "If you leave this page changes you made will not be saved."
 msgstr "If you leave this page changes you made will not be saved."
 
-#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:13
-#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:18
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:13
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:18
 msgid "External Video"
 msgstr "External Video"
 
-#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:14
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:14
 msgid ""
 "Here you can find a video from Google (YouTube). To protect your data the "
 "content will only be loaded after you give your consent. Only then will "
@@ -959,21 +959,21 @@ msgstr ""
 "content will only be loaded after you give your consent. Only then will "
 "YouTube set Cookies that collect information on user behaviour."
 
-#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:15
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "More information can be found in the privacy policy of Google under: "
 msgstr "More information can be found in the privacy policy of Google under: "
 
-#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:17
-#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:22
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:17
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:22
 msgid "Link to Video: "
 msgstr "Link to Video: "
 
-#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:17
-#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:22
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:17
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:22
 msgid "Play video"
 msgstr "Play video"
 
-#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:19
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:19
 msgid ""
 "Here you can find a video from Vimeo. To protect your data the content will "
 "only be loaded after you give your consent. Only then will Vimeo set Cookies "
@@ -983,6 +983,6 @@ msgstr ""
 "only be loaded after you give your consent. Only then will Vimeo set Cookies "
 "that collect information on user behaviour."
 
-#: /home/katharina/a4-meinberlin/node_modules/dsgvo-video-embed/js/dsgvo-video-embed.js:20
+#: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
