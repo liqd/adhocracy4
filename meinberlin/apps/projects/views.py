@@ -215,9 +215,18 @@ class AbstractProjectUserInviteListView(
                 messages.success(request, self.success_message_removal)
             elif request.POST['submit_action'] == 'remove_invite':
                 pk = int(request.POST['invite_pk'])
-                invite = self.invite_model.objects.get(pk=pk)
-                invite.delete()
-                messages.success(request, _('Invitation succesfully removed.'))
+                if self.invite_model.objects.filter(pk=pk).exists():
+                    invite = self.invite_model.objects.get(pk=pk)
+                    invite.delete()
+                    messages.success(
+                        request,
+                        _('Invitation succesfully removed.')
+                    )
+                else:
+                    messages.info(
+                        request,
+                        _('Invitation was already accepted or removed.')
+                    )
 
             response = redirect(self.get_success_url())
         else:
