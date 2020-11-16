@@ -24,7 +24,7 @@ django-ckeditor==6.0.0
 django-filter==2.4.0
 django-multiselectfield==0.1.12
 django-widget-tweaks==1.4.8
-djangorestframework==3.12.1
+djangorestframework==3.12.2
 easy-thumbnails==2.7
 html5lib==1.1
 jsonfield==3.1.0
