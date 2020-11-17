@@ -3,6 +3,7 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import PropTypes from 'prop-types'
 import django from 'django'
+import gfm from 'remark-gfm'
 
 import Modal from '../modals/modal'
 import ReportModal from '../modals/report_modal'
@@ -199,7 +200,7 @@ export default class Comment extends React.Component {
       }
       comment = (
         <div className={'a4-comments__text' + (this.state.anchored ? ' a4-comments__text--highlighted' : '')}>
-          <ReactMarkdown children={content} />
+          <ReactMarkdown disallowedTypes={['heading']} plugins={[[gfm, { singleTilde: false }]]} children={content} />
         </div>
       )
     }
