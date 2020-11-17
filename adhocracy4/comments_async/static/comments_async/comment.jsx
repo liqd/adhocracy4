@@ -1,5 +1,6 @@
 
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
 import PropTypes from 'prop-types'
 import django from 'django'
 
@@ -13,10 +14,6 @@ import CommentManageDropdown from './comment_manage_dropdown'
 import CommentList from './comment_list'
 
 const RatingBox = require('../../../ratings/static/ratings/react_ratings').RatingBox
-
-const safeHtml = function (text) {
-  return { __html: text }
-}
 
 const successMessage = django.gettext('Entry successfully created')
 const readMore = django.gettext('Read more...')
@@ -194,11 +191,17 @@ export default class Comment extends React.Component {
         )
       }
     } else {
+      let content
       if (this.props.children.length > 400 && this.state.shorten) {
-        comment = <div className={'a4-comments__text' + (this.state.anchored ? ' a4-comments__text--highlighted' : '')} dangerouslySetInnerHTML={safeHtml(this.props.children.substring(0, 400) + '...')} />
+        content = this.props.children.substring(0, 400) + '...'
       } else {
-        comment = <div className={'a4-comments__text' + (this.state.anchored ? ' a4-comments__text--highlighted' : '')} dangerouslySetInnerHTML={safeHtml(this.props.children)} />
+        content = this.props.children
       }
+      comment = (
+        <div className={'a4-comments__text' + (this.state.anchored ? ' a4-comments__text--highlighted' : '')}>
+          <ReactMarkdown children={content} />
+        </div>
+      )
     }
     return comment
   }
