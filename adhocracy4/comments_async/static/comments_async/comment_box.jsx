@@ -592,10 +592,10 @@ export default class CommentBox extends React.Component {
               <span className="a4-comments__filters__span">{this.state.commentCount + ' ' + django.ngettext('entry found for ', 'entries found for ', this.state.commentCount)}{this.state.search}</span>
             </div>
 
-            {!this.state.showFilters &&
+            {!this.state.showFilters && this.state.commentCount > 0 &&
               <button className="btn btn--none text-muted a4-comments__filters__show-btn pr-0" type="button" onClick={this.handleToggleFilters}>{django.gettext('Filters')}<i className="fas fa-sliders-h ml-2" aria-label={django.gettext('Show filters')} />
               </button>}
-            {this.state.showFilters &&
+            {this.state.showFilters && this.state.commentCount > 0 &&
               <button className="btn btn--none text-muted a4-comments__filters__show-btn pr-0" type="button" onClick={this.handleToggleFilters}>{django.gettext('Hide Filters')}<i className="fas fa-times ml-2" aria-label={django.gettext('Hide filters')} />
               </button>}
           </div>
