@@ -367,7 +367,7 @@ export default class Comment extends React.Component {
                     ><i className="fas fa-share" /> {share}
                     </a>}
 
-                  {!this.props.is_deleted && !this.isOwner() &&
+                  {!this.props.is_deleted && this.context.isAuthenticated && !this.isOwner() &&
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={`#report_comment_${this.props.id}`}
                       data-toggle="modal"
