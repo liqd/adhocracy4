@@ -13,7 +13,7 @@ import CommentForm from './comment_form'
 import CommentManageDropdown from './comment_manage_dropdown'
 import CommentList from './comment_list'
 
-const RatingBox = require('../../../ratings/static/ratings/react_ratings').RatingBox
+import { RatingBox } from '../../../ratings/static/ratings/react_ratings'
 
 const successMessage = django.gettext('Entry successfully created')
 const readMore = django.gettext('Read more...')
