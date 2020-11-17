@@ -43,8 +43,9 @@ class PlanForm(forms.ModelForm):
 
     def save(self, commit=True):
         plan = super().save(commit=False)
-        group = plan._get_group(plan.creator, plan.organisation)
-        plan.group = group
+        if not plan.group:
+            group = plan._get_group(plan.creator, plan.organisation)
+            plan.group = group
         if commit:
             plan.save()
         return plan
