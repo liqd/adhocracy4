@@ -22,24 +22,24 @@ const readLess = django.gettext('Read less')
 const share = django.gettext('Share')
 const report = django.gettext(' Report')
 
-const localeDate = function (dateStr) {
+function localeDate (dateStr) {
   var options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' }
   return new Date(dateStr).toLocaleString(document.documentElement.lang, options)
 }
 
-const getRepliesCount = function (number) {
-  const grc = django.ngettext('1 comment', '%s comments', number)
-  return django.interpolate(grc, [number])
-}
-
-const getAnswerForm = function (hide) {
-  var fmts
+function getAnswerForm (hide, number) {
+  let result
   if (hide) {
-    fmts = django.gettext('hide comments')
+    result = django.gettext('hide comments')
   } else {
-    fmts = django.pgettext('verb', 'Comment')
+    if (number > 0) {
+      const tmp = django.ngettext('1 comment', '%s comments', number)
+      result = django.interpolate(tmp, [number])
+    } else {
+      result = django.pgettext('verb', 'Comment')
+    }
   }
-  return (fmts)
+  return result
 }
 
 export default class Comment extends React.Component {
@@ -344,12 +344,6 @@ export default class Comment extends React.Component {
                 {this.props.children.length > 400 && !this.state.shorten && <button className="btn btn--none text-muted px-0" onClick={this.showLess.bind(this)}>{readLess}</button>}
               </div>
 
-              {this.props.child_comments && this.props.child_comments.length > 0 &&
-                <div className="col-6 col-md-6 ml-auto text-right">
-                  <button className="btn btn--none text-muted px-0" onClick={this.toggleShowComments.bind(this)}>
-                    {getRepliesCount(this.props.child_comments.length)}
-                  </button>
-                </div>}
             </div>
 
             <div className="row">
@@ -357,10 +351,10 @@ export default class Comment extends React.Component {
                 {this.renderRatingBox()}
 
                 <div className="a4-comments__action-bar">
-                  {this.allowForm() && !this.props.is_deleted &&
+                  {((this.allowForm() && !this.props.is_deleted) || (this.props.child_comments && this.props.child_comments.length > 0)) &&
                     <button className="btn btn--no-border a4-comments__action-bar__btn" type="button" onClick={this.toggleShowComments.bind(this)}>
                       <a href="#child-comment-form">
-                        <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment-alt'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments)}
+                        <i className={this.state.showChildComments ? 'fa fa-minus' : 'far fa-comment-alt'} aria-hidden="true" /> {getAnswerForm(this.state.showChildComments, this.props.child_comments.length)}
                       </a>
                     </button>}
 
