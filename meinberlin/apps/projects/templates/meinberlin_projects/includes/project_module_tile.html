@@ -1,4 +1,4 @@
-{% load i18n project_tags meinberlin_project_tags contrib_tags thumbnail static %}
+{% load i18n project_tags meinberlin_project_tags contrib_tags thumbnail static rules %}
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 <li class="participation-tile__vertical">
@@ -35,7 +35,8 @@
                 <div class="participation-tile__spacer"></div>
                 {% if module.module_running_time_left %}
                 <div class="participation-tile__btn">
-                    <a class="btn btn--full u-spacer-bottom btn--small" href="{% url 'module-detail' module.slug %}">{% trans 'Join now' %}</a>
+                    {% has_perm 'a4projects.participate_in_project' request.user project as user_may_participate_in_project %}
+                    <a class="btn btn--full u-spacer-bottom btn--small" href="{% url 'module-detail' module.slug %}">{% if user_may_participate_in_project %}{% trans 'Join now' %}{% else %}{% trans 'Read now' %}{% endif %}</a>
                 </div>
                 {% endif %}
             </div>

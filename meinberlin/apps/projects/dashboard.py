@@ -15,7 +15,7 @@ class ParticipantsComponent(DashboardComponent):
     label = _('Participants')
 
     def is_effective(self, project):
-        return not project.is_draft and project.is_private
+        return not project.is_draft and not project.is_public
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-participants-edit', kwargs={

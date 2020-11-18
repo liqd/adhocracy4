@@ -13,6 +13,7 @@ from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects import models as project_models
+from adhocracy4.projects.enums import Access
 from adhocracy4.projects.fields import TopicField
 
 
@@ -127,7 +128,7 @@ class Plan(UserGeneratedContentModel):
     @cached_property
     def published_projects(self):
         return self.projects.filter(
-            is_draft=False, is_public=True, is_archived=False)
+            is_draft=False, access=Access.PUBLIC, is_archived=False)
 
     @cached_property
     def participation_string(self):

@@ -3,6 +3,7 @@ from django.utils.functional import cached_property
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
+from adhocracy4.projects.models import Access
 from adhocracy4.projects.models import Project
 
 
@@ -16,7 +17,7 @@ class ProjectSelectionBlock(blocks.ChooserBlock):
             queryset=self.target_model.objects.filter(
                 is_draft=False,
                 is_archived=False,
-                is_public=True),
+                access=Access.PUBLIC),
             widget=self.widget,
             required=self._required,
             help_text=self._help_text)

@@ -29,12 +29,19 @@ class DashboardProjectCreateForm(ProjectCreateForm):
 
     class Meta:
         model = project_models.Project
-        fields = ['name', 'description', 'is_public']
+        fields = ['name', 'description', 'access']
         widgets = {
-            'is_public': forms.RadioSelect(
+            'access': forms.RadioSelect(
                 choices=[
-                    (True, _('All users can participate (public).')),
-                    (False, _('Only invited users can participate (private).'))
+                    (project_models.Access.PUBLIC.value,
+                     _('All users can see project tile and content and can '
+                       'participate (public).')),
+                    (project_models.Access.SEMIPUBLIC.value,
+                     _('All users can see project tile and content, only '
+                       'invited users can participate (semi-public).')),
+                    (project_models.Access.PRIVATE.value,
+                     _('Only invited users can see project tile and content '
+                       'and can participate (private).'))
                 ]
             )
         }

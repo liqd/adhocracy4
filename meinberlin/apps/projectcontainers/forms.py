@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard.forms import ProjectCreateForm
 from adhocracy4.dashboard.forms import ProjectDashboardForm
+from adhocracy4.projects.enums import Access
 from meinberlin.apps.contrib.widgets import Select2MultipleWidget
 
 from . import models
@@ -80,7 +81,7 @@ class ContainerProjectsForm(ProjectDashboardForm):
             .filter(Q(containers=self.instance) |
                     (Q(containers=None) &
                      Q(is_archived=False) &
-                     Q(is_public=True)))\
+                     Q(access=Access.PUBLIC)))\
             .order_by('name')
 
     class Meta:

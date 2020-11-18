@@ -17,7 +17,9 @@
                         {% if project.has_finished %}
                             <span class="label label--primary">{% trans "Finished" %}</span>
                         {% endif %}
-                        {% if not project.is_public %}
+                        {% if project.is_semipublic %}
+                            <span class="label label--secondary">{% trans 'Semipublic' %}</span>
+                        {% elif project.is_private %}
                             <span class="label label--secondary">{% trans 'Private' %}</span>
                         {% endif %}
                     {% endif %}

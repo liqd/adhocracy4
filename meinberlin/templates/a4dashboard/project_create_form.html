@@ -36,7 +36,7 @@
 
                 {% include 'a4forms/includes/form_field.html' with field=form.description %}
 
-                {% include 'a4dashboard/includes/form_field.html' with field=form.is_public %}
+                {% include 'a4dashboard/includes/form_field.html' with field=form.access %}
 
                 <div class="u-spacer-bottom">
                     <input type="submit" class="btn btn--primary" name="send" value="{% trans 'Save' %}"/>

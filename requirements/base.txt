@@ -1,5 +1,5 @@
 # A4
-git+git://github.com/liqd/adhocracy4.git@mB-v2.6.2#egg=adhocracy4
+git+git://github.com/liqd/adhocracy4.git@f9a7efc50cd7d1242fa99c540d349528efb18654#egg=adhocracy4
 
 # Additional requirements
 bcrypt==3.2.0
@@ -21,6 +21,7 @@ django-allauth==0.42.0
 django-autoslug==1.9.8
 django-background-tasks==1.2.5
 django-ckeditor==6.0.0
+django-enumfield==2.0.2
 django-filter==2.4.0
 django-multiselectfield==0.1.12
 django-widget-tweaks==1.4.8

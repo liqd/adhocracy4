@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.projects import models as project_models
+from adhocracy4.projects.enums import Access
 
 
 class ProjectContainer(project_models.Project):
@@ -27,7 +28,7 @@ class ProjectContainer(project_models.Project):
         """
         now = timezone.now()
         return self.projects\
-            .filter(is_public=True, is_draft=False, is_archived=False)\
+            .filter(access=Access.PUBLIC, is_draft=False, is_archived=False)\
             .filter(module__phase__start_date__lte=now,
                     module__phase__end_date__gt=now)\
             .distinct()\
@@ -42,7 +43,7 @@ class ProjectContainer(project_models.Project):
         """
         now = timezone.now()
         return self.projects\
-            .filter(is_public=True, is_draft=False, is_archived=False)\
+            .filter(access=Access.PUBLIC, is_draft=False, is_archived=False)\
             .filter(module__phase__start_date__gt=now)\
             .distinct()\
             .count()
@@ -55,7 +56,7 @@ class ProjectContainer(project_models.Project):
         For future private containers all projects should be counted.
         """
         return self.projects \
-            .filter(is_public=True, is_draft=False, is_archived=False)\
+            .filter(access=Access.PUBLIC, is_draft=False, is_archived=False)\
             .count()
 
     @property

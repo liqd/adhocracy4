@@ -87,7 +87,7 @@
         </div>
         {% if project|is_external %}
         <div class="maplist-item__corner-badge maplist-item__corner-badge--external"></div>
-        {% elif not project.is_public %}
+        {% elif project.is_private %}
         <div class="maplist-item__corner-badge maplist-item__corner-badge--private"></div>
         {% endif %}
     </a>

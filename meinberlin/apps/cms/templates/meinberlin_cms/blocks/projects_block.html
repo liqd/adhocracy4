@@ -3,7 +3,7 @@
     <h2>{{ value.title }}</h2>
     <ul class="l-tiles-4">
         {% for project in value.projects %}
-            {% if project and project.is_public and not project.is_draft %}
+            {% if project and not project.is_private and not project.is_draft %}
                 {% include "meinberlin_projects/includes/project_tile.html" with project=project %}
             {% endif %}
         {% endfor %}

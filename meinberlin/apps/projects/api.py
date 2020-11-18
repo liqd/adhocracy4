@@ -3,6 +3,7 @@ from django.utils import timezone
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 
+from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
 from meinberlin.apps.projects import serializers as project_serializers
 from meinberlin.apps.projects.filters import StatusFilter
@@ -22,7 +23,7 @@ class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
                     Q(project_type='meinberlin_bplan.Bplan')) \
             .filter(is_draft=False,
                     is_archived=False,
-                    is_public=True)\
+                    access=Access.PUBLIC)\
             .order_by('created') \
             .select_related('administrative_district',
                             'organisation') \
@@ -59,7 +60,7 @@ class PrivateProjectListViewSet(viewsets.ReadOnlyModelViewSet):
         private_projects = Project.objects.filter(
             is_draft=False,
             is_archived=False,
-            is_public=False)
+            access=Access.PRIVATE)
         if private_projects:
             not_allowed_projects = \
                 [project.id for project in private_projects if

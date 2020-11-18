@@ -224,7 +224,7 @@ class PlansList extends React.Component {
             </div>}
           {item.subtype === 'external' &&
             <div className="maplist-item__corner-badge maplist-item__corner-badge--external" />}
-          {!item.is_public && item.type === 'project' &&
+          {item.access === 3 && item.type === 'project' &&
             <div className="maplist-item__corner-badge maplist-item__corner-badge--private" />}
         </a>
       </li>

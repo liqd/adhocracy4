@@ -11,6 +11,7 @@ from wagtail.snippets.models import register_snippet
 
 from adhocracy4.comments.models import Comment
 from adhocracy4.modules.models import Item
+from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
 from meinberlin.apps.plans.models import Plan
 from meinberlin.apps.projects import get_project_type
@@ -56,7 +57,7 @@ class StorefrontItem(models.Model):
         projects = Project.objects\
             .filter(administrative_district=self.district,
                     is_draft=False,
-                    is_public=True,
+                    access=Access.PUBLIC,
                     is_archived=False
                     )
         plans = Plan.objects\
@@ -100,7 +101,7 @@ class Storefront(ClusterableModel):
     @cached_property
     def num_projects(self):
         projects = Project.objects.all()\
-            .filter(is_draft=False, is_archived=False, is_public=True)
+            .filter(is_draft=False, is_archived=False, access=Access.PUBLIC)
         active_project_count = 0
         for project in projects:
             if project.active_phase or project.future_phases:

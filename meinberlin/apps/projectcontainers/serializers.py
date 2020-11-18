@@ -14,7 +14,7 @@ class ProjectContainerSerializer(ProjectSerializer):
                   'organisation', 'tile_image',
                   'tile_image_copyright',
                   'point', 'point_label', 'cost',
-                  'district', 'topics', 'is_public',
+                  'district', 'topics', 'access',
                   'status',
                   'participation_string',
                   'participation_active',
