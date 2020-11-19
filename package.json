@@ -25,7 +25,7 @@
     "axios": "0.21.0",
     "babel-loader": "8.1.0",
     "bootstrap": "4.5.3",
-    "copy-webpack-plugin": "6.2.1",
+    "copy-webpack-plugin": "6.3.2",
     "css-loader": "5.0.0",
     "datepicker": "git+https://github.com/liqd/datePicker.git",
     "dsgvo-video-embed": "git+https://github.com/liqd/dsgvo-video-embed.git",
