@@ -32,6 +32,8 @@ class DashboardProjectCreateForm(ProjectCreateForm):
         fields = ['name', 'description', 'access']
         widgets = {
             'access': forms.RadioSelect(
+                # FIXME: these choices are currently ignored by djangos widget
+                # machinery - we work around that in apps/projects/overwrites
                 choices=[
                     (project_models.Access.PUBLIC.value,
                      _('All users can see project tile and content and can '
