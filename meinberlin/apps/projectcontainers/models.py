@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
@@ -23,12 +24,13 @@ class ProjectContainer(project_models.Project):
     def active_project_count(self):
         """Return the number of active projects within the container.
 
-        If a container is public (default) only public projects are counted.
-        For future private containers all projects should be counted.
+        A container is public by default, only public and semipublic
+        projects are counted.
         """
         now = timezone.now()
         return self.projects\
-            .filter(access=Access.PUBLIC, is_draft=False, is_archived=False)\
+            .filter(Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
+                    is_draft=False, is_archived=False)\
             .filter(module__phase__start_date__lte=now,
                     module__phase__end_date__gt=now)\
             .distinct()\
@@ -38,12 +40,13 @@ class ProjectContainer(project_models.Project):
     def future_project_count(self):
         """Return the number of future projects within the container.
 
-        If a container is public (default) only public projects are counted.
-        For future private containers all projects should be counted.
+        A container is public by default, only public and semipublic
+        projects are counted.
         """
         now = timezone.now()
         return self.projects\
-            .filter(access=Access.PUBLIC, is_draft=False, is_archived=False)\
+            .filter(Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
+                    is_draft=False, is_archived=False)\
             .filter(module__phase__start_date__gt=now)\
             .distinct()\
             .count()
@@ -52,11 +55,12 @@ class ProjectContainer(project_models.Project):
     def total_project_count(self):
         """Return the number of total projects within the container.
 
-        If a container is public (default) only public projects are counted.
-        For future private containers all projects should be counted.
+        A container is public by default, only public and semipublic
+        projects are counted.
         """
         return self.projects \
-            .filter(access=Access.PUBLIC, is_draft=False, is_archived=False)\
+            .filter(Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
+                    is_draft=False, is_archived=False)\
             .count()
 
     @property

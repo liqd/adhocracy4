@@ -21,9 +21,10 @@ class ProjectListViewSet(viewsets.ReadOnlyModelViewSet):
         projects = Project.objects \
             .filter(Q(project_type='a4projects.Project') |
                     Q(project_type='meinberlin_bplan.Bplan')) \
-            .filter(is_draft=False,
-                    is_archived=False,
-                    access=Access.PUBLIC)\
+            .filter(Q(access=Access.PUBLIC) |
+                    Q(access=Access.SEMIPUBLIC),
+                    is_draft=False,
+                    is_archived=False)\
             .order_by('created') \
             .select_related('administrative_district',
                             'organisation') \

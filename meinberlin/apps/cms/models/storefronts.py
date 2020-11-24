@@ -1,6 +1,7 @@
 import random
 
 from django.db import models
+from django.db.models import Q
 from django.utils.functional import cached_property
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
@@ -55,9 +56,9 @@ class StorefrontItem(models.Model):
     @cached_property
     def district_project_count(self):
         projects = Project.objects\
-            .filter(administrative_district=self.district,
+            .filter(Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
+                    administrative_district=self.district,
                     is_draft=False,
-                    access=Access.PUBLIC,
                     is_archived=False
                     )
         plans = Plan.objects\
@@ -100,8 +101,9 @@ class Storefront(ClusterableModel):
 
     @cached_property
     def num_projects(self):
-        projects = Project.objects.all()\
-            .filter(is_draft=False, is_archived=False, access=Access.PUBLIC)
+        projects = Project.objects.all().filter(
+            Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
+            is_draft=False, is_archived=False)
         active_project_count = 0
         for project in projects:
             if project.active_phase or project.future_phases:

@@ -2,6 +2,7 @@ from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import Group
 from django.db import models
+from django.db.models import Q
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
@@ -128,7 +129,8 @@ class Plan(UserGeneratedContentModel):
     @cached_property
     def published_projects(self):
         return self.projects.filter(
-            is_draft=False, access=Access.PUBLIC, is_archived=False)
+            Q(access=Access.PUBLIC) | Q(access=Access.SEMIPUBLIC),
+            is_draft=False, is_archived=False)
 
     @cached_property
     def participation_string(self):

@@ -81,7 +81,8 @@ class ContainerProjectsForm(ProjectDashboardForm):
             .filter(Q(containers=self.instance) |
                     (Q(containers=None) &
                      Q(is_archived=False) &
-                     Q(access=Access.PUBLIC)))\
+                     Q(access=Access.PUBLIC) |
+                     Q(access=Access.SEMIPUBLIC)))\
             .order_by('name')
 
     class Meta:

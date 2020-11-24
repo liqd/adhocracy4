@@ -1,4 +1,5 @@
 from django import forms
+from django.db.models import Q
 from django.utils.functional import cached_property
 from wagtail.core import blocks
 from wagtail.images.blocks import ImageChooserBlock
@@ -15,9 +16,10 @@ class ProjectSelectionBlock(blocks.ChooserBlock):
     def field(self):
         return forms.ModelChoiceField(
             queryset=self.target_model.objects.filter(
+                Q(access=Access.PUBLIC) |
+                Q(access=Access.SEMIPUBLIC),
                 is_draft=False,
-                is_archived=False,
-                access=Access.PUBLIC),
+                is_archived=False),
             widget=self.widget,
             required=self._required,
             help_text=self._help_text)
