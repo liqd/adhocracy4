@@ -32,7 +32,7 @@
     "es6-promise": "4.2.8",
     "feature-detect": "1.0.0",
     "file-loader": "6.2.0",
-    "file-saver": "2.0.2",
+    "file-saver": "2.0.5",
     "immutability-helper": "3.1.1",
     "jquery": "3.5.1",
     "leaflet": "1.6.0",
