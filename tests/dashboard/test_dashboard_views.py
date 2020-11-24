@@ -20,7 +20,8 @@ def test_project_create(client, organisation, user_factory, group_factory):
 
     data = {
         'name': 'project name',
-        'description': 'project description'
+        'description': 'project description',
+        'access': 1
     }
 
     response = client.post(project_create_url, data)

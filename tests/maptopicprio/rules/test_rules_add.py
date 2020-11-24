@@ -1,6 +1,7 @@
 import pytest
 import rules
 
+from adhocracy4.projects.enums import Access
 from meinberlin.apps.maptopicprio import phases
 from meinberlin.test.helpers import freeze_phase
 from meinberlin.test.helpers import freeze_post_phase
@@ -21,7 +22,7 @@ def test_pre_phase(phase_factory, user):
                                             phases.PrioritizePhase)
     anonymous, moderator, initiator = setup_users(project)
 
-    assert project.is_public
+    assert project.access == Access.PUBLIC
     with freeze_pre_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert not rules.has_perm(perm_name, user, module)
@@ -35,7 +36,7 @@ def test_phase_active(phase_factory, user):
                                             phases.PrioritizePhase)
     anonymous, moderator, initiator = setup_users(project)
 
-    assert project.is_public
+    assert project.access == Access.PUBLIC
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert not rules.has_perm(perm_name, user, module)
@@ -45,15 +46,15 @@ def test_phase_active(phase_factory, user):
 
 @pytest.mark.django_db
 def test_phase_active_project_private(phase_factory, user, user2):
-    phase, module, project, _ = setup_phase(phase_factory, None,
-                                            phases.PrioritizePhase,
-                                            module__project__is_public=False)
+    phase, module, project, _ = setup_phase(
+        phase_factory, None, phases.PrioritizePhase,
+        module__project__access=Access.PRIVATE)
     anonymous, moderator, initiator = setup_users(project)
 
     participant = user2
     project.participants.add(participant)
 
-    assert not project.is_public
+    assert project.access == Access.PRIVATE
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert not rules.has_perm(perm_name, user, module)

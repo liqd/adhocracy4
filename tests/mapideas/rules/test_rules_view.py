@@ -1,6 +1,7 @@
 import pytest
 import rules
 
+from adhocracy4.projects.enums import Access
 from meinberlin.apps.mapideas import phases
 from meinberlin.test.helpers import freeze_phase
 from meinberlin.test.helpers import freeze_post_phase
@@ -46,9 +47,9 @@ def test_phase_active(phase_factory, map_idea_factory, user):
 @pytest.mark.django_db
 def test_phase_active_project_private(phase_factory, map_idea_factory,
                                       user, user2):
-    phase, _, project, item = setup_phase(phase_factory, map_idea_factory,
-                                          phases.CollectPhase,
-                                          module__project__is_public=False)
+    phase, _, project, item = setup_phase(
+        phase_factory, map_idea_factory, phases.CollectPhase,
+        module__project__access=Access.PRIVATE)
     anonymous, moderator, initiator = setup_users(project)
     participant = user2
     project.participants.add(participant)

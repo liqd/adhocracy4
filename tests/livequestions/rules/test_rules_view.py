@@ -1,6 +1,7 @@
 import pytest
 import rules
 
+from adhocracy4.projects.enums import Access
 from meinberlin.apps.livequestions import phases
 from meinberlin.test.helpers import freeze_phase
 from meinberlin.test.helpers import freeze_post_phase
@@ -21,7 +22,7 @@ def test_pre_phase(phase_factory, live_question_factory, user):
                                           phases.IssuePhase)
     anonymous, moderator, initiator = setup_users(project)
 
-    assert project.is_public
+    assert project.access == Access.PUBLIC
     with freeze_pre_phase(phase):
         assert rules.has_perm(perm_name, anonymous, item)
         assert rules.has_perm(perm_name, user, item)
@@ -35,7 +36,7 @@ def test_phase_active(phase_factory, live_question_factory, user):
                                           phases.IssuePhase)
     anonymous, moderator, initiator = setup_users(project)
 
-    assert project.is_public
+    assert project.access == Access.PUBLIC
     with freeze_phase(phase):
         assert rules.has_perm(perm_name, anonymous, item)
         assert rules.has_perm(perm_name, user, item)
@@ -46,14 +47,14 @@ def test_phase_active(phase_factory, live_question_factory, user):
 @pytest.mark.django_db
 def test_phase_active_project_private(phase_factory, live_question_factory,
                                       user, user2):
-    phase, _, project, item = setup_phase(phase_factory, live_question_factory,
-                                          phases.IssuePhase,
-                                          module__project__is_public=False)
+    phase, _, project, item = setup_phase(
+        phase_factory, live_question_factory, phases.IssuePhase,
+        module__project__access=Access.PRIVATE)
     anonymous, moderator, initiator = setup_users(project)
     participant = user2
     project.participants.add(participant)
 
-    assert not project.is_public
+    assert project.access == Access.PRIVATE
     with freeze_phase(phase):
         assert rules.has_perm(perm_name, anonymous, item)
         assert rules.has_perm(perm_name, user, item)

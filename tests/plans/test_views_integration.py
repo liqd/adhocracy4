@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils import timezone
 from freezegun import freeze_time
 
+from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
 from meinberlin.apps.plans.models import Plan
 from meinberlin.test.helpers import assert_template_response
@@ -17,7 +18,7 @@ def test_list_view(client, plan_factory, project_factory,
                    phase_factory, user, apiclient):
 
     project_active = project_factory(name='active')
-    project_private = project_factory(name='private', is_public=False)
+    project_private = project_factory(name='private', access=Access.PRIVATE)
     project_private.participants.add(user)
     project_private.save()
     project_future = project_factory(name='future')
