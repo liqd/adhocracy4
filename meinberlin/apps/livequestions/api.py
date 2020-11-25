@@ -1,3 +1,5 @@
+import json
+
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import mixins
 from rest_framework import viewsets
@@ -11,6 +13,7 @@ from .serializers import LiveQuestionSerializer
 
 
 class LiveQuestionViewSet(ModuleMixin,
+                          mixins.CreateModelMixin,
                           mixins.ListModelMixin,
                           mixins.UpdateModelMixin,
                           viewsets.GenericViewSet,
@@ -36,3 +39,9 @@ class LiveQuestionViewSet(ModuleMixin,
         ):
             live_questions = live_questions.filter(is_hidden=False)
         return live_questions
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            body = json.loads(request.body.decode("utf-8"))
+            kwargs['category'] = body['category']
+        return super().dispatch(request, *args, **kwargs)
