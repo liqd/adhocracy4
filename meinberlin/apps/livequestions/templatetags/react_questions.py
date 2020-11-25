@@ -46,9 +46,6 @@ def react_questions(context, obj):
                                 or would_have_liking_permission),
         'hasAskQuestionsPermission': (has_ask_questions_permissions
                                       or would_have_ask_questions_permission),
-        'askQuestionUrl':
-            reverse('meinberlin_livequestions:question-create',
-                    kwargs={'slug': obj.slug})
     }
 
     return format_html(

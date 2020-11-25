@@ -231,15 +231,6 @@ export default class QuestionBox extends React.Component {
                   questions_api_url={this.props.questions_api_url}
                 />
               </div>
-              <div className="l-center-6">
-                <a
-                  href={this.props.askQuestionUrl}
-                  className="btn btn--primary btn--full btn--huge u-spacer-top-double"
-                  id="question-create"
-                >
-                  {django.gettext('Add Question')}
-                </a>
-              </div>
             </div>}
           <div>
             <div className="l-wrapper">
