@@ -17,6 +17,8 @@ def react_questions(context, obj):
     is_moderator = \
         user.has_perm('meinberlin_livequestions.moderate_livequestions', obj)
     categories = [category.name for category in obj.category_set.all()]
+    category_dict = {category.pk: category.name
+                     for category in obj.category_set.all()}
     questions_api_url = reverse('questions-list', kwargs={'module_pk': obj.pk})
     present_url = \
         reverse('meinberlin_livequestions:question-present',
@@ -39,6 +41,7 @@ def react_questions(context, obj):
         'present_url': present_url,
         'isModerator': is_moderator,
         'categories': categories,
+        'category_dict': category_dict,
         'hasLikingPermission': (has_liking_permission
                                 or would_have_liking_permission),
         'hasAskQuestionsPermission': (has_ask_questions_permissions

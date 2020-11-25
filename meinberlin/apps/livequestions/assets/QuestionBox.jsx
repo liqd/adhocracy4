@@ -1,6 +1,7 @@
 import django from 'django'
 import { updateItem } from './helpers.js'
 import React from 'react'
+import QuestionForm from './QuestionForm'
 import QuestionList from './QuestionList'
 import InfoBox from './InfoBox'
 import Filters from './Filters'
@@ -222,6 +223,24 @@ export default class QuestionBox extends React.Component {
           aria-labelledby="tab-questions"
           aria-hidden="true"
         >
+          {this.props.hasAskQuestionsPermission &&
+            <div className="l-wrapper">
+              <div className="l-center-8">
+                <QuestionForm
+                  category_dict={this.props.category_dict}
+                  questions_api_url={this.props.questions_api_url}
+                />
+              </div>
+              <div className="l-center-6">
+                <a
+                  href={this.props.askQuestionUrl}
+                  className="btn btn--primary btn--full btn--huge u-spacer-top-double"
+                  id="question-create"
+                >
+                  {django.gettext('Add Question')}
+                </a>
+              </div>
+            </div>}
           <div>
             <div className="l-wrapper">
               <div className="l-center-8">
@@ -271,18 +290,6 @@ export default class QuestionBox extends React.Component {
               </div>
             </div>
           </div>
-          {this.props.hasAskQuestionsPermission &&
-            <div className="l-wrapper">
-              <div className="l-center-6">
-                <a
-                  href={this.props.askQuestionUrl}
-                  className="btn btn--primary btn--full btn--huge u-spacer-top-double"
-                  id="question-create"
-                >
-                  {django.gettext('Add Question')}
-                </a>
-              </div>
-            </div>}
         </div>
         <div
           className="tabpanel module-content"
