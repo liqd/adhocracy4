@@ -22,7 +22,8 @@ var api = (function () {
     comment: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comments/',
     commentmoderate: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/comment-moderate/',
     rating: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/ratings/',
-    moderatorremark: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/moderatorremarks/'
+    moderatorremark: baseURL + 'contenttypes/$contentTypeId/objects/$objectPk/moderatorremarks/',
+    livequestion: baseURL + 'modules/$moduleId/questions/'
   }
 
   function _sendRequest (endpoint, id, options, data, contentType) {
@@ -166,7 +167,15 @@ var api = (function () {
           type: 'PUT'
         }, data)
       }
+    },
+    livequestion: {
+      add: function (data) {
+        return _sendRequest('livequestion', {
+          type: 'POST'
+        }, data)
+      }
     }
+
   }
 }())
 module.exports = api
