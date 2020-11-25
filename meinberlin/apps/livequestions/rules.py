@@ -10,10 +10,8 @@ from .models import LiveQuestion
 rules.add_perm('meinberlin_livequestions.change_livequestion',
                is_superuser | is_context_moderator | is_context_initiator)
 
-
-rules.add_perm('meinberlin_livequestions.propose_livequestion',
+rules.add_perm('meinberlin_livequestions.add_livequestion',
                phase_allows_add(LiveQuestion))
-
 
 rules.add_perm('meinberlin_livequestions.view_livequestion',
                rules.always_allow)

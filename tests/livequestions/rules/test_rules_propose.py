@@ -9,7 +9,7 @@ from meinberlin.test.helpers import freeze_pre_phase
 from meinberlin.test.helpers import setup_phase
 from meinberlin.test.helpers import setup_users
 
-perm_name = 'meinberlin_livequestions.propose_livequestion'
+perm_name = 'meinberlin_livequestions.add_livequestion'
 
 
 def test_perm_exists():

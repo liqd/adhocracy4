@@ -30,7 +30,7 @@ def react_questions(context, obj):
         like_permission, obj
     )
 
-    ask_permissions = 'meinberlin_livequestions.propose_livequestion'
+    ask_permissions = 'meinberlin_livequestions.add_livequestion'
     has_ask_questions_permissions = user.has_perm(ask_permissions, obj)
     would_have_ask_questions_permission = NormalUser().would_have_perm(
         ask_permissions, obj)
