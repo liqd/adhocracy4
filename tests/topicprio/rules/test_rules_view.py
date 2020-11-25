@@ -65,6 +65,26 @@ def test_phase_active_project_private(phase_factory, topic_factory,
 
 
 @pytest.mark.django_db
+def test_phase_active_project_semipublic(phase_factory, topic_factory,
+                                         user, user2):
+    phase, _, project, item = setup_phase(
+        phase_factory, topic_factory, phases.PrioritizePhase,
+        module__project__access=Access.SEMIPUBLIC
+    )
+    anonymous, moderator, initiator = setup_users(project)
+    participant = user2
+    project.participants.add(participant)
+
+    assert project.access == Access.SEMIPUBLIC
+    with freeze_phase(phase):
+        assert rules.has_perm(perm_name, anonymous, item)
+        assert rules.has_perm(perm_name, user, item)
+        assert rules.has_perm(perm_name, participant, item)
+        assert rules.has_perm(perm_name, moderator, item)
+        assert rules.has_perm(perm_name, initiator, item)
+
+
+@pytest.mark.django_db
 def test_phase_active_project_draft(phase_factory, topic_factory, user):
     phase, _, project, item = setup_phase(phase_factory, topic_factory,
                                           phases.PrioritizePhase,

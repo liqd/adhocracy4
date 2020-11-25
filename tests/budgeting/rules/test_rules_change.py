@@ -1,6 +1,7 @@
 import pytest
 import rules
 
+from adhocracy4.projects.enums import Access
 from meinberlin.apps.budgeting import phases
 from meinberlin.test.helpers import freeze_phase
 from meinberlin.test.helpers import freeze_post_phase
@@ -43,6 +44,50 @@ def test_phase_active(phase_factory, proposal_factory, user):
         assert not rules.has_perm(perm_name, anonymous, item)
         assert not rules.has_perm(perm_name, user, item)
         assert rules.has_perm(perm_name, creator, item)
+        assert rules.has_perm(perm_name, moderator, item)
+        assert rules.has_perm(perm_name, initiator, item)
+
+
+@pytest.mark.django_db
+def test_phase_active_project_private(phase_factory, proposal_factory,
+                                      user, user2):
+    phase, _, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase,
+        module__project__access=Access.PRIVATE)
+    anonymous, moderator, initiator = setup_users(project)
+    creator = item.creator
+
+    participant = user2
+    project.participants.add(participant)
+
+    assert project.access == Access.PRIVATE
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, item)
+        assert not rules.has_perm(perm_name, user, item)
+        assert not rules.has_perm(perm_name, creator, item)
+        assert not rules.has_perm(perm_name, participant, item)
+        assert rules.has_perm(perm_name, moderator, item)
+        assert rules.has_perm(perm_name, initiator, item)
+
+
+@pytest.mark.django_db
+def test_phase_active_project_semipublic(phase_factory, proposal_factory,
+                                         user, user2):
+    phase, _, project, item = setup_phase(
+        phase_factory, proposal_factory, phases.RequestPhase,
+        module__project__access=Access.SEMIPUBLIC)
+    anonymous, moderator, initiator = setup_users(project)
+    creator = item.creator
+
+    participant = user2
+    project.participants.add(participant)
+
+    assert project.access == Access.SEMIPUBLIC
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, item)
+        assert not rules.has_perm(perm_name, user, item)
+        assert not rules.has_perm(perm_name, creator, item)
+        assert not rules.has_perm(perm_name, participant, item)
         assert rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
 

@@ -1,6 +1,7 @@
 import pytest
 import rules
 
+from adhocracy4.projects.enums import Access
 from meinberlin.apps.polls import phases
 from meinberlin.test.helpers import freeze_phase
 from meinberlin.test.helpers import freeze_post_phase
@@ -40,6 +41,44 @@ def test_phase_active(phase_factory, poll_factory, question, choice, vote,
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert rules.has_perm(perm_name, user, module)
+        assert rules.has_perm(perm_name, moderator, module)
+        assert rules.has_perm(perm_name, initiator, module)
+
+
+@pytest.mark.django_db
+def test_phase_active_project_private(phase_factory, poll_factory, question,
+                                      choice, vote, user, user2):
+    phase, module, project, _ = setup_phase(
+        phase_factory, poll_factory, phases.VotingPhase,
+        module__project__access=Access.PRIVATE)
+    anonymous, moderator, initiator = setup_users(project)
+    participant = user2
+    project.participants.add(participant)
+
+    assert project.access == Access.PRIVATE
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, module)
+        assert not rules.has_perm(perm_name, user, module)
+        assert rules.has_perm(perm_name, participant, module)
+        assert rules.has_perm(perm_name, moderator, module)
+        assert rules.has_perm(perm_name, initiator, module)
+
+
+@pytest.mark.django_db
+def test_phase_active_project_semipublic(phase_factory, poll_factory, question,
+                                         choice, vote, user, user2):
+    phase, module, project, _ = setup_phase(
+        phase_factory, poll_factory, phases.VotingPhase,
+        module__project__access=Access.SEMIPUBLIC)
+    anonymous, moderator, initiator = setup_users(project)
+    participant = user2
+    project.participants.add(participant)
+
+    assert project.access == Access.SEMIPUBLIC
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, module)
+        assert not rules.has_perm(perm_name, user, module)
+        assert rules.has_perm(perm_name, participant, module)
         assert rules.has_perm(perm_name, moderator, module)
         assert rules.has_perm(perm_name, initiator, module)
 
