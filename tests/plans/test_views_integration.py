@@ -21,6 +21,10 @@ def test_list_view(client, plan_factory, project_factory,
     project_private = project_factory(name='private', access=Access.PRIVATE)
     project_private.participants.add(user)
     project_private.save()
+    project_semipublic = project_factory(name='semipublic',
+                                         access=Access.SEMIPUBLIC)
+    project_semipublic.participants.add(user)
+    project_semipublic.save()
     project_future = project_factory(name='future')
     project_active_and_future = project_factory(name='active and future')
     project_past = project_factory(name='past')
@@ -50,6 +54,13 @@ def test_list_view(client, plan_factory, project_factory,
         start_date=last_week,
         end_date=next_week,
         module__project=project_private,
+    )
+
+    # active phase
+    phase_factory(
+        start_date=last_week,
+        end_date=next_week,
+        module__project=project_semipublic,
     )
 
     # active phase
@@ -96,23 +107,26 @@ def test_list_view(client, plan_factory, project_factory,
 
     with freeze_time(now):
 
-        assert Project.objects.all().count() == 9
+        assert Project.objects.all().count() == 10
         apiclient.force_authenticate(user=user)
 
         # query api for active projects
         url = reverse('projects-list') + '?status=activeParticipation'
         response = apiclient.get(url)
         items = response.data
-        assert len(items) == 3
+        assert len(items) == 4
         assert items[0]['title'] == 'active'
-        assert items[1]['title'] == 'active and future'
-        assert items[2]['title'] == 'bplan'
+        assert items[1]['title'] == 'semipublic'
+        assert items[2]['title'] == 'active and future'
+        assert items[3]['title'] == 'bplan'
         assert items[0]['type'] == 'project'
         assert items[1]['type'] == 'project'
         assert items[2]['type'] == 'project'
+        assert items[3]['type'] == 'project'
         assert items[0]['subtype'] == 'default'
         assert items[1]['subtype'] == 'default'
-        assert items[2]['subtype'] == 'external'
+        assert items[2]['subtype'] == 'default'
+        assert items[3]['subtype'] == 'external'
 
         # query api for future projects
         url = reverse('projects-list') + '?status=futureParticipation'
