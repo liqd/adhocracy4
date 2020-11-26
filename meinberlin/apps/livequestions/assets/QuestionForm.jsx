@@ -27,9 +27,9 @@ export default class QuestionForm extends React.Component {
     return (
       <span>
         {labelPart1}
-        <a href={termsOfUseUrl} target="_blank">terms of use</a>
+        <a href={termsOfUseUrl} target="_blank" rel="noreferrer">terms of use</a>
         {labelPart2}
-        <a href={privacyPolicyUrl} target="_blank">privacy policy</a>.
+        <a href={privacyPolicyUrl} target="_blank" rel="noreferrer">privacy policy</a>.
       </span>
     )
   }
@@ -51,24 +51,24 @@ export default class QuestionForm extends React.Component {
         <form action="" onSubmit={this.addQuestion.bind(this)}>
           <h2>{django.gettext('Here you can ask your question')}</h2>
           {Object.keys(this.props.category_dict).length > 0 &&
-            <div className="control-bar">
-              <label for="categorySelect">{django.gettext('Characteristic')}*</label>
+            <div className="control-bar u-spacer-bottom">
+              <label htmlFor="categorySelect">{django.gettext('Characteristic')}*</label>
               <div className="dropdown">
                 <select
                   name="categorySelect"
                   id="categorySelect"
-                  className="btn btn--light btn--select live_questions__filters--dropdown dropdown-toggle"
+                  className="btn btn--light live_questions__filters--select custom-select"
                   onChange={this.selectCategory.bind(this)}
                   required="required"
                 >
-                  <option className="dropdown-item" value="">---------</option>
+                  <option value="">---------</option>
                   {Object.keys(this.props.category_dict).map((categoryPk, index) => {
-                    return <option className="dropdown-item" key={index} value={categoryPk}>{this.props.category_dict[categoryPk]}</option>
+                    return <option key={index} value={categoryPk}>{this.props.category_dict[categoryPk]}</option>
                   })}
                 </select>
               </div>
             </div>}
-          <label for="questionTextField">{django.gettext('Question')}*</label>
+          <label htmlFor="questionTextField">{django.gettext('Question')}*</label>
           <textarea
             placeholder={django.gettext('Add Question')}
             id="questionTextField"
@@ -80,8 +80,8 @@ export default class QuestionForm extends React.Component {
             value={this.state.question}
           />
 
-          <div class="form-check">
-            <label class="form-check__label">
+          <div className="form-check">
+            <label className="form-check__label">
               <input type="checkbox" name="data_protection" id="data_protection_check" required="required" />
               {this.getPrivacyPolicyLabel()}
             </label>

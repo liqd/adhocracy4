@@ -18,7 +18,8 @@
     "plugin:jsx-a11y/recommended"
   ],
   "rules": {
-    "jsx-quotes": [2, "prefer-double"]
+    "jsx-quotes": [2, "prefer-double"],
+    "jsx-a11y/no-onchange": "off",
   },
   "plugins": [
     "jsx-a11y"

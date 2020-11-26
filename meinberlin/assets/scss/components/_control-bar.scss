@@ -1,6 +1,5 @@
 .control-bar {
     @include clearfix;
-    font-size: $font-size-sm;
 
     select,
     .dropdown {
@@ -48,7 +47,7 @@
 .control-bar__top-overlap {
     position: relative;
     z-index: 1;
-    bottom: -1em;
+    bottom: -1.7em;
 
     .dropdown {
         margin-bottom: 0;
