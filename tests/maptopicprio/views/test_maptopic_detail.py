@@ -1,4 +1,6 @@
 import pytest
+from django.contrib.contenttypes.models import ContentType
+from django.urls import reverse
 
 from adhocracy4.projects.enums import Access
 from adhocracy4.test.helpers import redirect_target
@@ -99,3 +101,50 @@ def test_detail_view_private_visible_to_initiator(client,
                  password='password')
     response = client.get(url)
     assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_detail_view_semipublic_participation_only_participant(
+        client, user, phase_factory, maptopic_factory):
+    phase, module, project, maptopic = setup_phase(
+        phase_factory, maptopic_factory, phases.PrioritizePhase)
+    maptopic.module.project.access = Access.SEMIPUBLIC
+    maptopic.module.project.save()
+
+    url = maptopic.get_absolute_url()
+    maptopic_ct = ContentType.objects.get_for_model(type(maptopic))
+    api_url = reverse('comments-list',
+                      kwargs={
+                          'content_type': maptopic_ct.pk,
+                          'object_pk': maptopic.pk
+                      })
+    comment_data = {
+        'comment': 'no comment',
+    }
+
+    with freeze_phase(phase):
+        response = client.get(url)
+        assert response.status_code == 200
+        assert_template_response(
+            response, 'meinberlin_maptopicprio/maptopic_detail.html')
+        response = client.post(api_url, comment_data, format='json')
+
+        assert response.status_code == 403
+
+        client.login(username=user.email, password='password')
+
+        response = client.get(url)
+        assert response.status_code == 200
+        assert_template_response(
+            response, 'meinberlin_maptopicprio/maptopic_detail.html')
+        response = client.post(api_url, comment_data, format='json')
+        assert response.status_code == 403
+
+        maptopic.module.project.participants.add(user)
+
+        response = client.get(url)
+        assert response.status_code == 200
+        assert_template_response(
+            response, 'meinberlin_maptopicprio/maptopic_detail.html')
+        response = client.post(api_url, comment_data, format='json')
+        assert response.status_code == 201
