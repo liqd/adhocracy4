@@ -16,8 +16,6 @@ def test_react_questions(rf, user, live_question):
                                 kwargs={'module_pk': module.pk})
     present_url = reverse('meinberlin_livequestions:question-present',
                           kwargs={'module_slug': module.slug})
-    ask_question_url = reverse('meinberlin_livequestions:question-create',
-                               kwargs={'slug': module.slug})
     rendered = render_template(template, context)
 
     assert rendered.startswith('<div data-ie-widget="questions"')
@@ -25,7 +23,6 @@ def test_react_questions(rf, user, live_question):
     assert questions_api_url in rendered
     assert present_url in rendered
     assert live_question.category.name in rendered
-    assert ask_question_url in rendered
 
 
 @pytest.mark.django_db
