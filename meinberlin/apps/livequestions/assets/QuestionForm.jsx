@@ -22,14 +22,14 @@ export default class QuestionForm extends React.Component {
   getPrivacyPolicyLabel () {
     const termsOfUseUrl = '/terms-of-use'
     const privacyPolicyUrl = '/datenschutz'
-    const labelPart1 = 'I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the '
-    const labelPart2 = ' and the '
+    const labelPart1 = django.gettext('I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the ')
+    const labelPart2 = django.gettext(' and the ')
     return (
       <span>
         {labelPart1}
-        <a href={termsOfUseUrl} target="_blank" rel="noreferrer">terms of use</a>
+        <a href={termsOfUseUrl} target="_blank" rel="noreferrer">{django.gettext('terms of use')}</a>
         {labelPart2}
-        <a href={privacyPolicyUrl} target="_blank" rel="noreferrer">privacy policy</a>.
+        <a href={privacyPolicyUrl} target="_blank" rel="noreferrer">{django.gettext('privacy policy')}</a>.
       </span>
     )
   }
