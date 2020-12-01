@@ -31,12 +31,14 @@ class QuestionSerializer(serializers.ModelSerializer):
     isReadOnly = serializers.SerializerMethodField('get_is_read_only')
     userChoices = serializers.SerializerMethodField('get_user_choices')
     totalVoteCount = serializers.SerializerMethodField('get_total_vote_count')
+    totalVoteCountMulti = serializers.SerializerMethodField(
+        'get_total_vote_count_multi')
 
     class Meta:
         model = models.Question
         fields = ('id', 'label', 'choices', 'multiple_choice',
                   'isReadOnly', 'authenticated', 'userChoices',
-                  'totalVoteCount')
+                  'totalVoteCount', 'totalVoteCountMulti')
 
     def get_authenticated(self, _):
         if 'request' in self.context:
@@ -67,6 +69,9 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     def get_total_vote_count(self, question):
         return getattr(question, 'vote_count', -1)
+
+    def get_total_vote_count_multi(self, question):
+        return getattr(question, 'vote_count_multi', -1)
 
 
 class PollSerializer(serializers.ModelSerializer):

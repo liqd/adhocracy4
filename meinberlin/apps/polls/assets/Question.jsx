@@ -11,6 +11,7 @@ class Question extends React.Component {
     super(props)
 
     const question = this.props.question
+
     this.state = {
       question: question,
       selectedChoices: question.userChoices,
@@ -103,7 +104,7 @@ class Question extends React.Component {
       return (
         <button
           type="submit"
-          className="btn btn--primary"
+          className="btn btn--primary u-spacer-right"
           disabled={disabled}
         >
           {django.gettext('Vote')}
@@ -111,7 +112,7 @@ class Question extends React.Component {
       )
     } else {
       return (
-        <a href={config.getLoginUrl()} className="btn btn--primary">
+        <a href={config.getLoginUrl()} className="btn btn--primary u-spacer-right">
           {django.gettext('Please login to vote')}
         </a>
       )
@@ -124,17 +125,49 @@ class Question extends React.Component {
     }
   }
 
-  render () {
+  getHelpText () {
+    let helpText
+    if (!this.state.showResult) {
+      if (this.state.question.multiple_choice) {
+        helpText = <span className="poll__help-text">{django.gettext('Multiple answers are possible.')}</span>
+      }
+    }
+    return (
+      helpText
+    )
+  }
+
+  getHelpTextAnswer () {
     const total = this.state.question.totalVoteCount
+    const totalMulti = this.state.question.totalVoteCountMulti
+
+    let helpTextAnswer
+    let helpTextAnswerPlural
+    if (this.state.question.multiple_choice) {
+      if (total === 1 && totalMulti === 1) {
+        helpTextAnswerPlural = django.gettext('%s participant gave 1 answer.')
+      } else if (total === 1 && totalMulti > 1) {
+        helpTextAnswerPlural = django.gettext('%s participant gave %s answers.', total)
+      } else {
+        helpTextAnswerPlural = django.ngettext('%s participant gave %s answers.', '%s participants gave %s answers.', total)
+      }
+      helpTextAnswer = helpTextAnswerPlural + django.gettext(' For multiple choice questions the percentages may add up to more than 100%.')
+    } else {
+      helpTextAnswer = django.ngettext('1 person has answered.', '%s people have answered.', total)
+    }
+    return django.interpolate(helpTextAnswer, [total, totalMulti])
+  }
+
+  render () {
     const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
+    const total = this.state.question.totalVoteCount
 
     let showTotalOrVoteButton
     let toggleShowResultButton
     let toggleShowResultButtonText
 
     if (this.state.showResult) {
-      showTotalOrVoteButton =
-        `${total} ${django.ngettext('vote', 'votes', total)}`
+      showTotalOrVoteButton = <div className="poll__help-text">{this.getHelpTextAnswer()}</div>
       toggleShowResultButtonText = django.gettext('To poll')
 
       if (this.state.selectedChoices.length !== 0) {
@@ -156,7 +189,7 @@ class Question extends React.Component {
     return (
       <form onSubmit={this.handleSubmit.bind(this)} className="poll">
         <h2>{this.state.question.label}</h2>
-
+        {this.getHelpText()}
         <div className="poll__rows">
           {
             this.state.question.choices.map((choice, i) => {
@@ -167,14 +200,16 @@ class Question extends React.Component {
 
               if (this.state.showResult) {
                 return (
-                  <div className="poll-row" key={choice.id}>
-                    <div className="poll-row__number">{percent}%</div>
-                    <div className="poll-row__label">{choice.label}</div>
-                    {chosen ? <i className="fa fa-check-circle u-primary" aria-label={django.gettext('Your choice')} /> : ''}
-                    <div
-                      className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
-                      ref={node => this.doBarTransition(node, { width: percent + '%' })}
-                    />
+                  <div className="poll-row__container">
+                    {chosen ? <i className="poll-row__chosen fa fa-check" aria-label={django.gettext('Your choice')} /> : ''}
+                    <div className="poll-row poll-row--answered" key={choice.id}>
+                      <div className="poll-row__number">{percent}%</div>
+                      <div className="poll-row__label">{choice.label}</div>
+                      <div
+                        className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
+                        ref={node => this.doBarTransition(node, { width: percent + '%' })}
+                      />
+                    </div>
                   </div>
                 )
               } else {
@@ -219,7 +254,6 @@ class Question extends React.Component {
         <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
         <div className="poll__actions">
           {showTotalOrVoteButton}
-          &nbsp;
           {toggleShowResultButton}
         </div>
       </form>

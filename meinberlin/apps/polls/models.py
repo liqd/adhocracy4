@@ -11,8 +11,10 @@ class QuestionQuerySet(models.QuerySet):
         return self.annotate(
             vote_count=models.Count(
                 'choices__votes__creator_id',
-                distinct=True)
-        )
+                distinct=True)).annotate(
+            vote_count_multi=models.Count(
+                'choices__votes',
+                distinct=True))
 
 
 class ChoiceQuerySet(models.QuerySet):

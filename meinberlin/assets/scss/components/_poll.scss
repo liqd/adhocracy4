@@ -15,8 +15,15 @@
 
     @media (min-width: $breakpoint) {
         display: inline-block;
-        margin: 0 0 0 1em;
     }
+}
+
+.poll__help-text {
+    color: $gray-lighter;
+}
+
+.poll-row__container {
+    position: relative;
 }
 
 .poll__rows {
@@ -30,6 +37,20 @@
     margin-bottom: 0.5em;
 
     @include clearfix;
+
+    &--answered {
+        left: 2rem;
+    }
+}
+
+.poll-row__chosen {
+    color: $gray-lighter;
+    border: 3px solid $gray-lighter;
+    border-radius: 1rem;
+    padding: 0.2rem;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 0.2rem;
 }
 
 .poll-row__radio,
@@ -66,4 +87,5 @@
 
 .poll-row__bar--highlight {
     background-color: $brand-primary-tint;
+    max-width: 96% !important;
 }

@@ -36,7 +36,6 @@ $checkbox-size: 20px;
         transform: scale(1.3);
         opacity: 0;
 
-        padding-top: 2px;
         font-family: "Font Awesome 5 Free", sans-serif;
         font-weight: 900;
         background-color: $brand-primary;
@@ -55,7 +54,7 @@ $checkbox-size: 20px;
 .radio__text--checkbox {
     &:before,
     &:after {
-        border-radius: 0.3em;
+        border-radius: 0;
     }
 }
 
