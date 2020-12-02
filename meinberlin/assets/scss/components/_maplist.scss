@@ -73,6 +73,10 @@
     background-image: url('/static/images/badge_priva_projekt.png');
 }
 
+.maplist-item__corner-badge--semi-public {
+    background-image: url('/static/images/badge_semi_public_projekt.png');
+}
+
 //popup specific styling
 .maplist-popup-item__roofline {
     font-size: $font-size-sm;

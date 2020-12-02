@@ -2,6 +2,7 @@
 {% project_tile_image project as project_image %}
 {% project_tile_image_copyright project as project_image_copyright %}
 
+<!-- This tile is only used in plans and containers, not in project list or projects -->
 <li class="participation-tile__vertical">
     <a href="{{ project|project_url }}" target="{{ project|is_external|yesno:"_blank,_self" }}">
 
@@ -87,6 +88,8 @@
         </div>
         {% if project|is_external %}
         <div class="maplist-item__corner-badge maplist-item__corner-badge--external"></div>
+        {% elif project.is_semipublic %}
+        <div class="maplist-item__corner-badge maplist-item__corner-badge--semi-public"></div>
         {% elif project.is_private %}
         <div class="maplist-item__corner-badge maplist-item__corner-badge--private"></div>
         {% endif %}
