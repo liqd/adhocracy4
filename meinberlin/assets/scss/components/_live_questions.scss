@@ -217,7 +217,6 @@
     line-height: 0.85rem;
 }
 
-.live_questions__filters--select {
-    text-align: left;
-    padding-right: 2.2em;
+.live_questions__select > .select2-container {
+    min-width: 15rem;
 }

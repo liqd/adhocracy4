@@ -12,7 +12,7 @@ export default class Filter extends React.Component {
     if (this.props.currentCategory === '-1') {
       return 'btn btn--light btn--select live_questions__filters--dropdown dropdown-toggle'
     } else {
-      return 'btn btn--secondary btn--select live_questions__filters--dropdown dropdown-toggle'
+      return 'btn btn--light btn--select live_questions__filters--dropdown dropdown-toggle'
     }
   }
 

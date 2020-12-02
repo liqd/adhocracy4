@@ -51,22 +51,21 @@ export default class QuestionForm extends React.Component {
         <form action="" onSubmit={this.addQuestion.bind(this)}>
           <h2>{django.gettext('Here you can ask your question')}</h2>
           {Object.keys(this.props.category_dict).length > 0 &&
-            <div className="control-bar u-spacer-bottom">
+            <div className="live_questions__select u-spacer-bottom">
               <label htmlFor="categorySelect">{django.gettext('Characteristic')}*</label>
-              <div className="dropdown">
-                <select
-                  name="categorySelect"
-                  id="categorySelect"
-                  className="btn btn--light live_questions__filters--select custom-select"
-                  onChange={this.selectCategory.bind(this)}
-                  required="required"
-                >
-                  <option value="">---------</option>
-                  {Object.keys(this.props.category_dict).map((categoryPk, index) => {
-                    return <option key={index} value={categoryPk}>{this.props.category_dict[categoryPk]}</option>
-                  })}
-                </select>
-              </div>
+              <select
+                name="categorySelect"
+                id="categorySelect"
+                className="js-select2"
+                onChange={this.selectCategory.bind(this)}
+                required="required"
+                data-minimum-results-for-search="Infinity"
+              >
+                <option value="">--------</option>
+                {Object.keys(this.props.category_dict).map((categoryPk, index) => {
+                  return <option key={index} value={categoryPk}>{this.props.category_dict[categoryPk]}</option>
+                })}
+              </select>
             </div>}
           <label htmlFor="questionTextField">{django.gettext('Question')}*</label>
           <textarea
@@ -78,6 +77,7 @@ export default class QuestionForm extends React.Component {
             onChange={this.handleTextChange.bind(this)}
             required="required"
             value={this.state.question}
+            maxLength="1000"
           />
 
           <div className="form-check">

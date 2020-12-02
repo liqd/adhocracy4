@@ -3,8 +3,15 @@
 @import '~select2/src/scss/core';
 
 .select2-container--default {
+    .select2-selection--single {
+        height: 40px;
+        padding-top: 4px;
+        border-color: $border-color;
+        border-radius: 0.3em;
+    }
+
     .select2-results__option [aria-selected="true"] {
-        background-color: $bg-secondary;
+        background-color: $body-bg;
         color: contrast-color($bg-secondary);
     }
 
@@ -14,13 +21,28 @@
     }
 
     .select2-selection--multiple .select2-selection__choice {
-        background-color: $bg-secondary;
+        background-color: $body-bg;
         color: contrast-color($bg-secondary);
         border-color: $border-color;
     }
 
     .select2-selection--multiple {
         border: 1px solid $input-border-color;
+    }
+
+    .select2-selection--single .select2-selection__arrow {
+        height: 40px;
+        width: 40px;
+
+        b {
+            border-width: 7px 7px 0 7px;
+        }
+    }
+
+    &.select2-container--open {
+        .select2-selection--single > .select2-selection__arrow > b {
+            border-width: 0 7px 7px 7px;
+        }
     }
 
     &.select2-container--focus {
