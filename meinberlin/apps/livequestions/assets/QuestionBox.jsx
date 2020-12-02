@@ -280,6 +280,7 @@ export default class QuestionBox extends React.Component {
                 </div>
               </div>
             </div>
+            <span id="question-list-end" />
           </div>
         </div>
         <div
