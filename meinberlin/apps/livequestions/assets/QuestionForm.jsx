@@ -7,7 +7,8 @@ export default class QuestionForm extends React.Component {
     super(props)
     this.state = {
       question: '',
-      selectedCategory: ''
+      selectedCategory: '',
+      questionCharCount: 0
     }
   }
 
@@ -17,6 +18,7 @@ export default class QuestionForm extends React.Component {
 
   handleTextChange (e) {
     this.setState({ question: e.target.value })
+    this.setState({ comment: e.target.value, questionCharCount: e.target.value.length })
   }
 
   getPrivacyPolicyLabel () {
@@ -42,13 +44,16 @@ export default class QuestionForm extends React.Component {
       category: this.state.selectedCategory
     }
     updateItem(data, url, 'POST')
-    this.setState({ question: '' })
+    this.setState({
+      question: '',
+      questionCharCount: 0
+    })
   }
 
   render () {
     return (
       <div className="container">
-        <form action="" onSubmit={this.addQuestion.bind(this)}>
+        <form id="id-comment-form" action="" onSubmit={this.addQuestion.bind(this)}>
           <h2>{django.gettext('Here you can ask your question')}</h2>
           {Object.keys(this.props.category_dict).length > 0 &&
             <div className="live_questions__select u-spacer-bottom">
@@ -79,6 +84,7 @@ export default class QuestionForm extends React.Component {
             value={this.state.question}
             maxLength="1000"
           />
+          <label htmlFor="id-comment-form" className="live_questions__char-count">{this.state.questionCharCount}/1000{django.gettext(' characters')}</label>
 
           <div className="form-check">
             <label className="form-check__label">

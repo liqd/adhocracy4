@@ -218,5 +218,16 @@
 }
 
 .live_questions__select > .select2-container {
-    min-width: 15rem;
+    min-width: 100%;
+
+    @media screen and (min-width: $breakpoint-xs) {
+        min-width: 15rem;
+    }
+}
+
+.live_questions__char-count {
+    color: $gray-lighter;
+    font-size: $font-size-sm;
+    margin-top: -0.75*$spacer;
+    margin-bottom: $spacer;
 }
