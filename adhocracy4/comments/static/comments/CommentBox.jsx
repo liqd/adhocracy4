@@ -177,6 +177,7 @@ class CommentBox extends React.Component {
             error={this.state.error}
             errorMessage={this.state.errorMessage}
             handleErrorClick={this.hideNewError.bind(this)}
+            isContextMember={this.props.isContextMember}
           />
           <div className="comment-list">
             <CommentList

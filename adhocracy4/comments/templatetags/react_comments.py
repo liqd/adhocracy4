@@ -4,6 +4,7 @@ from django import template
 from django.contrib.contenttypes.models import ContentType
 from django.utils.html import format_html
 
+from adhocracy4.modules.predicates import is_context_member
 from adhocracy4.rules.discovery import NormalUser
 
 from ..models import Comment
@@ -47,6 +48,8 @@ def react_comments(context, obj):
         'user_name': user_name,
         'isReadOnly': (not has_comment_permission and
                        not would_have_comment_permission),
+        'isContextMember': (is_context_member(user, obj)
+                            or is_context_member(NormalUser(), obj))
     }
 
     return format_html(
