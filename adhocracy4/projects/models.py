@@ -215,11 +215,7 @@ class Project(ProjectContactDetailMixin,
     access = EnumField(
         Access,
         default=Access.PUBLIC,
-        verbose_name=_('Access to the project'),
-        help_text=_('Please indicate whether this project should be public '
-                    'or restricted to invited users. Teasers for your project '
-                    'including title and short description will always be '
-                    'visible to everyone')
+        verbose_name=_('Access to the project')
     )
     is_draft = models.BooleanField(default=True)
     image = fields.ConfiguredImageField(
