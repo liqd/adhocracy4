@@ -37,6 +37,7 @@ class CommentForm extends React.Component {
     const postTag = django.gettext('post')
     const loginCommentText = django.gettext('Please login to comment')
     const noCommentText = django.gettext('The currently active phase doesn\'t allow to comment.')
+    const noCommentTextSemiPub = django.gettext('Only invited users can actively participate.')
 
     if (this.context.isAuthenticated && !this.props.isReadOnly) {
       return (
@@ -59,6 +60,12 @@ class CommentForm extends React.Component {
       return (
         <div className="comments_login">
           <a href={config.getLoginUrl()}>{loginCommentText}</a>
+        </div>
+      )
+    } else if (!this.props.isContextMember) {
+      return (
+        <div>
+          {noCommentTextSemiPub}
         </div>
       )
     } else {
