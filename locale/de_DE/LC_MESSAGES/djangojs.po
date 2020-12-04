@@ -195,7 +195,7 @@ msgstr "Die aktuell laufende Phase erlaubt keine Kommentare."
 #: adhocracy4/comments/static/comments/CommentForm.jsx:40
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:123
 msgid "Only invited users can actively participate."
-msgstr ""
+msgstr "Nur eingeladene Nutzer*innen können sich aktiv beteiligen."
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:18
@@ -736,7 +736,7 @@ msgstr "Ausblenden"
 #: meinberlin/apps/livequestions/assets/QuestionBox.jsx:19
 #: meinberlin/apps/livequestions/assets/QuestionBox.jsx:48
 msgid "select affiliation"
-msgstr ""
+msgstr "Zugehörigkeit auswählen"
 
 #: meinberlin/apps/livequestions/assets/QuestionBox.jsx:178
 msgid "Information"
@@ -756,25 +756,27 @@ msgstr "auf Bildschirm anzeigen"
 
 #: meinberlin/apps/livequestions/assets/QuestionForm.jsx:62
 msgid "Here you can ask your question"
-msgstr ""
+msgstr "Hier können Sie Ihre Frage stellen"
 
 #: meinberlin/apps/livequestions/assets/QuestionForm.jsx:65
 msgid "Affiliation"
-msgstr ""
+msgstr "Zugehörigkeit"
 
 #: meinberlin/apps/livequestions/assets/QuestionForm.jsx:67
 msgid ""
 "Answered questions will be displayed in the statistics according to the "
 "chosen affiliation."
 msgstr ""
+"Beantwortete Fragen werden entsprechend der ausgewählten Zugehörigkeit "
+"in der Statistik dargestellt."
 
 #: meinberlin/apps/livequestions/assets/QuestionForm.jsx:85
 msgid "Your question"
-msgstr ""
+msgstr "Ihre Frage"
 
 #: meinberlin/apps/livequestions/assets/QuestionForm.jsx:103
 msgid "Post"
-msgstr ""
+msgstr "Senden"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:97
 msgid "mark as hidden"
@@ -827,7 +829,7 @@ msgstr "Beantwortete Fragen"
 
 #: meinberlin/apps/livequestions/assets/StatisticsBox.jsx:45
 msgid "Affiliation Of Answered Questions"
-msgstr ""
+msgstr "Zugehörigkeit der beantworteten Fragen"
 
 #: meinberlin/apps/maps/assets/map-address.js:89
 msgid "No matches found within the project area"
@@ -1095,32 +1097,33 @@ msgstr "Karte anzeigen"
 
 #: meinberlin/apps/polls/assets/Question.jsx:132
 msgid "Multiple answers are possible."
-msgstr ""
+msgstr "Mehrfachantworten sind möglich."
 
 #: meinberlin/apps/polls/assets/Question.jsx:148
 #, javascript-format
 msgid "%s participant gave 1 answer."
-msgstr ""
+msgstr "%s Teilnehmer*in hat 1 Antwort gegeben."
 
 #: meinberlin/apps/polls/assets/Question.jsx:150
 #: meinberlin/apps/polls/assets/Question.jsx:152
 #, javascript-format
 msgid "%s participant gave %s answers."
 msgid_plural "%s participants gave %s answers."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s Teilnehmer*in hat %s Antworten gegeben."
+msgstr[1] "%s Teilnehmer*innen haben %s Antworten gegeben."
 
 #: meinberlin/apps/polls/assets/Question.jsx:154
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
 msgstr ""
+"Aufgrund von Mehrfachantworten kann die Summe der Prozentangaben über 100% ergeben."
 
 #: meinberlin/apps/polls/assets/Question.jsx:156
 #, javascript-format
 msgid "1 person has answered."
 msgid_plural "%s people have answered."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 Teilnehmer*in hat geantwortet."
+msgstr[1] "%s Teilnehmer*innen haben geantwortet."
 
 #: meinberlin/assets/js/unload_warning.js:16
 msgid "If you leave this page changes you made will not be saved."

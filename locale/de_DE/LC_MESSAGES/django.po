@@ -241,7 +241,7 @@ msgstr "Abgeschlossen"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:27
 #: adhocracy4/projects/enums.py:14
 msgid "semipublic"
-msgstr ""
+msgstr "halb-öffentlich"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:30
@@ -956,7 +956,7 @@ msgstr "Kontakt"
 
 #: adhocracy4/projects/enums.py:13
 msgid "public"
-msgstr ""
+msgstr "öffentlich"
 
 #: adhocracy4/projects/models.py:43
 msgid ""
@@ -2155,6 +2155,7 @@ msgstr "Organisationsname"
 msgid ""
 "All users can see project tile and content and can participate (public)."
 msgstr ""
+"Alle Nutzer*innen können Projektkachel und -inhalte sehen und sich beteiligen (öffentlich)."
 
 #: meinberlin/apps/dashboard/forms.py:42
 #: meinberlin/apps/projects/overwrites.py:12
@@ -2162,6 +2163,8 @@ msgid ""
 "All users can see project tile and content, only invited users can "
 "participate (semi-public)."
 msgstr ""
+"Alle Nutzer*innen können Projektkachel und -inhalte sehen, nur eingeladene "
+"Nutzer*innen können sich beteiligen (halb-öffentlich)."
 
 #: meinberlin/apps/dashboard/forms.py:45
 #: meinberlin/apps/projects/overwrites.py:8
@@ -2169,6 +2172,7 @@ msgid ""
 "Only invited users can see project tile and content and can participate "
 "(private)."
 msgstr ""
+"Nur eingeladene Nutzer*innen können Projektkachel und -inhalte sehen und sich beteiligen (privat)."
 
 #: meinberlin/apps/dashboard/templates/meinberlin_dashboard/module_blueprint_list_dashboard.html:4
 msgid "New Module"
@@ -2579,15 +2583,15 @@ msgstr "Livestream"
 
 #: meinberlin/apps/livequestions/dashboard.py:40
 msgid "Affiliations"
-msgstr ""
+msgstr "Zugehörigkeiten"
 
 #: meinberlin/apps/livequestions/dashboard.py:42
 msgid "Edit affiliations"
-msgstr ""
+msgstr "Zugehörigkeiten bearbeiten"
 
 #: meinberlin/apps/livequestions/forms.py:21
 msgid "Affiliation"
-msgstr ""
+msgstr "Zugehörigkeit"
 
 #: meinberlin/apps/livequestions/models.py:46
 msgid "Question"
@@ -2618,10 +2622,12 @@ msgid ""
 "evaluated in the\n"
 "    statistics."
 msgstr ""
+"Hier können Sie Zugehörigkeiten vorgeben. Nutzer*innen müssen Fragen entsprechend einordnen. "
+"Die Fragen können nach Zugehörigkeiten gefiltert und in der Statistik ausgewertet werden."
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/includes/module_affiliations_form.html:22
 msgid "Add affiliation"
-msgstr ""
+msgstr "Zugehörigkeit hinzufügen"
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/livequestion_form.html:7
 msgid "Here you can ask your question"
@@ -2665,6 +2671,10 @@ msgid ""
 "as described in the {}privacy policy{}. I also confirm that I have read and "
 "accept the {}terms of use{} and the {}privacy policy{}."
 msgstr ""
+"Hiermit willige ich ausdrücklich in die Speicherung und Veröffentlichung meiner "
+"Fragen, wie in der {}Datenschutzerklärung{} beschrieben, ein. Zudem bestätige ich, "
+"dass ich die {}Nutzungsbedingungen{} und die {}Datenschutzerklärung{} gelesen "
+"habe und akzeptiere."
 
 #: meinberlin/apps/mapideas/forms.py:23
 #: meinberlin/apps/maptopicprio/forms.py:25
@@ -3432,7 +3442,7 @@ msgstr "jetzt mitmachen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_module_tile.html:39
 msgid "Read now"
-msgstr ""
+msgstr "jetzt lesen"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:52
 msgid "Participation projects: "
@@ -3642,12 +3652,16 @@ msgid ""
 "This project is not publicly visible. Only invited users can see content and "
 "actively participate."
 msgstr ""
+"Diese Beteiligung ist nicht öffentlich sichtbar. Nur eingeladene "
+"Nutzer*innen können die Inhalte sehen und sich aktiv beteiligen."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:247
 #: meinberlin/templates/a4modules/module_detail.html:126
 msgid ""
 "This project is publicly visible. Invited users can actively participate."
 msgstr ""
+"Diese Beteiligung ist öffentlich sichtbar. Eingeladene Nutzer*innen können "
+"sich aktiv beteiligen."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:273
 msgid "No results yet."
@@ -3680,7 +3694,7 @@ msgstr "Einladung erfolgreich entfernt."
 
 #: meinberlin/apps/projects/views.py:228
 msgid "Invitation was already accepted or removed."
-msgstr ""
+msgstr "Einladung wurde schon akzeptiert oder entfernt."
 
 #: meinberlin/apps/projects/views.py:270
 msgid "Following users already accepted an invitation: "
@@ -4212,7 +4226,7 @@ msgstr ""
 
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:21
 msgid "Semipublic"
-msgstr ""
+msgstr "Halb-öffentlich"
 
 #: meinberlin/templates/a4dashboard/includes/project_list_item.html:23
 msgid "Private"
@@ -4223,7 +4237,7 @@ msgstr "Privat"
 #: meinberlin/templates/a4forms/includes/inline_form.html:18
 #: meinberlin/templates/a4forms/includes/inline_form.html:19
 msgid "Remove item"
-msgstr ""
+msgstr "Element entfernen"
 
 #: meinberlin/templates/a4images/image_upload_widget.html:29
 msgid ""
@@ -4247,7 +4261,7 @@ msgstr "Nächste"
 
 #: meinberlin/templates/a4modules/module_detail.html:67
 msgid " Live now"
-msgstr ""
+msgstr "Jetzt live"
 
 #: meinberlin/templates/a4modules/module_detail.html:143
 msgid "More from this online participation:"
