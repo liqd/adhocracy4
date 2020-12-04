@@ -42,30 +42,33 @@ export default class StatisticsBox extends React.Component {
 
   render () {
     const questionAnsweredTag = django.gettext('Questions Answered')
-    const categoriesAnsweredTag = django.gettext('Categories Answered')
+    const categoriesAnsweredTag = django.gettext('Affiliation Of Answered Questions')
 
     return (
       <div className="module-content">
         <div className="l-wrapper">
           <div className="l-center-8">
-            <h3>{categoriesAnsweredTag}</h3>
-            <div className="list-item list-item--squashed">
-              {this.props.categories.map((category, index) => {
-                const countPerCategory = this.countCategory(category)
-                const style = { width: countPerCategory + '%' }
-                return (
-                  <div key={index} className="u-spacer-bottom-half">
-                    <div className="progress">
-                      <div
-                        className="progress-bar" style={style} role="progressbar" aria-valuenow="25" aria-valuemin="0"
-                        aria-valuemax="100"
-                      />
-                      <span className="progress-bar__stats">&nbsp;{category}&nbsp;{countPerCategory}%</span>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
+            {this.props.categories.length > 0 &&
+              <div>
+                <h3>{categoriesAnsweredTag}</h3>
+                <div className="list-item list-item--squashed">
+                  {this.props.categories.map((category, index) => {
+                    const countPerCategory = this.countCategory(category)
+                    const style = { width: countPerCategory + '%' }
+                    return (
+                      <div key={index} className="u-spacer-bottom-half">
+                        <div className="progress">
+                          <div
+                            className="progress-bar" style={style} role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                            aria-valuemax="100"
+                          />
+                          <span className="progress-bar__stats">&nbsp;{category}&nbsp;{countPerCategory}%</span>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>}
             <h3>{questionAnsweredTag}</h3>
             {this.props.isModerator
               ? (

@@ -16,7 +16,7 @@ export default class QuestionBox extends React.Component {
       filteredQuestions: [],
       answeredQuestions: [],
       category: '-1',
-      categoryName: django.gettext('select characteristic'),
+      categoryName: django.gettext('select affiliation'),
       displayNotHiddenOnly: false,
       displayOnShortlist: false,
       orderedByLikes: false,
@@ -45,7 +45,7 @@ export default class QuestionBox extends React.Component {
   }
 
   setCategory (category) {
-    const newName = (category === '-1') ? django.gettext('select characteristic') : category
+    const newName = (category === '-1') ? django.gettext('select affiliation') : category
     this.setState({
       filterChanged: true,
       categoryName: newName,
