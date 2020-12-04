@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-16 17:57+0100\n"
+"POT-Creation-Date: 2020-12-04 18:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,12 +54,12 @@ msgid "Answer"
 msgstr "Answer"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:410
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:408
 msgid "Your reply here"
 msgstr "Your reply here"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:32
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:279
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:283
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -71,23 +71,23 @@ msgstr ""
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:256
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:260
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:251
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:255
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:147
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:232
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:236
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:148
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:234
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:238
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:22
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:14
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:56
@@ -100,7 +100,7 @@ msgid "Delete"
 msgstr "Delete"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:149
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:235
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:239
 #: adhocracy4/comments_async/static/modals/modal.jsx:58
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
@@ -142,9 +142,14 @@ msgid "Please login to comment"
 msgstr "Please login to comment"
 
 #: adhocracy4/comments/static/comments/CommentForm.jsx:39
-#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:123
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:129
 msgid "The currently active phase doesn't allow to comment."
 msgstr "The currently active phase doesn't allow to comment."
+
+#: adhocracy4/comments/static/comments/CommentForm.jsx:40
+#: adhocracy4/comments_async/static/comments_async/comment_form.jsx:123
+msgid "Only invited users can actively participate."
+msgstr "Only invited users can actively participate."
 
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:6
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:18
@@ -159,47 +164,47 @@ msgstr "Report"
 msgid "Choose categories for your comment"
 msgstr "Choose categories for your comment"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:21
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:19
 msgid "Entry successfully created"
 msgstr "Entry successfully created"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:22
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:20
 msgid "Read more..."
 msgstr "Read more..."
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:23
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:21
 msgid "Read less"
 msgstr "Read less"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:24
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:22
 msgid "Share"
 msgstr "Share"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:25
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:23
 msgid " Report"
 msgstr " Report"
 
 #: adhocracy4/comments_async/static/comments_async/comment.jsx:33
+msgid "hide comments"
+msgstr "hide comments"
+
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:36
 #, javascript-format
 msgid "1 comment"
 msgid_plural "%s comments"
 msgstr[0] "1 comment"
 msgstr[1] "%s comments"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:40
-msgid "hide comments"
-msgstr "hide comments"
-
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:42
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:39
 msgctxt "verb"
 msgid "Comment"
 msgstr "Comment"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:286
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:290
 msgid "Share link"
 msgstr "Share link"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:325
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:329
 msgid "Categories: "
 msgstr "Categories: "
 
@@ -225,7 +230,7 @@ msgstr "Last discussed"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:51
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:310
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:543
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:544
 #: meinberlin/apps/livequestions/assets/Filters.jsx:20
 #: meinberlin/apps/plans/assets/FilterNav.jsx:95
 #: meinberlin/apps/plans/assets/FilterNav.jsx:102
@@ -241,52 +246,53 @@ msgstr "all"
 msgid "Write contribution"
 msgstr "Write contribution"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:521
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:525
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:522
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:526
 msgid "Search contributions"
 msgstr "Search contributions"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:523
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:524
 msgid "Clear search"
 msgstr "Clear search"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:535
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:536
 msgid "display: "
 msgstr "display: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:562
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:563
 msgid "sorted by: "
 msgstr "sorted by: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:587
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:588
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "entry"
 msgstr[1] "entries"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:591
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:592
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "entry found for "
 msgstr[1] "entries found for "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:595
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:596
 msgid "Filters"
 msgstr "Filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:595
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:596
 msgid "Show filters"
 msgstr "Show filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:598
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:599
 msgid "Hide Filters"
 msgstr "Hide Filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:598
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:599
 msgid "Hide filters"
 msgstr "Hide filters"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:104
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:95
 msgid " characters"
 msgstr " characters"
 
@@ -376,7 +382,7 @@ msgid "Save"
 msgstr "Save"
 
 #: adhocracy4/polls/static/polls/Question.jsx:9
-#: meinberlin/apps/polls/assets/Question.jsx:173
+#: meinberlin/apps/polls/assets/Question.jsx:204
 msgid "Your choice"
 msgstr "Your choice"
 
@@ -385,48 +391,48 @@ msgid "Multiple answers are possible for this question"
 msgstr "Multiple answers are possible for this question"
 
 #: adhocracy4/polls/static/polls/Question.jsx:36
-#: meinberlin/apps/polls/assets/Question.jsx:51
+#: meinberlin/apps/polls/assets/Question.jsx:52
 msgid "Vote counted"
 msgstr "Vote counted"
 
 #: adhocracy4/polls/static/polls/Question.jsx:37
-#: meinberlin/apps/polls/assets/Question.jsx:61
+#: meinberlin/apps/polls/assets/Question.jsx:62
 msgid "Vote has not been counted due to a server error."
 msgstr "Vote has not been counted due to a server error."
 
 #: adhocracy4/polls/static/polls/Question.jsx:104
-#: meinberlin/apps/polls/assets/Question.jsx:109
+#: meinberlin/apps/polls/assets/Question.jsx:110
 msgid "Vote"
 msgstr "Vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:105
-#: meinberlin/apps/polls/assets/Question.jsx:115
+#: meinberlin/apps/polls/assets/Question.jsx:116
 msgid "Please login to vote"
 msgstr "Please login to vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:140
-#: meinberlin/apps/polls/assets/Question.jsx:138
+#: meinberlin/apps/polls/assets/Question.jsx:171
 msgid "To poll"
 msgstr "To poll"
 
 #: adhocracy4/polls/static/polls/Question.jsx:142
-#: meinberlin/apps/polls/assets/Question.jsx:141
+#: meinberlin/apps/polls/assets/Question.jsx:174
 msgid "Change vote"
 msgstr "Change vote"
 
 #: adhocracy4/polls/static/polls/Question.jsx:145
-#: meinberlin/apps/polls/assets/Question.jsx:145
+#: meinberlin/apps/polls/assets/Question.jsx:178
 msgid "Show preliminary results"
 msgstr "Show preliminary results"
 
 #: adhocracy4/polls/static/polls/Question.jsx:157
-#: meinberlin/apps/polls/assets/Question.jsx:137
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "vote"
 msgstr[1] "votes"
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:8
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:83
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:15
 msgid "Question"
 msgstr "Question"
@@ -604,30 +610,50 @@ msgstr "Open information"
 msgid "Hide"
 msgstr "Hide"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:18
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:47
-msgid "select characteristic"
-msgstr "select characteristic"
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:19
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:48
+msgid "select affiliation"
+msgstr "select affiliation"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:177
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:178
 msgid "Information"
 msgstr "Information"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:188
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:189
 msgid "Questions"
 msgstr "Questions"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:199
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:200
 msgid "Statistics"
 msgstr "Statistics"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:252
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:263
 msgid "display on screen"
 msgstr "display on screen"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:282
-msgid "Add Question"
-msgstr "Add Question"
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:62
+msgid "Here you can ask your question"
+msgstr "Here you can ask your question"
+
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:65
+msgid "Affiliation"
+msgstr "Affiliation"
+
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:67
+msgid ""
+"Answered questions will be displayed in the statistics according to the "
+"chosen affiliation."
+msgstr ""
+"Answered questions will be displayed in the statistics according to the "
+"chosen affiliation."
+
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:85
+msgid "Your question"
+msgstr "Your question"
+
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:103
+msgid "Post"
+msgstr "Post"
 
 #: meinberlin/apps/livequestions/assets/QuestionModerator.jsx:97
 msgid "mark as hidden"
@@ -679,8 +705,8 @@ msgid "Questions Answered"
 msgstr "Questions Answered"
 
 #: meinberlin/apps/livequestions/assets/StatisticsBox.jsx:45
-msgid "Categories Answered"
-msgstr "Categories Answered"
+msgid "Affiliation Of Answered Questions"
+msgstr "Affiliation Of Answered Questions"
 
 #: meinberlin/apps/maps/assets/map-address.js:89
 msgid "No matches found within the project area"
@@ -873,7 +899,7 @@ msgstr "Participation projects: "
 msgid "Status: "
 msgstr "Status: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:248
+#: meinberlin/apps/plans/assets/PlansList.jsx:250
 #: meinberlin/apps/plans/assets/PlansMap.jsx:286
 msgid "Nothing to show"
 msgstr "Nothing to show"
@@ -940,15 +966,47 @@ msgstr "Show Map"
 msgid "show map"
 msgstr "show map"
 
+#: meinberlin/apps/polls/assets/Question.jsx:132
+msgid "Multiple answers are possible."
+msgstr "Multiple answers are possible."
+
+#: meinberlin/apps/polls/assets/Question.jsx:148
+#, javascript-format
+msgid "%s participant gave 1 answer."
+msgstr "%s participant gave 1 answer."
+
+#: meinberlin/apps/polls/assets/Question.jsx:150
+#: meinberlin/apps/polls/assets/Question.jsx:152
+#, javascript-format
+msgid "%s participant gave %s answers."
+msgid_plural "%s participants gave %s answers."
+msgstr[0] "%s participant gave %s answers."
+msgstr[1] "%s participants gave %s answers."
+
+#: meinberlin/apps/polls/assets/Question.jsx:154
+msgid ""
+" For multiple choice questions the percentages may add up to more than 100%."
+msgstr ""
+" For multiple choice questions the percentages may add up to more than 100%."
+
+#: meinberlin/apps/polls/assets/Question.jsx:156
+#, javascript-format
+msgid "1 person has answered."
+msgid_plural "%s people have answered."
+msgstr[0] "1 person has answered."
+msgstr[1] "%s people have answered."
+
 #: meinberlin/assets/js/unload_warning.js:16
 msgid "If you leave this page changes you made will not be saved."
 msgstr "If you leave this page changes you made will not be saved."
 
+#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:13
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
 msgid "External Video"
 msgstr "External Video"
 
+#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:14
 msgid ""
 "Here you can find a video from Google (YouTube). To protect your data the "
@@ -959,20 +1017,24 @@ msgstr ""
 "content will only be loaded after you give your consent. Only then will "
 "YouTube set Cookies that collect information on user behaviour."
 
+#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "More information can be found in the privacy policy of Google under: "
 msgstr "More information can be found in the privacy policy of Google under: "
 
+#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:22
 msgid "Link to Video: "
 msgstr "Link to Video: "
 
+#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:22
 msgid "Play video"
 msgstr "Play video"
 
+#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:19
 msgid ""
 "Here you can find a video from Vimeo. To protect your data the content will "
@@ -983,6 +1045,16 @@ msgstr ""
 "only be loaded after you give your consent. Only then will Vimeo set Cookies "
 "that collect information on user behaviour."
 
+#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
+
+#~ msgid "select characteristic"
+#~ msgstr "select characteristic"
+
+#~ msgid "Add Question"
+#~ msgstr "Add Question"
+
+#~ msgid "Categories Answered"
+#~ msgstr "Categories Answered"
