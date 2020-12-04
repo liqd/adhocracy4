@@ -471,7 +471,6 @@ A4_CATEGORIZABLE = (
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_kiezkasse', 'proposal'),
-    ('meinberlin_livequestions', 'question'),
     ('meinberlin_topicprio', 'topic'),
     ('meinberlin_maptopicprio', 'maptopic'),
 )
