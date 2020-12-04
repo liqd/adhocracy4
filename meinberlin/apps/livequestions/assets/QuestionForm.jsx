@@ -76,7 +76,7 @@ export default class QuestionForm extends React.Component {
             </div>}
           <label htmlFor="questionTextField">{django.gettext('Question')}*</label>
           <textarea
-            placeholder={django.gettext('Add Question')}
+            placeholder={django.gettext('Your question')}
             id="questionTextField"
             className="form-control"
             name="questionTextFieldName"
@@ -94,7 +94,7 @@ export default class QuestionForm extends React.Component {
               {this.getPrivacyPolicyLabel()}
             </label>
           </div>
-          <input type="submit" value={django.gettext('Add Question')} className="submit-button" />
+          <input type="submit" value={django.gettext('Post')} className="submit-button" />
         </form>
       </div>
     )
