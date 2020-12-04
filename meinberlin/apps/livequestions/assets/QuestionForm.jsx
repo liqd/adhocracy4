@@ -21,17 +21,20 @@ export default class QuestionForm extends React.Component {
     this.setState({ comment: e.target.value, questionCharCount: e.target.value.length })
   }
 
-  getPrivacyPolicyLabel () {
+  getPrivacyPolicyLabelWithLinks () {
+    const splittedLabel = this.props.privatePolicyLabel.split('{}')
     const termsOfUseUrl = '/terms-of-use'
-    const privacyPolicyUrl = '/datenschutz'
-    const labelPart1 = django.gettext('I hereby expressly consent to the collection and processing (storage) of my data and expressly consent to the processing and publication of my ideas, comments and contributions as described in the privacy policy. I also confirm that I have read and accept the ')
-    const labelPart2 = django.gettext(' and the ')
+    const dataProtectionPolicyUrl = '/datenschutz'
+
     return (
       <span>
-        {labelPart1}
-        <a href={termsOfUseUrl} target="_blank" rel="noreferrer">{django.gettext('terms of use')}</a>
-        {labelPart2}
-        <a href={privacyPolicyUrl} target="_blank" rel="noreferrer">{django.gettext('privacy policy')}</a>.
+        {splittedLabel[0]}
+        <a href={dataProtectionPolicyUrl} target="_blank" rel="noreferrer">{splittedLabel[1]}</a>
+        {splittedLabel[2]}
+        <a href={termsOfUseUrl} target="_blank" rel="noreferrer">{splittedLabel[3]}</a>
+        {splittedLabel[4]}
+        <a href={dataProtectionPolicyUrl} target="_blank" rel="noreferrer">{splittedLabel[5]}</a>
+        {splittedLabel[6]}
       </span>
     )
   }
@@ -91,7 +94,7 @@ export default class QuestionForm extends React.Component {
           <div className="form-check">
             <label className="form-check__label">
               <input type="checkbox" name="data_protection" id="data_protection_check" required="required" />
-              {this.getPrivacyPolicyLabel()}
+              {this.getPrivacyPolicyLabelWithLinks()}
             </label>
           </div>
           <input type="submit" value={django.gettext('Post')} className="submit-button" />

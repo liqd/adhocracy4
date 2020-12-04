@@ -3,6 +3,7 @@ import json
 from django import template
 from django.urls import reverse
 from django.utils.html import format_html
+from django.utils.translation import gettext_lazy as _
 
 from adhocracy4.rules.discovery import NormalUser
 
@@ -20,6 +21,12 @@ def react_questions(context, obj):
     category_dict = {category.pk: category.name
                      for category in obj.category_set.all()}
     questions_api_url = reverse('questions-list', kwargs={'module_pk': obj.pk})
+    private_policy_label = str(_('I hereby expressly consent to the storage '
+                                 'and publication of my questions, as '
+                                 'described in the {}privacy policy{}. I also '
+                                 'confirm that I have read and accept the '
+                                 '{}terms of use{} and the {}privacy '
+                                 'policy{}.'))
     present_url = \
         reverse('meinberlin_livequestions:question-present',
                 kwargs={'module_slug': obj.slug})
@@ -46,6 +53,7 @@ def react_questions(context, obj):
                                 or would_have_liking_permission),
         'hasAskQuestionsPermission': (has_ask_questions_permissions
                                       or would_have_ask_questions_permission),
+        'privatePolicyLabel': private_policy_label,
     }
 
     return format_html(

@@ -229,6 +229,7 @@ export default class QuestionBox extends React.Component {
                 <QuestionForm
                   category_dict={this.props.category_dict}
                   questions_api_url={this.props.questions_api_url}
+                  privatePolicyLabel={this.props.privatePolicyLabel}
                 />
               </div>
             </div>}
