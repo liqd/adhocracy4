@@ -63,7 +63,7 @@
     "tether": "1.4.7",
     "timeago.js": "4.0.2",
     "webpack": "4.44.2",
-    "webpack-merge": "5.4.0",
+    "webpack-merge": "5.4.1",
     "whatwg-fetch": "3.5.0"
   },
   "devDependencies": {
