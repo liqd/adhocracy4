@@ -1116,7 +1116,8 @@ msgstr[1] "%s Teilnehmer*innen haben %s Antworten gegeben."
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
 msgstr ""
-"Aufgrund von Mehrfachantworten kann die Summe der Prozentangaben über 100% ergeben."
+" Aufgrund von Mehrfachantworten kann die Summe der Prozentangaben über "
+"100% ergeben."
 
 #: meinberlin/apps/polls/assets/Question.jsx:156
 #, javascript-format
