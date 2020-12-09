@@ -129,7 +129,7 @@ class Question extends React.Component {
     let helpText
     if (!this.state.showResult) {
       if (this.state.question.multiple_choice) {
-        helpText = <span className="poll__help-text">{django.gettext('Multiple answers are possible.')}</span>
+        helpText = <div className="poll__help-text">{django.gettext('Multiple answers are possible.')}</div>
       }
     }
     return (
@@ -167,7 +167,7 @@ class Question extends React.Component {
     let toggleShowResultButtonText
 
     if (this.state.showResult) {
-      showTotalOrVoteButton = <div className="poll__help-text">{this.getHelpTextAnswer()}</div>
+      showTotalOrVoteButton = <div className="u-muted">{this.getHelpTextAnswer()}</div>
       toggleShowResultButtonText = django.gettext('To poll')
 
       if (this.state.selectedChoices.length !== 0) {
