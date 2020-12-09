@@ -1,6 +1,7 @@
 import django from 'django'
 import React from 'react'
 import { updateItem } from './helpers.js'
+import CategorySelect from './CategorySelect'
 
 export default class QuestionForm extends React.Component {
   constructor (props) {
@@ -61,26 +62,10 @@ export default class QuestionForm extends React.Component {
       <div className="container">
         <form id="id-comment-form" action="" onSubmit={this.addQuestion.bind(this)}>
           <h2>{django.gettext('Here you can ask your question')}</h2>
-          {Object.keys(this.props.category_dict).length > 0 &&
-            <div className="live_questions__select u-spacer-bottom">
-              <label htmlFor="categorySelect">{django.gettext('Affiliation')}*</label>
-              <div className="form-hint">
-                {django.gettext('Answered questions will be displayed in the statistics according to the chosen affiliation.')}
-              </div>
-              <select
-                name="categorySelect"
-                id="categorySelect"
-                className="js-select2"
-                onChange={this.selectCategory.bind(this)}
-                required="required"
-                data-minimum-results-for-search="Infinity"
-              >
-                <option value="">--------</option>
-                {Object.keys(this.props.category_dict).map((categoryPk, index) => {
-                  return <option key={index} value={categoryPk}>{this.props.category_dict[categoryPk]}</option>
-                })}
-              </select>
-            </div>}
+          <CategorySelect
+            onSelect={this.selectCategory.bind(this)}
+            category_dict={this.props.category_dict}
+          />
           <label htmlFor="questionTextField">{django.gettext('Question')}*</label>
           <textarea
             placeholder={django.gettext('Your question')}
