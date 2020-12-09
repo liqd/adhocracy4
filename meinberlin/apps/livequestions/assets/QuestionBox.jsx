@@ -11,6 +11,8 @@ export default class QuestionBox extends React.Component {
   constructor (props) {
     super(props)
 
+    this.restartPolling = this.restartPolling.bind(this)
+
     this.state = {
       questions: [],
       filteredQuestions: [],
@@ -27,8 +29,7 @@ export default class QuestionBox extends React.Component {
   }
 
   componentDidMount () {
-    this.getItems()
-    this.timer = setInterval(() => this.getItems(), 5000)
+    this.restartPolling()
   }
 
   componentWillUnmount () {
@@ -160,6 +161,12 @@ export default class QuestionBox extends React.Component {
     })
   }
 
+  restartPolling () {
+    this.getItems()
+    clearInterval(this.timer)
+    this.timer = setInterval(() => this.getItems(), 5000)
+  }
+
   render () {
     return (
       <div>
@@ -227,6 +234,7 @@ export default class QuestionBox extends React.Component {
             <div className="l-wrapper">
               <div className="l-center-8">
                 <QuestionForm
+                  restartPolling={this.restartPolling}
                   category_dict={this.props.category_dict}
                   questions_api_url={this.props.questions_api_url}
                   privatePolicyLabel={this.props.privatePolicyLabel}

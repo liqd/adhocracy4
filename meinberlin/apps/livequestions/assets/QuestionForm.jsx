@@ -53,6 +53,7 @@ export default class QuestionForm extends React.Component {
       questionCharCount: 0
     })
     anchor.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    this.props.restartPolling()
   }
 
   render () {
