@@ -1,5 +1,6 @@
 import pytest
 from dateutil.parser import parse
+from django.utils import translation
 from freezegun import freeze_time
 
 from meinberlin.apps.livequestions import phases
@@ -29,9 +30,11 @@ def test_detail_view(client, user, phase_factory, live_question_factory,
     live_stream.save()
 
     with freeze_time(parse('2013-01-01 18:00:00 UTC')):
-        response = client.get(url)
-        assert '• Live now' in response.content.decode()
+        with translation.override('en_GB'):
+            response = client.get(url)
+            assert '• Live now' in response.content.decode()
 
     with freeze_time(parse('2013-01-01 19:30:00 UTC')):
-        response = client.get(url)
-        assert '• Live now' not in response.content.decode()
+        with translation.override('en_GB'):
+            response = client.get(url)
+            assert '• Live now' not in response.content.decode()
