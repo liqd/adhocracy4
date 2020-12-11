@@ -52,14 +52,14 @@
         {% endif %}
     </form>
     {% if module_menu.module.is_draft %}
-    <button type="submit" class="btn btn--full btn--danger u-spacer-bottom dashboard_nav__btn--delete" value="{% trans 'Delete' %}" data-toggle="modal" data-target="#delete-modal">
+    <button type="submit" class="btn btn--full btn--danger u-spacer-bottom dashboard_nav__btn--delete" value="{% trans 'Delete' %}" data-toggle="modal" data-target="#delete-modal{{ module_menu.module.pk }}">
         <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
         {% trans 'Delete module' %}
     </button>
     {% endif %}
 </div>
 
-<div class="modal" tabindex="-1" role="dialog" id="delete-modal" aria-labelledby="delete-modal-label">
+<div class="modal" tabindex="-1" role="dialog" id="delete-modal{{ module_menu.module.pk }}" aria-labelledby="delete-modal-label">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
