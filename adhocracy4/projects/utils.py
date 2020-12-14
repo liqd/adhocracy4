@@ -8,7 +8,7 @@ def get_module_clusters(modules):
         .annotate_module_start() \
         .annotate_module_end() \
         .exclude(Q(module_start=None) | Q(module_end=None)) \
-        .order_by('module_start')
+        .order_by('module_start', 'weight')
     clusters = []
 
     try:
