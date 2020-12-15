@@ -235,7 +235,7 @@
                 {% endwith %}
             {% endif %}
         </div>
-        {% if not view.is_project_view %}
+        {% if not view.is_project_view and not event %}
         <div class="l-wrapper">
             <div class="l-center-6 u-spacer-bottom-double">
             {% if project.is_private %}
