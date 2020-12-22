@@ -1,9 +1,12 @@
 import operator
+import random
 from functools import reduce
 
 import django_filters
 from django.core.exceptions import ImproperlyConfigured
+from django.db.models import Case
 from django.db.models import Q
+from django.db.models import When
 
 
 class ClassBasedViewFilterSet(django_filters.FilterSet):
@@ -61,10 +64,27 @@ class DefaultsFilterSet(PagedFilterSet):
 class DistinctOrderingFilter(django_filters.OrderingFilter):
     """Makes sure, that every queryset gets a distinct ordering, even if
     field to order by (e.g. comment count) would produce a non-distinct
-    odering.
+    odering. In case of random ordering (?), use the extra argument
+    random_seed in order to allow reproducable random orderings.
     """
 
+    def __init__(self, *args, **kwargs):
+        self.random_seed = kwargs.pop('random_seed', None)
+        super().__init__(*args, **kwargs)
+
     def filter(self, qs, value):
+        if value == ['?']:
+            pks = list(qs.values_list('pk', flat=True))
+            random.seed(self.random_seed)
+            random.shuffle(pks)
+
+            preserved = \
+                Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(pks)])
+            ordered_qs = qs \
+                .filter(pk__in=pks) \
+                .order_by(preserved)
+
+            return ordered_qs
 
         if value in django_filters.constants.EMPTY_VALUES:
             return qs.order_by('pk')
