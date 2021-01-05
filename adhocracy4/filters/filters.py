@@ -66,16 +66,17 @@ class DistinctOrderingFilter(django_filters.OrderingFilter):
     field to order by (e.g. comment count) would produce a non-distinct
     odering. In case of random ordering (?), use the extra argument
     random_seed in order to allow reproducable random orderings.
+    Note: order reproducability relies on the string representation of the seed
     """
 
     def __init__(self, *args, **kwargs):
-        self.random_seed = kwargs.pop('random_seed', None)
+        self.random_seed = kwargs.pop('random_seed', 'static_randomness')
         super().__init__(*args, **kwargs)
 
     def filter(self, qs, value):
         if value == ['?']:
             pks = list(qs.values_list('pk', flat=True))
-            random.seed(self.random_seed)
+            random.seed(str(self.random_seed))
             random.shuffle(pks)
 
             preserved = \
@@ -83,7 +84,6 @@ class DistinctOrderingFilter(django_filters.OrderingFilter):
             ordered_qs = qs \
                 .filter(pk__in=pks) \
                 .order_by(preserved)
-
             return ordered_qs
 
         if value in django_filters.constants.EMPTY_VALUES:
