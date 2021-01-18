@@ -8,5 +8,5 @@ freezegun==1.0.0
 isort==5.7.0
 pytest-cov==2.11.0
 pytest-django==4.1.0
-pytest-factoryboy==2.0.3
+pytest-factoryboy==2.1.0
 pytest==6.2.0
