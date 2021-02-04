@@ -95,6 +95,14 @@ class Phase(models.Model):
                     'end_date': _('End date can not be before '
                                   'start date.')
                 })
+        elif self.start_date and not self.end_date:
+            raise ValidationError({
+                'end_date': _('Either both or no date has to be set.')
+            })
+        elif not self.start_date and self.end_date:
+            raise ValidationError({
+                'start_date': _('Either both or no date has to be set.')
+            })
         super().clean()
 
     @cached_property
