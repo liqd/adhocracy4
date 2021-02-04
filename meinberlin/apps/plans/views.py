@@ -18,6 +18,7 @@ from adhocracy4.exports import unescape_and_strip_html
 from adhocracy4.exports import views as export_views
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
+from meinberlin.apps.exports import mixins as mb_export_mixins
 from meinberlin.apps.maps.models import MapPreset
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans.forms import PlanForm
@@ -121,7 +122,9 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
                               export_mixins.ExportModelFieldsMixin,
                               export_mixins.ItemExportWithLocationMixin,
                               export_views.BaseExport,
-                              export_views.AbstractXlsxExportView):
+                              export_views.AbstractXlsxExportView,
+                              mb_export_mixins.
+                              ItemExportWithReferenceNumberMixin):
 
     permission_required = 'meinberlin_plans.export_plan'
     model = models.Plan
