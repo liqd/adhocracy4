@@ -11,7 +11,9 @@ class PhaseInlineFormSet(BaseInlineFormSet):
         phase_dates = []
         for form in self.forms:
             if 'start_date' in form.cleaned_data \
-                    and 'end_date' in form.cleaned_data:
+                    and 'end_date' in form.cleaned_data \
+                    and form.cleaned_data['start_date'] is not None \
+                    and form.cleaned_data['end_date'] is not None:
                 start_date = form.cleaned_data['start_date']
                 end_date = form.cleaned_data['end_date']
                 if phase_dates:
