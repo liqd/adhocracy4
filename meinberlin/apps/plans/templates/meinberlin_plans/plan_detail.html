@@ -50,6 +50,18 @@
                             <dt>{% trans 'Topic' %}</dt><dd>{{ object.topic_names.0 }}{% if object.topic_names.1 %}, {{ object.topic_names.1 }}{% endif %}</dd>
                         </dl>
 
+                        {% if object.duration %}
+                        <dl>
+                            <dt>{% trans 'Duration' %}</dt><dd>{{ object.duration }}</dd>
+                        </dl>
+                        {% endif %}
+
+                        {% if object.cost %}
+                        <dl>
+                            <dt>{% trans 'Cost' %}</dt><dd>{{ object.cost }}</dd>
+                        </dl>
+                        {% endif %}
+
                         <dl>
                             <dt>{% trans 'Participation' %}</dt>
                             <dd>
@@ -58,12 +70,6 @@
                                 {% endif%}
                             </dd>
                         </dl>
-
-                        {% if object.cost %}
-                        <dl>
-                            <dt>{% trans 'Cost' %}</dt><dd>{{ object.cost }}</dd>
-                        </dl>
-                        {% endif %}
 
                         <dl>
                             <dt>{% trans 'Reference No.' %}</dt>

@@ -126,7 +126,8 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
     permission_required = 'meinberlin_plans.export_plan'
     model = models.Plan
     fields = ['title', 'organisation', 'contact', 'district', 'cost',
-              'description', 'topics', 'status', 'participation']
+              'description', 'topics', 'status', 'participation',
+              'duration']
     html_fields = ['description']
 
     def get_object_list(self):

@@ -107,6 +107,12 @@ class Plan(UserGeneratedContentModel):
         choices=PARTICIPATION_CHOICES,
         verbose_name=_('Participation')
     )
+    duration = models.CharField(
+        blank=True,
+        null=True,
+        max_length=255,
+        verbose_name=_('Duration')
+    )
 
     class Meta:
         ordering = ['-created']

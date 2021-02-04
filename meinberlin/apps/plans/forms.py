@@ -26,7 +26,8 @@ class PlanForm(forms.ModelForm):
             'description',
             'topics',
             'status',
-            'participation']
+            'participation',
+            'duration']
         widgets = {
             'point': maps_widgets.MapChoosePointWidget(
                 polygon=settings.BERLIN_POLYGON)
