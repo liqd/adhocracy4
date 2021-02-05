@@ -6,6 +6,7 @@ from meinberlin.apps.extprojects import views as extproject_views
 from meinberlin.apps.newsletters import views as newsletter_views
 from meinberlin.apps.organisations import views as organisation_views
 from meinberlin.apps.plans import views as plan_views
+from meinberlin.apps.plans.exports import DashboardPlanExportView
 from meinberlin.apps.projectcontainers import views as container_views
 
 from . import views
@@ -35,7 +36,7 @@ urlpatterns = [
         plan_views.DashboardPlanCreateView.as_view(),
         name='plan-create'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)/plans/export/$',
-        plan_views.DashboardPlanExportView.as_view(),
+        DashboardPlanExportView.as_view(),
         name='plan-export'),
     url(r'^organisations/(?P<organisation_slug>[-\w_]+)'
         r'/plans/(?P<pk>\d+)/$',
