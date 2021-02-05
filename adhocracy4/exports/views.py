@@ -86,6 +86,8 @@ class BaseExport(VirtualFieldMixin):
         value = getattr(item, name, '')
         if isinstance(value, numbers.Number) and not isinstance(value, bool):
             return value
+        elif value is None:
+            return ''
         return str(value)
 
 
