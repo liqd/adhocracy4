@@ -77,14 +77,27 @@ blueprints = [
      )),
     ('participatory-budgeting',
      ProjectBlueprint(
-         title=_('Participatory budgeting'),
+         title=_('Participatory budgeting (1 phase)'),
          description=_(
-             'With participatory-budgeting it’s possible to make proposals '
-             'with budget specifications and locate them. Anyone can comment '
-             'and rate on different proposals.'
+             'Ideas can be located on a map and a budget can be added. '
+             'Ideas can be commented and rated.'
          ),
          content=[
              budgeting_phases.RequestPhase()
+         ],
+         image='images/participatory-budgeting.svg',
+         settings_model=('a4maps', 'AreaSettings'),
+     )),
+    ('participatory-budgeting-2-phases',
+     ProjectBlueprint(
+         title=_('Participatory budgeting (2 phase)'),
+         description=_(
+             'Ideas can be located on a map and a budget can be added. '
+             'Ideas can be commented and rated in 2 phases.'
+         ),
+         content=[
+             budgeting_phases.CollectPhase(),
+             budgeting_phases.RatingPhase(),
          ],
          image='images/participatory-budgeting.svg',
          settings_model=('a4maps', 'AreaSettings'),

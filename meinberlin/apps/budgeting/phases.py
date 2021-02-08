@@ -13,8 +13,7 @@ class RequestPhase(phases.PhaseContent):
     view = views.ProposalListView
 
     name = _('Request phase')
-    description = _('Request budgeting and get feedback through rates and '
-                    'comments.')
+    description = _('Participants can submit ideas, comment on and rate them.')
     module_name = _('participatory budgeting')
 
     features = {
@@ -24,4 +23,35 @@ class RequestPhase(phases.PhaseContent):
     }
 
 
+class CollectPhase(phases.PhaseContent):
+    app = apps.Config.label
+    phase = 'collect'
+    view = views.ProposalListView
+
+    name = _('Collect phase')
+    description = _('Participants can submit ideas and comment on them.')
+    module_name = _('participatory budgeting 2 phases')
+
+    features = {
+        'crud': (models.Proposal,),
+        'comment': (models.Proposal,),
+    }
+
+
+class RatingPhase(phases.PhaseContent):
+    app = apps.Config.label
+    phase = 'rating'
+    view = views.ProposalListView
+
+    name = _('Rating phase')
+    description = _('Participants can vote on the ideas.')
+    module_name = _('participatory budgeting 2 phases')
+
+    features = {
+        'rate': (models.Proposal,)
+    }
+
+
 phases.content.register(RequestPhase())
+phases.content.register(CollectPhase())
+phases.content.register(RatingPhase())
