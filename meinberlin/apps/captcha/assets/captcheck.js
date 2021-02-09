@@ -83,44 +83,44 @@ window.onload = function () {
     }
   }
 
-  var nonce = ''
+  let nonce = ''
   /* Loop over all the CAPTCHA containers on the page, setting up a different CAPTCHA in each */
   Array.prototype.forEach.call(document.getElementsByClassName('captcheck_container'), function (container) {
     if (container.dataset.stylenonce) {
       nonce = container.dataset.stylenonce
     }
-    var apiUrl = container.getAttribute('data-api_url')
-    var combinedAnswerId = container.getAttribute('combined_answer_id')
-    var xhr = new XMLHttpRequest()
+    const apiUrl = container.getAttribute('data-api_url')
+    const combinedAnswerId = container.getAttribute('combined_answer_id')
+    const xhr = new XMLHttpRequest()
     xhr.open('GET', apiUrl + '?action=new', true)
     xhr.onreadystatechange = function () {
       if (this.readyState === 4) {
-        var status = this.status
-        var json = this.responseText
+        const status = this.status
+        const json = this.responseText
         /* Prevent rare bug where two CAPTCHAs appear in one container */
         if (container.innerHTML.trim() !== '') {
           return
         }
         /* Create captcha div */
-        var captcha = document.createElement('div')
+        const captcha = document.createElement('div')
         captcha.setAttribute('class', 'captcheck_box')
         container.appendChild(captcha)
 
         if (status === 200) {
-          var data = JSON.parse(json)
+          const data = JSON.parse(json)
           // ID prefix to use for this instance
-          var idp = data.id_prefix
+          const idp = data.id_prefix
           /* Create answer buttons */
-          var answers = "<div class='captcheck_answer_images' id='captcheck_" + idp + "_answer_images'>"
-          for (var i = 0, len = data.answers.length; i < len; i++) {
-            var src = apiUrl + '?action=img&s=' + data.session + '&c=' + data.answers[i]
+          let answers = "<div class='captcheck_answer_images' id='captcheck_" + idp + "_answer_images'>"
+          for (let i = 0, len = data.answers.length; i < len; i++) {
+            const src = apiUrl + '?action=img&s=' + data.session + '&c=' + data.answers[i]
             answers += "<a class='captcheck_answer_label' href='' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' tabindex='0' aria-role='button'><input id='captcheck_" + idp + '_answer_' + data.answers[i] + "' type='radio' name='captcheck_selected_answer' value='" + data.answers[i] + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "' /><img src='" + src + "' data-prefix='" + idp + "' data-answer='" + data.answers[i] + "'/></a>"
           }
           answers += '</div>'
-          var answerDiv = document.createElement('div')
+          const answerDiv = document.createElement('div')
           answerDiv.innerHTML = answers + "<div class='captcheck_answer_access' id='captcheck_" + idp + "_answer_access'></div>"
           /* Create question */
-          var questionDiv = document.createElement('div')
+          const questionDiv = document.createElement('div')
           questionDiv.setAttribute('class', 'captcheck_label_message')
           questionDiv.setAttribute('id', 'captcheck_' + idp + '_label_message')
           questionDiv.innerHTML = "<span class='captcheck_question_image' id='captcheck_" + idp + "_question_image'>" + data.question_i + "</span><span class='captcheck_question_access' id='captcheck_" + idp + "_question_access'>" + data.question_a + "</span><a href='' class='captcheck_alt_question_button' data-prefix='" + idp + "' id='captcheck_" + idp + "_alt_question_button' aria-role='button' aria-label=" + textLabel + " tabindex='0'>" + textTextMode + '</a>'
@@ -130,12 +130,12 @@ window.onload = function () {
           captcha.appendChild(answerDiv)
 
           /* Add hidden session ID element */
-          var skeyInput = document.createElement('span')
+          const skeyInput = document.createElement('span')
           skeyInput.innerHTML = "<input type='hidden' name='captcheck_session_code' value='" + data.session + "' />"
           captcha.appendChild(skeyInput)
 
-          var answerButtons = document.querySelectorAll('.captcheck_answer_label[data-prefix="' + idp + '"]')
-          for (var k = 0; k < answerButtons.length; k++) {
+          const answerButtons = document.querySelectorAll('.captcheck_answer_label[data-prefix="' + idp + '"]')
+          for (let k = 0; k < answerButtons.length; k++) {
             answerButtons[k].addEventListener('click', function (ev) {
               chooseAnswer(ev.target.getAttribute('data-prefix'), ev.target.getAttribute('data-answer'), data.session, combinedAnswerId)
               ev.preventDefault()
@@ -167,7 +167,7 @@ window.onload = function () {
   })
 
   /* Add custom styles */
-  var styles = document.createElement('style')
+  const styles = document.createElement('style')
   if (nonce !== '') {
     styles.setAttribute('nonce', nonce)
   }

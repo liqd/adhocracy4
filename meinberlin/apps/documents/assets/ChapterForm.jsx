@@ -1,8 +1,8 @@
-var React = require('react')
-var FlipMove = require('react-flip-move').default
-var django = require('django')
-var ErrorList = require('../../contrib/assets/ErrorList')
-var ParagraphForm = require('./ParagraphForm')
+const React = require('react')
+const FlipMove = require('react-flip-move').default
+const django = require('django')
+const ErrorList = require('../../contrib/assets/ErrorList')
+const ParagraphForm = require('./ParagraphForm')
 
 const ChapterForm = (props) => {
   return (
@@ -26,7 +26,7 @@ const ChapterForm = (props) => {
       <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
         {
           props.chapter.paragraphs.map(function (paragraph, index, arr) {
-            var key = paragraph.id || paragraph.key
+            const key = paragraph.id || paragraph.key
             return (
               <ParagraphForm
                 id={key}

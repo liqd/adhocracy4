@@ -1,7 +1,7 @@
 /* global django */
-var FilterOptions = require('./FilterOptions')
-var FilterButton = require('./FilterButton')
-var FilterSecondary = require('./FilterSecondary')
+const FilterOptions = require('./FilterOptions')
+const FilterButton = require('./FilterButton')
+const FilterSecondary = require('./FilterSecondary')
 const React = require('react')
 
 class FilterNav extends React.Component {
@@ -135,7 +135,7 @@ class FilterNav extends React.Component {
                   buttonText={django.gettext('„ all Districts “')}
                   iClassName="fa fa-chevron-down"
                 />
-              )
+                )
               : (
                 <FilterButton
                   className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
@@ -145,7 +145,7 @@ class FilterNav extends React.Component {
                   buttonText={this.getDistrictFilterName()}
                   iClassName="fa fa-chevron-down"
                 />
-              )}
+                )}
             {this.state.displayDistrictOptions &&
               <FilterOptions
                 question={django.gettext('Which district are you interested in?')}
@@ -167,7 +167,7 @@ class FilterNav extends React.Component {
                   buttonText={django.gettext('„ all Topics “')}
                   iClassName="fa fa-chevron-down"
                 />
-              )
+                )
               : (
                 <FilterButton
                   className="btn btn--none filter-bar__btn filter-bar__btn--wide filter-bar__btn--selected"
@@ -177,7 +177,7 @@ class FilterNav extends React.Component {
                   buttonText={this.getTopicFilterName()}
                   iClassName="fa fa-chevron-down"
                 />
-              )}
+                )}
             {this.state.displayTopicOptions &&
               <FilterOptions
                 question={django.gettext('Which topic are you interested in?')}
@@ -252,7 +252,7 @@ class FilterNav extends React.Component {
                     buttonText={django.gettext('„ all Districts “')}
                     iClassName="fa fa-chevron-down"
                   />
-                )
+                  )
                 : (
                   <FilterButton
                     className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
@@ -262,7 +262,7 @@ class FilterNav extends React.Component {
                     buttonText={this.getDistrictFilterName()}
                     iClassName="fa fa-chevron-down"
                   />
-                )}
+                  )}
               {this.state.displayDistrictOptions &&
                 <FilterOptions
                   question={django.gettext('Which district are you interested in?')}
@@ -287,7 +287,7 @@ class FilterNav extends React.Component {
                     buttonText={django.gettext('„ all Topics “')}
                     iClassName="fa fa-chevron-down"
                   />
-                )
+                  )
                 : (
                   <FilterButton
                     className="btn btn--none filter-bar__btn filter-bar__btn--truncate filter-bar__btn--selected"
@@ -297,7 +297,7 @@ class FilterNav extends React.Component {
                     buttonText={this.getTopicFilterName()}
                     iClassName="fa fa-chevron-down"
                   />
-                )}
+                  )}
               {this.state.displayTopicOptions &&
                 <FilterOptions
                   question={django.gettext('Which topic are you interested in?')}

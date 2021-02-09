@@ -76,7 +76,7 @@ export default class InfoBox extends React.Component {
                   </div>
                 </div>}
             </div>
-          )
+            )
           : (
             <div>
               <div className="u-align-right">
@@ -85,7 +85,7 @@ export default class InfoBox extends React.Component {
                 </button>
               </div>
             </div>
-          )}
+            )}
       </div>
     )
   }

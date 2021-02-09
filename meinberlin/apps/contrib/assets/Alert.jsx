@@ -1,5 +1,5 @@
-var React = require('react')
-var django = require('django')
+const React = require('react')
+const django = require('django')
 
 const Alert = ({ type, message, onClick }) => {
   if (type) {

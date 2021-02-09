@@ -1,10 +1,10 @@
-var React = require('react')
-var django = require('django')
-var Alert = require('../../contrib/assets/Alert')
-var update = require('immutability-helper')
+const React = require('react')
+const django = require('django')
+const Alert = require('../../contrib/assets/Alert')
+const update = require('immutability-helper')
 
-var api = require('adhocracy4').api
-var config = require('adhocracy4').config
+const api = require('adhocracy4').api
+const config = require('adhocracy4').config
 
 class Question extends React.Component {
   constructor (props) {
@@ -82,7 +82,7 @@ class Question extends React.Component {
     const choiceId = parseInt(event.target.value)
     const index = this.state.selectedChoices.indexOf(choiceId)
 
-    var diff = {}
+    let diff = {}
     if (index === -1) {
       diff = { $push: [choiceId] }
     } else {

@@ -1,6 +1,6 @@
-var React = require('react')
-var django = require('django')
-var ErrorList = require('../../contrib/assets/ErrorList')
+const React = require('react')
+const django = require('django')
+const ErrorList = require('../../contrib/assets/ErrorList')
 
 const ckGet = function (id) {
   return window.CKEDITOR.instances[id]
@@ -29,16 +29,16 @@ class Paragraph extends React.Component {
 
   ckEditorCreate () {
     if (!ckGet(this.ckId())) {
-      var editor = ckReplace(this.ckId(), this.props.config)
+      const editor = ckReplace(this.ckId(), this.props.config)
       editor.on('change', function (e) {
-        var text = e.editor.getData()
+        const text = e.editor.getData()
         this.props.onTextChange(text)
       }.bind(this))
       editor.setData(this.props.paragraph.text)
     }
   }
 
-  componentWillUpdate (nextProps) {
+  UNSAFE_componentWillUpdate (nextProps) {
     if (nextProps.index > this.props.index) {
       this.ckEditorDestroy()
     }
@@ -59,7 +59,7 @@ class Paragraph extends React.Component {
   }
 
   render () {
-    var ckEditorToolbarsHeight = 60 // measured on example editor
+    const ckEditorToolbarsHeight = 60 // measured on example editor
     return (
       <section>
         <div className="commenting">

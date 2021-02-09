@@ -1,6 +1,6 @@
 /* global django */
-var Typeahead = require('react-bootstrap-typeahead').Typeahead
-var FilterRadio = require('./FilterRadio')
+const Typeahead = require('react-bootstrap-typeahead').Typeahead
+const FilterRadio = require('./FilterRadio')
 const React = require('react')
 
 class FilterSecondary extends React.Component {

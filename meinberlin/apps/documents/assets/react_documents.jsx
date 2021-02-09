@@ -1,6 +1,6 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
-var DocumentManagement = require('./DocumentManagement')
+const React = require('react')
+const ReactDOM = require('react-dom')
+const DocumentManagement = require('./DocumentManagement')
 
 module.exports.renderDocumentManagement = function (element) {
   const chapters = JSON.parse(element.getAttribute('data-chapters'))

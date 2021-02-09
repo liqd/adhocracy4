@@ -41,6 +41,7 @@ export default class QuestionPresent extends React.Component {
             </div>
           </div>
         </div>
-      </div>)
+      </div>
+    )
   }
 }

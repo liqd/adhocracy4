@@ -1,11 +1,11 @@
-var api = require('adhocracy4').api
-var React = require('react')
-var django = require('django')
-var dashboard = require('adhocracy4/adhocracy4/dashboard/assets/dashboard')
-var update = require('immutability-helper')
-var ChapterNav = require('./ChapterNav')
-var ChapterForm = require('./ChapterForm')
-var Alert = require('../../contrib/assets/Alert')
+const api = require('adhocracy4').api
+const React = require('react')
+const django = require('django')
+const dashboard = require('adhocracy4/adhocracy4/dashboard/assets/dashboard')
+const update = require('immutability-helper')
+const ChapterNav = require('./ChapterNav')
+const ChapterForm = require('./ChapterForm')
+const Alert = require('../../contrib/assets/Alert')
 
 class DocumentManagement extends React.Component {
   constructor (props) {

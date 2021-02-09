@@ -1,7 +1,7 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
-var Question = require('./Question')
-var PollManagement = require('./PollManagement')
+const React = require('react')
+const ReactDOM = require('react-dom')
+const Question = require('./Question')
+const PollManagement = require('./PollManagement')
 
 module.exports.renderPolls = function (element) {
   const question = JSON.parse(element.getAttribute('data-question'))

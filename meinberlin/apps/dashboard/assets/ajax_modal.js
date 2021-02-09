@@ -4,7 +4,7 @@
 
 /* globals django */
 $(function () {
-  var modalHTML = (
+  const modalHTML = (
     '<div class="modal" tabindex="-1" role="dialog">' +
       '<div class="modal-dialog modal-lg" role="document">' +
         '<div class="modal-content">' +
@@ -17,14 +17,14 @@ $(function () {
     '</div>'
   )
 
-  var extractScripts = function ($root, selector, attr) {
-    var $existingValues = $('head').find(selector).map(function (i, e) {
+  const extractScripts = function ($root, selector, attr) {
+    const $existingValues = $('head').find(selector).map(function (i, e) {
       return $(e).attr(attr)
     })
 
     $root.find(selector).each(function (i, script) {
-      var $script = $(script)
-      var $matches = $existingValues.filter(function (i, v) {
+      const $script = $(script)
+      const $matches = $existingValues.filter(function (i, v) {
         return v === $script.attr(attr)
       })
       if ($matches.length === 0) {
@@ -35,17 +35,17 @@ $(function () {
 
   $(document).on('click', '[data-toggle="ajax-modal"]', function (e) {
     e.preventDefault()
-    var target = this.href + ' ' + this.dataset.targetSelector
-    var $newModal = $(modalHTML)
-    var _this = this
+    const target = this.href + ' ' + this.dataset.targetSelector
+    const $newModal = $(modalHTML)
+    const _this = this
 
     $newModal.on('hidden.bs.modal', function () {
       $newModal.remove()
     })
 
     $newModal.find('.modal-body').load(target, function (html) {
-      var $root = $('<div>').html(html)
-      var title = $root.find('h1').text()
+      const $root = $('<div>').html(html)
+      const title = $root.find('h1').text()
       $newModal.find('.modal-title').text(title)
       $newModal.attr('aria-label', title)
       extractScripts($root, 'script[src]', 'src')

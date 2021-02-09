@@ -229,7 +229,7 @@ class ListMapBox extends Component {
   }
 
   selectDistrict (district) {
-    var newDistrict = (district === '-1') ? '-1' : this.props.districtnames[district]
+    const newDistrict = (district === '-1') ? '-1' : this.props.districtnames[district]
     this.setState({
       filterChanged: true,
       district: newDistrict
@@ -395,7 +395,8 @@ class ListMapBox extends Component {
           this.getPlansList(false)}
           {this.state.showListMap &&
           this.getPlansMap(false, 'bottomright')}
-        </div>)
+        </div>
+      )
     } else if (isTablet) {
       return (
         <div>
@@ -405,7 +406,8 @@ class ListMapBox extends Component {
           this.getPlansList(false)}
           {this.state.showListMap &&
           this.getPlansMap(true, 'topright')}
-        </div>)
+        </div>
+      )
     } else {
       return (
         <div>
@@ -423,7 +425,7 @@ class ListMapBox extends Component {
                   </StickyBox>
                 </div>
               </div>
-            )
+              )
             : (
               <div className="l-frame">
                 <div className="map-list-combined">
@@ -432,8 +434,9 @@ class ListMapBox extends Component {
                   </div>
                 </div>
               </div>
-            )}
-        </div>)
+              )}
+        </div>
+      )
     }
   }
 }

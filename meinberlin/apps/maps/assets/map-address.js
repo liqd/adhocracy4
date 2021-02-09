@@ -1,23 +1,23 @@
 /* global django */
 
-var apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
+const apiUrl = 'https://bplan-prod.liqd.net/api/addresses/'
 
 function pointInPolygon (point, polygon) {
-  var x = point[0]
-  var y = point[1]
+  const x = point[0]
+  const y = point[1]
 
   // Algorithm comes from:
   // https://github.com/substack/point-in-polygon/blob/master/index.js
-  var inside = false
+  let inside = false
 
-  for (var p = 0; p < polygon.length; p++) {
-    var ring = polygon[p]
+  for (let p = 0; p < polygon.length; p++) {
+    const ring = polygon[p]
 
-    for (var i = 0; i < ring.length - 1; i++) {
-      var xi = ring[i][0]
-      var yi = ring[i][1]
-      var xj = ring[i + 1][0]
-      var yj = ring[i + 1][1]
+    for (let i = 0; i < ring.length - 1; i++) {
+      const xi = ring[i][0]
+      const yi = ring[i][1]
+      const xj = ring[i + 1][0]
+      const yj = ring[i + 1][1]
 
       //      *
       //     /
@@ -27,7 +27,7 @@ function pointInPolygon (point, polygon) {
       //
       // 1.  yi and yj are on opposite sites of a ray to the right
       // 2.  the intersection of the ray and the segment is right of x
-      var intersect = ((yi > y) !== (yj > y)) &&
+      const intersect = ((yi > y) !== (yj > y)) &&
           (x < (xj - xi) * (y - yi) / (yj - yi) + xi)
       if (intersect) inside = !inside
     }
@@ -35,7 +35,7 @@ function pointInPolygon (point, polygon) {
   return inside
 }
 
-var pointInObject = function (point, geojson, failByDefault) {
+const pointInObject = function (point, geojson, failByDefault) {
   if (geojson.type === 'MultiPolygon') {
     return geojson.coordinates.some(function (polygon) {
       return pointInPolygon(point, polygon)
@@ -53,7 +53,7 @@ var pointInObject = function (point, geojson, failByDefault) {
   }
 }
 
-var setBusy = function ($group, busy) {
+const setBusy = function ($group, busy) {
   $group.attr('aria-busy', busy)
   $group.find('input').attr('disabled', busy)
   $group.find('button').attr('disabled', busy)
@@ -68,28 +68,28 @@ var setBusy = function ($group, busy) {
   }
 }
 
-var getPoints = function (address, cb) {
+const getPoints = function (address, cb) {
   $.ajax(apiUrl, {
     data: { address: address },
     success: function (geojson) {
       cb(geojson.features)
     },
     error: function () {
-      var points = []
+      const points = []
       cb(points)
     }
   })
 }
 
-var renderPoints = function (points) {
+const renderPoints = function (points) {
   if (points.length === 0) {
     return $('<span class="complete__warning">')
       .text(django.gettext('No matches found within the project area'))
   } else {
-    var $list = $('<ul class="complete__list">')
+    const $list = $('<ul class="complete__list">')
       .text(django.gettext('Did you mean:'))
     points.forEach(function (point) {
-      var text = point.properties.strname + ' ' +
+      const text = point.properties.strname + ' ' +
         point.properties.hsnr + ', ' +
         point.properties.plz + ' ' +
         point.properties.bezirk_name
@@ -106,16 +106,16 @@ var renderPoints = function (points) {
 
 function init () {
   $('[data-map="address"]').each(function (i, e) {
-    var $group = $(e)
-    var name = $group.data('name')
-    var $input = $('#id_' + name)
-    var $map = $('[data-map="choose_point"][data-name="' + name + '"]')
-    var polygon = $map.data('polygon')
+    const $group = $(e)
+    const name = $group.data('name')
+    const $input = $('#id_' + name)
+    const $map = $('[data-map="choose_point"][data-name="' + name + '"]')
+    const polygon = $map.data('polygon')
 
-    var onSubmit = function (event) {
+    const onSubmit = function (event) {
       event.preventDefault()
       setBusy($group, true)
-      var address = $group.find('input').val()
+      const address = $group.find('input').val()
       getPoints(address, function (points) {
         setBusy($group, false)
         $group.find('.complete')
@@ -136,7 +136,7 @@ function init () {
     })
 
     $group.on('click', '[data-map-point]', function (event) {
-      var data = $(event.target).attr('data-map-point')
+      const data = $(event.target).attr('data-map-point')
       $group.find('.complete').empty()
       // NOTE that the text may not be a valid search query
       $group.find('input').val($(event.target).text())

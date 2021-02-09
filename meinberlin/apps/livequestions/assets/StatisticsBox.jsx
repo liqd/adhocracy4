@@ -10,7 +10,7 @@ export default class StatisticsBox extends React.Component {
     this.state = { answeredQuestions: props.answeredQuestions }
   }
 
-  componentWillReceiveProps (props) {
+  UNSAFE_componentWillReceiveProps (props) {
     this.setState({ answeredQuestions: props.answeredQuestions })
   }
 
@@ -96,7 +96,7 @@ export default class StatisticsBox extends React.Component {
                     )
                   })}
                 </div>
-              )
+                )
               : (
                 <div className="list-group">
                   {this.state.answeredQuestions.map((question, index) => {
@@ -116,7 +116,7 @@ export default class StatisticsBox extends React.Component {
                     )
                   })}
                 </div>
-              )}
+                )}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
-var MapTeaserBox = require('./MapTeaserBox')
-var React = require('react')
-var ReactDOM = require('react-dom')
+const MapTeaserBox = require('./MapTeaserBox')
+const React = require('react')
+const ReactDOM = require('react-dom')
 
 module.exports.renderFilter = function (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))

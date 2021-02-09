@@ -1,18 +1,18 @@
-var api = require('adhocracy4').api
-var React = require('react')
-var django = require('django')
-var dashboard = require('adhocracy4/adhocracy4/dashboard/assets/dashboard')
-var update = require('immutability-helper')
-var FlipMove = require('react-flip-move').default
-var QuestionForm = require('./QuestionForm')
-var Alert = require('../../contrib/assets/Alert')
+const api = require('adhocracy4').api
+const React = require('react')
+const django = require('django')
+const dashboard = require('adhocracy4/adhocracy4/dashboard/assets/dashboard')
+const update = require('immutability-helper')
+const FlipMove = require('react-flip-move').default
+const QuestionForm = require('./QuestionForm')
+const Alert = require('../../contrib/assets/Alert')
 
 class PollManagement extends React.Component {
   constructor (props) {
     super(props)
     this.maxLocalKey = 0
 
-    var questions = this.props.poll.questions
+    let questions = this.props.poll.questions
 
     if (questions.length === 0) {
       questions = [
@@ -55,7 +55,7 @@ class PollManagement extends React.Component {
   }
 
   handleUpdateQuestionLabel (index, label) {
-    var diff = {}
+    const diff = {}
     diff[index] = { $merge: { label: label } }
 
     this.setState({
@@ -64,7 +64,7 @@ class PollManagement extends React.Component {
   }
 
   handleUpdateMultipleChoice (index, multipleChoice) {
-    var diff = {}
+    const diff = {}
     diff[index] = { $merge: { multiple_choice: multipleChoice } }
 
     this.setState({
@@ -73,8 +73,8 @@ class PollManagement extends React.Component {
   }
 
   handleMoveQuestionUp (index) {
-    var question = this.state.questions[index]
-    var diff = { $splice: [[index, 1], [index - 1, 0, question]] }
+    const question = this.state.questions[index]
+    const diff = { $splice: [[index, 1], [index - 1, 0, question]] }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -82,8 +82,8 @@ class PollManagement extends React.Component {
   }
 
   handleMoveQuestionDown (index) {
-    var question = this.state.questions[index]
-    var diff = { $splice: [[index, 1], [index + 1, 0, question]] }
+    const question = this.state.questions[index]
+    const diff = { $splice: [[index, 1], [index + 1, 0, question]] }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -91,8 +91,8 @@ class PollManagement extends React.Component {
   }
 
   handleAppendQuestion () {
-    var newQuestion = this.getNewQuestion()
-    var diff = { $push: [newQuestion] }
+    const newQuestion = this.getNewQuestion()
+    const diff = { $push: [newQuestion] }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -100,7 +100,7 @@ class PollManagement extends React.Component {
   }
 
   handleDeleteQuestion (index) {
-    var diff = { $splice: [[index, 1]] }
+    const diff = { $splice: [[index, 1]] }
 
     this.setState({
       questions: update(this.state.questions, diff)
@@ -127,7 +127,7 @@ class PollManagement extends React.Component {
   }
 
   handleUpdateChoiceLabel (questionIndex, choiceIndex, label) {
-    var diff = {}
+    const diff = {}
     diff[questionIndex] = { choices: {} }
     diff[questionIndex].choices[choiceIndex] = { $merge: { label: label } }
 
@@ -137,8 +137,8 @@ class PollManagement extends React.Component {
   }
 
   handleAppendChoice (questionIndex) {
-    var newChoice = this.getNewChoice()
-    var diff = {}
+    const newChoice = this.getNewChoice()
+    const diff = {}
     diff[questionIndex] = { choices: { $push: [newChoice] } }
 
     this.setState({
@@ -147,7 +147,7 @@ class PollManagement extends React.Component {
   }
 
   handleDeleteChoice (questionIndex, choiceIndex) {
-    var diff = {}
+    const diff = {}
     diff[questionIndex] = { choices: { $splice: [[choiceIndex, 1]] } }
 
     this.setState({
@@ -215,8 +215,8 @@ class PollManagement extends React.Component {
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
             this.state.questions.map((question, index, arr) => {
-              var key = question.id || question.key
-              var errors = this.state.errors && this.state.errors[index] ? this.state.errors[index] : {}
+              const key = question.id || question.key
+              const errors = this.state.errors && this.state.errors[index] ? this.state.errors[index] : {}
               return (
                 <div key={key}>
                   <QuestionForm

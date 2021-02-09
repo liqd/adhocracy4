@@ -1,8 +1,8 @@
-var React = require('react')
-var django = require('django')
-var FlipMove = require('react-flip-move').default
-var ChoiceForm = require('./ChoiceForm')
-var ErrorList = require('../../contrib/assets/ErrorList')
+const React = require('react')
+const django = require('django')
+const FlipMove = require('react-flip-move').default
+const ChoiceForm = require('./ChoiceForm')
+const ErrorList = require('../../contrib/assets/ErrorList')
 
 const QuestionForm = (props) => {
   return (
@@ -40,10 +40,11 @@ const QuestionForm = (props) => {
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
             props.question.choices.map((choice, index) => {
-              var key = choice.id || choice.key
-              var label = django.gettext('Choice') + ` #${index + 1}`
-              var errors = props.errors && props.errors.choices
-                ? props.errors.choices[index] : {}
+              const key = choice.id || choice.key
+              const label = django.gettext('Choice') + ` #${index + 1}`
+              const errors = props.errors && props.errors.choices
+                ? props.errors.choices[index]
+                : {}
               return (
                 <div key={key}>
                   <ChoiceForm

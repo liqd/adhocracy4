@@ -2,13 +2,13 @@
    dropdown when the user selects that he/she wants to send the
    newsletter to all followers of a project */
 
-var $ = require('jquery')
+const $ = require('jquery')
 $(function () {
-  var $idReceivers0 = $('#id_receivers_0')
-  var $idReceivers1 = $('#id_receivers_1')
-  var $idReceivers2 = $('#id_receivers_2')
-  var $projectSelect = $('#selection-project')
-  var $organisationSelect = $('#selection-organisation')
+  const $idReceivers0 = $('#id_receivers_0')
+  const $idReceivers1 = $('#id_receivers_1')
+  const $idReceivers2 = $('#id_receivers_2')
+  const $projectSelect = $('#selection-project')
+  const $organisationSelect = $('#selection-organisation')
 
   showField()
   $('#receiver-selection').on('change', showField)
