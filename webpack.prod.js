@@ -3,14 +3,15 @@ const { merge } = require('webpack-merge')
 const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = merge(common, {
+  devtool: 'eval',
   optimization: {
+    minimize: true,
     minimizer: [
       new TerserPlugin({
         sourceMap: true,
         parallel: true,
         terserOptions: {
-          ecma: 5,
-          arrows: false
+          ecma: 5
         }
       })
     ]

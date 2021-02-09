@@ -88,8 +88,7 @@ module.exports = {
     libraryTarget: 'this',
     library: '[name]',
     path: path.resolve('./meinberlin/static/'),
-    publicPath: '/static/',
-    filename: '[name].js'
+    publicPath: '/static/'
   },
   externals: {
     django: 'django'
@@ -149,6 +148,7 @@ module.exports = {
     ]
   },
   resolve: {
+    fallback: { path: require.resolve('path-browserify') },
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
       a4maps_common$: 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_common.js',
