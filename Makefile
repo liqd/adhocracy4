@@ -110,6 +110,12 @@ lint-quick:
 	$(VIRTUAL_ENV)/bin/python manage.py makemigrations --dry-run --check --noinput || EXIT_STATUS=$$?; \
 	exit $${EXIT_STATUS}
 
+.PHONY: lint-fix
+lint-fix:
+	EXIT_STATUS=0; \
+	npm run lint-fix ||  EXIT_STATUS=$$?; \
+	exit $${EXIT_STATUS}
+
 .PHONY: lint-python-files
 lint-python-files:
 	EXIT_STATUS=0; \

@@ -91,7 +91,8 @@
     "build": "webpack --config webpack.dev.js --mode development",
     "watch": "webpack --config webpack.dev.js --watch --mode development",
     "lint": "eslint meinberlin/apps meinberlin/assets --ext .js,.jsx && stylelint 'meinberlin/assets/scss/**/*.scss' --syntax scss",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "lint-fix": "eslint --fix --ext .js,.jsx ."
   },
   "browserslist": "last 3 versions, ie >= 11",
   "pre-commit": "make lint-quick",
