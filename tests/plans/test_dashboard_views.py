@@ -32,7 +32,8 @@ def test_initiator_can_edit(client, plan_factory):
         'description': 'this is a description',
         'topics': choices[0][0],
         'status': plan.status,
-        'participation': plan.participation
+        'participation': plan.participation,
+        'duration': '1 month'
     }
     response = client.post(url, data)
     assert redirect_target(response) == 'plan-list'
@@ -72,7 +73,8 @@ def test_group_member_can_edit(client, plan_factory, user_factory,
         'description': 'this is a description',
         'topics': choices[0][0],
         'status': plan.status,
-        'participation': plan.participation
+        'participation': plan.participation,
+        'duration': '1 month'
     }
     response = client.post(url, data)
     assert redirect_target(response) == 'plan-list'
@@ -80,6 +82,7 @@ def test_group_member_can_edit(client, plan_factory, user_factory,
     assert plan.topics == [data.get('topics')]
     assert plan.title == data.get('title')
     assert plan.description == data.get('description')
+    assert plan.duration == data.get('duration')
     assert plan.group == group2
 
 
@@ -106,7 +109,8 @@ def test_initiator_can_create(client, organisation):
         'description': 'this is a description',
         'topics': choices[0][0],
         'status': 0,
-        'participation': 2
+        'participation': 2,
+        'duration': '1 month'
     }
     response = client.post(url, data)
     assert redirect_target(response) == 'plan-list'
@@ -114,6 +118,7 @@ def test_initiator_can_create(client, organisation):
     assert plan.topics == [data.get('topics')]
     assert plan.title == data.get('title')
     assert plan.description == data.get('description')
+    assert plan.duration == data.get('duration')
     assert not plan.group
 
 
@@ -144,7 +149,8 @@ def test_group_member_can_create(client, organisation, user_factory,
         'description': 'this is a description',
         'topics': choices[0][0],
         'status': 0,
-        'participation': 2
+        'participation': 2,
+        'duration': '1 month'
     }
     response = client.post(url, data)
     assert redirect_target(response) == 'plan-list'
@@ -152,4 +158,5 @@ def test_group_member_can_create(client, organisation, user_factory,
     assert plan.topics == [data.get('topics')]
     assert plan.title == data.get('title')
     assert plan.description == data.get('description')
+    assert plan.duration == data.get('duration')
     assert plan.group == group2
