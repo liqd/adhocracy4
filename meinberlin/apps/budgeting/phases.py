@@ -13,7 +13,8 @@ class RequestPhase(phases.PhaseContent):
     view = views.ProposalListView
 
     name = _('Request phase')
-    description = _('Participants can submit ideas, comment on and rate them.')
+    description = _('Participants can submit proposals, comment on and '
+                    'rate them.')
     module_name = _('participatory budgeting')
 
     features = {
@@ -28,8 +29,8 @@ class CollectPhase(phases.PhaseContent):
     phase = 'collect'
     view = views.ProposalListView
 
-    name = _('Collect phase')
-    description = _('Participants can submit ideas and comment on them.')
+    name = _('Proposal phase')
+    description = _('Participants can submit proposals and comment on them.')
     module_name = _('participatory budgeting 2 phases')
 
     features = {
@@ -44,7 +45,7 @@ class RatingPhase(phases.PhaseContent):
     view = views.ProposalListView
 
     name = _('Rating phase')
-    description = _('Participants can vote on the ideas.')
+    description = _('Participants can vote on the proposals.')
     module_name = _('participatory budgeting 2 phases')
 
     features = {

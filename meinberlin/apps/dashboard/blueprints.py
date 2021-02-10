@@ -79,8 +79,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Participatory budgeting (1 phase)'),
          description=_(
-             'Ideas can be located on a map and a budget can be added. '
-             'Ideas can be commented and rated.'
+             'Proposals can be located on a map and a budget can be added. '
+             'Proposals can be commented and rated.'
          ),
          content=[
              budgeting_phases.RequestPhase()
@@ -92,8 +92,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Participatory budgeting (2 phase)'),
          description=_(
-             'Ideas can be located on a map and a budget can be added. '
-             'Ideas can be commented and rated in 2 phases.'
+             'Proposals can be located on a map and a budget can be added. '
+             'Proposals can be commented and rated in 2 phases.'
          ),
          content=[
              budgeting_phases.CollectPhase(),
