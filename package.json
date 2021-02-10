@@ -44,7 +44,7 @@
     "moment": "2.29.1",
     "node-sass": "5.0.0",
     "popper.js": "1.16.1",
-    "postcss": "8.2.4",
+    "postcss": "8.2.5",
     "postcss-loader": "4.1.0",
     "react": "17.0.1",
     "react-bootstrap-typeahead": "5.1.4",
