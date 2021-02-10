@@ -9,6 +9,7 @@ export { default as comments } from './adhocracy4/comments/static/comments/react
 export { default as commentsAsync } from './adhocracy4/comments_async/static/comments_async/index'
 export { default as config } from './adhocracy4/static/config'
 export { default as follows } from './adhocracy4/follows/static/follows/react_follows'
+export * as maps from './adhocracy4/maps/static/a4maps/a4maps_common'
 export { default as polls } from './adhocracy4/polls/static/polls/react_polls'
 export { default as ratings } from './adhocracy4/ratings/static/ratings/react_ratings'
 export { default as reports } from './adhocracy4/reports/static/reports/react_reports'
