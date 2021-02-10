@@ -1,7 +1,6 @@
 import { createMap } from './a4maps_common'
 
 function init () {
-  var $ = window.jQuery
   var L = window.L
 
   $('[data-map="display_point"]').each(function (i, e) {

@@ -2,7 +2,6 @@ import { createMap } from './a4maps_common'
 import 'leaflet.markercluster'
 
 function init () {
-  var $ = window.jQuery
   var L = window.L
 
   var escapeHtml = function (unsafe) {
