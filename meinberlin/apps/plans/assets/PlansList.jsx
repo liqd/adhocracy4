@@ -134,7 +134,7 @@ class PlansList extends React.Component {
         key={i}
       >
 
-        <a href={item.url} target={item.subtype === 'external' ? '_blank' : '_self'}>
+        <a href={item.url} target={item.subtype === 'external' ? '_blank' : '_self'} rel="noreferrer">
           {item.type === 'project' &&
             <div className="participation-tile__body maplist-item__proj">
               {item.tile_image &&
