@@ -13,7 +13,6 @@ function getBaseBounds (L, polygon, bbox) {
 }
 
 function init () {
-  var $ = window.jQuery
   var L = window.L
 
   $('[data-map="choose_polygon"]').each(function (i, e) {

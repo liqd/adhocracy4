@@ -1,13 +1,16 @@
-module.exports = {
-  ratings: require('./adhocracy4/ratings/static/ratings/react_ratings.jsx'),
-  comments: require('./adhocracy4/comments/static/comments/react_comments.jsx'),
-  comments_async: require('./adhocracy4/comments_async/static/comments_async/index.jsx'),
-  reports: require('./adhocracy4/reports/static/reports/react_reports.jsx'),
-  follows: require('./adhocracy4/follows/static/follows/react_follows.jsx'),
-  polls: require('./adhocracy4/polls/static/polls/react_polls.jsx'),
-  config: require('./adhocracy4/static/config.js'),
-  api: require('./adhocracy4/static/api.js'),
-  widget: require('./adhocracy4/static/widget.js'),
-  selectDropdown: require('./adhocracy4/static/select_dropdown.js'),
-  alert: require('./adhocracy4/static/Alert.jsx')
-}
+/* This is a workaround for a certain ES5 related import mess.
+ * It should not be needed any more once we switch to full ES6.
+ */
+import './adhocracy4/static/global_jquery'
+
+export { default as alert } from './adhocracy4/static/Alert'
+export { default as api } from './adhocracy4/static/api'
+export { default as comments } from './adhocracy4/comments/static/comments/react_comments'
+export { default as commentsAsync } from './adhocracy4/comments_async/static/comments_async/index'
+export { default as config } from './adhocracy4/static/config'
+export { default as follows } from './adhocracy4/follows/static/follows/react_follows'
+export { default as polls } from './adhocracy4/polls/static/polls/react_polls'
+export { default as ratings } from './adhocracy4/ratings/static/ratings/react_ratings'
+export { default as reports } from './adhocracy4/reports/static/reports/react_reports'
+export { default as selectDropdown } from './adhocracy4/static/select_dropdown'
+export * as widget from './adhocracy4/static/widget'

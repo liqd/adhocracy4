@@ -79,7 +79,6 @@ function isMarkerInsidePolygon (marker, poly) {
 }
 
 function init () {
-  var $ = window.jQuery
   var L = window.L
 
   $('[data-map="choose_point"]').each(function (i, e) {
