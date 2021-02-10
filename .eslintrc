@@ -1,5 +1,13 @@
 {
-  "extends": ["standard", "standard-jsx"],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jquery": true
+  },
+  "extends": [
+    "standard",
+    "standard-jsx"],
   "rules": {
     "jsx-quotes": [2, "prefer-double"]
   }
