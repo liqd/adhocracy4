@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server'
 import React, { Component } from 'react'
 import { withCookies } from 'react-cookie'
 import PopUp from './PopUp'
-import { createMap } from 'a4maps_common'
+import { maps } from 'adhocracy4'
 import 'leaflet.markercluster'
 const L = window.L
 const $ = window.$
@@ -83,7 +83,7 @@ class PlansMap extends Component {
   }
 
   setupMap () {
-    const map = createMap(L, this.mapElement, {
+    const map = maps.createMap(L, this.mapElement, {
       baseUrl: this.props.baseurl,
       useVectorMap: this.props.useVectorMap,
       mapboxToken: this.props.mapboxToken,

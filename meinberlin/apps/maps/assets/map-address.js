@@ -69,8 +69,6 @@ var setBusy = function ($group, busy) {
 }
 
 var getPoints = function (address, cb) {
-  var $ = window.jQuery
-
   $.ajax(apiUrl, {
     data: { address: address },
     success: function (geojson) {
@@ -107,8 +105,6 @@ var renderPoints = function (points) {
 }
 
 function init () {
-  var $ = window.jQuery
-
   $('[data-map="address"]').each(function (i, e) {
     var $group = $(e)
     var name = $group.data('name')

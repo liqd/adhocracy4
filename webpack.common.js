@@ -151,7 +151,6 @@ module.exports = {
     fallback: { path: require.resolve('path-browserify') },
     extensions: ['*', '.js', '.jsx', '.scss', '.css'],
     alias: {
-      a4maps_common$: 'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_common.js',
       bootstrap$: 'bootstrap/dist/js/bootstrap.bundle.min.js',
       jquery$: 'jquery/dist/jquery.min.js',
       select2$: 'select2/dist/js/select2.min.js',
