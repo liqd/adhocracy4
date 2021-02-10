@@ -5,29 +5,37 @@ from adhocracy4.exports.views import BaseExport
 
 
 @pytest.mark.django_db
-def test_base_export(idea_factory, module):
+def test_base_export(idea_factory, module, category_factory):
     idea0 = idea_factory(module=module)
     idea1 = idea_factory(module=module)
+    idea1.category = category_factory()
 
     class IdeaExport(BaseExport):
         def get_object_list(self):
             return [idea0, idea1]
 
         def get_virtual_fields(self, virtual):
+            virtual['id'] = 'Id'
             virtual['name'] = 'Name'
+            virtual['category'] = 'Category'
             return super().get_virtual_fields(virtual)
 
         def get_name_data(self, item):
             return item.name
 
     export = IdeaExport()
-    assert export.get_header() == ['Name']
-
+    assert export.get_header() == ['Id', 'Name', 'Category']
     rows = list(export.export_rows())
     assert len(rows) == 2
 
-    assert rows[0][0] == idea0.name
-    assert rows[1][0] == idea1.name
+    assert rows[0][0] == idea0.id
+    assert rows[1][0] == idea1.id
+
+    assert rows[0][1] == idea0.name
+    assert rows[1][1] == idea1.name
+
+    assert rows[0][2] == ''
+    assert rows[1][2] == str(idea1.category)
 
 
 def test_xlsx_export_view(rf):
