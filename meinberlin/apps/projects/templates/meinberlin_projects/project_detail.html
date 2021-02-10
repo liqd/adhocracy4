@@ -211,7 +211,6 @@
                 {% with phase_count=module.phases.count %}
                 <div class="l-center-6">
                     {% for phase in module.phases %}
-                        {% if phase.is_over or phase == module.active_phase %}
                         <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
                             <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar{% endif %}">
                                 {% if phase == module.active_phase %}
@@ -229,7 +228,6 @@
                                 {{ phase.description }}
                             </div>
                         </div>
-                        {% endif %}
                     {% endfor %}
                 </div>
                 {% endwith %}
