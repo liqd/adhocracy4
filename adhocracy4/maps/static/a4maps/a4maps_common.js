@@ -47,6 +47,8 @@ export function createMap (L, e, {
         }).addTo(map)
       }
     }
+    const attributionLayer = L.tileLayer('', { attribution: attribution })
+    attributionLayer.addTo(map)
   } else {
     let basemap = baseUrl + '{z}/{x}/{y}.png'
     let accessToken = ''
