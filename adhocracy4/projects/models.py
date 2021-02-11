@@ -595,6 +595,7 @@ class Project(ProjectContactDetailMixin,
                     else:
                         unit_totals.append((unit_name[0], amount))
                     seconds = seconds - (amount * limit)
+            unit_totals.append((_('seconds'), 0))
 
             return unit_totals
 

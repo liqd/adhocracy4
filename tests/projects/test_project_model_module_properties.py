@@ -168,7 +168,9 @@ def test_module_running_days_left(project, module_factory, phase_factory):
 
 
 @pytest.mark.django_db
-def test_module_running_time_left(project, module_factory, phase_factory):
+def test_module_running_time_left(project_factory, module_factory,
+                                  phase_factory):
+    project = project_factory()
     module1 = module_factory(project=project, weight=1)
     phase_factory(
         module=module1,
@@ -180,8 +182,16 @@ def test_module_running_time_left(project, module_factory, phase_factory):
         start_date=parse('2013-01-01 19:00:00 UTC'),
         end_date=parse('2013-01-02 19:05:00 UTC')
     )
+    project2 = project_factory()
+    module2 = module_factory(project=project2, weight=1)
+    phase_factory(
+        module=module2,
+        start_date=parse('2013-01-01 18:00:00 UTC'),
+        end_date=parse('2013-01-01 18:30:00.45 UTC')
+    )
     with freeze_time('2013-01-01 18:30:00 UTC'):
         assert project.module_running_time_left == '1 day'
+        assert project2.module_running_time_left == '0 seconds'
 
 
 @pytest.mark.django_db

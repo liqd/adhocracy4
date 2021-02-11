@@ -318,6 +318,18 @@ def test_time_left_seconds(project, module_factory, phase_factory):
 
 
 @pytest.mark.django_db
+def test_time_left_0_seconds(project, module_factory, phase_factory):
+    module1 = module_factory(project=project, weight=1)
+    phase_factory(
+        module=module1,
+        start_date=parse('2013-01-01 16:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00.45 UTC')
+    )
+    with freeze_time('2013-01-01 18:00:00 UTC'):
+        assert project.time_left == '0 seconds'
+
+
+@pytest.mark.django_db
 def test_active_phase_progress(project, module_factory, phase_factory):
     module1 = module_factory(project=project, weight=1)
     module2 = module_factory(project=project, weight=2)
