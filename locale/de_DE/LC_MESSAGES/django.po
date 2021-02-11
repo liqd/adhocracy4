@@ -889,6 +889,8 @@ msgstr "Das Enddatum kann nicht vor dem Startdatum liegen."
 #: adhocracy4/phases/models.py:104
 msgid "Either both or no date has to be set."
 msgstr ""
+"Entweder müssen Start- und Enddatum angegeben werden "
+"oder keines der beiden."
 
 #: adhocracy4/polls/dashboard.py:14
 #: meinberlin/apps/dashboard/blueprints.py:107
@@ -1630,6 +1632,7 @@ msgstr "Vorschlagsphase"
 #: meinberlin/apps/budgeting/phases.py:16
 msgid "Participants can submit proposals, comment on and rate them."
 msgstr ""
+"Teilnehmende können Vorschläge machen, kommentieren und bewerten."
 
 #: meinberlin/apps/budgeting/phases.py:18
 msgid "participatory budgeting"
@@ -1637,16 +1640,17 @@ msgstr "Bürgerhaushalt"
 
 #: meinberlin/apps/budgeting/phases.py:32
 msgid "Proposal phase"
-msgstr ""
+msgstr "Vorschlagsphase"
 
 #: meinberlin/apps/budgeting/phases.py:33
 msgid "Participants can submit proposals and comment on them."
 msgstr ""
+"Teilnehmende können Vorschläge machen und kommentieren."
 
 #: meinberlin/apps/budgeting/phases.py:34
 #: meinberlin/apps/budgeting/phases.py:49
 msgid "participatory budgeting 2 phases"
-msgstr ""
+msgstr "Bürgerhaushalt 2 Phasen"
 
 #: meinberlin/apps/budgeting/phases.py:47 meinberlin/apps/ideas/phases.py:44
 #: meinberlin/apps/mapideas/phases.py:44
@@ -1656,6 +1660,7 @@ msgstr "Bewertungsphase"
 #: meinberlin/apps/budgeting/phases.py:48
 msgid "Participants can vote on the proposals."
 msgstr ""
+"Teilnehmende können über Vorschläge abstimmen."
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:7
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:8
@@ -2093,23 +2098,27 @@ msgstr ""
 
 #: meinberlin/apps/dashboard/blueprints.py:80
 msgid "Participatory budgeting (1 phase)"
-msgstr ""
+msgstr "Bürger*innenhaushalt (1 Phase)"
 
 #: meinberlin/apps/dashboard/blueprints.py:82
 msgid ""
 "Proposals can be located on a map and a budget can be added. Proposals can "
 "be commented and rated."
 msgstr ""
+"Vorschläge können mit einem Budget versehen und auf einer Karte verortet "
+"werden. Diese Vorschläge können bewertet und kommentiert werden."
 
 #: meinberlin/apps/dashboard/blueprints.py:93
 msgid "Participatory budgeting (2 phase)"
-msgstr ""
+msgstr "Bürger*innenhaushalt (2 Phase)"
 
 #: meinberlin/apps/dashboard/blueprints.py:95
 msgid ""
 "Proposals can be located on a map and a budget can be added. Proposals can "
 "be commented and rated in 2 phases."
 msgstr ""
+"Vorschläge können mit einem Budget versehen und auf einer Karte verortet "
+"werden. Diese Vorschläge können nacheinander kommentiert und bewertet werden."
 
 #: meinberlin/apps/dashboard/blueprints.py:109
 msgid ""
@@ -3184,7 +3193,7 @@ msgstr "Beteiligung"
 #: meinberlin/apps/plans/models.py:114
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:55
 msgid "Duration"
-msgstr ""
+msgstr "Laufzeit"
 
 #: meinberlin/apps/plans/models.py:157
 #: meinberlin/apps/projects/serializers.py:98
