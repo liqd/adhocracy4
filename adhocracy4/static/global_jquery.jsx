@@ -1,1 +1,3 @@
-window.jQuery = window.$ = require('jquery')
+if (window.jQuery === undefined) {
+  window.jQuery = window.$ = require('jquery')
+}
