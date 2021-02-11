@@ -75,6 +75,18 @@ blueprints = [
          image='images/text-review.svg',
          settings_model=None,
      )),
+    ('topic-prioritization',
+     ProjectBlueprint(
+         title=_('Topic Priorization'),
+         description=_(
+             'Comment and prioritize topics.'
+         ),
+         content=[
+             topicprio_phases.PrioritizePhase(),
+         ],
+         image='images/priorization.svg',
+         settings_model=None,
+     )),
     ('participatory-budgeting',
      ProjectBlueprint(
          title=_('Participatory budgeting (1 phase)'),
@@ -85,7 +97,7 @@ blueprints = [
          content=[
              budgeting_phases.RequestPhase()
          ],
-         image='images/participatory-budgeting.svg',
+         image='images/participatory-budgeting-1.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
     ('participatory-budgeting-2-phases',
@@ -99,7 +111,7 @@ blueprints = [
              budgeting_phases.CollectPhase(),
              budgeting_phases.RatingPhase(),
          ],
-         image='images/participatory-budgeting.svg',
+         image='images/participatory-budgeting-2.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
     ('poll',
@@ -113,18 +125,6 @@ blueprints = [
              poll_phases.VotingPhase(),
          ],
          image='images/poll.svg',
-         settings_model=None,
-     )),
-    ('topic-prioritization',
-     ProjectBlueprint(
-         title=_('Topic Priorization'),
-         description=_(
-             'Comment and prioritize topics.'
-         ),
-         content=[
-             topicprio_phases.PrioritizePhase(),
-         ],
-         image='images/priorization.svg',
          settings_model=None,
      )),
     ('map-topic-prioritization',
