@@ -189,6 +189,11 @@ def test_module_running_time_left(phase_factory):
         start_date=parse('2013-01-01 19:00:01 UTC'),
         end_date=parse('2013-01-01 20:00:00 UTC')
     )
+    phase5 = phase_factory(
+        start_date=parse('2013-01-01 17:00:00 UTC'),
+        end_date=parse('2013-01-01 18:00:00.45 UTC')
+    )
+    module4 = phase5.module
     with freeze_time('2013-01-01 18:00:00 UTC'):
         assert module1.module_running_time_left \
             == '1 day'
@@ -196,6 +201,8 @@ def test_module_running_time_left(phase_factory):
             == '1 second'
         assert module3.module_running_time_left \
             == '2 hours'
+        assert module4.module_running_time_left \
+            == '0 seconds'
 
 
 @pytest.mark.django_db
