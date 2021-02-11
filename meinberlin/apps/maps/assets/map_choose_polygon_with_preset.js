@@ -19,6 +19,8 @@ function getBaseBounds (L, polygon, bbox) {
 }
 
 function init () {
+  // select2 needs stateful jQuery
+  const $ = window.jQuery
   const L = window.L
 
   const ImportControl = L.Control.extend({
