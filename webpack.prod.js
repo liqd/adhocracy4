@@ -8,7 +8,6 @@ module.exports = merge(common, {
     minimize: true,
     minimizer: [
       new TerserPlugin({
-        sourceMap: true,
         parallel: true,
         terserOptions: {
           ecma: 5
