@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-04 18:04+0100\n"
+"POT-Creation-Date: 2021-02-11 12:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -292,7 +292,7 @@ msgid "Hide filters"
 msgstr "Hide filters"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:104
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:95
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:81
 msgid " characters"
 msgstr " characters"
 
@@ -432,7 +432,7 @@ msgstr[0] "vote"
 msgstr[1] "votes"
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:8
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:83
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:69
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:15
 msgid "Question"
 msgstr "Question"
@@ -566,6 +566,18 @@ msgstr ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."
 
+#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:15
+msgid "Affiliation"
+msgstr "Affiliation"
+
+#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:17
+msgid ""
+"Answered questions will be displayed in the statistics according to the "
+"chosen affiliation."
+msgstr ""
+"Answered questions will be displayed in the statistics according to the "
+"chosen affiliation."
+
 #: meinberlin/apps/livequestions/assets/Filters.jsx:21
 msgid "only show marked questions"
 msgstr "only show marked questions"
@@ -610,48 +622,36 @@ msgstr "Open information"
 msgid "Hide"
 msgstr "Hide"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:19
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:48
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:21
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:49
 msgid "select affiliation"
 msgstr "select affiliation"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:178
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:185
 msgid "Information"
 msgstr "Information"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:189
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:196
 msgid "Questions"
 msgstr "Questions"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:200
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:207
 msgid "Statistics"
 msgstr "Statistics"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:263
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:271
 msgid "display on screen"
 msgstr "display on screen"
 
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:62
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:64
 msgid "Here you can ask your question"
 msgstr "Here you can ask your question"
 
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:65
-msgid "Affiliation"
-msgstr "Affiliation"
-
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:67
-msgid ""
-"Answered questions will be displayed in the statistics according to the "
-"chosen affiliation."
-msgstr ""
-"Answered questions will be displayed in the statistics according to the "
-"chosen affiliation."
-
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:85
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:71
 msgid "Your question"
 msgstr "Your question"
 
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:103
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:89
 msgid "Post"
 msgstr "Post"
 
@@ -1000,13 +1000,13 @@ msgstr[1] "%s people have answered."
 msgid "If you leave this page changes you made will not be saved."
 msgstr "If you leave this page changes you made will not be saved."
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:13
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
 msgid "External Video"
 msgstr "External Video"
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:14
 msgid ""
 "Here you can find a video from Google (YouTube). To protect your data the "
@@ -1017,24 +1017,24 @@ msgstr ""
 "content will only be loaded after you give your consent. Only then will "
 "YouTube set Cookies that collect information on user behaviour."
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "More information can be found in the privacy policy of Google under: "
 msgstr "More information can be found in the privacy policy of Google under: "
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:22
 msgid "Link to Video: "
 msgstr "Link to Video: "
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:22
 msgid "Play video"
 msgstr "Play video"
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:19
 msgid ""
 "Here you can find a video from Vimeo. To protect your data the content will "
@@ -1045,7 +1045,7 @@ msgstr ""
 "only be loaded after you give your consent. Only then will Vimeo set Cookies "
 "that collect information on user behaviour."
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "

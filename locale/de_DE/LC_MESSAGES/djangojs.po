@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-04 18:04+0100\n"
+"POT-Creation-Date: 2021-02-11 12:51+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -376,7 +376,7 @@ msgstr "Filter ausblenden"
 
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:104
 #: adhocracy4/comments_async/static/comments_async/comment_form.jsx:104
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:95
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:81
 msgid " characters"
 msgstr " Zeichen"
 
@@ -547,7 +547,7 @@ msgstr[1] "Stimmen"
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:8
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:8
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:83
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:69
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:15
 msgid "Question"
 msgstr "Frage"
@@ -688,6 +688,18 @@ msgstr ""
 "Sie haben Third Party Cookies deaktiviert. Sie können sich dieses Projekt "
 "zwar anschauen, werden sich aber nicht anmelden können."
 
+#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:15
+msgid "Affiliation"
+msgstr "Zugehörigkeit"
+
+#: meinberlin/apps/livequestions/assets/CategorySelect.jsx:17
+msgid ""
+"Answered questions will be displayed in the statistics according to the "
+"chosen affiliation."
+msgstr ""
+"Beantwortete Fragen werden entsprechend der ausgewählten Zugehörigkeit in "
+"der Statistik dargestellt."
+
 #: meinberlin/apps/livequestions/assets/Filters.jsx:21
 msgid "only show marked questions"
 msgstr "nur gemerkte Fragen anzeigen"
@@ -733,48 +745,36 @@ msgstr "Information öffnen"
 msgid "Hide"
 msgstr "Ausblenden"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:19
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:48
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:21
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:49
 msgid "select affiliation"
 msgstr "Zugehörigkeit auswählen"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:178
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:185
 msgid "Information"
 msgstr "Information"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:189
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:196
 msgid "Questions"
 msgstr "Fragen"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:200
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:207
 msgid "Statistics"
 msgstr "Statistik"
 
-#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:263
+#: meinberlin/apps/livequestions/assets/QuestionBox.jsx:271
 msgid "display on screen"
 msgstr "auf Bildschirm anzeigen"
 
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:62
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:64
 msgid "Here you can ask your question"
 msgstr "Hier können Sie Ihre Frage stellen"
 
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:65
-msgid "Affiliation"
-msgstr "Zugehörigkeit"
-
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:67
-msgid ""
-"Answered questions will be displayed in the statistics according to the "
-"chosen affiliation."
-msgstr ""
-"Beantwortete Fragen werden entsprechend der ausgewählten Zugehörigkeit "
-"in der Statistik dargestellt."
-
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:85
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:71
 msgid "Your question"
 msgstr "Ihre Frage"
 
-#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:103
+#: meinberlin/apps/livequestions/assets/QuestionForm.jsx:89
 msgid "Post"
 msgstr "Senden"
 
@@ -1116,8 +1116,8 @@ msgstr[1] "%s Teilnehmer*innen haben %s Antworten gegeben."
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
 msgstr ""
-" Aufgrund von Mehrfachantworten kann die Summe der Prozentangaben über "
-"100% ergeben."
+" Aufgrund von Mehrfachantworten kann die Summe der Prozentangaben über 100% "
+"ergeben."
 
 #: meinberlin/apps/polls/assets/Question.jsx:156
 #, javascript-format
@@ -1132,13 +1132,13 @@ msgstr ""
 "Wenn Sie diese Seite verlassen ohne zu speichern, gehen die von Ihnen "
 "vorgenommenen Änderungen verloren."
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:13
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
 msgid "External Video"
 msgstr "Externes Video"
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:14
 msgid ""
 "Here you can find a video from Google (YouTube). To protect your data the "
@@ -1150,26 +1150,26 @@ msgstr ""
 "dann werden vom Anbieter Cookies gesetzt, die Hinweise über das "
 "Nutzerverhalten sammeln."
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "More information can be found in the privacy policy of Google under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Google "
 "unter: "
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:22
 msgid "Link to Video: "
 msgstr "Link zum Video: "
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:22
 msgid "Play video"
 msgstr "Video abspielen"
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:19
 msgid ""
 "Here you can find a video from Vimeo. To protect your data the content will "
@@ -1180,7 +1180,7 @@ msgstr ""
 "schützen, laden wir dieses Video nur mit Ihrer Zustimmung. Erst dann werden "
 "vom Anbieter Cookies gesetzt, die Hinweise über das Nutzerverhalten sammeln."
 
-#: /home/katharinaschmid/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
