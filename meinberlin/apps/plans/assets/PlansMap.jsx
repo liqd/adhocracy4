@@ -84,6 +84,7 @@ class PlansMap extends Component {
 
   setupMap () {
     const map = maps.createMap(L, this.mapElement, {
+      attribution: this.props.attribution,
       baseUrl: this.props.baseurl,
       useVectorMap: this.props.useVectorMap,
       mapboxToken: this.props.mapboxToken,

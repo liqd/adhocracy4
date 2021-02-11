@@ -305,6 +305,7 @@ class ListMapBox extends Component {
     return (
       <PlansMap
         key="content"
+        attribution={this.props.attribution}
         resize={this.state.resizeMap}
         items={this.state.items}
         bounds={this.props.bounds}
