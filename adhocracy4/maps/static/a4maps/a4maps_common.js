@@ -30,7 +30,6 @@ export function createMap (L, e, {
     } else {
       if (omtToken !== '') {
         L.mapboxGL({
-          accessToken: 'no-token',
           style: baseUrl,
           transformRequest: function (url, resourceType) {
             if (resourceType === 'Tile' && url.indexOf('https://') === 0) {
@@ -42,7 +41,6 @@ export function createMap (L, e, {
         }).addTo(map)
       } else {
         L.mapboxGL({
-          accessToken: 'no-token',
           style: baseUrl
         }).addTo(map)
       }
