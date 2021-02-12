@@ -31,7 +31,7 @@ def test_pre_phase(phase_factory, user):
 
 
 @pytest.mark.django_db
-def test_phase_active(phase_factory, user):
+def test_request_phase_active(phase_factory, user):
     phase, module, project, _ = setup_phase(phase_factory, None,
                                             phases.RequestPhase)
     anonymous, moderator, initiator = setup_users(project)
@@ -40,6 +40,34 @@ def test_phase_active(phase_factory, user):
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, module)
         assert rules.has_perm(perm_name, user, module)
+        assert rules.has_perm(perm_name, moderator, module)
+        assert rules.has_perm(perm_name, initiator, module)
+
+
+@pytest.mark.django_db
+def test_collect_phase_active(phase_factory, user):
+    phase, module, project, _ = setup_phase(phase_factory, None,
+                                            phases.CollectPhase)
+    anonymous, moderator, initiator = setup_users(project)
+
+    assert project.access == Access.PUBLIC
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, module)
+        assert rules.has_perm(perm_name, user, module)
+        assert rules.has_perm(perm_name, moderator, module)
+        assert rules.has_perm(perm_name, initiator, module)
+
+
+@pytest.mark.django_db
+def test_rating_phase_active(phase_factory, user):
+    phase, module, project, _ = setup_phase(phase_factory, None,
+                                            phases.RatingPhase)
+    anonymous, moderator, initiator = setup_users(project)
+
+    assert project.access == Access.PUBLIC
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, module)
+        assert not rules.has_perm(perm_name, user, module)
         assert rules.has_perm(perm_name, moderator, module)
         assert rules.has_perm(perm_name, initiator, module)
 

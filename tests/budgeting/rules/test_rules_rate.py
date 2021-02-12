@@ -31,15 +31,49 @@ def test_pre_phase(phase_factory, proposal_factory, user):
 
 
 @pytest.mark.django_db
-def test_phase_active(phase_factory, proposal_factory, user):
+def test_request_phase_active(phase_factory, proposal_factory, user):
     phase, _, project, item = setup_phase(phase_factory, proposal_factory,
                                           phases.RequestPhase)
     anonymous, moderator, initiator = setup_users(project)
+    creator = item.creator
 
     assert project.is_public
     with freeze_phase(phase):
         assert not rules.has_perm(perm_name, anonymous, item)
         assert rules.has_perm(perm_name, user, item)
+        assert rules.has_perm(perm_name, creator, item)
+        assert rules.has_perm(perm_name, moderator, item)
+        assert rules.has_perm(perm_name, initiator, item)
+
+
+@pytest.mark.django_db
+def test_collect_phase_active(phase_factory, proposal_factory, user):
+    phase, _, project, item = setup_phase(phase_factory, proposal_factory,
+                                          phases.CollectPhase)
+    anonymous, moderator, initiator = setup_users(project)
+    creator = item.creator
+
+    assert project.is_public
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, item)
+        assert not rules.has_perm(perm_name, user, item)
+        assert not rules.has_perm(perm_name, creator, item)
+        assert rules.has_perm(perm_name, moderator, item)
+        assert rules.has_perm(perm_name, initiator, item)
+
+
+@pytest.mark.django_db
+def test_rating_phase_active(phase_factory, proposal_factory, user):
+    phase, _, project, item = setup_phase(phase_factory, proposal_factory,
+                                          phases.RatingPhase)
+    anonymous, moderator, initiator = setup_users(project)
+    creator = item.creator
+
+    assert project.is_public
+    with freeze_phase(phase):
+        assert not rules.has_perm(perm_name, anonymous, item)
+        assert rules.has_perm(perm_name, user, item)
+        assert rules.has_perm(perm_name, creator, item)
         assert rules.has_perm(perm_name, moderator, item)
         assert rules.has_perm(perm_name, initiator, item)
 
