@@ -129,7 +129,7 @@ class Plan(UserGeneratedContentModel):
     def topic_names(self):
         if hasattr(settings, 'A4_PROJECT_TOPICS'):
             choices = dict(settings.A4_PROJECT_TOPICS)
-            return [choices[topic] for topic in self.topics]
+            return [choices.get(topic, topic) for topic in self.topics]
         return []
 
     @cached_property
