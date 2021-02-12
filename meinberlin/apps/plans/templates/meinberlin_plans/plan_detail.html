@@ -46,9 +46,11 @@
                         </dl>
                         {% endif %}
 
+                        {% if object.topic_names %}
                         <dl>
                             <dt>{% trans 'Topic' %}</dt><dd>{{ object.topic_names.0 }}{% if object.topic_names.1 %}, {{ object.topic_names.1 }}{% endif %}</dd>
                         </dl>
+                        {% endif %}
 
                         {% if object.duration %}
                         <dl>
