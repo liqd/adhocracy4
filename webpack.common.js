@@ -184,8 +184,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{
         from: './meinberlin/assets/images/**/*',
-        to: 'images/',
-        flatten: true
+        to: 'images/'
       }]
     })
   ]
