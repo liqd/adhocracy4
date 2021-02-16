@@ -154,6 +154,10 @@
     overflow-wrap: break-word;
 }
 
+.u-overflow-visible {
+    overflow: visible;
+}
+
 .u-xs-down-display-none {
     @media screen and (max-width: $breakpoint-xs-down) {
         display: none !important;
