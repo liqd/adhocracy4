@@ -62,7 +62,7 @@
             <!-- Live stream -->
             {% for phase in module.phases %}
               {% if phase == module.active_phase and live_stream %}
-                  {{ live_stream.live_stream | transform_collapsibles | richtext }}
+                  {{ live_stream.live_stream | richtext }}
                   <span class="label label--active">•{% trans ' Live now' %}</span>
               {% endif %}
             {% endfor %}

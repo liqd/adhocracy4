@@ -78,6 +78,10 @@ class LiveStream(module_models.Item):
     )
 
     def save(self, *args, **kwargs):
-        self.live_stream = transforms.clean_html_field(
-            self.live_stream, 'video-editor')
-        super().save(*args, **kwargs)
+        if self.live_stream and '<iframe' in self.live_stream:
+            self.live_stream = transforms.clean_html_field(
+                self.live_stream, 'video-editor')
+            super().save(*args, **kwargs)
+        elif self.__class__.objects.filter(module=self.module).exists():
+            for stream in self.__class__.objects.filter(module=self.module):
+                stream.delete()
