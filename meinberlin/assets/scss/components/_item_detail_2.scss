@@ -10,20 +10,23 @@
 }
 
 .item-detail-2__factsheet-table {
-    display: table;
     padding-left: 0;
 
-    dl {
-        display: table-row;
-    }
+    @media screen and (min-width: $breakpoint-xs) {
+        display: table;
 
-    dt {
-        display: table-cell;
-        border-right: 2em solid transparent;
-    }
+        dl {
+            display: table-row;
+        }
 
-    dd {
-        display: table-cell;
+        dt {
+            display: table-cell;
+            border-right: 2em solid transparent;
+        }
+
+        dd {
+            display: table-cell;
+        }
     }
 }
 
