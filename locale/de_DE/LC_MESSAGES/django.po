@@ -2110,7 +2110,7 @@ msgstr ""
 
 #: meinberlin/apps/dashboard/blueprints.py:93
 msgid "Participatory budgeting (2 phase)"
-msgstr "Bürger*innenhaushalt (2 Phase)"
+msgstr "Bürger*innenhaushalt (2 Phasen)"
 
 #: meinberlin/apps/dashboard/blueprints.py:95
 msgid ""
