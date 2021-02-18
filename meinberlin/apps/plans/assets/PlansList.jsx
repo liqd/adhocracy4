@@ -12,7 +12,7 @@ class LazyBackground extends React.Component {
   }
 
   componentDidMount () {
-    window.addEventListener('scroll', this.handleScroll.bind(this))
+    window.addEventListener('scroll', this.handleScroll.bind(this), { passive: true })
     this.checkLoadImage()
   }
 
