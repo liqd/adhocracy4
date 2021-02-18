@@ -59,7 +59,7 @@ export default class CommentBox extends React.Component {
   }
 
   componentDidMount () {
-    window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.handleScroll, { passive: true })
 
     const params = {}
     params.ordering = this.state.sort
