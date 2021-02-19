@@ -12,8 +12,8 @@ class PrioritizePhase(phases.PhaseContent):
     phase = 'prioritize'
     view = views.TopicListView
 
-    name = _('Prioritize phase')
-    description = _('Prioritize and comment topics.')
+    name = _('What do you think about these ideas/topics?')
+    description = _('You can comment on and rate the ideas/topics.')
     module_name = _('topic prioritization')
 
     features = {

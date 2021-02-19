@@ -26,8 +26,9 @@ class CollectPhase(phases.PhaseContent):
     phase = 'collect'
     view = views.IdeaListView
 
-    name = _('Collect phase')
-    description = _('Create and comment new ideas.')
+    name = _('What are your ideas?')
+    description = _('You can submit your own ideas and comment on the ideas '
+                    'of the other participants.')
     module_name = _('ideas collection')
 
     features = {
@@ -71,9 +72,9 @@ class CollectFeedbackPhase(phases.PhaseContent):
     phase = 'collect_feedback'
     view = views.IdeaListView
 
-    name = _('Collect ideas and get feedback')
-    description = _('Create new ideas and get feedback through rates and '
-                    'comments.')
+    name = _('What are your ideas?')
+    description = _('You can create your own ideas and comment on and rate '
+                    'the ideas of the other participants.')
 
     features = {
         'crud': (models.Idea,),

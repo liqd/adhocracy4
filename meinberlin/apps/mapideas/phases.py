@@ -26,8 +26,9 @@ class CollectPhase(phases.PhaseContent):
     phase = 'collect'
     view = views.MapIdeaListView
 
-    name = _('Collect phase')
-    description = _('Create new ideas located on a map and comment them.')
+    name = _('What are your ideas?')
+    description = _('You can enter your own ideas on the map and comment on '
+                    'the ideas of the other participants.')
     module_name = _('ideas collection')
 
     features = {
@@ -71,9 +72,9 @@ class CollectFeedbackPhase(phases.PhaseContent):
     phase = 'collect_feedback'
     view = views.MapIdeaListView
 
-    name = _('Collect ideas and get feedback')
-    description = _('Create new ideas located on a map and get feedback '
-                    'through rates and comments.')
+    name = _('What are your ideas?')
+    description = _('You can enter your own ideas on the map and comment on '
+                    'and rate the ideas of the other participants.')
     module_name = _('ideas collection')
 
     features = {

@@ -43,9 +43,9 @@ class RequestFeedbackPhase(phases.PhaseContent):
     phase = 'request_feedback'
     view = views.ProposalListView
 
-    name = _('Request and feedback phase')
-    description = _('Request budgeting and get feedback through rates and '
-                    'comments.')
+    name = _('What ideas do you suggest for funding?')
+    description = _('You can enter your proposal on the map and comment on '
+                    'and rate the proposals of the other participants.')
     module_name = _('kiezkasse')
 
     features = {

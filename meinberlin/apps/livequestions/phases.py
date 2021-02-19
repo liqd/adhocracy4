@@ -12,8 +12,11 @@ class IssuePhase(phases.PhaseContent):
     phase = 'issue'
     view = views.LiveQuestionModuleDetail
 
-    name = _('Issue phase')
-    description = _('Add questions and support.')
+    name = _('Do you have questions?')
+    description = _('You can add your questions and support the questions of '
+                    'other participants. To allow different people to have '
+                    'their say, please indicate which group you feel you '
+                    'belong to.')
     module_name = _('Interactive Event')
     icon = 'lightbulb-o'
 

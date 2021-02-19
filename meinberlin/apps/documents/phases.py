@@ -12,9 +12,10 @@ class CommentPhase(phases.PhaseContent):
     phase = 'comment'
     view = views.DocumentDetailView
 
-    name = _('Comment phase')
+    name = _('What do you think about the draft?')
     module_name = _('commenting text')
-    description = _('Collect comments for the text.')
+    description = _('You can comment on the draft paragraph by paragraph or '
+                    'as a whole.')
 
     features = {
         'comment': (models.Paragraph, models.Chapter),

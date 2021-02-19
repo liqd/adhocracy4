@@ -12,8 +12,9 @@ class VotingPhase(phases.PhaseContent):
     phase = 'voting'
     view = views.PollDetailView
 
-    name = _('Voting phase')
-    description = _('Cast votes and discuss the poll.')
+    name = _('Please take part in our poll!')
+    description = _('Help us by answering the questions below. There is '
+                    'space for your comments at the end of the questionnaire.')
     module_name = _('polls')
 
     features = {
