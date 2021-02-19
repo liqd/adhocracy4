@@ -16,7 +16,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Brainstorming'),
          description=_(
-             'Collect first ideas for a specific topic and comment on them.'
+             'Participants can submit their own ideas and discuss the ideas '
+             'of others.'
          ),
          content=[
              ideas_phases.CollectPhase(),
@@ -28,7 +29,8 @@ blueprints = [
      ProjectBlueprint(
          title=_('Spatial Brainstorming'),
          description=_(
-             'Collect location specific ideas for a topic and comment on them.'
+             'Participants can submit their own ideas and locate them on a '
+             'map. They can also discuss the ideas of others.'
          ),
          content=[
              mapideas_phases.CollectPhase(),
@@ -36,25 +38,12 @@ blueprints = [
          image='images/map-brainstorming.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
-    ('map-idea-collection',
+    ('idea-collection',
      ProjectBlueprint(
-         title=_('Spatial Idea Collection'),
+         title=_('Idea Collection'),
          description=_(
-             'Collect location specific ideas that can be rated and commented.'
-         ),
-         content=[
-             mapideas_phases.CollectFeedbackPhase(),
-         ],
-         image='images/map-idea-collection.svg',
-         settings_model=('a4maps', 'AreaSettings'),
-     )),
-    ('agenda-setting',
-     ProjectBlueprint(
-         title=_('Agenda Setting'),
-         description=_(
-             'With Agenda-Setting it’s possible to identify topics and to '
-             'define mission statements. Anyone can submit topics that can be '
-             'commented and rated.'
+             'Participants can submit their own ideas and discuss and rate '
+             '(pro/contra) the ideas of others.'
          ),
          content=[
              ideas_phases.CollectFeedbackPhase(),
@@ -62,37 +51,27 @@ blueprints = [
          image='images/agenda-setting.svg',
          settings_model=None,
      )),
-    ('text-review',
+    ('map-idea-collection',
      ProjectBlueprint(
-         title=_('Text Review'),
+         title=_('Spatial Idea Collection'),
          description=_(
-             'In the text-review it’s possible to structure draft texts '
-             'that can be commented.'
+             'Participants can submit their own ideas and locate them on a '
+             'map. They can also discuss and rate (pro/contra) the ideas of '
+             'others.'
          ),
          content=[
-             documents_phases.CommentPhase(),
+             mapideas_phases.CollectFeedbackPhase(),
          ],
-         image='images/text-review.svg',
-         settings_model=None,
-     )),
-    ('topic-prioritization',
-     ProjectBlueprint(
-         title=_('Topic Priorization'),
-         description=_(
-             'Comment and prioritize topics.'
-         ),
-         content=[
-             topicprio_phases.PrioritizePhase(),
-         ],
-         image='images/priorization.svg',
-         settings_model=None,
+         image='images/map-idea-collection.svg',
+         settings_model=('a4maps', 'AreaSettings'),
      )),
     ('participatory-budgeting',
      ProjectBlueprint(
          title=_('Participatory budgeting (1 phase)'),
          description=_(
-             'Proposals can be located on a map and a budget can be added. '
-             'Proposals can be commented and rated.'
+             'Participants can submit their own proposals, mark them on a '
+             'map, and add a budget. The proposals of others can be discussed '
+             'and rated (pro/contra).'
          ),
          content=[
              budgeting_phases.RequestPhase()
@@ -104,8 +83,9 @@ blueprints = [
      ProjectBlueprint(
          title=_('Participatory budgeting (2 phase)'),
          description=_(
-             'Proposals can be located on a map and a budget can be added. '
-             'Proposals can be commented and rated in 2 phases.'
+             'In a first phase, participants can submit their own proposals, '
+             'mark them on a map, and add a budget. The proposals of others '
+             'can be discussed and in a second phase rated (pro/contra).'
          ),
          content=[
              budgeting_phases.CollectPhase(),
@@ -114,38 +94,14 @@ blueprints = [
          image='images/participatory-budgeting-2.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
-    ('poll',
-     ProjectBlueprint(
-         title=_('Poll'),
-         description=_(
-             'Create a poll with multiple questions and possible answers. '
-             'Anyone can cast votes and comment on the poll.'
-         ),
-         content=[
-             poll_phases.VotingPhase(),
-         ],
-         image='images/poll.svg',
-         settings_model=None,
-     )),
-    ('map-topic-prioritization',
-     ProjectBlueprint(
-         title=_('Place Prioritization'),
-         description=_(
-             'Comment and prioritize places located on a map.'
-         ),
-         content=[
-             maptopicprio_phases.PrioritizePhase(),
-         ],
-         image='images/place-priotization.svg',
-         settings_model=('a4maps', 'AreaSettings'),
-     )),
     ('kiezkasse',
      ProjectBlueprint(
          title=_('Kiezkasse'),
          description=_(
-             'With kiezkasse it’s possible to make proposals '
-             'with budget specifications and locate them. '
-             'The proposals can be commented and rated.'
+             'Participants can submit their own proposals, mark them on a '
+             'map, and add a budget. They can express their interest in '
+             'participating in the proposals’s implementation. The proposals '
+             'of others can be discussed and rated (pro/contra).'
          ),
          content=[
              kiezkasse_phases.RequestFeedbackPhase(),
@@ -153,14 +109,66 @@ blueprints = [
          image='images/kiezkasse.svg',
          settings_model=('a4maps', 'AreaSettings'),
      )),
+    ('prioritization',
+     ProjectBlueprint(
+         title=_('Prioritization'),
+         description=_(
+             'Participants can discuss and rate (pro/contra) previously added '
+             'ideas and topics. Participants cannot add ideas or topics.'
+         ),
+         content=[
+             topicprio_phases.PrioritizePhase(),
+         ],
+         image='images/priorization.svg',
+         settings_model=None,
+     )),
+    ('map-topic-prioritization',
+     ProjectBlueprint(
+         title=_('Spatial Prioritization'),
+         description=_(
+             'Participants can discuss and rate (pro/contra) ideas and topics '
+             'previously added to a map. Participants cannot add ideas or '
+             'topics.'
+         ),
+         content=[
+             maptopicprio_phases.PrioritizePhase(),
+         ],
+         image='images/place-priotization.svg',
+         settings_model=('a4maps', 'AreaSettings'),
+     )),
+    ('text-review',
+     ProjectBlueprint(
+         title=_('Text Review'),
+         description=_(
+             'Participants can discuss the paragraphs of a text that you '
+             'added beforehand.'
+         ),
+         content=[
+             documents_phases.CommentPhase(),
+         ],
+         image='images/text-review.svg',
+         settings_model=None,
+     )),
+    ('poll',
+     ProjectBlueprint(
+         title=_('Poll'),
+         description=_(
+             'Participants can answer one or more questions with predefined '
+             'choices and comment on the poll.'
+         ),
+         content=[
+             poll_phases.VotingPhase(),
+         ],
+         image='images/poll.svg',
+         settings_model=None,
+     )),
     ('interactive-event',
      ProjectBlueprint(
          title=_('Interactive Event'),
          description=_(
              'The participants of an event can ask their questions online. '
-             'Other participants can support the question. You as the '
-             'moderator can sort the questions by support or '
-             'characteristic.'
+             'Other participants can support the question. The moderator can '
+             'sort the questions by support or affiliation.'
          ),
          content=[
              livequestion_phases.IssuePhase(),

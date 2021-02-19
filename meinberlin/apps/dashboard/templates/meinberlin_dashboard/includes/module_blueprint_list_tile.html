@@ -10,12 +10,6 @@
         <h3 class="tile__title">{{ blueprint.title }}</h3>
         <div class="tile__text">
             {{ blueprint.description | linebreaks }}
-
-            <ul>
-                {% for phase_content in blueprint.content %}
-                    <li><strong>{% trans 'Phase' %} {{ forloop.counter }}</strong>: {{ phase_content.description }}</li>
-                {% endfor %}
-            </ul>
         </div>
 
         <input type="submit" class="btn" value="{% trans 'Select'%}" />
