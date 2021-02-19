@@ -212,9 +212,9 @@ class Comment extends React.Component {
             </div>
           </div>}
 
-        {this.state.showChildComments
-          ? (
-            <div className="comment-child-list">
+        <div className="comment-child-list">
+          {this.state.showChildComments
+            ? (
               <CommentList
                 comments={this.props.child_comments}
                 parentIndex={this.props.index}
@@ -222,7 +222,10 @@ class Comment extends React.Component {
                 onCommentModify={this.props.onCommentModify}
                 isReadOnly={this.props.isReadOnly}
                 onEditErrorClick={this.props.onEditErrorClick}
-              />
+              />) : null}
+
+          {this.state.showChildComments && !this.props.isReadOnly
+            ? (
               <CommentForm
                 subjectType={this.context.comments_contenttype}
                 subjectId={this.props.id}
@@ -234,8 +237,8 @@ class Comment extends React.Component {
                 handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
                 rows="3"
                 grabFocus={this.state.replyFormHasFocus}
-              />
-            </div>) : null}
+              />) : null}
+        </div>
       </div>
     )
   }
