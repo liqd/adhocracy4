@@ -5,127 +5,84 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
+    adhocracy4: [
+      'shariff/dist/shariff.min.css',
+      'select2/dist/css/select2.min.css',
+      'slick-carousel/slick/slick.css',
+      './meinberlin/assets/extra_css/_slick-theme.css',
+      './meinberlin/assets/scss/style.scss',
+      './meinberlin/assets/js/app.js'
+    ],
     vendor: [
+      'classnames',
       '@fortawesome/fontawesome-free/scss/fontawesome.scss',
       '@fortawesome/fontawesome-free/scss/brands.scss',
       '@fortawesome/fontawesome-free/scss/regular.scss',
       '@fortawesome/fontawesome-free/scss/solid.scss',
-      'adhocracy4',
-      'classnames',
-      'immutability-helper',
       'js-cookie',
       'react',
+      'immutability-helper',
       'react-dom',
       'react-flip-move',
       'react-sticky-box'
     ],
-    adhocracy4: {
-      import: [
-        'shariff/dist/shariff.min.css',
-        'select2/dist/css/select2.min.css',
-        'slick-carousel/slick/slick.css',
-        './meinberlin/assets/extra_css/_slick-theme.css',
-        './meinberlin/assets/scss/style.scss',
-        './meinberlin/assets/js/app.js'
-      ],
-      dependOn: 'vendor'
-    },
-    captcheck: {
-      import: [
-        './meinberlin/apps/captcha/assets/captcheck.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    datepicker: {
-      import: [
-        './meinberlin/assets/js/init-picker.js',
-        'datepicker/css/datepicker.min.css'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    embed: {
-      import: [
-        'bootstrap/js/dist/modal.js',
-        './meinberlin/apps/embed/assets/embed.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    unload_warning: {
-      import: [
-        './meinberlin/assets/js/unload_warning.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    dsgvo_video_embed: {
-      import: [
-        'dsgvo-video-embed/dist/dsgvo-video-embed.min.css',
-        'dsgvo-video-embed/dist/dsgvo-video-embed.min.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
+    captcheck: [
+      './meinberlin/apps/captcha/assets/captcheck.js'
+    ],
+    datepicker: [
+      './meinberlin/assets/js/init-picker.js',
+      'datepicker/css/datepicker.min.css'
+    ],
+    embed: [
+      'bootstrap/js/dist/modal.js',
+      './meinberlin/apps/embed/assets/embed.js'
+    ],
+    unload_warning: [
+      './meinberlin/assets/js/unload_warning.js'
+    ],
+    dsgvo_video_embed: [
+      'dsgvo-video-embed/dist/dsgvo-video-embed.min.css',
+      'dsgvo-video-embed/dist/dsgvo-video-embed.min.js'
+    ],
     // A4 dependencies - we want all of them to go through webpack
-    mb_plans_map: {
-      import: [
-        'leaflet/dist/leaflet.css',
-        'mapbox-gl/dist/mapbox-gl.css',
-        'leaflet.markercluster/dist/MarkerCluster.css',
-        'react-bootstrap-typeahead/css/Typeahead.css',
-        './meinberlin/apps/plans/assets/plans_map.jsx'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    a4maps_display_point: {
-      import: [
-        'leaflet/dist/leaflet.css',
-        'mapbox-gl/dist/mapbox-gl.css',
-        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_point.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    a4maps_display_points: {
-      import: [
-        'leaflet/dist/leaflet.css',
-        'mapbox-gl/dist/mapbox-gl.css',
-        'leaflet.markercluster/dist/MarkerCluster.css',
-        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_points.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    a4maps_choose_point: {
-      import: [
-        'leaflet/dist/leaflet.css',
-        'mapbox-gl/dist/mapbox-gl.css',
-        'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_choose_point.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    a4maps_choose_polygon: {
-      import: [
-        'leaflet/dist/leaflet.css',
-        'mapbox-gl/dist/mapbox-gl.css',
-        'leaflet-draw/dist/leaflet.draw.css',
-        './meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    category_formset: {
-      import: [
-        'adhocracy4/adhocracy4/categories/assets/category_formset.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    image_uploader: {
-      import: [
-        'adhocracy4/adhocracy4/images/assets/image_uploader.js'
-      ],
-      dependOn: 'adhocracy4'
-    },
-    select_dropdown_init: {
-      import: [
-        'adhocracy4/adhocracy4/categories/assets/select_dropdown_init.js'
-      ],
-      dependOn: 'adhocracy4'
-    }
+    mb_plans_map: [
+      'leaflet/dist/leaflet.css',
+      'mapbox-gl/dist/mapbox-gl.css',
+      'leaflet.markercluster/dist/MarkerCluster.css',
+      'react-bootstrap-typeahead/css/Typeahead.css',
+      './meinberlin/apps/plans/assets/plans_map.jsx'
+    ],
+    a4maps_display_point: [
+      'leaflet/dist/leaflet.css',
+      'mapbox-gl/dist/mapbox-gl.css',
+      'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_point.js'
+    ],
+    a4maps_display_points: [
+      'leaflet/dist/leaflet.css',
+      'mapbox-gl/dist/mapbox-gl.css',
+      'leaflet.markercluster/dist/MarkerCluster.css',
+      'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_display_points.js'
+    ],
+    a4maps_choose_point: [
+      'leaflet/dist/leaflet.css',
+      'mapbox-gl/dist/mapbox-gl.css',
+      'adhocracy4/adhocracy4/maps/static/a4maps/a4maps_choose_point.js'
+    ],
+    a4maps_choose_polygon: [
+      'leaflet/dist/leaflet.css',
+      'mapbox-gl/dist/mapbox-gl.css',
+      'leaflet-draw/dist/leaflet.draw.css',
+      './meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js'
+    ],
+    category_formset: [
+      'adhocracy4/adhocracy4/categories/assets/category_formset.js'
+    ],
+    image_uploader: [
+      'adhocracy4/adhocracy4/images/assets/image_uploader.js'
+    ],
+    select_dropdown_init: [
+      'adhocracy4/adhocracy4/categories/assets/select_dropdown_init.js'
+    ]
   },
   output: {
     libraryTarget: 'this',
