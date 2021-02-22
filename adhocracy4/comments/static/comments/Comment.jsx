@@ -224,7 +224,7 @@ class Comment extends React.Component {
                 onEditErrorClick={this.props.onEditErrorClick}
               />) : null}
 
-          {this.state.showChildComments && !this.props.isReadOnly
+          {this.state.showChildComments && !this.props.isReadOnly && this.context.isAuthenticated
             ? (
               <CommentForm
                 subjectType={this.context.comments_contenttype}
