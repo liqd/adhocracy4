@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-11 12:51+0100\n"
+"POT-Creation-Date: 2021-02-22 10:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,12 +84,11 @@ msgid "New Project"
 msgstr "New Project"
 
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:17
-#: meinberlin/apps/dashboard/templates/meinberlin_dashboard/includes/module_blueprint_list_tile.html:16
 msgid "Phase"
 msgstr "Phase"
 
 #: adhocracy4/dashboard/templates/a4dashboard/blueprint_list.html:23
-#: meinberlin/apps/dashboard/templates/meinberlin_dashboard/includes/module_blueprint_list_tile.html:21
+#: meinberlin/apps/dashboard/templates/meinberlin_dashboard/includes/module_blueprint_list_tile.html:15
 msgid "Select"
 msgstr "Select"
 
@@ -220,7 +219,7 @@ msgstr "private"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:19
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:20
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:43
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:124
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:126
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:28
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:69
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_dashboard_list_item.html:19
@@ -779,7 +778,8 @@ msgstr "minutes"
 msgid "second"
 msgstr "second"
 
-#: adhocracy4/modules/models.py:187 adhocracy4/projects/models.py:587
+#: adhocracy4/modules/models.py:187 adhocracy4/modules/models.py:198
+#: adhocracy4/projects/models.py:587 adhocracy4/projects/models.py:598
 #: meinberlin/apps/projects/serializers.py:216
 msgid "seconds"
 msgstr "seconds"
@@ -804,20 +804,20 @@ msgstr "End date can not be before start date."
 msgid "Either both or no date has to be set."
 msgstr "Either both or no date has to be set."
 
-#: adhocracy4/polls/dashboard.py:14 meinberlin/apps/dashboard/blueprints.py:107
+#: adhocracy4/polls/dashboard.py:14 meinberlin/apps/dashboard/blueprints.py:154
 #: meinberlin/apps/polls/dashboard.py:15
 msgid "Poll"
 msgstr "Poll"
 
-#: adhocracy4/polls/phases.py:15 meinberlin/apps/polls/phases.py:15
+#: adhocracy4/polls/phases.py:15
 msgid "Voting phase"
 msgstr "Voting phase"
 
-#: adhocracy4/polls/phases.py:16 meinberlin/apps/polls/phases.py:16
+#: adhocracy4/polls/phases.py:16
 msgid "Cast votes and discuss the poll."
 msgstr "Cast votes and discuss the poll."
 
-#: adhocracy4/polls/phases.py:17 meinberlin/apps/polls/phases.py:17
+#: adhocracy4/polls/phases.py:17 meinberlin/apps/polls/phases.py:18
 msgid "polls"
 msgstr "polls"
 
@@ -856,7 +856,7 @@ msgid "Images"
 msgstr "Images"
 
 #: adhocracy4/projects/admin.py:59 meinberlin/apps/plans/models.py:78
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:98
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:100
 #: meinberlin/apps/projects/admin.py:56 meinberlin/templates/email_base.html:84
 #: meinberlin/templates/email_base.txt:17
 msgid "Contact"
@@ -1517,39 +1517,46 @@ msgstr ""
 "this proposal by using filters."
 
 #: meinberlin/apps/budgeting/phases.py:15
-#: meinberlin/apps/kiezkasse/phases.py:15
-msgid "Request phase"
-msgstr "Request phase"
+#: meinberlin/apps/budgeting/phases.py:32
+#: meinberlin/apps/kiezkasse/phases.py:46
+msgid "What ideas do you suggest for funding?"
+msgstr "What ideas do you suggest for funding?"
 
 #: meinberlin/apps/budgeting/phases.py:16
-msgid "Participants can submit proposals, comment on and rate them."
-msgstr "Participants can submit proposals, comment on and rate them."
+#: meinberlin/apps/kiezkasse/phases.py:47
+msgid ""
+"You can enter your proposal on the map and comment on and rate the proposals "
+"of the other participants."
+msgstr ""
+"You can enter your proposal on the map and comment on and rate the proposals "
+"of the other participants."
 
 #: meinberlin/apps/budgeting/phases.py:18
 msgid "participatory budgeting"
 msgstr "participatory budgeting"
 
-#: meinberlin/apps/budgeting/phases.py:32
-msgid "Proposal phase"
-msgstr "Proposal phase"
-
 #: meinberlin/apps/budgeting/phases.py:33
-msgid "Participants can submit proposals and comment on them."
-msgstr "Participants can submit proposals and comment on them."
+msgid ""
+"You can enter your proposal on the map and comment on the proposals of the "
+"other participants."
+msgstr ""
+"You can enter your proposal on the map and comment on the proposals of the "
+"other participants."
 
-#: meinberlin/apps/budgeting/phases.py:34
-#: meinberlin/apps/budgeting/phases.py:49
+#: meinberlin/apps/budgeting/phases.py:35
+#: meinberlin/apps/budgeting/phases.py:51
 msgid "participatory budgeting 2 phases"
 msgstr "participatory budgeting 2 phases"
 
-#: meinberlin/apps/budgeting/phases.py:47 meinberlin/apps/ideas/phases.py:44
-#: meinberlin/apps/mapideas/phases.py:44
-msgid "Rating phase"
-msgstr "Rating phase"
-
 #: meinberlin/apps/budgeting/phases.py:48
-msgid "Participants can vote on the proposals."
-msgstr "Participants can vote on the proposals."
+msgid "How do you like the submitted proposals?"
+msgstr "How do you like the submitted proposals?"
+
+#: meinberlin/apps/budgeting/phases.py:49
+msgid ""
+"Rate the submitted proposals for the participatory budget (for/against)."
+msgstr ""
+"Rate the submitted proposals for the participatory budget (for/against)."
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:7
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:8
@@ -1897,15 +1904,15 @@ msgstr "Page navigation"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:56
 #: meinberlin/apps/exports/mixins.py:12
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_detail.html:61
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:75
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:77
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:45
 msgid "Reference No."
 msgstr "Reference No."
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:82
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:91
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:107
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:116
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:109
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:118
 msgid "Actions"
 msgstr "Actions"
 
@@ -1935,123 +1942,145 @@ msgid "Brainstorming"
 msgstr "Brainstorming"
 
 #: meinberlin/apps/dashboard/blueprints.py:19
-msgid "Collect first ideas for a specific topic and comment on them."
-msgstr "Collect first ideas for a specific topic and comment on them."
+msgid ""
+"Participants can submit their own ideas and discuss the ideas of others."
+msgstr ""
+"Participants can submit their own ideas and discuss the ideas of others."
 
-#: meinberlin/apps/dashboard/blueprints.py:29
+#: meinberlin/apps/dashboard/blueprints.py:30
 msgid "Spatial Brainstorming"
 msgstr "Spatial Brainstorming"
 
-#: meinberlin/apps/dashboard/blueprints.py:31
-msgid "Collect location specific ideas for a topic and comment on them."
-msgstr "Collect location specific ideas for a topic and comment on them."
+#: meinberlin/apps/dashboard/blueprints.py:32
+msgid ""
+"Participants can submit their own ideas and locate them on a map. They can "
+"also discuss the ideas of others."
+msgstr ""
+"Participants can submit their own ideas and locate them on a map. They can "
+"also discuss the ideas of others."
 
-#: meinberlin/apps/dashboard/blueprints.py:41
+#: meinberlin/apps/dashboard/blueprints.py:43
+msgid "Idea Collection"
+msgstr "Idea Collection"
+
+#: meinberlin/apps/dashboard/blueprints.py:45
+msgid ""
+"Participants can submit their own ideas and discuss and rate (pro/contra) "
+"the ideas of others."
+msgstr ""
+"Participants can submit their own ideas and discuss and rate (pro/contra) "
+"the ideas of others."
+
+#: meinberlin/apps/dashboard/blueprints.py:56
 msgid "Spatial Idea Collection"
 msgstr "Spatial Idea Collection"
 
-#: meinberlin/apps/dashboard/blueprints.py:43
-msgid "Collect location specific ideas that can be rated and commented."
-msgstr "Collect location specific ideas that can be rated and commented."
-
-#: meinberlin/apps/dashboard/blueprints.py:53
-msgid "Agenda Setting"
-msgstr "Agenda Setting"
-
-#: meinberlin/apps/dashboard/blueprints.py:55
+#: meinberlin/apps/dashboard/blueprints.py:58
 msgid ""
-"With Agenda-Setting it’s possible to identify topics and to define mission "
-"statements. Anyone can submit topics that can be commented and rated."
+"Participants can submit their own ideas and locate them on a map. They can "
+"also discuss and rate (pro/contra) the ideas of others."
 msgstr ""
-"With Agenda-Setting it’s possible to identify topics and to define mission "
-"statements. Anyone can submit topics that can be commented and rated."
+"Participants can submit their own ideas and locate them on a map. They can "
+"also discuss and rate (pro/contra) the ideas of others."
 
-#: meinberlin/apps/dashboard/blueprints.py:67
-msgid "Text Review"
-msgstr "Text Review"
-
-#: meinberlin/apps/dashboard/blueprints.py:69
-msgid ""
-"In the text-review it’s possible to structure draft texts that can be "
-"commented."
-msgstr ""
-"In the text-review it’s possible to structure draft texts that can be "
-"commented."
-
-#: meinberlin/apps/dashboard/blueprints.py:80
+#: meinberlin/apps/dashboard/blueprints.py:70
 msgid "Participatory budgeting (1 phase)"
 msgstr "Participatory budgeting (1 phase)"
 
-#: meinberlin/apps/dashboard/blueprints.py:82
+#: meinberlin/apps/dashboard/blueprints.py:72
 msgid ""
-"Proposals can be located on a map and a budget can be added. Proposals can "
-"be commented and rated."
+"Participants can submit their own proposals, mark them on a map, and add a "
+"budget. The proposals of others can be discussed and rated (pro/contra)."
 msgstr ""
-"Proposals can be located on a map and a budget can be added. Proposals can "
-"be commented and rated."
+"Participants can submit their own proposals, mark them on a map, and add a "
+"budget. The proposals of others can be discussed and rated (pro/contra)."
 
-#: meinberlin/apps/dashboard/blueprints.py:93
+#: meinberlin/apps/dashboard/blueprints.py:84
 msgid "Participatory budgeting (2 phase)"
 msgstr "Participatory budgeting (2 phase)"
 
-#: meinberlin/apps/dashboard/blueprints.py:95
+#: meinberlin/apps/dashboard/blueprints.py:86
 msgid ""
-"Proposals can be located on a map and a budget can be added. Proposals can "
-"be commented and rated in 2 phases."
+"In a first phase, participants can submit their own proposals, mark them on "
+"a map, and add a budget. The proposals of others can be discussed and in a "
+"second phase rated (pro/contra)."
 msgstr ""
-"Proposals can be located on a map and a budget can be added. Proposals can "
-"be commented and rated in 2 phases."
+"In a first phase, participants can submit their own proposals, mark them on "
+"a map, and add a budget. The proposals of others can be discussed and in a "
+"second phase rated (pro/contra)."
 
-#: meinberlin/apps/dashboard/blueprints.py:109
-msgid ""
-"Create a poll with multiple questions and possible answers. Anyone can cast "
-"votes and comment on the poll."
-msgstr ""
-"Create a poll with multiple questions and possible answers. Anyone can cast "
-"votes and comment on the poll."
-
-#: meinberlin/apps/dashboard/blueprints.py:120
-msgid "Topic Priorization"
-msgstr "Topic Priorization"
-
-#: meinberlin/apps/dashboard/blueprints.py:122
-msgid "Comment and prioritize topics."
-msgstr "Comment and prioritize topics."
-
-#: meinberlin/apps/dashboard/blueprints.py:132
-msgid "Place Prioritization"
-msgstr "Place Prioritization"
-
-#: meinberlin/apps/dashboard/blueprints.py:134
-msgid "Comment and prioritize places located on a map."
-msgstr "Comment and prioritize places located on a map."
-
-#: meinberlin/apps/dashboard/blueprints.py:144
+#: meinberlin/apps/dashboard/blueprints.py:99
 msgid "Kiezkasse"
 msgstr "Kiezkasse"
 
-#: meinberlin/apps/dashboard/blueprints.py:146
+#: meinberlin/apps/dashboard/blueprints.py:101
 msgid ""
-"With kiezkasse it’s possible to make proposals with budget specifications "
-"and locate them. The proposals can be commented and rated."
+"Participants can submit their own proposals, mark them on a map, and add a "
+"budget. They can express their interest in participating in the proposals’s "
+"implementation. The proposals of others can be discussed and rated (pro/"
+"contra)."
 msgstr ""
-"With kiezkasse it’s possible to make proposals with budget specifications "
-"and locate them. The proposals can be commented and rated."
+"Participants can submit their own proposals, mark them on a map, and add a "
+"budget. They can express their interest in participating in the proposals’s "
+"implementation. The proposals of others can be discussed and rated (pro/"
+"contra)."
 
-#: meinberlin/apps/dashboard/blueprints.py:158
-#: meinberlin/apps/livequestions/phases.py:17
+#: meinberlin/apps/dashboard/blueprints.py:114
+msgid "Prioritization"
+msgstr "Prioritization"
+
+#: meinberlin/apps/dashboard/blueprints.py:116
+msgid ""
+"Participants can discuss and rate (pro/contra) previously added ideas and "
+"topics. Participants cannot add ideas or topics."
+msgstr ""
+"Participants can discuss and rate (pro/contra) previously added ideas and "
+"topics. Participants cannot add ideas or topics."
+
+#: meinberlin/apps/dashboard/blueprints.py:127
+msgid "Spatial Prioritization"
+msgstr "Spatial Prioritization"
+
+#: meinberlin/apps/dashboard/blueprints.py:129
+msgid ""
+"Participants can discuss and rate (pro/contra) ideas and topics previously "
+"added to a map. Participants cannot add ideas or topics."
+msgstr ""
+"Participants can discuss and rate (pro/contra) ideas and topics previously "
+"added to a map. Participants cannot add ideas or topics."
+
+#: meinberlin/apps/dashboard/blueprints.py:141
+msgid "Text Review"
+msgstr "Text Review"
+
+#: meinberlin/apps/dashboard/blueprints.py:143
+msgid ""
+"Participants can discuss the paragraphs of a text that you added beforehand."
+msgstr ""
+"Participants can discuss the paragraphs of a text that you added beforehand."
+
+#: meinberlin/apps/dashboard/blueprints.py:156
+msgid ""
+"Participants can answer one or more questions with predefined choices and "
+"comment on the poll."
+msgstr ""
+"Participants can answer one or more questions with predefined choices and "
+"comment on the poll."
+
+#: meinberlin/apps/dashboard/blueprints.py:167
+#: meinberlin/apps/livequestions/phases.py:20
 msgid "Interactive Event"
 msgstr "Interactive Event"
 
-#: meinberlin/apps/dashboard/blueprints.py:160
+#: meinberlin/apps/dashboard/blueprints.py:169
 msgid ""
 "The participants of an event can ask their questions online. Other "
-"participants can support the question. You as the moderator can sort the "
-"questions by support or characteristic."
+"participants can support the question. The moderator can sort the questions "
+"by support or affiliation."
 msgstr ""
 "The participants of an event can ask their questions online. Other "
-"participants can support the question. You as the moderator can sort the "
-"questions by support or characteristic."
+"participants can support the question. The moderator can sort the questions "
+"by support or affiliation."
 
 #: meinberlin/apps/dashboard/forms.py:15
 #: meinberlin/apps/extprojects/models.py:10
@@ -2132,16 +2161,16 @@ msgid "Document"
 msgstr "Document"
 
 #: meinberlin/apps/documents/phases.py:15
-msgid "Comment phase"
-msgstr "Comment phase"
+msgid "What do you think about the draft?"
+msgstr "What do you think about the draft?"
 
 #: meinberlin/apps/documents/phases.py:16
 msgid "commenting text"
 msgstr "commenting text"
 
 #: meinberlin/apps/documents/phases.py:17
-msgid "Collect comments for the text."
-msgstr "Collect comments for the text."
+msgid "You can comment on the draft paragraph by paragraph or as a whole."
+msgstr "You can comment on the draft paragraph by paragraph or as a whole."
 
 #: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:17
 #: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:24
@@ -2316,9 +2345,7 @@ msgstr "Add image"
 msgid "Visualize your idea."
 msgstr "Visualize your idea."
 
-#: meinberlin/apps/ideas/phases.py:15
-#: meinberlin/apps/livequestions/phases.py:15
-#: meinberlin/apps/mapideas/phases.py:15
+#: meinberlin/apps/ideas/phases.py:15 meinberlin/apps/mapideas/phases.py:15
 msgid "Issue phase"
 msgstr "Issue phase"
 
@@ -2326,42 +2353,51 @@ msgstr "Issue phase"
 msgid "Create new ideas."
 msgstr "Create new ideas."
 
-#: meinberlin/apps/ideas/phases.py:17 meinberlin/apps/ideas/phases.py:31
-#: meinberlin/apps/ideas/phases.py:46 meinberlin/apps/ideas/phases.py:61
-#: meinberlin/apps/mapideas/phases.py:17 meinberlin/apps/mapideas/phases.py:31
-#: meinberlin/apps/mapideas/phases.py:46 meinberlin/apps/mapideas/phases.py:61
-#: meinberlin/apps/mapideas/phases.py:77
+#: meinberlin/apps/ideas/phases.py:17 meinberlin/apps/ideas/phases.py:32
+#: meinberlin/apps/ideas/phases.py:47 meinberlin/apps/ideas/phases.py:62
+#: meinberlin/apps/mapideas/phases.py:17 meinberlin/apps/mapideas/phases.py:32
+#: meinberlin/apps/mapideas/phases.py:47 meinberlin/apps/mapideas/phases.py:62
+#: meinberlin/apps/mapideas/phases.py:78
 msgid "ideas collection"
 msgstr "ideas collection"
 
-#: meinberlin/apps/ideas/phases.py:29 meinberlin/apps/mapideas/phases.py:29
-msgid "Collect phase"
-msgstr "Collect phase"
+#: meinberlin/apps/ideas/phases.py:29 meinberlin/apps/ideas/phases.py:75
+#: meinberlin/apps/mapideas/phases.py:29 meinberlin/apps/mapideas/phases.py:75
+msgid "What are your ideas?"
+msgstr "What are your ideas?"
 
 #: meinberlin/apps/ideas/phases.py:30
-msgid "Create and comment new ideas."
-msgstr "Create and comment new ideas."
+msgid ""
+"You can submit your own ideas and comment on the ideas of the other "
+"participants."
+msgstr ""
+"You can submit your own ideas and comment on the ideas of the other "
+"participants."
 
 #: meinberlin/apps/ideas/phases.py:45 meinberlin/apps/mapideas/phases.py:45
+msgid "Rating phase"
+msgstr "Rating phase"
+
+#: meinberlin/apps/ideas/phases.py:46 meinberlin/apps/mapideas/phases.py:46
 msgid "Get quantative feeback by rating the collected ideas."
 msgstr "Get quantative feeback by rating the collected ideas."
 
-#: meinberlin/apps/ideas/phases.py:58 meinberlin/apps/kiezkasse/phases.py:30
-#: meinberlin/apps/mapideas/phases.py:58
+#: meinberlin/apps/ideas/phases.py:59 meinberlin/apps/kiezkasse/phases.py:30
+#: meinberlin/apps/mapideas/phases.py:59
 msgid "Feedback phase"
 msgstr "Feedback phase"
 
-#: meinberlin/apps/ideas/phases.py:59 meinberlin/apps/mapideas/phases.py:59
+#: meinberlin/apps/ideas/phases.py:60 meinberlin/apps/mapideas/phases.py:60
 msgid "Get feedback for collected ideas through rates and comments."
 msgstr "Get feedback for collected ideas through rates and comments."
 
-#: meinberlin/apps/ideas/phases.py:74 meinberlin/apps/mapideas/phases.py:74
-msgid "Collect ideas and get feedback"
-msgstr "Collect ideas and get feedback"
-
-#: meinberlin/apps/ideas/phases.py:75
-msgid "Create new ideas and get feedback through rates and comments."
-msgstr "Create new ideas and get feedback through rates and comments."
+#: meinberlin/apps/ideas/phases.py:76
+msgid ""
+"You can create your own ideas and comment on and rate the ideas of the other "
+"participants."
+msgstr ""
+"You can create your own ideas and comment on and rate the ideas of the other "
+"participants."
 
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:4
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:4
@@ -2448,6 +2484,10 @@ msgstr "Own contribution to the proposal"
 msgid "I want to contribute to the proposal myself."
 msgstr "I want to contribute to the proposal myself."
 
+#: meinberlin/apps/kiezkasse/phases.py:15
+msgid "Request phase"
+msgstr "Request phase"
+
 #: meinberlin/apps/kiezkasse/phases.py:16
 msgid "Request budgeting."
 msgstr "Request budgeting."
@@ -2461,14 +2501,6 @@ msgstr "kiezkasse"
 #: meinberlin/apps/kiezkasse/phases.py:31
 msgid "Get feedback for budgeting requests through rates and comments."
 msgstr "Get feedback for budgeting requests through rates and comments."
-
-#: meinberlin/apps/kiezkasse/phases.py:46
-msgid "Request and feedback phase"
-msgstr "Request and feedback phase"
-
-#: meinberlin/apps/kiezkasse/phases.py:47
-msgid "Request budgeting and get feedback through rates and comments."
-msgstr "Request budgeting and get feedback through rates and comments."
 
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_moderate_form.html:4
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_moderate_form.html:4
@@ -2510,9 +2542,19 @@ msgstr ""
 "shown when the module phase is active. For description text please use "
 "module or phase description."
 
+#: meinberlin/apps/livequestions/phases.py:15
+msgid "Do you have questions?"
+msgstr "Do you have questions?"
+
 #: meinberlin/apps/livequestions/phases.py:16
-msgid "Add questions and support."
-msgstr "Add questions and support."
+msgid ""
+"You can add your questions and support the questions of other participants. "
+"To allow different people to have their say, please indicate which group you "
+"feel you belong to."
+msgstr ""
+"You can add your questions and support the questions of other participants. "
+"To allow different people to have their say, please indicate which group you "
+"feel you belong to."
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/includes/module_affiliations_form.html:3
 msgid ""
@@ -2610,16 +2652,20 @@ msgid "Create new ideas located on a map."
 msgstr "Create new ideas located on a map."
 
 #: meinberlin/apps/mapideas/phases.py:30
-msgid "Create new ideas located on a map and comment them."
-msgstr "Create new ideas located on a map and comment them."
-
-#: meinberlin/apps/mapideas/phases.py:75
 msgid ""
-"Create new ideas located on a map and get feedback through rates and "
-"comments."
+"You can enter your own ideas on the map and comment on the ideas of the "
+"other participants."
 msgstr ""
-"Create new ideas located on a map and get feedback through rates and "
-"comments."
+"You can enter your own ideas on the map and comment on the ideas of the "
+"other participants."
+
+#: meinberlin/apps/mapideas/phases.py:76
+msgid ""
+"You can enter your own ideas on the map and comment on and rate the ideas of "
+"the other participants."
+msgstr ""
+"You can enter your own ideas on the map and comment on and rate the ideas of "
+"the other participants."
 
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:18
 msgid "Submit Idea"
@@ -2648,13 +2694,12 @@ msgid "Place label"
 msgstr "Place label"
 
 #: meinberlin/apps/maptopicprio/phases.py:15
-#: meinberlin/apps/topicprio/phases.py:15
-msgid "Prioritize phase"
-msgstr "Prioritize phase"
+msgid "What do you think about these places/suggestions?"
+msgstr "What do you think about these places/suggestions?"
 
 #: meinberlin/apps/maptopicprio/phases.py:16
-msgid "Prioritize and comment places located on a map."
-msgstr "Prioritize and comment places located on a map."
+msgid "You can comment and rate the places/suggestions."
+msgstr "You can comment and rate the places/suggestions."
 
 #: meinberlin/apps/maptopicprio/phases.py:17
 msgid "place prioritization"
@@ -3008,7 +3053,7 @@ msgstr ""
 "project is citywide."
 
 #: meinberlin/apps/plans/models.py:83
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:61
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:63
 msgid "Cost"
 msgstr "Cost"
 
@@ -3032,14 +3077,14 @@ msgid "Status"
 msgstr "Status"
 
 #: meinberlin/apps/plans/models.py:108
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:66
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:68
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:51
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:92
 msgid "Participation"
 msgstr "Participation"
 
 #: meinberlin/apps/plans/models.py:114
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:55
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:57
 msgid "Duration"
 msgstr "Duration"
 
@@ -3089,19 +3134,19 @@ msgstr "back to overview of projects"
 msgid "Location"
 msgstr "Location"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:50
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:51
 msgid "Topic"
 msgstr "Topic"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:69
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:71
 msgid "see participation plans"
 msgstr "see participation plans"
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:76
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:78
 msgid "updated on "
 msgstr "updated on "
 
-#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:138
+#: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:140
 #: meinberlin/templates/a4dashboard/base_project_list.html:7
 #: meinberlin/templates/a4dashboard/base_project_list.html:16
 #: meinberlin/templates/a4dashboard/project_list.html:9
@@ -3155,6 +3200,18 @@ msgstr ""
 #: meinberlin/apps/platformemails/views.py:47
 msgid "Platform email has been saved and will be sent to the recipients."
 msgstr "Platform email has been saved and will be sent to the recipients."
+
+#: meinberlin/apps/polls/phases.py:15
+msgid "Please take part in our poll!"
+msgstr "Please take part in our poll!"
+
+#: meinberlin/apps/polls/phases.py:16
+msgid ""
+"Help us by answering the questions below. There is space for your comments "
+"at the end of the questionnaire."
+msgstr ""
+"Help us by answering the questions below. There is space for your comments "
+"at the end of the questionnaire."
 
 #: meinberlin/apps/projectcontainers/dashboard.py:17
 msgid "Edit container settings"
@@ -3377,7 +3434,7 @@ msgstr "Timeline"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:18
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:76
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:219
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:218
 #: meinberlin/apps/users/models.py:42
 #: meinberlin/templates/a4modules/module_detail.html:98
 msgid "active"
@@ -3542,7 +3599,7 @@ msgstr "About the Project"
 msgid "Responsible body"
 msgstr "Responsible body"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:243
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:241
 #: meinberlin/templates/a4modules/module_detail.html:120
 msgid ""
 "This project is not publicly visible. Only invited users can see content and "
@@ -3551,14 +3608,14 @@ msgstr ""
 "This project is not publicly visible. Only invited users can see content and "
 "actively participate."
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:247
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:245
 #: meinberlin/templates/a4modules/module_detail.html:124
 msgid ""
 "This project is publicly visible. Invited users can actively participate."
 msgstr ""
 "This project is publicly visible. Invited users can actively participate."
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:273
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:271
 msgid "No results yet."
 msgstr "No results yet."
 
@@ -3664,9 +3721,13 @@ msgstr ""
 msgid "Service-Konto Login"
 msgstr "Service-Konto Login"
 
+#: meinberlin/apps/topicprio/phases.py:15
+msgid "What do you think about these ideas/topics?"
+msgstr "What do you think about these ideas/topics?"
+
 #: meinberlin/apps/topicprio/phases.py:16
-msgid "Prioritize and comment topics."
-msgstr "Prioritize and comment topics."
+msgid "You can comment on and rate the ideas/topics."
+msgstr "You can comment on and rate the ideas/topics."
 
 #: meinberlin/apps/topicprio/phases.py:17
 msgid "topic prioritization"
@@ -4434,6 +4495,141 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid "Participants can submit proposals, comment on and rate them."
+#~ msgstr "Participants can submit proposals, comment on and rate them."
+
+#~ msgid "Proposal phase"
+#~ msgstr "Proposal phase"
+
+#~ msgid "Participants can submit proposals and comment on them."
+#~ msgstr "Participants can submit proposals and comment on them."
+
+#~ msgid "Participants can vote on the proposals."
+#~ msgstr "Participants can vote on the proposals."
+
+#~ msgid "Collect first ideas for a specific topic and comment on them."
+#~ msgstr "Collect first ideas for a specific topic and comment on them."
+
+#~ msgid "Collect location specific ideas for a topic and comment on them."
+#~ msgstr "Collect location specific ideas for a topic and comment on them."
+
+#~ msgid "Collect location specific ideas that can be rated and commented."
+#~ msgstr "Collect location specific ideas that can be rated and commented."
+
+#~ msgid "Agenda Setting"
+#~ msgstr "Agenda Setting"
+
+#~ msgid ""
+#~ "With Agenda-Setting it’s possible to identify topics and to define "
+#~ "mission statements. Anyone can submit topics that can be commented and "
+#~ "rated."
+#~ msgstr ""
+#~ "With Agenda-Setting it’s possible to identify topics and to define "
+#~ "mission statements. Anyone can submit topics that can be commented and "
+#~ "rated."
+
+#~ msgid ""
+#~ "In the text-review it’s possible to structure draft texts that can be "
+#~ "commented."
+#~ msgstr ""
+#~ "In the text-review it’s possible to structure draft texts that can be "
+#~ "commented."
+
+#~ msgid ""
+#~ "Proposals can be located on a map and a budget can be added. Proposals "
+#~ "can be commented and rated."
+#~ msgstr ""
+#~ "Proposals can be located on a map and a budget can be added. Proposals "
+#~ "can be commented and rated."
+
+#~ msgid ""
+#~ "Proposals can be located on a map and a budget can be added. Proposals "
+#~ "can be commented and rated in 2 phases."
+#~ msgstr ""
+#~ "Proposals can be located on a map and a budget can be added. Proposals "
+#~ "can be commented and rated in 2 phases."
+
+#~ msgid ""
+#~ "Create a poll with multiple questions and possible answers. Anyone can "
+#~ "cast votes and comment on the poll."
+#~ msgstr ""
+#~ "Create a poll with multiple questions and possible answers. Anyone can "
+#~ "cast votes and comment on the poll."
+
+#~ msgid "Topic Priorization"
+#~ msgstr "Topic Priorization"
+
+#~ msgid "Comment and prioritize topics."
+#~ msgstr "Comment and prioritize topics."
+
+#~ msgid "Place Prioritization"
+#~ msgstr "Place Prioritization"
+
+#~ msgid "Comment and prioritize places located on a map."
+#~ msgstr "Comment and prioritize places located on a map."
+
+#~ msgid ""
+#~ "With kiezkasse it’s possible to make proposals with budget specifications "
+#~ "and locate them. The proposals can be commented and rated."
+#~ msgstr ""
+#~ "With kiezkasse it’s possible to make proposals with budget specifications "
+#~ "and locate them. The proposals can be commented and rated."
+
+#~ msgid ""
+#~ "The participants of an event can ask their questions online. Other "
+#~ "participants can support the question. You as the moderator can sort the "
+#~ "questions by support or characteristic."
+#~ msgstr ""
+#~ "The participants of an event can ask their questions online. Other "
+#~ "participants can support the question. You as the moderator can sort the "
+#~ "questions by support or characteristic."
+
+#~ msgid "Comment phase"
+#~ msgstr "Comment phase"
+
+#~ msgid "Collect comments for the text."
+#~ msgstr "Collect comments for the text."
+
+#~ msgid "Collect phase"
+#~ msgstr "Collect phase"
+
+#~ msgid "Create and comment new ideas."
+#~ msgstr "Create and comment new ideas."
+
+#~ msgid "Collect ideas and get feedback"
+#~ msgstr "Collect ideas and get feedback"
+
+#~ msgid "Create new ideas and get feedback through rates and comments."
+#~ msgstr "Create new ideas and get feedback through rates and comments."
+
+#~ msgid "Request and feedback phase"
+#~ msgstr "Request and feedback phase"
+
+#~ msgid "Request budgeting and get feedback through rates and comments."
+#~ msgstr "Request budgeting and get feedback through rates and comments."
+
+#~ msgid "Add questions and support."
+#~ msgstr "Add questions and support."
+
+#~ msgid "Create new ideas located on a map and comment them."
+#~ msgstr "Create new ideas located on a map and comment them."
+
+#~ msgid ""
+#~ "Create new ideas located on a map and get feedback through rates and "
+#~ "comments."
+#~ msgstr ""
+#~ "Create new ideas located on a map and get feedback through rates and "
+#~ "comments."
+
+#~ msgid "Prioritize phase"
+#~ msgstr "Prioritize phase"
+
+#~ msgid "Prioritize and comment places located on a map."
+#~ msgstr "Prioritize and comment places located on a map."
+
+#~ msgid "Prioritize and comment topics."
+#~ msgstr "Prioritize and comment topics."
 
 #~ msgid "Participatory budgeting"
 #~ msgstr "Participatory budgeting"

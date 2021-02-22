@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-11 12:51+0100\n"
+"POT-Creation-Date: 2021-02-22 10:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,8 +94,8 @@ msgstr "Do you really want to delete this comment?"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:61
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:133
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:138
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:99
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:104
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:100
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:105
 msgid "Delete"
 msgstr "Delete"
 
@@ -443,7 +443,7 @@ msgid "Users can select more than one answer."
 msgstr "Users can select more than one answer."
 
 #: adhocracy4/polls/static/polls/QuestionForm.jsx:11
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:67
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:68
 msgid "Add a new choice"
 msgstr "Add a new choice"
 
@@ -452,8 +452,8 @@ msgstr "Add a new choice"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:37
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:110
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:115
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:76
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:81
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:77
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:82
 msgid "Move up"
 msgstr "Move up"
 
@@ -462,8 +462,8 @@ msgstr "Move up"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:127
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:88
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:93
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:89
+#: meinberlin/apps/polls/assets/QuestionForm.jsx:94
 msgid "Move down"
 msgstr "Move down"
 
@@ -481,7 +481,7 @@ msgstr "Thank you! We are taking care of it."
 #: meinberlin/apps/dashboard/assets/ajax_modal.js:12
 #: meinberlin/apps/embed/assets/embed.js:54
 #: meinberlin/apps/embed/assets/embed.js:55
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:84
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:85
 #: meinberlin/apps/plans/assets/FilterNav.jsx:213
 msgid "Close"
 msgstr "Close"
@@ -708,66 +708,66 @@ msgstr "Questions Answered"
 msgid "Affiliation Of Answered Questions"
 msgstr "Affiliation Of Answered Questions"
 
-#: meinberlin/apps/maps/assets/map-address.js:89
+#: meinberlin/apps/maps/assets/map-address.js:87
 msgid "No matches found within the project area"
 msgstr "No matches found within the project area"
 
-#: meinberlin/apps/maps/assets/map-address.js:92
+#: meinberlin/apps/maps/assets/map-address.js:90
 msgid "Did you mean:"
 msgstr "Did you mean:"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:66
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:67
 msgid "Export polygon as GeoJSON"
 msgstr "Export polygon as GeoJSON"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:67
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:77
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:89
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:68
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:78
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:90
 msgid "Import polygon via file upload"
 msgstr "Import polygon via file upload"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:91
-msgid ""
-"Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
-msgstr ""
-"Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
-
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:92
 msgid ""
+"Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
+msgstr ""
+"Upload a polygon from a GeoJSON (.geojson) or a zipped Shapefile (.zip)."
+
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:93
+msgid ""
 "Note that uploading Shapefiles is not supported with Internet Explorer 10"
 msgstr ""
 "Note that uploading Shapefiles is not supported with Internet Explorer 10"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:93
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:94
 msgid "Attention importing a file will delete the existing polygons."
 msgstr "Attention importing a file will delete the existing polygons."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:98
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:99
 msgid "Upload"
 msgstr "Upload"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:105
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:106
 msgid "Cancel"
 msgstr "Cancel"
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:139
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:141
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:140
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:142
 msgid "The uploaded file is not a valid shapefile."
 msgstr "The uploaded file is not a valid shapefile."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:143
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:144
 msgid "The uploaded file could not be imported."
 msgstr "The uploaded file could not be imported."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:157
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:158
 msgid "The uploaded file is not a valid geojson file."
 msgstr "The uploaded file is not a valid geojson file."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:162
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:163
 msgid "Invalid file format."
 msgstr "Invalid file format."
 
-#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:279
+#: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:280
 msgid "Do you want to load this preset and delete all the existing polygons?"
 msgstr "Do you want to load this preset and delete all the existing polygons?"
 
@@ -886,12 +886,12 @@ msgid "remaining"
 msgstr "remaining"
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:192
-#: meinberlin/apps/plans/assets/PopUp.jsx:66
+#: meinberlin/apps/plans/assets/PopUp.jsx:68
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:210
-#: meinberlin/apps/plans/assets/PopUp.jsx:86
+#: meinberlin/apps/plans/assets/PopUp.jsx:88
 msgid "Participation projects: "
 msgstr "Participation projects: "
 
@@ -900,24 +900,24 @@ msgid "Status: "
 msgstr "Status: "
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:250
-#: meinberlin/apps/plans/assets/PlansMap.jsx:286
+#: meinberlin/apps/plans/assets/PlansMap.jsx:290
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:261
+#: meinberlin/apps/plans/assets/PlansMap.jsx:265
 msgid "Address Search"
 msgstr "Address Search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:263
-#: meinberlin/apps/plans/assets/PlansMap.jsx:264
+#: meinberlin/apps/plans/assets/PlansMap.jsx:267
+#: meinberlin/apps/plans/assets/PlansMap.jsx:268
 msgid "Address search"
 msgstr "Address search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:293
+#: meinberlin/apps/plans/assets/PlansMap.jsx:297
 msgid "Close information box"
 msgstr "Close information box"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:294
+#: meinberlin/apps/plans/assets/PlansMap.jsx:298
 msgid ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
@@ -929,11 +929,11 @@ msgstr ""
 msgid "Participation: from "
 msgstr "Participation: from "
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:70
+#: meinberlin/apps/plans/assets/PopUp.jsx:72
 msgid "Superordinate project: "
 msgstr "Superordinate project: "
 
-#: meinberlin/apps/plans/assets/PopUp.jsx:90
+#: meinberlin/apps/plans/assets/PopUp.jsx:92
 msgid "Participation: "
 msgstr "Participation: "
 
