@@ -1626,7 +1626,7 @@ msgstr ""
 #: meinberlin/apps/budgeting/phases.py:32
 #: meinberlin/apps/kiezkasse/phases.py:46
 msgid "What ideas do you suggest for funding?"
-msgstr ""
+msgstr "Welche Ideen schlagen Sie für eine Finanzierung vor?"
 
 #: meinberlin/apps/budgeting/phases.py:16
 #: meinberlin/apps/kiezkasse/phases.py:47
@@ -1634,6 +1634,8 @@ msgid ""
 "You can enter your proposal on the map and comment on and rate the proposals "
 "of the other participants."
 msgstr ""
+"Sie können Ihren Vorschlag auf der Karte eintragen und die Vorschläge der "
+"anderen Teilnehmer*innen kommentieren und bewerten."
 
 #: meinberlin/apps/budgeting/phases.py:18
 msgid "participatory budgeting"
@@ -1644,6 +1646,8 @@ msgid ""
 "You can enter your proposal on the map and comment on the proposals of the "
 "other participants."
 msgstr ""
+"Sie können Ihren Vorschlag auf der Karte eintragen und die Vorschläge der "
+"anderen Teilnehmer*innen kommentieren."
 
 #: meinberlin/apps/budgeting/phases.py:35
 #: meinberlin/apps/budgeting/phases.py:51
@@ -1652,12 +1656,14 @@ msgstr "Bürgerhaushalt 2 Phasen"
 
 #: meinberlin/apps/budgeting/phases.py:48
 msgid "How do you like the submitted proposals?"
-msgstr ""
+msgstr "Wie gefallen Ihnen die eingereichten Vorschläge?"
 
 #: meinberlin/apps/budgeting/phases.py:49
 msgid ""
 "Rate the submitted proposals for the participatory budget (for/against)."
 msgstr ""
+"Bewerten Sie die eingereichten Vorschläge für den Bürger*innenhaushalt "
+"(dafür/dagegen)."
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:7
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:8
@@ -2048,36 +2054,44 @@ msgstr "Brainstorming"
 msgid ""
 "Participants can submit their own ideas and discuss the ideas of others."
 msgstr ""
+"Die Teilnehmenden können eigene Ideen anlegen und die Ideen Anderer "
+"diskutieren."
 
 #: meinberlin/apps/dashboard/blueprints.py:30
 msgid "Spatial Brainstorming"
-msgstr "Brainstorming mit Kartenfunktion"
+msgstr "Brainstorming mit Karte"
 
 #: meinberlin/apps/dashboard/blueprints.py:32
 msgid ""
 "Participants can submit their own ideas and locate them on a map. They can "
 "also discuss the ideas of others."
 msgstr ""
+"Die Teilnehmenden können eigene Ideen auf einer Karte eintragen und die "
+"Ideen Anderer diskutieren."
 
 #: meinberlin/apps/dashboard/blueprints.py:43
 msgid "Idea Collection"
-msgstr ""
+msgstr "Ideensammlung"
 
 #: meinberlin/apps/dashboard/blueprints.py:45
 msgid ""
 "Participants can submit their own ideas and discuss and rate (pro/contra) "
 "the ideas of others."
 msgstr ""
+"Die Teilnehmenden können eigene Ideen anlegen und die Ideen Anderer "
+"diskutieren und bewerten (dafür/dagegen)."
 
 #: meinberlin/apps/dashboard/blueprints.py:56
 msgid "Spatial Idea Collection"
-msgstr "Ideensammlung mit Kartenfunktion"
+msgstr "Ideensammlung mit Karte"
 
 #: meinberlin/apps/dashboard/blueprints.py:58
 msgid ""
 "Participants can submit their own ideas and locate them on a map. They can "
 "also discuss and rate (pro/contra) the ideas of others."
 msgstr ""
+"Die Teilnehmenden können eigene Ideen auf einer Karte eintragen und die "
+"Ideen Anderer diskutieren und bewerten (dafür/dagegen)."
 
 #: meinberlin/apps/dashboard/blueprints.py:70
 msgid "Participatory budgeting (1 phase)"
@@ -2088,6 +2102,9 @@ msgid ""
 "Participants can submit their own proposals, mark them on a map, and add a "
 "budget. The proposals of others can be discussed and rated (pro/contra)."
 msgstr ""
+"Die Teilnehmenden können eigene Vorschläge auf einer Karte eintragen und mit "
+"einem Budget versehen. Die Ideen Anderer können diskutiert und bewertet "
+"(dafür/dagegen) werden."
 
 #: meinberlin/apps/dashboard/blueprints.py:84
 msgid "Participatory budgeting (2 phase)"
@@ -2099,6 +2116,9 @@ msgid ""
 "a map, and add a budget. The proposals of others can be discussed and in a "
 "second phase rated (pro/contra)."
 msgstr ""
+"Die Teilnehmenden können in einer ersten Phase eigene Vorschläge auf einer "
+"Karte eintragen und mit einem Budget versehen. Die Ideen Anderer können "
+"diskutiert und in einer zweiten Phase bewertet (dafür/dagegen) werden."
 
 #: meinberlin/apps/dashboard/blueprints.py:99
 msgid "Kiezkasse"
@@ -2111,41 +2131,55 @@ msgid ""
 "implementation. The proposals of others can be discussed and rated (pro/"
 "contra)."
 msgstr ""
+"Die Teilnehmenden können eigene Vorschläge auf einer Karte eintragen, mit "
+"einem Budget versehen und ihr Interesse bekunden, an der Projektumsetzung "
+"mitzuwirken. Die Ideen Anderer können diskutiert und bewertet "
+"(dafür/dagegen) werden."
 
 #: meinberlin/apps/dashboard/blueprints.py:114
 msgid "Prioritization"
-msgstr ""
+msgstr "Priorisierung"
 
 #: meinberlin/apps/dashboard/blueprints.py:116
 msgid ""
 "Participants can discuss and rate (pro/contra) previously added ideas and "
 "topics. Participants cannot add ideas or topics."
 msgstr ""
+"Die Teilnehmenden können vorab eingestellte Ideen und Themen diskutieren und "
+"bewerten (dafür/dagegen). Teilnehmende können keine Ideen und Themen "
+"hinzufügen."
 
 #: meinberlin/apps/dashboard/blueprints.py:127
 msgid "Spatial Prioritization"
-msgstr ""
+msgstr "Priorisierung mit Karte"
 
 #: meinberlin/apps/dashboard/blueprints.py:129
 msgid ""
 "Participants can discuss and rate (pro/contra) ideas and topics previously "
 "added to a map. Participants cannot add ideas or topics."
 msgstr ""
+"Die Teilnehmenden können vorab auf einer Karte eingetragene Ideen und Themen "
+"diskutieren und bewerten (dafür/dagegen). Teilnehmende können keine Ideen "
+"und Themen hinzufügen."
 
 #: meinberlin/apps/dashboard/blueprints.py:141
 msgid "Text Review"
-msgstr "Text kommentieren"
+msgstr "Text diskutieren"
 
 #: meinberlin/apps/dashboard/blueprints.py:143
 msgid ""
 "Participants can discuss the paragraphs of a text that you added beforehand."
 msgstr ""
+"Die Teilnehmenden können einen vorab eingestellten Text absatzweise "
+"diskutieren."
 
 #: meinberlin/apps/dashboard/blueprints.py:156
 msgid ""
 "Participants can answer one or more questions with predefined choices and "
 "comment on the poll."
 msgstr ""
+"Die Teilnehmenden können auf eine oder mehrere Fragen mit vordefinierten "
+"Antwortmöglichkeiten antworten und die Umfrage kommentieren."
 
 #: meinberlin/apps/dashboard/blueprints.py:167
 #: meinberlin/apps/livequestions/phases.py:20
@@ -2158,6 +2192,9 @@ msgid ""
 "participants can support the question. The moderator can sort the questions "
 "by support or affiliation."
 msgstr ""
+"Die Teilnehmenden einer Veranstaltung können ihre Fragen live online "
+"stellen. Andere Teilnehmende können die Frage unterstützen. Die Moderation "
+"kann die Fragen anhand von Unterstützung und Zugehörigkeiten sortieren."
 
 #: meinberlin/apps/dashboard/forms.py:15
 #: meinberlin/apps/extprojects/models.py:10
@@ -2245,7 +2282,7 @@ msgstr "Dokument"
 
 #: meinberlin/apps/documents/phases.py:15
 msgid "What do you think about the draft?"
-msgstr ""
+msgstr "Was denken Sie über den Entwurf?"
 
 #: meinberlin/apps/documents/phases.py:16
 msgid "commenting text"
@@ -2253,7 +2290,7 @@ msgstr "Text kommentieren"
 
 #: meinberlin/apps/documents/phases.py:17
 msgid "You can comment on the draft paragraph by paragraph or as a whole."
-msgstr ""
+msgstr "Sie können den Entwurf absatzweise oder als Ganzes kommentieren."
 
 #: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:17
 #: meinberlin/apps/documents/templates/meinberlin_documents/chapter_detail.html:24
@@ -2453,13 +2490,15 @@ msgstr "Ideensammlung"
 #: meinberlin/apps/ideas/phases.py:29 meinberlin/apps/ideas/phases.py:75
 #: meinberlin/apps/mapideas/phases.py:29 meinberlin/apps/mapideas/phases.py:75
 msgid "What are your ideas?"
-msgstr ""
+msgstr "Was sind Ihre Ideen?"
 
 #: meinberlin/apps/ideas/phases.py:30
 msgid ""
 "You can submit your own ideas and comment on the ideas of the other "
 "participants."
 msgstr ""
+"Sie können eigene Ideen anlegen und die Ideen der anderen Teilnehmer*innen "
+"kommentieren."
 
 #: meinberlin/apps/ideas/phases.py:45 meinberlin/apps/mapideas/phases.py:45
 msgid "Rating phase"
@@ -2485,6 +2524,8 @@ msgid ""
 "You can create your own ideas and comment on and rate the ideas of the other "
 "participants."
 msgstr ""
+"Sie können eigene Ideen anlegen und die Ideen der anderen Teilnehmer*innen "
+"kommentieren und bewerten."
 
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:4
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_confirm_delete.html:4
@@ -2632,7 +2673,7 @@ msgstr ""
 
 #: meinberlin/apps/livequestions/phases.py:15
 msgid "Do you have questions?"
-msgstr ""
+msgstr "Sie haben Fragen?"
 
 #: meinberlin/apps/livequestions/phases.py:16
 msgid ""
@@ -2640,6 +2681,9 @@ msgid ""
 "To allow different people to have their say, please indicate which group you "
 "feel you belong to."
 msgstr ""
+"Sie können Ihre Fragen hinzufügen und die Fragen anderer Teilnehmer*innen "
+"unterstützen. Um unterschiedliche Menschen zu Wort kommen zu lassen, geben "
+"Sie bitte an, welcher Gruppe Sie sich zugehörig fühlen."
 
 #: meinberlin/apps/livequestions/templates/meinberlin_livequestions/includes/module_affiliations_form.html:3
 msgid ""
@@ -2742,12 +2786,16 @@ msgid ""
 "You can enter your own ideas on the map and comment on the ideas of the "
 "other participants."
 msgstr ""
+"Sie können eigene Ideen auf der Karte eintragen und die Ideen der anderen "
+"Teilnehmer*innen kommentieren."
 
 #: meinberlin/apps/mapideas/phases.py:76
 msgid ""
 "You can enter your own ideas on the map and comment on and rate the ideas of "
 "the other participants."
 msgstr ""
+"Sie können eigene Ideen auf der Karte eintragen und die Ideen der anderen "
+"Teilnehmer*innen kommentieren und bewerten."
 
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:18
 msgid "Submit Idea"
@@ -2777,11 +2825,11 @@ msgstr "Ortsbezeichnung"
 
 #: meinberlin/apps/maptopicprio/phases.py:15
 msgid "What do you think about these places/suggestions?"
-msgstr ""
+msgstr "Was denken Sie über diese Orte/Vorschläge?"
 
 #: meinberlin/apps/maptopicprio/phases.py:16
 msgid "You can comment and rate the places/suggestions."
-msgstr ""
+msgstr "Sie können die Orte/ Vorschläge kommentieren und bewerten."
 
 #: meinberlin/apps/maptopicprio/phases.py:17
 msgid "place prioritization"
@@ -3291,13 +3339,15 @@ msgstr ""
 
 #: meinberlin/apps/polls/phases.py:15
 msgid "Please take part in our poll!"
-msgstr ""
+msgstr "Machen Sie mit bei unserer Umfrage!"
 
 #: meinberlin/apps/polls/phases.py:16
 msgid ""
 "Help us by answering the questions below. There is space for your comments "
 "at the end of the questionnaire."
 msgstr ""
+"Helfen Sie uns, indem Sie die unten stehenden Fragen beantworten. Am Ende "
+"des Fragebogens ist Platz für Ihre Kommentare."
 
 #: meinberlin/apps/projectcontainers/dashboard.py:17
 msgid "Edit container settings"
@@ -3806,11 +3856,11 @@ msgstr "Service-Konto Login"
 
 #: meinberlin/apps/topicprio/phases.py:15
 msgid "What do you think about these ideas/topics?"
-msgstr ""
+msgstr "Was denken Sie über diese Ideen/Themen?"
 
 #: meinberlin/apps/topicprio/phases.py:16
 msgid "You can comment on and rate the ideas/topics."
-msgstr ""
+msgstr "Sie können die Ideen/ Themen kommentieren und bewerten."
 
 #: meinberlin/apps/topicprio/phases.py:17
 msgid "topic prioritization"
