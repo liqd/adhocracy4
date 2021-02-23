@@ -64,7 +64,7 @@
     "timeago.js": "4.0.2",
     "webpack": "5.22.0",
     "webpack-merge": "5.7.3",
-    "whatwg-fetch": "3.5.0"
+    "whatwg-fetch": "3.6.1"
   },
   "devDependencies": {
     "babel-eslint": "10.1.0",
