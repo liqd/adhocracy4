@@ -39,6 +39,10 @@ $timeline-carousel__top-space: 11px;
     border-top: 2px dashed $border-color;
 }
 
+.timeline-carousel__wrapper {
+    overflow: hidden;
+}
+
 //slick overwrites
 .slick-slide {
     margin: 0 3*$spacer;
@@ -125,6 +129,12 @@ $timeline-carousel__top-space: 11px;
 
     &.timeline-carousel__dot {
         transform: scale(1.85);
+    }
+}
+
+@media screen and (min-width: $breakpoint) {
+    .timeline-carousel__wrapper {
+        overflow: visible;
     }
 }
 
