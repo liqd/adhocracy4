@@ -81,7 +81,8 @@ $(document).on('click', function () {
 })
 
 // This function is overwritten with custom behavior in embed.js.
-export function getCurrentPath () {
+window.adhocracy4 = {}
+window.adhocracy4.getCurrentPath = function () {
   return location.pathname
 }
 
