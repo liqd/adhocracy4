@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', init, false)
 document.addEventListener('a4.embed.ready', init, false)
 
 // Closes bootstrap collapse on click elsewhere
-$(document).on('click', function () {
+document.addEventListener('click', function () {
   $('.collapse').collapse('hide')
 })
 
