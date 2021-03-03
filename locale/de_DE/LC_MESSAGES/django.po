@@ -2193,7 +2193,7 @@ msgid ""
 "by support or affiliation."
 msgstr ""
 "Die Teilnehmenden einer Veranstaltung können ihre Fragen live online "
-"stellen. Andere Teilnehmende können die Frage unterstützen. Die Moderation "
+"stellen. Andere Teilnehmende können die Fragen unterstützen. Die Moderation "
 "kann die Fragen anhand von Unterstützung und Zugehörigkeiten sortieren."
 
 #: meinberlin/apps/dashboard/forms.py:15
