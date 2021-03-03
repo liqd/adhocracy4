@@ -5,31 +5,18 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
-    vendor: [
+    adhocracy4: [
       '@fortawesome/fontawesome-free/scss/fontawesome.scss',
       '@fortawesome/fontawesome-free/scss/brands.scss',
       '@fortawesome/fontawesome-free/scss/regular.scss',
       '@fortawesome/fontawesome-free/scss/solid.scss',
-      'adhocracy4',
-      'classnames',
-      'immutability-helper',
-      'js-cookie',
-      'react',
-      'react-dom',
-      'react-flip-move',
-      'react-sticky-box'
+      'shariff/dist/shariff.min.css',
+      'select2/dist/css/select2.min.css',
+      'slick-carousel/slick/slick.css',
+      './meinberlin/assets/extra_css/_slick-theme.css',
+      './meinberlin/assets/scss/style.scss',
+      './meinberlin/assets/js/app.js'
     ],
-    adhocracy4: {
-      import: [
-        'shariff/dist/shariff.min.css',
-        'select2/dist/css/select2.min.css',
-        'slick-carousel/slick/slick.css',
-        './meinberlin/assets/extra_css/_slick-theme.css',
-        './meinberlin/assets/scss/style.scss',
-        './meinberlin/assets/js/app.js'
-      ],
-      dependOn: 'vendor'
-    },
     captcheck: {
       import: [
         './meinberlin/apps/captcha/assets/captcheck.js'
@@ -215,10 +202,6 @@ module.exports = {
       jQuery: 'jquery',
       Promise: ['es6-promise', 'Promise'],
       fetch: ['whatwg-fetch', 'fetch']
-    }),
-    new webpack.optimize.SplitChunksPlugin({
-      name: 'vendor',
-      filename: 'vendor.js'
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',

@@ -7,13 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>{% block title %}{% trans 'meinBerlin' %}{% endblock %}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}?v=2" />
-    <link rel="stylesheet" type="text/css" href="{% static 'vendor.css' %}" />
     {% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
     {% endblock %}
     <link rel="stylesheet" type="text/css" href="{% static 'adhocracy4.css' %}" />
     <script src="{% url 'javascript-catalog' %}"></script>
-    <script src="{% static 'vendor.js' %}"></script>
     <script src="{% static 'adhocracy4.js' %}"></script>
     <meta name="viewport" content="width=device-width" />
     {% block header_meta %}{% endblock %}
