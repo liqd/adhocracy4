@@ -32,7 +32,12 @@ $(document).ready(function () {
   const $top = $('<div tabindex="-1">')
 
   window.adhocracy4.getCurrentPath = function () {
-    return currentPath
+    // currentPath is currently broken - it will result in not closing
+    // the login popup. Using login_success will make us close the popup
+    // and return to the initial page. This is not correct, but better
+    // and consistent with the login button on the embed frame.
+    // return currentPath
+    return '/embed/login_success'
   }
 
   const headers = {
