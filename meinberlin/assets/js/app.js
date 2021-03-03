@@ -69,6 +69,9 @@ function init () {
 
   if ($.fn.select2) {
     $('.js-select2').select2()
+    $('.select2__no-search').select2({
+      minimumResultsForSearch: -1
+    })
   }
 
   // This function adds required classes to iframes added by ckeditor

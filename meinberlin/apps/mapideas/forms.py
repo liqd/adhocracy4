@@ -27,7 +27,7 @@ class MapIdeaForm(CategorizableFieldMixin,
         fields = ['name', 'description', 'image', 'category',
                   'labels', 'point', 'point_label']
         widgets = {
-            'category': Select2Widget,
+            'category': Select2Widget(attrs={'class': 'select2__no-search'})
         }
 
 
