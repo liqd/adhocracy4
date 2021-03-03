@@ -212,7 +212,7 @@
                 <div class="l-center-6">
                     {% for phase in module.phases %}
                         <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
-                            <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar{% endif %}">
+                            <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar u-inline-flex{% endif %}">
                                 {% if phase == module.active_phase %}
                                     <span class="lr-bar__left">{{ phase.name }}</span>
                                     <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
