@@ -88,7 +88,6 @@ document.addEventListener('click', function () {
 })
 
 // This function is overwritten with custom behavior in embed.js.
-window.adhocracy4 = {}
-window.adhocracy4.getCurrentPath = function () {
+export function getCurrentPath () {
   return location.pathname
 }
