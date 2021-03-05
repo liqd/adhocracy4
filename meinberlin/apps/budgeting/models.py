@@ -4,6 +4,8 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.comments import models as comment_models
+from adhocracy4.projects.models import \
+    ProjectContactDetailMixin as contact_mixin
 from adhocracy4.ratings import models as rating_models
 from meinberlin.apps.mapideas import models as mapidea_models
 
@@ -26,6 +28,14 @@ class Proposal(mapidea_models.AbstractMapIdea):
         help_text=_('Exclude this proposal from all listings by default. '
                     'You can still access this proposal by using filters.'),
     )
+
+    allow_contact = models.BooleanField(default=True)
+
+    contact_email = models.EmailField(blank=True)
+
+    contact_phone = models.CharField(blank=True,
+                                     max_length=255,
+                                     validators=[contact_mixin.phone_regex])
 
     def get_absolute_url(self):
         return reverse('meinberlin_budgeting:proposal-detail',

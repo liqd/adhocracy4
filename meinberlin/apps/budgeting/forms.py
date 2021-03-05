@@ -1,21 +1,52 @@
 from django import forms
+from django.core import validators
+from django.utils.translation import ugettext_lazy as _
 
-from meinberlin.apps.contrib.widgets import Select2Widget
+from meinberlin.apps.contrib import fields
+from meinberlin.apps.contrib import widgets
+from meinberlin.apps.contrib.mixins import ContactStorageConsentMixin
 from meinberlin.apps.mapideas.forms import MapIdeaForm
 
 from . import models
 
 
-class ProposalForm(MapIdeaForm):
+class ProposalForm(MapIdeaForm, ContactStorageConsentMixin):
 
     class Meta:
         model = models.Proposal
-        fields = ['name', 'description', 'image',
-                  'category', 'labels', 'budget', 'point',
-                  'point_label']
+        fields = ['name', 'description', 'image', 'category',
+                  'labels', 'budget', 'point', 'point_label',
+                  'allow_contact', 'contact_email', 'contact_phone']
         widgets = {
-            'category': Select2Widget(attrs={'class': 'select2__no-search'})
+            'category': widgets.Select2Widget(
+                attrs={'class': 'select2__no-search'})
         }
+        labels = {
+            'allow_contact': _('For questions or in case of implementation '
+                               'of my proposal you can contact me.'),
+            'contact_phone': _('Telephone number'),
+        }
+
+    class Media:
+        js = ('budgeting_disable_contact.js',)
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        choices = [(user.email,
+                    _('Please contact me via the e-mail address '
+                      'of my user account ({}).').format(user.email)),
+                   ('other',
+                    _('Please contact me via another e-mail address:'))]
+
+        self.fields['contact_email'] = fields.ChoiceWithOtherOptionField(
+            required=False,
+            label=_('E-mail address'),
+            choices=choices,
+            widget=widgets.RadioSelectWithTextInputWidget(
+                choices=choices,
+                placeholder_textinput='new e-mail address'),
+            validators_textinput=[validators.validate_email])
 
 
 class ProposalModerateForm(forms.ModelForm):
