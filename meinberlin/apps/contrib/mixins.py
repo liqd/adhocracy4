@@ -58,3 +58,26 @@ class ImageRightOfUseMixin(forms.ModelForm):
                            _("You want to upload an image. "
                              "Please check that you have the "
                              "right of use for the image."))
+
+
+class ContactStorageConsentMixin(forms.ModelForm):
+
+    contact_storage_consent = forms.BooleanField(required=False,
+                                                 label=_('contact storage '
+                                                         'consent'))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance.allow_contact and \
+           not self.instance.contact_email == '':
+            self.initial['contact_storage_consent'] = True
+
+    def clean(self):
+        cleaned_data = super().clean()
+        allow_contact = cleaned_data.get('allow_contact')
+        contact_storage_consent = cleaned_data.get('contact_storage_consent')
+        if allow_contact and not contact_storage_consent:
+            self.add_error('contact_storage_consent',
+                           _('Please consent to the storage of your contact '
+                             'information.'))
+        return cleaned_data

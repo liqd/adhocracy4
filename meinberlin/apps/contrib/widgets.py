@@ -41,3 +41,27 @@ class TextWithDatalistWidget(forms.TextInput):
         if options:
             return options
         return {}
+
+
+class RadioSelectWithTextInputWidget(forms.widgets.MultiWidget):
+    """To be used with contrib.fields.ChoiceWithOtherOptionField."""
+
+    def __init__(self, choices, placeholder_textinput='', *args, **kwargs):
+        self.choices = choices
+        widgets = (
+            forms.RadioSelect(choices=choices),
+            forms.TextInput(attrs={'placeholder': placeholder_textinput}),
+        )
+        super(RadioSelectWithTextInputWidget, self).__init__(widgets,
+                                                             *args,
+                                                             **kwargs)
+
+    def decompress(self, value):
+        # inital
+        if not value:
+            return [self.choices[0][0], '']
+        # if 'other' was chosen
+        elif value not in [val for (val, label) in self.choices]:
+            return ['other', value]
+        else:
+            return [value, '']
