@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-22 10:13+0100\n"
+"POT-Creation-Date: 2021-03-05 11:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -479,8 +479,8 @@ msgstr "Thank you! We are taking care of it."
 #: adhocracy4/static/Alert.jsx:5 meinberlin/apps/contrib/assets/Alert.jsx:10
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/dashboard/assets/ajax_modal.js:12
-#: meinberlin/apps/embed/assets/embed.js:54
-#: meinberlin/apps/embed/assets/embed.js:55
+#: meinberlin/apps/embed/assets/embed.js:59
+#: meinberlin/apps/embed/assets/embed.js:60
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:85
 #: meinberlin/apps/plans/assets/FilterNav.jsx:213
 msgid "Close"
@@ -546,19 +546,19 @@ msgstr "Headline"
 msgid "Paragraph"
 msgstr "Paragraph"
 
-#: meinberlin/apps/embed/assets/embed.js:118
+#: meinberlin/apps/embed/assets/embed.js:123
 msgid "We couldn't find what you were looking for."
 msgstr "We couldn't find what you were looking for."
 
-#: meinberlin/apps/embed/assets/embed.js:122
+#: meinberlin/apps/embed/assets/embed.js:127
 msgid "You don't have the permission to view this page."
 msgstr "You don't have the permission to view this page."
 
-#: meinberlin/apps/embed/assets/embed.js:125
+#: meinberlin/apps/embed/assets/embed.js:130
 msgid "Something went wrong!"
 msgstr "Something went wrong!"
 
-#: meinberlin/apps/embed/assets/embed.js:226
+#: meinberlin/apps/embed/assets/embed.js:231
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."

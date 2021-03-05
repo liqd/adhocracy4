@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-22 10:13+0100\n"
+"POT-Creation-Date: 2021-03-05 11:41+0100\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -601,8 +601,8 @@ msgstr "Vielen Dank! Wir werden uns darum kümmern."
 #: meinberlin/apps/contrib/assets/Alert.jsx:10
 #: meinberlin/apps/contrib/assets/Alert.jsx:11
 #: meinberlin/apps/dashboard/assets/ajax_modal.js:12
-#: meinberlin/apps/embed/assets/embed.js:54
-#: meinberlin/apps/embed/assets/embed.js:55
+#: meinberlin/apps/embed/assets/embed.js:59
+#: meinberlin/apps/embed/assets/embed.js:60
 #: meinberlin/apps/maps/assets/map_choose_polygon_with_preset.js:85
 #: meinberlin/apps/plans/assets/FilterNav.jsx:213
 msgid "Close"
@@ -668,19 +668,19 @@ msgstr "Überschrift"
 msgid "Paragraph"
 msgstr "Absatz"
 
-#: meinberlin/apps/embed/assets/embed.js:118
+#: meinberlin/apps/embed/assets/embed.js:123
 msgid "We couldn't find what you were looking for."
 msgstr "Wir konnten diese Seite nicht finden."
 
-#: meinberlin/apps/embed/assets/embed.js:122
+#: meinberlin/apps/embed/assets/embed.js:127
 msgid "You don't have the permission to view this page."
 msgstr "Sie haben nicht die nötigen Rechte, um diese Seite anzuschauen."
 
-#: meinberlin/apps/embed/assets/embed.js:125
+#: meinberlin/apps/embed/assets/embed.js:130
 msgid "Something went wrong!"
 msgstr "Etwas ging schief!"
 
-#: meinberlin/apps/embed/assets/embed.js:226
+#: meinberlin/apps/embed/assets/embed.js:231
 msgid ""
 "You have third party cookies disabled. You can still view the content of "
 "this project but won't be able to login."

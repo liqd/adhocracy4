@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-22 10:13+0100\n"
+"POT-Creation-Date: 2021-03-05 11:41+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -187,7 +187,7 @@ msgstr "Projektentwurf anlegen"
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:30
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:14
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:37
-#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:51
+#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:49
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:42
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_confirm_delete.html:15
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:36
@@ -2133,8 +2133,8 @@ msgid ""
 msgstr ""
 "Die Teilnehmenden können eigene Vorschläge auf einer Karte eintragen, mit "
 "einem Budget versehen und ihr Interesse bekunden, an der Projektumsetzung "
-"mitzuwirken. Die Ideen Anderer können diskutiert und bewertet "
-"(dafür/dagegen) werden."
+"mitzuwirken. Die Ideen Anderer können diskutiert und bewertet (dafür/"
+"dagegen) werden."
 
 #: meinberlin/apps/dashboard/blueprints.py:114
 msgid "Prioritization"
@@ -2326,8 +2326,8 @@ msgstr "Nächstes Kapitel"
 msgid "back to chapter"
 msgstr "Zurück zum Kapitel"
 
-#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:25
-#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:50
+#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:23
+#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:48
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html:47
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html:52
 #: meinberlin/templates/account/login.html:4
@@ -2336,25 +2336,25 @@ msgstr "Zurück zum Kapitel"
 msgid "Login"
 msgstr "Anmelden"
 
-#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:27
+#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:25
 msgid "You are logged in as "
 msgstr "Sie sind angemeldet als "
 
-#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:30
+#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:28
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html:29
 #: meinberlin/apps/users/templates/meinberlin_users/indicator.html:32
 msgid "Logout"
 msgstr "Abmelden"
 
-#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:42
+#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:40
 msgid "Go to platform"
 msgstr "Zur Plattform"
 
-#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:45
+#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:43
 msgid "Confirm login"
 msgstr "Anmeldung bestätigen"
 
-#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:48
+#: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:46
 msgid ""
 "You need to login first. By clicking \"Login\" a popup will open so you can "
 "sign in safely. Do you want to login now?"
@@ -4130,19 +4130,19 @@ msgstr "Diese Seite konnte nicht gefunden werden."
 msgid "meinBerlin"
 msgstr "meinBerlin"
 
-#: meinberlin/templates/500.html:10 meinberlin/templates/base.html:28
+#: meinberlin/templates/500.html:9 meinberlin/templates/base.html:26
 msgid "Skip to content "
 msgstr "Zum Inhalt springen"
 
-#: meinberlin/templates/500.html:19 meinberlin/templates/portal_header.html:10
+#: meinberlin/templates/500.html:18 meinberlin/templates/portal_header.html:10
 msgid "Portal Navigation"
 msgstr "Navigation des Portals berlin.de"
 
-#: meinberlin/templates/500.html:50
+#: meinberlin/templates/500.html:49
 msgid "Internal server error."
 msgstr "Interner Serverfehler."
 
-#: meinberlin/templates/500.html:51 meinberlin/templates/base_errors.html:11
+#: meinberlin/templates/500.html:50 meinberlin/templates/base_errors.html:11
 msgid "Back to meinBerlin."
 msgstr "Zurück zu meinBerlin"
 
@@ -4154,6 +4154,14 @@ msgstr "Organisationen"
 #: meinberlin/templates/a4dashboard/project_create_form.html:14
 msgid "All participation projects"
 msgstr "Alle Beteiligungsprojekte"
+
+#: meinberlin/templates/a4dashboard/includes/module_phases_form.html:6
+msgid ""
+"Depending on the selected module, the participation\n"
+"    process has one or two phases. The name and description of the phase(s)\n"
+"    should encourage the users to participate and let them know how\n"
+"    they can participate."
+msgstr ""
 
 #: meinberlin/templates/a4dashboard/includes/nav_modules.html:4
 msgid "Participation Module"
