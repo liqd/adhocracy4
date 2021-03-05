@@ -112,6 +112,11 @@ module.exports = {
         'adhocracy4/adhocracy4/categories/assets/select_dropdown_init.js'
       ],
       dependOn: 'adhocracy4'
+    },
+    budgeting_disable_contact: {
+      import: [
+        './meinberlin/apps/budgeting/assets/disable_contact.js'
+      ]
     }
   },
   output: {
