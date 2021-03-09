@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-05 11:41+0100\n"
+"POT-Creation-Date: 2021-03-14 19:08+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -61,7 +61,7 @@ msgstr "Benötigte Felder zur Veröffentlichung"
 #: adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
 #: meinberlin/apps/activities/templates/meinberlin_activities/activities_dashboard.html:17
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:39
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:29
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:47
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:36
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:40
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:35
@@ -184,7 +184,7 @@ msgstr "Projektentwurf anlegen"
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:41
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:30
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:48
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:14
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:37
 #: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:49
@@ -1578,7 +1578,15 @@ msgstr ""
 msgid "Export Excel"
 msgstr "Excel exportieren"
 
-#: meinberlin/apps/budgeting/exports.py:71
+#: meinberlin/apps/budgeting/exports.py:43
+msgid "Contact E-Mail"
+msgstr ""
+
+#: meinberlin/apps/budgeting/exports.py:44
+msgid "Contact Phone"
+msgstr ""
+
+#: meinberlin/apps/budgeting/exports.py:78
 #: meinberlin/apps/documents/exports.py:39 meinberlin/apps/ideas/exports.py:69
 #: meinberlin/apps/kiezkasse/exports.py:71
 #: meinberlin/apps/mapideas/exports.py:69
@@ -1587,7 +1595,7 @@ msgstr "Excel exportieren"
 msgid "ID"
 msgstr "ID"
 
-#: meinberlin/apps/budgeting/exports.py:72
+#: meinberlin/apps/budgeting/exports.py:79
 #: meinberlin/apps/documents/exports.py:40 meinberlin/apps/ideas/exports.py:70
 #: meinberlin/apps/kiezkasse/exports.py:72
 #: meinberlin/apps/mapideas/exports.py:70
@@ -1596,7 +1604,7 @@ msgstr "ID"
 msgid "Comment"
 msgstr "Kommentar"
 
-#: meinberlin/apps/budgeting/exports.py:73
+#: meinberlin/apps/budgeting/exports.py:80
 #: meinberlin/apps/documents/exports.py:41 meinberlin/apps/exports/mixins.py:68
 #: meinberlin/apps/ideas/exports.py:71 meinberlin/apps/kiezkasse/exports.py:73
 #: meinberlin/apps/mapideas/exports.py:71
@@ -1605,16 +1613,37 @@ msgstr "Kommentar"
 msgid "Created"
 msgstr "Erstellt"
 
-#: meinberlin/apps/budgeting/models.py:20
+#: meinberlin/apps/budgeting/forms.py:25
+msgid ""
+"For questions or in case of implementation of my proposal you can contact me."
+msgstr ""
+
+#: meinberlin/apps/budgeting/forms.py:27
+msgid "Telephone number"
+msgstr ""
+
+#: meinberlin/apps/budgeting/forms.py:36
+msgid "Please contact me via the e-mail address of my user account ({})."
+msgstr ""
+
+#: meinberlin/apps/budgeting/forms.py:40
+msgid "Please contact me via another e-mail address:"
+msgstr ""
+
+#: meinberlin/apps/budgeting/forms.py:44
+msgid "E-mail address"
+msgstr ""
+
+#: meinberlin/apps/budgeting/models.py:22
 #: meinberlin/apps/kiezkasse/models.py:20
 msgid "Required Budget"
 msgstr "Notwendiges Budget"
 
-#: meinberlin/apps/budgeting/models.py:25
+#: meinberlin/apps/budgeting/models.py:27
 msgid "Proposal is archived"
 msgstr "Vorschlag ist archiviert"
 
-#: meinberlin/apps/budgeting/models.py:26
+#: meinberlin/apps/budgeting/models.py:28
 msgid ""
 "Exclude this proposal from all listings by default. You can still access "
 "this proposal by using filters."
@@ -1664,6 +1693,20 @@ msgid ""
 msgstr ""
 "Bewerten Sie die eingereichten Vorschläge für den Bürger*innenhaushalt "
 "(dafür/dagegen)."
+
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:28
+msgid "Contact Information"
+msgstr ""
+
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:39
+#, python-format
+msgid ""
+"I hereby expressly consent to the storage of the contact information I have "
+"entered. The contact information may be used by the responsible "
+"administration exclusively for contacting me in the present project. I can "
+"revoke this consent at any time. I have read and accept the <a href="
+"\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
+msgstr ""
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:7
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:8
@@ -1821,7 +1864,7 @@ msgstr "am beliebtesten"
 msgid "Most commented"
 msgstr "meist kommentiert"
 
-#: meinberlin/apps/budgeting/views.py:85 meinberlin/apps/kiezkasse/views.py:80
+#: meinberlin/apps/budgeting/views.py:95 meinberlin/apps/kiezkasse/views.py:80
 msgid "Your budget request has been deleted"
 msgstr "Ihr Vorschlag wurde gelöscht"
 
@@ -1993,6 +2036,14 @@ msgid ""
 msgstr ""
 "Sie wollen ein Bild hochladen. Bitte bestätigen Sie, dass Sie die "
 "entsprechenden Nutzungsrechte haben."
+
+#: meinberlin/apps/contrib/mixins.py:66
+msgid "contact storage consent"
+msgstr ""
+
+#: meinberlin/apps/contrib/mixins.py:81
+msgid "Please consent to the storage of your contact information."
+msgstr ""
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/filter_and_sort.html:3
 msgid "Filter bar "

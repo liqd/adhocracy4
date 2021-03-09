@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-05 11:41+0100\n"
+"POT-Creation-Date: 2021-03-14 19:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,7 +54,7 @@ msgstr "Missing fields for publication"
 #: adhocracy4/dashboard/templates/a4dashboard/base_form_project.html:18
 #: meinberlin/apps/activities/templates/meinberlin_activities/activities_dashboard.html:17
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:39
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:29
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:47
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:36
 #: meinberlin/apps/extprojects/templates/meinberlin_extprojects/external_project_create_dashboard.html:40
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_moderate_form.html:35
@@ -156,7 +156,7 @@ msgstr "Create draft"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_create_form.html:27
 #: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_create_dashboard.html:41
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:30
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:48
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:14
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_moderate_form.html:37
 #: meinberlin/apps/embed/templates/meinberlin_embed/embed.html:49
@@ -1472,7 +1472,15 @@ msgstr ""
 msgid "Export Excel"
 msgstr "Export Excel"
 
-#: meinberlin/apps/budgeting/exports.py:71
+#: meinberlin/apps/budgeting/exports.py:43
+msgid "Contact E-Mail"
+msgstr "Contact E-Mail"
+
+#: meinberlin/apps/budgeting/exports.py:44
+msgid "Contact Phone"
+msgstr "Contact Phone"
+
+#: meinberlin/apps/budgeting/exports.py:78
 #: meinberlin/apps/documents/exports.py:39 meinberlin/apps/ideas/exports.py:69
 #: meinberlin/apps/kiezkasse/exports.py:71
 #: meinberlin/apps/mapideas/exports.py:69
@@ -1481,7 +1489,7 @@ msgstr "Export Excel"
 msgid "ID"
 msgstr "ID"
 
-#: meinberlin/apps/budgeting/exports.py:72
+#: meinberlin/apps/budgeting/exports.py:79
 #: meinberlin/apps/documents/exports.py:40 meinberlin/apps/ideas/exports.py:70
 #: meinberlin/apps/kiezkasse/exports.py:72
 #: meinberlin/apps/mapideas/exports.py:70
@@ -1490,7 +1498,7 @@ msgstr "ID"
 msgid "Comment"
 msgstr "Comment"
 
-#: meinberlin/apps/budgeting/exports.py:73
+#: meinberlin/apps/budgeting/exports.py:80
 #: meinberlin/apps/documents/exports.py:41 meinberlin/apps/exports/mixins.py:68
 #: meinberlin/apps/ideas/exports.py:71 meinberlin/apps/kiezkasse/exports.py:73
 #: meinberlin/apps/mapideas/exports.py:71
@@ -1499,16 +1507,38 @@ msgstr "Comment"
 msgid "Created"
 msgstr "Created"
 
-#: meinberlin/apps/budgeting/models.py:20
+#: meinberlin/apps/budgeting/forms.py:25
+msgid ""
+"For questions or in case of implementation of my proposal you can contact me."
+msgstr ""
+"For questions or in case of implementation of my proposal you can contact me."
+
+#: meinberlin/apps/budgeting/forms.py:27
+msgid "Telephone number"
+msgstr "Telephone number"
+
+#: meinberlin/apps/budgeting/forms.py:37
+msgid "Please contact me via the e-mail address of my user account ({})."
+msgstr "Please contact me via the e-mail address of my user account ({})."
+
+#: meinberlin/apps/budgeting/forms.py:40
+msgid "Please contact me via another e-mail address:"
+msgstr "Please contact me via another e-mail address:"
+
+#: meinberlin/apps/budgeting/forms.py:44
+msgid "E-mail address"
+msgstr "E-mail address"
+
+#: meinberlin/apps/budgeting/models.py:22
 #: meinberlin/apps/kiezkasse/models.py:20
 msgid "Required Budget"
 msgstr "Required Budget"
 
-#: meinberlin/apps/budgeting/models.py:25
+#: meinberlin/apps/budgeting/models.py:27
 msgid "Proposal is archived"
 msgstr "Proposal is archived"
 
-#: meinberlin/apps/budgeting/models.py:26
+#: meinberlin/apps/budgeting/models.py:28
 msgid ""
 "Exclude this proposal from all listings by default. You can still access "
 "this proposal by using filters."
@@ -1557,6 +1587,25 @@ msgid ""
 "Rate the submitted proposals for the participatory budget (for/against)."
 msgstr ""
 "Rate the submitted proposals for the participatory budget (for/against)."
+
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:28
+msgid "Contact Information"
+msgstr "Contact Information"
+
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:39
+#, python-format
+msgid ""
+"I hereby expressly consent to the storage of the contact information I have "
+"entered. The contact information may be used by the responsible "
+"administration exclusively for contacting me in the present project. I can "
+"revoke this consent at any time. I have read and accept the <a href="
+"\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
+msgstr ""
+"I hereby expressly consent to the storage of the contact information I have "
+"entered. The contact information may be used by the responsible "
+"administration exclusively for contacting me in the present project. I can "
+"revoke this consent at any time. I have read and accept the <a href="
+"\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:7
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:8
@@ -1714,7 +1763,7 @@ msgstr "Most popular"
 msgid "Most commented"
 msgstr "Most commented"
 
-#: meinberlin/apps/budgeting/views.py:85 meinberlin/apps/kiezkasse/views.py:80
+#: meinberlin/apps/budgeting/views.py:95 meinberlin/apps/kiezkasse/views.py:80
 msgid "Your budget request has been deleted"
 msgstr "Your budget request has been deleted"
 
@@ -1884,6 +1933,14 @@ msgid ""
 msgstr ""
 "You want to upload an image. Please check that you have the right of use for "
 "the image."
+
+#: meinberlin/apps/contrib/mixins.py:66
+msgid "contact storage consent"
+msgstr "contact storage consent"
+
+#: meinberlin/apps/contrib/mixins.py:81
+msgid "Please consent to the storage of your contact information."
+msgstr "Please consent to the storage of your contact information."
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/filter_and_sort.html:3
 msgid "Filter bar "
@@ -4507,23 +4564,6 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
-
-#~ msgid ""
-#~ "\n"
-#~ "        Depending on the selected module, the participation\n"
-#~ "        process has one or two phases. The name and description of the "
-#~ "phase(s)\n"
-#~ "        should encourage the users to participate and let them know how\n"
-#~ "        they can participate.\n"
-#~ "    "
-#~ msgstr ""
-#~ "\n"
-#~ "        Depending on the selected module, the participation\n"
-#~ "        process has one or two phases. The name and description of the "
-#~ "phase(s)\n"
-#~ "        should encourage the users to participate and let them know how\n"
-#~ "        they can participate.\n"
-#~ "    "
 
 #~ msgid "Participants can submit proposals, comment on and rate them."
 #~ msgstr "Participants can submit proposals, comment on and rate them."
