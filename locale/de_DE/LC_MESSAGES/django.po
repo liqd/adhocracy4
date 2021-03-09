@@ -1580,11 +1580,11 @@ msgstr "Excel exportieren"
 
 #: meinberlin/apps/budgeting/exports.py:43
 msgid "Contact E-Mail"
-msgstr ""
+msgstr "Kontakt E-Mail"
 
 #: meinberlin/apps/budgeting/exports.py:44
 msgid "Contact Phone"
-msgstr ""
+msgstr "Kontakt Telefon"
 
 #: meinberlin/apps/budgeting/exports.py:78
 #: meinberlin/apps/documents/exports.py:39 meinberlin/apps/ideas/exports.py:69
@@ -1617,22 +1617,26 @@ msgstr "Erstellt"
 msgid ""
 "For questions or in case of implementation of my proposal you can contact me."
 msgstr ""
+"Für Rückfragen bzw. im Falle einer Umsetzung meines Vorschlag können Sie "
+"mich kontaktieren."
 
 #: meinberlin/apps/budgeting/forms.py:27
 msgid "Telephone number"
-msgstr ""
+msgstr "Telefonnummer"
 
 #: meinberlin/apps/budgeting/forms.py:36
 msgid "Please contact me via the e-mail address of my user account ({})."
 msgstr ""
+"Bitte kontaktieren Sie mich über die E-Mail-Adresse meines "
+"Nutzerkontos ({})."
 
 #: meinberlin/apps/budgeting/forms.py:40
 msgid "Please contact me via another e-mail address:"
-msgstr ""
+msgstr "Bitte kontaktieren Sie mich über eine andere E-Mail-Adresse:"
 
 #: meinberlin/apps/budgeting/forms.py:44
 msgid "E-mail address"
-msgstr ""
+msgstr "E-Mail-Adresse"
 
 #: meinberlin/apps/budgeting/models.py:22
 #: meinberlin/apps/kiezkasse/models.py:20
@@ -1696,7 +1700,7 @@ msgstr ""
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:28
 msgid "Contact Information"
-msgstr ""
+msgstr "Kontaktinformation"
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_form.html:39
 #, python-format
@@ -1707,6 +1711,12 @@ msgid ""
 "revoke this consent at any time. I have read and accept the <a href="
 "\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
 msgstr ""
+"Hiermit willige ich ausdrücklich in die Speicherung der von mir "
+"eingetragenen Kontaktinformationen ein. Die Kontaktinformationen dürfen von "
+"der verantwortlichen Verwaltung ausschließlich für die Kontaktaufnahme in "
+"dem vorliegenden Projekt verwendet werden. Ich kann diese Einwilligung "
+"jederzeit widerrufen. Die <a href=\"%(privacy_policy)s\" target=\"_blank\">"
+"Datenschutzerklärung</a> habe ich gelesen und akzeptiere sie."
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:7
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:8
@@ -2039,11 +2049,11 @@ msgstr ""
 
 #: meinberlin/apps/contrib/mixins.py:66
 msgid "contact storage consent"
-msgstr ""
+msgstr "Einwilligung zur Speicherung der Kontaktinformationen"
 
 #: meinberlin/apps/contrib/mixins.py:81
 msgid "Please consent to the storage of your contact information."
-msgstr ""
+msgstr "Bitte stimmen Sie der Speicherung Ihrer Kontaktinformationen zu."
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/filter_and_sort.html:3
 msgid "Filter bar "
