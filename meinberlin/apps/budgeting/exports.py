@@ -23,7 +23,8 @@ class ProposalExportView(PermissionRequiredMixin,
                          export_mixins.ItemExportWithModeratorRemark,
                          a4_export_views.BaseItemExportView):
     model = models.Proposal
-    fields = ['name', 'description', 'budget']
+    fields = ['name', 'description', 'budget', 'contact_email',
+              'contact_phone']
     html_fields = ['description']
     permission_required = 'a4projects.change_project'
 
@@ -36,6 +37,12 @@ class ProposalExportView(PermissionRequiredMixin,
             .annotate_comment_count()\
             .annotate_positive_rating_count()\
             .annotate_negative_rating_count()
+
+    def get_virtual_fields(self, virtual):
+        virtual = super().get_virtual_fields(virtual)
+        virtual['contact_email'] = _('Contact E-Mail')
+        virtual['contact_phone'] = _('Contact Phone')
+        return virtual
 
     @property
     def raise_exception(self):
