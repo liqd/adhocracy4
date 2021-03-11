@@ -117,13 +117,25 @@ export default class QuestionModerator extends React.Component {
           </div>
           <div>
             {this.props.displayIsOnShortlist &&
-              <button type="button" className="btn btn--none" onClick={this.toggleIsOnShortList.bind(this)}>
-                <i className={this.state.is_on_shortlist ? 'far fa-list-alt u-primary' : 'far fa-list-alt u-muted'} aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText} />
+              <button
+                type="button"
+                className="btn btn--none"
+                onClick={this.toggleIsOnShortList.bind(this)}
+                aria-label={this.state.is_on_shortlist ? addShortlistText : removeShortlistText}
+                title={this.state.is_on_shortlist ? addShortlistText : removeShortlistText}
+              >
+                <i className={this.state.is_on_shortlist ? 'far fa-list-alt u-primary' : 'far fa-list-alt u-muted'} aria-hidden="true" />
               </button>}
             {this.props.displayIsLive &&
-              <button type="button" className="btn btn--none" onClick={this.toggleIslive.bind(this)}>
+              <button
+                type="button"
+                className="btn btn--none"
+                onClick={this.toggleIslive.bind(this)}
+                aria-label={this.state.is_live ? addLiveText : removeLiveText}
+                title={this.state.is_live ? addLiveText : removeLiveText}
+              >
                 <span className="fa-stack fa-1x">
-                  <i className={this.state.is_live ? 'fas fa-tv fa-stack-2x u-primary' : 'fas fa-tv fa-stack-2x u-muted'} aria-label={this.state.is_live ? addLiveText : removeLiveText} />
+                  <i className={this.state.is_live ? 'fas fa-tv fa-stack-2x u-primary' : 'fas fa-tv fa-stack-2x u-muted'} aria-hidden="true" />
                   <i className={this.state.is_live ? 'fas fa-check fa-stack-1x fa-inverse u-primary' : 'fas fa-check fa-stack-1x u-muted'} aria-hidden="true" />
                 </span>
               </button>}
@@ -131,19 +143,20 @@ export default class QuestionModerator extends React.Component {
               <button
                 type="button" className="btn btn--none"
                 onClick={this.toggleIsAnswered.bind(this)}
+                aria-label={doneText}
                 title={doneText}
               >
-                <i
-                  className={this.props.is_answered ? 'far fa-check-circle u-primary' : 'far fa-check-circle u-muted'}
-                  aria-label={doneText}
-                />
+                <i className={this.props.is_answered ? 'far fa-check-circle u-primary' : 'far fa-check-circle u-muted'} aria-hidden="true" />
               </button>}
             {this.props.displayIsHidden &&
               <button
-                type="button" className="btn btn--none"
+                type="button"
+                className="btn btn--none"
                 onClick={this.toggleIshidden.bind(this)}
+                aria-label={this.props.is_hidden ? hiddenText : undoHiddenText}
+                title={this.props.is_hidden ? hiddenText : undoHiddenText}
               >
-                <i className={this.props.is_hidden ? 'far fa-eye-slash u-muted' : 'far fa-eye u-primary'} aria-label={this.props.is_hidden ? hiddenText : undoHiddenText} />
+                <i className={this.props.is_hidden ? 'far fa-eye-slash u-muted' : 'far fa-eye u-primary'} aria-hidden="true" />
               </button>}
           </div>
         </div>
