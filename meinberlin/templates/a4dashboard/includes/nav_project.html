@@ -3,9 +3,8 @@
 
 <div class="dashboard-nav">
     <div class="dashboard-nav__collapsible-menu">
-        <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__project--{{ project.id }}" {% if not -1 in closed_accordeons %}checked{% endif %}>
-
-        <label class="dashboard-nav__dropdown" for="dashboard-nav__project--{{ project.id }}">
+        <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__project--{{ project.id }}" {% if not -1 in closed_accordeons %}checked{% endif %} aria-label="{% trans 'Toggle menu' %}">
+        <label class="dashboard-nav__dropdown" for="dashboard-nav__project--{{ project.id }}" tabindex="0">
             <div class="dashboard-nav__item">
                 <div class="dashboard-nav__header">
                     <span>{% trans 'Project' %}</span>

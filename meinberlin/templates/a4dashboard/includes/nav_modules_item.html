@@ -3,8 +3,8 @@
 
 <div class="dashboard-nav">
     <div class="dashboard-nav__collapsible-menu">
-        <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__module--{{ module_menu.module.pk }}" {% if not module_menu.module.pk in closed_accordeons %}checked{% endif %}>
-        <label class="dashboard-nav__dropdown" for="dashboard-nav__module--{{ module_menu.module.pk }}">
+        <input class="dashboard-nav__checkbox" type="checkbox" id="dashboard-nav__module--{{ module_menu.module.pk }}" {% if not module_menu.module.pk in closed_accordeons %}checked{% endif %} aria-label="{% trans 'Toggle menu' %}">
+        <label class="dashboard-nav__dropdown" for="dashboard-nav__module--{{ module_menu.module.pk }}" tabindex="0">
             <div class="dashboard-nav__item">
                 <div class="dashboard-nav__header">
                     <span>{% trans 'Module' %}</span>

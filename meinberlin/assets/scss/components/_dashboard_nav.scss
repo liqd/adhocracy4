@@ -97,7 +97,8 @@ input:checked ~ .dashboard-nav__dropdown {
     }
 
     input {
-        display: none;
+        position: absolute;
+        opacity: 0;
     }
 }
 
