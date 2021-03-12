@@ -26,11 +26,15 @@ def is_org_member(user, subject):
 
 
 @rules.predicate
-def is_org_group_member(user, organisation):
-    if organisation:
-        if hasattr(organisation, 'groups'):
-            org_groups = organisation.groups.all()
-            user_groups = user.groups.all()
-            group = org_groups & user_groups
-            return group.count() > 0
+def is_org_group_member(user, subject):
+    if subject:
+        if hasattr(subject, 'has_initiator') and hasattr(subject, 'groups'):
+            organisation = subject
+        elif (hasattr(subject, 'organisation') and
+              hasattr(subject.organisation, 'groups')):
+            organisation = subject.organisation
+        org_groups = organisation.groups.all()
+        user_groups = user.groups.all()
+        group = org_groups & user_groups
+        return group.count() > 0
     return False
