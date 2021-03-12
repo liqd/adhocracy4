@@ -80,7 +80,7 @@ def test_is_org_member(user_factory, organisation_factory,
 
 @pytest.mark.django_db
 def test_is_org_group_member(user_factory, organisation_factory,
-                             group_factory):
+                             project_factory, group_factory):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -96,19 +96,31 @@ def test_is_org_group_member(user_factory, organisation_factory,
     organisation1.groups.add(group1)
     organisation2 = organisation_factory()
     organisation2.groups.add(group2)
+    project1 = project_factory(organisation=organisation1)
+    project2 = project_factory(organisation=organisation2)
 
     assert not predicates.is_org_group_member(user, organisation1)
     assert not predicates.is_org_group_member(user, organisation2)
+    assert not predicates.is_org_group_member(user, project1)
+    assert not predicates.is_org_group_member(user, project2)
     assert not predicates.is_org_group_member(user, False)
     assert not predicates.is_org_group_member(admin, organisation1)
     assert not predicates.is_org_group_member(admin, organisation2)
+    assert not predicates.is_org_group_member(admin, project1)
+    assert not predicates.is_org_group_member(admin, project2)
     assert not predicates.is_org_group_member(admin, False)
     assert not predicates.is_org_group_member(initiator, organisation1)
     assert not predicates.is_org_group_member(initiator, organisation2)
+    assert not predicates.is_org_group_member(initiator, project1)
+    assert not predicates.is_org_group_member(initiator, project2)
     assert not predicates.is_org_group_member(initiator, False)
     assert predicates.is_org_group_member(group_member_12, organisation1)
     assert predicates.is_org_group_member(group_member_12, organisation2)
+    assert predicates.is_org_group_member(group_member_12, project1)
+    assert predicates.is_org_group_member(group_member_12, project2)
     assert not predicates.is_org_group_member(group_member_12, False)
     assert not predicates.is_org_group_member(group_member_23, organisation1)
     assert predicates.is_org_group_member(group_member_23, organisation2)
+    assert not predicates.is_org_group_member(group_member_23, project1)
+    assert predicates.is_org_group_member(group_member_23, project2)
     assert not predicates.is_org_group_member(group_member_23, False)
