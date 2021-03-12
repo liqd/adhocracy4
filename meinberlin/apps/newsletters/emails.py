@@ -4,6 +4,7 @@ from allauth.account.models import EmailAddress
 from django.apps import apps
 from django.conf import settings
 from django.contrib import auth
+from django.utils.html import format_html
 
 from adhocracy4.emails.mixins import ReportToAdminEmailMixin
 from meinberlin.apps.contrib.emails import Email
@@ -25,7 +26,9 @@ class NewsletterEmail(ReportToAdminEmailMixin, Email):
         return super().dispatch(object, *args, **kwargs)
 
     def get_reply_to(self):
-        return ['{} <{}>'.format(self.object.sender_name, self.object.sender)]
+        return [format_html('{} <{}>',
+                            self.object.sender_name,
+                            self.object.sender)]
 
     def get_receivers(self):
         verified_emails = EmailAddress.objects \
