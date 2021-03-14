@@ -166,13 +166,15 @@
     role="tabpanel"
     aria-labelledby="tab-project-{{ project.pk }}-participation"
     aria-expanded="true">
+        {% if project.display_timeline %}
         <div class="l-wrapper">
-            {% if project.display_timeline %}
             <div class="timeline-carousel__wrapper">
                 {% include "meinberlin_projects/includes/project_timeline-carousel.html" with dates=project.participation_dates project=project %}
             </div>
-            {% endif %}
-            {% if event %}
+        </div>
+        {% endif %}
+        {% if event %}
+        <div class="l-wrapper">
             <div class="l-center-6">
                 <h2>{{ event.name }}</h2>
                 <div class="phase-info__item__subtitle">
@@ -180,7 +182,9 @@
                 </div>
                 <P>{{ event.description | safe | transform_collapsibles | richtext }}</P>
             </div>
-            {% elif view.is_project_view %}
+        </div>
+        {% elif view.is_project_view %}
+        <div class="l-wrapper">
             <div class="participation-tile__wrapper">
                 <div class="participation-tile__list-container">
                     <ul class="u-list-reset participation-tile__list">
@@ -190,50 +194,51 @@
                     </ul>
                 </div>
             </div>
-            {% else %} <!-- if no timeline and just one module and no phase view to dispatch to -->
-                {% if not module.active_phase %}
-                <div class="l-center-6 u-spacer-bottom-double">
-                    <strong>
-                        {% trans 'Participation is not possible at the moment.' %}
-                        {% if not module.past_phases %}
-                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                            {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
-                        {% elif module.future_phases %}
-                            {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
-                            {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
-                        {% else %}
-                            {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
-                            {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
-                        {% endif %}
-                    </strong>
-                </div>
-                {% endif %}
-                {% with phase_count=module.phases.count %}
-                <div class="l-center-6">
-                    {% for phase in module.phases %}
-                        <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
-                            <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar u-inline-flex{% endif %}">
-                                {% if phase == module.active_phase %}
-                                    <span class="lr-bar__left">{{ phase.name }}</span>
-                                    <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
-                                {% else %}
-                                    {{ phase.name }}
-                                {% endif %}
-                            </div>
-                            <div class="phase-info__item__subtitle">
-                                {% html_date phase.start_date 'DATETIME_FORMAT' %}
-                                &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
-                            </div>
-                            <div class="phase-info__item__description">
-                                {{ phase.description }}
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                {% endwith %}
-            {% endif %}
         </div>
-        {% if not view.is_project_view and not event %}
+        {% else %} <!-- if no timeline and just one module and no phase view to dispatch to -->
+        <div class="l-wrapper">
+            {% if not module.active_phase %}
+            <div class="l-center-6 u-spacer-bottom-double">
+                <strong>
+                    {% trans 'Participation is not possible at the moment.' %}
+                    {% if not module.past_phases %}
+                        {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                        {% blocktrans with date=start_date %}It starts on {{ date }}.{% endblocktrans%}
+                    {% elif module.future_phases %}
+                        {% html_date module.future_phases.first.start_date 'DATETIME_FORMAT' as start_date %}
+                        {% blocktrans with date=start_date %}It continues on {{ date }}.{% endblocktrans%}
+                    {% else %}
+                        {% html_date module.past_phases.last.end_date 'DATETIME_FORMAT' as end_date %}
+                        {% blocktrans with date=end_date %}It ended on {{ date }}.{% endblocktrans%}
+                    {% endif %}
+                </strong>
+            </div>
+            {% endif %}
+            {% with phase_count=module.phases.count %}
+            <div class="l-center-6">
+                {% for phase in module.phases %}
+                    <div class="phase-info__item {% if phase_count == 1 %} u-no-border {% endif %}">
+                        <div class="phase-info__item__title{% if phase == module.active_phase %} lr-bar u-inline-flex{% endif %}">
+                            {% if phase == module.active_phase %}
+                                <span class="lr-bar__left">{{ phase.name }}</span>
+                                <span class="lr-bar__right phase-info__highlight">{% trans 'active' %}</span>
+                            {% else %}
+                                {{ phase.name }}
+                            {% endif %}
+                        </div>
+                        <div class="phase-info__item__subtitle">
+                            {% html_date phase.start_date 'DATETIME_FORMAT' %}
+                            &ndash; {% html_date phase.end_date 'DATETIME_FORMAT' %}
+                        </div>
+                        <div class="phase-info__item__description">
+                            {{ phase.description }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endwith %}
+        </div>
+
         <div class="l-wrapper">
             <div class="l-center-6 u-spacer-bottom-double">
             {% if project.is_private %}
