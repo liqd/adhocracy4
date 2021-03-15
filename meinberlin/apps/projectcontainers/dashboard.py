@@ -3,7 +3,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard import ProjectFormComponent
 from adhocracy4.dashboard import components
-from meinberlin.apps.dashboard import get_project_type
 
 from . import forms
 from . import views
@@ -20,8 +19,8 @@ class ContainerBasicComponent(ProjectFormComponent):
                          '/container_basic_form.html'
 
     def is_effective(self, project):
-        project_type = get_project_type(project)
-        return project_type == 'container'
+        return (project.project_type
+                == 'meinberlin_projectcontainers.ProjectContainer')
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-container-basic-edit', kwargs={
@@ -51,8 +50,8 @@ class ContainerInformationComponent(ProjectFormComponent):
     form_template_name = 'a4dashboard/includes/project_information_form.html'
 
     def is_effective(self, project):
-        project_type = get_project_type(project)
-        return project_type == 'container'
+        return (project.project_type
+                == 'meinberlin_projectcontainers.ProjectContainer')
 
 
 class ContainerProjectsComponent(ProjectFormComponent):
@@ -66,8 +65,8 @@ class ContainerProjectsComponent(ProjectFormComponent):
                          '/container_projects_form.html'
 
     def is_effective(self, project):
-        project_type = get_project_type(project)
-        return project_type == 'container'
+        return (project.project_type
+                == 'meinberlin_projectcontainers.ProjectContainer')
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-container-projects', kwargs={

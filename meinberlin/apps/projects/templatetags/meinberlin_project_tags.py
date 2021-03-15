@@ -8,7 +8,6 @@ from meinberlin.apps.likes.models import Like
 from meinberlin.apps.livequestions.models import LiveQuestion
 from meinberlin.apps.mapideas.models import MapIdea
 from meinberlin.apps.polls.models import Vote
-from meinberlin.apps.projects import get_project_type
 
 register = template.Library()
 
@@ -23,20 +22,10 @@ def project_url(project):
 
 
 @register.filter
-def project_type(project):
-    return get_project_type(project)
-
-
-@register.filter
 def is_external(project):
     return (project.project_type == 'meinberlin_bplan.Bplan'
             or project.project_type ==
             'meinberlin_extprojects.ExternalProject')
-
-
-@register.filter
-def is_a4_project(project):
-    return (project.project_type == 'a4projects.Project')
 
 
 @register.simple_tag

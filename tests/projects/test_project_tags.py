@@ -53,7 +53,7 @@ def test_is_external(project, external_project, bplan, project_container):
 def test_is_a4_project(project, external_project, bplan, project_container):
     template = (
         '{% load meinberlin_project_tags %}'
-        '{% if project|is_a4_project %}'
+        '{% if project.project_type == "a4projects.Project" %}'
         'is a4 project'
         '{% else %}'
         'is no a4 project'

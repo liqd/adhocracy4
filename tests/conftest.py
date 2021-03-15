@@ -22,16 +22,6 @@ def pytest_configure(config):
     helpers.patch_background_task_decorator('adhocracy4.emails.tasks')
 
 
-@pytest.fixture(scope='function', autouse=True)
-def clear_caches():
-    # Clears the project_type lru_cache
-    # lru_cache uses hash to identify objects and django models are
-    # returning the object.pk as the hash. As the database is reset on
-    # every function test every projects pk is 1 and the cache is invalid.
-    from meinberlin.apps.dashboard import get_project_type
-    get_project_type.cache_clear()
-
-
 register(factories.UserFactory)
 register(factories.UserFactory, 'user2')
 register(factories.AdminFactory, 'admin')

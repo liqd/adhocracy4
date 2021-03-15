@@ -15,7 +15,6 @@ from adhocracy4.modules.models import Item
 from adhocracy4.projects.enums import Access
 from adhocracy4.projects.models import Project
 from meinberlin.apps.plans.models import Plan
-from meinberlin.apps.projects import get_project_type
 
 
 class StorefrontItem(models.Model):
@@ -43,7 +42,9 @@ class StorefrontItem(models.Model):
 
     @cached_property
     def item_type(self):
-        if get_project_type(self.project) in ('external', 'bplan'):
+        if (self.project.project_type in (
+                'meinberlin_extprojects.ExternalProject',
+                'meinberlin_bplan.Bplan')):
             return 'external'
         return 'project'
 

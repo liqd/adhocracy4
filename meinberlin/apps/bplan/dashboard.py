@@ -3,7 +3,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard import ProjectFormComponent
 from adhocracy4.dashboard import components
-from meinberlin.apps.projects import get_project_type
 
 from . import forms
 from . import views
@@ -20,8 +19,7 @@ class BplanProjectComponent(ProjectFormComponent):
                          '/bplan_project_form.html'
 
     def is_effective(self, project):
-        project_type = get_project_type(project)
-        return project_type == 'bplan'
+        return project.project_type == 'meinberlin_bplan.Bplan'
 
     def get_base_url(self, project):
         return reverse('a4dashboard:dashboard-bplan-project-edit', kwargs={

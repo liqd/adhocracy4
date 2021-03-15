@@ -40,7 +40,7 @@
         <nav class="l-menu__menu" aria-label="{% trans 'Project Settings' %}">
             {% include "a4dashboard/includes/nav_project.html" %}
 
-            {% if project|is_a4_project %}
+            {% if project.project_type == 'a4projects.Project' %}
             {% include "a4dashboard/includes/nav_modules.html" %}
             {% endif %}
 

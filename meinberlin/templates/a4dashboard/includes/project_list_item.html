@@ -43,7 +43,7 @@
                         <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                         {% trans 'Edit'%}
                     </a>
-                    {% if project|is_a4_project %}
+                    {% if project.project_type == 'a4projects.Project' %}
                         <div class="dropdown">
                             <button
                                     type="button"

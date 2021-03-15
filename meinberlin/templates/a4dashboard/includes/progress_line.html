@@ -30,7 +30,7 @@
     </li>
 
 
-    {% if project|is_a4_project %}
+    {% if project.project_type == 'a4projects.Project' %}
     <li class="progress-line__entry">
         <span class="progress-line__line--top"></span>
         <span class="progress-line__line--bottom"></span>

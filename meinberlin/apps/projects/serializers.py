@@ -7,7 +7,6 @@ from rest_framework import serializers
 
 from adhocracy4.phases.models import Phase
 from adhocracy4.projects.models import Project
-from meinberlin.apps.projects import get_project_type
 
 
 class CommonFields:
@@ -109,16 +108,20 @@ class ProjectSerializer(serializers.ModelSerializer, CommonFields):
         return 'project'
 
     def get_subtype(self, instance):
-        subtype = get_project_type(instance)
-        if subtype in ('external', 'bplan'):
+        if instance.project_type in ('meinberlin_extprojects.ExternalProject',
+                                     'meinberlin_bplan.Bplan'):
             return 'external'
-        return subtype
+        elif (instance.project_type
+              == 'meinberlin_projectcontainers.ProjectContainer'):
+            return 'container'
+        return 'default'
 
     def get_title(self, instance):
         return instance.name
 
     def get_url(self, instance):
-        if get_project_type(instance) in ('external', 'bplan'):
+        if instance.project_type in ('meinberlin_extprojects.ExternalProject',
+                                     'meinberlin_bplan.Bplan'):
             return instance.externalproject.url
         return instance.get_absolute_url()
 
