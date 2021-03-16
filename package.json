@@ -46,7 +46,7 @@
     "path-browserify": "1.0.1",
     "popper.js": "1.16.1",
     "postcss": "8.2.8",
-    "postcss-loader": "5.1.0",
+    "postcss-loader": "5.2.0",
     "react": "17.0.1",
     "react-bootstrap-typeahead": "5.1.4",
     "react-cookie": "4.0.3",
