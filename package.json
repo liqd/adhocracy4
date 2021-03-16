@@ -18,7 +18,7 @@
     "@babel/plugin-transform-runtime": "7.13.10",
     "@babel/preset-env": "7.13.10",
     "@babel/preset-react": "7.12.13",
-    "@fortawesome/fontawesome-free": "5.15.2",
+    "@fortawesome/fontawesome-free": "5.15.3",
     "acorn": "8.1.0",
     "adhocracy4": "liqd/adhocracy4#a7927594cb6170c320b992bb43c97fb84a7a21de",
     "autoprefixer": "10.2.5",
