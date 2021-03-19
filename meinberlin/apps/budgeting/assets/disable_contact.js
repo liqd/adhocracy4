@@ -12,6 +12,10 @@ function init () {
   const otherEmail = document.getElementById('id_contact_email_0_1')
   let otherEmailChecked = otherEmail.checked
 
+  if (!accountEmail.checked & !otherEmail.checked) {
+    accountEmail.checked = true
+  }
+
   if (!allowContact.checked) {
     disableContact(true, true)
   } else if (accountEmail.checked) {
