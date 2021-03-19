@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-14 19:08+0100\n"
+"POT-Creation-Date: 2021-03-19 14:23+0100\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -51,7 +51,7 @@ msgstr "Projekteinstellungen"
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:15
 #: adhocracy4/dashboard/templates/a4dashboard/base_dashboard_project.html:33
-#: meinberlin/templates/a4dashboard/includes/nav_project.html:33
+#: meinberlin/templates/a4dashboard/includes/nav_project.html:32
 msgid "Missing fields for publication"
 msgstr "Benötigte Felder zur Veröffentlichung"
 
@@ -931,7 +931,7 @@ msgstr "Die Auswahl muss zu der richtigen Frage gehören."
 #: meinberlin/apps/adminlog/models.py:42
 #: meinberlin/apps/newsletters/forms.py:35
 #: meinberlin/apps/newsletters/forms.py:74
-#: meinberlin/templates/a4dashboard/includes/nav_project.html:11
+#: meinberlin/templates/a4dashboard/includes/nav_project.html:10
 msgid "Project"
 msgstr "Projekt"
 
@@ -1478,7 +1478,7 @@ msgstr "Projekt anlegen"
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_detail.html:8
 #: meinberlin/templates/a4dashboard/base_dashboard_project.html:7
 #: meinberlin/templates/a4dashboard/project_create_form.html:9
-#: meinberlin/templates/a4modules/module_detail.html:52
+#: meinberlin/templates/a4modules/module_detail.html:51
 msgid "breadcrumbs"
 msgstr "breadcrumbs"
 
@@ -1624,11 +1624,10 @@ msgstr ""
 msgid "Telephone number"
 msgstr "Telefonnummer"
 
-#: meinberlin/apps/budgeting/forms.py:36
+#: meinberlin/apps/budgeting/forms.py:37
 msgid "Please contact me via the e-mail address of my user account ({})."
 msgstr ""
-"Bitte kontaktieren Sie mich über die E-Mail-Adresse meines "
-"Nutzerkontos ({})."
+"Bitte kontaktieren Sie mich über die E-Mail-Adresse meines Nutzerkontos ({})."
 
 #: meinberlin/apps/budgeting/forms.py:40
 msgid "Please contact me via another e-mail address:"
@@ -1637,6 +1636,14 @@ msgstr "Bitte kontaktieren Sie mich über eine andere E-Mail-Adresse:"
 #: meinberlin/apps/budgeting/forms.py:44
 msgid "E-mail address"
 msgstr "E-Mail-Adresse"
+
+#: meinberlin/apps/budgeting/forms.py:48
+msgid "new e-mail address"
+msgstr ""
+
+#: meinberlin/apps/budgeting/forms.py:57
+msgid "Please enter an email address."
+msgstr ""
 
 #: meinberlin/apps/budgeting/models.py:22
 #: meinberlin/apps/kiezkasse/models.py:20
@@ -1715,8 +1722,8 @@ msgstr ""
 "eingetragenen Kontaktinformationen ein. Die Kontaktinformationen dürfen von "
 "der verantwortlichen Verwaltung ausschließlich für die Kontaktaufnahme in "
 "dem vorliegenden Projekt verwendet werden. Ich kann diese Einwilligung "
-"jederzeit widerrufen. Die <a href=\"%(privacy_policy)s\" target=\"_blank\">"
-"Datenschutzerklärung</a> habe ich gelesen und akzeptiere sie."
+"jederzeit widerrufen. Die <a href=\"%(privacy_policy)s\" target=\"_blank"
+"\">Datenschutzerklärung</a> habe ich gelesen und akzeptiere sie."
 
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:7
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:8
@@ -2024,6 +2031,10 @@ msgstr "Bitte wählen Sie mindestens %(limit_value)d Felder aus."
 msgid "You must select a maximum of  %(limit_value)d choices."
 msgstr "Sie können max. %(limit_value)d Felder auswählen."
 
+#: meinberlin/apps/contrib/django_standard_messages.py:18
+msgid "Enter a valid email address."
+msgstr ""
+
 #: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:40
 msgid "Ordering"
 msgstr "Sortierung"
@@ -2047,11 +2058,11 @@ msgstr ""
 "Sie wollen ein Bild hochladen. Bitte bestätigen Sie, dass Sie die "
 "entsprechenden Nutzungsrechte haben."
 
-#: meinberlin/apps/contrib/mixins.py:66
+#: meinberlin/apps/contrib/mixins.py:67
 msgid "contact storage consent"
 msgstr "Einwilligung zur Speicherung der Kontaktinformationen"
 
-#: meinberlin/apps/contrib/mixins.py:81
+#: meinberlin/apps/contrib/mixins.py:82
 msgid "Please consent to the storage of your contact information."
 msgstr "Bitte stimmen Sie der Speicherung Ihrer Kontaktinformationen zu."
 
@@ -3632,9 +3643,8 @@ msgstr "Zeitleiste"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:18
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:76
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:218
 #: meinberlin/apps/users/models.py:42
-#: meinberlin/templates/a4modules/module_detail.html:98
+#: meinberlin/templates/a4modules/includes/module_detail_phase.html:28
 msgid "active"
 msgstr "aktiv"
 
@@ -3646,30 +3656,26 @@ msgstr "aktuelle Seite"
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:49
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:96
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_bplan_detail.html:11
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:197
-#: meinberlin/templates/a4modules/module_detail.html:77
+#: meinberlin/templates/a4modules/includes/module_detail_phase.html:7
 msgid "Participation is not possible at the moment."
 msgstr "Die Beteiligung ist aktuell nicht möglich."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:52
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:98
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_bplan_detail.html:14
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:200
-#: meinberlin/templates/a4modules/module_detail.html:80
+#: meinberlin/templates/a4modules/includes/module_detail_phase.html:10
 #, python-format
 msgid "It starts on %(date)s."
 msgstr "Sie startet am %(date)s."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:55
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:203
-#: meinberlin/templates/a4modules/module_detail.html:83
+#: meinberlin/templates/a4modules/includes/module_detail_phase.html:13
 #, python-format
 msgid "It continues on %(date)s."
 msgstr "Es geht weiter am %(date)s."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:58
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:206
-#: meinberlin/templates/a4modules/module_detail.html:86
+#: meinberlin/templates/a4modules/includes/module_detail_phase.html:16
 #, python-format
 msgid "It ended on %(date)s."
 msgstr "Sie hat am %(date)s geendet."
@@ -3779,7 +3785,7 @@ msgstr ""
 "ablehnen, verliert der Link seine Gültigkeit."
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:23
-#: meinberlin/templates/a4modules/module_detail.html:25
+#: meinberlin/templates/a4modules/module_detail.html:24
 msgid "This project is in not published yet."
 msgstr "Dieses Projekt ist noch nicht veröffentlicht."
 
@@ -3796,24 +3802,7 @@ msgstr "über das Projekt"
 msgid "Responsible body"
 msgstr "Verantwortliche Stelle"
 
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:241
-#: meinberlin/templates/a4modules/module_detail.html:120
-msgid ""
-"This project is not publicly visible. Only invited users can see content and "
-"actively participate."
-msgstr ""
-"Diese Beteiligung ist nicht öffentlich sichtbar. Nur eingeladene "
-"Nutzer*innen können die Inhalte sehen und sich aktiv beteiligen."
-
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:245
-#: meinberlin/templates/a4modules/module_detail.html:124
-msgid ""
-"This project is publicly visible. Invited users can actively participate."
-msgstr ""
-"Diese Beteiligung ist öffentlich sichtbar. Eingeladene Nutzer*innen können "
-"sich aktiv beteiligen."
-
-#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:271
+#: meinberlin/apps/projects/templates/meinberlin_projects/project_detail.html:221
 msgid "No results yet."
 msgstr "Noch gibt es keine Ergebnisse."
 
@@ -4241,6 +4230,11 @@ msgstr "Modul anlegen"
 msgid "You have not set up a participation module yet."
 msgstr "Sie haben noch kein Beteiligungsmodul angelegt."
 
+#: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:6
+#: meinberlin/templates/a4dashboard/includes/nav_project.html:6
+msgid "Toggle menu"
+msgstr ""
+
 #: meinberlin/templates/a4dashboard/includes/nav_modules_item.html:13
 msgid "Module ready for addition"
 msgstr "Modul bereit zum hinzu fügen"
@@ -4277,11 +4271,11 @@ msgstr "Wollen Sie das Beteiligungsmodul wirklich löschen?"
 msgid "Close"
 msgstr "Schließen"
 
-#: meinberlin/templates/a4dashboard/includes/nav_project.html:14
+#: meinberlin/templates/a4dashboard/includes/nav_project.html:13
 msgid "Project ready for publication"
 msgstr "Projekt bereit zur Veröffentlichung"
 
-#: meinberlin/templates/a4dashboard/includes/nav_project.html:16
+#: meinberlin/templates/a4dashboard/includes/nav_project.html:15
 msgid "Project not ready for publication"
 msgstr "Projekt noch nicht bereit zur Veröffentlichung"
 
@@ -4412,23 +4406,38 @@ msgstr ""
 "Ihr Bild wird hochgeladen bzw. entfernt, sobald Sie Ihre Änderungen  am Ende "
 "gespeichert haben."
 
-#: meinberlin/templates/a4modules/module_detail.html:39
+#: meinberlin/templates/a4modules/includes/module_detail_phase.html:50
+msgid ""
+"This project is not publicly visible. Only invited users can see content and "
+"actively participate."
+msgstr ""
+"Diese Beteiligung ist nicht öffentlich sichtbar. Nur eingeladene "
+"Nutzer*innen können die Inhalte sehen und sich aktiv beteiligen."
+
+#: meinberlin/templates/a4modules/includes/module_detail_phase.html:54
+msgid ""
+"This project is publicly visible. Invited users can actively participate."
+msgstr ""
+"Diese Beteiligung ist öffentlich sichtbar. Eingeladene Nutzer*innen können "
+"sich aktiv beteiligen."
+
+#: meinberlin/templates/a4modules/module_detail.html:38
 msgid "Previous"
 msgstr "Vorherige"
 
-#: meinberlin/templates/a4modules/module_detail.html:42
+#: meinberlin/templates/a4modules/module_detail.html:41
 msgid "of"
 msgstr "von"
 
-#: meinberlin/templates/a4modules/module_detail.html:46
+#: meinberlin/templates/a4modules/module_detail.html:45
 msgid "Next"
 msgstr "Nächste"
 
-#: meinberlin/templates/a4modules/module_detail.html:67
+#: meinberlin/templates/a4modules/module_detail.html:66
 msgid " Live now"
 msgstr "Jetzt live"
 
-#: meinberlin/templates/a4modules/module_detail.html:141
+#: meinberlin/templates/a4modules/module_detail.html:87
 msgid "More from this online participation:"
 msgstr "Mehr aus diesem Projekt:"
 
