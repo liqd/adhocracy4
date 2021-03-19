@@ -10,7 +10,8 @@ class ExternalProject(project_models.Project):
                           help_text=_('Please enter '
                                       'a full url which '
                                       'starts with https:// '
-                                      'or http://'))
+                                      'or http://'),
+                          max_length=500)
 
     start_date = models.DateTimeField(blank=True, null=True,
                                       verbose_name=_('Start date'))
