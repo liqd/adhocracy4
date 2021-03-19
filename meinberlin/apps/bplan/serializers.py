@@ -36,11 +36,18 @@ class BplanSerializer(serializers.ModelSerializer):
     # make write_only for consistency  reasons
     start_date = serializers.DateTimeField(write_only=True)
     end_date = serializers.DateTimeField(write_only=True)
-    image_url = serializers.URLField(required=False, write_only=True)
-    image_copyright = serializers.CharField(required=False, write_only=True,
-                                            source='tile_image_copyright',
-                                            allow_blank=True,
-                                            max_length=120)
+    image_url = serializers.URLField(
+        required=False,
+        write_only=True,
+        max_length=(project_models.Project._meta.
+                    get_field('tile_image').max_length))
+    image_copyright = serializers.CharField(
+        required=False,
+        write_only=True,
+        source='tile_image_copyright',
+        allow_blank=True,
+        max_length=(project_models.Project._meta.
+                    get_field('tile_image_copyright').max_length))
     embed_code = serializers.SerializerMethodField()
 
     class Meta:
