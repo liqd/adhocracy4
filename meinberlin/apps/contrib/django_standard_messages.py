@@ -14,5 +14,6 @@ django_standard_messages_to_override = [
       "Follow the link provided to finalize the signup process. "
       "Please contact us if you do not receive it within a few minutes."),
     _(u'You must select a minimum of  %(limit_value)d choices.'),
-    _(u'You must select a maximum of  %(limit_value)d choices.')
+    _(u'You must select a maximum of  %(limit_value)d choices.'),
+    _('Enter a valid email address.')
 ]
