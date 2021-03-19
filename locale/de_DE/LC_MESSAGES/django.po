@@ -1617,7 +1617,7 @@ msgstr "Erstellt"
 msgid ""
 "For questions or in case of implementation of my proposal you can contact me."
 msgstr ""
-"Für Rückfragen bzw. im Falle einer Umsetzung meines Vorschlag können Sie "
+"Für Rückfragen bzw. im Falle einer Umsetzung meines Vorschlags können Sie "
 "mich kontaktieren."
 
 #: meinberlin/apps/budgeting/forms.py:27
@@ -1639,11 +1639,11 @@ msgstr "E-Mail-Adresse"
 
 #: meinberlin/apps/budgeting/forms.py:48
 msgid "new e-mail address"
-msgstr ""
+msgstr "neue E-Mail-Adresse"
 
 #: meinberlin/apps/budgeting/forms.py:57
 msgid "Please enter an email address."
-msgstr ""
+msgstr "Bitte geben Sie eine E-Mail-Adresse an."
 
 #: meinberlin/apps/budgeting/models.py:22
 #: meinberlin/apps/kiezkasse/models.py:20
@@ -2033,7 +2033,7 @@ msgstr "Sie können max. %(limit_value)d Felder auswählen."
 
 #: meinberlin/apps/contrib/django_standard_messages.py:18
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse an."
 
 #: meinberlin/apps/contrib/filters.py:10 meinberlin/apps/projects/views.py:40
 msgid "Ordering"
