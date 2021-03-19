@@ -45,7 +45,7 @@ class ProposalForm(MapIdeaForm, ContactStorageConsentMixin):
             choices=choices,
             widget=widgets.RadioSelectWithTextInputWidget(
                 choices=choices,
-                placeholder_textinput='new e-mail address'),
+                placeholder_textinput=_('new e-mail address')),
             validators_textinput=[validators.validate_email])
 
     def clean(self):
