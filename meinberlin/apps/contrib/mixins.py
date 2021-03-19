@@ -58,6 +58,7 @@ class ImageRightOfUseMixin(forms.ModelForm):
                            _("You want to upload an image. "
                              "Please check that you have the "
                              "right of use for the image."))
+        return cleaned_data
 
 
 class ContactStorageConsentMixin(forms.ModelForm):
