@@ -48,6 +48,15 @@ class ProposalForm(MapIdeaForm, ContactStorageConsentMixin):
                 placeholder_textinput='new e-mail address'),
             validators_textinput=[validators.validate_email])
 
+    def clean(self):
+        cleaned_data = super().clean()
+        allow_contact = cleaned_data.get('allow_contact')
+        contact_email = cleaned_data.get('contact_email')
+        if allow_contact and not contact_email:
+            self.add_error('contact_email',
+                           _('Please enter an email address.'))
+        return cleaned_data
+
 
 class ProposalModerateForm(forms.ModelForm):
     class Meta:
