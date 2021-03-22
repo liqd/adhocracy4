@@ -66,6 +66,29 @@ def test_initiator_add_bplan(apiclient, organisation):
 
 
 @pytest.mark.django_db
+def test_group_member_cannot_add_bplan(apiclient, organisation,
+                                       group_factory, user_factory):
+    """Group members can add bplan via dashboard, but not via API."""
+    url = reverse('bplan-list', kwargs={'organisation_pk': organisation.pk})
+    data = {
+        "name": "bplan-1",
+        "description": "desc",
+        "identifier": "VE69 5a BPLAN",
+        "url": "https://bplan.net",
+        "office_worker_email": "test@liqd.de",
+        "start_date": "2013-01-01 18:00",
+        "end_date": "2021-01-01 18:00",
+    }
+    group1 = group_factory()
+    group2 = group_factory()
+    user = user_factory.create(groups=(group1, group2))
+    organisation.groups.add(group2)
+    apiclient.force_authenticate(user=user)
+    response = apiclient.post(url, data, format='json')
+    assert response.status_code == status.HTTP_403_FORBIDDEN
+
+
+@pytest.mark.django_db
 def test_initiator_update_bplan(apiclient, bplan, phase):
     phase.module.project = bplan
     phase.module.save()
