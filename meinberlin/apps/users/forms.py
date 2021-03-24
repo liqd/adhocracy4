@@ -10,6 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from meinberlin.apps.captcha.fields import CaptcheckCaptchaField
 from meinberlin.apps.organisations.models import Organisation
+from meinberlin.apps.users.models import User
 
 
 class UserAdminForm(auth_forms.UserChangeForm):
@@ -35,6 +36,44 @@ class UserAdminForm(auth_forms.UserChangeForm):
             }
             raise ValidationError(message)
         return self.cleaned_data
+
+    def clean_username(self):
+
+        username = self.cleaned_data['username']
+        try:
+            user = User.objects.get(username__iexact=username)
+            if user != self.instance:
+                raise forms.ValidationError(
+                    User._meta.get_field('username').error_messages['unique'])
+        except User.DoesNotExist:
+            pass
+
+        try:
+            user = User.objects.get(email__iexact=username)
+            if user != self.instance:
+                raise forms.ValidationError(User._meta.get_field('username').
+                                            error_messages['used_as_email'])
+        except User.DoesNotExist:
+            pass
+
+        return username
+
+
+class AddUserAdminForm(auth_forms.UserCreationForm):
+
+    def clean_username(self):
+
+        username = self.cleaned_data['username']
+        user = User.objects.filter(username__iexact=username)
+        if user.exists():
+            raise forms.ValidationError(
+                User._meta.get_field('username').error_messages['unique'])
+        else:
+            user = User.objects.filter(email__iexact=username)
+            if user.exists():
+                raise forms.ValidationError(User._meta.get_field('username').
+                                            error_messages['used_as_email'])
+        return username
 
 
 class TermsSignupForm(SignupForm):

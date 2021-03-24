@@ -4,11 +4,13 @@ from django.contrib.auth.models import Group
 from django.utils.translation import ugettext_lazy as _
 
 from . import models
+from .forms import AddUserAdminForm
 from .forms import UserAdminForm
 
 
 class UserAdmin(auth.admin.UserAdmin):
     form = UserAdminForm
+    add_form = AddUserAdminForm
     fieldsets = (
         (None, {'fields': ('username', 'email', 'password', 'groups')}),
         (_('Permissions'), {'fields': ('is_staff', 'is_superuser')}),
