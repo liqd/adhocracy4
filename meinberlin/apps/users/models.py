@@ -21,7 +21,9 @@ class User(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
             validators.RegexValidator(
                 USERNAME_REGEX, USERNAME_INVALID_MESSAGE, 'invalid')],
         error_messages={
-            'unique': _('A user with that username already exists.')}
+            'unique': _('A user with that username already exists.'),
+            'used_as_email': _('This username is already used as an '
+                               'e-mail address.')}
     )
 
     email = models.EmailField(
