@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-19 14:23+0100\n"
+"POT-Creation-Date: 2021-03-24 17:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -535,7 +535,7 @@ msgstr "Website"
 
 #: adhocracy4/dashboard/forms.py:144 adhocracy4/phases/models.py:77
 #: meinberlin/apps/extprojects/forms.py:29
-#: meinberlin/apps/extprojects/models.py:18
+#: meinberlin/apps/extprojects/models.py:19
 msgid "End date"
 msgstr "End date"
 
@@ -545,7 +545,7 @@ msgstr "End time"
 
 #: adhocracy4/dashboard/forms.py:150 adhocracy4/phases/models.py:75
 #: meinberlin/apps/extprojects/forms.py:23
-#: meinberlin/apps/extprojects/models.py:16
+#: meinberlin/apps/extprojects/models.py:17
 msgid "Start date"
 msgstr "Start date"
 
@@ -1305,7 +1305,7 @@ msgstr "Office worker email"
 msgid "Your Name"
 msgstr "Your Name"
 
-#: meinberlin/apps/bplan/models.py:49 meinberlin/apps/users/models.py:28
+#: meinberlin/apps/bplan/models.py:49 meinberlin/apps/users/models.py:30
 msgid "Email address"
 msgstr "Email address"
 
@@ -1333,8 +1333,8 @@ msgstr "Send statement to the office workers per mail."
 msgid "bplan"
 msgstr "bplan"
 
-#: meinberlin/apps/bplan/serializers.py:91
-#: meinberlin/apps/bplan/serializers.py:92
+#: meinberlin/apps/bplan/serializers.py:98
+#: meinberlin/apps/bplan/serializers.py:99
 msgid "Bplan statement phase"
 msgstr "Bplan statement phase"
 
@@ -1792,7 +1792,7 @@ msgid "Response"
 msgstr "Response"
 
 #: meinberlin/apps/cms/models/email_form.py:24
-#: meinberlin/apps/users/forms.py:61
+#: meinberlin/apps/users/forms.py:100
 msgid "I am not a robot"
 msgstr "I am not a robot"
 
@@ -2923,8 +2923,8 @@ msgstr "Sent"
 
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/newsletter_dashboard_form.html:4
 #: meinberlin/apps/newsletters/templates/meinberlin_newsletters/restricted_newsletter_dashboard_form.html:4
-#: meinberlin/apps/users/forms.py:45 meinberlin/apps/users/forms.py:83
-#: meinberlin/apps/users/models.py:65
+#: meinberlin/apps/users/forms.py:84 meinberlin/apps/users/forms.py:122
+#: meinberlin/apps/users/models.py:67
 #: meinberlin/templates/a4dashboard/base_dashboard.html:50
 msgid "Newsletter"
 msgstr "Newsletter"
@@ -3503,7 +3503,7 @@ msgstr "Timeline"
 
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:18
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/timeline.html:76
-#: meinberlin/apps/users/models.py:42
+#: meinberlin/apps/users/models.py:44
 #: meinberlin/templates/a4modules/includes/module_detail_phase.html:28
 msgid "active"
 msgstr "active"
@@ -3814,11 +3814,11 @@ msgstr ""
 "Enter a valid username. This value may contain only letters, digits, spaces "
 "and @/./+/-/_ characters. It must start with a digit or a letter."
 
-#: meinberlin/apps/users/admin.py:14
+#: meinberlin/apps/users/admin.py:16
 msgid "Permissions"
 msgstr "Permissions"
 
-#: meinberlin/apps/users/admin.py:15
+#: meinberlin/apps/users/admin.py:17
 msgid "Important dates"
 msgstr "Important dates"
 
@@ -3826,7 +3826,7 @@ msgstr "Important dates"
 msgid "Please enter correct email addresses, separated by commas."
 msgstr "Please enter correct email addresses, separated by commas."
 
-#: meinberlin/apps/users/forms.py:29
+#: meinberlin/apps/users/forms.py:30
 #, python-format
 msgid ""
 "User is member in more than one group in this organisation: %(duplicates)s."
@@ -3837,14 +3837,14 @@ msgstr[0] ""
 msgstr[1] ""
 "User is member in more than one group in these organisations: %(duplicates)s."
 
-#: meinberlin/apps/users/forms.py:42 meinberlin/apps/users/forms.py:80
+#: meinberlin/apps/users/forms.py:81 meinberlin/apps/users/forms.py:119
 #: meinberlin/templates/email_base.html:85
 #: meinberlin/templates/email_base.txt:18
 msgid "Terms of use"
 msgstr "Terms of use"
 
-#: meinberlin/apps/users/forms.py:46 meinberlin/apps/users/forms.py:84
-#: meinberlin/apps/users/models.py:68
+#: meinberlin/apps/users/forms.py:85 meinberlin/apps/users/forms.py:123
+#: meinberlin/apps/users/models.py:70
 msgid ""
 "Yes, I would like to receive e-mail newsletters about the projects I am "
 "following."
@@ -3852,13 +3852,13 @@ msgstr ""
 "Yes, I would like to receive e-mail newsletters about the projects I am "
 "following."
 
-#: meinberlin/apps/users/forms.py:51 meinberlin/apps/users/forms.py:89
-#: meinberlin/apps/users/models.py:55
+#: meinberlin/apps/users/forms.py:90 meinberlin/apps/users/forms.py:128
+#: meinberlin/apps/users/models.py:57
 msgid "Notifications"
 msgstr "Notifications"
 
-#: meinberlin/apps/users/forms.py:52 meinberlin/apps/users/forms.py:90
-#: meinberlin/apps/users/models.py:58
+#: meinberlin/apps/users/forms.py:91 meinberlin/apps/users/forms.py:129
+#: meinberlin/apps/users/models.py:60
 msgid ""
 "Yes, I would like to be notified by e-mail about the start and end of "
 "participation opportunities. This applies to all projects I follow. I also "
@@ -3868,7 +3868,7 @@ msgstr ""
 "participation opportunities. This applies to all projects I follow. I also "
 "receive an e-mail when someone comments on one of my contributions."
 
-#: meinberlin/apps/users/forms.py:67 meinberlin/apps/users/forms.py:105
+#: meinberlin/apps/users/forms.py:106 meinberlin/apps/users/forms.py:144
 #: meinberlin/apps/users/models.py:19
 msgid "Your username will appear publicly next to your posts."
 msgstr "Your username will appear publicly next to your posts."
@@ -3881,19 +3881,23 @@ msgstr "username"
 msgid "A user with that username already exists."
 msgstr "A user with that username already exists."
 
-#: meinberlin/apps/users/models.py:31
+#: meinberlin/apps/users/models.py:25
+msgid "This username is already used as an e-mail address."
+msgstr "This username is already used as an e-mail address."
+
+#: meinberlin/apps/users/models.py:33
 msgid "A user with that email address already exists."
 msgstr "A user with that email address already exists."
 
-#: meinberlin/apps/users/models.py:35
+#: meinberlin/apps/users/models.py:37
 msgid "staff status"
 msgstr "staff status"
 
-#: meinberlin/apps/users/models.py:38
+#: meinberlin/apps/users/models.py:40
 msgid "Designates whether the user can log into this admin site."
 msgstr "Designates whether the user can log into this admin site."
 
-#: meinberlin/apps/users/models.py:45
+#: meinberlin/apps/users/models.py:47
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
