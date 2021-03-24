@@ -2,6 +2,7 @@ import re
 from urllib.parse import quote
 
 from allauth.account.adapter import DefaultAccountAdapter
+from django import forms
 from django.conf import settings
 from django.utils.http import is_safe_url
 
@@ -9,6 +10,7 @@ from adhocracy4.emails.mixins import SyncEmailMixin
 from meinberlin.apps.contrib.emails import Email
 from meinberlin.apps.users import USERNAME_INVALID_MESSAGE
 from meinberlin.apps.users import USERNAME_REGEX
+from meinberlin.apps.users.models import User
 
 
 class UserAccountEmail(SyncEmailMixin, Email):
@@ -53,3 +55,13 @@ class AccountAdapter(DefaultAccountAdapter):
             return request.GET['next']
         else:
             return super().get_email_confirmation_redirect_url(request)
+
+    def clean_username(self, username):
+        username = super().clean_username(username)
+
+        user = User.objects.filter(email__iexact=username)
+        if user.exists():
+            raise forms.ValidationError(User._meta.get_field('username').
+                                        error_messages['used_as_email'])
+
+        return username
