@@ -4021,7 +4021,7 @@ msgstr "Der Nutzer mit diesem Nutzernamen existiert bereits."
 
 #: meinberlin/apps/users/models.py:25
 msgid "This username is already used as an e-mail address."
-msgstr ""
+msgstr "Dieser Nutzername wird bereits als E-Mail Adresse verwendet."
 
 #: meinberlin/apps/users/models.py:33
 msgid "A user with that email address already exists."
