@@ -19,4 +19,12 @@ class ProfileForm(forms.ModelForm):
         except User.DoesNotExist:
             pass
 
+        try:
+            user = User.objects.get(email__iexact=username)
+            if user != self.instance:
+                raise forms.ValidationError(User._meta.get_field('username').
+                                            error_messages['used_as_email'])
+        except User.DoesNotExist:
+            pass
+
         return username
