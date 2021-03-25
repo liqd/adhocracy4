@@ -50,6 +50,7 @@
     margin-top: 0.3rem;
     margin-bottom: 1.2rem;
     font-size: $font-size-xl;
+    overflow-wrap: break-word;
 
     @media (min-width: $breakpoint) {
         font-size: $font-size-xxl;
@@ -60,6 +61,10 @@
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+.project-header__description {
+    overflow-wrap: break-word;
 }
 
 .project-header__logo {
