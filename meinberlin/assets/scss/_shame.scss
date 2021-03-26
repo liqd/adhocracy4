@@ -58,5 +58,19 @@ input[type="search"] {
         a {
             text-decoration: underline;
         }
+
+        img {
+            height: auto !important;
+        }
+    }
+}
+
+// stops squeezing of images added via ck editor when width and height left in
+.item-detail__basic-content,
+.paragraph__content,
+.l-center-8 {
+    p > img {
+        height: auto !important;
+        max-width: 100% !important;
     }
 }
