@@ -225,7 +225,8 @@ class Project(ProjectContactDetailMixin,
             'The image will be shown as a decorative background image.'
         ),
         upload_to='projects/backgrounds',
-        blank=True)
+        blank=True,
+        max_length=300)
     image_copyright = fields.ImageCopyrightField(image_name=_('Header image'))
     tile_image = fields.ConfiguredImageField(
         'tileimage',
@@ -234,7 +235,8 @@ class Project(ProjectContactDetailMixin,
             'The image will be shown in the project tile.'
         ),
         upload_to='projects/tiles',
-        blank=True)
+        blank=True,
+        max_length=300)
     tile_image_copyright = fields.ImageCopyrightField(
         image_name=_('Tile image'))
     participants = models.ManyToManyField(
