@@ -13,11 +13,11 @@
   ],
   "repository": "https://github.com/liqd/a4-meinberlin.git",
   "dependencies": {
-    "@babel/core": "7.13.10",
+    "@babel/core": "7.13.14",
     "@babel/plugin-transform-modules-commonjs": "7.13.8",
     "@babel/plugin-transform-runtime": "7.13.10",
     "@babel/preset-env": "7.13.12",
-    "@babel/preset-react": "7.12.13",
+    "@babel/preset-react": "7.13.13",
     "@fortawesome/fontawesome-free": "5.15.3",
     "acorn": "8.1.0",
     "adhocracy4": "liqd/adhocracy4#mB-v2103.1",
