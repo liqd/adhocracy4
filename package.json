@@ -60,7 +60,7 @@
     "shpjs": "3.6.3",
     "slick-carousel": "github:liqd/slick#pm-2019-07-overwrites",
     "style-loader": "2.0.0",
-    "tether": "1.4.7",
+    "tether": "2.0.0",
     "timeago.js": "4.0.2",
     "webpack": "5.36.0",
     "webpack-merge": "5.7.3",
