@@ -53,13 +53,13 @@ def test_serializer(client, plan_factory, project_factory, phase_factory):
     )
 
     with freeze_time(now):
-        plan_factory.create(projects=[project1])
-        plan_factory.create(projects=[project2])
-        plan_factory.create(projects=[project3], status=Plan.STATUS_DONE)
-        plan_factory.create(projects=[project4])
-        plan_factory.create(projects=[project5], status=Plan.STATUS_DONE)
+        plan_factory.create(pk=1, projects=[project1])
+        plan_factory.create(pk=2, projects=[project2])
+        plan_factory.create(pk=3, projects=[project3], status=Plan.STATUS_DONE)
+        plan_factory.create(pk=4, projects=[project4])
+        plan_factory.create(pk=5, projects=[project5], status=Plan.STATUS_DONE)
 
-        plans = Plan.objects.all()
+        plans = Plan.objects.all().order_by('pk')
 
         plan_serializer = PlanSerializer(plans, many=True)
         plan_data = plan_serializer.data
