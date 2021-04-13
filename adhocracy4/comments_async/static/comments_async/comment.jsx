@@ -411,6 +411,8 @@ export default class Comment extends React.Component {
                       handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
                       rows="1"
                       autoFocus
+                      isReadOnly={this.props.isReadOnly}
+                      isContextMember={this.props.isContextMember}
                     />
                   </div>
                 </div>
