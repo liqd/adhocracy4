@@ -616,6 +616,7 @@ export default class CommentBox extends React.Component {
               onCommentSubmit={this.handleCommentSubmit}
               onCommentModify={this.handleCommentModify}
               isReadOnly={this.props.isReadOnly}
+              isContextMember={this.props.isContextMember}
               commentCategoryChoices={this.commentCategoryChoices()}
               onReplyErrorClick={this.handleHideReplyError}
               onEditErrorClick={this.handleHideEditError}

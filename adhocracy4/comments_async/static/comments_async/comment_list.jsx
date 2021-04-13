@@ -34,6 +34,7 @@ export default function (props) {
               userRating={comment.ratings.current_user_rating_value}
               userRatingId={comment.ratings.current_user_rating_id}
               isReadOnly={props.isReadOnly}
+              isContextMember={props.isContextMember}
               replyError={comment.replyError}
               errorMessage={comment.errorMessage}
               onReplyErrorClick={props.onReplyErrorClick}

@@ -76,8 +76,9 @@ export default class CommentForm extends React.Component {
 
   render () {
     const textareaStyle = { height: (this.state.textareaHeight) + 'px' }
+    const { isAuthenticated } = this.context
 
-    if (this.context.isAuthenticated && !this.props.isReadOnly) {
+    if (isAuthenticated && !this.props.isReadOnly) {
       return (
         <div>
           <form id="id-comment-form" className="general-form" onSubmit={this.handleSubmit.bind(this)}>
@@ -111,13 +112,13 @@ export default class CommentForm extends React.Component {
           </form>
         </div>
       )
-    } else if (!this.props.isReadOnly) {
+    } else if (!isAuthenticated && !this.props.isReadOnly) {
       return (
         <div className="a4-comments__login">
           <a href={config.getLoginUrl()}>{django.gettext('Please login to comment')}</a>
         </div>
       )
-    } else if (!this.props.isContextMember) {
+    } else if (isAuthenticated && !this.props.isContextMember) {
       return (
         <div>
           {django.gettext('Only invited users can actively participate.')}
