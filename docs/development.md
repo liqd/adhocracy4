@@ -16,7 +16,17 @@ Development setup
 This setup allows you to modify both javascript and python code in the
 adhocracy4 core repository and your app at the same time.
 
-Checkout adhocracy4 and activate the virtualenv of your project. Ensure that
+Checkout and install adhocracy4 
+
+    git clone git@github.com:liqd/adhocracy4.git
+    cd adhocracy4
+    make install
+    
+Activate the virtualenv in both project and adhocracy4. 
+
+    source venv/bin/activate
+
+Ensure that
 your `~/.npmrc` contains as `prefix` some location you can write.
 
     echo "prefix = $HOME/.npmprefix" > ~/.npmrc
