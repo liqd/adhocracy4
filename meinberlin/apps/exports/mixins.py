@@ -50,13 +50,25 @@ class ItemExportWithModeratorRemark(VirtualFieldMixin):
 
 class ItemExportWithRepliesToMixin(VirtualFieldMixin):
     def get_virtual_fields(self, virtual):
-        virtual['replies_to'] = _('replies to')
+        virtual['replies_to_comment'] = _('replies to comment')
         return super().get_virtual_fields(virtual)
 
-    def get_replies_to_data(self, comment):
+    def get_replies_to_comment_data(self, comment):
         try:
             return comment.parent_comment.get().pk
         except ObjectDoesNotExist:
+            return ''
+
+
+class ItemExportWithRepliesToReferenceMixin(VirtualFieldMixin):
+    def get_virtual_fields(self, virtual):
+        virtual['replies_to_reference'] = _('comment on reference')
+        return super().get_virtual_fields(virtual)
+
+    def get_replies_to_reference_data(self, comment):
+        if hasattr(comment.content_object, 'reference_number'):
+            return comment.content_object.reference_number
+        else:
             return ''
 
 
