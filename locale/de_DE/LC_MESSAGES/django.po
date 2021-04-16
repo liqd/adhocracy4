@@ -2452,11 +2452,11 @@ msgstr "Notiz"
 
 #: meinberlin/apps/exports/mixins.py:53
 msgid "replies to comment"
-msgstr ""
+msgstr "Antwort auf Kommentar"
 
 #: meinberlin/apps/exports/mixins.py:65
 msgid "comment on reference"
-msgstr ""
+msgstr "Kommentar zur Referenz"
 
 #: meinberlin/apps/exports/mixins.py:78
 msgid "Creator"
