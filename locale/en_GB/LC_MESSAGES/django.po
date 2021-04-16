@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-24 17:02+0100\n"
+"POT-Creation-Date: 2021-04-16 19:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -192,7 +192,7 @@ msgstr "Cancel"
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:7
 #: meinberlin/apps/plans/exports.py:50
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_list.html:4
-#: meinberlin/apps/projectcontainers/dashboard.py:61
+#: meinberlin/apps/projectcontainers/dashboard.py:60
 #: meinberlin/apps/projectcontainers/models.py:14
 #: meinberlin/templates/a4dashboard/base_dashboard.html:46
 #: meinberlin/templates/a4dashboard/base_project_list.html:10
@@ -398,23 +398,23 @@ msgid "The module has been updated."
 msgstr "The module has been updated."
 
 #: adhocracy4/dashboard/dashboard.py:13
-#: meinberlin/apps/projectcontainers/dashboard.py:15
+#: meinberlin/apps/projectcontainers/dashboard.py:14
 msgid "Basic settings"
 msgstr "Basic settings"
 
-#: adhocracy4/dashboard/dashboard.py:15 meinberlin/apps/bplan/dashboard.py:17
-#: meinberlin/apps/extprojects/dashboard.py:17
+#: adhocracy4/dashboard/dashboard.py:15 meinberlin/apps/bplan/dashboard.py:16
+#: meinberlin/apps/extprojects/dashboard.py:16
 msgid "Edit basic settings"
 msgstr "Edit basic settings"
 
 #: adhocracy4/dashboard/dashboard.py:23
-#: meinberlin/apps/projectcontainers/dashboard.py:47
+#: meinberlin/apps/projectcontainers/dashboard.py:46
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:41
 msgid "Information"
 msgstr "Information"
 
 #: adhocracy4/dashboard/dashboard.py:25
-#: meinberlin/apps/projectcontainers/dashboard.py:49
+#: meinberlin/apps/projectcontainers/dashboard.py:48
 msgid "Edit project information"
 msgstr "Edit project information"
 
@@ -472,7 +472,7 @@ msgstr "No"
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_confirm_delete.html:12
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_confirm_delete.html:12
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_confirm_delete.html:11
-#: meinberlin/apps/projects/serializers.py:153
+#: meinberlin/apps/projects/serializers.py:156
 #: meinberlin/apps/projects/views.py:63
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_confirm_delete.html:12
 msgid "Yes"
@@ -743,44 +743,44 @@ msgstr ""
 "detail pages. It should briefly state the goal of the module in max. 512 "
 "chars."
 
-#: adhocracy4/modules/models.py:184 adhocracy4/projects/models.py:584
-#: meinberlin/apps/projects/serializers.py:213
+#: adhocracy4/modules/models.py:184 adhocracy4/projects/models.py:586
+#: meinberlin/apps/projects/serializers.py:216
 msgid "day"
 msgstr "day"
 
-#: adhocracy4/modules/models.py:184 adhocracy4/projects/models.py:584
-#: meinberlin/apps/projects/serializers.py:213
+#: adhocracy4/modules/models.py:184 adhocracy4/projects/models.py:586
+#: meinberlin/apps/projects/serializers.py:216
 msgid "days"
 msgstr "days"
 
-#: adhocracy4/modules/models.py:185 adhocracy4/projects/models.py:585
-#: meinberlin/apps/projects/serializers.py:214
+#: adhocracy4/modules/models.py:185 adhocracy4/projects/models.py:587
+#: meinberlin/apps/projects/serializers.py:217
 msgid "hour"
 msgstr "hour"
 
-#: adhocracy4/modules/models.py:185 adhocracy4/projects/models.py:585
-#: meinberlin/apps/projects/serializers.py:214
+#: adhocracy4/modules/models.py:185 adhocracy4/projects/models.py:587
+#: meinberlin/apps/projects/serializers.py:217
 msgid "hours"
 msgstr "hours"
 
-#: adhocracy4/modules/models.py:186 adhocracy4/projects/models.py:586
-#: meinberlin/apps/projects/serializers.py:215
+#: adhocracy4/modules/models.py:186 adhocracy4/projects/models.py:588
+#: meinberlin/apps/projects/serializers.py:218
 msgid "minute"
 msgstr "minute"
 
-#: adhocracy4/modules/models.py:186 adhocracy4/projects/models.py:586
-#: meinberlin/apps/projects/serializers.py:215
+#: adhocracy4/modules/models.py:186 adhocracy4/projects/models.py:588
+#: meinberlin/apps/projects/serializers.py:218
 msgid "minutes"
 msgstr "minutes"
 
-#: adhocracy4/modules/models.py:187 adhocracy4/projects/models.py:587
-#: meinberlin/apps/projects/serializers.py:216
+#: adhocracy4/modules/models.py:187 adhocracy4/projects/models.py:589
+#: meinberlin/apps/projects/serializers.py:219
 msgid "second"
 msgstr "second"
 
 #: adhocracy4/modules/models.py:187 adhocracy4/modules/models.py:198
-#: adhocracy4/projects/models.py:587 adhocracy4/projects/models.py:598
-#: meinberlin/apps/projects/serializers.py:216
+#: adhocracy4/projects/models.py:589 adhocracy4/projects/models.py:600
+#: meinberlin/apps/projects/serializers.py:219
 msgid "seconds"
 msgstr "seconds"
 
@@ -954,7 +954,7 @@ msgstr ""
 msgid "Access to the project"
 msgstr "Access to the project"
 
-#: adhocracy4/projects/models.py:223 adhocracy4/projects/models.py:229
+#: adhocracy4/projects/models.py:223 adhocracy4/projects/models.py:230
 msgid "Header image"
 msgstr "Header image"
 
@@ -962,19 +962,19 @@ msgstr "Header image"
 msgid "The image will be shown as a decorative background image."
 msgstr "The image will be shown as a decorative background image."
 
-#: adhocracy4/projects/models.py:232 adhocracy4/projects/models.py:239
+#: adhocracy4/projects/models.py:233 adhocracy4/projects/models.py:241
 msgid "Tile image"
 msgstr "Tile image"
 
-#: adhocracy4/projects/models.py:234
+#: adhocracy4/projects/models.py:235
 msgid "The image will be shown in the project tile."
 msgstr "The image will be shown in the project tile."
 
-#: adhocracy4/projects/models.py:252
+#: adhocracy4/projects/models.py:254
 msgid "Project is archived"
 msgstr "Project is archived"
 
-#: adhocracy4/projects/models.py:253
+#: adhocracy4/projects/models.py:255
 msgid ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
@@ -982,11 +982,11 @@ msgstr ""
 "Archived projects are not shown in the project overview. For project "
 "initiators they are still visible in the dashboard."
 
-#: adhocracy4/projects/models.py:258
+#: adhocracy4/projects/models.py:260
 msgid "Project topics"
 msgstr "Project topics"
 
-#: adhocracy4/projects/models.py:259 meinberlin/apps/plans/models.py:101
+#: adhocracy4/projects/models.py:261 meinberlin/apps/plans/models.py:101
 msgid "Add topics to your project."
 msgstr "Add topics to your project."
 
@@ -1281,7 +1281,7 @@ msgstr ""
 msgid "Project Edit Log"
 msgstr "Project Edit Log"
 
-#: meinberlin/apps/bplan/dashboard.py:15
+#: meinberlin/apps/bplan/dashboard.py:14
 msgid "Development plan settings"
 msgstr "Development plan settings"
 
@@ -1480,30 +1480,30 @@ msgstr "Contact E-Mail"
 msgid "Contact Phone"
 msgstr "Contact Phone"
 
-#: meinberlin/apps/budgeting/exports.py:78
-#: meinberlin/apps/documents/exports.py:39 meinberlin/apps/ideas/exports.py:69
-#: meinberlin/apps/kiezkasse/exports.py:71
-#: meinberlin/apps/mapideas/exports.py:69
-#: meinberlin/apps/maptopicprio/exports.py:67
-#: meinberlin/apps/polls/exports.py:35 meinberlin/apps/topicprio/exports.py:66
+#: meinberlin/apps/budgeting/exports.py:80
+#: meinberlin/apps/documents/exports.py:39 meinberlin/apps/ideas/exports.py:71
+#: meinberlin/apps/kiezkasse/exports.py:73
+#: meinberlin/apps/mapideas/exports.py:71
+#: meinberlin/apps/maptopicprio/exports.py:69
+#: meinberlin/apps/polls/exports.py:35 meinberlin/apps/topicprio/exports.py:68
 msgid "ID"
 msgstr "ID"
 
-#: meinberlin/apps/budgeting/exports.py:79
-#: meinberlin/apps/documents/exports.py:40 meinberlin/apps/ideas/exports.py:70
-#: meinberlin/apps/kiezkasse/exports.py:72
-#: meinberlin/apps/mapideas/exports.py:70
-#: meinberlin/apps/maptopicprio/exports.py:68
-#: meinberlin/apps/polls/exports.py:36 meinberlin/apps/topicprio/exports.py:67
+#: meinberlin/apps/budgeting/exports.py:81
+#: meinberlin/apps/documents/exports.py:40 meinberlin/apps/ideas/exports.py:72
+#: meinberlin/apps/kiezkasse/exports.py:74
+#: meinberlin/apps/mapideas/exports.py:72
+#: meinberlin/apps/maptopicprio/exports.py:70
+#: meinberlin/apps/polls/exports.py:36 meinberlin/apps/topicprio/exports.py:69
 msgid "Comment"
 msgstr "Comment"
 
-#: meinberlin/apps/budgeting/exports.py:80
-#: meinberlin/apps/documents/exports.py:41 meinberlin/apps/exports/mixins.py:68
-#: meinberlin/apps/ideas/exports.py:71 meinberlin/apps/kiezkasse/exports.py:73
-#: meinberlin/apps/mapideas/exports.py:71
-#: meinberlin/apps/maptopicprio/exports.py:69
-#: meinberlin/apps/polls/exports.py:37 meinberlin/apps/topicprio/exports.py:68
+#: meinberlin/apps/budgeting/exports.py:82
+#: meinberlin/apps/documents/exports.py:41 meinberlin/apps/exports/mixins.py:80
+#: meinberlin/apps/ideas/exports.py:73 meinberlin/apps/kiezkasse/exports.py:75
+#: meinberlin/apps/mapideas/exports.py:73
+#: meinberlin/apps/maptopicprio/exports.py:71
+#: meinberlin/apps/polls/exports.py:37 meinberlin/apps/topicprio/exports.py:70
 msgid "Created"
 msgstr "Created"
 
@@ -1840,7 +1840,7 @@ msgstr[1] "display %(counter)s projects"
 #: meinberlin/apps/plans/templatetags/react_map_teaser.py:18
 #: meinberlin/apps/plans/views.py:62 meinberlin/apps/projects/admin.py:65
 #: meinberlin/apps/projects/forms.py:100
-#: meinberlin/apps/projects/serializers.py:16
+#: meinberlin/apps/projects/serializers.py:15
 #: meinberlin/apps/projects/templates/meinberlin_projects/includes/project_tile.html:40
 msgid "City wide"
 msgstr "City wide"
@@ -2327,10 +2327,14 @@ msgid "Remark"
 msgstr "Remark"
 
 #: meinberlin/apps/exports/mixins.py:53
-msgid "replies to"
-msgstr "replies to"
+msgid "replies to comment"
+msgstr "replies to comment"
 
-#: meinberlin/apps/exports/mixins.py:66
+#: meinberlin/apps/exports/mixins.py:65
+msgid "comment on reference"
+msgstr "comment on reference"
+
+#: meinberlin/apps/exports/mixins.py:78
 msgid "Creator"
 msgstr "Creator"
 
@@ -2354,7 +2358,7 @@ msgstr "here you can export all ideas"
 msgid "here you can export all comments"
 msgstr "here you can export all comments"
 
-#: meinberlin/apps/extprojects/dashboard.py:15
+#: meinberlin/apps/extprojects/dashboard.py:14
 msgid "External project settings"
 msgstr "External project settings"
 
@@ -3083,17 +3087,17 @@ msgstr "undecided"
 
 #: meinberlin/apps/plans/models.py:36 meinberlin/apps/plans/models.py:150
 #: meinberlin/apps/projectcontainers/serializers.py:29
-#: meinberlin/apps/projects/serializers.py:85
-#: meinberlin/apps/projects/serializers.py:94
-#: meinberlin/apps/projects/serializers.py:245
+#: meinberlin/apps/projects/serializers.py:84
+#: meinberlin/apps/projects/serializers.py:93
+#: meinberlin/apps/projects/serializers.py:248
 msgid "running"
 msgstr "running"
 
 #: meinberlin/apps/plans/models.py:37
 #: meinberlin/apps/projectcontainers/serializers.py:33
-#: meinberlin/apps/projects/serializers.py:89
-#: meinberlin/apps/projects/serializers.py:106
-#: meinberlin/apps/projects/serializers.py:305
+#: meinberlin/apps/projects/serializers.py:88
+#: meinberlin/apps/projects/serializers.py:105
+#: meinberlin/apps/projects/serializers.py:308
 msgid "done"
 msgstr "done"
 
@@ -3158,7 +3162,7 @@ msgid "Duration"
 msgstr "Duration"
 
 #: meinberlin/apps/plans/models.py:157
-#: meinberlin/apps/projects/serializers.py:98
+#: meinberlin/apps/projects/serializers.py:97
 msgid "starts at {}"
 msgstr "starts at {}"
 
@@ -3282,11 +3286,11 @@ msgstr ""
 "Help us by answering the questions below. There is space for your comments "
 "at the end of the questionnaire."
 
-#: meinberlin/apps/projectcontainers/dashboard.py:17
+#: meinberlin/apps/projectcontainers/dashboard.py:16
 msgid "Edit container settings"
 msgstr "Edit container settings"
 
-#: meinberlin/apps/projectcontainers/dashboard.py:63
+#: meinberlin/apps/projectcontainers/dashboard.py:62
 msgid "Select projects"
 msgstr "Select projects"
 
@@ -3323,9 +3327,9 @@ msgid "Description of your container"
 msgstr "Description of your container"
 
 #: meinberlin/apps/projectcontainers/serializers.py:31
-#: meinberlin/apps/projects/serializers.py:87
-#: meinberlin/apps/projects/serializers.py:103
-#: meinberlin/apps/projects/serializers.py:276
+#: meinberlin/apps/projects/serializers.py:86
+#: meinberlin/apps/projects/serializers.py:102
+#: meinberlin/apps/projects/serializers.py:279
 msgid "starts in the future"
 msgstr "starts in the future"
 
@@ -4578,6 +4582,9 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid "replies to"
+#~ msgstr "replies to"
 
 #~ msgid "Participants can submit proposals, comment on and rate them."
 #~ msgstr "Participants can submit proposals, comment on and rate them."
