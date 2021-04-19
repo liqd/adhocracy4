@@ -11,7 +11,7 @@ def test_perm_exists():
 
 
 @pytest.mark.django_db
-def test_rule(project, user_factory, group_factory):
+def test_rule(project, user_factory, group_factory, admin):
     organisation = project.organisation
     anonymous, moderator, initiator = setup_users(project)
 
@@ -24,4 +24,5 @@ def test_rule(project, user_factory, group_factory):
     assert not rules.has_perm(perm_name, user, organisation)
     assert not rules.has_perm(perm_name, moderator, organisation)
     assert not rules.has_perm(perm_name, group_user, organisation)
-    assert rules.has_perm(perm_name, initiator, organisation)
+    assert not rules.has_perm(perm_name, initiator, organisation)
+    assert rules.has_perm(perm_name, admin, organisation)
