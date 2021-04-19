@@ -8,8 +8,9 @@
         <h1 class="lr-bar__left">
             {% trans 'Containers' %}
         </h1>
+        {% has_perm 'meinberlin_projectcontainers.add_container' request.user as can_add_project %}
         <div class="lr-bar__sm-left-lg-right">
-            <a href="{% url 'a4dashboard:container-create' organisation_slug=view.organisation.slug %}" class="btn">
+            <a href="{% url 'a4dashboard:container-create' organisation_slug=view.organisation.slug %}" class="btn" {% if not can_add_project %}disabled aria-disabled="true"{% endif %}>
                 {% trans 'New Container' %}
             </a>
         </div>

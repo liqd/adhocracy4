@@ -18,6 +18,7 @@ class ContainerCreateView(ProjectCreateView):
     template_name = \
         'meinberlin_projectcontainers/container_create_dashboard.html'
     success_message = _('Container successfully created.')
+    permission_required = 'meinberlin_projectcontainers.add_container'
 
     blueprint = ProjectBlueprint(
         title=_('Container'),
