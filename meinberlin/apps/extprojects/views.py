@@ -6,6 +6,7 @@ from adhocracy4.dashboard.components.forms.views import \
     ProjectComponentFormView
 from adhocracy4.dashboard.mixins import DashboardBaseMixin
 from adhocracy4.dashboard.views import ProjectCreateView
+from meinberlin.apps.dashboard.mixins import DashboardProjectListGroupMixin
 from meinberlin.apps.extprojects import phases as extprojects_phases
 
 from . import apps
@@ -48,7 +49,8 @@ class ExternalProjectUpdateView(ProjectComponentFormView):
         return self.project
 
 
-class ExternalProjectListView(DashboardBaseMixin,
+class ExternalProjectListView(DashboardProjectListGroupMixin,
+                              DashboardBaseMixin,
                               generic.ListView):
     model = models.ExternalProject
     paginate_by = 12

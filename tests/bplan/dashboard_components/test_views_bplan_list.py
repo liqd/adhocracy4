@@ -57,8 +57,6 @@ def test_dashboard_bplan_list_view_group_member(
     response = client.get(url)
     assert response.status_code == 200
     assert bplan_1 in response.context_data['bplan_list']
-    # Currently we don't show the project in the list, but it's in the
-    # queryset...
-    assert bplan_2 in response.context_data['bplan_list']
+    assert bplan_2 not in response.context_data['bplan_list']
     assert bplan_3 not in response.context_data['bplan_list']
     assert project not in response.context_data['bplan_list']

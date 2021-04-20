@@ -6,6 +6,7 @@ from adhocracy4.dashboard.blueprints import ProjectBlueprint
 from adhocracy4.dashboard.components.forms.views import \
     ProjectComponentFormView
 from adhocracy4.dashboard.views import ProjectCreateView
+from meinberlin.apps.dashboard.mixins import DashboardProjectListGroupMixin
 
 from . import forms
 from . import models
@@ -61,7 +62,8 @@ class ContainerProjectsView(ProjectComponentFormView):
         return kwargs
 
 
-class ContainerListView(dashboard_mixins.DashboardBaseMixin,
+class ContainerListView(DashboardProjectListGroupMixin,
+                        dashboard_mixins.DashboardBaseMixin,
                         generic.ListView):
     model = models.ProjectContainer
     paginate_by = 12

@@ -18,18 +18,13 @@
 
     {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
-    {% if projectcontainer_list|length > 0 %}
-        <ul class="u-list-reset">
-            {% for container in projectcontainer_list %}
-                {% has_perm 'a4projects.change_project' request.user container as can_change_project %}
-                {% if can_change_project %}
-                {% include "a4dashboard/includes/project_list_item.html" with project=container %}
-                {% endif %}
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>{% trans 'We could not find any containers.' %}</p>
-    {% endif %}
+    <ul class="u-list-reset">
+        {% for container in projectcontainer_list %}
+            {% include "a4dashboard/includes/project_list_item.html" with project=container %}
+        {% empty %}
+            <p>{% trans 'We could not find any containers.' %}</p>
+        {% endfor %}
+    </ul>
 
     {% include "meinberlin_contrib/includes/pagination.html" %}
 {% endblock %}

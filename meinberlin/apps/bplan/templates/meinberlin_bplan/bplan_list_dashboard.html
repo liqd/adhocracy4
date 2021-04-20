@@ -17,18 +17,13 @@
 
     {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
-    {% if bplan_list|length > 0 %}
-        <ul class="u-list-reset">
-            {% for bplan in bplan_list %}
-                {% has_perm 'a4projects.change_project' request.user bplan as can_change_project %}
-                {% if can_change_project %}
-                {% include "a4dashboard/includes/project_list_item.html" with project=bplan %}
-                {% endif %}
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>{% trans 'We could not find any development plans.' %}</p>
-    {% endif %}
+    <ul class="u-list-reset">
+        {% for bplan in bplan_list %}
+            {% include "a4dashboard/includes/project_list_item.html" with project=bplan %}
+        {% empty %}
+            <p>{% trans 'We could not find any development plans.' %}</p>
+        {% endfor %}
+    </ul>
 
     {% include "meinberlin_contrib/includes/pagination.html" %}
 {% endblock %}

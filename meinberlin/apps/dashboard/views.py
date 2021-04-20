@@ -20,6 +20,7 @@ from adhocracy4.phases import models as phase_models
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.mixins import ProjectMixin
 from meinberlin.apps.dashboard.forms import DashboardProjectCreateForm
+from meinberlin.apps.dashboard.mixins import DashboardProjectListGroupMixin
 
 
 class ModuleBlueprintListView(ProjectMixin,
@@ -210,7 +211,8 @@ class ModuleDeleteView(generic.DeleteView):
         })
 
 
-class DashboardProjectListView(a4dashboard_views.ProjectListView):
+class DashboardProjectListView(DashboardProjectListGroupMixin,
+                               a4dashboard_views.ProjectListView):
     def get_queryset(self):
         return super().get_queryset().filter(
             projectcontainer=None,
