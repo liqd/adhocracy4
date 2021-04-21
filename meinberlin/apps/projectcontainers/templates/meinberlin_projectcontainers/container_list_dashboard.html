@@ -9,11 +9,23 @@
             {% trans 'Containers' %}
         </h1>
         {% has_perm 'meinberlin_projectcontainers.add_container' request.user as can_add_project %}
-        <div class="lr-bar__sm-left-lg-right">
-            <a href="{% url 'a4dashboard:container-create' organisation_slug=view.organisation.slug %}" class="btn" {% if not can_add_project %}disabled aria-disabled="true"{% endif %}>
-                {% trans 'New Container' %}
-            </a>
-        </div>
+        {% if not can_add_project %}
+            <div class="lr-bar__flex--wrapper u-spacer-top">
+                <div class="lr-bar__flex--wrapper nowrap">
+                    <i class="fas fa-exclamation-circle u-danger u-icon-spacing" aria-hidden="true"></i>
+                    <p class="u-danger u-font-italic u-spacer-right">{% trans 'No new project containers can be created. Please use the multimodule feature. Existing project containers can still be edited.' %}</p>
+                </div>
+                <a class="btn--flex bottom is-disabled" aria-disabled="true">
+                    {% trans 'New Container' %}
+                </a>
+            </div>
+        {% else %}
+            <div class="lr-bar__sm-left-lg-right">
+                <a href="{% url 'a4dashboard:container-create' organisation_slug=view.organisation.slug %}" class="btn">
+                    {% trans 'New Container' %}
+                </a>
+            </div>
+        {% endif %}
     </div>
 
     {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}

@@ -29,6 +29,7 @@
         background-color: mix($color, $color-contrast, $weight-bg);
         color: mix($color, $color-contrast, $weight-fg);
         cursor: not-allowed;
+        pointer-events: none;
     }
 }
 
@@ -48,6 +49,17 @@
 .btn {
     @extend %button-base;
     @include button-color($link-color-btn, $link-hover-color-btn);
+}
+
+.btn--flex {
+    @extend %button-base;
+    @include button-color($link-color-btn, $link-hover-color-btn);
+    flex: 1 0 auto;
+    height: 100%;
+
+    &.bottom {
+        align-self: flex-end;
+    }
 }
 
 .btn--light {

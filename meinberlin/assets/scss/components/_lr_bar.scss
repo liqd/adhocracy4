@@ -43,3 +43,17 @@
         margin-top: 0;
     }
 }
+
+.lr-bar__flex--wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    @media screen and (min-width: $breakpoint) {
+        flex-wrap: unset;
+    }
+
+    &.nowrap {
+        flex-wrap: unset;
+    }
+}

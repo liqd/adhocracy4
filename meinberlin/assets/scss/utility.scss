@@ -14,6 +14,10 @@
     margin-right: $spacer;
 }
 
+.u-spacer-right-half {
+    margin-right: ($spacer / 2);
+}
+
 .u-spacer-bottom {
     margin-bottom: $spacer;
 }
@@ -192,4 +196,13 @@
     @media screen and (max-width: $breakpoint-lg-down) {
         display: none !important;
     }
+}
+
+.u-font-italic {
+    font-style: italic;
+}
+
+.u-icon-spacing {
+    margin-right: ($spacer / 2);
+    margin-top: ($spacer / 4);
 }
