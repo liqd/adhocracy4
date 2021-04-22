@@ -129,16 +129,18 @@ class Toggles extends React.Component {
                   onClick={this.props.showList} // eslint-disable-line react/jsx-handler-names
                   htmlFor="show_list"
                 >
-                  <span className="sr-only">{django.gettext('Show List')}</span>
-                  <input className="radio__input" type="radio" value="list" id="show_list" aria-label={django.gettext('show list')} /> <i className="fa fa-list" />
+                  <input className="radio__input" type="radio" value="list" id="show_list" aria-label={django.gettext('show list')} />
+                  <i className="fa fa-list" />
+                  <span> {django.gettext('List')}</span>
                 </switch>
                 <switch
                   className={this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'}
                   onClick={this.props.showMap} // eslint-disable-line react/jsx-handler-names
                   htmlFor="show_map"
                 >
-                  <span className="sr-only">{django.gettext('Show Map')}</span>
-                  <input className="radio__input" type="radio" value="map" id="show_map" aria-label={django.gettext('show map')} /> <i className="fa fa-map" />
+                  <input className="radio__input" type="radio" value="map" id="show_map" aria-label={django.gettext('show map')} />
+                  <i className="fa fa-map" />
+                  <span> {django.gettext('Map')}</span>
                 </switch>
               </div>
             </div>

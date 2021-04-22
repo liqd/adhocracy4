@@ -21,11 +21,9 @@
 {% endblock %}
 
 {% block phase_content %}
-    <div class="control-bar__top-overlap">
-        <div class="l-wrapper">
-            <div class="l-center-8">
-                {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
-            </div>
+    <div class="l-wrapper u-spacer-bottom u-spacer-top-double">
+        <div class="l-center-8">
+            {% include "meinberlin_contrib/includes/map_filter_and_sort.html" with filter=view.filter mode=view.mode %}
         </div>
     </div>
     {% if view.mode == 'map' %}
@@ -41,13 +39,13 @@
             {% map_display_points object_list module.settings_instance.polygon %}
         </div>
     {% else %}
-        <div class="module-content">
+        <div class="module-content--light">
             <div class="l-wrapper">
                 <div class="l-center-8">
                     {% if object_list.count > 0 %}
                         <ul class="u-list-reset">
                             {% for object in object_list %}
-                                {% include "meinberlin_budgeting/includes/proposal_list_item.html" with object=object %}
+                                {% include "meinberlin_contrib/includes/proposal_list_item.html" with object=object %}
                             {% endfor %}
                         </ul>
                     {% else %}

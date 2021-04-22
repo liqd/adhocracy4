@@ -14,6 +14,10 @@
     &.selected:focus {
         outline: none;
     }
+
+    &:hover {
+        background-color: mix($body-bg, $bg-secondary);
+    }
 }
 
 .list-item--squashed {

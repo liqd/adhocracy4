@@ -2,9 +2,11 @@
     @include clearfix;
 
     select,
-    .dropdown {
+    .dropdown,
+    .btn-group__container {
         display: inline-block;
         vertical-align: top;
+        margin-bottom: 0;
     }
 
     @media (max-width: $breakpoint) {
@@ -12,13 +14,30 @@
             @include grid-same-width(2);
         }
 
-        .dropdown {
+        > :last-child {
+            float: right;
+            margin-right: 0;
+        }
+
+        .dropdown,
+        .btn-group__container {
             display: block;
+            margin-bottom: ($spacer / 2);
         }
 
         .dropdown-toggle {
             width: 100%;
             max-width: none;
+        }
+    }
+
+    @media (max-width: $breakpoint-xs) {
+        > * {
+            @include grid-same-width(1);
+        }
+
+        .btn-group {
+            float: right;
         }
     }
 
@@ -32,10 +51,10 @@
             @include grid-cell();
             @include grid-position(6);
         }
-    }
 
-    .form-group {
-        margin-bottom: $spacer / 2;
+        @media (max-width: $breakpoint-xs) {
+            margin-left: 0;
+        }
     }
 
     // firfox workaround for not shrinking felx item
@@ -47,7 +66,7 @@
 .control-bar__top-overlap {
     position: relative;
     z-index: 1;
-    bottom: -1.7em;
+    bottom: -1.25rem;
 
     .dropdown {
         margin-bottom: 0;
