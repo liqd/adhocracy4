@@ -25,7 +25,8 @@ def send_notifications(instance, created, **kwargs):
         if action.project:
             emails.NotifyModeratorsEmail.send(action)
 
-    elif action.type == 'phase':
+    elif (action.type == 'phase' and
+          action.project.project_type == 'a4projects.Project'):
         if verb == Verbs.START:
             emails.NotifyFollowersOnPhaseStartedEmail.send(action)
         elif verb == Verbs.SCHEDULE:
