@@ -71,11 +71,20 @@ class ProjectBasicForm(ProjectDashboardForm):
         required_for_project_publish = ['name', 'description']
         widgets = {
             'access': RadioSelect(
+                # FIXME: these choices are currently ignored by djangos widget
+                # machinery - we work around that in
+                # adhocracy4/dashbord/overwrites
                 choices=[
                     (Access.PUBLIC,
-                     _('All users can participate (public).')),
+                     _('All users can see project tile and content and can '
+                       'participate (public).')),
                     (Access.PRIVATE,
-                     _('Only invited users can participate (private).'))
+                     _('Only invited users can see project tile and '
+                       'content and can participate (private).')),
+                    (Access.SEMIPUBLIC,
+                     _('All users can see project tile and content, '
+                       'only invited users can participate '
+                       '(semi-public).'))
                 ]
             ),
         }

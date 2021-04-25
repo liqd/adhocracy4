@@ -9,3 +9,6 @@ class Config(AppConfig):
         from django.utils.module_loading import autodiscover_modules
         autodiscover_modules('dashboard', register_to=self.module.components)
         self.module.components.apply_replacements()
+
+        from . import overwrites
+        overwrites.overwrite_access_enum_label()
