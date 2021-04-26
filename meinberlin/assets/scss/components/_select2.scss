@@ -7,6 +7,9 @@
         height: 40px;
         border-color: $border-color;
         border-radius: 0.3em;
+
+        display: flex;
+        align-items: center;
     }
 
     .select2-results__option [aria-selected="true"] {
