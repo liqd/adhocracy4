@@ -29,6 +29,10 @@
 .switch-label {
     cursor: pointer;
     position: relative;
+
+    &:focus-within {
+        outline: 3px solid $blue-light;
+    }
 }
 
 .switch-label__text {

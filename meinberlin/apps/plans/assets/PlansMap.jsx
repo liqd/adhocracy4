@@ -257,16 +257,19 @@ class PlansMap extends Component {
       <div className="map-list-combined__map" ref={this.bindMap.bind(this)}>
         <div className="map-list-combined__map__search">
           <form onSubmit={this.onAddressSearchSubmit.bind(this)} data-embed-target="ignore" className="input-group">
-            <input
-              onChange={this.onAddressSearchChange.bind(this)}
-              className="input-group__input"
-              name="search"
-              type="search"
-              placeholder={django.gettext('Address Search')}
-            />
-            <button className="input-group__after btn btn--light" type="submit" title={django.gettext('Address search')}>
-              <i className="fas fa-search" aria-label={django.gettext('Address search')} />
-            </button>
+            <label htmlFor="id-map-search">
+              <input
+                onChange={this.onAddressSearchChange.bind(this)}
+                className="input-group__input u-inline"
+                name="search"
+                type="search"
+                id="id-map-search"
+                placeholder={django.gettext('Address Search')}
+              />
+              <button className="input-group__after input-group__after--search btn btn--light" type="submit" title={django.gettext('Address search')}>
+                <i className="fas fa-search" aria-label={django.gettext('Address search')} />
+              </button>
+            </label>
 
             {this.state.displayResults &&
               <ul aria-labelledby="id_filter_address">

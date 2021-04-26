@@ -38,6 +38,10 @@
     }
 }
 
+.input-group__after--search {
+    vertical-align: inherit;
+}
+
 .input-group__input:focus,
 .input-group__before:focus,
 .input-group__after:focus {

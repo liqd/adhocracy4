@@ -83,7 +83,7 @@ class FilterSecondary extends React.Component {
             onChange={this.changeTitleSearch.bind(this)}
           />
           <button
-            className="input-group__after btn btn--light filter-bar__search--btn"
+            className="input-group__after input-group__after--search btn btn--light"
             type="submit"
             onClick={this.submitSecondaryFilters.bind(this)}
           >
