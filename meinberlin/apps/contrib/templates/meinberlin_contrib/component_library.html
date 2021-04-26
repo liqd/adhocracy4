@@ -4,900 +4,939 @@
 {% block title %}Component Library &mdash; {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="l-wrapper">
-        <div class="l-menu">
-            <div class="l-menu__menu">
-                <nav class="dashboard-nav">
-                    <div class="dashboard-nav__dropdown">
-                        <div class="dashboard-nav__item">Form</div>
+<div class="l-wrapper">
+    <div class="l-menu">
+        <div class="l-menu__menu">
+            <nav class="dashboard-nav">
+                <div class="dashboard-nav__dropdown">
+                    <div class="dashboard-nav__item">Form</div>
+                </div>
+                <ul class="dashboard-nav__pages">
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-errorlist" class="dashboard-nav__item dashboard-nav__item--interactive">Errorlist</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-formgroup" class="dashboard-nav__item dashboard-nav__item--interactive">Formgroup</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-formcheck" class="dashboard-nav__item dashboard-nav__item--interactive">Formcheck</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="dashboard-nav">
+                <div class="dashboard-nav__dropdown">
+                    <div class="dashboard-nav__item">Components</div>
+                </div>
+                <ul class="dashboard-nav__pages">
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-accordion" class="dashboard-nav__item dashboard-nav__item--interactive">Accordion</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-actions" class="dashboard-nav__item dashboard-nav__item--interactive">Actions</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-alerts" class="dashboard-nav__item dashboard-nav__item--interactive">Alerts</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-blocks" class="dashboard-nav__item dashboard-nav__item--interactive">Blocks</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-breadcrumbs" class="dashboard-nav__item dashboard-nav__item--interactive">Breadcrumbs</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-buttons" class="dashboard-nav__item dashboard-nav__item--interactive">Buttons</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-category_formset" class="dashboard-nav__item dashboard-nav__item--interactive">Category Formset</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Commenting</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-comments" class="dashboard-nav__item dashboard-nav__item--interactive">Comments</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-complete" class="dashboard-nav__item dashboard-nav__item--interactive">Complete</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-component-library" class="dashboard-nav__item dashboard-nav__item--interactive">Component Library</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-copyright" class="dashboard-nav__item dashboard-nav__item--interactive">Copyright</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-dashboard-nav" class="dashboard-nav__item dashboard-nav__item--interactive">Dashboard Nav</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-datepicker" class="dashboard-nav__item dashboard-nav__item--interactive">Datepicker</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Document</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Doc Toc</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-embed-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Embed Layout</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Bar</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-filter-primary_menu" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Menu - Primary</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-filter-secondary_menu" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Menu - Secondary</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-footer" class="dashboard-nav__item dashboard-nav__item--interactive">Footer</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-header" class="dashboard-nav__item dashboard-nav__item--interactive">Header</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-hero-unit" class="dashboard-nav__item dashboard-nav__item--interactive">Hero Unit</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Input Group</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-overlapping-ctrl-bar" class="dashboard-nav__item dashboard-nav__item--interactive">Overlapping Control Bar</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-idea_remark" class="dashboard-nav__item dashboard-nav__item--interactive">Idea Remark</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-inforgraphic" class="dashboard-nav__item dashboard-nav__item--interactive">Infographic</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-item_detail" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-item_detail-2" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail 2</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-labels" class="dashboard-nav__item dashboard-nav__item--interactive">Labels</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-list_item" class="dashboard-nav__item dashboard-nav__item--interactive">List Item</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-maplist-item" class="dashboard-nav__item dashboard-nav__item--interactive">Map List Item</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-maplist-item-vertical" class="dashboard-nav__item dashboard-nav__item--interactive">Map List Item Vertical</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-menu-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Menu Layout</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-module" class="dashboard-nav__item dashboard-nav__item--interactive">Module</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-moderator-statement" class="dashboard-nav__item dashboard-nav__item--interactive">Moderato Statement</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-multiform" class="dashboard-nav__item dashboard-nav__item--interactive">Multiform</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-participation-tile" class="dashboard-nav__item dashboard-nav__item--interactive">Participation Tile</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-pagination" class="dashboard-nav__item dashboard-nav__item--interactive">Pagination</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-poll" class="dashboard-nav__item dashboard-nav__item--interactive">Poll</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-portal-header" class="dashboard-nav__item dashboard-nav__item--interactive">Portal Header</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-progress" class="dashboard-nav__item dashboard-nav__item--interactive">Progress</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-project-header" class="dashboard-nav__item dashboard-nav__item--interactive">Project Header</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-poll" class="dashboard-nav__item dashboard-nav__item--interactive">Radio</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-rating" class="dashboard-nav__item dashboard-nav__item--interactive">Rating</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-tabs" class="dashboard-nav__item dashboard-nav__item--interactive">Select Item</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-table" class="dashboard-nav__item dashboard-nav__item--interactive">Table</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-tabs" class="dashboard-nav__item dashboard-nav__item--interactive">Tabs</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-tile" class="dashboard-nav__item dashboard-nav__item--interactive">Tile</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-timeline" class="dashboard-nav__item dashboard-nav__item--interactive">Timeline</a>
+                    </li>
+                    <li class="dashboard-nav__page">
+                        <a href="#cl-upload" class="dashboard-nav__item dashboard-nav__item--interactive">Upload</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="l-menu__content">
+
+            <h1 class="u-first-heading">Style Guide</h1>
+
+            <div class="cl-example">
+                <div class="l-tiles-2 u-spacer-bottom">
+                    <div>
+                        <h1>This is heading 1</h1>
+                        <h2>This is heading 2</h2>
+                        <h3>This is heading 3</h3>
+                        <h4>This is heading 4</h4>
+                        <h5>This is heading 5</h5>
                     </div>
-                    <ul class="dashboard-nav__pages">
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-errorlist" class="dashboard-nav__item dashboard-nav__item--interactive">Errorlist</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-formgroup" class="dashboard-nav__item dashboard-nav__item--interactive">Formgroup</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-formcheck" class="dashboard-nav__item dashboard-nav__item--interactive">Formcheck</a>
-                        </li>
+                    <div>
+                        <ul class="u-list-reset">
+                            <li class="fs-xxxl">Font size xxxl: 36px </li>
+                            <li class="fs-xxl">Font size xxl: 31px</li>
+                            <li class="fs-xl">Font size xl: 24.96px</li>
+                            <li class="fs-lg">Font size lg: 20px</li>
+                            <li class="fs-sm">Font size sm: 14.4px</li>
+                            <li class="fs-xs">Font size xs: 12.6px</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p>Font stack: Arial, Helvetica, sans-serif</p>
+
+                <p>This is a paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum dixisset paulumque institisset, Quid est? Sapientem locupletat ipsa natura, cuius divitias Epicurus parabiles esse docuit. Sit sane ista
+                    voluptas. Quae quidem vel cum periculo est quaerenda vobis. An hoc usque quaque, aliter in vita? Eam stabilem appellas. Prave, nequiter, turpiter cenabat; Simus igitur contenti his. Idemne, quod iucunde</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum dixisset paulumque institisset, Quid est? Sapientem locupletat ipsa natura, cuius divitias Epicurus parabiles esse docuit. Sit sane ista voluptas. Quae quidem vel
+                    cum periculo est quaerenda vobis. This is another paragraph. An hoc usque quaque, aliter in vita? Eam stabilem appellas. Prave, nequiter, turpiter cenabat; Simus igitur contenti his. Idemne, quod iucunde</p>
+
+                <blockquote>„This is a normale quote“</blockquote>
+                <blockquote class="storefront__quote-text">„This is a storefront quote“</blockquote>
+
+                <a href="">This is a link</a>
+
+                <span class="colour-list">Colours:</span>
+                <div>
+                    <div class="l-tiles-4">
+                        <li>Brand primary <span class="primary cl-colour-block"></span></li>
+                        <li>Brand primary tint<span class="primary-tint cl-colour-block"></span></li>
+                        <li>Brand-secondary<span class="secondary cl-colour-block"></span></li>
+                        <li>Brand-success<span class="sucess cl-colour-block"></span></li>
+                        <li>Brand-info<span class="info cl-colour-block"></span></li>
+                        <li>Brand-warning<span class="warning cl-colour-block"></span></li>
+                        <li>Brand-danger<span class="danger cl-colour-block"></span></li>
+                        <li>Gray<span class="gray cl-colour-block"></span></li>
+                        <li>Gray-lighter<span class="gray-lighter cl-colour-block"></span></li>
+                        <li>Body-background<span class="background cl-colour-block"></span></li>
+                        <li>Background-secondary<span class="bg-secondary cl-colour-block"></span></li>
+                        <li>Background-tertiary<span class="bg-tertiary cl-colour-block"></span></li>
+                        <li>Text-colour<span class="text-colour cl-colour-block"></span></li>
+                        <li>Text-color-inverted<span class="text-inverted cl-colour-block"></span></li>
+                        <li>Text-color-gray<span class="text-gray cl-colour-block"></span></li>
+                        <li>Blue-Light<span class="blue-light cl-colour-block"></span></li>
+                        <li>Print-black<span class="print-black cl-colour-block"></span></li>
+                        <li>Print-link<span class="print-link cl-colour-block"></span></li>
+                        <li>Link-color<span class="link-color cl-colour-block"></span></li>
+                        <li>link-hover-color<span class="link-hover-color cl-colour-block"></span></li>
+                        <li>Border-color<span class="border cl-colour-block"></span></li>
+                        <li>Input-border-color<span class="input-border cl-colour-block"></span></li>
+                        <li>Feedback-color-accepted<span class="feedback-accepted cl-colour-block"></span></li>
+                        <li>Feedback-color-rejected<span class="feedback-rejected cl-colour-block"></span></li>
+                        <li>Feedback-color-consideration<span class="feedback-color-consideration cl-colour-block"></span></li>
+                        <li>Feedback-color-consideration<span class="idea-remark-bg cl-colour-block"></span></li>
+                        <li>Feedback-color-consideration<span class="idea-remark-colour cl-colour-block"></span></li>
+                    </div>
+                </div>
+            </div>
+
+            <h1>Component Library</h1>
+
+            <h2 id="cl-errorlist">Errorlist</h2>
+
+            <div class="cl-example">
+                <ul class="errorlist">
+                    <li>Error Message 1</li>
+                    <li>Error Message 2</li>
+                </ul>
+            </div>
+
+            <h2 id="cl-formgroup">Formgroup</h2>
+
+            <div class="cl-example">
+                <div class="form-group">
+                    <label for="id_field">
+                        Label
+                    </label>
+                    <div class="form-hint">
+                        Help text
+                    </div>
+                    <div class="widget widget--textinput">
+                        <input type="text" name="name" value="" id="id_field">
+                    </div>
+                    <ul class="errorlist">
+                        <li>Error Message</li>
                     </ul>
-                </nav>
-                <nav class="dashboard-nav">
-                    <div class="dashboard-nav__dropdown">
-                        <div class="dashboard-nav__item">Components</div>
+                </div>
+                <div class="form-group form-group--narrow">
+                    <label for="id_narrowfield">
+                        Label for narrow formgroup
+                    </label>
+                    <div class="form-hint">
+                        Help text
                     </div>
-                    <ul class="dashboard-nav__pages">
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-accordion" class="dashboard-nav__item dashboard-nav__item--interactive">Accordion</a>
+                    <div class="widget widget--textinput">
+                        <input type="text" name="name" value="" id="id_narrowfield">
+                    </div>
+                    <ul class="errorlist">
+                        <li>Error Message</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 id="cl-formcheck">Formcheck</h2>
+
+            <div class="cl-example">
+                <div class="form-check">
+                    <label class="form-check__label">
+                        <input type="checkbox">
+                        Label
+                    </label>
+                    <div class="form-hint">
+                        Help text
+                    </div>
+                    <ul class="errorlist">
+                        <li>Error Message</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 id="cl-accordion">Accordion</h2>
+
+            <div class="cl-example">
+                <div class="accordion">
+                    <a id="accordion-{{ index }}-title" href="#accordion-{{ index }}-body" class="accordion__title collapsed" aria-haspopup="true" aria-expanded="false" data-toggle="collapse">
+                        <h2>
+                            Docs Block Title
+                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                        </h2>
+                    </a>
+
+                    <div class="accordion__body collapse" id="accordion-{{ index }}-body" aria-labelledby="accordion-{{ index }}-title">
+                        This is the body of the docs block,
+                        This block is used in wagtail pages.
+                        <ul>
+                            <li>Why is the list-styling turned off?</li>
+                        </ul>
+                        And why is there a margin-bottom with the list-styling that is otherwise not there? Is wagtail's richtext given as list elements?
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="cl-actions">Actions</h2>
+
+            <div class="cl-example">
+                <div class="action action--withdate">
+                    <i class="far fa-clock action__icon" aria-hidden="true"></i>
+                    <div class="action__main">
+                        <div class="action__line">
+                            Action of type schedule
+                        </div>
+                        <div class="action__line">
+                            on <a href="#">Project</a>
+                        </div>
+                        <div class="action__date">
+                            03.11.2017
+                        </div>
+                    </div>
+                </div>
+                <div class="action action--withdate">
+                    <i class="fa fa-comment action__icon" aria-hidden="true"></i>
+                    <div class="action__main">
+                        <div class="action__line">
+                            Action of type comment
+                            {% lorem random %}
+                        </div>
+                        <div class="action__line">
+                            on <a href="#">Project</a>
+                        </div>
+                        <div class="action__date">
+                            03.11.2017
+                        </div>
+                    </div>
+                </div>
+                <div class="action">
+                    <i class="fa fa-comment action__icon" aria-hidden="true"></i>
+                    <div class="action__main">
+                        <div class="action__line">
+                            Action of type comment without a date<br>
+                            {% lorem random %}
+                        </div>
+                        <div class="action__line">
+                            on <a href="#">Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="cl-alerts">Alerts</h2>
+
+            <div class="cl-example">
+                <span title="`messages` behaves differently if it is the first child in a block"></span>
+                <ul class="messages">
+                    <li class="alert alert--success" role="alert">
+                        <div class="l-wrapper">
+                            Success
+                            <button class="alert__close">X</button>
+                        </div>
+                    </li>
+                    <li class="alert alert--info" role="alert">
+                        <div class="l-wrapper">
+                            Info
+                            <button class="alert__close">X</button>
+                        </div>
+                    </li>
+                    <li class="alert alert--warning" role="alert">
+                        <div class="l-wrapper">
+                            Warning
+                            <button class="alert__close">X</button>
+                        </div>
+                    </li>
+                    <li class="alert alert--danger" role="alert">
+                        <div class="l-wrapper">
+                            Danger
+                            <button class="alert__close">X</button>
+                        </div>
+                    </li>
+                </ul>
+
+                <p class="alert alert--small" role="alert">
+                    Small
+                    <button class="alert__close">X</button>
+                </p>
+            </div>
+
+            <h2 id="cl-blocks">Blocks</h2>
+
+            <div class="cl-example">
+                <div class="block">
+                    <h2>Block content</h2>
+                    <p>
+                        {% lorem random %}
+                    </p>
+                </div>
+                <div class="block block--cta">
+                    <div class="l-wrapper">
+                        <div class="rich-text">
+                            <h2>Call to action block</h2>
+                            <p>
+                                {% lorem random %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="block block--bordered">
+                    <h2>Bordered block</h2>
+                    <p>
+                        {% lorem random %}
+                    </p>
+                </div>
+            </div>
+
+            <h2 id="cl-breadcrumbs">Breadcrumbs</h2>
+
+            <div class="cl-example">
+                <nav class="breadcrumbs" aria-label="Breadcrumbs (label required for landmarks)">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                First breadcrumb
+                            </a>
                         </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-actions" class="dashboard-nav__item dashboard-nav__item--interactive">Actions</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-alerts" class="dashboard-nav__item dashboard-nav__item--interactive">Alerts</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-blocks" class="dashboard-nav__item dashboard-nav__item--interactive">Blocks</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-breadcrumbs" class="dashboard-nav__item dashboard-nav__item--interactive">Breadcrumbs</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-buttons" class="dashboard-nav__item dashboard-nav__item--interactive">Buttons</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-category_formset" class="dashboard-nav__item dashboard-nav__item--interactive">Category Formset</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-commenting" class="dashboard-nav__item dashboard-nav__item--interactive">Commenting</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-comments" class="dashboard-nav__item dashboard-nav__item--interactive">Comments</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-complete" class="dashboard-nav__item dashboard-nav__item--interactive">Complete</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-component-library" class="dashboard-nav__item dashboard-nav__item--interactive">Component Library</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-copyright" class="dashboard-nav__item dashboard-nav__item--interactive">Copyright</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-dashboard-nav" class="dashboard-nav__item dashboard-nav__item--interactive">Dashboard Nav</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-datepicker" class="dashboard-nav__item dashboard-nav__item--interactive">Datepicker</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Document</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-document" class="dashboard-nav__item dashboard-nav__item--interactive">Doc Toc</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                             <a href="#cl-embed-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Embed Layout</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Bar</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-filter-primary_menu" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Menu - Primary</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-filter-secondary_menu" class="dashboard-nav__item dashboard-nav__item--interactive">Filter Menu - Secondary</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-footer" class="dashboard-nav__item dashboard-nav__item--interactive">Footer</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-header" class="dashboard-nav__item dashboard-nav__item--interactive">Header</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-hero-unit" class="dashboard-nav__item dashboard-nav__item--interactive">Hero Unit</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-control_bar" class="dashboard-nav__item dashboard-nav__item--interactive">Input Group</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-overlapping-ctrl-bar" class="dashboard-nav__item dashboard-nav__item--interactive">Overlapping Control Bar</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-idea_remark" class="dashboard-nav__item dashboard-nav__item--interactive">Idea Remark</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-inforgraphic" class="dashboard-nav__item dashboard-nav__item--interactive">Infographic</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-item_detail" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-item_detail-2" class="dashboard-nav__item dashboard-nav__item--interactive">Item Detail 2</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-labels" class="dashboard-nav__item dashboard-nav__item--interactive">Labels</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-list_item" class="dashboard-nav__item dashboard-nav__item--interactive">List Item</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-maplist-item" class="dashboard-nav__item dashboard-nav__item--interactive">Map List Item</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-maplist-item-vertical" class="dashboard-nav__item dashboard-nav__item--interactive">Map List Item Vertical</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-menu-layout" class="dashboard-nav__item dashboard-nav__item--interactive">Menu Layout</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-module" class="dashboard-nav__item dashboard-nav__item--interactive">Module</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-moderator-statement" class="dashboard-nav__item dashboard-nav__item--interactive">Moderato Statement</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-multiform" class="dashboard-nav__item dashboard-nav__item--interactive">Multiform</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-participation-tile" class="dashboard-nav__item dashboard-nav__item--interactive">Participation Tile</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-pagination" class="dashboard-nav__item dashboard-nav__item--interactive">Pagination</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-poll" class="dashboard-nav__item dashboard-nav__item--interactive">Poll</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-portal-header" class="dashboard-nav__item dashboard-nav__item--interactive">Portal Header</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-progress" class="dashboard-nav__item dashboard-nav__item--interactive">Progress</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-project-header" class="dashboard-nav__item dashboard-nav__item--interactive">Project Header</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-poll" class="dashboard-nav__item dashboard-nav__item--interactive">Radio</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-rating" class="dashboard-nav__item dashboard-nav__item--interactive">Rating</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-tabs" class="dashboard-nav__item dashboard-nav__item--interactive">Select Item</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-table" class="dashboard-nav__item dashboard-nav__item--interactive">Table</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-tabs" class="dashboard-nav__item dashboard-nav__item--interactive">Tabs</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-tile" class="dashboard-nav__item dashboard-nav__item--interactive">Tile</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-timeline" class="dashboard-nav__item dashboard-nav__item--interactive">Timeline</a>
-                        </li>
-                        <li class="dashboard-nav__page">
-                            <a href="#cl-upload" class="dashboard-nav__item dashboard-nav__item--interactive">Upload</a>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                                Second breadcrumb
+                            </a>
                         </li>
                     </ul>
                 </nav>
             </div>
 
-            <div class="l-menu__content">
+            <h2 id="cl-buttons">Buttons</h2>
 
-                <h1 class="u-first-heading">Style Guide</h1>
-
-                <div class="cl-example">
-                    <div class="l-tiles-2 u-spacer-bottom">
-                        <div>
-                            <h1>This is heading 1</h1>
-                            <h2>This is heading 2</h2>
-                            <h3>This is heading 3</h3>
-                            <h4>This is heading 4</h4>
-                            <h5>This is heading 5</h5>
-                        </div>
-                        <div>
-                          <ul class="u-list-reset">
-                              <li class="fs-xxxl">Font size xxxl: 36px </li>
-                              <li class="fs-xxl">Font size xxl: 31px</li>
-                              <li class="fs-xl">Font size xl: 24.96px</li>
-                              <li class="fs-lg">Font size lg: 20px</li>
-                              <li class="fs-sm">Font size sm: 14.4px</li>
-                              <li class="fs-xs">Font size xs: 12.6px</li>
-                          </ul>
+            <div class="cl-example">
+                <p>
+                    <button class="btn" type="button">Button</button>
+                    <input class="btn" type="button" value="Input Button" />
+                    <a class="btn" href="#">Link as Button</a>
+                </p>
+                <p>
+                    <button class="btn btn--light" type="button">Light Button</button>
+                    <button class="btn btn--transparent" type="button">Transparent Button</button>
+                    <button class="btn btn--primary" type="button">Primary Button</button>
+                    <button class="btn btn--secondary" type="button">Secondary Button</button>
+                    <button class="btn btn--danger" type="button">Danger Button</button>
+                </p>
+                <button class="btn btn--light" type="button" disabled>Light Button</button>
+                <button class="btn btn--transparent" type="button" disabled>Transparent Button</button>
+                <button class="btn btn--primary" type="button" disabled>Primary Button</button>
+                <button class="btn btn--secondary" type="button" disabled>Secondary Button</button>
+                <button class="btn btn--danger" type="button" disabled>Danger Button</button>
+                <p>
+                </p>
+                <p>
+                    <button class="btn btn--link" type="button">Button as Link</button>
+                    <button class="btn btn--none" type="button">No Button</button>
+                </p>
+                <p>
+                    <button class="btn btn--select" type="button">Select Button <i class="fa fa-caret-down" aria-hidden="true"></i></button>
+                    <button class="btn btn--small" type="button">Small Button</button>
+                    <button class="btn btn--huge" type="button">Huge Button</button>
+                    <button class="btn btn--attached-top" type="button">Top Button</button>
+                </p>
+                <p>
+                    <button class="btn btn--full u-spacer-bottom" type="button">Full Button</button>
+                </p>
+                <div class="btn-group" role="group">
+                    <button class="btn" type="button">But</button><button class="btn" type="button">ton</button><button class="btn" type="button">group</button>
+                </div>
+                <div class="switch-group" role="group" aria-labelledby="switch-primary">
+                    <div class="switch-filter__btn-group">
+                        <button class="btn btn--transparent btn--small" type="button">Switch filter btn <i class="fa fa-times"></i></button>
+                    </div>
+                    &nbsp
+                    <div class="switch-btn-group-container">
+                        <div class="btn-group switch-btn-group" role="group">
+                            <switch class="btn btn--light switch--btn" for="show_list">
+                                <input class="radio__input" type="radio" id="show_list" aria-label="Liste anzeigen" value="list">
+                                <i class="fa fa-list"></i><span> List</span>
+                            </switch><switch class="btn btn--light switch--btn active" for="show_map"><input class="radio__input" type="radio" id="show_map" aria-label="Karte anzeigen" value="map"><i class="fa fa-map"></i><span> Map</span></switch>
                         </div>
                     </div>
-
-                    <p>Font stack: Arial, Helvetica, sans-serif</p>
-
-                    <p>This is a paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum dixisset paulumque institisset, Quid est? Sapientem locupletat ipsa natura, cuius divitias Epicurus parabiles esse docuit. Sit sane ista voluptas. Quae quidem vel cum periculo est quaerenda vobis. An hoc usque quaque, aliter in vita? Eam stabilem appellas. Prave, nequiter, turpiter cenabat; Simus igitur contenti his. Idemne, quod iucunde</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum dixisset paulumque institisset, Quid est? Sapientem locupletat ipsa natura, cuius divitias Epicurus parabiles esse docuit. Sit sane ista voluptas. Quae quidem vel cum periculo est quaerenda vobis. This is another paragraph. An hoc usque quaque, aliter in vita? Eam stabilem appellas. Prave, nequiter, turpiter cenabat; Simus igitur contenti his. Idemne, quod iucunde</p>
-
-                    <blockquote>„This is a normale quote“</blockquote>
-                    <blockquote class="storefront__quote-text">„This is a storefront quote“</blockquote>
-
-                     <a href="">This is a link</a>
-
-                    <span class="colour-list">Colours:</span>
-                    <div>
-                        <div class="l-tiles-4">
-                            <li>Brand primary <span class="primary cl-colour-block"></span></li>
-                            <li>Brand primary tint<span class="primary-tint cl-colour-block"></span></li>
-                            <li>Brand-secondary<span class="secondary cl-colour-block"></span></li>
-                            <li>Brand-success<span class="sucess cl-colour-block"></span></li>
-                            <li>Brand-info<span class="info cl-colour-block"></span></li>
-                            <li>Brand-warning<span class="warning cl-colour-block"></span></li>
-                            <li>Brand-danger<span class="danger cl-colour-block"></span></li>
-                            <li>Gray<span class="gray cl-colour-block"></span></li>
-                            <li>Gray-lighter<span class="gray-lighter cl-colour-block"></span></li>
-                            <li>Body-background<span class="background cl-colour-block"></span></li>
-                            <li>Background-secondary<span class="bg-secondary cl-colour-block"></span></li>
-                            <li>Background-tertiary<span class="bg-tertiary cl-colour-block"></span></li>
-                            <li>Text-colour<span class="text-colour cl-colour-block"></span></li>
-                            <li>Text-color-inverted<span class="text-inverted cl-colour-block"></span></li>
-                            <li>Text-color-gray<span class="text-gray cl-colour-block"></span></li>
-                            <li>Blue-Light<span class="blue-light cl-colour-block"></span></li>
-                            <li>Print-black<span class="print-black cl-colour-block"></span></li>
-                            <li>Print-link<span class="print-link cl-colour-block"></span></li>
-                            <li>Link-color<span class="link-color cl-colour-block"></span></li>
-                            <li>link-hover-color<span class="link-hover-color cl-colour-block"></span></li>
-                            <li>Border-color<span class="border cl-colour-block"></span></li>
-                            <li>Input-border-color<span class="input-border cl-colour-block"></span></li>
-                            <li>Feedback-color-accepted<span class="feedback-accepted cl-colour-block"></span></li>
-                            <li>Feedback-color-rejected<span class="feedback-rejected cl-colour-block"></span></li>
-                            <li>Feedback-color-consideration<span class="feedback-color-consideration cl-colour-block"></span></li>
-                            <li>Feedback-color-consideration<span class="idea-remark-bg cl-colour-block"></span></li>
-                            <li>Feedback-color-consideration<span class="idea-remark-colour cl-colour-block"></span></li>
-                        </div>
-                    </div>
-                </div>
-
-                <h1>Component Library</h1>
-
-                <h2 id="cl-errorlist">Errorlist</h2>
-
-                <div class="cl-example">
-                    <ul class="errorlist">
-                        <li>Error Message 1</li>
-                        <li>Error Message 2</li>
-                    </ul>
-                </div>
-
-                <h2 id="cl-formgroup">Formgroup</h2>
-
-                <div class="cl-example">
-                    <div class="form-group">
-                        <label for="id_field">
-                            Label
+                    &nbsp
+                    <div class="switch">
+                        <label for="switch-primary" class="switch-label">
+                            <span class="switch-label__text">View map</span>
+                            <input class="switch-input" id="switch-primary" name="switch-primary" type="checkbox" aria-label="Karte ausblenden">
+                            <span class="switch__toggle"></span>
                         </label>
-                        <div class="form-hint">
-                            Help text
-                        </div>
-                        <div class="widget widget--textinput">
-                            <input type="text" name="name" value="" id="id_field">
-                        </div>
-                        <ul class="errorlist">
-                            <li>Error Message</li>
-                        </ul>
                     </div>
-                    <div class="form-group form-group--narrow">
-                        <label for="id_narrowfield">
-                            Label for narrow formgroup
-                        </label>
-                        <div class="form-hint">
-                            Help text
-                        </div>
-                        <div class="widget widget--textinput">
-                            <input type="text" name="name" value="" id="id_narrowfield">
-                        </div>
-                        <ul class="errorlist">
-                            <li>Error Message</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <h2 id="cl-formcheck">Formcheck</h2>
-
-                <div class="cl-example">
-                    <div class="form-check">
-                        <label class="form-check__label">
-                            <input type="checkbox">
-                            Label
-                        </label>
-                        <div class="form-hint">
-                            Help text
-                        </div>
-                        <ul class="errorlist">
-                            <li>Error Message</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <h2 id="cl-accordion">Accordion</h2>
-
-                <div class="cl-example">
-                    <div class="accordion">
-                        <a
-                            id="accordion-{{ index }}-title"
-                            href="#accordion-{{ index }}-body"
-                            class="accordion__title collapsed"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                            data-toggle="collapse">
-                            <h2>
-                                Docs Block Title
-                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                            </h2>
-                        </a>
-
-                        <div
-                            class="accordion__body collapse"
-                            id="accordion-{{ index }}-body"
-                            aria-labelledby="accordion-{{ index }}-title">
-                            This is the body of the docs block,
-                            This block is used in wagtail pages.
-                            <ul>
-                                <li>Why is the list-styling turned off?</li>
-                            </ul>
-                            And why is there a margin-bottom with the list-styling that is otherwise not there? Is wagtail's richtext given as list elements?
-                        </div>
-                    </div>
-                </div>
-
-                <h2 id="cl-actions">Actions</h2>
-
-                <div class="cl-example">
-                    <div class="action action--withdate">
-                        <i class="far fa-clock action__icon" aria-hidden="true"></i>
-                        <div class="action__main">
-                            <div class="action__line">
-                                Action of type schedule
-                            </div>
-                            <div class="action__line">
-                                on <a href="#">Project</a>
-                            </div>
-                            <div class="action__date">
-                                03.11.2017
-                            </div>
-                        </div>
-                    </div>
-                    <div class="action action--withdate">
-                        <i class="fa fa-comment action__icon" aria-hidden="true"></i>
-                        <div class="action__main">
-                            <div class="action__line">
-                                Action of type comment
-                                {% lorem random %}
-                            </div>
-                            <div class="action__line">
-                                on <a href="#">Project</a>
-                            </div>
-                            <div class="action__date">
-                                03.11.2017
-                            </div>
-                        </div>
-                    </div>
-                    <div class="action">
-                        <i class="fa fa-comment action__icon" aria-hidden="true"></i>
-                        <div class="action__main">
-                            <div class="action__line">
-                                Action of type comment without a date<br>
-                                {% lorem random %}
-                            </div>
-                            <div class="action__line">
-                                on <a href="#">Project</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 id="cl-alerts">Alerts</h2>
-
-                <div class="cl-example">
-                    <span title="`messages` behaves differently if it is the first child in a block"></span>
-                    <ul class="messages">
-                        <li class="alert alert--success" role="alert">
-                            <div class="l-wrapper">
-                                Success
-                                <button class="alert__close">X</button>
-                            </div>
-                        </li>
-                        <li class="alert alert--info" role="alert">
-                            <div class="l-wrapper">
-                                Info
-                                <button class="alert__close">X</button>
-                            </div>
-                        </li>
-                        <li class="alert alert--warning" role="alert">
-                            <div class="l-wrapper">
-                                Warning
-                                <button class="alert__close">X</button>
-                            </div>
-                        </li>
-                        <li class="alert alert--danger" role="alert">
-                            <div class="l-wrapper">
-                                Danger
-                                <button class="alert__close">X</button>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <p class="alert alert--small" role="alert">
-                        Small
-                        <button class="alert__close">X</button>
-                    </p>
-                </div>
-
-                <h2 id="cl-blocks">Blocks</h2>
-
-                <div class="cl-example">
-                    <div class="block">
-                        <h2>Block content</h2>
-                        <p>
-                            {% lorem random %}
-                        </p>
-                    </div>
-                    <div class="block block--cta">
-                        <div class="l-wrapper">
-                            <div class="rich-text">
-                                <h2>Call to action block</h2>
-                                <p>
-                                    {% lorem random %}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="block block--bordered">
-                        <h2>Bordered block</h2>
-                        <p>
-                            {% lorem random %}
-                        </p>
-                    </div>
-                </div>
-
-                <h2 id="cl-breadcrumbs">Breadcrumbs</h2>
-
-                <div class="cl-example">
-                    <nav class="breadcrumbs" aria-label="Breadcrumbs (label required for landmarks)">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                    First breadcrumb
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                    Second breadcrumb
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <h2 id="cl-buttons">Buttons</h2>
-
-                <div class="cl-example">
-                    <p>
-                        <button class="btn" type="button">Button</button>
-                        <input class="btn" type="button" value="Input Button"/>
-                        <a class="btn" href="#">Link as Button</a>
-                    </p>
-                    <p>
-                        <button class="btn btn--light" type="button">Light Button</button>
-                        <button class="btn btn--transparent" type="button">Transparent Button</button>
-                        <button class="btn btn--primary" type="button">Primary Button</button>
-                        <button class="btn btn--secondary" type="button">Secondary Button</button>
-                        <button class="btn btn--danger" type="button">Danger Button</button>
-                    </p>
-                    <p>
-                        <button class="btn btn--link" type="button">Button as Link</button>
-                        <button class="btn btn--none" type="button">No Button</button>
-                    </p>
-                    <p>
-                        <button class="btn btn--select" type="button">Select Button <i class="fa fa-caret-down" aria-hidden="true"></i></button>
-                        <button class="btn btn--small" type="button">Small Button</button>
-                        <button class="btn btn--huge" type="button">Huge Button</button>
-                        <button class="btn btn--attached-top" type="button">Top Button</button>
-                    </p>
-                    <p>
-                        <button class="btn btn--full u-spacer-bottom" type="button">Full Button</button>
-                    </p>
-                    <div class="btn-group" role="group">
-                        <button class="btn" type="button">But</button><button class="btn" type="button">ton</button><button class="btn" type="button">group</button>
-                    </div>
-                </div>
-
-                <h2 id="cl-category_formset">Category Formset</h2>
-
-                <div class="cl-example">
-                    <p>The category formset is used for the categories and category icons from A4.</p>
-
-                    <div class="js-form category-formset__form form-group">
-                        <div class="category-formset__form__category">
-                            <input name="category_set-0-DELETE" id="id_category_set-0-DELETE" class="category-formset__delete" type="checkbox">
-                            <input name="category_set-0-name" value="category 1" placeholder="Kategorie" id="id_category_set-0-name" type="text">
-                            <label for="id_category_set-0-DELETE" class="category-formset__delete-label" title="Kategorie entfernen">
-                                <i class="fas fa-trash-alt" aria-label="Kategorie entfernen"></i>
+                    &nbsp
+                    <div class="switch">
+                        <div class="switch-group" role="group" aria-labelledby="switch-primary">
+                            <label for="switch-primary" class="switch-label">
+                                <span class="switch-label__text">View map</span>
+                                <input class="switch-input d-none" id="switch-primary" name="switch-primary" type="checkbox" checked aria-label="Karte ausblenden">
+                                <span class="switch__toggle">
+                                </span>
                             </label>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                        <div class="category-formset__form__icon select-icon">
-                            <div class="dropdown select-dropdown category-icon-select">
-                                <button class="btn select-dropdown__btn category-icon-select__btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="select-dropdown__btn__label">
-                                        <img src="/static/category_icons/icons/diamant_icon.svg" class="select-dropdown__btn__label__icon">
-                                        <span class="select-dropdown__btn__label__label">Diamant</span>
-                                    </span>
-                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                </button>
-                                <div class="dropdown-menu select-dropdown__menu">
-                                    <a class="dropdown-item select-dropdown__item" href="#">
-                                        <img src="/static/category_icons/icons/default_icon.svg" class="select-dropdown__item__icon">
-                                        <span class="select-dropdown__item__label">Pin ohne Icon</span>
-                                    </a>
-                                    <a class="dropdown-item select-dropdown__item selected" href="#">
-                                        <img src="/static/category_icons/icons/diamant_icon.svg" class="select-dropdown__item__icon">
-                                        <span class="select-dropdown__item__label">Diamant</span>
-                                    </a>
-                                    <a class="dropdown-item select-dropdown__item" href="#">
-                                        <img src="/static/category_icons/icons/dreieck_oben_icon.svg" class="select-dropdown__item__icon">
-                                        <span class="select-dropdown__item__label">Dreieck Spitze oben</span>
-                                    </a>
-                                </div>
+            <h2 id="cl-category_formset">Category Formset</h2>
+
+            <div class="cl-example">
+                <p>The category formset is used for the categories and category icons from A4.</p>
+
+                <div class="js-form category-formset__form form-group">
+                    <div class="category-formset__form__category">
+                        <input name="category_set-0-DELETE" id="id_category_set-0-DELETE" class="category-formset__delete" type="checkbox">
+                        <input name="category_set-0-name" value="category 1" placeholder="Kategorie" id="id_category_set-0-name" type="text">
+                        <label for="id_category_set-0-DELETE" class="category-formset__delete-label" title="Kategorie entfernen">
+                            <i class="fas fa-trash-alt" aria-label="Kategorie entfernen"></i>
+                        </label>
+                    </div>
+
+                    <div class="category-formset__form__icon select-icon">
+                        <div class="dropdown select-dropdown category-icon-select">
+                            <button class="btn select-dropdown__btn category-icon-select__btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="select-dropdown__btn__label">
+                                    <img src="/static/category_icons/icons/diamant_icon.svg" class="select-dropdown__btn__label__icon">
+                                    <span class="select-dropdown__btn__label__label">Diamant</span>
+                                </span>
+                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                            </button>
+                            <div class="dropdown-menu select-dropdown__menu">
+                                <a class="dropdown-item select-dropdown__item" href="#">
+                                    <img src="/static/category_icons/icons/default_icon.svg" class="select-dropdown__item__icon">
+                                    <span class="select-dropdown__item__label">Pin ohne Icon</span>
+                                </a>
+                                <a class="dropdown-item select-dropdown__item selected" href="#">
+                                    <img src="/static/category_icons/icons/diamant_icon.svg" class="select-dropdown__item__icon">
+                                    <span class="select-dropdown__item__label">Diamant</span>
+                                </a>
+                                <a class="dropdown-item select-dropdown__item" href="#">
+                                    <img src="/static/category_icons/icons/dreieck_oben_icon.svg" class="select-dropdown__item__icon">
+                                    <span class="select-dropdown__item__label">Dreieck Spitze oben</span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <h2 id="cl-commenting">Commenting</h2>
+            <h2 id="cl-commenting">Commenting</h2>
 
-                <div class="cl-example">
-                    <div class="commenting">
-                        <div class="commenting__content">
-                            {% lorem random %}
-                        </div>
-                        {% spaceless %}
-                            <div class="commenting__actions btn-group" role="group">
-                                <button class="btn btn--light btn--small" title="Move up" type="button">
-                                    <i class="fa fa-chevron-up" aria-label="Move up"></i>
-                                </button>
-                                <button class="btn btn--light btn--small" title="Move down" type="button">
-                                    <i class="fa fa-chevron-down" aria-label="Move down"></i>
-                                </button>
-                                <button class="btn btn--light btn--small" title="Delete" type="button">
-                                    <i class="fas fa-trash-alt" aria-label="Delete"></i>
-                                </button>
-                            </div>
-                        {% endspaceless %}
+            <div class="cl-example">
+                <div class="commenting">
+                    <div class="commenting__content">
+                        {% lorem random %}
                     </div>
-                    <div class="commenting">
-                        <div class="commenting__content commenting__content--border">
-                            {% lorem random %}
-                        </div>
-                        <div class="commenting__actions">
-                            <button class="btn btn--light btn--small" title="Delete" type="button">
-                                <i class="fas fa-trash-alt" aria-label="Delete"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="commenting commenting--toc">
-                        <button type="button" class="commenting__content commenting--toc__button btn btn--light btn--small">
-                            1. Title
+                    {% spaceless %}
+                    <div class="commenting__actions btn-group" role="group">
+                        <button class="btn btn--light btn--small" title="Move up" type="button">
+                            <i class="fa fa-chevron-up" aria-label="Move up"></i>
                         </button>
-                        <div class="commenting__actions">
-                            <button class="btn btn--light btn--small" title="Delete" type="button">
-                                <i class="fas fa-trash-alt" aria-label="Delete"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="commenting commenting--toc">
-                        <button type="button" class="commenting__content commenting--toc__button btn btn--light btn--small active">
-                            2. Title (active)
+                        <button class="btn btn--light btn--small" title="Move down" type="button">
+                            <i class="fa fa-chevron-down" aria-label="Move down"></i>
                         </button>
-                        <div class="commenting__actions">
-                            <button class="btn btn--light btn--small" title="Delete" type="button">
-                                <i class="fas fa-trash-alt" aria-label="Delete"></i>
-                            </button>
-                        </div>
+                        <button class="btn btn--light btn--small" title="Delete" type="button">
+                            <i class="fas fa-trash-alt" aria-label="Delete"></i>
+                        </button>
+                    </div>
+                    {% endspaceless %}
+                </div>
+                <div class="commenting">
+                    <div class="commenting__content commenting__content--border">
+                        {% lorem random %}
+                    </div>
+                    <div class="commenting__actions">
+                        <button class="btn btn--light btn--small" title="Delete" type="button">
+                            <i class="fas fa-trash-alt" aria-label="Delete"></i>
+                        </button>
                     </div>
                 </div>
+                <div class="commenting commenting--toc">
+                    <button type="button" class="commenting__content commenting--toc__button btn btn--light btn--small">
+                        1. Title
+                    </button>
+                    <div class="commenting__actions">
+                        <button class="btn btn--light btn--small" title="Delete" type="button">
+                            <i class="fas fa-trash-alt" aria-label="Delete"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="commenting commenting--toc">
+                    <button type="button" class="commenting__content commenting--toc__button btn btn--light btn--small active">
+                        2. Title (active)
+                    </button>
+                    <div class="commenting__actions">
+                        <button class="btn btn--light btn--small" title="Delete" type="button">
+                            <i class="fas fa-trash-alt" aria-label="Delete"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-                <h2 id="cl-commenting">Comments</h2>
+            <h2 id="cl-commenting">Comments</h2>
 
-                <div class="cl-example">
-                    <div class="comments">
-                        <p>The markup (and classnames) for the comments come from A4 React. Here's our styling</p>
-                        <div class="black-divider">This is the black divider showing the number of comments</div>
-                        <div class="comment-box">
-                            <form class="general-form">
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="Your comment here"></textarea>
-                                </div>
-                                <input value="post" class="submit-button" type="submit">
-                            </form>
-                            <div class="comment-list">
-                                <div>
-                                    <div class="comment">
-                                        <h3 class="comment-author">
-                                            <a href="#" data-embed-target="external">Comment Author</a>
-                                        </h3>
-                                        <span class="comment-submission-date">11/23/2017, 2:24:21 PM</span>
-                                        <div class="comment-text">
-                                            This is the comment text.
-                                            Click the ... button below to see the comment-dropdown.
-                                        </div>
-                                        <div class="action-bar">
-                                            <nav class="navbar navbar-default navbar-static">
-                                                <div class="rating">
-                                                    <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true">12</i></button>
-                                                    <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true">3</i></button>
-                                                </div>
-                                                <ul class="nav navbar-nav">
-                                                    <li class="dropdown">
-                                                        <button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-flip="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                                                        <ul class="dropdown-menu">
-                                                            <li><button type="button">Edit</button></li>
-                                                            <li class="divider"></li><li><a href="#">Delete</a></li>
-                                                            <li class="divider"></li>
-                                                            <li><a href="#">Report</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </nav>
-                                        </div>
-                                        <div class="action-bar">
-                                            <div class="navbar">
-                                                <button class="comment-reply-button" type="button">View 1 reply</button>
-                                                <div class="navbar-right">
-                                                    <button class="comment-reply-button" type="button"><i class="fa fa-reply" aria-hidden="true"></i>Answer</button>
-                                                </div>
+            <div class="cl-example">
+                <div class="comments">
+                    <p>The markup (and classnames) for the comments come from A4 React. Here's our styling</p>
+                    <div class="black-divider">This is the black divider showing the number of comments</div>
+                    <div class="comment-box">
+                        <form class="general-form">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Your comment here"></textarea>
+                            </div>
+                            <input value="post" class="submit-button" type="submit">
+                        </form>
+                        <div class="comment-list">
+                            <div>
+                                <div class="comment">
+                                    <h3 class="comment-author">
+                                        <a href="#" data-embed-target="external">Comment Author</a>
+                                    </h3>
+                                    <span class="comment-submission-date">11/23/2017, 2:24:21 PM</span>
+                                    <div class="comment-text">
+                                        This is the comment text.
+                                        Click the ... button below to see the comment-dropdown.
+                                    </div>
+                                    <div class="action-bar">
+                                        <nav class="navbar navbar-default navbar-static">
+                                            <div class="rating">
+                                                <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true">12</i></button>
+                                                <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true">3</i></button>
+                                            </div>
+                                            <ul class="nav navbar-nav">
+                                                <li class="dropdown">
+                                                    <button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-flip="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><button type="button">Edit</button></li>
+                                                        <li class="divider"></li>
+                                                        <li><a href="#">Delete</a></li>
+                                                        <li class="divider"></li>
+                                                        <li><a href="#">Report</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                    <div class="action-bar">
+                                        <div class="navbar">
+                                            <button class="comment-reply-button" type="button">View 1 reply</button>
+                                            <div class="navbar-right">
+                                                <button class="comment-reply-button" type="button"><i class="fa fa-reply" aria-hidden="true"></i>Answer</button>
                                             </div>
                                         </div>
-                                        <div class="comment-child-list">
-                                            <div>
-                                                <div class="comment">
-                                                    <h3 class="comment-author">
-                                                        <a href="#" data-embed-target="external">Answer comment author</a>
-                                                    </h3>
-                                                    <span class="comment-submission-date">11/23/2017, 2:24:34 PM</span>
-                                                    <div class="comment-text">
+                                    </div>
+                                    <div class="comment-child-list">
+                                        <div>
+                                            <div class="comment">
+                                                <h3 class="comment-author">
+                                                    <a href="#" data-embed-target="external">Answer comment author</a>
+                                                </h3>
+                                                <span class="comment-submission-date">11/23/2017, 2:24:34 PM</span>
+                                                <div class="comment-text">
                                                     This is the answer text to the other comment.
-                                                    </div>
-                                                    <div class="action-bar">
-                                                        <nav class="navbar navbar-default navbar-static">
-                                                            <div class="rating">
-                                                                <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button>
-                                                                <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button>
-                                                            </div>
-                                                            <ul class="nav navbar-nav"><li class="dropdown"><button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-flip="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                                                            </ul>
-                                                        </nav>
-                                                    </div>
+                                                </div>
+                                                <div class="action-bar">
+                                                    <nav class="navbar navbar-default navbar-static">
+                                                        <div class="rating">
+                                                            <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>0</button>
+                                                            <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>0</button>
+                                                        </div>
+                                                        <ul class="nav navbar-nav">
+                                                            <li class="dropdown"><button type="button" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" data-flip="false" data-toggle="dropdown"><i class="fa fa-ellipsis-h"
+                                                                      aria-hidden="true"></i></button>
+                                                        </ul>
+                                                    </nav>
                                                 </div>
                                             </div>
-                                            <form class="general-form">
-                                                <div class="form-group">
-                                                    <textarea class="form-control" placeholder="Your comment here"></textarea>
-                                                </div>
-                                                <input value="post" class="submit-button" type="submit">
-                                            </form>
                                         </div>
+                                        <form class="general-form">
+                                            <div class="form-group">
+                                                <textarea class="form-control" placeholder="Your comment here"></textarea>
+                                            </div>
+                                            <input value="post" class="submit-button" type="submit">
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <h2 id="cl-complete">Complete</h2>
+            <h2 id="cl-complete">Complete</h2>
 
-                <div class="cl-example">
-                    <div class="complete">
-                        <span class="complete__warning">
-                            Complete Warning - shown on the address search for the point choser map thingy.
-                        </span>
-                    </div>
-                    <div class="complete">
-                        <ul class="complete__list">
-                            The search for an address produces the hits as list:
-                            <li>
-                                <button type="button" class="complete__item">
-                                    Petersburger Str. , 10247 Friedrichshain
-                                </button>
-                            </li>
-                            <li>
-                                <button type="button" class="complete__item">
-                                    Petersburger Str. , 10249 Friedrichshain
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="cl-example">
+                <div class="complete">
+                    <span class="complete__warning">
+                        Complete Warning - shown on the address search for the point choser map thingy.
+                    </span>
                 </div>
-
-                <h2 id="cl-component-library">Component library</h2>
-
-                <div class="cl-example">
-                    <div class="cl-example">
-                        Every component in the component library has a border and some padding.
-                    </div>
-                </div>
-
-                <h2 id="cl-copyright">Copyright</h2>
-
-                <div class="cl-example">
-                    <div class="copyright">
-                        The copyright class is used wherever an image has a copyright.
-                    </div>
-                </div>
-
-                <h2 id="cl-dashboard-nav">Dashboard Nav</h2>
-
-                <div class="cl-example">
-                    <nav class="dashboard-nav">
-                        <div class="dashboard-nav__dropdown">
-                            <div class="dashboard-nav__item">Dashboard nav item (in a dashboard-nav__dropdown, which is not used as dropdown)</div>
-                        </div>
-                        <ul class="dashboard-nav__pages">
-                            <li class="dashboard-nav__page">
-                                <a href="#"
-                                    class="dashboard-nav__item dashboard-nav__item--interactive">
-                                    Interactive Dashboard nav item
-                                </a>
-                            </li>
-                            <li class="dashboard-nav__page">
-                                <a href="#"
-                                    class="dashboard-nav__item dashboard-nav__item--interactive">
-                                    These interactive items are shown in a list
-                                </a>
-                            </li>
-                            <li class="dashboard-nav__page">
-                                <a href="#"
-                                    class="dashboard-nav__item dashboard-nav__item--interactive is-active">
-                                    The active item is marked
-                                </a>
-                            </li>
-                            <li class="dashboard-nav__page">
-                                <a href="#"
-                                    class="dashboard-nav__item dashboard-nav__item--interactive">
-                                    If there is information missing, a red exclamation mark is shown
-                                    <i class="fa fa-exclamation-circle u-danger" title="Missing fields for publication" aria-label="Missing fields for publication"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <h2 id="cl-datepicker">Datepicker</h2>
-
-                <div class="cl-example">
-                    <div class="form-group">
-                        <div class="widget widget--datetimeinput">
-                            <div class="l-tiles-2">
-                                <div class="widget--datetimeinput__date">
-                                    <input name="name_start_date" value="2017-11-22" placeholder="2017-11-24" id="id_start_date" class="datepicker" type="text">
-                                    <a href="#" class="date-picker-control date-picker-dateval" title="Show Calendar" role="button" aria-haspopup="true" tabindex="0"><span>&nbsp;</span><span class="fd-screen-reader">Show Calendar</span></a>
-                                </div>
-                                <div>
-                                    <label class="sr-only" for="id_start_date_time">Start time</label>
-                                    <input name="name_start_date_time" value="00:00" placeholder="00:00" id="id_start_date_time" class="timepicker" type="text">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 id="cl-document">Document and Doc Toc</h2>
-
-                <div class="cl-example">
-                    <div class="module-content">
-                        <nav class="doc-toc" aria-label="Table of Contents">
-                            <button
-                                class="doc-toc__toggle collapsed"
-                                data-toggle="collapse"
-                                data-target="#doc-toc__content"
-                                aria-expanded="true"
-                                aria-controls="doc-toc__content">
-                                <h2 class="doc-toc__title">Table of Contents</h2>
-                                <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                <div class="complete">
+                    <ul class="complete__list">
+                        The search for an address produces the hits as list:
+                        <li>
+                            <button type="button" class="complete__item">
+                                Petersburger Str. , 10247 Friedrichshain
                             </button>
-                            <div class="doc-toc__content collapse" id="doc-toc__content">
-                                <ol>
-                                    <li>
-                                        <a href="#" class="doc-toc__link">
-                                            Chapter 1
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="doc-toc__link active">
-                                            Chapter 2
-                                        </a>
-                                    </li>
-                                </ol>
-                            </div>
-                        </nav>
+                        </li>
+                        <li>
+                            <button type="button" class="complete__item">
+                                Petersburger Str. , 10249 Friedrichshain
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-                        <h2 class="chapter-title">Chapter 2</h2>
+            <h2 id="cl-component-library">Component library</h2>
 
-                        <section class="paragraph" id="id-paragraph">
-                            <div class="paragraph__content">
-                                <h3 class="paragraph__title">
-                                    Paragraph Title/Name
-                                </h3>
-                                Why is the Table of contents expanded when we are in the first chapter and collapsed in the following ones?
-                            </div>
-                            <div class="paragraph__actions">
-                                <a class="btn" href="#">
-                                    <i class="far fa-comment" aria-hidden="true"></i>
-                                    10 Comments
-                                </a>
-                            </div>
-                        </section>
+            <div class="cl-example">
+                <div class="cl-example">
+                    Every component in the component library has a border and some padding.
+                </div>
+            </div>
 
-                        <section class="paragraph" id="id-paragraph">
-                            <div class="paragraph__content">
-                                <h3 class="paragraph__title">
-                                    One more Paragraph Title/Name
-                                </h3>
-                                It looks a bit different with the grey background (from module-content), so I added it, even though it doesn't belong to this component. Oh, but that looks weird again. Normally it should also have grey padding/be surrounded by grey.
-                            </div>
-                            <div class="paragraph__actions">
-                                <a class="btn" href="#">
-                                    <i class="far fa-comment" aria-hidden="true"></i>
-                                    1 Comment
-                                </a>
-                            </div>
-                        </section>
+            <h2 id="cl-copyright">Copyright</h2>
+
+            <div class="cl-example">
+                <div class="copyright">
+                    The copyright class is used wherever an image has a copyright.
+                </div>
+            </div>
+
+            <h2 id="cl-dashboard-nav">Dashboard Nav</h2>
+
+            <div class="cl-example">
+                <nav class="dashboard-nav">
+                    <div class="dashboard-nav__dropdown">
+                        <div class="dashboard-nav__item">Dashboard nav item (in a dashboard-nav__dropdown, which is not used as dropdown)</div>
                     </div>
-                </div>
-
-                <h2 id="cl-embed-code">Embed Code Interface</h2>
-
-                <div class="cl-example">
-                    <div class="form-group">
-                        <label for="embed-code-spatial-idea-collection-2">Embed Code</label>
-                        <textarea id="embed-code-spatial-idea-collection-2" readonly=""></textarea>
-                    </div>
-                </div>
-
-                <h2 id="cl-embed-layout">Embed Layout</h2>
-
-                <div class="cl-example">
-                    <html class="embed">
-                        <body>
-                            <header class="embed-header">
-                                You are logged in as Username
-                                <a href="#" class="btn btn--light" target="_blank">Logout</a>
-                                <div id="embed-status" class="embed-status"></div>
-                            </header>
-                            <main class="embed-main">
-                                <p>This is where the actual content of the embed will be.</p>
-                                <p>The class embed status left in above is only an empty div before embed.js puts stuff in there.</p>
-                            </main>
-                            <footer class="embed-footer">
-                                <a href="/" target="_blank">
-                                    <img src="" alt="mein.berlin Logo" class="embed-footer__logo">
-                                </a>
-                                <a href="#" data-embed-target="external">Go to platform</a>
-                            </footer>
-                        </body>
-                    </html>
-                </div>
-
-                <h2 id="cl-control_bar">Filter Bar and Input Group</h2>
-
-                <div class="cl-example">
-                    <p>Inside the component Filter Bar are the control-bar block elements. Control Bars are intended to be used atop of lists of elements or maps.</p>
-                    <p>Control Bars may only contain <a href="#">Buttons</a>, <a href="#">Dropdowns</a> and <code>input-groups</code>.</p>
-                    <p>Note that they are somehow located within the <code>_filter_bar.scss</code> file.</p>
-                    <div class="cl-example">
-                        <div class="control-bar" role="group" aria-label="Filter bar">
-                            <a class="btn btn--light" href="#" aria-label="View as map">
-                                <i class="fa fa-map" aria-hidden="true"></i>
-                                View
+                    <ul class="dashboard-nav__pages">
+                        <li class="dashboard-nav__page">
+                            <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive">
+                                Interactive Dashboard nav item
                             </a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive">
+                                These interactive items are shown in a list
+                            </a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive is-active">
+                                The active item is marked
+                            </a>
+                        </li>
+                        <li class="dashboard-nav__page">
+                            <a href="#" class="dashboard-nav__item dashboard-nav__item--interactive">
+                                If there is information missing, a red exclamation mark is shown
+                                <i class="fa fa-exclamation-circle u-danger" title="Missing fields for publication" aria-label="Missing fields for publication"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <h2 id="cl-datepicker">Datepicker</h2>
+
+            <div class="cl-example">
+                <div class="form-group">
+                    <div class="widget widget--datetimeinput">
+                        <div class="l-tiles-2">
+                            <div class="widget--datetimeinput__date">
+                                <input name="name_start_date" value="2017-11-22" placeholder="2017-11-24" id="id_start_date" class="datepicker" type="text">
+                                <a href="#" class="date-picker-control date-picker-dateval" title="Show Calendar" role="button" aria-haspopup="true" tabindex="0"><span>&nbsp;</span><span class="fd-screen-reader">Show Calendar</span></a>
+                            </div>
+                            <div>
+                                <label class="sr-only" for="id_start_date_time">Start time</label>
+                                <input name="name_start_date_time" value="00:00" placeholder="00:00" id="id_start_date_time" class="timepicker" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 id="cl-document">Document and Doc Toc</h2>
+
+            <div class="cl-example">
+                <div class="module-content">
+                    <nav class="doc-toc" aria-label="Table of Contents">
+                        <button class="doc-toc__toggle collapsed" data-toggle="collapse" data-target="#doc-toc__content" aria-expanded="true" aria-controls="doc-toc__content">
+                            <h2 class="doc-toc__title">Table of Contents</h2>
+                            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                        </button>
+                        <div class="doc-toc__content collapse" id="doc-toc__content">
+                            <ol>
+                                <li>
+                                    <a href="#" class="doc-toc__link">
+                                        Chapter 1
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="doc-toc__link active">
+                                        Chapter 2
+                                    </a>
+                                </li>
+                            </ol>
+                        </div>
+                    </nav>
+
+                    <h2 class="chapter-title">Chapter 2</h2>
+
+                    <section class="paragraph" id="id-paragraph">
+                        <div class="paragraph__content">
+                            <h3 class="paragraph__title">
+                                Paragraph Title/Name
+                            </h3>
+                            Why is the Table of contents expanded when we are in the first chapter and collapsed in the following ones?
+                        </div>
+                        <div class="paragraph__actions">
+                            <a class="btn" href="#">
+                                <i class="far fa-comment" aria-hidden="true"></i>
+                                10 Comments
+                            </a>
+                        </div>
+                    </section>
+
+                    <section class="paragraph" id="id-paragraph">
+                        <div class="paragraph__content">
+                            <h3 class="paragraph__title">
+                                One more Paragraph Title/Name
+                            </h3>
+                            It looks a bit different with the grey background (from module-content), so I added it, even though it doesn't belong to this component. Oh, but that looks weird again. Normally it should also have grey padding/be
+                            surrounded by grey.
+                        </div>
+                        <div class="paragraph__actions">
+                            <a class="btn" href="#">
+                                <i class="far fa-comment" aria-hidden="true"></i>
+                                1 Comment
+                            </a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <h2 id="cl-embed-code">Embed Code Interface</h2>
+
+            <div class="cl-example">
+                <div class="form-group">
+                    <label for="embed-code-spatial-idea-collection-2">Embed Code</label>
+                    <textarea id="embed-code-spatial-idea-collection-2" readonly=""></textarea>
+                </div>
+            </div>
+
+            <h2 id="cl-embed-layout">Embed Layout</h2>
+
+            <div class="cl-example">
+                <html class="embed">
+
+                <body>
+                    <header class="embed-header">
+                        You are logged in as Username
+                        <a href="#" class="btn btn--light" target="_blank">Logout</a>
+                        <div id="embed-status" class="embed-status"></div>
+                    </header>
+                    <main class="embed-main">
+                        <p>This is where the actual content of the embed will be.</p>
+                        <p>The class embed status left in above is only an empty div before embed.js puts stuff in there.</p>
+                    </main>
+                    <footer class="embed-footer">
+                        <a href="/" target="_blank">
+                            <img src="" alt="mein.berlin Logo" class="embed-footer__logo">
+                        </a>
+                        <a href="#" data-embed-target="external">Go to platform</a>
+                    </footer>
+                </body>
+
+                </html>
+            </div>
+
+            <h2 id="cl-control_bar">Filter Bar and Input Group</h2>
+
+            <div class="cl-example">
+                <p>Inside the component Filter Bar are the control-bar block elements. Control Bars are intended to be used atop of lists of elements or maps.</p>
+                <p>Control Bars may only contain <a href="#">Buttons</a>, <a href="#">Dropdowns</a> and <code>input-groups</code>.</p>
+                <p>Note that they are somehow located within the <code>_filter_bar.scss</code> file.</p>
+                <div class="cl-example">
+                    <div class="control-bar" role="group" aria-label="Filter bar">
+                        <div class="control-bar">
+                            <div class="btn-group__container">
+                                <div class="btn-group" role="group">
+                                    <a class="btn btn--light switch--btn" href="?mode=list" aria-label="Listenansicht">
+                                        <i class="fa fa-list"></i>
+                                        <span>List</span>
+                                    </a>
+                                    <div class="btn btn--light switch--btn active" aria-label="Kartenansicht">
+                                        <i class="fa fa-map"></i>
+                                        <span>Map</span>
+                                    </div>
+                                </div>
+                            </div>
                             <form class="input-group form-group u-inline-flex" method="get">
                                 <input class="input-group__input" type="search" name="search" placeholder="Search" value="">
                                 <button class="input-group__after btn btn--light" type="submit" title="Search">
@@ -949,9 +988,9 @@
                             </button>
                         </div>
                         <div>
-                          <button class="btn btn--small btn--transparent filter-bar__btn--light">
-                            <i class="fas fa-sliders-h" aria-label="more filters"></i>
-                          </button>
+                            <button class="btn btn--small btn--transparent filter-bar__btn--light">
+                                <i class="fas fa-sliders-h" aria-label="more filters"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -970,9 +1009,9 @@
                             </button>
                         </div>
                         <div>
-                          <button class="u-spacer-top btn btn--small btn--transparent btn--full u-spacer-bottom filter-bar__btn--light" style="margin-left: 0px;">
-                            more filters
-                          </button>
+                            <button class="u-spacer-top btn btn--small btn--transparent btn--full u-spacer-bottom filter-bar__btn--light" style="margin-left: 0px;">
+                                more filters
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1104,8 +1143,8 @@
                                     <div class="main-nav__menu-wrapper collapse" id="user-menu-collapse">
                                         <div class="main-header__user">
                                             <button type="button" class="dropdown-toggle btn btn--secondary">
-                                            Anmelden/Registrieren
-                                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                                Anmelden/Registrieren
+                                                <i class="fa fa-caret-down" aria-hidden="true"></i>
                                             </button>
                                         </div>
                                         <ul class="main-nav__list">
@@ -1141,38 +1180,22 @@
 
                 <div class="cl-example">
                     <div class="control-bar__top-overlap">
-                        <div class="control-bar" role="group" aria-label="Filter bar">
-                            <a class="btn btn--light" href="#" aria-label="View as map">
-                                <i class="fa fa-map" aria-hidden="true"></i>
-                                View
-                            </a>
 
-                            <form class="input-group form-group u-inline-flex">
-                                <input class="input-group__input" type="search" name="search" placeholder="Search" value="">
-                                <button class="input-group__after btn btn--light" type="submit" title="Search">
-                                    <i class="fa fa-search" aria-label="Search"></i>
-                                </button>
-                            </form>
-
-                            <div class="dropdown">
-                                <button type="button" class="dropdown-toggle btn btn--light btn--select">
-                                    Category: All
-                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                </button>
-                            </div>
-
-                            <div class="control-bar__right">
-                                <div class="dropdown ">
-                                    <button type="button" class="dropdown-toggle btn btn--light btn--select">
-                                        Ordering: Most recent
-                                        <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                    </button>
+                        <div class="l-wrapper">
+                            <div class="l-center-8">
+                                <div class="control-bar">
+                                    <span class="btn btn--light is-disabled">
+                                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                                        Vorheriges Kapitel
+                                    </span>
+                                    <a href="/text/chapters/47/?initialSlide=0" class="btn btn--light control-bar__right">
+                                        Nächstes Kapitel
+                                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                                    </a>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
                     <div class="module-content">
                         <div class="l-wrapper">
                             <ul class="u-list-reset">
@@ -1214,7 +1237,7 @@
                             </ul>
                         </div>
                         <div class="dropdown dropdown--right">
-                            <button title="Remark" type="button" class="dropdown-toggle btn btn--light btn--small"  data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="idea-remark__dropdown">
+                            <button title="Remark" type="button" class="dropdown-toggle btn btn--light btn--small" data-flip="false" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="idea-remark__dropdown">
                                 <i class="fa fa-comment" aria-label="Moderator remark"></i>
                                 <i class="fa fa-check-circle idea-remark__btn__notify  d-none " aria-hidden="true" style="display: inline;"></i>
                             </button>
@@ -1331,16 +1354,20 @@
                         <div class="item-detail-2__factsheet">
                             <ul class="item-detail-2__factsheet-table">
                                 <dl>
-                                    <dt>Facts</dt> <dd>are shown in a table</dd>
+                                    <dt>Facts</dt>
+                                    <dd>are shown in a table</dd>
                                 </dl>
                                 <dl>
-                                    <dt>More facts</dt> <dd>great!</dd>
+                                    <dt>More facts</dt>
+                                    <dd>great!</dd>
                                 </dl>
                                 <dl>
-                                    <dt>Below</dt> <dd>the table</dd>
+                                    <dt>Below</dt>
+                                    <dd>the table</dd>
                                 </dl>
                                 <dl>
-                                    <dt>is a</dt> <dd>border!</dd>
+                                    <dt>is a</dt>
+                                    <dd>border!</dd>
                                 </dl>
                             </ul>
                         </div>
@@ -1369,13 +1396,13 @@
                 <div class="cl-example">
                     <p>
                         <span class="label label--primary">Finished</span>
-                        <div class="label label--big">Label Big</div>
-                        <div class="label label--primary">Label Primary</div>
-                        <div class="label label--secondary">Label Seconday</div>
-                        <div class="label label--CONSIDERATION">Label Consideration</div>
-                        <div class="label label--REJECTED">Label Rejected</div>
-                        <div class="label label--ACCEPTED">Label Accepted</div>
-                        <div class="label">Label</div>
+                    <div class="label label--big">Label Big</div>
+                    <div class="label label--primary">Label Primary</div>
+                    <div class="label label--secondary">Label Seconday</div>
+                    <div class="label label--CONSIDERATION">Label Consideration</div>
+                    <div class="label label--REJECTED">Label Rejected</div>
+                    <div class="label label--ACCEPTED">Label Accepted</div>
+                    <div class="label">Label</div>
                     </p>
                 </div>
 
@@ -1429,6 +1456,60 @@
                             </div>
                         </div>
                     </div>
+                    <div class="module-content--light">
+                        <div class="l-wrapper">
+                            <div class="l-center-8">
+                                <ul class="u-list-reset">
+                                    <li class="list-item">
+                                        <div class="list-item__stats">
+                                            <span class="rating"><span class="rating-button rating-up is-read-only" title="Positive Bewertungen">
+                                                    1
+                                                    <i class="fa fa-chevron-up" aria-label="Positive Bewertungen"></i></span><span class="rating-button rating-down is-read-only" title="Negative Bewertungen">
+                                                    0
+                                                    <i class="fa fa-chevron-down" aria-label="Negative Bewertungen"></i></span></span><span title="Kommentare">
+                                                1
+                                                <i class="far fa-comment" aria-label="Kommentare"></i></span>
+                                        </div>
+                                        <h3 class="list-item__title">
+                                            <a href="/mapideas/2021-00053/">
+                                                this is an idea
+                                            </a>
+                                        </h3>
+                                        <div class="list-item__labels">
+                                            <span class="label label--big">This is a category</span>
+                                        </div>
+                                        <span class="list-item__author">
+                                            admin
+                                        </span>
+                                        <time class="list-item__date" datetime="2021-02-25T09:03:56.035407+01:00">25. Februar 2021</time>
+                                    </li>
+                                    <li class="list-item">
+                                        <div class="list-item__stats">
+                                            <span class="rating"><span class="rating-button rating-up is-read-only" title="Positive Bewertungen">
+                                                    1
+                                                    <i class="fa fa-chevron-up" aria-label="Positive Bewertungen"></i></span><span class="rating-button rating-down is-read-only" title="Negative Bewertungen">
+                                                    0
+                                                    <i class="fa fa-chevron-down" aria-label="Negative Bewertungen"></i></span></span><span title="Kommentare">
+                                                1
+                                                <i class="far fa-comment" aria-label="Kommentare"></i></span>
+                                        </div>
+                                        <h3 class="list-item__title">
+                                            <a href="/mapideas/2021-00053/">
+                                                this is an idea
+                                            </a>
+                                        </h3>
+                                        <div class="list-item__labels">
+                                            <span class="label label--big">This is a category</span>
+                                        </div>
+                                        <span class="list-item__author">
+                                            admin
+                                        </span>
+                                        <time class="list-item__date" datetime="2021-02-25T09:03:56.035407+01:00">25. Februar 2021</time>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <h2 id="cl-maplist-item">Map List Item Horizontal - no image</h2>
@@ -1439,7 +1520,7 @@
                             <div>
                                 <ul class="u-list-reset participation-tile__list">
                                     <li class="participation-tile__horizontal" key=>
-                                        <a href="" >
+                                        <a href="">
                                             <div class="participation-tile__body maplist-item__proj">
                                                 <div class="participation-tile__content">
                                                     <div class="maplist-item__label-spacer">
@@ -1469,196 +1550,180 @@
                 <h2 id="cl-maplist-item-vertical">Map List Item Vertical</h2>
                 <note>
 
-                <div class="cl-example">
-                    <p>Note: size of container means tiles are shown as thinner than when in container that reflects size of screen.</p>
-                    <div class="map-list-combined">
-                        <div class="list-container map-list-combined__list">
-                            <div>
-                                <ul class="u-list-reset participation-tile__list">
-                                    <li class="participation-tile__vertical" key=>
-                                        <a href="">
-                                            <div class="participation-tile__body maplist-item__proj">
-                                                <div class="maplist-item__img" style="background-image: url(/static/images/cl-brainstorming.svg); background-position: center; background-repeat: no-repeat;" alt="">
-                                                    <div class="maplist-item__label-img">
-                                                        <span key="" class="label label--secondary maplist-item__label u-spacer-bottom">Topic</span>
+                    <div class="cl-example">
+                        <p>Note: size of container means tiles are shown as thinner than when in container that reflects size of screen.</p>
+                        <div class="map-list-combined">
+                            <div class="list-container map-list-combined__list">
+                                <div>
+                                    <ul class="u-list-reset participation-tile__list">
+                                        <li class="participation-tile__vertical" key=>
+                                            <a href="">
+                                                <div class="participation-tile__body maplist-item__proj">
+                                                    <div class="maplist-item__img" style="background-image: url(/static/images/cl-brainstorming.svg); background-position: center; background-repeat: no-repeat;" alt="">
+                                                        <div class="maplist-item__label-img">
+                                                            <span key="" class="label label--secondary maplist-item__label u-spacer-bottom">Topic</span>
+                                                        </div>
+                                                        <span class="maplist-item__img-copyright copyright">© Copyright</span>
                                                     </div>
-                                                    <span class="maplist-item__img-copyright copyright">© Copyright</span>
+                                                    <div class="participation-tile__content">
+                                                        <span class="maplist-item__roofline">District</span>
+                                                        <h3 class="maplist-item__title">Title of the project - still active</h3>
+                                                        <div class="maplist-item__description">
+                                                            <span>Project description of some kind maybe lots of words.</span>
+                                                        </div>
+                                                        <div class="maplist-item__link"></div>
+                                                        <div class="status-item status__active">
+                                                            <div class="status-bar__active"><span class="status-bar__active-fill" style="width: 20%;"></span></div>
+                                                            <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>remaining 5 days</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="status-item_spacer"></div>
                                                 </div>
-                                                <div class="participation-tile__content">
+                                            </a>
+                                        </li>
+                                        <li class="participation-tile__vertical" key=>
+                                            <a href="">
+                                                <div class="participation-tile__body maplist-item__proj">
+                                                    <div class="maplist-item__img" style="background-image: url(/static/images/cl-brainstorming.svg); background-position: center; background-repeat: no-repeat;" alt="">
+                                                        <div class="maplist-item__label-img">
+                                                            <span key="" class="label label--secondary maplist-item__label u-spacer-bottom">Topic</span>
+                                                        </div>
+                                                        <span class="maplist-item__img-copyright copyright">© Copyright</span>
+                                                    </div>
+                                                    <div class="participation-tile__content">
+                                                        <span class="maplist-item__roofline">District</span>
+                                                        <h3 class="maplist-item__title">Title of the project - ended</h3>
+                                                        <div class="maplist-item__description">
+                                                            <span>Project description of some kind maybe lots of words.</span>
+                                                        </div>
+                                                        <div class="maplist-item__link"></div>
+                                                        <div class="status-item status-bar__past">Participation ended. Read result.</div>
+                                                    </div>
+                                                    <div class="status-item_spacer"></div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="participation-tile__vertical" key=>
+                                            <a href="">
+                                                <div class="participation-tile__body maplist-item__plan">
                                                     <span class="maplist-item__roofline">District</span>
-                                                    <h3 class="maplist-item__title">Title of the project - still active</h3>
-                                                    <div class="maplist-item__description">
-                                                        <span>Project description of some kind maybe lots of words.</span>
-                                                    </div>
+                                                    <h3 class="maplist-item__title">Title of the plan</h3>
                                                     <div class="maplist-item__link"></div>
-                                                    <div class="status-item status__active">
-                                                        <div class="status-bar__active"><span class="status-bar__active-fill" style="width: 20%;"></span></div>
-                                                        <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>remaining 5 days</span>
+                                                    <div class="maplist-item__stats">
+                                                        <span class="participation-tile__proj-count"><i class="fas fa-th" aria-hidden="true"></i>Participation projects: </span>
+                                                        <span>4</span>
+                                                        <br />
+                                                        <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>Status: </span>
+                                                        <span class="participation-tile__status-active">running</span>
                                                     </div>
+                                                    <div class="status-item_spacer"></div>
                                                 </div>
-                                                <div class="status-item_spacer"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="participation-tile__vertical" key=>
-                                        <a href="">
-                                            <div class="participation-tile__body maplist-item__proj">
-                                                <div class="maplist-item__img" style="background-image: url(/static/images/cl-brainstorming.svg); background-position: center; background-repeat: no-repeat;" alt="">
-                                                    <div class="maplist-item__label-img">
-                                                        <span key="" class="label label--secondary maplist-item__label u-spacer-bottom">Topic</span>
-                                                    </div>
-                                                    <span class="maplist-item__img-copyright copyright">© Copyright</span>
-                                                </div>
-                                                <div class="participation-tile__content">
-                                                    <span class="maplist-item__roofline">District</span>
-                                                    <h3 class="maplist-item__title">Title of the project - ended</h3>
-                                                    <div class="maplist-item__description">
-                                                        <span>Project description of some kind maybe lots of words.</span>
-                                                    </div>
-                                                    <div class="maplist-item__link"></div>
-                                                    <div class="status-item status-bar__past">Participation ended. Read result.</div>
-                                                </div>
-                                                <div class="status-item_spacer"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="participation-tile__vertical" key=>
-                                        <a href="">
-                                            <div class="participation-tile__body maplist-item__plan">
-                                                <span class="maplist-item__roofline">District</span>
-                                                <h3 class="maplist-item__title">Title of the plan</h3>
-                                                <div class="maplist-item__link"></div>
-                                                <div class="maplist-item__stats">
-                                                    <span class="participation-tile__proj-count"><i class="fas fa-th" aria-hidden="true"></i>Participation projects: </span>
-                                                    <span>4</span>
-                                                    <br />
-                                                    <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>Status: </span>
-                                                    <span class="participation-tile__status-active">running</span>
-                                                </div>
-                                                <div class="status-item_spacer"></div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <h2 id="cl-menu-layout">Menu Layout</h2>
+                    <h2 id="cl-menu-layout">Menu Layout</h2>
 
-                <div class="cl-example">
-                    <div class="l-menu">
-                        <nav class="l-menu__menu" aria-label="">
-                            <div class="dashboard-nav">
-                                <div class="dashboard-nav__item">Left Menu - Project nav</div>
+                    <div class="cl-example">
+                        <div class="l-menu">
+                            <nav class="l-menu__menu" aria-label="">
+                                <div class="dashboard-nav">
+                                    <div class="dashboard-nav__item">Left Menu - Project nav</div>
+                                </div>
+                            </nav>
+                            <div class="l-menu__content l-menu__content--aside">
+                                <h1 class="u-first-heading">Dashbored content</h1>
                             </div>
-                        </nav>
-                        <div class="l-menu__content l-menu__content--aside">
-                            <h1 class="u-first-heading">Dashbored content</h1>
-                        </div>
-                        <div class="l-menu__aside">
-                            <div class="progress-box">Right Menu - Progress</div>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 id="cl-module">Moderato Statement</h2>
-
-                <div class="cl-example">
-                    <div class="l-center-8">
-                        <div class="moderator-statement">
-                            <h2 class="moderator-statement__title">Official Statement</h2>
-                            <div class="moderator-statement__subtitle">
-                                <strong class="moderator-statement__organisation">Organisation</strong>
+                            <div class="l-menu__aside">
+                                <div class="progress-box">Right Menu - Progress</div>
                             </div>
-                            <div class="moderator-statement__body">Body of statement</div>
                         </div>
                     </div>
-                </div>
 
-                <h2 id="cl-module">Module</h2>
+                    <h2 id="cl-module">Moderato Statement</h2>
 
-                <div class="cl-example">
-                    <div class="module-content">
-                        <div class="l-wrapper">
-                            <h2>Module Content</h2>
-                            This is where the module content is normally shown on a grey background.
+                    <div class="cl-example">
+                        <div class="l-center-8">
+                            <div class="moderator-statement">
+                                <h2 class="moderator-statement__title">Official Statement</h2>
+                                <div class="moderator-statement__subtitle">
+                                    <strong class="moderator-statement__organisation">Organisation</strong>
+                                </div>
+                                <div class="moderator-statement__body">Body of statement</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="module-content--light">
-                        <div class="l-wrapper">
-                            <h2>Module Content Light</h2>
-                            This is where the module content is normally shown on a white background.
+
+                    <h2 id="cl-module">Module</h2>
+
+                    <div class="cl-example">
+                        <div class="module-content">
+                            <div class="l-wrapper">
+                                <h2>Module Content</h2>
+                                This is where the module content is normally shown on a grey background.
+                            </div>
+                        </div>
+                        <div class="module-content--light">
+                            <div class="l-wrapper">
+                                <h2>Module Content Light</h2>
+                                This is where the module content is normally shown on a white background.
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <h2 id="cl-multiform">Multiform</h2>
+                    <h2 id="cl-multiform">Multiform</h2>
 
-                <div class="cl-example">
-                    <form class="multiform" method="post" action="#">
-                        <div class="form-errors">
-                            <p class="alert alert--danger">Error</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="{{ form.email.id_for_label }}">
-                                Add another Email
-                            </label>
-                        </div>
-                        <div class="u-spacer-bottom">
-                            <input class="btn btn--primary" name="action_add" type="submit" value="Add Email" />
-                        </div>
-                    </form>
-                </div>
+                    <div class="cl-example">
+                        <form class="multiform" method="post" action="#">
+                            <div class="form-errors">
+                                <p class="alert alert--danger">Error</p>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="{{ form.email.id_for_label }}">
+                                    Add another Email
+                                </label>
+                            </div>
+                            <div class="u-spacer-bottom">
+                                <input class="btn btn--primary" name="action_add" type="submit" value="Add Email" />
+                            </div>
+                        </form>
+                    </div>
 
-                <h2 id="cl-pagination">Pagination</h2>
+                    <h2 id="cl-pagination">Pagination</h2>
 
-                <div class="cl-example">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination">
-                            <li class="pagination-item{% ifequal page_number page_obj.number %} active{% endifequal %}">
-                                <a href="#">Page number link</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-
-                <h2 id="cl-participation-tile">Participation Tile</h2>
-
-                <div class="cl-example">
-                    <p>Note: basis for the <a href="#cl-maplist-item-vertical">maplist tile/item</a></p>
-                    <div class="participation-tile__wrapper">
-                        <div class="participation-tile__list-container">
-                            <ul class="u-list-reset participation-tile__list">
-                                <li class="participation-tile__vertical">
-                                    <div class="participation-tile__type">
-                                        <div class="participation-tile__content">
-                                            <h3 class="participation-tile__title">Project name</h3>
-                                            <div class="status-item status__active">
-                                                <div class="status-bar__active">
-                                                    <span class="status-bar__active-fill" style="width: {{ project.active_phase_progress }}%"></span>
-                                                </div>
-                                                <span class="participation-tile__status">
-                                                    <i class="fas fa-clock" aria-hidden="true"></i>
-                                                remaining 28 days
-                                                </span>
-                                            </div>
-                                            <div class="participation-tile__spacer"></div>
-                                            <div class="participation-tile__btn">
-                                                <a class="btn btn--full u-spacer-bottom btn--small" href="">Join now</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="cl-example">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination">
+                                <li class="pagination-item{% ifequal page_number page_obj.number %} active{% endifequal %}">
+                                    <a href="#">Page number link</a>
                                 </li>
-                                <li class="participation-tile__vertical">
-                                    <a href="" target="">
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                    <h2 id="cl-participation-tile">Participation Tile</h2>
+
+                    <div class="cl-example">
+                        <p>Note: basis for the <a href="#cl-maplist-item-vertical">maplist tile/item</a></p>
+                        <div class="participation-tile__wrapper">
+                            <div class="participation-tile__list-container">
+                                <ul class="u-list-reset participation-tile__list">
+                                    <li class="participation-tile__vertical">
                                         <div class="participation-tile__type">
                                             <div class="participation-tile__content">
                                                 <h3 class="participation-tile__title">Project name</h3>
-                                                <div class="status-item status__future">
-                                                    <span class="participation-tile__status"><i class="fas fa-clock"  aria-hidden="true"></i>Participation: starts on 12.04.2019
+                                                <div class="status-item status__active">
+                                                    <div class="status-bar__active">
+                                                        <span class="status-bar__active-fill" style="width: {{ project.active_phase_progress }}%"></span>
+                                                    </div>
+                                                    <span class="participation-tile__status">
+                                                        <i class="fas fa-clock" aria-hidden="true"></i>
+                                                        remaining 28 days
                                                     </span>
                                                 </div>
                                                 <div class="participation-tile__spacer"></div>
@@ -1667,337 +1732,401 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
-                                </li>
-                                <li class="participation-tile__vertical">
-                                    <a href="" target="">
-                                        <div class="participation-tile__type">
-                                            <div class="participation-tile__content">
-                                                <h3 class="participation-tile__title">Project name</h3>
-                                                <div class="status-item status-bar__past status-bar__past--sm">
-                                                    <span class="participation-tile__status">Participation ended. Read result</span>
-                                                </div>
-                                                <div class="participation-tile__spacer"></div>
-                                                <div class="participation-tile__btn">
-                                                    <a class="btn btn--full u-spacer-bottom btn--small" href="">Join now</a>
+                                    </li>
+                                    <li class="participation-tile__vertical">
+                                        <a href="" target="">
+                                            <div class="participation-tile__type">
+                                                <div class="participation-tile__content">
+                                                    <h3 class="participation-tile__title">Project name</h3>
+                                                    <div class="status-item status__future">
+                                                        <span class="participation-tile__status"><i class="fas fa-clock" aria-hidden="true"></i>Participation: starts on 12.04.2019
+                                                        </span>
+                                                    </div>
+                                                    <div class="participation-tile__spacer"></div>
+                                                    <div class="participation-tile__btn">
+                                                        <a class="btn btn--full u-spacer-bottom btn--small" href="">Join now</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 id="cl-poll">Poll and Radio</h2>
-
-                <div class="cl-example">
-                    <div class="l-center-8">
-                        <div>
-                            <form class="poll">
-                                <h2>First question, can click more than one answer</h2>
-                                <div class="poll__rows">
-                                    <label class="poll-row radio">
-                                        <input class="poll-row__radio radio__input" name="question" value="3" type="checkbox">
-                                        <span class="radio__text radio__text--checkbox">yes</span>
-                                    </label>
-                                    <label class="poll-row radio">
-                                        <input class="poll-row__radio radio__input" name="question" value="4" type="checkbox">
-                                        <span class="radio__text radio__text--checkbox">no</span>
-                                    </label>
-                                    <label class="poll-row radio">
-                                        <input class="poll-row__radio radio__input" name="question" value="5" type="checkbox">
-                                        <span class="radio__text radio__text--checkbox">other</span>
-                                    </label>
-                                </div>
-                                <div class="poll__actions">
-                                    <button type="submit" class="btn btn--primary">Vote</button>&nbsp;
-                                    <button type="button" class="btn btn--link">Show preliminary results</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div>
-                            <form class="poll">
-                                <h2>Second question, can only choose ones answer</h2>
-                                <div class="poll__rows">
-                                    <label class="poll-row radio">
-                                        <input class="poll-row__radio radio__input" name="question" value="3" type="radio">
-                                        <span class="radio__text">yes</span>
-                                    </label>
-                                    <label class="poll-row radio">
-                                        <input class="poll-row__radio radio__input" name="question" value="4" type="radio">
-                                        <span class="radio__text">no</span>
-                                    </label>
-                                </div>
-                                <div class="poll__actions">
-                                    <button type="submit" class="btn btn--primary" disabled="">Vote</button>&nbsp;
-                                    <button type="button" class="btn btn--link">Show preliminary results</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 id="cl-portal-header">Portal Header</h2>
-
-                <div class="cl-example">
-                    <div class="portal-header">
-                        <div class="l-wrapper">
-                            <div class="portal-header__red-line"></div>
-                            <a class="portal-header__logo" href="http://www.berlin.de/">
-                                <img src="/static/images/berlin_de.png" alt="Zur Homepage von Berlin.de">
-                            </a>
-
-                            <nav aria-label="Portal Navigation">
-                                <ul class="portal-header__nav">
-                                    <li><a href="#">Politik, Verwaltung, Bürger</a></li>
-                                    <li><a href="#">Kultur &amp; Ausgehen</a></li>
-                                    <li><a href="#">Tourismus</a></li>
-                                    <li><a href="#">Wirtschaft</a></li>
-                                    <li><a href="#">Themen</a></li>
-                                    <li><a href="#">BerlinFinder</a></li>
-                                    <li><a href="#">Stadtplan</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 id="cl-progress">Progress</h2>
-
-                <div class="cl-example">
-                    <div class="l-wrapper">
-                        <div class="l-menu__aside">
-                            <div class="progress-box">
-                                <svg viewBox="0 0 35 35" class="progress-box__progress progress" role="presentation">
-                                    <circle class="progress__background" r="15.9" cx="50%" cy="50%"></circle>
-                                    <circle class="progress__value" stroke-dasharray="64 100" r="15.9" cx="50%" cy="50%"></circle>
-                                    <text class="progress__label" x="50%" y="50%" dy="0.3em">50%</text>
-                                </svg>
-                                <div class="progress-box__description">
-                                    <strong>7 from 11</strong>
-                                    <br>required fields for publication
-                                </div>
-                            </div>
-                            <form action="/dashboard/publish/project/choosing-map/" method="post" data-ignore-submit="true">
-                                <input name="name" value="" type="hidden">
-                                <input name="referrer" value="/dashboard/projects/choosing-map/information/" type="hidden">
-                                <button name="action" value="publish" disabled="" class="btn btn--primary btn--full u-spacer-bottom btn--attached-top">Veröffentlichen</button>
-                            </form>
-                            <a href="/projects/choosing-map/" target="_self" class="btn btn--light btn--full u-spacer-bottom">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                Vorschau
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 id="cl-project-header">Project Header</h2>
-
-                <div class="cl-example" style="padding-top: 76px">
-                    <div class="project-header project-header--image">
-                        <div class="l-wrapper">
-                            <div class="l-center-6">
-                                <h1 class="project-header__title">Project Title</h1>
-                                <p class="project-header__description">Description - dark overlay on header image, with -60px top margin to allow it to sit properly under header line</p>
-                            </div>
-                        </div>
-                        <div class="project-header__copyright copyright">© Copyright</div>
-                    </div>
-                </div>
-
-                <h2 id="cl-rating">Rating</h2>
-
-                <div class="cl-example">
-                    <div class="module-content">
-                        <div class="l-wrapper">
-                            <div class="l-center-8">
-                                <ul class="u-list-reset">
-                                    <li class="list-item list-item--squashed">
-                                        <div class="list-item__stats">
-                                            <span class="rating">
-                                                <span class="rating-button rating-up is-read-only" title="Positive Ratings">
-                                                    0
-                                                    <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i>
-                                                </span>
-                                                <span class="rating-button rating-down is-read-only" title="Negative Ratings">
-                                                    0
-                                                    <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
-                                                </span>
-                                            </span>
-                                            <span title="Comments">
-                                                0
-                                                <i class="far fa-comment" aria-label="Comments"></i>
-                                            </span>
-                                        </div>
-                                        <h3 class="list-item__title">Rated comment</h3>
+                                        </a>
+                                    </li>
+                                    <li class="participation-tile__vertical">
+                                        <a href="" target="">
+                                            <div class="participation-tile__type">
+                                                <div class="participation-tile__content">
+                                                    <h3 class="participation-tile__title">Project name</h3>
+                                                    <div class="status-item status-bar__past status-bar__past--sm">
+                                                        <span class="participation-tile__status">Participation ended. Read result</span>
+                                                    </div>
+                                                    <div class="participation-tile__spacer"></div>
+                                                    <div class="participation-tile__btn">
+                                                        <a class="btn btn--full u-spacer-bottom btn--small" href="">Join now</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <h2 id="cl-table">Table</h2>
+                    <h2 id="cl-poll">Poll and Radio</h2>
 
-                <div class="cl-example">
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>Table header</th>
-                            <th>Table header</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Standard cell</td>
-                                <td>Standard cell</td>
-                                <td class="td--action">
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <h2 id="cl-tabs">Tabs</h2>
-
-                <div class="cl-example">
-                    <div class="tablist tablist--left">
-                        <div class="l-wrapper">
-                            <nav class="nav" role="tablist">
-                                <a id="tab-project-3-information" class="tab" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-information" aria-expanded="false">Tab</a>
-                                <a id="tab-project-3-participation" class="tab active" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-participation" aria-expanded="true">Tab 2</a>
-                                <a id="tab-project-3-result" class="tab" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-result" aria-expanded="false">Tab 3</a>
-                            </nav>
+                    <div class="cl-example">
+                        <div class="l-center-8">
+                            <div>
+                                <form class="poll">
+                                    <h2>First question, can click more than one answer</h2>
+                                    <div class="poll__rows">
+                                        <label class="poll-row radio">
+                                            <input class="poll-row__radio radio__input" name="question" value="3" type="checkbox">
+                                            <span class="radio__text radio__text--checkbox">yes</span>
+                                        </label>
+                                        <label class="poll-row radio">
+                                            <input class="poll-row__radio radio__input" name="question" value="4" type="checkbox">
+                                            <span class="radio__text radio__text--checkbox">no</span>
+                                        </label>
+                                        <label class="poll-row radio">
+                                            <input class="poll-row__radio radio__input" name="question" value="5" type="checkbox">
+                                            <span class="radio__text radio__text--checkbox">other</span>
+                                        </label>
+                                    </div>
+                                    <div class="poll__actions">
+                                        <button type="submit" class="btn btn--primary">Vote</button>&nbsp;
+                                        <button type="button" class="btn btn--link">Show preliminary results</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div>
+                                <form class="poll">
+                                    <h2>Second question, can only choose ones answer</h2>
+                                    <div class="poll__rows">
+                                        <label class="poll-row radio">
+                                            <input class="poll-row__radio radio__input" name="question" value="3" type="radio">
+                                            <span class="radio__text">yes</span>
+                                        </label>
+                                        <label class="poll-row radio">
+                                            <input class="poll-row__radio radio__input" name="question" value="4" type="radio">
+                                            <span class="radio__text">no</span>
+                                        </label>
+                                    </div>
+                                    <div class="poll__actions">
+                                        <button type="submit" class="btn btn--primary" disabled="">Vote</button>&nbsp;
+                                        <button type="button" class="btn btn--link">Show preliminary results</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <h2 id="cl-portal-header">Portal Header</h2>
 
-                <h2 id="cl-tile">Tile</h2>
-
-                <div class="cl-example">
-                    <ul class="l-tiles-4">
-                        <li class="tile ">
-                            <div class="tile__head">
-                                <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-3" href="#" target="_self"></a>
-                                <img src="/static/images/meinberlin.svg" alt="Project on meinBerlin" class="tile__badge">
-                                <div class="tile__labels"></div>
-                            </div>
-                            <div class="tile__body">
-                                <h3 class="tile__title" id="project-title-3">
-                                    <a href="#" target="_self">Blueprint - finished</a>
-                                </h3>
-                                <p class="tile__text">Blueprint description</p>
-                                <p class="tile__hint">
-                                    Participation possible until
-                                    <time datetime="2018-06-14T00:00:00+02:00">14.06.2018</time>
-                                </p>
-                            </div>
-                        </li>
-                        <li class="tile ">
-                            <div class="tile__head">
-                                <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-2" href="#" target="_self"></a>
-                                <img src="/static/images/meinberlin.svg" alt="Project on meinBerlin" class="tile__badge">
-                                <div class="tile__labels">
-                                    <span class="label label--primary">Finished</span>
-                                </div>
-                            </div>
-                            <div class="tile__body">
-                                <h3 class="tile__title" id="project-title-2">
-                                    <a href="#" target="_self">Blueprint - active</a>
-                                </h3>
-                                <p class="tile__text">Blueprint description</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <h2 id="cl-timeline">Timeline</h2>
-
-                <div class="cl-example">
-                    <nav class="timeline" aria-label="Timeline">
-                        <ul>
-                            <li>
-                                <a href="#" class="btn btn--light btn--small timeline__button ">
-                                    Past process
+                    <div class="cl-example">
+                        <div class="portal-header">
+                            <div class="l-wrapper">
+                                <div class="portal-header__red-line"></div>
+                                <a class="portal-header__logo" href="http://www.berlin.de/">
+                                    <img src="/static/images/berlin_de.png" alt="Zur Homepage von Berlin.de">
                                 </a>
+
+                                <nav aria-label="Portal Navigation">
+                                    <ul class="portal-header__nav">
+                                        <li><a href="#">Politik, Verwaltung, Bürger</a></li>
+                                        <li><a href="#">Kultur &amp; Ausgehen</a></li>
+                                        <li><a href="#">Tourismus</a></li>
+                                        <li><a href="#">Wirtschaft</a></li>
+                                        <li><a href="#">Themen</a></li>
+                                        <li><a href="#">BerlinFinder</a></li>
+                                        <li><a href="#">Stadtplan</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 id="cl-progress">Progress</h2>
+
+                    <div class="cl-example">
+                        <ul class="progress-line u-spacer-bottom">
+                            <li class="progress-line__entry">
+                                <span class="progress-line__line--bottom"></span>
+                                <i class="fas fa-check-circle u-success progress-line__icon" title="Projekttyp wurde erstellt." aria-label="Projekttyp wurde erstellt."></i>
+                                <span>Projekt anlegen</span>
                             </li>
-                            <li>
-                                <a href="#" class="btn btn--light btn--small timeline__button is-selected">
-                                    Active process
-                                </a>
-                                <span class="timeline__active">active</span>
-                                <span class="sr-only">current page</span>
+                            <li class="progress-line__entry">
+                                <span class="progress-line__line--top"></span>
+                                <span class="progress-line__line--bottom"></span>
+                                <i class="fas fa-check-circle u-success progress-line__icon" title="Projekttyp zur Veröffentlichung bereit" aria-label="Projekttyp zur Veröffentlichung bereit"></i>
+                                <span class="progress-line__entry--active">
+                                    <span>Projektdetails ausfüllen</span>
+                                </span>
+                            </li>
+                            <li class="progress-line__entry">
+                                <span class="progress-line__line--top"></span>
+                                <span class="progress-line__line--bottom"></span>
+                                <i class="fas fa-circle progress-line__icon--active" title="Kein Modul erstellt" aria-label="Kein Modul erstellt"></i>
+                                <span>Beteiligungsmodul(e) anlegen</span>
+                            </li>
+                            <li class="progress-line__entry">
+                                <span class="progress-line__line--top"></span>
+                                <i class="far fa-circle progress-line__icon" title="Projekttyp nicht zur Veröffentlichung bereit" aria-label="Projekttyp nicht zur Veröffentlichung bereit"></i>
+                                <span>Projekt veröffentlichen</span>
                             </li>
                         </ul>
-                    </nav>
-                    <div class="l-center-6">
-                        <div class="timeline-detail">
-                            <h2 class="timeline-detail__title">Module Name</h2>
-                            <div class="timeline-detail__meta">
-                                <strong>
-                                    Some extra info like the start date might be here.
-                                </strong>
-                            </div>
-                            <div class="timeline-detail__meta">
-                                The module description is displayed here.
-                            </div>
+                    </div>
 
-                            <div class="phase-info collapse" id="phase-overview">
-                                <div class="phase-info__item">
-                                    <div class="phase-info__item__title lr-bar">
-                                        <span class="lr-bar__left">Phase name</span>
-                                        <span class="lr-bar__right phase-info__highlight">active</span>
-                                    </div>
-                                    <div class="phase-info__item__subtitle">
-                                        Feb. 16, 2018, midnight
-                                        &ndash; Feb. 28, 2018, midnight
-                                    </div>
-                                    <div class="phase-info__item__description">
-                                        This is the phase description
-                                    </div>
+                    <h2 id="cl-project-header">Project Header</h2>
+
+                    <div class="cl-example" style="padding-top: 76px">
+                        <div class="project-header project-header--image">
+                            <div class="l-wrapper">
+                                <div class="l-center-6">
+                                    <h1 class="project-header__title">Project Title</h1>
+                                    <p class="project-header__description">Description - dark overlay on header image, with -60px top margin to allow it to sit properly under header line</p>
                                 </div>
                             </div>
-
-                            <button class="btn btn--link" type="button" data-toggle="collapse" data-target="#phase-overview" aria-expanded="false" aria-controls="phase-overview">
-                                <span class="u-if-collapsed">Show phase overview</span>
-                                <span class="u-if-not-collapsed">Hide phase overview</span>
-                            </button>
+                            <div class="project-header__copyright copyright">© Copyright</div>
                         </div>
                     </div>
-                </div>
 
-                <h2 id="cl-upload">Upload</h2>
+                    <h2 id="cl-rating">Rating</h2>
 
-                <div class="cl-example">
-                    <div class="form-group">
-                        <label for="id_logo">Logo</label>
-                        <div class="form-hint">
-                            The image will be shown in the newsletter in the banner. It must be min. 200 pixel wide and 50 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
-                        </div>
-                        <div class="widget widget--imageinputwidget">
-                            <div class="upload-wrapper form-control-upload">
-                                <div class="upload-wrapper__fields input-group">
-                                    <input name="logo" id="id_logo" class="form-control form-control-file" type="file">
-                                    <input name="__noname__" class="form-control form-control-file-dummy" placeholder="Select a picture from your local folder." tabindex="-1" id="text-id_logo" type="text">
-                                    <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
-                                        <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
-                                    </label>
-                                </div>
-                                <div class="form-id_logo upload-wrapper__preview">
-                                    <input name="logo-clear" id="logo_id" class="clear-image" data-upload-clear="id_logo" type="checkbox">
-                                    <img id="id_logo-file" src="" data-upload-preview="id_logo" alt="">
-                                </div>
-                                <div class="alert alert--info upload-wrapper__alert" role="alert">
-                                    Your image will be uploaded/removed once you save your changes at the end of this page.
+                    <div class="cl-example">
+                        <div class="module-content">
+                            <div class="l-wrapper">
+                                <div class="l-center-8">
+                                    <ul class="u-list-reset">
+                                        <li class="list-item list-item--squashed">
+                                            <div class="list-item__stats">
+                                                <span class="rating">
+                                                    <span class="rating-button rating-up is-read-only" title="Positive Ratings">
+                                                        0
+                                                        <i class="fa fa-chevron-up" aria-label="Positive Ratings"></i>
+                                                    </span>
+                                                    <span class="rating-button rating-down is-read-only" title="Negative Ratings">
+                                                        0
+                                                        <i class="fa fa-chevron-down" aria-label="Negative Ratings"></i>
+                                                    </span>
+                                                </span>
+                                                <span title="Comments">
+                                                    0
+                                                    <i class="far fa-comment" aria-label="Comments"></i>
+                                                </span>
+                                            </div>
+                                            <h3 class="list-item__title">Rated comment</h3>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
+                    <h2 id="cl-table">Storefront (Hero Unit)</h2>
+                    <div class="cl-example">
+                        <div class="storefront">
+                            <div class="storefront__col storefront__first-col u-xs-down-display-none">
+                                <div class="storefront__item storefront__img tile__lg u-xs-down-display-none"
+                                  style="width=100%; background:url(/media/images/The-Fernsehturm-Tv-Tower-Lit-Up-At-Night.max-400x600.jpg) no-repeat; background-size: cover; background-position: bottom;">
+                                    <h1 class="storefront__lg-text">Help shape Berlin: Your opinion is important to us!</h1>
+                                </div>
+                                <div class="storefront__item storefront__stat-sm tile__sm u-xs-down-display-none">
+                                    <h1 class="storefront__lg-text storefront__xl-text">93</h1>
+                                    <p>Ideas and comments submitted by citizens</p>
+                                </div>
+                            </div>
+                            <div class="storefront__col storefront__mid-col u-xs-down-display-none">
+                                <a href="/" class="storefront__item storefront__proj-quote tile__md">
+                                    <blockquote class="storefront__quote-text">
+                                        „this is a lovely quote about this project how many chars can i have in one quote, i feel like this chars can i have in one quote, i feel like this can“
+                                    </blockquote>
+                                    <div class="storefront__opinion-text">Was ist Ihre Meinung zum Projekt: Spacial Brainstorm this is as long as it can get Spacial Br…?</div>
+                                </a>
+                                <a href="/" class="storefront__item storefront__proj tile__md">
+                                    <div class="item-detail__labels">
+                                        <span class="label label--secondary">Bildung &amp; Forschung</span>
+                                    </div>
+                                    <p class="storefront__sm-text">Reinickendorf</p>
+                                    <h2 class="storefront__proj-text ">Brainstorm guidelines for citizen participation in the Treptow-Köpenick</h2>
+                                    <div class="status-item status-item__position-storefront status-bar__past">
+                                        Beteiligung beendet. Ergebnis lesen.
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="storefront__col storefront__last-col u-xs-md-display-none">
+                                <div class="storefront__item storefront__img tile__lg--xs-screen u-xs-only-display"
+                                  style="width=100%; background:url(/media/images/The-Fernsehturm-Tv-Tower-Lit-Up-At-Night.max-400x600.jpg) no-repeat; background-size: cover; background-position: bottom;">
+                                    <h1 class="storefront__lg-text">Help shape Berlin: Your opinion is important to us!</h1>
+                                </div>
+                                <a href="/" class="storefront__item storefront__district tile__md">
+                                    <h2 class="storefront__district-text">Whats happening in <strong>Neukölln</strong>?</h2>
+                                    <button class="btn btn-primary">
+                                        2 Projekte anzeigen
+                                    </button>
+                                </a>
+                                <div class="storefront__item storefront__stat-lg tile__md">
+                                    <span class="storefront__xxl-text">5</span>
+                                    <div class="storefront__stat-text">
+                                        <p>Projekte, zu denen wir Ihre Meinung wissen möchten!</p>
+                                        <div class="storefront__stat-spacer"></div>
+                                    </div>
+                                    <div class="storefront__stat-arrow"><i class="fa fa-arrow-down" aria-label="Runterscrollen"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 id="cl-table">Table</h2>
+
+                    <div class="cl-example">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Table header</th>
+                                    <th>Table header</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Standard cell</td>
+                                    <td>Standard cell</td>
+                                    <td class="td--action">
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h2 id="cl-tabs">Tabs</h2>
+
+                    <div class="cl-example">
+                        <div class="tablist tablist--left">
+                            <div class="l-wrapper">
+                                <nav class="nav" role="tablist">
+                                    <a id="tab-project-3-information" class="tab" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-information" aria-expanded="false">Tab</a>
+                                    <a id="tab-project-3-participation" class="tab active" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-participation" aria-expanded="true">Tab 2</a>
+                                    <a id="tab-project-3-result" class="tab" data-toggle="tab" href="#" role="tab" aria-controls="tabpanel-project-3-result" aria-expanded="false">Tab 3</a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 id="cl-tile">Tile</h2>
+
+                    <div class="cl-example">
+                        <ul class="l-tiles-4">
+                            <li class="tile ">
+                                <div class="tile__head">
+                                    <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-3" href="#" target="_self"></a>
+                                    <img src="/static/images/meinberlin.svg" alt="Project on meinBerlin" class="tile__badge">
+                                    <div class="tile__labels"></div>
+                                </div>
+                                <div class="tile__body">
+                                    <h3 class="tile__title" id="project-title-3">
+                                        <a href="#" target="_self">Blueprint - finished</a>
+                                    </h3>
+                                    <p class="tile__text">Blueprint description</p>
+                                    <p class="tile__hint">
+                                        Participation possible until
+                                        <time datetime="2018-06-14T00:00:00+02:00">14.06.2018</time>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="tile ">
+                                <div class="tile__head">
+                                    <a tabindex="-1" class="tile__image tile__image--shadowed " aria-labelledby="project-title-2" href="#" target="_self"></a>
+                                    <img src="/static/images/meinberlin.svg" alt="Project on meinBerlin" class="tile__badge">
+                                    <div class="tile__labels">
+                                        <span class="label label--primary">Finished</span>
+                                    </div>
+                                </div>
+                                <div class="tile__body">
+                                    <h3 class="tile__title" id="project-title-2">
+                                        <a href="#" target="_self">Blueprint - active</a>
+                                    </h3>
+                                    <p class="tile__text">Blueprint description</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <h2 id="cl-timeline">Timeline</h2>
+
+                    <div class="cl-example">
+                        <div class="timeline-carousel__wrapper">
+                            <div class="timeline-carousel">
+                                <div class="l-wrapper">
+                                    <div id="timeline-carousel" data-initial-slide="1">
+                                        <div class="timeline-carousel__line"></div>
+                                        <div class="timeline-carousel__item slick-initialized slick-slider">
+                                            <button class="slick-prev slick-arrow" aria-label="Previous" type="button" aria-disabled="false" style="">Previous</button>
+                                            <div class="slick-list draggable">
+                                                <div class="slick-track">
+                                                    <div class="slick-slide" data-slick-index="0" aria-hidden="true" tabindex="-1">
+                                                        <div><a href="/" aria-labelledby="timeline_item timeline_entry_1" tabindex="-1">
+                                                                <div id="timeline_item" class="timeline-carousel__dot ">
+                                                                    <span class="sr-only">Zeitleistenkachel</span>
+                                                                </div>
+                                                                <div class="timeline-carousel__label ">
+                                                                    <span id="timeline_entry_1">
+                                                                        <span class="timeline-carousel__title">1. Online-Beteiligung</span><br>
+                                                                        ab 1. April 2021
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slick-slide slick-current slick-center" data-slick-index="1" aria-hidden="true">
+                                                        <div><a href="/projekte/many-maps/?initialSlide=1" aria-labelledby="timeline_item timeline_entry_2" tabindex="-1">
+                                                                <div id="timeline_item" class="timeline-carousel__dot  initial ">
+                                                                    <span class="sr-only">Zeitleistenkachel</span>
+                                                                </div>
+                                                                <div class="timeline-carousel__label  initial ">
+                                                                    <span id="timeline_entry_2">
+                                                                        <span class="timeline-carousel__title">2. Online-Beteiligung</span><br>
+                                                                        ab 21. April 2021
+                                                                    </span>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><button class="slick-next slick-arrow" aria-label="Next" type="button" style="" aria-disabled="false">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 id="cl-upload">Upload</h2>
+
+                    <div class="cl-example">
+                        <div class="form-group">
+                            <label for="id_logo">Logo</label>
+                            <div class="form-hint">
+                                The image will be shown in the newsletter in the banner. It must be min. 200 pixel wide and 50 pixel tall. Allowed file formats are png, jpeg, gif. The file size should be max. 5 MB.
+                            </div>
+                            <div class="widget widget--imageinputwidget">
+                                <div class="upload-wrapper form-control-upload">
+                                    <div class="upload-wrapper__fields input-group">
+                                        <input name="logo" id="id_logo" class="form-control form-control-file" type="file">
+                                        <input name="__noname__" class="form-control form-control-file-dummy" placeholder="Select a picture from your local folder." tabindex="-1" id="text-id_logo" type="text">
+                                        <label for="id_logo" class="upload-wrapper__action input-group__after btn" title="Upload a picture">
+                                            <i class="fas fa-cloud-upload-alt" aria-label="Upload a picture"></i>
+                                        </label>
+                                    </div>
+                                    <div class="form-id_logo upload-wrapper__preview">
+                                        <input name="logo-clear" id="logo_id" class="clear-image" data-upload-clear="id_logo" type="checkbox">
+                                        <img id="id_logo-file" src="" data-upload-preview="id_logo" alt="">
+                                    </div>
+                                    <div class="alert alert--info upload-wrapper__alert" role="alert">
+                                        Your image will be uploaded/removed once you save your changes at the end of this page.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
         </div>
-    </div>
 
-{% endblock %}
+        {% endblock %}
