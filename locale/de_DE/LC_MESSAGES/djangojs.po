@@ -1085,7 +1085,7 @@ msgstr "Liste anzeigen"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:134
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:141
 msgid "show map"
@@ -1093,7 +1093,7 @@ msgstr "Karte anzeigen"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:143
 msgid "Map"
-msgstr ""
+msgstr "Karte"
 
 #: meinberlin/apps/polls/assets/Question.jsx:132
 msgid "Multiple answers are possible."

@@ -2044,7 +2044,7 @@ msgstr "Listenansicht"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:10
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:23
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:11
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:24
@@ -2054,7 +2054,7 @@ msgstr "Kartenansicht"
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:13
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:26
 msgid "Map"
-msgstr ""
+msgstr "Karte"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/pagination.html:4
 msgid "Page navigation"
@@ -3506,6 +3506,8 @@ msgid ""
 "No new project containers can be created. Please use the multimodule "
 "feature. Existing project containers can still be edited."
 msgstr ""
+"Es können keine neuen Projektsammlungen angelegt werden. Bitte nutzen Sie die Multimodul-Funktion."
+" Bestehende Projektsammlungen können weiterhin bearbeitet werden."
 
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_list_dashboard.html:19
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_list_dashboard.html:25
