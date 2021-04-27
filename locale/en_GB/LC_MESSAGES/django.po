@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 19:55+0200\n"
+"POT-Creation-Date: 2021-04-27 15:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,8 +106,6 @@ msgstr "Preview"
 
 #: adhocracy4/dashboard/templates/a4dashboard/includes/preview.html:9
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:41
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:8
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:14
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_dashboard_list_item.html:14
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/includes/offlineevent_list_item.html:15
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:38
@@ -234,7 +232,7 @@ msgstr "Duplicate"
 
 #: adhocracy4/dashboard/templates/a4dashboard/project_list.html:65
 #: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/includes/container_detail.html:85
-#: meinberlin/templates/a4dashboard/project_list.html:30
+#: meinberlin/templates/a4dashboard/project_list.html:24
 msgid "We could not find any projects."
 msgstr "We could not find any projects."
 
@@ -351,12 +349,10 @@ msgid "Comment"
 msgstr "Comment"
 
 #: adhocracy4/comments/models.py:54 adhocracy4/exports/mixins.py:123
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:16
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:17
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/proposal_list_item.html:16
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/proposal_list_item.html:17
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:18
 #: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:19
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_list_item.html:16
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_list_item.html:17
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:18
 #: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:20
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:18
@@ -561,7 +557,7 @@ msgstr "Project successfully duplicated."
 msgid "Project successfully created."
 msgstr "Project successfully created."
 
-#: adhocracy4/dashboard/views.py:154 meinberlin/apps/dashboard/views.py:129
+#: adhocracy4/dashboard/views.py:154 meinberlin/apps/dashboard/views.py:130
 msgid "Invalid action"
 msgstr "Invalid action"
 
@@ -1404,7 +1400,7 @@ msgstr "Development plans"
 msgid "New Development plan"
 msgstr "New Development plan"
 
-#: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_list_dashboard.html:30
+#: meinberlin/apps/bplan/templates/meinberlin_bplan/bplan_list_dashboard.html:24
 msgid "We could not find any development plans."
 msgstr "We could not find any development plans."
 
@@ -1444,16 +1440,16 @@ msgstr ""
 "Thanks! Your statement has been sent! An answer will be send to your email "
 "address."
 
-#: meinberlin/apps/bplan/views.py:31 meinberlin/apps/dashboard/views.py:230
-#: meinberlin/apps/extprojects/views.py:23
+#: meinberlin/apps/bplan/views.py:32 meinberlin/apps/dashboard/views.py:232
+#: meinberlin/apps/extprojects/views.py:24
 msgid "Project was created."
 msgstr "Project was created."
 
-#: meinberlin/apps/bplan/views.py:34
+#: meinberlin/apps/bplan/views.py:35
 msgid "Development Plan"
 msgstr "Development Plan"
 
-#: meinberlin/apps/bplan/views.py:35
+#: meinberlin/apps/bplan/views.py:36
 msgid ""
 "Create a statement formular for development plans to be embedded on external "
 "sites."
@@ -1615,36 +1611,6 @@ msgstr ""
 "revoke this consent at any time. I have read and accept the <a href="
 "\"%(privacy_policy)s\" target=\"_blank\">privacy policy</a>."
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:7
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:8
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:8
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:9
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_list_item.html:7
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_list_item.html:8
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:8
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:10
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:8
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:10
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_list_item.html:8
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_list_item.html:10
-msgid "Positive Ratings"
-msgstr "Positive Ratings"
-
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:11
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/includes/proposal_list_item.html:12
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:12
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:13
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_list_item.html:11
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/includes/proposal_list_item.html:12
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:12
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:14
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:12
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:14
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_list_item.html:12
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_list_item.html:14
-msgid "Negative Ratings"
-msgstr "Negative Ratings"
-
 #: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_confirm_delete.html:4
 #: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_confirm_delete.html:4
 msgid "Confirm Proposal Deletion"
@@ -1690,30 +1656,30 @@ msgstr "Submit a new proposal for this project"
 msgid "Submit proposal"
 msgstr "Submit proposal"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:36
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:36
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:36
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_list.html:27
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:34
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:34
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:34
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_list.html:25
 msgid "Zoom in"
 msgstr "Zoom in"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:37
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:37
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:37
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_list.html:28
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:35
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:35
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:35
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_list.html:26
 msgid "Zoom out"
 msgstr "Zoom out"
 
-#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:54
-#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_list.html:31
-#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:54
-#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:62
+#: meinberlin/apps/budgeting/templates/meinberlin_budgeting/proposal_list.html:52
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/idea_list.html:29
+#: meinberlin/apps/kiezkasse/templates/meinberlin_kiezkasse/proposal_list.html:52
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/mapidea_list.html:60
 #: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_dashboard_list.html:26
-#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_list.html:45
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/maptopic_list.html:43
 #: meinberlin/apps/offlineevents/templates/meinberlin_offlineevents/offlineevent_list.html:27
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_dashboard_list.html:77
 #: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_dashboard_list.html:26
-#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_list.html:22
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/topic_list.html:20
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
@@ -1958,17 +1924,55 @@ msgstr "Please consent to the storage of your contact information."
 msgid "Filter bar "
 msgstr "Filter bar "
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:6
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:8
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:21
 msgid "View as list"
 msgstr "View as list"
 
-#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:12
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:10
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:23
+msgid "List"
+msgstr "List"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:11
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:24
 msgid "View as map"
 msgstr "View as map"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:13
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/map_filter_and_sort.html:26
+msgid "Map"
+msgstr "Map"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/pagination.html:4
 msgid "Page navigation"
 msgstr "Page navigation"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/proposal_list_item.html:7
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/proposal_list_item.html:8
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:8
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:9
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:8
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:10
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:8
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:10
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_list_item.html:8
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_list_item.html:10
+msgid "Positive Ratings"
+msgstr "Positive Ratings"
+
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/proposal_list_item.html:11
+#: meinberlin/apps/contrib/templates/meinberlin_contrib/includes/proposal_list_item.html:12
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:12
+#: meinberlin/apps/ideas/templates/meinberlin_ideas/includes/idea_list_item.html:13
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:12
+#: meinberlin/apps/mapideas/templates/meinberlin_mapideas/includes/mapidea_list_item.html:14
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:12
+#: meinberlin/apps/maptopicprio/templates/meinberlin_maptopicprio/includes/maptopic_list_item.html:14
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_list_item.html:12
+#: meinberlin/apps/topicprio/templates/meinberlin_topicprio/includes/topic_list_item.html:14
+msgid "Negative Ratings"
+msgstr "Negative Ratings"
 
 #: meinberlin/apps/contrib/templates/meinberlin_contrib/item_detail.html:56
 #: meinberlin/apps/exports/mixins.py:12
@@ -2193,35 +2197,35 @@ msgstr "New Module"
 msgid "Choose Participation Module"
 msgstr "Choose Participation Module"
 
-#: meinberlin/apps/dashboard/views.py:51
+#: meinberlin/apps/dashboard/views.py:52
 msgid "The module was created"
 msgstr "The module was created"
 
-#: meinberlin/apps/dashboard/views.py:146
+#: meinberlin/apps/dashboard/views.py:147
 msgid "Module is already added"
 msgstr "Module is already added"
 
-#: meinberlin/apps/dashboard/views.py:157
+#: meinberlin/apps/dashboard/views.py:158
 msgid "The module is displayed in the project."
 msgstr "The module is displayed in the project."
 
-#: meinberlin/apps/dashboard/views.py:162
+#: meinberlin/apps/dashboard/views.py:163
 msgid "Module is already removed"
 msgstr "Module is already removed"
 
-#: meinberlin/apps/dashboard/views.py:166
+#: meinberlin/apps/dashboard/views.py:167
 msgid "Module cannot be removed from a published project."
 msgstr "Module cannot be removed from a published project."
 
-#: meinberlin/apps/dashboard/views.py:171
+#: meinberlin/apps/dashboard/views.py:172
 msgid "Module cannot be removed. It is the only module added to the project."
 msgstr "Module cannot be removed. It is the only module added to the project."
 
-#: meinberlin/apps/dashboard/views.py:183
+#: meinberlin/apps/dashboard/views.py:184
 msgid "The module is no longer displayed in the project."
 msgstr "The module is no longer displayed in the project."
 
-#: meinberlin/apps/dashboard/views.py:190
+#: meinberlin/apps/dashboard/views.py:191
 msgid "The module has been deleted"
 msgstr "The module has been deleted"
 
@@ -2397,15 +2401,15 @@ msgstr "Linkages"
 msgid "New Linkage"
 msgstr "New Linkage"
 
-#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/extproject_list_dashboard.html:30
+#: meinberlin/apps/extprojects/templates/meinberlin_extprojects/extproject_list_dashboard.html:24
 msgid "We could not find any linkages."
 msgstr "We could not find any linkages."
 
-#: meinberlin/apps/extprojects/views.py:26
+#: meinberlin/apps/extprojects/views.py:27
 msgid "Linkage"
 msgstr "Linkage"
 
-#: meinberlin/apps/extprojects/views.py:28
+#: meinberlin/apps/extprojects/views.py:29
 msgid "Linkages are handled on a different platform."
 msgstr "Linkages are handled on a different platform."
 
@@ -3357,11 +3361,20 @@ msgstr ""
 msgid "Containers"
 msgstr "Containers"
 
-#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_list_dashboard.html:13
+#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_list_dashboard.html:16
+msgid ""
+"No new project containers can be created. Please use the multimodule "
+"feature. Existing project containers can still be edited."
+msgstr ""
+"No new project containers can be created. Please use the multimodule "
+"feature. Existing project containers can still be edited."
+
+#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_list_dashboard.html:19
+#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_list_dashboard.html:25
 msgid "New Container"
 msgstr "New Container"
 
-#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_list_dashboard.html:30
+#: meinberlin/apps/projectcontainers/templates/meinberlin_projectcontainers/container_list_dashboard.html:37
 msgid "We could not find any containers."
 msgstr "We could not find any containers."
 
@@ -3374,15 +3387,15 @@ msgstr "%(active_count)s of %(count)s"
 msgid "projects are currently active."
 msgstr "projects are currently active."
 
-#: meinberlin/apps/projectcontainers/views.py:20
+#: meinberlin/apps/projectcontainers/views.py:21
 msgid "Container successfully created."
 msgstr "Container successfully created."
 
-#: meinberlin/apps/projectcontainers/views.py:23
+#: meinberlin/apps/projectcontainers/views.py:25
 msgid "Container"
 msgstr "Container"
 
-#: meinberlin/apps/projectcontainers/views.py:25
+#: meinberlin/apps/projectcontainers/views.py:27
 msgid "A container contains multiple projects."
 msgstr "A container contains multiple projects."
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-24 17:02+0100\n"
+"POT-Creation-Date: 2021-04-27 15:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -875,49 +875,49 @@ msgstr "ongoing"
 msgid "done"
 msgstr "done"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:86
+#: meinberlin/apps/plans/assets/PlansList.jsx:139
 #: meinberlin/apps/plans/assets/PopUp.jsx:20
 msgid "More than 1 year remaining"
 msgstr "More than 1 year remaining"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:90
+#: meinberlin/apps/plans/assets/PlansList.jsx:143
 #: meinberlin/apps/plans/assets/PopUp.jsx:24
 msgid "remaining"
 msgstr "remaining"
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:192
+#: meinberlin/apps/plans/assets/PlansList.jsx:245
 #: meinberlin/apps/plans/assets/PopUp.jsx:68
 msgid "Participation ended. Read result."
 msgstr "Participation ended. Read result."
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:210
+#: meinberlin/apps/plans/assets/PlansList.jsx:263
 #: meinberlin/apps/plans/assets/PopUp.jsx:88
 msgid "Participation projects: "
 msgstr "Participation projects: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:219
+#: meinberlin/apps/plans/assets/PlansList.jsx:272
 msgid "Status: "
 msgstr "Status: "
 
-#: meinberlin/apps/plans/assets/PlansList.jsx:250
-#: meinberlin/apps/plans/assets/PlansMap.jsx:290
+#: meinberlin/apps/plans/assets/PlansList.jsx:298
+#: meinberlin/apps/plans/assets/PlansMap.jsx:293
 msgid "Nothing to show"
 msgstr "Nothing to show"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:265
+#: meinberlin/apps/plans/assets/PlansMap.jsx:267
 msgid "Address Search"
 msgstr "Address Search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:267
-#: meinberlin/apps/plans/assets/PlansMap.jsx:268
+#: meinberlin/apps/plans/assets/PlansMap.jsx:269
+#: meinberlin/apps/plans/assets/PlansMap.jsx:270
 msgid "Address search"
 msgstr "Address search"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:297
+#: meinberlin/apps/plans/assets/PlansMap.jsx:300
 msgid "Close information box"
 msgstr "Close information box"
 
-#: meinberlin/apps/plans/assets/PlansMap.jsx:298
+#: meinberlin/apps/plans/assets/PlansMap.jsx:301
 msgid ""
 "Projects without spacial reference are not shown on the map. Please have a "
 "look at the project list."
@@ -951,20 +951,20 @@ msgid "hide map"
 msgstr "hide map"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:132
-msgid "Show List"
-msgstr "Show List"
-
-#: meinberlin/apps/plans/assets/Toggles.jsx:133
 msgid "show list"
 msgstr "show list"
 
-#: meinberlin/apps/plans/assets/Toggles.jsx:140
-msgid "Show Map"
-msgstr "Show Map"
+#: meinberlin/apps/plans/assets/Toggles.jsx:134
+msgid "List"
+msgstr "List"
 
 #: meinberlin/apps/plans/assets/Toggles.jsx:141
 msgid "show map"
 msgstr "show map"
+
+#: meinberlin/apps/plans/assets/Toggles.jsx:143
+msgid "Map"
+msgstr "Map"
 
 #: meinberlin/apps/polls/assets/Question.jsx:132
 msgid "Multiple answers are possible."
@@ -1000,13 +1000,13 @@ msgstr[1] "%s people have answered."
 msgid "If you leave this page changes you made will not be saved."
 msgstr "If you leave this page changes you made will not be saved."
 
-#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:13
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:18
 msgid "External Video"
 msgstr "External Video"
 
-#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:14
 msgid ""
 "Here you can find a video from Google (YouTube). To protect your data the "
@@ -1017,24 +1017,24 @@ msgstr ""
 "content will only be loaded after you give your consent. Only then will "
 "YouTube set Cookies that collect information on user behaviour."
 
-#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:15
 msgid "More information can be found in the privacy policy of Google under: "
 msgstr "More information can be found in the privacy policy of Google under: "
 
-#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:22
 msgid "Link to Video: "
 msgstr "Link to Video: "
 
-#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:17
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:22
 msgid "Play video"
 msgstr "Play video"
 
-#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:19
 msgid ""
 "Here you can find a video from Vimeo. To protect your data the content will "
@@ -1045,10 +1045,16 @@ msgstr ""
 "only be loaded after you give your consent. Only then will Vimeo set Cookies "
 "that collect information on user behaviour."
 
-#: /home/rine/a4-meinberlin/node_modules/dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
+#: dsgvo-video-embed/dist/dsgvo-video-embed.min.js:8
 #: dsgvo-video-embed/js/dsgvo-video-embed.js:20
 msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr "More information can be found in the privacy policy of Vimeo under: "
+
+#~ msgid "Show List"
+#~ msgstr "Show List"
+
+#~ msgid "Show Map"
+#~ msgstr "Show Map"
 
 #~ msgid "select characteristic"
 #~ msgstr "select characteristic"
