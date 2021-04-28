@@ -125,7 +125,7 @@ class Toggles extends React.Component {
             <div className="switch-btn-group-container">
               <div className="btn-group switch-btn-group" role="group">
                 <switch
-                  className={!this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'}
+                  className={!this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light'}
                   onClick={this.props.showList} // eslint-disable-line react/jsx-handler-names
                   htmlFor="show_list"
                 >
@@ -134,7 +134,7 @@ class Toggles extends React.Component {
                   <span> {django.gettext('List')}</span>
                 </switch>
                 <switch
-                  className={this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light switch--btn'}
+                  className={this.props.displayMap ? 'btn btn--light switch--btn active' : 'btn btn--light'}
                   onClick={this.props.showMap} // eslint-disable-line react/jsx-handler-names
                   htmlFor="show_map"
                 >
