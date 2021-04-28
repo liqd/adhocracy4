@@ -135,17 +135,21 @@ class Question extends React.Component {
   }
 
   toggleShowResultButton () {
-    let toggleShowResultButtonText
-    if (this.state.showResult) {
-      toggleShowResultButtonText = django.gettext('To poll')
-      if (this.state.selectedChoices.length !== 0) {
-        toggleShowResultButtonText = django.gettext('Change vote')
-      }
-    } else {
-      toggleShowResultButtonText = django.gettext('Show preliminary results')
-    }
+    const { showResult, selectedChoices: { length: isVoted } } = this.state
+    const buttonText = !showResult
+      ? django.gettext('Show preliminary results')
+      : isVoted
+        ? django.gettext('Change vote')
+        : django.gettext('To poll')
+
     return (
-      toggleShowResultButtonText
+      <button
+        type="button"
+        className="btn btn--link"
+        onClick={this.toggleShowResult.bind(this)}
+      >
+        {buttonText}
+      </button>
     )
   }
 
