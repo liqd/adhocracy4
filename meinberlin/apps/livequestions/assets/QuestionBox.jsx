@@ -247,7 +247,7 @@ export default class QuestionBox extends React.Component {
                 <InfoBox
                   isModerator={this.props.isModerator}
                 />
-                <div className="control-bar__top-overlap live_questions__filters--parent">
+                <div className="live_questions__filters--parent">
                   <Filters
                     categories={this.props.categories}
                     currentCategory={this.state.category}
@@ -274,7 +274,7 @@ export default class QuestionBox extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="module-content u-spacer-bottom">
+            <div className="module-content--light u-spacer-bottom">
               <div className="l-wrapper">
                 <div className="l-center-8">
                   <QuestionList
@@ -295,7 +295,7 @@ export default class QuestionBox extends React.Component {
           </div>
         </div>
         <div
-          className="tabpanel module-content"
+          className="tabpanel module-content--light"
           id="tabpanel-statistics"
           role="tabpanel"
           aria-labelledby="tab-statistics"

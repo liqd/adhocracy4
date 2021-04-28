@@ -4,17 +4,17 @@
 {% block phase_content %}
 
     {% if chapter_list|length > 1 %}
-        <div class="control-bar__top-overlap">
+        <div class="u-spacer-bottom">
             {% include 'meinberlin_documents/includes/nextprev.html' %}
         </div>
     {% endif %}
 
-    <article class="module-content">
+    <article class="module-content--light">
         {% if chapter_list %}
         <div class="l-wrapper">
             <div class="l-center-8">
                 {% if chapter_list|length > 1 %}
-                    <nav class="doc-toc" aria-label="{% trans 'Table of Contents' %}">
+                    <nav class="doc-toc u-border" aria-label="{% trans 'Table of Contents' %}">
                         <button
                             class="doc-toc__toggle {% if object.prev %}collapsed{% endif %}"
                             data-toggle="collapse"
@@ -38,7 +38,7 @@
                     </nav>
                 {% endif %}
 
-                <div class="chapter">
+                <div class="chapter u-border">
                     <h2 class="chapter-title">{{ object.name }}</h2>
 
                     {% for paragraph in object.paragraphs.all %}

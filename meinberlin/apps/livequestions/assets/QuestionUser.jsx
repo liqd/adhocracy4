@@ -54,7 +54,7 @@ export default class QuestionUser extends React.Component {
     const undoLikeTag = django.gettext('undo like')
 
     return (
-      <div className="list-item list-item--squashed">
+      <div className="list-item">
         <div>
           {this.props.is_on_shortlist &&
             <i className="far fa-list-alt u-primary" aria-label={shortlistText} />}

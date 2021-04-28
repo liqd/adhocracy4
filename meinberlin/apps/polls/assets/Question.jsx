@@ -187,7 +187,7 @@ class Question extends React.Component {
     }
 
     return (
-      <form onSubmit={this.handleSubmit.bind(this)} className="poll">
+      <form onSubmit={this.handleSubmit.bind(this)} className="poll u-border">
         <h2>{this.state.question.label}</h2>
         {this.getHelpText()}
         <div className="poll__rows">

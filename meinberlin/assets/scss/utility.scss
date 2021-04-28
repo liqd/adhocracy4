@@ -148,6 +148,10 @@
     border-bottom: 2px solid $border-color;
 }
 
+.u-border {
+    border: 1px solid $border-color;
+}
+
 .u-overflow-ellipsis {
     overflow: hidden;
     white-space: nowrap;
