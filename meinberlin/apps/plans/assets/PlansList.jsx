@@ -2,9 +2,6 @@
 const React = require('react')
 const Moment = require('moment')
 
-const autoScrollThreshold = 500
-const itemListInterval = 10
-
 class LazyBackground extends React.Component {
   constructor (props) {
     super(props)
@@ -73,56 +70,6 @@ class LazyBackground extends React.Component {
 }
 
 class PlansList extends React.Component {
-  constructor (props) {
-    super(props)
-
-    this.addItemsToList = this.addItemsToList.bind(this)
-    this.bindList = this.bindList.bind(this)
-    this.handleScroll = this.handleScroll.bind(this)
-    this.renderTopics = this.renderTopics.bind(this)
-
-    this.state = {
-      itemList: []
-    }
-  }
-
-  componentDidMount () {
-    window.addEventListener('scroll', this.handleScroll, { passive: true })
-    this.addItemsToList()
-  }
-
-  componentWillUnmount () {
-    window.removeEventListener('scroll', this.handleScroll)
-  }
-
-  getDocumentHeight () {
-    const D = document
-    return Math.max(
-      D.body.scrollHeight, D.documentElement.scrollHeight,
-      D.body.offsetHeight, D.documentElement.offsetHeight,
-      D.body.clientHeight, D.documentElement.clientHeight
-    )
-  }
-
-  handleScroll () {
-    const html = document.documentElement
-    if (html.scrollTop + html.clientHeight > this.getDocumentHeight() - autoScrollThreshold) {
-      this.addItemsToList()
-    }
-  }
-
-  addItemsToList () {
-    const newItemList = this.state.itemList.slice()
-    for (let i = this.state.itemList.length;
-      i < this.props.items.length &&
-      (i - this.state.itemList.length) < itemListInterval; i++) {
-      newItemList.push(this.renderListItem(this.props.items[i], i))
-    }
-    this.setState({
-      itemList: newItemList
-    })
-  }
-
   bindList (element) {
     this.listElement = element
   }
@@ -193,7 +140,7 @@ class PlansList extends React.Component {
               {item.tile_image &&
                 <LazyBackground
                   item={item}
-                  renderTopics={this.renderTopics}
+                  renderTopics={this.renderTopics.bind(this)}
                   isHorizontal={this.props.isHorizontal}
                 />}
               <div className="participation-tile__content">
@@ -287,10 +234,15 @@ class PlansList extends React.Component {
   }
 
   renderList () {
-    if (this.state.itemList.length > 0) {
+    const list = []
+    this.props.items.forEach((item, i) => {
+      list.push(this.renderListItem(item, i))
+    })
+
+    if (list.length > 0) {
       return (
         <ul className="u-list-reset participation-tile__list">
-          {this.state.itemList}
+          {list}
         </ul>
       )
     } else {
@@ -302,7 +254,7 @@ class PlansList extends React.Component {
 
   render () {
     return (
-      <div ref={this.bindList}>
+      <div ref={this.bindList.bind(this)}>
         {this.renderList()}
       </div>
     )
