@@ -19,7 +19,7 @@
     "@babel/preset-env": "7.14.1",
     "@babel/preset-react": "7.13.13",
     "@fortawesome/fontawesome-free": "5.15.3",
-    "acorn": "8.2.2",
+    "acorn": "8.2.4",
     "adhocracy4": "liqd/adhocracy4#mB-v2105",
     "autoprefixer": "10.2.5",
     "axios": "0.21.1",
