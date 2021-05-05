@@ -1,5 +1,6 @@
 import operator
 import random
+from datetime import date
 from functools import reduce
 
 import django_filters
@@ -57,40 +58,41 @@ class DefaultsFilterSet(PagedFilterSet):
         for key, value in self.defaults.items():
             if key not in data:
                 data[key] = value
-
         super().__init__(data, *args, **kwargs)
 
 
 class DistinctOrderingFilter(django_filters.OrderingFilter):
     """Makes sure, that every queryset gets a distinct ordering, even if
     field to order by (e.g. comment count) would produce a non-distinct
-    odering. In case of random ordering (?), use the extra argument
-    random_seed in order to allow reproducable random orderings.
-    Note: order reproducability relies on the string representation of the seed
+    ordering.
     """
 
-    def __init__(self, *args, **kwargs):
-        self.random_seed = kwargs.pop('random_seed', 'static_randomness')
-        super().__init__(*args, **kwargs)
+    def filter(self, qs, value):
+        if value in django_filters.constants.EMPTY_VALUES:
+            return qs.order_by('pk')
+
+        ordering = [self.get_ordering_value(param) for param in value] + ['pk']
+        return qs.order_by(*ordering)
+
+
+class DistinctOrderingWithDailyRandomFilter(DistinctOrderingFilter):
+    """Note: order reproducability relies on the string representation of the
+    seed
+    """
 
     def filter(self, qs, value):
-        if value == ['?']:
+        if value == ['dailyrandom']:
             pks = list(qs.values_list('pk', flat=True))
-            random.seed(str(self.random_seed))
+            random.seed(str(date.today()))
             random.shuffle(pks)
-
             preserved = \
                 Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(pks)])
             ordered_qs = qs \
                 .filter(pk__in=pks) \
                 .order_by(preserved)
             return ordered_qs
-
-        if value in django_filters.constants.EMPTY_VALUES:
-            return qs.order_by('pk')
-
-        ordering = [self.get_ordering_value(param) for param in value] + ['pk']
-        return qs.order_by(*ordering)
+        else:
+            return super().filter(qs, value)
 
 
 class FreeTextFilter(django_filters.CharFilter):
