@@ -1,11 +1,12 @@
 .paragraph {
-    margin-bottom: $spacer / 2;
+    margin-bottom: $spacer;
+    border: solid 1px $border-color;
+    border-radius: 5px;
 }
 
 .chapter-title,
 .paragraph__content,
 .paragraph__actions {
-    background-color: $body-bg;
     padding: $padding;
 }
 
@@ -20,4 +21,5 @@
 
 .paragraph__actions {
     text-align: right;
+    border-top: solid 1px $border-color;
 }

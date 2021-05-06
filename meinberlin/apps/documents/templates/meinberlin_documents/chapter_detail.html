@@ -14,7 +14,7 @@
         <div class="l-wrapper">
             <div class="l-center-8">
                 {% if chapter_list|length > 1 %}
-                    <nav class="doc-toc u-border" aria-label="{% trans 'Table of Contents' %}">
+                    <nav class="doc-toc" aria-label="{% trans 'Table of Contents' %}">
                         <button
                             class="doc-toc__toggle {% if object.prev %}collapsed{% endif %}"
                             data-toggle="collapse"
@@ -38,7 +38,7 @@
                     </nav>
                 {% endif %}
 
-                <div class="chapter u-border">
+                <div class="chapter">
                     <h2 class="chapter-title">{{ object.name }}</h2>
 
                     {% for paragraph in object.paragraphs.all %}
