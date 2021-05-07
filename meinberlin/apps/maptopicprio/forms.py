@@ -14,7 +14,10 @@ class MapTopicForm(CategorizableFieldMixin,
                    forms.ModelForm):
 
     description = fields.RichTextUploadingFormField(
-        config_name='image-editor', required=True)
+        config_name='image-editor',
+        required=True,
+        label=_('Description')
+    )
 
     def __init__(self, *args, **kwargs):
         self.settings = kwargs.pop('settings_instance')
@@ -23,7 +26,6 @@ class MapTopicForm(CategorizableFieldMixin,
             polygon=self.settings.polygon)
         self.fields['point'].error_messages['required'] = _(
             'Please locate your proposal on the map.')
-        self.fields['description'].label = _('Description')
 
     class Meta:
         model = models.MapTopic

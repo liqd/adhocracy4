@@ -20,25 +20,40 @@ class TopicQuerySet(query.RateableQuerySet, query.CommentableQuerySet):
 
 
 class Topic(module_models.Item):
-    item_ptr = models.OneToOneField(to=module_models.Item,
-                                    parent_link=True,
-                                    related_name='%(app_label)s_%(class)s',
-                                    on_delete=models.CASCADE)
-    slug = AutoSlugField(populate_from='name', unique=True)
-    name = models.CharField(max_length=120, verbose_name=_('Title'))
-    description = RichTextUploadingField(config_name='image-editor')
+    item_ptr = models.OneToOneField(
+        to=module_models.Item,
+        parent_link=True,
+        related_name='%(app_label)s_%(class)s',
+        on_delete=models.CASCADE
+    )
+    slug = AutoSlugField(
+        populate_from='name',
+        unique=True
+    )
+    name = models.CharField(
+        max_length=120,
+        verbose_name=_('Title')
+    )
+    description = RichTextUploadingField(
+        config_name='image-editor',
+        verbose_name=_('Description')
+    )
     image = ConfiguredImageField(
         'idea_image',
         verbose_name=_('Add image'),
         upload_to='ideas/images',
         blank=True,
     )
-    ratings = GenericRelation(rating_models.Rating,
-                              related_query_name='topic',
-                              object_id_field='object_pk')
-    comments = GenericRelation(comment_models.Comment,
-                               related_query_name='topic',
-                               object_id_field='object_pk')
+    ratings = GenericRelation(
+        rating_models.Rating,
+        related_query_name='topic',
+        object_id_field='object_pk'
+    )
+    comments = GenericRelation(
+        comment_models.Comment,
+        related_query_name='topic',
+        object_id_field='object_pk'
+    )
     category = CategoryField()
 
     labels = models.ManyToManyField(labels_models.Label,
