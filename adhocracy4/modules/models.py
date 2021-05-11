@@ -171,39 +171,58 @@ class Module(models.Model):
         now = timezone.now()
         return now > self.module_end
 
+    def seconds_in_units(self, seconds):
+        '''Returns time and unit.'''
+        unit_totals = []
+
+        unit_limits = [
+            ([_('day'), _('days')], 24 * 3600),
+            ([_('hour'), _('hours')], 3600),
+            ([_('minute'), _('minutes')], 60),
+            ([_('second'), _('seconds')], 1)
+        ]
+
+        for unit_name, limit in unit_limits:
+            if seconds >= limit:
+                amount = int(float(seconds) / limit)
+                if amount > 1:
+                    unit_totals.append((unit_name[1], amount))
+                else:
+                    unit_totals.append((unit_name[0], amount))
+                seconds = seconds - (amount * limit)
+        unit_totals.append((_('seconds'), 0))
+
+        return unit_totals
+
+    @cached_property
+    def module_starting_time_left(self):
+        """
+        Return the time left until the module starts.
+        """
+
+        if not self.module_has_started:
+            now = timezone.now()
+            time_delta = self.module_start - now
+            seconds = time_delta.total_seconds()
+            time_delta_list = self.seconds_in_units(seconds)
+            best_unit = time_delta_list[0]
+            time_delta_str = '{} {}'.format(str(best_unit[1]),
+                                            str(best_unit[0]))
+            return time_delta_str
+
+        return None
+
     @cached_property
     def module_running_time_left(self):
         """
         Return the time left of the module if it is currently running.
         """
 
-        def seconds_in_units(seconds):
-            unit_totals = []
-
-            unit_limits = [
-                ([_('day'), _('days')], 24 * 3600),
-                ([_('hour'), _('hours')], 3600),
-                ([_('minute'), _('minutes')], 60),
-                ([_('second'), _('seconds')], 1)
-            ]
-
-            for unit_name, limit in unit_limits:
-                if seconds >= limit:
-                    amount = int(float(seconds) / limit)
-                    if amount > 1:
-                        unit_totals.append((unit_name[1], amount))
-                    else:
-                        unit_totals.append((unit_name[0], amount))
-                    seconds = seconds - (amount * limit)
-            unit_totals.append((_('seconds'), 0))
-
-            return unit_totals
-
         if self.module_has_started and not self.module_has_finished:
             now = timezone.now()
             time_delta = self.module_end - now
             seconds = time_delta.total_seconds()
-            time_delta_list = seconds_in_units(seconds)
+            time_delta_list = self.seconds_in_units(seconds)
             best_unit = time_delta_list[0]
             time_delta_str = '{} {}'.format(str(best_unit[1]),
                                             str(best_unit[0]))
