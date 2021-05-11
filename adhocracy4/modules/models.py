@@ -95,6 +95,19 @@ class Module(models.Model):
         return reverse('module-detail', kwargs=dict(module_slug=self.slug))
 
     @cached_property
+    def get_detail_url(self):
+        """
+        Return either project or module detail url, depending on cluster
+        and timeline logic.
+        """
+        if self.is_in_module_cluster:
+            return self.get_absolute_url()
+        elif self.project.display_timeline:
+            return '{}?initialSlide={}'.format(self.project.get_absolute_url(),
+                                               self.get_timeline_index)
+        return self.project.get_absolute_url()
+
+    @cached_property
     def settings_instance(self):
         settingslist = [field.name for field in self._meta.get_fields()
                         if field.name.endswith('_settings')]
@@ -312,19 +325,6 @@ class Module(models.Model):
                 if 'modules' in cluster and self in cluster['modules']:
                     return count
         return 0
-
-    @cached_property
-    def get_detail_url(self):
-        """
-        Return either project or module detail url, depending on cluster
-        and timeline logic.
-        """
-        if self.is_in_module_cluster and self.project.display_timeline:
-            return self.get_absolute_url()
-        elif self.project.display_timeline:
-            return '{}?initialSlide={}'.format(self.project.get_absolute_url(),
-                                               self.get_timeline_index)
-        return self.project.get_absolute_url()
 
     # Deprecated properties
     @cached_property
