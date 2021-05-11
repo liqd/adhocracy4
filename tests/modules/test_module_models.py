@@ -6,6 +6,12 @@ from freezegun import freeze_time
 
 
 @pytest.mark.django_db
+def test_str(module):
+    assert str(module) == \
+        "{} ({})".format(module.project, module.weight)
+
+
+@pytest.mark.django_db
 def test_phases(phase, phase_factory):
     module = phase.module
     phase2 = phase_factory(module=module)
@@ -163,6 +169,70 @@ def test_module_has_finished(phase_factory):
 
 
 @pytest.mark.django_db
+def test_module_starting_time_left(phase_factory):
+    phase1 = phase_factory(
+        start_date=parse('2021-05-12 17:35:00 UTC'),
+        end_date=parse('2021-05-13 18:01:00 UTC')
+    )
+    module1 = phase1.module
+    phase2 = phase_factory(
+        start_date=parse('2021-05-12 17:35:00 UTC'),
+        end_date=parse('2021-05-13 18:01:00 UTC')
+    )
+    module2 = phase2.module
+    phase_factory(
+        module=module2,
+        start_date=parse('2021-05-11 17:20:01 UTC'),
+        end_date=parse('2021-05-12 17:20:00 UTC')
+    )
+    phase3 = phase_factory(
+        start_date=parse('2021-05-11 20:00:00 UTC'),
+        end_date=parse('2021-05-13 17:20:00 UTC')
+    )
+    module3 = phase3.module
+    phase4 = phase_factory(
+        start_date=parse('2021-05-11 17:20:00.45 UTC'),
+        end_date=parse('2021-05-14 17:20:00 UTC')
+    )
+    module4 = phase4.module
+    # with active phase
+    phase5 = phase_factory(
+        start_date=parse('2021-05-11 17:00:00 UTC'),
+        end_date=parse('2021-05-14 17:20:00 UTC')
+    )
+    module5 = phase5.module
+    # with past phase
+    phase6 = phase_factory(
+        start_date=parse('2021-05-10 17:20:00 UTC'),
+        end_date=parse('2021-05-11 17:00:00 UTC')
+    )
+    module6 = phase6.module
+    # between two phases
+    phase7 = phase_factory(
+        start_date=parse('2021-05-10 17:20:00 UTC'),
+        end_date=parse('2021-05-11 17:00:00 UTC')
+    )
+    module7 = phase7.module
+    phase_factory(
+        module=module7,
+        start_date=parse('2021-05-11 17:20:01 UTC'),
+        end_date=parse('2021-05-12 17:20:00 UTC')
+    )
+    with freeze_time('2021-05-11 17:20:00 UTC'):
+        assert module1.module_starting_time_left \
+            == '1 day'
+        assert module2.module_starting_time_left \
+            == '1 second'
+        assert module3.module_starting_time_left \
+            == '2 hours'
+        assert module4.module_starting_time_left \
+            == '0 seconds'
+        assert module5.module_starting_time_left is None
+        assert module6.module_starting_time_left is None
+        assert module7.module_starting_time_left is None
+
+
+@pytest.mark.django_db
 def test_module_running_time_left(phase_factory):
     phase1 = phase_factory(
         start_date=parse('2013-01-01 17:00:00 UTC'),
@@ -179,21 +249,44 @@ def test_module_running_time_left(phase_factory):
         start_date=parse('2013-01-01 18:00:00 UTC'),
         end_date=parse('2013-01-01 18:00:01 UTC')
     )
-    phase4 = phase_factory(
+    phase3 = phase_factory(
         start_date=parse('2013-01-01 17:00:00 UTC'),
         end_date=parse('2013-01-01 19:00:00 UTC')
     )
-    module3 = phase4.module
+    module3 = phase3.module
     phase_factory(
         module=module3,
         start_date=parse('2013-01-01 19:00:01 UTC'),
         end_date=parse('2013-01-01 20:00:00 UTC')
     )
-    phase5 = phase_factory(
+    phase4 = phase_factory(
         start_date=parse('2013-01-01 17:00:00 UTC'),
         end_date=parse('2013-01-01 18:00:00.45 UTC')
     )
-    module4 = phase5.module
+    module4 = phase4.module
+    # with future phase
+    phase5 = phase_factory(
+        start_date=parse('2013-05-11 17:00:00 UTC'),
+        end_date=parse('2013-05-14 17:20:00 UTC')
+    )
+    module5 = phase5.module
+    # with past phase
+    phase6 = phase_factory(
+        start_date=parse('2013-01-01 8:00:00 UTC'),
+        end_date=parse('2013-01-01 17:00:00 UTC')
+    )
+    module6 = phase6.module
+    # between two phases
+    phase7 = phase_factory(
+        start_date=parse('2013-01-01 8:00:00 UTC'),
+        end_date=parse('2013-01-01 17:00:00 UTC')
+    )
+    module7 = phase7.module
+    phase_factory(
+        module=module7,
+        start_date=parse('2013-01-01 18:30:00 UTC'),
+        end_date=parse('2013-01-01 21:00:00 UTC')
+    )
     with freeze_time('2013-01-01 18:00:00 UTC'):
         assert module1.module_running_time_left \
             == '1 day'
@@ -203,6 +296,10 @@ def test_module_running_time_left(phase_factory):
             == '2 hours'
         assert module4.module_running_time_left \
             == '0 seconds'
+        assert module5.module_running_time_left is None
+        assert module6.module_running_time_left is None
+        assert module7.module_running_time_left \
+            == '3 hours'
 
 
 @pytest.mark.django_db
@@ -255,6 +352,12 @@ def test_is_in_cluster_one_module(module_factory, project):
 
     module = module_factory(project=project)
     assert not module.is_in_module_cluster
+    assert module.index_in_cluster is None
+    assert module.readable_index_in_cluster is None
+    assert len(module.module_cluster) == 0
+    assert not module.next_module_in_cluster
+    assert not module.previous_module_in_cluster
+    assert module.get_timeline_index == 0
 
 
 @pytest.mark.django_db
@@ -263,6 +366,7 @@ def test_is_in_cluster_overlapping_module(
 
     module1 = module_factory(project=project)
     module2 = module_factory(project=project)
+    module3 = module_factory(project=project)
 
     phase_factory(
         module=module1,
@@ -288,17 +392,37 @@ def test_is_in_cluster_overlapping_module(
         end_date=parse('2013-02-15 18:05:00 UTC')
     )
 
+    phase_factory(
+        module=module3,
+        start_date=parse('2013-03-04 17:00:00 UTC'),
+        end_date=parse('2013-03-05 18:05:00 UTC')
+    )
+
     assert module1.is_in_module_cluster
     assert module2.is_in_module_cluster
+    assert not module3.is_in_module_cluster
 
     assert module1.index_in_cluster == 0
     assert module2.index_in_cluster == 1
+    assert module3.index_in_cluster == 0
+
+    assert module1.readable_index_in_cluster == 1
+    assert module2.readable_index_in_cluster == 2
+    assert module3.readable_index_in_cluster == 1
 
     assert len(module1.module_cluster) == 2
     assert len(module2.module_cluster) == 2
+    assert len(module3.module_cluster) == 1
 
     assert module1.next_module_in_cluster == module2
     assert not module1.previous_module_in_cluster
 
     assert not module2.next_module_in_cluster
     assert module2.previous_module_in_cluster == module1
+
+    assert not module3.next_module_in_cluster
+    assert not module3.previous_module_in_cluster
+
+    assert module1.get_timeline_index == 0
+    assert module2.get_timeline_index == 0
+    assert module3.get_timeline_index == 1
