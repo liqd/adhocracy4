@@ -285,7 +285,7 @@ class Module(models.Model):
     def index_in_cluster(self):
         try:
             return self.module_cluster.index(self)
-        except IndexError:
+        except (IndexError, ValueError):
             return None
 
     @cached_property
