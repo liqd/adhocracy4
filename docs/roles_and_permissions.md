@@ -23,6 +23,21 @@ If a project is private (not public), only participants (and organisation member
 Any logged-in user.
 #### Anonymous
 This isn't a real role, but the logged-out user.
+#### Permisions table
+|  Role | public projects <br /> read/write | semi-public projects <br /> read/write  | private projects <br /> read/write  |
+| :------------: | :------------: | :------------: | :------------: |
+| **Admin**  | y/y  | y/y  | y/y  |
+|  **Initiator** <br />  (organisation)  | y/y  | y/y  | y/y  |
+|  **Member** *  <br />  (organisation)| y/y  | y/y  | y/y  |
+| **Moderator**  <br />  (project) | y/y  | y/y  | y/y  |
+| **Contributor** <br />  (organisation) | y/y  | y/n  | n/n  |
+| **Group Member** \** <br />  (organisation/project) | y/y  | y/y  | y/y  |
+|  **Participant** * | y/y  | y/y  | y/y  |
+|  **User** | y/y | y/n  | n/n  |
+
+\* must also be a contributor to be allowed to take part <br />
+\** only on mB: subgroup of initiators, only allowed to add projects and to work on projects belonging to the same group, not allwed to work on all projects of organisation
+
 
 ## Permissions
 The apps that define the roles normally also define permissions.
