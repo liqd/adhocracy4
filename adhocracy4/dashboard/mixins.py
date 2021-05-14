@@ -178,6 +178,9 @@ class DashboardProjectDuplicateMixin:
                                          project=project_clone,
                                          user=self.request.user)
 
+            for moderator in project.moderators.all():
+                project_clone.moderators.add(moderator)
+
             for module in project.module_set.all():
                 module_clone = deepcopy(module)
                 module_clone.project = project_clone
