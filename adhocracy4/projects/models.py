@@ -266,6 +266,8 @@ class Project(ProjectContactDetailMixin,
         default='a4projects.Project'
     )
 
+    is_app_accessible = models.BooleanField(default=False)
+
     objects = ProjectManager()
 
     class Meta:
