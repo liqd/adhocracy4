@@ -9,4 +9,4 @@ isort==5.8.0
 pytest-cov==2.12.1
 pytest-django==4.4.0
 pytest-factoryboy==2.1.0
-pytest==6.2.3
+pytest==6.2.4
