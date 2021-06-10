@@ -45,9 +45,6 @@ LOGGING = {
     'loggers': {
         '': {
             'handlers': ['console'], 'level': 'INFO'
-        },
-        'raven': {
-            'handlers': ['null'], 'level': 'ERROR'
         }
     }
 }
