@@ -71,14 +71,14 @@ export default class QuestionUser extends React.Component {
             ? (
               <button type="button" className={this.state.session_like ? 'btn btn--none btn--align-left u-success' : 'btn btn--none btn--align-left'} onClick={this.handleLike.bind(this)}>
                 <span>{this.state.likes} </span>
-                <span className="sr-only">{likesTag}</span>
+                <span className="visually-hidden">{likesTag}</span>
                 <i className="far fa-thumbs-up" aria-label={this.state.session_like ? addLikeTag : undoLikeTag} />
               </button>
               )
             : (
               <div>
                 <span className="u-muted">{this.state.likes} </span>
-                <span className="sr-only">{likesTag}</span>
+                <span className="visually-hidden">{likesTag}</span>
                 <i className="far fa-thumbs-up u-muted" aria-hidden="true" />
               </div>
               )}

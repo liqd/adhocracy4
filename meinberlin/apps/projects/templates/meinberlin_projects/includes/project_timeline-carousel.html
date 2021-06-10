@@ -9,7 +9,7 @@
                        aria-labelledby="timeline_item timeline_entry_{{ forloop.counter }}">
                         <div id="timeline_item"
                              class="timeline-carousel__dot {% if forloop.counter0 == initial_slide %} initial {% endif %}">
-                            <span class="sr-only">{% trans 'Timeline item' %}</span>
+                            <span class="visually-hidden">{% trans 'Timeline item' %}</span>
                         </div>
                         <div class="timeline-carousel__label {% if forloop.counter0 == initial_slide %} initial {% endif %}">
                             <span id="timeline_entry_{{ forloop.counter }}">
