@@ -8,9 +8,9 @@ body {
 
 .main-footer {
     @include clearfix;
-    padding-top: $em-spacer * 1.5;
-    padding-bottom: $em-spacer * 4;
-    margin-top: $em-spacer * 7;
+    padding-top: $spacer * 1.5;
+    padding-bottom: $spacer * 4;
+    margin-top: $spacer * 7;
 
     font-size: $font-size-sm;
     text-align: right;

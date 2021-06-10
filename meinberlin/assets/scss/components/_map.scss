@@ -90,7 +90,7 @@
  */
 
 .map-container {
-    margin-left: $spacer;
+    margin-left: $r-spacer;
 }
 
 .map-list-combined {
@@ -132,8 +132,8 @@
         font-size: $font-size-base;
         width: 90%;
         position: absolute;
-        left: $em-spacer;
-        top: $em-spacer;
+        left: $spacer;
+        top: $spacer;
         z-index: 1000;
 
         .form-group {
@@ -146,7 +146,7 @@
     }
 
     .map-list-combined__map__search__error {
-        padding: $em-spacer;
+        padding: $spacer;
         border: none;
     }
 
@@ -154,8 +154,8 @@
         font-size: $font-size-base;
         width: 90%;
         position: absolute;
-        left: 1*$em-spacer;
-        top: 4.5*$em-spacer;
+        left: 1*$spacer;
+        top: 4.5*$spacer;
         z-index: 1000;
         background-color: $body-bg;
         padding: $padding $padding $padding 3*$padding;
@@ -195,7 +195,7 @@
     }
 
     @media (max-width: $breakpoint-md-down) {
-        margin-top: $spacer;
+        margin-top: $r-spacer;
     }
 }
 

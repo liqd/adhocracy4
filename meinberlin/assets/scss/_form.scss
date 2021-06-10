@@ -4,7 +4,7 @@ label {
 }
 
 %input-base {
-    margin: 0 0 $em-spacer;
+    margin: 0 0 $spacer;
     border: 1px solid $input-border-color;
     padding: 0.4em 0.6em;
     line-height: 1.6;
@@ -51,7 +51,7 @@ div.cke_focus {
 }
 
 .errorlist {
-    margin: 0 0 $em-spacer 0;
+    margin: 0 0 $spacer 0;
     padding: $padding;
     list-style: none;
     text-align: right;
@@ -61,12 +61,12 @@ div.cke_focus {
 
 .django-ckeditor-widget {
     display: block !important;
-    margin-bottom: $em-spacer;
+    margin-bottom: $spacer;
 }
 
 .form-check,
 .form-group {
-    margin: 0 0 $em-spacer;
+    margin: 0 0 $spacer;
 
     .django-ckeditor-widget,
     %input-base {
@@ -126,6 +126,6 @@ div.cke_focus {
 
     input[type="checkbox"] {
         transform: scale(1.5);
-        margin-right: 0.5*$em-spacer;
+        margin-right: 0.5*$spacer;
     }
 }

@@ -49,7 +49,7 @@
     min-height: 11.8em;
     background-size: stretch;
     background-position: center;
-    margin-bottom: $em-spacer;
+    margin-bottom: $spacer;
 }
 
 .block--image-cta__body {
@@ -72,7 +72,7 @@
     h2 {
         color: $brand-secondary;
         font-size: $font-size-xxl;
-        margin-top: $spacer;
+        margin-top: $r-spacer;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
@@ -204,8 +204,8 @@
     background-repeat: no-repeat;
     max-width: $wrapper-width;
     margin: auto;
-    margin-top: (-15*$spacer);
-    margin-bottom: (-$spacer);
+    margin-top: (-15*$r-spacer);
+    margin-bottom: (-$r-spacer);
     padding-top: 25*$padding;
     padding-bottom: 16*$padding;
 }
@@ -219,11 +219,11 @@
 //as filter is different on homepage styling must be nested
 .block--map-teaser__filter {
     .filter-bar-container {
-        margin: 2*$spacer 0 0 0;
+        margin: 2*$r-spacer 0 0 0;
     }
 
     .filter-bar {
-        margin-top: 3*$spacer;
+        margin-top: 3*$r-spacer;
         box-shadow: 0 0 20px 0 $shadow;
         background-color: $body-bg;
         color: $text-color;
@@ -255,7 +255,7 @@
         right: 1rem;
         margin-left: 0;
         margin-right: 0;
-        margin-top: 1.5*$spacer;
+        margin-top: 1.5*$r-spacer;
         padding-top: 2*$padding;
         border-top: 2px solid $white;
         z-index: 3;

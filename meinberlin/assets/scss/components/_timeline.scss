@@ -3,7 +3,7 @@ $circle-size: 0.8em;
 .timeline {
     font-size: $font-size-sm;
     padding-left: 2em;
-    margin-bottom: $em-spacer;
+    margin-bottom: $spacer;
     color: $link-color;
 
     ul {
@@ -123,7 +123,7 @@ $circle-size: 0.8em;
 }
 
 .timeline-detail {
-    margin-bottom: $em-spacer;
+    margin-bottom: $spacer;
 }
 
 .timeline-detail__title {
@@ -143,7 +143,7 @@ $circle-size: 0.8em;
     }
 
     &:last-child {
-        margin-bottom: $em-spacer;
+        margin-bottom: $spacer;
     }
 }
 

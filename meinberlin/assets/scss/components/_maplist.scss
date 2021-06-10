@@ -33,7 +33,7 @@
 
 .maplist-item__label {
     font-size: $font-size-sm;
-    margin-right: 0.5*$spacer;
+    margin-right: 0.5*$r-spacer;
 }
 
 .maplist-item__roofline {
@@ -42,7 +42,7 @@
 }
 
 .maplist-item__title {
-    margin-top: $spacer;
+    margin-top: $r-spacer;
 }
 
 .maplist-item__description {
@@ -119,8 +119,8 @@
     }
 
     .maplist-item__label-img {
-        margin-top: $spacer;
-        margin-left: $spacer;
+        margin-top: $r-spacer;
+        margin-left: $r-spacer;
     }
 }
 

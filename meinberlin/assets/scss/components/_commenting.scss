@@ -1,10 +1,10 @@
 .commenting {
     display: block;
-    margin-bottom: $em-spacer;
+    margin-bottom: $spacer;
 }
 
 .commenting__content--border {
-    margin-bottom: $em-spacer / 2;
+    margin-bottom: $spacer / 2;
     padding: $padding;
     border: 1px solid $border-color;
     border-radius: ($padding / 2);

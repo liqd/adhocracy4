@@ -13,14 +13,14 @@
 }
 
 .status-item_spacer {
-    height: 3*$spacer;
+    height: 3*$r-spacer;
 }
 
 .status-bar__active {
     position: relative;
     height: 5px;
     background-color: $bg-tertiary;
-    margin-bottom: 0.5*$spacer;
+    margin-bottom: 0.5*$r-spacer;
 }
 
 .status-bar__active-fill {

@@ -21,10 +21,10 @@
     width: 100%;
     display: inline-flex;
     justify-content: flex-end;
-    margin: $em-spacer 0;
+    margin: $spacer 0;
 
     @media screen and (min-width: $breakpoint-xs) {
-        margin: 0 0 0 $em-spacer;
+        margin: 0 0 0 $spacer;
     }
 }
 
@@ -40,14 +40,14 @@
 
 .live_questions__question {
     font-size: $font-size-lg;
-    margin-bottom: 0.25*$em-spacer;
+    margin-bottom: 0.25*$spacer;
 }
 
 .infobox__box {
     background-color: $bg-tertiary;
-    padding: 0.5*$em-spacer $em-spacer;
+    padding: 0.5*$spacer $spacer;
     font-size: $font-size-sm;
-    margin-bottom: $em-spacer;
+    margin-bottom: $spacer;
 
     i {
         position: absolute;
@@ -57,11 +57,11 @@
 }
 
 .infobox__text {
-    margin-left: 2*$em-spacer;
+    margin-left: 2*$spacer;
 }
 
 .infobox__icon {
-    margin-left: -0.6*$em-spacer;
+    margin-left: -0.6*$spacer;
     position: absolute;
 }
 
@@ -73,8 +73,8 @@
 
     .infobox__box {
         text-align: center;
-        padding: $em-spacer;
-        margin-right: $em-spacer;
+        padding: $spacer;
+        margin-right: $spacer;
     }
 
     .infobox__box > i {
@@ -98,7 +98,7 @@
 }
 
 .progress {
-    margin-bottom: $em-spacer;
+    margin-bottom: $spacer;
     position: relative;
 }
 
@@ -159,7 +159,7 @@
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    max-height: 2*$em-spacer;
+    max-height: 2*$spacer;
 
     @media screen and (min-width: $breakpoint) {
         justify-content: flex-start;
@@ -176,7 +176,7 @@
 }
 
 .live_questions_infographic {
-    padding-bottom: 2*$em-spacer;
+    padding-bottom: 2*$spacer;
 
     .block--infographic__icon-block {
         margin: auto;
@@ -198,11 +198,11 @@
 }
 
 .live_questions__like {
-    padding-top: 0.5*$em-spacer;
+    padding-top: 0.5*$spacer;
 }
 
 .live_question__presentation {
-    margin-top: 5*$em-spacer;
+    margin-top: 5*$spacer;
 }
 
 .fa-stack,
@@ -228,12 +228,12 @@
 .live_questions__char-count {
     color: $gray-lighter;
     font-size: $font-size-sm;
-    margin-top: -0.75*$em-spacer;
-    margin-bottom: $em-spacer;
+    margin-top: -0.75*$spacer;
+    margin-bottom: $spacer;
 }
 
 .live_questions__anchor {
     position: relative;
-    bottom: -7*$em-spacer;
-    margin-bottom: 7*$em-spacer;
+    bottom: -7*$spacer;
+    margin-bottom: 7*$spacer;
 }
