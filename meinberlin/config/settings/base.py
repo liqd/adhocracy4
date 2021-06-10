@@ -64,7 +64,6 @@ INSTALLED_APPS = (
     'ckeditor_uploader',
     'capture_tag',
     'background_task',
-    'raven.contrib.django.raven_compat',
 
     'adhocracy4.actions',
     'adhocracy4.administrative_districts',
