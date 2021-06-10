@@ -16,7 +16,7 @@
                         {{ obj.name }}
                     </a>
                     {% if obj.active_phase %}<span class="timeline__active">{% trans 'active' %}</span>{% endif %}
-                    {% if obj == module %}<span class="visually-hidden">{% trans 'current page' %}</span>{% endif %}
+                    {% if obj == module %}<span class="sr-only">{% trans 'current page' %}</span>{% endif %}
                 </li>
             {% else %}
                 <li>
@@ -25,7 +25,7 @@
                         class="btn btn--light btn--small timeline__button {% if obj == object %}is-selected{% endif %}"
                     >
                         {{ obj.name }}
-                        {% if obj == object %}<span class="visually-hidden">{% trans 'current page' %}</span>{% endif %}
+                        {% if obj == object %}<span class="sr-only">{% trans 'current page' %}</span>{% endif %}
                     </a>
                 </li>
             {% endif %}

@@ -17,7 +17,7 @@
 }
 
 .category-formset__delete {
-    @include visually-hidden ();
+    @include sr-only();
 
     & ~ .category-formset__delete-label {
         position: absolute;

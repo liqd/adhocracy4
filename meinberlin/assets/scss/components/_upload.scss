@@ -32,7 +32,7 @@
 }
 
 .clear-image {
-    @include visually-hidden ;
+    @include sr-only;
 }
 
 .clear-image:checked + img {

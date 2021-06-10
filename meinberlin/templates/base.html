@@ -23,7 +23,7 @@
     {% if tracking %} {% tracking_code %} {% endif %}
 </head>
 <body>
-    <a href="#main" class="visually-hidden-focusable ">{% trans "Skip to content "%}</a>
+    <a href="#main" class="sr-only sr-only-focusable">{% trans "Skip to content "%}</a>
     {% block portal_header %}
       {% include 'portal_header.html' %}
     {% endblock %}

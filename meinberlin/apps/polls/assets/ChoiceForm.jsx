@@ -7,7 +7,7 @@ const ChoiceForm = (props) => {
     <div className="form-group form-group--narrow">
       <div className="input-group">
         <label htmlFor={'id_choices-' + props.id + '-name'}>
-          <span className="visually-hidden">{props.label}</span>
+          <span className="sr-only">{props.label}</span>
           <input
             id={'id_choices-' + props.id + '-name'}
             name={'choices-' + props.id + '-name'}

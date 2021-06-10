@@ -1,6 +1,6 @@
 
 .radio__input {
-    @include visually-hidden ;
+    @include sr-only;
 }
 
 // use pixels here because otherwise the icon in the :after
