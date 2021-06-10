@@ -15,7 +15,7 @@ ol,
 figure,
 fieldset {
     margin-top: 0;
-    margin-bottom: $spacer;
+    margin-bottom: $em-spacer;
 }
 
 html {
@@ -39,7 +39,7 @@ h5,
 h6 {
     line-height: 1.2;
     margin-bottom: 0.8rem;
-    margin-top: 1.5 * $spacer;
+    margin-top: 1.5 * $em-spacer;
     font-weight: normal;
 }
 
@@ -123,8 +123,8 @@ dd {
 
 dt {
     font-weight: bold;
-    margin-bottom: $spacer / 2;
-    margin-top: $spacer;
+    margin-bottom: $em-spacer / 2;
+    margin-top: $em-spacer;
 }
 
 button,

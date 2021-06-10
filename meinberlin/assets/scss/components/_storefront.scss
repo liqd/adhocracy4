@@ -47,24 +47,24 @@
 }
 
 .storefront__first-col {
-    margin-right: $r-spacer;
+    margin-right: $spacer;
 }
 
 .storefront__mid-col {
-    margin-left: $r-spacer;
-    margin-right: $r-spacer;
+    margin-left: $spacer;
+    margin-right: $spacer;
 
     @media screen and (min-width: $breakpoint-xs) {
         margin-right: 0;
     }
 
     @media screen and (min-width: $breakpoint-md) {
-        margin-right: $r-spacer;
+        margin-right: $spacer;
     }
 }
 
 .storefront__last-col {
-    margin-left: $r-spacer;
+    margin-left: $spacer;
 
     @media screen and (max-width: $breakpoint-xs-down) {
         margin: auto;
@@ -72,7 +72,7 @@
 }
 
 .storefront__item {
-    margin: $r-spacer 0;
+    margin: $spacer 0;
     padding: 1.5*$padding;
     flex: 0 1 6rem;
     flex-wrap: wrap;
@@ -157,7 +157,7 @@
 
 .storefront__stat-text {
     width: 75%;
-    margin-top: 0.5*$r-spacer;
+    margin-top: 0.5*$spacer;
 }
 
 .storefront__quote,
@@ -221,9 +221,9 @@
 }
 
 .storefront__stat-spacer {
-    height: $r-spacer;
+    height: $spacer;
 
     @media screen and (min-width: $breakpoint-md) {
-        height: 3*$r-spacer;
+        height: 3*$spacer;
     }
 }
