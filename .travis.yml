@@ -3,7 +3,7 @@ dist: bionic
 python:
 - '3.6'
 node_js:
-- '8'
+- '14'
 cache:
   pip: true
   npm: true
