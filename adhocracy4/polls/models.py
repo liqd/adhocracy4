@@ -1,5 +1,6 @@
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.comments import models as comment_models
 from adhocracy4.models.base import UserGeneratedContentModel
@@ -11,8 +12,10 @@ class QuestionQuerySet(models.QuerySet):
         return self.annotate(
             vote_count=models.Count(
                 'choices__votes__creator_id',
-                distinct=True)
-        )
+                distinct=True)).annotate(
+            vote_count_multi=models.Count(
+                'choices__votes',
+                distinct=True))
 
 
 class ChoiceQuerySet(models.QuerySet):
@@ -35,8 +38,17 @@ class Poll(module_models.Item):
 
 class Question(models.Model):
     label = models.CharField(max_length=255)
+    help_text = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name=_('Help text')
+    )
+
     weight = models.SmallIntegerField()
+
     multiple_choice = models.BooleanField(default=False)
+    is_open = models.BooleanField(default=False)
+    has_other_option = models.BooleanField(default=False)
 
     poll = models.ForeignKey(
         'Poll',
@@ -62,6 +74,28 @@ class Question(models.Model):
 
     class Meta:
         ordering = ['weight']
+
+
+class Answer(UserGeneratedContentModel):
+    answer = models.CharField(
+        max_length=750,
+        verbose_name=_('Answer')
+    )
+
+    question = models.ForeignKey(
+        'Question',
+        on_delete=models.CASCADE,
+        related_name='answers',
+    )
+
+    def get_absolute_url(self):
+        return self.question.poll.get_absolute_url()
+
+    def __str__(self):
+        return '%s: %s' % (self.creator, self.answer[:20])
+
+    class Meta:
+        ordering = ['id']
 
 
 class Choice(models.Model):
@@ -106,3 +140,30 @@ class Vote(UserGeneratedContentModel):
 
     def __str__(self):
         return '%s: %s' % (self.creator, self.choice)
+
+
+class OtherVote(UserGeneratedContentModel):
+    question = models.ForeignKey(
+        'Question',
+        on_delete=models.CASCADE,
+        related_name='other_votes',
+    )
+
+    answer = models.CharField(
+        max_length=250,
+        verbose_name=_('Answer')
+    )
+
+    @property
+    def module(self):
+        return self.question.poll.module
+
+    @property
+    def project(self):
+        return self.module.project
+
+    def get_absolute_url(self):
+        return self.question.poll.get_absolute_url()
+
+    def __str__(self):
+        return '%s: %s' % (self.creator, _('other'))
