@@ -1,4 +1,5 @@
 from django.contrib.contenttypes.fields import GenericRelation
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -57,6 +58,20 @@ class Question(models.Model):
     )
 
     objects = QuestionQuerySet.as_manager()
+
+    def clean(self, *args, **kwargs):
+        if self.is_open:
+            if self.multiple_choice:
+                raise ValidationError({
+                    'is_open': _('Questions with open answers cannot '
+                                 'have multiple choices')
+                })
+            elif self.has_other_option:
+                raise ValidationError({
+                    'is_open': _('Questions with open answers cannot '
+                                 'have a "other" choice option')
+                })
+        super().clean(*args, **kwargs)
 
     def user_choices_list(self, user):
         if not user.is_authenticated:
