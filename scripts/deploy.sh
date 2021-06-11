@@ -19,4 +19,4 @@ EOF
     chmod 600 ~/id_rsa
 fi
 
-ssh ${SSH_ID_ARG} -oStrictHostKeyChecking=no build@build.liqd.net deploy meinberlin master
+ssh ${SSH_ID_ARG} -oStrictHostKeyChecking=no build@build.liqd.net deploy meinberlin main
