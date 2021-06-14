@@ -3,7 +3,7 @@ $line-height: 2.5;
 $divider-margin: 1.25rem;
 
 .filter-bar-container {
-    margin-bottom: 2*$r-spacer;
+    margin-bottom: 2*$spacer;
 }
 
 .filter-bar {
@@ -24,12 +24,12 @@ $divider-margin: 1.25rem;
 
 .filter-bar--stacked {
     padding: $padding;
-    margin-bottom: $r-spacer;
+    margin-bottom: $spacer;
 }
 
 .filter-bar__dropdown {
-    margin-left: $r-spacer;
-    margin-right: $r-spacer;
+    margin-left: $spacer;
+    margin-right: $spacer;
 }
 
 .filter-bar__btn {
@@ -56,7 +56,7 @@ $divider-margin: 1.25rem;
     display: block;
     width: 100%;
     text-align: left;
-    margin-top: $r-spacer;
+    margin-top: $spacer;
 }
 
 .filter-bar__btn--unselected {
@@ -93,7 +93,7 @@ $divider-margin: 1.25rem;
 .filter-bar__btn--light {
     font-size: $font-size-sm;
     color: $white;
-    margin-left: 2 * $r-spacer;
+    margin-left: 2 * $spacer;
 
     &:focus,
     &:hover,
@@ -105,7 +105,7 @@ $divider-margin: 1.25rem;
 
 .filter-bar__btn--light-homepage {
     font-size: $font-size-base;
-    margin-left: 2 * $r-spacer;
+    margin-left: 2 * $spacer;
 }
 
 .filter-bar--open {
@@ -150,7 +150,7 @@ $divider-margin: 1.25rem;
     }
 
     .form-group {
-        margin-bottom: 2*$r-spacer;
+        margin-bottom: 2*$spacer;
     }
 
     @media screen and (min-width: $breakpoint-xs) {
@@ -169,7 +169,7 @@ $divider-margin: 1.25rem;
     z-index: 2;
 
     @media screen and (min-width: $breakpoint-md) {
-        margin-top: $r-spacer;
+        margin-top: $spacer;
     }
 }
 
@@ -236,7 +236,7 @@ $divider-margin: 1.25rem;
 .filter-bar__search {
     display: inline;
     width: calc(100% - 63px);
-    margin-bottom: 2*$r-spacer;
+    margin-bottom: 2*$spacer;
 
     @media screen and (min-width: $breakpoint-xs) {
         width: calc(100% - 51px);
@@ -253,10 +253,10 @@ $divider-margin: 1.25rem;
 .filter-bar__menu-radio-part,
 .filter-bar__menu-radio-proj {
     width: 100%;
-    margin-bottom: 2*$r-spacer;
+    margin-bottom: 2*$spacer;
 
     .btn-group {
-        margin-top: $r-spacer;
+        margin-top: $spacer;
         display: flex;
         justify-content: flex-start;
         flex-direction: row;
@@ -277,7 +277,7 @@ $divider-margin: 1.25rem;
 }
 
 .filter-bar__menu-radio-proj {
-    margin-bottom: 2*$r-spacer;
+    margin-bottom: 2*$spacer;
 
     .switch--btn {
         min-width: 20%;
@@ -296,7 +296,7 @@ $divider-margin: 1.25rem;
 
     .filter-bar__menu-radio-proj {
         width: 39%;
-        margin-left: 2*$r-spacer;
+        margin-left: 2*$spacer;
     }
 }
 
@@ -316,7 +316,7 @@ $divider-margin: 1.25rem;
 
     .filter-secondary__btn {
         width: 100%;
-        margin: 2*$r-spacer 0 $r-spacer 0;
+        margin: 2*$spacer 0 $spacer 0;
     }
 }
 

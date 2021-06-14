@@ -89,7 +89,7 @@ class FilterSecondary extends React.Component {
           >
             <i className="fa fa-search" aria-hidden="true" />
           </button>
-          <span className="sr-only">{django.gettext('Search title')}
+          <span className="visually-hidden">{django.gettext('Search title')}
           </span>
         </label>
         {this.props.organisationFilterOnTop &&

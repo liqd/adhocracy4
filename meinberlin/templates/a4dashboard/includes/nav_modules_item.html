@@ -52,7 +52,7 @@
         {% endif %}
     </form>
     {% if module_menu.module.is_draft %}
-    <button type="submit" class="btn btn--full btn--danger u-spacer-bottom dashboard_nav__btn--delete" value="{% trans 'Delete' %}" data-toggle="modal" data-target="#delete-modal{{ module_menu.module.pk }}">
+    <button type="submit" class="btn btn--full btn--danger u-spacer-bottom dashboard_nav__btn--delete" value="{% trans 'Delete' %}" data-bs-toggle="modal" data-bs-target="#delete-modal{{ module_menu.module.pk }}">
         <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
         {% trans 'Delete module' %}
     </button>
@@ -73,7 +73,7 @@
                     <form enctype="multipart/form-data" action="{% url 'a4dashboard:module-delete' slug=module_menu.module.slug %}" method="post" class="u-inline">
                         {% csrf_token %}
                         <input type="hidden" name="referrer" value="{{ request.path }}" />
-                        <button type="submit" class="btn btn--danger" value="{% trans 'Delete' %}" data-toggle="modal" data-target="#delete-modal">
+                        <button type="submit" class="btn btn--danger" value="{% trans 'Delete' %}" data-bs-toggle="modal" data-bs-target="#delete-modal">
                             <i class="fas fa-trash-alt" aria-label="{% trans 'Delete module' %}"></i>
                             {% trans 'Delete module' %}
                         </button>

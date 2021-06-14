@@ -20,7 +20,7 @@
     }
 
     .general-form {
-        margin-bottom: $spacer * 2;
+        margin-bottom: $em-spacer * 2;
     }
 
     .action-bar {
@@ -71,8 +71,8 @@
 }
 
 .comment {
-    margin-top: $spacer * 2;
-    margin-bottom: $spacer * 3;
+    margin-top: $em-spacer * 2;
+    margin-bottom: $em-spacer * 3;
 
     @media print {
         margin-bottom: 1em;
@@ -114,11 +114,11 @@
 
 .comment-child-list {
     padding-left: 1.5em;
-    margin-top: $spacer * 2;
+    margin-top: $em-spacer * 2;
     border-left: 1px solid $brand-primary;
 
     .comment {
-        margin-bottom: $spacer * 2;
+        margin-bottom: $em-spacer * 2;
     }
 }
 

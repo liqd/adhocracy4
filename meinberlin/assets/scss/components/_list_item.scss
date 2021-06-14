@@ -4,7 +4,7 @@
     position: relative;
     border: 1px solid $border-color;
     background-color: $body-bg;
-    margin-bottom: $spacer;
+    margin-bottom: $em-spacer;
     page-break-inside: avoid;
 
     &.selected {

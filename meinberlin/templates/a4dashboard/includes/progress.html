@@ -9,7 +9,7 @@
     {% include "a4dashboard/includes/preview.html" %}
 
 {% if project.is_draft %}
-    <button {% if not project|is_publishable:project_progress %}disabled{% endif %} class="btn btn--primary btn--full u-spacer-bottom" data-toggle="modal" data-target="#publish-modal">
+    <button {% if not project|is_publishable:project_progress %}disabled{% endif %} class="btn btn--primary btn--full u-spacer-bottom" data-bs-toggle="modal" data-bs-target="#publish-modal">
         {% trans 'Publish' %}
     </button>
 {% else %}

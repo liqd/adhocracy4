@@ -294,7 +294,7 @@ class ListMapBox extends Component {
       return (
         <div className="l-wrapper u-align-center u-spacer-top">
           <div className="spinner-border" role="status">
-            <span className="sr-only">Loading...</span>
+            <span className="visually-hidden">Loading...</span>
           </div>
         </div>
       )

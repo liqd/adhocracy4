@@ -23,7 +23,7 @@
 .lr-bar__sm-left-lg-right {
     float: left;
     min-width: 100%;
-    margin-top: 0.5 * $spacer;
+    margin-top: 0.5 * $em-spacer;
 
     > * {
         display: inline-block;
@@ -36,8 +36,8 @@
 }
 
 .lr-bar--with-margin {
-    margin-top: 1.5 * $spacer;
-    margin-bottom: 0.5 * $spacer;
+    margin-top: 1.5 * $em-spacer;
+    margin-bottom: 0.5 * $em-spacer;
 
     &:first-child {
         margin-top: 0;

@@ -17,8 +17,8 @@
                     <nav class="doc-toc" aria-label="{% trans 'Table of Contents' %}">
                         <button
                             class="doc-toc__toggle {% if object.prev %}collapsed{% endif %}"
-                            data-toggle="collapse"
-                            data-target="#doc-toc__content"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#doc-toc__content"
                             aria-expanded="{{ object.prev|yesno:'false,true' }}"
                             aria-controls="doc-toc__content">
                             <h2 class="doc-toc__title">{% trans 'Table of Contents' %}</h2>

@@ -54,11 +54,11 @@ input:checked ~ .dashboard-nav__dropdown {
 }
 
 .dashboard-nav__icon {
-    margin-right: 1.9*$spacer;
+    margin-right: 1.9*$em-spacer;
 }
 
 .dashboard-nav__dropdown-icon {
-    margin-right: 0.5*$spacer;
+    margin-right: 0.5*$em-spacer;
     vertical-align: super;
 }
 
@@ -114,7 +114,7 @@ input:checked ~ .dashboard-nav__menu-content {
 
 .dashboard-nav__module-control {
     display: flex;
-    margin: 0 0 $spacer 0;
+    margin: 0 0 $em-spacer 0;
 }
 
 .dashboard_nav__form--project {

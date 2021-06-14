@@ -2,11 +2,11 @@
     display: flex;
     justify-content: space-between;
     flex-flow: row wrap;
-    margin-bottom: $r-spacer;
+    margin-bottom: $spacer;
 
     .btn--transparent {
         color: $brand-secondary;
-        margin: 0 $r-spacer $r-spacer 0;
+        margin: 0 $spacer $spacer 0;
 
         &:hover,
         &:focus {
@@ -42,7 +42,7 @@
 .switch__toggle:before,
 .switch__toggle:after {
     content: '';
-    margin-left: 0.5*$r-spacer;
+    margin-left: 0.5*$spacer;
     display: inline-block;
     border-radius: 16px;
 }

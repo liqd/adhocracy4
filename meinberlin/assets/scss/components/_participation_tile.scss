@@ -3,8 +3,8 @@
     flex-direction: row;
     position: relative;
     justify-content: center;
-    margin-left: -$r-spacer;
-    margin-right: -$r-spacer;
+    margin-left: -$spacer;
+    margin-right: -$spacer;
 
     @media screen and (min-width: $breakpoint-xs) {
         justify-content: flex-start;
@@ -55,10 +55,10 @@
 
 .participation-tile__horizontal {
     width: 100%;
-    margin: 0 $r-spacer $r-spacer $r-spacer;
+    margin: 0 $spacer $spacer $spacer;
 
     @media screen and (min-width: $breakpoint-md) {
-        margin: 0 $r-spacer $r-spacer 5*$r-spacer;
+        margin: 0 $spacer $spacer 5*$spacer;
     }
 
     .participation-tile__body { // statusbar position
@@ -74,7 +74,7 @@
 
 .participation-tile__vertical {
     width: 100%;
-    margin: $r-spacer;
+    margin: $spacer;
     flex-grow: 1 0 100%;
     min-height: 350px;
 
@@ -99,13 +99,13 @@
 
 .participation-tile__btn {
     position: absolute;
-    left: 3*$r-spacer;
-    right: 3*$r-spacer;
-    bottom: 4*$r-spacer;
+    left: 3*$spacer;
+    right: 3*$spacer;
+    bottom: 4*$spacer;
 }
 
 .participation-tile__spacer {
-    height: 6.5*$r-spacer;
+    height: 6.5*$spacer;
 }
 
 .participation-tile__item-count,

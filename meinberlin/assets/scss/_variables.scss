@@ -37,10 +37,11 @@ $feedback-color-accepted: #0a820a !default;
 $feedback-color-rejected: #dc3818 !default;
 $feedback-color-consideration: #ffae00 !default;
 
-$spacer: 1em !default;
-$r-spacer: 1rem !default;
+$em-spacer: 1em !default;
+$spacer: 1rem !default;
 $padding: 1rem !default;
 
+$font-family-base: "Arial", "Helvetica", sans-serif !default;
 $font-family-sans-serif: "Arial", "Helvetica", sans-serif !default;
 
 $font-size-xxxl: 2.25rem !default;
