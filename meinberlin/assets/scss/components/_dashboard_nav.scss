@@ -114,6 +114,7 @@ input:checked ~ .dashboard-nav__menu-content {
 
 .dashboard-nav__module-control {
     display: flex;
+    flex-wrap: wrap;
     margin: 0 0 $em-spacer 0;
 }
 

@@ -7,7 +7,7 @@
 }
 
 .datepicker {
-    @extend .input-group__input;
+    @extend .form-control;
 }
 
 // stylelint-disable selector-max-specificity

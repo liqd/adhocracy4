@@ -671,8 +671,8 @@
                                     <div class="action-bar">
                                         <nav class="navbar navbar-default navbar-static">
                                             <div class="rating">
-                                                <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true">12</i></button>
-                                                <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true">3</i></button>
+                                                <button class="rating-button rating-up"><i class="fa fa-chevron-up" aria-hidden="true"></i>12</button>
+                                                <button class="rating-button rating-down"><i class="fa fa-chevron-down" aria-hidden="true"></i>3</button>
                                             </div>
                                             <ul class="nav navbar-nav">
                                                 <li class="dropdown">
@@ -830,66 +830,64 @@
             <h2 id="cl-document">Document and Doc Toc</h2>
 
             <div class="cl-example">
-                <div class="module-content">
-                    <nav class="doc-toc" aria-label="Table of Contents">
-                        <button
-                            class="doc-toc__toggle collapsed"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#doc-toc__content"
-                            aria-expanded="true"
-                            aria-controls="doc-toc__content">
-                            <h2 class="doc-toc__title">Table of Contents</h2>
-                            <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                        </button>
-                        <div class="doc-toc__content collapse" id="doc-toc__content">
-                            <ol>
-                                <li>
-                                    <a href="#" class="doc-toc__link">
-                                        Chapter 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="doc-toc__link active">
-                                        Chapter 2
-                                    </a>
-                                </li>
-                            </ol>
-                        </div>
-                    </nav>
+                <nav class="doc-toc" aria-label="Table of Contents">
+                    <button
+                        class="doc-toc__toggle collapsed"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#doc-toc__content"
+                        aria-expanded="true"
+                        aria-controls="doc-toc__content">
+                        <h2 class="doc-toc__title">Table of Contents</h2>
+                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                    </button>
+                    <div class="doc-toc__content collapse" id="doc-toc__content">
+                        <ol>
+                            <li>
+                                <a href="#" class="doc-toc__link">
+                                    Chapter 1
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="doc-toc__link active">
+                                    Chapter 2
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+                </nav>
 
-                    <h2 class="chapter-title">Chapter 2</h2>
+                <h2 class="chapter-title">Chapter 2</h2>
 
-                    <section class="paragraph" id="id-paragraph">
-                        <div class="paragraph__content">
-                            <h3 class="paragraph__title">
-                                Paragraph Title/Name
-                            </h3>
-                            Why is the Table of contents expanded when we are in the first chapter and collapsed in the following ones?
-                        </div>
-                        <div class="paragraph__actions">
-                            <a class="btn" href="#">
-                                <i class="far fa-comment" aria-hidden="true"></i>
-                                10 Comments
-                            </a>
-                        </div>
-                    </section>
+                <section class="paragraph" id="id-paragraph">
+                    <div class="paragraph__content">
+                        <h3 class="paragraph__title">
+                            Paragraph Title/Name
+                        </h3>
+                        Why is the Table of contents expanded when we are in the first chapter and collapsed in the following ones?
+                    </div>
+                    <div class="paragraph__actions">
+                        <a class="btn" href="#">
+                            <i class="far fa-comment" aria-hidden="true"></i>
+                            10 Comments
+                        </a>
+                    </div>
+                </section>
 
-                    <section class="paragraph" id="id-paragraph">
-                        <div class="paragraph__content">
-                            <h3 class="paragraph__title">
-                                One more Paragraph Title/Name
-                            </h3>
-                            It looks a bit different with the grey background (from module-content), so I added it, even though it doesn't belong to this component. Oh, but that looks weird again. Normally it should also have grey padding/be
-                            surrounded by grey.
-                        </div>
-                        <div class="paragraph__actions">
-                            <a class="btn" href="#">
-                                <i class="far fa-comment" aria-hidden="true"></i>
-                                1 Comment
-                            </a>
-                        </div>
-                    </section>
-                </div>
+                <section class="paragraph" id="id-paragraph">
+                    <div class="paragraph__content">
+                        <h3 class="paragraph__title">
+                            One more Paragraph Title/Name
+                        </h3>
+                        It looks a bit different with the grey background (from module-content), so I added it, even though it doesn't belong to this component. Oh, but that looks weird again. Normally it should also have grey padding/be
+                        surrounded by grey.
+                    </div>
+                    <div class="paragraph__actions">
+                        <a class="btn" href="#">
+                            <i class="far fa-comment" aria-hidden="true"></i>
+                            1 Comment
+                        </a>
+                    </div>
+                </section>
             </div>
 
             <h2 id="cl-embed-code">Embed Code Interface</h2>

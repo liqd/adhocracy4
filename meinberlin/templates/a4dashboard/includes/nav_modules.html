@@ -6,8 +6,9 @@
 
 <a
     class="btn btn--secondary btn--full u-spacer-bottom"
+    id="module-blueprint-btn"
     href="{% url 'a4dashboard:module-blueprint-list' project_slug=project.slug %}"
-    data-bs-toggle="ajax-modal"
+    data-bs-toggle="modal"
     data-bs-target="#module-blueprint-list"
     data-target-selector="#module-blueprint-list">
     {% trans 'Create Module' %}
@@ -20,3 +21,23 @@
     <p>{% trans 'You have not set up a participation module yet.' %}</p>
 </div>
 {% endfor %}
+
+<div class="modal" tabindex="-1" role="dialog" id="module-blueprint-list">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title u-first-heading">{% trans "Choose Participation Module" %}</h2>
+                <button type="button" class="close btn--close" data-bs-dismiss="modal" aria-label="{% trans 'Close' %}">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- must load in order to populate the modal with blueprint list -->
+{% block extra_js %}
+    <script src="{% static 'adhocracy4.js' %}"></script>
+{% endblock %}

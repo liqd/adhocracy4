@@ -6,6 +6,8 @@
 
 .input-group__input {
     flex: 1 1 auto;
+
+    @extend .form-control;
 }
 
 .input-group__before,

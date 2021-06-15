@@ -170,13 +170,13 @@ export default class QuestionBox extends React.Component {
   render () {
     return (
       <div>
-        <div className="tablist tablist--bg-secondary mb-0">
+        <div className="tablist mb-0">
           <div className="l-wrapper">
             <nav className="nav justify-content-center">
               <a
                 id="tab-information"
-                className="tab tab--bg-secondary"
-                data-toggle="tab"
+                className="tab"
+                data-bs-toggle="tab"
                 href="#tabpanel-information"
                 role="tab"
                 aria-controls="tabpanel-information"
@@ -186,8 +186,8 @@ export default class QuestionBox extends React.Component {
               </a>
               <a
                 id="tab-questions"
-                className="tab tab--bg-secondary active"
-                data-toggle="tab"
+                className="tab active"
+                data-bs-toggle="tab"
                 href="#tabpanel-questions"
                 role="tab"
                 aria-controls="tabpanel-questions"
@@ -197,8 +197,8 @@ export default class QuestionBox extends React.Component {
               </a>
               <a
                 id="tab-statistics"
-                className="tab tab--bg-secondary"
-                data-toggle="tab"
+                className="tab"
+                data-bs-toggle="tab"
                 href="#tabpanel-statistics"
                 role="tab"
                 aria-controls="tabpanel-statistics"
