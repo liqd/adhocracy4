@@ -24,6 +24,16 @@ class QuestionFactory(factory.django.DjangoModelFactory):
     poll = factory.SubFactory(PollFactory)
 
 
+class AnswerFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = models.Answer
+
+    creator = factory.SubFactory(UserFactory)
+    answer = factory.Faker('sentence', nb_words=10)
+    question = factory.SubFactory(QuestionFactory)
+
+
 class ChoiceFactory(factory.django.DjangoModelFactory):
 
     class Meta:
@@ -40,3 +50,13 @@ class VoteFactory(factory.django.DjangoModelFactory):
 
     creator = factory.SubFactory(UserFactory)
     choice = factory.SubFactory(ChoiceFactory)
+
+
+class OtherVoteFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = models.OtherVote
+
+    creator = factory.SubFactory(UserFactory)
+    question = factory.SubFactory(QuestionFactory)
+    answer = factory.Faker('sentence', nb_words=4)
