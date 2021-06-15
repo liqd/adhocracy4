@@ -1,7 +1,7 @@
+import { PollManagement } from './PollManagement'
 const React = require('react')
 const ReactDOM = require('react-dom')
 const Question = require('./Question')
-const PollManagement = require('./PollManagement')
 
 module.exports.renderPolls = function (element) {
   const question = JSON.parse(element.getAttribute('data-question'))

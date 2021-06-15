@@ -1,39 +1,28 @@
+import React, { useState } from 'react'
+import django from 'django'
+import dashboard from 'adhocracy4/adhocracy4/dashboard/assets/dashboard'
+import update from 'immutability-helper'
+import QuestionForm from './QuestionForm'
+import Alert from '../../contrib/assets/Alert'
+
 const api = require('adhocracy4').api
-const React = require('react')
-const django = require('django')
-const dashboard = require('adhocracy4/adhocracy4/dashboard/assets/dashboard')
-const update = require('immutability-helper')
 const FlipMove = require('react-flip-move').default
-const QuestionForm = require('./QuestionForm')
-const Alert = require('../../contrib/assets/Alert')
 
-class PollManagement extends React.Component {
-  constructor (props) {
-    super(props)
-    this.maxLocalKey = 0
+export const PollManagement = (props) => {
+  /*
+  |--------------------------------------------------------------------------
+  | Helper method for local scoped key/identifier
+  |--------------------------------------------------------------------------
+  */
 
-    let questions = this.props.poll.questions
-
-    if (questions.length === 0) {
-      questions = [
-        this.getNewQuestion()
-      ]
-    }
-
-    this.state = {
-      questions: questions,
-      errors: [],
-      alert: null
-    }
-  }
-
-  getNextLocalKey () {
+  let maxLocalKey = 0
+  const getNextLocalKey = () => {
     /** Get an artificial key for non-committed items.
      *
      *  The key is prefixed to prevent collisions with real database keys.
      */
-    this.maxLocalKey++
-    return 'local_' + this.maxLocalKey
+    maxLocalKey++
+    return 'local_' + maxLocalKey
   }
 
   /*
@@ -42,75 +31,40 @@ class PollManagement extends React.Component {
   |--------------------------------------------------------------------------
   */
 
-  getNewQuestion (label = '') {
+  const getNewQuestion = (label = '') => {
     return {
       label: label,
       multiple_choice: false,
-      key: this.getNextLocalKey(),
+      key: getNextLocalKey(),
       choices: [
-        this.getNewChoice(),
-        this.getNewChoice()
+        getNewChoice(),
+        getNewChoice()
       ]
     }
   }
 
-  handleUpdateQuestionLabel (index, label) {
-    const diff = {}
-    diff[index] = { $merge: { label: label } }
-
-    this.setState({
-      questions: update(this.state.questions, diff)
-    })
-  }
-
-  handleUpdateMultipleChoice (index, multipleChoice) {
-    const diff = {}
-    diff[index] = { $merge: { multiple_choice: multipleChoice } }
-
-    this.setState({
-      questions: update(this.state.questions, diff)
-    })
-  }
-
-  handleMoveQuestionUp (index) {
-    const question = this.state.questions[index]
-    const diff = { $splice: [[index, 1], [index - 1, 0, question]] }
-
-    this.setState({
-      questions: update(this.state.questions, diff)
-    })
-  }
-
-  handleMoveQuestionDown (index) {
-    const question = this.state.questions[index]
-    const diff = { $splice: [[index, 1], [index + 1, 0, question]] }
-
-    this.setState({
-      questions: update(this.state.questions, diff)
-    })
-  }
-
-  handleAppendQuestion () {
-    const newQuestion = this.getNewQuestion()
-    const diff = { $push: [newQuestion] }
-
-    this.setState({
-      questions: update(this.state.questions, diff)
-    }, () => { this.focusOnQuestion(newQuestion) })
-  }
-
-  handleDeleteQuestion (index) {
-    const diff = { $splice: [[index, 1]] }
-
-    this.setState({
-      questions: update(this.state.questions, diff)
-    })
-  }
-
-  focusOnQuestion (question) {
-    const key = question.id || question.key
-    const id = 'id_questions-' + key + '-name'
-    window.document.getElementById(id).focus()
+  const handleQuestion = (action, params) => {
+    let diff = {}
+    if (action === 'label') {
+      const { index, label } = params
+      diff[index] = { $merge: { label: label } }
+    } else if (action === 'multiple-choice') {
+      const { index, multipleChoice } = params
+      diff[index] = { $merge: { multiple_choice: multipleChoice } }
+    } else if (action === 'move') {
+      const { index, direction } = params
+      const position = direction === 'up' ? (index - 1) : (index + 1)
+      diff = { $splice: [[index, 1], [position, 0, questions[index]]] }
+    } else if (action === 'append') {
+      const newQuestion = getNewQuestion()
+      diff = { $push: [newQuestion] }
+    } else if (action === 'delete') {
+      const { index } = params
+      diff = { $splice: [[index, 1]] }
+    } else {
+      return null
+    }
+    action && setQuestions(update(questions, diff))
   }
 
   /*
@@ -119,46 +73,28 @@ class PollManagement extends React.Component {
   |--------------------------------------------------------------------------
   */
 
-  getNewChoice (label = '') {
+  const getNewChoice = (label = '') => {
     return {
       label: label,
-      key: this.getNextLocalKey()
+      key: getNextLocalKey()
     }
   }
 
-  handleUpdateChoiceLabel (questionIndex, choiceIndex, label) {
+  const handleChoice = (action, params) => {
     const diff = {}
-    diff[questionIndex] = { choices: {} }
-    diff[questionIndex].choices[choiceIndex] = { $merge: { label: label } }
-
-    this.setState({
-      questions: update(this.state.questions, diff)
-    })
-  }
-
-  handleAppendChoice (questionIndex) {
-    const newChoice = this.getNewChoice()
-    const diff = {}
-    diff[questionIndex] = { choices: { $push: [newChoice] } }
-
-    this.setState({
-      questions: update(this.state.questions, diff)
-    }, () => { this.focusOnChoice(newChoice) })
-  }
-
-  handleDeleteChoice (questionIndex, choiceIndex) {
-    const diff = {}
-    diff[questionIndex] = { choices: { $splice: [[choiceIndex, 1]] } }
-
-    this.setState({
-      questions: update(this.state.questions, diff)
-    })
-  }
-
-  focusOnChoice (choice) {
-    const key = choice.id || choice.key
-    const id = 'id_choices-' + key + '-name'
-    window.document.getElementById(id).focus()
+    if (action === 'label') {
+      const { index, choiceIndex, label } = params
+      diff[index] = { choices: {} }
+      diff[index].choices[choiceIndex] = { $merge: { label: label } }
+    } else if (action === 'append') {
+      const { index } = params
+      const newChoice = getNewChoice()
+      diff[index] = { choices: { $push: [newChoice] } }
+    } else if (action === 'delete') {
+      const { index, choiceIndex } = params
+      diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
+    }
+    action && setQuestions(update(questions, diff))
   }
 
   /*
@@ -167,93 +103,92 @@ class PollManagement extends React.Component {
   |--------------------------------------------------------------------------
   */
 
-  removeAlert () {
-    this.setState({
-      alert: null
-    })
+  const removeAlert = () => {
+    setAlert(null)
   }
 
-  handleSubmit (e) {
+  const handleSubmit = (e) => {
     e.preventDefault()
 
     const data = {
-      questions: this.state.questions
+      questions: questions
     }
 
-    api.poll.change(data, this.props.poll.id)
+    api.poll.change(data, props.poll.id)
       .done((data) => {
-        this.setState({
-          alert: {
-            type: 'success',
-            message: django.gettext('The poll has been updated.')
-          },
-          errors: []
+        setAlert({
+          type: 'success',
+          message: django.gettext('The poll has been updated.')
         })
-        if (this.props.reloadOnSuccess) {
+        setErrors([])
+        if (props.reloadOnSuccess) {
           dashboard.updateDashboard()
         }
       })
       .fail((xhr, status, err) => {
-        let errors = []
         if (xhr.responseJSON && 'questions' in xhr.responseJSON) {
-          errors = xhr.responseJSON.questions
+          setErrors(xhr.responseJSON.questions)
         }
 
-        this.setState({
-          alert: {
-            type: 'danger',
-            message: django.gettext('The poll could not be updated.')
-          },
-          errors: errors
+        setAlert({
+          type: 'danger',
+          message: django.gettext('The poll could not be updated.')
         })
+        setErrors(errors)
       })
   }
 
-  render () {
-    return (
-      <form onSubmit={this.handleSubmit.bind(this)} onChange={this.removeAlert.bind(this)}>
-        <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
-          {
-            this.state.questions.map((question, index, arr) => {
-              const key = question.id || question.key
-              const errors = this.state.errors && this.state.errors[index] ? this.state.errors[index] : {}
-              return (
-                <div key={key}>
-                  <QuestionForm
-                    id={key}
-                    question={question}
-                    onLabelChange={(label) => { this.handleUpdateQuestionLabel(index, label) }}
-                    onMultipleChoiceChange={(multipleChoice) => { this.handleUpdateMultipleChoice(index, multipleChoice) }}
-                    onMoveUp={index !== 0 ? () => { this.handleMoveQuestionUp(index) } : null}
-                    onMoveDown={index < arr.length - 1 ? () => { this.handleMoveQuestionDown(index) } : null}
-                    onDelete={() => { this.handleDeleteQuestion(index) }}
-                    errors={errors}
-                    onChoiceLabelChange={(choiceIndex, label) => { this.handleUpdateChoiceLabel(index, choiceIndex, label) }}
-                    onDeleteChoice={(choiceIndex) => { this.handleDeleteChoice(index, choiceIndex) }}
-                    onAppendChoice={() => { this.handleAppendChoice(index) }}
-                  />
-                </div>
-              )
-            })
-          }
-        </FlipMove>
+  /*
+  |--------------------------------------------------------------------------
+  | Runtime logic and JSX render
+  |--------------------------------------------------------------------------
+  */
 
-        <p>
-          <button
-            className="btn btn--light btn--small"
-            onClick={this.handleAppendQuestion.bind(this)}
-            type="button"
-          >
-            <i className="fa fa-plus" /> {django.gettext('Add a new question')}
-          </button>
-        </p>
+  const [questions, setQuestions] = useState(props.poll.questions)
+  const [errors, setErrors] = useState([])
+  const [alert, setAlert] = useState(null)
 
-        <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
+  questions.length > 0 || (setQuestions([getNewQuestion()]))
 
-        <button type="submit" className="btn btn--primary">{django.gettext('Save')}</button>
-      </form>
-    )
-  }
+  return (
+    <form onSubmit={(e) => handleSubmit(e)} onChange={() => removeAlert()}>
+      <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
+        {
+          questions.map((question, index, arr) => {
+            const key = question.id || question.key
+            return (
+              <div key={key}>
+                <QuestionForm
+                  id={key}
+                  question={question}
+                  onLabelChange={(label) => handleQuestion('label', { index, label })}
+                  onMultipleChoiceChange={(multipleChoice) => handleQuestion('multiple-choice', index, multipleChoice)}
+                  onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
+                  onMoveDown={index < arr.length - 1 ? () => handleQuestion('move', { index, direction: 'down' }) : null}
+                  onDelete={() => handleQuestion('delete', { index })}
+                  errors={errors && errors[index] ? errors[index] : {}}
+                  onChoiceLabelChange={(choiceIndex, label) => handleChoice('label', { index, choiceIndex, label })}
+                  onDeleteChoice={(choiceIndex) => handleChoice('delete', { index, choiceIndex })}
+                  onAppendChoice={() => handleChoice('append', { index })}
+                />
+              </div>
+            )
+          })
+        }
+      </FlipMove>
+      <p>
+        <button
+          className="btn btn--light btn--small"
+          onClick={() => handleQuestion('append')}
+          type="button"
+        >
+          <i className="fa fa-plus" /> {django.gettext('Add a new question')}
+        </button>
+      </p>
+      <Alert onClick={() => removeAlert()} {...alert} />
+      <button type="submit" className="btn btn--primary">
+        {django.gettext('Save')}
+      </button>
+    </form>
+  )
 }
-
-module.exports = PollManagement
