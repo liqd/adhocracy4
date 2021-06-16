@@ -1,0 +1,19 @@
+ul.popper-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.popper-content--container[data-visible="true"] {
+    display: flex;
+}
+
+.popper-content--container[data-visible="false"] {
+    display: none;
+}
+
+.popper-menuitem__button {
+    width: 100%;
+    text-align: left;
+}

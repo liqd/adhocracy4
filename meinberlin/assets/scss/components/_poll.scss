@@ -91,3 +91,8 @@
     background-color: $brand-primary-tint;
     max-width: 96% !important;
 }
+
+.pollmanagement-actions-container {
+    display: flex;
+    justify-content: space-between;
+}

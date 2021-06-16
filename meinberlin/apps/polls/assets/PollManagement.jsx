@@ -4,6 +4,7 @@ import dashboard from 'adhocracy4/adhocracy4/dashboard/assets/dashboard'
 import update from 'immutability-helper'
 import QuestionForm from './QuestionForm'
 import Alert from '../../contrib/assets/Alert'
+import { PopperMenu } from './PopperMenu'
 
 const api = require('adhocracy4').api
 const FlipMove = require('react-flip-move').default
@@ -150,6 +151,26 @@ export const PollManagement = (props) => {
 
   questions.length > 0 || (setQuestions([getNewQuestion()]))
 
+  const popperMenuContent = {
+    popperButton: {
+      styleClass: 'btn btn--light btn--small',
+      buttonText: django.gettext('Add a new question'),
+      icon: 'fa fa-plus'
+    },
+    popperMenuItems: [
+      {
+        styleClass: 'btn btn--light btn--small',
+        text: 'vorgegebene Antworten',
+        handleClick: () => handleQuestion('append')
+      },
+      {
+        styleClass: 'btn btn--light btn--small',
+        text: 'offene Antworten',
+        handleClick: () => handleQuestion('append')
+      }
+    ]
+  }
+
   return (
     <form onSubmit={(e) => handleSubmit(e)} onChange={() => removeAlert()}>
       <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
@@ -176,19 +197,15 @@ export const PollManagement = (props) => {
           })
         }
       </FlipMove>
-      <p>
-        <button
-          className="btn btn--light btn--small"
-          onClick={() => handleQuestion('append')}
-          type="button"
-        >
-          <i className="fa fa-plus" /> {django.gettext('Add a new question')}
+      <div className="pollmanagement-actions-container">
+        <PopperMenu>
+          {popperMenuContent}
+        </PopperMenu>
+        <Alert onClick={() => removeAlert()} {...alert} />
+        <button type="submit" className="btn btn--primary">
+          {django.gettext('Save')}
         </button>
-      </p>
-      <Alert onClick={() => removeAlert()} {...alert} />
-      <button type="submit" className="btn btn--primary">
-        {django.gettext('Save')}
-      </button>
+      </div>
     </form>
   )
 }
