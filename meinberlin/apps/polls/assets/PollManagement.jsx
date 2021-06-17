@@ -183,7 +183,7 @@ export const PollManagement = (props) => {
                   id={key}
                   question={question}
                   onLabelChange={(label) => handleQuestion('label', { index, label })}
-                  onMultipleChoiceChange={(multipleChoice) => handleQuestion('multiple-choice', index, multipleChoice)}
+                  onMultipleChoiceChange={(multipleChoice) => handleQuestion('multiple-choice', { index, multipleChoice })}
                   onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
                   onMoveDown={index < arr.length - 1 ? () => handleQuestion('move', { index, direction: 'down' }) : null}
                   onDelete={() => handleQuestion('delete', { index })}
