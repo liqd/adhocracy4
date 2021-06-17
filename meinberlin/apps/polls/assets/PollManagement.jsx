@@ -61,6 +61,9 @@ export const PollManagement = (props) => {
     } else if (action === 'multiple-choice') {
       const { index, multipleChoice } = params
       diff[index] = { $merge: { multiple_choice: multipleChoice } }
+    } else if (action === 'has-other-option') {
+      const { index, hasOtherOption } = params
+      diff[index] = { $merge: { has_other_option: hasOtherOption } }
     } else if (action === 'move') {
       const { index, direction } = params
       const position = direction === 'up' ? (index - 1) : (index + 1)
