@@ -1,10 +1,10 @@
-const React = require('react')
-const django = require('django')
-const ErrorList = require('../../contrib/assets/ErrorList')
+import React from 'react'
+import django from 'django'
+import ErrorList from '../../contrib/assets/ErrorList'
 
-const ChoiceForm = (props) => {
+export const ChoiceForm = (props) => {
   return (
-    <div className="form-group form-group--narrow">
+    <div className="form-group">
       <div className="input-group">
         <label htmlFor={'id_choices-' + props.id + '-name'}>
           <span className="visually-hidden">{props.label}</span>
@@ -15,6 +15,7 @@ const ChoiceForm = (props) => {
             className="input-group__input"
             value={props.choice.label}
             onChange={(e) => { props.onLabelChange(e.target.value) }}
+            disabled={props.isOther}
           />
         </label>
         <button
@@ -33,5 +34,3 @@ const ChoiceForm = (props) => {
     </div>
   )
 }
-
-module.exports = ChoiceForm

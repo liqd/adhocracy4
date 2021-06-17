@@ -1,10 +1,11 @@
-const React = require('react')
-const django = require('django')
-const FlipMove = require('react-flip-move').default
-const ChoiceForm = require('./ChoiceForm')
-const ErrorList = require('../../contrib/assets/ErrorList')
+import React from 'react'
+import { ChoiceForm } from './ChoiceForm'
+import django from 'django'
+import ErrorList from '../../contrib/assets/ErrorList'
 
-const QuestionForm = (props) => {
+const FlipMove = require('react-flip-move').default
+
+export const QuestionForm = (props) => {
   return (
     <section className="commenting">
       <div className="commenting__content commenting__content--border">
@@ -37,6 +38,20 @@ const QuestionForm = (props) => {
           </label>
         </div>
 
+        <div className="form-check">
+          <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-has_other_option'}>
+            <input
+              type="checkbox"
+              id={'id_questions-' + props.id + '-has_other_option'}
+              name={'questions-' + props.id + '-has_other_option'}
+              checked={props.question.has_other_option}
+              onChange={(e) => { props.onHasOtherOptionChange(e.target.checked) }}
+            />
+            &nbsp;
+            {django.gettext('Users can answer openly.')}
+          </label>
+        </div>
+
         <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
           {
             props.question.choices.map((choice, index) => {
@@ -60,6 +75,17 @@ const QuestionForm = (props) => {
             })
           }
         </FlipMove>
+        {props.question.has_other_option
+          ? (
+            <ChoiceForm
+              id="other"
+              label={django.gettext('Other')}
+              choice={{ label: django.gettext('Other') }}
+              onDelete={() => props.onHasOtherOptionChange(false)}
+              isOther
+            />
+            )
+          : null}
         <button
           className="btn btn--light btn--small"
           onClick={props.onAppendChoice}
@@ -109,5 +135,3 @@ const QuestionForm = (props) => {
     </section>
   )
 }
-
-module.exports = QuestionForm

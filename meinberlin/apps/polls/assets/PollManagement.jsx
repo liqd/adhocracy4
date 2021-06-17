@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import django from 'django'
 import dashboard from 'adhocracy4/adhocracy4/dashboard/assets/dashboard'
 import update from 'immutability-helper'
-import QuestionForm from './QuestionForm'
+import { QuestionForm } from './QuestionForm'
+import { OpenQuestionForm } from './OpenQuestionForm'
 import Alert from '../../contrib/assets/Alert'
 import { PopperMenu } from './PopperMenu'
 
@@ -37,11 +38,19 @@ export const PollManagement = (props) => {
       label: label,
       multiple_choice: false,
       key: getNextLocalKey(),
+      is_open: false,
+      has_other_option: false,
       choices: [
         getNewChoice(),
         getNewChoice()
       ]
     }
+  }
+
+  const getNewOpenQuestion = (label = '') => {
+    const newQuestion = getNewQuestion(label)
+    newQuestion.is_open = true
+    return newQuestion
   }
 
   const handleQuestion = (action, params) => {
@@ -52,12 +61,17 @@ export const PollManagement = (props) => {
     } else if (action === 'multiple-choice') {
       const { index, multipleChoice } = params
       diff[index] = { $merge: { multiple_choice: multipleChoice } }
+    } else if (action === 'has-other-option') {
+      const { index, hasOtherOption } = params
+      diff[index] = { $merge: { has_other_option: hasOtherOption } }
     } else if (action === 'move') {
       const { index, direction } = params
       const position = direction === 'up' ? (index - 1) : (index + 1)
       diff = { $splice: [[index, 1], [position, 0, questions[index]]] }
     } else if (action === 'append') {
-      const newQuestion = getNewQuestion()
+      const newQuestion = params && params.isOpen
+        ? getNewOpenQuestion()
+        : getNewQuestion()
       diff = { $push: [newQuestion] }
     } else if (action === 'delete') {
       const { index } = params
@@ -166,42 +180,57 @@ export const PollManagement = (props) => {
       {
         styleClass: 'btn btn--light btn--small',
         text: 'offene Antworten',
-        handleClick: () => handleQuestion('append')
+        handleClick: () => handleQuestion('append', { isOpen: true })
       }
     ]
   }
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)} onChange={() => removeAlert()}>
+    <form onSubmit={(e) => handleSubmit(e)} onChange={() => removeAlert()} className="poll-form-container">
       <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
         {
           questions.map((question, index, arr) => {
             const key = question.id || question.key
-            return (
-              <div key={key}>
-                <QuestionForm
-                  id={key}
-                  question={question}
-                  onLabelChange={(label) => handleQuestion('label', { index, label })}
-                  onMultipleChoiceChange={(multipleChoice) => handleQuestion('multiple-choice', { index, multipleChoice })}
-                  onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
-                  onMoveDown={index < arr.length - 1 ? () => handleQuestion('move', { index, direction: 'down' }) : null}
-                  onDelete={() => handleQuestion('delete', { index })}
-                  errors={errors && errors[index] ? errors[index] : {}}
-                  onChoiceLabelChange={(choiceIndex, label) => handleChoice('label', { index, choiceIndex, label })}
-                  onDeleteChoice={(choiceIndex) => handleChoice('delete', { index, choiceIndex })}
-                  onAppendChoice={() => handleChoice('append', { index })}
-                />
-              </div>
-            )
+            return question.is_open
+              ? (
+                <div key={key}>
+                  <OpenQuestionForm
+                    id={key}
+                    question={question}
+                    onLabelChange={(label) => handleQuestion('label', { index, label })}
+                    onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
+                    onMoveDown={index < arr.length - 1 ? () => handleQuestion('move', { index, direction: 'down' }) : null}
+                    onDelete={() => handleQuestion('delete', { index })}
+                    errors={errors && errors[index] ? errors[index] : {}}
+                  />
+                </div>
+                )
+              : (
+                <div key={key}>
+                  <QuestionForm
+                    id={key}
+                    question={question}
+                    onLabelChange={(label) => handleQuestion('label', { index, label })}
+                    onMultipleChoiceChange={(multipleChoice) => handleQuestion('multiple-choice', { index, multipleChoice })}
+                    onHasOtherOptionChange={(hasOtherOption) => handleQuestion('has-other-option', { index, hasOtherOption })}
+                    onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
+                    onMoveDown={index < arr.length - 1 ? () => handleQuestion('move', { index, direction: 'down' }) : null}
+                    onDelete={() => handleQuestion('delete', { index })}
+                    errors={errors && errors[index] ? errors[index] : {}}
+                    onChoiceLabelChange={(choiceIndex, label) => handleChoice('label', { index, choiceIndex, label })}
+                    onDeleteChoice={(choiceIndex) => handleChoice('delete', { index, choiceIndex })}
+                    onAppendChoice={() => handleChoice('append', { index })}
+                  />
+                </div>
+                )
           })
         }
       </FlipMove>
+      <Alert onClick={() => removeAlert()} {...alert} />
       <div className="pollmanagement-actions-container">
         <PopperMenu>
           {popperMenuContent}
         </PopperMenu>
-        <Alert onClick={() => removeAlert()} {...alert} />
         <button type="submit" className="btn btn--primary">
           {django.gettext('Save')}
         </button>
