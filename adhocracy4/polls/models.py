@@ -1,5 +1,7 @@
 from django.contrib.contenttypes.fields import GenericRelation
+from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.comments import models as comment_models
 from adhocracy4.models.base import UserGeneratedContentModel
@@ -11,7 +13,13 @@ class QuestionQuerySet(models.QuerySet):
         return self.annotate(
             vote_count=models.Count(
                 'choices__votes__creator_id',
-                distinct=True)
+                distinct=True),
+            vote_count_multi=models.Count(
+                'choices__votes',
+                distinct=True),
+            answer_count=models.Count(
+                'answers__creator_id',
+                distinct=True),
         )
 
 
@@ -35,8 +43,16 @@ class Poll(module_models.Item):
 
 class Question(models.Model):
     label = models.CharField(max_length=255)
+    help_text = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name=_('Help text')
+    )
+
     weight = models.SmallIntegerField()
+
     multiple_choice = models.BooleanField(default=False)
+    is_open = models.BooleanField(default=False)
 
     poll = models.ForeignKey(
         'Poll',
@@ -46,6 +62,24 @@ class Question(models.Model):
 
     objects = QuestionQuerySet.as_manager()
 
+    @property
+    def has_other_option(self):
+        return self.choices.filter(is_other_choice=True).exists()
+
+    def clean(self, *args, **kwargs):
+        if self.is_open:
+            if self.multiple_choice:
+                raise ValidationError({
+                    'is_open': _('Questions with open answers cannot '
+                                 'have multiple choices')
+                })
+            elif self.has_other_option:
+                raise ValidationError({
+                    'is_open': _('Questions with open answers cannot '
+                                 'have a "other" choice option')
+                })
+        super().clean(*args, **kwargs)
+
     def user_choices_list(self, user):
         if not user.is_authenticated:
             return []
@@ -53,6 +87,13 @@ class Question(models.Model):
         return self.choices\
             .filter(votes__creator=user)\
             .values_list('id', flat=True)
+
+    def user_answer(self, user):
+        if not user.is_authenticated:
+            return ''
+
+        return self.answers\
+            .filter(creator=user)
 
     def get_absolute_url(self):
         return self.poll.get_absolute_url()
@@ -64,6 +105,36 @@ class Question(models.Model):
         ordering = ['weight']
 
 
+class Answer(UserGeneratedContentModel):
+    answer = models.CharField(
+        max_length=750,
+        verbose_name=_('Answer')
+    )
+
+    question = models.ForeignKey(
+        'Question',
+        on_delete=models.CASCADE,
+        related_name='answers',
+    )
+
+    def save(self, *args, **kwargs):
+        if not self.question.is_open:
+            raise ValidationError({
+                'question': _('Only open questions can have answers.')
+            })
+        return super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return self.question.poll.get_absolute_url()
+
+    def __str__(self):
+        return '%s: %s' % (self.creator, self.answer[:20])
+
+    class Meta:
+        ordering = ['id']
+        unique_together = ('question', 'creator')
+
+
 class Choice(models.Model):
     label = models.CharField(max_length=255)
 
@@ -72,6 +143,8 @@ class Choice(models.Model):
         on_delete=models.CASCADE,
         related_name='choices',
     )
+
+    is_other_choice = models.BooleanField(default=False)
 
     objects = ChoiceQuerySet.as_manager()
 
@@ -92,6 +165,10 @@ class Vote(UserGeneratedContentModel):
         related_name='votes'
     )
 
+    @property
+    def is_other_vote(self):
+        return hasattr(self, 'other_vote')
+
     # Make Vote instances behave like items for rule checking
     @property
     def module(self):
@@ -106,3 +183,31 @@ class Vote(UserGeneratedContentModel):
 
     def __str__(self):
         return '%s: %s' % (self.creator, self.choice)
+
+
+class OtherVote(models.Model):
+    vote = models.OneToOneField(
+        Vote,
+        on_delete=models.CASCADE,
+        primary_key=True,
+        related_name='other_vote'
+    )
+
+    answer = models.CharField(
+        max_length=250,
+        verbose_name=_('Answer')
+    )
+
+    @property
+    def module(self):
+        return self.vote.choice.question.poll.module
+
+    @property
+    def project(self):
+        return self.module.project
+
+    def get_absolute_url(self):
+        return self.vote.choice.question.poll.get_absolute_url()
+
+    def __str__(self):
+        return '%s: %s' % (self.vote.creator, _('other'))
