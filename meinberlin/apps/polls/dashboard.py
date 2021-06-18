@@ -19,7 +19,7 @@ class PollComponent(DashboardComponent):
         return module_app == 'meinberlin_polls'
 
     def get_progress(self, module):
-        if models.Question.objects.filter(poll__module=module).exists():
+        if models.MBQuestion.objects.filter(poll__module=module).exists():
             return 1, 1
         return 0, 1
 

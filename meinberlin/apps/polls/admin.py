@@ -6,14 +6,14 @@ from . import models
 
 
 class ChoiceInline(admin.TabularInline):
-    model = models.Choice
+    model = models.MBChoice
 
 
 class ProjectFilter(ProjectAdminFilter):
     project_key = 'poll__module__project'
 
 
-@admin.register(models.Question)
+@admin.register(models.MBQuestion)
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [
         ChoiceInline

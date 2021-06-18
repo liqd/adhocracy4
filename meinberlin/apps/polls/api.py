@@ -8,10 +8,10 @@ from rest_framework.response import Response
 
 from adhocracy4.api.permissions import ViewSetRulesPermission
 
-from .models import Choice
-from .models import Poll
-from .models import Question
-from .models import Vote
+from .models import MBChoice as Choice
+from .models import MBPoll as Poll
+from .models import MBQuestion as Question
+from .models import MBVote as Vote
 from .serializers import PollSerializer
 from .serializers import QuestionSerializer
 from .validators import choice_belongs_to_question

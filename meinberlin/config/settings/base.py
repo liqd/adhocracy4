@@ -432,7 +432,7 @@ A4_COMMENTABLES = (
     ('meinberlin_kiezkasse', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
     ('meinberlin_maptopicprio', 'maptopic'),
-    ('meinberlin_polls', 'poll'),
+    # ('meinberlin_polls', 'poll'),
     ('meinberlin_documents', 'chapter'),
     ('meinberlin_documents', 'paragraph'),
 )

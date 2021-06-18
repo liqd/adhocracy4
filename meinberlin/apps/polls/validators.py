@@ -19,7 +19,7 @@ def single_item_per_module(module, model, pk=None):
 
 
 def single_vote_per_user(user, choice, pk=None):
-    from .models import Vote  # avoid circular import
+    from .models import MBVote as Vote  # avoid circular import
 
     if choice.question.multiple_choice:
         # Allow multiple votes per user for multiple choice questions.

@@ -18,8 +18,8 @@ class VotingPhase(phases.PhaseContent):
     module_name = _('polls')
 
     features = {
-        'crud': (models.Vote,),
-        'comment': (models.Poll,),
+        'crud': (models.MBVote,),
+        'comment': (models.MBPoll,),
     }
 
 

@@ -13,7 +13,7 @@ class ChoiceSerializer(serializers.ModelSerializer):
     count = serializers.SerializerMethodField()
 
     class Meta:
-        model = models.Choice
+        model = models.MBChoice
         fields = ('id', 'label', 'count')
 
     def get_count(self, choice):
@@ -35,7 +35,7 @@ class QuestionSerializer(serializers.ModelSerializer):
         'get_total_vote_count_multi')
 
     class Meta:
-        model = models.Question
+        model = models.MBQuestion
         fields = ('id', 'label', 'choices', 'multiple_choice',
                   'isReadOnly', 'authenticated', 'userChoices',
                   'totalVoteCount', 'totalVoteCountMulti')
@@ -78,7 +78,7 @@ class PollSerializer(serializers.ModelSerializer):
     questions = QuestionSerializer(many=True)
 
     class Meta:
-        model = models.Poll
+        model = models.MBPoll
         fields = ('id', 'questions')
 
     def update(self, instance, data):
@@ -92,7 +92,7 @@ class PollSerializer(serializers.ModelSerializer):
         # Update (or create) the questions
         for weight, question in enumerate(data['questions']):
             question_id = question.get('id')
-            question_instance, _ = models.Question.objects.update_or_create(
+            question_instance, _ = models.MBQuestion.objects.update_or_create(
                 id=question_id,
                 defaults={
                     'poll': instance,
@@ -119,7 +119,7 @@ class PollSerializer(serializers.ModelSerializer):
         # Update (or create) this questions choices
         for choice in question['choices']:
             choice_id = choice.get('id')
-            choice_instance, _ = models.Choice.objects.update_or_create(
+            choice_instance, _ = models.MBChoice.objects.update_or_create(
                 id=choice_id,
                 defaults={
                     'question': question_instance,

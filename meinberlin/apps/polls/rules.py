@@ -26,5 +26,5 @@ rules.add_perm(
 # never a Vote object.
 rules.add_perm(
     'meinberlin_polls.add_vote',
-    module_predicates.is_allowed_add_item(models.Vote)
+    module_predicates.is_allowed_add_item(models.MBVote)
 )

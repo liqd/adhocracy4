@@ -7,7 +7,7 @@ from meinberlin.apps.kiezkasse.models import Proposal as kiezkasse_proposal
 from meinberlin.apps.likes.models import Like
 from meinberlin.apps.livequestions.models import LiveQuestion
 from meinberlin.apps.mapideas.models import MapIdea
-from meinberlin.apps.polls.models import Vote
+from meinberlin.apps.polls.models import MBVote as Vote
 
 register = template.Library()
 
