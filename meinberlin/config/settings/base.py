@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'adhocracy4.modules',
     'adhocracy4.organisations',
     'adhocracy4.phases',
+    'adhocracy4.polls',
     'adhocracy4.projects',
     'adhocracy4.ratings',
     'adhocracy4.reports',

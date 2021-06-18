@@ -2,7 +2,7 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard import DashboardComponent
-from adhocracy4.dashboard import components
+# from adhocracy4.dashboard import components
 
 from . import exports
 from . import models
@@ -36,7 +36,7 @@ class PollComponent(DashboardComponent):
         )]
 
 
-components.register_module(PollComponent())
+# components.register_module(PollComponent())
 
 
 class ExportPollComponent(DashboardComponent):
@@ -67,4 +67,4 @@ class ExportPollComponent(DashboardComponent):
         ]
 
 
-components.register_module(ExportPollComponent())
+# components.register_module(ExportPollComponent())
