@@ -24,6 +24,27 @@ class QuestionFactory(factory.django.DjangoModelFactory):
     poll = factory.SubFactory(PollFactory)
 
 
+class OpenQuestionFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = models.Question
+
+    label = factory.Faker('sentence', nb_words=4)
+    weight = factory.Faker('random_number', digits=4)
+    poll = factory.SubFactory(PollFactory)
+    is_open = True
+
+
+class AnswerFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = models.Answer
+
+    creator = factory.SubFactory(UserFactory)
+    answer = factory.Faker('sentence', nb_words=10)
+    question = factory.SubFactory(OpenQuestionFactory)
+
+
 class ChoiceFactory(factory.django.DjangoModelFactory):
 
     class Meta:
@@ -40,3 +61,12 @@ class VoteFactory(factory.django.DjangoModelFactory):
 
     creator = factory.SubFactory(UserFactory)
     choice = factory.SubFactory(ChoiceFactory)
+
+
+class OtherVoteFactory(factory.django.DjangoModelFactory):
+
+    class Meta:
+        model = models.OtherVote
+
+    vote = factory.SubFactory(VoteFactory)
+    answer = factory.Faker('sentence', nb_words=4)

@@ -53,18 +53,40 @@ def test_admin_can_update_poll(apiclient,
             {
                 'id': question.id,
                 'label': 'bla',
+                'help_text': 'blubb',
                 'multiple_choice': True,
+                'is_open': False,
                 'choices': [
-                    {'id': choice1.pk, 'label': 'choice1', 'count': 1},
-                    {'id': choice2.pk, 'label': 'choice2', 'count': 2},
+                    {
+                        'id': choice1.pk,
+                        'label': 'choice1',
+                        'is_other_choice': False,
+                        'count': 1,
+                    },
+                    {
+                        'id': choice2.pk,
+                        'label': 'choice2',
+                        'is_other_choice': False,
+                        'count': 2,
+                    },
                 ]
             },
             {
                 'label': 'bla',
+                'help_text': 'blubb',
                 'multiple_choice': False,
+                'is_open': False,
                 'choices': [
-                    {'label': 'choice1', 'count': 1},
-                    {'label': 'choice2', 'count': 2},
+                    {
+                        'label': 'choice1',
+                        'is_other_choice': False,
+                        'count': 1
+                    },
+                    {
+                        'label': 'choice2',
+                        'is_other_choice': False,
+                        'count': 2
+                    },
                 ]
             }
         ]
@@ -79,10 +101,22 @@ def test_admin_can_update_poll(apiclient,
             {
                 'id': question.id,
                 'label': 'bla',
+                'help_text': 'blubb',
                 'multiple_choice': True,
+                'is_open': False,
                 'choices': [
-                    {'id': choice1.pk, 'label': 'choice1', 'count': 1},
-                    {'id': choice2.pk, 'label': 'choice2', 'count': 2},
+                    {
+                        'id': choice1.pk,
+                        'label': 'choice1',
+                        'is_other_choice': False,
+                        'count': 1
+                    },
+                    {
+                        'id': choice2.pk,
+                        'label': 'choice2',
+                        'is_other_choice': False,
+                        'count': 2
+                    },
                 ]
             }
         ]

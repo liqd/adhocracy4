@@ -28,7 +28,8 @@ def test_anonymous_user_can_not_vote(apiclient,
         })
 
     data = {
-        'choices': [choice1.pk]
+        'choices': [choice1.pk],
+        'other_choice_answer': {}
     }
 
     response = apiclient.post(url, data, format='json')
@@ -60,7 +61,8 @@ def test_normal_user_can_not_vote(user,
         })
 
     data = {
-        'choices': [choice1.pk]
+        'choices': [choice1.pk],
+        'other_choice_answer': {}
     }
 
     response = apiclient.post(url, data, format='json')
@@ -92,7 +94,8 @@ def test_admin_can_vote(admin,
         })
 
     data = {
-        'choices': [choice1.pk]
+        'choices': [choice1.pk],
+        'other_choice_answer': {}
     }
 
     response = apiclient.post(url, data, format='json')
@@ -124,7 +127,8 @@ def test_normal_user_can_vote_in_active_phase(user,
         })
 
     data = {
-        'choices': [choice1.pk]
+        'choices': [choice1.pk],
+        'other_choice_answer': {}
     }
 
     with active_phase(poll.module, VotingPhase):
@@ -160,7 +164,8 @@ def test_user_cant_vote_in_private_project(user,
         })
 
     data = {
-        'choices': [choice1.pk]
+        'choices': [choice1.pk],
+        'other_choice_answer': {}
     }
 
     with active_phase(poll.module, VotingPhase):
@@ -197,7 +202,8 @@ def test_participant_can_vote_in_private_project(user,
         })
 
     data = {
-        'choices': [choice1.pk]
+        'choices': [choice1.pk],
+        'other_choice_answer': {}
     }
 
     with active_phase(poll.module, VotingPhase):
