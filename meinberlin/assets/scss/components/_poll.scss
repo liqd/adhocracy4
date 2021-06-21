@@ -92,11 +92,90 @@
     max-width: 96% !important;
 }
 
+// additional new poll module style classes
 .pollmanagement-actions-container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 }
 
-.poll-form-container {
+.pollmanagement-actions-button-container {
+    margin: 0.25rem 0;
+
+    & > * {
+        width: 100%;
+    }
+}
+
+.pollmanagement-questionform-container {
     font-size: 0.875rem;
+}
+
+.questionform {
+    display: block;
+    margin-bottom: $spacer;
+}
+
+.questionform__content--border {
+    margin-bottom: $spacer / 2;
+    padding: $padding;
+    border: 1px solid $border-color;
+    border-radius: ($padding / 2);
+}
+
+.questionform__actions {
+    text-align: right;
+}
+
+.submenu-item__first {
+    border-color: $brand-secondary;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    &:hover {
+        border-color: $brand-secondary;
+        background-color: $bg-secondary;
+    }
+}
+
+.submenu-item__last {
+    border-top: 0;
+    border-color: $brand-secondary;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    &:hover {
+        border-color: $brand-secondary;
+        background-color: $bg-secondary;
+    }
+}
+
+.pollmanagement-menu-container-override {
+    margin: 0 1rem;
+}
+
+@media (min-width: $breakpoint) {
+    .questionform {
+        @include clearfix;
+    }
+
+    .questionform__content {
+        @include grid-span(9, 0);
+    }
+
+    .questionform__actions {
+        @include grid-span(3, 9);
+    }
+
+    .pollmanagement-actions-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .pollmanagement-actions-button-container > * {
+        width: inherit;
+    }
+
+    .pollmanagement-menu-container-override {
+        margin: 0;
+    }
 }

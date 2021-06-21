@@ -23,6 +23,9 @@ export const PopperMenu = (props) => {
   )
 
   const { styles, attributes } = popper
+  const containerStyleClass = props.containerStyleClass
+    ? `popper-content--container ${props.containerStyleClass}`
+    : 'popper-content--container'
 
   useEffect(() => {
     // listen for clicks and close dropdown on body
@@ -59,7 +62,7 @@ export const PopperMenu = (props) => {
       <div ref={popperRef} style={styles.popper} {...attributes.popper}>
         <div
           style={styles.offset}
-          className="popper-content--container"
+          className={containerStyleClass}
           data-visible={visible}
         >
           <ul className="popper-container">

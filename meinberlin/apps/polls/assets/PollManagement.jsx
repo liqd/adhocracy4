@@ -17,13 +17,13 @@ export const PollManagement = (props) => {
   |--------------------------------------------------------------------------
   */
 
-  let maxLocalKey = 0
+  let [maxLocalKey, setLocalKey] = useState(0)
   const getNextLocalKey = () => {
     /** Get an artificial key for non-committed items.
      *
      *  The key is prefixed to prevent collisions with real database keys.
      */
-    maxLocalKey++
+    setLocalKey(maxLocalKey++)
     return 'local_' + maxLocalKey
   }
 
@@ -149,7 +149,6 @@ export const PollManagement = (props) => {
           type: 'danger',
           message: django.gettext('The poll could not be updated.')
         })
-        setErrors(errors)
       })
   }
 
@@ -173,12 +172,12 @@ export const PollManagement = (props) => {
     },
     popperMenuItems: [
       {
-        styleClass: 'btn btn--light btn--small',
+        styleClass: 'btn btn--light btn--small submenu-item__first',
         text: 'vorgegebene Antworten',
         handleClick: () => handleQuestion('append')
       },
       {
-        styleClass: 'btn btn--light btn--small',
+        styleClass: 'btn btn--light btn--small submenu-item__last',
         text: 'offene Antworten',
         handleClick: () => handleQuestion('append', { isOpen: true })
       }
@@ -186,7 +185,10 @@ export const PollManagement = (props) => {
   }
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)} onChange={() => removeAlert()} className="poll-form-container">
+    <form
+      onSubmit={(e) => handleSubmit(e)} onChange={() => removeAlert()}
+      className="pollmanagement-questionform-container"
+    >
       <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
         {
           questions.map((question, index, arr) => {
@@ -228,12 +230,16 @@ export const PollManagement = (props) => {
       </FlipMove>
       <Alert onClick={() => removeAlert()} {...alert} />
       <div className="pollmanagement-actions-container">
-        <PopperMenu>
-          {popperMenuContent}
-        </PopperMenu>
-        <button type="submit" className="btn btn--primary">
-          {django.gettext('Save')}
-        </button>
+        <div className="pollmanagement-actions-button-container">
+          <PopperMenu containerStyleClass="pollmanagement-menu-container-override">
+            {popperMenuContent}
+          </PopperMenu>
+        </div>
+        <div className="pollmanagement-actions-button-container">
+          <button type="submit" className="btn btn--primary">
+            {django.gettext('Save')}
+          </button>
+        </div>
       </div>
     </form>
   )

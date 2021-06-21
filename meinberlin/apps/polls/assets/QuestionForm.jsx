@@ -7,8 +7,8 @@ const FlipMove = require('react-flip-move').default
 
 export const QuestionForm = (props) => {
   return (
-    <section className="commenting">
-      <div className="commenting__content commenting__content--border">
+    <section className="questionform">
+      <div className="questionform__content questionform__content--border">
         <div className="form-group">
           <label
             htmlFor={'id_questions-' + props.id + '-name'}
@@ -44,7 +44,7 @@ export const QuestionForm = (props) => {
               type="checkbox"
               id={'id_questions-' + props.id + '-has_other_option'}
               name={'questions-' + props.id + '-has_other_option'}
-              checked={props.question.has_other_option}
+              checked={props.question.has_other_option || false}
               onChange={(e) => { props.onHasOtherOptionChange(e.target.checked) }}
             />
             &nbsp;
@@ -95,7 +95,7 @@ export const QuestionForm = (props) => {
         </button>
       </div>
 
-      <div className="commenting__actions btn-group" role="group">
+      <div className="questionform__actions btn-group" role="group">
         <button
           className="btn btn--light btn--small"
           onClick={props.onMoveUp}
