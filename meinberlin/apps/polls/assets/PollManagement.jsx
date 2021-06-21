@@ -162,7 +162,6 @@ export const PollManagement = (props) => {
           type: 'danger',
           message: django.gettext('The poll could not be updated.')
         })
-        setErrors(errors)
       })
   }
 
