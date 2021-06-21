@@ -14,7 +14,7 @@ class ChoiceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Choice
-        fields = ('id', 'label', 'count')
+        fields = ('id', 'label', 'count', 'is_other_choice')
 
     def get_count(self, choice):
         if hasattr(choice, 'vote_count'):
@@ -31,12 +31,16 @@ class QuestionSerializer(serializers.ModelSerializer):
     isReadOnly = serializers.SerializerMethodField('get_is_read_only')
     userChoices = serializers.SerializerMethodField('get_user_choices')
     totalVoteCount = serializers.SerializerMethodField('get_total_vote_count')
+    totalVoteCountMulti = serializers.SerializerMethodField(
+        'get_total_vote_count_multi')
+    totalAnswerCount = serializers.SerializerMethodField(
+        'get_total_answer_count')
 
     class Meta:
         model = models.Question
-        fields = ('id', 'label', 'choices', 'multiple_choice',
-                  'isReadOnly', 'authenticated', 'userChoices',
-                  'totalVoteCount')
+        fields = ('id', 'label', 'help_text', 'choices', 'multiple_choice',
+                  'is_open', 'isReadOnly', 'authenticated', 'userChoices',
+                  'totalVoteCount', 'totalVoteCountMulti', 'totalAnswerCount')
 
     def get_authenticated(self, _):
         if 'request' in self.context:
@@ -65,8 +69,20 @@ class QuestionSerializer(serializers.ModelSerializer):
             return question.user_choices_list(user)
         return []
 
+    def get_user_answer(self, question):
+        if 'request' in self.context:
+            user = self.context['request'].user
+            return question.user_answer(user)
+        return []
+
     def get_total_vote_count(self, question):
         return getattr(question, 'vote_count', -1)
+
+    def get_total_vote_count_multi(self, question):
+        return getattr(question, 'vote_count_multi', -1)
+
+    def get_total_answer_count(self, question):
+        return getattr(question, 'answer_count', -1)
 
 
 class PollSerializer(serializers.ModelSerializer):
@@ -92,11 +108,13 @@ class PollSerializer(serializers.ModelSerializer):
                 defaults={
                     'poll': instance,
                     'label': question['label'],
+                    'help_text': question['help_text'],
                     'multiple_choice': question['multiple_choice'],
+                    'is_open': question['is_open'],
                     'weight': weight
                 })
-
-            self._update_choices(question, question_instance)
+            if not question['is_open']:
+                self._update_choices(question, question_instance)
 
         # Send the component updated signal
         # (the serializer is only used from within the dashboard)
@@ -118,7 +136,8 @@ class PollSerializer(serializers.ModelSerializer):
                 id=choice_id,
                 defaults={
                     'question': question_instance,
-                    'label': choice['label']
+                    'label': choice['label'],
+                    'is_other_choice': choice['is_other_choice']
                 }
             )
 
