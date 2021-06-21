@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from adhocracy4.api.permissions import ViewSetRulesPermission
 
 from .models import Choice
+from .models import OtherVote
 from .models import Poll
 from .models import Question
 from .models import Vote
@@ -33,17 +34,23 @@ class VoteViewSet(viewsets.ViewSet):
     permission_classes = (ViewSetRulesPermission,)
 
     def create(self, request, *args, **kwargs):
-        choices = self.get_data(request)
+        choices, other_choice_answer = self.get_data(request)
 
         self.validate_choices(choices)
 
         with transaction.atomic():
             self.clear_current_choices()
             for choice in choices:
-                Vote.objects.create(
+                vote = Vote.objects.create(
                     choice_id=choice.id,
                     creator=self.request.user
                 )
+                if choice.is_other_choice:
+                    if choice.id == int(other_choice_answer['id']):
+                        OtherVote.objects.create(
+                            vote=vote,
+                            answer=other_choice_answer['answer']
+                        )
 
         question_serializer = self.get_question_serializer()
         return Response({'question': question_serializer.data},
@@ -57,7 +64,9 @@ class VoteViewSet(viewsets.ViewSet):
         except (ValueError, AttributeError):
             raise ValidationError()
 
-        return choices
+        other_choice_answer = request.data['other_choice_answer']
+
+        return choices, other_choice_answer
 
     def validate_choices(self, choices):
         question = self.question
