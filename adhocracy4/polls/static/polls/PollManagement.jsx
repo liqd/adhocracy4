@@ -45,7 +45,9 @@ class PollManagement extends React.Component {
   getNewQuestion (label = '') {
     return {
       label: label,
+      help_text: 'dummy helptext',
       multiple_choice: false,
+      is_open: false,
       key: this.getNextLocalKey(),
       choices: [
         this.getNewChoice(),
@@ -122,7 +124,8 @@ class PollManagement extends React.Component {
   getNewChoice (label = '') {
     return {
       label: label,
-      key: this.getNextLocalKey()
+      key: this.getNextLocalKey(),
+      is_other_choice: false
     }
   }
 
