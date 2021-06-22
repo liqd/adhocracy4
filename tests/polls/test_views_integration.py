@@ -1,6 +1,6 @@
 import pytest
 
-from meinberlin.apps.polls import phases
+from adhocracy4.polls import phases
 from meinberlin.test.helpers import assert_template_response
 from meinberlin.test.helpers import freeze_phase
 from meinberlin.test.helpers import setup_phase
@@ -17,4 +17,4 @@ def test_detail_view(client, phase_factory, poll_factory, question_factory,
     with freeze_phase(phase):
         response = client.get(url)
         assert_template_response(
-            response, 'meinberlin_polls/poll_detail.html')
+            response, 'a4polls/poll_detail.html')

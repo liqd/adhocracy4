@@ -1,7 +1,7 @@
 import pytest
 
 from adhocracy4.dashboard import components
-from meinberlin.apps.polls.phases import VotingPhase
+from adhocracy4.polls.phases import VotingPhase
 from meinberlin.test.helpers import assert_template_response
 from meinberlin.test.helpers import setup_phase
 
@@ -17,4 +17,4 @@ def test_edit_view(client, phase_factory):
     client.login(username=initiator.email, password='password')
     response = client.get(url)
     assert_template_response(
-        response, 'meinberlin_polls/poll_dashboard.html')
+        response, 'a4polls/poll_dashboard.html')

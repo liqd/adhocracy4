@@ -1,7 +1,7 @@
 import factory
 
+from adhocracy4.polls import models
 from adhocracy4.test import factories
-from meinberlin.apps.polls import models
 
 from . import UserFactory
 
