@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard.blueprints import ProjectBlueprint
+from adhocracy4.polls import phases as poll_phases
 from meinberlin.apps.budgeting import phases as budgeting_phases
 from meinberlin.apps.documents import phases as documents_phases
 from meinberlin.apps.ideas import phases as ideas_phases
@@ -8,7 +9,6 @@ from meinberlin.apps.kiezkasse import phases as kiezkasse_phases
 from meinberlin.apps.livequestions import phases as livequestion_phases
 from meinberlin.apps.mapideas import phases as mapideas_phases
 from meinberlin.apps.maptopicprio import phases as maptopicprio_phases
-from meinberlin.apps.polls import phases as poll_phases
 from meinberlin.apps.topicprio import phases as topicprio_phases
 
 blueprints = [
