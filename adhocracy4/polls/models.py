@@ -71,14 +71,20 @@ class Question(models.Model):
             if self.multiple_choice:
                 raise ValidationError({
                     'is_open': _('Questions with open answers cannot '
-                                 'have multiple choices')
+                                 'have multiple choices.')
                 })
-            elif self.has_other_option:
+            elif self.choices.count() > 0:
                 raise ValidationError({
-                    'is_open': _('Questions with open answers cannot '
-                                 'have a "other" choice option')
+                    'is_open': _('Question with choices cannot become '
+                                 'open question. Delete choices or add new '
+                                 'open question.')
                 })
+
         super().clean(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
 
     def user_choices_list(self, user):
         if not user.is_authenticated:
@@ -92,8 +98,12 @@ class Question(models.Model):
         if not user.is_authenticated:
             return ''
 
-        return self.answers\
-            .filter(creator=user)
+        answers = self.answers.filter(creator=user)
+        if answers.exists():
+            # there can only be one answer bc of unique constraint
+            return answers.first().answer
+        else:
+            return ''
 
     def get_absolute_url(self):
         return self.poll.get_absolute_url()
@@ -117,11 +127,15 @@ class Answer(UserGeneratedContentModel):
         related_name='answers',
     )
 
-    def save(self, *args, **kwargs):
+    def clean(self, *args, **kwargs):
         if not self.question.is_open:
             raise ValidationError({
                 'question': _('Only open questions can have answers.')
             })
+        super().clean(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
         return super().save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -147,6 +161,22 @@ class Choice(models.Model):
     is_other_choice = models.BooleanField(default=False)
 
     objects = ChoiceQuerySet.as_manager()
+
+    def clean(self, *args, **kwargs):
+        if self.question.is_open:
+            raise ValidationError({
+                'question': _('Open questions cannot have choices.')
+            })
+        if self.is_other_choice and self.question.choices.count() == 0:
+            raise ValidationError({
+                'is_other_choice': _('"Other" cannot be the only choice. Use '
+                                     'open question or add more choices.')
+            })
+        super().clean(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return self.question.poll.get_absolute_url()
@@ -197,6 +227,18 @@ class OtherVote(models.Model):
         max_length=250,
         verbose_name=_('Answer')
     )
+
+    def clean(self, *args, **kwargs):
+        if not self.vote.choice.is_other_choice:
+            raise ValidationError({
+                'vote': _('Other vote can only be created for vote on '
+                          '"other" choice.')
+            })
+        super().clean(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
 
     @property
     def module(self):
