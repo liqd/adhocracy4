@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ChoiceForm } from './ChoiceForm'
 import django from 'django'
 import ErrorList from '../../contrib/assets/ErrorList'
+import { HelptextForm } from './HelptextForm'
 
 const FlipMove = require('react-flip-move').default
 
 export const QuestionForm = (props) => {
+  const [hasHelptext, setHasHelptext] = useState(props.question.help_text)
+  const hasOtherOption = props.question.choices.find(c => c.is_other_choice)
   return (
     <section className="questionform">
       <div className="questionform__content questionform__content--border">
@@ -24,6 +27,15 @@ export const QuestionForm = (props) => {
           <ErrorList errors={props.errors} field="label" />
         </div>
 
+        {hasHelptext
+          ? <HelptextForm
+              id={props.id}
+              question={props.question}
+              onHelptextChange={props.onHelptextChange}
+              errors={props.errors}
+            />
+          : null}
+
         <div className="form-check">
           <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-multiple_choice'}>
             <input
@@ -39,13 +51,14 @@ export const QuestionForm = (props) => {
         </div>
 
         <div className="form-check">
-          <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-has_other_option'}>
+          <label className="form-check__label" htmlFor={'id_questions-' + props.id + '-is_other_choice'}>
             <input
               type="checkbox"
-              id={'id_questions-' + props.id + '-has_other_option'}
-              name={'questions-' + props.id + '-has_other_option'}
-              checked={props.question.has_other_option || false}
-              onChange={(e) => { props.onHasOtherOptionChange(e.target.checked) }}
+              id={'id_questions-' + props.id + '-is_other_choice'}
+              name={'questions-' + props.id + '-is_other_choice'}
+              checked={hasOtherOption || false}
+              onChange={(e) => { props.onHasOtherChoiceChange(e.target.checked) }}
+              disabled={props.question.choices.length < 3 && hasOtherOption}
             />
             &nbsp;
             {django.gettext('Users can answer openly.')}
@@ -60,39 +73,51 @@ export const QuestionForm = (props) => {
               const errors = props.errors && props.errors.choices
                 ? props.errors.choices[index]
                 : {}
-              return (
-                <div key={key}>
-                  <ChoiceForm
-                    id={key}
-                    label={label}
-                    choice={choice}
-                    onLabelChange={(label) => { props.onChoiceLabelChange(index, label) }}
-                    onDelete={() => { props.onDeleteChoice(index) }}
-                    errors={errors}
-                  />
-                </div>
-              )
+              return !choice.is_other_choice
+                ? (
+                  <div key={key}>
+                    <ChoiceForm
+                      id={key}
+                      label={label}
+                      choice={choice}
+                      onLabelChange={(label) => { props.onChoiceLabelChange(index, label) }}
+                      onDelete={() => { props.onDeleteChoice(index) }}
+                      errors={errors}
+                      undeletable={props.question.choices.length < 3}
+                    />
+                  </div>
+                  )
+                : (
+                  <div key={key}>
+                    <ChoiceForm
+                      id={key}
+                      label={django.gettext('Other')}
+                      choice={{ label: django.gettext('Other') }}
+                      onDelete={() => props.onHasOtherChoiceChange(false)}
+                      undeletable={props.question.choices.length < 3}
+                      isOther
+                    />
+                  </div>
+                  )
             })
           }
         </FlipMove>
-        {props.question.has_other_option
-          ? (
-            <ChoiceForm
-              id="other"
-              label={django.gettext('Other')}
-              choice={{ label: django.gettext('Other') }}
-              onDelete={() => props.onHasOtherOptionChange(false)}
-              isOther
-            />
-            )
-          : null}
-        <button
-          className="btn btn--light btn--small"
-          onClick={props.onAppendChoice}
-          type="button"
-        >
-          <i className="fa fa-plus" /> {django.gettext('Add a new choice')}
-        </button>
+        <div className="questionform-buttons-container">
+          <button
+            className="btn btn--light btn--small questionform-button-wrapper"
+            onClick={props.onAppendChoice}
+            type="button"
+          >
+            <i className="fa fa-plus" /> {django.gettext('Add a new choice')}
+          </button>
+          <button
+            className={`questionform-button-wrapper btn btn--small ${hasHelptext ? 'btn--primary' : 'btn--light'}`}
+            onClick={() => setHasHelptext(!hasHelptext)}
+            type="button"
+          >
+            <i className={`fa ${hasHelptext ? 'fa-check' : 'fa-plus'}`} /> {django.gettext('Add Helptext')}
+          </button>
+        </div>
       </div>
 
       <div className="questionform__actions btn-group" role="group">

@@ -1,14 +1,14 @@
-import React from 'react'
-// import { useState } from 'react'
+import React, { useState } from 'react'
 import django from 'django'
 import ErrorList from '../../contrib/assets/ErrorList'
+import { HelptextForm } from './HelptextForm'
 
 export const OpenQuestionForm = (props) => {
-  // const [hasHelptext, setHasHelptext] = useState(false)
+  const [hasHelptext, setHasHelptext] = useState(props.question.help_text)
 
   return (
-    <section className="commenting">
-      <div className="commenting__content commenting__content--border">
+    <section className="questionform">
+      <div className="questionform__content questionform__content--border">
         <div className="form-group">
           <label
             htmlFor={'id_questions-' + props.id + '-name'}
@@ -23,34 +23,24 @@ export const OpenQuestionForm = (props) => {
           </label>
           <ErrorList errors={props.errors} field="label" />
         </div>
-        {/* {hasHelptext
-          ? (
-            <div className="form-group">
-              <label
-                htmlFor={'id_helptext-' + props.id + '-name'}
-              >
-                {django.gettext('Helptext')}
-                <textarea
-                  id={'id_helptext-' + props.id + '-name'}
-                  name={'helptext-' + props.id + '-name'}
-                  value={props.question.label}
-                  onChange={(e) => { props.onHelptextChange(e.target.value) }}
-                />
-              </label>
-              <ErrorList errors={props.errors} field="label" />
-            </div>
-            )
+        {hasHelptext
+          ? <HelptextForm
+              id={props.id}
+              question={props.question}
+              onHelptextChange={props.onHelptextChange}
+              errors={props.errors}
+            />
           : null}
         <button
-          className="btn btn--light btn--small"
+          className={`btn btn--small ${hasHelptext ? 'btn--primary' : 'btn--light'}`}
           onClick={() => setHasHelptext(!hasHelptext)}
           type="button"
         >
-          <i className={`fa ${hasHelptext ? 'fa-minus' : 'fa-plus'}`} /> {django.gettext('Add Helptext')}
-        </button> */}
+          <i className={`fa ${hasHelptext ? 'fa-check' : 'fa-plus'}`} /> {django.gettext('Add Helptext')}
+        </button>
       </div>
 
-      <div className="commenting__actions btn-group" role="group">
+      <div className="questionform__actions btn-group" role="group">
         <button
           className="btn btn--light btn--small"
           onClick={props.onMoveUp}

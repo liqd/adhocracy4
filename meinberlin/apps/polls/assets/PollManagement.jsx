@@ -10,23 +10,22 @@ import { PopperMenu } from './PopperMenu'
 const api = require('adhocracy4').api
 const FlipMove = require('react-flip-move').default
 
+/*
+|--------------------------------------------------------------------------
+| Helper method for local scoped key/identifier
+|--------------------------------------------------------------------------
+*/
+
+let maxLocalKey = 0
+const getNextLocalKey = () => {
+  /** Get an artificial key for non-committed items.
+   *
+   *  The key is prefixed to prevent collisions with real database keys.
+   */
+  return 'local_' + maxLocalKey++
+}
+
 export const PollManagement = (props) => {
-  /*
-  |--------------------------------------------------------------------------
-  | Helper method for local scoped key/identifier
-  |--------------------------------------------------------------------------
-  */
-
-  let [maxLocalKey, setLocalKey] = useState(0)
-  const getNextLocalKey = () => {
-    /** Get an artificial key for non-committed items.
-     *
-     *  The key is prefixed to prevent collisions with real database keys.
-     */
-    setLocalKey(maxLocalKey++)
-    return 'local_' + maxLocalKey
-  }
-
   /*
   |--------------------------------------------------------------------------
   | Question state related handlers
@@ -39,7 +38,6 @@ export const PollManagement = (props) => {
       multiple_choice: false,
       key: getNextLocalKey(),
       is_open: false,
-      has_other_option: false,
       choices: [
         getNewChoice(),
         getNewChoice()
@@ -50,6 +48,7 @@ export const PollManagement = (props) => {
   const getNewOpenQuestion = (label = '') => {
     const newQuestion = getNewQuestion(label)
     newQuestion.is_open = true
+    newQuestion.choices = []
     return newQuestion
   }
 
@@ -61,9 +60,6 @@ export const PollManagement = (props) => {
     } else if (action === 'multiple-choice') {
       const { index, multipleChoice } = params
       diff[index] = { $merge: { multiple_choice: multipleChoice } }
-    } else if (action === 'has-other-option') {
-      const { index, hasOtherOption } = params
-      diff[index] = { $merge: { has_other_option: hasOtherOption } }
     } else if (action === 'move') {
       const { index, direction } = params
       const position = direction === 'up' ? (index - 1) : (index + 1)
@@ -88,10 +84,11 @@ export const PollManagement = (props) => {
   |--------------------------------------------------------------------------
   */
 
-  const getNewChoice = (label = '') => {
+  const getNewChoice = (label = '', isOther = false) => {
     return {
       label: label,
-      key: getNextLocalKey()
+      key: isOther ? 'other-choice' : getNextLocalKey(),
+      is_other_choice: isOther
     }
   }
 
@@ -105,6 +102,15 @@ export const PollManagement = (props) => {
       const { index } = params
       const newChoice = getNewChoice()
       diff[index] = { choices: { $push: [newChoice] } }
+    } else if (action === 'is-other-choice') {
+      const { index, isOtherChoice } = params
+      if (isOtherChoice) {
+        const otherChoice = getNewChoice('other', true)
+        diff[index] = { choices: { $push: [otherChoice] } }
+      } else {
+        const choiceIndex = questions[index].choices.findIndex(c => c.key === 'other-choice')
+        diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
+      }
     } else if (action === 'delete') {
       const { index, choiceIndex } = params
       diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
@@ -173,12 +179,12 @@ export const PollManagement = (props) => {
     popperMenuItems: [
       {
         styleClass: 'btn btn--light btn--small submenu-item__first',
-        text: 'vorgegebene Antworten',
+        text: django.gettext('predefined answers'),
         handleClick: () => handleQuestion('append')
       },
       {
         styleClass: 'btn btn--light btn--small submenu-item__last',
-        text: 'offene Antworten',
+        text: django.gettext('open answers'),
         handleClick: () => handleQuestion('append', { isOpen: true })
       }
     ]
@@ -214,7 +220,7 @@ export const PollManagement = (props) => {
                     question={question}
                     onLabelChange={(label) => handleQuestion('label', { index, label })}
                     onMultipleChoiceChange={(multipleChoice) => handleQuestion('multiple-choice', { index, multipleChoice })}
-                    onHasOtherOptionChange={(hasOtherOption) => handleQuestion('has-other-option', { index, hasOtherOption })}
+                    onHasOtherChoiceChange={(isOtherChoice) => handleChoice('is-other-choice', { index, isOtherChoice })}
                     onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
                     onMoveDown={index < arr.length - 1 ? () => handleQuestion('move', { index, direction: 'down' }) : null}
                     onDelete={() => handleQuestion('delete', { index })}

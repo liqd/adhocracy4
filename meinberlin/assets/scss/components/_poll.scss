@@ -126,6 +126,16 @@
     text-align: right;
 }
 
+.questionform-buttons-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.questionform-button-wrapper {
+    margin: 0.5rem 0;
+}
+
 .submenu-item__first {
     border-color: $brand-secondary;
     border-bottom-left-radius: 0;
@@ -177,5 +187,14 @@
 
     .pollmanagement-menu-container-override {
         margin: 0;
+    }
+
+    .questionform-buttons-container {
+        flex-direction: row;
+    }
+
+    .questionform-button-wrapper {
+        margin: 0;
+        margin-right: 0.5rem;
     }
 }

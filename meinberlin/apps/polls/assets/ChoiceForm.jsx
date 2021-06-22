@@ -23,6 +23,7 @@ export const ChoiceForm = (props) => {
           onClick={props.onDelete}
           title={django.gettext('remove')}
           type="button"
+          disabled={props.undeletable}
         >
           <i
             className="fa fa-times"
