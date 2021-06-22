@@ -4,7 +4,7 @@ from django import template
 from django.utils.html import format_html
 from rest_framework.renderers import JSONRenderer
 
-from .. import serializers
+from adhocracy4.polls import serializers
 
 register = template.Library()
 
