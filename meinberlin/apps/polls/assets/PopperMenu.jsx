@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useImperativeHandle, forwardRef } from 'react'
 import { usePopper } from 'react-popper'
 
-export const PopperMenu = (props) => {
+const PopperMenu = (props, ref) => {
   const { children: { popperButton, popperMenuItems, popperConfig } } = props
   const referenceRef = useRef(null)
   const popperRef = useRef(null)
@@ -50,6 +50,10 @@ export const PopperMenu = (props) => {
     popper.update()
   }
 
+  useImperativeHandle(ref, () => ({
+    instance: popper
+  }))
+
   return (
     <>
       <button
@@ -83,3 +87,5 @@ export const PopperMenu = (props) => {
     </>
   )
 }
+
+export default forwardRef(PopperMenu)

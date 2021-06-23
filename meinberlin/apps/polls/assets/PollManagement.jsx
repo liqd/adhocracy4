@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import django from 'django'
 import dashboard from 'adhocracy4/adhocracy4/dashboard/assets/dashboard'
 import update from 'immutability-helper'
 import { QuestionForm } from './QuestionForm'
 import { OpenQuestionForm } from './OpenQuestionForm'
 import Alert from '../../contrib/assets/Alert'
-import { PopperMenu } from './PopperMenu'
+import PopperMenu from './PopperMenu'
 
 const api = require('adhocracy4').api
 const FlipMove = require('react-flip-move').default
@@ -57,6 +57,7 @@ export const PollManagement = (props) => {
     if (action === 'label') {
       const { index, label } = params
       diff[index] = { $merge: { label: label } }
+      popper.current.instance.update()
     } else if (action === 'multiple-choice') {
       const { index, multipleChoice } = params
       diff[index] = { $merge: { multiple_choice: multipleChoice } }
@@ -69,9 +70,11 @@ export const PollManagement = (props) => {
         ? getNewOpenQuestion()
         : getNewQuestion()
       diff = { $push: [newQuestion] }
+      popper.current.instance.update()
     } else if (action === 'delete') {
       const { index } = params
       diff = { $splice: [[index, 1]] }
+      popper.current.instance.update()
     } else {
       return null
     }
@@ -115,6 +118,7 @@ export const PollManagement = (props) => {
       const { index, choiceIndex } = params
       diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
     }
+    popper.current.instance.update()
     action && setQuestions(update(questions, diff))
   }
 
@@ -167,6 +171,7 @@ export const PollManagement = (props) => {
   const [questions, setQuestions] = useState(props.poll.questions)
   const [errors, setErrors] = useState([])
   const [alert, setAlert] = useState(null)
+  const popper = useRef()
 
   questions.length > 0 || (setQuestions([getNewQuestion()]))
 
@@ -237,7 +242,10 @@ export const PollManagement = (props) => {
       <Alert onClick={() => removeAlert()} {...alert} />
       <div className="pollmanagement-actions-container">
         <div className="pollmanagement-actions-button-container">
-          <PopperMenu containerStyleClass="pollmanagement-menu-container-override">
+          <PopperMenu
+            ref={popper}
+            containerStyleClass="pollmanagement-menu-container-override"
+          >
             {popperMenuContent}
           </PopperMenu>
         </div>
