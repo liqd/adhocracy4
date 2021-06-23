@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from django.views import generic
 
 from adhocracy4.dashboard import mixins as dashboard_mixins
+from adhocracy4.projects.mixins import DisplayProjectOrModuleMixin
 from adhocracy4.projects.mixins import ProjectMixin
 from adhocracy4.rules import mixins as rules_mixins
 
@@ -12,7 +13,8 @@ from . import models
 
 class PollDetailView(ProjectMixin,
                      rules_mixins.PermissionRequiredMixin,
-                     generic.DetailView):
+                     generic.DetailView,
+                     DisplayProjectOrModuleMixin):
     model = models.Poll
     permission_required = 'a4polls.view_poll'
 

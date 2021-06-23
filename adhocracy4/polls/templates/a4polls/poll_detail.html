@@ -1,9 +1,9 @@
-{% extends "a4projects/project_detail.html" %}
+{% extends extends %}
 {% load react_polls react_comments %}
 
 
 {% block phase_content %}
-    <div class="module-content">
+    <div class="module-content--light">
         <div class="l-wrapper">
             <div class="l-center-8">
                 {% for question in question_list %}
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="l-wrapper">
-        <div class="l-center-6">
+        <div class="l-center-8">
             {% react_comments object %}
         </div>
     </div>
