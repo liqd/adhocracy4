@@ -133,6 +133,15 @@ class ProjectMixin(generic.base.ContextMixin):
 
 
 class DisplayProjectOrModuleMixin(generic.base.ContextMixin):
+    """Use the appropriate project or module view with timeline/cluster logic.
+
+    On platforms with multiple module projects, this should be used
+    with the phase view to display the module instead of the project
+    detail where appropriate. To do that, the template should extend
+    'extends' instead of a specific base template.
+    This mixin also makes sure the project view is shown with the
+    appropriate timeline tile activated.
+    """
 
     @cached_property
     def url_name(self):
