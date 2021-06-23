@@ -53,16 +53,23 @@ export const PollManagement = (props) => {
     return newQuestion
   }
 
+  const updatePopper = () => {
+    popper &&
+    popper.current &&
+    popper.current.instance.update &&
+    popper.current.instance.update()
+  }
+
   const handleQuestion = (action, params) => {
     let diff = {}
     if (action === 'label') {
       const { index, label } = params
       diff[index] = { $merge: { label: label } }
-      // popper.current.instance.update()
+      updatePopper()
     } else if (action === 'helptext') {
       const { index, helptext } = params
       diff[index] = { $merge: { help_text: helptext } }
-      // popper.current.instance.update()
+      updatePopper()
     } else if (action === 'multiple-choice') {
       const { index, multipleChoice } = params
       diff[index] = { $merge: { multiple_choice: multipleChoice } }
@@ -75,11 +82,11 @@ export const PollManagement = (props) => {
         ? getNewOpenQuestion()
         : getNewQuestion()
       diff = { $push: [newQuestion] }
-      // popper.current.instance.update()
+      updatePopper()
     } else if (action === 'delete') {
       const { index } = params
       diff = { $splice: [[index, 1]] }
-      // popper.current.instance.update()
+      updatePopper()
     } else {
       return null
     }
@@ -123,7 +130,7 @@ export const PollManagement = (props) => {
       const { index, choiceIndex } = params
       diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
     }
-    // popper.current.instance.update()
+    updatePopper()
     action && setQuestions(update(questions, diff))
   }
 
@@ -216,6 +223,7 @@ export const PollManagement = (props) => {
                     id={key}
                     question={question}
                     onLabelChange={(label) => handleQuestion('label', { index, label })}
+                    onHelptextChange={(helptext) => handleQuestion('helptext', { index, helptext })}
                     onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
                     onMoveDown={index < arr.length - 1 ? () => handleQuestion('move', { index, direction: 'down' }) : null}
                     onDelete={() => handleQuestion('delete', { index })}
