@@ -58,7 +58,11 @@ export const PollManagement = (props) => {
     if (action === 'label') {
       const { index, label } = params
       diff[index] = { $merge: { label: label } }
-      popper.current.instance.update()
+      // popper.current.instance.update()
+    } else if (action === 'helptext') {
+      const { index, helptext } = params
+      diff[index] = { $merge: { help_text: helptext } }
+      // popper.current.instance.update()
     } else if (action === 'multiple-choice') {
       const { index, multipleChoice } = params
       diff[index] = { $merge: { multiple_choice: multipleChoice } }
@@ -71,11 +75,11 @@ export const PollManagement = (props) => {
         ? getNewOpenQuestion()
         : getNewQuestion()
       diff = { $push: [newQuestion] }
-      popper.current.instance.update()
+      // popper.current.instance.update()
     } else if (action === 'delete') {
       const { index } = params
       diff = { $splice: [[index, 1]] }
-      popper.current.instance.update()
+      // popper.current.instance.update()
     } else {
       return null
     }
@@ -119,7 +123,7 @@ export const PollManagement = (props) => {
       const { index, choiceIndex } = params
       diff[index] = { choices: { $splice: [[choiceIndex, 1]] } }
     }
-    popper.current.instance.update()
+    // popper.current.instance.update()
     action && setQuestions(update(questions, diff))
   }
 
@@ -225,6 +229,7 @@ export const PollManagement = (props) => {
                     id={key}
                     question={question}
                     onLabelChange={(label) => handleQuestion('label', { index, label })}
+                    onHelptextChange={(helptext) => handleQuestion('helptext', { index, helptext })}
                     onMultipleChoiceChange={(multipleChoice) => handleQuestion('multiple-choice', { index, multipleChoice })}
                     onHasOtherChoiceChange={(isOtherChoice) => handleChoice('is-other-choice', { index, isOtherChoice })}
                     onMoveUp={index !== 0 ? () => handleQuestion('move', { index, direction: 'up' }) : null}
