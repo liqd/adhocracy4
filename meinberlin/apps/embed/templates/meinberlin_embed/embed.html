@@ -46,7 +46,7 @@
                 <p class="modal-body">{% trans 'You need to login first. By clicking "Login" a popup will open so you can sign in safely. Do you want to login now?' %}</p>
                 <div class="modal-footer">
                     <a href="{% url 'account_login' %}?next={% url 'embed-login-success' %}" class="embed-confirm__login btn btn--primary">{% trans 'Login' %}</a>
-                    <button class="embed-confirm__cancel btn btn--light" data-dismiss="modal">{% trans 'Cancel' %}</button>
+                    <button class="embed-confirm__cancel btn btn--light" data-bs-dismiss="modal">{% trans 'Cancel' %}</button>
                 </div>
             </div>
         </div>
