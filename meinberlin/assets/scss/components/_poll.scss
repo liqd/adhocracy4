@@ -123,42 +123,6 @@
     }
 }
 
-@media (min-width: $breakpoint) {
-    .questionform {
-        @include clearfix;
-    }
-
-    .questionform__content {
-        @include grid-span(9, 0);
-    }
-
-    .questionform__actions {
-        @include grid-span(3, 9);
-    }
-
-    .pollmanagement-actions-container {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .pollmanagement-actions-button-container > * {
-        width: inherit;
-    }
-
-    .pollmanagement-menu-container-override {
-        margin: 0;
-    }
-
-    .questionform-buttons-container {
-        flex-direction: row;
-    }
-
-    .questionform-button-wrapper {
-        margin: 0;
-        margin-right: 0.5rem;
-    }
-}
-
 .pollmanagement-actions-button-container {
     margin: 0.25rem 0;
 
@@ -197,4 +161,40 @@
 
 .pollmanagement-menu-container-override {
     margin: 0 1rem;
+}
+
+@media (min-width: $breakpoint) {
+    .questionform {
+        @include clearfix;
+    }
+
+    .questionform__content {
+        @include grid-span(9, 0);
+    }
+
+    .questionform__actions {
+        @include grid-span(3, 9);
+    }
+
+    .pollmanagement-actions-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .pollmanagement-actions-button-container > * {
+        width: inherit;
+    }
+
+    .pollmanagement-menu-container-override {
+        margin: 0;
+    }
+
+    .questionform-buttons-container {
+        flex-direction: row;
+    }
+
+    .questionform-button-wrapper {
+        margin: 0;
+        margin-right: 0.5rem;
+    }
 }
