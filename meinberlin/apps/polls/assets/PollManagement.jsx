@@ -114,9 +114,12 @@ export const PollManagement = (props) => {
       diff[index] = { choices: {} }
       diff[index].choices[choiceIndex] = { $merge: { label: label } }
     } else if (action === 'append') {
-      const { index } = params
+      const { index, hasOtherOption } = params
+      const position = questions[index].choices.length - 1
       const newChoice = getNewChoice()
-      diff[index] = { choices: { $push: [newChoice] } }
+      diff[index] = hasOtherOption
+        ? { choices: { $splice: [[position, 0, newChoice]] } }
+        : { choices: { $push: [newChoice] } }
     } else if (action === 'is-other-choice') {
       const { index, isOtherChoice } = params
       if (isOtherChoice) {
@@ -246,7 +249,7 @@ export const PollManagement = (props) => {
                     errors={errors && errors[index] ? errors[index] : {}}
                     onChoiceLabelChange={(choiceIndex, label) => handleChoice('label', { index, choiceIndex, label })}
                     onDeleteChoice={(choiceIndex) => handleChoice('delete', { index, choiceIndex })}
-                    onAppendChoice={() => handleChoice('append', { index })}
+                    onAppendChoice={(hasOtherOption) => handleChoice('append', { index, hasOtherOption })}
                   />
                 </div>
                 )

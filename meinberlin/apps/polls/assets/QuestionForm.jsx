@@ -105,7 +105,7 @@ export const QuestionForm = (props) => {
         <div className="questionform-buttons-container">
           <button
             className="btn btn--light btn--small questionform-button-wrapper"
-            onClick={props.onAppendChoice}
+            onClick={() => props.onAppendChoice(hasOtherOption)}
             type="button"
           >
             <i className="fa fa-plus" /> {django.gettext('Add a new choice')}
