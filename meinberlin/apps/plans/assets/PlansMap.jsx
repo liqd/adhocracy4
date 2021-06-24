@@ -256,8 +256,8 @@ class PlansMap extends Component {
     return (
       <div className="map-list-combined__map" ref={this.bindMap.bind(this)}>
         <div className="map-list-combined__map__search">
-          <form onSubmit={this.onAddressSearchSubmit.bind(this)} data-embed-target="ignore" className="input-group">
-            <label htmlFor="id-map-search">
+          <form onSubmit={this.onAddressSearchSubmit.bind(this)} data-embed-target="ignore">
+            <label htmlFor="id-map-search" className="input-group">
               <input
                 onChange={this.onAddressSearchChange.bind(this)}
                 className="input-group__input u-inline"
