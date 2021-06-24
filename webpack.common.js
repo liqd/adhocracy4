@@ -17,6 +17,12 @@ module.exports = {
       './meinberlin/assets/scss/style.scss',
       './meinberlin/assets/js/app.js'
     ],
+    blueprint_picker: {
+      import: [
+        './meinberlin/assets/js/blueprint-picker.js'
+      ],
+      dependOn: 'adhocracy4'
+    },
     captcheck: {
       import: [
         './meinberlin/apps/captcha/assets/captcheck.js'

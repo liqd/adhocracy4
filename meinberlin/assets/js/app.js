@@ -76,12 +76,6 @@ function init () {
   // This function adds required classes to iframes added by ckeditor
   $('.rich-text iframe').addClass('ck_embed_iframe')
   $('.ck_embed_iframe').parent('div').addClass('ck_embed_iframe__container')
-
-  // This function populates blueprint modal with the list from the link
-  $('#module-blueprint-btn').on('click', function (e) {
-    e.preventDefault()
-    $('#module-blueprint-list').modal('show').find('.modal-body').load($(this).attr('href'))
-  })
 }
 
 document.addEventListener('DOMContentLoaded', init, false)
