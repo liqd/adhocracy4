@@ -18,6 +18,11 @@
     margin-right: -1px;
 }
 
+.typeahead__input-group-append {
+    display: flex;
+    flex: 2;
+}
+
 .typeahead__input-group-text {
     display: flex;
     align-items: center;

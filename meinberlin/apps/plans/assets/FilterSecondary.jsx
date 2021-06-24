@@ -105,7 +105,7 @@ class FilterSecondary extends React.Component {
               </span>
               <Typeahead
                 id="organisation-typeahead-id"
-                className="input-group__input"
+                className=""
                 onChange={this.clickOrganisation.bind(this)}
                 labelKey="name"
                 multiple={false}
@@ -148,7 +148,7 @@ class FilterSecondary extends React.Component {
               </span>
               <Typeahead
                 id="organisation-typeahead-id"
-                className="input-group__input"
+                className="typeahead__input-group-append"
                 onChange={this.clickOrganisation.bind(this)}
                 labelKey="name"
                 multiple={false}
