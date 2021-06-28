@@ -69,7 +69,8 @@ def test_admin_can_update_poll(apiclient,
                         'is_other_choice': False,
                         'count': 2,
                     },
-                ]
+                ],
+                'answers': [],
             },
             {
                 'label': 'bla',
@@ -87,7 +88,8 @@ def test_admin_can_update_poll(apiclient,
                         'is_other_choice': False,
                         'count': 2
                     },
-                ]
+                ],
+                'answers': [],
             }
         ]
     }
@@ -117,7 +119,8 @@ def test_admin_can_update_poll(apiclient,
                         'is_other_choice': False,
                         'count': 2
                     },
-                ]
+                ],
+                'answers': [],
             }
         ]
     }

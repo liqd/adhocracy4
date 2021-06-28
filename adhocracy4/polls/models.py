@@ -101,9 +101,31 @@ class Question(models.Model):
         answers = self.answers.filter(creator=user)
         if answers.exists():
             # there can only be one answer bc of unique constraint
-            return answers.first().answer
+            return answers.first().id
         else:
             return ''
+
+    def other_choice_answers(self):
+        if self.has_other_option:
+            other_choice = self.choices.filter(is_other_choice=True).first()
+            other_answers = OtherVote.objects.filter(vote__choice=other_choice)
+            return other_answers
+        else:
+            return OtherVote.objects.none()
+
+    def other_choice_user_answer(self, user):
+        if not user.is_authenticated:
+            return ''
+
+        elif self.has_other_option:
+            other_choice = self.choices.filter(is_other_choice=True).first()
+            other_choice_user_answer = OtherVote.objects.filter(
+                vote__creator=user,
+                vote__choice=other_choice)
+            if other_choice_user_answer.exists():
+                # there can only be one other vote as 1:1 relation
+                return other_choice_user_answer.first().vote.id
+        return ''
 
     def get_absolute_url(self):
         return self.poll.get_absolute_url()

@@ -52,7 +52,8 @@ class PollManagement extends React.Component {
       choices: [
         this.getNewChoice(),
         this.getNewChoice()
-      ]
+      ],
+      answers: []
     }
   }
 
