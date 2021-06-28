@@ -36,7 +36,7 @@ def test_user_answer(open_question,
     answer = answer_factory(creator=user1, answer='user answer',
                             question=open_question)
     assert open_question.user_answer(anonymous) == ''
-    assert open_question.user_answer(user1) == answer.answer
+    assert open_question.user_answer(user1) == answer.id
     assert open_question.user_answer(user2) == ''
 
 

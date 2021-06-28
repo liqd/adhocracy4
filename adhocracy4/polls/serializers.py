@@ -7,9 +7,21 @@ from adhocracy4.rules.discovery import NormalUser
 from . import models
 
 
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Answer
+        fields = ('id', 'answer')
+
+
+class OtherChoiceAnswerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.OtherVote
+        fields = ('vote_id', 'answer')
+
+
 class ChoiceSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
-
     count = serializers.SerializerMethodField()
 
     class Meta:
@@ -25,11 +37,16 @@ class ChoiceSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
-    choices = ChoiceSerializer(many=True)
-
-    authenticated = serializers.SerializerMethodField()
     isReadOnly = serializers.SerializerMethodField('get_is_read_only')
+    authenticated = serializers.SerializerMethodField()
+    choices = ChoiceSerializer(many=True)
     userChoices = serializers.SerializerMethodField('get_user_choices')
+    answers = AnswerSerializer(many=True)
+    userAnswer = serializers.SerializerMethodField('get_user_answer')
+    other_choice_answers = serializers.SerializerMethodField(
+        'get_other_choice_answers')
+    other_choice_user_answer = serializers.SerializerMethodField(
+        'get_other_choice_user_answer')
     totalVoteCount = serializers.SerializerMethodField('get_total_vote_count')
     totalVoteCountMulti = serializers.SerializerMethodField(
         'get_total_vote_count_multi')
@@ -38,9 +55,11 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Question
-        fields = ('id', 'label', 'help_text', 'choices', 'multiple_choice',
-                  'is_open', 'isReadOnly', 'authenticated', 'userChoices',
-                  'totalVoteCount', 'totalVoteCountMulti', 'totalAnswerCount')
+        fields = ('id', 'label', 'help_text', 'multiple_choice', 'is_open',
+                  'isReadOnly', 'authenticated', 'choices', 'userChoices',
+                  'answers', 'userAnswer', 'other_choice_answers',
+                  'other_choice_user_answer', 'totalVoteCount',
+                  'totalVoteCountMulti', 'totalAnswerCount')
 
     def get_authenticated(self, _):
         if 'request' in self.context:
@@ -73,7 +92,20 @@ class QuestionSerializer(serializers.ModelSerializer):
         if 'request' in self.context:
             user = self.context['request'].user
             return question.user_answer(user)
-        return []
+        return ''
+
+    def get_other_choice_answers(self, question):
+        other_choice_answers = question.other_choice_answers()
+        serializer = OtherChoiceAnswerSerializer(
+            instance=other_choice_answers,
+            many=True)
+        return serializer.data
+
+    def get_other_choice_user_answer(self, question):
+        if 'request' in self.context:
+            user = self.context['request'].user
+            return question.other_choice_user_answer(user)
+        return ''
 
     def get_total_vote_count(self, question):
         return getattr(question, 'vote_count', -1)
