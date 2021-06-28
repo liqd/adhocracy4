@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import django from 'django'
 import dashboard from 'adhocracy4/adhocracy4/dashboard/assets/dashboard'
 import update from 'immutability-helper'
@@ -183,12 +183,10 @@ export const PollManagement = (props) => {
   |--------------------------------------------------------------------------
   */
 
-  const [questions, setQuestions] = useState(props.poll.questions)
+  const [questions, setQuestions] = useState([])
   const [errors, setErrors] = useState([])
   const [alert, setAlert] = useState(null)
   const popper = useRef()
-
-  questions.length > 0 || (setQuestions([getNewQuestion()]))
 
   const popperMenuContent = {
     popperButton: {
@@ -209,6 +207,14 @@ export const PollManagement = (props) => {
       }
     ]
   }
+
+  useEffect(() => {
+    api.poll.get(props.module).done(({ questions }) => {
+      questions.length > 0
+        ? setQuestions(questions)
+        : setQuestions([getNewQuestion()])
+    })
+  }, [])
 
   return (
     <form

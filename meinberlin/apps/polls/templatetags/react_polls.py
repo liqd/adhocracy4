@@ -26,17 +26,14 @@ def react_polls(context, question):
 
 @register.simple_tag
 def react_poll_form(poll, reload_on_success=False):
-    serializer = serializers.PollSerializer(poll)
-    data_poll = JSONRenderer().render(serializer.data).decode("utf-8")
     reload_on_success = json.dumps(reload_on_success)
 
     return format_html(
         (
             '<div data-mb-widget="poll-management" data-module="{module}" '
-            ' data-poll="{poll}"  data-reloadOnSuccess="{reload_on_success}">'
+            ' data-reloadOnSuccess="{reload_on_success}">'
             '</div>'
         ),
         module=poll.module.pk,
-        poll=data_poll,
         reload_on_success=reload_on_success,
     )
