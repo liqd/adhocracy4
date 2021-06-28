@@ -1,15 +1,12 @@
-var React = require('react')
-var django = require('django')
-var Alert = require('../../../static/Alert')
-var update = require('immutability-helper')
+const React = require('react')
+const django = require('django')
+const Alert = require('../../static/Alert')
+const update = require('immutability-helper')
 
-var api = require('../../../static/api')
-var config = require('../../../static/config')
+const api = require('adhocracy4').api
+const config = require('adhocracy4').config
 
-const yourChoiceText = django.gettext('Your choice')
-const multipleChoiceText = django.gettext('Multiple answers are possible for this question')
-
-class Question extends React.Component {
+class PollQuestion extends React.Component {
   constructor (props) {
     super(props)
 
@@ -33,9 +30,6 @@ class Question extends React.Component {
   handleSubmit (event) {
     event.preventDefault()
 
-    const voteCountText = django.gettext('Vote counted')
-    const voteNoCountText = django.gettext('Vote has not been counted due to a server error.')
-
     if (this.state.question.isReadOnly) {
       return false
     }
@@ -55,7 +49,7 @@ class Question extends React.Component {
           question: data.question,
           alert: {
             type: 'success',
-            message: voteCountText
+            message: django.gettext('Vote counted')
           }
         })
       })
@@ -65,7 +59,7 @@ class Question extends React.Component {
           selectedChoices: newChoices,
           alert: {
             type: 'danger',
-            message: voteNoCountText
+            message: django.gettext('Vote has not been counted due to a server error.')
           }
         })
       })
@@ -88,7 +82,7 @@ class Question extends React.Component {
     const choiceId = parseInt(event.target.value)
     const index = this.state.selectedChoices.indexOf(choiceId)
 
-    var diff = {}
+    let diff = {}
     if (index === -1) {
       diff = { $push: [choiceId] }
     } else {
@@ -101,9 +95,6 @@ class Question extends React.Component {
   }
 
   getVoteButton () {
-    const voteTag = django.gettext('Vote')
-    const loginVoteText = django.gettext('Please login to vote')
-
     if (this.state.question.isReadOnly) {
       return null
     }
@@ -113,16 +104,16 @@ class Question extends React.Component {
       return (
         <button
           type="submit"
-          className="btn btn--primary"
+          className="btn btn--primary u-spacer-right"
           disabled={disabled}
         >
-          {voteTag}
+          {django.gettext('Vote')}
         </button>
       )
     } else {
       return (
-        <a href={config.getLoginUrl()} className="btn btn--primary">
-          {loginVoteText}
+        <a href={config.getLoginUrl()} className="btn btn--primary u-spacer-right">
+          {django.gettext('Please login to vote')}
         </a>
       )
     }
@@ -134,48 +125,71 @@ class Question extends React.Component {
     }
   }
 
-  toggleShowResultButton () {
-    const { showResult, selectedChoices: { length: isVoted } } = this.state
-    const buttonText = !showResult
-      ? django.gettext('Show preliminary results')
-      : isVoted
-        ? django.gettext('Change vote')
-        : django.gettext('To poll')
-
+  getHelpText () {
+    let helpText
+    if (!this.state.showResult) {
+      if (this.state.question.multiple_choice) {
+        helpText = <div className="poll__help-text">{django.gettext('Multiple answers are possible.')}</div>
+      }
+    }
     return (
-      <button
-        type="button"
-        className="btn btn--link"
-        onClick={this.toggleShowResult.bind(this)}
-      >
-        {buttonText}
-      </button>
+      helpText
     )
   }
 
-  toggleTotalOrVoteButton () {
+  getHelpTextAnswer () {
     const total = this.state.question.totalVoteCount
-    let showTotalOrVoteButton
-    if (this.state.showResult) {
-      showTotalOrVoteButton =
-        `${total} ${django.ngettext('vote', 'votes', total)}`
+    const totalMulti = this.state.question.totalVoteCountMulti
+
+    let helpTextAnswer
+    let helpTextAnswerPlural
+    if (this.state.question.multiple_choice) {
+      if (total === 1 && totalMulti === 1) {
+        helpTextAnswerPlural = django.gettext('%s participant gave 1 answer.')
+      } else if (total === 1 && totalMulti > 1) {
+        helpTextAnswerPlural = django.gettext('%s participant gave %s answers.', total)
+      } else {
+        helpTextAnswerPlural = django.ngettext('%s participant gave %s answers.', '%s participants gave %s answers.', total)
+      }
+      helpTextAnswer = helpTextAnswerPlural + django.gettext(' For multiple choice questions the percentages may add up to more than 100%.')
     } else {
-      showTotalOrVoteButton = this.getVoteButton()
+      helpTextAnswer = django.ngettext('1 person has answered.', '%s people have answered.', total)
     }
-    return (
-      showTotalOrVoteButton
-    )
+    return django.interpolate(helpTextAnswer, [total, totalMulti])
   }
 
   render () {
-    const total = this.state.question.totalVoteCount
     const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
+    const total = this.state.question.totalVoteCount
+
+    let showTotalOrVoteButton
+    let toggleShowResultButton
+    let toggleShowResultButtonText
+
+    if (this.state.showResult) {
+      showTotalOrVoteButton = <div className="u-muted">{this.getHelpTextAnswer()}</div>
+      toggleShowResultButtonText = django.gettext('To poll')
+
+      if (this.state.selectedChoices.length !== 0) {
+        toggleShowResultButtonText = django.gettext('Change vote')
+      }
+    } else {
+      showTotalOrVoteButton = this.getVoteButton()
+      toggleShowResultButtonText = django.gettext('Show preliminary results')
+    }
+
+    if (!this.state.question.isReadOnly) {
+      toggleShowResultButton = (
+        <button type="button" className="btn btn--link" onClick={this.toggleShowResult.bind(this)}>
+          {toggleShowResultButtonText}
+        </button>
+      )
+    }
 
     return (
-      <form onSubmit={this.handleSubmit.bind(this)} className="poll">
+      <form onSubmit={this.handleSubmit.bind(this)} className="poll u-border">
         <h2>{this.state.question.label}</h2>
-        {this.state.question.multiple_choice &&
-        multipleChoiceText}
+        {this.getHelpText()}
         <div className="poll__rows">
           {
             this.state.question.choices.map((choice, i) => {
@@ -186,24 +200,27 @@ class Question extends React.Component {
 
               if (this.state.showResult) {
                 return (
-                  <div className="poll-row" key={choice.id}>
-                    <div className="poll-row__number">{percent}%</div>
-                    <div className="poll-row__label">{choice.label}</div>
-                    {chosen ? <i className="fa fa-check-circle u-primary" aria-label={yourChoiceText} /> : ''}
-                    <div
-                      className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
-                      ref={node => this.doBarTransition(node, { width: percent + '%' })}
-                    />
+                  <div className="poll-row__container">
+                    {chosen ? <i className="poll-row__chosen fa fa-check" aria-label={django.gettext('Your choice')} /> : ''}
+                    <div className="poll-row poll-row--answered" key={choice.id}>
+                      <div className="poll-row__number">{percent}%</div>
+                      <div className="poll-row__label">{choice.label}</div>
+                      <div
+                        className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
+                        ref={node => this.doBarTransition(node, { width: percent + '%' })}
+                      />
+                    </div>
                   </div>
                 )
               } else {
                 if (!this.state.question.multiple_choice) {
                   return (
-                    <label className="poll-row radio" key={choice.id}>
+                    <label className="poll-row radio" key={choice.id} htmlFor={'id_choice-' + choice.id + '-single'}>
                       <input
                         className="poll-row__radio radio__input"
                         type="radio"
                         name="question"
+                        id={'id_choice-' + choice.id + '-single'}
                         value={choice.id}
                         checked={checked}
                         onChange={this.handleOnChange.bind(this)}
@@ -214,11 +231,12 @@ class Question extends React.Component {
                   )
                 } else {
                   return (
-                    <label className="poll-row radio" key={choice.id}>
+                    <label className="poll-row radio" key={choice.id} htmlFor={'id_choice-' + choice.id + '-multiple'}>
                       <input
                         className="poll-row__radio radio__input"
                         type="checkbox"
                         name="question"
+                        id={'id_choice-' + choice.id + '-multiple'}
                         value={choice.id}
                         checked={checked}
                         onChange={this.handleOnMultiChange.bind(this)}
@@ -235,13 +253,12 @@ class Question extends React.Component {
 
         <Alert onClick={this.removeAlert.bind(this)} {...this.state.alert} />
         <div className="poll__actions">
-          {this.toggleTotalOrVoteButton()}
-          &nbsp;
-          {this.toggleShowResultButton()}
+          {showTotalOrVoteButton}
+          {toggleShowResultButton}
         </div>
       </form>
     )
   }
 }
 
-module.exports = Question
+module.exports = PollQuestion
