@@ -1,13 +1,13 @@
 from django import template
 
 from adhocracy4.comments.models import Comment
+from adhocracy4.polls.models import Vote as Vote
 from meinberlin.apps.budgeting.models import Proposal as budget_proposal
 from meinberlin.apps.ideas.models import Idea
 from meinberlin.apps.kiezkasse.models import Proposal as kiezkasse_proposal
 from meinberlin.apps.likes.models import Like
 from meinberlin.apps.livequestions.models import LiveQuestion
 from meinberlin.apps.mapideas.models import MapIdea
-from meinberlin.apps.polls.models import MBVote as Vote
 
 register = template.Library()
 

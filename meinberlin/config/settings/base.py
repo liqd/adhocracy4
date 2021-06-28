@@ -123,7 +123,6 @@ INSTALLED_APPS = (
     'meinberlin.apps.kiezkasse',
     'meinberlin.apps.mapideas',
     'meinberlin.apps.maptopicprio',
-    'meinberlin.apps.polls',
     'meinberlin.apps.projectcontainers',
     'meinberlin.apps.topicprio',
 )
@@ -427,13 +426,13 @@ A4_RATEABLES = (
 
 A4_COMMENTABLES = (
     ('a4comments', 'comment'),
+    ('a4polls', 'poll'),
     ('meinberlin_ideas', 'idea'),
     ('meinberlin_mapideas', 'mapidea'),
     ('meinberlin_budgeting', 'proposal'),
     ('meinberlin_kiezkasse', 'proposal'),
     ('meinberlin_topicprio', 'topic'),
     ('meinberlin_maptopicprio', 'maptopic'),
-    # ('meinberlin_polls', 'poll'),
     ('meinberlin_documents', 'chapter'),
     ('meinberlin_documents', 'paragraph'),
 )
@@ -462,7 +461,6 @@ A4_AUTO_FOLLOWABLES = (
     # ('meinberlin_mapideas', 'mapidea'),
     # ('meinberlin_budgeting', 'proposal'),
     # ('meinberlin_kiezkasse', 'proposal'),
-    # ('meinberlin_polls', 'vote'),
 )
 
 A4_CATEGORIZABLE = (
