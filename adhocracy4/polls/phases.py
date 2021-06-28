@@ -1,3 +1,4 @@
+from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import phases
@@ -12,8 +13,11 @@ class VotingPhase(phases.PhaseContent):
     phase = 'voting'
     view = views.PollDetailView
 
-    name = _('Voting phase')
-    description = _('Cast votes and discuss the poll.')
+    name = pgettext_lazy('A4: voting phase name', 'Voting phase')
+    description = pgettext_lazy(
+        'A4: voting phase description',
+        'Answer the questions and comment on the poll.'
+    )
     module_name = _('polls')
 
     features = {
