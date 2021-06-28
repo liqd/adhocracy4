@@ -144,6 +144,11 @@ var api = (function () {
       }
     },
     poll: {
+      get: function (id) {
+        return _sendRequest('poll', id, {
+          type: 'GET'
+        }, {})
+      },
       change: function (data, id) {
         return _sendRequest('poll', id, {
           type: 'PUT'
