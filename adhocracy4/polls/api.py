@@ -18,7 +18,7 @@ from .serializers import QuestionSerializer
 from .validators import choice_belongs_to_question
 
 
-class PollViewSet(mixins.UpdateModelMixin,
+class PollViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin,
                   viewsets.GenericViewSet):
     queryset = Poll.objects.all()
     serializer_class = PollSerializer
