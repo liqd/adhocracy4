@@ -1,0 +1,68 @@
+name: Django CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    services:
+      postgres:
+        image: postgres:10
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.6'
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+      - name: Setup Postgres
+        env:
+          PGPASSWORD: postgres
+          PGHOSTADDR: 127.0.0.1
+        run: |
+          psql -c 'create database django;' -U postgres
+          psql -c 'create database django_test;' -U postgres
+      - name: Install Dependencies
+        run: |
+          npm install
+          npm run build
+          pip install -r requirements/dev.txt
+          pip install coveralls
+      - name: Run Tests
+        env:
+          PGPASSWORD: postgres
+          PGHOSTADDR: 127.0.0.1
+        run: |
+          python manage.py collectstatic > /dev/null
+          DJANGO_SETTINGS_MODULE='meinberlin.config.settings.travis' py.test --cov
+          isort --diff -c meinberlin tests
+          python manage.py makemigrations --dry-run --check --noinput
+          flake8 meinberlin tests --exclude migrations,settings
+          npm run lint
+      - name: Coveralls
+        env:
+          GITHUB_TOKEN: ${{ secrets.COV }}
+        run: |
+          coveralls
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        env:
+          TRAVIS_SSH_SECRET: ${{ secrets.DEPLOY }}
+        run: |
+          ./scripts/deploy.sh
