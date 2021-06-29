@@ -30,7 +30,8 @@ def test_choice_belongs_to_question(admin,
 
     data = {
         'choices': [choice2.pk],
-        'other_choice_answer': {}
+        'other_choice_answer': '',
+        'open_answer': ''
     }
 
     with pytest.raises(ValidationError):
