@@ -118,7 +118,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class PollSerializer(serializers.ModelSerializer):
-    questions = QuestionSerializer(many=True)
+    questions = QuestionSerializer(many=True, source='annotated_questions')
 
     class Meta:
         model = models.Poll
@@ -128,12 +128,12 @@ class PollSerializer(serializers.ModelSerializer):
         # Delete removed questions from the database
         instance.questions.exclude(
             id__in=[question['id']
-                    for question in data['questions']
+                    for question in data['annotated_questions']
                     if 'id' in question
                     ]).delete()
 
         # Update (or create) the questions
-        for weight, question in enumerate(data['questions']):
+        for weight, question in enumerate(data['annotated_questions']):
             question_id = question.get('id')
             question_instance, _ = models.Question.objects.update_or_create(
                 id=question_id,
