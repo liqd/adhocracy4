@@ -3,6 +3,7 @@
 mein.berlin is a participation platform for the city of Berlin, Germany. It is
 based on [adhocracy 4](https://github.com/liqd/adhocracy4).
 
+![Build Status](https://github.com/liqd/a4-meinberlin/actions/workflows/django.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/liqd/a4-meinberlin/badge.svg?branch=main)](https://coveralls.io/github/liqd/a4-meinberlin?branch=main)
 
 ## Requirements
