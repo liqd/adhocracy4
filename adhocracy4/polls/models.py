@@ -40,6 +40,9 @@ class Poll(module_models.Item):
     def get_absolute_url(self):
         return self.project.get_absolute_url()
 
+    def annotated_questions(self):
+        return self.questions.annotate_vote_count()
+
 
 class Question(models.Model):
     label = models.CharField(max_length=255)
