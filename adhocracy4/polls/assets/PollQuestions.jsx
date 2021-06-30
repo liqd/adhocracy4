@@ -7,13 +7,12 @@ export const PollQuestions = (props) => {
   const [questions, setQuestions] = useState([])
 
   useEffect(() => {
-    api.poll.get(props.moduleId)
+    api.poll.get(props.pollId)
       .done(r => setQuestions(r.questions))
   }, [])
 
   return (
     <div className="pollquestionlist-container">
-      Here are the PollQuestion items
       {questions.map((q, idx) => <PollQuestion key={idx} question={q} />)}
     </div>
   )
