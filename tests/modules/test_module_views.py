@@ -13,12 +13,14 @@ from tests.apps.questions.views import QuestionList
 def test_detail_view_module(rf, user, phase_factory, module_factory):
     module = module_factory()
     phase = phase_factory(
+        type='a4test_questions:ask',
         module=module,
         start_date=parse('2013-01-01 00:00:00 UTC'),
         end_date=parse('2013-01-02 00:00:00 UTC')
     )
     module2 = module_factory(project=module.project)
     phase2 = phase_factory(
+        type='a4test_questions:ask',
         module=module2,
         start_date=parse('2013-01-03 00:00:00 UTC'),
         end_date=parse('2013-01-04 00:00:00 UTC')

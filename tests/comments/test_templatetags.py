@@ -9,6 +9,7 @@ from freezegun import freeze_time
 
 from adhocracy4.comments.serializers import ThreadSerializer
 from adhocracy4.test import helpers
+from tests.apps.questions.phases import AskPhase
 
 
 def react_comment_render_for_props(rf, user, question):
@@ -59,8 +60,12 @@ def test_react_rating_anonymous(rf, question, comment):
 
 
 @pytest.mark.django_db
-def test_react_rating_user(rf, user, phase, question, comment):
-    with freeze_time('2013-01-02 18:00:00 UTC'):
+def test_react_rating_user(rf, user, phase_factory, question_factory,
+                           comment):
+    phase, _, _, question = helpers.setup_phase(phase_factory,
+                                                question_factory,
+                                                AskPhase)
+    with helpers.freeze_phase(phase):
         props = react_comment_render_for_props(rf, user, question)
         comments_content_type = ContentType.objects.get_for_model(comment)
         request = rf.get('/')

@@ -1,14 +1,20 @@
 import importlib
 import json
 import os
+from contextlib import contextmanager
+from datetime import timedelta
 from unittest import mock
 from urllib.parse import urlparse
 
+import factory
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
+from django.db.models.signals import post_save
 from django.template import Context
 from django.template import Template
 from django.urls import resolve
 from easy_thumbnails.files import get_thumbnailer
+from freezegun import freeze_time
 
 
 def create_thumbnail(imagefield):
@@ -77,3 +83,39 @@ def dispatch_view(view_class, request, *args, **kwargs):
     view.args = args
     view.kwargs = kwargs
     return view.dispatch(request, *args, **kwargs), view
+
+
+@factory.django.mute_signals(post_save)
+def setup_phase(phase_factory, item_factory, phase_content_class, **kwargs):
+    phase_content = phase_content_class()
+    phase = phase_factory(phase_content=phase_content, **kwargs)
+    module = phase.module
+    project = phase.module.project
+    item = item_factory(module=module) if item_factory else None
+    return phase, module, project, item
+
+
+@factory.django.mute_signals(post_save)
+def setup_users(project):
+    anonymous = AnonymousUser()
+    moderator = project.moderators.first()
+    initiator = project.organisation.initiators.first()
+    return anonymous, moderator, initiator
+
+
+@contextmanager
+def freeze_phase(phase):
+    with freeze_time(phase.start_date + timedelta(seconds=1)):
+        yield
+
+
+@contextmanager
+def freeze_pre_phase(phase):
+    with freeze_time(phase.start_date - timedelta(seconds=1)):
+        yield
+
+
+@contextmanager
+def freeze_post_phase(phase):
+    with freeze_time(phase.end_date + timedelta(seconds=1)):
+        yield

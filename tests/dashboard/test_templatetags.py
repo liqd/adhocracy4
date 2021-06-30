@@ -4,7 +4,8 @@ from adhocracy4.test.helpers import render_template
 
 
 @pytest.mark.django_db
-def test_get_phase_name(phase):
+def test_get_phase_name(phase_factory):
+    phase = phase_factory(type='a4test_questions:ask')
     template = '{% load a4dashboard_tags %}' \
                '{% get_phase_name type as x %}{{x}}'
 

@@ -36,7 +36,9 @@ def question_list_view():
 
 
 @pytest.mark.django_db
-def test_phase_dispatch_mixin_phase(rf, project_detail_view, phase):
+def test_phase_dispatch_mixin_phase(rf, project_detail_view,
+                                    phase_factory):
+    phase = phase_factory(type='a4test_questions:ask')
     project = phase.module.project
 
     with freeze_time(phase.start_date):
