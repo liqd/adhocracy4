@@ -116,17 +116,20 @@ def test_phase_validation(phase_factory):
 
 
 @pytest.mark.django_db
-def test_questionsapp_phase_view(phase):
+def test_questionsapp_phase_view(phase_factory):
+    phase = phase_factory(type='a4test_questions:ask')
     assert phase.view == q_views.QuestionList
 
 
 @pytest.mark.django_db
-def test_questionsapp_phase_feature(phase):
+def test_questionsapp_phase_feature(phase_factory):
+    phase = phase_factory(type='a4test_questions:ask')
     assert phase.has_feature('crud', q_models.Question)
 
 
 @pytest.mark.django_db
-def test_questionsapp_phase_content(phase):
+def test_questionsapp_phase_content(phase_factory):
+    phase = phase_factory(type='a4test_questions:ask')
     assert phase.content() is content['a4test_questions:ask']
 
 
