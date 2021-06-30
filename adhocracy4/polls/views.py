@@ -41,6 +41,7 @@ class PollDetailView(ProjectMixin,
         if self.object is not None:
             context['question_list'] = \
                 self.object.questions.annotate_vote_count().all()
+            context['poll'] = self.get_object()
         return context
 
     def get_permission_object(self):
