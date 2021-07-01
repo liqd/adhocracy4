@@ -39,8 +39,6 @@ class PollDetailView(ProjectMixin,
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.object is not None:
-            context['question_list'] = \
-                self.object.questions.annotate_vote_count().all()
             context['poll'] = self.get_object()
         return context
 
