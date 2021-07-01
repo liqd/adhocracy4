@@ -192,10 +192,14 @@ class Choice(models.Model):
             raise ValidationError({
                 'question': _('Open questions cannot have choices.')
             })
-        if self.is_other_choice and self.question.choices.count() == 0:
+        elif self.is_other_choice and self.question.choices.count() == 0:
             raise ValidationError({
                 'is_other_choice': _('"Other" cannot be the only choice. Use '
                                      'open question or add more choices.')
+            })
+        elif self.is_other_choice and self.question.has_other_option:
+            raise ValidationError({
+                'is_other_choice': _('Question already has "other" choice.')
             })
         super().clean(*args, **kwargs)
 

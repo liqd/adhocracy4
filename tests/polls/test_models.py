@@ -172,6 +172,15 @@ def test_choice_clean(question,
     assert error.value.messages[0].\
         startswith('Open questions cannot have choices.')
 
+    question.is_open = False
+    question.save()
+    choice_factory(question=question)
+    choice_factory(question=question, is_other_choice=True)
+    with pytest.raises(ValidationError) as error:
+        choice_factory(question=question, is_other_choice=True)
+    assert error.value.messages[0] == \
+           'Question already has "other" choice.'
+
 
 @pytest.mark.django_db
 def test_multi_choice_queryset(question,
