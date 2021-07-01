@@ -3,10 +3,12 @@ import django from 'django'
 
 export const PollQuestion = (props) => {
   const multiHelpText = props.question.multiple_choice ? <div className="poll__help-text">{django.gettext('Multiple answers are possible.')}</div> : null
+  const questionHelpText = props.question.help_text ? <div className="poll__help-text">{props.question.help_text}</div> : null
 
   return (
     <div className="poll u-border">
       <h2>{props.question.label}</h2>
+      {questionHelpText}
       {multiHelpText}
       <div className="poll__rows">
         {
