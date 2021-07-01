@@ -37,7 +37,8 @@ class VoteViewSet(viewsets.ViewSet):
     def create(self, request, *args, **kwargs):
         choices, other_choice_answer, open_answer = self.get_data(request)
 
-        self.validate_choices(choices)
+        if not self.question.is_open:
+            self.validate_choices(choices)
 
         with transaction.atomic():
             if self.question.is_open:
