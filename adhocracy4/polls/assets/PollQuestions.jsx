@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import PollQuestion from './PollQuestion'
+import { PollQuestion } from './PollQuestion'
 
 const api = require('adhocracy4').api
 
