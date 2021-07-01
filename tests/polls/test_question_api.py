@@ -85,7 +85,7 @@ def test_admin_can_update_poll(apiclient,
                     },
                     {
                         'label': 'choice2',
-                        'is_other_choice': False,
+                        'is_other_choice': True,
                         'count': 2
                     },
                 ],
@@ -97,6 +97,7 @@ def test_admin_can_update_poll(apiclient,
     response = apiclient.put(url, data, format='json')
     assert response.status_code == status.HTTP_200_OK
     assert Question.objects.count() == 2
+    assert Question.objects.last().has_other_option
 
     data = {
         'questions': [
@@ -128,3 +129,43 @@ def test_admin_can_update_poll(apiclient,
     response = apiclient.put(url, data, format='json')
     assert response.status_code == status.HTTP_200_OK
     assert Question.objects.count() == 1
+
+    data = {
+        'questions': [
+            {
+                'id': question.id,
+                'label': 'bla',
+                'help_text': 'blubb',
+                'multiple_choice': True,
+                'is_open': False,
+                'choices': [
+                    {
+                        'id': choice1.pk,
+                        'label': 'choice1',
+                        'is_other_choice': False,
+                        'count': 1
+                    },
+                    {
+                        'id': choice2.pk,
+                        'label': 'choice2',
+                        'is_other_choice': False,
+                        'count': 2
+                    },
+                ],
+                'answers': [],
+            },
+            {
+                'label': 'open question',
+                'help_text': 'blubb',
+                'multiple_choice': False,
+                'is_open': True,
+                'choices': [],
+                'answers': [],
+            }
+        ]
+    }
+
+    response = apiclient.put(url, data, format='json')
+    assert response.status_code == status.HTTP_200_OK
+    assert Question.objects.count() == 2
+    assert Question.objects.filter(is_open=True).count() == 1
