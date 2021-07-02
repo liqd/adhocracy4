@@ -28,7 +28,7 @@ class ChoiceQuerySet(models.QuerySet):
 
 class MBPoll(module_models.Item):
     comments = GenericRelation(comment_models.Comment,
-                               related_query_name='poll',
+                               related_query_name='+',
                                object_id_field='object_pk')
 
     def get_absolute_url(self):
