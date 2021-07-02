@@ -7,7 +7,6 @@ from django.core.files import base
 from django.core.files import images
 from PIL import Image
 
-from adhocracy4 import phases
 from adhocracy4.test import factories
 
 
@@ -41,40 +40,6 @@ class AdminFactory(factory.django.DjangoModelFactory):
     email = factory.Sequence(lambda n: 'admin%d@liqd.net' % n)
     password = make_password('password')
     is_superuser = True
-
-
-# FIXME: move to core
-class PhaseContentFactory(factory.Factory):
-    class Meta:
-        model = phases.PhaseContent
-
-    app = 'phase_content_factory'
-    phase = 'factory_phase'
-    view = None
-
-    name = 'Factory Phase'
-    description = 'Factory Phase Description'
-    module_name = 'factory phase module'
-
-    features = {}
-
-    @classmethod
-    def _create(cls, model_class, *args, **kwargs):
-        phase_content = model_class()
-        for key, value in kwargs.items():
-            setattr(phase_content, key, value)
-
-        phases.content.register(phase_content)
-        return phase_content
-
-
-# FIXME: move to core
-class PhaseFactory(factories.PhaseFactory):
-
-    class Params:
-        phase_content = PhaseContentFactory()
-
-    type = factory.LazyAttribute(lambda f: f.phase_content.identifier)
 
 
 class ImageFactory():

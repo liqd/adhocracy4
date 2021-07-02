@@ -25,7 +25,6 @@ def pytest_configure(config):
 register(factories.UserFactory)
 register(factories.UserFactory, 'user2')
 register(factories.AdminFactory, 'admin')
-register(factories.PhaseFactory)
 register(OrganisationFactory)
 register(factories.CommentFactory)
 register(factories.RatingFactory)

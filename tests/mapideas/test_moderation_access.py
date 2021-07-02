@@ -1,8 +1,8 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.factories import PhaseFactory
 from meinberlin.apps.mapideas import phases
-from meinberlin.test.factories import PhaseFactory
 from meinberlin.test.factories.mapideas import MapIdeaFactory
 from meinberlin.test.helpers import assert_template_response
 from meinberlin.test.helpers import freeze_phase
