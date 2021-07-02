@@ -3,9 +3,9 @@ from dateutil.parser import parse
 from django.utils import translation
 from freezegun import freeze_time
 
+from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.livequestions import phases
 from meinberlin.test.helpers import assert_template_response
-from meinberlin.test.helpers import setup_phase
 
 
 @pytest.mark.django_db

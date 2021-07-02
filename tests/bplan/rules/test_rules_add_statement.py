@@ -1,12 +1,12 @@
 import pytest
 import rules
 
+from adhocracy4.test.helpers import freeze_phase
+from adhocracy4.test.helpers import freeze_post_phase
+from adhocracy4.test.helpers import freeze_pre_phase
+from adhocracy4.test.helpers import setup_phase
+from adhocracy4.test.helpers import setup_users
 from meinberlin.apps.bplan import phases
-from meinberlin.test.helpers import freeze_phase
-from meinberlin.test.helpers import freeze_post_phase
-from meinberlin.test.helpers import freeze_pre_phase
-from meinberlin.test.helpers import setup_phase
-from meinberlin.test.helpers import setup_users
 
 perm_name = 'meinberlin_bplan.add_statement'
 

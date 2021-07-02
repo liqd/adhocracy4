@@ -1,11 +1,11 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import freeze_phase
 from adhocracy4.test.helpers import redirect_target
 from meinberlin.apps.mapideas import models
 from meinberlin.apps.mapideas import phases
 from meinberlin.test.helpers import assert_template_response
-from meinberlin.test.helpers import freeze_phase
 
 
 @pytest.mark.django_db

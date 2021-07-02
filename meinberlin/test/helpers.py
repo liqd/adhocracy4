@@ -1,34 +1,12 @@
 import os
-from contextlib import contextmanager
-from datetime import timedelta
 
 import factory
 from django.conf import settings
-from django.contrib.auth.models import AnonymousUser
 from django.db.models.signals import post_save
 from django.utils.encoding import smart_text
 from easy_thumbnails.files import get_thumbnailer
-from freezegun import freeze_time
 
 from adhocracy4.test.helpers import redirect_target
-
-
-@factory.django.mute_signals(post_save)
-def setup_phase(phase_factory, item_factory, phase_content_class, **kwargs):
-    phase_content = phase_content_class()
-    phase = phase_factory(phase_content=phase_content, **kwargs)
-    module = phase.module
-    project = phase.module.project
-    item = item_factory(module=module) if item_factory else None
-    return phase, module, project, item
-
-
-@factory.django.mute_signals(post_save)
-def setup_users(project):
-    anonymous = AnonymousUser()
-    moderator = project.moderators.first()
-    initiator = project.organisation.initiators.first()
-    return anonymous, moderator, initiator
 
 
 @factory.django.mute_signals(post_save)
@@ -48,24 +26,6 @@ def setup_group_member(organisation, project, group_factory,
     else:
         project = None
     return group_member, organisation, project
-
-
-@contextmanager
-def freeze_phase(phase):
-    with freeze_time(phase.start_date + timedelta(seconds=1)):
-        yield
-
-
-@contextmanager
-def freeze_pre_phase(phase):
-    with freeze_time(phase.start_date - timedelta(seconds=1)):
-        yield
-
-
-@contextmanager
-def freeze_post_phase(phase):
-    with freeze_time(phase.end_date + timedelta(seconds=1)):
-        yield
 
 
 def assert_template_response(response, template_name, status_code=200):

@@ -1,7 +1,7 @@
 import pytest
 from django.contrib import auth
 
-from meinberlin.test.helpers import setup_users
+from adhocracy4.test.helpers import setup_users
 
 User = auth.get_user_model()
 

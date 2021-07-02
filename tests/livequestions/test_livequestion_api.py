@@ -1,12 +1,12 @@
 import pytest
 from django.urls import reverse
 
+from adhocracy4.test.helpers import freeze_phase
+from adhocracy4.test.helpers import freeze_post_phase
+from adhocracy4.test.helpers import freeze_pre_phase
+from adhocracy4.test.helpers import setup_phase
 from meinberlin.apps.livequestions import models
 from meinberlin.apps.livequestions import phases
-from meinberlin.test.helpers import freeze_phase
-from meinberlin.test.helpers import freeze_post_phase
-from meinberlin.test.helpers import freeze_pre_phase
-from meinberlin.test.helpers import setup_phase
 
 
 @pytest.mark.django_db

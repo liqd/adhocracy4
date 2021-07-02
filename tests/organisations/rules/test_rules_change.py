@@ -1,7 +1,7 @@
 import pytest
 import rules
 
-from meinberlin.test.helpers import setup_users
+from adhocracy4.test.helpers import setup_users
 
 perm_name = 'meinberlin_organisations.change_organisation'
 

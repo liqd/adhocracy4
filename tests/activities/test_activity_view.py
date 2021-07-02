@@ -1,7 +1,7 @@
 import pytest
 from django.urls import reverse
 
-from meinberlin.test.helpers import setup_users
+from adhocracy4.test.helpers import setup_users
 
 
 @pytest.mark.django_db
