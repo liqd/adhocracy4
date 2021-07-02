@@ -110,7 +110,6 @@ INSTALLED_APPS = (
     'meinberlin.apps.newsletters',
     'meinberlin.apps.offlineevents',
     'meinberlin.apps.plans',
-    'meinberlin.apps.projects',
     'meinberlin.apps.platformemails',
 
     # Apps defining phases
@@ -125,6 +124,10 @@ INSTALLED_APPS = (
     'meinberlin.apps.maptopicprio',
     'meinberlin.apps.projectcontainers',
     'meinberlin.apps.topicprio',
+
+    # Apps overwriting and adding to a4
+    'meinberlin.apps.polls',
+    'meinberlin.apps.projects',
 )
 
 MIDDLEWARE = (
