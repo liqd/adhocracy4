@@ -9,7 +9,7 @@ module.exports.renderReports = function (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))
 
   el.setAttribute('href', '#' + props.modalName)
-  el.setAttribute('data-toggle', 'modal')
+  el.setAttribute('data-bs-toggle', 'modal')
 
   const container = document.createElement('div')
   document.body.appendChild(container)

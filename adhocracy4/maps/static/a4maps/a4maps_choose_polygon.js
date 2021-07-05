@@ -98,7 +98,7 @@ function init () {
       $('#id_' + name).trigger('change')
     })
 
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
       map.invalidateSize().fitBounds(getBaseBounds(L, polygon, bbox))
     })
   })
