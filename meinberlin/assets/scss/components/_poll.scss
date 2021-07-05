@@ -1,6 +1,9 @@
+// taken as standard from radio.scss
+$checkbox-size: 20px;
+
+//remove the u-border in a4
 .poll {
-    padding: 1.5em;
-    margin-bottom: $em-spacer;
+    padding: 1.5*$spacer;
 
     background-color: $body-bg;
 
@@ -9,12 +12,23 @@
     }
 }
 
-.poll__actions > :last-child {
-    margin-top: 0.5em;
-    display: block;
+//PollQuestion/s
+.poll-row {
+    position: relative;
+    z-index: 1;
+    padding: 0.2*$spacer 0;
+    margin-bottom: 0.5*$spacer;
+    display: flex;
+    @include clearfix;
 
-    @media (min-width: $breakpoint) {
-        display: inline-block;
+    &--answered {
+        left: 2*$spacer;
+    }
+    //FIXME
+    .input-group__input {
+        margin-left: $checkbox-size + 7px !important;
+        margin-top: 0.5*$spacer;
+        width: auto;
     }
 }
 
@@ -22,53 +36,51 @@
     color: $gray-lighter;
     margin-top: -0.7em;
     margin-bottom: 0.5em;
+
+}
+
+.poll-row.radio {
+    flex-direction: column;
+}
+
+.poll__rows {
+    padding-bottom: $spacer;
+    border-bottom: 1px solid $border-color;
+}
+
+.poll__actions > :last-child {
+    margin-top: 0.5*$spacer;
+    display: block;
+
+    @media (min-width: $breakpoint) {
+        display: inline-block;
+    }
+}
+
+.editpoll__help-text,
+.poll__help-text {
+    color: $gray-lighter;
+    margin-top: -0.7*$spacer;
+    margin-bottom: 0.5*$spacer;
+}
+
+.poll-row__number,
+.poll-row__label,
+.poll-row__radio {
+    display: inline-block;
+    margin: 0;
+    margin-right: 0.2*$spacer;
+}
+
+.pollquestionlist-container {
+    border: 1px solid $border-color;
 }
 
 .poll-row__container {
     position: relative;
 }
 
-.poll__rows {
-    margin-bottom: 1em;
-}
-
-.poll-row {
-    position: relative;
-    z-index: 1;
-    padding: 0.2em 0;
-    margin-bottom: 0.5em;
-
-    @include clearfix;
-
-    &--answered {
-        left: 2rem;
-    }
-}
-
-.poll-row__chosen {
-    color: $gray-lighter;
-    border: 3px solid $gray-lighter;
-    border-radius: 1rem;
-    padding: 0.2rem;
-    font-size: 0.8rem;
-    position: absolute;
-    top: 0.2rem;
-}
-
-.poll-row__radio,
-.poll-row__number,
-.poll-row__label {
-    display: inline-block;
-    margin: 0;
-    margin-right: 0.2em;
-}
-
-.poll-row__number {
-    padding-left: 0.5em;
-    min-width: 5em;
-    font-weight: bold;
-}
-
+// RESULTS
 .poll-row__bar {
     background-color: $bg-tertiary;
     position: absolute;
@@ -92,10 +104,34 @@
     max-width: 96% !important;
 }
 
-// additional new poll module style classes
+.poll-row__chosen {
+    color: $gray-lighter;
+    border: 3px solid $gray-lighter;
+    border-radius: 1rem;
+    padding: 0.2*$spacer;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 0.2*$spacer;
+}
+
+.poll-row__number {
+    padding-left: 0.5*$spacer;
+    min-width: 5em;
+    font-weight: bold;
+}
+
+//EditPollQuestions/EditPollOpenQuestions
 .editpoll__actions-container {
     display: flex;
     flex-direction: column;
+}
+
+.editpoll__menu-container {
+    margin: 0.25*$spacer 0;
+
+    & > * {
+        width: 100%;
+    }
 }
 
 .questionform__actions {
@@ -109,9 +145,10 @@
 }
 
 .editpoll__question-button {
-    margin: 0.5rem 0;
+    margin: 0.5*$spacer 0;
 }
 
+//FIXME
 .submenu-item__first {
     border-color: $brand-secondary;
     border-bottom-left-radius: 0;
@@ -120,14 +157,6 @@
     &:hover {
         border-color: $brand-secondary;
         background-color: $bg-secondary;
-    }
-}
-
-.editpoll__menu-container {
-    margin: 0.25rem 0;
-
-    & > * {
-        width: 100%;
     }
 }
 
@@ -163,6 +192,7 @@
     margin: 0 1rem;
 }
 
+//FIXME
 @media (min-width: $breakpoint) {
     .editpoll__question-container {
         @include clearfix;
@@ -195,6 +225,63 @@
 
     .editpoll__question-button {
         margin: 0;
-        margin-right: 0.5rem;
+        margin-right: 0.5*$spacer;
     }
+
+    .questionform-divider {
+        border-top: 1px solid $border-color;
+        margin: 1.5*$spacer;
+    }
+}
+
+.poll-slider {
+    background-color: $bg-secondary;
+    position: relative;
+    margin-bottom: 0.5*$spacer;
+
+    //slick overwrites - nested for specificity
+    .slick-prev,
+    .slick-next {
+        top: 5*$spacer;
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        background-color: $brand-primary;
+        z-index: 1; //for when tile links overlap
+
+        // &:hover,
+        // :focus {
+        //     background-color: $body-bg;
+        // }
+
+        &:before {
+            color: $body-bg;
+            opacity: 1;
+            font-family: "Font Awesome 5 Free", sans-serif;
+            font-weight: 900;
+            font-size: $font-size-xxl;
+            line-height: 1.3rem;
+        }
+    }
+
+    .slick-prev {
+        left: 88% !important;
+    }
+
+    .slick-next {
+        right: $spacer !important;
+    }
+
+    .slick-prev:before {
+        content: '\f104'; // angle-left
+    }
+
+    .slick-next:before {
+        content: '\f105'; // angle-right
+    }
+}
+
+.poll-slider__item {
+    padding: $spacer;
 }
