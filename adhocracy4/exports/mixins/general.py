@@ -3,6 +3,26 @@ from django.utils.translation import ugettext as _
 from .base import VirtualFieldMixin
 
 
+class UserGeneratedContentExportMixin(VirtualFieldMixin):
+    """
+    Adds link to item.
+
+    Can be used with all suitable models, not only module items.
+    """
+    def get_virtual_fields(self, virtual):
+        if 'creator' not in virtual:
+            virtual['creator'] = _('Creator')
+        if 'created' not in virtual:
+            virtual['created'] = _('Created')
+        return super().get_virtual_fields(virtual)
+
+    def get_creator_data(self, item):
+        return item.creator.username
+
+    def get_created_data(self, item):
+        return item.created.isoformat()
+
+
 class ItemExportWithLinkMixin(VirtualFieldMixin):
     """
     Adds link to item.
