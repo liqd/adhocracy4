@@ -1,7 +1,7 @@
 import { EditPollQuestions } from './EditPollQuestions'
+import PollQuestions from './PollQuestions'
 const React = require('react')
 const ReactDOM = require('react-dom')
-const { PollQuestions } = require('./PollQuestions')
 
 module.exports.renderPolls = function (element) {
   const pollId = element.getAttribute('data-poll-id')
