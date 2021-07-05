@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext as _
 
 from adhocracy4.comments.models import Comment
@@ -64,3 +65,38 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
                     username=reply.creator.username,
                     text=unescape_and_strip_html(reply.comment)
                 )
+
+
+class CommentExportWithRepliesToMixin(VirtualFieldMixin):
+    """
+    Adds the id of a comment the comment is a reply to.
+
+    To be used in comment exports.
+    """
+    def get_virtual_fields(self, virtual):
+        virtual['replies_to_comment'] = _('Reply to Comment')
+        return super().get_virtual_fields(virtual)
+
+    def get_replies_to_comment_data(self, comment):
+        try:
+            return comment.parent_comment.get().pk
+        except ObjectDoesNotExist:
+            return ''
+
+
+class CommentExportWithRepliesToReferenceMixin(VirtualFieldMixin):
+    """
+    Adds the reference number of an item the comment is a reply to.
+
+    To be used in comment exports. Only to be used with items that have a
+    reference number.
+    """
+    def get_virtual_fields(self, virtual):
+        virtual['replies_to_reference'] = _('Reply to Reference')
+        return super().get_virtual_fields(virtual)
+
+    def get_replies_to_reference_data(self, comment):
+        if hasattr(comment.content_object, 'reference_number'):
+            return comment.content_object.reference_number
+        else:
+            return ''
