@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { PollQuestion } from './PollQuestion'
 import Alert from '../../static/Alert'
 import django from 'django'
@@ -6,50 +6,92 @@ import django from 'django'
 const api = require('adhocracy4').api
 const config = require('adhocracy4').config
 
-export const PollQuestions = (props) => {
-  const [questions, setQuestions] = useState([])
-  const [showResults, setShowResults] = useState(false)
-  // votes: [
-  //   {questionId: 1, choices: [], other_choice_answer: [], open_answer: []}
-  //   {questionId: 2, choices: [], other_choice_answer: [], open_answer: []}
-  // ]
-  const [votes] = useState([])
-  // const [vote, setVote] = useState()
-  const [alert, setAlert] = useState()
+class PollQuestions extends React.Component {
+  constructor (props) {
+    super(props)
 
-  const handleVoteSingle = (questionId, voteData) => {
-    let vote = votes.find(v => v.questionId === questionId)
-    !vote && (vote = {
-      urlReplaces: { questionId },
-      choices: [parseInt(voteData)],
-      other_choice_answer: [],
-      open_answer: []
+    this.state = {
+      questions: [],
+      showResults: false,
+      alert: false,
+      votes: []
+    }
+
+    this.linkToPoll = (
+      <button type="button" className="btn btn--link" onClick={this.handleToggleResultsPage}>
+        {django.gettext('To poll')}
+      </button>
+    )
+
+    this.linkChangeVote = (
+      <button type="button" className="btn btn--link" onClick={this.handleToggleResultsPage}>
+        {django.gettext('Change vote')}
+      </button>)
+
+    this.resultsScreen = (
+      <div className="pollquestionlist-container">
+        <div className="poll__actions">
+          {this.hasAnyVotes() ? this.linkChangeVote : this.linkToPoll}
+        </div>
+      </div>
+    )
+
+    this.linkShowResults = (
+      <button type="button" className="btn btn--link" onClick={this.handleToggleResultsPage}>
+        {django.gettext('Show preliminary results')}
+      </button>
+    )
+  }
+
+  handleVoteSingle (questionId, choiceId) {
+    this.setState(prevState => {
+      const currQuestion = prevState.questions.find(q => q.id === questionId)
+      currQuestion.userChoices = [choiceId]
     })
-    console.log(vote)
   }
 
-  const handleVoteMulti = (questionId, voteData) => {
-    console.log(questionId, voteData)
+  handleVoteMulti (questionId, choiceId) {
+    this.setState(prevState => {
+      const currQuestion = prevState.questions.find(q => q.id === questionId)
+      const toRemove = currQuestion.userChoices.findIndex(uc => uc === choiceId)
+      toRemove !== -1 && currQuestion.userChoices.splice(toRemove, 1)
+      toRemove !== -1 || currQuestion.userChoices.push(choiceId)
+    })
   }
 
-  const handleVoteOther = (questionId, voteData) => {
-    console.log(questionId, voteData)
+  handleVoteOther (questionId, otherAnswer) {
+    this.setState(prevState => {
+      const currQuestion = prevState.questions.find(q => q.id === questionId)
+      currQuestion.other_choice_answer = otherAnswer
+    })
   }
 
-  const handleToggleResultsPage = () => setShowResults(!showResults)
-  const hasAnyVotes = () => votes.length > 0
-  const isReadOnly = () => questions.length > 0 && questions[0].isReadOnly
-  const removeAlert = () => setAlert(null)
+  handleToggleResultsPage () {
+    this.setShowResults(!this.state.showResults)
+  }
 
-  const getVoteButton = () => {
-    const isAuthenticated = questions.length > 0 && questions[0].authenticated
+  hasAnyVotes () {
+    return this.state.votes.length > 0
+  }
+
+  isReadOnly () {
+    return this.state.questions.length > 0 && this.state.questions[0].isReadOnly
+  }
+
+  removeAlert () {
+    this.setState({ alert: false })
+  }
+
+  getVoteButton () {
+    const isAuthenticated = this.state.questions.length > 0 && this.state.questions[0].authenticated
 
     if (isAuthenticated) {
-      const disabled = !hasAnyVotes // also in case no changes yet!
+      const disabled = !this.hasAnyVotes
       return (
         <button
-          type="submit"
+          type="button"
           className="btn btn--primary u-spacer-right"
+          onClick={(e) => this.handleSubmit(e)}
           disabled={disabled}
         >
           {django.gettext('Vote')}
@@ -64,158 +106,66 @@ export const PollQuestions = (props) => {
     }
   }
 
-  const handleSubmit = (e) => {
-    // e.preventDefault()
-
-    // console.log(e)
-    // setAlert({
-    //   type: 'success',
-    //   message: django.gettext('The poll has been updated.')
-    // })
-
-    // const result = api.poll.vote(data, props.pollId)
-    //   .done((response) => {
-    //     return response
-    //     // setAlert({
-    //     //   type: 'success',
-    //     //   message: django.gettext('The poll has been updated.')
-    //     // })
-    //     // setErrors([])
-    //     // if (props.reloadOnSuccess) {
-    //     //   dashboard.updateDashboard()
-    //     // }
-    //   })
-    //   .fail((xhr, status, err) => {
-    //     // if (xhr.responseJSON && 'questions' in xhr.responseJSON) {
-    //     //   setErrors(xhr.responseJSON.questions)
-    //     // }
-
-    //     setAlert({
-    //       type: 'danger',
-    //       message: django.gettext('The poll could not be updated.')
-    //     })
-    //   })
-    // console.log(result)
+  handleSubmit (e) {
+    e.preventDefault()
+    const datalist = []
+    for (const question of this.state.questions) {
+      datalist.push({
+        urlReplaces: { questionId: question.id },
+        choices: question.userChoices,
+        other_choice_answer: question.other_choice_answer || '',
+        open_answer: question.open_answer || ''
+      })
+    }
+    api.poll.batchvote(datalist)
+      .then(response => {
+        this.setState({
+          alert: {
+            type: 'success',
+            message: django.gettext('Vote counted')
+          }
+        })
+      })
+      .catch(() => {
+        this.setState({
+          alert: {
+            type: 'danger',
+            message: django.gettext('Vote has not been counted due to a server error.')
+          }
+        })
+      })
   }
 
-  // const removeAlert = () => {
-  //   this.setState({
-  //     alert: null
-  //   })
-  // }
+  componentDidMount () {
+    api.poll.get(this.props.pollId)
+      .done(r => this.setState({ questions: r.questions }))
+  }
 
-  // const getHelpTextAnswer = () => {
-  //   const total = this.state.question.totalVoteCount
-  //   const totalMulti = this.state.question.totalVoteCountMulti
-
-  //   let helpTextAnswer
-  //   let helpTextAnswerPlural
-  //   if (this.state.question.multiple_choice) {
-  //     if (total === 1 && totalMulti === 1) {
-  //       helpTextAnswerPlural = django.gettext('%s participant gave 1 answer.')
-  //     } else if (total === 1 && totalMulti > 1) {
-  //       helpTextAnswerPlural = django.gettext('%s participant gave %s answers.', total)
-  //     } else {
-  //       helpTextAnswerPlural = django.ngettext('%s participant gave %s answers.', '%s participants gave %s answers.', total)
-  //     }
-  //     helpTextAnswer = helpTextAnswerPlural + django.gettext(' For multiple choice questions the percentages may add up to more than 100%.')
-  //   } else {
-  //     helpTextAnswer = django.ngettext('1 person has answered.', '%s people have answered.', total)
-  //   }
-  //   return django.interpolate(helpTextAnswer, [total, totalMulti])
-  // }
-
-  // Creating all types of buttons and links
-  const buttonVote = getVoteButton()
-  const linkShowResults = (
-    <button type="button" className="btn btn--link" onClick={handleToggleResultsPage}>
-      {django.gettext('Show preliminary results')}
-    </button>
-  )
-
-  const linkToPoll = (
-    <button type="button" className="btn btn--link" onClick={handleToggleResultsPage}>
-      {django.gettext('To poll')}
-    </button>
-  )
-  const linkChangeVote = (
-    <button type="button" className="btn btn--link" onClick={handleToggleResultsPage}>
-      {django.gettext('Change vote')}
-    </button>)
-
-  useEffect(() => {
-    api.poll.get(props.pollId)
-      .done(r => setQuestions(r.questions))
-  }, [])
-
-  const pollScreen = (
-    <div className="pollquestionlist-container">
-      <form onSubmit={(e) => handleSubmit(e)}>
-        {questions.map((q, idx) => (
-          <PollQuestion
-            key={idx}
-            question={q}
-            onSingleChange={(questionId, voteData) => handleVoteSingle(questionId, voteData)}
-            onMultiChange={(questionId, voteData) => handleVoteMulti(questionId, voteData)}
-            onOtherChange={(questionId, voteData) => handleVoteOther(questionId, voteData)}
-          />
-        ))}
-        <Alert onClick={() => removeAlert()} {...alert} />
-        {!isReadOnly() && (
-          <div className="poll__actions">
-            {buttonVote}{linkShowResults}
-          </div>
-        )}
-      </form>
-    </div>
-  )
-
-  const resultsScreen = (
-    <div className="pollquestionlist-container">
-      Results Screen
-      <div className="poll__actions">
-        {hasAnyVotes() ? linkChangeVote : linkToPoll}
+  render () {
+    this.buttonVote = this.getVoteButton()
+    this.pollScreen = (
+      <div className="pollquestionlist-container">
+        <div className="u-border">
+          {this.state.questions.map((q, idx) => (
+            <PollQuestion
+              key={idx}
+              question={q}
+              onSingleChange={(questionId, voteData) => this.handleVoteSingle(questionId, voteData)}
+              onMultiChange={(questionId, voteData) => this.handleVoteMulti(questionId, voteData)}
+              onOtherChange={(questionId, voteId, voteData) => this.handleVoteOther(questionId, voteId, voteData)}
+            />
+          ))}
+          <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
+          {!this.isReadOnly() && (
+            <div className="poll__actions">
+              {this.buttonVote}{this.linkShowResults}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  )
-
-  return showResults ? resultsScreen : pollScreen
+    )
+    return this.state.showResults ? this.resultsScreen : this.pollScreen
+  }
 }
 
-// handleSubmit (event) {
-//   event.preventDefault()
-
-//   if (this.state.question.isReadOnly) {
-//     return false
-//   }
-
-//   const newChoices = this.state.selectedChoices
-
-//   const submitData = {
-//     choices: newChoices,
-//     urlReplaces: { questionId: this.state.question.id }
-//   }
-
-//   api.poll.vote(submitData)
-//     .done((data) => {
-//       this.setState({
-//         showResult: true,
-//         selectedChoices: data.question.userChoices,
-//         question: data.question,
-//         alert: {
-//           type: 'success',
-//           message: django.gettext('Vote counted')
-//         }
-//       })
-//     })
-//     .fail((xhr, status, err) => {
-//       this.setState({
-//         showResult: false,
-//         selectedChoices: newChoices,
-//         alert: {
-//           type: 'danger',
-//           message: django.gettext('Vote has not been counted due to a server error.')
-//         }
-//       })
-//     })
-// }
+export default PollQuestions

@@ -73,6 +73,15 @@ var api = (function () {
     return $.ajax(params)
   }
 
+  async function _sendBatchRequest (endpoint, type, datalist) {
+    const results = []
+    for (const data of datalist) {
+      const result = await _sendRequest(endpoint, type, data)
+      results.push(result)
+    }
+    return results
+  }
+
   return {
     comments: {
       add: function (data) {
@@ -158,6 +167,9 @@ var api = (function () {
         return _sendRequest('pollvote', {
           type: 'POST'
         }, data)
+      },
+      batchvote: function (datalist) {
+        return _sendBatchRequest('pollvote', { type: 'POST' }, datalist)
       }
     },
     moderatorremark: {
