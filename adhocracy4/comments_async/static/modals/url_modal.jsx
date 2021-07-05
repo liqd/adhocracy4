@@ -28,7 +28,7 @@ export default class UrlModal extends React.Component {
     partials.body = (
       <div className="input-group">
         <input id={'share-url-' + this.props.objectId} type="text" className="form-control" value={this.props.url} readOnly />
-        <button className="btn btn--transparent input-group-append modal-url-bar-button" data-toggle="button" aria-pressed="false" autoComplete="off" onClick={(e) => this.copyUrl(e)}>
+        <button className="btn btn--transparent input-group-append modal-url-bar-button" data-bs-toggle="button" aria-pressed="false" autoComplete="off" onClick={(e) => this.copyUrl(e)}>
           {this.state.clicked ? buttonTextCopied : buttonTextCopy}
         </button>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { PollQuestion } from './PollQuestion'
+import PollResults from './PollResults'
 import Alert from '../../static/Alert'
 import django from 'django'
 

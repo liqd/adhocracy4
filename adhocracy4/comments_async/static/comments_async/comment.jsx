@@ -361,14 +361,14 @@ export default class Comment extends React.Component {
                   {!this.props.is_deleted &&
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={`?comment_${this.props.id}`}
-                      data-toggle="modal" data-target={`#share_comment_${this.props.id}`}
+                      data-bs-toggle="modal" data-bs-target={`#share_comment_${this.props.id}`}
                     ><i className="fas fa-share" /> {share}
                     </a>}
 
                   {!this.props.is_deleted && this.context.isAuthenticated && !this.isOwner() &&
                     <a
                       className="btn btn--no-border a4-comments__action-bar__btn" href={`#report_comment_${this.props.id}`}
-                      data-toggle="modal"
+                      data-bs-toggle="modal"
                     ><i className="fas fa-exclamation-triangle" />{report}
                     </a>}
 

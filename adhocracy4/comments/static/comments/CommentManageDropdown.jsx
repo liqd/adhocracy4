@@ -11,7 +11,7 @@ const CommentManageDropdown = (props) => {
       <li className="dropdown">
         <button
           type="button" className="dropdown-toggle" aria-haspopup="true"
-          aria-expanded="false" data-toggle="dropdown"
+          aria-expanded="false" data-bs-toggle="dropdown"
         >
           <i className="fa fa-ellipsis-h" aria-hidden="true" />
         </button>
@@ -21,10 +21,10 @@ const CommentManageDropdown = (props) => {
               <button type="button" onClick={props.handleToggleEdit}>{editTag}</button>
             </li>,
             <li className="divider" key="2" />,
-            <li key="3"><a href={`#comment_delete_${props.id}`} data-toggle="modal">{deleteTag}</a></li>,
+            <li key="3"><a href={`#comment_delete_${props.id}`} data-bs-toggle="modal">{deleteTag}</a></li>,
             <li className="divider" key="4" />
           ]}
-          <li><a href={`#report_comment_${props.id}`} data-toggle="modal">{reportTag}</a>
+          <li><a href={`#report_comment_${props.id}`} data-bs-toggle="modal">{reportTag}</a>
           </li>
         </ul>
       </li>
