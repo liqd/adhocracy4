@@ -9,7 +9,7 @@ from .base import VirtualFieldMixin
 
 class ItemExportWithCommentCountMixin(VirtualFieldMixin):
     """
-    Adds the (parent) comment count to an item.
+    Adds the comment count (including child comments) to an item.
     """
     def get_virtual_fields(self, virtual):
         if 'comment_count' not in virtual:
