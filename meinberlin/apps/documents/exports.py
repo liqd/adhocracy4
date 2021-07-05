@@ -2,18 +2,17 @@ from django.utils.translation import ugettext as _
 from rules.contrib.views import PermissionRequiredMixin
 
 from adhocracy4.comments.models import Comment
-from adhocracy4.exports import mixins as export_mixins
+from adhocracy4.exports import mixins
 from adhocracy4.exports import views as export_views
-from meinberlin.apps.exports import mixins as mb_export_mixins
 
 
 class DocumentExportView(
         PermissionRequiredMixin,
-        export_mixins.ExportModelFieldsMixin,
-        mb_export_mixins.UserGeneratedContentExportMixin,
-        export_mixins.ItemExportWithLinkMixin,
-        export_mixins.ItemExportWithRatesMixin,
-        mb_export_mixins.ItemExportWithRepliesToMixin,
+        mixins.ExportModelFieldsMixin,
+        mixins.UserGeneratedContentExportMixin,
+        mixins.ItemExportWithLinkMixin,
+        mixins.ItemExportWithRatesMixin,
+        mixins.CommentExportWithRepliesToMixin,
         export_views.BaseItemExportView
 ):
 

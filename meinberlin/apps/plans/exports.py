@@ -3,20 +3,19 @@ from django.utils.translation import ugettext
 from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
-from adhocracy4.exports import mixins as export_mixins
+from adhocracy4.exports import mixins
 from adhocracy4.exports import unescape_and_strip_html
 from adhocracy4.exports import views as export_views
-from meinberlin.apps.exports import mixins as mb_export_mixins
 
 from . import models
 
 
 class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
-                              mb_export_mixins.
+                              mixins.
                               ItemExportWithReferenceNumberMixin,
-                              export_mixins.ItemExportWithLinkMixin,
-                              export_mixins.ExportModelFieldsMixin,
-                              export_mixins.ItemExportWithLocationMixin,
+                              mixins.ItemExportWithLinkMixin,
+                              mixins.ExportModelFieldsMixin,
+                              mixins.ItemExportWithLocationMixin,
                               export_views.BaseExport,
                               export_views.AbstractXlsxExportView):
 

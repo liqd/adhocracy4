@@ -1,12 +1,12 @@
 import pytest
 
 from adhocracy4.comments.models import Comment
-from meinberlin.apps.exports import mixins
+from adhocracy4.exports import mixins
 
 
 @pytest.mark.django_db
 def test_reply_to_mixin(idea, comment_factory):
-    mixin = mixins.ItemExportWithRepliesToMixin()
+    mixin = mixins.CommentExportWithRepliesToMixin()
 
     virtual = mixin.get_virtual_fields({})
     assert 'replies_to_comment' in virtual
@@ -22,7 +22,7 @@ def test_reply_to_mixin(idea, comment_factory):
 
 @pytest.mark.django_db
 def test_reply_to_reference_mixin(idea, comment_factory):
-    mixin = mixins.ItemExportWithRepliesToReferenceMixin()
+    mixin = mixins.CommentExportWithRepliesToReferenceMixin()
 
     virtual = mixin.get_virtual_fields({})
     assert 'replies_to_reference' in virtual

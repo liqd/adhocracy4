@@ -1,6 +1,6 @@
 import pytest
 
-from meinberlin.apps.exports import mixins
+from adhocracy4.exports import mixins
 
 
 @pytest.mark.django_db
