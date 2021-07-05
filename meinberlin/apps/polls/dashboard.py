@@ -33,6 +33,9 @@ class ExportPollComponent(DashboardComponent):
             (r'^modules/(?P<module_slug>[-\w_]+)/poll/export/comments/$',
              exports.PollCommentExportView.as_view(),
              'poll-comment-export'),
+            (r'^modules/(?P<module_slug>[-\w_]+)/poll/export/poll/$',
+             exports.PollExportView.as_view(),
+             'poll-export'),
         ]
 
 

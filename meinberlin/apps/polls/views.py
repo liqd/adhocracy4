@@ -11,4 +11,7 @@ class PollDashboardExportView(DashboardExportView):
         context['comment_export'] = reverse(
             'a4dashboard:poll-comment-export',
             kwargs={'module_slug': self.module.slug})
+        context['poll_export'] = reverse(
+            'a4dashboard:poll-export',
+            kwargs={'module_slug': self.module.slug})
         return context
