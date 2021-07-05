@@ -647,12 +647,12 @@ msgstr "Anzahl Kommentare"
 #: adhocracy4/exports/mixins/comments.py:77
 #: adhocracy4/exports/mixins/comments.py:77
 msgid "Reply to Comment"
-msgstr ""
+msgstr "Antwort auf Kommentar"
 
 #: adhocracy4/exports/mixins/comments.py:95
 #: adhocracy4/exports/mixins/comments.py:95
 msgid "Reply to Reference"
-msgstr ""
+msgstr "Kommentar zur Referenz"
 
 #: adhocracy4/exports/mixins/general.py:14
 #: adhocracy4/exports/mixins/general.py:14
@@ -1106,13 +1106,15 @@ msgstr ""
 #: adhocracy4/polls/phases.py:16
 msgctxt "A4: voting phase name"
 msgid "Voting phase"
-msgstr ""
+msgstr "Machen Sie mit bei unserer Umfrage!"
 
 #: adhocracy4/polls/phases.py:19
 #: adhocracy4/polls/phases.py:19
 msgctxt "A4: voting phase description"
 msgid "Answer the questions and comment on the poll."
 msgstr ""
+"Helfen Sie uns, indem Sie die unten stehenden Fragen beantworten. Am Ende "
+"des Fragebogens ist Platz für Ihre Kommentare."
 
 #: adhocracy4/polls/phases.py:21
 #: adhocracy4/polls/phases.py:21
