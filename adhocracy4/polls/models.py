@@ -185,6 +185,8 @@ class Choice(models.Model):
 
     is_other_choice = models.BooleanField(default=False)
 
+    weight = models.SmallIntegerField()
+
     objects = ChoiceQuerySet.as_manager()
 
     def clean(self, *args, **kwargs):
@@ -214,7 +216,7 @@ class Choice(models.Model):
         return '%s @%s' % (self.label, self.question)
 
     class Meta:
-        ordering = ['id']
+        ordering = ['weight', 'id']
 
 
 class Vote(UserGeneratedContentModel):

@@ -162,14 +162,15 @@ class PollSerializer(serializers.ModelSerializer):
         question_instance.choices.exclude(id__in=choice_ids).delete()
 
         # Update (or create) this questions choices
-        for choice in question['choices']:
+        for weight, choice in enumerate(question['choices']):
             choice_id = choice.get('id')
             choice_instance, _ = models.Choice.objects.update_or_create(
                 id=choice_id,
                 defaults={
                     'question': question_instance,
                     'label': choice['label'],
-                    'is_other_choice': choice['is_other_choice']
+                    'is_other_choice': choice['is_other_choice'],
+                    'weight': weight
                 }
             )
 

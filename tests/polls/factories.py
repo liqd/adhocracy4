@@ -51,16 +51,12 @@ class ChoiceFactory(factory.django.DjangoModelFactory):
         model = models.Choice
 
     label = factory.Faker('sentence', nb_words=4)
+    weight = factory.Faker('random_number', digits=4)
     question = factory.SubFactory(QuestionFactory)
 
 
-class OtherChoiceFactory(factory.django.DjangoModelFactory):
+class OtherChoiceFactory(ChoiceFactory):
 
-    class Meta:
-        model = models.Choice
-
-    label = factory.Faker('sentence', nb_words=4)
-    question = factory.SubFactory(QuestionFactory)
     is_other_choice = True
 
 
