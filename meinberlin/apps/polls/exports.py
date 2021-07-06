@@ -61,6 +61,11 @@ class PollExportView(
         creator_ids = list(set(creators_vote).union(set(creators_answer)))
         return User.objects.filter(pk__in=creator_ids)
 
+    def get_object_list(self):
+        # index is needed for (anonymous) user id
+        return [(index, user) for index, user in
+                enumerate(self.get_queryset().all())]
+
     @property
     def poll(self):
         return poll_models.Poll.objects.get(module=self.module)
@@ -71,7 +76,7 @@ class PollExportView(
 
     def get_virtual_fields(self, virtual):
         virtual = super().get_virtual_fields(virtual)
-
+        virtual['user_id'] = 'user'
         for question in self.questions:
             if question.is_open:
                 virtual = \
@@ -100,32 +105,38 @@ class PollExportView(
 
         return virtual
 
-    def get_field_data(self, user, field):
-        field_object, is_text_field = field
+    def get_field_data(self, item, field):
+        index, user = item
 
-        if type(field_object) == poll_models.Choice:
-            votes_qs = poll_models.Vote.objects.filter(
-                choice=field_object,
-                creator=user)
-            if not is_text_field:
-                value = int(votes_qs.exists())
-            else:
-                vote = votes_qs.first()
-                if vote:
-                    value = poll_models.OtherVote.objects.get(vote=vote).answer
+        if field == 'user_id':
+            value = index + 1
+
+        else:
+            field_object, is_text_field = field
+            if type(field_object) == poll_models.Choice:
+                votes_qs = poll_models.Vote.objects.filter(
+                    choice=field_object,
+                    creator=user)
+                if not is_text_field:
+                    value = int(votes_qs.exists())
                 else:
-                    value = ''
-        else:  # field_object is question
-            answers_qs = poll_models.Answer.objects.filter(
-                question=field_object,
-                creator=user)
-            if not is_text_field:
-                value = int(answers_qs.exists())
-            else:
-                answer = answers_qs.first()
-                if answer:
-                    value = answer.answer
+                    vote = votes_qs.first()
+                    if vote:
+                        value = poll_models.OtherVote.objects.get(
+                            vote=vote).answer
+                    else:
+                        value = ''
+            else:  # field_object is question
+                answers_qs = poll_models.Answer.objects.filter(
+                    question=field_object,
+                    creator=user)
+                if not is_text_field:
+                    value = int(answers_qs.exists())
                 else:
-                    value = ''
+                    answer = answers_qs.first()
+                    if answer:
+                        value = answer.answer
+                    else:
+                        value = ''
 
         return value
