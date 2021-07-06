@@ -69,6 +69,11 @@ class Question(models.Model):
     def has_other_option(self):
         return self.choices.filter(is_other_choice=True).exists()
 
+    def get_other_option(self):
+        if self.has_other_option:
+            return self.choices.filter(is_other_choice=True).first()
+        return None
+
     def clean(self, *args, **kwargs):
         if self.is_open:
             if self.multiple_choice:
@@ -194,15 +199,19 @@ class Choice(models.Model):
             raise ValidationError({
                 'question': _('Open questions cannot have choices.')
             })
-        elif self.is_other_choice and self.question.choices.count() == 0:
-            raise ValidationError({
-                'is_other_choice': _('"Other" cannot be the only choice. Use '
-                                     'open question or add more choices.')
-            })
-        elif self.is_other_choice and self.question.has_other_option:
-            raise ValidationError({
-                'is_other_choice': _('Question already has "other" choice.')
-            })
+        elif self.is_other_choice:
+            if self.question.choices.count() == 0:
+                raise ValidationError({
+                    'is_other_choice': _('"Other" cannot be the only choice. '
+                                         'Use open question or add more '
+                                         'choices.')
+                })
+            if self.question.has_other_option and \
+               self.id != self.question.get_other_option().id:
+                raise ValidationError({
+                    'is_other_choice': _('Question already has "other" '
+                                         'choice.')
+                })
         super().clean(*args, **kwargs)
 
     def save(self, *args, **kwargs):
