@@ -65,7 +65,7 @@ export const PollQuestion = (props) => {
                         className="input-group__input"
                         type="text"
                         name="question"
-                        value={otherChoiceAnswer}
+                        value={checked ? otherChoiceAnswer : ''}
                         id={'id_choice-' + choice.id + '-single-answer'}
                         onChange={(event) => { handleOtherChange(event) }}
                         disabled={!props.question.authenticated || !checked}
@@ -92,7 +92,7 @@ export const PollQuestion = (props) => {
                         type="text"
                         name="question"
                         id={'id_choice-' + choice.id + '-single'}
-                        value={otherChoiceAnswer}
+                        value={checked ? otherChoiceAnswer : ''}
                         onChange={(event) => { handleOtherChange(event) }}
                         disabled={!props.question.authenticated || !checked}
                       />}
