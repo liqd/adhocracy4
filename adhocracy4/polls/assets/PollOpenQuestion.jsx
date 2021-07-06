@@ -2,15 +2,24 @@ import React, { useState } from 'react'
 
 export const PollOpenQuestion = (props) => {
   const questionHelpText = props.question.help_text ? <div className="poll__help-text">{props.question.help_text}</div> : null
-  const [openAnswer, setOpenAnswer] = useState(props.question.open_answer)
+
+  const getUserOpenAnswer = () => {
+    const userAnswerId = props.question.userAnswer
+    const userAnswer = props.question.answers.find(oa => oa.id === userAnswerId)
+    return (userAnswerId && userAnswer)
+      ? userAnswer.answer
+      : ''
+  }
+
+  const [userAnswer, setUserAnswer] = useState(getUserOpenAnswer())
 
   const handleOpenChange = (event) => {
-    setOpenAnswer(event.target.value)
-    props.onOpenChange(props.question.id, openAnswer)
+    setUserAnswer(event.target.value)
+    props.onOpenChange(props.question.id, event.target.value)
   }
 
   return (
-    <div className="poll u-border">
+    <div className="poll">
       <h2>{props.question.label}</h2>
       {questionHelpText}
       <div className="poll__rows">
@@ -19,6 +28,7 @@ export const PollOpenQuestion = (props) => {
           type="text"
           name="question"
           id={'id_choice-' + props.question.id + '-open'}
+          value={userAnswer}
           disabled={!props.question.authenticated}
           onChange={(event) => { handleOpenChange(event) }}
         />

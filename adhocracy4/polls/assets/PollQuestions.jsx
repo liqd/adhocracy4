@@ -15,8 +15,7 @@ class PollQuestions extends React.Component {
     this.state = {
       questions: [],
       showResults: false,
-      alert: false,
-      votes: []
+      alert: false
     }
 
     this.linkToPoll = (
@@ -87,7 +86,7 @@ class PollQuestions extends React.Component {
     const isAuthenticated = this.state.questions.length > 0 && this.state.questions[0].authenticated
 
     if (isAuthenticated) {
-      const disabled = !this.hasAnyVotes
+      const disabled = this.hasAnyVotes()
       return (
         <button
           type="button"
@@ -109,8 +108,9 @@ class PollQuestions extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
+    const modifiedQuestions = this.state.questions.filter(q => q.modified)
     const datalist = []
-    for (const question of this.state.questions) {
+    for (const question of modifiedQuestions) {
       datalist.push({
         urlReplaces: { questionId: question.id },
         choices: question.userChoices,
@@ -118,7 +118,7 @@ class PollQuestions extends React.Component {
         open_answer: question.open_answer || ''
       })
     }
-    api.poll.batchvote(datalist)
+    modifiedQuestions.length > 0 && api.poll.batchvote(datalist)
       .then(response => {
         this.setState({
           alert: {
