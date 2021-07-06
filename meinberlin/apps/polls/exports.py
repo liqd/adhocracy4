@@ -63,47 +63,37 @@ class PollExportView(
         return poll_models.Poll.objects.get(module=self.module)
 
     @property
-    def single_choice_questions(self):
-        return self.poll.questions.filter(
-            multiple_choice=False,
-            is_open=False).order_by('id')
-
-    @property
-    def multiple_choice_questions(self):
-        return self.poll.questions.filter(multiple_choice=True).order_by('id')
-
-    @property
-    def open_questions(self):
-        return self.poll.questions.filter(is_open=True).order_by('id')
+    def questions(self):
+        return self.poll.questions.all()
 
     def get_virtual_fields(self, virtual):
         virtual = super().get_virtual_fields(virtual)
-        virtual = self.get_virtual_fields_choice_questions(
-            virtual, self.single_choice_questions)
-        virtual = self.get_virtual_fields_choice_questions(
-            virtual, self.multiple_choice_questions)
-        virtual = self.get_virtual_fields_open_questions(
-            virtual, self.open_questions)
+
+        for question in self.questions:
+            if question.is_open:
+                virtual = \
+                    self.get_virtual_field_open_question(virtual, question)
+            else:
+                virtual = \
+                    self.get_virtual_field_choice_question(virtual, question)
 
         return virtual
 
-    def get_virtual_fields_choice_questions(self, virtual, choice_questions):
-        for question in choice_questions.all():
-            for choice in question.choices.all():
-                identifier = 'Q' + str(question.pk) + '_A' + str(choice.pk)
-                virtual[(choice, False)] = identifier
-                if choice.is_other_choice:
-                    identifier_answer = identifier + '_text'
-                    virtual[(choice, True)] = identifier_answer
+    def get_virtual_field_choice_question(self, virtual, choice_question):
+        for choice in choice_question.choices.all():
+            identifier = 'Q' + str(choice_question.pk) + '_A' + str(choice.pk)
+            virtual[(choice, False)] = identifier
+            if choice.is_other_choice:
+                identifier_answer = identifier + '_text'
+                virtual[(choice, True)] = identifier_answer
 
         return virtual
 
-    def get_virtual_fields_open_questions(self, virtual, open_questions):
-        for question in open_questions.all():
-            identifier = 'Q' + str(question.pk)
-            virtual[(question, False)] = identifier
-            identifier_answer = identifier + '_text'
-            virtual[(question, True)] = identifier_answer
+    def get_virtual_field_open_question(self, virtual, open_question):
+        identifier = 'Q' + str(open_question.pk)
+        virtual[(open_question, False)] = identifier
+        identifier_answer = identifier + '_text'
+        virtual[(open_question, True)] = identifier_answer
 
         return virtual
 
