@@ -17,14 +17,23 @@ def test_perm_exists():
 
 
 @pytest.mark.django_db
-def test_pre_phase(phase_factory, poll_factory, user, user_factory):
+def test_pre_phase(phase_factory, poll_factory, user_factory,
+                   group_factory):
     phase, _, project, item = setup_phase(phase_factory, poll_factory,
                                           phases.VotingPhase)
     anonymous, moderator, _ = setup_users(project)
     initiator = user_factory()
     project.organisation.initiators.add(initiator)
-
     creator = item.creator
+    user = user_factory()
+
+    group1 = group_factory()
+    group2 = group_factory()
+    group3 = group_factory()
+    group_member_12 = user_factory.create(groups=(group1, group2))
+    group_member_23 = user_factory.create(groups=(group2, group3))
+    project.group = group1
+    project.save()
 
     assert project.is_public
     with freeze_pre_phase(phase):
@@ -32,17 +41,29 @@ def test_pre_phase(phase_factory, poll_factory, user, user_factory):
         assert not rules.has_perm(perm_name, user, item)
         assert not rules.has_perm(perm_name, creator, item)
         assert not rules.has_perm(perm_name, moderator, item)
+        assert rules.has_perm(perm_name, group_member_12, item)
+        assert not rules.has_perm(perm_name, group_member_23, item)
         assert rules.has_perm(perm_name, initiator, item)
 
 
 @pytest.mark.django_db
-def test_phase_active(phase_factory, poll_factory, user, user_factory):
+def test_phase_active(phase_factory, poll_factory, user_factory,
+                      group_factory):
     phase, _, project, item = setup_phase(phase_factory, poll_factory,
                                           phases.VotingPhase)
     anonymous, moderator, _ = setup_users(project)
     initiator = user_factory()
     project.organisation.initiators.add(initiator)
     creator = item.creator
+    user = user_factory()
+
+    group1 = group_factory()
+    group2 = group_factory()
+    group3 = group_factory()
+    group_member_12 = user_factory.create(groups=(group1, group2))
+    group_member_23 = user_factory.create(groups=(group2, group3))
+    project.group = group1
+    project.save()
 
     assert project.is_public
     with freeze_phase(phase):
@@ -50,12 +71,14 @@ def test_phase_active(phase_factory, poll_factory, user, user_factory):
         assert not rules.has_perm(perm_name, user, item)
         assert not rules.has_perm(perm_name, creator, item)
         assert not rules.has_perm(perm_name, moderator, item)
+        assert rules.has_perm(perm_name, group_member_12, item)
+        assert not rules.has_perm(perm_name, group_member_23, item)
         assert rules.has_perm(perm_name, initiator, item)
 
 
 @pytest.mark.django_db
 def test_phase_active_project_private(phase_factory, poll_factory,
-                                      user, another_user, user_factory):
+                                      user_factory, group_factory):
     phase, _, project, item = setup_phase(
         phase_factory, poll_factory, phases.VotingPhase,
         module__project__access=Access.PRIVATE)
@@ -63,8 +86,17 @@ def test_phase_active_project_private(phase_factory, poll_factory,
     initiator = user_factory()
     project.organisation.initiators.add(initiator)
     creator = item.creator
-    participant = another_user
+    participant = user_factory()
     project.participants.add(participant)
+    user = user_factory()
+
+    group1 = group_factory()
+    group2 = group_factory()
+    group3 = group_factory()
+    group_member_12 = user_factory.create(groups=(group1, group2))
+    group_member_23 = user_factory.create(groups=(group2, group3))
+    project.group = group1
+    project.save()
 
     assert project.access == Access.PRIVATE
     with freeze_phase(phase):
@@ -73,12 +105,14 @@ def test_phase_active_project_private(phase_factory, poll_factory,
         assert not rules.has_perm(perm_name, creator, item)
         assert not rules.has_perm(perm_name, participant, item)
         assert not rules.has_perm(perm_name, moderator, item)
+        assert rules.has_perm(perm_name, group_member_12, item)
+        assert not rules.has_perm(perm_name, group_member_23, item)
         assert rules.has_perm(perm_name, initiator, item)
 
 
 @pytest.mark.django_db
 def test_phase_active_project_semipublic(phase_factory, poll_factory,
-                                         user, another_user, user_factory):
+                                         user_factory, group_factory):
     phase, _, project, item = setup_phase(
         phase_factory, poll_factory, phases.VotingPhase,
         module__project__access=Access.SEMIPUBLIC)
@@ -86,8 +120,17 @@ def test_phase_active_project_semipublic(phase_factory, poll_factory,
     initiator = user_factory()
     project.organisation.initiators.add(initiator)
     creator = item.creator
-    participant = another_user
+    participant = user_factory()
     project.participants.add(participant)
+    user = user_factory()
+
+    group1 = group_factory()
+    group2 = group_factory()
+    group3 = group_factory()
+    group_member_12 = user_factory.create(groups=(group1, group2))
+    group_member_23 = user_factory.create(groups=(group2, group3))
+    project.group = group1
+    project.save()
 
     assert project.access == Access.SEMIPUBLIC
     with freeze_phase(phase):
@@ -96,12 +139,14 @@ def test_phase_active_project_semipublic(phase_factory, poll_factory,
         assert not rules.has_perm(perm_name, creator, item)
         assert not rules.has_perm(perm_name, participant, item)
         assert not rules.has_perm(perm_name, moderator, item)
+        assert rules.has_perm(perm_name, group_member_12, item)
+        assert not rules.has_perm(perm_name, group_member_23, item)
         assert rules.has_perm(perm_name, initiator, item)
 
 
 @pytest.mark.django_db
-def test_phase_active_project_draft(phase_factory, poll_factory, user,
-                                    user_factory):
+def test_phase_active_project_draft(phase_factory, poll_factory,
+                                    user_factory, group_factory):
     phase, _, project, item = setup_phase(phase_factory, poll_factory,
                                           phases.VotingPhase,
                                           module__project__is_draft=True)
@@ -109,6 +154,15 @@ def test_phase_active_project_draft(phase_factory, poll_factory, user,
     initiator = user_factory()
     project.organisation.initiators.add(initiator)
     creator = item.creator
+    user = user_factory()
+
+    group1 = group_factory()
+    group2 = group_factory()
+    group3 = group_factory()
+    group_member_12 = user_factory.create(groups=(group1, group2))
+    group_member_23 = user_factory.create(groups=(group2, group3))
+    project.group = group1
+    project.save()
 
     assert project.is_draft
     with freeze_phase(phase):
@@ -116,12 +170,14 @@ def test_phase_active_project_draft(phase_factory, poll_factory, user,
         assert not rules.has_perm(perm_name, user, item)
         assert not rules.has_perm(perm_name, creator, item)
         assert not rules.has_perm(perm_name, moderator, item)
+        assert rules.has_perm(perm_name, group_member_12, item)
+        assert not rules.has_perm(perm_name, group_member_23, item)
         assert rules.has_perm(perm_name, initiator, item)
 
 
 @pytest.mark.django_db
-def test_post_phase_project_archived(phase_factory, poll_factory, user,
-                                     user_factory):
+def test_post_phase_project_archived(phase_factory, poll_factory,
+                                     user_factory, group_factory):
     phase, _, project, item = setup_phase(phase_factory, poll_factory,
                                           phases.VotingPhase,
                                           module__project__is_archived=True)
@@ -129,6 +185,15 @@ def test_post_phase_project_archived(phase_factory, poll_factory, user,
     initiator = user_factory()
     project.organisation.initiators.add(initiator)
     creator = item.creator
+    user = user_factory()
+
+    group1 = group_factory()
+    group2 = group_factory()
+    group3 = group_factory()
+    group_member_12 = user_factory.create(groups=(group1, group2))
+    group_member_23 = user_factory.create(groups=(group2, group3))
+    project.group = group1
+    project.save()
 
     assert project.is_archived
     with freeze_post_phase(phase):
@@ -136,4 +201,6 @@ def test_post_phase_project_archived(phase_factory, poll_factory, user,
         assert not rules.has_perm(perm_name, user, item)
         assert not rules.has_perm(perm_name, creator, item)
         assert not rules.has_perm(perm_name, moderator, item)
+        assert rules.has_perm(perm_name, group_member_12, item)
+        assert not rules.has_perm(perm_name, group_member_23, item)
         assert rules.has_perm(perm_name, initiator, item)
