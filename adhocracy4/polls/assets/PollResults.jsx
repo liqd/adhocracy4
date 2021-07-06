@@ -24,11 +24,12 @@ export default class PollResult extends React.Component {
     })
   }
 
-  doBarTransition (node, style) {
-    if (node && node.style) {
-      window.requestAnimationFrame(() => Object.assign(node.style, style))
-    }
-  }
+  // FIXME - should add animation for poll results but not current priority
+  // doBarTransition (node, style) {
+  //   if (node && node.style) {
+  //     window.requestAnimationFrame(() => Object.assign(node.style, style))
+  //   }
+  // }
 
   getHelpText () {
     let helpText
@@ -71,7 +72,8 @@ export default class PollResult extends React.Component {
       infinite: true,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
+      className: 'sliderContainerTest'
     }
 
     return (
@@ -94,26 +96,35 @@ export default class PollResult extends React.Component {
                     />
                   </div>
                   {choice.is_other_choice &&
-                    <Slider {...settings}>
-                      {this.state.question.other_choice_answers.map((slide, index) => {
-                        return (
-                          <div className="react-slider" key={index}>
-                            {this.state.question.other_choice_answers.answer}
-                          </div>
-                        )
-                      })}
-                    </Slider>}
+                    <div>
+                      <Slider {...settings}>
+                        {this.state.question.other_choice_answers.map((slide, index) => {
+                          return (
+                            <div className="react-slider" key={index}>
+                              {this.state.question.userAnswer}
+                            </div>
+                          )
+                        })}
+                      </Slider>
+                    </div>}
                 </div>
               )
             } else {
               return (
-                <span>is open
-                </span>
+                <div>
+                  <Slider {...settings}>
+                    {this.state.question.userAnswer.map((slide, index) => {
+                      <div className="react-slider" key={index}>
+                        {this.state.question.userAnswer}
+                      </div>
+                    })}
+                  </Slider>
+                </div>
               )
             }
           })}
+          {this.getHelpTextAnswer()}
         </div>
-        {this.getHelpTextAnswer()}
       </div>
     )
   }
