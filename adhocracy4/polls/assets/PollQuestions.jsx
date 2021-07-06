@@ -15,7 +15,8 @@ class PollQuestions extends React.Component {
     this.state = {
       questions: [],
       showResults: false,
-      alert: false
+      alert: false,
+      votes: []
     }
 
     this.linkToPoll = (
@@ -36,11 +37,17 @@ class PollQuestions extends React.Component {
     )
   }
 
+  setModified (questionId, value) {
+    const currQuestion = this.state.questions.find(q => q.id === questionId)
+    currQuestion.modified = value
+  }
+
   handleVoteSingle (questionId, choiceId) {
     this.setState(prevState => {
       const currQuestion = prevState.questions.find(q => q.id === questionId)
       currQuestion.userChoices = [choiceId]
     })
+    this.setModified(questionId, true)
   }
 
   handleVoteMulti (questionId, choiceId) {
@@ -50,6 +57,7 @@ class PollQuestions extends React.Component {
       toRemove !== -1 && currQuestion.userChoices.splice(toRemove, 1)
       toRemove !== -1 || currQuestion.userChoices.push(choiceId)
     })
+    this.setModified(questionId, true)
   }
 
   handleVoteOther (questionId, otherAnswer) {
@@ -57,6 +65,7 @@ class PollQuestions extends React.Component {
       const currQuestion = prevState.questions.find(q => q.id === questionId)
       currQuestion.other_choice_answer = otherAnswer
     })
+    this.setModified(questionId, true)
   }
 
   handleVoteOpen (questionId, openAnswer) {
@@ -64,6 +73,7 @@ class PollQuestions extends React.Component {
       const currQuestion = prevState.questions.find(q => q.id === questionId)
       currQuestion.open_answer = openAnswer
     })
+    this.setModified(questionId, true)
   }
 
   handleToggleResultsPage () {
@@ -120,6 +130,7 @@ class PollQuestions extends React.Component {
     }
     modifiedQuestions.length > 0 && api.poll.batchvote(datalist)
       .then(response => {
+        this.setModified(response[0].question.id, false)
         this.setState({
           alert: {
             type: 'success',
