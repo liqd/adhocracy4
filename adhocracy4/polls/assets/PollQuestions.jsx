@@ -1,9 +1,9 @@
 import React from 'react'
 import { PollQuestion } from './PollQuestion'
-// import { PollOpenQuestion } from './PollOpenQuestion'
-import PollResults from './PollResults'
+import { PollOpenQuestion } from './PollOpenQuestion'
 import Alert from '../../static/Alert'
 import django from 'django'
+import PollResults from './PollResults'
 
 const api = require('adhocracy4').api
 const config = require('adhocracy4').config
@@ -57,6 +57,13 @@ class PollQuestions extends React.Component {
     this.setState(prevState => {
       const currQuestion = prevState.questions.find(q => q.id === questionId)
       currQuestion.other_choice_answer = otherAnswer
+    })
+  }
+
+  handleVoteOpen (questionId, openAnswer) {
+    this.setState(prevState => {
+      const currQuestion = prevState.questions.find(q => q.id === questionId)
+      currQuestion.open_answer = openAnswer
     })
   }
 
@@ -145,16 +152,17 @@ class PollQuestions extends React.Component {
             question={q}
           />
         ))}
-        <div className="poll">
-          {this.hasAnyVotes() ? this.linkChangeVote : this.linkToPoll}
-        </div>
       </div>
     ) : (
       <div className="pollquestionlist-container">
         <div className="u-border">
           {this.state.questions.map((q, idx) => (
             q.is_open ? (
-              <span>test</span>
+              <PollOpenQuestion
+                key={idx}
+                question={q}
+                onOpenChange={(questionId, voteData) => this.handleVoteOpen(questionId, voteData)}
+              />
             ) : (
               <PollQuestion
                 key={idx}

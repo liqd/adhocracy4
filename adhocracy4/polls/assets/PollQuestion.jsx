@@ -68,7 +68,7 @@ export const PollQuestion = (props) => {
                         value={otherChoiceAnswer}
                         id={'id_choice-' + choice.id + '-single-answer'}
                         onChange={(event) => { handleOtherChange(event) }}
-                        disabled={!props.question.authenticated}
+                        disabled={!props.question.authenticated || !checked}
                       />}
                   </label>
                 )
@@ -94,7 +94,7 @@ export const PollQuestion = (props) => {
                         id={'id_choice-' + choice.id + '-single'}
                         value={otherChoiceAnswer}
                         onChange={(event) => { handleOtherChange(event) }}
-                        disabled={!props.question.authenticated}
+                        disabled={!props.question.authenticated || !checked}
                       />}
                   </label>
                 )
