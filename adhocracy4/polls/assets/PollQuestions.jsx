@@ -1,5 +1,6 @@
 import React from 'react'
 import { PollQuestion } from './PollQuestion'
+// import { PollOpenQuestion } from './PollOpenQuestion'
 import PollResults from './PollResults'
 import Alert from '../../static/Alert'
 import django from 'django'
@@ -19,26 +20,18 @@ class PollQuestions extends React.Component {
     }
 
     this.linkToPoll = (
-      <button type="button" className="btn btn--link" onClick={this.handleToggleResultsPage}>
+      <button type="button" className="btn btn--link" onClick={() => this.handleToggleResultsPage()}>
         {django.gettext('To poll')}
       </button>
     )
 
     this.linkChangeVote = (
-      <button type="button" className="btn btn--link" onClick={this.handleToggleResultsPage}>
+      <button type="button" className="btn btn--link" onClick={() => this.handleToggleResultsPage()}>
         {django.gettext('Change vote')}
       </button>)
 
-    this.resultsScreen = (
-      <div className="pollquestionlist-container">
-        <div className="poll__actions">
-          {this.hasAnyVotes() ? this.linkChangeVote : this.linkToPoll}
-        </div>
-      </div>
-    )
-
     this.linkShowResults = (
-      <button type="button" className="btn btn--link" onClick={this.handleToggleResultsPage}>
+      <button type="button" className="btn btn--link" onClick={() => this.handleToggleResultsPage()}>
         {django.gettext('Show preliminary results')}
       </button>
     )
@@ -68,7 +61,7 @@ class PollQuestions extends React.Component {
   }
 
   handleToggleResultsPage () {
-    this.setShowResults(!this.state.showResults)
+    this.setState(prevState => ({ showResults: !prevState.showResults }))
   }
 
   hasAnyVotes () {
@@ -144,28 +137,43 @@ class PollQuestions extends React.Component {
 
   render () {
     this.buttonVote = this.getVoteButton()
-    this.pollScreen = (
+    return this.state.showResults ? (
+      <div className="pollquestionlist-container">
+        {this.state.questions.map((q, idx) => (
+          <PollResults
+            key={idx}
+            question={q}
+          />
+        ))}
+        <div className="poll">
+          {this.hasAnyVotes() ? this.linkChangeVote : this.linkToPoll}
+        </div>
+      </div>
+    ) : (
       <div className="pollquestionlist-container">
         <div className="u-border">
           {this.state.questions.map((q, idx) => (
-            <PollQuestion
-              key={idx}
-              question={q}
-              onSingleChange={(questionId, voteData) => this.handleVoteSingle(questionId, voteData)}
-              onMultiChange={(questionId, voteData) => this.handleVoteMulti(questionId, voteData)}
-              onOtherChange={(questionId, voteId, voteData) => this.handleVoteOther(questionId, voteId, voteData)}
-            />
+            q.is_open ? (
+              <span>test</span>
+            ) : (
+              <PollQuestion
+                key={idx}
+                question={q}
+                onSingleChange={(questionId, voteData) => this.handleVoteSingle(questionId, voteData)}
+                onMultiChange={(questionId, voteData) => this.handleVoteMulti(questionId, voteData)}
+                onOtherChange={(questionId, voteId, voteData) => this.handleVoteOther(questionId, voteId, voteData)}
+              />
+            )
           ))}
           <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
           {!this.isReadOnly() && (
-            <div className="poll__actions">
+            <div className="poll">
               {this.buttonVote}{this.linkShowResults}
             </div>
           )}
         </div>
       </div>
     )
-    return this.state.showResults ? this.resultsScreen : this.pollScreen
   }
 }
 

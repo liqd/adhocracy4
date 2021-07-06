@@ -24,7 +24,9 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-markdown": "5.0.3",
-    "remark-gfm": "1.0.0"
+    "react-slick": "0.28.1",
+    "remark-gfm": "1.0.0",
+    "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
   },
   "devDependencies": {
     "eslint": "7.30.0",
