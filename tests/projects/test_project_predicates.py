@@ -7,8 +7,8 @@ from adhocracy4.projects.enums import Access
 
 
 @pytest.mark.django_db
-def test_is_org_group_member(user_factory, project_factory,
-                             group_factory):
+def test_is_prj_group_member(user_factory, project_factory,
+                             group_factory, question_factory):
     user = user_factory()
     admin = user_factory(is_superuser=True)
     initiator = user_factory()
@@ -20,21 +20,33 @@ def test_is_org_group_member(user_factory, project_factory,
     group_member_23 = user_factory.create(groups=(group2, group3))
     project1 = project_factory(group=group1)
     project2 = project_factory()
+    question1 = question_factory(module__project=project1)
+    question2 = question_factory(module__project=project2)
 
     assert not predicates.is_prj_group_member(user, project1)
     assert not predicates.is_prj_group_member(user, project2)
+    assert not predicates.is_prj_group_member(user, question1)
+    assert not predicates.is_prj_group_member(user, question2)
     assert not predicates.is_prj_group_member(user, False)
     assert not predicates.is_prj_group_member(admin, project1)
     assert not predicates.is_prj_group_member(admin, project2)
+    assert not predicates.is_prj_group_member(admin, question1)
+    assert not predicates.is_prj_group_member(admin, question2)
     assert not predicates.is_prj_group_member(admin, False)
     assert not predicates.is_prj_group_member(initiator, project1)
     assert not predicates.is_prj_group_member(initiator, project2)
+    assert not predicates.is_prj_group_member(initiator, question1)
+    assert not predicates.is_prj_group_member(initiator, question2)
     assert not predicates.is_prj_group_member(initiator, False)
     assert predicates.is_prj_group_member(group_member_12, project1)
     assert not predicates.is_prj_group_member(group_member_12, project2)
+    assert predicates.is_prj_group_member(group_member_12, question1)
+    assert not predicates.is_prj_group_member(group_member_12, question2)
     assert not predicates.is_prj_group_member(group_member_12, False)
     assert not predicates.is_prj_group_member(group_member_23, project1)
     assert not predicates.is_prj_group_member(group_member_23, project2)
+    assert not predicates.is_prj_group_member(group_member_23, question1)
+    assert not predicates.is_prj_group_member(group_member_23, question2)
     assert not predicates.is_prj_group_member(group_member_23, False)
 
 

@@ -4,8 +4,12 @@ import rules
 
 
 @rules.predicate
-def is_prj_group_member(user, project):
-    if project:
+def is_prj_group_member(user, subject):
+    if subject:
+        if hasattr(subject, 'project'):
+            project = subject.project
+        else:
+            project = subject
         return project.is_group_member(user)
     return False
 
