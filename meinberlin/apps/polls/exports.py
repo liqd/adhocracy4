@@ -50,6 +50,9 @@ class PollExportView(
 
     permission_required = 'a4projects.change_project'
 
+    def get_permission_object(self):
+        return self.module.project
+
     def get_queryset(self):
         creators_vote = poll_models.Vote.objects.filter(
             choice__question__poll=self.poll).values_list('creator', flat=True)
