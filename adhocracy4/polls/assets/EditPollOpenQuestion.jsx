@@ -14,6 +14,8 @@ export const EditPollOpenQuestion = (props) => {
             htmlFor={'id_questions-' + props.id + '-name'}
           >
             {django.gettext('Question')}
+            {props.question.id &&
+              <span className="poll__help-text"> Id: Q{props.question.id}</span>}
             <textarea
               id={'id_questions-' + props.id + '-name'}
               name={'questions-' + props.id + '-name'}
