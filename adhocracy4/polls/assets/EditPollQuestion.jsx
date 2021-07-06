@@ -17,6 +17,8 @@ export const EditPollQuestion = (props) => {
             htmlFor={'id_questions-' + props.id + '-name'}
           >
             {django.gettext('Question')}
+            {props.question.id &&
+              <span className="poll__help-text"> Id: Q{props.question.id}</span>}
             <textarea
               id={'id_questions-' + props.id + '-name'}
               name={'questions-' + props.id + '-name'}
@@ -73,8 +75,10 @@ export const EditPollQuestion = (props) => {
                   <div key={key}>
                     <EditPollChoice
                       id={key}
+                      index={index + 1}
                       label={label}
                       choice={choice}
+                      choiceId={choice.id}
                       onLabelChange={(label) => { props.onChoiceLabelChange(index, label) }}
                       onDelete={() => { props.onDeleteChoice(index) }}
                       errors={errors}
@@ -86,8 +90,10 @@ export const EditPollQuestion = (props) => {
                   <div key={key}>
                     <EditPollChoice
                       id={key}
+                      index={index + 1}
                       label={django.gettext('Other')}
                       choice={{ label: django.gettext('Other') }}
+                      choiceId={choice.id}
                       onDelete={() => props.onHasOtherChoiceChange(false)}
                       undeletable={props.question.choices.length < 3}
                       isOther
