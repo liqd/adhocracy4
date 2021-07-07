@@ -197,7 +197,7 @@ class Choice(models.Model):
     def clean(self, *args, **kwargs):
         if self.question.is_open:
             raise ValidationError({
-                'question': _('Open questions cannot have choices.')
+                'label': _('Open questions cannot have choices.')
             })
         elif self.is_other_choice:
             if self.question.choices.count() == 0:
