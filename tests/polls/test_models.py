@@ -201,8 +201,8 @@ def test_multi_choice_queryset(question,
     choices = Choice.objects.annotate_vote_count()
 
     assert hasattr(choices.first(), 'vote_count')
-    assert choices.first().vote_count == 2
-    assert choices.last().vote_count == 1
+    assert choices.get(id=choice1.id).vote_count == 2
+    assert choices.get(id=choice2.id).vote_count == 1
 
 
 @pytest.mark.django_db
