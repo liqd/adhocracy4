@@ -16,7 +16,7 @@ export const HelptextForm = (props) => {
           onChange={(e) => { props.onHelptextChange(e.target.value) }}
         />
       </label>
-      <ErrorList errors={props.errors} field="label" />
+      <ErrorList errors={props.errors} field="help_text" />
     </div>
   )
 }
