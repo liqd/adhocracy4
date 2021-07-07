@@ -1,8 +1,11 @@
 import factory
+from django.conf import settings
 
 from adhocracy4.polls import models
-from adhocracy4.test import factories
+from adhocracy4.test.factories import ModuleFactory
 from adhocracy4.test.factories import UserFactory
+
+USER_FACTORY = getattr(settings, 'A4_USER_FACTORY', UserFactory)
 
 
 class PollFactory(factory.django.DjangoModelFactory):
@@ -10,8 +13,8 @@ class PollFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Poll
 
-    creator = factory.SubFactory(UserFactory)
-    module = factory.SubFactory(factories.ModuleFactory)
+    creator = factory.SubFactory(USER_FACTORY)
+    module = factory.SubFactory(ModuleFactory)
 
 
 class QuestionFactory(factory.django.DjangoModelFactory):
@@ -40,7 +43,7 @@ class AnswerFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Answer
 
-    creator = factory.SubFactory(UserFactory)
+    creator = factory.SubFactory(USER_FACTORY)
     answer = factory.Faker('sentence', nb_words=10)
     question = factory.SubFactory(OpenQuestionFactory)
 
@@ -65,7 +68,7 @@ class VoteFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Vote
 
-    creator = factory.SubFactory(UserFactory)
+    creator = factory.SubFactory(USER_FACTORY)
     choice = factory.SubFactory(ChoiceFactory)
 
 
@@ -74,7 +77,7 @@ class VoteOnOtherChoiceFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Vote
 
-    creator = factory.SubFactory(UserFactory)
+    creator = factory.SubFactory(USER_FACTORY)
     choice = factory.SubFactory(OtherChoiceFactory)
 
 
