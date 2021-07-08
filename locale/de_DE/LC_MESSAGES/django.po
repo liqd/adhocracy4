@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-08 11:14+0200\n"
+"POT-Creation-Date: 2021-07-08 12:19+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -947,8 +947,8 @@ msgid ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
 msgstr ""
-"Fragen mit Auswahlantworten können nicht offen sein. Entfernen Sie "
-"die Auswahlmöglichkeiten oder fügen Sie eine neue offene Frage hinzu."
+"Fragen mit Auswahlantworten können nicht offen sein. Entfernen Sie die "
+"Auswahlmöglichkeiten oder fügen Sie eine neue offene Frage hinzu."
 
 #: adhocracy4/polls/models.py:151
 #: adhocracy4/polls/models.py:268
@@ -967,8 +967,8 @@ msgstr "Offene Fragen können keine Auswahlantworten haben."
 msgid ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 msgstr ""
-"\"Sonsige\" kann nicht die einzige Auswahlmöglichkeit sein. Benutzen "
-"Sie eine offene Frage oder fügen Sie mehr Auswahlmöglichkeiten hinzu."
+"\"Sonsige\" kann nicht die einzige Auswahlmöglichkeit sein. Benutzen Sie "
+"eine offene Frage oder fügen Sie mehr Auswahlmöglichkeiten hinzu."
 
 #: adhocracy4/polls/models.py:212
 msgid "Question already has \"other\" choice."
@@ -976,7 +976,9 @@ msgstr "Frage hat bereits eine \"sonstige\" Option."
 
 #: adhocracy4/polls/models.py:274
 msgid "Other vote can only be created for vote on \"other\" choice."
-msgstr "Sonstige Stimme kann nur für eine \"sonstige\" Auswahlmöglichkeit abgegeben werden."
+msgstr ""
+"Sonstige Stimme kann nur für eine \"sonstige\" Auswahlmöglichkeit abgegeben "
+"werden."
 
 #: adhocracy4/polls/models.py:295
 msgid "other"
@@ -2317,11 +2319,9 @@ msgstr ""
 
 #: meinberlin/apps/dashboard/blueprints.py:156
 msgid ""
-"Participants can answer one or more questions with predefined choices and "
-"comment on the poll."
+"Participants can answer open and multiple choice questions and can comment "
+"on the poll"
 msgstr ""
-"Die Teilnehmenden können auf eine oder mehrere Fragen mit vordefinierten "
-"Antwortmöglichkeiten antworten und die Umfrage kommentieren."
 
 #: meinberlin/apps/dashboard/blueprints.py:167
 #: meinberlin/apps/livequestions/phases.py:20
@@ -4777,3 +4777,10 @@ msgid ""
 msgstr ""
 "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
 "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
+
+#~ msgid ""
+#~ "Participants can answer one or more questions with predefined choices and "
+#~ "comment on the poll."
+#~ msgstr ""
+#~ "Die Teilnehmenden können auf eine oder mehrere Fragen mit vordefinierten "
+#~ "Antwortmöglichkeiten antworten und die Umfrage kommentieren."
