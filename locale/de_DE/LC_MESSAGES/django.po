@@ -2322,6 +2322,8 @@ msgid ""
 "Participants can answer open and multiple choice questions and can comment "
 "on the poll"
 msgstr ""
+"Die Teilnehmenden können auf offene und Multiple-Choice-Fragen "
+"antworten und die Umfrage kommentieren."
 
 #: meinberlin/apps/dashboard/blueprints.py:167
 #: meinberlin/apps/livequestions/phases.py:20
@@ -4777,10 +4779,3 @@ msgid ""
 msgstr ""
 "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
 "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
-
-#~ msgid ""
-#~ "Participants can answer one or more questions with predefined choices and "
-#~ "comment on the poll."
-#~ msgstr ""
-#~ "Die Teilnehmenden können auf eine oder mehrere Fragen mit vordefinierten "
-#~ "Antwortmöglichkeiten antworten und die Umfrage kommentieren."
