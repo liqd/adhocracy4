@@ -1,7 +1,6 @@
+import React from 'react'
 import Slider from 'react-slick'
-
-const React = require('react')
-const django = require('django')
+import django from 'django'
 
 export default class PollResult extends React.Component {
   constructor (props) {
@@ -12,16 +11,10 @@ export default class PollResult extends React.Component {
     this.state = {
       question: question,
       selectedChoices: question.userChoices,
-      showResult: !(question.userChoices.length === 0) || question.isReadOnly,
-      alert: null
+      showResult: (question.userChoices.length !== 0) || question.isReadOnly,
+      alert: null,
+      showOtherAnswers: false
     }
-  }
-
-  toggleShowResult () {
-    this.setState({
-      selectedChoices: this.state.question.userChoices,
-      showResult: !this.state.showResult
-    })
   }
 
   // FIXME - should add animation for poll results but not current priority
@@ -31,22 +24,25 @@ export default class PollResult extends React.Component {
   //   }
   // }
 
-  getHelpText () {
-    let helpText
-    if (!this.state.showResult) {
-      if (this.state.question.multiple_choice) {
-        helpText = <div className="poll__help-text">{django.gettext('Multiple answers are possible.')}</div>
-      }
+  toggleOtherAnswers () {
+    this.setState(prevState => ({ showOtherAnswers: !prevState.showOtherAnswers }))
+  }
+
+  getOtherAnswerText () {
+    let otherAnswerText
+    if (this.state.showOtherAnswers) {
+      otherAnswerText = <span>{django.gettext('Hide other answers')}</span>
+    } else {
+      otherAnswerText = <span>{django.gettext('Show other answers')}</span>
     }
     return (
-      helpText
+      otherAnswerText
     )
   }
 
   getHelpTextAnswer () {
     const total = this.state.question.totalVoteCount
     const totalMulti = this.state.question.totalVoteCountMulti
-
     let helpTextAnswer
     let helpTextAnswerPlural
     if (this.state.question.multiple_choice) {
@@ -64,33 +60,43 @@ export default class PollResult extends React.Component {
     return django.interpolate(helpTextAnswer, [total, totalMulti])
   }
 
+  getHelpTextOpenAnswer () {
+    const total = this.state.question.totalAnswerCount
+    let helpTextOpenAnswer
+    if (total > 1) {
+      helpTextOpenAnswer = django.ngettext('1 person has answered.', '%s people have answered.', total)
+    } else {
+      helpTextOpenAnswer = django.gettext('noone has answered this question')
+    }
+    return django.interpolate(helpTextOpenAnswer, [total])
+  }
+
   render () {
     const max = Math.max.apply(null, this.state.question.choices.map(c => c.count))
     const total = this.state.question.totalVoteCount
-    const otherAnswersList = this.state.question.other_choice_answers
-    const list = otherAnswersList.map(function (v) { return Object.values(v) })
-    const getOtherAnswers = Object.values(list)
-    console.log(getOtherAnswers)
+
     const settings = {
-      dots: true,
-      infinite: true,
+      arrows: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      className: 'sliderContainerTest'
+      className: 'poll-slider',
+      infinite: true,
+      centerMode: false
     }
 
     return (
       <div className="poll">
         <h2>{this.state.question.label}</h2>
-        {this.getHelpText()}
         <div className="poll__rows">
           {this.state.question.choices.map((choice, i) => {
             const percent = total === 0 ? 0 : Math.round(choice.count / total * 100)
+            const chosen = this.state.question.userChoices.indexOf(choice.id) !== -1
             const highlight = choice.count === max && max > 0
             if (!this.state.question.is_open) {
               return (
-                <div key={choice.id}>
+                <div key={choice.id} className="poll-row__container">
+                  {chosen ? <i className="poll-row__chosen fa fa-check" aria-label={django.gettext('Your choice')} /> : ''}
                   <div className="poll-row poll-row--answered">
                     <div className="poll-row__number">{percent}%</div>
                     <div className="poll-row__label">{choice.label}</div>
@@ -101,33 +107,57 @@ export default class PollResult extends React.Component {
                   </div>
                   {choice.is_other_choice &&
                     <div>
-                      <Slider {...settings}>
-                        {list.map((slide, index) => {
-                          return (
-                            <div className="react-slider" key={index}>
-                              {list[index]}
-                            </div>
-                          )
-                        })}
-                      </Slider>
+                      <button type="button" className="btn btn--link" onClick={() => this.toggleOtherAnswers()}>
+                        {this.getOtherAnswerText()}
+                      </button>
+                      {this.state.showOtherAnswers &&
+                        <div className="poll-slider__container" id={this.state.question.id}>
+                          <Slider {...settings}>
+                            {this.props.question.other_choice_answers.map((slide, index) => (
+                              <div
+                                className="poll-slider__item"
+                                data-index={index}
+                                key={index}
+                              >
+                                <div className="poll-slider__answer">
+                                  {slide.answer}
+                                </div>
+                                <div className="poll-slider__count">
+                                  {index + 1}/{this.props.question.other_choice_answers.length}
+                                </div>
+                              </div>
+                            ))}
+                          </Slider>
+                        </div>}
                     </div>}
-                </div>
-              )
-            } else {
-              return (
-                <div>
-                  <Slider {...settings}>
-                    {this.state.question.userAnswer.map((slide, index) => {
-                      <div className="react-slider" key={index}>
-                        {this.state.question.userAnswer}
-                      </div>
-                    })}
-                  </Slider>
                 </div>
               )
             }
           })}
-          {this.getHelpTextAnswer()}
+          {this.state.question.is_open &&
+            <div className="poll-slider__container">
+              <Slider {...settings} id={this.state.question.id}>
+                {this.props.question.answers.map((slide, index) => (
+                  <div
+                    className="poll-slider__item"
+                    data-index={index}
+                    key={index}
+                  >
+                    <div className="poll-slider__answer">
+                      {slide.answer}
+                    </div>
+                    <div className="poll-slider__count">
+                      {index + 1}/{this.props.question.answers.length}
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+            </div>}
+          {this.state.question.is_open ? (
+            <div className="u-muted">{this.getHelpTextOpenAnswer()}</div>
+          ) : (
+            <div className="u-muted">{this.getHelpTextAnswer()}</div>
+          )}
         </div>
       </div>
     )

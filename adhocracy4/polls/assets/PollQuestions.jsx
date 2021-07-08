@@ -163,6 +163,9 @@ class PollQuestions extends React.Component {
             question={q}
           />
         ))}
+        <div className="poll">
+          {this.hasAnyVotes() ? this.linkChangeVote : this.linkToPoll}
+        </div>
       </div>
     ) : (
       <div className="pollquestionlist-container">
