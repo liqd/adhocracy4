@@ -18,7 +18,7 @@
     }
 }
 
-.poll__help-text {
+.editpoll__help-text {
     color: $gray-lighter;
     margin-top: -0.7em;
     margin-bottom: 0.5em;
@@ -93,7 +93,7 @@
 }
 
 // additional new poll module style classes
-.pollmanagement-actions-container {
+.editpoll__actions-container {
     display: flex;
     flex-direction: column;
 }
@@ -102,13 +102,13 @@
     text-align: right;
 }
 
-.questionform-buttons-container {
+.editpoll__question-buttons {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
 
-.questionform-button-wrapper {
+.editpoll__question-button {
     margin: 0.5rem 0;
 }
 
@@ -123,7 +123,7 @@
     }
 }
 
-.pollmanagement-actions-button-container {
+.editpoll__menu-container {
     margin: 0.25rem 0;
 
     & > * {
@@ -131,16 +131,16 @@
     }
 }
 
-.pollmanagement-questionform-container {
+.editpoll__questions {
     font-size: 0.875rem;
 }
 
-.questionform {
+.editpoll__question-container {
     display: block;
     margin-bottom: $spacer;
 }
 
-.questionform__content--border {
+.editpoll__question--border {
     margin-bottom: $spacer / 2;
     padding: $padding;
     border: 1px solid $border-color;
@@ -159,41 +159,41 @@
     }
 }
 
-.pollmanagement-menu-container-override {
+.editpoll__menu-container--override {
     margin: 0 1rem;
 }
 
 @media (min-width: $breakpoint) {
-    .questionform {
+    .editpoll__question-container {
         @include clearfix;
     }
 
-    .questionform__content {
+    .editpoll__question {
         @include grid-span(9, 0);
     }
 
-    .questionform__actions {
+    .editpoll__question-actions {
         @include grid-span(3, 9);
     }
 
-    .pollmanagement-actions-container {
+    .editpoll__actions-container {
         flex-direction: row;
         justify-content: space-between;
     }
 
-    .pollmanagement-actions-button-container > * {
+    .editpoll__menu-container > * {
         width: inherit;
     }
 
-    .pollmanagement-menu-container-override {
+    .editpoll__menu-container--override {
         margin: 0;
     }
 
-    .questionform-buttons-container {
+    .editpoll__question-buttons {
         flex-direction: row;
     }
 
-    .questionform-button-wrapper {
+    .editpoll__question-button {
         margin: 0;
         margin-right: 0.5rem;
     }
