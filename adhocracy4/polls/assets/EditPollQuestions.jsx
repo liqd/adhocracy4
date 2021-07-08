@@ -220,7 +220,7 @@ export const EditPollQuestions = (props) => {
   return (
     <form
       onSubmit={(e) => handleSubmit(e)} onChange={() => removeAlert()}
-      className="pollmanagement-questionform-container"
+      className="editpoll__questions"
     >
       <FlipMove easing="cubic-bezier(0.25, 0.5, 0.75, 1)">
         {
@@ -264,16 +264,16 @@ export const EditPollQuestions = (props) => {
         }
       </FlipMove>
       <Alert onClick={() => removeAlert()} {...alert} />
-      <div className="pollmanagement-actions-container">
-        <div className="pollmanagement-actions-button-container">
+      <div className="editpoll__actions-container">
+        <div className="editpoll__menu-container">
           <PopperMenu
             ref={popper}
-            containerStyleClass="pollmanagement-menu-container-override"
+            containerStyleClass="editpoll__menu-container--override"
           >
             {popperMenuContent}
           </PopperMenu>
         </div>
-        <div className="pollmanagement-actions-button-container">
+        <div className="editpoll__menu-container">
           <button type="submit" className="btn btn--primary">
             {django.gettext('Save')}
           </button>

@@ -10,15 +10,15 @@ export const EditPollQuestion = (props) => {
   const [hasHelptext, setHasHelptext] = useState(props.question.help_text)
   const hasOtherOption = props.question.choices.find(c => c.is_other_choice)
   return (
-    <section className="questionform">
-      <div className="questionform__content questionform__content--border">
+    <section className="editpoll__question-container">
+      <div className="editpoll__question editpoll__question--border">
         <div className="form-group">
           <label
             htmlFor={'id_questions-' + props.id + '-name'}
           >
             {django.gettext('Question')}
             {props.question.id &&
-              <span className="poll__help-text"> Id: Q{props.question.id}</span>}
+              <span className="editpoll__help-text"> Id: Q{props.question.id}</span>}
             <textarea
               id={'id_questions-' + props.id + '-name'}
               name={'questions-' + props.id + '-name'}
@@ -103,16 +103,16 @@ export const EditPollQuestion = (props) => {
             })
           }
         </FlipMove>
-        <div className="questionform-buttons-container">
+        <div className="editpoll__question-buttons">
           <button
-            className="btn btn--light btn--small questionform-button-wrapper"
+            className="btn btn--light btn--small editpoll__question-button"
             onClick={() => props.onAppendChoice(hasOtherOption)}
             type="button"
           >
             <i className="fa fa-plus" /> {django.gettext('New answer')}
           </button>
           <button
-            className={`questionform-button-wrapper btn btn--small ${hasHelptext ? 'btn--primary' : 'btn--light'}`}
+            className={`editpoll__question-button btn btn--small ${hasHelptext ? 'btn--primary' : 'btn--light'}`}
             onClick={() => setHasHelptext(!hasHelptext)}
             type="button"
           >
@@ -121,7 +121,7 @@ export const EditPollQuestion = (props) => {
         </div>
       </div>
 
-      <div className="questionform__actions btn-group" role="group">
+      <div className="editpoll__question-actions btn-group" role="group">
         <button
           className="btn btn--light btn--small"
           onClick={props.onMoveUp}
