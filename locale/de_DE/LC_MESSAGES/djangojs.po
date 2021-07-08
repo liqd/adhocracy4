@@ -459,7 +459,7 @@ msgstr "Folge ich"
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:69
 msgctxt "noun"
 msgid "Answer"
-msgstr ""
+msgstr "Antwort"
 
 #: adhocracy4/polls/assets/EditPollChoice.jsx:27
 #: adhocracy4/polls/assets/EditPollChoice.jsx:33
@@ -480,7 +480,7 @@ msgstr "Frage"
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:119
 #: adhocracy4/polls/assets/HelptextForm.jsx:11
 msgid "Explanation"
-msgstr ""
+msgstr "Erklärung"
 
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:45
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:50
@@ -514,22 +514,22 @@ msgstr "nach unten"
 
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:46
 msgid "Participants can vote for more than one option (multiple choice)"
-msgstr ""
+msgstr "Teilnehmer*innen können mehrere Antworten auswählen (Mehrfachauswahl)"
 
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:61
 msgid "Participants can add their own answer"
-msgstr ""
+msgstr "Teilnehmer*innen können eine eigene Antwort eingeben"
 
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:94
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:95
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:94
 #: meinberlin/apps/polls/assets/QuestionForm.jsx:95
 msgid "Other"
-msgstr ""
+msgstr "Sonstige"
 
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:112
 msgid "New answer"
-msgstr ""
+msgstr "Neue Antwort"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:162
 #: meinberlin/apps/polls/assets/PollManagement.jsx:161
@@ -543,15 +543,15 @@ msgstr "Die Umfrage konnte nicht aktualisiert werden."
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:195
 msgid "New question"
-msgstr ""
+msgstr "Neue Frage"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:201
 msgid "Multiple choice question"
-msgstr ""
+msgstr "Multiple-Choice-Frage"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:206
 msgid "Open question"
-msgstr ""
+msgstr "Open question"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:278
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:324
@@ -572,7 +572,7 @@ msgstr "Zur Umfrage"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:30
 msgid "Change answer"
-msgstr ""
+msgstr "Antwort ändern"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:35
 #: meinberlin/apps/polls/assets/Question.jsx:178
@@ -581,20 +581,22 @@ msgstr "Vorläufiges Ergebnis zeigen"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:107
 msgid "Submit answer"
-msgstr ""
+msgstr "Antwort senden"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:113
 msgid "Please login to answer"
-msgstr ""
+msgstr "Bitte melden Sie sich zum Antworten an."
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:137
 msgid "Your answer has been saved."
-msgstr ""
+msgstr "Ihre Antwort wurde gespeichert."
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:145
 msgid ""
 "Your answer could not be saved due to a server error. Please try again later."
 msgstr ""
+"Ihre Antwort konnte aufgrund eines Serverfehlers nicht gespeichert "
+"werden. Bitte versuchen Sie es später noch einmal."
 
 #: adhocracy4/polls/assets/PollResults.jsx:54
 #: meinberlin/apps/polls/assets/Question.jsx:148
@@ -1251,26 +1253,3 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
-
-#~ msgid "Multiple answers are possible for this question"
-#~ msgstr "Für diese Frage sind mehrere Antworten möglich"
-
-#~ msgid "vote"
-#~ msgid_plural "votes"
-#~ msgstr[0] "Stimme"
-#~ msgstr[1] "Stimmen"
-
-#~ msgid "Show List"
-#~ msgstr "Liste anzeigen"
-
-#~ msgid "Show Map"
-#~ msgstr "Karte anzeigen"
-
-#~ msgid "select characteristic"
-#~ msgstr "Merkmal auswählen"
-
-#~ msgid "Add Question"
-#~ msgstr "Frage stellen"
-
-#~ msgid "Categories Answered"
-#~ msgstr "Ausgewählte Merkmale"

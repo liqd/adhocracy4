@@ -936,47 +936,51 @@ msgstr "Umfrage"
 
 #: adhocracy4/polls/models.py:52
 msgid "Explanation"
-msgstr ""
+msgstr "Erklärung"
 
 #: adhocracy4/polls/models.py:81
 msgid "Questions with open answers cannot have multiple choices."
-msgstr ""
+msgstr "Offene Fragen können nicht multiple-choice sein."
 
 #: adhocracy4/polls/models.py:86
 msgid ""
 "Question with choices cannot become open question. Delete choices or add new "
 "open question."
 msgstr ""
+"Fragen mit Auswahlantworten können nicht offen sein. Entfernen Sie "
+"die Auswahlmöglichkeiten oder fügen Sie eine neue offene Frage hinzu."
 
 #: adhocracy4/polls/models.py:151
 #: adhocracy4/polls/models.py:268
 msgid "Answer"
-msgstr ""
+msgstr "Antwort"
 
 #: adhocracy4/polls/models.py:163
 msgid "Only open questions can have answers."
-msgstr ""
+msgstr "Nur offene Fragen können Antworten haben."
 
 #: adhocracy4/polls/models.py:200
 msgid "Open questions cannot have choices."
-msgstr ""
+msgstr "Offene Fragen können keine Auswahlantworten haben."
 
 #: adhocracy4/polls/models.py:205
 msgid ""
 "\"Other\" cannot be the only choice. Use open question or add more choices."
 msgstr ""
+"\"Sonsige\" kann nicht die einzige Auswahlmöglichkeit sein. Benutzen "
+"Sie eine offene Frage oder fügen Sie mehr Auswahlmöglichkeiten hinzu."
 
 #: adhocracy4/polls/models.py:212
 msgid "Question already has \"other\" choice."
-msgstr ""
+msgstr "Frage hat bereits eine \"sonstige\" Option."
 
 #: adhocracy4/polls/models.py:274
 msgid "Other vote can only be created for vote on \"other\" choice."
-msgstr ""
+msgstr "Sonstige Stimme kann nur für eine \"sonstige\" Auswahlmöglichkeit abgegeben werden."
 
 #: adhocracy4/polls/models.py:295
 msgid "other"
-msgstr ""
+msgstr "sonstige"
 
 #: adhocracy4/polls/phases.py:16
 msgctxt "A4: voting phase name"
@@ -2521,7 +2525,7 @@ msgstr "hier können Sie alle Ideen exportieren"
 
 #: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:31
 msgid "here you can export all answers"
-msgstr ""
+msgstr "hier können Sie alle Antworten exportieren"
 
 #: meinberlin/apps/exports/templates/meinberlin_exports/export_dashboard.html:43
 msgid "here you can export all comments"
@@ -4773,201 +4777,3 @@ msgid ""
 msgstr ""
 "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
 "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
-
-#~ msgid "Voting phase"
-#~ msgstr "Abstimmungsphase"
-
-#~ msgid "Cast votes and discuss the poll."
-#~ msgstr "Abgeben von Stimmen und kommentieren der Umfrage."
-
-#~ msgid "replies to comment"
-#~ msgstr "Antwort auf Kommentar"
-
-#~ msgid "comment on reference"
-#~ msgstr "Kommentar zur Referenz"
-
-#~ msgid "Please take part in our poll!"
-#~ msgstr "Machen Sie mit bei unserer Umfrage!"
-
-#~ msgid ""
-#~ "Help us by answering the questions below. There is space for your "
-#~ "comments at the end of the questionnaire."
-#~ msgstr ""
-#~ "Helfen Sie uns, indem Sie die unten stehenden Fragen beantworten. Am Ende "
-#~ "des Fragebogens ist Platz für Ihre Kommentare."
-
-#~ msgid "replies to"
-#~ msgstr "Antwort auf"
-
-#~ msgid "Participants can submit proposals, comment on and rate them."
-#~ msgstr "Teilnehmende können Vorschläge machen, kommentieren und bewerten."
-
-#~ msgid "Proposal phase"
-#~ msgstr "Vorschlagsphase"
-
-#~ msgid "Participants can submit proposals and comment on them."
-#~ msgstr "Teilnehmende können Vorschläge machen und kommentieren."
-
-#~ msgid "Participants can vote on the proposals."
-#~ msgstr "Teilnehmende können über Vorschläge abstimmen."
-
-#~ msgid "Collect first ideas for a specific topic and comment on them."
-#~ msgstr ""
-#~ "Sammeln Sie Ideen zu einem bestimmten Thema und lassen Sie diese "
-#~ "kommentieren."
-
-#~ msgid "Collect location specific ideas for a topic and comment on them."
-#~ msgstr ""
-#~ "Sammeln Sie ortsspezifische Ideen zu einem Thema und lassen Sie diese "
-#~ "kommentieren."
-
-#~ msgid "Collect location specific ideas that can be rated and commented."
-#~ msgstr "Lassen Sie ortsspezifische Ideen bewerten und kommentieren."
-
-#~ msgid "Agenda Setting"
-#~ msgstr "Agenda festlegen"
-
-#~ msgid ""
-#~ "With Agenda-Setting it’s possible to identify topics and to define "
-#~ "mission statements. Anyone can submit topics that can be commented and "
-#~ "rated."
-#~ msgstr ""
-#~ "Mit \"Agenda festlegen\" ist es möglich, Themen zu identifizieren und "
-#~ "Leitbilder zu definieren. Nutzerinnen und Nutzer können Themen "
-#~ "vorschlagen, die bewertet und kommentiert werden können."
-
-#~ msgid ""
-#~ "In the text-review it’s possible to structure draft texts that can be "
-#~ "commented."
-#~ msgstr ""
-#~ "\"Text kommentieren\" erlaubt es Textentwürfe zu erstellen, die "
-#~ "kommentiert werden können."
-
-#~ msgid ""
-#~ "Proposals can be located on a map and a budget can be added. Proposals "
-#~ "can be commented and rated."
-#~ msgstr ""
-#~ "Vorschläge können mit einem Budget versehen und auf einer Karte verortet "
-#~ "werden. Diese Vorschläge können bewertet und kommentiert werden."
-
-#~ msgid ""
-#~ "Proposals can be located on a map and a budget can be added. Proposals "
-#~ "can be commented and rated in 2 phases."
-#~ msgstr ""
-#~ "Vorschläge können mit einem Budget versehen und auf einer Karte verortet "
-#~ "werden. Diese Vorschläge können nacheinander kommentiert und bewertet "
-#~ "werden."
-
-#~ msgid ""
-#~ "Create a poll with multiple questions and possible answers. Anyone can "
-#~ "cast votes and comment on the poll."
-#~ msgstr ""
-#~ "Bei einer Umfrage können Sie mehrere Fragen und deren "
-#~ "Antwortmöglichkeiten anlegen. Nutzerinnen und Nutzer können ihre Stimme "
-#~ "dann abgeben und die Umfrage kommentieren."
-
-#~ msgid "Topic Priorization"
-#~ msgstr "Themenpriorisierung"
-
-#~ msgid "Comment and prioritize topics."
-#~ msgstr ""
-#~ "Bei der Themenpriorisierung legen Sie die Themen an, welche dann von den "
-#~ "Nutzerinnen und Nutzern bewertet und kommentiert werden können."
-
-#~ msgid "Place Prioritization"
-#~ msgstr "Ortspriorisierung"
-
-#~ msgid "Comment and prioritize places located on a map."
-#~ msgstr ""
-#~ "Legen Sie Orte auf einer Karte an, welche dann von den Nutzerinnen und "
-#~ "Nutzern bewertet und kommentiert werden können."
-
-#~ msgid ""
-#~ "With kiezkasse it’s possible to make proposals with budget specifications "
-#~ "and locate them. The proposals can be commented and rated."
-#~ msgstr ""
-#~ "Mit der Kiezkasse ist es den Teilnehmenden möglich, Vorschläge mit einem "
-#~ "Budget zu versehen und sie auf einer Karte zu verorten. Diese Vorschläge "
-#~ "können bewertet und kommentiert werden."
-
-#~ msgid ""
-#~ "The participants of an event can ask their questions online. Other "
-#~ "participants can support the question. You as the moderator can sort the "
-#~ "questions by support or characteristic."
-#~ msgstr ""
-#~ "Die Teilnehmer*innen einer Veranstaltung können ihre Fragen live online "
-#~ "stellen. Andere Teilnehmer*innen können die Frage unterstützen. Sie als "
-#~ "Moderation können die Fragen anhand von Unterstützung und Merkmalen "
-#~ "sortieren."
-
-#~ msgid "Comment phase"
-#~ msgstr "Kommentierphase"
-
-#~ msgid "Collect comments for the text."
-#~ msgstr "Kommentieren von Text und einzelnen Absätzen."
-
-#~ msgid "Collect phase"
-#~ msgstr "Phase zur Einreichung von Ideen"
-
-#~ msgid "Create and comment new ideas."
-#~ msgstr "Anlegen und Kommentieren neuer Ideen."
-
-#~ msgid "Collect ideas and get feedback"
-#~ msgstr "Lassen Sie Ideen bewerten und kommentieren."
-
-#~ msgid "Create new ideas and get feedback through rates and comments."
-#~ msgstr ""
-#~ "Sammeln Sie Ideen zu einem bestimmten Thema und lassen Sie diese "
-#~ "kommentieren und bewerten."
-
-#~ msgid "Request and feedback phase"
-#~ msgstr "Vorschlags- und Rückmeldungsphase"
-
-#~ msgid "Request budgeting and get feedback through rates and comments."
-#~ msgstr ""
-#~ "Nutzerinnen und Nutzer können Vorschläge mit Budgetangabe machen und "
-#~ "erhalten durch Bewertungen und Kommentare Rückmeldung."
-
-#~ msgid "Add questions and support."
-#~ msgstr "Fragen hinzufügen und unterstützen."
-
-#~ msgid "Create new ideas located on a map and comment them."
-#~ msgstr ""
-#~ "Anlegen neuer Ideen, verortet auf einer Karte, diese können kommentiert "
-#~ "werden."
-
-#~ msgid ""
-#~ "Create new ideas located on a map and get feedback through rates and "
-#~ "comments."
-#~ msgstr ""
-#~ "Sammeln Sie Ideen auf einer Karte und lassen Sie diese kommentieren und "
-#~ "bewerten"
-
-#~ msgid "Prioritize phase"
-#~ msgstr "Phasen priorisieren"
-
-#~ msgid "Prioritize and comment places located on a map."
-#~ msgstr "Orte priorisieren und kommentieren"
-
-#~ msgid "Prioritize and comment topics."
-#~ msgstr "Themen priorisieren und kommentieren"
-
-#~ msgid "Participatory budgeting"
-#~ msgstr "Bürgerhaushalt"
-
-#~ msgid ""
-#~ "With participatory-budgeting it’s possible to make proposals with budget "
-#~ "specifications and locate them. Anyone can comment and rate on different "
-#~ "proposals."
-#~ msgstr ""
-#~ "Mit dem Bürgerhaushalt ist es den Teilnehmenden möglich, Vorschläge mit "
-#~ "einem Budget zu versehen und sie auf einer Karte zu verorten. Diese "
-#~ "Vorschläge können bewertet und kommentiert werden."
-
-#~ msgid ""
-#~ "Please indicate whether this project should be public or restricted to "
-#~ "invited users. Teasers for your project including title and short "
-#~ "description will always be visible to everyone"
-#~ msgstr ""
-#~ "Bitte geben Sie an, ob dieses Projekt öffentlich oder auf eingeladene "
-#~ "Teilnehmerinnen und Teinehmer beschränkt sein soll."
