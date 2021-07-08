@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import django from 'django'
+import { CharCounter } from './CharCounter'
+import ErrorList from '../../static/ErrorList'
 
 export const PollQuestion = (props) => {
   const getUserAnswer = () => {
@@ -14,6 +16,8 @@ export const PollQuestion = (props) => {
   const questionHelpText = props.question.help_text ? <div className="poll__help-text">{props.question.help_text}</div> : null
   const [userChoices, setUserChoices] = useState(props.question.userChoices)
   const [otherChoiceAnswer, setOtherChoiceAnswer] = useState(getUserAnswer())
+  const [errors, setErrors] = useState()
+  const maxlength = 250
 
   const handleSingleChange = (event) => {
     const choiceId = parseInt(event.target.value)
@@ -33,7 +37,10 @@ export const PollQuestion = (props) => {
     props.onOtherChange(props.question.id, otherAnswer)
   }
 
-  useEffect(() => setUserChoices(props.question.userChoices))
+  useEffect(() => {
+    setUserChoices(props.question.userChoices)
+    setErrors(props.errors)
+  })
 
   return (
     <form>
@@ -61,15 +68,26 @@ export const PollQuestion = (props) => {
                     />
                     <span className="radio__text">{choice.label}</span>
                     {choice.is_other_choice &&
-                      <input
-                        className="input-group__input"
-                        type="text"
-                        name="question"
-                        value={checked ? otherChoiceAnswer : ''}
-                        id={'id_choice-' + choice.id + '-single-answer'}
-                        onChange={(event) => { handleOtherChange(event) }}
-                        disabled={!props.question.authenticated || !checked}
-                      />}
+                      <>
+                        <input
+                          className="input-group__input"
+                          type="text"
+                          name="question"
+                          value={checked ? otherChoiceAnswer : ''}
+                          id={'id_choice-' + choice.id + '-other'}
+                          onChange={(event) => { handleOtherChange(event) }}
+                          disabled={!props.question.authenticated || !checked}
+                          maxLength={maxlength}
+                        />
+                        {checked ? (
+                          <>
+                            <div className="lr-bar__right fs-xs">
+                              <CharCounter value={otherChoiceAnswer} max={maxlength} />
+                            </div>
+                            <ErrorList errors={errors} field={choice.id} />
+                          </>
+                        ) : null}
+                      </>}
                   </label>
                 )
               } else {
@@ -87,15 +105,26 @@ export const PollQuestion = (props) => {
                     />
                     <span className="radio__text radio__text--checkbox">{choice.label}</span>
                     {choice.is_other_choice &&
-                      <input
-                        className="input-group__input"
-                        type="text"
-                        name="question"
-                        id={'id_choice-' + choice.id + '-single'}
-                        value={checked ? otherChoiceAnswer : ''}
-                        onChange={(event) => { handleOtherChange(event) }}
-                        disabled={!props.question.authenticated || !checked}
-                      />}
+                      <>
+                        <input
+                          className="input-group__input"
+                          type="text"
+                          name="question"
+                          id={'id_choice-' + choice.id + '-other'}
+                          value={checked ? otherChoiceAnswer : ''}
+                          onChange={(event) => { handleOtherChange(event) }}
+                          disabled={!props.question.authenticated || !checked}
+                          maxLength={maxlength}
+                        />
+                        {checked ? (
+                          <>
+                            <div className="lr-bar__right fs-xs">
+                              <CharCounter value={otherChoiceAnswer} max={maxlength} />
+                            </div>
+                            <ErrorList errors={errors} field={choice.id} />
+                          </>
+                        ) : null}
+                      </>}
                   </label>
                 )
               }
