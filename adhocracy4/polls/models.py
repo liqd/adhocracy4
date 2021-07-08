@@ -49,7 +49,7 @@ class Question(models.Model):
     help_text = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name=_('Help text')
+        verbose_name=_('Explanation')
     )
 
     weight = models.SmallIntegerField()

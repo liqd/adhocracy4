@@ -33,7 +33,7 @@ export const EditPollOpenQuestion = (props) => {
           onClick={() => setHasHelptext(!hasHelptext)}
           type="button"
         >
-          <i className={`fa ${hasHelptext ? 'fa-check' : 'fa-plus'}`} /> {django.gettext('Add Helptext')}
+          <i className={`fa ${hasHelptext ? 'fa-check' : 'fa-plus'}`} /> {django.gettext('Explanation')}
         </button>
       </div>
 

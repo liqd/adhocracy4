@@ -192,18 +192,18 @@ export const EditPollQuestions = (props) => {
   const popperMenuContent = {
     popperButton: {
       styleClass: 'btn btn--light btn--small',
-      buttonText: django.gettext('Add a new question'),
+      buttonText: django.gettext('New question'),
       icon: 'fa fa-plus'
     },
     popperMenuItems: [
       {
         styleClass: 'btn btn--light btn--small submenu-item__first',
-        text: django.gettext('predefined answers'),
+        text: django.gettext('Multiple choice question'),
         handleClick: () => handleQuestion('append')
       },
       {
         styleClass: 'btn btn--light btn--small submenu-item__last',
-        text: django.gettext('open answers'),
+        text: django.gettext('Open question'),
         handleClick: () => handleQuestion('append', { isOpen: true })
       }
     ]

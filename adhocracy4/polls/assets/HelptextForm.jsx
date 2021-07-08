@@ -8,7 +8,7 @@ export const HelptextForm = (props) => {
       <label
         htmlFor={'id_helptext-' + props.id + '-name'}
       >
-        {django.gettext('Helptext')}
+        {django.gettext('Explanation')}
         <textarea
           id={'id_helptext-' + props.id + '-name'}
           name={'helptext-' + props.id + '-name'}
