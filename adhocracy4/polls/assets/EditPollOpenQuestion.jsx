@@ -7,15 +7,15 @@ export const EditPollOpenQuestion = (props) => {
   const [hasHelptext, setHasHelptext] = useState(props.question.help_text)
 
   return (
-    <section className="questionform">
-      <div className="questionform__content questionform__content--border">
+    <section className="editpoll__question-container">
+      <div className="editpoll__question editpoll__question--border">
         <div className="form-group">
           <label
             htmlFor={'id_questions-' + props.id + '-name'}
           >
             {django.gettext('Question')}
             {props.question.id &&
-              <span className="poll__help-text"> Id: Q{props.question.id}</span>}
+              <span className="editpoll__help-text"> Id: Q{props.question.id}</span>}
             <textarea
               id={'id_questions-' + props.id + '-name'}
               name={'questions-' + props.id + '-name'}
@@ -37,7 +37,7 @@ export const EditPollOpenQuestion = (props) => {
         </button>
       </div>
 
-      <div className="questionform__actions btn-group" role="group">
+      <div className="editpoll__question-actions btn-group" role="group">
         <button
           className="btn btn--light btn--small"
           onClick={props.onMoveUp}

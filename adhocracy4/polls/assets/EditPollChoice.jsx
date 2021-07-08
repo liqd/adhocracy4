@@ -8,7 +8,7 @@ export const EditPollChoice = (props) => {
       <div htmlFor={'id_choices-' + props.id + '-name'}>
         {django.pgettext('noun', 'Answer')} {props.index}
         {props.choiceId &&
-          <span className="poll__help-text"> Id: A{props.choiceId}</span>}
+          <span className="editpoll__help-text"> Id: A{props.choiceId}</span>}
         <span className="visually-hidden">{props.label}</span>
       </div>
       <div className="input-group">
