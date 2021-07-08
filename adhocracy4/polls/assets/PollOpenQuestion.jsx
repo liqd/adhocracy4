@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { CharCounter } from './CharCounter'
 
 export const PollOpenQuestion = (props) => {
   const questionHelpText = props.question.help_text ? <div className="poll__help-text">{props.question.help_text}</div> : null
+  const maxlength = 750
 
   const getUserOpenAnswer = () => {
     const userAnswerId = props.question.userAnswer
@@ -31,7 +33,11 @@ export const PollOpenQuestion = (props) => {
           value={userAnswer}
           disabled={!props.question.authenticated}
           onChange={(event) => { handleOpenChange(event) }}
+          maxLength={maxlength}
         />
+        <div className="lr-bar__right fs-xs">
+          <CharCounter value={userAnswer} max={maxlength} />
+        </div>
       </div>
     </div>
   )

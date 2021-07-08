@@ -16,7 +16,8 @@ class PollQuestions extends React.Component {
       questions: [],
       showResults: false,
       alert: false,
-      votes: []
+      votes: [],
+      errors: {}
     }
 
     this.linkToPoll = (
@@ -116,11 +117,50 @@ class PollQuestions extends React.Component {
     }
   }
 
+  addValidationError (choiceId) {
+    this.setState(prevState => {
+      const newErrors = { ...prevState.errors }
+      newErrors[choiceId] = [django.gettext('Please enter your answer in this field.')]
+      return {
+        ...prevState,
+        errors: { ...newErrors }
+      }
+    })
+  }
+
+  removeValidationError (choiceId) {
+    this.setState(prevState => {
+      const newErrors = { ...prevState.errors }
+      newErrors[choiceId] && delete newErrors[choiceId]
+      return {
+        ...prevState,
+        errors: { ...newErrors }
+      }
+    })
+  }
+
   handleSubmit (e) {
     e.preventDefault()
     const modifiedQuestions = this.state.questions.filter(q => q.modified)
+    const validatedQuestions = modifiedQuestions.filter(q => {
+      if (!q.is_open) {
+        const otherChoice = q.choices.find(c => c.is_other_choice)
+        const otherChoiceSelected = otherChoice && q.userChoices.filter(uc => uc === otherChoice.id).length > 0
+        if (otherChoiceSelected) {
+          if (!q.other_choice_answer) {
+            this.addValidationError(otherChoice.id)
+            return
+          } else {
+            this.removeValidationError(otherChoice.id)
+            return q
+          }
+        }
+      }
+      return q
+    })
+
     const datalist = []
-    for (const question of modifiedQuestions) {
+    for (const question of validatedQuestions) {
       datalist.push({
         urlReplaces: { questionId: question.id },
         choices: question.userChoices,
@@ -128,7 +168,8 @@ class PollQuestions extends React.Component {
         open_answer: question.open_answer || ''
       })
     }
-    modifiedQuestions.length > 0 && api.poll.batchvote(datalist)
+
+    validatedQuestions.length > 0 && api.poll.batchvote(datalist)
       .then(response => {
         this.setModified(response[0].question.id, false)
         this.setState({
@@ -183,7 +224,8 @@ class PollQuestions extends React.Component {
                 question={q}
                 onSingleChange={(questionId, voteData) => this.handleVoteSingle(questionId, voteData)}
                 onMultiChange={(questionId, voteData) => this.handleVoteMulti(questionId, voteData)}
-                onOtherChange={(questionId, voteId, voteData) => this.handleVoteOther(questionId, voteId, voteData)}
+                onOtherChange={(questionId, voteAnswer) => this.handleVoteOther(questionId, voteAnswer)}
+                errors={this.state.errors}
               />
             )
           ))}
