@@ -43,7 +43,7 @@ export const EditPollQuestion = (props) => {
               onChange={(e) => { props.onMultipleChoiceChange(e.target.checked) }}
             />
             &nbsp;
-            {django.gettext('Users can select more than one answer.')}
+            {django.gettext('Participants can vote for more than one option (multiple choice)')}
           </label>
         </div>
 
@@ -58,7 +58,7 @@ export const EditPollQuestion = (props) => {
               disabled={props.question.choices.length < 3 && hasOtherOption}
             />
             &nbsp;
-            {django.gettext('Users can answer openly.')}
+            {django.gettext('Participants can add their own answer')}
           </label>
         </div>
 
@@ -66,7 +66,7 @@ export const EditPollQuestion = (props) => {
           {
             props.question.choices.map((choice, index) => {
               const key = choice.id || choice.key
-              const label = django.gettext('Choice') + ` #${index + 1}`
+              const label = django.pgettext('noun', 'Answer') + ` #${index + 1}`
               const errors = props.errors && props.errors.choices
                 ? props.errors.choices[index]
                 : {}
@@ -109,14 +109,14 @@ export const EditPollQuestion = (props) => {
             onClick={() => props.onAppendChoice(hasOtherOption)}
             type="button"
           >
-            <i className="fa fa-plus" /> {django.gettext('Add a new choice')}
+            <i className="fa fa-plus" /> {django.gettext('New answer')}
           </button>
           <button
             className={`questionform-button-wrapper btn btn--small ${hasHelptext ? 'btn--primary' : 'btn--light'}`}
             onClick={() => setHasHelptext(!hasHelptext)}
             type="button"
           >
-            <i className={`fa ${hasHelptext ? 'fa-check' : 'fa-plus'}`} /> {django.gettext('Add Helptext')}
+            <i className={`fa ${hasHelptext ? 'fa-check' : 'fa-plus'}`} /> {django.gettext('Explanation')}
           </button>
         </div>
       </div>

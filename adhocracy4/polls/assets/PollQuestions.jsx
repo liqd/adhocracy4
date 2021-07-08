@@ -27,7 +27,7 @@ class PollQuestions extends React.Component {
 
     this.linkChangeVote = (
       <button type="button" className="btn btn--link" onClick={() => this.handleToggleResultsPage()}>
-        {django.gettext('Change vote')}
+        {django.gettext('Change answer')}
       </button>)
 
     this.linkShowResults = (
@@ -104,13 +104,13 @@ class PollQuestions extends React.Component {
           onClick={(e) => this.handleSubmit(e)}
           disabled={disabled}
         >
-          {django.gettext('Vote')}
+          {django.gettext('Submit answer')}
         </button>
       )
     } else {
       return (
         <a href={config.getLoginUrl()} className="btn btn--primary u-spacer-right">
-          {django.gettext('Please login to vote')}
+          {django.gettext('Please login to answer')}
         </a>
       )
     }
@@ -134,7 +134,7 @@ class PollQuestions extends React.Component {
         this.setState({
           alert: {
             type: 'success',
-            message: django.gettext('Vote counted')
+            message: django.gettext('Your answer has been saved.')
           }
         })
       })
@@ -142,7 +142,7 @@ class PollQuestions extends React.Component {
         this.setState({
           alert: {
             type: 'danger',
-            message: django.gettext('Vote has not been counted due to a server error.')
+            message: django.gettext('Your answer could not be saved due to a server error. Please try again later.')
           }
         })
       })
