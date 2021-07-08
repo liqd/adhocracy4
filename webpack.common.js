@@ -174,16 +174,16 @@ module.exports = {
       },
       {
         test: /fonts\/.*\.(svg|woff2?|ttf|eot)(\?.*)?$/,
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name].[ext]'
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]'
         }
       },
       {
         test: /\.svg$|\.png$/,
-        loader: 'file-loader',
-        options: {
-          name: 'images/[name].[ext]'
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]'
         }
       }
     ]
