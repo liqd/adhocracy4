@@ -1,5 +1,6 @@
 from django.db import transaction
 from django.shortcuts import get_object_or_404
+from django.utils.translation import ugettext as _
 from rest_framework import mixins
 from rest_framework import status
 from rest_framework import viewsets
@@ -43,11 +44,12 @@ class VoteViewSet(viewsets.ViewSet):
         with transaction.atomic():
             if self.question.is_open:
                 self.clear_open_answer()
-                Answer.objects.create(
-                    question=self.question,
-                    answer=open_answer,
-                    creator=self.request.user
-                )
+                if open_answer:
+                    Answer.objects.create(
+                        question=self.question,
+                        answer=open_answer,
+                        creator=self.request.user
+                    )
             else:
                 self.clear_current_choices()
                 for choice in choices:
@@ -56,10 +58,15 @@ class VoteViewSet(viewsets.ViewSet):
                         creator=self.request.user
                     )
                     if choice.is_other_choice:
-                        OtherVote.objects.create(
-                            vote=vote,
-                            answer=other_choice_answer
-                        )
+                        if other_choice_answer:
+                            OtherVote.objects.create(
+                                vote=vote,
+                                answer=other_choice_answer
+                            )
+                        else:
+                            raise ValidationError({
+                                'choice': _('Please specify your answer.')
+                            })
 
         question_serializer = self.get_question_serializer()
         return Response({'question': question_serializer.data},
