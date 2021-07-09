@@ -57,6 +57,7 @@ INSTALLED_APPS = (
     'tests.apps.locations',
     'tests.apps.ideas',
     'tests.apps.organisations',
+    'tests.apps.moderatorfeedback',
 
     # mandatory third party apps
     'easy_thumbnails',
@@ -163,7 +164,7 @@ A4_COMMENTABLES = (('a4test_questions', 'question'),
 A4_ACTIONABLES = ()
 A4_AUTO_FOLLOWABLES = (('a4comments', 'comment'),)
 A4_CATEGORIZABLE = (('a4test_questions', 'question'),)
-A4_LABELS_ADDABLE = ()
+A4_LABELS_ADDABLE = (('a4test_questions', 'question'),)
 A4_DASHBOARD = {
     'BLUEPRINTS': 'tests.project.blueprints.blueprints'
 }
