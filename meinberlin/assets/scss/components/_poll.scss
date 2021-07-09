@@ -19,6 +19,7 @@ $checkbox-size: 20px;
     padding: 0.2*$spacer 0;
     margin-bottom: 0.5*$spacer;
     display: flex;
+
     @include clearfix;
 
     &--answered {
@@ -36,7 +37,6 @@ $checkbox-size: 20px;
     color: $gray-lighter;
     margin-top: -0.7em;
     margin-bottom: 0.5em;
-
 }
 
 .poll-row.radio {
