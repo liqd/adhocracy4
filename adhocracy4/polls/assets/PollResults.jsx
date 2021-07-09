@@ -63,7 +63,7 @@ export default class PollResult extends React.Component {
   getHelpTextOpenAnswer () {
     const total = this.state.question.totalAnswerCount
     let helpTextOpenAnswer
-    if (total > 1) {
+    if (total >= 1) {
       helpTextOpenAnswer = django.ngettext('1 person has answered.', '%s people have answered.', total)
     } else {
       helpTextOpenAnswer = django.gettext('noone has answered this question')
