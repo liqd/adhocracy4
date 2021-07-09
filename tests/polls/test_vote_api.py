@@ -258,6 +258,40 @@ def test_other_choice_vote_created(user,
 
 
 @pytest.mark.django_db
+def test_empty_other_choice_vote_raises_error(user,
+                                              question,
+                                              apiclient,
+                                              choice_factory):
+
+    choice_factory(question=question)
+    choice_other = choice_factory(question=question, is_other_choice=True)
+
+    assert Vote.objects.count() == 0
+    assert OtherVote.objects.count() == 0
+
+    apiclient.force_authenticate(user=user)
+
+    url = reverse(
+        'votes-list',
+        kwargs={
+            'question_pk': question.pk
+        })
+
+    data = {
+        'choices': [choice_other.pk],
+        'other_choice_answer': '',
+        'open_answer': ''
+    }
+
+    with active_phase(question.poll.module, VotingPhase):
+        response = apiclient.post(url, data, format='json')
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+    assert Vote.objects.count() == 0
+    assert OtherVote.objects.count() == 0
+
+
+@pytest.mark.django_db
 def test_other_choice_vote_updated(user,
                                    question,
                                    apiclient,
@@ -377,3 +411,44 @@ def test_answer_updated(user,
 
     assert Answer.objects.count() == 1
     assert Answer.objects.first().answer == 'answer to open question updated'
+
+
+@pytest.mark.django_db
+def test_answer_deleted(user,
+                        open_question,
+                        apiclient):
+
+    assert Answer.objects.count() == 0
+
+    apiclient.force_authenticate(user=user)
+
+    url = reverse(
+        'votes-list',
+        kwargs={
+            'question_pk': open_question.pk
+        })
+
+    data = {
+        'choices': [],
+        'other_choice_answer': '',
+        'open_answer': 'answer to open question'
+    }
+
+    with active_phase(open_question.poll.module, VotingPhase):
+        response = apiclient.post(url, data, format='json')
+        assert response.status_code == status.HTTP_201_CREATED
+
+    assert Answer.objects.count() == 1
+    assert Answer.objects.first().answer == 'answer to open question'
+
+    data = {
+        'choices': [],
+        'other_choice_answer': '',
+        'open_answer': ''
+    }
+
+    with active_phase(open_question.poll.module, VotingPhase):
+        response = apiclient.post(url, data, format='json')
+        assert response.status_code == status.HTTP_201_CREATED
+
+    assert Answer.objects.count() == 0
