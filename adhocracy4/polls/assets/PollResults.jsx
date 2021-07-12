@@ -81,8 +81,8 @@ export default class PollResult extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       className: 'poll-slider',
-      infinite: true,
-      centerMode: false
+      infinite: false,
+      centerMode: true
     }
 
     return (
