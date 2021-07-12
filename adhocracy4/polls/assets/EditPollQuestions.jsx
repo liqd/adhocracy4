@@ -157,6 +157,7 @@ export const EditPollQuestions = (props) => {
 
     api.poll.change(data, props.pollId)
       .done((data) => {
+        setQuestions(data.questions)
         setAlert({
           type: 'success',
           message: django.gettext('The poll has been updated.')

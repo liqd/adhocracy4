@@ -172,10 +172,19 @@ class PollQuestions extends React.Component {
     validatedQuestions.length > 0 && api.poll.batchvote(datalist)
       .then(response => {
         this.setModified(response[0].question.id, false)
-        this.setState({
-          alert: {
-            type: 'success',
-            message: django.gettext('Your answer has been saved.')
+        this.setState(prevState => {
+          const questionsCopy = prevState.questions
+          const newQuestions = questionsCopy.map(q => {
+            return q.id === response[0].question.id
+              ? response[0].question
+              : q
+          })
+          return {
+            questions: newQuestions,
+            alert: {
+              type: 'success',
+              message: django.gettext('Your answer has been saved.')
+            }
           }
         })
       })
