@@ -1,7 +1,6 @@
-// taken as standard from radio.scss
+// standard size from radio.scss
 $checkbox-size: 20px;
 
-//remove the u-border in a4
 .poll {
     padding: 1.5*$spacer;
 
@@ -33,12 +32,6 @@ $checkbox-size: 20px;
     }
 }
 
-.editpoll__help-text {
-    color: $gray-lighter;
-    margin-top: -0.7em;
-    margin-bottom: 0.5em;
-}
-
 .poll-row.radio {
     flex-direction: column;
 }
@@ -57,13 +50,6 @@ $checkbox-size: 20px;
     }
 }
 
-.editpoll__help-text,
-.poll__help-text {
-    color: $gray-lighter;
-    margin-top: -0.7*$spacer;
-    margin-bottom: 0.5*$spacer;
-}
-
 .poll-row__number,
 .poll-row__label,
 .poll-row__radio {
@@ -72,17 +58,17 @@ $checkbox-size: 20px;
     margin-right: 0.2*$spacer;
 }
 
-.pollquestionlist-container {
-    border: 1px solid $border-color;
-}
-
 .poll-row__container {
     position: relative;
 }
 
+.pollquestionlist-container {
+    border: 1px solid $border-color;
+}
+
 // RESULTS
 .poll-row__bar {
-    background-color: $bg-tertiary;
+    background-color: $bg-secondary;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -121,6 +107,19 @@ $checkbox-size: 20px;
 }
 
 //EditPollQuestions/EditPollOpenQuestions
+.editpoll__help-text,
+.poll__help-text {
+    color: $gray-lighter;
+    margin-top: -0.7*$spacer;
+    margin-bottom: 0.5*$spacer;
+}
+
+.editpoll__help-text {
+    color: $gray-lighter;
+    margin-top: -0.7em;
+    margin-bottom: 0.5em;
+}
+
 .editpoll__actions-container {
     display: flex;
     flex-direction: column;
@@ -235,14 +234,16 @@ $checkbox-size: 20px;
 }
 
 .poll-slider {
-    background-color: $bg-secondary;
     position: relative;
+    background-color: $bg-secondary;
     margin-bottom: 0.5*$spacer;
 
     //slick overwrites - nested for specificity
     .slick-prev,
     .slick-next {
-        top: 5*$spacer;
+        position: absolute;
+        top: revert;
+        bottom: 0;
         text-align: center;
         width: 30px;
         height: 30px;
@@ -250,27 +251,23 @@ $checkbox-size: 20px;
         background-color: $brand-primary;
         z-index: 1; //for when tile links overlap
 
-        // &:hover,
-        // :focus {
-        //     background-color: $body-bg;
-        // }
-
         &:before {
             color: $body-bg;
             opacity: 1;
             font-family: "Font Awesome 5 Free", sans-serif;
             font-weight: 900;
-            font-size: $font-size-xxl;
+            font-size: $font-size-xl;
             line-height: 1.3rem;
         }
     }
 
     .slick-prev {
-        left: 88% !important;
+        left: revert !important;
+        right: 4*$spacer !important;
     }
 
     .slick-next {
-        right: $spacer !important;
+        right: 1.5*$spacer !important;
     }
 
     .slick-prev:before {
@@ -280,8 +277,37 @@ $checkbox-size: 20px;
     .slick-next:before {
         content: '\f105'; // angle-right
     }
+
+    // Ensure centermode works
+    .slick-slide {
+        height: auto;
+        position: relative;
+    }
+
+    .slick-track {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
+    }
 }
 
 .poll-slider__item {
     padding: $spacer;
+}
+
+.poll-slider__answer {
+    padding-bottom: $spacer;
+}
+
+.poll-slider__count {
+    color: $gray-lighter;
+    position: absolute;
+    bottom: $spacer;
+    left: $spacer;
+
+    @media (min-width: $breakpoint) {
+        left: revert;
+        right: 4*$spacer;
+    }
 }
