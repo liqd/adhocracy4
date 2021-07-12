@@ -21,7 +21,7 @@
     "@fortawesome/fontawesome-free": "5.15.3",
     "@popperjs/core": "2.9.2",
     "acorn": "8.4.1",
-    "adhocracy4": "liqd/adhocracy4#9754c8fde5bf4dfceb70c106db716efc8577b9fc",
+    "adhocracy4": "liqd/adhocracy4#2330ef83bf26d945d7e3c2b205534ee474715d0a",
     "autoprefixer": "10.2.6",
     "axios": "0.21.1",
     "babel-loader": "8.2.2",
