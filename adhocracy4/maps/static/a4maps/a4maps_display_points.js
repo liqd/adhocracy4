@@ -27,7 +27,8 @@ function init () {
       dragging: true,
       scrollWheelZoom: false,
       zoomControl: false,
-      maxZoom: 18
+      maxZoom: 18,
+      tap: false
     })
 
     map.on('zoomend', function () {

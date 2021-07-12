@@ -29,7 +29,8 @@ function init () {
       dragging: true,
       scrollWheelZoom: false,
       zoomControl: true,
-      minZoom: 2
+      minZoom: 2,
+      tap: false
     })
 
     const polygonStyle = {
