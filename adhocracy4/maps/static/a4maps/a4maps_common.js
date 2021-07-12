@@ -18,7 +18,8 @@ export function createMap (L, e, {
     scrollWheelZoom: scrollWheelZoom,
     zoomControl: zoomControl,
     minZoom: minZoom,
-    maxZoom: maxZoom
+    maxZoom: maxZoom,
+    tap: false
   })
 
   if (useVectorMap === '1') {
