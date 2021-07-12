@@ -10,6 +10,7 @@
 
 .input-group__input {
     flex: 1 1 auto;
+    background-clip: unset;
 
     @extend .form-control;
 }
