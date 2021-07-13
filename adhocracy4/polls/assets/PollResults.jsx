@@ -29,7 +29,6 @@ export default class PollResult extends React.Component {
   // }
 
   isUserAnswer (slide) {
-    console.log(slide)
     const matchedId = this.state.question.is_open
       ? slide.id === this.state.userAnswerId
       : slide.vote_id === this.state.userAnswerId
