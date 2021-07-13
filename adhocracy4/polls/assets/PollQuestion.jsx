@@ -81,7 +81,7 @@ export const PollQuestion = (props) => {
                         />
                         {checked ? (
                           <>
-                            <div className="lr-bar__right fs-xs">
+                            <div className="poll__char-counter">
                               <CharCounter value={otherChoiceAnswer} max={maxlength} />
                             </div>
                             <ErrorList errors={errors} field={choice.id} />
@@ -118,7 +118,7 @@ export const PollQuestion = (props) => {
                         />
                         {checked ? (
                           <>
-                            <div className="lr-bar__right fs-xs">
+                            <div className="poll__char-counter">
                               <CharCounter value={otherChoiceAnswer} max={maxlength} />
                             </div>
                             <ErrorList errors={errors} field={choice.id} />
