@@ -35,7 +35,7 @@ export const PollOpenQuestion = (props) => {
           onChange={(event) => { handleOpenChange(event) }}
           maxLength={maxlength}
         />
-        <div className="lr-bar__right fs-xs">
+        <div className="poll__char-counter">
           <CharCounter value={userAnswer} max={maxlength} />
         </div>
       </div>
