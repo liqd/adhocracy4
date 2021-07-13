@@ -26,6 +26,8 @@ const statusNames = [
   django.gettext('done')
 ]
 
+const pageHeader = django.gettext('Project overview')
+
 class ListMapBox extends Component {
   constructor (props) {
     super(props)
@@ -356,29 +358,32 @@ class ListMapBox extends Component {
 
   getFilterNav (numColumns, isStacked, isTablet) {
     return (
-      <FilterNav
-        selectDistrict={this.selectDistrict.bind(this)}
-        selectTopic={this.selectTopic.bind(this)}
-        selectParticipation={this.selectParticipation.bind(this)}
-        selectStatus={this.selectStatus.bind(this)}
-        selectOrganisation={this.selectOrganisation.bind(this)}
-        selectTitleSearch={this.selectTitleSearch.bind(this)}
-        district={this.state.district}
-        districtnames={this.props.districtnames}
-        topic={this.state.topic}
-        topicChoices={this.props.topicChoices}
-        participation={this.state.participation}
-        participationNames={participationNames}
-        status={this.state.status}
-        statusNames={statusNames}
-        organisation={this.state.organisation}
-        organisations={this.props.organisations}
-        titleSearch={this.state.titleSearch}
-        numColumns={numColumns}
-        updateFilterStatus={this.toggleFilter.bind(this)}
-        isStacked={isStacked}
-        isTablet={isTablet}
-      />
+      <div>
+        <h1 className="visually-hidden-focusable">{pageHeader}</h1>
+        <FilterNav
+          selectDistrict={this.selectDistrict.bind(this)}
+          selectTopic={this.selectTopic.bind(this)}
+          selectParticipation={this.selectParticipation.bind(this)}
+          selectStatus={this.selectStatus.bind(this)}
+          selectOrganisation={this.selectOrganisation.bind(this)}
+          selectTitleSearch={this.selectTitleSearch.bind(this)}
+          district={this.state.district}
+          districtnames={this.props.districtnames}
+          topic={this.state.topic}
+          topicChoices={this.props.topicChoices}
+          participation={this.state.participation}
+          participationNames={participationNames}
+          status={this.state.status}
+          statusNames={statusNames}
+          organisation={this.state.organisation}
+          organisations={this.props.organisations}
+          titleSearch={this.state.titleSearch}
+          numColumns={numColumns}
+          updateFilterStatus={this.toggleFilter.bind(this)}
+          isStacked={isStacked}
+          isTablet={isTablet}
+        />
+      </div>
     )
   }
 
