@@ -1,10 +1,10 @@
 import pytest
 from django.core.exceptions import ValidationError
 from django.urls import reverse
+from rest_framework import status
 
 from adhocracy4.polls.models import Poll
 from adhocracy4.polls.validators import single_item_per_module
-from adhocracy4.polls.validators import single_vote_per_user
 
 
 @pytest.mark.django_db
@@ -34,26 +34,8 @@ def test_choice_belongs_to_question(admin,
         'open_answer': ''
     }
 
-    with pytest.raises(ValidationError):
-        apiclient.post(url, data, format='json')
-
-
-@pytest.mark.django_db
-def test_single_vote_per_user(admin,
-                              apiclient,
-                              poll_factory,
-                              vote_factory,
-                              question_factory,
-                              choice_factory):
-
-    poll = poll_factory()
-    question1 = question_factory(poll=poll, multiple_choice=False)
-    choice1 = choice_factory(question=question1)
-
-    vote_factory(creator=admin, choice=choice1)
-
-    with pytest.raises(ValidationError):
-        single_vote_per_user(admin, choice1)
+    response = apiclient.post(url, data, format='json')
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
 @pytest.mark.django_db
