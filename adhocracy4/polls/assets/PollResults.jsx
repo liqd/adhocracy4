@@ -7,13 +7,17 @@ export default class PollResult extends React.Component {
     super(props)
 
     const question = this.props.question
+    const openOrOtherAnswerId = question.is_open
+      ? question.userAnswer
+      : question.other_choice_user_answer
 
     this.state = {
       question: question,
       selectedChoices: question.userChoices,
       showResult: (question.userChoices.length !== 0) || question.isReadOnly,
       alert: null,
-      showOtherAnswers: false
+      showOtherAnswers: false,
+      userAnswerId: openOrOtherAnswerId
     }
   }
 
@@ -23,6 +27,14 @@ export default class PollResult extends React.Component {
   //     window.requestAnimationFrame(() => Object.assign(node.style, style))
   //   }
   // }
+
+  isUserAnswer (slide) {
+    console.log(slide)
+    const matchedId = this.state.question.is_open
+      ? slide.id === this.state.userAnswerId
+      : slide.vote_id === this.state.userAnswerId
+    return !!matchedId
+  }
 
   toggleOtherAnswers () {
     this.setState(prevState => ({ showOtherAnswers: !prevState.showOtherAnswers }))
@@ -116,7 +128,11 @@ export default class PollResult extends React.Component {
                           <Slider {...settings}>
                             {this.props.question.other_choice_answers.map((slide, index) => (
                               <div
-                                className="poll-slider__item"
+                                className={
+                                  this.isUserAnswer(slide)
+                                    ? 'poll-slider__item--highlight'
+                                    : 'poll-slider__item'
+                                }
                                 data-index={index}
                                 key={index}
                               >
@@ -140,7 +156,11 @@ export default class PollResult extends React.Component {
               <Slider {...settings} id={this.state.question.id}>
                 {this.props.question.answers.map((slide, index) => (
                   <div
-                    className="poll-slider__item"
+                    className={
+                      this.isUserAnswer(slide)
+                        ? 'poll-slider__item--highlight'
+                        : 'poll-slider__item'
+                    }
                     data-index={index}
                     key={index}
                   >
