@@ -17,7 +17,8 @@ class PollQuestions extends React.Component {
       showResults: false,
       alert: false,
       votes: [],
-      errors: {}
+      errors: {},
+      loading: false
     }
 
     this.linkToPoll = (
@@ -32,7 +33,11 @@ class PollQuestions extends React.Component {
       </button>)
 
     this.linkShowResults = (
-      <button type="button" className="btn btn--link" onClick={() => this.handleToggleResultsPage()}>
+      <button
+        type="button"
+        className="btn btn--link"
+        onClick={() => this.handleToggleResultsPage()}
+      >
         {django.gettext('Show preliminary results')}
       </button>
     )
@@ -141,6 +146,7 @@ class PollQuestions extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
+    this.setState({ loading: true })
     const modifiedQuestions = this.state.questions.filter(q => q.modified)
     const validatedQuestions = modifiedQuestions.filter(q => {
       if (!q.is_open) {
@@ -180,6 +186,7 @@ class PollQuestions extends React.Component {
               : q
           })
           return {
+            loading: false,
             questions: newQuestions,
             alert: {
               type: 'success',
@@ -189,10 +196,13 @@ class PollQuestions extends React.Component {
         })
       })
       .catch(() => {
-        this.setState({
-          alert: {
-            type: 'danger',
-            message: django.gettext('Your answer could not be saved due to a server error. Please try again later.')
+        this.setState(prevState => {
+          return {
+            loading: false,
+            alert: {
+              type: 'danger',
+              message: django.gettext('Your answer could not be saved due to a server error. Please try again later.')
+            }
           }
         })
       })
@@ -241,7 +251,7 @@ class PollQuestions extends React.Component {
           <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
           {!this.isReadOnly() && (
             <div className="poll">
-              {this.buttonVote}{this.linkShowResults}
+              {this.buttonVote}{!this.state.loading && this.linkShowResults}
             </div>
           )}
         </div>
