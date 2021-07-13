@@ -1,9 +1,12 @@
 from django.db import transaction
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext as _
 from rest_framework import mixins
 from rest_framework import status
 from rest_framework import viewsets
+from rest_framework.exceptions import NotFound
+from rest_framework.exceptions import ParseError
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
@@ -77,12 +80,14 @@ class VoteViewSet(viewsets.ViewSet):
             choices = [get_object_or_404(Choice, pk=choice_pk)
                        for choice_pk
                        in request.data['choices']]
+            other_choice_answer = request.data['other_choice_answer']
+            open_answer = request.data['open_answer']
         except (ValueError, AttributeError):
             raise ValidationError()
-
-        other_choice_answer = request.data['other_choice_answer']
-
-        open_answer = request.data['open_answer']
+        except KeyError as error:
+            raise ParseError(detail=_('Key error for {}').format(str(error)))
+        except Http404:
+            raise NotFound(detail=_('Choice not found.'))
 
         return choices, other_choice_answer, open_answer
 
@@ -90,12 +95,13 @@ class VoteViewSet(viewsets.ViewSet):
         question = self.question
 
         if len(choices) > len(set(choices)):
-            raise ValidationError('duplicate choices detected')
+            raise ValidationError(detail=_('Duplicate choices detected.'))
 
         if len(choices) == 0:
-            raise ValidationError('empty choices detected')
+            raise ValidationError(detail=_('Empty choices detected.'))
         elif len(choices) > 1 and not question.multiple_choice:
-            raise ValidationError('multiple choice disabled for question')
+            raise ValidationError(detail=_('Multiple choice disabled for '
+                                           'question.'))
 
         for choice in choices:
             choice_belongs_to_question(choice, question.pk)
