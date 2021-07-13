@@ -452,3 +452,81 @@ def test_answer_deleted(user,
         assert response.status_code == status.HTTP_201_CREATED
 
     assert Answer.objects.count() == 0
+
+
+@pytest.mark.django_db
+def test_get_data(apiclient, user, question, choice_factory):
+
+    assert question.choices.count() == 0
+
+    apiclient.force_authenticate(user=user)
+
+    url = reverse(
+        'votes-list',
+        kwargs={
+            'question_pk': question.pk
+        })
+
+    data = {
+        'choices': [1],
+        'other_choice_answer': '',
+        'open_answer': ''
+    }
+
+    with active_phase(question.poll.module, VotingPhase):
+        response = apiclient.post(url, data, format='json')
+    assert response.status_code == status.HTTP_404_NOT_FOUND
+
+    choice = choice_factory(question=question)
+    data = {
+        'choices': [choice.id],
+        'other_choice_answer': '',
+    }
+
+    with active_phase(question.poll.module, VotingPhase):
+        response = apiclient.post(url, data, format='json')
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+
+
+@pytest.mark.django_db
+def test_validate_choices(apiclient, user, question, choice_factory):
+
+    apiclient.force_authenticate(user=user)
+
+    url = reverse(
+        'votes-list',
+        kwargs={
+            'question_pk': question.pk
+        })
+
+    data = {
+        'choices': [],
+        'other_choice_answer': '',
+        'open_answer': ''
+    }
+    with active_phase(question.poll.module, VotingPhase):
+        response = apiclient.post(url, data, format='json')
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    'Empty choices detected' in response.content.decode()
+
+    choice1 = choice_factory(question=question)
+    data = {
+        'choices': [choice1.id, choice1.id],
+        'other_choice_answer': '',
+        'open_answer': ''
+    }
+    with active_phase(question.poll.module, VotingPhase):
+        response = apiclient.post(url, data, format='json')
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    'Duplicate choices detected' in response.content.decode()
+
+    choice2 = choice_factory(question=question)
+    data = {
+        'choices': [choice1.id, choice2.id],
+        'other_choice_answer': '',
+        'open_answer': ''
+    }
+    with active_phase(question.poll.module, VotingPhase):
+        response = apiclient.post(url, data, format='json')
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    'Multiple choice disabled for question' in response.content.decode()
