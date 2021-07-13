@@ -127,16 +127,12 @@ export default class PollResult extends React.Component {
                           <Slider {...settings}>
                             {this.props.question.other_choice_answers.map((slide, index) => (
                               <div
-                                className={
-                                  this.isUserAnswer(slide)
-                                    ? 'poll-slider__item--highlight'
-                                    : 'poll-slider__item'
-                                }
+                                className="poll-slider__item"
                                 data-index={index}
                                 key={index}
                               >
                                 <div className="poll-slider__answer">
-                                  {slide.answer}
+                                  {this.isUserAnswer(slide) && <i className="fas fa-check-circle" />} {slide.answer}
                                 </div>
                                 <div className="poll-slider__count">
                                   {index + 1}/{this.props.question.other_choice_answers.length}
@@ -155,16 +151,12 @@ export default class PollResult extends React.Component {
               <Slider {...settings} id={this.state.question.id}>
                 {this.props.question.answers.map((slide, index) => (
                   <div
-                    className={
-                      this.isUserAnswer(slide)
-                        ? 'poll-slider__item--highlight'
-                        : 'poll-slider__item'
-                    }
+                    className="poll-slider__item"
                     data-index={index}
                     key={index}
                   >
                     <div className="poll-slider__answer">
-                      {slide.answer}
+                      {this.isUserAnswer(slide) && <i className="fas fa-check-circle" />} {slide.answer}
                     </div>
                     <div className="poll-slider__count">
                       {index + 1}/{this.props.question.answers.length}
