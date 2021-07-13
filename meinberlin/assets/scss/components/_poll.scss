@@ -37,8 +37,16 @@ $checkbox-size: 20px;
 }
 
 .poll__rows {
-    padding-bottom: $spacer;
+    display: flex;
+    flex-direction: column;
     border-bottom: 1px solid $border-color;
+}
+
+.poll__char-counter {
+    align-self: flex-end;
+    padding-bottom: 1rem;
+    font-size: $font-size-xs;
+    color: $text-color-gray;
 }
 
 .poll__actions > :last-child {
