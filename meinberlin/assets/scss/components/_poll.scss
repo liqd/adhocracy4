@@ -319,3 +319,8 @@ $checkbox-size: 20px;
         right: 4*$spacer;
     }
 }
+
+.poll__button--wrapper {
+    display: flex;
+    align-items: center;
+}
