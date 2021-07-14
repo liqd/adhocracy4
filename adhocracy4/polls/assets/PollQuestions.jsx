@@ -41,6 +41,12 @@ class PollQuestions extends React.Component {
         {django.gettext('Show preliminary results')}
       </button>
     )
+
+    this.loadingIndicator = (
+      <div className="spinner-border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    )
   }
 
   setModified (questionId, value) {
@@ -176,23 +182,26 @@ class PollQuestions extends React.Component {
     }
 
     validatedQuestions.length > 0 && api.poll.batchvote(datalist)
-      .then(response => {
-        this.setModified(response[0].question.id, false)
-        this.setState(prevState => {
-          const questionsCopy = prevState.questions
-          const newQuestions = questionsCopy.map(q => {
-            return q.id === response[0].question.id
-              ? response[0].question
-              : q
-          })
-          return {
-            loading: false,
-            questions: newQuestions,
-            alert: {
-              type: 'success',
-              message: django.gettext('Your answer has been saved.')
+      .then(respondedQuestions => {
+        respondedQuestions.forEach(rq => {
+          this.setModified(rq.question.id, false)
+          this.setState(prevState => {
+            const questionsCopy = prevState.questions
+            const newQuestions =
+              questionsCopy.map(q => {
+                return rq.question.id === q.id
+                  ? rq.question
+                  : q
+              })
+            return {
+              loading: false,
+              questions: newQuestions,
+              alert: {
+                type: 'success',
+                message: django.gettext('Your answer has been saved.')
+              }
             }
-          }
+          })
         })
       })
       .catch(() => {
@@ -250,8 +259,8 @@ class PollQuestions extends React.Component {
           ))}
           <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
           {!this.isReadOnly() && (
-            <div className="poll">
-              {this.buttonVote}{!this.state.loading && this.linkShowResults}
+            <div className="poll poll__button--wrapper">
+              {this.buttonVote}{!this.state.loading ? this.linkShowResults : this.loadingIndicator}
             </div>
           )}
         </div>
