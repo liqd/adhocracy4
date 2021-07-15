@@ -103,16 +103,16 @@ export const EditPollQuestion = (props) => {
             })
           }
         </FlipMove>
-        <div className="editpoll__question-buttons">
+        <div className="editpoll__btns--question">
           <button
-            className="btn btn--light btn--small editpoll__question-button"
+            className="btn editpoll__btn--question"
             onClick={() => props.onAppendChoice(hasOtherOption)}
             type="button"
           >
             <i className="fa fa-plus" /> {django.gettext('New answer')}
           </button>
           <button
-            className={`editpoll__question-button btn btn--small ${hasHelptext ? 'btn--primary' : 'btn--light'}`}
+            className={`btn ${hasHelptext ? 'poll__btn--dark' : 'poll__btn--light'}`}
             onClick={() => setHasHelptext(!hasHelptext)}
             type="button"
           >
@@ -123,7 +123,7 @@ export const EditPollQuestion = (props) => {
 
       <div className="editpoll__question-actions btn-group" role="group">
         <button
-          className="btn btn--light btn--small"
+          className="btn poll__btn--light"
           onClick={props.onMoveUp}
           disabled={!props.onMoveUp}
           title={django.gettext('Move up')}
@@ -135,7 +135,7 @@ export const EditPollQuestion = (props) => {
           />
         </button>
         <button
-          className="btn btn--light btn--small"
+          className="btn poll__btn--light"
           onClick={props.onMoveDown}
           disabled={!props.onMoveDown}
           title={django.gettext('Move down')}
@@ -147,7 +147,7 @@ export const EditPollQuestion = (props) => {
           />
         </button>
         <button
-          className="btn btn--light btn--small"
+          className="btn poll__btn--light"
           onClick={props.onDelete}
           title={django.gettext('Delete')}
           type="button"

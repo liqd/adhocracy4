@@ -22,7 +22,7 @@ export const EditPollChoice = (props) => {
           disabled={props.isOther}
         />
         <button
-          className="input-group__after btn btn--light"
+          className="input-group__after btn editpoll__btn--delete"
           onClick={props.onDelete}
           title={django.gettext('remove')}
           type="button"

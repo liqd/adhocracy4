@@ -108,7 +108,7 @@ export default class PollResult extends React.Component {
             if (!this.state.question.is_open) {
               return (
                 <div key={choice.id} className="poll-row__container">
-                  {chosen ? <i className="poll-row__chosen fa fa-check" aria-label={django.gettext('Your choice')} /> : ''}
+                  {chosen ? <i className="poll-row__chosen fas fa-check-circle" aria-label={django.gettext('Your choice')} /> : ''}
                   <div className="poll-row poll-row--answered">
                     <div className="poll-row__number">{percent}%</div>
                     <div className="poll-row__label">{choice.label}</div>
@@ -119,7 +119,7 @@ export default class PollResult extends React.Component {
                   </div>
                   {choice.is_other_choice &&
                     <div>
-                      <button type="button" className="btn btn--link" onClick={() => this.toggleOtherAnswers()}>
+                      <button type="button" className="btn poll__btn--link" onClick={() => this.toggleOtherAnswers()}>
                         {this.getOtherAnswerText()}
                       </button>
                       {this.state.showOtherAnswers &&
@@ -166,9 +166,9 @@ export default class PollResult extends React.Component {
               </Slider>
             </div>}
           {this.state.question.is_open ? (
-            <div className="u-muted">{this.getHelpTextOpenAnswer()}</div>
+            <div className="a4-muted">{this.getHelpTextOpenAnswer()}</div>
           ) : (
-            <div className="u-muted">{this.getHelpTextAnswer()}</div>
+            <div className="a4-muted">{this.getHelpTextAnswer()}</div>
           )}
         </div>
       </div>

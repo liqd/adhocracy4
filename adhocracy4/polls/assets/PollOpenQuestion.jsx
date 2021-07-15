@@ -26,7 +26,7 @@ export const PollOpenQuestion = (props) => {
       {questionHelpText}
       <div className="poll__rows">
         <input
-          className="input-group__input"
+          className="form-control"
           type="text"
           name="question"
           id={'id_choice-' + props.question.id + '-open'}
