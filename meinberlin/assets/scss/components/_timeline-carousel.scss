@@ -43,22 +43,16 @@ $timeline-carousel__top-space: 11px;
     overflow: hidden;
 }
 
-//slick overwrites
-.slick-slide {
-    margin: 0 3*$em-spacer;
-    min-width: 275px;
+.slick-slide:focus,
+.slick-slide:hover {
+    outline: none;
 
-    :focus,
-    :hover {
-        outline: none;
+    .timeline-carousel__dot {
+        transform: scale(1.85);
+    }
 
-        .timeline-carousel__dot {
-            transform: scale(1.85);
-        }
-
-        .timeline-carousel__label {
-            transform: scale(1.05);
-        }
+    .timeline-carousel__label {
+        transform: scale(1.05);
     }
 }
 
@@ -69,6 +63,11 @@ $timeline-carousel__top-space: 11px;
     margin: $em-spacer 0;
 
     //slick overwrites - nested for specificity
+    .slick-slide {
+        margin: 0 3*$em-spacer;
+        min-width: 275px;
+    }
+
     .slick-prev,
     .slick-next {
         top: $timeline-carousel__top-space;

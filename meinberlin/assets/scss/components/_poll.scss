@@ -132,6 +132,11 @@ $checkbox-size: 20px;
     @extend .btn--link;
 }
 
+.poll__btn--wrapper {
+    display: flex;
+    align-items: center;
+}
+
 //EditPollQuestions/EditPollOpenQuestions
 .editpoll__help-text,
 .poll__help-text {
@@ -185,7 +190,6 @@ $checkbox-size: 20px;
     margin: 0 1rem;
 }
 
-//FIXME
 @media (min-width: $breakpoint) {
     .editpoll__question-container {
         @include clearfix;
@@ -220,6 +224,23 @@ $checkbox-size: 20px;
         margin: 0;
         margin-right: 0.5*$spacer;
     }
+}
+
+//Open/Other answers
+
+.poll-slider__item {
+    padding: $spacer;
+}
+
+.poll-slider__answer {
+    padding-bottom: $spacer;
+}
+
+.poll-slider__count {
+    color: $gray-lighter;
+    position: absolute;
+    bottom: $spacer;
+    left: $spacer;
 }
 
 .poll-slider {
@@ -281,27 +302,15 @@ $checkbox-size: 20px;
     }
 }
 
-.poll-slider__item {
-    padding: $spacer;
-}
+@media (min-width: $breakpoint) {
+    .poll-slider {
+        .slick-slide {
+            margin: 0 3*$spacer;
+        }
+    }
 
-.poll-slider__answer {
-    padding-bottom: $spacer;
-}
-
-.poll-slider__count {
-    color: $gray-lighter;
-    position: absolute;
-    bottom: $spacer;
-    left: $spacer;
-
-    @media (min-width: $breakpoint) {
+    .poll-slider__count {
         left: revert;
         right: 4*$spacer;
     }
-}
-
-.poll__btn--wrapper {
-    display: flex;
-    align-items: center;
 }
