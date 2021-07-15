@@ -29,7 +29,7 @@ export const EditPollOpenQuestion = (props) => {
           ? <HelptextForm id={props.id} question={props.question} onHelptextChange={props.onHelptextChange} errors={props.errors} />
           : null}
         <button
-          className={`btn btn--small ${hasHelptext ? 'btn--primary' : 'btn--light'}`}
+          className={`btn ${hasHelptext ? 'poll__btn--dark' : 'poll__btn--light'}`}
           onClick={() => setHasHelptext(!hasHelptext)}
           type="button"
         >
@@ -39,7 +39,7 @@ export const EditPollOpenQuestion = (props) => {
 
       <div className="editpoll__question-actions btn-group" role="group">
         <button
-          className="btn btn--light btn--small"
+          className="btn poll__btn--light"
           onClick={props.onMoveUp}
           disabled={!props.onMoveUp}
           title={django.gettext('Move up')}
@@ -51,7 +51,7 @@ export const EditPollOpenQuestion = (props) => {
           />
         </button>
         <button
-          className="btn btn--light btn--small"
+          className="btn poll__btn--light"
           onClick={props.onMoveDown}
           disabled={!props.onMoveDown}
           title={django.gettext('Move down')}
@@ -63,7 +63,7 @@ export const EditPollOpenQuestion = (props) => {
           />
         </button>
         <button
-          className="btn btn--light btn--small"
+          className="btn poll__btn--light"
           onClick={props.onDelete}
           title={django.gettext('Delete')}
           type="button"

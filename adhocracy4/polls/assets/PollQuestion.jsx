@@ -57,7 +57,7 @@ export const PollQuestion = (props) => {
                 return (
                   <label className="poll-row radio" key={choice.id} htmlFor={'id_choice-' + choice.id + '-single'}>
                     <input
-                      className="poll-row__radio radio__input"
+                      className="poll-row__radio"
                       type="radio"
                       name="question"
                       id={'id_choice-' + choice.id + '-single'}
@@ -70,7 +70,7 @@ export const PollQuestion = (props) => {
                     {choice.is_other_choice &&
                       <>
                         <input
-                          className="input-group__input"
+                          className="form-control"
                           type="text"
                           name="question"
                           value={checked ? otherChoiceAnswer : ''}
@@ -94,7 +94,7 @@ export const PollQuestion = (props) => {
                 return (
                   <label className="poll-row radio" key={choice.id} htmlFor={'id_choice-' + choice.id + '-multiple'}>
                     <input
-                      className="poll-row__radio radio__input"
+                      className="poll-row__radio"
                       type="checkbox"
                       name="question"
                       id={'id_choice-' + choice.id + '-multiple'}
@@ -107,7 +107,7 @@ export const PollQuestion = (props) => {
                     {choice.is_other_choice &&
                       <>
                         <input
-                          className="input-group__input"
+                          className="form-control"
                           type="text"
                           name="question"
                           id={'id_choice-' + choice.id + '-other'}

@@ -22,20 +22,20 @@ class PollQuestions extends React.Component {
     }
 
     this.linkToPoll = (
-      <button type="button" className="btn btn--link" onClick={() => this.handleToggleResultsPage()}>
+      <button type="button" className="btn poll__btn--link" onClick={() => this.handleToggleResultsPage()}>
         {django.gettext('To poll')}
       </button>
     )
 
     this.linkChangeVote = (
-      <button type="button" className="btn btn--link" onClick={() => this.handleToggleResultsPage()}>
+      <button type="button" className="btn poll__btn--link" onClick={() => this.handleToggleResultsPage()}>
         {django.gettext('Change answer')}
       </button>)
 
     this.linkShowResults = (
       <button
         type="button"
-        className="btn btn--link"
+        className="btn poll__btn--link"
         onClick={() => this.handleToggleResultsPage()}
       >
         {django.gettext('Show preliminary results')}
@@ -112,7 +112,7 @@ class PollQuestions extends React.Component {
       return (
         <button
           type="button"
-          className="btn btn--primary u-spacer-right"
+          className="btn poll__btn--dark a4-spacer--right"
           onClick={(e) => this.handleSubmit(e)}
           disabled={disabled}
         >
@@ -121,7 +121,7 @@ class PollQuestions extends React.Component {
       )
     } else {
       return (
-        <a href={config.getLoginUrl()} className="btn btn--primary u-spacer-right">
+        <a href={config.getLoginUrl()} className="btn poll__btn--dark a4-spacer--right">
           {django.gettext('Please login to answer')}
         </a>
       )
@@ -241,36 +241,34 @@ class PollQuestions extends React.Component {
       </div>
     ) : (
       <div className="pollquestionlist-container">
-        <div className="u-border">
-          {this.state.questions.map((q, idx) => (
-            q.is_open ? (
-              <PollOpenQuestion
-                key={idx}
-                question={q}
-                onOpenChange={(questionId, voteData) => this.handleVoteOpen(questionId, voteData)}
-              />
-            ) : (
-              <PollQuestion
-                key={idx}
-                question={q}
-                onSingleChange={(questionId, voteData) => this.handleVoteSingle(questionId, voteData)}
-                onMultiChange={(questionId, voteData) => this.handleVoteMulti(questionId, voteData)}
-                onOtherChange={(questionId, voteAnswer) => this.handleVoteOther(questionId, voteAnswer)}
-                errors={this.state.errors}
-              />
-            )
-          ))}
-          <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
-          {!this.isReadOnly() ? (
-            <div className="poll poll__button--wrapper">
-              {this.buttonVote}{!this.state.loading ? this.linkShowResults : this.loadingIndicator}
-            </div>
+        {this.state.questions.map((q, idx) => (
+          q.is_open ? (
+            <PollOpenQuestion
+              key={idx}
+              question={q}
+              onOpenChange={(questionId, voteData) => this.handleVoteOpen(questionId, voteData)}
+            />
           ) : (
-            <div className="poll">
-              {!this.state.loading ? this.linkShowResults : this.loadingIndicator}
-            </div>
-          )}
-        </div>
+            <PollQuestion
+              key={idx}
+              question={q}
+              onSingleChange={(questionId, voteData) => this.handleVoteSingle(questionId, voteData)}
+              onMultiChange={(questionId, voteData) => this.handleVoteMulti(questionId, voteData)}
+              onOtherChange={(questionId, voteAnswer) => this.handleVoteOther(questionId, voteAnswer)}
+              errors={this.state.errors}
+            />
+          )
+        ))}
+        <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
+        {!this.isReadOnly() ? (
+          <div className="poll poll__btn--wrapper">
+            {this.buttonVote}{!this.state.loading ? this.linkShowResults : this.loadingIndicator}
+          </div>
+        ) : (
+          <div className="poll">
+            {!this.state.loading ? this.linkShowResults : this.loadingIndicator}
+          </div>
+        )}
       </div>
     )
   }
