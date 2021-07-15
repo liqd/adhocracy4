@@ -309,7 +309,7 @@ export default class Comment extends React.Component {
                   <div className="a4-comments__submission-date">{lastDate}</div>
                 </div>
 
-                <div className="col-1 col-md-1 ml-auto">
+                <div className="col-1 col-md-1 ms-auto">
                   {this.context.isAuthenticated && !this.props.is_deleted && (this.isOwner() || this.context.isModerator) &&
                     <CommentManageDropdown
                       id={this.props.id}
@@ -384,7 +384,7 @@ export default class Comment extends React.Component {
             ? (
               <div className="a4-comments__child--list">
                 <div className="row a4-comments__list">
-                  <div className="col-12 ml-3">
+                  <div className="col-12 ms-3">
                     <CommentList
                       filter="all"
                       comments={this.props.child_comments}
@@ -399,7 +399,7 @@ export default class Comment extends React.Component {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-12 ml-3">
+                  <div className="col-12 ms-3">
                     <CommentForm
                       subjectType={this.context.comments_contenttype}
                       subjectId={this.props.id}

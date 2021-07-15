@@ -518,7 +518,7 @@ export default class CommentBox extends React.Component {
 
               <div className="row flex-md-nowrap justify-content-between">
 
-                <div className="input-group a4-comments__filters__search mr-md-3">
+                <div className="input-group a4-comments__filters__search me-md-3">
                   <input className="form-control a4-comments__filters__search-input mb-0" type="search" id="search-input" onKeyPress={this.handleEnterSearch} placeholder={django.gettext('Search contributions')} />
 
                   <button className={this.state.search !== '' ? 'a4-comments__filters__search-result text-muted' : 'd-none'} type="button" onClick={this.handleClickResult}><span className="fa-stack fa-2x"><i className="far fa-circle fa-stack-2x" /><i className="fas fa-times fa-stack-1x" aria-label={django.gettext('Clear search')} /></span></button>
@@ -527,7 +527,7 @@ export default class CommentBox extends React.Component {
                 </div>
 
                 {this.props.withCategories &&
-                  <div className="a4-comments__filters__dropdown mr-md-3">
+                  <div className="a4-comments__filters__dropdown me-md-3">
                     <div className="dropdown">
                       <button
                         className="btn btn--transparent btn--select dropdown-toggle a4-comments__filters__btn" type="button"
@@ -593,10 +593,10 @@ export default class CommentBox extends React.Component {
             </div>
 
             {!this.state.showFilters && this.state.commentCount > 0 &&
-              <button className="btn btn--none text-muted a4-comments__filters__show-btn pr-0" type="button" onClick={this.handleToggleFilters}>{django.gettext('Filters')}<i className="fas fa-sliders-h ml-2" aria-label={django.gettext('Show filters')} />
+              <button className="btn btn--none text-muted a4-comments__filters__show-btn pr-0" type="button" onClick={this.handleToggleFilters}>{django.gettext('Filters')}<i className="fas fa-sliders-h ms-2" aria-label={django.gettext('Show filters')} />
               </button>}
             {this.state.showFilters && this.state.commentCount > 0 &&
-              <button className="btn btn--none text-muted a4-comments__filters__show-btn pr-0" type="button" onClick={this.handleToggleFilters}>{django.gettext('Hide Filters')}<i className="fas fa-times ml-2" aria-label={django.gettext('Hide filters')} />
+              <button className="btn btn--none text-muted a4-comments__filters__show-btn pr-0" type="button" onClick={this.handleToggleFilters}>{django.gettext('Hide Filters')}<i className="fas fa-times ms-2" aria-label={django.gettext('Hide filters')} />
               </button>}
           </div>
 
