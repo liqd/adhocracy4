@@ -1,6 +1,10 @@
 // standard size from radio.scss
 $checkbox-size: 20px;
 
+.pollquestionlist-container {
+    border: 1px solid $border-color;
+}
+
 .poll {
     padding: 1.5*$spacer;
 
@@ -25,7 +29,7 @@ $checkbox-size: 20px;
         left: 2*$spacer;
     }
     //FIXME
-    .input-group__input {
+    .form-control {
         margin-left: $checkbox-size + 7px !important;
         margin-top: 0.5*$spacer;
         width: auto;
@@ -66,12 +70,12 @@ $checkbox-size: 20px;
     margin-right: 0.2*$spacer;
 }
 
-.poll-row__container {
-    position: relative;
+.poll-row__radio {
+    @extend .radio__input;
 }
 
-.pollquestionlist-container {
-    border: 1px solid $border-color;
+.poll-row__container {
+    position: relative;
 }
 
 // RESULTS
@@ -100,18 +104,32 @@ $checkbox-size: 20px;
 
 .poll-row__chosen {
     color: $gray-lighter;
-    border: 3px solid $gray-lighter;
-    border-radius: 1rem;
-    padding: 0.2*$spacer;
-    font-size: 0.8rem;
     position: absolute;
-    top: 0.2*$spacer;
+    top: 0.5*$spacer;
 }
 
 .poll-row__number {
     padding-left: 0.5*$spacer;
     min-width: 5em;
     font-weight: bold;
+}
+
+.poll__btn--light,
+.editpoll__btn--question,
+.editpoll__btn--delete {
+    @extend .btn--light;
+}
+
+.editpoll__btn--question {
+    margin: 0.5*$spacer 0;
+}
+
+.poll__btn--dark {
+    @extend .btn--primary;
+}
+
+.poll__btn--link {
+    @extend .btn--link;
 }
 
 //EditPollQuestions/EditPollOpenQuestions
@@ -141,30 +159,10 @@ $checkbox-size: 20px;
     }
 }
 
-.questionform__actions {
-    text-align: right;
-}
-
-.editpoll__question-buttons {
+.editpoll__btns--question {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-}
-
-.editpoll__question-button {
-    margin: 0.5*$spacer 0;
-}
-
-//FIXME
-.submenu-item__first {
-    border-color: $brand-secondary;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-
-    &:hover {
-        border-color: $brand-secondary;
-        background-color: $bg-secondary;
-    }
 }
 
 .editpoll__questions {
@@ -181,18 +179,6 @@ $checkbox-size: 20px;
     padding: $padding;
     border: 1px solid $border-color;
     border-radius: ($padding / 2);
-}
-
-.submenu-item__last {
-    border-top: 0;
-    border-color: $brand-secondary;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-
-    &:hover {
-        border-color: $brand-secondary;
-        background-color: $bg-secondary;
-    }
 }
 
 .editpoll__menu-container--override {
@@ -226,18 +212,13 @@ $checkbox-size: 20px;
         margin: 0;
     }
 
-    .editpoll__question-buttons {
+    .editpoll__btns--question {
         flex-direction: row;
     }
 
-    .editpoll__question-button {
+    .editpoll__btn--question {
         margin: 0;
         margin-right: 0.5*$spacer;
-    }
-
-    .questionform-divider {
-        border-top: 1px solid $border-color;
-        margin: 1.5*$spacer;
     }
 }
 
@@ -320,7 +301,7 @@ $checkbox-size: 20px;
     }
 }
 
-.poll__button--wrapper {
+.poll__btn--wrapper {
     display: flex;
     align-items: center;
 }

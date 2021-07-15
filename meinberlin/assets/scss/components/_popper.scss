@@ -3,6 +3,16 @@ ul.popper-container {
     padding: 0;
     margin: 0;
     width: 100%;
+    border: 1px solid $brand-secondary;
+    border-radius: 0.3em;
+
+    li {
+        border-bottom: 1px solid $brand-secondary;
+    }
+
+    li ~ li {
+        border-bottom: none;
+    }
 }
 
 .popper-content--container[data-visible="true"] {
@@ -16,4 +26,5 @@ ul.popper-container {
 .popper-menuitem__button {
     width: 100%;
     text-align: left;
+    border: none;
 }
