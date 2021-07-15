@@ -198,12 +198,12 @@ export const EditPollQuestions = (props) => {
     },
     popperMenuItems: [
       {
-        styleClass: 'btn poll__btn--light submenu-item__first',
+        styleClass: 'btn poll__btn--light submenu-item',
         text: django.gettext('Multiple choice question'),
         handleClick: () => handleQuestion('append')
       },
       {
-        styleClass: 'btn poll__btn--light submenu-item__last',
+        styleClass: 'btn poll__btn--light submenu-item',
         text: django.gettext('Open question'),
         handleClick: () => handleQuestion('append', { isOpen: true })
       }

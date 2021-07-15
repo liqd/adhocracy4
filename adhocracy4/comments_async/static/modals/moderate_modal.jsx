@@ -35,7 +35,7 @@ export default class ModerateModal extends React.Component {
           {django.gettext('Is recommended')}
         </label>
         <input
-          className="form-check-input ml-4 mt-3"
+          className="form-check-input ms-4 mt-3"
           type="checkbox"
           id="markedCheck"
           name="markedCheck"
