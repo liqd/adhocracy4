@@ -219,7 +219,10 @@ class PollQuestions extends React.Component {
 
   componentDidMount () {
     api.poll.get(this.props.pollId)
-      .done(r => this.setState({ questions: r.questions }))
+      .done(r => this.setState({
+        questions: r.questions,
+        showResults: (r.questions.length > 0 && r.questions[0].isReadOnly)
+      }))
   }
 
   render () {
@@ -258,9 +261,13 @@ class PollQuestions extends React.Component {
             )
           ))}
           <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
-          {!this.isReadOnly() && (
+          {!this.isReadOnly() ? (
             <div className="poll poll__button--wrapper">
               {this.buttonVote}{!this.state.loading ? this.linkShowResults : this.loadingIndicator}
+            </div>
+          ) : (
+            <div className="poll">
+              {!this.state.loading ? this.linkShowResults : this.loadingIndicator}
             </div>
           )}
         </div>
