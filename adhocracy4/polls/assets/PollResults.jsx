@@ -2,6 +2,20 @@ import React from 'react'
 import Slider from 'react-slick'
 import django from 'django'
 
+function NextArrow (props) {
+  const { onClick } = props
+  return (
+    <button className="slick-next" onClick={onClick} aria-label={django.ngettext('Next answer')}><i className="fa fa-chevron-right" /></button>
+  )
+}
+
+function PrevArrow (props) {
+  const { onClick } = props
+  return (
+    <button className="slick-prev" onClick={onClick} aria-label={django.ngettext('Previous answer')}><i className="fa fa-chevron-left" /></button>
+  )
+}
+
 export default class PollResult extends React.Component {
   constructor (props) {
     super(props)
@@ -94,7 +108,9 @@ export default class PollResult extends React.Component {
       className: 'poll-slider',
       infinite: false,
       centerMode: true,
-      centerPadding: '0px'
+      centerPadding: '0px',
+      prevArrow: <PrevArrow />,
+      nextArrow: <NextArrow />
     }
 
     return (
