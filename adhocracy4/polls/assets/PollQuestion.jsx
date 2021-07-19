@@ -19,10 +19,14 @@ export const PollQuestion = (props) => {
   const [errors, setErrors] = useState()
   const maxlength = 250
 
-  const handleSingleChange = (event) => {
+  const handleSingleChange = (event, isOther) => {
     const choiceId = parseInt(event.target.value)
     setUserChoices([choiceId])
     props.onSingleChange(props.question.id, choiceId)
+    if (!isOther) {
+      setOtherChoiceAnswer('')
+      props.onOtherChange(props.question.id, '', findOtherChoice())
+    }
   }
 
   const handleMultiChange = (event) => {
@@ -31,10 +35,14 @@ export const PollQuestion = (props) => {
     props.onMultiChange(props.question.id, choiceId)
   }
 
-  const handleOtherChange = (event) => {
+  const handleOtherChange = (event, checked) => {
     const otherAnswer = event.target.value
     setOtherChoiceAnswer(otherAnswer)
     props.onOtherChange(props.question.id, otherAnswer)
+  }
+
+  const findOtherChoice = () => {
+    return props.question.choices.find(c => c.is_other_choice)
   }
 
   useEffect(() => {
@@ -63,8 +71,8 @@ export const PollQuestion = (props) => {
                       id={'id_choice-' + choice.id + '-single'}
                       value={choice.id}
                       checked={checked}
-                      onChange={(event) => { handleSingleChange(event) }}
-                      disabled={!props.question.authenticated || props.question.isReadOnly}
+                      onChange={(event) => { handleSingleChange(event, choice.is_other_choice, checked) }}
+                      disabled={!props.question.authenticated  | props.question.isReadOnly}
                     />
                     <span className="radio__text">{choice.label}</span>
                     {choice.is_other_choice &&
@@ -73,7 +81,7 @@ export const PollQuestion = (props) => {
                           className="form-control"
                           type="text"
                           name="question"
-                          value={checked ? otherChoiceAnswer : ''}
+                          value={otherChoiceAnswer}
                           id={'id_choice-' + choice.id + '-other'}
                           onChange={(event) => { handleOtherChange(event) }}
                           disabled={!props.question.authenticated || props.question.isReadOnly || !checked}
@@ -111,8 +119,8 @@ export const PollQuestion = (props) => {
                           type="text"
                           name="question"
                           id={'id_choice-' + choice.id + '-other'}
-                          value={checked ? otherChoiceAnswer : ''}
-                          onChange={(event) => { handleOtherChange(event) }}
+                          value={otherChoiceAnswer}
+                          onChange={(event) => { handleOtherChange(event, checked) }}
                           disabled={!props.question.authenticated || props.question.isReadOnly || !checked}
                           maxLength={maxlength}
                         />
