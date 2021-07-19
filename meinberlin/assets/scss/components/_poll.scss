@@ -249,6 +249,15 @@ $checkbox-size: 20px;
     margin-bottom: 0.5*$spacer;
 
     //slick overwrites - nested for specificity
+    .slick-prev {
+        left: revert !important;
+        right: 4*$spacer !important;
+    }
+
+    .slick-next {
+        right: 1.5*$spacer !important;
+    }
+
     .slick-prev,
     .slick-next {
         position: absolute;
@@ -261,6 +270,12 @@ $checkbox-size: 20px;
         background-color: $brand-primary;
         z-index: 1; //for when tile links overlap
 
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: darken($brand-primary-tint, 15%);
+        }
+
         &:before {
             color: $body-bg;
             opacity: 1;
@@ -269,15 +284,6 @@ $checkbox-size: 20px;
             font-size: $font-size-xl;
             line-height: 1.3rem;
         }
-    }
-
-    .slick-prev {
-        left: revert !important;
-        right: 4*$spacer !important;
-    }
-
-    .slick-next {
-        right: 1.5*$spacer !important;
     }
 
     .slick-prev:before {

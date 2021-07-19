@@ -45,8 +45,6 @@ $timeline-carousel__top-space: 11px;
 
 .slick-slide:focus,
 .slick-slide:hover {
-    outline: none;
-
     .timeline-carousel__dot {
         transform: scale(1.85);
     }
@@ -80,8 +78,9 @@ $timeline-carousel__top-space: 11px;
         z-index: 1; //for when tile links overlap
 
         &:hover,
-        :focus {
-            background-color: $body-bg;
+        &:focus,
+        &:active {
+            outline: 2px solid $brand-secondary;
         }
 
         &:before {
