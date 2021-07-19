@@ -82,9 +82,10 @@ class PollQuestions extends React.Component {
     this.setModified(questionId, true)
   }
 
-  handleVoteOther (questionId, otherAnswer) {
+  handleVoteOther (questionId, otherAnswer, otherChoice) {
     this.setState(prevState => {
       const currQuestion = prevState.questions.find(q => q.id === questionId)
+      otherChoice && delete this.state.errors[otherChoice.id]
       currQuestion.other_choice_answer = otherAnswer
     })
     this.setModified(questionId, true)
@@ -264,7 +265,7 @@ class PollQuestions extends React.Component {
               question={q}
               onSingleChange={(questionId, voteData) => this.handleVoteSingle(questionId, voteData)}
               onMultiChange={(questionId, voteData) => this.handleVoteMulti(questionId, voteData)}
-              onOtherChange={(questionId, voteAnswer) => this.handleVoteOther(questionId, voteAnswer)}
+              onOtherChange={(questionId, voteAnswer, otherChoice) => this.handleVoteOther(questionId, voteAnswer, otherChoice)}
               errors={this.state.errors}
             />
           )
