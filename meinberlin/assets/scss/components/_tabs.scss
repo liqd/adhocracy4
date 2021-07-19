@@ -59,6 +59,13 @@
     text-align: left;
 }
 
+//FIXME this should be refactored - ensure tabs remain on single line mobile
+@media (max-width: $breakpoint-md-down) {
+    .tablist--left > .l-wrapper {
+        padding: 0 0.5*$spacer;
+    }
+}
+
 // This element is meant to be in combination with tablist--{opposite}
 // It should contain elements with class .btn.btn--small
 
