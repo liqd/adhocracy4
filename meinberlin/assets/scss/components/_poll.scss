@@ -3,6 +3,10 @@ $checkbox-size: 20px;
 
 .pollquestionlist-container {
     border: 1px solid $border-color;
+
+    .alert--success {
+        margin: 0 1.5*$spacer;
+    }
 }
 
 .poll {
@@ -17,11 +21,11 @@ $checkbox-size: 20px;
 
 //PollQuestion/s
 .poll-row {
+    display: flex;
     position: relative;
     z-index: 1;
     padding: 0.2*$spacer 0;
     margin-bottom: 0.5*$spacer;
-    display: flex;
 
     @include clearfix;
 
@@ -43,12 +47,12 @@ $checkbox-size: 20px;
 .poll__rows {
     display: flex;
     flex-direction: column;
+    padding-bottom: $spacer;
     border-bottom: 1px solid $border-color;
 }
 
 .poll__char-counter {
     align-self: flex-end;
-    padding-bottom: 1rem;
     font-size: $font-size-xs;
     color: $text-color-gray;
 }
@@ -74,8 +78,16 @@ $checkbox-size: 20px;
     @extend .radio__input;
 }
 
+.poll__btn--link {
+    @extend .btn--link;
+}
+
 .poll-row__container {
     position: relative;
+
+    .poll__btn--link {
+        margin: 0.1*$spacer 0 0.6*$spacer 0; //corrects spaceing for other answers
+    }
 }
 
 // RESULTS
@@ -99,7 +111,11 @@ $checkbox-size: 20px;
 
 .poll-row__bar--highlight {
     background-color: $brand-primary-tint;
-    max-width: 96% !important;
+    max-width: 90%;
+
+    @media (min-width: $breakpoint) {
+        max-width: 96%;
+    }
 }
 
 .poll-row__chosen {
@@ -128,10 +144,6 @@ $checkbox-size: 20px;
     @extend .btn--primary;
 }
 
-.poll__btn--link {
-    @extend .btn--link;
-}
-
 .poll__btn--wrapper {
     display: flex;
     align-items: center;
@@ -142,7 +154,7 @@ $checkbox-size: 20px;
 .poll__help-text {
     color: $gray-lighter;
     margin-top: -0.7*$spacer;
-    margin-bottom: 0.5*$spacer;
+    margin-bottom: 0.8*$spacer;
 }
 
 .editpoll__help-text {
@@ -233,10 +245,15 @@ $checkbox-size: 20px;
 }
 
 .poll-slider__answer {
-    padding-bottom: $spacer;
+    padding-bottom: 1.75*$spacer;
+
+    i {
+        color: $gray-lighter;
+    }
 }
 
 .poll-slider__count {
+    font-size: $font-size-xs;
     color: $gray-lighter;
     position: absolute;
     bottom: $spacer;
@@ -246,7 +263,8 @@ $checkbox-size: 20px;
 .poll-slider {
     position: relative;
     background-color: $bg-secondary;
-    margin-bottom: 0.5*$spacer;
+    margin-bottom: $spacer;
+    border-radius: 0.3*$spacer;
 
     //slick overwrites - nested for specificity
     .slick-prev {
@@ -260,6 +278,7 @@ $checkbox-size: 20px;
 
     .slick-prev,
     .slick-next {
+        @extend .btn--primary;
         position: absolute;
         top: revert;
         bottom: 0;
@@ -267,14 +286,7 @@ $checkbox-size: 20px;
         width: 30px;
         height: 30px;
         border-radius: 100%;
-        background-color: $brand-primary;
         z-index: 1; //for when tile links overlap
-
-        &:hover,
-        &:focus,
-        &:active {
-            background-color: darken($brand-primary-tint, 15%);
-        }
 
         &:before {
             color: $body-bg;
@@ -309,14 +321,8 @@ $checkbox-size: 20px;
 }
 
 @media (min-width: $breakpoint) {
-    .poll-slider {
-        .slick-slide {
-            margin: 0 3*$spacer;
-        }
-    }
-
     .poll-slider__count {
         left: revert;
-        right: 4*$spacer;
+        right: 6.5*$spacer;
     }
 }
