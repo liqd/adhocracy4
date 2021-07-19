@@ -8,6 +8,16 @@ import PollResults from './PollResults'
 const api = require('adhocracy4').api
 const config = require('adhocracy4').config
 
+const ALERT_SUCCESS = {
+  type: 'success',
+  message: django.gettext('Your answer has been saved.')
+}
+
+const ALERT_ERROR = {
+  type: 'danger',
+  message: django.gettext('Your answer could not be saved due to a server error. Please try again later.')
+}
+
 class PollQuestions extends React.Component {
   constructor (props) {
     super(props)
@@ -150,6 +160,37 @@ class PollQuestions extends React.Component {
     })
   }
 
+  sendRequest (datalist) {
+    api.poll.batchvote(datalist)
+      .then(respondedQuestions => {
+        respondedQuestions.forEach(rq => {
+          this.setModified(rq.question.id, false)
+          this.setState(prevState => {
+            const questionsCopy = prevState.questions
+            const newQuestions =
+              questionsCopy.map(q => {
+                return rq.question.id === q.id
+                  ? rq.question
+                  : q
+              })
+            return {
+              loading: false,
+              questions: newQuestions,
+              alert: ALERT_SUCCESS
+            }
+          })
+        })
+      })
+      .catch(() => {
+        this.setState(prevState => {
+          return {
+            loading: false,
+            alert: ALERT_ERROR
+          }
+        })
+      })
+  }
+
   handleSubmit (e) {
     e.preventDefault()
     this.setState({ loading: true })
@@ -181,40 +222,9 @@ class PollQuestions extends React.Component {
       })
     }
 
-    validatedQuestions.length > 0 && api.poll.batchvote(datalist)
-      .then(respondedQuestions => {
-        respondedQuestions.forEach(rq => {
-          this.setModified(rq.question.id, false)
-          this.setState(prevState => {
-            const questionsCopy = prevState.questions
-            const newQuestions =
-              questionsCopy.map(q => {
-                return rq.question.id === q.id
-                  ? rq.question
-                  : q
-              })
-            return {
-              loading: false,
-              questions: newQuestions,
-              alert: {
-                type: 'success',
-                message: django.gettext('Your answer has been saved.')
-              }
-            }
-          })
-        })
-      })
-      .catch(() => {
-        this.setState(prevState => {
-          return {
-            loading: false,
-            alert: {
-              type: 'danger',
-              message: django.gettext('Your answer could not be saved due to a server error. Please try again later.')
-            }
-          }
-        })
-      })
+    validatedQuestions.length > 0
+      ? this.sendRequest(datalist)
+      : this.setState({ loading: false, alert: ALERT_SUCCESS })
   }
 
   componentDidMount () {
