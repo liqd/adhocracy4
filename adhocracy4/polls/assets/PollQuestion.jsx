@@ -64,7 +64,7 @@ export const PollQuestion = (props) => {
                       value={choice.id}
                       checked={checked}
                       onChange={(event) => { handleSingleChange(event) }}
-                      disabled={!props.question.authenticated}
+                      disabled={!props.question.authenticated || props.question.isReadOnly}
                     />
                     <span className="radio__text">{choice.label}</span>
                     {choice.is_other_choice &&
@@ -76,7 +76,7 @@ export const PollQuestion = (props) => {
                           value={checked ? otherChoiceAnswer : ''}
                           id={'id_choice-' + choice.id + '-other'}
                           onChange={(event) => { handleOtherChange(event) }}
-                          disabled={!props.question.authenticated || !checked}
+                          disabled={!props.question.authenticated || props.question.isReadOnly || !checked}
                           maxLength={maxlength}
                         />
                         {checked ? (
@@ -101,7 +101,7 @@ export const PollQuestion = (props) => {
                       value={choice.id}
                       checked={checked}
                       onChange={(event) => { handleMultiChange(event) }}
-                      disabled={!props.question.authenticated}
+                      disabled={!props.question.authenticated || props.question.isReadOnly}
                     />
                     <span className="radio__text radio__text--checkbox">{choice.label}</span>
                     {choice.is_other_choice &&
@@ -113,7 +113,7 @@ export const PollQuestion = (props) => {
                           id={'id_choice-' + choice.id + '-other'}
                           value={checked ? otherChoiceAnswer : ''}
                           onChange={(event) => { handleOtherChange(event) }}
-                          disabled={!props.question.authenticated || !checked}
+                          disabled={!props.question.authenticated || props.question.isReadOnly || !checked}
                           maxLength={maxlength}
                         />
                         {checked ? (

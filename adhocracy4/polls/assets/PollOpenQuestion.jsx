@@ -31,7 +31,7 @@ export const PollOpenQuestion = (props) => {
           name="question"
           id={'id_choice-' + props.question.id + '-open'}
           value={userAnswer}
-          disabled={!props.question.authenticated}
+          disabled={!props.question.authenticated || props.question.isReadOnly}
           onChange={(event) => { handleOpenChange(event) }}
           maxLength={maxlength}
         />
