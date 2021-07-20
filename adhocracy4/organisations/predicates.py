@@ -33,6 +33,8 @@ def is_org_group_member(user, subject):
         elif (hasattr(subject, 'organisation') and
               hasattr(subject.organisation, 'groups')):
             organisation = subject.organisation
+        else:
+            return False
         org_groups = organisation.groups.all()
         user_groups = user.groups.all()
         group = org_groups & user_groups
