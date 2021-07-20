@@ -29,7 +29,7 @@
     "slick-carousel": "git+https://github.com/liqd/slick.git#pm-2019-07-overwrites"
   },
   "devDependencies": {
-    "eslint": "7.30.0",
+    "eslint": "7.31.0",
     "eslint-config-standard": "14.1.1",
     "eslint-config-standard-jsx": "8.1.0",
     "eslint-plugin-promise": "4.3.1",
