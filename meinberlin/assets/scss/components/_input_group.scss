@@ -1,11 +1,7 @@
 // FIXME: this only works with buttons if it is included *afterwards*
 
 .input-group {
-    // display: flex;
-
-    & label {
-        flex: 1;
-    }
+    display: flex;
 }
 
 .input-group__input {
@@ -17,7 +13,7 @@
 
 .input-group__before,
 .input-group__after {
-    flex: 0 1 0%;
+    flex: 0 0 0%;
 }
 
 .input-group__input,
