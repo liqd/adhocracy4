@@ -76,7 +76,7 @@ export const PollQuestion = (props) => {
                       value={choice.id}
                       checked={checked}
                       onChange={(event) => { handleSingleChange(event, choice.is_other_choice) }}
-                      disabled={!props.question.authenticated | props.question.isReadOnly}
+                      disabled={!props.question.authenticated || props.question.isReadOnly}
                     />
                     <span className="radio__text">{choice.label}</span>
                     {choice.is_other_choice &&
