@@ -18,6 +18,11 @@ const ALERT_ERROR = {
   message: django.gettext('Your answer could not be saved due to a server error. Please try again later.')
 }
 
+const ALERT_INVALID = {
+  type: 'danger',
+  message: django.gettext('Your answer is invalid or empty. Please try again.')
+}
+
 class PollQuestions extends React.Component {
   constructor (props) {
     super(props)
@@ -225,7 +230,9 @@ class PollQuestions extends React.Component {
 
     validatedQuestions.length > 0
       ? this.sendRequest(datalist)
-      : this.setState({ loading: false, alert: ALERT_SUCCESS })
+      : Object.keys(this.state.errors).length > 0
+        ? this.setState({ loading: false, alert: ALERT_SUCCESS })
+        : this.setState({ loading: false, alert: ALERT_INVALID })
   }
 
   componentDidMount () {
