@@ -931,27 +931,27 @@ msgstr ""
 
 #: adhocracy4/polls/api.py:71
 msgid "Please specify your answer."
-msgstr ""
+msgstr "Bitte geben Sie eine Antwort ein."
 
 #: adhocracy4/polls/api.py:88
 msgid "Key error for {}"
-msgstr ""
+msgstr "Key error für {}"
 
 #: adhocracy4/polls/api.py:90
 msgid "Choice not found."
-msgstr ""
+msgstr "Choice nicht gefunden."
 
 #: adhocracy4/polls/api.py:98
 msgid "Duplicate choices detected."
-msgstr ""
+msgstr "Doppelte choices erkannt."
 
 #: adhocracy4/polls/api.py:101
 msgid "Empty choices detected."
-msgstr ""
+msgstr "Leere choices erkannt."
 
 #: adhocracy4/polls/api.py:103
 msgid "Multiple choice disabled for question."
-msgstr ""
+msgstr "Mehrfachantworten nicht möglich für diese Frage."
 
 #: adhocracy4/polls/dashboard.py:14
 #: meinberlin/apps/dashboard/blueprints.py:154

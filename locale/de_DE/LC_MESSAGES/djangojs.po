@@ -555,7 +555,7 @@ msgstr ""
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:23
 msgid "Your answer is invalid or empty. Please try again."
-msgstr ""
+msgstr "Ihre Antwort ist ungültig oder leer. Bitte versuchen Sie es erneut."
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:41
 msgid "To poll"
@@ -579,15 +579,15 @@ msgstr "Bitte melden Sie sich zum Antworten an."
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:150
 msgid "Please enter your answer in this field."
-msgstr ""
+msgstr "Bitte geben Sie hier Ihre Antwort ein."
 
 #: adhocracy4/polls/assets/PollResults.jsx:59
 msgid "Hide other answers"
-msgstr ""
+msgstr "Sonstige Antworten  ausblenden"
 
 #: adhocracy4/polls/assets/PollResults.jsx:61
 msgid "Show other answers"
-msgstr ""
+msgstr "Sonstige Antworten einblenden"
 
 #: adhocracy4/polls/assets/PollResults.jsx:75
 #, javascript-format
@@ -619,7 +619,7 @@ msgstr[1] "%s Teilnehmer*innen haben geantwortet."
 
 #: adhocracy4/polls/assets/PollResults.jsx:94
 msgid "noone has answered this question"
-msgstr ""
+msgstr "Keine Antworten"
 
 #: adhocracy4/polls/assets/PollResults.jsx:127
 msgid "Your choice"
@@ -1038,7 +1038,7 @@ msgstr "abgeschlossen"
 
 #: meinberlin/apps/plans/assets/ListMapBox.jsx:29
 msgid "Project overview"
-msgstr ""
+msgstr "Projektübersicht"
 
 #: meinberlin/apps/plans/assets/PlansList.jsx:86
 #: meinberlin/apps/plans/assets/PopUp.jsx:20
