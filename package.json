@@ -45,7 +45,7 @@
   "scripts": {
     "lint": "eslint adhocracy4 --ext .js,.jsx",
     "lint-staged": "lint-staged",
-    "postinstall": "husky install"
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,jsx}": [
