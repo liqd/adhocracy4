@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-08 12:19+0200\n"
+"POT-Creation-Date: 2021-07-22 10:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -841,6 +841,30 @@ msgstr "End date can not be before start date."
 msgid "Either both or no date has to be set."
 msgstr "Either both or no date has to be set."
 
+#: adhocracy4/polls/api.py:71
+msgid "Please specify your answer."
+msgstr "Please specify your answer."
+
+#: adhocracy4/polls/api.py:88
+msgid "Key error for {}"
+msgstr "Key error for {}"
+
+#: adhocracy4/polls/api.py:90
+msgid "Choice not found."
+msgstr "Choice not found."
+
+#: adhocracy4/polls/api.py:98
+msgid "Duplicate choices detected."
+msgstr "Duplicate choices detected."
+
+#: adhocracy4/polls/api.py:101
+msgid "Empty choices detected."
+msgstr "Empty choices detected."
+
+#: adhocracy4/polls/api.py:103
+msgid "Multiple choice disabled for question."
+msgstr "Multiple choice disabled for question."
+
 #: adhocracy4/polls/dashboard.py:14 meinberlin/apps/dashboard/blueprints.py:154
 msgid "Poll"
 msgstr "Poll"
@@ -910,11 +934,7 @@ msgstr "polls"
 msgid "Item of type %(item)s for that module already exists"
 msgstr "Item of type %(item)s for that module already exists"
 
-#: adhocracy4/polls/validators.py:38
-msgid "Only one vote per question is allowed per user."
-msgstr "Only one vote per question is allowed per user."
-
-#: adhocracy4/polls/validators.py:47
+#: adhocracy4/polls/validators.py:25
 msgid "Choice has to belong to the question set in the url."
 msgstr "Choice has to belong to the question set in the url."
 
@@ -4632,6 +4652,9 @@ msgid ""
 msgstr ""
 "You are about to use your %(provider_name)s account to login to\n"
 "%(site_name)s. As a final step, please complete the following form:"
+
+#~ msgid "Only one vote per question is allowed per user."
+#~ msgstr "Only one vote per question is allowed per user."
 
 #~ msgid ""
 #~ "Participants can answer one or more questions with predefined choices and "

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-08 12:19+0200\n"
+"POT-Creation-Date: 2021-07-22 10:21+0200\n"
 "PO-Revision-Date: 2017-05-30 12:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,10 +118,6 @@ msgstr "Möchten Sie diesen Kommentar wirklich löschen?"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:61
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:133
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:138
-#: meinberlin/apps/polls/assets/OpenQuestionForm.jsx:71
-#: meinberlin/apps/polls/assets/OpenQuestionForm.jsx:76
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:151
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:156
 msgid "Delete"
 msgstr "Löschen"
 
@@ -463,16 +459,12 @@ msgstr "Antwort"
 
 #: adhocracy4/polls/assets/EditPollChoice.jsx:27
 #: adhocracy4/polls/assets/EditPollChoice.jsx:33
-#: meinberlin/apps/polls/assets/ChoiceForm.jsx:24
-#: meinberlin/apps/polls/assets/ChoiceForm.jsx:30
 msgid "remove"
 msgstr "entfernen"
 
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:16
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:19
 #: meinberlin/apps/livequestions/assets/QuestionForm.jsx:69
-#: meinberlin/apps/polls/assets/OpenQuestionForm.jsx:16
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:19
 msgid "Question"
 msgstr "Frage"
 
@@ -490,10 +482,6 @@ msgstr "Erklärung"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:37
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:110
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:115
-#: meinberlin/apps/polls/assets/OpenQuestionForm.jsx:48
-#: meinberlin/apps/polls/assets/OpenQuestionForm.jsx:53
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:128
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:133
 msgid "Move up"
 msgstr "nach oben"
 
@@ -505,10 +493,6 @@ msgstr "nach oben"
 #: meinberlin/apps/documents/assets/ChapterNavItem.jsx:49
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:122
 #: meinberlin/apps/documents/assets/ParagraphForm.jsx:127
-#: meinberlin/apps/polls/assets/OpenQuestionForm.jsx:60
-#: meinberlin/apps/polls/assets/OpenQuestionForm.jsx:65
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:140
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:145
 msgid "Move down"
 msgstr "nach unten"
 
@@ -522,8 +506,6 @@ msgstr "Teilnehmer*innen können eine eigene Antwort eingeben"
 
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:94
 #: adhocracy4/polls/assets/EditPollQuestion.jsx:95
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:94
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:95
 msgid "Other"
 msgstr "Sonstige"
 
@@ -531,104 +513,117 @@ msgstr "Sonstige"
 msgid "New answer"
 msgstr "Neue Antwort"
 
-#: adhocracy4/polls/assets/EditPollQuestions.jsx:162
-#: meinberlin/apps/polls/assets/PollManagement.jsx:161
+#: adhocracy4/polls/assets/EditPollQuestions.jsx:163
 msgid "The poll has been updated."
 msgstr "Die Umfrage wurde aktualisiert."
 
-#: adhocracy4/polls/assets/EditPollQuestions.jsx:176
-#: meinberlin/apps/polls/assets/PollManagement.jsx:175
+#: adhocracy4/polls/assets/EditPollQuestions.jsx:177
 msgid "The poll could not be updated."
 msgstr "Die Umfrage konnte nicht aktualisiert werden."
 
-#: adhocracy4/polls/assets/EditPollQuestions.jsx:195
+#: adhocracy4/polls/assets/EditPollQuestions.jsx:196
 msgid "New question"
 msgstr "Neue Frage"
 
-#: adhocracy4/polls/assets/EditPollQuestions.jsx:201
+#: adhocracy4/polls/assets/EditPollQuestions.jsx:202
 msgid "Multiple choice question"
 msgstr "Multiple-Choice-Frage"
 
-#: adhocracy4/polls/assets/EditPollQuestions.jsx:206
+#: adhocracy4/polls/assets/EditPollQuestions.jsx:207
 msgid "Open question"
 msgstr "Open question"
 
-#: adhocracy4/polls/assets/EditPollQuestions.jsx:278
+#: adhocracy4/polls/assets/EditPollQuestions.jsx:279
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:324
-#: meinberlin/apps/polls/assets/PollManagement.jsx:277
 msgid "Save"
 msgstr "Speichern"
 
-#: adhocracy4/polls/assets/PollQuestion.jsx:13
-#: adhocracy4/polls/assets/PollResults.jsx:38
-#: meinberlin/apps/polls/assets/Question.jsx:132
+#: adhocracy4/polls/assets/PollQuestion.jsx:15
 msgid "Multiple answers are possible."
 msgstr "Mehrfachantworten sind möglich."
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:24
-#: meinberlin/apps/polls/assets/Question.jsx:171
-msgid "To poll"
-msgstr "Zur Umfrage"
-
-#: adhocracy4/polls/assets/PollQuestions.jsx:30
-msgid "Change answer"
-msgstr "Antwort ändern"
-
-#: adhocracy4/polls/assets/PollQuestions.jsx:35
-#: meinberlin/apps/polls/assets/Question.jsx:178
-msgid "Show preliminary results"
-msgstr "Vorläufiges Ergebnis zeigen"
-
-#: adhocracy4/polls/assets/PollQuestions.jsx:107
-msgid "Submit answer"
-msgstr "Antwort senden"
-
-#: adhocracy4/polls/assets/PollQuestions.jsx:113
-msgid "Please login to answer"
-msgstr "Bitte melden Sie sich zum Antworten an."
-
-#: adhocracy4/polls/assets/PollQuestions.jsx:137
+#: adhocracy4/polls/assets/PollQuestions.jsx:13
 msgid "Your answer has been saved."
 msgstr "Ihre Antwort wurde gespeichert."
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:145
+#: adhocracy4/polls/assets/PollQuestions.jsx:18
 msgid ""
 "Your answer could not be saved due to a server error. Please try again later."
 msgstr ""
 "Ihre Antwort konnte aufgrund eines Serverfehlers nicht gespeichert werden. "
 "Bitte versuchen Sie es später noch einmal."
 
-#: adhocracy4/polls/assets/PollResults.jsx:54
-#: meinberlin/apps/polls/assets/Question.jsx:148
+#: adhocracy4/polls/assets/PollQuestions.jsx:23
+msgid "Your answer is invalid or empty. Please try again."
+msgstr ""
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:41
+msgid "To poll"
+msgstr "Zur Umfrage"
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:47
+msgid "Change answer"
+msgstr "Antwort ändern"
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:56
+msgid "Show preliminary results"
+msgstr "Vorläufiges Ergebnis zeigen"
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:135
+msgid "Submit answer"
+msgstr "Antwort senden"
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:141
+msgid "Please login to answer"
+msgstr "Bitte melden Sie sich zum Antworten an."
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:150
+msgid "Please enter your answer in this field."
+msgstr ""
+
+#: adhocracy4/polls/assets/PollResults.jsx:59
+msgid "Hide other answers"
+msgstr ""
+
+#: adhocracy4/polls/assets/PollResults.jsx:61
+msgid "Show other answers"
+msgstr ""
+
+#: adhocracy4/polls/assets/PollResults.jsx:75
 #, javascript-format
 msgid "%s participant gave 1 answer."
 msgstr "%s Teilnehmer*in hat 1 Antwort gegeben."
 
-#: adhocracy4/polls/assets/PollResults.jsx:56
-#: adhocracy4/polls/assets/PollResults.jsx:58
-#: meinberlin/apps/polls/assets/Question.jsx:150
-#: meinberlin/apps/polls/assets/Question.jsx:152
+#: adhocracy4/polls/assets/PollResults.jsx:77
+#: adhocracy4/polls/assets/PollResults.jsx:79
 #, javascript-format
 msgid "%s participant gave %s answers."
 msgid_plural "%s participants gave %s answers."
 msgstr[0] "%s Teilnehmer*in hat %s Antworten gegeben."
 msgstr[1] "%s Teilnehmer*innen haben %s Antworten gegeben."
 
-#: adhocracy4/polls/assets/PollResults.jsx:60
-#: meinberlin/apps/polls/assets/Question.jsx:154
+#: adhocracy4/polls/assets/PollResults.jsx:81
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
 msgstr ""
 " Aufgrund von Mehrfachantworten kann die Summe der Prozentangaben über 100% "
 "ergeben."
 
-#: adhocracy4/polls/assets/PollResults.jsx:62
-#: meinberlin/apps/polls/assets/Question.jsx:156
+#: adhocracy4/polls/assets/PollResults.jsx:83
+#: adhocracy4/polls/assets/PollResults.jsx:92
 #, javascript-format
 msgid "1 person has answered."
 msgid_plural "%s people have answered."
 msgstr[0] "1 Teilnehmer*in hat geantwortet."
 msgstr[1] "%s Teilnehmer*innen haben geantwortet."
+
+#: adhocracy4/polls/assets/PollResults.jsx:94
+msgid "noone has answered this question"
+msgstr ""
+
+#: adhocracy4/polls/assets/PollResults.jsx:127
+msgid "Your choice"
+msgstr "Ihre Wahl"
 
 #: adhocracy4/reports/static/reports/ReportModal.jsx:60
 #: adhocracy4/reports/static/reports/ReportModal.jsx:60
@@ -1041,6 +1036,10 @@ msgstr "laufend"
 msgid "done"
 msgstr "abgeschlossen"
 
+#: meinberlin/apps/plans/assets/ListMapBox.jsx:29
+msgid "Project overview"
+msgstr ""
+
 #: meinberlin/apps/plans/assets/PlansList.jsx:86
 #: meinberlin/apps/plans/assets/PopUp.jsx:20
 msgid "More than 1 year remaining"
@@ -1132,67 +1131,6 @@ msgstr "Karte anzeigen"
 msgid "Map"
 msgstr "Karte"
 
-#: meinberlin/apps/polls/assets/HelptextForm.jsx:11
-msgid "Helptext"
-msgstr ""
-
-#: meinberlin/apps/polls/assets/OpenQuestionForm.jsx:39
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:118
-msgid "Add Helptext"
-msgstr ""
-
-#: meinberlin/apps/polls/assets/PollManagement.jsx:194
-msgid "Add a new question"
-msgstr "Neue Frage"
-
-#: meinberlin/apps/polls/assets/PollManagement.jsx:200
-msgid "predefined answers"
-msgstr ""
-
-#: meinberlin/apps/polls/assets/PollManagement.jsx:205
-msgid "open answers"
-msgstr ""
-
-#: meinberlin/apps/polls/assets/Question.jsx:52
-msgid "Vote counted"
-msgstr "Ihre Stimme wurde gezählt."
-
-#: meinberlin/apps/polls/assets/Question.jsx:62
-msgid "Vote has not been counted due to a server error."
-msgstr "Ihre Stimme konnte aufgrund eines Serverfehlers nicht gezählt werden."
-
-#: meinberlin/apps/polls/assets/Question.jsx:110
-msgid "Vote"
-msgstr "Stimme abgeben"
-
-#: meinberlin/apps/polls/assets/Question.jsx:116
-msgid "Please login to vote"
-msgstr "Bitte melden Sie sich zum Abstimmen an."
-
-#: meinberlin/apps/polls/assets/Question.jsx:174
-msgid "Change vote"
-msgstr "Stimme ändern"
-
-#: meinberlin/apps/polls/assets/Question.jsx:204
-msgid "Your choice"
-msgstr "Ihre Wahl"
-
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:49
-msgid "Users can select more than one answer."
-msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
-
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:64
-msgid "Users can answer openly."
-msgstr ""
-
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:72
-msgid "Choice"
-msgstr "Auswahl"
-
-#: meinberlin/apps/polls/assets/QuestionForm.jsx:111
-msgid "Add a new choice"
-msgstr "Neue Antwort"
-
 #: meinberlin/assets/js/unload_warning.js:16
 msgid "If you leave this page changes you made will not be saved."
 msgstr ""
@@ -1253,3 +1191,31 @@ msgid "More information can be found in the privacy policy of Vimeo under: "
 msgstr ""
 "Weitere Informationen finden Sie in der Datenschutzerklärung von Vimeo "
 "unter: "
+
+#~ msgid "Add a new question"
+#~ msgstr "Neue Frage"
+
+#~ msgid "Vote counted"
+#~ msgstr "Ihre Stimme wurde gezählt."
+
+#~ msgid "Vote has not been counted due to a server error."
+#~ msgstr ""
+#~ "Ihre Stimme konnte aufgrund eines Serverfehlers nicht gezählt werden."
+
+#~ msgid "Vote"
+#~ msgstr "Stimme abgeben"
+
+#~ msgid "Please login to vote"
+#~ msgstr "Bitte melden Sie sich zum Abstimmen an."
+
+#~ msgid "Change vote"
+#~ msgstr "Stimme ändern"
+
+#~ msgid "Users can select more than one answer."
+#~ msgstr "Nutzer*innen können für mehrere Antworten abstimmen."
+
+#~ msgid "Choice"
+#~ msgstr "Auswahl"
+
+#~ msgid "Add a new choice"
+#~ msgstr "Neue Antwort"

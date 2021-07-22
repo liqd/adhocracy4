@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: a4-meinberlin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-08 12:19+0200\n"
+"POT-Creation-Date: 2021-07-22 10:21+0200\n"
 "PO-Revision-Date: 2017-10-16 13:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -929,6 +929,30 @@ msgid "Either both or no date has to be set."
 msgstr ""
 "Entweder müssen Start- und Enddatum angegeben werden oder keines der beiden."
 
+#: adhocracy4/polls/api.py:71
+msgid "Please specify your answer."
+msgstr ""
+
+#: adhocracy4/polls/api.py:88
+msgid "Key error for {}"
+msgstr ""
+
+#: adhocracy4/polls/api.py:90
+msgid "Choice not found."
+msgstr ""
+
+#: adhocracy4/polls/api.py:98
+msgid "Duplicate choices detected."
+msgstr ""
+
+#: adhocracy4/polls/api.py:101
+msgid "Empty choices detected."
+msgstr ""
+
+#: adhocracy4/polls/api.py:103
+msgid "Multiple choice disabled for question."
+msgstr ""
+
 #: adhocracy4/polls/dashboard.py:14
 #: meinberlin/apps/dashboard/blueprints.py:154
 msgid "Poll"
@@ -1005,11 +1029,7 @@ msgstr "Umfragen"
 msgid "Item of type %(item)s for that module already exists"
 msgstr "Beitrag des Typs %(item)s für dieses Modul existiert bereits."
 
-#: adhocracy4/polls/validators.py:38
-msgid "Only one vote per question is allowed per user."
-msgstr "Jeder Nutzer darf pro Frage nur eine Stimme abgeben."
-
-#: adhocracy4/polls/validators.py:47
+#: adhocracy4/polls/validators.py:25
 msgid "Choice has to belong to the question set in the url."
 msgstr "Die Auswahl muss zu der richtigen Frage gehören."
 
@@ -2322,8 +2342,8 @@ msgid ""
 "Participants can answer open and multiple choice questions and can comment "
 "on the poll"
 msgstr ""
-"Die Teilnehmenden können auf offene und Multiple-Choice-Fragen "
-"antworten und die Umfrage kommentieren."
+"Die Teilnehmenden können auf offene und Multiple-Choice-Fragen antworten und "
+"die Umfrage kommentieren."
 
 #: meinberlin/apps/dashboard/blueprints.py:167
 #: meinberlin/apps/livequestions/phases.py:20
@@ -4779,3 +4799,6 @@ msgid ""
 msgstr ""
 "Sie sind dabei sich mit Ihrem %(provider_name)s-Konto auf %(site_name)s "
 "anzumelden. Füllen Sie bitte das folgende Formular als letzten Schritt aus:"
+
+#~ msgid "Only one vote per question is allowed per user."
+#~ msgstr "Jeder Nutzer darf pro Frage nur eine Stimme abgeben."
