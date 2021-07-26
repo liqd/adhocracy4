@@ -1,6 +1,6 @@
-var React = require('react')
-var PropTypes = require('prop-types')
-var django = require('django')
+const React = require('react')
+const PropTypes = require('prop-types')
+const django = require('django')
 
 const CommentManageDropdown = (props) => {
   const editTag = django.gettext('Edit')

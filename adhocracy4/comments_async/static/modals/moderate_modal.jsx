@@ -19,7 +19,7 @@ export default class ModerateModal extends React.Component {
   }
 
   render () {
-    var data = {
+    const data = {
       is_moderator_marked: this.state.isModeratorMarked,
       urlReplaces: {
         contentTypeId: this.props.content_type,

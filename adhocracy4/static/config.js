@@ -1,6 +1,6 @@
-var loginUrl = '/accounts/login'
+const loginUrl = '/accounts/login'
 
-var getLoginUrl = function () {
+const getLoginUrl = function () {
   const next = window.adhocracy4.getCurrentPath()
   return loginUrl + '?next=' + encodeURIComponent(next)
 }

@@ -115,8 +115,8 @@ export default class CommentBox extends React.Component {
   }
 
   updateStateComment (index, parentIndex, updatedComment) {
-    var comments = this.state.comments
-    var diff = {}
+    let comments = this.state.comments
+    const diff = {}
     if (typeof parentIndex !== 'undefined') {
       diff[parentIndex] = { child_comments: {} }
       diff[parentIndex].child_comments[index] = { $merge: updatedComment }
@@ -131,9 +131,9 @@ export default class CommentBox extends React.Component {
     return api.comments.add(comment)
       .done(comment => {
         comment.displayNotification = true
-        var comments = this.state.comments
-        var diff = {}
-        var commentCount = this.state.commentCount
+        const comments = this.state.comments
+        let diff = {}
+        let commentCount = this.state.commentCount
         if (typeof parentIndex !== 'undefined') {
           diff[parentIndex] = { child_comments: { $push: [comment] } }
         } else {
@@ -162,7 +162,7 @@ export default class CommentBox extends React.Component {
         }
       })
       .fail((xhr, status, err) => {
-        var errorMessage = (Object.values(xhr.responseJSON))[0]
+        const errorMessage = (Object.values(xhr.responseJSON))[0]
         if (typeof parentIndex !== 'undefined') {
           this.updateStateComment(
             parentIndex,
@@ -180,8 +180,8 @@ export default class CommentBox extends React.Component {
   }
 
   handleCommentModify (modifiedComment, index, parentIndex) {
-    var comments = this.state.comments
-    var comment = comments[index]
+    const comments = this.state.comments
+    let comment = comments[index]
     if (typeof parentIndex !== 'undefined') {
       comment = comments[parentIndex].child_comments[index]
     }
@@ -201,7 +201,7 @@ export default class CommentBox extends React.Component {
         )
       })
       .fail((xhr, status, err) => {
-        var errorMessage = Object.values(xhr.responseJSON)[0]
+        const errorMessage = Object.values(xhr.responseJSON)[0]
         this.updateStateComment(
           index,
           parentIndex,
@@ -213,13 +213,13 @@ export default class CommentBox extends React.Component {
   }
 
   handleCommentDelete (index, parentIndex) {
-    var comments = this.state.comments
-    var comment = comments[index]
+    const comments = this.state.comments
+    let comment = comments[index]
     if (typeof parentIndex !== 'undefined') {
       comment = comments[parentIndex].child_comments[index]
     }
 
-    var data = {
+    const data = {
       urlReplaces: {
         contentTypeId: comment.content_type,
         objectPk: comment.object_pk
@@ -240,7 +240,7 @@ export default class CommentBox extends React.Component {
           })
       })
       .fail((xhr, status, err) => {
-        var errorMessage = Object.values(xhr.responseJSON)[0]
+        const errorMessage = Object.values(xhr.responseJSON)[0]
         this.updateStateComment(
           index,
           parentIndex,
@@ -296,7 +296,7 @@ export default class CommentBox extends React.Component {
 
   handleClickFilter (e) {
     e.preventDefault()
-    var filter = e.target.id
+    const filter = e.target.id
     this.fetchFiltered(filter)
     this.setState({
       loadingFilter: true
@@ -304,8 +304,8 @@ export default class CommentBox extends React.Component {
   }
 
   fetchFiltered (filter) {
-    var commentCategory = filter
-    var displayFilter = this.props.commentCategoryChoices[filter]
+    let commentCategory = filter
+    let displayFilter = this.props.commentCategoryChoices[filter]
     if (filter === 'all') {
       displayFilter = django.gettext('all')
       commentCategory = ''
@@ -319,7 +319,7 @@ export default class CommentBox extends React.Component {
     })
       .then(
         (result) => {
-          var data = result.data
+          const data = result.data
           this.setState({
             comments: data.results,
             nextComments: data.next,
@@ -334,7 +334,7 @@ export default class CommentBox extends React.Component {
 
   handleClickSorted (e) {
     e.preventDefault()
-    var order = e.target.id
+    const order = e.target.id
     this.fetchSorted(order)
     this.setState({
       loadingFilter: true
@@ -342,7 +342,7 @@ export default class CommentBox extends React.Component {
   }
 
   fetchSorted (order) {
-    var commentCategory = this.state.filter
+    let commentCategory = this.state.filter
     if (commentCategory === 'all') {
       commentCategory = ''
     }
@@ -355,7 +355,7 @@ export default class CommentBox extends React.Component {
     })
       .then(
         (result) => {
-          var data = result.data
+          const data = result.data
           this.setState({
             comments: data.results,
             nextComments: data.next,
@@ -369,7 +369,7 @@ export default class CommentBox extends React.Component {
 
   handleClickSearch (e) {
     e.preventDefault()
-    var search = e.currentTarget.parentElement.firstChild.value
+    const search = e.currentTarget.parentElement.firstChild.value
     this.fetchSearch(search)
     this.setState({
       loadingFilter: true
@@ -377,7 +377,7 @@ export default class CommentBox extends React.Component {
   }
 
   handleEnterSearch (e) {
-    var search = e.currentTarget.value
+    const search = e.currentTarget.value
     if (e.key === 'Enter') {
       this.fetchSearch(search)
       this.setState({
@@ -387,7 +387,7 @@ export default class CommentBox extends React.Component {
   }
 
   fetchSearch (search) {
-    var commentCategory = this.state.filter
+    let commentCategory = this.state.filter
     if (commentCategory === 'all') {
       commentCategory = ''
     }
@@ -400,7 +400,7 @@ export default class CommentBox extends React.Component {
     })
       .then(
         (result) => {
-          var data = result.data
+          const data = result.data
           this.setState({
             comments: data.results,
             nextComments: data.next,
@@ -413,7 +413,7 @@ export default class CommentBox extends React.Component {
   }
 
   handleClickResult (e) {
-    var result = ''
+    const result = ''
     this.fetchSearch(result)
     document.getElementById('search-input').value = ''
     this.setState({
@@ -452,8 +452,8 @@ export default class CommentBox extends React.Component {
     })
       .then(
         (result) => {
-          var data = result.data
-          var newCommentList = this.state.comments.concat(data.results)
+          const data = result.data
+          const newCommentList = this.state.comments.concat(data.results)
           this.setState({
             comments: newCommentList,
             nextComments: data.next,
@@ -544,7 +544,7 @@ export default class CommentBox extends React.Component {
                             {django.gettext('all')}
                           </button>}
                         {Object.keys(this.props.commentCategoryChoices).map(objectKey => {
-                          var name = this.props.commentCategoryChoices[objectKey]
+                          const name = this.props.commentCategoryChoices[objectKey]
                           if (objectKey !== this.state.filter) {
                             return (
                               <button className="dropdown-item" onClick={this.handleClickFilter} id={objectKey} key={objectKey} href="#">{name}</button>
@@ -566,7 +566,7 @@ export default class CommentBox extends React.Component {
                     </button>
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                       {Object.keys(sorts).map(objectKey => {
-                        var name = sorts[objectKey]
+                        const name = sorts[objectKey]
                         if (objectKey !== this.state.sort) {
                           return (
                             <button

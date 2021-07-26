@@ -241,7 +241,7 @@ export const EditPollQuestions = (props) => {
                     errors={errors && errors[index] ? errors[index] : {}}
                   />
                 </div>
-              )
+                )
               : (
                 <div key={key}>
                   <EditPollQuestion
@@ -260,7 +260,7 @@ export const EditPollQuestions = (props) => {
                     onAppendChoice={(hasOtherOption) => handleChoice('append', { index, hasOtherOption })}
                   />
                 </div>
-              )
+                )
           })
         }
       </FlipMove>

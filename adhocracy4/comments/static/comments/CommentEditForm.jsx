@@ -1,8 +1,8 @@
-var Alert = require('../../../static/Alert')
+const Alert = require('../../../static/Alert')
 
-var React = require('react')
-var PropTypes = require('prop-types')
-var django = require('django')
+const React = require('react')
+const PropTypes = require('prop-types')
+const django = require('django')
 
 class CommentEditForm extends React.Component {
   constructor (props) {
@@ -17,7 +17,7 @@ class CommentEditForm extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
-    var comment = this.state.comment.trim()
+    const comment = this.state.comment.trim()
     if (!comment) {
       return
     }

@@ -1,8 +1,8 @@
-var Comment = require('./Comment')
+const Comment = require('./Comment')
 
-var React = require('react')
+const React = require('react')
 
-var CommentList = (props) => {
+const CommentList = (props) => {
   return (
     <div>
       {

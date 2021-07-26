@@ -19,8 +19,8 @@ export default class CommentEditForm extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
-    var comment = this.state.comment.trim()
-    var data = {
+    const comment = this.state.comment.trim()
+    const data = {
       comment: comment,
       urlReplaces: {
         objectPk: this.props.subjectId,

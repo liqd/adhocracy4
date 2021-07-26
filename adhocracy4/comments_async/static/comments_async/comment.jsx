@@ -23,7 +23,7 @@ const share = django.gettext('Share')
 const report = django.gettext(' Report')
 
 function localeDate (dateStr) {
-  var options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' }
+  const options = { day: 'numeric', month: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' }
   return new Date(dateStr).toLocaleString(document.documentElement.lang, options)
 }
 
@@ -75,13 +75,13 @@ export default class Comment extends React.Component {
     if (e) {
       e.preventDefault()
     }
-    var newEdit = !this.state.edit
+    const newEdit = !this.state.edit
     this.setState({ edit: newEdit })
   }
 
   toggleShowComments (e) {
     e.preventDefault()
-    var newShowChildComment = !this.state.showChildComments
+    const newShowChildComment = !this.state.showChildComments
     this.setState({
       showChildComments: newShowChildComment
     })
@@ -209,11 +209,11 @@ export default class Comment extends React.Component {
 
   renderCategories () {
     if (!this.state.edit && this.displayCategories()) {
-      var categories = this.props.comment_categories
+      const categories = this.props.comment_categories
       let categoryValue = ''
       let categoryClassName = ''
 
-      var categoryHtml = Object.keys(categories).map(function (objectKey, index) {
+      const categoryHtml = Object.keys(categories).map(function (objectKey, index) {
         categoryValue = categories[objectKey]
         categoryClassName = 'badge a4-comments__badge a4-comments__badge--' + objectKey
 
@@ -263,7 +263,7 @@ export default class Comment extends React.Component {
     let userImage
     if (!this.props.is_deleted) {
       if (this.props.user_image) {
-        var sectionStyle = {
+        const sectionStyle = {
           backgroundImage: 'url(' + this.props.user_image + ')'
         }
         userImage = <div className="user-avatar user-avatar--small user-avatar--shadow mb-1 userindicator__btn-img" style={sectionStyle} />
@@ -302,7 +302,8 @@ export default class Comment extends React.Component {
                 </div>
                 <div className="col-7 col-md-8">
                   <h5 className={this.props.is_deleted ? 'a4-comments__deleted-author' : 'a4-comments__author'}>
-                    {userProfile === '' ? this.props.user_name
+                    {userProfile === ''
+                      ? this.props.user_name
                       : <a href={userProfile}>{this.props.user_name}</a>}
                   </h5>
                   {moderatorLabel}
@@ -416,7 +417,8 @@ export default class Comment extends React.Component {
                     />
                   </div>
                 </div>
-              </div>) : null}
+              </div>)
+            : null}
         </div>
       </div>
     )

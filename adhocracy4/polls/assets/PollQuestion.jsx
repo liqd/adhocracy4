@@ -91,14 +91,16 @@ export const PollQuestion = (props) => {
                           disabled={!props.question.authenticated || props.question.isReadOnly || !checked}
                           maxLength={maxlength}
                         />
-                        {checked ? (
-                          <>
-                            <div className="poll__char-counter">
-                              <CharCounter value={otherChoiceAnswer} max={maxlength} />
-                            </div>
-                            <ErrorList errors={errors} field={choice.id} />
-                          </>
-                        ) : null}
+                        {checked
+                          ? (
+                            <>
+                              <div className="poll__char-counter">
+                                <CharCounter value={otherChoiceAnswer} max={maxlength} />
+                              </div>
+                              <ErrorList errors={errors} field={choice.id} />
+                            </>
+                            )
+                          : null}
                       </>}
                   </label>
                 )
@@ -128,14 +130,16 @@ export const PollQuestion = (props) => {
                           disabled={!props.question.authenticated || props.question.isReadOnly || !checked}
                           maxLength={maxlength}
                         />
-                        {checked ? (
-                          <>
-                            <div className="poll__char-counter">
-                              <CharCounter value={otherChoiceAnswer} max={maxlength} />
-                            </div>
-                            <ErrorList errors={errors} field={choice.id} />
-                          </>
-                        ) : null}
+                        {checked
+                          ? (
+                            <>
+                              <div className="poll__char-counter">
+                                <CharCounter value={otherChoiceAnswer} max={maxlength} />
+                              </div>
+                              <ErrorList errors={errors} field={choice.id} />
+                            </>
+                            )
+                          : null}
                       </>}
                   </label>
                 )

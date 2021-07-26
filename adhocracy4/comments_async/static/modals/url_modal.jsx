@@ -13,7 +13,7 @@ export default class UrlModal extends React.Component {
   }
 
   copyUrl () {
-    var copyText = document.getElementById('share-url-'.concat(this.props.objectId))
+    const copyText = document.getElementById('share-url-'.concat(this.props.objectId))
     copyText.select()
     document.execCommand('copy')
     this.setState({ clicked: true })

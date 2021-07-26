@@ -1,6 +1,6 @@
-var ReportModal = require('./ReportModal')
-var React = require('react')
-var ReactDOM = require('react-dom')
+const ReportModal = require('./ReportModal')
+const React = require('react')
+const ReactDOM = require('react-dom')
 const django = require('django')
 
 module.exports.ReportModal = ReportModal

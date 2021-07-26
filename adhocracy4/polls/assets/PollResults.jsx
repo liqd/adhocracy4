@@ -181,11 +181,13 @@ export default class PollResult extends React.Component {
                 ))}
               </Slider>
             </div>}
-          {this.state.question.is_open ? (
-            <div className="a4-muted">{this.getHelpTextOpenAnswer()}</div>
-          ) : (
-            <div className="a4-muted">{this.getHelpTextAnswer()}</div>
-          )}
+          {this.state.question.is_open
+            ? (
+              <div className="a4-muted">{this.getHelpTextOpenAnswer()}</div>
+              )
+            : (
+              <div className="a4-muted">{this.getHelpTextAnswer()}</div>
+              )}
         </div>
       </div>
     )
