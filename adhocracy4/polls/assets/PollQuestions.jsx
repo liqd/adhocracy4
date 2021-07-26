@@ -45,7 +45,8 @@ class PollQuestions extends React.Component {
     this.linkChangeVote = (
       <button type="button" className="btn poll__btn--link" onClick={() => this.handleToggleResultsPage()}>
         {django.gettext('Change answer')}
-      </button>)
+      </button>
+    )
 
     this.linkShowResults = (
       <button
@@ -245,50 +246,56 @@ class PollQuestions extends React.Component {
 
   render () {
     this.buttonVote = this.getVoteButton()
-    return this.state.showResults ? (
-      <div className="pollquestionlist-container">
-        {this.state.questions.map((q, idx) => (
-          <PollResults
-            key={idx}
-            question={q}
-          />
-        ))}
-        <div className="poll">
-          {this.hasAnyVotes() ? this.linkChangeVote : this.linkToPoll}
-        </div>
-      </div>
-    ) : (
-      <div className="pollquestionlist-container">
-        {this.state.questions.map((q, idx) => (
-          q.is_open ? (
-            <PollOpenQuestion
+    return this.state.showResults
+      ? (
+        <div className="pollquestionlist-container">
+          {this.state.questions.map((q, idx) => (
+            <PollResults
               key={idx}
               question={q}
-              onOpenChange={(questionId, voteData) => this.handleVoteOpen(questionId, voteData)}
             />
-          ) : (
-            <PollQuestion
-              key={idx}
-              question={q}
-              onSingleChange={(questionId, voteData) => this.handleVoteSingle(questionId, voteData)}
-              onMultiChange={(questionId, voteData) => this.handleVoteMulti(questionId, voteData)}
-              onOtherChange={(questionId, voteAnswer, otherChoice) => this.handleVoteOther(questionId, voteAnswer, otherChoice)}
-              errors={this.state.errors}
-            />
-          )
-        ))}
-        <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
-        {!this.isReadOnly() ? (
-          <div className="poll poll__btn--wrapper">
-            {this.buttonVote}{!this.state.loading ? this.linkShowResults : this.loadingIndicator}
-          </div>
-        ) : (
+          ))}
           <div className="poll">
-            {!this.state.loading ? this.linkShowResults : this.loadingIndicator}
+            {this.hasAnyVotes() ? this.linkChangeVote : this.linkToPoll}
           </div>
-        )}
-      </div>
-    )
+        </div>
+        )
+      : (
+        <div className="pollquestionlist-container">
+          {this.state.questions.map((q, idx) => (
+            q.is_open
+              ? (
+                <PollOpenQuestion
+                  key={idx}
+                  question={q}
+                  onOpenChange={(questionId, voteData) => this.handleVoteOpen(questionId, voteData)}
+                />
+                )
+              : (
+                <PollQuestion
+                  key={idx}
+                  question={q}
+                  onSingleChange={(questionId, voteData) => this.handleVoteSingle(questionId, voteData)}
+                  onMultiChange={(questionId, voteData) => this.handleVoteMulti(questionId, voteData)}
+                  onOtherChange={(questionId, voteAnswer, otherChoice) => this.handleVoteOther(questionId, voteAnswer, otherChoice)}
+                  errors={this.state.errors}
+                />
+                )
+          ))}
+          <Alert onClick={() => this.removeAlert()} {...this.state.alert} />
+          {!this.isReadOnly()
+            ? (
+              <div className="poll poll__btn--wrapper">
+                {this.buttonVote}{!this.state.loading ? this.linkShowResults : this.loadingIndicator}
+              </div>
+              )
+            : (
+              <div className="poll">
+                {!this.state.loading ? this.linkShowResults : this.loadingIndicator}
+              </div>
+              )}
+        </div>
+        )
   }
 }
 

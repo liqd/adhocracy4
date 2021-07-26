@@ -26,7 +26,7 @@ The following classes are available:
  */
 
 (function ($) {
-  var SelectDropdown = function (element, settings) {
+  const SelectDropdown = function (element, settings) {
     this.$element = $(element)
     this.settings = settings
 
@@ -38,20 +38,20 @@ The following classes are available:
 
   SelectDropdown.prototype = {
     createDropdown: function () {
-      var $dropdown = $('<div class="dropdown select-dropdown ' + this.settings.styleDropdown + '">')
+      const $dropdown = $('<div class="dropdown select-dropdown ' + this.settings.styleDropdown + '">')
 
-      var btnClasses = 'btn select-dropdown__btn ' + this.settings.style
-      var $button = $('<button class="' + btnClasses + '" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">').appendTo($dropdown)
-      var $buttonLabel = $('<span class="select-dropdown__btn__label">').appendTo($button)
+      const btnClasses = 'btn select-dropdown__btn ' + this.settings.style
+      const $button = $('<button class="' + btnClasses + '" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">').appendTo($dropdown)
+      const $buttonLabel = $('<span class="select-dropdown__btn__label">').appendTo($button)
       $('<i class="fa fa-caret-down" aria-hidden="true"></i>').appendTo($button)
 
-      var $menu = $('<div class="dropdown-menu select-dropdown__menu">').appendTo($dropdown)
+      const $menu = $('<div class="dropdown-menu select-dropdown__menu">').appendTo($dropdown)
 
       this.$dropdown = $dropdown
       this.$buttonLabel = $buttonLabel
 
       $.each(this.getSelectOptions(), function (i, option) {
-        var $item = $('<a class="dropdown-item select-dropdown__item" href="#">')
+        const $item = $('<a class="dropdown-item select-dropdown__item" href="#">')
         this.appendOptionLabel($item, option, 'select-dropdown__item')
 
         $item.appendTo($menu)
@@ -75,8 +75,8 @@ The following classes are available:
     onSelect (event) {
       event.preventDefault()
       // event.stopPropagation()
-      var $item = $(event.target)
-      var option = event.data
+      const $item = $(event.target)
+      const option = event.data
       this.selectItem($item, option)
     },
 
@@ -91,15 +91,15 @@ The following classes are available:
 
     getSelectOptions: function () {
       return this.$element.find('option').map(function (i, option) {
-        var $option = $(option)
+        const $option = $(option)
 
-        var data = $.extend({
+        let data = $.extend({
           content: null,
           iconSrc: null
         }, $option.data())
 
-        var value = $option.attr('value')
-        var label = data.content || $option.text()
+        const value = $option.attr('value')
+        const label = data.content || $option.text()
 
         data = $.extend(data, {
           value: value,
@@ -120,9 +120,9 @@ The following classes are available:
     }, settings)
 
     return this.each(function () {
-      var $this = $(this)
+      const $this = $(this)
       if ($this.is('select')) {
-        var selectdropdown = $this.data('selectdropdown')
+        let selectdropdown = $this.data('selectdropdown')
 
         if (!selectdropdown) {
           $this.data('selectdropdown', (selectdropdown = new SelectDropdown(this, settings)))

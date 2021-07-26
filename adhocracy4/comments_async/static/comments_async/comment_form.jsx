@@ -20,7 +20,7 @@ export default class CommentForm extends React.Component {
   }
 
   handleTextareaGrow (e) {
-    var newHeight = (e.target.scrollHeight)
+    const newHeight = (e.target.scrollHeight)
     if (newHeight !== this.state.textareaHeight) {
       this.setState({ textareaHeight: newHeight })
     }
@@ -32,8 +32,8 @@ export default class CommentForm extends React.Component {
 
   handleCategorySelection (e) {
     const newSelection = e.target.id.split('_')[1]
-    var newSelectionArray = this.state.selectedCategories
-    var index = this.state.selectedCategories.indexOf(newSelection)
+    const newSelectionArray = this.state.selectedCategories
+    const index = this.state.selectedCategories.indexOf(newSelection)
     if (index > -1) {
       newSelectionArray.splice(index, 1)
     } else {
@@ -53,8 +53,8 @@ export default class CommentForm extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
-    var comment = this.state.comment.trim()
-    var data = {
+    const comment = this.state.comment.trim()
+    const data = {
       comment: comment,
       urlReplaces: {
         objectPk: this.props.subjectId,

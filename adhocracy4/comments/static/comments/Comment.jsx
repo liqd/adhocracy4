@@ -1,24 +1,24 @@
-var ReportModal = require('../../../reports/static/reports/react_reports').ReportModal
-var RatingBox = require('../../../ratings/static/ratings/react_ratings').RatingBox
-var Modal = require('../../../static/Modal')
-var CommentEditForm = require('./CommentEditForm')
-var CommentForm = require('./CommentForm')
-var CommentManageDropdown = require('./CommentManageDropdown')
+const ReportModal = require('../../../reports/static/reports/react_reports').ReportModal
+const RatingBox = require('../../../ratings/static/ratings/react_ratings').RatingBox
+const Modal = require('../../../static/Modal')
+const CommentEditForm = require('./CommentEditForm')
+const CommentForm = require('./CommentForm')
+const CommentManageDropdown = require('./CommentManageDropdown')
 
-var React = require('react')
-var PropTypes = require('prop-types')
-var django = require('django')
+const React = require('react')
+const PropTypes = require('prop-types')
+const django = require('django')
 
-var safeHtml = function (text) {
+const safeHtml = function (text) {
   return { __html: text }
 }
 
-var localeDate = function (dateStr) {
+const localeDate = function (dateStr) {
   return new Date(dateStr).toLocaleString(document.documentElement.lang)
 }
 
-var getViewRepliesText = function (number, hide) {
-  var fmts
+const getViewRepliesText = function (number, hide) {
+  let fmts
   if (hide) {
     fmts = django.ngettext('hide one reply', 'hide %s replies', number)
   } else {
@@ -46,13 +46,13 @@ class Comment extends React.Component {
     if (e) {
       e.preventDefault()
     }
-    var newEdit = !this.state.edit
+    const newEdit = !this.state.edit
     this.setState({ edit: newEdit })
   }
 
   toggleShowComments (e) {
     e.preventDefault()
-    var newShowChildComment = !this.state.showChildComments
+    const newShowChildComment = !this.state.showChildComments
     this.setState({
       showChildComments: newShowChildComment,
       replyFormHasFocus: false
@@ -175,7 +175,8 @@ class Comment extends React.Component {
         />
         {this.renderDeleteModal()}
         <h3 className={this.props.is_deleted ? 'comment-deleted-author' : 'comment-author'}>
-          {this.props.user_profile_url === '' ? this.props.user_name
+          {this.props.user_profile_url === ''
+            ? this.props.user_name
             : <a href={this.props.user_profile_url} data-embed-target="external">{this.props.user_name}</a>}
           {this.renderModeratorLabel()}
         </h3>
@@ -222,7 +223,8 @@ class Comment extends React.Component {
                 onCommentModify={this.props.onCommentModify}
                 isReadOnly={this.props.isReadOnly}
                 onEditErrorClick={this.props.onEditErrorClick}
-              />) : null}
+              />)
+            : null}
 
           {this.state.showChildComments && !this.props.isReadOnly && this.context.isAuthenticated
             ? (
@@ -237,7 +239,8 @@ class Comment extends React.Component {
                 handleErrorClick={() => this.props.handleReplyErrorClick(this.props.index, this.props.parentIndex)}
                 rows="3"
                 grabFocus={this.state.replyFormHasFocus}
-              />) : null}
+              />)
+            : null}
         </div>
       </div>
     )

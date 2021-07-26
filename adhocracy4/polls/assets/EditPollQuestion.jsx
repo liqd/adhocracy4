@@ -85,7 +85,7 @@ export const EditPollQuestion = (props) => {
                       undeletable={props.question.choices.length < 3}
                     />
                   </div>
-                )
+                  )
                 : (
                   <div key={key}>
                     <EditPollChoice
@@ -99,7 +99,7 @@ export const EditPollQuestion = (props) => {
                       isOther
                     />
                   </div>
-                )
+                  )
             })
           }
         </FlipMove>

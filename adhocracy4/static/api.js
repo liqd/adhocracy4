@@ -1,5 +1,5 @@
-var $ = require('jquery')
-var cookie = require('js-cookie')
+const $ = require('jquery')
+const cookie = require('js-cookie')
 
 function init () {
   $.ajaxSetup({
@@ -10,10 +10,10 @@ function init () {
 document.addEventListener('DOMContentLoaded', init, false)
 document.addEventListener('a4.embed.ready', init, false)
 
-var baseURL = '/api/'
+const baseURL = '/api/'
 
-var api = (function () {
-  var urls = {
+const api = (function () {
+  const urls = {
     report: baseURL + 'reports/',
     document: baseURL + 'modules/$moduleId/documents/',
     poll: baseURL + 'polls/',
@@ -26,7 +26,7 @@ var api = (function () {
   }
 
   function _sendRequest (endpoint, id, options, data, contentType) {
-    var $body = $('body')
+    const $body = $('body')
 
     if (typeof id === 'object') {
       // there's no id, switch parameters
@@ -35,7 +35,7 @@ var api = (function () {
       id = null
     }
 
-    var url = urls[endpoint]
+    let url = urls[endpoint]
     if (data.urlReplaces) {
       url = url.replace(/\$(\w+?)\b/g, (match, group) => {
         return data.urlReplaces[group]
@@ -47,7 +47,7 @@ var api = (function () {
     if (typeof id === 'number' || typeof id === 'string') {
       url = url + id + '/'
     }
-    var defaultParams = {
+    const defaultParams = {
       url: url,
       dataType: 'json',
       data: data,
@@ -58,7 +58,7 @@ var api = (function () {
         $body.removeClass('loading')
       }
     }
-    var params = $.extend(defaultParams, options)
+    const params = $.extend(defaultParams, options)
 
     if (typeof params.data !== 'undefined') {
       if (params.type === 'PUT' || params.type === 'POST' ||

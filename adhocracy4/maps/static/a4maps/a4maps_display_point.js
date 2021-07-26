@@ -1,7 +1,7 @@
 import { createMap } from './a4maps_common'
 
 function init () {
-  var L = window.L
+  const L = window.L
 
   $('[data-map="display_point"]').each(function (i, e) {
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
@@ -26,7 +26,7 @@ function init () {
       fillOpacity: 0.2
     }
 
-    var defaultIcon = L.icon({
+    const defaultIcon = L.icon({
       iconUrl: '/static/images/map_pin_default.svg',
       shadowUrl: '/static/images/map_shadow_01.svg',
       iconSize: [30, 36],
@@ -36,7 +36,7 @@ function init () {
       popupAnchor: [0, -45]
     })
 
-    var basePolygon = L.geoJson(polygon, { style: polygonStyle }).addTo(map)
+    const basePolygon = L.geoJson(polygon, { style: polygonStyle }).addTo(map)
     map.fitBounds(basePolygon.getBounds())
     map.options.minZoom = map.getZoom()
     L.control.zoom({
@@ -45,7 +45,7 @@ function init () {
 
     L.geoJson(point, {
       pointToLayer: function (feature, latlng) {
-        var icon = defaultIcon
+        let icon = defaultIcon
         if (pinSrc) {
           icon = L.icon({
             iconUrl: pinSrc,
@@ -56,7 +56,7 @@ function init () {
           })
         }
 
-        var marker = L.marker(latlng, { icon: icon }).addTo(map)
+        const marker = L.marker(latlng, { icon: icon }).addTo(map)
         return marker
       }
     })

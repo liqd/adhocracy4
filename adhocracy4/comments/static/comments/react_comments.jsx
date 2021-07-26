@@ -1,6 +1,6 @@
-var CommentBox = require('./CommentBox')
-var React = require('react')
-var ReactDOM = require('react-dom')
+const CommentBox = require('./CommentBox')
+const React = require('react')
+const ReactDOM = require('react-dom')
 
 module.exports.renderComment = function (el) {
   const props = JSON.parse(el.getAttribute('data-attributes'))

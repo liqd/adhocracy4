@@ -1,4 +1,4 @@
-var React = require('react')
+const React = require('react')
 
 const ErrorList = ({ errors, field }) => {
   if (errors && errors[field]) {

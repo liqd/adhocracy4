@@ -13,7 +13,7 @@ function getBaseBounds (L, polygon, bbox) {
 }
 
 function init () {
-  var L = window.L
+  const L = window.L
 
   $('[data-map="choose_polygon"]').each(function (i, e) {
     const name = e.getAttribute('data-name')
@@ -40,7 +40,7 @@ function init () {
       fillOpacity: 0.2
     }
 
-    var drawnItems
+    let drawnItems
     if (polygon) {
       drawnItems = L.geoJson(polygon, {
         style: polygonStyle
@@ -80,21 +80,21 @@ function init () {
     }))
 
     map.on(L.Draw.Event.CREATED, function (event) {
-      var layer = event.layer
+      const layer = event.layer
       drawnItems.addLayer(layer)
-      var shape = drawnItems.toGeoJSON()
+      const shape = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(shape))
       $('#id_' + name).trigger('change')
     })
 
     map.on(L.Draw.Event.EDITED, function (event) {
-      var shape = drawnItems.toGeoJSON()
+      const shape = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(shape))
       $('#id_' + name).trigger('change')
     })
 
     map.on(L.Draw.Event.DELETED, function (event) {
-      var shape = drawnItems.toGeoJSON()
+      const shape = drawnItems.toGeoJSON()
       $('#id_' + name).val(JSON.stringify(shape))
       $('#id_' + name).trigger('change')
     })

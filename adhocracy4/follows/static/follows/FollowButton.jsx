@@ -1,8 +1,8 @@
-var api = require('../../../static/api')
-var django = require('django')
-var PropTypes = require('prop-types')
-var React = require('react')
-var Alert = require('../../../static/Alert')
+const api = require('../../../static/api')
+const django = require('django')
+const PropTypes = require('prop-types')
+const React = require('react')
+const Alert = require('../../../static/Alert')
 
 class FollowButton extends React.Component {
   constructor (props) {

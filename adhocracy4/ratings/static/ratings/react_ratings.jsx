@@ -1,9 +1,9 @@
-var api = require('../../../static/api')
-var config = require('../../../static/config')
+const api = require('../../../static/api')
+const config = require('../../../static/config')
 
-var React = require('react')
-var ReactDOM = require('react-dom')
-var classnames = require('classnames')
+const React = require('react')
+const ReactDOM = require('react-dom')
+const classnames = require('classnames')
 
 class RatingBox extends React.Component {
   constructor (props) {
@@ -79,7 +79,7 @@ class RatingBox extends React.Component {
       return
     }
     if (this.state.userHasRating) {
-      var number
+      let number
       if (this.state.userRating === 1) {
         number = 0
       } else {
@@ -101,7 +101,7 @@ class RatingBox extends React.Component {
       return
     }
     if (this.state.userHasRating) {
-      var number
+      let number
       if (this.state.userRating === -1) {
         number = 0
       } else {

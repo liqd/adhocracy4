@@ -2,9 +2,9 @@ import { createMap } from './a4maps_common'
 import 'leaflet.markercluster'
 
 function init () {
-  var L = window.L
+  const L = window.L
 
-  var escapeHtml = function (unsafe) {
+  const escapeHtml = function (unsafe) {
     // jQuery.text() escapes special chars as is documented at http://api.jquery.com/text/#text-function
     // Alternatively a custom unsafe.replace(/&/g, '&amp;')... solution as described
     // at https://stackoverflow.com/a/6234804 may be used. for example underscore.js uses a regexp based unescape.
@@ -16,7 +16,7 @@ function init () {
     const polygon = JSON.parse(e.getAttribute('data-polygon'))
     const points = JSON.parse(e.getAttribute('data-points'))
     const hideRatings = e.getAttribute('data-hide-ratings')
-    var initial = 0
+    let initial = 0
 
     const map = createMap(L, e, {
       baseUrl: e.getAttribute('data-baseurl'),
@@ -32,8 +32,8 @@ function init () {
     })
 
     map.on('zoomend', function () {
-      var currentZoom = map.getZoom()
-      var minZoom = map.getMinZoom()
+      const currentZoom = map.getZoom()
+      const minZoom = map.getMinZoom()
 
       if (currentZoom > minZoom) {
         if (initial === 1) {
@@ -45,14 +45,14 @@ function init () {
       }
     })
 
-    var polygonStyle = {
+    const polygonStyle = {
       color: '#0076ae',
       weight: 2,
       opacity: 1,
       fillOpacity: 0.2
     }
 
-    var basePolygon = L.geoJson(polygon, { style: polygonStyle }).addTo(map)
+    const basePolygon = L.geoJson(polygon, { style: polygonStyle }).addTo(map)
     basePolygon.on('dblclick', function (event) {
       map.zoomIn()
     })
@@ -64,7 +64,7 @@ function init () {
     map.options.minZoom = map.getZoom()
     initial = 1
 
-    var customOptions =
+    const customOptions =
       {
         className: 'maps-popups',
         closeButton: false
@@ -99,7 +99,7 @@ function init () {
       }
     }
 
-    var defaultIcon = L.icon({
+    const defaultIcon = L.icon({
       iconUrl: '/static/images/map_pin_default.svg',
       shadowUrl: '/static/images/map_shadow_01.svg',
       iconSize: [30, 36],
@@ -109,13 +109,13 @@ function init () {
       popupAnchor: [0, -10]
     })
 
-    var cluster = L.markerClusterGroup({
+    const cluster = L.markerClusterGroup({
       showCoverageOnHover: false
     })
 
     L.geoJson(points, {
       pointToLayer: function (feature, latlng) {
-        var icon = defaultIcon
+        let icon = defaultIcon
         if (feature.properties.category_icon) {
           icon = L.icon({
             iconUrl: feature.properties.category_icon,
@@ -126,9 +126,9 @@ function init () {
           })
         }
 
-        var marker = L.marker(latlng, { icon: icon })
+        const marker = L.marker(latlng, { icon: icon })
         cluster.addLayer(marker)
-        var popupContent = getImage(feature) +
+        const popupContent = getImage(feature) +
                           '<div class="maps-popups-popup-text-content">' +
                           getRatings(feature) +
                             '<div class="maps-popups-popup-name">' +
