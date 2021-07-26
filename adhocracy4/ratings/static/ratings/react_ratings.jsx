@@ -65,10 +65,6 @@ class RatingBox extends React.Component {
       }.bind(this))
   }
 
-  updateUserRating (data) {
-    this.state.ratings[this.state.userRatingIndex] = data
-  }
-
   ratingUp (e) {
     e.preventDefault()
     if (this.props.authenticatedAs === null) {
