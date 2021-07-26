@@ -209,7 +209,6 @@ class PollQuestions extends React.Component {
         if (otherChoiceSelected) {
           if (!q.other_choice_answer) {
             this.addValidationError(otherChoice.id)
-            return
           } else {
             this.removeValidationError(otherChoice.id)
             return q

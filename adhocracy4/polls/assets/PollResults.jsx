@@ -121,47 +121,45 @@ export default class PollResult extends React.Component {
             const percent = total === 0 ? 0 : Math.round(choice.count / total * 100)
             const chosen = this.state.question.userChoices.indexOf(choice.id) !== -1
             const highlight = choice.count === max && max > 0
-            if (!this.state.question.is_open) {
-              return (
-                <div key={choice.id} className="poll-row__container">
-                  {chosen ? <i className="poll-row__chosen fas fa-check-circle" aria-label={django.gettext('Your choice')} /> : ''}
-                  <div className="poll-row poll-row--answered">
-                    <div className="poll-row__number">{percent}%</div>
-                    <div className="poll-row__label">{choice.label}</div>
-                    <div
-                      className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
-                      style={{ width: percent + '%' }}
-                    />
-                  </div>
-                  {choice.is_other_choice &&
-                    <div>
-                      <button type="button" className="btn poll__btn--link" onClick={() => this.toggleOtherAnswers()}>
-                        {this.getOtherAnswerText()}
-                      </button>
-                      {this.state.showOtherAnswers &&
-                        <div className="poll-slider__container" id={this.state.question.id}>
-                          <Slider {...settings}>
-                            {this.props.question.other_choice_answers.map((slide, index) => (
-                              <div
-                                className="poll-slider__item"
-                                data-index={index}
-                                key={index}
-                              >
-                                <div className="poll-slider__answer">
-                                  {this.isUserAnswer(slide) && <i className="fas fa-check-circle" />} {slide.answer}
-                                </div>
-                                <div className="poll-slider__count">
-                                  {index + 1}/{this.props.question.other_choice_answers.length}
-                                </div>
-                              </div>
-                            ))}
-                          </Slider>
-                        </div>}
-                    </div>}
+            return !this.state.question.is_open &&
+              <div key={choice.id} className="poll-row__container">
+                {chosen ? <i className="poll-row__chosen fas fa-check-circle" aria-label={django.gettext('Your choice')} /> : ''}
+                <div className="poll-row poll-row--answered">
+                  <div className="poll-row__number">{percent}%</div>
+                  <div className="poll-row__label">{choice.label}</div>
+                  <div
+                    className={'poll-row__bar' + (highlight ? ' poll-row__bar--highlight' : '')}
+                    style={{ width: percent + '%' }}
+                  />
                 </div>
-              )
-            }
-          })}
+                {choice.is_other_choice &&
+                  <div>
+                    <button type="button" className="btn poll__btn--link" onClick={() => this.toggleOtherAnswers()}>
+                      {this.getOtherAnswerText()}
+                    </button>
+                    {this.state.showOtherAnswers &&
+                      <div className="poll-slider__container" id={this.state.question.id}>
+                        <Slider {...settings}>
+                          {this.props.question.other_choice_answers.map((slide, index) => (
+                            <div
+                              className="poll-slider__item"
+                              data-index={index}
+                              key={index}
+                            >
+                              <div className="poll-slider__answer">
+                                {this.isUserAnswer(slide) && <i className="fas fa-check-circle" />} {slide.answer}
+                              </div>
+                              <div className="poll-slider__count">
+                                {index + 1}/{this.props.question.other_choice_answers.length}
+                              </div>
+                            </div>
+                          ))}
+                        </Slider>
+                      </div>}
+                  </div>}
+              </div>
+          }
+          )}
           {this.state.question.is_open &&
             <div className="poll-slider__container">
               <Slider {...settings} id={this.state.question.id}>

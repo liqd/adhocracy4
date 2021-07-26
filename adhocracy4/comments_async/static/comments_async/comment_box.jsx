@@ -425,12 +425,12 @@ export default class CommentBox extends React.Component {
     if (this.state.anchoredCommentId && !this.state.anchoredCommentFound) {
       let found = false
 
-      this.state.comments.map((comment) => {
-        if (comment.id === this.state.anchoredCommentId ||
-            comment.id === this.state.anchoredCommentParentId) {
+      this.state.comments.map((comment) => (
+        (comment.id === this.state.anchoredCommentId || comment.id === this.state.anchoredCommentParentId) && (
           found = true
-        }
-      })
+        )
+      ))
+
       if (found) {
         this.setState(
           {
@@ -545,11 +545,8 @@ export default class CommentBox extends React.Component {
                           </button>}
                         {Object.keys(this.props.commentCategoryChoices).map(objectKey => {
                           const name = this.props.commentCategoryChoices[objectKey]
-                          if (objectKey !== this.state.filter) {
-                            return (
-                              <button className="dropdown-item" onClick={this.handleClickFilter} id={objectKey} key={objectKey} href="#">{name}</button>
-                            )
-                          }
+                          return (objectKey !== this.state.filter) &&
+                            <button className="dropdown-item" onClick={this.handleClickFilter} id={objectKey} key={objectKey} href="#">{name}</button>
                         })}
                       </div>
                     </div>
@@ -567,15 +564,12 @@ export default class CommentBox extends React.Component {
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                       {Object.keys(sorts).map(objectKey => {
                         const name = sorts[objectKey]
-                        if (objectKey !== this.state.sort) {
-                          return (
-                            <button
-                              className="dropdown-item" onClick={this.handleClickSorted} id={objectKey}
-                              key={objectKey} href="#"
-                            >{name}
-                            </button>
-                          )
-                        }
+                        return (objectKey !== this.state.sort) &&
+                          <button
+                            className="dropdown-item" onClick={this.handleClickSorted} id={objectKey}
+                            key={objectKey} href="#"
+                          >{name}
+                          </button>
                       })}
                     </div>
                   </div>

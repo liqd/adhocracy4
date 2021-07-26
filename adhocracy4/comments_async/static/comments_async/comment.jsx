@@ -200,7 +200,12 @@ export default class Comment extends React.Component {
       }
       comment = (
         <div className={'a4-comments__text' + (this.state.anchored ? ' a4-comments__text--highlighted' : '')}>
-          <ReactMarkdown disallowedTypes={['heading']} plugins={[[gfm, { singleTilde: false }]]} children={content} />
+          <ReactMarkdown
+            disallowedTypes={['heading']}
+            plugins={[[gfm, { singleTilde: false }]]}
+          >
+            {content}
+          </ReactMarkdown>
         </div>
       )
     }
