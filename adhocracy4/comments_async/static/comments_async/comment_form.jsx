@@ -101,7 +101,7 @@ export default class CommentForm extends React.Component {
               style={textareaStyle}
             />
             <div className="row">
-              <label htmlFor="id-comment-form" className="col-6 text-muted">{this.state.commentCharCount}/4000{django.gettext(' characters')}</label>
+              <label htmlFor="id-comment-form" className="col-6 a4-comments__char-count">{this.state.commentCharCount}/4000{django.gettext(' characters')}</label>
               <div className="a4-comments__submit d-flex col-6">
                 {this.props.commentCategoryChoices
                   ? <button type="submit" value={django.gettext('post')} className="btn a4-comments__submit-input ms-auto">{django.gettext('post')}</button>

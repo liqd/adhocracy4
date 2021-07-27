@@ -11,10 +11,10 @@ const Modal = (props) => {
     >
       <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div className="modal-content">
-          <span className="modal--close pt-3 pr-3">
+          <span className="modal--close pt-3 pe-3">
             <button
               className="close" aria-label={props.abort}
-              data-dismiss="modal" onClick={props.handleClose}
+              data-bs-dismiss="modal" onClick={props.handleClose}
             >
               <i className="fas fa-times" />
             </button>
@@ -32,12 +32,12 @@ const Modal = (props) => {
           {!props.partials.hideFooter &&
             <div className="modal-footer">
               <button
-                className="mx-auto mx-lg-4 cancel-button" data-dismiss="modal"
+                className="mx-auto mx-lg-4 cancel-button" data-bs-dismiss="modal"
                 onClick={props.handleClose}
               >{props.abort}
               </button>
               <button
-                className="mx-auto mx-lg-0 submit-button" data-dismiss={dismiss}
+                className="mx-auto mx-lg-0 submit-button" data-bs-dismiss={dismiss}
                 onClick={props.handleSubmit}
               >{props.action}
               </button>
