@@ -16,6 +16,11 @@ function PrevArrow (props) {
   )
 }
 
+const disabledArrows =
+  <><button className="slick-next disabled" aria-label={django.ngettext('Next answer')}><i className="fa fa-chevron-right" /></button>
+    <button className="slick-prev disabled" aria-label={django.ngettext('Previous answer')}><i className="fa fa-chevron-left" /></button>
+  </>
+
 export default class PollResult extends React.Component {
   constructor (props) {
     super(props)
@@ -134,9 +139,10 @@ export default class PollResult extends React.Component {
                 </div>
                 {choice.is_other_choice &&
                   <div>
-                    <button type="button" className="btn poll__btn--link" onClick={() => this.toggleOtherAnswers()}>
-                      {this.getOtherAnswerText()}
-                    </button>
+                    {this.props.question.other_choice_answers.length > 0 &&
+                      <button type="button" className="btn poll__btn--link" onClick={() => this.toggleOtherAnswers()}>
+                        {this.getOtherAnswerText()}
+                      </button>}
                     {this.state.showOtherAnswers &&
                       <div className="poll-slider__container" id={this.state.question.id}>
                         <Slider {...settings}>
@@ -152,6 +158,8 @@ export default class PollResult extends React.Component {
                               <div className="poll-slider__count">
                                 {index + 1}/{this.props.question.other_choice_answers.length}
                               </div>
+                              {this.props.question.other_choice_answers.length === 1 &&
+                                disabledArrows}
                             </div>
                           ))}
                         </Slider>
@@ -175,6 +183,8 @@ export default class PollResult extends React.Component {
                     <div className="poll-slider__count">
                       {index + 1}/{this.props.question.answers.length}
                     </div>
+                    {this.props.question.other_choice_answers.length === 1 &&
+                      disabledArrows}
                   </div>
                 ))}
               </Slider>
@@ -182,10 +192,10 @@ export default class PollResult extends React.Component {
           {this.state.question.is_open
             ? (
               <div className="a4-muted">{this.getHelpTextOpenAnswer()}</div>
-              )
+            )
             : (
               <div className="a4-muted">{this.getHelpTextAnswer()}</div>
-              )}
+            )}
         </div>
       </div>
     )
