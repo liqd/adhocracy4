@@ -14,7 +14,7 @@ export const Modal = (props) => {
           <div className="modal-header">
             <button
               className="close" aria-label={props.abort}
-              data-dismiss="modal" onClick={props.handleClose}
+              data-bs-dismiss="modal" onClick={props.handleClose}
             >
               <i className="fa fa-times" />
             </button>
@@ -30,14 +30,14 @@ export const Modal = (props) => {
             <div className="modal-footer">
               <div className="row">
                 <button
-                  className="submit-button" data-dismiss={dismiss}
+                  className="submit-button" data-bs-dismiss={dismiss}
                   onClick={props.handleSubmit}
                 >{props.action}
                 </button>
               </div>
               <div className="row">
                 <button
-                  className="cancel-button" data-dismiss="modal"
+                  className="cancel-button" data-bs-dismiss="modal"
                   onClick={props.handleClose}
                 >{props.abort}
                 </button>
