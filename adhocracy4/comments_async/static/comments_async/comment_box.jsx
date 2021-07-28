@@ -585,16 +585,13 @@ export default class CommentBox extends React.Component {
                   </button>
                   <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     {Object.keys(sorts).map(objectKey => {
-                      var name = sorts[objectKey]
-                      if (objectKey !== this.state.sort) {
-                        return (
-                          <button
-                            className="dropdown-item" onClick={this.handleClickSorted} id={objectKey}
-                            key={objectKey} href="#"
-                          >{name}
-                          </button>
-                        )
-                      }
+                      const name = sorts[objectKey]
+                      return (objectKey !== this.state.sort) &&
+                        <button
+                          className="dropdown-item" onClick={this.handleClickSorted} id={objectKey}
+                          key={objectKey} href="#"
+                        >{name}
+                        </button>
                     })}
                   </div>
                 </div>

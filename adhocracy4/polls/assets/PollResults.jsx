@@ -16,10 +16,11 @@ function PrevArrow (props) {
   )
 }
 
-const disabledArrows =
+const disabledArrows = (
   <><button className="slick-next disabled" aria-label={django.ngettext('Next answer')}><i className="fa fa-chevron-right" /></button>
     <button className="slick-prev disabled" aria-label={django.ngettext('Previous answer')}><i className="fa fa-chevron-left" /></button>
   </>
+)
 
 export default class PollResult extends React.Component {
   constructor (props) {
@@ -192,10 +193,10 @@ export default class PollResult extends React.Component {
           {this.state.question.is_open
             ? (
               <div className="a4-muted">{this.getHelpTextOpenAnswer()}</div>
-            )
+              )
             : (
               <div className="a4-muted">{this.getHelpTextAnswer()}</div>
-            )}
+              )}
         </div>
       </div>
     )
