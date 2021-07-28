@@ -48,16 +48,6 @@ class PollQuestions extends React.Component {
       </button>
     )
 
-    this.linkShowResults = (
-      <button
-        type="button"
-        className="btn poll__btn--link"
-        onClick={() => this.handleToggleResultsPage()}
-      >
-        {django.gettext('Show preliminary results')}
-      </button>
-    )
-
     this.loadingIndicator = (
       <div className="spinner-border" role="status">
         <span className="visually-hidden">Loading...</span>
@@ -143,6 +133,34 @@ class PollQuestions extends React.Component {
         </a>
       )
     }
+  }
+
+  getLinkShowResultsText () {
+    if (this.isReadOnly()) {
+      return (
+        <span>
+          {django.gettext('Show results')}
+        </span>
+      )
+    } else {
+      return (
+        <span>
+          {django.gettext('Show preliminary results')}
+        </span>
+      )
+    }
+  }
+
+  linkShowResults () {
+    return (
+      <button
+        type="button"
+        className="btn poll__btn--link"
+        onClick={() => this.handleToggleResultsPage()}
+      >
+        {this.getLinkShowResultsText()}
+      </button>
+    )
   }
 
   addValidationError (choiceId) {
@@ -285,12 +303,12 @@ class PollQuestions extends React.Component {
           {!this.isReadOnly()
             ? (
               <div className="poll poll__btn--wrapper">
-                {this.buttonVote}{!this.state.loading ? this.linkShowResults : this.loadingIndicator}
+                {this.buttonVote}{!this.state.loading ? this.linkShowResults() : this.loadingIndicator}
               </div>
               )
             : (
               <div className="poll">
-                {!this.state.loading ? this.linkShowResults : this.loadingIndicator}
+                {!this.state.loading ? this.linkShowResults() : this.loadingIndicator}
               </div>
               )}
         </div>
