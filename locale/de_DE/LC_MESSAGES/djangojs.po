@@ -577,7 +577,7 @@ msgstr "Bitte melden Sie sich zum Antworten an."
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:142
 msgid "Show results"
-msgstr ""
+msgstr "Ergebnis zeigen"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:148
 msgid "Show preliminary results"
