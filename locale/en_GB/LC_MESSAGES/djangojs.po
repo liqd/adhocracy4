@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-22 10:21+0200\n"
+"POT-Creation-Date: 2021-07-30 14:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,12 +53,12 @@ msgid "Answer"
 msgstr "Answer"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:31
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:408
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:414
 msgid "Your reply here"
 msgstr "Your reply here"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:32
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:283
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:288
 #: adhocracy4/reports/static/reports/react_reports.jsx:20
 msgid ""
 "You want to report this content? Your message will be sent to the "
@@ -70,23 +70,23 @@ msgstr ""
 "will be deleted if it does not meet our discussion rules (netiquette)."
 
 #: adhocracy4/comments/static/comments/Comment.jsx:96
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:260
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:265
 msgid "Moderator"
 msgstr "Moderator"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:105
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:255
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:260
 msgid "Latest edit on"
 msgstr "Latest edit on"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:147
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:236
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:241
 msgid "Do you really want to delete this comment?"
 msgstr "Do you really want to delete this comment?"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:148
 #: adhocracy4/comments/static/comments/CommentManageDropdown.jsx:7
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:238
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:243
 #: adhocracy4/comments_async/static/comments_async/comment_manage_dropdown.jsx:22
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:68
 #: adhocracy4/polls/assets/EditPollOpenQuestion.jsx:73
@@ -100,7 +100,7 @@ msgid "Delete"
 msgstr "Delete"
 
 #: adhocracy4/comments/static/comments/Comment.jsx:149
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:239
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:244
 #: adhocracy4/comments_async/static/modals/modal.jsx:58
 #: adhocracy4/comments_async/static/modals/moderate_modal.jsx:54
 #: adhocracy4/static/Modal.jsx:59
@@ -200,11 +200,11 @@ msgctxt "verb"
 msgid "Comment"
 msgstr "Comment"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:290
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:295
 msgid "Share link"
 msgstr "Share link"
 
-#: adhocracy4/comments_async/static/comments_async/comment.jsx:329
+#: adhocracy4/comments_async/static/comments_async/comment.jsx:335
 msgid "Categories: "
 msgstr "Categories: "
 
@@ -230,7 +230,7 @@ msgstr "Last discussed"
 
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:51
 #: adhocracy4/comments_async/static/comments_async/comment_box.jsx:310
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:544
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:541
 #: meinberlin/apps/livequestions/assets/Filters.jsx:20
 #: meinberlin/apps/plans/assets/FilterNav.jsx:95
 #: meinberlin/apps/plans/assets/FilterNav.jsx:102
@@ -246,48 +246,49 @@ msgstr "all"
 msgid "Write contribution"
 msgstr "Write contribution"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:522
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:526
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:519
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:523
 msgid "Search contributions"
 msgstr "Search contributions"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:524
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:521
 msgid "Clear search"
 msgstr "Clear search"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:536
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:533
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:558
 msgid "display: "
 msgstr "display: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:563
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:582
 msgid "sorted by: "
 msgstr "sorted by: "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:588
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:603
 msgid "entry"
 msgid_plural "entries"
 msgstr[0] "entry"
 msgstr[1] "entries"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:592
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:607
 msgid "entry found for "
 msgid_plural "entries found for "
 msgstr[0] "entry found for "
 msgstr[1] "entries found for "
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:596
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:611
 msgid "Filters"
 msgstr "Filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:596
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:611
 msgid "Show filters"
 msgstr "Show filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:599
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:614
 msgid "Hide Filters"
 msgstr "Hide Filters"
 
-#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:599
+#: adhocracy4/comments_async/static/comments_async/comment_box.jsx:614
 msgid "Hide filters"
 msgstr "Hide filters"
 
@@ -467,62 +468,66 @@ msgstr "To poll"
 msgid "Change answer"
 msgstr "Change answer"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:56
-msgid "Show preliminary results"
-msgstr "Show preliminary results"
-
-#: adhocracy4/polls/assets/PollQuestions.jsx:135
+#: adhocracy4/polls/assets/PollQuestions.jsx:126
 msgid "Submit answer"
 msgstr "Submit answer"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:141
+#: adhocracy4/polls/assets/PollQuestions.jsx:132
 msgid "Please login to answer"
 msgstr "Please login to answer"
 
-#: adhocracy4/polls/assets/PollQuestions.jsx:150
+#: adhocracy4/polls/assets/PollQuestions.jsx:142
+msgid "Show results"
+msgstr "Show results"
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:148
+msgid "Show preliminary results"
+msgstr "Show preliminary results"
+
+#: adhocracy4/polls/assets/PollQuestions.jsx:169
 msgid "Please enter your answer in this field."
 msgstr "Please enter your answer in this field."
 
-#: adhocracy4/polls/assets/PollResults.jsx:59
+#: adhocracy4/polls/assets/PollResults.jsx:65
 msgid "Hide other answers"
 msgstr "Hide other answers"
 
-#: adhocracy4/polls/assets/PollResults.jsx:61
+#: adhocracy4/polls/assets/PollResults.jsx:67
 msgid "Show other answers"
 msgstr "Show other answers"
 
-#: adhocracy4/polls/assets/PollResults.jsx:75
+#: adhocracy4/polls/assets/PollResults.jsx:81
 #, javascript-format
 msgid "%s participant gave 1 answer."
 msgstr "%s participant gave 1 answer."
 
-#: adhocracy4/polls/assets/PollResults.jsx:77
-#: adhocracy4/polls/assets/PollResults.jsx:79
+#: adhocracy4/polls/assets/PollResults.jsx:83
+#: adhocracy4/polls/assets/PollResults.jsx:85
 #, javascript-format
 msgid "%s participant gave %s answers."
 msgid_plural "%s participants gave %s answers."
 msgstr[0] "%s participant gave %s answers."
 msgstr[1] "%s participants gave %s answers."
 
-#: adhocracy4/polls/assets/PollResults.jsx:81
+#: adhocracy4/polls/assets/PollResults.jsx:87
 msgid ""
 " For multiple choice questions the percentages may add up to more than 100%."
 msgstr ""
 " For multiple choice questions the percentages may add up to more than 100%."
 
-#: adhocracy4/polls/assets/PollResults.jsx:83
-#: adhocracy4/polls/assets/PollResults.jsx:92
+#: adhocracy4/polls/assets/PollResults.jsx:89
+#: adhocracy4/polls/assets/PollResults.jsx:98
 #, javascript-format
 msgid "1 person has answered."
 msgid_plural "%s people have answered."
 msgstr[0] "1 person has answered."
 msgstr[1] "%s people have answered."
 
-#: adhocracy4/polls/assets/PollResults.jsx:94
+#: adhocracy4/polls/assets/PollResults.jsx:100
 msgid "noone has answered this question"
 msgstr "noone has answered this question"
 
-#: adhocracy4/polls/assets/PollResults.jsx:127
+#: adhocracy4/polls/assets/PollResults.jsx:132
 msgid "Your choice"
 msgstr "Your choice"
 
