@@ -110,7 +110,7 @@ class ModuleClusterPropertiesMixin:
 class TimelinePropertiesMixin:
 
     def get_events_list(self):
-        if self.events:
+        if self.events and hasattr(self.events[0], 'event_type'):
             return self.events.values('date', 'name',
                                       'event_type',
                                       'slug', 'description')
