@@ -77,8 +77,6 @@ class Plan(UserGeneratedContentModel):
     )
     contact = models.TextField(max_length=1000, verbose_name=_('Contact'))
     cost = models.CharField(
-        blank=True,
-        null=True,
         max_length=255,
         verbose_name=_('Cost'))
     description = RichTextField(verbose_name=_('Description'))
