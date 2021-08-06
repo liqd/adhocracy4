@@ -58,7 +58,7 @@
                         </dl>
                         {% endif %}
 
-                        {% if object.cost %}
+                        {% if object.cost != "Keine Angabe" %}
                         <dl>
                             <dt>{% trans 'Cost' %}</dt><dd>{{ object.cost }}</dd>
                         </dl>
