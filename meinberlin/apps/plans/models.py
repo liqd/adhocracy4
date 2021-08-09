@@ -37,7 +37,14 @@ class Plan(UserGeneratedContentModel):
         (STATUS_DONE, _('done'))
     )
 
-    title = models.CharField(max_length=120, verbose_name=_('Title'))
+    title = models.CharField(
+        max_length=120,
+        verbose_name=_('Title of your plan'),
+        help_text=_('Enter a meaningful title with a maximum '
+                    'length of 120 characters. The title'
+                    ' will appear in the project tile and on '
+                    'top of the plan detail page.')
+    )
     organisation = models.ForeignKey(
         settings.A4_ORGANISATIONS_MODEL,
         on_delete=models.CASCADE,
@@ -54,32 +61,50 @@ class Plan(UserGeneratedContentModel):
         null=True)
     point = map_fields.PointField(
         blank=True,
-        verbose_name=_('Where can the plan be located on a map?'),
-        help_text=_('Click inside the marked area '
-                    'or type in an address to set the marker. A set '
-                    'marker can be dragged when pressed.'))
+        verbose_name=_('Can your plan be located on the map?'),
+        help_text=_('If you locate your plan, it will be shown '
+                    'on the map in the project overview in addition '
+                    'to the list. To set a pin, click inside the '
+                    'highlighted area or enter an address. Once a '
+                    'pin is set you can move it by dragging it.')
+    )
     point_label = models.CharField(
         blank=True,
         default='',
         max_length=255,
-        verbose_name=_('Label of the location'),
-        help_text=_('The label of the location is '
-                    'displayed in the detail view of the plan'),
+        verbose_name=_('Name of the site'),
+        help_text=_('The name of the site (e.g. name of street, '
+                    'building or park) makes it easier to locate '
+                    'the plan. The maximum length is 255 characters.'),
     )
     district = models.ForeignKey(
         AdministrativeDistrict,
         verbose_name=_('District'),
-        help_text=_('Please enter the district, in which your project is '
-                    'located, or whether your project is citywide.'),
+        help_text=_('Enter the district in which the plan is located or '
+                    'whether it is a city-wide plan. In the project '
+                    'overview projects can be filtered by district.'),
         null=True,
         blank=True,
         on_delete=models.CASCADE
     )
-    contact = models.TextField(max_length=1000, verbose_name=_('Contact'))
+    contact = models.TextField(
+        max_length=1000,
+        verbose_name=_('Contact for queries'),
+        help_text=_('Please name a contact person so users know who '
+                    'to contact with any questions they may have.')
+    )
     cost = models.CharField(
         max_length=255,
-        verbose_name=_('Cost'))
-    description = RichTextField(verbose_name=_('Description'))
+        verbose_name=_('Cost'),
+        help_text=_('Enter details of the estimated or actual costs '
+                    'of the plan in no more than 255 characters.')
+    )
+    description = RichTextField(
+        verbose_name=_('Description of your plan'),
+        help_text=_('Describe the cornerstones of your plan. '
+                    'You can upload PDFs and images, embed '
+                    'videos and link to external URLs.')
+    )
     description_image = ConfiguredImageField(
         'plan_image',
         verbose_name=_('Add image'),
@@ -96,20 +121,33 @@ class Plan(UserGeneratedContentModel):
     )
     topics = TopicField(
         verbose_name=_('Topics'),
-        help_text=_('Add topics to your project.'))
+        help_text=_('Assign your plan to 1 or 2 '
+                    'topics. In the project '
+                    'overview projects can be '
+                    'filtered according to topics.')
+    )
     status = models.SmallIntegerField(
         choices=STATUS_CHOICES,
-        verbose_name=_('Status')
+        verbose_name=_('Status'),
+        help_text=_('In the project overview projects '
+                    'can be filtered by status.')
     )
     participation = models.SmallIntegerField(
         choices=PARTICIPATION_CHOICES,
-        verbose_name=_('Participation')
+        verbose_name=_('Participation'),
+        help_text=_('In the project overview '
+                    'projects can be filtered '
+                    'according to participation '
+                    'status.')
     )
     duration = models.CharField(
         blank=True,
         null=True,
         max_length=255,
-        verbose_name=_('Duration')
+        verbose_name=_('Duration'),
+        help_text=_('Provide information on the '
+                    'expected duration of the plan in '
+                    'no more than 255 characters.')
     )
 
     class Meta:
