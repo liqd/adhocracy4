@@ -22,7 +22,8 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
     permission_required = 'meinberlin_plans.export_plan'
     model = models.Plan
     fields = ['title', 'description', 'contact', 'district', 'topics',
-              'cost', 'duration', 'status', 'participation', 'organisation']
+              'cost', 'duration', 'status', 'participation', 'organisation',
+              'created', 'modified']
     html_fields = ['description']
 
     def get_object_list(self):
@@ -48,10 +49,18 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
         virtual = super().get_virtual_fields(virtual)
         virtual['projects'] = ugettext('Projects')
         virtual['projects_links'] = ugettext('Project Links')
+        virtual['created'] = ugettext('Created')
+        virtual['modified'] = ugettext('Modified')
         return virtual
 
     def get_organisation_data(self, item):
         return item.organisation.name
+
+    def get_created_data(self, item):
+        return item.created.strftime('%X %x')
+
+    def get_modified_data(self, item):
+        return item.created.strftime('%X %x')
 
     def get_district_data(self, item):
         return item.district.name if item.district else str(_('City wide'))
