@@ -46,7 +46,7 @@
     "postcss": "8.3.6",
     "postcss-loader": "6.1.1",
     "react-bootstrap-typeahead": "5.2.0",
-    "react-cookie": "4.0.3",
+    "react-cookie": "4.1.0",
     "react-flip-move": "3.0.4",
     "react-sticky-box": "0.9.3",
     "sass-loader": "12.1.0",
