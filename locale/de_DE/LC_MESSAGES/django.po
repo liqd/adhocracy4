@@ -3275,7 +3275,7 @@ msgstr "Projektlinks"
 
 #: meinberlin/apps/plans/exports.py:52
 msgid "Modified"
-msgstr ""
+msgstr "Geändert"
 
 #: meinberlin/apps/plans/forms.py:37
 msgid "Please locate the plan on the map."
@@ -3311,17 +3311,19 @@ msgstr "abgeschlossen"
 
 #: meinberlin/apps/plans/models.py:42
 msgid "Title of your plan"
-msgstr ""
+msgstr "Titel Ihres Vorhabens"
 
 #: meinberlin/apps/plans/models.py:43
 msgid ""
 "Enter a meaningful title with a maximum length of 120 characters. The title "
 "will appear in the project tile and on top of the plan detail page."
 msgstr ""
+"Geben Sie einen aussagekräftigen Titel mit einer Länge von max. 120 Zeichen ein. "
+"Der Titel erscheint in der Projektkachel und oben auf der Detailseite des Vorhabens."
 
 #: meinberlin/apps/plans/models.py:64
 msgid "Can your plan be located on the map?"
-msgstr ""
+msgstr "Kann Ihr Vorhaben auf der Karte verortet werden?"
 
 #: meinberlin/apps/plans/models.py:65
 msgid ""
@@ -3329,16 +3331,23 @@ msgid ""
 "in addition to the list. To set a pin, click inside the highlighted area or "
 "enter an address. Once a pin is set you can move it by dragging it."
 msgstr ""
+"Wenn Sie Ihr Vorhaben verorten, wird es in der Projektübersicht zusätzlich zur "
+"Liste auch in der Karte angezeigt. Um einen Pin zu setzen, klicken Sie innerhalb "
+"des markierten Bereichs oder geben Sie eine Adresse ein. Sie können einen "
+"gesetzten Pin verschieben, indem Sie ihn gedrückt halten."
 
 #: meinberlin/apps/plans/models.py:75
 msgid "Name of the site"
-msgstr ""
+msgstr "Name des Ortes"
 
 #: meinberlin/apps/plans/models.py:76
 msgid ""
 "The name of the site (e.g. name of street, building or park) makes it easier "
 "to locate the plan. The maximum length is 255 characters."
 msgstr ""
+"Durch die Ortsbezeichnung (z.B. Straßenname, Gebäudebezeichnung, Grünfläche) "
+"erleichtern Sie die räumliche Verortung des Vorhabens. Die maximale Länge "
+"beträgt 255 Zeichen."
 
 #: meinberlin/apps/plans/models.py:82 meinberlin/apps/projects/views.py:49
 msgid "District"
@@ -3349,16 +3358,21 @@ msgid ""
 "Enter the district in which the plan is located or whether it is a city-wide "
 "plan. In the project overview projects can be filtered by district."
 msgstr ""
+"Tragen Sie ein, in welchem Bezirk das Vorhaben räumlich verortet wird bzw. "
+"ob es ein gesamtstädtisches Vorhaben ist. In der Projektübersicht können "
+"Projekte nach Bezirk gefiltert werden. "
 
 #: meinberlin/apps/plans/models.py:92
 msgid "Contact for queries"
-msgstr ""
+msgstr "Kontakt für Rückfragen"
 
 #: meinberlin/apps/plans/models.py:93
 msgid ""
 "Please name a contact person so users know who to contact with any questions "
 "they may have."
 msgstr ""
+"Bitte benennen Sie eine Kontaktperson. So wissen die Nutzer*innen, an wen sie "
+"sich mit möglichen Fragen wenden können. "
 
 #: meinberlin/apps/plans/models.py:98
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:63
@@ -3370,16 +3384,21 @@ msgid ""
 "Enter details of the estimated or actual costs of the plan in no more than "
 "255 characters."
 msgstr ""
+"Machen Sie in maximal 255 Zeichen Angaben über die voraussichtlichen oder "
+"tatsächlichen Kosten des Vorhabens."
 
 #: meinberlin/apps/plans/models.py:103
 msgid "Description of your plan"
-msgstr ""
+msgstr "Beschreibung Ihres Vorhabens"
 
 #: meinberlin/apps/plans/models.py:104
 msgid ""
 "Describe the cornerstones of your plan. You can upload PDFs and images, "
 "embed videos and link to external URLs."
 msgstr ""
+"Beschreiben Sie die wesentlichen Eckpunkte Ihres Vorhabens. Sie können "
+"u.a. PDFs und Bilder hochladen, Videos einbinden und auf externe "
+"URLs verlinken."
 
 #: meinberlin/apps/plans/models.py:114
 msgid "Visualize your plan."
@@ -3401,6 +3420,8 @@ msgid ""
 "Assign your plan to 1 or 2 topics. In the project overview projects can be "
 "filtered according to topics."
 msgstr ""
+"Ordnen Sie Ihr Vorhaben 1 oder 2 Themenfeldern zu. In der Projektübersicht "
+"können Projekte nach Themen gefiltert werden."
 
 #: meinberlin/apps/plans/models.py:131
 msgid "Status"
@@ -3408,7 +3429,7 @@ msgstr "Status"
 
 #: meinberlin/apps/plans/models.py:132
 msgid "In the project overview projects can be filtered by status."
-msgstr ""
+msgstr "In der Projektübersicht können Projekte nach Status gefiltert werden."
 
 #: meinberlin/apps/plans/models.py:137
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:68
@@ -3422,6 +3443,8 @@ msgid ""
 "In the project overview projects can be filtered according to participation "
 "status."
 msgstr ""
+"In der Projektübersicht können Projekte nach Beteiligungsstatus gefiltert "
+"werden."
 
 #: meinberlin/apps/plans/models.py:147
 #: meinberlin/apps/plans/templates/meinberlin_plans/plan_detail.html:57
@@ -3433,6 +3456,8 @@ msgid ""
 "Provide information on the expected duration of the plan in no more than 255 "
 "characters."
 msgstr ""
+"Machen Sie in maximal 255 Zeichen Angaben über die voraussichtliche Laufzeit "
+"des Vorhabens."
 
 #: meinberlin/apps/plans/models.py:193
 #: meinberlin/apps/projects/serializers.py:97
