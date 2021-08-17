@@ -52,20 +52,14 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
         virtual['modified'] = ugettext('Modified')
         return virtual
 
-    def get_organisation_data(self, item):
-        return item.organisation.name
-
-    def get_created_data(self, item):
-        return item.created.strftime('%X %x')
-
-    def get_modified_data(self, item):
-        return item.created.strftime('%X %x')
-
-    def get_district_data(self, item):
-        return item.district.name if item.district else str(_('City wide'))
+    def get_description_data(self, item):
+        return unescape_and_strip_html(item.description)
 
     def get_contact_data(self, item):
         return unescape_and_strip_html(item.contact)
+
+    def get_district_data(self, item):
+        return item.district.name if item.district else str(_('City wide'))
 
     def get_status_data(self, item):
         return item.get_status_display()
@@ -73,8 +67,8 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
     def get_participation_data(self, item):
         return item.get_participation_display()
 
-    def get_description_data(self, item):
-        return unescape_and_strip_html(item.description)
+    def get_organisation_data(self, item):
+        return item.organisation.name
 
     def get_projects_data(self, item):
         if item.projects.all():
@@ -91,3 +85,9 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
                         for project in item.projects.all()
                         ])
         return ''
+
+    def get_created_data(self, item):
+        return item.created.strftime('%X %x')
+
+    def get_modified_data(self, item):
+        return item.created.strftime('%X %x')
