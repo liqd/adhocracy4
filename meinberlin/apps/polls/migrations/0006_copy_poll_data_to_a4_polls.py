@@ -27,10 +27,11 @@ def copy_data(apps, schema_editor):
                 multiple_choice = mb_question.multiple_choice,
                 poll = poll)
             mb_choices = MBChoice.objects.filter(question=mb_question)
-            for mb_choice in mb_choices:
+            for i, mb_choice in enumerate(mb_choices):
                 choice = Choice.objects.create(
                     label = mb_choice.label,
-                    question = question)
+                    question = question,
+                    weight = i)
                 mb_votes = MBVote.objects.filter(choice=mb_choice)
                 for mb_vote in mb_votes:
                     Vote.objects.create(
