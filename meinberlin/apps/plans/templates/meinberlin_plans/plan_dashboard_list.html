@@ -21,62 +21,60 @@
 
     {% include "meinberlin_contrib/includes/filter_and_sort.html" with filter=view.filter %}
 
-    {% if object_list.count > 0 %}
-        <ul class="u-list-reset">
-            {% for plan in object_list %}
-                {% has_perm 'meinberlin_plans.change_plan' request.user plan as can_change_plan %}
-                {% if can_change_plan %}
-                <li class="list-item">
-                    <div class="lr-bar">
-                        <div class="lr-bar__left">
-                            <h3 class="list-item__title">{{ plan.title }}</h3>
-                        </div>
-                        <div class="lr-bar__right">
-                            <div class="btn-group">
-                                {% spaceless %}
-                                    <a href="{{ plan.get_absolute_url }}"
-                                       class="btn btn--small btn--light">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                        {% trans 'View' %}
-                                    </a>
-                                    <a href="{% url 'a4dashboard:plan-update' organisation_slug=view.organisation.slug pk=plan.pk %}"
-                                       class="btn btn--small btn--light">
-                                        <i class="fas fa-pencil-alt" aria-hidden="true"></i>
-                                        {% trans 'Edit'%}
-                                    </a>
-                                    <div class="dropdown">
-                                        <button
-                                                type="button"
-                                                class="dropdown-toggle btn btn--light btn--small"
-                                                data-bs-toggle="dropdown"
-                                                data-flip="false"
-                                                aria-haspopup="true"
-                                                aria-expanded="false"
-                                                id="project-actions"
-                                                title="{% trans 'more' %}"
-                                        >
-                                            <i class="fa fa-caret-down" aria-label="{% trans 'more' %}"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="project-actions">
-                                            <li>
-                                              <a href="{% url 'a4dashboard:plan-delete' organisation_slug=view.organisation.slug pk=plan.pk %}"
-                                                 class="dropdown-item">
-                                                  <i class="fas fa-trash-alt" aria-hidden="true"></i>
-                                                  {% trans 'Delete' %}
-                                              </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                {% endspaceless %}
-                            </div>
+    <ul class="u-list-reset">
+        {% for plan in object_list %}
+            {% has_perm 'meinberlin_plans.change_plan' request.user plan as can_change_plan %}
+            {% if can_change_plan %}
+            <li class="list-item">
+                <div class="lr-bar">
+                    <div class="lr-bar__left">
+                        <h3 class="list-item__title">{{ plan.title }}</h3>
+                    </div>
+                    <div class="lr-bar__right">
+                        <div class="btn-group">
+                            {% spaceless %}
+                                <a href="{{ plan.get_absolute_url }}"
+                                   class="btn btn--small btn--light">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                    {% trans 'View' %}
+                                </a>
+                                <a href="{% url 'a4dashboard:plan-update' organisation_slug=view.organisation.slug pk=plan.pk %}"
+                                   class="btn btn--small btn--light">
+                                    <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+                                    {% trans 'Edit'%}
+                                </a>
+                                <div class="dropdown">
+                                    <button
+                                            type="button"
+                                            class="dropdown-toggle btn btn--light btn--small"
+                                            data-bs-toggle="dropdown"
+                                            data-flip="false"
+                                            aria-haspopup="true"
+                                            aria-expanded="false"
+                                            id="project-actions"
+                                            title="{% trans 'more' %}"
+                                    >
+                                        <i class="fa fa-caret-down" aria-label="{% trans 'more' %}"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="project-actions">
+                                        <li>
+                                          <a href="{% url 'a4dashboard:plan-delete' organisation_slug=view.organisation.slug pk=plan.pk %}"
+                                             class="dropdown-item">
+                                              <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                                              {% trans 'Delete' %}
+                                          </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            {% endspaceless %}
                         </div>
                     </div>
-                </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    {% else %}
-        {% trans "Nothing to show" %}
-    {% endif %}
+                </div>
+            </li>
+            {% endif %}
+        {% empty %}
+            {% trans "Nothing to show" %}
+        {% endfor %}
+    </ul>
 
 {% endblock %}
