@@ -21,8 +21,9 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
 
     permission_required = 'meinberlin_plans.export_plan'
     model = models.Plan
-    fields = ['title', 'description', 'contact', 'district', 'topics',
-              'cost', 'duration', 'status', 'participation', 'organisation']
+    fields = ['title', 'description', 'contact_address_text', 'district',
+              'topics', 'cost', 'duration', 'status', 'participation',
+              'organisation']
     html_fields = ['description']
 
     def get_object_list(self):
@@ -55,8 +56,8 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
     def get_description_data(self, item):
         return unescape_and_strip_html(item.description)
 
-    def get_contact_data(self, item):
-        return unescape_and_strip_html(item.contact)
+    def get_contact_address_text_data(self, item):
+        return unescape_and_strip_html(item.contact_address_text)
 
     def get_district_data(self, item):
         return item.district.name if item.district else str(_('City wide'))

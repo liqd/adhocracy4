@@ -18,7 +18,7 @@ def test_reply_to_mixin(plan_factory, project_factory,
     # ExportModelFieldsMixin, set in fields
     assert 'title' in virtual
     assert 'description' in virtual
-    assert 'contact' in virtual
+    assert 'contact_address_text' in virtual
     assert 'district' in virtual
     assert 'topics' in virtual
     assert 'cost' in virtual
@@ -54,8 +54,8 @@ def test_reply_to_mixin(plan_factory, project_factory,
     # get_..._data methods overwritten in DashboardPlanExportView
     assert unescape_and_strip_html(plan.description) \
         == export.get_description_data(plan)
-    assert unescape_and_strip_html(plan.contact) \
-        == export.get_contact_data(plan)
+    assert unescape_and_strip_html(plan.contact_address_text) \
+        == export.get_contact_address_text_data(plan)
     district = plan.district.name if plan.district else str('City wide')
     assert district == export.get_district_data(plan)
     assert plan.get_status_display() == export.get_status_data(plan)
@@ -81,7 +81,7 @@ def test_reply_to_mixin(plan_factory, project_factory,
     project_1 = project_factory()
     project_2 = project_factory()
     plan = plan_factory(
-        contact='<i>me@example.com</i>',
+        contact_address_text='<i>me@example.com</i>',
         description='this is a description<br>with a newline',
         topics=choices[0][0],
         status=0,
@@ -110,8 +110,8 @@ def test_reply_to_mixin(plan_factory, project_factory,
     # get_..._data methods overwritten in DashboardPlanExportView
     assert unescape_and_strip_html(plan.description) \
         == export.get_description_data(plan)
-    assert unescape_and_strip_html(plan.contact) \
-        == export.get_contact_data(plan)
+    assert unescape_and_strip_html(plan.contact_address_text) \
+        == export.get_contact_address_text_data(plan)
     district = plan.district.name if plan.district else str('City wide')
     assert district == export.get_district_data(plan)
     assert plan.get_status_display() == export.get_status_data(plan)

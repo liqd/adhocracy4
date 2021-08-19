@@ -21,7 +21,7 @@ class PlanFactory(factory.django.DjangoModelFactory):
         'geometry': {'type': 'Point',
                      'coordinates': [13.447437286376953, 52.51518602243137]}
     }
-    contact = ''
+    contact_address_text = ''
     topics = ''
     status = Plan.STATUS_ONGOING
     participation = Plan.PARTICIPATION_UNDECIDED
