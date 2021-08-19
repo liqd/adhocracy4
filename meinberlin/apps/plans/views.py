@@ -11,6 +11,10 @@ from django.views import generic
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
+from adhocracy4.filters import views as filter_views
+from adhocracy4.filters import widgets as filter_widgets
+from adhocracy4.filters.filters import DefaultsFilterSet
+from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
 from meinberlin.apps.maps.models import MapPreset
@@ -19,6 +23,23 @@ from meinberlin.apps.plans.forms import PlanForm
 from meinberlin.apps.plans.models import Plan
 
 from . import models
+
+
+class FreeTextFilterWidget(filter_widgets.FreeTextFilterWidget):
+    label = _('Search')
+
+
+class PlanFilterSet(DefaultsFilterSet):
+    defaults = {}
+
+    search = FreeTextFilter(
+        widget=FreeTextFilterWidget,
+        fields=['title']
+    )
+
+    class Meta:
+        model = models.Plan
+        fields = ['search']
 
 
 class PlanDetailView(rules_mixins.PermissionRequiredMixin,
@@ -112,11 +133,12 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
 
 class DashboardPlanListView(a4dashboard_mixins.DashboardBaseMixin,
-                            generic.ListView):
+                            filter_views.FilteredListView):
     model = Plan
     template_name = 'meinberlin_plans/plan_dashboard_list.html'
     permission_required = 'meinberlin_plans.add_plan'
     menu_item = 'project'
+    filter_set = PlanFilterSet
 
     def get_permission_object(self):
         return self.organisation
