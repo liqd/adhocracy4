@@ -1,4 +1,3 @@
-from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import Group
 from django.db import models
@@ -9,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from adhocracy4 import transforms
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
+from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.images.fields import ConfiguredImageField
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
@@ -94,11 +94,12 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
         help_text=_('Enter details of the estimated or actual costs '
                     'of the plan in no more than 255 characters.')
     )
-    description = RichTextField(
+    description = RichTextCollapsibleUploadingField(
+        config_name='collapsible-image-editor',
         verbose_name=_('Description of your plan'),
-        help_text=_('Describe the cornerstones of your plan. '
-                    'You can upload PDFs and images, embed '
-                    'videos and link to external URLs.')
+        help_text=_('Describe the key points of your plan. You can upload '
+                    'PDFs and images, embed videos and link to external '
+                    'URLs, among other things.')
     )
     description_image = ConfiguredImageField(
         'plan_image',
