@@ -34,11 +34,9 @@
                 <div class="item-detail__labels">
                     <span class="label label--secondary">{{ object.get_status_display }}</span>
                 </div>
+
                 <div class="item-detail-2__factsheet">
                     <ul class="item-detail-2__factsheet-table">
-                        <dl>
-                            <dt>{% trans 'Organisation' %}</dt> <dd>{{ object.organisation.name }}</dd>
-                        </dl>
 
                         {% if object.point_label %}
                         <dl>
@@ -96,24 +94,64 @@
                         {% endif %}
                     </div>
                 </div>
+                {% if object.contact_name or object.contact_address_text or object.contact_email or object.contact_phone or object.contact_url or object.organisation.address or object.organisation.url %}
+                    <div class="l-tiles-2 u-spacer-bottom">
+                    {% if object.contact_name or object.contact_address_text or object.contact_email or object.contact_phone or object.contact_url %}
+                        <div>
+                            <h3>{% trans 'Contact for questions' %}</h3>
+                            {% if object.contact_name %}
+                            <p>{{ object.contact_name }}</p>
+                            {% endif %}
+                            {% if object.contact_address_text %}
+                            <p>{{ object.contact_address_text|linebreaks }}</p>
+                            {% endif %}
+                            {% if object.contact_phone %}
+                            <p><strong>{% trans 'Telephone' %}: </strong>{{ object.contact_phone }}</p>
+                            {% endif %}
+                            {% if object.contact_email %}
+                            <a class="btn btn--secondary" href="mailto:{{ object.contact_email }}">
+                                {% trans 'Email' %}
+                            </a>
+                            {% endif %}
+                            {% if object.contact_url %}
+                            <a class="btn btn--secondary" target="_blank" href="{{ object.contact_url }}">
+                                {% trans 'Website' %}
+                            </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
 
-                <h3 class="item-detail-2__smalltitle">{% trans 'Contact' %}</h3>
-                {{ object.contact|linebreaks }}
+                    {% if object.organisation.address or object.organisation.url %}
+                        <div>
+                            <h3>{% trans 'Responsible body' %}</h3>
+                            {% if object.organisation.address %}
+                            <p>{{ object.organisation.name }}</p>
+                            <p>{{ object.organisation.address|linebreaks }}</p>
+                            {% endif %}
+                            {% if object.organisation.url %}
+                            <a class="btn btn--secondary" target="_blank" href="{{ object.organisation.url }}">
+                                {% trans 'Website' %}
+                            </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    </div>
+                {% endif %}
 
-               {% has_perm 'meinberlin_plans.change_plan' request.user object as user_may_change %}
-               {% if user_may_change %}
+                {% has_perm 'meinberlin_plans.change_plan' request.user object as user_may_change %}
+                {% if user_may_change %}
                 <div class="item-detail__actions lr-bar">
                     <div class="lr-bar__right">
                         <div class="dropdown">
                             <button
-                                    title="{% trans 'Actions' %}"
-                                    type="button"
-                                    class="dropdown-toggle btn btn--light btn--small"
-                                    data-bs-toggle="dropdown"
-                                    data-flip="false"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    id="idea-{{ object.pk }}-actions"
+                                title="{% trans 'Actions' %}"
+                                type="button"
+                                class="dropdown-toggle btn btn--light btn--small"
+                                data-bs-toggle="dropdown"
+                                data-flip="false"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                                id="idea-{{ object.pk }}-actions"
                             >
                                 <i class="fa fa-ellipsis-h" aria-label="{% trans 'Actions' %}"></i>
                             </button>
@@ -131,6 +169,7 @@
                 </div>
                 {% endif %}
             </div>
+
         </div>
     </div>
 
