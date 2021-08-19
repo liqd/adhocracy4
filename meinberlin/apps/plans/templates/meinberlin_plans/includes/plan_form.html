@@ -3,6 +3,11 @@
     {% csrf_token %}
     {{ form.media }}
 
+    <h2 class="form__subheading"> {% trans 'Description of the plan' %}</h2>
+    <p class="form-hint form-hint--margin">
+        {% trans 'The description of the plan is divided into title, profile, header image and description text.' %}
+    </p>
+
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.title %}
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point_label %}
@@ -15,10 +20,26 @@
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.participation %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
-
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description_image %}
     {% include 'a4forms/includes/form_field.html' with field=form.description_image_copyright %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
+
+    <h2 class="form__subheading">{% trans 'Contact for questions' %}</h2>
+    <p class="form-hint form-hint--margin">
+        {% trans 'Please name a contact person so users know who to contact with any questions they may have.' %}
+    </p>
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_name %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_address_text %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_email %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_phone %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_url %}
+
+    <h2 class="form__subheading">{% trans 'Presentation in Project Overview' %}</h2>
+    <p class="form-hint form-hint--margin">
+        {% trans 'The following information affects the presentation of the project in the general project overview.' %}
+    </p>
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point %}
 
@@ -27,12 +48,6 @@
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.status %}
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project %}
-
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_address_text %}
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_name %}
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_phone %}
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_email %}
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_url %}
 
     <div class="u-spacer-bottom">
         <input type="submit" class="btn btn--primary" value="{% trans 'Save' %}" />
