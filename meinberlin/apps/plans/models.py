@@ -16,9 +16,10 @@ from adhocracy4.phases.models import Phase
 from adhocracy4.projects import models as project_models
 from adhocracy4.projects.enums import Access
 from adhocracy4.projects.fields import TopicField
+from adhocracy4.projects.models import ProjectContactDetailMixin
 
 
-class Plan(UserGeneratedContentModel):
+class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
 
     PARTICIPATION_YES = 0
     PARTICIPATION_NO = 1
@@ -86,12 +87,6 @@ class Plan(UserGeneratedContentModel):
         null=True,
         blank=True,
         on_delete=models.CASCADE
-    )
-    contact = models.TextField(
-        max_length=1000,
-        verbose_name=_('Contact for queries'),
-        help_text=_('Please name a contact person so users know who '
-                    'to contact with any questions they may have.')
     )
     cost = models.CharField(
         max_length=255,

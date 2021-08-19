@@ -17,8 +17,6 @@
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description %}
 
-    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact %}
-
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.description_image %}
     {% include 'a4forms/includes/form_field.html' with field=form.description_image_copyright %}
 
@@ -29,6 +27,12 @@
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.status %}
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.project %}
+
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_address_text %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_name %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_phone %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_email %}
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.contact_url %}
 
     <div class="u-spacer-bottom">
         <input type="submit" class="btn btn--primary" value="{% trans 'Save' %}" />
