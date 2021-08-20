@@ -1,4 +1,4 @@
-{% extends "a4dashboard/base_project_list.html" %}
+{% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n %}
 
 {% block dashboard_nav %}
@@ -19,10 +19,11 @@
 
 {% block title %}{% blocktrans with title=object.title %}Edit {{title}}{% endblocktrans %} &mdash; {{ block.super }}{% endblock %}
 
-{% block project_list %}
+{% block dashboard_content %}
+<div class="l-menu__content">
     <h1 class="u-first-heading">{% trans 'Edit plan' %}</h1>
 
     {% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug as cancel %}
     {% include "meinberlin_plans/includes/plan_form.html" with cancel=cancel %}
-
+</div>
 {% endblock %}
