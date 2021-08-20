@@ -18,7 +18,11 @@ def test_reply_to_mixin(plan_factory, project_factory,
     # ExportModelFieldsMixin, set in fields
     assert 'title' in virtual
     assert 'description' in virtual
+    assert 'contact_name' in virtual
     assert 'contact_address_text' in virtual
+    assert 'contact_phone' in virtual
+    assert 'contact_email' in virtual
+    assert 'contact_url' in virtual
     assert 'district' in virtual
     assert 'topics' in virtual
     assert 'cost' in virtual
@@ -81,7 +85,11 @@ def test_reply_to_mixin(plan_factory, project_factory,
     project_1 = project_factory()
     project_2 = project_factory()
     plan = plan_factory(
+        contact_name='',
         contact_address_text='<i>me@example.com</i>',
+        contact_phone='12345678',
+        contact_email='<i>me@example.com</i>',
+        contact_url='',
         description='this is a description<br>with a newline',
         topics=choices[0][0],
         status=0,
