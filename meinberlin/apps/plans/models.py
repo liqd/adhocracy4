@@ -123,9 +123,11 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
             'The image will be shown in the project tile.'
         ),
         upload_to='plan/tile_images',
-        blank=True)
+        blank=True
+    )
     tile_image_copyright = ImageCopyrightField(
-        image_name=_('Tile image'))
+        image_name=_('Tile image')
+    )
     topics = TopicField(
         verbose_name=_('Topics'),
         help_text=_('Assign your plan to 1 or 2 '

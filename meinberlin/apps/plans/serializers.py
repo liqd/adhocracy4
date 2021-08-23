@@ -1,3 +1,4 @@
+from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
 
 from meinberlin.apps.projects.serializers import CommonFields
@@ -16,6 +17,8 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
     published_projects_count = serializers.SerializerMethodField()
     organisation = serializers.SerializerMethodField()
     created_or_modified = serializers.SerializerMethodField()
+    tile_image = serializers.SerializerMethodField()
+    tile_image_copyright = serializers.SerializerMethodField()
 
     class Meta:
         model = Plan
@@ -26,7 +29,8 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
                   'participation',
                   'participation_string',
                   'participation_active',
-                  'published_projects_count', 'created_or_modified']
+                  'published_projects_count', 'created_or_modified',
+                  'tile_image', 'tile_image_copyright']
 
     def get_subtype(self, instance):
         return 'plan'
@@ -52,3 +56,21 @@ class PlanSerializer(serializers.ModelSerializer, CommonFields):
         participation_string, participation_active = \
             self._get_participation_status_plan(instance)
         return participation_active
+
+    def get_tile_image(self, instance):
+        image_url = ''
+        if instance.tile_image:
+            image = get_thumbnailer(instance.tile_image)['project_tile']
+            image_url = image.url
+        elif instance.description_image:
+            image = get_thumbnailer(instance.description_image)['project_tile']
+            image_url = image.url
+        return image_url
+
+    def get_tile_image_copyright(self, instance):
+        if instance.tile_image:
+            return instance.tile_image_copyright
+        elif instance.description_image_copyright:
+            return instance.description_image_copyright
+        else:
+            return None
