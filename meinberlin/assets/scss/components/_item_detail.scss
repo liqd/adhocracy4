@@ -39,7 +39,7 @@
     margin-bottom: 1.5em;
 }
 
-.item-detail__image {
+.item-detail__hero-image {
     width: 100%;
 
     @media screen and (min-width: $breakpoint-xs) {
@@ -50,7 +50,7 @@
     }
 }
 
-.item-detail__image--background {
+.item-detail__background-image {
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
