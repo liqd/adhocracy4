@@ -31,7 +31,10 @@ class PlanForm(forms.ModelForm):
             'topics',
             'status',
             'participation',
-            'duration']
+            'duration',
+            'tile_image',
+            'tile_image_copyright',
+        ]
         widgets = {
             'point': maps_widgets.MapChoosePointWidget(
                 polygon=settings.BERLIN_POLYGON)

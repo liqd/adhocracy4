@@ -41,6 +41,10 @@
         {% trans 'The following information affects the presentation of the project in the general project overview.' %}
     </p>
 
+    {% include 'meinberlin_contrib/includes/form_field.html' with field=form.tile_image %}
+
+    {% include 'a4forms/includes/form_field.html' with field=form.tile_image_copyright %}
+
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.point %}
 
     {% include 'meinberlin_contrib/includes/form_field.html' with field=form.district %}
