@@ -10,6 +10,7 @@ from adhocracy4 import transforms
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.ckeditor.fields import RichTextCollapsibleUploadingField
 from adhocracy4.images.fields import ConfiguredImageField
+from adhocracy4.images.fields import ImageCopyrightField
 from adhocracy4.maps import fields as map_fields
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.phases.models import Phase
@@ -103,18 +104,28 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     )
     description_image = ConfiguredImageField(
         'plan_image',
-        verbose_name=_('Add image'),
+        verbose_name=_('Header image'),
         upload_to='plan/description_image',
         blank=True,
         help_prefix=_(
-            'Visualize your plan.'
+            'Visualize your plan with an image underneath the description.'
         ),
     )
     description_image_copyright = models.CharField(
-        verbose_name=_('Image copyright'),
+        verbose_name=_('Header image copyright'),
         blank=True,
         max_length=120
     )
+    tile_image = ConfiguredImageField(
+        'tileimage',
+        verbose_name=_('Tile image'),
+        help_prefix=_(
+            'The image will be shown in the project tile.'
+        ),
+        upload_to='plan/tile_images',
+        blank=True)
+    tile_image_copyright = ImageCopyrightField(
+        image_name=_('Tile image'))
     topics = TopicField(
         verbose_name=_('Topics'),
         help_text=_('Assign your plan to 1 or 2 '
