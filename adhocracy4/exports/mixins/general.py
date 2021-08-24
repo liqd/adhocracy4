@@ -20,7 +20,7 @@ class UserGeneratedContentExportMixin(VirtualFieldMixin):
         return item.creator.username
 
     def get_created_data(self, item):
-        return item.created.isoformat()
+        return item.created.astimezone().isoformat()
 
 
 class ItemExportWithLinkMixin(VirtualFieldMixin):
