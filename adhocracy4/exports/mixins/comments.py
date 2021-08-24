@@ -54,14 +54,14 @@ class ItemExportWithCommentsMixin(VirtualFieldMixin):
     def _flat_comments(self, item):
         for comment in item.comments.all():
             yield self.COMMENT_FMT.format(
-                date=comment.created.isoformat(),
+                date=comment.created.astimezone().isoformat(),
                 username=comment.creator.username,
                 text=unescape_and_strip_html(comment.comment)
             )
 
             for reply in comment.child_comments.all():
                 yield self.REPLY_FMT.format(
-                    date=reply.created.isoformat(),
+                    date=reply.created.astimezone().isoformat(),
                     username=reply.creator.username,
                     text=unescape_and_strip_html(reply.comment)
                 )
