@@ -50,7 +50,9 @@ class ProjectContactDetailMixin(models.Model):
     )
 
     contact_email = models.EmailField(
-        blank=True)
+        blank=True,
+        verbose_name=_('Email')
+    )
 
     contact_name = models.CharField(
         max_length=120,
@@ -61,11 +63,14 @@ class ProjectContactDetailMixin(models.Model):
     contact_phone = models.CharField(
         validators=[phone_regex],
         max_length=20,
-        blank=True
+        blank=True,
+        verbose_name=_('Phone')
     )
 
     contact_url = models.URLField(
-        blank=True)
+        blank=True,
+        verbose_name=_('Website')
+    )
 
 
 class ProjectLocationMixin(models.Model):
