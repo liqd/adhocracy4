@@ -78,7 +78,7 @@ export const PollQuestion = (props) => {
                       onChange={(event) => { handleSingleChange(event, choice.is_other_choice) }}
                       disabled={!props.question.authenticated || props.question.isReadOnly}
                     />
-                    <span className="radio__text">{choice.label}</span>
+                    <span className="radio__text">{choice.is_other_choice ? django.gettext('other') : choice.label}</span>
                     {choice.is_other_choice &&
                       <>
                         <input
@@ -117,7 +117,7 @@ export const PollQuestion = (props) => {
                       onChange={(event) => { handleMultiChange(event, choice.is_other_choice) }}
                       disabled={!props.question.authenticated || props.question.isReadOnly}
                     />
-                    <span className="radio__text radio__text--checkbox">{choice.label}</span>
+                    <span className="radio__text radio__text--checkbox">{choice.is_other_choice ? django.gettext('other') : choice.label}</span>
                     {choice.is_other_choice &&
                       <>
                         <input
