@@ -89,7 +89,7 @@ class DashboardPlanExportView(a4dashboard_mixins.DashboardBaseMixin,
         return ''
 
     def get_created_data(self, item):
-        return item.created.strftime('%X %x')
+        return item.created.astimezone().isoformat()
 
     def get_modified_data(self, item):
-        return item.created.strftime('%X %x')
+        return item.modified.astimezone().isoformat()

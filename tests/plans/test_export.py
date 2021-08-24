@@ -78,8 +78,10 @@ def test_reply_to_mixin(plan_factory, project_factory,
         )
     assert projects == export.get_projects_data(plan)
 
-    assert plan.created.strftime('%X %x') == export.get_created_data(plan)
-    assert plan.modified.strftime('%X %x') == export.get_modified_data(plan)
+    assert plan.created.astimezone().isoformat() == \
+           export.get_created_data(plan)
+    assert plan.modified.astimezone().isoformat() == \
+           export.get_modified_data(plan)
 
     choices = settings.A4_PROJECT_TOPICS
     project_1 = project_factory()
@@ -138,5 +140,7 @@ def test_reply_to_mixin(plan_factory, project_factory,
         )
     assert projects == export.get_projects_data(plan)
 
-    assert plan.created.strftime('%X %x') == export.get_created_data(plan)
-    assert plan.modified.strftime('%X %x') == export.get_modified_data(plan)
+    assert plan.created.astimezone().isoformat() == \
+           export.get_created_data(plan)
+    assert plan.modified.astimezone().isoformat() == \
+           export.get_modified_data(plan)
