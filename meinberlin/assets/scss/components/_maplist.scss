@@ -10,11 +10,7 @@
     }
 }
 
-.maplist-item__plan {
-    padding: 1.5*$padding;
-}
-
-.maplist-item__proj {
+.maplist-item {
     display: flex;
 }
 
@@ -105,7 +101,7 @@
 
 // vertical tile structure
 .participation-tile__vertical {
-    .maplist-item__proj { // for image
+    .maplist-item { // for image
         flex-direction: column;
     }
 
@@ -126,7 +122,7 @@
 
 // horizontal tile structure
 .participation-tile__horizontal {
-    .maplist-item__proj { // image
+    .maplist-item { // image
         flex-direction: row;
     }
 }

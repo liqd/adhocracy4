@@ -136,7 +136,7 @@ class PlansList extends React.Component {
 
         <a href={item.url} target={item.subtype === 'external' ? '_blank' : '_self'} rel="noreferrer">
           {item.type === 'project' &&
-            <div className="participation-tile__body maplist-item__proj">
+            <div className="participation-tile__body maplist-item">
               {item.tile_image &&
                 <LazyBackground
                   item={item}
@@ -196,31 +196,39 @@ class PlansList extends React.Component {
               <div className="status-item_spacer" />
             </div>}
           {item.type === 'plan' &&
-            <div className="participation-tile__body maplist-item__plan">
-              {this.renderTopics(item)}
-              <span className="maplist-item__roofline">{item.district}</span>
-              <h3 className="maplist-item__title">{item.title}</h3>
-              <div className="maplist-item__link" />
-              <div className="maplist-item__stats">
-                <span className="participation-tile__proj-count">
-                  <i
-                    className="fas fa-th"
-                    aria-hidden="true"
-                  />{
-                    django.gettext('Participation projects: ')
-                  }
-                </span>
-                <span>{item.published_projects_count}</span>
-                <br />
-                <span className="participation-tile__status">
-                  <i
-                    className="fas fa-clock"
-                    aria-hidden="true"
-                  />{django.gettext('Status: ')}
-                </span>
-                <span className={statusClass}>{item.participation_string}</span>
+            <div className="participation-tile__body maplist-item">
+              {item.tile_image &&
+                <LazyBackground
+                  item={item}
+                  renderTopics={this.renderTopics.bind(this)}
+                  isHorizontal={this.props.isHorizontal}
+                />}
+              <div className="participation-tile__content">
+                {(this.props.isHorizontal || !item.tile_image) && this.renderTopics(item)}
+                <span className="maplist-item__roofline">{item.district}</span>
+                <h3 className="maplist-item__title">{item.title}</h3>
+                <div className="maplist-item__link" />
+                <div className="maplist-item__stats">
+                  <span className="participation-tile__proj-count">
+                    <i
+                      className="fas fa-th"
+                      aria-hidden="true"
+                    />{
+                      django.gettext('Participation projects: ')
+                    }
+                  </span>
+                  <span>{item.published_projects_count}</span>
+                  <br />
+                  <span className="participation-tile__status">
+                    <i
+                      className="fas fa-clock"
+                      aria-hidden="true"
+                    />{django.gettext('Status: ')}
+                  </span>
+                  <span className={statusClass}>{item.participation_string}</span>
+                </div>
+                <div className="status-item_spacer" />
               </div>
-              <div className="status-item_spacer" />
             </div>}
           {item.subtype === 'external' &&
             <div className="maplist-item__corner-badge maplist-item__corner-badge--external" />}

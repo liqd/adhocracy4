@@ -6,7 +6,7 @@
 <li class="participation-tile__vertical">
     <a href="{{ project|project_url }}" target="{{ project|is_external|yesno:"_blank,_self" }}">
 
-        <div class="participation-tile__body maplist-item__proj">
+        <div class="participation-tile__body maplist-item">
             {% if project_image %}
             <div class="maplist-item__img" alt="" style="background-image: url({{ project_image|thumbnail_url:'project_tile' }})">
                 {% if project.topics %}
