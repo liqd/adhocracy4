@@ -97,8 +97,6 @@ class VoteViewSet(viewsets.ViewSet):
         if len(choices) > len(set(choices)):
             raise ValidationError(detail=_('Duplicate choices detected.'))
 
-        if len(choices) == 0:
-            raise ValidationError(detail=_('Empty choices detected.'))
         elif len(choices) > 1 and not question.multiple_choice:
             raise ValidationError(detail=_('Multiple choice disabled for '
                                            'question.'))
