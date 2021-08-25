@@ -25,3 +25,21 @@ def choice_belongs_to_question(choice, question_pk):
                 _('Choice has to belong to the question set in the url.'),
             ]
         })
+
+
+def single_vote_per_user(user, choice, pk=None):
+    from .models import Vote  # avoid circular import
+
+    qs = Vote.objects\
+        .filter(choice=choice,
+                creator=user)
+
+    if pk:
+        qs = qs.exclude(pk=pk)
+
+    if qs.exists():
+        raise django_exceptions.ValidationError({
+            'choice': [
+                _('Only one vote per choice is allowed per user.'),
+            ]
+        })

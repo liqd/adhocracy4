@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from adhocracy4.comments import models as comment_models
 from adhocracy4.models.base import UserGeneratedContentModel
 from adhocracy4.modules import models as module_models
+from adhocracy4.polls import validators
 
 
 class QuestionQuerySet(models.QuerySet):
@@ -234,6 +235,16 @@ class Vote(UserGeneratedContentModel):
         on_delete=models.CASCADE,
         related_name='votes'
     )
+
+    def save(self, *args, **kwargs):
+        self.validate_unique()
+        return super().save(*args, **kwargs)
+
+    def validate_unique(self, exclude=None):
+        super(Vote, self).validate_unique(exclude)
+        validators.single_vote_per_user(self.creator,
+                                        self.choice,
+                                        self.pk)
 
     @property
     def is_other_vote(self):
