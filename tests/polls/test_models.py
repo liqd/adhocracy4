@@ -206,6 +206,17 @@ def test_multi_choice_queryset(question,
 
 
 @pytest.mark.django_db
+def test_vote_validate_unique(user, choice, vote_factory):
+
+    vote_factory(creator=user, choice=choice)
+
+    with pytest.raises(ValidationError) as error:
+        vote_factory(creator=user, choice=choice)
+    assert error.value.messages[0] == \
+           'Only one vote per choice is allowed per user.'
+
+
+@pytest.mark.django_db
 def test_other_vote_clean(vote,
                           vote_on_other,
                           other_vote_factory):

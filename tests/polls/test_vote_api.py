@@ -489,44 +489,56 @@ def test_get_data(apiclient, user, question, choice_factory):
 
 
 @pytest.mark.django_db
-def test_validate_choices(apiclient, user, question, choice_factory):
+def test_validate_choices(apiclient, user, question_factory, choice_factory):
+
+    question1 = question_factory()
 
     apiclient.force_authenticate(user=user)
 
     url = reverse(
         'votes-list',
         kwargs={
-            'question_pk': question.pk
+            'question_pk': question1.pk
         })
 
-    data = {
-        'choices': [],
-        'other_choice_answer': '',
-        'open_answer': ''
-    }
-    with active_phase(question.poll.module, VotingPhase):
-        response = apiclient.post(url, data, format='json')
-    assert response.status_code == status.HTTP_400_BAD_REQUEST
-    'Empty choices detected' in response.content.decode()
-
-    choice1 = choice_factory(question=question)
+    choice1 = choice_factory(question=question1)
     data = {
         'choices': [choice1.id, choice1.id],
         'other_choice_answer': '',
         'open_answer': ''
     }
-    with active_phase(question.poll.module, VotingPhase):
+    with active_phase(question1.poll.module, VotingPhase):
         response = apiclient.post(url, data, format='json')
     assert response.status_code == status.HTTP_400_BAD_REQUEST
-    'Duplicate choices detected' in response.content.decode()
+    assert 'Duplicate choices detected' in response.content.decode()
 
-    choice2 = choice_factory(question=question)
+    choice2 = choice_factory(question=question1)
     data = {
         'choices': [choice1.id, choice2.id],
         'other_choice_answer': '',
         'open_answer': ''
     }
-    with active_phase(question.poll.module, VotingPhase):
+    with active_phase(question1.poll.module, VotingPhase):
         response = apiclient.post(url, data, format='json')
     assert response.status_code == status.HTTP_400_BAD_REQUEST
-    'Multiple choice disabled for question' in response.content.decode()
+    assert 'Multiple choice disabled for question' \
+           in response.content.decode()
+
+    question2 = question_factory()
+
+    url = reverse(
+        'votes-list',
+        kwargs={
+            'question_pk': question2.pk
+        })
+
+    data = {
+        'choices': [choice1.id],
+        'other_choice_answer': '',
+        'open_answer': ''
+    }
+    with active_phase(question2.poll.module, VotingPhase):
+        response = apiclient.post(url, data, format='json')
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert 'Choice has to belong to the question set in the url.' \
+           in response.content.decode()
