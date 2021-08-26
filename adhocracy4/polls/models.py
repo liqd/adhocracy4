@@ -39,7 +39,7 @@ class Poll(module_models.Item):
                                object_id_field='object_pk')
 
     def get_absolute_url(self):
-        return self.project.get_absolute_url()
+        return self.module.get_absolute_url()
 
     def annotated_questions(self):
         return self.questions.annotate_vote_count()
