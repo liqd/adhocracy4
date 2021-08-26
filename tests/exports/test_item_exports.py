@@ -27,7 +27,8 @@ def test_user_generated_content_mixin(idea):
     assert 'created' in virtual
 
     assert idea.creator.username == mixin.get_creator_data(idea)
-    assert idea.created.isoformat() == mixin.get_created_data(idea)
+    assert idea.created.astimezone().isoformat() \
+           == mixin.get_created_data(idea)
 
 
 @pytest.mark.django_db
