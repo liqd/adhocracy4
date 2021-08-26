@@ -22,3 +22,6 @@ based on [adhocracy 4](https://github.com/liqd/adhocracy4).
     make install
     make fixtures
     make watch
+
+To use postgresql, install postgresql-server (make sure the server is not running afterwards) and run `export DATABASE=postgreqsl` before running the make
+commands above.
