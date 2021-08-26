@@ -41,6 +41,9 @@ help:
 	@echo "  make po              				-- create new po files from the source"
 	@echo "  make compilemessages 				-- create new mo files from the translated po files"
 	@echo "  make release         				-- build everything required for a release"
+	@echo "  make start-postgres  -- start the local postgres cluster"
+	@echo "  make stop-postgres   -- stops the local postgres cluster"
+	@echo "  make create-postgres   -- create the local postgres cluster (only works on ubuntu 20.04)"
 	@echo
 
 .PHONY: install
@@ -169,3 +172,24 @@ release:
 	$(VIRTUAL_ENV)/bin/python3 -m pip install -r requirements.txt -q
 	$(VIRTUAL_ENV)/bin/python3 manage.py compilemessages -v0
 	$(VIRTUAL_ENV)/bin/python3 manage.py collectstatic --noinput -v0
+
+.PHONY: start-postgres
+start-postgres:
+	sudo -u postgres PGDATA=pgsql PGPORT=5555 /usr/lib/postgresql/12/bin/pg_ctl start
+
+.PHONY: stop-postgres
+stop-postgres:
+	sudo -u postgres PGDATA=pgsql PGPORT=5555 /usr/lib/postgresql/12/bin/pg_ctl stop
+
+.PHONY: create-postgres
+create-postgres:
+	if [ -d "pgsql" ]; then \
+		echo "postgresql has already been initialized"; \
+	else \
+		sudo install -d -m 774 -o postgres -g $(USER) pgsql; \
+		sudo -u postgres /usr/lib/postgresql/12/bin/initdb pgsql; \
+		sudo -u postgres PGDATA=pgsql PGPORT=5555 /usr/lib/postgresql/12/bin/pg_ctl start; \
+		sudo -u postgres PGDATA=pgsql PGPORT=5555 /usr/lib/postgresql/12/bin/createuser -s django; \
+		sudo -u postgres PGDATA=pgsql PGPORT=5555 /usr/lib/postgresql/12/bin/createdb -O django django; \
+		sudo -u postgres PGDATA=pgsql PGPORT=5555 /usr/lib/postgresql/12/bin/pg_ctl stop; \
+	fi

@@ -22,3 +22,15 @@ based on [adhocracy 4](https://github.com/liqd/adhocracy4).
     make install
     make fixtures
     make watch
+
+### Use postgresql database for testing:
+run the following command once:
+```
+make create-postgres
+```
+to start the testserver with postgresql, run:
+```
+export DATABASE=postgresql
+make start-postgres
+make watch
+```

@@ -56,3 +56,16 @@ except NameError:
 
 CSP_REPORT_ONLY = True
 CSP_DEFAULT_SRC = ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'data:', 'blob:', '*']
+if os.getenv("DATABASE") == "postgresql":
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django',
+        'USER': 'django',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '5555',
+        'OPTIONS': {
+            },
+        }
+    }
