@@ -533,7 +533,7 @@ msgstr "Multiple-Choice-Frage"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:207
 msgid "Open question"
-msgstr "Open question"
+msgstr "Offene Frage"
 
 #: adhocracy4/polls/assets/EditPollQuestions.jsx:279
 #: meinberlin/apps/documents/assets/DocumentManagement.jsx:324
@@ -547,7 +547,7 @@ msgstr "Mehrfachantworten sind möglich."
 #: adhocracy4/polls/assets/PollQuestion.jsx:81
 #: adhocracy4/polls/assets/PollQuestion.jsx:120
 msgid "other"
-msgstr ""
+msgstr "sonstige"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:13
 msgid "Your answer has been saved."
