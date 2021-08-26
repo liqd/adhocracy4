@@ -2,4 +2,13 @@
 
 {% include 'a4dashboard/includes/form_field.html' with field=form.information %}
 
-{% include 'a4dashboard/includes/project_information_contact_form.html' %}
+<h2 class="u-second-heading">{{ form.contact_heading }}</h2>
+<div class="form-hint">
+    {{ form.contact_help }}
+</div>
+
+{% include 'a4dashboard/includes/form_field.html' with field=form.contact_name %}
+{% include 'a4dashboard/includes/form_field.html' with field=form.contact_address_text %}
+{% include 'a4dashboard/includes/form_field.html' with field=form.contact_email %}
+{% include 'a4dashboard/includes/form_field.html' with field=form.contact_phone %}
+{% include 'a4dashboard/includes/form_field.html' with field=form.contact_url %}
