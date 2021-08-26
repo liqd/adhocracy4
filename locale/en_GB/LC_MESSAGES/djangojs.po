@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-24 13:10+0200\n"
+"POT-Creation-Date: 2021-08-26 10:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -445,6 +445,11 @@ msgstr "Save"
 #: adhocracy4/polls/assets/PollQuestion.jsx:15
 msgid "Multiple answers are possible."
 msgstr "Multiple answers are possible."
+
+#: adhocracy4/polls/assets/PollQuestion.jsx:81
+#: adhocracy4/polls/assets/PollQuestion.jsx:120
+msgid "other"
+msgstr "other"
 
 #: adhocracy4/polls/assets/PollQuestions.jsx:13
 msgid "Your answer has been saved."
