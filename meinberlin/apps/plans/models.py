@@ -114,7 +114,8 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
     description_image_copyright = models.CharField(
         verbose_name=_('Header image copyright'),
         blank=True,
-        max_length=120
+        max_length=120,
+        help_text=_('The name is displayed in the header image.')
     )
     tile_image = ConfiguredImageField(
         'tileimage',
@@ -126,7 +127,8 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
         blank=True
     )
     tile_image_copyright = ImageCopyrightField(
-        image_name=_('Tile image')
+        verbose_name=_('Tile image copyright'),
+        help_text=_('The name is displayed in the tile image.')
     )
     topics = TopicField(
         verbose_name=_('Topics'),
