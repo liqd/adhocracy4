@@ -42,7 +42,11 @@
                                     <a href="{{ plan.get_absolute_url }}"
                                        class="btn btn--small btn--light">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
+                                        {% if plan.is_draft %}
+                                        {% trans 'Preview' %}
+                                        {% else %}
                                         {% trans 'View' %}
+                                        {% endif %}
                                     </a>
                                     <a href="{% url 'a4dashboard:plan-update' organisation_slug=view.organisation.slug pk=plan.pk %}"
                                        class="btn btn--small btn--light">

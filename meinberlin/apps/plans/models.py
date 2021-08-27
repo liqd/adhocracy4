@@ -160,6 +160,7 @@ class Plan(ProjectContactDetailMixin, UserGeneratedContentModel):
                     'expected duration of the plan in '
                     'no more than 255 characters.')
     )
+    is_draft = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['-created']

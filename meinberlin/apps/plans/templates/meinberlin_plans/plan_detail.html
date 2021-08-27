@@ -13,6 +13,20 @@
     <link type="text/css" href="{% static 'a4maps_display_point.css'%}" rel="stylesheet" />
 {% endblock %}
 
+{% block extra_messages %}
+    {{ block.super }}
+
+    {% if plan.is_draft %}
+        <ul class="messages">
+            <li class="alert alert--warning" role="alert">
+                <div class="l-wrapper">
+                    {% trans 'This plan is in not published yet.' %}
+                </div>
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     <div class="l-wrapper">
         <nav class="breadcrumbs" aria-label="{% trans 'breadcrumbs' %}">

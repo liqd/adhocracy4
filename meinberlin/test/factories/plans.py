@@ -25,6 +25,7 @@ class PlanFactory(factory.django.DjangoModelFactory):
     topics = ''
     status = Plan.STATUS_ONGOING
     participation = Plan.PARTICIPATION_UNDECIDED
+    is_draft = False
 
     @factory.post_generation
     def projects(self, create, extracted, **kwargs):
