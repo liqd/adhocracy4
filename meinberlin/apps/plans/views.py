@@ -4,10 +4,12 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.exceptions import ImproperlyConfigured
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.views import generic
+from django.views.generic.detail import SingleObjectMixin
 
 from adhocracy4.administrative_districts.models import AdministrativeDistrict
 from adhocracy4.dashboard import mixins as a4dashboard_mixins
@@ -205,3 +207,51 @@ class DashboardPlanDeleteView(a4dashboard_mixins.DashboardBaseMixin,
         return reverse(
             'a4dashboard:plan-list',
             kwargs={'organisation_slug': self.organisation.slug})
+
+
+class PlanPublishView(SingleObjectMixin,
+                      generic.View):
+    permission_required = 'meinberlin_plans.change_plan'
+    model = Plan
+
+    def get_permission_object(self):
+        return self.get_object()
+
+    def post(self, request, *args, **kwargs):
+        action = request.POST.get('action', None)
+        if action == 'publish':
+            self.publish_plan()
+        elif action == 'unpublish':
+            self.unpublish_plan()
+        else:
+            messages.warning(self.request, _('Invalid action'))
+
+        return HttpResponseRedirect(reverse(
+            'a4dashboard:plan-update',
+            kwargs={'organisation_slug': self.get_object().organisation.slug,
+                    'pk': self.get_object().pk}))
+
+    def publish_plan(self):
+        plan = self.get_object()
+        if not plan.is_draft:
+            messages.info(self.request, _('The plan is already published'))
+            return
+
+        plan.is_draft = False
+        plan.save()
+
+        messages.success(self.request,
+                         _('The plan is published.'))
+
+    def unpublish_plan(self):
+        plan = self.get_object()
+        if plan.is_draft:
+            messages.info(self.request, _('The plan is already unpublished'))
+            return
+
+        plan.is_draft = True
+        plan.save()
+
+        messages.success(self.request,
+                         _('The plan is unpublished.'
+                           ))

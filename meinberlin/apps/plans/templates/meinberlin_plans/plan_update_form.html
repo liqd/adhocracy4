@@ -1,5 +1,5 @@
 {% extends "a4dashboard/base_dashboard.html" %}
-{% load i18n %}
+{% load i18n static %}
 
 {% block dashboard_nav %}
 <div class="u--bg-secondary u-spacer-bottom-double">
@@ -20,10 +20,73 @@
 {% block title %}{% blocktrans with title=object.title %}Edit {{title}}{% endblocktrans %} &mdash; {{ block.super }}{% endblock %}
 
 {% block dashboard_content %}
-<div class="l-menu__content">
-    <h1 class="u-first-heading">{% trans 'Edit plan' %}</h1>
+<div class="l-menu">
+    <div class="l-menu__content l-menu__content--aside">
+        <h1 class="u-first-heading">{% trans 'Edit plan' %}</h1>
 
-    {% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug as cancel %}
-    {% include "meinberlin_plans/includes/plan_form.html" with cancel=cancel %}
+        {% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug as cancel %}
+        {% include "meinberlin_plans/includes/plan_form.html" with cancel=cancel %}
+    </div>
+
+    <div class="l-menu__aside">
+        <a href="{{ plan.get_absolute_url }}"
+           class="btn btn--light btn--full u-spacer-bottom">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            {% if plan.is_draft %}
+            {% trans 'Preview' %}
+            {% else %}
+            {% trans 'View' %}
+            {% endif %}
+        </a>
+        {% if plan.is_draft %}
+            {% comment %}
+            <button type="submit" class="btn btn--primary btn--full u-spacer-bottom" value="{% trans 'Publish' %}" data-bs-toggle="modal" data-bs-target="#plan-publish-modal">
+                {% trans 'Publish' %}
+            </button>
+            {% endcomment %}
+            <form action="{% url 'a4dashboard:plan-publish' pk=plan.pk %}" method="post" data-ignore-submit="true" class="u-inline">
+                {% csrf_token %}
+                <button name="action" value="publish" class="btn btn--primary btn--full u-spacer-bottom">
+                {% trans 'Publish' %}
+                </button>
+            </form>
+        {% else %}
+            <form action="{% url 'a4dashboard:plan-publish' pk=plan.pk %}" method="post" data-ignore-submit="true">
+                {% csrf_token %}
+                <button name="action" value="unpublish" class="btn btn--light btn--full u-spacer-bottom">
+                    {% trans 'Unpublish' %}
+                </button>
+            </form>
+        {% endif %}
+    </div>
 </div>
+{% endblock %}
+
+<div class="modal" tabindex="-1" role="dialog" id="plan-publish-modal" aria-labelledby="plan-publish-label">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title u-first-heading" id="plan-publish-label">{% trans "Are you sure you want to publish your plan?" %}</h2>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="{% trans 'Close'%}">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="u-spacer-bottom">
+                    <form action="{% url 'a4dashboard:plan-publish' pk=plan.pk %}" method="post" data-ignore-submit="true" class="u-inline">
+                        {% csrf_token %}
+                        <button name="action" value="publish" class="btn btn--primary">
+                        {% trans 'Publish' %}
+                        </button>
+                    </form>
+                    <button type="button" data-bs-dismiss="modal" class="btn btn--light">{% trans 'Cancel'%}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+    <script src="{% static 'unload_warning.js' %}"></script>
 {% endblock %}
