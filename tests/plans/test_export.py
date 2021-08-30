@@ -58,8 +58,12 @@ def test_reply_to_mixin(plan_factory, project_factory,
     # get_..._data methods overwritten in DashboardPlanExportView
     assert unescape_and_strip_html(plan.description) \
         == export.get_description_data(plan)
+    assert plan.contact_name == export.get_field_data(plan, 'contact_name')
     assert unescape_and_strip_html(plan.contact_address_text) \
         == export.get_contact_address_text_data(plan)
+    assert plan.contact_phone == export.get_field_data(plan, 'contact_phone')
+    assert plan.contact_email == export.get_field_data(plan, 'contact_email')
+    assert plan.contact_url == export.get_field_data(plan, 'contact_url')
     district = plan.district.name if plan.district else str('City wide')
     assert district == export.get_district_data(plan)
     assert plan.get_status_display() == export.get_status_data(plan)
@@ -87,11 +91,11 @@ def test_reply_to_mixin(plan_factory, project_factory,
     project_1 = project_factory()
     project_2 = project_factory()
     plan = plan_factory(
-        contact_name='',
+        contact_name='Joe',
         contact_address_text='<i>me@example.com</i>',
         contact_phone='12345678',
         contact_email='<i>me@example.com</i>',
-        contact_url='',
+        contact_url='https://liqd.net',
         description='this is a description<br>with a newline',
         topics=choices[0][0],
         status=0,
@@ -120,8 +124,12 @@ def test_reply_to_mixin(plan_factory, project_factory,
     # get_..._data methods overwritten in DashboardPlanExportView
     assert unescape_and_strip_html(plan.description) \
         == export.get_description_data(plan)
+    assert plan.contact_name == export.get_field_data(plan, 'contact_name')
     assert unescape_and_strip_html(plan.contact_address_text) \
         == export.get_contact_address_text_data(plan)
+    assert plan.contact_phone == export.get_field_data(plan, 'contact_phone')
+    assert plan.contact_email == export.get_field_data(plan, 'contact_email')
+    assert plan.contact_url == export.get_field_data(plan, 'contact_url')
     district = plan.district.name if plan.district else str('City wide')
     assert district == export.get_district_data(plan)
     assert plan.get_status_display() == export.get_status_data(plan)
@@ -132,6 +140,7 @@ def test_reply_to_mixin(plan_factory, project_factory,
     assert 13.382721 == export.get_location_lon_data(plan)
     assert 52.512121 == export.get_location_lat_data(plan)
     assert plan.point_label == export.get_location_label_data(plan)
+
     # defined directly in DashboardPlanExportView
     projects = ''
     if plan.projects.all():
