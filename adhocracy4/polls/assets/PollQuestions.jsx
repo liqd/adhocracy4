@@ -31,7 +31,7 @@ class PollQuestions extends React.Component {
       questions: [],
       showResults: false,
       alert: false,
-      votes: [],
+      hasVotes: false,
       errors: {},
       loading: false
     }
@@ -57,6 +57,7 @@ class PollQuestions extends React.Component {
 
   setModified (questionId, value) {
     const currQuestion = this.state.questions.find(q => q.id === questionId)
+    this.setState({ hasVotes: value })
     currQuestion.modified = value
   }
 
@@ -99,10 +100,6 @@ class PollQuestions extends React.Component {
     this.setState(prevState => ({ showResults: !prevState.showResults }))
   }
 
-  hasAnyVotes () {
-    return this.state.votes.length > 0
-  }
-
   isReadOnly () {
     return this.state.questions.length > 0 && this.state.questions[0].isReadOnly
   }
@@ -115,13 +112,12 @@ class PollQuestions extends React.Component {
     const isAuthenticated = this.state.questions.length > 0 && this.state.questions[0].authenticated
 
     if (isAuthenticated) {
-      const disabled = this.hasAnyVotes()
       return (
         <button
           type="button"
           className="btn poll__btn--dark a4-spacer--right"
           onClick={(e) => this.handleSubmit(e)}
-          disabled={disabled}
+          disabled={!this.state.hasVotes}
         >
           {django.gettext('Submit answer')}
         </button>
