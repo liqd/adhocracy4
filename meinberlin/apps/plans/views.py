@@ -2,6 +2,7 @@ import json
 
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ImproperlyConfigured
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
@@ -150,12 +151,14 @@ class DashboardPlanListView(a4dashboard_mixins.DashboardBaseMixin,
 
 
 class DashboardPlanCreateView(a4dashboard_mixins.DashboardBaseMixin,
+                              SuccessMessageMixin,
                               generic.CreateView):
     model = Plan
     form_class = PlanForm
     permission_required = 'meinberlin_plans.add_plan'
     template_name = 'meinberlin_plans/plan_create_dashboard.html'
     menu_item = 'project'
+    success_message = _('The plan was created')
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
@@ -167,25 +170,23 @@ class DashboardPlanCreateView(a4dashboard_mixins.DashboardBaseMixin,
 
     def get_success_url(self):
         return reverse(
-            'a4dashboard:plan-list',
-            kwargs={'organisation_slug': self.organisation.slug})
+            'a4dashboard:plan-update',
+            kwargs={'organisation_slug': self.organisation.slug,
+                    'pk': self.object.pk})
 
 
 class DashboardPlanUpdateView(a4dashboard_mixins.DashboardBaseMixin,
+                              SuccessMessageMixin,
                               generic.UpdateView):
     model = Plan
     form_class = PlanForm
     permission_required = 'meinberlin_plans.change_plan'
     template_name = 'meinberlin_plans/plan_update_form.html'
     menu_item = 'project'
+    success_message = _('The plan has been updated')
 
     def get_permission_object(self):
         return self.get_object()
-
-    def get_success_url(self):
-        return reverse(
-            'a4dashboard:plan-list',
-            kwargs={'organisation_slug': self.organisation.slug})
 
 
 class DashboardPlanDeleteView(a4dashboard_mixins.DashboardBaseMixin,

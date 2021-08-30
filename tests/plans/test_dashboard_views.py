@@ -40,7 +40,7 @@ def test_initiator_can_edit(client, plan_factory):
         'duration': '1 month'
     }
     response = client.post(url, data)
-    assert redirect_target(response) == 'plan-list'
+    assert redirect_target(response) == 'plan-update'
     plan.refresh_from_db()
     assert plan.topics == [data.get('topics')]
     assert plan.title == data.get('title')
@@ -81,7 +81,7 @@ def test_group_member_can_edit(client, plan_factory, user_factory,
         'duration': '1 month'
     }
     response = client.post(url, data)
-    assert redirect_target(response) == 'plan-list'
+    assert redirect_target(response) == 'plan-update'
     plan.refresh_from_db()
     assert plan.topics == [data.get('topics')]
     assert plan.title == data.get('title')
@@ -121,7 +121,7 @@ def test_initiator_can_create(client, organisation):
         'duration': '1 month'
     }
     response = client.post(url, data)
-    assert redirect_target(response) == 'plan-list'
+    assert redirect_target(response) == 'plan-update'
     plan = Plan.objects.all().first()
     assert plan.topics == [data.get('topics')]
     assert plan.title == data.get('title')
@@ -165,7 +165,7 @@ def test_group_member_can_create(client, organisation, user_factory,
         'duration': '1 month'
     }
     response = client.post(url, data)
-    assert redirect_target(response) == 'plan-list'
+    assert redirect_target(response) == 'plan-update'
     plan = Plan.objects.all().first()
     assert plan.topics == [data.get('topics')]
     assert plan.title == data.get('title')
