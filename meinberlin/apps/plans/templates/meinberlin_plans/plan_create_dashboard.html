@@ -1,4 +1,4 @@
-{% extends "a4dashboard/base_project_list.html" %}
+{% extends "a4dashboard/base_dashboard.html" %}
 {% load i18n %}
 
 {% block title %}{% trans "Add a new plan" %} &mdash; {{ block.super }}{% endblock %}
@@ -19,10 +19,29 @@
 </div>
 {% endblock %}
 
-{% block project_list %}
-    <h1 class="u-first-heading">{% trans 'Add a new plan' %}</h1>
+{% block dashboard_content %}
+<div class="l-menu">
+    <div class="l-menu__content l-menu__content--aside">
+        <h1 class="u-first-heading">{% trans 'Add a new plan' %}</h1>
 
-    {% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug as cancel %}
-    {% include "meinberlin_plans/includes/plan_form.html" with cancel=cancel %}
+        {% url 'a4dashboard:plan-list' organisation_slug=view.organisation.slug as cancel %}
+        {% include "meinberlin_plans/includes/plan_form.html" with cancel=cancel %}
+    </div>
 
+    <div class="l-menu__aside">
+        <ul class="progress-line u-spacer-bottom">
+            <li class="progress-line__entry--published">
+                <i class="fas fa-circle progress-line__icon" title="{% trans 'The preview is activated after the first save.' %}" aria-label="{% trans 'The preview is activated after the first save.' %}"></i>
+                <span>{% trans 'The preview is activated after the first save.' %}</span>
+            </li>
+        </ul>
+        <button disabled class="btn btn--light btn--full u-spacer-bottom">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            {% trans 'Preview' %}
+        </button>
+        <button disabled type="submit" class="btn btn--primary btn--full u-spacer-bottom" value="{% trans 'Publish' %}">
+            {% trans 'Publish' %}
+        </button>
+    </div>
+</div>
 {% endblock %}
