@@ -48,6 +48,7 @@ class PlanForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['district'].empty_label = _('City wide')
+        self.fields['contact_address_text'].widget.attrs['rows'] = 6
 
     def save(self, commit=True):
         plan = super().save(commit=False)
