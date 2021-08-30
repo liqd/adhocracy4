@@ -20,6 +20,7 @@ from adhocracy4.filters.filters import DefaultsFilterSet
 from adhocracy4.filters.filters import FreeTextFilter
 from adhocracy4.rules import mixins as rules_mixins
 from meinberlin.apps.contrib.views import CanonicalURLDetailView
+from meinberlin.apps.dashboard.mixins import DashboardProjectListGroupMixin
 from meinberlin.apps.maps.models import MapPreset
 from meinberlin.apps.organisations.models import Organisation
 from meinberlin.apps.plans.forms import PlanForm
@@ -136,8 +137,10 @@ class PlanListView(rules_mixins.PermissionRequiredMixin,
 
 
 class DashboardPlanListView(a4dashboard_mixins.DashboardBaseMixin,
+                            DashboardProjectListGroupMixin,
                             filter_views.FilteredListView):
     model = Plan
+    paginate_by = 12
     template_name = 'meinberlin_plans/plan_dashboard_list.html'
     permission_required = 'meinberlin_plans.add_plan'
     menu_item = 'project'

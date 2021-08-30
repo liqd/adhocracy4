@@ -23,8 +23,6 @@
 
     <ul class="u-list-reset">
         {% for plan in object_list %}
-            {% has_perm 'meinberlin_plans.change_plan' request.user plan as can_change_plan %}
-            {% if can_change_plan %}
             <li class="list-item list-item--has-image">
                 <div class="list-item--has-image__wrapper">
                     <div class="list-item--has-image__image" {% if plan.tile_image %}style="background-image: url({% thumbnail plan.tile_image '170x170' crop %})"{% endif %}>
@@ -82,10 +80,12 @@
                     </div>
                 </div>
             </li>
-            {% endif %}
         {% empty %}
             {% trans "Nothing to show" %}
         {% endfor %}
     </ul>
+
+    {% include "meinberlin_contrib/includes/pagination.html" %}
+
 
 {% endblock %}
