@@ -29,6 +29,30 @@
     </div>
 
     <div class="l-menu__aside">
+        <ul class="progress-line u-spacer-bottom">
+            {% if plan.is_draft %}
+            <ul class="progress-line u-spacer-bottom">
+                <li class="progress-line__entry">
+                    <span class="progress-line__line--bottom"></span>
+                    <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Create plan' %}" aria-label="{% trans 'Create plan' %}"></i>
+                    <span>{% trans 'Create plan' %}</span>
+                </li>
+
+                <li class="progress-line__entry">
+                    <span class="progress-line__line--top"></span>
+                        <i class="fas fa-check-circle u-success progress-line__icon--active" title="{% trans 'Plan not ready for publication' %}" aria-label="{% trans 'Plan not ready for publication' %}"></i>
+                    <span class="progress-line__entry--active">
+                        <span>{% trans 'Fill in plan details' %}</span>
+                    </span>
+                </li>
+            </ul>
+            {% else %}
+            <li class="progress-line__entry--published">
+                <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'The plan has been published' %}" aria-label="{% trans 'The plan has been published' %}"></i>
+                <span>{% trans 'The plan has been published.' %}</span>
+            </li>
+            {% endif %}
+        </ul>
         <a href="{{ plan.get_absolute_url }}"
            class="btn btn--light btn--full u-spacer-bottom">
             <i class="fa fa-eye" aria-hidden="true"></i>

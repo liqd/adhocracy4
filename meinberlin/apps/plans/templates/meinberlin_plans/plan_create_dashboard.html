@@ -30,9 +30,18 @@
 
     <div class="l-menu__aside">
         <ul class="progress-line u-spacer-bottom">
-            <li class="progress-line__entry--published">
-                <i class="fas fa-circle progress-line__icon" title="{% trans 'The preview is activated after the first save.' %}" aria-label="{% trans 'The preview is activated after the first save.' %}"></i>
-                <span>{% trans 'The preview is activated after the first save.' %}</span>
+            <li class="progress-line__entry">
+                <span class="progress-line__line--bottom"></span>
+                <i class="fas fa-circle progress-line__icon--active" title="{% trans 'Create plan' %}" aria-label="{% trans 'Create plan' %}"></i>
+                <span class="progress-line__entry--active">
+                    <span>{% trans 'Create plan' %}</span>
+                </span>
+            </li>
+
+            <li class="progress-line__entry">
+                <span class="progress-line__line--top"></span>
+                    <i class="fas fa-circle progress-line__icon" title="{% trans 'Plan not ready for publication' %}" aria-label="{% trans 'Plan not ready for publication' %}"></i>
+                <span>{% trans 'Fill in plan details' %}</span>
             </li>
         </ul>
         <button disabled class="btn btn--light btn--full u-spacer-bottom">
