@@ -21,7 +21,7 @@
     "@fortawesome/fontawesome-free": "5.15.4",
     "acorn": "8.4.1",
     "adhocracy4": "liqd/adhocracy4#bcff6075d0bbc86e7f9c447e455aa6e3db818f8e",
-    "autoprefixer": "10.3.2",
+    "autoprefixer": "10.3.3",
     "axios": "0.21.1",
     "babel-loader": "8.2.2",
     "bootstrap": "5.1.0",
