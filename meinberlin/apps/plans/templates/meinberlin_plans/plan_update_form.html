@@ -34,7 +34,7 @@
             <ul class="progress-line u-spacer-bottom">
                 <li class="progress-line__entry">
                     <span class="progress-line__line--bottom"></span>
-                    <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Create plan' %}" aria-label="{% trans 'Create plan' %}"></i>
+                    <i class="fas fa-check-circle u-success progress-line__icon" title="{% trans 'Create plan' %}" aria-label="{% trans 'Create plan, step completed' %}"></i>
                     <span>{% trans 'Create plan' %}</span>
                 </li>
 
@@ -63,17 +63,13 @@
             {% endif %}
         </a>
         {% if plan.is_draft %}
-            {% comment %}
-            <button type="submit" class="btn btn--primary btn--full u-spacer-bottom" value="{% trans 'Publish' %}" data-bs-toggle="modal" data-bs-target="#plan-publish-modal">
+            <button
+              type="button"
+              class="btn btn--primary btn--full u-spacer-bottom"
+              data-bs-toggle="modal"
+              data-bs-target="#plan-publish-modal">
                 {% trans 'Publish' %}
             </button>
-            {% endcomment %}
-            <form action="{% url 'a4dashboard:plan-publish' pk=plan.pk %}" method="post" data-ignore-submit="true" class="u-inline">
-                {% csrf_token %}
-                <button name="action" value="publish" class="btn btn--primary btn--full u-spacer-bottom">
-                {% trans 'Publish' %}
-                </button>
-            </form>
         {% else %}
             <form action="{% url 'a4dashboard:plan-publish' pk=plan.pk %}" method="post" data-ignore-submit="true">
                 {% csrf_token %}
@@ -84,9 +80,8 @@
         {% endif %}
     </div>
 </div>
-{% endblock %}
 
-<div class="modal" tabindex="-1" role="dialog" id="plan-publish-modal" aria-labelledby="plan-publish-label">
+<div class="modal" tabindex="-1" role="dialog" id="plan-publish-modal" aria-labelledby="plan-publish-label" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -110,6 +105,8 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
 
 {% block extra_js %}
     <script src="{% static 'unload_warning.js' %}"></script>
