@@ -311,8 +311,12 @@ CKEDITOR_CONFIGS = {
         'toolbar_Custom': [
             ['Bold', 'Italic', 'Underline'],
             ['NumberedList', 'BulletedList'],
-            ['Link', 'Unlink']
+            ['Link', 'Unlink'],
+            ['Embed', 'EmbedBase']
         ],
+        'removePlugins': 'stylesheetparser',
+        'extraAllowedContent': 'iframe[*]',
+        'extraPlugins': ','.join(['embed', 'embedbase']),
     },
     'image-editor': {
         'width': '100%',
@@ -355,11 +359,12 @@ CKEDITOR_CONFIGS = {
 BLEACH_LIST = {
     'default': {
         'tags': ['p', 'strong', 'em', 'u', 'ol', 'li', 'ul', 'a', 'img',
-                'div'],
+                 'iframe', 'div'],
         'attributes': {
             'a': ['href', 'rel', 'target'],
             'img': ['src', 'alt', 'style'],
-            'div': ['class']
+            'div': ['class'],
+            'iframe': ['src', 'alt', 'style']
         },
     },
     'image-editor': {
