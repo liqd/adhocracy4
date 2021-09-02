@@ -8,8 +8,8 @@
         <h1 class="u-first-heading lr-bar__left">
             {% trans 'Plans' %}
         </h1>
-        <div class="lr-bar__sm-left-lg-right">
-            <a href="{% url 'a4dashboard:plan-export' organisation_slug=view.organisation.slug %}" class="u-spacer-right">
+        <div class="lr-bar__flex--wrapper lr-bar__actions">
+            <a href="{% url 'a4dashboard:plan-export' organisation_slug=view.organisation.slug %}" class="btn btn--secondary">
                 <i class="fas fa-download" aria-hidden="true"></i>
                 {% trans 'Download list' %}
             </a>

@@ -8,7 +8,7 @@
         <h1 class="lr-bar__left">
             {% trans 'Participation projects' %}
         </h1>
-        <div class="lr-bar__sm-left-lg-right">
+        <div class="lr-bar__flex--wrapper lr-bar__actions">
             <a href="{% url 'a4dashboard:project-create' organisation_slug=view.organisation.slug %}" class="btn">
                 {% trans 'New Project' %}
             </a>
